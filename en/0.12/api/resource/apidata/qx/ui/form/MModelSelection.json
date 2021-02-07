@@ -1,0 +1,216 @@
+{
+  "className": "qx.ui.form.MModelSelection",
+  "packageName": "qx.ui.form",
+  "name": "MModelSelection",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 172,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin offers the selection of the model properties.\n It can only be included if the object including it implements the\n {@link qx.ui.core.ISingleSelection} interface and the selectables implement\n the {@link qx.ui.form.IModel} interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 14
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {
+    "changeModelSelection": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 47
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pseudo event. It will never be fired because the array itself can not\n be changed. But the event description is needed for the data binding.</p>"
+          }
+        ]
+      },
+      "name": "changeModelSelection",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "__modelSelection": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__inSelectionChange": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onModelSelectionChange": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the selection change of the including class e.g. SelectBox,\n List, …\n It sets the new modelSelection via {@link #setModelSelection}.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onModelSelectionArrayChange": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for the change of the internal model selection data array.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getModelSelection": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns always an array of the models of the selected items. If no\n item is selected or no model is given, the array will be empty.\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.Array} An array of the models of the selected items.",
+            "type": "qx.data.Array",
+            "description": " An array of the models of the selected items."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setModelSelection": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the given models in the array and searches for the corresponding\n selectables. If an selectable does have that model attached, it will be\n selected.\n<em>Attention:</em> This method can have a time complexity of O(n^2)!\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "modelSelection {Array} An array of models, which should be\n   selected.",
+            "paramName": "modelSelection",
+            "description": " An array of models, which should be\n   selected.",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 169,
+        "column": 13
+      },
+      "end": {
+        "line": 171,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

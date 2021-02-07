@@ -1,0 +1,58 @@
+{
+  "className": "cv.IconConfig",
+  "packageName": "cv",
+  "name": "IconConfig",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 1036,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Static access to internal icon database.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "DB": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 1034,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal database of the known icons.\n Initially filled with the default icons.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

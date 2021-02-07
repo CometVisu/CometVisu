@@ -1,0 +1,5401 @@
+{
+  "className": "cv.ui.structure.pure.Reload",
+  "packageName": "cv.ui.structure.pure",
+  "name": "Reload",
+  "superClass": "cv.ui.structure.AbstractWidget",
+  "interfaces": [],
+  "mixins": [
+    "cv.ui.common.Update"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 56,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.</p><div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2014</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Christian Mayer"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2014"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "members": {
+    "getDomString": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.AbstractWidget",
+        "cv.ui.structure.AbstractBasicWidget"
+      ]
+    },
+    "_getInnerDomString": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.AbstractWidget"
+      ]
+    },
+    "_update": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__initUpdater": {
+      "type": "function",
+      "name": "__initUpdater",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "cv.ui.common.Update"
+    },
+    "update": {
+      "type": "function",
+      "name": "update",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Update",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value",
+            "paramName": "address",
+            "description": " Address of the incoming value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value",
+            "paramName": "data",
+            "description": " the incoming value",
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "processIncomingValue": {
+      "type": "function",
+      "name": "processIncomingValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Update"
+    },
+    "update3d": {
+      "type": "function",
+      "name": "update3d",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.Update",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      }
+    },
+    "applyTransform": {
+      "type": "function",
+      "name": "applyTransform",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decode the given data with the addresses transform</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB-item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB-item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} value to be decoded",
+            "paramName": "data",
+            "description": " value to be decoded",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var}",
+            "type": "var",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "applyMapping": {
+      "type": "function",
+      "name": "applyMapping",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the given mapping to the value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to be mapped",
+            "paramName": "value",
+            "description": " value to be mapped",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used",
+            "paramName": "mappingName",
+            "description": " mapping name, if not set the <code>mapping</code> property value is used",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the mapped value",
+            "type": "var",
+            "description": " the mapped value"
+          }
+        ]
+      }
+    },
+    "getNextMappedValue": {
+      "type": "function",
+      "name": "getNextMappedValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Look up the entry for <code>value</code> in the mapping <code>this_map</code> and\n return the next value in the list (including wrap around).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to look up",
+            "paramName": "value",
+            "description": " value to look up",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "this_map {String} mapping name",
+            "paramName": "this_map",
+            "description": " mapping name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the next mapped value",
+            "type": "var",
+            "description": " the next mapped value"
+          }
+        ]
+      }
+    },
+    "applyFormat": {
+      "type": "function",
+      "name": "applyFormat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format the given value according to the defined format.\n If no format is defined the value will not be changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to be formatted",
+            "paramName": "value",
+            "description": " value to be formatted",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the formatted value",
+            "type": "var",
+            "description": " the formatted value"
+          }
+        ]
+      }
+    },
+    "defaultValueHandling": {
+      "type": "function",
+      "name": "defaultValueHandling",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default value handling for most of the widgets.\n This method applies the transform, mapping, format and styling to the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} value to be processes",
+            "paramName": "data",
+            "description": " value to be processes",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the processed value",
+            "type": "var",
+            "description": " the processed value"
+          }
+        ]
+      }
+    },
+    "defaultValue2DOM": {
+      "type": "function",
+      "name": "defaultValue2DOM",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.\n value: the value that will be inserted\n modifyFn: callback function that modifies the DOM</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var}"
+          },
+          {
+            "name": "@param",
+            "body": "modifyFn {Function}"
+          }
+        ]
+      }
+    },
+    "defaultUpdate": {
+      "type": "function",
+      "name": "defaultUpdate",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default update function, processes the incoming value and applies it to the Dom value element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ga {String} KNX-GA or openHAB item name",
+            "paramName": "ga",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} the raw value from the bus",
+            "paramName": "data",
+            "description": " the raw value from the bus",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "passedElement {Element?} the element to update, if not given {@link getDomElement()} is used",
+            "paramName": "passedElement",
+            "description": " the element to update, if not given {@link getDomElement()} is used",
+            "optional": true,
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} value",
+            "type": "var",
+            "description": " value"
+          }
+        ]
+      }
+    },
+    "_applyValueToDom": {
+      "type": "function",
+      "name": "_applyValueToDom",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function which updates the DOM element with the given value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "valueElement {Element} element to update",
+            "paramName": "valueElement",
+            "description": " element to update",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "e {var} value to add to the element",
+            "paramName": "e",
+            "description": " value to add to the element",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "getAddress": {
+      "type": "function",
+      "name": "getAddress",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for address"
+          }
+        ]
+      }
+    },
+    "setAddress": {
+      "type": "function",
+      "name": "setAddress",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for address"
+          }
+        ]
+      }
+    },
+    "resetAddress": {
+      "type": "function",
+      "name": "resetAddress",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>address</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ]
+      }
+    },
+    "getValue": {
+      "type": "function",
+      "name": "getValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for value"
+          }
+        ]
+      }
+    },
+    "setValue": {
+      "type": "function",
+      "name": "setValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for value"
+          }
+        ]
+      }
+    },
+    "resetValue": {
+      "type": "function",
+      "name": "resetValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>value</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ]
+      }
+    },
+    "getBasicValue": {
+      "type": "function",
+      "name": "getBasicValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>basicValue</code>.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for basicValue"
+          }
+        ]
+      }
+    },
+    "setBasicValue": {
+      "type": "function",
+      "name": "setBasicValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>basicValue</code>.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for basicValue"
+          }
+        ]
+      }
+    },
+    "resetBasicValue": {
+      "type": "function",
+      "name": "resetBasicValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>basicValue</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ]
+      }
+    },
+    "getFormat": {
+      "type": "function",
+      "name": "getFormat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for format"
+          }
+        ]
+      }
+    },
+    "setFormat": {
+      "type": "function",
+      "name": "setFormat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for format"
+          }
+        ]
+      }
+    },
+    "resetFormat": {
+      "type": "function",
+      "name": "resetFormat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>format</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ]
+      }
+    },
+    "applyStyling": {
+      "type": "function",
+      "name": "applyStyling",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.HasStyling"
+    },
+    "_findValue": {
+      "type": "function",
+      "name": "_findValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.common.HasStyling"
+    },
+    "getStyling": {
+      "type": "function",
+      "name": "getStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styling</code>.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for styling"
+          }
+        ]
+      }
+    },
+    "setStyling": {
+      "type": "function",
+      "name": "setStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styling</code>.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for styling"
+          }
+        ]
+      }
+    },
+    "resetStyling": {
+      "type": "function",
+      "name": "resetStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styling</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ]
+      }
+    },
+    "bind": {
+      "type": "function",
+      "name": "bind",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The bind method delegates the call to the\n {@link qx.data.SingleValueBinding#bind} function. As source, the current\n object (this) will be used.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourcePropertyChain {String} The property chain which represents\n   the source property.",
+            "paramName": "sourcePropertyChain",
+            "description": " The property chain which represents\n   the source property.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
+            "paramName": "targetObject",
+            "description": " The object which the source should\n   be bind to.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetProperty {String} The property name of the target object.",
+            "paramName": "targetProperty",
+            "description": " The property name of the target object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} A map containing the options. See\n   {@link qx.data.SingleValueBinding#bind} for more\n   information.",
+            "paramName": "options",
+            "description": " A map containing the options. See\n   {@link qx.data.SingleValueBinding#bind} for more\n   information.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Returns the internal id for that binding. This can be used\n   for referencing the binding e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index.",
+            "type": "var",
+            "description": " Returns the internal id for that binding. This can be used\n   for referencing the binding e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the event is no data event or\n   there is no property definition for object and property (source and\n   target).",
+            "type": "qx.core.AssertionError",
+            "description": " If the event is no data event or\n   there is no property definition for object and property (source and\n   target)."
+          }
+        ]
+      }
+    },
+    "removeBinding": {
+      "type": "function",
+      "name": "removeBinding",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the binding with the given id from the current object. The\n id has to be the id returned by any of the bind functions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {var} The id of the binding.",
+            "paramName": "id",
+            "description": " The id of the binding.",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the binding could not be found.",
+            "type": "Error",
+            "description": " If the binding could not be found."
+          }
+        ]
+      }
+    },
+    "removeRelatedBindings": {
+      "type": "function",
+      "name": "removeRelatedBindings",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings between the object and the related one.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "relatedObject {qx.core.Object} The object of which related\n   bindings should be removed.",
+            "paramName": "relatedObject",
+            "description": " The object of which related\n   bindings should be removed.",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
+    },
+    "removeAllBindings": {
+      "type": "function",
+      "name": "removeAllBindings",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
+    },
+    "getBindings": {
+      "type": "function",
+      "name": "getBindings",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array which lists all bindings for the object.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject, sourceEvent,\n   targetObject and targetProperty in that order.",
+            "type": "qx.data.Array",
+            "description": " An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject, sourceEvent,\n   targetObject and targetProperty in that order."
+          }
+        ]
+      }
+    },
+    "debug": {
+      "type": "function",
+      "name": "debug",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs a debug message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "paramName": "varargs",
+            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "info": {
+      "type": "function",
+      "name": "info",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs an info message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "paramName": "varargs",
+            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "warn": {
+      "type": "function",
+      "name": "warn",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs a warning message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "paramName": "varargs",
+            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "error": {
+      "type": "function",
+      "name": "error",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs an error message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "paramName": "varargs",
+            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "trace": {
+      "type": "function",
+      "name": "trace",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs an error message with the current stack trace</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "paramName": "varargs",
+            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "__logMessage": {
+      "type": "function",
+      "name": "__logMessage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper that calls the appropriate logger function with the current object\n and any number of items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "level {String} The log level of the message",
+            "paramName": "level",
+            "description": " The log level of the message",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments} Arguments list to be logged",
+            "paramName": "varargs",
+            "description": " Arguments list to be logged",
+            "type": "arguments"
+          }
+        ]
+      }
+    },
+    "addListener": {
+      "type": "function",
+      "name": "addListener",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add event listener to this object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
+            "type": "String",
+            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+          }
+        ]
+      }
+    },
+    "addListenerOnce": {
+      "type": "function",
+      "name": "addListenerOnce",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add event listener to this object, which is only called once. After the\n listener is called the event listener gets removed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object ? window} reference to the 'this' variable inside the callback",
+            "paramName": "context",
+            "description": " reference to the 'this' variable inside the callback",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
+            "type": "String",
+            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+          }
+        ]
+      }
+    },
+    "removeListener": {
+      "type": "function",
+      "name": "removeListener",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove event listener from this object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} event callback function",
+            "paramName": "listener",
+            "description": " event callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} reference to the 'this' variable inside the callback",
+            "paramName": "self",
+            "description": " reference to the 'this' variable inside the callback",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed successfully (has existed)",
+            "type": "Boolean",
+            "description": " Whether the event was removed successfully (has existed)"
+          }
+        ]
+      }
+    },
+    "removeListenerById": {
+      "type": "function",
+      "name": "removeListenerById",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an event listener from an event target by an id returned by\n {@link #addListener}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id returned by {@link #addListener}",
+            "paramName": "id",
+            "description": " The id returned by {@link #addListener}",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed successfully (has existed)",
+            "type": "Boolean",
+            "description": " Whether the event was removed successfully (has existed)"
+          }
+        ]
+      }
+    },
+    "hasListener": {
+      "type": "function",
+      "name": "hasListener",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if there are one or more listeners for an event type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} name of the event type",
+            "paramName": "type",
+            "description": " name of the event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the object has a listener of the given type.",
+            "type": "Boolean",
+            "description": " Whether the object has a listener of the given type."
+          }
+        ]
+      }
+    },
+    "dispatchEvent": {
+      "type": "function",
+      "name": "dispatchEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatch an event on this object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Event} event to dispatch",
+            "paramName": "evt",
+            "description": " event to dispatch",
+            "type": "qx.event.type.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireEvent": {
+      "type": "function",
+      "name": "fireEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean|qx.Promise",
+            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEvent": {
+      "type": "function",
+      "name": "fireNonBubblingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean",
+            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
+    "fireDataEvent": {
+      "type": "function",
+      "name": "fireDataEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean|qx.Promise",
+            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
+    "set": {
+      "type": "function",
+      "name": "set",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MProperty",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "paramName": "data",
+            "description": " a map of property values. The key is the name of the property.",
+            "type": [
+              "Map",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "value {var?} the value, only used when <code>data</code> is a string.",
+            "paramName": "value",
+            "description": " the value, only used when <code>data</code> is a string.",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Returns this instance if <code>data</code> is a map\n   or a non-generated setter is called; otherwise returns <code>value</code>.",
+            "type": "qx.core.Object",
+            "description": " Returns this instance if <code>data</code> is a map\n   or a non-generated setter is called; otherwise returns <code>value</code>."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if a property defined does not exist",
+            "type": "Error",
+            "description": " if a property defined does not exist"
+          }
+        ]
+      }
+    },
+    "get": {
+      "type": "function",
+      "name": "get",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MProperty",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of the given property. If no generated getter could be\n found, a fallback tries to access a handwritten getter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop {String} Name of the property.",
+            "paramName": "prop",
+            "description": " Name of the property.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the value",
+            "type": "var",
+            "description": " The value of the value"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if a property defined does not exist",
+            "type": "Error",
+            "description": " if a property defined does not exist"
+          }
+        ]
+      }
+    },
+    "reset": {
+      "type": "function",
+      "name": "reset",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MProperty",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the value of the given property. If no generated resetter could be\n found, a handwritten resetter will be invoked, if available.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop {String} Name of the property.",
+            "paramName": "prop",
+            "description": " Name of the property.",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if a property defined does not exist",
+            "type": "Error",
+            "description": " if a property defined does not exist"
+          }
+        ]
+      }
+    },
+    "isPropertyInitialized": {
+      "type": "function",
+      "name": "isPropertyInitialized",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MProperty",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the property is initialized, i.e. has a defined init value or\n has got a value by a setter method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop {String} Name of the property",
+            "paramName": "prop",
+            "description": " Name of the property",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} If the property is initialized",
+            "type": "Boolean",
+            "description": " If the property is initialized"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the property defined does not exist",
+            "type": "Error",
+            "description": " If the property defined does not exist"
+          }
+        ]
+      }
+    },
+    "_applyQxOwner": {
+      "type": "function",
+      "name": "_applyQxOwner",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
+    },
+    "_applyQxObjectId": {
+      "type": "function",
+      "name": "_applyQxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
+    },
+    "__onOwnedObjectIdChange": {
+      "type": "function",
+      "name": "__onOwnedObjectIdChange",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
+    },
+    "_cascadeQxObjectIdChanges": {
+      "type": "function",
+      "name": "_cascadeQxObjectIdChanges",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
+    },
+    "getQxObject": {
+      "type": "function",
+      "name": "getQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object with the specified ID</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id\n          {String} ID of the object",
+            "paramName": "id",
+            "description": " ID of the object",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object?} the found object",
+            "type": "qx.core.Object?",
+            "description": " the found object"
+          }
+        ]
+      }
+    },
+    "_createQxObject": {
+      "type": "function",
+      "name": "_createQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the object and adds it to a list; most classes are expected to\n override <code>_createQxObjectImpl</code> NOT this method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} ID of the object",
+            "paramName": "id",
+            "description": " ID of the object",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object?} the created object",
+            "type": "qx.core.Object?",
+            "description": " the created object"
+          }
+        ]
+      }
+    },
+    "_createQxObjectImpl": {
+      "type": "function",
+      "name": "_createQxObjectImpl",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the object, intended to be overridden. Null is a valid return\n value and will be cached by <code>getQxObject</code>, however <code>undefined</code> is NOT a\n valid value and so will not be cached meaning that <code>_createQxObjectImpl</code>\n will be called multiple times until a valid value is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} ID of the object",
+            "paramName": "id",
+            "description": " ID of the object",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object?} the created object",
+            "type": "qx.core.Object?",
+            "description": " the created object"
+          }
+        ]
+      }
+    },
+    "addOwnedQxObject": {
+      "type": "function",
+      "name": "addOwnedQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an object as owned by this object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {qx.core.Object} the object to register",
+            "paramName": "obj",
+            "description": " the object to register",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "id {String?} the id to set when registering the object",
+            "paramName": "id",
+            "description": " the id to set when registering the object",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "removeOwnedQxObject": {
+      "type": "function",
+      "name": "removeOwnedQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Discards an object from the list of owned objects; note that this does\n not dispose of the object, simply forgets it if it exists.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {String|Object} the ID of the object to discard, or the object itself",
+            "paramName": "args",
+            "description": " the ID of the object to discard, or the object itself",
+            "type": [
+              "String",
+              "Object"
+            ]
+          }
+        ]
+      }
+    },
+    "__removeOwnedQxObjectImpl": {
+      "type": "function",
+      "name": "__removeOwnedQxObjectImpl",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an owned object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {qx.core.Object} the object",
+            "paramName": "obj",
+            "description": " the object",
+            "type": "qx.core.Object"
+          }
+        ]
+      }
+    },
+    "getOwnedQxObjects": {
+      "type": "function",
+      "name": "getOwnedQxObjects",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of objects that are owned by this object, or an empty\n array if none exists.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "assert": {
+      "type": "function",
+      "name": "assert",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the condition evaluates to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "condition {var} Condition to check for. Must evaluate to\n    <code>true</code>.",
+            "paramName": "condition",
+            "description": " Condition to check for. Must evaluate to\n    <code>true</code>.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "fail": {
+      "type": "function",
+      "name": "fail",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Raise an {@link AssertionError}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {String} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "compact {Boolean?false} Show less verbose message. Default: false.",
+            "paramName": "compact",
+            "description": " Show less verbose message. Default: false.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      }
+    },
+    "assertTrue": {
+      "type": "function",
+      "name": "assertTrue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>true</code> (Identity check).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>true</code>.",
+            "paramName": "value",
+            "description": " Condition to check for. Must be identical to\n    <code>true</code>.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertFalse": {
+      "type": "function",
+      "name": "assertFalse",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>false</code> (Identity check).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>false</code>.",
+            "paramName": "value",
+            "description": " Condition to check for. Must be identical to\n    <code>false</code>.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEquals": {
+      "type": "function",
+      "name": "assertEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are equal. (Uses the equality operator\n <code>==</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotEquals": {
+      "type": "function",
+      "name": "assertNotEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are not equal. (Uses the not equality operator\n <code>!=</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEqualsFloat": {
+      "type": "function",
+      "name": "assertEqualsFloat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both float values are equal. This might be needed because\n of the natural floating point inaccuracy of computers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Float} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "found {Float} Found value",
+            "paramName": "found",
+            "description": " Found value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotEqualsFloat": {
+      "type": "function",
+      "name": "assertNotEqualsFloat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both float values are not equal. This might be needed\n because of the natural floating point inaccuracy of computers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Float} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "found {Float} Found value",
+            "paramName": "found",
+            "description": " Found value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertIdentical": {
+      "type": "function",
+      "name": "assertIdentical",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are identical. (Uses the identity operator\n <code>===</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotIdentical": {
+      "type": "function",
+      "name": "assertNotIdentical",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are not identical. (Uses the not identity operator\n <code>!==</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotUndefined": {
+      "type": "function",
+      "name": "assertNotUndefined",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is not <code>undefined</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertUndefined": {
+      "type": "function",
+      "name": "assertUndefined",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>undefined</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotNull": {
+      "type": "function",
+      "name": "assertNotNull",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is not <code>null</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNull": {
+      "type": "function",
+      "name": "assertNull",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>null</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertJsonEquals": {
+      "type": "function",
+      "name": "assertJsonEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the first two arguments are equal, when serialized into\n JSON.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} The expected value",
+            "paramName": "expected",
+            "description": " The expected value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} The found value",
+            "paramName": "found",
+            "description": " The found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertMatch": {
+      "type": "function",
+      "name": "assertMatch",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the given string matches the regular expression</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} String, which should match the regular expression",
+            "paramName": "str",
+            "description": " String, which should match the regular expression",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "re {RegExp} Regular expression to match",
+            "paramName": "re",
+            "description": " Regular expression to match",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArgumentsCount": {
+      "type": "function",
+      "name": "assertArgumentsCount",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the number of arguments is within the given range</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {arguments} The <code>arguments<code> variable of a function",
+            "paramName": "args",
+            "description": " The <code>arguments<code> variable of a function",
+            "type": "arguments"
+          },
+          {
+            "name": "@param",
+            "body": "minCount {Integer} Minimal number of arguments",
+            "paramName": "minCount",
+            "description": " Minimal number of arguments",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxCount {Integer} Maximum number of arguments",
+            "paramName": "maxCount",
+            "description": " Maximum number of arguments",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEventFired": {
+      "type": "function",
+      "name": "assertEventFired",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that an event is fired.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} The object on which the event should be fired.",
+            "paramName": "obj",
+            "description": " The object on which the event should be fired.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {String} The event which should be fired.",
+            "paramName": "event",
+            "description": " The event which should be fired.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "invokeFunc {Function} The function which will be invoked and which\n   fires the event.",
+            "paramName": "invokeFunc",
+            "description": " The function which will be invoked and which\n   fires the event.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function?null} The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
+            "paramName": "listener",
+            "description": " The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?\"\"} Message to be shows if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shows if the assertion fails.",
+            "optional": true,
+            "defaultValue": "\"\"",
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEventNotFired": {
+      "type": "function",
+      "name": "assertEventNotFired",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that an event is not fired.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} The object on which the event should be fired.",
+            "paramName": "obj",
+            "description": " The object on which the event should be fired.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {String} The event which should be fired.",
+            "paramName": "event",
+            "description": " The event which should be fired.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "invokeFunc {Function} The function which will be invoked and which\n   should not fire the event.",
+            "paramName": "invokeFunc",
+            "description": " The function which will be invoked and which\n   should not fire the event.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shows if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shows if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertException": {
+      "type": "function",
+      "name": "assertException",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Asserts that the callback raises a matching exception.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} function to check",
+            "paramName": "callback",
+            "description": " function to check",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "exception {Error?Error} Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
+            "paramName": "exception",
+            "description": " Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
+            "optional": true,
+            "defaultValue": "Error",
+            "type": "Error"
+          },
+          {
+            "name": "@param",
+            "body": "re {String|RegExp} The assertion fails if the error message does\n   not match this parameter",
+            "paramName": "re",
+            "description": " The assertion fails if the error message does\n   not match this parameter",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInArray": {
+      "type": "function",
+      "name": "assertInArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an item in the given array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "array {Array} List of valid values",
+            "paramName": "array",
+            "description": " List of valid values",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotInArray": {
+      "type": "function",
+      "name": "assertNotInArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is NOT an item in the given array</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "array {Array} List of values",
+            "paramName": "array",
+            "description": " List of values",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArrayEquals": {
+      "type": "function",
+      "name": "assertArrayEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both array have identical array items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Array} The expected array",
+            "paramName": "expected",
+            "description": " The expected array",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "found {Array} The found array",
+            "paramName": "found",
+            "description": " The found array",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertKeyInMap": {
+      "type": "function",
+      "name": "assertKeyInMap",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a key in the given map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "map {Map} Map, where the keys represent the valid values",
+            "paramName": "map",
+            "description": " Map, where the keys represent the valid values",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertFunction": {
+      "type": "function",
+      "name": "assertFunction",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertString": {
+      "type": "function",
+      "name": "assertString",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertBoolean": {
+      "type": "function",
+      "name": "assertBoolean",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a boolean.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNumber": {
+      "type": "function",
+      "name": "assertNumber",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a number.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertPositiveNumber": {
+      "type": "function",
+      "name": "assertPositiveNumber",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a number &gt;= 0.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInteger": {
+      "type": "function",
+      "name": "assertInteger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an integer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertPositiveInteger": {
+      "type": "function",
+      "name": "assertPositiveInteger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an integer &gt;= 0.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInRange": {
+      "type": "function",
+      "name": "assertInRange",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is inside the given range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "min {Number} lower bound",
+            "paramName": "min",
+            "description": " lower bound",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "max {Number} upper bound",
+            "paramName": "max",
+            "description": " upper bound",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertObject": {
+      "type": "function",
+      "name": "assertObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArray": {
+      "type": "function",
+      "name": "assertArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertMap": {
+      "type": "function",
+      "name": "assertMap",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a map either created using <code>new Object</code>\n or by using the object literal notation <code>{ ... }</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertRegExp": {
+      "type": "function",
+      "name": "assertRegExp",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a regular expression.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertType": {
+      "type": "function",
+      "name": "assertType",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value has the given type using the <code>typeof</code>\n operator. Because the type is not always what it is supposed to be it is\n better to use more explicit checks like {@link #assertString} or\n {@link #assertArray}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} expected type of the value",
+            "paramName": "type",
+            "description": " expected type of the value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInstance": {
+      "type": "function",
+      "name": "assertInstance",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of the given class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class} The value must be an instance of this class",
+            "paramName": "clazz",
+            "description": " The value must be an instance of this class",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInterface": {
+      "type": "function",
+      "name": "assertInterface",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value implements the given interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "iface {Class} The value must implement this interface",
+            "paramName": "iface",
+            "description": " The value must implement this interface",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertCssColor": {
+      "type": "function",
+      "name": "assertCssColor",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value represents the given CSS color value. This method\n parses the color strings and compares the RGB values. It is able to\n parse values supported by {@link qx.util.ColorUtil#stringToRgb}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {String} The expected color",
+            "paramName": "expected",
+            "description": " The expected color",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} The value to check",
+            "paramName": "value",
+            "description": " The value to check",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertElement": {
+      "type": "function",
+      "name": "assertElement",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a DOM element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertQxObject": {
+      "type": "function",
+      "name": "assertQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of {@link qx.core.Object}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertQxWidget": {
+      "type": "function",
+      "name": "assertQxWidget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of {@link qx.ui.core.Widget}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "getPath": {
+      "type": "function",
+      "name": "getPath",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>path</code>.\n\nFor further details take a look at the property definition: {@link #path}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for path"
+          }
+        ]
+      }
+    },
+    "setPath": {
+      "type": "function",
+      "name": "setPath",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>path</code>.\n\nFor further details take a look at the property definition: {@link #path}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for path"
+          }
+        ]
+      }
+    },
+    "resetPath": {
+      "type": "function",
+      "name": "resetPath",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>path</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #path}."
+          }
+        ]
+      }
+    },
+    "get$$type": {
+      "type": "function",
+      "name": "get$$type",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>$$type</code>.\n\nFor further details take a look at the property definition: {@link #$$type}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for $$type"
+          }
+        ]
+      }
+    },
+    "set$$type": {
+      "type": "function",
+      "name": "set$$type",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>$$type</code>.\n\nFor further details take a look at the property definition: {@link #$$type}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for $$type"
+          }
+        ]
+      }
+    },
+    "reset$$type": {
+      "type": "function",
+      "name": "reset$$type",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>$$type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #$$type}."
+          }
+        ]
+      }
+    },
+    "getPageType": {
+      "type": "function",
+      "name": "getPageType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>pageType</code>.\n\nFor further details take a look at the property definition: {@link #pageType}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for pageType"
+          }
+        ]
+      }
+    },
+    "setPageType": {
+      "type": "function",
+      "name": "setPageType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>pageType</code>.\n\nFor further details take a look at the property definition: {@link #pageType}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for pageType"
+          }
+        ]
+      }
+    },
+    "resetPageType": {
+      "type": "function",
+      "name": "resetPageType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>pageType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #pageType}."
+          }
+        ]
+      }
+    },
+    "getAnonymous": {
+      "type": "function",
+      "name": "getAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "isAnonymous": {
+      "type": "function",
+      "name": "isAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "setAnonymous": {
+      "type": "function",
+      "name": "setAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for anonymous"
+          }
+        ]
+      }
+    },
+    "resetAnonymous": {
+      "type": "function",
+      "name": "resetAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
+    },
+    "getFlavour": {
+      "type": "function",
+      "name": "getFlavour",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>flavour</code>.\n\nFor further details take a look at the property definition: {@link #flavour}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for flavour"
+          }
+        ]
+      }
+    },
+    "setFlavour": {
+      "type": "function",
+      "name": "setFlavour",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>flavour</code>.\n\nFor further details take a look at the property definition: {@link #flavour}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for flavour"
+          }
+        ]
+      }
+    },
+    "resetFlavour": {
+      "type": "function",
+      "name": "resetFlavour",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>flavour</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #flavour}."
+          }
+        ]
+      }
+    },
+    "getLayout": {
+      "type": "function",
+      "name": "getLayout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>layout</code>.\n\nFor further details take a look at the property definition: {@link #layout}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for layout"
+          }
+        ]
+      }
+    },
+    "setLayout": {
+      "type": "function",
+      "name": "setLayout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>layout</code>.\n\nFor further details take a look at the property definition: {@link #layout}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for layout"
+          }
+        ]
+      }
+    },
+    "resetLayout": {
+      "type": "function",
+      "name": "resetLayout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>layout</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #layout}."
+          }
+        ]
+      }
+    },
+    "getLabel": {
+      "type": "function",
+      "name": "getLabel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>label</code>.\n\nFor further details take a look at the property definition: {@link #label}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for label"
+          }
+        ]
+      }
+    },
+    "setLabel": {
+      "type": "function",
+      "name": "setLabel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>label</code>.\n\nFor further details take a look at the property definition: {@link #label}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for label"
+          }
+        ]
+      }
+    },
+    "resetLabel": {
+      "type": "function",
+      "name": "resetLabel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>label</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #label}."
+          }
+        ]
+      }
+    },
+    "getBindClickToWidget": {
+      "type": "function",
+      "name": "getBindClickToWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>bindClickToWidget</code>.\n\nFor further details take a look at the property definition: {@link #bindClickToWidget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for bindClickToWidget"
+          }
+        ]
+      }
+    },
+    "isBindClickToWidget": {
+      "type": "function",
+      "name": "isBindClickToWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>bindClickToWidget</code>.\n\nFor further details take a look at the property definition: {@link #bindClickToWidget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for bindClickToWidget"
+          }
+        ]
+      }
+    },
+    "setBindClickToWidget": {
+      "type": "function",
+      "name": "setBindClickToWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>bindClickToWidget</code>.\n\nFor further details take a look at the property definition: {@link #bindClickToWidget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for bindClickToWidget"
+          }
+        ]
+      }
+    },
+    "resetBindClickToWidget": {
+      "type": "function",
+      "name": "resetBindClickToWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>bindClickToWidget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #bindClickToWidget}."
+          }
+        ]
+      }
+    },
+    "getMapping": {
+      "type": "function",
+      "name": "getMapping",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>mapping</code>.\n\nFor further details take a look at the property definition: {@link #mapping}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for mapping"
+          }
+        ]
+      }
+    },
+    "setMapping": {
+      "type": "function",
+      "name": "setMapping",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>mapping</code>.\n\nFor further details take a look at the property definition: {@link #mapping}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for mapping"
+          }
+        ]
+      }
+    },
+    "resetMapping": {
+      "type": "function",
+      "name": "resetMapping",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>mapping</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mapping}."
+          }
+        ]
+      }
+    },
+    "getAlign": {
+      "type": "function",
+      "name": "getAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>align</code>.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for align"
+          }
+        ]
+      }
+    },
+    "setAlign": {
+      "type": "function",
+      "name": "setAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>align</code>.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for align"
+          }
+        ]
+      }
+    },
+    "resetAlign": {
+      "type": "function",
+      "name": "resetAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>align</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ]
+      }
+    },
+    "getClasses": {
+      "type": "function",
+      "name": "getClasses",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>classes</code>.\n\nFor further details take a look at the property definition: {@link #classes}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for classes"
+          }
+        ]
+      }
+    },
+    "setClasses": {
+      "type": "function",
+      "name": "setClasses",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>classes</code>.\n\nFor further details take a look at the property definition: {@link #classes}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for classes"
+          }
+        ]
+      }
+    },
+    "resetClasses": {
+      "type": "function",
+      "name": "resetClasses",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>classes</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #classes}."
+          }
+        ]
+      }
+    },
+    "getStyle": {
+      "type": "function",
+      "name": "getStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>style</code>.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for style"
+          }
+        ]
+      }
+    },
+    "setStyle": {
+      "type": "function",
+      "name": "setStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>style</code>.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for style"
+          }
+        ]
+      }
+    },
+    "resetStyle": {
+      "type": "function",
+      "name": "resetStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>style</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ]
+      }
+    },
+    "getColspan": {
+      "type": "function",
+      "name": "getColspan",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for colspan"
+          }
+        ]
+      }
+    },
+    "setColspan": {
+      "type": "function",
+      "name": "setColspan",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for colspan"
+          }
+        ]
+      }
+    },
+    "resetColspan": {
+      "type": "function",
+      "name": "resetColspan",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspan}."
+          }
+        ]
+      }
+    },
+    "getColspanM": {
+      "type": "function",
+      "name": "getColspanM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colspanM</code>.\n\nFor further details take a look at the property definition: {@link #colspanM}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for colspanM"
+          }
+        ]
+      }
+    },
+    "setColspanM": {
+      "type": "function",
+      "name": "setColspanM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colspanM</code>.\n\nFor further details take a look at the property definition: {@link #colspanM}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for colspanM"
+          }
+        ]
+      }
+    },
+    "resetColspanM": {
+      "type": "function",
+      "name": "resetColspanM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspanM</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspanM}."
+          }
+        ]
+      }
+    },
+    "getColspanS": {
+      "type": "function",
+      "name": "getColspanS",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colspanS</code>.\n\nFor further details take a look at the property definition: {@link #colspanS}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for colspanS"
+          }
+        ]
+      }
+    },
+    "setColspanS": {
+      "type": "function",
+      "name": "setColspanS",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colspanS</code>.\n\nFor further details take a look at the property definition: {@link #colspanS}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for colspanS"
+          }
+        ]
+      }
+    },
+    "resetColspanS": {
+      "type": "function",
+      "name": "resetColspanS",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspanS</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspanS}."
+          }
+        ]
+      }
+    },
+    "getRowspanClass": {
+      "type": "function",
+      "name": "getRowspanClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>rowspanClass</code>.\n\nFor further details take a look at the property definition: {@link #rowspanClass}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for rowspanClass"
+          }
+        ]
+      }
+    },
+    "setRowspanClass": {
+      "type": "function",
+      "name": "setRowspanClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>rowspanClass</code>.\n\nFor further details take a look at the property definition: {@link #rowspanClass}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for rowspanClass"
+          }
+        ]
+      }
+    },
+    "resetRowspanClass": {
+      "type": "function",
+      "name": "resetRowspanClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rowspanClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowspanClass}."
+          }
+        ]
+      }
+    },
+    "getContainerClass": {
+      "type": "function",
+      "name": "getContainerClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>containerClass</code>.\n\nFor further details take a look at the property definition: {@link #containerClass}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for containerClass"
+          }
+        ]
+      }
+    },
+    "setContainerClass": {
+      "type": "function",
+      "name": "setContainerClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>containerClass</code>.\n\nFor further details take a look at the property definition: {@link #containerClass}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for containerClass"
+          }
+        ]
+      }
+    },
+    "resetContainerClass": {
+      "type": "function",
+      "name": "resetContainerClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>containerClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #containerClass}."
+          }
+        ]
+      }
+    },
+    "getVisible": {
+      "type": "function",
+      "name": "getVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for visible"
+          }
+        ]
+      }
+    },
+    "isVisible": {
+      "type": "function",
+      "name": "isVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for visible"
+          }
+        ]
+      }
+    },
+    "setVisible": {
+      "type": "function",
+      "name": "setVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for visible"
+          }
+        ]
+      }
+    },
+    "resetVisible": {
+      "type": "function",
+      "name": "resetVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ]
+      }
+    },
+    "getResponsive": {
+      "type": "function",
+      "name": "getResponsive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>responsive</code>.\n\nFor further details take a look at the property definition: {@link #responsive}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for responsive"
+          }
+        ]
+      }
+    },
+    "isResponsive": {
+      "type": "function",
+      "name": "isResponsive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>responsive</code>.\n\nFor further details take a look at the property definition: {@link #responsive}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for responsive"
+          }
+        ]
+      }
+    },
+    "setResponsive": {
+      "type": "function",
+      "name": "setResponsive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>responsive</code>.\n\nFor further details take a look at the property definition: {@link #responsive}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for responsive"
+          }
+        ]
+      }
+    },
+    "resetResponsive": {
+      "type": "function",
+      "name": "resetResponsive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>responsive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #responsive}."
+          }
+        ]
+      }
+    }
+  },
+  "events": {},
+  "descendants": []
+}

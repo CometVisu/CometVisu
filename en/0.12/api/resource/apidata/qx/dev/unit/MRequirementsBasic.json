@@ -1,0 +1,84 @@
+{
+  "className": "qx.dev.unit.MRequirementsBasic",
+  "packageName": "qx.dev.unit",
+  "name": "MRequirementsBasic",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 91,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Adds support for verification of infrastructure requirements to unit test\n classes.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "require": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Verifies a list of infrastructure requirements by checking for\n corresponding \"has\" methods. If no such method was found,\n {@link qx.core.Environment} will be checked for a key matching the given\n feature name. Note that asynchronous environment checks are not supported!</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.dev.unit.RequirementError} if any requirement check returned\n   <code>false</code>",
+            "type": "qx.dev.unit.RequirementError",
+            "description": " if any requirement check returned\n   <code>false</code>"
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} if no valid check was found for a feature.",
+            "type": "Error",
+            "description": " if no valid check was found for a feature."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "featureList {String[]} List of infrastructure requirements",
+            "paramName": "featureList",
+            "description": " List of infrastructure requirements",
+            "type": "String[]"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "environmentNonLiteralKey(feature)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

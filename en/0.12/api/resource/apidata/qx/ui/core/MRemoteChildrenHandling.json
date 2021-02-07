@@ -1,0 +1,492 @@
+{
+  "className": "qx.ui.core.MRemoteChildrenHandling",
+  "packageName": "qx.ui.core",
+  "name": "MRemoteChildrenHandling",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 198,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin redirects all children handling methods to a child widget of the\n including class. This is e.g. used in {@link qx.ui.window.Window} to add\n child widgets directly to the window pane.\n The including class must implement the method <code>getChildrenContainer</code>,\n which has to return the widget, to which the child widgets should be added.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "__forward": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Forward the call with the given function name to the children container</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionName {String} name of the method to forward",
+            "paramName": "functionName",
+            "description": " name of the method to forward",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "a1 {var?} first argument of the method to call",
+            "paramName": "a1",
+            "description": " first argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a2 {var?} second argument of the method to call",
+            "paramName": "a2",
+            "description": " second argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a3 {var?} third argument of the method to call",
+            "paramName": "a3",
+            "description": " third argument of the method to call",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the forward method",
+            "type": "var",
+            "description": " The return value of the forward method"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getChildren": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\n   reference types, please do not modify them in-place)",
+            "type": "qx.ui.core.LayoutItem[]",
+            "description": " The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasChildren": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children.",
+            "type": "Boolean",
+            "description": " Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.\n The supported keys of the layout options map depend on the layout manager\n used to position the widget. The options are documented in the class\n documentation of each layout manager {@link qx.ui.layout}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to add.",
+            "paramName": "child",
+            "description": " the item to add.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": " This object (for chaining support)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to remove",
+            "paramName": "child",
+            "description": " the item to remove",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": " This object (for chaining support)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAll": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the removed children.",
+            "type": "Array",
+            "description": " An array containing the removed children."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "indexOf": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given item if it is\n a child item. Otherwise it returns <code>-1</code>.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to query for",
+            "paramName": "child",
+            "description": " the item to query for",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given item is no child of this layout.",
+            "type": "Integer",
+            "description": " The index position or <code>-1</code> when\n   the given item is no child of this layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAt": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4
+        },
+        "end": {
+          "line": 146,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child at the specified index\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the item will be inserted",
+            "paramName": "index",
+            "description": " Index, at which the item will be inserted",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addBefore": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 163,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item before another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+            "paramName": "before",
+            "description": " item before the new item will be inserted.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAfter": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 180,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item after another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+            "paramName": "after",
+            "description": " item, after which the new item will be inserted",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAt": {
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4
+        },
+        "end": {
+          "line": 196,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the item at the specified index.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the item to remove.",
+            "paramName": "index",
+            "description": " Index of the item to remove.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The removed item",
+            "type": "qx.ui.core.LayoutItem",
+            "description": " The removed item"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -118,4 +118,4 @@
   qx.ui.virtual.selection.Column.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Column.js.map?dt=1612690417877
+//# sourceMappingURL=Column.js.map?dt=1612694011033

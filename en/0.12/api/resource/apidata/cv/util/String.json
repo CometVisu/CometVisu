@@ -1,0 +1,151 @@
+{
+  "className": "cv.util.String",
+  "packageName": "cv.util",
+  "name": "String",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 0
+      },
+      "end": {
+        "line": 78,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "__elem": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "decodeHtmlEntities": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decode HTML entities like &amp; to &amp;</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to decode",
+            "paramName": "str",
+            "description": " string to decode",
+            "type": "cv.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "cv.util.String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "htmlStringToDomElement": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clean the string that contains HTML code and convert it to a DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to decode",
+            "paramName": "str",
+            "description": " string to decode",
+            "type": "cv.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "cv.util.String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "sprintf": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Insert in string values as the well known sprint() function of other\n programming languages does.\n When a malformation happens a generic string is returned and a warning\n is shown on the console.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "cv.util.String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

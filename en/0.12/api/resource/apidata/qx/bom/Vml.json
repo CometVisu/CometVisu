@@ -1,0 +1,289 @@
+{
+  "className": "qx.bom.Vml",
+  "packageName": "qx.bom",
+  "name": "Vml",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 155,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Helper class to work with VML . If this class is used, it initialized VML\n support.\n  <em>Note: This class is only available in Internet Explorer!</em></p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "create": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create VML element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The VML element type",
+            "paramName": "type",
+            "description": " The VML element type",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map?null} An optional map of element attributes",
+            "paramName": "attributes",
+            "description": " An optional map of element attributes",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "win {var?null} The browser window element, in which the element\n     should be created.",
+            "paramName": "win",
+            "description": " The browser window element, in which the element\n     should be created.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The VML element",
+            "type": "qx.bom.Element",
+            "description": " The VML element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createImage": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an VML image and configures it. The image is always tiled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String?} The URL of the image to display",
+            "paramName": "source",
+            "description": " The URL of the image to display",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer?} The desired width of the image element",
+            "paramName": "width",
+            "description": " The desired width of the image element",
+            "optional": true,
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer?} The desired height of the image element",
+            "paramName": "height",
+            "description": " The desired height of the image element",
+            "optional": true,
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "xOffset {Integer?0} The horizontal offset of the image inside of\n     the image element.",
+            "paramName": "xOffset",
+            "description": " The horizontal offset of the image inside of\n     the image element.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "yOffset {Integer?0} The vertical offset of the image inside of\n     the image element.",
+            "paramName": "yOffset",
+            "description": " The vertical offset of the image inside of\n     the image element.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "imageWidth {Integer?null} The full width of the image. This value\n     is required, when an xOffset is given.",
+            "paramName": "imageWidth",
+            "description": " The full width of the image. This value\n     is required, when an xOffset is given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "imageHeight {Integer?null} The full height of the image. This value\n     is required, when an yOffset is given.",
+            "paramName": "imageHeight",
+            "description": " The full height of the image. This value\n     is required, when an yOffset is given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the VML element of the image",
+            "type": "qx.bom.Element",
+            "description": " the VML element of the image"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateImage": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the image source and configures the image. The image element size\n resized to the given size and the image is always tiled.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(image, source, width, height, xOffset, yOffset, imageWidth, imageHeight)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "image {Element} The image VML element created by {@link #createImage}.",
+            "paramName": "image",
+            "description": " The image VML element created by {@link #createImage}.",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "source {String} The URL of the image to display",
+            "paramName": "source",
+            "description": " The URL of the image to display",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} The desired width of the image element",
+            "paramName": "width",
+            "description": " The desired width of the image element",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} The desired height of the image element",
+            "paramName": "height",
+            "description": " The desired height of the image element",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "xOffset {Integer?0} The horizontal offset of the image inside of\n     the image element.",
+            "paramName": "xOffset",
+            "description": " The horizontal offset of the image inside of\n     the image element.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "yOffset {Integer?0} The vertical offset of the image inside of\n     the image element.",
+            "paramName": "yOffset",
+            "description": " The vertical offset of the image inside of\n     the image element.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "imageWidth {Integer?null} The full width of the image. This value\n     is required, when an xOffset is given.",
+            "paramName": "imageWidth",
+            "description": " The full width of the image. This value\n     is required, when an xOffset is given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "imageHeight {Integer?null} The full height of the image. This value\n     is required, when an yOffset is given.",
+            "paramName": "imageHeight",
+            "description": " The full height of the image. This value\n     is required, when an yOffset is given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 143,
+        "column": 10
+      },
+      "end": {
+        "line": 154,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

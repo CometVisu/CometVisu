@@ -1,0 +1,31 @@
+{
+  "className": "qx.theme.simple.Color",
+  "packageName": "qx.theme.simple",
+  "name": "Color",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 117,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Simple color theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

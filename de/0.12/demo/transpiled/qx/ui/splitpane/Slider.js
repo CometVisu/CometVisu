@@ -60,4 +60,4 @@
   qx.ui.splitpane.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1612691017299
+//# sourceMappingURL=Slider.js.map?dt=1612694632520

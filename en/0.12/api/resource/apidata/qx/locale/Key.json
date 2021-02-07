@@ -1,0 +1,99 @@
+{
+  "className": "qx.locale.Key",
+  "packageName": "qx.locale",
+  "name": "Key",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 139,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Static class, which contains functionality to localize the names of keyboard keys.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getKeyName": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return localized name of a key identifier\n {@link qx.event.type.KeySequence}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "size {String} format of the key identifier.\n       Possible values: \"short\", \"full\"",
+            "paramName": "size",
+            "description": " format of the key identifier.\n       Possible values: \"short\", \"full\"",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "keyIdentifier {String} key identifier to translate {@link qx.event.type.KeySequence}",
+            "paramName": "keyIdentifier",
+            "description": " key identifier to translate {@link qx.event.type.KeySequence}",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "locale {String} optional locale to be used",
+            "paramName": "locale",
+            "description": " optional locale to be used",
+            "type": "qx.locale.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} localized key name",
+            "type": "qx.locale.String",
+            "description": " localized key name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 73,
+        "column": 10
+      },
+      "end": {
+        "line": 138,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

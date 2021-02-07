@@ -1049,4 +1049,4 @@
   osparc.theme.common.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1612691019126
+//# sourceMappingURL=Decoration.js.map?dt=1612694634256

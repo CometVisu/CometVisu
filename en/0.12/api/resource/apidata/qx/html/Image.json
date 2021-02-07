@@ -1,0 +1,494 @@
+{
+  "className": "qx.html.Image",
+  "packageName": "qx.html",
+  "name": "Image",
+  "superClass": "qx.html.Element",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 227,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This is a simple image class using the low level image features of\n qooxdoo and wraps it for the qx.html layer.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "members": {
+    "__paddingTop": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__paddingLeft": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "tagNameHint": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 22
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "setPadding": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maps padding to background-position if the widget is rendered as a\n background image</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "paddingLeft {Integer} left padding value",
+            "paramName": "paddingLeft",
+            "description": " left padding value",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "paddingTop {Integer} top padding value",
+            "paramName": "paddingTop",
+            "description": " top padding value",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyProperty": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "_removeProperty": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "_createDomElement": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "_copyData": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 152,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "setSource": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the image source</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Whether the HTML mode should be used.",
+            "paramName": "value",
+            "description": " Whether the HTML mode should be used.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Label} This instance for for chaining support.",
+            "type": "qx.html.Label",
+            "description": " This instance for for chaining support."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSource": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the image source.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Current image source.",
+            "type": "String",
+            "description": " Current image source."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetSource": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 202,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the current source to null which means that no image\n is shown anymore.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Image} The current instance for chaining",
+            "type": "qx.html.Image",
+            "description": " The current instance for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setScale": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the image should be scaled or not.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Scale the image",
+            "paramName": "value",
+            "description": " Scale the image",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Label} This instance for for chaining support.",
+            "type": "qx.html.Label",
+            "description": " This instance for for chaining support."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getScale": {
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the image is scaled or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the image is scaled",
+            "type": "Boolean",
+            "description": " Whether the image is scaled"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

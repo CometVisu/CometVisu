@@ -1,0 +1,139 @@
+{
+  "className": "cv.ui.common.HasStyling",
+  "packageName": "cv.ui.common",
+  "name": "HasStyling",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 0
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "mixin",
+  "properties": {
+    "styling": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 5
+        }
+      },
+      "name": "styling",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    }
+  },
+  "members": {
+    "applyStyling": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_findValue": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getStyling": {
+      "type": "function",
+      "name": "getStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styling</code>.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for styling"
+          }
+        ]
+      }
+    },
+    "setStyling": {
+      "type": "function",
+      "name": "setStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styling</code>.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for styling"
+          }
+        ]
+      }
+    },
+    "resetStyling": {
+      "type": "function",
+      "name": "resetStyling",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styling</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

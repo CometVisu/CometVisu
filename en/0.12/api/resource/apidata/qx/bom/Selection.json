@@ -1,0 +1,432 @@
+{
+  "className": "qx.bom.Selection",
+  "packageName": "qx.bom",
+  "name": "Selection",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 663,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Low-level selection API to select elements like input and textarea elements\n as well as text nodes or elements which their child nodes.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.bom.Element, qx.bom.Element.blur"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getSelectionObject": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the native selection object.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(documentNode)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "documentNode {document} Document node to retrieve the connected selection from",
+            "paramName": "documentNode",
+            "description": " Document node to retrieve the connected selection from",
+            "type": "document"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Selection} native selection object",
+            "type": "qx.bom.Selection",
+            "description": " native selection object"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current selected text.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to retrieve the selection for",
+            "paramName": "node",
+            "description": " node to retrieve the selection for",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} selected text as string",
+            "type": "String|null",
+            "description": " selected text as string"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getLength": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 143,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the length of the selection</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} Form node or document/window to check.",
+            "paramName": "node",
+            "description": " Form node or document/window to check.",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer|null} length of the selection or null",
+            "type": "Integer|null",
+            "description": " length of the selection or null"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getStart": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 253,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the start of the selection</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to check for",
+            "paramName": "node",
+            "description": " node to check for",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} start of current selection or \"-1\" if the current\n                   selection is not within the given node",
+            "type": "Integer",
+            "description": " start of current selection or \"-1\" if the current\n                   selection is not within the given node"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getEnd": {
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4
+        },
+        "end": {
+          "line": 363,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the end of the selection</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to check",
+            "paramName": "node",
+            "description": " node to check",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} end of current selection",
+            "type": "Integer",
+            "description": " end of current selection"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__isInputOrTextarea": {
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4
+        },
+        "end": {
+          "line": 376,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Utility method to check for an input or textarea element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to check",
+            "paramName": "node",
+            "description": " node to check",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the given node is an input or textarea element",
+            "type": "Boolean",
+            "description": " Whether the given node is an input or textarea element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4
+        },
+        "end": {
+          "line": 578,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a selection at the given node with the given start and end.\n For text nodes, input and textarea elements the start and end parameters\n set the boundaries at the text.\n For element nodes the start and end parameters are used to select the\n childNodes of the given element.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node, start, end)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to set the selection at",
+            "paramName": "node",
+            "description": " node to set the selection at",
+            "type": "Node"
+          },
+          {
+            "name": "@param",
+            "body": "start {Integer} start of the selection",
+            "paramName": "start",
+            "description": " start of the selection",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "end {Integer} end of the selection",
+            "paramName": "end",
+            "description": " end of the selection",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether a selection is drawn",
+            "type": "Boolean",
+            "description": " whether a selection is drawn"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "setAll": {
+      "location": {
+        "start": {
+          "line": 587,
+          "column": 4
+        },
+        "end": {
+          "line": 589,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects all content/childNodes of the given node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} text, element or document node",
+            "paramName": "node",
+            "description": " text, element or document node",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether a selection is drawn",
+            "type": "Boolean",
+            "description": " whether a selection is drawn"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 597,
+          "column": 4
+        },
+        "end": {
+          "line": 661,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the selection on the given node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to clear the selection for",
+            "paramName": "node",
+            "description": " node to clear the selection for",
+            "type": "Node"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

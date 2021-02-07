@@ -1,0 +1,59 @@
+{
+  "className": "cv.transforms.Knx",
+  "packageName": "cv.transforms",
+  "name": "Knx",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 601,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2010</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Christian Mayer"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2010"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "defer": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 9
+      },
+      "end": {
+        "line": 600,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

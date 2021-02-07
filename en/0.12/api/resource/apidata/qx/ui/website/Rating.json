@@ -1,0 +1,459 @@
+{
+  "className": "qx.ui.website.Rating",
+  "packageName": "qx.ui.website",
+  "name": "Rating",
+  "superClass": "qx.ui.website.Widget",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 61,
+        "column": 0
+      },
+      "end": {
+        "line": 295,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This is a simple rating widget which can be used to display a predefined\n number of symbols which the user can click or tap to give a rating e.g.\n 3 out of 5 stars.\n </p>\n<h2>Markup</h2>\n<p>Each rating item is a span element. Span elements already existing within\n the Rating's container will be used, otherwise new elements will be added or\n removed according to the <code>length</code> config option.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-rating</code></td>\n       <td>Container element</td>\n       <td>Identifies the Rating widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-rating-item</code></td>\n       <td>Rating item (span)</td>\n       <td>Identifies and styles an active Rating item</td>\n     </tr>\n     <tr>\n       <td><code>qx-rating-item-off</code></td>\n       <td>Rating item (span)</td>\n       <td>Identifies and styles an inactive Rating item. Applied in addition to <code>qx-rating-item</code></td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_config": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p><em>length</em>\n The length of the rating widget.\n Default value: <pre>5</pre>\n<em>symbol</em>\n The symbol used to render the rating items. This can be any\n String e.g. a UTF-8 character.\n Default value: <pre>★</pre></p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "rating": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method which converts the current collection into a collection of\n rating widgets. Therefore, an initialization process needs to be done which\n can be configured with some parameter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "initValue {Number?0} The initial value of the rating.",
+            "paramName": "initValue",
+            "description": " The initial value of the rating.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "symbol {String?\"★\"} The symbol which should be used for each rating item.",
+            "paramName": "symbol",
+            "description": " The symbol which should be used for each rating item.",
+            "optional": true,
+            "defaultValue": "\"★\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "length {Number?5} The length of the rating widget.",
+            "paramName": "length",
+            "description": " The length of the rating widget.",
+            "optional": true,
+            "defaultValue": "5",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Rating} A new rating collection.",
+            "type": "qx.ui.website.Rating",
+            "description": " A new rating collection."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 126,
+        "column": 14
+      },
+      "end": {
+        "line": 128,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired at each value change</p>"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "Number"
+    }
+  },
+  "members": {
+    "init": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the given value of the raining widget's in the collection. The value will be\n converted to the maximum or minimum if our of range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} The value of the rating.",
+            "paramName": "value",
+            "description": " The value of the rating.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Rating} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Rating",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads the current value of the first rating widget in the collection\n from the DOM and returns it.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current value.",
+            "type": "Number",
+            "description": " The current value."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "_updateSymbolLength": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 231,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks the set length and adds / removes spans containing the rating symbol.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Rating} <code>this</code> reference for chaining.",
+            "type": "qx.ui.website.Rating",
+            "description": " <code>this</code> reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onTap": {
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tap handler which updates the value depending on the selected element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} tap event",
+            "paramName": "e",
+            "description": " tap event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onFocus": {
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4
+        },
+        "end": {
+          "line": 251,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Attaches the keydown listener.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native focus event.",
+            "paramName": "e",
+            "description": " The native focus event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onBlur": {
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the keydown listener if the widget loses focus.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native blur event.",
+            "paramName": "e",
+            "description": " The native blur event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onKeyDown": {
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4
+        },
+        "end": {
+          "line": 276,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Changes the value if the left or right arrow key is pressed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native keydown event.",
+            "paramName": "e",
+            "description": " The native keydown event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4
+        },
+        "end": {
+          "line": 288,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget",
+        "qx.core.IDisposable"
+      ]
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 292,
+        "column": 10
+      },
+      "end": {
+        "line": 294,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

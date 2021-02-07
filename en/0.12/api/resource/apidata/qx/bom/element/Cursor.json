@@ -1,0 +1,222 @@
+{
+  "className": "qx.bom.element.Cursor",
+  "packageName": "qx.bom.element",
+  "name": "Cursor",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 95,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Contains methods to control and query the element's cursor property</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__map": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 14
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper structure to map cursor values to supported ones</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "compile": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compiles the given cursor into a CSS compatible string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cursor {String} Valid CSS cursor name",
+            "paramName": "cursor",
+            "description": " Valid CSS cursor name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS string",
+            "type": "String",
+            "description": " CSS string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the computed cursor style for the given element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to query",
+            "paramName": "element",
+            "description": " The element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
+            "paramName": "mode",
+            "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Computed cursor value of the given element.",
+            "type": "String",
+            "description": " Computed cursor value of the given element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies a new cursor style to the given element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to modify",
+            "paramName": "element",
+            "description": " The element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} New cursor value to set",
+            "paramName": "value",
+            "description": " New cursor value to set",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the local cursor style applied to the element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to modify",
+            "paramName": "element",
+            "description": " The element to modify",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 84,
+        "column": 10
+      },
+      "end": {
+        "line": 94,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

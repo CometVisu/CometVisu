@@ -61,4 +61,4 @@
   qxl.apiviewer.UiModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UiModel.js.map?dt=1612690424481
+//# sourceMappingURL=UiModel.js.map?dt=1612694018187

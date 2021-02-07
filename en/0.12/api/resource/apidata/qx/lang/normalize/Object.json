@@ -1,0 +1,240 @@
+{
+  "className": "qx.lang.normalize.Object",
+  "packageName": "qx.lang.normalize",
+  "name": "Object",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 141,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class is responsible for the normalization of the native Object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Polyfill"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "keys": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the keys of a map as array as returned by a \"for … in\" statement.\n <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys\">MDN documentation</a> |\n <a href=\"http://es5.github.com/#x15.2.3.14\">Annotated ES5 Spec</a></p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(map)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Object} the map",
+            "paramName": "map",
+            "description": " the map",
+            "type": "qx.lang.normalize.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array of the keys of the map",
+            "type": "qx.lang.normalize.Array",
+            "description": " array of the keys of the map"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "values": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the values of a map as array</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Object} the map",
+            "paramName": "map",
+            "description": " the map",
+            "type": "qx.lang.normalize.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array of the values of the map",
+            "type": "qx.lang.normalize.Array",
+            "description": " array of the values of the map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "is": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines whether two values are the same value.\n <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\">MDN web docs: Object.is()</a></p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(x,y)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x {Object} the first value to compare",
+            "paramName": "x",
+            "description": " the first value to compare",
+            "type": "qx.lang.normalize.Object"
+          },
+          {
+            "name": "@param",
+            "body": "y {Object} the second value to compare",
+            "paramName": "y",
+            "description": " the second value to compare",
+            "type": "qx.lang.normalize.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} indicating whether or not the two arguments are the same value.",
+            "type": "Boolean",
+            "description": " indicating whether or not the two arguments are the same value."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "assign": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Copies all enumerable own properties from one or more source objects to a target object..\n <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign\">MDN web docs: Object.assign()</a></p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target,varArgs)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified.",
+            "paramName": "target",
+            "description": " The target object - what to apply the sources’ properties to, which is returned after it is modified.",
+            "type": "qx.lang.normalize.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sources {Object} The source object(s) - objects containing the properties you want to apply.",
+            "paramName": "sources",
+            "description": " The source object(s) - objects containing the properties you want to apply.",
+            "type": "qx.lang.normalize.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The target object.",
+            "type": "qx.lang.normalize.Object",
+            "description": " The target object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 120,
+        "column": 10
+      },
+      "end": {
+        "line": 140,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

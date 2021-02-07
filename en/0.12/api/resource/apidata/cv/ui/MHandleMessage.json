@@ -1,0 +1,937 @@
+{
+  "className": "cv.ui.MHandleMessage",
+  "packageName": "cv.ui",
+  "name": "MHandleMessage",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 363,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>MHandleMessage mixin provides a handleMessage method for most common use cases in message handling.\n Holds a list of messages</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Tobias Bräutigam"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "0.11.0"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 13
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "properties": {
+    "maxEntries": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum allowed messages</p>"
+          }
+        ]
+      },
+      "name": "maxEntries",
+      "propertyType": "new",
+      "event": "_applyMaxEntries",
+      "init": 50,
+      "check": "Number",
+      "defaultValue": 50
+    },
+    "counter": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current amount of messages</p>"
+          }
+        ]
+      },
+      "name": "counter",
+      "propertyType": "new",
+      "event": "changedCounter",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
+    },
+    "globalSeverity": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Highest severity of the messages</p>"
+          }
+        ]
+      },
+      "name": "globalSeverity",
+      "propertyType": "new",
+      "event": "changedGlobalSeverity",
+      "init": "normal",
+      "possibleValues": [
+        "low",
+        "normal",
+        "high",
+        "urgent"
+      ],
+      "defaultValue": "normal"
+    },
+    "rootElementId": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
+          }
+        ]
+      },
+      "name": "rootElementId",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "messageElementId": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
+          }
+        ]
+      },
+      "name": "messageElementId",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "name": "delegate",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Object"
+    }
+  },
+  "members": {
+    "_messages": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_severities": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_idCounter": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "getIdCounter": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSeverities": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_updateHighestSeverity": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getSeverityColor": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyMaxEntries": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected"
+    },
+    "handleMessage": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 218,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle messages from {@link cv.core.notifications.Router}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {Map}"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map?} optional configuration of this message for the handler",
+            "paramName": "config",
+            "description": " optional configuration of this message for the handler",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMessageIdFromEvent": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 251,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the message the tap event has been triggered on an returns\n an array [messageId, action], where action can be one of \"delete\", \"action\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} [messageId, action]",
+            "type": "Array",
+            "description": " [messageId, action]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onListTap": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4
+        },
+        "end": {
+          "line": 262,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getTooltip": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 274,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4
+        },
+        "end": {
+          "line": 293,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete all messages.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean} if false: only delete \"deletable\" messages, if true: delete all messages",
+            "paramName": "force",
+            "description": " if false: only delete \"deletable\" messages, if true: delete all messages",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMessage": {
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4
+        },
+        "end": {
+          "line": 297,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMessages": {
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4
+        },
+        "end": {
+          "line": 301,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteMessage": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 324,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete a message by index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "performAction": {
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4
+        },
+        "end": {
+          "line": 352,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMaxEntries": {
+      "type": "function",
+      "name": "getMaxEntries",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maxEntries</code>.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for maxEntries"
+          }
+        ]
+      }
+    },
+    "setMaxEntries": {
+      "type": "function",
+      "name": "setMaxEntries",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maxEntries</code>.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for maxEntries"
+          }
+        ]
+      }
+    },
+    "resetMaxEntries": {
+      "type": "function",
+      "name": "resetMaxEntries",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxEntries</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
+          }
+        ]
+      }
+    },
+    "getCounter": {
+      "type": "function",
+      "name": "getCounter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>counter</code>.\n\nFor further details take a look at the property definition: {@link #counter}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for counter"
+          }
+        ]
+      }
+    },
+    "setCounter": {
+      "type": "function",
+      "name": "setCounter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>counter</code>.\n\nFor further details take a look at the property definition: {@link #counter}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for counter"
+          }
+        ]
+      }
+    },
+    "resetCounter": {
+      "type": "function",
+      "name": "resetCounter",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>counter</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #counter}."
+          }
+        ]
+      }
+    },
+    "getGlobalSeverity": {
+      "type": "function",
+      "name": "getGlobalSeverity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>globalSeverity</code>.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for globalSeverity"
+          }
+        ]
+      }
+    },
+    "setGlobalSeverity": {
+      "type": "function",
+      "name": "setGlobalSeverity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>globalSeverity</code>.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for globalSeverity"
+          }
+        ]
+      }
+    },
+    "resetGlobalSeverity": {
+      "type": "function",
+      "name": "resetGlobalSeverity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>globalSeverity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
+          }
+        ]
+      }
+    },
+    "getRootElementId": {
+      "type": "function",
+      "name": "getRootElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>rootElementId</code>.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for rootElementId"
+          }
+        ]
+      }
+    },
+    "setRootElementId": {
+      "type": "function",
+      "name": "setRootElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>rootElementId</code>.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for rootElementId"
+          }
+        ]
+      }
+    },
+    "resetRootElementId": {
+      "type": "function",
+      "name": "resetRootElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rootElementId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
+          }
+        ]
+      }
+    },
+    "getMessageElementId": {
+      "type": "function",
+      "name": "getMessageElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>messageElementId</code>.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for messageElementId"
+          }
+        ]
+      }
+    },
+    "setMessageElementId": {
+      "type": "function",
+      "name": "setMessageElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>messageElementId</code>.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for messageElementId"
+          }
+        ]
+      }
+    },
+    "resetMessageElementId": {
+      "type": "function",
+      "name": "resetMessageElementId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>messageElementId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
+          }
+        ]
+      }
+    },
+    "getDelegate": {
+      "type": "function",
+      "name": "getDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for delegate"
+          }
+        ]
+      }
+    },
+    "setDelegate": {
+      "type": "function",
+      "name": "setDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for delegate"
+          }
+        ]
+      }
+    },
+    "resetDelegate": {
+      "type": "function",
+      "name": "resetDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 360,
+        "column": 12
+      },
+      "end": {
+        "line": 362,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

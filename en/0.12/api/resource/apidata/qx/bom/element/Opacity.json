@@ -1,0 +1,211 @@
+{
+  "className": "qx.bom.element.Opacity",
+  "packageName": "qx.bom.element",
+  "name": "Opacity",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 66,
+        "column": 0
+      },
+      "end": {
+        "line": 230,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Cross-browser opacity support.\n Optimized for animations (contains workarounds for typical flickering\n in some browsers). Reduced class dependencies for optimal size and\n performance.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "compile": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compiles the given opacity value into a cross-browser CSS string.\n Accepts numbers between zero and one\n where \"0\" means transparent, \"1\" means opaque.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(opacity)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "opacity {Float} A float number between 0 and 1",
+            "paramName": "opacity",
+            "description": " A float number between 0 and 1",
+            "type": "Float"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS compatible string",
+            "type": "String",
+            "description": " CSS compatible string"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets opacity of given element. Accepts numbers between zero and one\n where \"0\" means transparent, \"1\" means opaque.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "opacity {Float} A float number between 0 and 1",
+            "paramName": "opacity",
+            "description": " A float number between 0 and 1",
+            "type": "Float"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, opacity)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets opacity of given element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets computed opacity of given element. Accepts numbers between zero and one\n where \"0\" means transparent, \"1\" means opaque.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
+            "paramName": "mode",
+            "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Float} A float number between 0 and 1",
+            "type": "Float",
+            "description": " A float number between 0 and 1"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, mode)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

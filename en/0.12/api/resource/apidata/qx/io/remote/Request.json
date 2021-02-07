@@ -1,0 +1,3185 @@
+{
+  "className": "qx.io.remote.Request",
+  "packageName": "qx.io.remote",
+  "name": "Request",
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 1021,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class is used to send HTTP requests to the server.\n NOTE: Instances of this class must be disposed of after use</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 14
+      },
+      "end": {
+        "line": 78,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "vUrl {String}\n   Target url to issue the request to.",
+          "paramName": "vUrl",
+          "description": "\n   Target url to issue the request to.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "vMethod {String}\n   Determines http method (GET, POST, PUT, etc.) to use. See \"method\" property\n   for valid values and default value.",
+          "paramName": "vMethod",
+          "description": "\n   Determines http method (GET, POST, PUT, etc.) to use. See \"method\" property\n   for valid values and default value.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "vResponseType {String}\n   The mime type of the response. Default is text/plain.",
+          "paramName": "vResponseType",
+          "description": "\n   The mime type of the response. Default is text/plain.",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  "events": {
+    "created": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the Request object changes its state to 'created'</p>"
+          }
+        ]
+      },
+      "name": "created",
+      "type": "qx.event.type.Event"
+    },
+    "configured": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the Request object changes its state to 'configured'</p>"
+          }
+        ]
+      },
+      "name": "configured",
+      "type": "qx.event.type.Event"
+    },
+    "sending": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the Request object changes its state to 'sending'</p>"
+          }
+        ]
+      },
+      "name": "sending",
+      "type": "qx.event.type.Event"
+    },
+    "receiving": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the Request object changes its state to 'receiving'</p>"
+          }
+        ]
+      },
+      "name": "receiving",
+      "type": "qx.event.type.Event"
+    },
+    "completed": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired once the request has finished successfully. The event object\n can be used to read the transferred data.</p>"
+          }
+        ]
+      },
+      "name": "completed",
+      "type": "qx.io.remote.Response"
+    },
+    "aborted": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the pending request has been aborted.</p>"
+          }
+        ]
+      },
+      "name": "aborted",
+      "type": "qx.event.type.Event"
+    },
+    "failed": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the pending request fails.</p>"
+          }
+        ]
+      },
+      "name": "failed",
+      "type": "qx.io.remote.Response"
+    },
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the pending request times out.</p>"
+          }
+        ]
+      },
+      "name": "timeout",
+      "type": "qx.io.remote.Response"
+    }
+  },
+  "statics": {
+    "__seqNum": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sequence (id) number of a request, used to associate a response or error\n with its initiating request.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "methodAllowsRequestBody": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if the given HTTP method allows a request body being transferred to the server.\n This is currently POST and PUT. Other methods require their data being encoded into\n the URL</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "httpMethod {String} one of the values of the method property",
+            "paramName": "httpMethod",
+            "description": " one of the values of the method property",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "properties": {
+    "url": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Target url to issue the request to.</p>"
+          }
+        ]
+      },
+      "name": "url",
+      "propertyType": "new",
+      "init": "",
+      "check": "String",
+      "defaultValue": ""
+    },
+    "method": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines what type of request to issue (GET, POST, PUT, HEAD, DELETE).</p>"
+          }
+        ]
+      },
+      "name": "method",
+      "propertyType": "new",
+      "apply": "_applyMethod",
+      "init": "GET",
+      "possibleValues": [
+        "GET",
+        "POST",
+        "PUT",
+        "HEAD",
+        "DELETE"
+      ],
+      "defaultValue": "GET"
+    },
+    "asynchronous": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the request to asynchronous.</p>"
+          }
+        ]
+      },
+      "name": "asynchronous",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "data": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 204,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the data to be sent via this request</p>"
+          }
+        ]
+      },
+      "name": "data",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "username": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Username to use for HTTP authentication.\n Set to NULL if HTTP authentication is not used.</p>"
+          }
+        ]
+      },
+      "name": "username",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "password": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Password to use for HTTP authentication.\n Set to NULL if HTTP authentication is not used.</p>"
+          }
+        ]
+      },
+      "name": "password",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "state": {
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The state that the request is in, while being processed.</p>"
+          }
+        ]
+      },
+      "name": "state",
+      "propertyType": "new",
+      "event": "changeState",
+      "apply": "_applyState",
+      "init": "configured",
+      "possibleValues": [
+        "configured",
+        "queued",
+        "sending",
+        "receiving",
+        "completed",
+        "aborted",
+        "timeout",
+        "failed"
+      ],
+      "defaultValue": "configured"
+    },
+    "responseType": {
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4
+        },
+        "end": {
+          "line": 253,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Response type of request.\n The response type is a MIME type, default is text/plain. Other supported\n MIME types are text/javascript, text/html, application/json,\n application/xml.</p>"
+          }
+        ]
+      },
+      "name": "responseType",
+      "propertyType": "new",
+      "apply": "_applyResponseType",
+      "init": "text/plain",
+      "possibleValues": [
+        "text/plain",
+        "text/javascript",
+        "application/json",
+        "application/xml",
+        "text/html"
+      ],
+      "defaultValue": "text/plain"
+    },
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4
+        },
+        "end": {
+          "line": 266,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Number of milliseconds before the request is being timed out.\n If this property is null, the timeout for the request comes is the\n qx.io.remote.RequestQueue's property defaultTimeout.</p>"
+          }
+        ]
+      },
+      "name": "timeout",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
+    },
+    "prohibitCaching": {
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prohibit request from being cached.\n Setting the value to <i>true</i> adds a parameter \"nocache\" to the\n request URL with a value of the current time, as well as adding request\n headers Pragma:no-cache and Cache-Control:no-cache.\n Setting the value to <i>false</i> removes the parameter and request\n headers.\n As a special case, this property may be set to the string value\n \"no-url-params-on-post\" which will prevent the nocache parameter from\n being added to the URL if the POST method is used but will still add\n the Pragma and Cache-Control headers.  This is useful if your backend\n does nasty things like mixing parameters specified in the URL into\n form fields in the POST request.  (One example of this nasty behavior\n is known as \"mixed mode\" in Oracle, as described here:\n http://docs.oracle.com/cd/B32110_01/web.1013/b28963/concept.htm#i1005684)</p>"
+          }
+        ]
+      },
+      "name": "prohibitCaching",
+      "propertyType": "new",
+      "apply": "_applyProhibitCaching",
+      "init": true,
+      "defaultValue": true
+    },
+    "crossDomain": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 312,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicate that the request is cross domain.\n A request is cross domain if the request's URL points to a host other than\n the local host. This switches the concrete implementation that is used for\n sending the request from qx.io.remote.transport.XmlHttp to\n qx.io.remote.transport.Script, because only the latter can handle cross\n domain requests.</p>"
+          }
+        ]
+      },
+      "name": "crossDomain",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "fileUpload": {
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicate that the request will be used for a file upload.\n The request will be used for a file upload.  This switches the concrete\n implementation that is used for sending the request from\n qx.io.remote.transport.XmlHttp to qx.io.remote.IFrameTransport, because only\n the latter can handle file uploads.</p>"
+          }
+        ]
+      },
+      "name": "fileUpload",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "transport": {
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4
+        },
+        "end": {
+          "line": 339,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The transport instance used for the request.\n This is necessary to be able to abort an asynchronous request.</p>"
+          }
+        ]
+      },
+      "name": "transport",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.io.remote.Exchange"
+    },
+    "useBasicHttpAuth": {
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 4
+        },
+        "end": {
+          "line": 349,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Use Basic HTTP Authentication.</p>"
+          }
+        ]
+      },
+      "name": "useBasicHttpAuth",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "parseJson": {
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4
+        },
+        "end": {
+          "line": 366,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If true and the responseType property is set to \"application/json\", getContent() will\n return a Javascript map containing the JSON contents, i. e. the result qx.lang.Json.parse().\n If false, the raw string data will be returned and the parsing must be done manually.\n This is useful for special JSON dialects / extensions which are not supported by\n qx.lang.Json.\n Note that this is currently only respected by qx.io.remote.transport.XmlHttp, i. e.\n if the transport used is the one using XMLHttpRequests. The other transports\n do not support JSON parsing, so this property has no effect.</p>"
+          }
+        ]
+      },
+      "name": "parseJson",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__requestHeaders": {
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4
+        },
+        "end": {
+          "line": 381,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__urlParameters": {
+      "location": {
+        "start": {
+          "line": 382,
+          "column": 4
+        },
+        "end": {
+          "line": 382,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dataParameters": {
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4
+        },
+        "end": {
+          "line": 383,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__formFields": {
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4
+        },
+        "end": {
+          "line": 384,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__seqNum": {
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4
+        },
+        "end": {
+          "line": 385,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "send": {
+      "location": {
+        "start": {
+          "line": 400,
+          "column": 4
+        },
+        "end": {
+          "line": 402,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Schedule this request for transport to server.\n The request is added to the singleton class qx.io.remote.RequestQueue's\n list of pending requests.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "abort": {
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4
+        },
+        "end": {
+          "line": 415,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort sending this request.\n The request is removed from the singleton class qx.io.remote.RequestQueue's\n list of pending events. If the request haven't been scheduled this\n method is a noop.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4
+        },
+        "end": {
+          "line": 436,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort sending this request if it has not already been aborted.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "isConfigured": {
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the configured state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the configured state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the configured state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isQueued": {
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4
+        },
+        "end": {
+          "line": 464,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the queued state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the queued state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the queued state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isSending": {
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4
+        },
+        "end": {
+          "line": 474,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the sending state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the sending state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the sending state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isReceiving": {
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4
+        },
+        "end": {
+          "line": 484,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the receiving state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the receiving state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the receiving state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isCompleted": {
+      "location": {
+        "start": {
+          "line": 492,
+          "column": 4
+        },
+        "end": {
+          "line": 494,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the completed state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the completed state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the completed state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isAborted": {
+      "location": {
+        "start": {
+          "line": 502,
+          "column": 4
+        },
+        "end": {
+          "line": 504,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the aborted state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the aborted state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the aborted state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isTimeout": {
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4
+        },
+        "end": {
+          "line": 514,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the timeout state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the timeout state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the timeout state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isFailed": {
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4
+        },
+        "end": {
+          "line": 524,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine if this request is in the failed state.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <true> if the request is in the failed state; <false> otherwise.",
+            "type": "Boolean",
+            "description": " <true> if the request is in the failed state; <false> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__forwardEvent": {
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4
+        },
+        "end": {
+          "line": 545,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatches a clone of the given event on this instance</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} The original event",
+            "paramName": "e",
+            "description": " The original event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_onqueued": {
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 4
+        },
+        "end": {
+          "line": 561,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the queued state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onsending": {
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 4
+        },
+        "end": {
+          "line": 576,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the sending state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onreceiving": {
+      "location": {
+        "start": {
+          "line": 584,
+          "column": 4
+        },
+        "end": {
+          "line": 591,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the receiving state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_oncompleted": {
+      "location": {
+        "start": {
+          "line": 599,
+          "column": 4
+        },
+        "end": {
+          "line": 609,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the completed state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onaborted": {
+      "location": {
+        "start": {
+          "line": 617,
+          "column": 4
+        },
+        "end": {
+          "line": 627,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the aborted state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_ontimeout": {
+      "location": {
+        "start": {
+          "line": 635,
+          "column": 4
+        },
+        "end": {
+          "line": 659,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the timeout state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onfailed": {
+      "location": {
+        "start": {
+          "line": 667,
+          "column": 4
+        },
+        "end": {
+          "line": 677,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler called when the request enters the failed state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event indicating state change",
+            "paramName": "e",
+            "description": " Event indicating state change",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyState": {
+      "location": {
+        "start": {
+          "line": 689,
+          "column": 4
+        },
+        "end": {
+          "line": 697,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "state"
+      ]
+    },
+    "_applyProhibitCaching": {
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 4
+        },
+        "end": {
+          "line": 732,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "prohibitCaching"
+      ]
+    },
+    "_applyMethod": {
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 4
+        },
+        "end": {
+          "line": 750,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "method"
+      ]
+    },
+    "_applyResponseType": {
+      "location": {
+        "start": {
+          "line": 754,
+          "column": 4
+        },
+        "end": {
+          "line": 756,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "responseType"
+      ]
+    },
+    "setRequestHeader": {
+      "location": {
+        "start": {
+          "line": 782,
+          "column": 4
+        },
+        "end": {
+          "line": 784,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a request header to the request.\n Example: request.setRequestHeader(\"Content-Type\", \"text/html\")\n Please note: Some browsers, such as Safari 3 and 4, will capitalize\n header field names. This is in accordance with RFC 2616[1], which states\n that HTTP 1.1 header names are case-insensitive, so your server backend\n should be case-agnostic when dealing with request headers.\n [1]<a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2\">RFC 2616: HTTP Message Headers</a></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} The identifier to use for this added header",
+            "paramName": "vId",
+            "description": " The identifier to use for this added header",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "vValue {String} The value to use for this added header",
+            "paramName": "vValue",
+            "description": " The value to use for this added header",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeRequestHeader": {
+      "location": {
+        "start": {
+          "line": 792,
+          "column": 4
+        },
+        "end": {
+          "line": 794,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a previously-added request header</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} The id of the header to be removed",
+            "paramName": "vId",
+            "description": " The id of the header to be removed",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRequestHeader": {
+      "location": {
+        "start": {
+          "line": 803,
+          "column": 4
+        },
+        "end": {
+          "line": 805,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieve the value of a header which was previously set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} The id of the header value being requested",
+            "paramName": "vId",
+            "description": " The id of the header value being requested",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The value of the header with the specified id",
+            "type": "String",
+            "description": " The value of the header with the specified id"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRequestHeaders": {
+      "location": {
+        "start": {
+          "line": 815,
+          "column": 4
+        },
+        "end": {
+          "line": 817,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the object containing all of the headers which have been added.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The returned object has as its property names each of the ids of headers\n     which have been added, and as each property value, the value of the\n     property corresponding to that id.",
+            "type": "Object",
+            "description": " The returned object has as its property names each of the ids of headers\n     which have been added, and as each property value, the value of the\n     property corresponding to that id."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setParameter": {
+      "location": {
+        "start": {
+          "line": 852,
+          "column": 4
+        },
+        "end": {
+          "line": 862,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a parameter to the request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String}\n   String identifier of the parameter to add.",
+            "paramName": "vId",
+            "description": "\n   String identifier of the parameter to add.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "vValue {var}\n   Value of parameter. May be a string (for one parameter) or an array\n   of strings (for setting multiple parameter values with the same\n   parameter name).",
+            "paramName": "vValue",
+            "description": "\n   Value of parameter. May be a string (for one parameter) or an array\n   of strings (for setting multiple parameter values with the same\n   parameter name).",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "bAsData {Boolean}\n   If <i>false</i>, add the parameter to the URL.  If <i>true</i> then\n   instead the parameters added by calls to this method will be combined\n   into a string added as the request data, as if the entire set of\n   parameters had been pre-build and passed to setData().\n Note: Parameters requested to be sent as data will be silently dropped\n       if data is manually added via a call to setData().\n Note: Some transports, e.g. Script, do not support passing parameters\n       as data.",
+            "paramName": "bAsData",
+            "description": "\n   If <i>false</i>, add the parameter to the URL.  If <i>true</i> then\n   instead the parameters added by calls to this method will be combined\n   into a string added as the request data, as if the entire set of\n   parameters had been pre-build and passed to setData().\n Note: Parameters requested to be sent as data will be silently dropped\n       if data is manually added via a call to setData().\n Note: Some transports, e.g. Script, do not support passing parameters\n       as data.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeParameter": {
+      "location": {
+        "start": {
+          "line": 877,
+          "column": 4
+        },
+        "end": {
+          "line": 887,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a parameter from the request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String}\n   Identifier of the parameter to remove.",
+            "paramName": "vId",
+            "description": "\n   Identifier of the parameter to remove.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "bFromData {Boolean}\n   If <i>false</i> then remove the parameter of the URL parameter list.\n   If <i>true</i> then remove it from the list of parameters to be sent\n   as request data.",
+            "paramName": "bFromData",
+            "description": "\n   If <i>false</i> then remove the parameter of the URL parameter list.\n   If <i>true</i> then remove it from the list of parameters to be sent\n   as request data.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getParameter": {
+      "location": {
+        "start": {
+          "line": 905,
+          "column": 4
+        },
+        "end": {
+          "line": 915,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a parameter in the request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String}\n   Identifier of the parameter to get.",
+            "paramName": "vId",
+            "description": "\n   Identifier of the parameter to get.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "bFromData {Boolean}\n   If <i>false</i> then retrieve the parameter from the URL parameter\n   list. If <i>true</i> then retrieve it from the list of parameters to\n   be sent as request data.",
+            "paramName": "bFromData",
+            "description": "\n   If <i>false</i> then retrieve the parameter from the URL parameter\n   list. If <i>true</i> then retrieve it from the list of parameters to\n   be sent as request data.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var}\n   The requested parameter value",
+            "type": "var",
+            "description": "\n   The requested parameter value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getParameters": {
+      "location": {
+        "start": {
+          "line": 930,
+          "column": 4
+        },
+        "end": {
+          "line": 933,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object containing all parameters for the request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "bFromData {Boolean}\n   If <i>false</i> then retrieve the URL parameter list.\n   If <i>true</i> then retrieve the data parameter list.",
+            "paramName": "bFromData",
+            "description": "\n   If <i>false</i> then retrieve the URL parameter list.\n   If <i>true</i> then retrieve the data parameter list.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}\n   The returned object has as its property names each of the ids of\n   parameters which have been added, and as each property value, the\n   value of the property corresponding to that id.",
+            "type": "Object",
+            "description": "\n   The returned object has as its property names each of the ids of\n   parameters which have been added, and as each property value, the\n   value of the property corresponding to that id."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setFormField": {
+      "location": {
+        "start": {
+          "line": 957,
+          "column": 4
+        },
+        "end": {
+          "line": 959,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a form field to the POST request.\n NOTE: Adding any programmatic form fields using this method will switch the\n       Transport implementation to IframeTransport.\n NOTE: Use of these programmatic form fields disallow use of synchronous\n       requests and cross-domain requests.  Be sure that you do not need\n       those features when setting these programmatic form fields.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} String identifier of the form field to add.",
+            "paramName": "vId",
+            "description": " String identifier of the form field to add.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "vValue {String} Value of form field",
+            "paramName": "vValue",
+            "description": " Value of form field",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeFormField": {
+      "location": {
+        "start": {
+          "line": 967,
+          "column": 4
+        },
+        "end": {
+          "line": 969,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a form field from the POST request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} Identifier of the form field to remove.",
+            "paramName": "vId",
+            "description": " Identifier of the form field to remove.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFormField": {
+      "location": {
+        "start": {
+          "line": 979,
+          "column": 4
+        },
+        "end": {
+          "line": 981,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a form field in the POST request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vId {String} Identifier of the form field to get.",
+            "paramName": "vId",
+            "description": " Identifier of the form field to get.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Value of form field or <code>null</code> if no value\n    exists for the passed identifier.",
+            "type": "String|null",
+            "description": " Value of form field or <code>null</code> if no value\n    exists for the passed identifier."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFormFields": {
+      "location": {
+        "start": {
+          "line": 991,
+          "column": 4
+        },
+        "end": {
+          "line": 993,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object containing all form fields for the POST request.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The returned object has as its property names each of the ids of\n     form fields which have been added, and as each property value, the value\n     of the property corresponding to that id.",
+            "type": "Object",
+            "description": " The returned object has as its property names each of the ids of\n     form fields which have been added, and as each property value, the value\n     of the property corresponding to that id."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSequenceNumber": {
+      "location": {
+        "start": {
+          "line": 1001,
+          "column": 4
+        },
+        "end": {
+          "line": 1003,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Obtain the sequence (id) number used for this request</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The sequence number of this request",
+            "type": "Integer",
+            "description": " The sequence number of this request"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getUrl": {
+      "type": "function",
+      "name": "getUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for url"
+          }
+        ]
+      }
+    },
+    "setUrl": {
+      "type": "function",
+      "name": "setUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for url"
+          }
+        ]
+      }
+    },
+    "resetUrl": {
+      "type": "function",
+      "name": "resetUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>url</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ]
+      }
+    },
+    "getMethod": {
+      "type": "function",
+      "name": "getMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>method</code>.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for method"
+          }
+        ]
+      }
+    },
+    "setMethod": {
+      "type": "function",
+      "name": "setMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>method</code>.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for method"
+          }
+        ]
+      }
+    },
+    "resetMethod": {
+      "type": "function",
+      "name": "resetMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>method</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ]
+      }
+    },
+    "getAsynchronous": {
+      "type": "function",
+      "name": "getAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for asynchronous"
+          }
+        ]
+      }
+    },
+    "isAsynchronous": {
+      "type": "function",
+      "name": "isAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for asynchronous"
+          }
+        ]
+      }
+    },
+    "setAsynchronous": {
+      "type": "function",
+      "name": "setAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for asynchronous"
+          }
+        ]
+      }
+    },
+    "resetAsynchronous": {
+      "type": "function",
+      "name": "resetAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>asynchronous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ]
+      }
+    },
+    "getData": {
+      "type": "function",
+      "name": "getData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>data</code>.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for data"
+          }
+        ]
+      }
+    },
+    "setData": {
+      "type": "function",
+      "name": "setData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>data</code>.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for data"
+          }
+        ]
+      }
+    },
+    "resetData": {
+      "type": "function",
+      "name": "resetData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>data</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ]
+      }
+    },
+    "getUsername": {
+      "type": "function",
+      "name": "getUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for username"
+          }
+        ]
+      }
+    },
+    "setUsername": {
+      "type": "function",
+      "name": "setUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for username"
+          }
+        ]
+      }
+    },
+    "resetUsername": {
+      "type": "function",
+      "name": "resetUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>username</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ]
+      }
+    },
+    "getPassword": {
+      "type": "function",
+      "name": "getPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for password"
+          }
+        ]
+      }
+    },
+    "setPassword": {
+      "type": "function",
+      "name": "setPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for password"
+          }
+        ]
+      }
+    },
+    "resetPassword": {
+      "type": "function",
+      "name": "resetPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>password</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ]
+      }
+    },
+    "getState": {
+      "type": "function",
+      "name": "getState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for state"
+          }
+        ]
+      }
+    },
+    "setState": {
+      "type": "function",
+      "name": "setState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for state"
+          }
+        ]
+      }
+    },
+    "resetState": {
+      "type": "function",
+      "name": "resetState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ]
+      }
+    },
+    "getResponseType": {
+      "type": "function",
+      "name": "getResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>responseType</code>.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for responseType"
+          }
+        ]
+      }
+    },
+    "setResponseType": {
+      "type": "function",
+      "name": "setResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>responseType</code>.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for responseType"
+          }
+        ]
+      }
+    },
+    "resetResponseType": {
+      "type": "function",
+      "name": "resetResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>responseType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ]
+      }
+    },
+    "getTimeout": {
+      "type": "function",
+      "name": "getTimeout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>timeout</code>.\n\nFor further details take a look at the property definition: {@link #timeout}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for timeout"
+          }
+        ]
+      }
+    },
+    "setTimeout": {
+      "type": "function",
+      "name": "setTimeout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>timeout</code>.\n\nFor further details take a look at the property definition: {@link #timeout}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for timeout"
+          }
+        ]
+      }
+    },
+    "resetTimeout": {
+      "type": "function",
+      "name": "resetTimeout",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>timeout</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #timeout}."
+          }
+        ]
+      }
+    },
+    "getProhibitCaching": {
+      "type": "function",
+      "name": "getProhibitCaching",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>prohibitCaching</code>.\n\nFor further details take a look at the property definition: {@link #prohibitCaching}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for prohibitCaching"
+          }
+        ]
+      }
+    },
+    "setProhibitCaching": {
+      "type": "function",
+      "name": "setProhibitCaching",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>prohibitCaching</code>.\n\nFor further details take a look at the property definition: {@link #prohibitCaching}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for prohibitCaching"
+          }
+        ]
+      }
+    },
+    "resetProhibitCaching": {
+      "type": "function",
+      "name": "resetProhibitCaching",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>prohibitCaching</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #prohibitCaching}."
+          }
+        ]
+      }
+    },
+    "getCrossDomain": {
+      "type": "function",
+      "name": "getCrossDomain",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for crossDomain"
+          }
+        ]
+      }
+    },
+    "isCrossDomain": {
+      "type": "function",
+      "name": "isCrossDomain",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for crossDomain"
+          }
+        ]
+      }
+    },
+    "setCrossDomain": {
+      "type": "function",
+      "name": "setCrossDomain",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for crossDomain"
+          }
+        ]
+      }
+    },
+    "resetCrossDomain": {
+      "type": "function",
+      "name": "resetCrossDomain",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>crossDomain</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
+          }
+        ]
+      }
+    },
+    "getFileUpload": {
+      "type": "function",
+      "name": "getFileUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fileUpload</code>.\n\nFor further details take a look at the property definition: {@link #fileUpload}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fileUpload"
+          }
+        ]
+      }
+    },
+    "isFileUpload": {
+      "type": "function",
+      "name": "isFileUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fileUpload</code>.\n\nFor further details take a look at the property definition: {@link #fileUpload}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fileUpload"
+          }
+        ]
+      }
+    },
+    "setFileUpload": {
+      "type": "function",
+      "name": "setFileUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fileUpload</code>.\n\nFor further details take a look at the property definition: {@link #fileUpload}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for fileUpload"
+          }
+        ]
+      }
+    },
+    "resetFileUpload": {
+      "type": "function",
+      "name": "resetFileUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fileUpload</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fileUpload}."
+          }
+        ]
+      }
+    },
+    "getTransport": {
+      "type": "function",
+      "name": "getTransport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transport</code>.\n\nFor further details take a look at the property definition: {@link #transport}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.io.remote.Exchange",
+            "desc": "Returns the value for transport"
+          }
+        ]
+      }
+    },
+    "setTransport": {
+      "type": "function",
+      "name": "setTransport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transport</code>.\n\nFor further details take a look at the property definition: {@link #transport}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.io.remote.Exchange",
+            "paramName": "value",
+            "desc": "Value for transport"
+          }
+        ]
+      }
+    },
+    "resetTransport": {
+      "type": "function",
+      "name": "resetTransport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transport</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transport}."
+          }
+        ]
+      }
+    },
+    "getUseBasicHttpAuth": {
+      "type": "function",
+      "name": "getUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "isUseBasicHttpAuth": {
+      "type": "function",
+      "name": "isUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "setUseBasicHttpAuth": {
+      "type": "function",
+      "name": "setUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "resetUseBasicHttpAuth": {
+      "type": "function",
+      "name": "resetUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>useBasicHttpAuth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ]
+      }
+    },
+    "getParseJson": {
+      "type": "function",
+      "name": "getParseJson",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>parseJson</code>.\n\nFor further details take a look at the property definition: {@link #parseJson}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for parseJson"
+          }
+        ]
+      }
+    },
+    "isParseJson": {
+      "type": "function",
+      "name": "isParseJson",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>parseJson</code>.\n\nFor further details take a look at the property definition: {@link #parseJson}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for parseJson"
+          }
+        ]
+      }
+    },
+    "setParseJson": {
+      "type": "function",
+      "name": "setParseJson",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>parseJson</code>.\n\nFor further details take a look at the property definition: {@link #parseJson}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for parseJson"
+          }
+        ]
+      }
+    },
+    "resetParseJson": {
+      "type": "function",
+      "name": "resetParseJson",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>parseJson</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #parseJson}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 1015,
+        "column": 13
+      },
+      "end": {
+        "line": 1020,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

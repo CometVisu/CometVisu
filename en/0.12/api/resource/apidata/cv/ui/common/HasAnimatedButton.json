@@ -1,0 +1,198 @@
+{
+  "className": "cv.ui.common.HasAnimatedButton",
+  "packageName": "cv.ui.common",
+  "name": "HasAnimatedButton",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 0
+      },
+      "end": {
+        "line": 135,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 13
+      },
+      "end": {
+        "line": 30,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__olid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ilid": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__downTarget": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__initListeners": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getActors": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "buttonPressed": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button press animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event",
+            "paramName": "event",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__updateButtons": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "buttonReleased": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button unpress animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerup event",
+            "paramName": "event",
+            "description": " pointerup event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 132,
+        "column": 12
+      },
+      "end": {
+        "line": 134,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

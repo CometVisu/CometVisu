@@ -134,4 +134,4 @@
   qx.theme.indigo.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1612690404725
+//# sourceMappingURL=Color.js.map?dt=1612693997013

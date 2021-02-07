@@ -1,0 +1,265 @@
+{
+  "className": "qx.bom.Template",
+  "packageName": "qx.bom",
+  "name": "Template",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 81,
+        "column": 0
+      },
+      "end": {
+        "line": 156,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The is a template class which can be used for HTML templating. In fact,\n this is a wrapper for mustache.js which is a \"framework-agnostic way to\n render logic-free views\".\n Here is a basic example how to use it:\n Template:\n </p>\n<pre class=\"javascript\">\n var template = \"Hi, my name is {{name}}!\";\n var view = {name: \"qooxdoo\"};\n qx.bom.Template.render(template, view);\n\n </pre>\n<p>For further details, please visit the mustache.js documentation here:\n   https://github.com/janl/mustache.js/blob/master/README.md</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "module"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "version": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Contains the mustache.js version.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Original and only template method of mustache.js. For further\n documentation, please visit https://github.com/janl/mustache.js</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(template, view, partials)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "template {String} The String containing the template.",
+            "paramName": "template",
+            "description": " The String containing the template.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The parsed template.",
+            "type": "qx.bom.String",
+            "description": " The parsed template."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "renderToNode": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Combines {@link #render} and {@link #get}. Input is equal to {@link #render}\n and output is equal to {@link #get}. The advantage over {@link #get}\n is that you don't need a HTML template but can use a template\n string and still get a DOM element. Keep in mind that templates\n can only have one root element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "template {String} The String containing the template.",
+            "paramName": "template",
+            "description": " The String containing the template.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} A DOM element holding the parsed template data.",
+            "type": "qx.bom.Element",
+            "description": " A DOM element holding the parsed template data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method which provides you with a direct access to templates\n stored as HTML in the DOM. The DOM node with the given ID will be used\n as a template, parsed and a new DOM node will be returned containing the\n parsed data. Keep in mind to have only one root DOM element in the the\n template.\n Additionally, you should not put the template into a regular, hidden\n DOM element because the template may not be valid HTML due to the containing\n mustache tags. We suggest to put it into a script tag with the type\n <code>text/template</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the HTML template in the DOM.",
+            "paramName": "id",
+            "description": " The id of the HTML template in the DOM.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "view {Object} The object holding the data to render.",
+            "paramName": "view",
+            "description": " The object holding the data to render.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "partials {Object} Object holding parts of a template.",
+            "paramName": "partials",
+            "description": " Object holding parts of a template.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} A DOM element holding the parsed template data.",
+            "type": "qx.bom.Element",
+            "description": " A DOM element holding the parsed template data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_createNodeFromTemplate": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Accepts a parsed template and returns a (potentially nested) node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "template {String} The String containing the template.",
+            "paramName": "template",
+            "description": " The String containing the template.",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} A DOM element holding the parsed template data.",
+            "type": "qx.bom.Element",
+            "description": " A DOM element holding the parsed template data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

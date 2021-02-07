@@ -1,0 +1,56 @@
+{
+  "className": "cv.io.parser.Json",
+  "packageName": "cv.io.parser",
+  "name": "Json",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 6,
+        "column": 0
+      },
+      "end": {
+        "line": 52,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n This parser can handle those strings</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "$"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "parse": {
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 6
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

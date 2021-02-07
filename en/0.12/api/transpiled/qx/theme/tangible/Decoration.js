@@ -1074,4 +1074,4 @@
   qx.theme.tangible.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1612690405654
+//# sourceMappingURL=Decoration.js.map?dt=1612693998027

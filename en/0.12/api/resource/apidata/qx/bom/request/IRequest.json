@@ -1,0 +1,545 @@
+{
+  "className": "qx.bom.request.IRequest",
+  "packageName": "qx.bom.request",
+  "name": "IRequest",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 167,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Interface of a low-level transport compatible with\n {@link qx.io.request.AbstractRequest}.\n Based on interface specified in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also\n borrows some methods as described in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "transport": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} Native transport."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "readyState": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Ready state.\n States can be:\n UNSENT:           0,\n OPENED:           1,\n HEADERS_RECEIVED: 2,\n LOADING:          3,\n DONE:             4"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "status": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 13
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} The status code."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "statusText": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The status text."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "responseText": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The response of the request as text."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 14
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Timeout limit in milliseconds.\n 0 (default) means no timeout."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "open": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes (prepares) request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String}\n  The method to use.",
+            "paramName": "method",
+            "description": "\n  The method to use.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String}\n  The URL to which to send the request.",
+            "paramName": "url",
+            "description": "\n  The URL to which to send the request.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "async {Boolean?true}\n  Whether or not to perform the operation asynchronously.",
+            "paramName": "async",
+            "description": "\n  Whether or not to perform the operation asynchronously.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "send": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sends request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {String|Document?null}\n  Optional data to send.",
+            "paramName": "data",
+            "description": "\n  Optional data to send.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "String",
+              "Document"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "abort": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort request</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllResponseHeaders": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get all response headers from response.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} All response headers.",
+            "type": "String",
+            "description": " All response headers."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getResponseHeader": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a single response header from response.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "header {String}\n  Key of the header to get the value from.",
+            "paramName": "header",
+            "description": "\n  Key of the header to get the value from.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n  Response header.",
+            "type": "String",
+            "description": "\n  Response header."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setRequestHeader": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 45
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a request header to be used by the request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String}\n  The name of the header whose value is to be set.",
+            "paramName": "key",
+            "description": "\n  The name of the header whose value is to be set.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String}\n  The value to set as the body of the header.",
+            "paramName": "value",
+            "description": "\n  The value to set as the body of the header.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onreadystatechange": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired at every state change.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onload": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired on successful retrieval.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onloadend": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired on retrieval.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onerror": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired on a network error.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onabort": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired when request is aborted.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "ontimeout": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for event fired when timeout interval has passed.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

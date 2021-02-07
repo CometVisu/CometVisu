@@ -1,0 +1,204 @@
+{
+  "className": "cv.io.rest.Client",
+  "packageName": "cv.io.rest",
+  "name": "Client",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0
+      },
+      "end": {
+        "line": 220,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "BASE_URL": {
+      "location": {
+        "start": {
+          "line": 13,
+          "column": 4
+        },
+        "end": {
+          "line": 13,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__configFile": {
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 4
+        },
+        "end": {
+          "line": 14,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dirClient": {
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 4
+        },
+        "end": {
+          "line": 15,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dpClient": {
+      "location": {
+        "start": {
+          "line": 16,
+          "column": 4
+        },
+        "end": {
+          "line": 16,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__callbacks": {
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 4
+        },
+        "end": {
+          "line": 17,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getBaseUrl": {
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getConfigClient": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFsClient": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDataProviderClient": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_enableSync": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onSaveSuccess": {
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4
+        },
+        "end": {
+          "line": 209,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onSaveError": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 218,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

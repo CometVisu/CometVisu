@@ -22,4 +22,4 @@
   cv.ui.manager.contextmenu.GlobalFileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalFileItem.js.map?dt=1612691001265
+//# sourceMappingURL=GlobalFileItem.js.map?dt=1612694615627

@@ -1,0 +1,53 @@
+{
+  "className": "qx.theme.iconfont.LoadMaterialIconsTwoTone",
+  "packageName": "qx.theme.iconfont",
+  "name": "LoadMaterialIconsTwoTone",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 28,
+        "column": 66
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A dummy class to trigger the compiler to copy the MaterialIconsTwoTone font files</p>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconstwotone-v36.otf"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconstwotone-v36.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconstwotone-v36.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconstwotone-v36.eot"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

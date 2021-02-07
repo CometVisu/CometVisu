@@ -322,4 +322,4 @@
   qx.log.appender.Formatter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Formatter.js.map?dt=1612691020661
+//# sourceMappingURL=Formatter.js.map?dt=1612694636039

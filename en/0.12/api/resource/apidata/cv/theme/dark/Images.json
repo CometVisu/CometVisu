@@ -1,0 +1,64 @@
+{
+  "className": "cv.theme.dark.Images",
+  "packageName": "cv.theme.dark",
+  "name": "Images",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0
+      },
+      "end": {
+        "line": 59,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Some icon definitions.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "ICONS": {
+      "location": {
+        "start": {
+          "line": 13,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getIcon": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

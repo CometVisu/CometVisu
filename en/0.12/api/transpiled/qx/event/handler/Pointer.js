@@ -234,4 +234,4 @@
   qx.event.handler.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1612690400382
+//# sourceMappingURL=Pointer.js.map?dt=1612693992333

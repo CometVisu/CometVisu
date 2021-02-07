@@ -1,0 +1,839 @@
+{
+  "className": "cv.parser.WidgetParser",
+  "packageName": "cv.parser",
+  "name": "WidgetParser",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 524,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "__handlers": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "lookupM": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 65
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "lookupS": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 65
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 38
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__templates": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getTemplates": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addTemplate": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addHandler": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHandler": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "renderTemplates": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Renders templates into the config file, if they are used</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rootPage",
+            "paramName": "rootPage",
+            "type": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parse": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} widget data",
+            "type": "Map",
+            "description": " widget data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseBasicElement": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseElement": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "handler {Class} Handler class that parses this element",
+            "paramName": "handler",
+            "description": " Handler class that parses this element",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} XML-Element",
+            "paramName": "element",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} HTML code",
+            "type": "Map",
+            "description": " HTML code"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getAttributeToPropertyMappings": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the mappings needed for parsing from the handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "handler {Class} parser handler",
+            "paramName": "handler",
+            "description": " parser handler",
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} parser configuration: describes how Attributes are mapped to properties",
+            "type": "Map",
+            "description": " parser configuration: describes how Attributes are mapped to properties"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getElementType": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDefaultClasses": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createDefaultWidget": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a default widget to be filled by the creator afterwards.\n Note: the receiver of the returned string must add an </div> closing element!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "handler {cv.parser.widgets} the parser that can parse this element",
+            "paramName": "handler",
+            "description": " the parser that can parse this element",
+            "type": "cv.parser.widgets"
+          },
+          {
+            "name": "@param",
+            "body": "widgetType {String} of the widget type",
+            "paramName": "widgetType",
+            "description": " of the widget type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "element   {Object} the XML element",
+            "paramName": "element",
+            "description": " the XML element",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "path       {String} of the path ID",
+            "paramName": "path",
+            "description": " of the path ID",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "flavour   {String} Flavour",
+            "paramName": "flavour",
+            "description": " Flavour",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pageType  {String} one of text, 2d and 3d",
+            "paramName": "pageType",
+            "description": " one of text, 2d and 3d",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} parsed widget data",
+            "type": "Map",
+            "description": " parsed widget data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseLayout": {
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4
+        },
+        "end": {
+          "line": 259,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parse config file layout element and convert it to an object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {Element} XML config element &lt;layout&gt;",
+            "paramName": "layout",
+            "description": " XML config element &lt;layout&gt;",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "defaultValues {Map} default layout values",
+            "paramName": "defaultValues",
+            "description": " default layout values",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__extractLayoutAttribute": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 268,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "extractLayout": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 288,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "extractLayout3d": {
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4
+        },
+        "end": {
+          "line": 312,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseLabel": {
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4
+        },
+        "end": {
+          "line": 335,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setWidgetLayout": {
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 4
+        },
+        "end": {
+          "line": 367,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>this function implements all widget layouts that are identical (JNK)\n implemented: rowspan, colspan</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} XML-Element from the config file for this widget",
+            "paramName": "element",
+            "description": " XML-Element from the config file for this widget",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} rowspan class or empty string",
+            "type": "String",
+            "description": " rowspan class or empty string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseFormat": {
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4
+        },
+        "end": {
+          "line": 380,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parse the format setting</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element from config",
+            "paramName": "xml",
+            "description": " XML-Element from config",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} path to the widget",
+            "paramName": "path",
+            "description": " path to the widget",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseAddress": {
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the address element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} address XML-Element from config",
+            "paramName": "xml",
+            "description": " address XML-Element from config",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} path to the widget",
+            "paramName": "path",
+            "description": " path to the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "makeAddressListFn {Function?} callback for parsing address variants",
+            "paramName": "makeAddressListFn",
+            "description": " callback for parsing address variants",
+            "optional": true,
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "makeAddressList": {
+      "location": {
+        "start": {
+          "line": 407,
+          "column": 4
+        },
+        "end": {
+          "line": 449,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>this function extracts all addresses with attributes (JNK)\n                       elements. The first is a boolean that determins if\n                       the visu should listen for that address. The second\n                       is added as it is to the returned object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} address XML-Element from the config file",
+            "paramName": "element",
+            "description": " address XML-Element from the config file",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "id {String} id / path to the widget",
+            "paramName": "id",
+            "description": " id / path to the widget",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "makeAddressListFn {Function?} callback for parsing address variants",
+            "paramName": "makeAddressListFn",
+            "description": " callback for parsing address variants",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "skipAdding {Boolean?} do not add address to model if true",
+            "paramName": "skipAdding",
+            "description": " do not add address to model if true",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} address",
+            "type": "Object",
+            "description": " address"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseRefresh": {
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 4
+        },
+        "end": {
+          "line": 473,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseStyling": {
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 4
+        },
+        "end": {
+          "line": 478,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseChildren": {
+      "location": {
+        "start": {
+          "line": 481,
+          "column": 4
+        },
+        "end": {
+          "line": 503,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public"
+    },
+    "getStoragePath": {
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4
+        },
+        "end": {
+          "line": 522,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the path where the widget data is stored, usually this is the same path, but there are\n exceptions for pages which are handled here</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} widgets XML config element",
+            "paramName": "xml",
+            "description": " widgets XML config element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal widget path e.g. id_0_2",
+            "paramName": "path",
+            "description": " internal widget path e.g. id_0_2",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

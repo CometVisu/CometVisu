@@ -1,0 +1,528 @@
+{
+  "className": "qx.bom.storage.UserData",
+  "packageName": "qx.bom.storage",
+  "name": "UserData",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 245,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Fallback storage implementation usable in IE browsers. It is recommended to use\n these implementation only in IE < 8 because IE >= 8 supports\n {@link qx.bom.storage.Web}.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#getLength"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#setItem"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#getItem"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#removeItem"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#clear"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#getKey"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.storage.UserData#forEach"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__local": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__session": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__id": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 12
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "getLocal": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an instance of {@link qx.bom.storage.UserData} used to store\n data persistent.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.storage.UserData} A storage instance.",
+            "type": "qx.bom.storage.UserData",
+            "description": " A storage instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSession": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an instance of {@link qx.bom.storage.UserData} used to store\n data persistent.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.storage.UserData} A storage instance.",
+            "type": "qx.bom.storage.UserData",
+            "description": " A storage instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 73,
+        "column": 14
+      },
+      "end": {
+        "line": 98,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Create a new instance. Usually, you should take the static\n accessors to get your instance.</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "storeName {String} type of storage.",
+          "paramName": "storeName",
+          "description": " type of storage.",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__el": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__storeName": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__storage": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 20
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__reference": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 22
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "getStorage": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the map used to keep a in memory copy of the stored data.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The stored data.",
+            "type": "Map",
+            "description": " The stored data."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLength": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the amount of key-value pairs stored.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The length of the storage.",
+            "type": "Integer",
+            "description": " The length of the storage."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setItem": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Store an item in the storage.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier key.",
+            "paramName": "key",
+            "description": " The identifier key.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The data, which will be stored as JSON.",
+            "paramName": "value",
+            "description": " The data, which will be stored as JSON.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItem": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stored item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier to get the data.",
+            "paramName": "key",
+            "description": " The identifier to get the data.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The stored data.",
+            "type": "var",
+            "description": " The stored data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeItem": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 201,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an item form the storage.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier.",
+            "paramName": "key",
+            "description": " The identifier.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes every stored item in the storage.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getKey": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the named key at the given index.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index in the storage.",
+            "paramName": "index",
+            "description": " The index in the storage.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The key stored at the given index.",
+            "type": "String",
+            "description": " The key stored at the given index."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "forEach": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 243,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to access every stored item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "paramName": "callback",
+            "description": " A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var} The scope of the function.",
+            "paramName": "scope",
+            "description": " The scope of the function.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

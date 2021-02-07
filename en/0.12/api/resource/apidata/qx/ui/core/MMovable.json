@@ -1,0 +1,695 @@
+{
+  "className": "qx.ui.core.MMovable",
+  "packageName": "qx.ui.core",
+  "name": "MMovable",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 370,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Provides move behavior to any widget.\n The widget using the mixin must register a widget as move handle so that\n the pointer events needed for moving it are attached to this widget).\n </p>\n<pre class='javascript'>this._activateMoveHandle(widget);</pre>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "properties": {
+    "movable": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget is movable</p>"
+          }
+        ]
+      },
+      "name": "movable",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "useMoveFrame": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to use a frame instead of the original widget during move sequences</p>"
+          }
+        ]
+      },
+      "name": "useMoveFrame",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    }
+  },
+  "members": {
+    "__moveHandle": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__moveFrame": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dragRange": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dragLeft": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dragTop": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__parentLeft": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__parentTop": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__blockerAdded": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__oldBlockerColor": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__oldBlockerOpacity": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_activateMoveHandle": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the given widget as a move handle</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to activate as move handle",
+            "paramName": "widget",
+            "description": " Widget to activate as move handle",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__getMoveFrame": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget, which draws the resize/move frame.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The resize frame",
+            "type": "qx.ui.core.Widget",
+            "description": " The resize frame"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__showMoveFrame": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates, shows and syncs the frame with the widget.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__computeMoveCoordinates": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the new drag coordinates</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer event",
+            "paramName": "e",
+            "description": " Pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the computed drag coordinates",
+            "type": "Map",
+            "description": " A map with the computed drag coordinates"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_onMoveRoll": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Roll handler which prevents the scrolling via tap &amp; move on parent widgets\n during the move of the widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Roll} The roll event",
+            "paramName": "e",
+            "description": " The roll event",
+            "type": "qx.event.type.Roll"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMovePointerDown": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enables the capturing of the caption bar and prepares the drag session and the\n appearance (translucent, frame or opaque) for the moving of the window.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointer down event",
+            "paramName": "e",
+            "description": " pointer down event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMovePointerMove": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 275,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Does the moving of the window by rendering the position\n of the window (or frame) at runtime using direct dom methods.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointer move event",
+            "paramName": "e",
+            "description": " pointer move event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMovePointerUp": {
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4
+        },
+        "end": {
+          "line": 331,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Disables the capturing of the caption bar and moves the window\n to the last position of the drag session. Also restores the appearance\n of the window.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointer up event",
+            "paramName": "e",
+            "description": " pointer up event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__onMoveLoseCapture": {
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4
+        },
+        "end": {
+          "line": 353,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>losecapture</code> event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Lose capture event",
+            "paramName": "e",
+            "description": " Lose capture event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getMovable": {
+      "type": "function",
+      "name": "getMovable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>movable</code>.\n\nFor further details take a look at the property definition: {@link #movable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for movable"
+          }
+        ]
+      }
+    },
+    "isMovable": {
+      "type": "function",
+      "name": "isMovable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>movable</code>.\n\nFor further details take a look at the property definition: {@link #movable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for movable"
+          }
+        ]
+      }
+    },
+    "setMovable": {
+      "type": "function",
+      "name": "setMovable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>movable</code>.\n\nFor further details take a look at the property definition: {@link #movable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for movable"
+          }
+        ]
+      }
+    },
+    "resetMovable": {
+      "type": "function",
+      "name": "resetMovable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>movable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #movable}."
+          }
+        ]
+      }
+    },
+    "getUseMoveFrame": {
+      "type": "function",
+      "name": "getUseMoveFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useMoveFrame</code>.\n\nFor further details take a look at the property definition: {@link #useMoveFrame}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useMoveFrame"
+          }
+        ]
+      }
+    },
+    "isUseMoveFrame": {
+      "type": "function",
+      "name": "isUseMoveFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useMoveFrame</code>.\n\nFor further details take a look at the property definition: {@link #useMoveFrame}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useMoveFrame"
+          }
+        ]
+      }
+    },
+    "setUseMoveFrame": {
+      "type": "function",
+      "name": "setUseMoveFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>useMoveFrame</code>.\n\nFor further details take a look at the property definition: {@link #useMoveFrame}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for useMoveFrame"
+          }
+        ]
+      }
+    },
+    "resetUseMoveFrame": {
+      "type": "function",
+      "name": "resetUseMoveFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>useMoveFrame</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useMoveFrame}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 366,
+        "column": 13
+      },
+      "end": {
+        "line": 369,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

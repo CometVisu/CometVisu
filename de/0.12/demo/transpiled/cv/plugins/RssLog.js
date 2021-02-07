@@ -630,4 +630,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1612691000025
+//# sourceMappingURL=RssLog.js.map?dt=1612694614331

@@ -1,0 +1,688 @@
+{
+  "className": "qx.module.Transform",
+  "packageName": "qx.module",
+  "name": "Transform",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 280,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class is responsible for applying CSS3 transforms to the collection.\n The implementation is mostly a cross browser wrapper for applying the\n transforms.\n The API is keep to the spec as close as possible.\n http://www.w3.org/TR/css3-3d-transforms/</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "members": {
+    "transform": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to apply multiple transforms at once to the given element. It\n takes a map containing the transforms you want to apply plus the values\n e.g.<code>{scale: 2, rotate: \"5deg\"}</code>.\n The values can be either singular, which means a single value will\n be added to the CSS. If you give an array, the values will be split up\n and each array entry will be used for the X, Y or Z dimension in that\n order e.g. <code>{scale: [2, 0.5]}</code> will result in a element\n double the size in X direction and half the size in Y direction.\n Make sure your browser supports all transformations you apply.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "transforms {Map} The map containing the transforms and value.",
+            "paramName": "transforms",
+            "description": " The map containing the transforms and value.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "translate": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translates by the given value. For further details, take\n a look at the {@link #transform} method.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|Array} The value to translate e.g. <code>\"10px\"</code>.",
+            "paramName": "value",
+            "description": " The value to translate e.g. <code>\"10px\"</code>.",
+            "type": [
+              "String",
+              "Array"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "scale": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scales by the given value. For further details, take\n a look at the {@link #transform} method.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number|Array} The value to scale.",
+            "paramName": "value",
+            "description": " The value to scale.",
+            "type": [
+              "Number",
+              "Array"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "rotate": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rotates by the given value. For further details, take\n a look at the {@link #transform} method.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|Array} The value to rotate e.g. <code>\"90deg\"</code>.",
+            "paramName": "value",
+            "description": " The value to rotate e.g. <code>\"90deg\"</code>.",
+            "type": [
+              "String",
+              "Array"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "skew": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Skews by the given value. For further details, take\n a look at the {@link #transform} method.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|Array} The value to skew e.g. <code>\"90deg\"</code>.",
+            "paramName": "value",
+            "description": " The value to skew e.g. <code>\"90deg\"</code>.",
+            "type": [
+              "String",
+              "Array"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTransformOrigin": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the transform-origin property.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-origin-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
+            "paramName": "value",
+            "description": " CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransformOrigin": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the transform-origin property of the first element.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-origin-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The set property, e.g. <code>50% 50%</code> or null,\n   of the collection is empty.",
+            "type": "String",
+            "description": " The set property, e.g. <code>50% 50%</code> or null,\n   of the collection is empty."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTransformStyle": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the transform-style property.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-style-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} Either <code>flat</code> or <code>preserve-3d</code>.",
+            "paramName": "value",
+            "description": " Either <code>flat</code> or <code>preserve-3d</code>.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransformStyle": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the transform-style property of the first element.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-style-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The set property, either <code>flat</code> or\n   <code>preserve-3d</code>.",
+            "type": "String",
+            "description": " The set property, either <code>flat</code> or\n   <code>preserve-3d</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTransformPerspective": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the perspective property.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} The perspective layer. Numbers between 100\n   and 5000 give the best results.",
+            "paramName": "value",
+            "description": " The perspective layer. Numbers between 100\n   and 5000 give the best results.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransformPerspective": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4
+        },
+        "end": {
+          "line": 206,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the perspective property of the first element.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The set property, e.g. <code>500</code>",
+            "type": "String",
+            "description": " The set property, e.g. <code>500</code>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTransformPerspectiveOrigin": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the perspective-origin property.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-origin-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
+            "paramName": "value",
+            "description": " CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransformPerspectiveOrigin": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the perspective-origin property of the first element.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-origin-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The set property, e.g. <code>50% 50%</code>",
+            "type": "String",
+            "description": " The set property, e.g. <code>50% 50%</code>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTransformBackfaceVisibility": {
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4
+        },
+        "end": {
+          "line": 257,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the backface-visibility property.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#backface-visibility-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} <code>true</code> if the backface should be visible.",
+            "paramName": "value",
+            "description": " <code>true</code> if the backface should be visible.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} This reference for chaining.",
+            "type": "qxWeb",
+            "description": " This reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransformBackfaceVisibility": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 273,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the backface-visibility property of the first element.\n Spec: http://www.w3.org/TR/css3-3d-transforms/#backface-visibility-property</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the backface is visible.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the backface is visible."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 277,
+        "column": 10
+      },
+      "end": {
+        "line": 279,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

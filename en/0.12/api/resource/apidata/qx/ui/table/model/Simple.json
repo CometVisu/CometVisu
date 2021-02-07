@@ -1,0 +1,1593 @@
+{
+  "className": "qx.ui.table.model.Simple",
+  "packageName": "qx.ui.table.model",
+  "name": "Simple",
+  "superClass": "qx.ui.table.model.Abstract",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 805,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A simple table model that provides an API for changing the model data.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 14
+      },
+      "end": {
+        "line": 38,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "properties": {
+    "caseSensitiveSorting": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether sorting should be case sensitive</p>"
+          }
+        ]
+      },
+      "name": "caseSensitiveSorting",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "statics": {
+    "_defaultSortComparatorAscending": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default ascending sort method to use if no custom method has been\n provided.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row1 {var} first row",
+            "paramName": "row1",
+            "description": " first row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row2 {var} second row",
+            "paramName": "row2",
+            "description": " second row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to be sorted",
+            "paramName": "columnIndex",
+            "description": " the column to be sorted",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2",
+            "type": "Integer",
+            "description": " 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_defaultSortComparatorInsensitiveAscending": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as the Default ascending sort method but using case insensitivity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row1 {var} first row",
+            "paramName": "row1",
+            "description": " first row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row2 {var} second row",
+            "paramName": "row2",
+            "description": " second row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to be sorted",
+            "paramName": "columnIndex",
+            "description": " the column to be sorted",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2",
+            "type": "Integer",
+            "description": " 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_defaultSortComparatorDescending": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default descending sort method to use if no custom method has been\n provided.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row1 {var} first row",
+            "paramName": "row1",
+            "description": " first row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row2 {var} second row",
+            "paramName": "row2",
+            "description": " second row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to be sorted",
+            "paramName": "columnIndex",
+            "description": " the column to be sorted",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2",
+            "type": "Integer",
+            "description": " 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_defaultSortComparatorInsensitiveDescending": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as the Default descending sort method but using case insensitivity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row1 {var} first row",
+            "paramName": "row1",
+            "description": " first row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row2 {var} second row",
+            "paramName": "row2",
+            "description": " second row",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column to be sorted",
+            "paramName": "columnIndex",
+            "description": " the column to be sorted",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2",
+            "type": "Integer",
+            "description": " 1 of row1 is > row2, -1 if row1 is < row2, 0 if row1 == row2"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "members": {
+    "_rowArr": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__editableColArr": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortableColArr": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortMethods": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4
+        },
+        "end": {
+          "line": 177,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortColumnIndex": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sortAscending": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4
+        },
+        "end": {
+          "line": 179,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getRowData": {
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getRowDataAsMap": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the data of one row as map containing the column IDs as key and\n the cell values as value. Also the meta data is included.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowIndex {Integer} the model index of the row.",
+            "paramName": "rowIndex",
+            "description": " the model index of the row.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} a Map containing the column values.",
+            "type": "Map",
+            "description": " a Map containing the column values."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDataAsMapArray": {
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4
+        },
+        "end": {
+          "line": 244,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the whole data as an array of maps.\n Note: Individual items are retrieved by {@link #getRowDataAsMap}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of row data maps",
+            "type": "Map[]",
+            "description": " Array of row data maps"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setEditable": {
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets all columns editable or not editable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "editable {Boolean} whether all columns are editable.",
+            "paramName": "editable",
+            "description": " whether all columns are editable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setColumnEditable": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets whether a column is editable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column of which to set the editable state.",
+            "paramName": "columnIndex",
+            "description": " the column of which to set the editable state.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "editable {Boolean} whether the column should be editable.",
+            "paramName": "editable",
+            "description": " whether the column should be editable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isColumnEditable": {
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setColumnSortable": {
+      "location": {
+        "start": {
+          "line": 296,
+          "column": 4
+        },
+        "end": {
+          "line": 307,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets whether a column is sortable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} the column of which to set the sortable state.",
+            "paramName": "columnIndex",
+            "description": " the column of which to set the sortable state.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "sortable {Boolean} whether the column should be sortable.",
+            "paramName": "sortable",
+            "description": " whether the column should be sortable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isColumnSortable": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 317,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "sortByColumn": {
+      "location": {
+        "start": {
+          "line": 320,
+          "column": 4
+        },
+        "end": {
+          "line": 368,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setSortMethods": {
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4
+        },
+        "end": {
+          "line": 438,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Specify the methods to use for ascending and descending sorts of a\n particular column.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer}\n   The index of the column for which the sort methods are being\n   provided.",
+            "paramName": "columnIndex",
+            "description": "\n   The index of the column for which the sort methods are being\n   provided.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "compare {Function|Map}\n   If provided as a Function, this is the comparator function to sort in\n   ascending order. It takes three parameters: the two arrays of row data,\n   row1 and row2, being compared and the column index sorting was requested\n   for.\n   For backwards compatability, user-supplied compare functions may still\n   take only two parameters, the two arrays of row data, row1 and row2,\n   being compared and obtain the column index as arguments.callee.columnIndex.\n   This is deprecated, however, as arguments.callee is disallowed in ES5 strict\n   mode and ES6.\n   The comparator function must return 1, 0 or -1, when the column in row1\n   is greater than, equal to, or less than, respectively, the column in\n   row2.\n   If this parameter is a Map, it shall have two properties: \"ascending\"\n   and \"descending\". The property value of each is a comparator\n   function, as described above.\n   If only the \"ascending\" function is provided (i.e. this parameter is\n   a Function, not a Map), then the \"descending\" function is built\n   dynamically by passing the two parameters to the \"ascending\" function\n   in reversed order. <i>Use of a dynamically-built \"descending\" function\n   generates at least one extra function call for each row in the table,\n   and possibly many more. If the table is expected to have more than\n   about 1000 rows, you will likely want to provide a map with a custom\n   \"descending\" sort function as well as the \"ascending\" one.</i>",
+            "paramName": "compare",
+            "description": "\n   If provided as a Function, this is the comparator function to sort in\n   ascending order. It takes three parameters: the two arrays of row data,\n   row1 and row2, being compared and the column index sorting was requested\n   for.\n   For backwards compatability, user-supplied compare functions may still\n   take only two parameters, the two arrays of row data, row1 and row2,\n   being compared and obtain the column index as arguments.callee.columnIndex.\n   This is deprecated, however, as arguments.callee is disallowed in ES5 strict\n   mode and ES6.\n   The comparator function must return 1, 0 or -1, when the column in row1\n   is greater than, equal to, or less than, respectively, the column in\n   row2.\n   If this parameter is a Map, it shall have two properties: \"ascending\"\n   and \"descending\". The property value of each is a comparator\n   function, as described above.\n   If only the \"ascending\" function is provided (i.e. this parameter is\n   a Function, not a Map), then the \"descending\" function is built\n   dynamically by passing the two parameters to the \"ascending\" function\n   in reversed order. <i>Use of a dynamically-built \"descending\" function\n   generates at least one extra function call for each row in the table,\n   and possibly many more. If the table is expected to have more than\n   about 1000 rows, you will likely want to provide a map with a custom\n   \"descending\" sort function as well as the \"ascending\" one.</i>",
+            "type": [
+              "Function",
+              "Map"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSortMethods": {
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the sortMethod(s) for a table column.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} The index of the column for which the sort\n   methods are being  provided.",
+            "paramName": "columnIndex",
+            "description": " The index of the column for which the sort\n   methods are being  provided.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} a map with the two properties \"ascending\"\n   and \"descending\" for the specified column.\n   The property value of each is a comparator function, as described\n   in {@link #setSortMethods}.",
+            "type": "Map",
+            "description": " a map with the two properties \"ascending\"\n   and \"descending\" for the specified column.\n   The property value of each is a comparator function, as described\n   in {@link #setSortMethods}."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearSorting": {
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4
+        },
+        "end": {
+          "line": 469,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the sorting.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSortColumnIndex": {
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4
+        },
+        "end": {
+          "line": 474,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "_setSortColumnIndex": {
+      "location": {
+        "start": {
+          "line": 484,
+          "column": 4
+        },
+        "end": {
+          "line": 487,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the sort column index\n WARNING: This should be called only by subclasses with intimate\n          knowledge of what they are doing!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "columnIndex {Integer} index of the column",
+            "paramName": "columnIndex",
+            "description": " index of the column",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "isSortAscending": {
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4
+        },
+        "end": {
+          "line": 492,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "_setSortAscending": {
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4
+        },
+        "end": {
+          "line": 507,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set whether to sort in ascending order or not.\n WARNING: This should be called only by subclasses with intimate\n          knowledge of what they are doing!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ascending {Boolean}\n   <i>true</i> for an ascending sort;\n   <i> false</i> for a descending sort.",
+            "paramName": "ascending",
+            "description": "\n   <i>true</i> for an ascending sort;\n   <i> false</i> for a descending sort.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getRowCount": {
+      "location": {
+        "start": {
+          "line": 510,
+          "column": 4
+        },
+        "end": {
+          "line": 512,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 515,
+          "column": 4
+        },
+        "end": {
+          "line": 522,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 525,
+          "column": 4
+        },
+        "end": {
+          "line": 549,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "appearsIn": [
+        "qx.ui.table.model.Abstract",
+        "qx.ui.table.ITableModel"
+      ]
+    },
+    "setData": {
+      "location": {
+        "start": {
+          "line": 560,
+          "column": 4
+        },
+        "end": {
+          "line": 581,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the whole data in a bulk.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowArr {var[][]} An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "paramName": "rowArr",
+            "description": " An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "type": "var[][]"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getData": {
+      "location": {
+        "start": {
+          "line": 594,
+          "column": 4
+        },
+        "end": {
+          "line": 596,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the data of this model.\n Warning: Do not alter this array! If you want to change the data use\n {@link #setData}, {@link #setDataAsMapArray} or {@link #setValue} instead.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var[][]} An array containing an array for each row. Each\n           row-array contains the values in that row in the order of the columns\n           in this model.",
+            "type": "var[][]",
+            "description": " An array containing an array for each row. Each\n           row-array contains the values in that row in the order of the columns\n           in this model."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setDataAsMapArray": {
+      "location": {
+        "start": {
+          "line": 608,
+          "column": 4
+        },
+        "end": {
+          "line": 610,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the whole data in a bulk.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mapArr {Map[]} An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "paramName": "mapArr",
+            "description": " An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "rememberMaps {Boolean ? false} Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "paramName": "rememberMaps",
+            "description": " Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addRows": {
+      "location": {
+        "start": {
+          "line": 625,
+          "column": 4
+        },
+        "end": {
+          "line": 650,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds some rows to the model.\n Warning: The given array will be altered!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowArr {var[][]} An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "paramName": "rowArr",
+            "description": " An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "type": "var[][]"
+          },
+          {
+            "name": "@param",
+            "body": "startIndex {Integer ? null} The index where to insert the new rows. If null,\n          the rows are appended to the end.",
+            "paramName": "startIndex",
+            "description": " The index where to insert the new rows. If null,\n          the rows are appended to the end.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addRowsAsMapArray": {
+      "location": {
+        "start": {
+          "line": 666,
+          "column": 4
+        },
+        "end": {
+          "line": 668,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds some rows to the model.\n Warning: The given array (mapArr) will be altered!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mapArr {Map[]} An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "paramName": "mapArr",
+            "description": " An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "startIndex {Integer ? null} The index where to insert the new rows. If null,\n        the rows are appended to the end.",
+            "paramName": "startIndex",
+            "description": " The index where to insert the new rows. If null,\n        the rows are appended to the end.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rememberMaps {Boolean ? false} Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "paramName": "rememberMaps",
+            "description": " Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setRows": {
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4
+        },
+        "end": {
+          "line": 712,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets rows in the model. The rows overwrite the old rows starting at\n <code>startIndex</code> to <code>startIndex+rowArr.length</code>.\n Warning: The given array will be altered!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowArr {var[][]} An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "paramName": "rowArr",
+            "description": " An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
+            "type": "var[][]"
+          },
+          {
+            "name": "@param",
+            "body": "startIndex {Integer ? null} The index where to insert the new rows. If null,\n          the rows are set from the beginning (0).",
+            "paramName": "startIndex",
+            "description": " The index where to insert the new rows. If null,\n          the rows are set from the beginning (0).",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setRowsAsMapArray": {
+      "location": {
+        "start": {
+          "line": 729,
+          "column": 4
+        },
+        "end": {
+          "line": 731,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set rows in the model. The rows overwrite the old rows starting at\n <code>startIndex</code> to <code>startIndex+rowArr.length</code>.\n Warning: The given array (mapArr) will be altered!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mapArr {Map[]} An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "paramName": "mapArr",
+            "description": " An array containing a map for each row. Each\n        row-map contains the column IDs as key and the cell values as value.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "startIndex {Integer ? null} The index where to insert the new rows. If null,\n        the rows are appended to the end.",
+            "paramName": "startIndex",
+            "description": " The index where to insert the new rows. If null,\n        the rows are appended to the end.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rememberMaps {Boolean ? false} Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "paramName": "rememberMaps",
+            "description": " Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeRows": {
+      "location": {
+        "start": {
+          "line": 741,
+          "column": 4
+        },
+        "end": {
+          "line": 760,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes some rows from the model.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startIndex {Integer} the index of the first row to remove.",
+            "paramName": "startIndex",
+            "description": " the index of the first row to remove.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "howMany {Integer} the number of rows to remove.",
+            "paramName": "howMany",
+            "description": " the number of rows to remove.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
+            "paramName": "clearSorting",
+            "description": " Whether to clear the sort state.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_mapArray2RowArr": {
+      "location": {
+        "start": {
+          "line": 774,
+          "column": 4
+        },
+        "end": {
+          "line": 796,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an array of maps to an array of arrays.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mapArr {Map[]} An array containing a map for each row. Each\n          row-map contains the column IDs as key and the cell values as value.",
+            "paramName": "mapArr",
+            "description": " An array containing a map for each row. Each\n          row-map contains the column IDs as key and the cell values as value.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "rememberMaps {Boolean ? false} Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "paramName": "rememberMaps",
+            "description": " Whether to remember the original maps.\n        If true {@link #getRowData} will return the original map.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var[][]} An array containing an array for each row. Each\n           row-array contains the values in that row in the order of the columns\n           in this model.",
+            "type": "var[][]",
+            "description": " An array containing an array for each row. Each\n           row-array contains the values in that row in the order of the columns\n           in this model."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.table.model.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getCaseSensitiveSorting": {
+      "type": "function",
+      "name": "getCaseSensitiveSorting",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for caseSensitiveSorting"
+          }
+        ]
+      }
+    },
+    "isCaseSensitiveSorting": {
+      "type": "function",
+      "name": "isCaseSensitiveSorting",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for caseSensitiveSorting"
+          }
+        ]
+      }
+    },
+    "setCaseSensitiveSorting": {
+      "type": "function",
+      "name": "setCaseSensitiveSorting",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for caseSensitiveSorting"
+          }
+        ]
+      }
+    },
+    "resetCaseSensitiveSorting": {
+      "type": "function",
+      "name": "resetCaseSensitiveSorting",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>caseSensitiveSorting</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 800,
+        "column": 13
+      },
+      "end": {
+        "line": 804,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {},
+  "descendants": [
+    "qx.ui.table.model.Filtered"
+  ]
+}

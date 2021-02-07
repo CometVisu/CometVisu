@@ -1,0 +1,173 @@
+{
+  "className": "qx.ui.table.MTableContextMenu",
+  "packageName": "qx.ui.table",
+  "name": "MTableContextMenu",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 186,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin allows easily adding handlers for context menus on table columns.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 14
+      },
+      "end": {
+        "line": 102,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__contextMenuHandler": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__contextMenuHandlerContext": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 38
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "setContextMenuHandler": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a handler for a context menu which is initiated in a specific\n column.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\n   The column number in which the context menu request originated",
+            "paramName": "col",
+            "description": "\n   The column number in which the context menu request originated",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function}\n   The function to call when a context menu request originates in the\n   specified column. The handler is called with the following arguments:\n   <ul>\n     <li>\n       <b>column</b>: (Integer)\n       The number of the column in which the right click was issued\n     </li>\n     <li>\n       <b>row</b>: (Integer)\n       The number of the row in which the right click was issued\n     </li>\n     <li>\n       <b>table</b>: {@link qx.ui.table.Table}\n       The table in which the right click was issued\n     </li>\n     <li>\n       <b>dataModel</b>: {@link qx.ui.table.model.Abstract}\n       Complete data model of the table\n     </li>\n     <li>\n       <b>contextMenu</b>: {@link qx.ui.menu.Menu}\n       Menu in which buttons can be added to implement this context menu\n     </li>\n   </ul>\n   The function must return a (Boolean), indicating whether the context\n   menu should be shown or not. The context menu will be shown when the\n   handler function returns <code>true</code>. When the handler function\n   returns <code>false</code> the context menu will <b>not</b> be shown.",
+            "paramName": "handler",
+            "description": "\n   The function to call when a context menu request originates in the\n   specified column. The handler is called with the following arguments:\n   <ul>\n     <li>\n       <b>column</b>: (Integer)\n       The number of the column in which the right click was issued\n     </li>\n     <li>\n       <b>row</b>: (Integer)\n       The number of the row in which the right click was issued\n     </li>\n     <li>\n       <b>table</b>: {@link qx.ui.table.Table}\n       The table in which the right click was issued\n     </li>\n     <li>\n       <b>dataModel</b>: {@link qx.ui.table.model.Abstract}\n       Complete data model of the table\n     </li>\n     <li>\n       <b>contextMenu</b>: {@link qx.ui.menu.Menu}\n       Menu in which buttons can be added to implement this context menu\n     </li>\n   </ul>\n   The function must return a (Boolean), indicating whether the context\n   menu should be shown or not. The context menu will be shown when the\n   handler function returns <code>true</code>. When the handler function\n   returns <code>false</code> the context menu will <b>not</b> be shown.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?this}\n   Optional execution context for the callback (i.e. \"this\").\n   If not provided, the {@link qx.ui.table.Table} object this mixin is\n   applied to is used.",
+            "paramName": "context",
+            "description": "\n   Optional execution context for the callback (i.e. \"this\").\n   If not provided, the {@link qx.ui.table.Table} object this mixin is\n   applied to is used.",
+            "optional": true,
+            "defaultValue": "this",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getContextMenuHandler": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the registered context menu handler for a column.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\n   The column number for which the context menu handler is requested",
+            "paramName": "col",
+            "description": "\n   The column number for which the context menu handler is requested",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}\n   The handler function which has been registered for the specified\n   column. The arguments of the handler is documented in\n   {@link #setContextMenuHandler}.",
+            "type": "Function",
+            "description": "\n   The handler function which has been registered for the specified\n   column. The arguments of the handler is documented in\n   {@link #setContextMenuHandler}."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 181,
+        "column": 13
+      },
+      "end": {
+        "line": 185,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

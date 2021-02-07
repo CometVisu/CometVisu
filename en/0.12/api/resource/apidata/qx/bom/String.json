@@ -1,0 +1,242 @@
+{
+  "className": "qx.bom.String",
+  "packageName": "qx.bom",
+  "name": "String",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 449,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A Collection of utility functions to escape and unescape strings.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TO_CHARCODE": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 342,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of HTML entity names to the corresponding char code</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "escape": {
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 4
+        },
+        "end": {
+          "line": 362,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Escapes the characters in a <code>String</code> using HTML entities.\n For example: <tt>\"bread\" & \"butter\"</tt> =&gt; <tt>&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;</tt>.\n Supports all known HTML 4.0 entities, including funky accents.</p>\n<ul>\n<li><a href=\"http://www.w3.org/TR/REC-html32#latin1\">HTML 3.2 Character Entities for ISO Latin-1</a></li>\n<li><a href=\"http://www.w3.org/TR/REC-html40/sgml/entities.html\">HTML 4.0 Character entity references</a></li>\n<li><a href=\"http://www.w3.org/TR/html401/charset.html#h-5.3\">HTML 4.01 Character References</a></li>\n<li><a href=\"http://www.w3.org/TR/html401/charset.html#code-position\">HTML 4.01 Code positions</a></li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the String to escape",
+            "paramName": "str",
+            "description": " the String to escape",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a new escaped String",
+            "type": "qx.bom.String",
+            "description": " a new escaped String"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#unescape"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unescape": {
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4
+        },
+        "end": {
+          "line": 383,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unescapes a string containing entity escapes to a string\n containing the actual Unicode characters corresponding to the\n escapes. Supports HTML 4.0 entities.\n For example, the string \"&amp;lt;Fran&amp;ccedil;ais&amp;gt;\"\n will become \"&lt;Fran&ccedil;ais&gt;\"\n If an entity is unrecognized, it is left alone, and inserted\n verbatim into the result string. e.g. \"&amp;gt;&amp;zzzz;x\" will\n become \"&gt;&amp;zzzz;x\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the String to unescape, may be null",
+            "paramName": "str",
+            "description": " the String to unescape, may be null",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} a new unescaped String",
+            "type": "var",
+            "description": " a new unescaped String"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#escape"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fromText": {
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4
+        },
+        "end": {
+          "line": 407,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a plain text string into HTML.\n This is similar to {@link #escape} but converts new lines to\n <tt>&lt:br&gt:</tt> and preserves whitespaces.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the String to convert",
+            "paramName": "str",
+            "description": " the String to convert",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a new converted String",
+            "type": "qx.bom.String",
+            "description": " a new converted String"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#escape"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toText": {
+      "location": {
+        "start": {
+          "line": 420,
+          "column": 4
+        },
+        "end": {
+          "line": 433,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts HTML to plain text.</p>\n<ul>\n<li>Strips all HTML tags</li>\n<li>converts <tt>&lt:br&gt:</tt> to new line</li>\n<li>unescapes HTML entities</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} HTML string to converts",
+            "paramName": "str",
+            "description": " HTML string to converts",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} plain text representation of the HTML string",
+            "type": "qx.bom.String",
+            "description": " plain text representation of the HTML string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 444,
+        "column": 10
+      },
+      "end": {
+        "line": 448,
+        "column": 4
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

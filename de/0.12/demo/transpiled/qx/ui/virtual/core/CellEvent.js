@@ -70,4 +70,4 @@
   qx.ui.virtual.core.CellEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellEvent.js.map?dt=1612691025236
+//# sourceMappingURL=CellEvent.js.map?dt=1612694640921

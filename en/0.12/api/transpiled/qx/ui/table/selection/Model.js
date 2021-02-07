@@ -582,4 +582,4 @@
   qx.ui.table.selection.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1612690415879
+//# sourceMappingURL=Model.js.map?dt=1612694008871

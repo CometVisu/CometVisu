@@ -1,0 +1,187 @@
+{
+  "className": "qx.bom.element.Animation",
+  "packageName": "qx.bom.element",
+  "name": "Animation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 153,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Wrapper for {@link qx.bom.element.AnimationCss} and\n {@link qx.bom.element.AnimationJs}. It offers the public API and decides using\n feature checks either to use CSS animations or JS animations.\n If you use this class, the restrictions of the JavaScript animations apply.\n This means that you can not use transforms and custom bezier timing functions.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "animate": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function takes care of the feature check and starts the animation.\n It takes a DOM element to apply the animation to, and a description.\n The description should be a map, which could look like this:\n </p>\n<pre class=\"javascript\">\n {\n   \"duration\": 1000,\n   \"keep\": 100,\n   \"keyFrames\": {\n     0 : {\"opacity\": 1, \"scale\": 1},\n     100 : {\"opacity\": 0, \"scale\": 0}\n   },\n   \"origin\": \"50% 50%\",\n   \"repeat\": 1,\n   \"timing\": \"ease-out\",\n   \"alternate\": false,\n   \"delay\" : 2000\n }\n </pre>\n<p><em>duration</em> is the time in milliseconds one animation cycle should take.\n<em>keep</em> is the key frame to apply at the end of the animation. (optional)\n   Keep in mind that the keep key is reversed in case you use an reverse\n   animation or set the alternate key and a even repeat count.\n<em>keyFrames</em> is a map of separate frames. Each frame is defined by a\n   number which is the percentage value of time in the animation. The value\n   is a map itself which holds css properties or transforms\n   {@link qx.bom.element.Transform} (Transforms only for CSS Animations).\n<em>origin</em> maps to the transform origin {@link qx.bom.element.Transform#setOrigin}\n   (Only for CSS animations).\n<em>repeat</em> is the amount of time the animation should be run in\n   sequence. You can also use \"infinite\".\n<em>timing</em> takes one of the predefined value:\n   <code>ease</code> | <code>linear</code> | <code>ease-in</code>\n   | <code>ease-out</code> | <code>ease-in-out</code> |\n   <code>cubic-bezier(&amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;)</code>\n   (cubic-bezier only available for CSS animations)\n<em>alternate</em> defines if every other animation should be run in reverse order.\n<em>delay</em> is the time in milliseconds the animation should wait before start.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} The element to animate.",
+            "paramName": "el",
+            "description": " The element to animate.",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "desc {Map} The animations description.",
+            "paramName": "desc",
+            "description": " The animations description.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Integer?} The duration in milliseconds of the animation\n   which will override the duration given in the description.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds of the animation\n   which will override the duration given in the description.",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.element.AnimationHandle} AnimationHandle instance to control\n   the animation.",
+            "type": "qx.bom.element.AnimationHandle",
+            "description": " AnimationHandle instance to control\n   the animation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "animateReverse": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts an animation in reversed order. For further details, take a look at\n the {@link #animate} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} The element to animate.",
+            "paramName": "el",
+            "description": " The element to animate.",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "desc {Map} The animations description.",
+            "paramName": "desc",
+            "description": " The animations description.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Integer?} The duration in milliseconds of the animation\n   which will override the duration given in the description.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds of the animation\n   which will override the duration given in the description.",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.element.AnimationHandle} AnimationHandle instance to control\n   the animation.",
+            "type": "qx.bom.element.AnimationHandle",
+            "description": " AnimationHandle instance to control\n   the animation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__hasOnlyCssKeys": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detection helper which detects if only CSS keys are in\n the animations key frames.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} The element to check for the styles.",
+            "paramName": "el",
+            "description": " The element to check for the styles.",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "keyFrames {Map} The keyFrames of the animation.",
+            "paramName": "keyFrames",
+            "description": " The keyFrames of the animation.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if only css properties are included.",
+            "type": "Boolean",
+            "description": " <code>true</code> if only css properties are included."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,307 @@
+{
+  "className": "qx.bom.element.Dimension",
+  "packageName": "qx.bom.element",
+  "name": "Dimension",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 218,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Contains support for calculating dimensions of HTML elements.\n We differ between the box (or border) size which is available via\n {@link #getWidth} and {@link #getHeight} and the content or scroll\n sizes which are available via {@link #getContentWidth} and\n {@link #getContentHeight}.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getWidth": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered width of the given element.\n This is the visible width of the object, which need not to be identical\n to the width configured via CSS. This highly depends on the current\n box-sizing for the document and maybe even for the element.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} width of the element",
+            "type": "Integer",
+            "description": " width of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHeight": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered height of the given element.\n This is the visible height of the object, which need not to be identical\n to the height configured via CSS. This highly depends on the current\n box-sizing for the document and maybe even for the element.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} height of the element",
+            "type": "Integer",
+            "description": " height of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSize": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered size of the given element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} map containing the width and height of the element",
+            "type": "Map",
+            "description": " map containing the width and height of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__hiddenScrollbars": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Contains all overflow values where scrollbars are invisible"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getContentWidth": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content width.\n The content width is basically the maximum\n width used or the maximum width which can be used by the content. This\n excludes all kind of styles of the element like borders, paddings, margins,\n and even scrollbars.\n Please note that with visible scrollbars the content width returned\n may be larger than the box width returned via {@link #getWidth}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Computed content width",
+            "type": "Integer",
+            "description": " Computed content width"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getContentHeight": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 201,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content height.\n The content height is basically the maximum\n height used or the maximum height which can be used by the content. This\n excludes all kind of styles of the element like borders, paddings, margins,\n and even scrollbars.\n Please note that with visible scrollbars the content height returned\n may be larger than the box height returned via {@link #getHeight}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Computed content height",
+            "type": "Integer",
+            "description": " Computed content height"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getContentSize": {
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered content size of the given element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} map containing the content width and height of the element",
+            "type": "Map",
+            "description": " map containing the content width and height of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}
