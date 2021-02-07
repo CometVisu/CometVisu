@@ -1,3 +1,11 @@
+build process:
+  - utils/compile/*
+  - utils/compile/**/*
+  - utils/travis
+  - Gruntfile.js
+  - compile.js
+  - compile.json
+
 client:
   - client/*
   - client/**/*
@@ -6,6 +14,12 @@ dependencies:
   - package*.json
   - qx-lock.json
   - source/rest/manager/composer.json
+
+documentation:
+  - doc/**/*
+  - utils/docutils/**/*
+  - utils/screenshots-spec.js
+  - utils/protractor.conf.js
 
 designs:
   - source/resource/designs/*
