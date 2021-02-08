@@ -1,10 +1,10 @@
 sudo: required
 language: python
-dist: xenial
+dist: bionic
 services:
   - docker
 python:
-- '3.5'
+- '3.8'
 cache:
   directories:
   - "$HOME/.cache/pip"

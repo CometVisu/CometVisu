@@ -13,6 +13,7 @@ Description
 Adds a display to the visu that can represent values from the BUS
 and shows them with a round bar.
 
+
 .. ###END-WIDGET-DESCRIPTION###
 
 The design can the set in many different details:
@@ -111,16 +112,11 @@ for the Info widget.
 
 .. code-block:: xml
 
-        <settings>
-            <screenshot name="roundbar_minimal" sleep="400">
-                <caption>Roundbar, simple example</caption>
-                <data address="3/3/1">63.3</data>
-            </screenshot>
-        </settings>
-        <roundbar>
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" mode="read">3/3/1</address>
-        </roundbar>
+    
+    <roundbar>
+         <address transform="DPT:9.001" mode="read">3/3/1</address>
+     </roundbar>
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

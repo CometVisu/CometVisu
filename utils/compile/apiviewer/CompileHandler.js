@@ -60,7 +60,7 @@ class ApiCompileHandler extends AbstractCompileHandler {
     const targetDir = this._getTargetDir()
     if (targetDir) {
       fs.readdirSync(path.join(targetDir, 'resource')).forEach(file => {
-        if (!file.startsWith('qx')) {
+        if (!file.startsWith('qx') && !file.startsWith('apidata')) {
           const dir = path.join(targetDir, 'resource', file)
           fs.removeSync(dir)
         }
@@ -68,8 +68,6 @@ class ApiCompileHandler extends AbstractCompileHandler {
       // remove the cv application
       fs.removeSync(path.join(targetDir, 'cv'))
     }
-
-    // TODO: move to target dir
   }
 
   async _onCompiledClass(ev) {
@@ -122,7 +120,7 @@ class ApiCompileHandler extends AbstractCompileHandler {
   }
 
   /**
-   * Generates the screeshot settings for a widget example
+   * Generates the screenshot settings for a widget example
    * @param raw {Object} JSON structure converted from the example code
    */
   parseWidgetExample(raw) {
@@ -203,12 +201,14 @@ class ApiCompileHandler extends AbstractCompileHandler {
                   }
                   shot.data.push(values)
                 })
-                const captions = Array.isArray(screenshot.caption) ? screenshot.caption : [screenshot.caption]
-                if (captions.length > 0) {
-                  if (!shot.hasOwnProperty('caption')) {
-                    shot.caption = ''
+                if (screenshot.hasOwnProperty('caption')) {
+                  const captions = Array.isArray(screenshot.caption) ? screenshot.caption : [screenshot.caption]
+                  if (captions.length > 0) {
+                    if (!shot.hasOwnProperty('caption')) {
+                      shot.caption = ''
+                    }
+                    shot.caption += captions.map(c => c._text).join()
                   }
-                  shot.caption += captions.map(c => c._text).join()
                 }
               }
               settings.screenshots.push(shot)

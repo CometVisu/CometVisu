@@ -576,6 +576,7 @@ class DocGenerator(Command):
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--move-apiviewer-screenshots", dest="move_apiviewer_screenshots", action="store_true", help="move the generated apiviewer screenshots to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
@@ -621,6 +622,14 @@ class DocGenerator(Command):
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
             target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
             shutil.move(self.config.get("api", "generator_target"), target_dir)
+
+        elif options.move_apiviewer_screenshots:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
+            screenshots_dir = self.config.get("api", "screenshots-path")
+            screenshots_parent_dir = "/".join(screenshots_dir.split("/")[0:-1])
+            shutil.move(os.path.join(self.config.get("api", "generator_target"), screenshots_dir), os.path.join(target_dir, screenshots_parent_dir))
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,

@@ -29,6 +29,7 @@ REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 NO_API=0
+BUILD_CV=1
 
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
@@ -70,7 +71,17 @@ fi
 if [[ "$NO_API" -eq 0 ]]; then
     # move the apiviewer to the correct version subfolder
     rm -rf out/en/$VERSION_PATH/api
+    # move generate api to target, because we need the build dir for screenshots
     ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
+
+    # we need a build to generate screenshots
+    qx compile -t=build -f=false
+    echo "generate API screenshots"
+    ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=build --force
+    BUILD_CV=0
+
+    # move generated screenshots to the api viewer
+    ${CV} doc --move-apiviewer-screenshots --target-version=${VERSION_PATH}
 fi
 
 echo "updating english manual from source code doc comments"
@@ -82,8 +93,10 @@ ${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 # update symlinks and write version files
 ${CV} doc --process-versions
 
-echo "generating the source verion of the CometVisu for screenshot generation"
-qx compile -t=build -f=false
+if [[ "$BUILD_CV" -eq 1 ]]; then
+  echo "generating the source version of the CometVisu for screenshot generation"
+  qx compile -t=build -f=false
+fi
 
 echo "generating english manual, including screenshot generation for all languages"
 ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}

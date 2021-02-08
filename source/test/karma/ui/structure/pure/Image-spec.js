@@ -103,7 +103,7 @@ describe("testing the refresh caching of the image widget", function() {
     expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png\?/);
+      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icons\/comet_64_ff8000.png\?/);
 
       // cleanup
       widget.dispose();
@@ -125,7 +125,7 @@ describe("testing the refresh caching of the image widget", function() {
     widget.setVisible(true);
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png#/);
+      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icons\/comet_64_ff8000.png#/);
 
       // cleanup
       widget.dispose();

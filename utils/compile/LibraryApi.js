@@ -73,7 +73,7 @@ qx.Class.define("cv.compile.LibraryApi", {
       if (setVersion) {
         config.applications.some((app) => {
           if (app.name === "apiviewer") {
-            app.environment['versionLabel.version'] = process.env.CV_VERSION
+            app.environment['qxl.versionlabel.version'] = process.env.CV_VERSION
           }
         })
       }
