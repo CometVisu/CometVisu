@@ -288,7 +288,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     write: function (address, value) {
       const req = this.createAuthorizedRequest("items/" + address, "POST");
       req.setRequestHeader("Content-Type", "text/plain");
-      req.setRequestData(value);
+      req.setRequestData("" + value);
       req.send();
     },
 
