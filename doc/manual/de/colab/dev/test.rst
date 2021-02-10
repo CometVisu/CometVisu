@@ -30,7 +30,7 @@ Die vorhandenen Unittests kann man dann mit folgendem Befehl ausführen:
 
 .. code-block:: bash
 
-    grunt karma:travis
+    grunt karma:ci
 
 
 Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wieviel

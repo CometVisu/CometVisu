@@ -8,8 +8,8 @@ import re
 import os
 from datetime import datetime
 
-source_dir = '%s/source' % os.environ['TRAVIS_BUILD_DIR']
-client_dir = '%s/client/source' % os.environ['TRAVIS_BUILD_DIR']
+source_dir = '%s/source' % os.environ['GITHUB_WORKSPACE']
+client_dir = '%s/client/source' % os.environ['GITHUB_WORKSPACE']
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
 def check_for_changes(type = 'cv'):
