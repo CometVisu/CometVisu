@@ -140,10 +140,6 @@ class DocGenerator(Command):
 
     def _get_doc_version(self):
         if self._doc_version is None:
-            git = sh.Command("git")
-            branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-                else os.environ.get('TRAVIS_BRANCH')
-
             self._doc_version = self._get_source_version()
         return self._doc_version
 
@@ -215,8 +211,8 @@ class DocGenerator(Command):
         # create symlinks
         symlinkname = ''
         git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-            else os.environ.get('TRAVIS_BRANCH')
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
+            else os.environ.get('GITHUB_REF').split("/")[:-1]
 
         if branch == "develop":
             # handle develop builds:

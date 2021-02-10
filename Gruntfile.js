@@ -362,15 +362,15 @@ module.exports = function(grunt) {
         configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
-      travis: {
+      ci: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
-        browsers: [grunt.option('browser') || 'Chrome_travis']
+        browsers: [grunt.option('browser') || 'Chrome_ci']
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
-        browsers: [grunt.option('browser') || 'Chrome_travis'],
+        browsers: [grunt.option('browser') || 'Chrome_ci'],
         reporters: ['spec']
       }
     },
@@ -401,11 +401,11 @@ module.exports = function(grunt) {
         }
       },
       all: {},
-      travis: {
+      ci: {
         options: {
           args: {
             capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work on travis
+              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
               browserName: 'firefox'
             }
           }
@@ -643,7 +643,7 @@ module.exports = function(grunt) {
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
-  grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+  grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
