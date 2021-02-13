@@ -73,7 +73,7 @@ describe("testing a image widget", function() {
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     expect(spiedTimer.start).toHaveBeenCalled();
-    expect(widget.querySelector("img").getAttribute("style")).toBe('width:50%;height:51%;');
+    expect(widget.querySelector("img").getAttribute("style")).toBe('width:50%;height:51%;display:none;');
   });
 
   it("should test the image creator width size", function() {
@@ -83,7 +83,7 @@ describe("testing a image widget", function() {
       widthfit: 'true'
     });
     var widget = res.getDomElement();
-    expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;max-width:100%;');
+    expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;max-width:100%;display:none;');
   });
 
 });

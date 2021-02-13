@@ -1857,8 +1857,9 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
-    <xsd:attribute name="src" type="uri" use="required">
+    <xsd:attribute name="src" type="uri">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Complete path (URI) to the picture</xsd:documentation>
         <xsd:documentation xml:lang="de">Vollständiger Pfad zum Bild (URI)</xsd:documentation>
@@ -1891,6 +1892,7 @@
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="imagetrigger">

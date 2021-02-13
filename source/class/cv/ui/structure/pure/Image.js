@@ -33,7 +33,7 @@
 qx.Class.define('cv.ui.structure.pure.Image', {
   extend: cv.ui.structure.AbstractWidget,
 
-  include: cv.ui.common.Refresh,
+  include: [cv.ui.common.Refresh, cv.ui.common.Update ],
 
   /*
   ******************************************************
@@ -68,6 +68,9 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (this.getHeight()) {
         imgStyle += 'height:' + this.getHeight() + ';';
       }
+      if (!this.__getSrc()) {
+        imgStyle += 'display:none;';
+      }
       return '<div class="actor"><img src="' + this.__getSrc() + '" style="' + imgStyle + '" /></div>';
     },
 
@@ -85,6 +88,12 @@ qx.Class.define('cv.ui.structure.pure.Image', {
         this.__src = src;
       }
       return this.__src;
+    },
+
+    handleUpdate: function(text) {
+      var valueElem = this.getValueElement();
+      valueElem.setAttribute("src", text);
+      valueElem.style.display = !!text ? 'inline' : 'none';
     },
 
     // overridden

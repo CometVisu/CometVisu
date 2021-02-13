@@ -42,6 +42,7 @@ qx.Class.define('cv.parser.widgets.Image', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path, true);
+      cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
     },
 
