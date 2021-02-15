@@ -1893,6 +1893,44 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
     <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute name="placeholder" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Defined how to deal with the case when no image url is set
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Legt fest, wie mit dem Fall umgegangen wird, dass es keine Bild-URL gibt die angezeigt werden kann.
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="none">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Do nothing.</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nichts tun.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="src">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Use url defined in 'src'. This is mainly useful the image url is delivered by an address value. You can use the 'src' attribute to define a fallback image.</xsd:documentation>
+              <xsd:documentation xml:lang="de">Benutze die URL, die in 'src' definiert wurde. In diesem Fall wird die 'src'-URL als Fallback benutzt, wenn die per Gruppen-Adresse übermittelte URL leer ist.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="hide">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Reserve space, by showing an transparent placeholder image.</xsd:documentation>
+              <xsd:documentation xml:lang="de">Zeigt ein transparentes Platzhalter Bild, um den Platz zu reservieren.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="exclude">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Do not reserve space, exclude the image element from the layout.</xsd:documentation>
+              <xsd:documentation xml:lang="de">Zeigt das Bild nicht an und beansprucht auch den Platz nicht.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="imagetrigger">

@@ -80,6 +80,21 @@ Die gültigen Werte für ``cachecontrol`` sind:
     Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
     durch den Cache verhindert wird ist jedoch wahrscheinlich.
 
+Die gültigen Werte für ``placeholder`` sind:
+
+``none``
+    Standard. Keine spezielle Behandlung.
+
+``src``
+    Benutze die URL, die in 'src' definiert wurde. In diesem Fall wird die 'src'-URL als Fallback benutzt,
+    wenn die per Gruppen-Adresse übermittelte URL leer ist.
+
+``hide``
+    Zeigt ein transparentes Platzhalter Bild, um den Platz zu reservieren.
+
+``exclude``
+    Zeigt das Bild nicht an und beansprucht auch den Platz nicht.
+
 .. widget-example::
     :editor: attributes
     :scale: 75
