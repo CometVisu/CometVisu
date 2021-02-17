@@ -168,6 +168,7 @@ jobs:
         run: ./utils/ci/deploy.sh
         env:
           CHROME_BIN: ./chrome/google-chrome
+          COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 

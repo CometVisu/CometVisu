@@ -127,7 +127,7 @@ cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
-git config user.name "$GITHUB_ACTOR"
+git config user.name "$COMMIT_AUTHOR_NAME"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
