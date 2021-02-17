@@ -261,4 +261,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.data.controller.website.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1613588095612
+//# sourceMappingURL=List.js.map?dt=1613590613554

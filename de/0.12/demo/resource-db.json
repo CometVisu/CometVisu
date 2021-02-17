@@ -125,11 +125,6 @@
         "width": 128,
         "height": 46
       },
-      "icons/comet_16_000000.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 6
-      },
       "icons/comet_16_00ddff.png": {
         "resourcePath": "resourcePath",
         "width": 16,
@@ -435,6 +430,11 @@
       },
       "icons/knx-uf-iconset.svg": {
         "resourcePath": "resourcePath"
+      },
+      "icons/comet_16_000000.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 6
       },
       "libs/COPYING": {
         "resourcePath": "resourcePath"
@@ -1390,6 +1390,38 @@
         "height": 32
       }
     },
+    "dialog": {
+      "dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      }
+    },
     "qxl.apiviewer": {
       "qxl/apiviewer/app.png": {
         "resourcePath": "resourcePath",
@@ -1933,38 +1965,6 @@
             -396
           ]
         }
-      }
-    },
-    "dialog": {
-      "dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "dialog/icon/IcoMoonFree/273-checkmark.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
       }
     },
     "osparc.theme": {
@@ -10045,6 +10045,496 @@
       "qx/website/scss/ui/_widget.scss": {
         "resourcePath": "resourcePath"
       },
+      "qx/icon/Oxygen/128/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/address-book-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/check-spelling.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/contact-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-open.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-print.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-properties.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-revert.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-save-as.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-save.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/document-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-clear.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-copy.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-cut.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-delete.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-find.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-redo.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-undo.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/folder-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-bottom.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-down.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-first.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-last.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-next.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-previous.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-top.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/go-up.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-about.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-contents.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/help-faq.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-image.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-link.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/insert-text.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/list-add.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/list-remove.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/mail-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-eject.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-record.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/process-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-log-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-run.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-search.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-refresh.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-restore.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/window-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/window-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-in.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-original.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/zoom-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10515,7 +11005,7 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/mimetypes/media-image.png": {
+      "qx/icon/Oxygen/128/mimetypes/executable.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10525,17 +11015,17 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/mimetypes/executable.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/mimetypes/media-video.png": {
+      "qx/icon/Oxygen/128/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/mimetypes/office-calendar.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/mimetypes/media-video.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -19675,6 +20165,496 @@
         "width": 22,
         "height": 22
       },
+      "qx/icon/Tango/32/actions/address-book-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/bookmark-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/check-spelling.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/contact-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/dialog-cancel.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/dialog-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/dialog-ok.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-open-recent.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-open.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-print-preview.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-print.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-properties.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-revert.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-save-as.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-save.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/document-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-clear.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-copy.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-cut.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-delete.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-find.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-redo.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-select-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/edit-undo.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/folder-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-indent-less.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-indent-more.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-justify-center.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-justify-fill.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-justify-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-justify-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-bold.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-direction-ltr.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-direction-rtl.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-italic.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-strikethrough.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/format-text-underline.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-bottom.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-down.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-first.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-last.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-next.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-previous.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-top.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/go-up.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/help-about.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/help-contents.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/help-faq.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/insert-image.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/insert-link.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/insert-text.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/list-add.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/list-remove.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-mark-important.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-mark-junk.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-mark-read.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-mark-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-message-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-receive.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-reply-all.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-reply-sender.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/mail-send.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-eject.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-playback-pause.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-playback-start.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-playback-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-record.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-seek-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-seek-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-skip-backward.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/media-skip-forward.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/object-flip-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/object-flip-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/object-rotate-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/object-rotate-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/process-stop.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/system-log-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/system-run.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/system-search.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/system-shutdown.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/view-fullscreen.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/view-refresh.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/view-restore.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/view-sort-ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/view-sort-descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/window-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/window-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/zoom-fit-best.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/zoom-in.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/zoom-original.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/actions/zoom-out.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
       "qx/icon/Tango/32/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
         "width": 32,
@@ -20100,12 +21080,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/emotes/face-laugh.png": {
+      "qx/icon/Tango/32/emotes/face-kiss.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/emotes/face-kiss.png": {
+      "qx/icon/Tango/32/emotes/face-laugh.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -20140,12 +21120,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/executable.png": {
+      "qx/icon/Tango/32/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/archive.png": {
+      "qx/icon/Tango/32/mimetypes/executable.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -21965,17 +22945,17 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/apps/media-audio-player.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/apps/media-photo-album.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
       "qx/icon/Tango/64/apps/media-video-player.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/apps/media-audio-player.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22055,6 +23035,11 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/apps/preferences-font.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/apps/preferences-keyboard.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -22066,11 +23051,6 @@
         "height": 64
       },
       "qx/icon/Tango/64/apps/preferences-network.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/apps/preferences-font.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22150,17 +23130,17 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/apps/utilities-notes.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/apps/utilities-statistics.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
       "qx/icon/Tango/64/apps/utilities-system-monitor.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/apps/utilities-notes.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22565,986 +23545,6 @@
       },
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
-      },
-      "qx/icon/Tango/32/actions/address-book-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/application-exit.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/appointment-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/bookmark-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/contact-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/dialog-apply.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/dialog-cancel.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/dialog-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/dialog-ok.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-open-recent.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-open.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-print-preview.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-print.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-properties.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-revert.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-save-as.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-clear.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/document-save.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-copy.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-cut.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-find.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-paste.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-redo.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-select-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/edit-undo.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/folder-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-indent-less.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-justify-center.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-justify-fill.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-indent-more.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-justify-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-bold.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-direction-ltr.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-direction-rtl.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-italic.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-strikethrough.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/format-text-underline.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-bottom.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-down.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-first.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-last.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-next.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-previous.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-top.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/go-up.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/help-about.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/help-contents.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/help-faq.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/insert-image.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/insert-link.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/insert-text.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/list-add.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/list-remove.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-mark-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-mark-junk.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-mark-read.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-mark-unread.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-message-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-receive.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-reply-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-reply-sender.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/mail-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-eject.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-playback-pause.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-playback-start.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-playback-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-record.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-seek-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-seek-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-skip-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/media-skip-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/object-flip-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/object-flip-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/object-rotate-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/object-rotate-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/process-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/system-log-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/system-run.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/system-search.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/system-shutdown.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/view-fullscreen.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/view-refresh.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/view-restore.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/view-sort-ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/view-sort-descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/window-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/zoom-fit-best.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/zoom-in.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/zoom-original.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/zoom-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Oxygen/128/actions/address-book-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/application-exit.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/appointment-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/contact-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-apply.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-cancel.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/dialog-ok.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-open-recent.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-open.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-print-preview.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-print.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-properties.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-revert.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-save-as.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-save.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/document-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-clear.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-copy.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-cut.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-find.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-paste.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-redo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-select-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/edit-undo.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/folder-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-center.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-fill.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-bold.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-ltr.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-direction-rtl.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-italic.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-strikethrough.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/format-text-underline.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-bottom.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-down.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-first.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-last.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-next.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-previous.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-top.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-up.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-about.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-contents.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/help-faq.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-image.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-link.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/insert-text.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-add.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/list-remove.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-mark-unread.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-reply-sender.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/mail-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-eject.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-pause.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-record.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-seek-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-backward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/media-skip-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-flip-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/object-rotate-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/process-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-log-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-run.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-search.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/system-shutdown.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-refresh.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-restore.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/view-sort-descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-close.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-fit-best.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-in.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-original.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/zoom-out.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
       }
     }
   }

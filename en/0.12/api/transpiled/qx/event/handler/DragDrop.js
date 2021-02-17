@@ -981,4 +981,4 @@
   qx.event.handler.DragDrop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDrop.js.map?dt=1613588098987
+//# sourceMappingURL=DragDrop.js.map?dt=1613590616087

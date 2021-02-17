@@ -91,4 +91,4 @@
   osparc.theme.common.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1613588133295
+//# sourceMappingURL=Font.js.map?dt=1613590642348

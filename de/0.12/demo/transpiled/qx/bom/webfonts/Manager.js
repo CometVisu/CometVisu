@@ -604,4 +604,4 @@
   qx.bom.webfonts.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1613588854797
+//# sourceMappingURL=Manager.js.map?dt=1613591265333
