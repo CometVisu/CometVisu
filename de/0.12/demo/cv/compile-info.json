@@ -1514,7 +1514,7 @@
     "qx.promise.longStackTraces": true,
     "qx.compiler": true,
     "qx.compiler.version": "1.0.0",
-    "cv.version": "stable",
+    "cv.version": "dev",
     "cv.xhr": "qx",
     "cv.testMode": "resource/demo/media/demo_testmode_data.json",
     "cv.build": "build",

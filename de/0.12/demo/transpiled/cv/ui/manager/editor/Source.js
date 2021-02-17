@@ -92,6 +92,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this._initWorker();
 
       this._currentDecorations = [];
+      this.__P_31_0 = /(\s*)(.*)\s*/;
     },
 
     /*
@@ -152,7 +153,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__P_31_0 = schema;
+            this.__P_31_1 = schema;
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
             var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
@@ -176,13 +177,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     members: {
-      __P_31_0: null,
+      __P_31_1: null,
       _editor: null,
       _basePath: null,
       _workerWrapper: null,
       _currentDecorations: null,
       _configClient: null,
       _onDidChangeContentGuard: 0,
+      __P_31_0: null,
       _initWorker: function _initWorker() {
         this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
 
@@ -311,17 +313,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             // ask user if he really want to save a file with warnings
             dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
               if (confirmed) {
-                this.__P_31_1();
+                this.__P_31_2();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_31_1();
+            this.__P_31_2();
           }
         } else {
           cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
         }
       },
-      __P_31_1: function __P_31_1() {
+      __P_31_2: function __P_31_2() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -427,6 +429,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
         });
       },
+      _getErrorPosition: function _getErrorPosition(lineNo) {
+        var content = this._editor.getModel().getLineContent(lineNo);
+
+        var match = this.__P_31_0.exec(content);
+
+        if (match) {
+          var startSpaces = match[1].length + 1;
+          return {
+            startColumn: startSpaces,
+            endColumn: startSpaces + match[2].length
+          };
+        } else {
+          return {
+            startColumn: 1,
+            endColumn: content.length
+          };
+        }
+      },
       showErrors: function showErrors(path, errorList) {
         var markers = [];
 
@@ -452,14 +472,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           errorList.forEach(function (error) {
             if (/.*\.xml:[\d]+:.+/.test(error)) {
               if (currentMessage !== null) {
-                markers.push({
+                markers.push(Object.assign({
                   severity: window.monaco.MarkerSeverity.Error,
                   startLineNumber: currentMessage.line,
-                  startColumn: 1,
                   endLineNumber: currentMessage.line,
-                  endColumn: model.getLineContent(currentMessage.line).length,
-                  message: currentMessage.message
-                });
+                  message: currentMessage.message,
+                  source: currentMessage.source
+                }, this._getErrorPosition(currentMessage.line)));
                 check(currentMessage.line);
               } // add marker for completed message
 
@@ -482,30 +501,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               currentMessage = {
                 line: line,
                 message: parts.slice(-2).join(":"),
-                file: file
+                file: file,
+                source: error
               };
               check(currentMessage.line);
             } else {
               currentMessage.message += "\n" + error;
             }
-          });
+          }, this);
 
           if (currentMessage !== null) {
             // show last error too
-            markers.push({
+            markers.push(Object.assign({
               severity: window.monaco.MarkerSeverity.Error,
               startLineNumber: currentMessage.line,
-              startColumn: 1,
               endLineNumber: currentMessage.line,
-              endColumn: model.getLineContent(currentMessage.line).length,
-              message: currentMessage.message
-            });
+              message: currentMessage.message,
+              source: currentMessage.source
+            }, this._getErrorPosition(currentMessage.line)));
             check(currentMessage.line);
           }
         }
 
         if (this.getFile().getFullPath() === path) {
-          window.monaco.editor.setModelMarkers(model, '', markers);
+          window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
           var options = this.getHandlerOptions();
 
           if (options && options.jumpToError) {
@@ -583,4 +602,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1612701217929
+//# sourceMappingURL=Source.js.map?dt=1613588825882

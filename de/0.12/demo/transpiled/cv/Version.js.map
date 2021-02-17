@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/source/class/cv/Version.js"
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/Version.js"
   ],
   "names": [
     "qx",
@@ -22,8 +22,8 @@
     "cv",
     "Version"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,MAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,eAAe,EAAE,CAJV;AAKPC,MAAAA,IAAI,EAAE,0BALC;AAMPC,MAAAA,IAAI,EAAE;AACJC,QAAAA,OAAO,EAAE;AADL;AANC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWb,aAAX,GAA2BA,aAA3B",
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,SAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,eAAe,EAAE,CAJV;AAKPC,MAAAA,IAAI,EAAE,0BALC;AAMPC,MAAAA,IAAI,EAAE;AACJC,QAAAA,OAAO,EAAE;AADL;AANC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWb,aAAX,GAA2BA,aAA3B",
   "sourcesContent": [
-    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"99a848e9cffb29364a6a0fa7eced1b481d542834\",\n    BRANCH: \"HEAD\",\n    VERSION: \"0.12.0-dev\",\n    LIBRARY_VERSION: 9,\n    DATE: \"2021-02-07T12:33:30.327Z\",\n    TAGS: { \n      RUNTIME: \"demo\"\n    }\n  }\n});    \n"
+    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"9485285958d6f5e02aa47d763e9ab896db144718\",\n    BRANCH: \"develop\",\n    VERSION: \"0.12.0-dev\",\n    LIBRARY_VERSION: 9,\n    DATE: \"2021-02-17T19:06:57.456Z\",\n    TAGS: { \n      RUNTIME: \"demo\"\n    }\n  }\n});    \n"
   ]
 }

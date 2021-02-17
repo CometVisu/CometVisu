@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/upload/UploadMgr.js"
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/upload/UploadMgr.js"
   ],
   "names": [
     "qx",

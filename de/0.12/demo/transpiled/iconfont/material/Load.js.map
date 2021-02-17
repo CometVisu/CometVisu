@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/ITISFoundation_qx-iconfont-material_v0_1_7/source/class/iconfont/material/Load.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/ITISFoundation_qx-iconfont-material_v0_1_7/source/class/iconfont/material/Load.js"
   ],
   "names": [
     "qx",

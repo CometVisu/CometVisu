@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_versionlabel_v1_0_4/source/class/qxl/versionlabel/VersionLabel.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_versionlabel_v1_0_4/source/class/qxl/versionlabel/VersionLabel.js"
   ],
   "names": [
     "qx",

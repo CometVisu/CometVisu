@@ -32,7 +32,7 @@ The existing unit tests can then be executed with the following command:
 
 .. code-block:: bash
 
-    grunt karma:travis
+    grunt karma:ci
 
 
 This carries out the tests including a code coverage analysis. The code

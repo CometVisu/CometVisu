@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/cboulanger_qx-contrib-Dialog_v2_1_1/source/class/dialog/Select.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/cboulanger_qx-contrib-Dialog_v2_1_1/source/class/dialog/Select.js"
   ],
   "names": [
     "qx",

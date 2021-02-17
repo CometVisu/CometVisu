@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Worker.js"
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Worker.js"
   ],
   "names": [
     "qx",

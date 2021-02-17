@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/johnspackman_UploadMgr_v1_0_5/source/class/com/zenesis/qx/upload/MUploadButton.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/johnspackman_UploadMgr_v1_0_5/source/class/com/zenesis/qx/upload/MUploadButton.js"
   ],
   "names": [
     "qx",

@@ -318,7 +318,7 @@
       write: function write(address, value) {
         var req = this.createAuthorizedRequest("items/" + address, "POST");
         req.setRequestHeader("Content-Type", "text/plain");
-        req.setRequestData(value);
+        req.setRequestData("" + value);
         req.send();
       },
       handleError: function handleError(error) {
@@ -415,4 +415,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1612700596209
+//# sourceMappingURL=Rest.js.map?dt=1613588128527

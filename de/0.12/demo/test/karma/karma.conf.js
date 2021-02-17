@@ -117,7 +117,7 @@ module.exports = function(config) {
     singleRun: true,
 
     customLaunchers: {
-      Chrome_travis: {
+      Chrome_ci: {
         base: 'Chrome',
         flags: [
           '--no-sandbox',
