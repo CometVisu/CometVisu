@@ -24,4 +24,7 @@ describe('load the application', function () {
   // it('load the demo config', function () {
   //   console.log("testing demo");
   // });
+  it('should fail', function () {
+    expect(true).toBeFalsy();
+  })
 });
