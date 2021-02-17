@@ -29,7 +29,7 @@
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
-qx.Class.define("cv.Application",
+qx.Clss.define("cv.Application",
 {
   extend : qx.application.Native,
 
