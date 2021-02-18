@@ -164,6 +164,9 @@ Commit       : {ref}
         else:
             tag_description += 'This release contains minor fixes or improvements.\n'
 
+        git.config("user.name", os.environ["COMMIT_AUTHOR_NAME"])
+        git.config("user.email", os.environ["COMMIT_AUTHOR_EMAIL"])
+
         if not options.dry_run:
             git.tag('-a', '-F', '-', new_rev,  _in=tag_description + build_info)
             time.sleep(10)

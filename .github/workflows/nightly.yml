@@ -25,3 +25,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NIGHLTY_ONLY: 1
+          COMMIT_AUTHOR_NAME: CometVisu-CI
+          COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
