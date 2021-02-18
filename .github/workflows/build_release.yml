@@ -1,0 +1,45 @@
+name: Build CometVisu release from tag
+on:
+  push:
+    tags:
+      - '*'
+env:
+  NODE_VERSION: '14.15'
+jobs:
+  build:
+    name: "Build release"
+    runs-on: ubuntu-latest
+    if: startsWith('refs/tags/', github.ref)
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Install grunt
+        run: npm install -g grunt-cli
+      - run: npm install
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+      - name: Build CometVisu
+        run: grunt release-cv
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./CometVisu-*.(tar.gz|zip)
+          file_glob: true
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "This is my release text"

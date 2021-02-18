@@ -5,22 +5,20 @@ on:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 0 * * *'
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.repository == 'CometVisu/CometVisu'
     steps:
-      - run: echo "Hello world"
-
-#    - name: "[NIGHTLY] - Build and push Nightly Build"
-#      if: type = cron OR commit_message =~ /^\[ci nightly\].*/
-#      script: &3
-#        - 'CLIENT_CHANGES=`./utils/travis/check-changes.py client`'
-#        - 'CORE_CHANGES=`./utils/travis/check-changes.py cv`'
-#        - export DEPLOY_NIGHTLY=0
-#        - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
-#        - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
-#        - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, nighlies $DEPLOY_NIGHTLY, $TRAVIS_EVENT_TYPE event type"
-#      before_deploy:
-#        - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
-#        - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependecies
+        run: pip install PyGithub sh
+      - name: "Create tag on change"
+        run: ./utils/ci/tagger --start
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NIGHLTY_ONLY: 1
