@@ -1,10 +1,12 @@
 name: Build CometVisu release from tag
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*'
 env:
   NODE_VERSION: '14.15'
+
 jobs:
   build:
     name: "Build release"
