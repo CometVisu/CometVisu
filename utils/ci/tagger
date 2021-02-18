@@ -183,14 +183,14 @@ Commit       : {ref}
         draft = True
         changes = "The latest changes can be seen in the [change log](https://raw.githubusercontent.com/CometVisu/CometVisu/{new_rev}/ChangeLog)."
 
-        if branch == "develop":
-            if version_base[-3:] == "dev":
-                release_name = "CometVisu nightly build %s" % new_rev
-                prerelease = True
-                changes = tag_description
-            elif version_base[-2:] == "RC":
-                release_name = "CometVisu release %s - release candidate %s" % (version_base[1:-3], new_rev[len(version_base):])
-                prerelease = True
+        if version_base[-3:] == "dev":
+            release_name = "CometVisu nightly build %s" % new_rev
+            prerelease = True
+            changes = tag_description
+        elif version_base[-2:] == "RC":
+            release_name = "CometVisu release %s - release candidate %s" % (
+            version_base[1:-3], new_rev[len(version_base):])
+            prerelease = True
 
         release_message="""
 The CometVisu project is happy to publish the version {new_rev} that can be downloaded at 

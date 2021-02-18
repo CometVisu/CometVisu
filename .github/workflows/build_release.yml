@@ -1,6 +1,5 @@
 name: Build CometVisu release from tag
 on:
-  workflow_dispatch:
   push:
     tags:
       - '*'
