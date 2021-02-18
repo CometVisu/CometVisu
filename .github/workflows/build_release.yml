@@ -4,7 +4,7 @@ on:
     tags:
       - 'v*'
   release:
-    types: [ created ]
+    types: [prereleased,created,published]
 env:
   NODE_VERSION: '14.15'
 
