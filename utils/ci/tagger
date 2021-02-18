@@ -180,7 +180,7 @@ Commit       : {ref}
         print("Creating release...")
         release_name = new_rev
         prerelease = False
-        draft = True
+        draft = False
         changes = "The latest changes can be seen in the [change log](https://raw.githubusercontent.com/CometVisu/CometVisu/{new_rev}/ChangeLog)."
 
         if version_base[-3:] == "dev":
