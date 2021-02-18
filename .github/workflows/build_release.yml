@@ -2,7 +2,7 @@ name: Build CometVisu release from tag
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 env:
   NODE_VERSION: '14.15'
 
