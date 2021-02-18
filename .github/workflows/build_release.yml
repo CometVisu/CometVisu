@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - 'v*'
+  release:
+    types: [ created ]
 env:
   NODE_VERSION: '14.15'
 
