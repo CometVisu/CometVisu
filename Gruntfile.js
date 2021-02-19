@@ -479,12 +479,6 @@ module.exports = function(grunt) {
       buildClient: {
         command: 'npm run make-client'
       },
-      buildToRelease: {
-        command: [
-          'rm -rf release',
-          'mv compiled/build release'
-        ].join('&&')
-      },
       lint: {
         command: 'npm run lint'
       },
@@ -638,7 +632,7 @@ module.exports = function(grunt) {
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
     'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
-    'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
+    'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 

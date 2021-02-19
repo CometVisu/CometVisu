@@ -1,4 +1,4 @@
-name: Test CometVisu pull request
+name: Check pull request
 on: pull_request
 env:
   NODE_VERSION: '14.15'
@@ -65,8 +65,6 @@ jobs:
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
           echo "${PWD}/firefox" >> $GITHUB_PATH
-      - name: Install grunt
-        run: npm install -g grunt-cli
       - name: Run tests
         run: grunt karma:ci --browser=$CV_BROWSER
         env:

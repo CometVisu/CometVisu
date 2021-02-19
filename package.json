@@ -10,14 +10,14 @@
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
-    "build": "qx compile --watch --t build --set fakeLogin=true",
-    "make-cv": "qx compile --t build",
+    "build": "qx compile --watch -t build --set fakeLogin=true",
+    "make-cv": "qx deploy --out=release --source-maps",
     "compile": "qx compile",
-    "api": "qx compile --set apiviewer=true --t build",
+    "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
     "lint": "echo \"lint is currently disabled\"",
-    "make-client": "cd client && qx compile --t build"
+    "make-client": "cd client && qx compile -t build"
   },
   "license": "GPL-3.0",
   "authors": [

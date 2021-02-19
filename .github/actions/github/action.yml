@@ -1,0 +1,17 @@
+name: 'Github client'
+description: 'Client for github rest api'
+inputs:
+  action:  # id of input
+    description: 'Type of action to run'
+    required: true
+    default: 'get-nightly-release'
+  options:
+    description: 'Additioanl options for the action'
+    required: false
+    default: ''
+outputs:
+  result: # id of output
+    description: 'CLient response'
+runs:
+  using: "node12"
+  main: "index.js"

@@ -1,14 +1,13 @@
-name: CometVisu nightly builds
+name: Tag nightly
 on:
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 0 * * *'
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.repository == 'CometVisu/CometVisu'
+    if: ${{ false }} == true && github.repository == 'CometVisu/CometVisu'
     steps:
       - uses: actions/checkout@v2
         with:

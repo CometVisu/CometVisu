@@ -33,7 +33,8 @@ const filesToCopy = [
   "test",
   "replay.html",
   "resource/config/.htaccess",
-  "resource/config/.templates"
+  "resource/config/.templates",
+  "REV"
 ];
 
 // directories to exclude from copying
