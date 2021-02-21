@@ -641,4 +641,4 @@
   qx.ui.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1613590634134
+//# sourceMappingURL=ToolBar.js.map?dt=1613908125190

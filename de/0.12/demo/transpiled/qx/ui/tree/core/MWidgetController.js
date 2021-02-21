@@ -294,4 +294,4 @@
   qx.ui.tree.core.MWidgetController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MWidgetController.js.map?dt=1613591266488
+//# sourceMappingURL=MWidgetController.js.map?dt=1613908800236

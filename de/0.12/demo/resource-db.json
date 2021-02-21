@@ -125,6 +125,11 @@
         "width": 128,
         "height": 46
       },
+      "icons/comet_16_000000.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 6
+      },
       "icons/comet_16_00ddff.png": {
         "resourcePath": "resourcePath",
         "width": 16,
@@ -290,15 +295,15 @@
         "width": 512,
         "height": 512
       },
-      "icons/comet_opt.svg": {
-        "resourcePath": "resourcePath",
-        "width": 794,
-        "height": 1123
-      },
       "icons/comet_opt_icon.svg": {
         "resourcePath": "resourcePath",
         "width": 450,
         "height": 450
+      },
+      "icons/comet_opt.svg": {
+        "resourcePath": "resourcePath",
+        "width": 794,
+        "height": 1123
       },
       "icons/comet_webapp_icon.png": {
         "resourcePath": "resourcePath",
@@ -430,11 +435,6 @@
       },
       "icons/knx-uf-iconset.svg": {
         "resourcePath": "resourcePath"
-      },
-      "icons/comet_16_000000.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 6
       },
       "libs/COPYING": {
         "resourcePath": "resourcePath"
@@ -10045,6 +10045,11 @@
       "qx/website/scss/ui/_widget.scss": {
         "resourcePath": "resourcePath"
       },
+      "qx/icon/Oxygen/128/actions/address-book-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10056,11 +10061,6 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/bookmark-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11020,12 +11020,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/mimetypes/office-calendar.png": {
+      "qx/icon/Oxygen/128/mimetypes/media-video.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/mimetypes/media-video.png": {
+      "qx/icon/Oxygen/128/mimetypes/office-calendar.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -16135,11 +16135,6 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
       "qx/icon/Oxygen/64/actions/zoom-fit-best.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -17284,6 +17279,11 @@
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
+      },
+      "qx/icon/Oxygen/64/actions/window-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
       },
       "qx/icon/Tango/128/apps/internet-blog.png": {
         "resourcePath": "resourcePath",
@@ -19505,11 +19505,6 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/window-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/actions/zoom-fit-best.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -19936,6 +19931,11 @@
         "height": 22
       },
       "qx/icon/Tango/22/emblems/emblem-favorite.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/actions/window-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22

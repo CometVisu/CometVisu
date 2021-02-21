@@ -192,4 +192,4 @@
   qxl.apiviewer.ui.LegendView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LegendView.js.map?dt=1613590642670
+//# sourceMappingURL=LegendView.js.map?dt=1613908134898

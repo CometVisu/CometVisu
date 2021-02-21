@@ -232,4 +232,4 @@
   qx.bom.element.Clip.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clip.js.map?dt=1613590610968
+//# sourceMappingURL=Clip.js.map?dt=1613908099615
