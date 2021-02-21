@@ -110,14 +110,16 @@ class GithubClient {
       startRef = lastBuildRev ? lastBuildRev : this.getLatestNightlyBuild('tag_name');
     }
     const endRef = await git.revparse(['--abbrev-ref', 'HEAD']);
-    const raw = await git.log({
+    const args = {
       from: startRef,
       to: endRef,
       file: path,
       splitter: '\n',
       multiLine: true,
       symmetric: false
-    });
+    }
+    console.debug(args);
+    const raw = await git.log(args);
     console.log(raw.total, "changes found");
     return raw.total > 0;
   }
