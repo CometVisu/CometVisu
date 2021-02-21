@@ -54,8 +54,8 @@ class GithubClient {
   }
 
   async getLatestNightlyBuild(key) {
-    console.log(">>> Search latest nightly build for version: " + cvInfo.version);
     if (!this.__cache.hasOwnProperty('latest-nightly-release')) {
+      console.log(">>> Search latest nightly build for version: " + cvInfo.version);
       const {data} = await this.client.request('GET /repos/{owner}/{repo}/releases', {
         owner: this.owner,
         repo: this.repo

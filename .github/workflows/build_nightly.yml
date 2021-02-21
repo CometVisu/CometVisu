@@ -55,10 +55,11 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Nightly-Build-${{ steps.nightly.outputs.result }}
-          path: |
-            ./CometVisu-*.tar.gz
-            ./CometVisu-*.zip
+          path: ./CometVisu-*.tar.gz
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./CometVisu-*.zip
       - name: Upload binaries to Nightly release
         uses: svenstaro/upload-release-action@v2
         if: success() && steps.changed.outputs.result == 'true'
