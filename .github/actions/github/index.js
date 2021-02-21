@@ -107,7 +107,7 @@ class GithubClient {
       // Special mode, use commit sha from latest CometVisu build in the release assets
       let lastBuildRev = await this.getCommitShaFromZip();
       // as fallback when not asset (or no one with a REV file int it) is found use the releases tag
-      startRef = lastBuildRev ? lastBuildRev : this.getLatestNightlyBuild('tag_name');
+      startRef = lastBuildRev ? lastBuildRev : await this.getLatestNightlyBuild('tag_name');
     }
     const endRef = await git.revparse(['--abbrev-ref', 'HEAD']);
     const args = {
