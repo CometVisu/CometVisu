@@ -115,7 +115,8 @@ class GithubClient {
       to: endRef,
       file: path,
       splitter: '\n',
-      multiLine: true
+      multiLine: true,
+      symmetric: false
     });
     console.log(raw.total, "changes found");
     return raw.total > 0;
