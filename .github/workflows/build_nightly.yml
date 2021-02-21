@@ -68,3 +68,8 @@ jobs:
           file_glob: true
           tag: ${{ steps.nightly.outputs.result }}
           overwrite: true
+      - name: Cleanup old nightly builds
+        uses: ./.github/actions/github
+        with:
+          action: cleanup-assets
+          options: 3

@@ -152,6 +152,37 @@ class GithubClient {
     return null;
   }
 
+  async cleanupAssets(limit) {
+    const release = await this.getLatestNightlyBuild();
+    const zipBuildAssets =release.assets
+      .filter(asset => /^CometVisu-.+\.zip$/.test(asset.name))
+      .sort((a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at));
+    const tarBuildAssets =release.assets
+      .filter(asset => /^CometVisu-.+\.tar\.gz$/.test(asset.name))
+      .sort((a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at));
+    limit = parseInt(limit);
+    if (zipBuildAssets.length > limit) {
+      for (let i = limit; i < zipBuildAssets.length; i++) {
+        await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
+          owner: this.owner,
+          repo: this.repo,
+          assetId: zipBuildAssets[i].id
+        });
+        console.log("Deleting", zipBuildAssets[i].name)
+      }
+    }
+    if (tarBuildAssets.length > limit) {
+      for (let i = limit; i < tarBuildAssets.length; i++) {
+        await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
+          owner: this.owner,
+          repo: this.repo,
+          assetId: tarBuildAssets[i].id
+        });
+        console.log("Deleting", tarBuildAssets[i].name)
+      }
+    }
+  }
+
   async download(dest, url) {
     const file = fs.createWriteStream(dest);
     return new Promise((resolve, reject) => {
