@@ -13,6 +13,14 @@ on:
 env:
   NODE_VERSION: '14.15'
 jobs:
+  cancel:
+    name: 'Cancel Previous Runs'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
 
   lint:
     if: ${{ false }}  # disable for now
