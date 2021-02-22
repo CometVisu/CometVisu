@@ -690,4 +690,4 @@
   qx.ui.form.validation.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1613908792351
+//# sourceMappingURL=Manager.js.map?dt=1614016358857

@@ -147,4 +147,4 @@
   qx.ui.core.queue.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1613908114735
+//# sourceMappingURL=Widget.js.map?dt=1614015656293

@@ -240,4 +240,4 @@
   qx.bom.element.Opacity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Opacity.js.map?dt=1613908787767
+//# sourceMappingURL=Opacity.js.map?dt=1614016353901

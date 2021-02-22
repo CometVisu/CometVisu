@@ -169,4 +169,4 @@
   qx.theme.indigo.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1613908111322
+//# sourceMappingURL=Appearance.js.map?dt=1614015652320

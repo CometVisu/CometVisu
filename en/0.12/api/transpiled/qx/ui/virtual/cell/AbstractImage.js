@@ -196,4 +196,4 @@
   qx.ui.virtual.cell.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1613908126347
+//# sourceMappingURL=AbstractImage.js.map?dt=1614015669273
