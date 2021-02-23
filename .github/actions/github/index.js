@@ -255,11 +255,16 @@ class GithubClient {
     return text
   }
 
-  async increaseBuildTag(start, dryRun) {
+  async increaseBuildTag(start, nightly, dryRun) {
     if (typeof start === 'string') {
       start = start === 'true';
     } else if (typeof start !== 'boolean') {
       start = false;
+    }
+    if (typeof nightly === 'string') {
+      nightly = nightly === 'true';
+    } else if (typeof nightly !== 'boolean') {
+      nightly = false;
     }
     if (typeof dryRun === 'string') {
       dryRun = dryRun === 'true';
@@ -351,35 +356,62 @@ Commit       : ${currentHash}
     let prerelease = false;
     const draft = false;
     let changes = `The latest changes can be seen in the [change log](https://raw.githubusercontent.com/${this.owner}/${this.repo}/${newRev}/ChangeLog).`;
+    let releaseMessage = `
+The CometVisu project is happy to publish the version ${newRev} that can be downloaded at
+[https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}](https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}).
 
-    if (baseVersion.endsWith("dev")) {
+${changes}
+`;
+    if (baseVersion.endsWith("dev") || nightly) {
       releaseName = `CometVisu nightly build ${newRev}`;
       prerelease = true;
       changes = tagDescription;
+      releaseMessage = `
+This release contains the most up-to-date nightly builds. Please keep in mind that nightly builds are snapshots of the 
+current development status of the CometVisu and that some things might not work as excepted.
+
+The build can be downloaded at:
+[https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}](https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}).
+
+${changes}
+`;
     } else if (baseVersion.endsWith("RC")) {
       releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - 3)} - release candidate ${newRev.substr(baseVersion.length)}`
       prerelease = true;
     }
 
-    let releaseMessage=`
-The CometVisu project is happy to publish the version ${newRev} that can be downloaded at
-[https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}](https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}).
-
-${changes}
-    `;
-
-    if (!dryRun) {
-      await this.client.repos.createRelease({
-        owner: this.owner,
-        repo: this.repo,
-        tag_name: newRev,
-        name: releaseName,
-        body: releaseMessage,
-        draft: draft,
-        prerelease: prerelease
-      });
+    if (nightly) {
+      const latestNightly = await this.getLatestNightlyBuild();
+      if (!latestNightly) {
+        core.setFailed("No nightly release found");
+        return
+      }
+      if (!dryRun) {
+        await this.client.repos.updateRelease({
+          owner: this.owner,
+          repo: this.repo,
+          tag_name: newRev,
+          name: releaseName,
+          body: releaseMessage,
+          release_id: latestNightly.id
+        });
+      } else {
+        console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
+      }
     } else {
-      console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
+      if (!dryRun) {
+        await this.client.repos.createRelease({
+          owner: this.owner,
+          repo: this.repo,
+          tag_name: newRev,
+          name: releaseName,
+          body: releaseMessage,
+          draft: draft,
+          prerelease: prerelease
+        });
+      } else {
+        console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
+      }
     }
   }
 }

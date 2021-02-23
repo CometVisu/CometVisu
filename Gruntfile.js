@@ -76,6 +76,17 @@ function mock() {
   };
 }
 
+function getBuildSuffix(packageVersion) {
+  let suffix = packageVersion;
+  if (process.env.DEPLOY_NIGHTLY) {
+    if (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith("refs/tags/")) {
+      suffix = process.env.GITHUB_REF.split("/").pop();
+    } else {
+      suffix += "-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "");
+    }
+    return suffix;
+}
+
 // grunt
 module.exports = function(grunt) {
   var
@@ -200,7 +211,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/qx-CometVisuClient/boot.js',
-          dest: "client/build/deploy/qxCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/qxCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       jqClient: {
@@ -210,7 +221,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/jQuery-CometVisuClient/boot.js',
-          dest: "client/build/deploy/jQueryCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/jQueryCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       tar: {
@@ -218,13 +229,7 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".tar.gz";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".tar.gz";
           }
         },
         files: filesToCompress
@@ -234,13 +239,7 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".zip";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".zip";
           }
         },
         files: filesToCompress

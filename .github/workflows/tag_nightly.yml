@@ -1,0 +1,28 @@
+name: Tag nightly
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 0 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.repository == 'CometVisu/CometVisu'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Install action dependencies
+        run: npm install
+        working-directory: ./.github/actions/github
+      - id: nightly
+        name: "Create tag on change"
+        uses: ./.github/actions/github
+        with:
+          action: increase-build-tag
+          options: false true true # test with dry run for now
+        env:
+          COMMIT_AUTHOR_NAME: CometVisu-CI
+          COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
+          NIGHLTY_ONLY: 1
