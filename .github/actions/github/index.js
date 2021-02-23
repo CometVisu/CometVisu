@@ -420,6 +420,7 @@ ${changes}
 
   async triggerBuild(ref) {
     if (ref) {
+      console.log("running build_release for ref", ref);
       await this.client.actions.createWorkflowDispatch({
         owner: this.owner,
         repo: this.repo,
