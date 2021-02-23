@@ -85,6 +85,7 @@ function getBuildSuffix(packageVersion) {
       suffix += "-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "");
     }
     return suffix;
+  }
 }
 
 // grunt

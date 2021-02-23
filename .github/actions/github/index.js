@@ -363,7 +363,7 @@ The CometVisu project is happy to publish the version ${newRev} that can be down
 ${changes}
 `;
     if (baseVersion.endsWith("dev") || nightly) {
-      releaseName = `CometVisu nightly build ${newRev}`;
+      releaseName = `Nightly build ${newRev}`;
       prerelease = true;
       changes = tagDescription;
       releaseMessage = `
