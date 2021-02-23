@@ -4,15 +4,16 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 0 * * *'
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  build:
+  tagger:
     runs-on: ubuntu-latest
     if: github.repository == 'CometVisu/CometVisu'
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          submodules: true
       - name: Install action dependencies
         run: npm install
         working-directory: ./.github/actions/github
