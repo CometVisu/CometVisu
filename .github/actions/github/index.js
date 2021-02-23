@@ -397,13 +397,7 @@ ${changes}
         });
 
         // manually trigger nightly build because to some reason the workflow is not triggered by the tag push
-        const res = await this.client.actions.createWorkflowDispatch({
-          owner: this.owner,
-          repo: this.repo,
-          workflow_id: "build_release.yml",
-          ref: newRev
-        });
-        console.log(res);
+        await this.triggerBuild(newRev);
       } else {
         console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
       }
@@ -422,6 +416,15 @@ ${changes}
         console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
       }
     }
+  }
+
+  async triggerBuild(ref) {
+    await this.client.actions.createWorkflowDispatch({
+      owner: this.owner,
+      repo: this.repo,
+      workflow_id: "build_release.yml",
+      ref: ref
+    });
   }
 }
 
