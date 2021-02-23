@@ -4,8 +4,6 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '0 0 * * *'
-env:
-  GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 jobs:
   tagger:
     runs-on: ubuntu-latest
@@ -27,8 +25,11 @@ jobs:
           COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
           NIGHLTY_ONLY: 1
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Trigger build
         uses: ./.github/actions/github
         with:
           action: trigger-build
           options: ${{ steps.nightly.outputs.result }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
