@@ -32,4 +32,4 @@ jobs:
           action: trigger-build
           options: ${{ steps.nightly.outputs.result }}
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }} # does not work with secrets.GITHUB_TOKEN, must be another token with rights for workflows
