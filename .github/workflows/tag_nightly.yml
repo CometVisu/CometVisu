@@ -27,3 +27,9 @@ jobs:
           COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
           NIGHLTY_ONLY: 1
+      - name: Trigger build
+        if: success() && startsWith(steps.nightly.outputs.result, 'refs/tags/')
+        uses: ./.github/actions/github
+        with:
+          action: trigger-build
+          options: ${{ steps.nightly.outputs.result }}
