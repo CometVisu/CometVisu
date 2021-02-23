@@ -400,7 +400,7 @@ ${changes}
         await this.client.actions.createWorkflowDispatch({
           owner: this.owner,
           repo: this.repo,
-          workflow_id: "build_nightly.yml",
+          workflow_id: "build_release.yml",
           ref: newRev
         });
       } else {
