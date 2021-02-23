@@ -395,7 +395,7 @@ ${changes}
           body: releaseMessage,
           release_id: latestNightly.id
         });
-        return newRev;
+        return "refs/tags/"+ newRev;
       } else {
         console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
       }
@@ -410,7 +410,7 @@ ${changes}
           draft: draft,
           prerelease: prerelease
         });
-        return newRev;
+        return "refs/tags/"+ newRev;
       } else {
         console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
       }
