@@ -397,7 +397,13 @@ ${changes}
         });
 
         // manually trigger nightly build because to some reason the workflow is not triggered by the tag push
-        await this.triggerBuild(newRev);
+        const trigger = new Promise(resolve => {
+          setTimeout(async () => {
+            await this.triggerBuild(newRev);
+            resolve();
+          }, 10000);
+        })
+        await trigger;
       } else {
         console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
       }
