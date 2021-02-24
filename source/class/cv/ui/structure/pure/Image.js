@@ -29,7 +29,7 @@
  *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
- * @asset(blank.gif)
+ * @asset(qx/static/blank.gif)
  */
 qx.Class.define('cv.ui.structure.pure.Image', {
   extend: cv.ui.structure.AbstractWidget,
@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (!src) {
         switch (this.getPlaceholder()) {
           case 'hide':
-            src = qx.util.ResourceManager.getInstance().toUri('blank.gif');
+            src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
             break;
 
           case 'exclude':
@@ -119,7 +119,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
             break;
 
           case 'hide':
-            text = qx.util.ResourceManager.getInstance().toUri('blank.gif');
+            text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
             valueElem.style.display = 'inline';
             break;
 

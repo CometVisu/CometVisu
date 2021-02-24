@@ -96,8 +96,8 @@ describe("testing a image widget", function() {
     var widget = res.getDomElement();
     expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
-    res.update('TestItem', '/source/resource/blank.gif');
-    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/blank.gif');
+    res.update('TestItem', '/source/resource/qx/static/blank.gif');
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/qx/static/blank.gif');
 
     res.update('TestItem', '');
     expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
@@ -111,13 +111,13 @@ describe("testing a image widget", function() {
       transform: 'OH:string'
     });
     var widget = res.getDomElement();
-    expect(widget.querySelector("img").getAttribute("src").endsWith('resource/blank.gif')).toBeTruthy();
+    expect(widget.querySelector("img").getAttribute("src").endsWith('qx/static/blank.gif')).toBeTruthy();
 
     res.update('TestItem', '/source/resource/icons/comet_64_ff8000.png');
     expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
     res.update('TestItem', '');
-    expect(widget.querySelector("img").getAttribute("src").endsWith('resource/blank.gif')).toBeTruthy();
+    expect(widget.querySelector("img").getAttribute("src").endsWith('qx/static/blank.gif')).toBeTruthy();
   });
 
   it("should test the image placeholder exclude mode", function() {
