@@ -88,6 +88,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         this._parseXSD();
 
       }, this);
+      ajaxRequest.send();
     },
 
     /**
@@ -95,7 +96,8 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     _parseXSD: function () {
       // make a list of root-level elements
-      this.__xsd.querySelectorAll('xsd\\:schema > xsd\\:element').forEach(element => {
+      console.log(this);
+      this.__xsd.querySelectorAll('schema > element').forEach(element => {
         const name = element.getAttribute('name');
         this.__allowedRootElements[name] = new cv.ui.manager.model.schema.Element(element, this);
       });
@@ -115,7 +117,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         return this.__referencedNodeCache[type][refName];
       }
 
-      const selector = 'xsd\\:schema > xsd\\:' + type + '[name="' + refName + '"]';
+      const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
 
       if (ref.hasAttribute('ref')) {
@@ -146,7 +148,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         return this.__typeNodeCache[type][name];
       }
 
-      let typeNode = this.__xsd.querySelector('xsd\\:' + type + 'Type[name="' + name + '"]');
+      let typeNode = this.__xsd.querySelector( + type + 'Type[name="' + name + '"]');
 
       if (!typeNode) {
         throw 'schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found';

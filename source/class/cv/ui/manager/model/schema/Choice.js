@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       this.base(arguments);
       const node = this.getNode();
       const schema = this.getSchema();
-      const subElements = node.querySelector('> xsd\\:element');
+      const subElements = node.querySelector(':scope > element');
       subElements.forEach((elem) => {
         const subElement = new cv.ui.manager.model.schema.Element(elem, schema);
         subElement.setIsSortable(true);
@@ -55,17 +55,17 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       });
 
       // choices
-      node.querySelector('> xsd\\:choice').forEach((grouping) => {
+      node.querySelectorAll(':scope > choice').forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       });
 
       // sequences
-      node.querySelector('> xsd\\:sequence').forEach((grouping) => {
+      node.querySelectorAll(':scope > sequence').forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
       });
 
       // groups
-      node.querySelector('> xsd\\:group').forEach((grouping) => {
+      node.querySelectorAll(':scope > group').forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Group(grouping, schema));
       });
     },

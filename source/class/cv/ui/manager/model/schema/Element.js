@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // be ref'ed
       } else {
         // the element is it's own type
-        type = node.querySelector('> xsd\\:complexType');
+        type = node.querySelector(':scope > complexType');
       }
 
       return type;
@@ -161,15 +161,15 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // can be either simpleContent, or (choice|sequence|group|all)?
       // 'all' is not supported yet.
 
-      if (this._type.querySelectorAll('xsd\\:simpleContent').length > 0) {
+      if (this._type.querySelectorAll('simpleContent').length > 0) {
         // it's simpleContent? Then it's either extension or restriction
         // anyways, we will handle it, as if it were a simpleType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelectorAll('xsd\\:simpleContent'), schema);
-      } else if (this._type.querySelectorAll('xsd\\:choice, xsd\\:sequence, xsd\\:group').length > 0) {
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelectorAll('simpleContent'), schema);
+      } else if (this._type.querySelectorAll('choice, sequence, group').length > 0) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
 
-        let tmpDOMGrouping = this._type.querySelector('xsd\\:choice, xsd\\:sequence, xsd\\:group');
+        let tmpDOMGrouping = this._type.querySelector('choice, sequence, group');
 
         // create the appropriate Schema*-object and append it to this very element
         switch (tmpDOMGrouping.nodeName) {
@@ -200,7 +200,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       }
 
 
-      const children = this._type.querySelectorAll('> xsd\\:element');
+      const children = this._type.querySelectorAll('> element');
       children.forEach( (sub) => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
         allowedContent[subElement.getName()] = subElement;
@@ -221,10 +221,10 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         const allowedAttributes = {};
 
         // allowed attributes
-        const attributes = this._type.querySelectorAll('> xsd\\:attribute, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attribute');
+        const attributes = this._type.querySelectorAll('> attribute, > simpleContent > extension > attribute');
 
         // now add any attribute that comes from an attribute-group
-        const attributeGroups = this._type.querySelectorAll('> xsd\\:attributeGroup, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attributeGroup');
+        const attributeGroups = this._type.querySelectorAll('> attributeGroup, > simpleContent > extension > attributeGroup');
 
         attributeGroups.forEach((aGroup) => {
           // get get group itself, by reference if necessary
@@ -238,7 +238,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
             attributeGroup = aGroup;
           }
 
-          attributeGroup.querySelectorAll('> xsd\\:attribute').forEach((child) => {
+          attributeGroup.querySelectorAll('> attribute').forEach((child) => {
             attributes.push(child);
           });
         });

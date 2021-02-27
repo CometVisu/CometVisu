@@ -38,7 +38,8 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
      * @var string
      */
     type: {
-      check: 'String'
+      check: 'String',
+      init: 'unknown'
     },
     elementsHaveOrder: {
       check: 'Boolean',

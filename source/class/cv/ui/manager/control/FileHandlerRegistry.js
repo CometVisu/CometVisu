@@ -24,6 +24,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     // register the basic editors
     this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: 'edit'});
+    this.registerFileHandler(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree, {
+      preview: false,
+      type: 'edit'
+    });
     this.registerFileHandler(cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES, cv.ui.manager.editor.XmlLegacy, {
       preview: false,
       type: 'edit',
@@ -181,7 +185,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES, cv.ui.manager.editor.XmlLegacy, true, true);
+          this.setDefault(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree, true);
           break;
       }
     },

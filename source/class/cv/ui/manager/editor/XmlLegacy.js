@@ -24,7 +24,7 @@ qx.Class.define('cv.ui.manager.editor.XmlLegacy', {
   */
   statics: {
     SUPPORTED_FILES: /^(demo)?\/?visu_config.*\.xml/,
-    TITLE: qx.locale.Manager.tr('Xml-editor'),
+    TITLE: qx.locale.Manager.tr('Legacy Xml-editor'),
     ICON: cv.theme.dark.Images.getIcon('xml', 18)
   },
 
