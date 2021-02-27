@@ -33,3 +33,4 @@ settings/keys/deploy_key
 /doc/manual/*/_build/**
 **/.vscode/**
 qx_packages/
+source/REV

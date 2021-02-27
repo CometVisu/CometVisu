@@ -1,0 +1,35 @@
+name: Tag nightly
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 0 * * *'
+jobs:
+  tagger:
+    runs-on: ubuntu-latest
+    if: github.repository == 'CometVisu/CometVisu'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install action dependencies
+        run: npm install
+        working-directory: ./.github/actions/github
+      - id: nightly
+        name: "Create tag on change"
+        uses: ./.github/actions/github
+        with:
+          action: increase-build-tag
+          options: false true
+        env:
+          COMMIT_AUTHOR_NAME: CometVisu-CI
+          COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
+          NIGHLTY_ONLY: 1
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Trigger build
+        uses: ./.github/actions/github
+        with:
+          action: trigger-build
+          options: ${{ steps.nightly.outputs.result }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }} # does not work with secrets.GITHUB_TOKEN, must be another token with rights for workflows

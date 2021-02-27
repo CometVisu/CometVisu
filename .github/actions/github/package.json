@@ -1,0 +1,22 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@octokit/action": "^3.4.0",
+    "@octokit/rest": "^18.2.0",
+    "adm-zip": "^0.5.3",
+    "camelcase": "^6.2.0",
+    "follow-redirects": "^1.13.2",
+    "simple-git": "^2.35.1"
+  }
+}

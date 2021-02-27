@@ -6,19 +6,21 @@ TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 CV="./cv"
 DOCKER_RUN="./bin/docker-run"
+REMOTE_NAME="origin"
 
-if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
+if [ "$GITHUB_EVENT_NAME" == "schedule" ]; then
     echo "Skipping deploy in cron build"
     exit 0
 fi
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [[ ! "$TRAVIS_BRANCH" =~ release-[0-9\.]+ ]]); then
+if [ "$GITHUB_EVENT_NAME" != "push" ] || ( [ "$GITHUB_REF" != "refs/heads/$SOURCE_BRANCH" ] &&
+    [[ ! "$GITHUB_REF" =~ release-[0-9\.]+ ]] && [[ "$GITHUB_REF" != "refs/heads/ci-test" ]]); then
     echo "Skipping deploy;"
     exit 0
 fi
 
-if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
+if [ "$GITHUB_REPOSITORY" != "$REPO_SLUG" ] && [[ "$GITHUB_REF" != "refs/heads/ci-test" ]]; then
     echo "Not in main repository => skipping deploy;"
     exit 0
 fi
@@ -26,7 +28,7 @@ fi
 
 # Save some useful information
 REPO=`git config remote.origin.url`
-SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+PUSH_REPO="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 SHA=`git rev-parse --verify HEAD`
 NO_API=0
 BUILD_CV=1
@@ -125,7 +127,7 @@ cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
-git config user.name "Travis CI"
+git config user.name "$COMMIT_AUTHOR_NAME"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
@@ -138,6 +140,11 @@ if [ "$NEW_VERSION" -eq 0 ]; then
     fi
 fi
 
+if [[ "$GITHUB_REF" == "refs/heads/ci-test" ]]; then
+  echo "stopping ci test - dryrun"
+  exit 0
+fi
+
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 echo "adding all changes to git changeset"
@@ -145,16 +152,6 @@ git add --all .
 echo "committing changeset"
 git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 
-# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
-ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
-ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
-ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
-ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../utils/travis/deploy_key.enc -out deploy_key -d
-chmod 600 deploy_key
-eval `ssh-agent -s`
-ssh-add deploy_key
-
 # Now that we're all set up, we can push.
 echo "pushing changes to remote repository"
-git push $SSH_REPO $TARGET_BRANCH
+git push "$PUSH_REPO" $TARGET_BRANCH

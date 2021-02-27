@@ -76,6 +76,18 @@ function mock() {
   };
 }
 
+function getBuildSuffix(packageVersion) {
+  let suffix = packageVersion;
+  if (process.env.DEPLOY_NIGHTLY) {
+    if (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith("refs/tags/")) {
+      suffix = process.env.GITHUB_REF.split("/").pop();
+    } else {
+      suffix += "-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "");
+    }
+    return suffix;
+  }
+}
+
 // grunt
 module.exports = function(grunt) {
   var
@@ -200,7 +212,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/qx-CometVisuClient/boot.js',
-          dest: "client/build/deploy/qxCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/qxCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       jqClient: {
@@ -210,7 +222,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/jQuery-CometVisuClient/boot.js',
-          dest: "client/build/deploy/jQueryCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/jQueryCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       tar: {
@@ -218,13 +230,7 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".tar.gz";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".tar.gz";
           }
         },
         files: filesToCompress
@@ -234,13 +240,7 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".zip";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".zip";
           }
         },
         files: filesToCompress
@@ -362,15 +362,15 @@ module.exports = function(grunt) {
         configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
-      travis: {
+      ci: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
-        browsers: [grunt.option('browser') || 'Chrome_travis']
+        browsers: [grunt.option('browser') || 'Chrome_ci']
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
-        browsers: [grunt.option('browser') || 'Chrome_travis'],
+        browsers: [grunt.option('browser') || 'Chrome_ci'],
         reporters: ['spec']
       }
     },
@@ -401,11 +401,11 @@ module.exports = function(grunt) {
         }
       },
       all: {},
-      travis: {
+      ci: {
         options: {
           args: {
             capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work on travis
+              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
               browserName: 'firefox'
             }
           }
@@ -478,12 +478,6 @@ module.exports = function(grunt) {
       },
       buildClient: {
         command: 'npm run make-client'
-      },
-      buildToRelease: {
-        command: [
-          'rm -rf release',
-          'mv compiled/build release'
-        ].join('&&')
       },
       lint: {
         command: 'npm run lint'
@@ -638,12 +632,12 @@ module.exports = function(grunt) {
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
     'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
-    'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
+    'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
-  grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+  grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);

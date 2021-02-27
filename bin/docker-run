@@ -5,4 +5,4 @@ if [[ ! -z "$cid" ]]; then
     docker rm $cid
 fi
 export COMMAND=$@
-docker run --user="$UID:$UID" --privileged --net=host -it -v "$(pwd)":"$(pwd)" -v /dev/shm:/dev/shm --name dev-helper --workdir "$(pwd)" -e COMMAND cometvisu/dev-helper
+docker run --user="$UID:$UID" --privileged --net=host -v "$(pwd)":"$(pwd)" -v /dev/shm:/dev/shm --name dev-helper --workdir "$(pwd)" -e COMMAND cometvisu/dev-helper

@@ -1,0 +1,208 @@
+name: Build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - master
+      - release-*
+    paths-ignore:
+      - '.github/**'
+      - 'doc/**'
+    tags-ignore:
+      - 'v*'
+env:
+  NODE_VERSION: '14.15'
+jobs:
+
+  lint:
+    if: ${{ false }}  # disable for now
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: npm install
+      - name: Make npm binaries accessible
+        run: echo "${PWD}/node_modules/.bin" >> $GITHUB_PATH
+      - name: Lint code
+        run: qx lint
+
+  build:
+    runs-on: ubuntu-latest
+#    needs: lint
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build CometVisu
+        uses: ./.github/actions/build-cv
+        with:
+          target: build
+
+  unit-test:
+    name: "UNIT-TEST"
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        target: ['stable', 'beta', 'unstable']
+        browser: ['Chrome_ci']
+    env:
+      CV_VERSION: ${{ matrix.target }}
+      CV_BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Build CometVisu
+        uses: ./.github/actions/build-cv
+        with:
+          target: source
+      - name: Install browser
+        run: ./utils/ci/browser-setup.sh
+        shell: bash
+      - name: Make browser binaries accessible
+        run: |
+          echo "${PWD}/chrome" >> $GITHUB_PATH
+          echo "${PWD}/firefox" >> $GITHUB_PATH
+      - name: Install grunt
+        run: npm install -g grunt-cli
+      - name: Run tests
+        run: grunt karma:ci --browser=$CV_BROWSER
+        env:
+          CHROME_BIN: ./chrome/google-chrome
+      - name: Run coveralls
+        if: env.CV_VERSION == 'stable' && env.CV_BROWSER == 'Chrome_ci'
+        run: grunt coveralls
+
+  e2e-test:
+    name: "E2E-TEST"
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+          target: ['stable'] # beta is not running currently, 'beta']
+          browser: ['Chrome_ci']
+    env:
+      CV_VERSION: ${{ matrix.target }}
+      CV_BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Build CometVisu
+        uses: ./.github/actions/build-cv
+        with:
+          target: source
+      - name: Install browser
+        run: ./utils/ci/browser-setup.sh
+        shell: bash
+      - name: Make browser binaries accessible
+        run: |
+          echo "${PWD}/chrome" >> $GITHUB_PATH
+          echo "${PWD}/firefox" >> $GITHUB_PATH
+      - name: Prepare tests
+        uses: ./.github/actions/update-webdriver
+      - name: Run tests
+        run: grunt e2e-chrome
+        env:
+          CHROME_BIN: ./chrome/google-chrome
+
+  deploy-docker:
+    name: "[DOCKER] - Build and push Docker Container"
+    if: github.repository == 'CometVisu/CometVisu' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release-') || github.ref == 'refs/heads/ci-test')
+    runs-on: ubuntu-latest
+    needs: [ 'unit-test', 'e2e-test']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - run: npm install -g grunt-cli
+      - run: npm install
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+      - name: Create CometVisu release for docker
+        run: CV_TAG_RUNTIME=docker grunt release-cv
+      - name: Move to release folder
+        run: mv release build
+      - name: Push to Docker Hub
+        run: ./utils/ci/docker_push.sh
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+
+  deploy-sentry:
+    name: "[SENTRY] create release and upload sourcemaps"
+    if: github.repository == 'CometVisu/CometVisu'
+    runs-on: ubuntu-latest
+    needs: ['unit-test', 'e2e-test']
+    env:
+      SENTRY_ORG: cometvisu
+      SENTRY_PROJECT: cometvisu
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Build CometVisu
+        uses: ./.github/actions/build-cv
+        with:
+          target: build
+      - run: |
+          curl -sL https://sentry.io/get-cli/ | bash
+          export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+          sentry-cli releases set-commits --auto $SENTRY_RELEASE
+          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps compiled/build --rewrite --strip-common-prefix --no-sourcemap-reference --ignore node_modules/ --ignore test/  --ignore transpiled/
+          sentry-cli releases finalize $SENTRY_RELEASE
+

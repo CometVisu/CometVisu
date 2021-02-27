@@ -1,0 +1,20 @@
+name: 'Prepare CometVisu build'
+description: 'Initializes the CometVisu and builds a version'
+inputs:
+  target:
+    description: 'Build target (e.g source, build, deploy)'
+    required: true
+    default: 'source'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install node dependencies
+      run: npm install
+      shell: bash
+    - name: Make npm binaries accessible
+      run: echo "${PWD}/node_modules/.bin" >> $GITHUB_PATH
+      shell: bash
+    - name: Compile CometVisu
+      run: qx compile --target=${{ inputs.target }}
+      shell: bash

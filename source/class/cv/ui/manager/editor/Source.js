@@ -35,6 +35,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this._draw();
     this._initWorker();
     this._currentDecorations = [];
+
+    this.__contentRegex = /(\s*)(.*)\s*/;
   },
 
   /*
@@ -131,6 +133,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _currentDecorations: null,
     _configClient: null,
     _onDidChangeContentGuard: 0,
+    __contentRegex: null,
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
@@ -360,6 +363,23 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       });
     },
 
+    _getErrorPosition: function (lineNo) {
+      const content = this._editor.getModel().getLineContent(lineNo);
+      const match = this.__contentRegex.exec(content);
+      if (match) {
+        const startSpaces = match[1].length + 1;
+        return {
+          startColumn: startSpaces,
+          endColumn: startSpaces + match[2].length
+        }
+      } else {
+        return {
+          startColumn: 1,
+          endColumn: content.length
+        }
+      }
+    },
+
     showErrors: function (path, errorList) {
       var markers = [];
       var model = this._editor.getModel();
@@ -380,14 +400,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         errorList.forEach(function (error) {
           if (/.*\.xml:[\d]+:.+/.test(error)) {
             if (currentMessage !== null) {
-              markers.push({
+              markers.push(Object.assign({
                 severity: window.monaco.MarkerSeverity.Error,
                 startLineNumber: currentMessage.line,
-                startColumn: 1,
                 endLineNumber: currentMessage.line,
-                endColumn: model.getLineContent(currentMessage.line).length,
-                message: currentMessage.message
-              });
+                message: currentMessage.message,
+                source: currentMessage.source
+              }, this._getErrorPosition(currentMessage.line)));
               check(currentMessage.line);
             }
             // add marker for completed message
@@ -407,28 +426,28 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             currentMessage = {
               line: line,
               message: parts.slice(-2).join(":"),
-              file: file
+              file: file,
+              source: error
             };
             check(currentMessage.line);
           } else {
             currentMessage.message += "\n"+error;
           }
-        });
+        }, this);
         if (currentMessage !== null) {
           // show last error too
-          markers.push({
+          markers.push(Object.assign({
             severity: window.monaco.MarkerSeverity.Error,
             startLineNumber: currentMessage.line,
-            startColumn: 1,
             endLineNumber: currentMessage.line,
-            endColumn: model.getLineContent(currentMessage.line).length,
-            message: currentMessage.message
-          });
+            message: currentMessage.message,
+            source: currentMessage.source
+          }, this._getErrorPosition(currentMessage.line)));
           check(currentMessage.line);
         }
       }
       if (this.getFile().getFullPath() === path) {
-        window.monaco.editor.setModelMarkers(model, '', markers);
+        window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
         const options = this.getHandlerOptions();
         if (options && options.jumpToError) {
           // jump too first error (only when we are at the beginning
