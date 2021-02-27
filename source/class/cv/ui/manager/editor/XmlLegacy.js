@@ -1,7 +1,7 @@
 /**
  * Default XML-Editor included as iframe.
  */
-qx.Class.define('cv.ui.manager.editor.Xml', {
+qx.Class.define('cv.ui.manager.editor.XmlLegacy', {
   extend: cv.ui.manager.editor.AbstractEditor,
 
   /*
@@ -154,7 +154,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
     },
 
     isSupported: function (file) {
-      return cv.ui.manager.editor.Xml.SUPPORTED_FILES.test(file.getName()) && file.isWriteable();
+      return cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES.test(file.getName()) && file.isWriteable();
     }
   },
 

@@ -24,7 +24,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     // register the basic editors
     this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: 'edit'});
-    this.registerFileHandler(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, {
+    this.registerFileHandler(cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES, cv.ui.manager.editor.XmlLegacy, {
       preview: false,
       type: 'edit',
       noTemporaryFiles: true, // the old XML-Editor cannot handle temporary files,
@@ -181,7 +181,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, true, true);
+          this.setDefault(cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES, cv.ui.manager.editor.XmlLegacy, true, true);
           break;
       }
     },
