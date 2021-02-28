@@ -49,7 +49,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
 
       // for a sequence, we need to keep the order of the elements
       // so we have to use a 'mixed' approach in reading them
-      const subNodes = this.getNode().children();
+      const subNodes = Array.from(this.getNode().children);
 
       subNodes.forEach((subNode) => {
         let subObject = undefined;
@@ -59,7 +59,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           case 'element':
             subObject = new cv.ui.manager.model.schema.Element(subNode, schema);
             // sequences' children are non-sortable
-            subObject.setIsSortable(false);
+            subObject.setSortable(false);
             this._allowedElements[subObject.getName()] = subObject;
             break;
           case 'xsd:choice':

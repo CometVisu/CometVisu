@@ -38,7 +38,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
         const refName = e.getAttribute('ref');
         const ref = schema.getReferencedNode('attribute', refName);
 
-        if (ref.length !== 1) {
+        if (!ref) {
           throw 'schema/xsd appears to be invalid, can not find element ' + refName;
         }
 
@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
       init: ''
     },
     optional: {
-      check: 'Booleab',
+      check: 'Boolean',
       init: false
     },
     defaultValue: {
@@ -93,7 +93,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
       if (node.hasAttribute('default')) {
         this.setDefaultValue(node.getAttribute('default'))
       }
-      this.setOptional(node.getAttribute('use') === 'required');
+      this.setOptional(node.getAttribute('use') !== 'required');
     },
 
     /**

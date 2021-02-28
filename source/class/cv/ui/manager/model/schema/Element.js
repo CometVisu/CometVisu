@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // be ref'ed
       } else {
         // the element is it's own type
-        type = node.querySelector(':scope > complexType');
+        type = node;
       }
 
       return type;
@@ -102,7 +102,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
     sortable: {
       check: 'Boolean',
-      init: false
+      init: false,
+      event: 'changeSortable'
     },
 
     mixed: {
@@ -164,7 +165,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (this._type.querySelectorAll('simpleContent').length > 0) {
         // it's simpleContent? Then it's either extension or restriction
         // anyways, we will handle it, as if it were a simpleType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelectorAll('simpleContent'), schema);
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector('simpleContent'), schema);
       } else if (this._type.querySelectorAll('choice, sequence, group').length > 0) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
@@ -200,7 +201,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       }
 
 
-      const children = this._type.querySelectorAll('> element');
+      const children = Array.from(this._type.querySelectorAll(':scope > element'));
       children.forEach( (sub) => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
         allowedContent[subElement.getName()] = subElement;
@@ -221,10 +222,10 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         const allowedAttributes = {};
 
         // allowed attributes
-        const attributes = this._type.querySelectorAll('> attribute, > simpleContent > extension > attribute');
+        const attributes = Array.from(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute'));
 
         // now add any attribute that comes from an attribute-group
-        const attributeGroups = this._type.querySelectorAll('> attributeGroup, > simpleContent > extension > attributeGroup');
+        const attributeGroups = Array.from(this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup'));
 
         attributeGroups.forEach((aGroup) => {
           // get get group itself, by reference if necessary
@@ -238,7 +239,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
             attributeGroup = aGroup;
           }
 
-          attributeGroup.querySelectorAll('> attribute').forEach((child) => {
+          Array.from(attributeGroup.querySelectorAll(':scope > attribute')).forEach((child) => {
             attributes.push(child);
           });
         });

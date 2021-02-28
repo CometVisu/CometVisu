@@ -96,7 +96,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         return;
       }
 
-      const subNodes = node.querySelectorAll('> xsd\\:restriction, > xsd\\:extension, > xsd\\:simpleType > xsd\\:restriction, > xsd\\:simpleType > xsd\\:extension');
+      const subNodes = node.querySelectorAll(':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension');
 
       subNodes.forEach( (subNode) => {
         const baseType = subNode.getAttribute('base');
@@ -108,11 +108,11 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         } else {
           this.setBaseType(baseType);
         }
-        subNode.querySelectorAll('> xsd\\:pattern').forEach((patternNode) => {
+        subNode.querySelectorAll(':scope > pattern').forEach((patternNode) => {
           this.__pattern.push(patternNode.getAttribute('value'));
         });
 
-        subNode.querySelectorAll('> xsd\\:enumeration').forEach((enumerationNode) => {
+        subNode.querySelectorAll(':scope > enumeration').forEach((enumerationNode) => {
           this.__enumerations.push(enumerationNode.getAttribute('value'));
         });
       });

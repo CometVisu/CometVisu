@@ -23,11 +23,31 @@ qx.Class.define('cv.ui.manager.model.Schema', {
 
   /*
   ***********************************************
-    EVENTS
+    STATICS
   ***********************************************
   */
-  events: {
-    'ready': 'qx.event.type.Event'
+  statics: {
+    __CACHE: {},
+
+    getInstance: function (schemaFile) {
+      if (!this.__CACHE.hasOwnProperty(schemaFile)) {
+        this.__CACHE[schemaFile] = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri(schemaFile));
+      }
+      return this.__CACHE[schemaFile];
+    }
+  },
+
+  /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    loaded: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeLoaded'
+    }
   },
 
   /*
@@ -67,6 +87,14 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     __textNodeSchemaElement: null,
 
+    onLoaded: function (callback, context) {
+      if (this.isLoaded()) {
+        callback.call(context);
+      } else {
+        this.addListenerOnce('changeLoaded', callback, context);
+      }
+    },
+
     /**
      * load and cache the xsd from the server
      */
@@ -96,11 +124,17 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     _parseXSD: function () {
       // make a list of root-level elements
-      console.log(this);
       this.__xsd.querySelectorAll('schema > element').forEach(element => {
         const name = element.getAttribute('name');
         this.__allowedRootElements[name] = new cv.ui.manager.model.schema.Element(element, this);
       });
+    },
+
+    getElementNode: function (name) {
+      if (this.__allowedRootElements.hasOwnProperty(name)) {
+        return this.__allowedRootElements[name];
+      }
+      throw 'schema/xsd appears to be invalid, element ' + name + ' not allowed on root level';
     },
 
     /**
@@ -113,12 +147,15 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @return  object          jQuery-object of the ref'ed element
      */
     getReferencedNode: function (type, refName) {
-      if (this.__referencedNodeCache.hasOwnProperty(type) && typeof this.__referencedNodeCache[type].hasOwnProperty(refName)) {
+      if (this.__referencedNodeCache.hasOwnProperty(type) && this.__referencedNodeCache[type].hasOwnProperty(refName)) {
         return this.__referencedNodeCache[type][refName];
       }
 
       const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
+      if (!ref) {
+        throw 'schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found';
+      }
 
       if (ref.hasAttribute('ref')) {
         // do it recursively, if necessary
@@ -147,8 +184,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
       if (this.__typeNodeCache.hasOwnProperty(type) && this.__typeNodeCache[type].hasOwnProperty(name)) {
         return this.__typeNodeCache[type][name];
       }
-
-      let typeNode = this.__xsd.querySelector( + type + 'Type[name="' + name + '"]');
+      let typeNode = this.__xsd.querySelector(type + 'Type[name="' + name + '"]');
 
       if (!typeNode) {
         throw 'schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found';

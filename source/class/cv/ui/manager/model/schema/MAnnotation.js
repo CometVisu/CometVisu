@@ -35,7 +35,9 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
 
     __getTextNodesByXPath: function (node, xpath) {
       const texts = []
-      let iterator = document.evaluate('xsd:annotation/xsd:appinfo', node, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+      const doc = node.ownerDocument;
+      const nsResolver = doc.createNSResolver(doc.documentElement);
+      let iterator = doc.evaluate(xpath, node, nsResolver, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
       try {
         let thisNode = iterator.iterateNext();
 
@@ -64,7 +66,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       const type = this.getType();
       if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll('> xsd\\:complexType').length === 0) {
+        if (node.querySelectorAll(':scope > complexType').length === 0) {
           appInfo.push(...this.__getTextNodesByXPath(this._type, 'xsd:annotation/xsd:appinfo'));
         }
       } else if (type === 'attribute') {
@@ -104,7 +106,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       const type = this.getType();
       if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll('> xsd\\:complexType').length === 0) {
+        if (node.querySelectorAll(':scope > complexType').length === 0) {
           documentation.push(...this.__getTextNodesByXPath(this._type, selector));
         }
       } else if (type === 'attribute') {
@@ -114,9 +116,9 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
           const refName = node.getAttribute('ref');
           const ref = this.getSchema().getReferencedNode('attribute', refName);
 
-          documentation.push(...this.__getTextNodesByXPath(ref, 'xsd:annotation/xsd:appinfo'));
+          documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
-          documentation = documentation.map(entry => this.createDocumentationWebLinks)
+          documentation = documentation.map(entry => this.createDocumentationWebLinks(entry))
         }
       }
       this.__documentationCache = documentation;

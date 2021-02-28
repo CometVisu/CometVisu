@@ -15,13 +15,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this._handledActions = ['save'];
 
     // init schema
-    const schema = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri('visu_config.xsd'));
-    schema.addListenerOnce('ready', function () {
-      console.log('schema has been loaded');
+    this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
+    this._schema.onLoaded(function () {
+      this._draw();
     }, this);
-
-    // Load Schema
-    this._draw();
   },
 
   /*
@@ -37,28 +34,172 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    // show expert level settings
+    expert: {
+      check: 'Boolean',
+      init: false
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
     _currentContent: null,
+    _schema: null,
 
-    _draw: function () {
+    // overridden
+    _createChildControlImpl : function(id, hash) {
+       var control;
+
+       switch (id) {
+         case 'splitpane':
+           control = new qx.ui.splitpane.Pane();
+           this._add(control);
+           break;
+
+         case 'tree':
+           control = new qx.ui.tree.VirtualTree(null, 'displayName', 'children');
+           control.set({
+             selectionMode: 'single',
+             width: 350,
+             openMode: 'tap'
+           });
+           control.setDelegate({
+             createItem: function () {
+               const item = new cv.ui.manager.tree.VirtualElementItem();
+               item.addListener('edit', this._onEdit, this);
+               return item;
+             }.bind(this),
+
+             // Bind properties from the item to the tree-widget and vice versa
+             bindItem: function (controller, item, index) {
+               controller.bindProperty("", "model", null, item, index);
+               controller.bindProperty("displayName", "label", null, item, index);
+               controller.bindPropertyReverse("open", "open", null, item, index);
+               controller.bindProperty("open", "open", null, item, index);
+               controller.bindProperty("editable", "editable", null, item, index);
+               controller.bindProperty("sortable", "sortable", null, item, index);
+               controller.bindProperty("valid", 'status', {
+                 converter: function (value) {
+                   return value === true ? 'valid' : 'error';
+                 }
+               }, item, index);
+               //controller.bindProperty("icon", "icon", null, item, index);
+             }
+           });
+           control.getSelection().addListener("change", this._onChangeTreeSelection, this);
+           this.getChildControl('splitpane').add(control, 0);
+           break;
+
+         case 'preview':
+           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
+           this.getChildControl('splitpane').add(control, 1);
+           break;
+       }
+
+       return control || this.base(arguments, id);
+    },
+
+    _onChangeTreeSelection: function (ev) {
+      console.log(ev.getData());
+    },
+
+    __getAttributeFormDefinition: function (element, attribute) {
+      const docs = attribute.getDocumentation();
+      const def = {
+        type: "TextField",
+        label: attribute.getName(),
+        placeholder: docs.join(" "),
+        value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
+        validation: {
+          required: !attribute.isOptional(),
+          validator: function (value) {
+            if (value === undefined) {
+              return true
+            }
+            return attribute.isValueValid('' + value);
+          }
+        }
+      }
+      switch (attribute.getTypeString()) {
+        case 'boolean':
+          def.type = "CheckBox";
+          def.value = def.value === 'true';
+          delete def.placeholder;
+          break;
+
+        case 'string':
+          const enums = attribute.getEnumeration();
+          if (enums.length > 0) {
+            def.type = "ComboBox";
+            def.options = [];
+            enums.forEach(name => {
+              def.options.push({label: name});
+            })
+          }
+          break;
+      }
+
+      return def;
+    },
+
+    _onEdit: function (ev) {
+      const element = ev.getData();
+      console.log(element);
+      const typeElement = element.getSchemaElement();
+      console.log(typeElement);
+      const allowed = typeElement.getAllowedAttributes();
+      const formData = {};
+      Object.keys(allowed).forEach(name => {
+        const attribute = allowed[name];
+        if (!this.getExpert()) {
+          const appInfo = attribute.getAppinfo();
+          if (appInfo.includes('level:expert')) {
+            // do not this this attribute
+            return;
+          }
+        }
+        if (/^[a-zA-Z]+$/.test(name)) {
+          formData[name] = this.__getAttributeFormDefinition(element, attribute);
+        }
+      });
+      console.log(formData);
+      dialog.Dialog.form(this.tr("Edit %1", element.getName()), formData, function (data) {
+        console.log(data);
+      }, this, "").set({
+        centerOnAppear: true,
+        centerOnContainerResize: true
+      })
 
     },
 
-    _loadFile: function (file) {
-      if (file) {
-        var match = /.*visu_config_?(.*)\.xml/.exec(file.getName());
-        if (match) {
-
-        }
-      }
+    _draw: function () {
+      const tree = this.getChildControl('tree');
+      const content = this.getChildControl('preview');
     },
 
     save: function (filename, callback) {
       if (filename) {
 
+      }
+    },
+
+    _applyContent: function(value) {
+      if (value) {
+        const tree = this.getChildControl('tree');
+        const document = qx.xml.Document.fromString(value);
+        const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
+        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement);
+        rootNode.setEditable(this.getFile().getWriteable());
+        rootNode.load();
+        tree.setModel(rootNode);
       }
     },
 
@@ -81,5 +222,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   ***********************************************
   */
   destruct: function () {
+    this._schema = null;
   }
 });

@@ -47,25 +47,25 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       this.base(arguments);
       const node = this.getNode();
       const schema = this.getSchema();
-      const subElements = node.querySelector(':scope > element');
+      const subElements = Array.from(node.querySelectorAll(':scope > element'));
       subElements.forEach((elem) => {
         const subElement = new cv.ui.manager.model.schema.Element(elem, schema);
-        subElement.setIsSortable(true);
+        subElement.setSortable(true);
         this._allowedElements[subElement.getName()] = subElement;
       });
 
       // choices
-      node.querySelectorAll(':scope > choice').forEach((grouping) => {
+      Array.from(node.querySelectorAll(':scope > choice')).forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       });
 
       // sequences
-      node.querySelectorAll(':scope > sequence').forEach((grouping) => {
+      Array.from(node.querySelectorAll(':scope > sequence')).forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
       });
 
       // groups
-      node.querySelectorAll(':scope > group').forEach((grouping) => {
+      Array.from(node.querySelectorAll(':scope > group')).forEach((grouping) => {
         this._subGroupings.push(new cv.ui.manager.model.schema.Group(grouping, schema));
       });
     },

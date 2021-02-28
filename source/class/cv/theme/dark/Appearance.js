@@ -392,6 +392,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    'element-tree-item': 'fs-tree-item',
+    'element-tree-item/label': {
+      include: 'fs-tree-item/label',
+
+      style: function () {
+        return {
+          allowGrowX: true,
+          maxWidth: 250
+        }
+      }
+    },
     'cv-file-contextmenu': 'menu',
     'cv-file-contextmenu/open-with-button': 'menu-button',
     'cv-file-contextmenu/compare-with-button': 'menu-button',
