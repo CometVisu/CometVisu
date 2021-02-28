@@ -246,8 +246,8 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="8">image</td>
-<td><abbr title="mandatory">src</abbr></td>
+<tr class="row-odd"><td rowspan="10">image</td>
+<td>src</td>
 <td>URI</td>
 <td>Complete path (URI) to the picture</td>
 </tr>
@@ -278,6 +278,14 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <tr class="row-even"><td>class</td>
 <td>string</td>
 <td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td>align</td>
+<td><em>left</em>, <em>right</em> or <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>placeholder</td>
+<td><em>none</em>, <em>src</em>, <em>hide</em> or <em>exclude</em></td>
+<td>Defined how to deal with the case when no image url is set</td>
 </tr>
 </tbody>
 </table>
@@ -455,6 +463,63 @@ as a correct reaction by the web browser.</dd>
 <td>&#160;</td>
 <td>string</td>
 <td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>image</dt><dd><ul class="simple">
+<li>address</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>Transformation of the bus system value to be shown.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>Position for format string when multiple addresses are used.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>image</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
 </tr>
 </tbody>
 </table>

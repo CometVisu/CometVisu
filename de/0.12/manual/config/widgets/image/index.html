@@ -215,6 +215,13 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Image Widget fügt der Visualisierung ein statisches Bild oder ein Kamerabild hinzu.</p>
+<p>Es gibt zwei Möglichkeiten die URL des Bildes anzugeben. Einmal über den <code class="docutils literal notranslate"><span class="pre">src</span></code>-Parameter,
+oder als Alternative über den Wert einer Gruppenadresse.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Die Möglichkeit Bilder über den Wert einer Gruppenadresse zu übermitteln wurde in
+Version 0.12 eingeführt.</p>
+</div>
 <p>Das Bild muss als URL angegeben werden. Wenn man Dateien anzeigen möchte müssen diese über
 http erreichbar auf dem CV-System oder einem anderen Server liegen.</p>
 <p>Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzen
@@ -252,8 +259,8 @@ daher weg gelassen werden.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="8">image</td>
-<td><abbr title="Pflichtangabe">src</abbr></td>
+<tr class="row-odd"><td rowspan="10">image</td>
+<td>src</td>
 <td>URL</td>
 <td>Vollständiger Pfad zum Bild (URI)</td>
 </tr>
@@ -285,6 +292,14 @@ daher weg gelassen werden.</p>
 <td>Text</td>
 <td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
 </tr>
+<tr class="row-odd"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>placeholder</td>
+<td><em>none</em>, <em>src</em>, <em>hide</em> oder <em>exclude</em></td>
+<td>Legt fest, wie mit dem Fall umgegangen wird, dass es keine Bild-URL gibt die angezeigt werden kann.</td>
+</tr>
 </tbody>
 </table>
 <p>Die gültigen Werte für <code class="docutils literal notranslate"><span class="pre">cachecontrol</span></code> sind:</p>
@@ -301,6 +316,14 @@ im HTTP-Header vom Server richtig gesetzt werden so wie der Browser
 korrekt reagieren.</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">none</span></code></dt><dd>Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
 durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
+</dl>
+<p>Die gültigen Werte für <code class="docutils literal notranslate"><span class="pre">placeholder</span></code> sind:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">none</span></code></dt><dd>Standard. Keine spezielle Behandlung.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">src</span></code></dt><dd>Benutze die URL, die in ‚src‘ definiert wurde. In diesem Fall wird die ‚src‘-URL als Fallback benutzt,
+wenn die per Gruppen-Adresse übermittelte URL leer ist.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hide</span></code></dt><dd>Zeigt ein transparentes Platzhalter Bild, um den Platz zu reservieren.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exclude</span></code></dt><dd>Zeigt das Bild nicht an und beansprucht auch den Platz nicht.</dd>
 </dl>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/de_config_widgets_image_index_editor_attributes.png" src="../../../_images/de_config_widgets_image_index_editor_attributes.png" />
@@ -470,6 +493,63 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </tr>
 </tbody>
 </table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>image</dt><dd><ul class="simple">
+<li>address</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">transform</abbr></td>
+<td>Text</td>
+<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>Zahl</td>
+<td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>image</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
+</tr>
+</tbody>
+</table>
 <div class="figure align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_image_index_editor_elements.png" src="../../../_images/de_config_widgets_image_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
@@ -502,6 +582,18 @@ Eigenschaften einfügt:</p>
 <span class="nt">&lt;/image&gt;</span>
 </pre></div>
 </div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>Beispiel für die Übermittlung eines Bildes per Gruppenaddresse. Da der KNX-Bus die Übermittlung
+von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
+Dieses Beispiel nutzt ein openHAB-Item.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;image&gt;</dt><dd>&lt;address transform=“OH:string“&gt;CovertArt&lt;/address&gt;</dd>
+</dl>
+<p>&lt;/image&gt;</p>
+</div></blockquote>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>

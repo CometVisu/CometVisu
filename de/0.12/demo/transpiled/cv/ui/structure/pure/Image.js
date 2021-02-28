@@ -11,8 +11,11 @@
       "cv.ui.common.Refresh": {
         "require": true
       },
-      "qx.util.Uri": {},
+      "cv.ui.common.Update": {
+        "require": true
+      },
       "qx.util.ResourceManager": {},
+      "qx.util.Uri": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -50,10 +53,11 @@
    *
    * @author Christian Mayer
    * @since 0.8.0 (2012)
+   * @asset(qx/static/blank.gif)
    */
   qx.Class.define('cv.ui.structure.pure.Image', {
     extend: cv.ui.structure.AbstractWidget,
-    include: cv.ui.common.Refresh,
+    include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
     /*
     ******************************************************
@@ -76,6 +80,10 @@
       widthFit: {
         check: "Boolean",
         init: false
+      },
+      placeholder: {
+        check: ["none", "src", "hide", "exclude"],
+        init: "none"
       }
     },
 
@@ -103,7 +111,25 @@
           imgStyle += 'height:' + this.getHeight() + ';';
         }
 
-        return '<div class="actor"><img src="' + this.__P_44_1() + '" style="' + imgStyle + '" /></div>';
+        var src = this.__P_44_1();
+
+        if (!src) {
+          switch (this.getPlaceholder()) {
+            case 'hide':
+              src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
+              break;
+
+            case 'exclude':
+              imgStyle += 'display:none;';
+              break;
+
+            case 'src':
+              this.error('no src placeholder defined');
+              break;
+          }
+        }
+
+        return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
       },
 
       /**
@@ -114,15 +140,40 @@
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
 
-          if (!parsedUri.protocol && !this.getSrc().startsWith("/")) {
+          if (!parsedUri.protocol && !src.startsWith("/")) {
             // is relative URI, use the ResourceManager
-            src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
+            src = qx.util.ResourceManager.getInstance().toUri(src);
           }
 
-          this.__P_44_0 = src;
+          this.__P_44_0 = src || "";
         }
 
         return this.__P_44_0;
+      },
+      handleUpdate: function handleUpdate(text, address) {
+        var valueElem = this.getValueElement();
+
+        if (!text) {
+          switch (this.getPlaceholder()) {
+            case 'src':
+              text = this.__P_44_1();
+              valueElem.style.display = 'inline';
+              break;
+
+            case 'hide':
+              text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
+              valueElem.style.display = 'inline';
+              break;
+
+            case 'exclude':
+              valueElem.style.display = 'none';
+              break;
+          }
+        } else {
+          valueElem.style.display = 'inline';
+        }
+
+        valueElem.setAttribute("src", text);
       },
       // overridden
       getValueElement: function getValueElement() {
@@ -150,4 +201,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1614107734325
+//# sourceMappingURL=Image.js.map?dt=1614551885325

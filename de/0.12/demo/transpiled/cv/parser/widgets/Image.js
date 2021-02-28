@@ -55,6 +55,7 @@
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         cv.parser.WidgetParser.parseRefresh(xml, path, true);
+        cv.parser.WidgetParser.parseAddress(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -64,6 +65,9 @@
           },
           'height': {},
           'src': {},
+          'placeholder': {
+            "default": "none"
+          },
           'widthfit': {
             target: 'widthFit',
             transform: function transform(value) {
@@ -81,4 +85,4 @@
   cv.parser.widgets.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1614107730504
+//# sourceMappingURL=Image.js.map?dt=1614551881415

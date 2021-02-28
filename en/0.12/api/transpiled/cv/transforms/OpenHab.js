@@ -48,7 +48,7 @@
     */
     statics: {
       isUndefined: function isUndefined(value) {
-        return ['NaN', 'Uninitialized', 'NULL', undefined, null].indexOf(value) >= 0;
+        return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
       }
     },
 
@@ -214,4 +214,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1614107119414
+//# sourceMappingURL=OpenHab.js.map?dt=1614551268360
