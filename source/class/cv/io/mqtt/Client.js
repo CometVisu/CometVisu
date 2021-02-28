@@ -16,7 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  *
- * @ignore(mqtt)
+ * @ignore(Paho)
  */
 
 /**
@@ -35,7 +35,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;
-    this._backendUrl = backendUrl || "/rest";
+    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/,'ws://$1:8083/');
     this.__groups = {};
     this.__memberLookup = {};
   },
@@ -125,23 +125,61 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     login : function (loginOnly, credentials, callback, context) {
-      let options = {
-        clientId: 'CometVisu_' + Math.random().toString(16).substr(2, 8)
-      };
-      this.client = mqtt.connect('ws://192.168.0.35:8083/', options);
-      this.client.on( 'error', function (err){
-        console.error('MQTT: ', err);
-      });
-      this.client.on( 'connect', function () {
+      let self = this;
+
+      function onConnect(param) {
+        console.log('mqtt.js: connect', param, callback, context);
+        self.setConnected(true);
         if (callback) {
           callback.call(context);
         }
-      });
-      this.client.on( 'message', (topic, message, packet) => {
+      }
+
+      function onFailure(param) {
+        console.log('mqtt con failure', param);
+        self.setConnected(false);
+        let n = cv.core.notifications.Router.getInstance();
+        n.dispatchMessage('cv.client.connection',{
+          title: 'MQTT: ' + qx.locale.Manager.tr('Connection error'),
+          message: param.errorMessage + "<br/>\nCode: " + param.errorCode,
+          severity: 'urgent',
+          unique: true,
+          deletable: false,
+        }, 'popup');
+      }
+
+      let options = {
+        onSuccess: onConnect,
+        timeout: 5,
+        onFailure: onFailure
+      };
+
+      if( null !== credentials && 'username' in credentials && null !== credentials.username ) {
+        options.userName = credentials.username;
+      }
+      if( null !== credentials && 'password' in credentials && null !== credentials.password ) {
+        options.password = credentials.password;
+      }
+
+      try {
+        this.client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
+      } catch (e) {
+        console.error('error',e);
+        self.setConnected(false);
+        return;
+      }
+
+      this.client.onConnectionLost = function (responseObject) {
+        console.log("Connection Lost: "+responseObject.errorMessage, responseObject);
+      };
+
+      this.client.onMessageArrived = function (message) {
         let update = {};
-        update[ topic ] = message;
-        this.update(update);
-      });
+        update[ message.topic ] = message.payloadString;
+        self.update(update);
+      };
+
+      this.client.connect( options );
 
       window.client = this.client; // DEBUG
     },
@@ -181,7 +219,19 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     write : function (address, value, options) {
+      /*
       this.client.publish( address, value, { qos: options.qos, retain: options.retain } );
+      var message = new Paho.MQTT.Message("Message Payload");
+      message.destinationName = "mqtt/testTest";
+      message.qos = 0;
+
+      self.client.send(message);
+
+       */
+      let message = new Paho.MQTT.Message( value );
+      message.destinationName = address;
+      message.qos = 0;
+      this.client.send(message);
     },
 
     /**

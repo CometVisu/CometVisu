@@ -391,6 +391,7 @@
         <xsd:enumeration value="default" />
         <xsd:enumeration value="openhab" />
         <xsd:enumeration value="openhab2" />
+        <xsd:enumeration value="mqtt" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -482,6 +483,12 @@
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
+      <xsd:attribute name="backend-url" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die Backend-Verbindung. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
       <xsd:attribute name="username" use="optional" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>

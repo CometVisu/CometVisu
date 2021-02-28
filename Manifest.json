@@ -42,7 +42,7 @@
       "libs/favico.js",
       "libs/inobounce.min.js",
       "libs/jquery.js",
-      "libs/mqtt.js",
+      "libs/paho-mqtt.min.js",
       "libs/sprintf.js",
       "libs/strftime.js",
       "libs/svg4everybody.js"
