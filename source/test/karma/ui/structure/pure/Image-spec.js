@@ -86,6 +86,57 @@ describe("testing a image widget", function() {
     expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;max-width:100%;');
   });
 
+  it("should test the image placeholder src mode", function() {
+    var res = this.createTestElement("image", {
+      src: '/source/resource/icons/comet_64_ff8000.png',
+      placeholder: 'src'
+    }, null, 'TestItem', {
+      transform: 'OH:string'
+    });
+    var widget = res.getDomElement();
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
+
+    res.update('TestItem', '/source/resource/qx/static/blank.gif');
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/qx/static/blank.gif');
+
+    res.update('TestItem', '');
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
+  });
+
+  it("should test the image placeholder hide mode", function() {
+    var res = this.createTestElement("image", {
+      src: '',
+      placeholder: 'hide'
+    }, null, 'TestItem', {
+      transform: 'OH:string'
+    });
+    var widget = res.getDomElement();
+    expect(widget.querySelector("img").getAttribute("src").endsWith('qx/static/blank.gif')).toBeTruthy();
+
+    res.update('TestItem', '/source/resource/icons/comet_64_ff8000.png');
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
+
+    res.update('TestItem', '');
+    expect(widget.querySelector("img").getAttribute("src").endsWith('qx/static/blank.gif')).toBeTruthy();
+  });
+
+  it("should test the image placeholder exclude mode", function() {
+    var res = this.createTestElement("image", {
+      src: '',
+      placeholder: 'exclude'
+    }, null, 'TestItem', {
+      transform: 'OH:string'
+    });
+    var widget = res.getDomElement();
+    expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;display:none;');
+
+    res.update('TestItem', '/source/resource/icons/comet_64_ff8000.png');
+    expect(widget.querySelector("img").getAttribute("style")).toBe('width: 100%; display: inline;');
+
+    res.update('TestItem', '');
+    expect(widget.querySelector("img").getAttribute("style")).toBe('width: 100%; display: none;');
+  });
+
 });
 
 describe("testing the refresh caching of the image widget", function() {

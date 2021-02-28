@@ -16,6 +16,14 @@ Beschreibung
 
 Das Image Widget fügt der Visualisierung ein statisches Bild oder ein Kamerabild hinzu.
 
+Es gibt zwei Möglichkeiten die URL des Bildes anzugeben. Einmal über den ``src``-Parameter,
+oder als Alternative über den Wert einer Gruppenadresse.
+
+.. hint::
+
+    Die Möglichkeit Bilder über den Wert einer Gruppenadresse zu übermitteln wurde in
+    Version 0.12 eingeführt.
+
 Das Bild muss als URL angegeben werden. Wenn man Dateien anzeigen möchte müssen diese über
 http erreichbar auf dem CV-System oder einem anderen Server liegen.
 
@@ -71,6 +79,21 @@ Die gültigen Werte für ``cachecontrol`` sind:
 ``none``
     Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
     durch den Cache verhindert wird ist jedoch wahrscheinlich.
+
+Die gültigen Werte für ``placeholder`` sind:
+
+``none``
+    Standard. Keine spezielle Behandlung.
+
+``src``
+    Benutze die URL, die in 'src' definiert wurde. In diesem Fall wird die 'src'-URL als Fallback benutzt,
+    wenn die per Gruppen-Adresse übermittelte URL leer ist.
+
+``hide``
+    Zeigt ein transparentes Platzhalter Bild, um den Platz zu reservieren.
+
+``exclude``
+    Zeigt das Bild nicht an und beansprucht auch den Platz nicht.
 
 .. widget-example::
     :editor: attributes
@@ -128,6 +151,16 @@ Eigenschaften einfügt:
         <label>Beschreibung der Grafik</label>
     </image>
 
+
+.. code-block:: xml
+
+Beispiel für die Übermittlung eines Bildes per Gruppenaddresse. Da der KNX-Bus die Übermittlung
+von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
+Dieses Beispiel nutzt ein openHAB-Item.
+
+    <image>
+        <address transform="OH:string">CovertArt</address>
+    </image>
 
 .. rubric:: Fußnoten
 
