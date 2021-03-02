@@ -415,6 +415,14 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           decorator: 'open-file-tabs'
         };
       }
+    },
+    'helptext': {
+      style: function () {
+        return {
+          font: "small",
+          textColor: "text-disabled"
+        };
+      }
     }
   }
 });

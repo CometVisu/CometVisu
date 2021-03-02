@@ -116,12 +116,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const def = {
         type: "TextField",
         label: attribute.getName(),
-        placeholder: docs.join(" "),
+        placeholder: this.tr("not set"),
+        help: docs.join("<br/>"),
         value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
         validation: {
           required: !attribute.isOptional(),
           validator: function (value) {
-            if (value === undefined) {
+            if (value instanceof qx.ui.form.ListItem) {
+              value = value.getModel().getValue();
+            }
+            if (value === undefined || value === "") {
               return true
             }
             return attribute.isValueValid('' + value);
@@ -138,11 +142,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         case 'string':
           const enums = attribute.getEnumeration();
           if (enums.length > 0) {
-            def.type = "ComboBox";
+            def.type = "SelectBox";
+            delete def.placeholder;
             def.options = [];
             enums.forEach(name => {
-              def.options.push({label: name});
-            })
+              def.options.push({label: name, value: name});
+            });
+            if (attribute.isOptional()) {
+              // allow empty value
+              def.options.unshift({label: this.tr("- not set -"), value: ""});
+            }
           }
           break;
       }
@@ -152,9 +161,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _onEdit: function (ev) {
       const element = ev.getData();
-      console.log(element);
       const typeElement = element.getSchemaElement();
-      console.log(typeElement);
       const allowed = typeElement.getAllowedAttributes();
       const formData = {};
       Object.keys(allowed).forEach(name => {
@@ -170,14 +177,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           formData[name] = this.__getAttributeFormDefinition(element, attribute);
         }
       });
-      console.log(formData);
-      dialog.Dialog.form(this.tr("Edit %1", element.getName()), formData, function (data) {
-        console.log(data);
-      }, this, "").set({
-        centerOnAppear: true,
-        centerOnContainerResize: true
-      })
-
+      new cv.ui.manager.form.ElementForm({
+        message: this.tr("Edit %1", element.getName()),
+        formData: formData,
+        allowCancel: true,
+        callback: function (data) {
+          console.log(data);
+        },
+        context: this,
+        caption:  ""
+      }).show();
     },
 
     _draw: function () {

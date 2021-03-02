@@ -178,10 +178,7 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
-      "bundle": {
-        "include": ["*.*"],
-        "exclude": ["cv.*"]
-      },
+
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
@@ -216,6 +213,7 @@
     "Sentry",
     "localStorage",
     "monaco",
-    "Worker"
+    "Worker",
+    "Node"
   ]
 }
