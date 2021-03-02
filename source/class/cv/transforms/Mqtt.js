@@ -50,6 +50,35 @@ qx.Class.define('cv.transforms.Mqtt', {
         decode: function (str) {
           return str.toString();
         }
+      },
+      'json': {
+        name: "MQTT_JSON",
+        encode: function (phy, parameter) {
+          if( typeof parameter === 'string' ) {
+            let
+              ret_pre = '',
+              ret_post = '';
+            // split on "." but not on "\." to allow the dot to be escaped
+            parameter.split(/(?<!\\)\./).forEach(
+              (e)=>{
+                ret_pre += '{"' + e.replace('\\.', '.') + '":';
+                ret_post += '}';
+              }
+            );
+            return ret_pre + (typeof phy === 'string' ? '"'+phy+'"' : phy) + ret_post;
+          }
+          return phy;
+        },
+        decode: function (str, parameter) {
+          let json = JSON.parse(str);
+          if( typeof parameter === 'string' ) {
+            // split on "." but not on "\." to allow the dot to be escaped
+            parameter.split(/(?<!\\)\./).forEach(
+              (e)=>{json = json[e.replace('\\.', '.')];}
+            );
+          }
+          return json;
+        }
       }
     });
   }

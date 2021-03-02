@@ -98,7 +98,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @param addresses {Array}
      */
     setInitialAddresses: function(addresses) {
-      console.log('subscribe Initial: ', addresses);
+      console.error('subscribe Initial: ', addresses);
     },
 
     /**
@@ -128,7 +128,6 @@ qx.Class.define('cv.io.mqtt.Client', {
       let self = this;
 
       function onConnect(param) {
-        console.log('mqtt.js: connect', param, callback, context);
         self.setConnected(true);
         if (callback) {
           callback.call(context);
@@ -136,7 +135,6 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       function onFailure(param) {
-        console.log('mqtt con failure', param);
         self.setConnected(false);
         let n = cv.core.notifications.Router.getInstance();
         n.dispatchMessage('cv.client.connection',{
@@ -171,6 +169,7 @@ qx.Class.define('cv.io.mqtt.Client', {
 
       this.client.onConnectionLost = function (responseObject) {
         console.log("Connection Lost: "+responseObject.errorMessage, responseObject);
+        self.setConnected(false);
       };
 
       this.client.onMessageArrived = function (message) {
@@ -228,10 +227,12 @@ qx.Class.define('cv.io.mqtt.Client', {
       self.client.send(message);
 
        */
-      let message = new Paho.MQTT.Message( value );
-      message.destinationName = address;
-      message.qos = 0;
-      this.client.send(message);
+      if( this.isConnected() ) {
+        let message = new Paho.MQTT.Message( value );
+        message.destinationName = address;
+        message.qos = 0;
+        this.client.send(message);
+      }
     },
 
     /**
