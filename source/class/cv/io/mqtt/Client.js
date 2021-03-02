@@ -147,8 +147,8 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       let options = {
+        timeout: 10,
         onSuccess: onConnect,
-        timeout: 5,
         onFailure: onFailure
       };
 
@@ -218,19 +218,11 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     write : function (address, value, options) {
-      /*
-      this.client.publish( address, value, { qos: options.qos, retain: options.retain } );
-      var message = new Paho.MQTT.Message("Message Payload");
-      message.destinationName = "mqtt/testTest";
-      message.qos = 0;
-
-      self.client.send(message);
-
-       */
       if( this.isConnected() ) {
         let message = new Paho.MQTT.Message( value );
         message.destinationName = address;
-        message.qos = 0;
+        message.qos = options.qos;
+         message.retained = options.retain;
         this.client.send(message);
       }
     },
