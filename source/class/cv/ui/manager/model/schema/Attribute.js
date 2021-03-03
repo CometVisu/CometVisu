@@ -103,6 +103,15 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      * @return  boolean         if the value is valid
      */
     isValueValid: function (value) {
+      if (value === null || value === undefined) {
+        value = '';
+      } else {
+        value = '' + value;
+      }
+      if (value === '' && this.isOptional()) {
+        // empty values are valid if this node is optional!
+        return true;
+      }
       return this._type.isValueValid(value);
     },
 

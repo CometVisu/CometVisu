@@ -91,7 +91,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
           this.setBaseType(baseType);
         }
         // is this attribute optional?
-        this.setOptional(node.getAttribute('use') === 'optional');
+        this.setOptional(node.getAttribute('use') !== 'required');
 
         return;
       }

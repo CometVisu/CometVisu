@@ -31,7 +31,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       this.initName('#temp');
     }
     this.initChildren(children);
-    this.initAttributes({});
+    this._initialAttributes = new Map();
   },
 
   /*
@@ -72,11 +72,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       apply: "_applyEventPropagation",
       deferredInit : true
     },
-    attributes: {
-      check : "Map",
-      event : "changeAttributes",
-      deferredInit : true
-    },
 
     textContent: {
       check: 'String',
@@ -111,6 +106,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'Boolean',
       init: true,
       event: 'changeSortable'
+    },
+
+    modified: {
+      check: 'Boolean',
+      init: false,
+      apply: '_updateDisplayName'
     }
   },
 
@@ -123,6 +124,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _node: null,
     _schema: null,
     _schemaElement: null,
+    _initialAttributes: null,
 
     getNode: function () {
       return this._node;
@@ -135,8 +137,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     setAttribute: function (name, value) {
       const attribute = this.getSchemaElement().getAllowedAttributes()[name];
       if (attribute) {
-        if (!value && attribute.isOptional() || attribute.isValueValid(value)) {
-          this._node.setAttribute(name, value);
+        if (value === null || value === undefined) {
+          value = '';
+        } else {
+          value = '' + value;
+        }
+        if (attribute.isValueValid(value)) {
+          if (!value || value === attribute.getDefaultValue()) {
+            this._node.removeAttribute(name);
+          } else {
+            this._node.setAttribute(name, value);
+          }
+          if (name === "name") {
+            this._updateDisplayName();
+          }
         } else {
           this.error("'" + value + "' is not allowed for attribute '" + name + "'");
         }
@@ -161,6 +175,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const nameAttr = this._node.getAttribute('name');
         displayName += '\t"' + nameAttr + '"';
       }
+      if (this.isModified()) {
+        displayName += " *";
+      }
       this.setDisplayName(displayName);
     },
     hasChildren: function() {
@@ -176,37 +193,64 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     load: function () {
-      const children = this.getChildren();
-      children.removeAll();
-      if (this._node) {
-        // read children
-        const schemaElement = this.getSchemaElement();
-        for (let i = 0; i < this._node.childNodes.length; i++) {
-          const childNode = this._node.childNodes.item(i);
-          if (childNode.nodeType === Node.ELEMENT_NODE) {
-            const childSchemaElement = schemaElement.getSchemaElementForElementName(childNode.nodeName);
-            if (childSchemaElement) {
-              const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement);
-              this.bind('editable', child, 'editable');
-              children.push(child);
-            } else {
-              throw 'child element '+ childNode.nodeName +' not allowed as child of ' + this.getname();
-            }
-          } else if (childNode.nodeType === Node.TEXT_NODE) {
-            if (childNode.innerText) {
-              this.setTextContent(childNode.innerText);
+      if (!this.isLoaded()) {
+        const children = this.getChildren();
+        children.removeAll();
+        if (this._node) {
+          // read children
+          const schemaElement = this.getSchemaElement();
+          for (let i = 0; i < this._node.childNodes.length; i++) {
+            const childNode = this._node.childNodes.item(i);
+            if (childNode.nodeType === Node.ELEMENT_NODE) {
+              const childSchemaElement = schemaElement.getSchemaElementForElementName(childNode.nodeName);
+              if (childSchemaElement) {
+                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement);
+                this.bind('editable', child, 'editable');
+                children.push(child);
+              } else {
+                throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getname();
+              }
+            } else if (childNode.nodeType === Node.TEXT_NODE) {
+              if (childNode.innerText) {
+                this.setTextContent(childNode.innerText);
+              }
             }
           }
-        }
 
-        // read attributes
-        const attributes = this.getAttributes();
-        for (let i = 0; i < this._node.attributes.length; i++) {
-          const attr = this._node.attributes.item(i);
-          attributes[attr.name] = attr.value;
+          // read attributes
+          this._initialAttributes.clear();
+          for (let i = 0; i < this._node.attributes.length; i++) {
+            const attr = this._node.attributes.item(i);
+            this._initialAttributes.set(attr.name, attr.value);
+          }
+        }
+        this.setLoaded(true);
+      }
+    },
+
+    updateModified: function () {
+      const initial = this._initialAttributes;
+      if (this._node.attributes.length !== initial.size) {
+        this.setModified(true);
+      } else {
+        for (const [key, value] of initial) {
+          if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
+            this.setModified(true);
+            return
+          }
         }
       }
-      this.setLoaded(true);
+      this.setModified(false);
+    },
+
+    onSaved: function () {
+      // read attributes
+      this._initialAttributes.clear();
+      for (let i = 0; i < this._node.attributes.length; i++) {
+        const attr = this._node.attributes.item(i);
+        this._initialAttributes.set(attr.name, attr.value);
+      }
+      this.setModified(false);
     }
   },
   /*
@@ -217,6 +261,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
   destruct: function () {
     this._node = null;
     this._schema = null;
+    this._initialAttributes = null;
     this._disposeObjects('_schemaElement');
   }
 });

@@ -19,6 +19,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this._schema.onLoaded(function () {
       this._draw();
     }, this);
+    this.__modifiedElements = [];
   },
 
   /*
@@ -53,6 +54,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   members: {
     _currentContent: null,
     _schema: null,
+    __modifiedElements: null,
 
     // overridden
     _createChildControlImpl : function(id, hash) {
@@ -125,10 +127,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (value instanceof qx.ui.form.ListItem) {
               value = value.getModel().getValue();
             }
-            if (value === undefined || value === "" || value === null) {
-              return true
-            }
-            return attribute.isValueValid('' + value);
+            return attribute.isValueValid(value);
           }
         }
       }
@@ -161,6 +160,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _onEdit: function (ev) {
       const element = ev.getData();
+      element.load();
       const typeElement = element.getSchemaElement();
       const allowed = typeElement.getAllowedAttributes();
       const formData = {};
@@ -185,9 +185,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (data) {
             // save changes
             Object.keys(data).forEach(attrName => {
-              element.setAttribute(attrName, '' + data[attrName]);
+              element.setAttribute(attrName, data[attrName]);
             });
-            this.getFile().setModified(true);
+            element.updateModified();
+            const index = this.__modifiedElements.indexOf(element);
+            if (element.isModified()) {
+              if (index === -1) {
+                this.__modifiedElements.push(element);
+              }
+            } else if (index >= 0) {
+              this.__modifiedElements.splice(index, 1);
+            }
+            this.getFile().setModified(this.__modifiedElements.length > 0);
           }
         },
         context: this,
@@ -206,7 +215,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const rootNode = tree.getModel().getNode();
         const content = new XMLSerializer().serializeToString(rootNode.ownerDocument);
         console.log(content);
-
+      this.__modifiedElements.forEach(elem => elem.onSaved());
     },
 
     _applyContent: function(value) {
@@ -241,5 +250,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   */
   destruct: function () {
     this._schema = null;
+    this._disposeArray('__modifiedElements');
   }
 });
