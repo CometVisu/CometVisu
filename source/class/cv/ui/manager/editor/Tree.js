@@ -125,7 +125,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (value instanceof qx.ui.form.ListItem) {
               value = value.getModel().getValue();
             }
-            if (value === undefined || value === "") {
+            if (value === undefined || value === "" || value === null) {
               return true
             }
             return attribute.isValueValid('' + value);
@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       switch (attribute.getTypeString()) {
         case 'boolean':
           def.type = "CheckBox";
-          def.value = def.value === 'true';
+          def.value = def.value === '' || def.value === null || def.value === undefined ? null : def.value === 'true';
           delete def.placeholder;
           break;
 
@@ -182,7 +182,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         formData: formData,
         allowCancel: true,
         callback: function (data) {
-          console.log(data);
+          if (data) {
+            // save changes
+            Object.keys(data).forEach(attrName => {
+              element.setAttribute(attrName, '' + data[attrName]);
+            });
+            this.getFile().setModified(true);
+          }
         },
         context: this,
         caption:  ""
@@ -195,9 +201,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     save: function (filename, callback) {
-      if (filename) {
+      var file = this.getFile();
+        const tree = this.getChildControl('tree');
+        const rootNode = tree.getModel().getNode();
+        const content = new XMLSerializer().serializeToString(rootNode.ownerDocument);
+        console.log(content);
 
-      }
     },
 
     _applyContent: function(value) {

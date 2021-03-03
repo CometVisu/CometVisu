@@ -128,6 +128,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             break;
           case "checkbox":
             formElement = new qx.ui.form.CheckBox();
+            formElement.setTriState(true);
             break;
           case "spinner":
             formElement = new qx.ui.form.Spinner();

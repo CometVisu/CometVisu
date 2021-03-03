@@ -120,9 +120,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
   ***********************************************
   */
   members: {
-    __node: null,
+    _node: null,
     _schema: null,
     _schemaElement: null,
+
+    getNode: function () {
+      return this._node;
+    },
 
     getAttribute: function (name) {
       return this._node.getAttribute(name);
@@ -131,13 +135,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     setAttribute: function (name, value) {
       const attribute = this.getSchemaElement().getAllowedAttributes()[name];
       if (attribute) {
-        if (attribute.isValueValid(value)) {
+        if (!value && attribute.isOptional() || attribute.isValueValid(value)) {
           this._node.setAttribute(name, value);
         } else {
-          this.error(value+ "is not allowed for attribute " + name);
+          this.error("'" + value + "' is not allowed for attribute '" + name + "'");
         }
       } else {
-        this.error(name+ "is no allowed attribute for a "+this.getName() + " element");
+        this.error("'"+ name+ "' is no allowed attribute for a '"+this.getName() + "' element");
       }
     },
 
