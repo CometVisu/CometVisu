@@ -135,8 +135,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'preview':
-           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
-           control.setMinWidth(600); // temporry
+           control = new cv.ui.manager.viewer.Config();
+           control.set({
+             target: 'iframe',
+             minWidth: 600
+           });
            this.getChildControl('splitpane').add(control, 1);
            break;
 
@@ -160,7 +163,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.__unDos.addListener('changeLength', () => {
              if (this.__unDos.length > 0) {
                control.setEnabled(true);
-               control.setToolTipText(this.__unDos.getItem(this.__unDos.length - 1).getTitle());
+               control.setToolTipText(this.tr("Undo: %1", this.__unDos.getItem(this.__unDos.length - 1).getTitle()));
              } else {
                control.setEnabled(false);
                control.resetToolTipText();
@@ -176,7 +179,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.__reDos.addListener('changeLength', () => {
              if (this.__reDos.length > 0) {
                control.setEnabled(true);
-               control.setToolTipText(this.__reDos.getItem(this.__reDos.length - 1).getTitle());
+               control.setToolTipText(this.tr("Redo: %1", this.__reDos.getItem(this.__reDos.length - 1).getTitle()));
              } else {
                control.setEnabled(false);
                control.resetToolTipText();
@@ -424,14 +427,39 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (this._workerWrapper) {
           this._workerWrapper.open(file, value);
         }
+        const preview = this.getChildControl('preview');
+        if (!preview.getFile()) {
+          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+          preview.setFile(previewConfig);
+        }
+        this._updatePreview(value);
       } else {
         this.getChildControl('add-button').setEnabled(false);
       }
     },
 
     _onContentChanged: function () {
+      const content = this.getCurrentContent();
       if (this._workerWrapper) {
-        this._workerWrapper.contentChanged(this.getFile(), this.getCurrentContent());
+        this._workerWrapper.contentChanged(this.getFile(), content);
+      }
+      this._updatePreview(content);
+    },
+
+    _updatePreview: function (content) {
+      const previewFile = this.getChildControl('preview').getFile();
+      if (previewFile) {
+        this._client.updateSync({
+          path: previewFile.getFullPath(),
+          hash: 'ignore'
+        }, content, () => {
+          qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+            type: 'contentChanged',
+            file: previewFile,
+            data: content,
+            source: this
+          });
+        }, this);
       }
     },
 
