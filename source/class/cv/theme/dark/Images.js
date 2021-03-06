@@ -50,7 +50,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'clone-file': '@MaterialIcons/file_copy',
       'listViewMode': '@MaterialIcons/view_headline',
       'previewMode': '@MaterialIcons/view_module',
-      'drag-handle': '@MaterialIcons/drag_handle'
+      'drag-handle': '@MaterialIcons/drag_handle',
+      'expert': '@MaterialIcons/explicit'
     },
 
     getIcon: function (name, size) {

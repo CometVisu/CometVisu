@@ -35,8 +35,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
 
     editable: {
       check: 'Boolean',
-      init: false,
-      apply: '_applyEditable'
+      init: false
     },
 
     sortable: {
@@ -68,14 +67,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
         this.addState('temporary');
       } else {
         this.removeState('temporary');
-      }
-    },
-
-    _applyEditable: function (value) {
-      if (value) {
-        this.getChildControl('edit-button').show();
-      } else {
-        this.getChildControl('edit-button').hide();
       }
     },
 
@@ -118,15 +109,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
        switch (id) {
          case 'buttons':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           break;
-
-         case 'edit-button':
-           control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('edit', 18));
-           control.addListener('tap', function (ev) {
-             ev.stopPropagation();
-             this.fireDataEvent('edit', this.getModel());
-           }, this);
-           this.getChildControl('buttons').add(control);
            break;
 
          case 'move-button':

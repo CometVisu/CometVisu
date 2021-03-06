@@ -357,7 +357,15 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         spacingX: 8
       })
       view.setAllowGrowX(true);
-      this._formContainer.add(view);
+      const scroll = new qx.ui.container.Scroll(view);
+      scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
+      qx.core.Init.getApplication().getRoot().addListener('resize', function () {
+        scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
+      })
+
+      view.bind('width', scroll, 'width');
+      view.bind('height', scroll, 'height');
+      this._formContainer.add(scroll);
       this._form.getValidationManager().validate();
     },
 

@@ -431,5 +431,15 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+
+    "toolbar-separator": {
+      style: function() {
+        return {
+          backgroundColor: "border-separator",
+          margin: [7, 0],
+          width: 1
+        };
+      }
+    }
   }
 });

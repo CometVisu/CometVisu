@@ -43,6 +43,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     expert: {
       check: 'Boolean',
       init: false
+    },
+
+    selected: {
+      check: 'cv.ui.manager.model.XmlElement',
+      nullable: true,
+      apply: '_applySelected'
     }
   },
 
@@ -81,6 +87,45 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this._add(control);
            break;
 
+         case 'left':
+           control = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+           this.getChildControl('splitpane').add(control, 0);
+           break;
+
+         case 'preview':
+           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
+           control.setMinWidth(600); // temporry
+           this.getChildControl('splitpane').add(control, 1);
+           break;
+
+         case 'add-button':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('new-folder', 16));
+           control.setEnabled(this.getFile() && this.getFile().isWriteable());
+           control.setDraggable(true);
+           this.getChildControl('toolbar').add(control);
+           break;
+
+         case 'edit-button':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 16));
+           control.setEnabled(false);
+           control.addListener('execute', this._onEdit, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
+         case 'toggle-expert':
+           control = new qx.ui.toolbar.CheckBox(this.tr("Expertview"),
+             cv.theme.dark.Images.getIcon('expert', 16));
+           control.addListener('execute', function () {
+             this.toggleExpert();
+           }, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
+         case 'toolbar':
+           control = new qx.ui.toolbar.ToolBar();
+           this.getChildControl('left').addAt(control, 0);
+           break;
+
          case 'tree':
            control = new qx.ui.tree.VirtualTree(null, 'displayName', 'children');
            control.set({
@@ -91,7 +136,34 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setDelegate({
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
-               item.addListener('edit', this._onEdit, this);
+               let waiting = null;
+               item.addListener('tap', (ev) => {
+                 const current = this.getSelected();
+                 if (current === item.getModel()) {
+                   ev.stopPropagation();
+                   // defer deselect to avoid deselection on dbltap
+                   if (!waiting) {
+                     waiting = qx.event.Timer.once(() => {
+                       if (control.isNodeOpen(current)) {
+                         control.closeNode(current);
+                       } else {
+                         control.openNode(current);
+                       }
+                       waiting = null;
+                     }, this, qx.event.handler.GestureCore.DOUBLETAP_TIME);
+                   }
+                 } else {
+                   this.setSelected(item.getModel());
+                 }
+               }, this);
+               item.addListener('dbltap', () => {
+                 if (waiting) {
+                   waiting.stop();
+                   waiting.dispose();
+                   waiting = null;
+                 }
+                 this._onEdit();
+               }, this);
                return item;
              }.bind(this),
 
@@ -112,20 +184,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
-           this.getChildControl('splitpane').add(control, 0);
+           this.getChildControl('left').addAt(control, 1, {flex: 1});
            break;
 
-         case 'preview':
-           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
-           this.getChildControl('splitpane').add(control, 1);
-           break;
        }
 
        return control || this.base(arguments, id);
     },
 
     _onChangeTreeSelection: function (ev) {
-      console.log(ev.getData());
+      const data = ev.getData();
+      if (data.added.length === 1) {
+        this.setSelected(data.added[0]);
+      } else {
+        this.resetSelected();
+      }
     },
 
     __getAttributeFormDefinition: function (element, attribute) {
@@ -173,8 +246,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return def;
     },
 
-    _onEdit: function (ev) {
-      const element = ev.getData();
+    _onEdit: function () {
+      const element = this.getSelected();
       element.load();
       const typeElement = element.getSchemaElement();
       const allowed = typeElement.getAllowedAttributes();
@@ -241,8 +314,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _draw: function () {
-      const tree = this.getChildControl('tree');
-      const content = this.getChildControl('preview');
+      const toolbar = this.getChildControl('toolbar');
+      this._createChildControl('add-button');
+      toolbar.addSeparator();
+      this._createChildControl('edit-button');
+      toolbar.addSpacer();
+      this._createChildControl('toggle-expert');
+
+      this._createChildControl('tree');
+      this._createChildControl('preview');
+    },
+
+    _applySelected: function (value) {
+      if (value) {
+        this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
+      } else {
+        this.getChildControl('edit-button').setEnabled(false);
+      }
     },
 
     _applyContent: function(value) {
@@ -258,10 +346,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         rootNode.setEditable(this.getFile().getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
+        this.getChildControl('add-button').setEnabled(this.getFile().getWriteable());
 
         if (this._workerWrapper) {
           this._workerWrapper.open(file, value);
         }
+      } else {
+        this.getChildControl('add-button').setEnabled(false);
       }
     },
 

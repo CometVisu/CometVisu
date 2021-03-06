@@ -128,6 +128,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         const name = element.getAttribute('name');
         this.__allowedRootElements[name] = new cv.ui.manager.model.schema.Element(element, this);
       });
+      this.setLoaded(true);
     },
 
     getElementNode: function (name) {
