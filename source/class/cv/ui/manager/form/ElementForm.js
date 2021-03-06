@@ -27,7 +27,13 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
   ***********************************************
   */
   members: {
+    __mappedKeys: null,
+
     _applyFormData: function (formData, old) {
+      this.__mappedKeys = {
+        map: {},
+        inverse: {}
+      };
       if (this._formController) {
         try {
           this.getModel().removeAllBindings();
@@ -52,7 +58,16 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       }
       let modelData = {};
       for (let key of Object.getOwnPropertyNames(formData)) {
-        modelData[key] = formData[key].value !== undefined
+        let i = 0;
+        let mappedKey = key.replaceAll(/[-_\.]+([a-z])/g, (match, p1) => { return p1.toUpperCase() }) + i++;
+        while (modelData.hasOwnProperty(mappedKey)) {
+          mappedKey = mappedKey.substr(0, mappedKey.length - 1) + i++;
+        }
+        if (mappedKey !== key) {
+          this.__mappedKeys.map[mappedKey] = key;
+          this.__mappedKeys.inverse[key] = mappedKey;
+        }
+        modelData[mappedKey] = formData[key].value !== undefined
           ? formData[key].value
           : null;
       }
@@ -67,6 +82,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
       for (let key of Object.getOwnPropertyNames(formData)) {
+        const mappedKey = this.__mappedKeys.inverse[key]
         let fieldData = formData[key];
         let formElement = null;
         switch (fieldData.type.toLowerCase()) {
@@ -127,7 +143,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             formElement.setUserData("excluded", true);
             break;
           case "checkbox":
-            formElement = new qx.ui.form.CheckBox();
+            formElement = new cv.ui.manager.form.CheckBox();
             formElement.setTriState(true);
             break;
           case "spinner":
@@ -157,6 +173,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             this.error("Invalid form field type:" + fieldData.type);
         }
         formElement.setUserData("key", key);
+        formElement.setUserData("mappedKey", mappedKey);
         let _this = this;
         if (typeof fieldData.type == "string") {
           switch (fieldData.type.toLowerCase()) {
@@ -166,7 +183,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             case "combobox":
             case "datefield":
             case "spinner":
-              this._formController.addTarget(formElement, "value", key, true, null, {
+              this._formController.addTarget(formElement, "value", mappedKey, true, null, {
                 converter: function (value) {
                   _this._form.getValidationManager().validate();
                   return value;
@@ -174,10 +191,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               });
               break;
             case "checkbox":
-              this._formController.addTarget(formElement, "value", key, true, null);
+              this._formController.addTarget(formElement, "value", mappedKey, true, null);
               break;
             case "selectbox":
-              this._formController.addTarget(formElement, "selection", key, true, {
+              this._formController.addTarget(formElement, "selection", mappedKey, true, {
                 converter: qx.lang.Function.bind(function (value) {
                   let selected = null;
                   let selectables = this.getSelectables();
@@ -199,7 +216,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               });
               break;
             case "radiogroup":
-              this._formController.addTarget(formElement, "selection", key, true, {
+              this._formController.addTarget(formElement, "selection", mappedKey, true, {
                 converter: qx.lang.Function.bind(function (value) {
                   let selectables = this.getSelectables();
                   let selection = [];
@@ -343,5 +360,24 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       this._formContainer.add(view);
       this._form.getValidationManager().validate();
     },
-  },
+
+    _handleOk: function () {
+      this.hide();
+      if (this.getCallback()) {
+        const data = qx.util.Serializer.toNativeObject(this.getModel());
+        const mappedNames = Object.keys(this.__mappedKeys.map);
+        mappedNames.forEach(mappedKey => {
+          if (data.hasOwnProperty(mappedKey)) {
+            data[this.__mappedKeys.map[mappedKey]] = data[mappedKey];
+            delete data[mappedKey];
+          }
+        })
+        this.getCallback().call(
+          this.getContext(),
+          data
+        );
+      }
+      this.resetCallback();
+    }
+  }
 });

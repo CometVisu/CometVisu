@@ -99,7 +99,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     editable: {
       check: 'Boolean',
       init: true,
-      event: 'changeEditable'
+      event: 'changeEditable',
+      apply: '_updateShowEditButton'
     },
 
     sortable: {
@@ -112,6 +113,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'Boolean',
       init: false,
       apply: '_updateDisplayName'
+    },
+
+    showEditButton: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeShowEditButton'
     }
   },
 
@@ -126,8 +133,32 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _schemaElement: null,
     _initialAttributes: null,
 
+    _updateShowEditButton: function () {
+      this.setShowEditButton(this.isEditable() && (this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0));
+    },
+
     getNode: function () {
       return this._node;
+    },
+
+    getText: function () {
+      if (this.getSchemaElement().isTextContentAllowed()) {
+        return this._node.textContent;
+      } else {
+        return null;
+      }
+    },
+
+    setText: function (text) {
+      if (this.getSchemaElement().isTextContentAllowed()) {
+        if (this.getSchemaElement().isValueValid(text)) {
+          this._node.textContent = text;
+        } else {
+          this.error("'"+text+"' is no valid text content for a '"+this.getName() + "' element");
+        }
+      } else {
+        this.error("text content is not allowed for a '"+this.getName() + "' element");
+      }
     },
 
     getAttribute: function (name) {
@@ -161,6 +192,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _applySchemaElement: function (schemaElement) {
       schemaElement.bind('sortable', this, 'sortable');
+      this._updateShowEditButton();
     },
 
     _onOpen: function (value) {
@@ -223,6 +255,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             const attr = this._node.attributes.item(i);
             this._initialAttributes.set(attr.name, attr.value);
           }
+          if (schemaElement.isTextContentAllowed()) {
+            this._initialAttributes.set('#text', this._node.textContent);
+          }
         }
         this.setLoaded(true);
       }
@@ -230,17 +265,23 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     updateModified: function () {
       const initial = this._initialAttributes;
-      if (this._node.attributes.length !== initial.size) {
+      const hasText = initial.has('#text');
+      if (this._node.attributes.length !== (hasText ? initial.size - 1 : initial.size)) {
         this.setModified(true);
       } else {
         for (const [key, value] of initial) {
-          if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
+          if (key === '#text') {
+            if (this._node.textContent !== value) {
+              this.setModified(true);
+              return
+            }
+          } else if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
             this.setModified(true);
             return
           }
         }
+        this.setModified(false);
       }
-      this.setModified(false);
     },
 
     onSaved: function () {
@@ -249,6 +290,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       for (let i = 0; i < this._node.attributes.length; i++) {
         const attr = this._node.attributes.item(i);
         this._initialAttributes.set(attr.name, attr.value);
+      }
+      if (this.getSchemaElement().isTextContentAllowed()) {
+        this._initialAttributes.set('#text', this._node.textContent);
       }
       this.setModified(false);
     }

@@ -52,9 +52,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   ***********************************************
   */
   members: {
-    _currentContent: null,
     _schema: null,
     __modifiedElements: null,
+    _workerWrapper: null,
+
+    _initWorker: function () {
+      this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
+    },
+
+    _loadFile: function (file, old) {
+      if (old && this._workerWrapper) {
+        this._workerWrapper.close(old);
+      }
+      if (file && file.getType() === 'file' && this.isSupported(file)) {
+        this.base(arguments, file, old);
+      } else {
+        this.base(arguments, null, old);
+      }
+    },
 
     // overridden
     _createChildControlImpl : function(id, hash) {
@@ -86,7 +101,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                controller.bindProperty("displayName", "label", null, item, index);
                controller.bindPropertyReverse("open", "open", null, item, index);
                controller.bindProperty("open", "open", null, item, index);
-               controller.bindProperty("editable", "editable", null, item, index);
+               controller.bindProperty("showEditButton", "editable", null, item, index);
                controller.bindProperty("sortable", "sortable", null, item, index);
                controller.bindProperty("valid", 'status', {
                  converter: function (value) {
@@ -118,7 +133,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const def = {
         type: "TextField",
         label: attribute.getName(),
-        placeholder: this.tr("not set"),
+        placeholder: " - " + this.tr("not set") + " - ",
         help: docs.join("<br/>"),
         value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
         validation: {
@@ -149,7 +164,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             });
             if (attribute.isOptional()) {
               // allow empty value
-              def.options.unshift({label: this.tr("- not set -"), value: ""});
+              def.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
             }
           }
           break;
@@ -173,10 +188,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             return;
           }
         }
-        if (/^[a-zA-Z]+$/.test(name)) {
-          formData[name] = this.__getAttributeFormDefinition(element, attribute);
-        }
+        formData[name] = this.__getAttributeFormDefinition(element, attribute);
       });
+      if (typeElement.isTextContentAllowed()) {
+        const docs = typeElement.getDocumentation();
+        formData['0000text'] = {
+          type: "TextField",
+          label: this.tr("Content"),
+          placeholder: this.tr("not set"),
+          help: docs.join("<br/>"),
+          value: element.getText(),
+          validation: {
+            validator: function (value) {
+              if (value instanceof qx.ui.form.ListItem) {
+                value = value.getModel().getValue();
+              }
+              return typeElement.isValueValid(value);
+            }
+          }
+        }
+      }
       new cv.ui.manager.form.ElementForm({
         message: this.tr("Edit %1", element.getName()),
         formData: formData,
@@ -185,7 +216,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (data) {
             // save changes
             Object.keys(data).forEach(attrName => {
-              element.setAttribute(attrName, data[attrName]);
+              if (attrName === '0000text') {
+                element.setText(data[attrName]);
+              } else {
+                element.setAttribute(attrName, data[attrName]);
+              }
             });
             element.updateModified();
             const index = this.__modifiedElements.indexOf(element);
@@ -197,6 +232,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               this.__modifiedElements.splice(index, 1);
             }
             this.getFile().setModified(this.__modifiedElements.length > 0);
+            this._onContentChanged();
           }
         },
         context: this,
@@ -209,16 +245,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const content = this.getChildControl('preview');
     },
 
-    save: function (filename, callback) {
-      var file = this.getFile();
-        const tree = this.getChildControl('tree');
-        const rootNode = tree.getModel().getNode();
-        const content = new XMLSerializer().serializeToString(rootNode.ownerDocument);
-        console.log(content);
-      this.__modifiedElements.forEach(elem => elem.onSaved());
-    },
-
     _applyContent: function(value) {
+      const file = this.getFile();
+      if (!file) {
+        return;
+      }
       if (value) {
         const tree = this.getChildControl('tree');
         const document = qx.xml.Document.fromString(value);
@@ -227,15 +258,28 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         rootNode.setEditable(this.getFile().getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
+
+        if (this._workerWrapper) {
+          this._workerWrapper.open(file, value);
+        }
+      }
+    },
+
+    _onContentChanged: function () {
+      if (this._workerWrapper) {
+        this._workerWrapper.contentChanged(this.getFile(), this.getCurrentContent());
       }
     },
 
     getCurrentContent: function () {
-      return this._currentContent;
+      const tree = this.getChildControl('tree');
+      const rootNode = tree.getModel().getNode();
+      return new XMLSerializer().serializeToString(rootNode.ownerDocument);
     },
 
-    _onContentChanged: function () {
-      this.getFile().setModified(true);
+    _onSaved: function () {
+      this.base(arguments);
+      this.__modifiedElements.forEach(elem => elem.onSaved());
     },
 
     isSupported: function (file) {
@@ -250,6 +294,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   */
   destruct: function () {
     this._schema = null;
+    this._workerWrapper = null;
     this._disposeArray('__modifiedElements');
   }
 });

@@ -46,12 +46,18 @@ function getFileContent (path) {
 }
 
 class SourceFile {
-  constructor(path) {
+  constructor(path, features) {
     this.path = path;
     this.initialHash = null;
     this.initialCode = null;
     this.currentHash = null;
     this.isConfigFile = /visu_config.*\.xml$/.test(path);
+
+    this.features = Object.assign({
+      hash: true,
+      validate: true,
+      modified: true
+    }, features || {});
 
     if (this.isConfigFile && !configSchema) {
       // load scheme file
@@ -65,7 +71,9 @@ class SourceFile {
    */
   open(data) {
     this.initialCode = data.code.split("\n");
-    this.initialHash = SourceFile.hashCode(data.code);
+    if (this.features.hash) {
+      this.initialHash = SourceFile.hashCode(data.code);
+    }
 
     // initial syntax check
     this.contentChange(data);
@@ -77,19 +85,27 @@ class SourceFile {
    */
   saved(data) {
     this.initialCode = data.split("\n");
-    this.initialHash = SourceFile.hashCode(data);
+    if (this.features.hash) {
+      this.initialHash = SourceFile.hashCode(data);
+    }
   }
 
   contentChange(data) {
-    this.currentHash = SourceFile.hashCode(data.code);
-    // check modifications
-    postMessage(["modified", {
-      modified: (this.currentHash !== this.initialHash),
-      currentHash: this.currentHash,
-      initialHash: this.initialHash
-    }, this.path]);
+    if (this.features.hash) {
+      this.currentHash = SourceFile.hashCode(data.code);
+    }
+    if (this.features.modified) {
+      // check modifications
+      postMessage(["modified", {
+        modified: (this.currentHash !== this.initialHash),
+        currentHash: this.currentHash,
+        initialHash: this.initialHash
+      }, this.path]);
+    } else if (this.features.hash) {
+      postMessage(["hash", this.currentHash, this.path]);
+    }
 
-    if (this.isConfigFile) {
+    if (this.features.validate && this.isConfigFile) {
       var lint = xmllint.validateXML({
         xml: data.code,
         schema: configSchema
@@ -140,9 +156,9 @@ class SourceFile {
 // mapping calls to SourceFile instances
 const openFiles = {};
 
-function openFile(data) { // jshint ignore:line
+function openFile(data, features) { // jshint ignore:line
   if (!openFiles.hasOwnProperty(data.path)) {
-    const source = new SourceFile(data.path);
+    const source = new SourceFile(data.path, features);
     openFiles[data.path] = source;
   }
   openFiles[data.path].open(data);

@@ -423,6 +423,13 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           textColor: "text-disabled"
         };
       }
-    }
+    },
+    "checkbox/label": {
+      style: function(states) {
+        return {
+          textColor: states.undetermined ? "text-disabled" : "text"
+        };
+      }
+    },
   }
 });

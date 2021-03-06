@@ -89,6 +89,10 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
           file.setHash(data.currentHash);
           break;
 
+        case "hash":
+          file.setHash(data);
+          break;
+
         case "errors":
           file.setValid(!data || data.length === 0);
           if (editor) {
