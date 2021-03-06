@@ -440,6 +440,14 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           width: 1
         };
       }
+    },
+    "iframe": {
+      style: function () {
+        return {
+          backgroundColor: null,
+          decorator: "main-dark"
+        };
+      }
     }
   }
 });
