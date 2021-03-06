@@ -138,7 +138,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (node.hasAttribute("default")) {
         this.setDefaultValue(node.getAttribute("default"))
       }
-      this.setMixed(node.hasAttribute('mixed') && node.getAttribute("mixed") === "true")
+      this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute("mixed") === "true")
     },
 
     /**
