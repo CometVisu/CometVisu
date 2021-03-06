@@ -9,11 +9,12 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (title, element, changes) {
+  construct: function (title, element, changes, type) {
     this.base(arguments);
     this.setTitle(title);
     this.setElement(element);
     this.setChanges(changes);
+    this.setChangeType(type || 'content');
   },
   /*
   ***********************************************
@@ -29,6 +30,10 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
     },
     changes: {
       check: 'Array'
+    },
+    changeType: {
+      check: ['content', 'created', 'deleted', 'moved'],
+      init: ['content']
     }
   },
 
@@ -44,14 +49,37 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
      */
     undo: function() {
       const element = this.getElement();
+      let success = false;
+      let change;
       if (!element.isDisposed()) {
-        this.getChanges().forEach(change => {
-          element.setAttribute(change.attribute, change.old);
-        });
-        element.updateModified();
-        return true;
+        switch (this.getChangeType()) {
+          case 'content':
+            this.getChanges().forEach(change => {
+              element.setAttribute(change.attribute, change.old);
+            });
+            element.updateModified();
+            success = true;
+            break;
+
+          case 'deleted':
+            change = this.getChanges()[0];
+            if (change.parent) {
+              change.parent.insertChild(change.child, change.index, true);
+              success = true;
+            }
+            break;
+
+          case 'created':
+            change = this.getChanges()[0];
+            if (change.child) {
+              change.child.remove(true);
+              success = true;
+            }
+            break;
+
+        }
       }
-      return false;
+      return success;
     },
 
     /**
@@ -60,14 +88,34 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
      */
     redo: function () {
       const element = this.getElement();
+      let success = false;
       if (!element.isDisposed()) {
-        this.getChanges().forEach(change => {
-          element.setAttribute(change.attribute, change.value);
-        });
-        element.updateModified();
-        return true;
+        switch (this.getChangeType()) {
+          case 'content':
+            this.getChanges().forEach(change => {
+              element.setAttribute(change.attribute, change.value);
+            });
+            element.updateModified();
+            success = true;
+            break;
+
+          case 'deleted':
+            if (element) {
+              element.remove(true);
+              success = true;
+            }
+            break;
+
+          case 'created':
+            const change = this.getChanges()[0];
+            if (change.parent) {
+              change.parent.insertChild(change.child, change.index, true);
+              success = true;
+            }
+            break;
+        }
       }
-      return false;
+      return success;
     }
   }
 });

@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schemaElement, editor) {
+  construct: function (node, schemaElement, editor, parent) {
     this.base(arguments);
     this._node = node;
     const children = new qx.data.Array();
@@ -27,6 +27,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
       if (editor) {
         this.setEditor(editor);
+      }
+      if (parent) {
+        this.setParent(parent);
       }
     } else {
       // this is a fake node needed for children simulation
@@ -128,6 +131,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'Boolean',
       init: true,
       event: 'changeShowEditButton'
+    },
+    parent: {
+      check: 'cv.ui.manager.model.XmlElement',
+      nullable: true
     }
   },
 
@@ -141,6 +148,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _schema: null,
     _schemaElement: null,
     _initialAttributes: null,
+    _initialChildNames: null,
 
     _updateShowEditButton: function () {
       this.setShowEditButton(this.isEditable() && (this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0));
@@ -148,6 +156,66 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     getNode: function () {
       return this._node;
+    },
+
+    remove: function (skipUndo) {
+      const parent = this.getParent();
+      if (parent) {
+        const changes = [{
+          index: parent.getChildren().indexOf(this),
+          parent: parent,
+          child: this
+        }];
+        this._node.remove();
+        parent.getChildren().remove(this);
+        parent.updateModified();
+        if (!skipUndo) {
+          const editor = this.getEditor();
+          if (editor) {
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Remove %1", this.getDisplayName()), this, changes, 'deleted');
+            editor.addUndo(change);
+          }
+        }
+      }
+    },
+
+    insertChild: function (xmlElement, index, skipUndo) {
+      const children = this.getChildren();
+      let success = false;
+      if (index >= children.length) {
+        // append
+        this._node.appendChild(xmlElement.getNode());
+        children.push(xmlElement);
+        success = true;
+      } else if (index === 0) {
+        // add before first child
+        this._node.insertBefore(xmlElement.getNode(), this._node.children.getItem(0));
+        children.shift(xmlElement);
+        success = true;
+      } else {
+        const previousChild = children.getItem(index);
+        if (previousChild) {
+          previousChild.getNode().before(xmlElement.getNode());
+          children.insertBefore(previousChild, xmlElement);
+          success = true;
+        }
+      }
+      if (success) {
+        xmlElement.setParent(this);
+        this.updateModified();
+      }
+      if (!skipUndo) {
+        const editor = this.getEditor();
+        if (editor) {
+          const changes = [{
+            index: index,
+            parent: this,
+            child: xmlElement
+          }];
+          const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Add %1", this.getDisplayName()), this, changes, 'created');
+          editor.addUndo(change);
+        }
+      }
     },
 
     getText: function () {
@@ -287,20 +355,22 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       return false;
     },
 
-    load: function () {
-      if (!this.isLoaded()) {
+    load: function (force) {
+      if (!this.isLoaded() || force) {
         const children = this.getChildren();
         children.removeAll();
         if (this._node) {
           // read children
           const schemaElement = this.getSchemaElement();
+          this._initialChildNames = [];
           for (let i = 0; i < this._node.childNodes.length; i++) {
             const childNode = this._node.childNodes.item(i);
             if (childNode.nodeType === Node.ELEMENT_NODE) {
               const childSchemaElement = schemaElement.getSchemaElementForElementName(childNode.nodeName);
               if (childSchemaElement) {
-                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor());
+                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
                 children.push(child);
+                this._initialChildNames.push(childNode.nodeName);
               } else {
                 throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getname();
               }
@@ -328,7 +398,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     updateModified: function () {
       const initial = this._initialAttributes;
       const hasText = initial.has('#text');
+      const currentChildNames = this._currentChildNames();
       if (this._node.attributes.length !== (hasText ? initial.size - 1 : initial.size)) {
+        this.setModified(true);
+      } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join("")) {
         this.setModified(true);
       } else {
         for (const [key, value] of initial) {
@@ -356,7 +429,19 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (this.getSchemaElement().isTextContentAllowed()) {
         this._initialAttributes.set('#text', this._node.textContent);
       }
+      this._initialChildNames = this._currentChildNames();
       this.setModified(false);
+    },
+
+    _currentChildNames: function () {
+      const names = [];
+      for (let i = 0; i < this._node.childNodes.length; i++) {
+        const childNode = this._node.childNodes.item(i);
+        if (childNode.nodeType === Node.ELEMENT_NODE) {
+          names.push(childNode.nodeName);
+        }
+      }
+      return names;
     }
   },
   /*

@@ -189,6 +189,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.getChildControl('toolbar').add(control);
            break;
 
+         case 'delete-button':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('delete', 16));
+           control.setEnabled(false);
+           control.addListener('execute', this._onDelete, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
          case 'toggle-expert':
            control = new qx.ui.toolbar.CheckBox(this.tr("Expertview"),
              cv.theme.dark.Images.getIcon('expert', 16));
@@ -374,6 +381,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }).show();
     },
 
+    _onDelete: function () {
+      const element = this.getSelected();
+      if (element) {
+        // TODO: Check if we can delete this element without creating an invalid config
+        element.remove();
+        this.clearReDos();
+      }
+    },
+
     updateModified: function (element) {
       const index = this.__modifiedElements.indexOf(element);
       if (element.isModified()) {
@@ -391,9 +407,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const toolbar = this.getChildControl('toolbar');
       this._createChildControl('add-button');
       toolbar.addSeparator();
-      this._createChildControl('edit-button');
       this._createChildControl('undo-button');
       this._createChildControl('redo-button');
+      toolbar.addSeparator();
+      this._createChildControl('edit-button');
+      this._createChildControl('delete-button');
       toolbar.addSpacer();
       this._createChildControl('toggle-expert');
 
@@ -404,8 +422,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _applySelected: function (value) {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
+        this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable());
       } else {
         this.getChildControl('edit-button').setEnabled(false);
+        this.getChildControl('delete-button').setEnabled(false);
       }
     },
 
