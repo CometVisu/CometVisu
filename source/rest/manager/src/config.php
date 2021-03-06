@@ -14,7 +14,7 @@ return (object) array(
   'trashFolder' => realpath($configDir .'/' . $trashFolderName),
   'backupFolderName' => $backupFolderName,
   'backupFolder' => realpath($configDir . '/' . $backupFolderName),
-  'backupOnChange' => ['/visu_config.*\.xml/'],
+  'backupOnChange' => ['/visu_config(?!_previewtemp).*\.xml/'],
   'mounts' => [
     [
       'mountPoint' => 'demo',
