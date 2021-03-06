@@ -20,6 +20,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       this._draw();
     }, this);
     this.__modifiedElements = [];
+    this.__unDos = new qx.data.Array();
+    this.__reDos = new qx.data.Array();
   },
 
   /*
@@ -61,6 +63,46 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _schema: null,
     __modifiedElements: null,
     _workerWrapper: null,
+    __unDos: null,
+    __reDos: null,
+
+    addUndo: function (elementChange) {
+      this.assertInstance(elementChange, cv.ui.manager.model.ElementChange);
+      this.__unDos.push(elementChange);
+    },
+
+    undo: function () {
+      if (this.__unDos.length > 0) {
+        const elementChange = this.__unDos.pop();
+        if (elementChange.undo()) {
+          this.__reDos.push(elementChange);
+        } else {
+          this.error("could not undo " + elementChange.getTitle());
+          this.__unDos.push(elementChange);
+        }
+      }
+    },
+
+    redo: function () {
+      if (this.__reDos.length > 0) {
+        const elementChange = this.__reDos.pop();
+        if (elementChange.redo()) {
+          this.__unDos.push(elementChange);
+        } else {
+          this.error("could not redo " + elementChange.getTitle());
+          this.__reDos.push(elementChange);
+        }
+      }
+    },
+
+    clearUnDosReDos: function () {
+      this.__unDos.removeAll().forEach(elem => elem.dispose());
+      this.clearReDos();
+    },
+
+    clearReDos: function () {
+      this.__reDos.removeAll().forEach(elem => elem.dispose());
+    },
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
@@ -109,6 +151,38 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 16));
            control.setEnabled(false);
            control.addListener('execute', this._onEdit, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
+         case 'undo-button':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('undo', 16));
+           control.setEnabled(false);
+           this.__unDos.addListener('changeLength', () => {
+             if (this.__unDos.length > 0) {
+               control.setEnabled(true);
+               control.setToolTipText(this.__unDos.getItem(this.__unDos.length - 1).getTitle());
+             } else {
+               control.setEnabled(false);
+               control.resetToolTipText();
+             }
+           }, this);
+           control.addListener('execute', this.undo, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
+         case 'redo-button':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('redo', 16));
+           control.setEnabled(false);
+           this.__reDos.addListener('changeLength', () => {
+             if (this.__reDos.length > 0) {
+               control.setEnabled(true);
+               control.setToolTipText(this.__reDos.getItem(this.__reDos.length - 1).getTitle());
+             } else {
+               control.setEnabled(false);
+               control.resetToolTipText();
+             }
+           }, this);
+           control.addListener('execute', this.redo, this);
            this.getChildControl('toolbar').add(control);
            break;
 
@@ -265,7 +339,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       });
       if (typeElement.isTextContentAllowed()) {
         const docs = typeElement.getDocumentation();
-        formData['0000text'] = {
+        formData['#text'] = {
           type: "TextField",
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
@@ -288,24 +362,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         callback: function (data) {
           if (data) {
             // save changes
-            Object.keys(data).forEach(attrName => {
-              if (attrName === '0000text') {
-                element.setText(data[attrName]);
-              } else {
-                element.setAttribute(attrName, data[attrName]);
-              }
-            });
-            element.updateModified();
-            const index = this.__modifiedElements.indexOf(element);
-            if (element.isModified()) {
-              if (index === -1) {
-                this.__modifiedElements.push(element);
-              }
-            } else if (index >= 0) {
-              this.__modifiedElements.splice(index, 1);
-            }
-            this.getFile().setModified(this.__modifiedElements.length > 0);
-            this._onContentChanged();
+            element.setAttributes(data);
+            this.clearReDos();
           }
         },
         context: this,
@@ -313,11 +371,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }).show();
     },
 
+    updateModified: function (element) {
+      const index = this.__modifiedElements.indexOf(element);
+      if (element.isModified()) {
+        if (index === -1) {
+          this.__modifiedElements.push(element);
+        }
+      } else if (index >= 0) {
+        this.__modifiedElements.splice(index, 1);
+      }
+      this.getFile().setModified(this.__modifiedElements.length > 0);
+      this._onContentChanged();
+    },
+
     _draw: function () {
       const toolbar = this.getChildControl('toolbar');
       this._createChildControl('add-button');
       toolbar.addSeparator();
       this._createChildControl('edit-button');
+      this._createChildControl('undo-button');
+      this._createChildControl('redo-button');
       toolbar.addSpacer();
       this._createChildControl('toggle-expert');
 
@@ -342,7 +415,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const tree = this.getChildControl('tree');
         const document = qx.xml.Document.fromString(value);
         const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
-        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement);
+        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
         rootNode.setEditable(this.getFile().getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
@@ -371,6 +444,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _onSaved: function () {
       this.base(arguments);
       this.__modifiedElements.forEach(elem => elem.onSaved());
+      this.clearUnDosReDos();
     },
 
     isSupported: function (file) {
@@ -386,6 +460,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   destruct: function () {
     this._schema = null;
     this._workerWrapper = null;
-    this._disposeArray('__modifiedElements');
+    this._disposeArray('__modifiedElements', '__unDos', '__reDos');
   }
 });

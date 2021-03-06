@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (node, schemaElement) {
+  construct: function (node, schemaElement, editor) {
     this.base(arguments);
     this._node = node;
     const children = new qx.data.Array();
@@ -21,17 +21,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       this.setSchemaElement(schemaElement);
       this.initName(node.nodeName);
       if (this.hasChildren()) {
-        // we have t add a fake node to the children to show the tree that this node has children
+        // we have to add a fake node to the children to show the tree that this node has children
         // it will be removed when the real children are loaded
         children.push(new cv.ui.manager.model.XmlElement());
       }
-
+      if (editor) {
+        this.setEditor(editor);
+      }
     } else {
       // this is a fake node needed for children simulation
       this.initName('#temp');
     }
     this.initChildren(children);
     this._initialAttributes = new Map();
+    this.bind('editor.file.writeable', this, 'editable');
   },
 
   /*
@@ -40,6 +43,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
   ***********************************************
   */
   properties: {
+    // the current editor this element os shown in
+    editor: {
+      check: 'cv.ui.manager.editor.Tree',
+      nullable: true,
+      event: 'changeEditor'
+    },
     schemaElement: {
       check: 'cv.ui.manager.model.schema.Element',
       apply: '_applySchemaElement'
@@ -112,7 +121,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     modified: {
       check: 'Boolean',
       init: false,
-      apply: '_updateDisplayName'
+      apply: '_applyModified'
     },
 
     showEditButton: {
@@ -150,14 +159,27 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     setText: function (text) {
+      let changed = false;
+      let newValue = text;
+      let oldValue = '';
       if (this.getSchemaElement().isTextContentAllowed()) {
+        oldValue = this._node.textContent;
         if (this.getSchemaElement().isValueValid(text)) {
-          this._node.textContent = text;
+          if (this._node.textContent !== text) {
+            this._node.textContent = text;
+            changed = true;
+          }
         } else {
           this.error("'"+text+"' is no valid text content for a '"+this.getName() + "' element");
         }
       } else {
         this.error("text content is not allowed for a '"+this.getName() + "' element");
+      }
+      return {
+        changed: changed,
+        attribute: '#text',
+        value: newValue,
+        old: oldValue
       }
     },
 
@@ -166,21 +188,32 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     setAttribute: function (name, value) {
+      if (name === '#text') {
+        return this.setText(value);
+      }
       const attribute = this.getSchemaElement().getAllowedAttributes()[name];
+      let changed = false;
+      let newValue = value;
+      let oldValue = this._node.hasAttribute(name) ? this._node.getAttribute(name) : '';
       if (attribute) {
         if (value === null || value === undefined) {
           value = '';
         } else {
           value = '' + value;
         }
+        newValue = value;
         if (attribute.isValueValid(value)) {
-          if (!value || value === attribute.getDefaultValue()) {
-            this._node.removeAttribute(name);
-          } else {
-            this._node.setAttribute(name, value);
-          }
-          if (name === "name") {
-            this._updateDisplayName();
+          if (oldValue !== value) {
+            if (!value || value === attribute.getDefaultValue()) {
+              this._node.removeAttribute(name);
+              newValue = '';
+            } else {
+              this._node.setAttribute(name, value);
+            }
+            if (name === "name") {
+              this._updateDisplayName();
+            }
+            changed = true;
           }
         } else {
           this.error("'" + value + "' is not allowed for attribute '" + name + "'");
@@ -188,6 +221,28 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       } else {
         this.error("'"+ name+ "' is no allowed attribute for a '"+this.getName() + "' element");
       }
+      return {
+        changed: changed,
+        attribute: name,
+        value: newValue,
+        old: oldValue
+      }
+    },
+
+    setAttributes: function (data) {
+      const changes = [];
+      let change;
+      Object.keys(data).forEach(attrName => {
+        change = this.setAttribute(attrName, data[attrName]);
+        if (change.changed) {
+          changes.push(change);
+        }
+      });
+      const editor = this.getEditor();
+      if (editor && changes.length > 0) {
+        editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", this.getDisplayName()), this, changes));
+      }
+      this.updateModified();
     },
 
     _applySchemaElement: function (schemaElement) {
@@ -198,6 +253,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _onOpen: function (value) {
       if (value && !this.isLoaded()) {
         this.load();
+      }
+    },
+
+    _applyModified: function () {
+      this._updateDisplayName();
+      const editor = this.getEditor();
+      if (editor) {
+        editor.updateModified(this);
       }
     },
 
@@ -236,8 +299,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             if (childNode.nodeType === Node.ELEMENT_NODE) {
               const childSchemaElement = schemaElement.getSchemaElementForElementName(childNode.nodeName);
               if (childSchemaElement) {
-                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement);
-                this.bind('editable', child, 'editable');
+                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor());
                 children.push(child);
               } else {
                 throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getname();

@@ -59,7 +59,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       let modelData = {};
       for (let key of Object.getOwnPropertyNames(formData)) {
         let i = 0;
-        let mappedKey = key.replaceAll(/[-_\.]+([a-z])/g, (match, p1) => { return p1.toUpperCase() }) + i++;
+        let mappedKey = key.replaceAll(/[-_\.#]+([a-z])/g, (match, p1) => { return p1.toUpperCase() }) + i++;
         while (modelData.hasOwnProperty(mappedKey)) {
           mappedKey = mappedKey.substr(0, mappedKey.length - 1) + i++;
         }
