@@ -135,6 +135,17 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       }
     },
 
+    openPage: function (page, path) {
+      if (this.hasChildControl('iframe')) {
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+        if (element) {
+          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
+          const pageId = otherEngine.getPageIdByPath(page, path);
+          otherEngine.scrollToPage(pageId, 0);
+        }
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;

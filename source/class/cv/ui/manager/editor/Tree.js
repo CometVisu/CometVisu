@@ -480,6 +480,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
+        const preview = this.getChildControl('preview');
+        // get page path for this node
+        let path = [];
+        let node = value.getNode();
+        while (node && node.nodeName !== 'pages') {
+          if (node.nodeName === 'page') {
+            path.unshift(node.getAttribute("name"));
+          }
+          node = node.parentNode;
+        }
+        if (path.length > 0) {
+          preview.openPage(path.pop(), path.join("/"));
+        }
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);
