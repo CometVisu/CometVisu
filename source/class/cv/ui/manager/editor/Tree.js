@@ -271,14 +271,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
            this.getChildControl('left').addAt(control, 1, {flex: 1});
            break;
-
-         case 'edit-form':
-           control = new cv.ui.manager.form.ElementForm({
-             allowCancel: true,
-             context: this,
-             caption:  ""
-           });
-           break;
        }
 
        return control || this.base(arguments, id);
@@ -374,8 +366,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         }
       }
-      const formDialog = this.getChildControl('edit-form');
-      formDialog.set({
+      const formDialog = new cv.ui.manager.form.ElementForm({
+        allowCancel: true,
+        context: this,
+        caption:  "",
         message: this.tr("Edit %1", element.getName()),
         formData: formData,
         callback: function (data) {
@@ -384,6 +378,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             element.setAttributes(data);
             this.clearReDos();
           }
+          formDialog.destroy();
         }
       }).show();
     },
