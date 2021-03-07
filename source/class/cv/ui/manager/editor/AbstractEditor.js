@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     file: {
       check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      apply: '_loadFile'
+      apply: '_loadFile',
+      event: 'changeFile'
     },
 
     content: {

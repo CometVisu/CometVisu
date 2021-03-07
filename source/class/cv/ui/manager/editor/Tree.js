@@ -259,6 +259,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                controller.bindProperty("open", "open", null, item, index);
                controller.bindProperty("showEditButton", "editable", null, item, index);
                controller.bindProperty("sortable", "sortable", null, item, index);
+               controller.bindProperty("icon", "icon", null, item, index);
                controller.bindProperty("valid", 'status', {
                  converter: function (value) {
                    return value === true ? 'valid' : 'error';
@@ -271,6 +272,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.getChildControl('left').addAt(control, 1, {flex: 1});
            break;
 
+         case 'edit-form':
+           control = new cv.ui.manager.form.ElementForm({
+             allowCancel: true,
+             context: this,
+             caption:  ""
+           });
+           break;
        }
 
        return control || this.base(arguments, id);
@@ -347,7 +355,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         formData[name] = this.__getAttributeFormDefinition(element, attribute);
       });
-      if (typeElement.isTextContentAllowed()) {
+      if (typeElement.isTextContentAllowed() && !typeElement.isMixed()) {
+        // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
         formData['#text'] = {
           type: "TextField",
@@ -365,19 +374,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         }
       }
-      new cv.ui.manager.form.ElementForm({
+      const formDialog = this.getChildControl('edit-form');
+      formDialog.set({
         message: this.tr("Edit %1", element.getName()),
         formData: formData,
-        allowCancel: true,
         callback: function (data) {
           if (data) {
             // save changes
             element.setAttributes(data);
             this.clearReDos();
           }
-        },
-        context: this,
-        caption:  ""
+        }
       }).show();
     },
 

@@ -113,6 +113,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
 
          case 'move-button':
            control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', 18));
+           control.setToolTipText(this.tr("Drag to move"));
+           control.setDraggable(true);
            this.getChildControl('buttons').add(control);
            break;
        }

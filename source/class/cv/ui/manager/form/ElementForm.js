@@ -18,6 +18,16 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
     useBlocker: {
       refine: true,
       init: true
+    },
+
+    blockerOpacity: {
+      refine: true,
+      init: 0.9
+    },
+
+    blockerColor: {
+      refine: true,
+      init: '#585858'
     }
   },
 

@@ -1,5 +1,5 @@
 /**
- * Represents an Element in an XML document
+ * Represents an Element or TextNode in an XML document
  */
 qx.Class.define('cv.ui.manager.model.XmlElement', {
   extend: qx.core.Object,
@@ -17,7 +17,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     this._node = node;
     const children = new qx.data.Array();
     if (node) {
-      this.assert(node.nodeType === Node.ELEMENT_NODE);
       this.setSchemaElement(schemaElement);
       this.initName(node.nodeName);
       if (this.hasChildren()) {
@@ -31,6 +30,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (parent) {
         this.setParent(parent);
       }
+      this._maintainIcon();
     } else {
       // this is a fake node needed for children simulation
       this.initName('#temp');
@@ -88,7 +88,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     textContent: {
       check: 'String',
       nullable: true,
-      event: 'changeTextContent'
+      apply: '_applyTextContent',
+      event: 'changeTextContent',
+      validate: '_validateTextContent'
     },
     /**
      * Temporary nodes are not save in the backend yet
@@ -135,6 +137,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     parent: {
       check: 'cv.ui.manager.model.XmlElement',
       nullable: true
+    },
+
+    // icon to show in the tree
+    icon: {
+      check: 'String',
+      nullable: true,
+      event: 'changeIcon'
     }
   },
 
@@ -149,6 +158,22 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _schemaElement: null,
     _initialAttributes: null,
     _initialChildNames: null,
+    _initialTextContent: null,
+    __initializing: false,
+
+    _maintainIcon: function () {
+      if (this._node) {
+        if (this._node.nodeType === Node.TEXT_NODE) {
+          this.setIcon(cv.theme.dark.Images.getIcon('text-fields', 18));
+          return;
+        }
+      }
+      if (this.isOpen()) {
+        this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 18));
+      } else {
+        this.setIcon(cv.theme.dark.Images.getIcon('folder', 18));
+      }
+    },
 
     _updateShowEditButton: function () {
       this.setShowEditButton(this.isEditable() && (this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0));
@@ -218,12 +243,30 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
-    getText: function () {
-      if (this.getSchemaElement().isTextContentAllowed()) {
-        return this._node.textContent;
+    _validateTextContent: function (value) {
+      if (this._node) {
+        if (!this.getSchemaElement().isValueValid(value)) {
+          throw new qx.core.ValidationError(this.tr("Invalid text content: %1", value));
+        }
       } else {
-        return null;
+        throw new qx.core.ValidationError(this.tr("Text content not allowed here"));
       }
+    },
+
+    _applyTextContent: function (value) {
+      if (!this.__initializing) {
+        if (this._node) {
+          if (this._node.nodeType === Node.TEXT_NODE) {
+            this._node.nodeValue = value;
+          } else if (this._node.nodeType === Node.ELEMENT_NODE) {
+            this._node.textContent = value;
+          }
+        }
+      }
+    },
+
+    getText: function () {
+      return this.getTextContent();
     },
 
     setText: function (text) {
@@ -231,10 +274,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       let newValue = text;
       let oldValue = '';
       if (this.getSchemaElement().isTextContentAllowed()) {
-        oldValue = this._node.textContent;
+        oldValue = this.getTextContent();
         if (this.getSchemaElement().isValueValid(text)) {
-          if (this._node.textContent !== text) {
-            this._node.textContent = text;
+          if (oldValue !== text) {
+            this.setTextContent(text);
             changed = true;
           }
         } else {
@@ -256,44 +299,43 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     setAttribute: function (name, value) {
-      if (name === '#text') {
-        return this.setText(value);
-      }
-      const attribute = this.getSchemaElement().getAllowedAttributes()[name];
-      let changed = false;
-      let newValue = value;
-      let oldValue = this._node.hasAttribute(name) ? this._node.getAttribute(name) : '';
-      if (attribute) {
-        if (value === null || value === undefined) {
-          value = '';
-        } else {
-          value = '' + value;
-        }
-        newValue = value;
-        if (attribute.isValueValid(value)) {
-          if (oldValue !== value) {
-            if (!value || value === attribute.getDefaultValue()) {
-              this._node.removeAttribute(name);
-              newValue = '';
-            } else {
-              this._node.setAttribute(name, value);
+      if (this._node.nodeType === Node.ELEMENT_NODE) {
+        const attribute = this.getSchemaElement().getAllowedAttributes()[name];
+        let changed = false;
+        let newValue = value;
+        let oldValue = this._node.hasAttribute(name) ? this._node.getAttribute(name) : '';
+        if (attribute) {
+          if (value === null || value === undefined) {
+            value = '';
+          } else {
+            value = '' + value;
+          }
+          newValue = value;
+          if (attribute.isValueValid(value)) {
+            if (oldValue !== value) {
+              if (!value || value === attribute.getDefaultValue()) {
+                this._node.removeAttribute(name);
+                newValue = '';
+              } else {
+                this._node.setAttribute(name, value);
+              }
+              if (name === "name") {
+                this._updateDisplayName();
+              }
+              changed = true;
             }
-            if (name === "name") {
-              this._updateDisplayName();
-            }
-            changed = true;
+          } else {
+            this.error("'" + value + "' is not allowed for attribute '" + name + "'");
           }
         } else {
-          this.error("'" + value + "' is not allowed for attribute '" + name + "'");
+          this.error("'" + name + "' is no allowed attribute for a '" + this.getName() + "' element");
         }
-      } else {
-        this.error("'"+ name+ "' is no allowed attribute for a '"+this.getName() + "' element");
-      }
-      return {
-        changed: changed,
-        attribute: name,
-        value: newValue,
-        old: oldValue
+        return {
+          changed: changed,
+          attribute: name,
+          value: newValue,
+          old: oldValue
+        }
       }
     },
 
@@ -322,6 +364,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (value && !this.isLoaded()) {
         this.load();
       }
+      this._maintainIcon();
     },
 
     _applyModified: function () {
@@ -334,9 +377,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _updateDisplayName: function () {
       let displayName = this.getName();
-      if (this._node && this._node.hasAttribute('name')) {
+      if (this._node && this._node.nodeType === Node.ELEMENT_NODE && this._node.hasAttribute('name')) {
         const nameAttr = this._node.getAttribute('name');
-        displayName += '\t"' + nameAttr + '"';
+        displayName += ' "' + nameAttr + '"';
       }
       if (this.isModified()) {
         displayName += " *";
@@ -344,11 +387,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       this.setDisplayName(displayName);
     },
     hasChildren: function() {
-      if (this._node && this._node.hasChildNodes()) {
-        for (let i = 0; i < this._node.childNodes.length; i++) {
-          const childNode = this._node.childNodes.item(i);
-          if (childNode.nodeType === Node.ELEMENT_NODE) {
-            return true;
+      if (this._node.nodeType === Node.ELEMENT_NODE) {
+        if (this._node && this._node.hasChildNodes()) {
+          for (let i = 0; i < this._node.childNodes.length; i++) {
+            const childNode = this._node.childNodes.item(i);
+            if (childNode.nodeType === Node.ELEMENT_NODE) {
+              return true;
+            }
           }
         }
       }
@@ -357,79 +402,84 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     load: function (force) {
       if (!this.isLoaded() || force) {
+        this.__initializing = true;
         const children = this.getChildren();
         children.removeAll();
         if (this._node) {
-          // read children
-          const schemaElement = this.getSchemaElement();
-          this._initialChildNames = [];
-          for (let i = 0; i < this._node.childNodes.length; i++) {
-            const childNode = this._node.childNodes.item(i);
-            if (childNode.nodeType === Node.ELEMENT_NODE) {
+          if (this._node.nodeType === Node.ELEMENT_NODE) {
+            // read children
+            const schemaElement = this.getSchemaElement();
+            this._initialChildNames = [];
+            for (let i = 0; i < this._node.childNodes.length; i++) {
+              const childNode = this._node.childNodes.item(i);
               const childSchemaElement = schemaElement.getSchemaElementForElementName(childNode.nodeName);
               if (childSchemaElement) {
-                const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
-                children.push(child);
-                this._initialChildNames.push(childNode.nodeName);
-              } else {
-                throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getname();
-              }
-            } else if (childNode.nodeType === Node.TEXT_NODE) {
-              if (childNode.innerText) {
-                this.setTextContent(childNode.innerText);
+                if (childNode.nodeType === Node.ELEMENT_NODE) {
+                  const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
+                  children.push(child);
+                } else if (childNode.nodeType === Node.TEXT_NODE) {
+                  if (childNode.nodeValue) {
+                    const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
+                    children.push(child);
+                  }
+                  this._initialChildNames.push(childNode.nodeName);
+                }
+              } else if (childNode.nodeType === Node.ELEMENT_NODE) {
+                // only complain for real childs (no comments, textNodes)
+                throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getName();
               }
             }
-          }
 
-          // read attributes
-          this._initialAttributes.clear();
-          for (let i = 0; i < this._node.attributes.length; i++) {
-            const attr = this._node.attributes.item(i);
-            this._initialAttributes.set(attr.name, attr.value);
-          }
-          if (schemaElement.isTextContentAllowed()) {
-            this._initialAttributes.set('#text', this._node.textContent);
+            // read attributes
+            this._initialAttributes.clear();
+            for (let i = 0; i < this._node.attributes.length; i++) {
+              const attr = this._node.attributes.item(i);
+              this._initialAttributes.set(attr.name, attr.value);
+            }
+          } else if (this._node.nodeType === Node.TEXT_NODE) {
+            this._initialTextContent = this._node.nodeValue;
+            this.setTextContent(this._node.nodeValue);
           }
         }
         this.setLoaded(true);
+        this.__initializing = false;
       }
     },
 
     updateModified: function () {
-      const initial = this._initialAttributes;
-      const hasText = initial.has('#text');
-      const currentChildNames = this._currentChildNames();
-      if (this._node.attributes.length !== (hasText ? initial.size - 1 : initial.size)) {
-        this.setModified(true);
-      } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join("")) {
-        this.setModified(true);
-      } else {
-        for (const [key, value] of initial) {
-          if (key === '#text') {
-            if (this._node.textContent !== value) {
+      if (this._node.nodeType === Node.ELEMENT_NODE) {
+        const initial = this._initialAttributes;
+        const currentChildNames = this._currentChildNames();
+        if (this._node.attributes.length !== initial.size) {
+          this.setModified(true);
+        } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join("")) {
+          this.setModified(true);
+        } else {
+          for (const [key, value] of initial) {
+            if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
               this.setModified(true);
               return
             }
-          } else if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
-            this.setModified(true);
-            return
           }
+          this.setModified(false);
         }
-        this.setModified(false);
+      } else if (this._node.nodeType === Node.TEXT_NODE) {
+        this.setModified(this._initialTextContent !== this.getTextContent());
       }
     },
 
     onSaved: function () {
-      // read attributes
-      this._initialAttributes.clear();
-      for (let i = 0; i < this._node.attributes.length; i++) {
-        const attr = this._node.attributes.item(i);
-        this._initialAttributes.set(attr.name, attr.value);
+      if (this._node.nodeType === Node.ELEMENT_NODE) {
+        // read attributes
+        this._initialAttributes.clear();
+        for (let i = 0; i < this._node.attributes.length; i++) {
+          const attr = this._node.attributes.item(i);
+          this._initialAttributes.set(attr.name, attr.value);
+        }
+        this._initialChildNames = this._currentChildNames();
+      } else if (this._node.nodeType === Node.TEXT_NODE) {
+        this._initialTextContent = this._node.nodeValue;
       }
-      if (this.getSchemaElement().isTextContentAllowed()) {
-        this._initialAttributes.set('#text', this._node.textContent);
-      }
-      this._initialChildNames = this._currentChildNames();
       this.setModified(false);
     },
 
@@ -437,9 +487,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       const names = [];
       for (let i = 0; i < this._node.childNodes.length; i++) {
         const childNode = this._node.childNodes.item(i);
-        if (childNode.nodeType === Node.ELEMENT_NODE) {
-          names.push(childNode.nodeName);
-        }
+        names.push(childNode.nodeName);
       }
       return names;
     }

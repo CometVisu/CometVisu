@@ -193,7 +193,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         }
       } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
         // this is a really simple node that defines its own baseType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.getAttribute('type'), schema);
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
       } else {
         // no type, no children, no choice - this is an element with NO allowed content/children
         this.__allowedContent = allowedContent;
@@ -253,22 +253,6 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         this.__allowedAttributes = allowedAttributes;
       }
       return this.__allowedAttributes;
-    },
-
-    /**
-     * are this elements children sortable? this is not the case if a sequence is used, e.g.
-     *
-     * @return  boolean     are children sortable?
-     */
-    areChildrenSortable: function () {
-      const allowedContent = this.getAllowedContent();
-
-      if (allowedContent._grouping === undefined) {
-        return undefined;
-      }
-
-      // the inverse of "do the elements have a given order?"
-      return !allowedContent._grouping.elementsHaveOrder;
     },
 
     /**
