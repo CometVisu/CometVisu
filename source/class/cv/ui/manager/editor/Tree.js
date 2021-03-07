@@ -424,7 +424,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _applySelected: function (value) {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
-        this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable());
+        this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);

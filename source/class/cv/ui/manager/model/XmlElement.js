@@ -340,6 +340,19 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
+    /**
+     * @return {Boolean} true if this element is a required child from its parent
+     */
+    isRequired: function () {
+      const parent = this.getParent();
+      if (parent) {
+        const requiredFromParent = parent.getSchemaElement().getRequiredElements();
+        return requiredFromParent.includes(this.getName());
+      }
+      // only root element has nor parent, and a root element is always required
+      return true;
+    },
+
     setAttributes: function (data) {
       const changes = [];
       let change;
