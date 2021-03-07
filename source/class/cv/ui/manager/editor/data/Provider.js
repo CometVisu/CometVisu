@@ -18,6 +18,123 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    Config: {
+      'address': {
+        '#text': {
+          cache: true,
+          userInputAllowed: true,
+          grouped: true,
+          method: "getAddresses"
+        }
+      },
+      'rrd': {
+        '#text': {
+          cache: true,
+          userInputAllowed: true,
+          method: "getRrds"
+        }
+      },
+      'influx': {
+        'measurement': {
+          cache: false,
+          live: true,
+          userInputAllowed: false,
+          method: "getInfluxDbs"
+        },
+        'field': {
+          cache: false,
+          live: true,
+          userInputAllowed: false,
+          method: "getInfluxDbFields",
+        }
+      },
+      'tag': {
+        'key': {
+          cache: false,
+          live: true,
+          userInputAllowed: false,
+          method: "getInfluxDbTags",
+        },
+        'value': {
+          cache: false,
+          live: true,
+          userInputAllowed: false,
+          method: "getInfluxDbValues",
+        }
+      },
+      'icon': {
+        'name': {
+          cache: true,
+          userInputAllowed: false,
+          method: "getIcons",
+        }
+      },
+      'plugin': {
+        'name': {
+          cache: true,
+          userInputAllowed: false,
+          method: "getPlugins"
+        }
+      },
+      'pages': {
+        'design': {
+          method: "getDesigns",
+          cache: true,
+          userInputAllowed: false,
+        }
+      },
+      // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
+      '*': {
+        'rrd': {
+          method: "getRrds",
+          cache: true,
+          userInputAllowed: true,
+        },
+        'ga': {
+          method: "getAddresses",
+          cache: true,
+          userInputAllowed: true,
+          grouped: true,
+        },
+        'transform': {
+          method: 'getTransforms',
+          cache: true,
+          userInputAllowed: false
+        }
+      }
+    },
+
+    get: function (id, ...args) {
+      const instance = cv.ui.manager.editor.data.Provider.getInstance();
+      const format = 'dp';
+      const [element, attribute] = id.split("@");
+      let config = null;
+      if (this.Config[element] && this.Config[element][attribute]) {
+        config = this.Config[element][attribute];
+      } else if (this.Config['*'][attribute]) {
+        config = this.Config['*'][attribute]
+      }
+      if (config) {
+        const conf = {};
+        if (config.live) {
+          conf.getLive = qx.lang.Function.curry(instance[config.method], format, config)
+        } else {
+          args.unshift(config);
+          args.unshift(format);
+          conf.data = instance[config.method].apply(instance, args)
+        }
+        return Object.assign(conf, config);
+      }
+      return null;
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -67,8 +184,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @returns {Promise<any>}
      * @private
      */
-    __getData: function (cacheId, rpc, rpcContext, args, converter, converterContext) {
-      var cached = this._getFromCache(cacheId);
+    __getData: function (cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
+      var cached = cache ?  this._getFromCache(cacheId) : null;
       if (cached) {
         return Promise.resolve(converter.call(converterContext || this, cached));
       } else {
@@ -77,8 +194,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             if (err) {
               reject(err);
             } else {
-              // cache the raw values not the converted ones
-              this._addToCache(cacheId, res);
+              if (cache) {
+                // cache the raw values not the converted ones
+                this._addToCache(cacheId, res);
+              }
               resolve(converter.call(converterContext || this, res));
             }
           };
@@ -97,19 +216,63 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
     },
 
-    getRrds: function () {
-      return this.__getData('rrds', 'rrdsSync', null,[], this._parseDpResponse, this);
+    __getFromUrl: function (url, converter, converterContext, cache) {
+      let cached = cache ? this._getFromCache(url) : null;
+      if (cached) {
+        if (converter) {
+          cached = converter.call(converterContext || this, cached)
+        }
+        return Promise.resolve(cached);
+      } else {
+        return new Promise(function (resolve, reject) {
+          const xhr = new qx.io.request.Xhr(url);
+          cv.TemplateEngine.getClient().authorize(xhr);
+          xhr.set({
+            accept: "application/json"
+          });
+          xhr.addListener("success", (ev) => {
+            let data = ev.getTarget().getResponse();
+            if (cache) {
+              this._addToCache(url, data);
+            }
+            if (converter) {
+              data = converter.call(converterContext || this, data)
+            }
+            resolve(data);
+            }, this);
+          xhr.addListener("statusError", reject, this);
+          xhr.send();
+        }.bind(this));
+      }
     },
 
-    getInfluxDBs: function () {
-      return this.__getData('influxdbs', 'influxdbsSync', null,[], this._parseDpResponse, this);
+    getAddresses: function (format, config) {
+      const client = cv.TemplateEngine.getClient();
+      if (client.hasProvider('addresses')) {
+        return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses'), client, config.cache);
+      } else {
+        return this.__getData('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+      }
     },
 
-    getInfluxDBFields: function (measurement) {
-      return this.__getData('influxdbfields|' + measurement, 'influxdbfieldsSync', null,[{measurement: measurement}], this._parseDpResponse, this);
+    getRrds: function (format, config) {
+      const client = cv.TemplateEngine.getClient();
+      if (client.hasProvider('rrd')) {
+        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd'), client,config.cache);
+      } else {
+        return this.__getData('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+      }
     },
 
-    getInfluxDBTags: function (measurement) {
+    getInfluxDBs: function (format, config) {
+      return this.__getData('influxdbs', 'influxdbsSync', null,[], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+    },
+
+    getInfluxDBFields: function (format, config, measurement) {
+      return this.__getData('influxdbfields|' + measurement, 'influxdbfieldsSync', null,[{measurement: measurement}], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+    },
+
+    getInfluxDBTags: function (format, config, measurement) {
       return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
         return Object.keys(res).map(function (x) {
           return {
@@ -118,10 +281,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             kind: window.monaco.languages.CompletionItemKind.EnumMember
           };
         });
-      }, this);
+      }, this, config.cache);
     },
 
-    getInfluxDBValues: function (measurement, tag) {
+    getInfluxDBValues: function (format, config, measurement, tag) {
       return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
         var sug = [];
         res[tag].forEach(function (x) {
@@ -132,22 +295,34 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           });
         });
         return sug;
-      }, this);
+      }, this, config.cache);
     },
 
-    _parseDpResponse: function (data) {
-      var target = [];
-      data.forEach(function (entry) {
-        target.push({
-          label: entry.label,
-          insertText: entry.value,
-          kind: window.monaco.languages.CompletionItemKind.EnumMember
-        });
-      }, this);
+    _parseDpResponseForMonaco: function (data) {
+      return this.__parseDpResponse(data, 'monaco')
+    },
+
+    _parseDpResponseForEditor: function (data) {
+      return this.__parseDpResponse(data, 'db')
+    },
+
+    __parseDpResponse: function (data, format) {
+      const target = [];
+      if (!format || format === 'monaco') {
+        data.forEach(function (entry) {
+          target.push({
+            label: entry.label,
+            insertText: entry.value,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          });
+        }, this);
+      } else if (format === 'dp') {
+        return data;
+      }
       return target;
     },
 
-    getMediaFiles: function (typeFilter) {
+    getMediaFiles: function (format, config, typeFilter) {
       var fsClient = cv.io.rest.Client.getFsClient();
       return this.__getData('media', fsClient.readSync, fsClient,[{path: 'media', recursive: true}], function (res) {
         return res.filter(function (file) {
@@ -160,19 +335,20 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             kind: window.monaco.languages.CompletionItemKind.EnumMember
           };
         });
-      }, this);
+      }, this, config.cache);
     },
 
     /**
      * Returns the list of available transformations as suggestion entry array.
      * @returns {Array}
      */
-    getTransforms: function (format) {
+    getTransforms: function (format, config) {
       if (!format) {
         format = 'monaco';
       }
-      var cacheId = 'transforms|' + format;
-      var cached = this._getFromCache(cacheId);
+      const cacheId = 'transforms|' + format;
+      const useCache = !config || config.cache === true;
+      const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
       } else {
@@ -197,7 +373,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           }
           transforms.push(suggestion);
         }, this);
-        this._addToCache(cacheId, transforms);
+        if (useCache) {
+          this._addToCache(cacheId, transforms);
+        }
         return transforms;
       }
     },
@@ -206,12 +384,13 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * Returns the plugin names (all defined parts staring with 'plugin-')
      * @returns {Array}
      */
-    getPlugins: function (format) {
+    getPlugins: function (format, config) {
       if (!format) {
         format = 'monaco';
       }
-      var cacheId = 'plugins|' + format;
-      var cached = this._getFromCache(cacheId);
+      const useCache = !config || config.cache === true;
+      const cacheId = 'plugins|' + format;
+      const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
       } else {
@@ -234,21 +413,25 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             }
           }
         }, this);
-        this._addToCache(cacheId, plugins);
+        if (useCache) {
+          this._addToCache(cacheId, plugins);
+        }
         return plugins;
       }
     },
 
-    getIcons: function (format) {
+    getIcons: function (format, config) {
       if (!format) {
         format = 'monaco';
       }
-      var cacheId = 'icons|' + format;
-      var cached = this._getFromCache(cacheId);
+      const useCache = !config || config.cache === true;
+      const cacheId = 'icons|' + format;
+      const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
       } else {
-        var icons;
+        let icons;
+        const iconHandler = cv.IconHandler.getInstance();
         if (format === 'monaco') {
           icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
             return {
@@ -262,11 +445,14 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
             return {
               label: iconName,
-              value: iconName
+              value: iconName,
+              icon: iconHandler.get(iconName)
             };
           });
         }
-        this._addToCache(cacheId, icons);
+        if (useCache) {
+          this._addToCache(cacheId, icons);
+        }
         return icons;
       }
     }

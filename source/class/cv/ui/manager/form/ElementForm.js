@@ -124,10 +124,26 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             break;
           case "combobox":
             formElement = new qx.ui.form.ComboBox();
-            fieldData.options.forEach(function (item) {
-              let listItem = new qx.ui.form.ListItem(item.label, item.icon);
-              formElement.add(listItem);
-            });
+            if (Array.isArray(fieldData.options)) {
+              fieldData.options.forEach(function (item) {
+                let listItem = new qx.ui.form.ListItem(item.label, item.icon);
+                formElement.add(listItem);
+              });
+            } else if (typeof fieldData.options === 'object') {
+              // grouped options
+              Object.keys(fieldData.options).forEach(groupName => {
+                let groupItem = new qx.ui.form.ListItem(groupName);
+                groupItem.set({
+                  anonymous: true,
+                  appearance: 'optiongroup'
+                });
+                formElement.add(groupItem);
+                fieldData.options[groupName].forEach(function (item) {
+                  let listItem = new qx.ui.form.ListItem(item.label, item.icon, item.value);
+                  formElement.add(listItem);
+                });
+              })
+            }
             break;
           case "selectbox":
             formElement = new qx.ui.form.SelectBox();

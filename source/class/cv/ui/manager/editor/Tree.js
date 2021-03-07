@@ -323,31 +323,77 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               // allow empty value
               def.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
             }
+          } else {
+            // check if we have a dataprovider for this
+            this.__checkProvider(element.getName() + "@" + attribute.getName(), def, element.getNode());
           }
           break;
       }
-
       return def;
+    },
+
+    __checkProvider: function (id, formData, element) {
+      const provider = cv.ui.manager.editor.data.Provider.get(id);
+      if (provider) {
+        formData.type = provider.userInputAllowed ? "ComboBox" : "SelectBox";
+        if (typeof provider.live === 'function') {
+          formData.options = provider.live(element);
+        } else if (provider.data) {
+          formData.options = provider.data;
+        } else {
+          this.error("misconfigured provider found for " + id);
+        }
+      } else if (["mapping", "styling"].includes(id.split("@").pop())) {
+        const type = id.split("@").pop();
+        // these are directly filled from data inside the currently used config
+        const tree = this.getChildControl('tree');
+        const rootNode = tree.getModel().getNode();
+        formData.type = "SelectBox";
+        formData.options = [];
+        rootNode.querySelectorAll("meta > " + type + "s > " + type).forEach(element => {
+          const name = element.getAttribute("name");
+          formData.options.push({label: name, value: name});
+        });
+      }
+      if (formData.type === 'SelectBox') {
+        // not allowed here
+        delete formData.placeholder;
+        if (!formData.validation.required) {
+          if (formData.options instanceof Promise) {
+            formData.options.then(res => res.unshift({label: " - " + this.tr("not set") + " - ", value: ""}));
+          } else {
+            formData.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
+          }
+        }
+      }
     },
 
     _onEdit: function () {
       const element = this.getSelected();
       element.load();
-      const typeElement = element.getSchemaElement();
-      const allowed = typeElement.getAllowedAttributes();
       const formData = {};
-      Object.keys(allowed).forEach(name => {
-        const attribute = allowed[name];
-        if (!this.getExpert()) {
-          const appInfo = attribute.getAppinfo();
-          if (appInfo.includes('level:expert')) {
-            // do not this this attribute
-            return;
+      const promises = [];
+      const typeElement = element.getSchemaElement();
+      if (element.getNode().nodeType === Node.ELEMENT_NODE) {
+        const allowed = typeElement.getAllowedAttributes();
+        Object.keys(allowed).forEach(name => {
+          const attribute = allowed[name];
+          if (!this.getExpert()) {
+            const appInfo = attribute.getAppinfo();
+            if (appInfo.includes('level:expert')) {
+              // do not this this attribute
+              return;
+            }
           }
-        }
-        formData[name] = this.__getAttributeFormDefinition(element, attribute);
-      });
-      if (typeElement.isTextContentAllowed() && !typeElement.isMixed()) {
+          formData[name] = this.__getAttributeFormDefinition(element, attribute);
+          if (formData[name].options && formData[name].options instanceof Promise) {
+            promises.push(formData[name].options);
+            formData[name].options.then((res) => {
+              formData[name].options = res;
+            })
+          }
+        });
+      } else if (element.getNode().nodeType === Node.TEXT_NODE) {
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
         formData['#text'] = {
@@ -355,7 +401,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
           help: docs.join("<br/>"),
-          value: element.getText(),
+          value: element.getTextContent(),
           validation: {
             validator: function (value) {
               if (value instanceof qx.ui.form.ListItem) {
@@ -365,22 +411,31 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
         }
-      }
-      const formDialog = new cv.ui.manager.form.ElementForm({
-        allowCancel: true,
-        context: this,
-        caption:  "",
-        message: this.tr("Edit %1", element.getName()),
-        formData: formData,
-        callback: function (data) {
-          if (data) {
-            // save changes
-            element.setAttributes(data);
-            this.clearReDos();
-          }
-          formDialog.destroy();
+        this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData['#text'], element.getNode());
+        if (formData['#text'].options && formData['#text'].options instanceof Promise) {
+          promises.push(formData['#text'].options);
+          formData['#text'].options.then((res) => {
+            formData['#text'].options = res;
+          })
         }
-      }).show();
+      }
+      Promise.all(promises).then(() => {
+        const formDialog = new cv.ui.manager.form.ElementForm({
+          allowCancel: true,
+          context: this,
+          caption:  "",
+          message: this.tr("Edit %1", element.getName()),
+          formData: formData,
+          callback: function (data) {
+            if (data) {
+              // save changes
+              element.setAttributes(data);
+              this.clearReDos();
+            }
+            formDialog.destroy();
+          }
+        }).show();
+      });
     },
 
     _onDelete: function () {

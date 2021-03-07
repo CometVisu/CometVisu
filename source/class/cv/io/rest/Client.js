@@ -129,6 +129,9 @@ qx.Class.define('cv.io.rest.Client', {
           rrds: {
             method: 'GET', url: '/data/rrds'
           },
+          addresses: {
+            method: 'GET', url: '/data/addresses'
+          },
           influxdbs: {
             method: 'GET', url: '/data/influxdbs?auth={auth}'
           },

@@ -448,6 +448,22 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           decorator: "main-dark"
         };
       }
+    },
+    "optiongroup": {
+      style: function () {
+        return {
+          textColor: "text-disabled",
+          height: 25
+        };
+      }
+    },
+    "optiongroup/label": {
+      style: function () {
+        return {
+          allowGrowX: true,
+          textAlign: "center"
+        };
+      }
     }
   }
 });

@@ -350,7 +350,7 @@ qx.Class.define('cv.io.openhab.Rest', {
               }
               const entry = {
                 value: element.name,
-                label: element.label || element.name
+                label: element.name
               }
               if (type) {
                 entry.hints = [

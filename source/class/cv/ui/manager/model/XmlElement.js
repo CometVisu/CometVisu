@@ -413,7 +413,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node && this._node.hasChildNodes()) {
           for (let i = 0; i < this._node.childNodes.length; i++) {
             const childNode = this._node.childNodes.item(i);
-            if (childNode.nodeType === Node.ELEMENT_NODE) {
+            if (childNode.nodeType === Node.ELEMENT_NODE
+              || (childNode.nodeType === Node.TEXT_NODE && childNode.nodeValue.trim() !== "")) {
               return true;
             }
           }
