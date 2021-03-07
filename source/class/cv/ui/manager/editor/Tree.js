@@ -156,6 +156,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 16));
            control.setEnabled(false);
            control.addListener('execute', this._onEdit, this);
+           this.bind("file.editable", control, 'icon', {
+             converter: function (value) {
+               return value ? cv.theme.dark.Images.getIcon('edit', 16) : cv.theme.dark.Images.getIcon('view', 16)
+             }
+           })
            this.getChildControl('toolbar').add(control);
            break;
 
@@ -294,6 +299,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         label: attribute.getName(),
         placeholder: " - " + this.tr("not set") + " - ",
         help: docs.join("<br/>"),
+        enabled: element.isEditable(),
         value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
         validation: {
           required: !attribute.isOptional(),
@@ -403,6 +409,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
           help: docs.join("<br/>"),
+          enabled: element.isEditable(),
           value: element.getTextContent(),
           validation: {
             validator: function (value) {
@@ -427,10 +434,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           allowCancel: true,
           context: this,
           caption:  "",
-          message: this.tr("Edit %1", element.getName()),
+          message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
           formData: formData,
           callback: function (data) {
-            if (data) {
+            if (data && element.isEditable()) {
               // save changes
               element.setAttributes(data);
               this.clearReDos();
@@ -514,12 +521,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _applyContent: function(value) {
-      const file = this.getFile();
-      if (!file) {
-        return;
-      }
+      const tree = this.getChildControl('tree');
       if (value) {
-        const tree = this.getChildControl('tree');
         const document = qx.xml.Document.fromString(value);
         const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
         const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
@@ -538,6 +541,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         this._updatePreview(value);
       } else {
+        tree.resetModel();
         this.getChildControl('add-button').setEnabled(false);
       }
     },
@@ -580,7 +584,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     isSupported: function (file) {
-      return cv.ui.manager.editor.Tree.SUPPORTED_FILES.test(file.getName()) && file.isWriteable();
+      return cv.ui.manager.editor.Tree.SUPPORTED_FILES.test(file.getName());
     }
   },
 

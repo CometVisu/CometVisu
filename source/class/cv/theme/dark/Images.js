@@ -52,7 +52,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'previewMode': '@MaterialIcons/view_module',
       'drag-handle': '@MaterialIcons/drag_handle',
       'expert': '@MaterialIcons/explicit',
-      'text-fields': '@MaterialIcons/text_fields'
+      'text-fields': '@MaterialIcons/text_fields',
+      'view': '@MaterialIcons/visibility'
     },
 
     getIcon: function (name, size) {

@@ -176,7 +176,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _updateShowEditButton: function () {
-      this.setShowEditButton(this.isEditable() && (this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0));
+      this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
     },
 
     getNode: function () {
@@ -370,7 +370,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _applySchemaElement: function (schemaElement) {
-      schemaElement.bind('sortable', this, 'sortable');
+      schemaElement.bind('sortable', this, 'sortable', {
+        converter: function (value) {
+          return this.isEditable() && value;
+        }.bind(this)
+      });
       this._updateShowEditButton();
     },
 
