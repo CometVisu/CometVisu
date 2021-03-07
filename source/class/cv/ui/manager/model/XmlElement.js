@@ -258,6 +258,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node) {
           if (this._node.nodeType === Node.TEXT_NODE) {
             this._node.nodeValue = value;
+            this._updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
             this._node.textContent = value;
           }
@@ -377,9 +378,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _updateDisplayName: function () {
       let displayName = this.getName();
-      if (this._node && this._node.nodeType === Node.ELEMENT_NODE && this._node.hasAttribute('name')) {
-        const nameAttr = this._node.getAttribute('name');
-        displayName += ' "' + nameAttr + '"';
+      if (this._node) {
+        if (this._node.nodeType === Node.ELEMENT_NODE && this._node.hasAttribute('name')) {
+          const nameAttr = this._node.getAttribute('name');
+          displayName += ' "' + nameAttr + '"';
+        } else if (this._node.nodeType === Node.TEXT_NODE && this._node.nodeValue.trim()) {
+          let textContent = this._node.nodeValue.trim();
+          if (textContent.length > 20) {
+            textContent = textContent.substring(0, 20) + "...";
+          }
+          displayName += ' "' + textContent + '"';
+        }
       }
       if (this.isModified()) {
         displayName += " *";
@@ -420,6 +429,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 } else if (childNode.nodeType === Node.TEXT_NODE) {
                   if (childNode.nodeValue) {
                     const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
+                    if (schemaElement.isMixed()) {
+                      // text nodes can be re-ordered in mixed content
+                      child.setSortable(true);
+                    }
                     children.push(child);
                   }
                   this._initialChildNames.push(childNode.nodeName);
