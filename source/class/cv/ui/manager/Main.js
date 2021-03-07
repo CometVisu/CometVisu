@@ -491,6 +491,7 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
+            file.resetModified();
             this.closeFile(openFile, true);
             if (file.isTemporary()) {
               qx.event.message.Bus.dispatchByName('cv.manager.file', {

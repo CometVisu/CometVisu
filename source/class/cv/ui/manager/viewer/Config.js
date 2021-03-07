@@ -138,9 +138,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     openPage: function (page, path) {
       if (this.hasChildControl('iframe')) {
         const element = this.getChildControl('iframe').getContentElement().getDomElement();
-        if (element) {
+        if (element && element.contentWindow.cv) {
           const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
-          const pageId = otherEngine.getPageIdByPath(page, path);
+          const pageId = path ? otherEngine.getPageIdByPath(page, path) : page;
           otherEngine.scrollToPage(pageId, 0);
         }
       }

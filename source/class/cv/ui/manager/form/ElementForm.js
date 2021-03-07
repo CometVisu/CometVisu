@@ -91,6 +91,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       }
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
+      let tabIndex = 1;
       for (let key of Object.getOwnPropertyNames(formData)) {
         const mappedKey = this.__mappedKeys.inverse[key]
         let fieldData = formData[key];
@@ -345,6 +346,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         }
         if (fieldData.help !== undefined) {
           formElement.setUserData("help", fieldData.help);
+        }
+
+        if (formElement) {
+          formElement.setTabIndex(tabIndex++);
         }
 
         /**

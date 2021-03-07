@@ -1,5 +1,5 @@
 /**
- * New XML-Editor base on a node truee
+ * New XML-Editor base on a node tree
  */
 qx.Class.define('cv.ui.manager.editor.Tree', {
   extend: cv.ui.manager.editor.AbstractEditor,
@@ -22,6 +22,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.__modifiedElements = [];
     this.__unDos = new qx.data.Array();
     this.__reDos = new qx.data.Array();
+    qx.core.Init.getApplication().getRoot().addListener("keyup", this._onElementKeyUp, this);
   },
 
   /*
@@ -65,6 +66,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _workerWrapper: null,
     __unDos: null,
     __reDos: null,
+    __editing: false,
 
     addUndo: function (elementChange) {
       this.assertInstance(elementChange, cv.ui.manager.model.ElementChange);
@@ -419,6 +421,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           })
         }
       }
+      this.__editing = true;
       Promise.all(promises).then(() => {
         const formDialog = new cv.ui.manager.form.ElementForm({
           allowCancel: true,
@@ -432,8 +435,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               element.setAttributes(data);
               this.clearReDos();
             }
+            this.__editing = false;
             formDialog.destroy();
-          }
+          }.bind(this)
         }).show();
       });
     },
@@ -476,7 +480,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       this._createChildControl('preview');
     },
 
-    _applySelected: function (value) {
+    _applySelected: function (value, old) {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
@@ -493,9 +497,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (path.length > 0) {
           preview.openPage(path.pop(), path.join("/"));
         }
+
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);
+
+      }
+    },
+
+    _onElementKeyUp: function(ev) {
+      if (this.getSelected() && ev.getKeyIdentifier() === "Enter") {
+        if (!this.__editing) {
+          this._onEdit();
+        }
       }
     },
 
@@ -579,5 +593,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this._schema = null;
     this._workerWrapper = null;
     this._disposeArray('__modifiedElements', '__unDos', '__reDos');
+    qx.core.Init.getApplication().getRoot().removeListener("keyup", this._onElementKeyUp, this);
   }
 });
