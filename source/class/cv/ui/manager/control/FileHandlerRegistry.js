@@ -28,12 +28,6 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       preview: false,
       type: 'edit'
     });
-    this.registerFileHandler(cv.ui.manager.editor.XmlLegacy.SUPPORTED_FILES, cv.ui.manager.editor.XmlLegacy, {
-      preview: false,
-      type: 'edit',
-      noTemporaryFiles: true, // the old XML-Editor cannot handle temporary files,
-      noReadOnlyFiles: true // readonly nit supported
-    });
     this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
     this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, {type: 'edit'});
@@ -185,7 +179,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree, true);
+          this.setDefault(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree);
           break;
       }
     },

@@ -224,6 +224,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              width: 350,
              openMode: 'tap'
            });
+           this._initDragDrop(control);
            control.setDelegate({
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
@@ -272,11 +273,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                    return value === true ? 'valid' : 'error';
                  }
                }, item, index);
-               //controller.bindProperty("icon", "icon", null, item, index);
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
            this.getChildControl('left').addAt(control, 1, {flex: 1});
+           break;
+
+         case 'drag-indicator':
+           // Create drag indicator
+           control = new qx.ui.core.Widget();
+           control.setDecorator(new qx.ui.decoration.Decorator().set({
+             widthTop: 1,
+             styleTop: "solid",
+             colorTop: "white"
+           }));
+           control.setHeight(0);
+           control.setOpacity(0.5);
+           control.setZIndex(100);
+           control.setLayoutProperties({left: -1000, top: -1000});
+           control.setDroppable(true);
+           qx.core.Init.getApplication().getRoot().add(control);
            break;
        }
 
@@ -338,6 +354,136 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           break;
       }
       return def;
+    },
+
+    _initDragDrop: function (control) {
+      const enabled = this.getFile().isWriteable();
+      control.set({
+        draggable: enabled,
+        droppable: enabled
+      })
+      control.addListener("dragstart", function (ev) {
+        const element = ev.getDragTarget().getModel();
+        ev.addAction("copy");
+        if (!element.isRequired() && element.isSortable()) {
+          ev.addAction("move");
+        }
+        ev.addType("cv/tree-element");
+        ev.addData("cv/tree-element", element);
+      }, this);
+
+      control.addListener("droprequest", function (ev) {
+        let type = ev.getCurrentType();
+        let action = ev.getCurrentAction();
+        let result;
+        if (type === "cv/tree-element") {
+          const dragTarget = ev.getDragTarget();
+          const element = dragTarget.getElement();
+          if (action === "copy") {
+            result = element.clone();
+          } else if (action === "move") {
+            result = element;
+          }
+          ev.addData(type, result);
+        }
+        console.log(type, ev.getCurrentAction());
+      }, this);
+
+      control.addListener("dragover", function (ev) {
+          const element = ev.getData("cv/tree-element");
+          const target = ev.getTarget().getModel();
+          const parent = target.getParent();
+          if (parent) {
+            const parentSchemaElement = target.getParent().getSchemaElement();
+            if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
+              ev.preventDefault();
+            } else {
+              // check position
+              const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
+              if (allowedSorting) {
+
+              }
+              console.log(allowedSorting);
+            }
+          } else {
+            ev.preventDefault();
+          }
+      }, this);
+
+      const indicator = this.getChildControl("drag-indicator");
+
+      let expandTimer;
+
+      control.addListener("dragleave", function () {
+        if (expandTimer) {
+          expandTimer.stop();
+          expandTimer = null;
+        }
+      }, this);
+
+      control.addListener("drag", function (ev) {
+        const orig = ev.getOriginalTarget();
+        const origCoords = orig.getContentLocation();
+        let leftPos = origCoords.left;
+        if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
+          indicator.setWidth(orig.getBounds().width - orig.getIndent());
+          indicator.setUserData("target", orig);
+          leftPos += orig.getIndent();
+        } else if (orig !== indicator) {
+          return;
+        }
+        if ((ev.getDocumentTop() - origCoords.top) <= 3) {
+          // above
+          if (expandTimer) {
+            expandTimer.stop();
+            expandTimer = null;
+          }
+          // check if this item is allowed here
+
+          indicator.setDomPosition(leftPos, origCoords.top);
+          indicator.setUserData("position", "before");
+
+        } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
+          // below
+          indicator.setDomPosition(leftPos, origCoords.bottom);
+          indicator.setUserData("position", "after");
+          if (expandTimer) {
+            expandTimer.stop();
+            expandTimer = null;
+          }
+        } else {
+          // inside
+          indicator.setDomPosition(-1000, -1000);
+          indicator.setUserData("position", "inside");
+          if (!expandTimer) {
+            expandTimer = qx.event.Timer.once(function () {
+              control.openNode(orig.getModel());
+            }, this, 1000);
+          }
+        }
+      }, this);
+
+      control.addListener("drop", function (ev) {
+        console.log("drop in tree element", indicator.getUserData("position"), indicator.getUserData("target"));
+        const element = ev.getData("cv/tree-element");
+        const target = ev.getTarget().getModel();
+
+      }, this);
+
+      indicator.addListener("drop", function (ev) {
+        console.log("drop in indicator", indicator.getUserData("position"), indicator.getUserData("target"));
+      }, this);
+
+      control.addListener("dragend", function() {
+        // Move indicator away
+        indicator.setDomPosition(-1000, -1000);
+        indicator.setUserData("position", null);
+        indicator.setUserData("target", null);
+        if (expandTimer) {
+          expandTimer.stop();
+          expandTimer = null;
+        }
+      });
     },
 
     __checkProvider: function (id, formData, element) {
@@ -532,7 +678,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.getChildControl('add-button').setEnabled(this.getFile().getWriteable());
 
         if (this._workerWrapper) {
-          this._workerWrapper.open(file, value);
+          this._workerWrapper.open(this.getFile(), value);
         }
         const preview = this.getChildControl('preview');
         if (!preview.getFile()) {

@@ -6,6 +6,15 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (label) {
+    this.base(arguments, label);
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -42,6 +51,11 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       check: 'Boolean',
       init: false,
       apply: '_applySortable'
+    },
+
+    droppable: {
+      refine: true,
+      init: true
     }
   },
 
@@ -93,15 +107,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    /**
-     * Handle drop events
-     * @param ev {Event}
-     * @private
-     */
-    _onDrop: function (ev) {
-      console.log(ev.getRelatedTarget());
-    },
-
     // overridden
     _createChildControlImpl : function(id, hash) {
        var control;
@@ -114,7 +119,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
          case 'move-button':
            control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', 18));
            control.setToolTipText(this.tr("Drag to move"));
-           control.setDraggable(true);
            this.getChildControl('buttons').add(control);
            break;
        }

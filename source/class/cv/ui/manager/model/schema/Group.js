@@ -49,25 +49,42 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
       }
 
       // we are allowed choice and sequence, but only ONE AT ALL is allowed
-      Array.from(group.querySelectorAll(':scope > choice')).forEach(grouping => {
+      let grouping = group.querySelector(':scope > choice');
+      if (grouping) {
         this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
-      });
-
-      // sequences
-      Array.from(group.querySelectorAll(':scope > sequence')).forEach(grouping => {
-        this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
-      });
-
-      // there may be only one, so we simply us the first we found
-      if (this._subGroupings.length > 0) {
-        this._subGroupings = [this._subGroupings[0]];
+      } else {
+        grouping = group.querySelector(':scope > sequence');
+        if (grouping) {
+          this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
+        }
       }
     },
 
-    // overridden
+    /**
+     * get the elements allowed for this group
+     *
+     * @return  object      list of allowed elements, key is the name
+     */
+    getAllowedElements: function () {
+      // we have non of ourselves, so we return what the child says
+      return this._subGroupings[0].getAllowedElements();
+    },
+
+    /**
+     * get the sorting of the allowed elements.
+     * For a group, all elements have the same sorting, so they will all have the
+     * same sort number
+     *
+     * Warning: this only works if any element can have only ONE position in the parent.
+     *
+     * @param   sortNumber  integer the sort number of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
     getAllowedElementsSorting: function (sortNumber) {
       const namesWithSorting = {};
-      this.getAllowedElements().forEach(item => {
+      const allowedElements = this.getAllowedElements();
+      Object.keys(allowedElements).forEach(name => {
+        const item = allowedElements[name];
         let mySortNumber = 'x'; // for a group, sortNumber is always the same
         if (sortNumber !== undefined) {
           mySortNumber = sortNumber + '.' + mySortNumber;
@@ -78,10 +95,9 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
         } else {
           // go recursive
           const subSortedElements = item.getAllowedElementsSorting(mySortNumber);
-          namesWithSorting.push(...subSortedElements);
+          Object.assign(namesWithSorting, subSortedElements);
         }
-      });
-
+      }, this);
       return namesWithSorting;
     },
 

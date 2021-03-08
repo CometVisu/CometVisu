@@ -138,6 +138,55 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       }
 
       return undefined;
+    },
+
+    /**
+     * get the sorting of the allowed elements.
+     * For a choice, all elements have the same sorting, so they will all have the
+     * same sortnumber
+     *
+     * Warning: this only works if any element can have only ONE position in the parent.
+     *
+     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
+    getAllowedElementsSorting: function (sortnumber) {
+
+      const namesWithSorting = {};
+
+      // all elements allowed directly
+      Object.keys(this._allowedElements).forEach(function (name) {
+        const item = this._allowedElements[name];
+        let mySortnumber = 'x'; // for a choice, sortnumber is always the same
+        if (sortnumber !== undefined) {
+          mySortnumber = sortnumber + '.' + mySortnumber;
+        }
+
+        if (item.getType() === 'element') {
+          namesWithSorting[item.getName()] = mySortnumber;
+        } else {
+          // go recursive
+          const subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+          Object.assign(namesWithSorting, subSortedElements);
+        }
+      }, this);
+
+      // all elements allowed by subGroupings
+      this._subGroupings.forEach(function (item, i) {
+        let mySortnumber = 'x'; // for a choice, sortnumber is always the same
+        if (sortnumber !== undefined) {
+          mySortnumber = sortnumber + '.' + mySortnumber;
+        }
+
+        if (item.getType() === 'element') {
+          namesWithSorting[item.getName()] = mySortnumber;
+        } else {
+          // go recursive
+          const subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+          Object.assign(namesWithSorting, subSortedElements);
+        }
+      }, this);
+      return namesWithSorting;
     }
   }
 });

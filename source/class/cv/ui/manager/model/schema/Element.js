@@ -162,15 +162,15 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // can be either simpleContent, or (choice|sequence|group|all)?
       // 'all' is not supported yet.
 
-      if (this._type.querySelectorAll('simpleContent').length > 0) {
+      if (this._type.querySelectorAll(':scope > simpleContent').length > 0) {
         // it's simpleContent? Then it's either extension or restriction
         // anyways, we will handle it, as if it were a simpleType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector('simpleContent'), schema);
-      } else if (this._type.querySelectorAll('choice, sequence, group').length > 0) {
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector(':scope > simpleContent'), schema);
+      } else if (this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
 
-        let tmpDOMGrouping = this._type.querySelector('choice, sequence, group');
+        let tmpDOMGrouping = this._type.querySelector('complexType > choice, complexType > sequence, complexType > group');
 
         // create the appropriate Schema*-object and append it to this very element
         switch (tmpDOMGrouping.nodeName) {

@@ -196,6 +196,35 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       }
 
       return childBounds;
+    },
+
+    /**
+     * get the sorting of the allowed elements
+     *
+     * Warning: this only works if any element can have only ONE position in the parent.
+     *
+     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
+    getAllowedElementsSorting: function (sortNumber) {
+      const namesWithSorting = {};
+
+      this._sortedContent.forEach( (item, i) => {
+        let mySortNumber = i;
+        if (sortNumber !== undefined) {
+          mySortNumber = sortNumber + '.' + i;
+        }
+
+        if (item.getType() === 'element') {
+          namesWithSorting[item.getName()] = mySortNumber;
+        } else {
+          // go recursive
+          const subSortedElements = item.getAllowedElementsSorting(mySortNumber);
+          Object.assign(namesWithSorting, subSortedElements);
+        }
+      });
+
+      return namesWithSorting;
     }
   }
 });
