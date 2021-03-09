@@ -388,26 +388,76 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         console.log(type, ev.getCurrentAction());
       }, this);
+      const Allowed = {
+        NONE: 0,
+        BEFORE: 1,
+        AFTER: 2,
+        INSIDE: 4,
+        FIRST_CHILD: 8 // Is allowed to added as first child
+      }
+      const accepted = {
+        mode: 0,
+        element: null
+      }
 
       control.addListener("dragover", function (ev) {
-          const element = ev.getData("cv/tree-element");
-          const target = ev.getTarget().getModel();
-          const parent = target.getParent();
-          if (parent) {
-            const parentSchemaElement = target.getParent().getSchemaElement();
-            if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
-              ev.preventDefault();
-            } else {
-              // check position
-              const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
-              if (allowedSorting) {
-
-              }
-              console.log(allowedSorting);
-            }
-          } else {
+        const element = ev.getData("cv/tree-element");
+        const target = ev.getTarget().getModel();
+        const parent = target.getParent();
+        accepted.element = target;
+        if (parent) {
+          const parentSchemaElement = target.getParent().getSchemaElement();
+          if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
             ev.preventDefault();
+            // not allowed on this level
+            accepted.mode = Allowed.NONE;
+          } else if (parentSchemaElement.areChildrenSortable()) {
+            // children are not sorted and can be put anywhere
+            // so this is allowed anywhere
+            accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+          } else {
+            // check position
+            const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
+            if (allowedSorting) {
+              let currentPosition = allowedSorting[element.getName()];
+              if (typeof currentPosition === "string") {
+                currentPosition = currentPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+              } else {
+                currentPosition = [currentPosition];
+              }
+              let targetPosition = allowedSorting[target.getName()];
+              if (typeof targetPosition === "string") {
+                targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+              } else {
+                targetPosition = [targetPosition];
+              }
+              for (let i = 0; i < Math.min(currentPosition.length, targetPosition.length); i++) {
+                if (currentPosition[i] === targetPosition[i]) {
+                  // no special position
+                  accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+                  break;
+                } else if (currentPosition[i] - 1 === targetPosition[i]) {
+                  accepted.mode = Allowed.AFTER;
+                } else if (currentPosition[i] + 1 === targetPosition[i]) {
+                  accepted.mode = Allowed.BEFORE;
+                } else {
+                  accepted.mode = Allowed.NONE;
+                }
+              }
+            }
           }
+        } else {
+          accepted.mode = 0;
+        }
+        if (target.getSchemaElement().isChildElementAllowed(element.getName())) {
+          // allowed inside
+          accepted.mode |= Allowed.INSIDE;
+          const allowedSorting = target.getSchemaElement().getAllowedElementsSorting();
+          let targetPosition = allowedSorting[target.getName()];
+          if (targetPosition === 0 || targetPosition.startsWith("0")) {
+            accepted.mode |= Allowed.FIRST_CHILD;
+          }
+        }
       }, this);
 
       const indicator = this.getChildControl("drag-indicator");
@@ -426,12 +476,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const origCoords = orig.getContentLocation();
         let leftPos = origCoords.left;
         if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
-          indicator.setWidth(orig.getBounds().width - orig.getIndent());
-          indicator.setUserData("target", orig);
-          leftPos += orig.getIndent();
+          leftPos += 8 + orig.getIndent() * orig.getUserData("cell.level");
+          indicator.setWidth(orig.getBounds().width - leftPos);
         } else if (orig !== indicator) {
           return;
         }
+        let left = -1000;
+        let top = -1000;
+        let position = "";
         if ((ev.getDocumentTop() - origCoords.top) <= 3) {
           // above
           if (expandTimer) {
@@ -439,14 +491,28 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             expandTimer = null;
           }
           // check if this item is allowed here
-
-          indicator.setDomPosition(leftPos, origCoords.top);
-          indicator.setUserData("position", "before");
+          if (accepted.mode & Allowed.BEFORE) {
+            left = leftPos;
+            top = origCoords.top;
+            position = "before";
+          }
 
         } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
           // below
-          indicator.setDomPosition(leftPos, origCoords.bottom);
-          indicator.setUserData("position", "after");
+          if (!accepted.element.isOpen()) {
+            // when an element is opened this position is not after this element. but before its first child
+            if (accepted.mode & Allowed.AFTER) {
+              left = leftPos;
+              top = origCoords.bottom;
+              position = "after";
+            }
+          } else {
+            if (accepted.mode & Allowed.FIRST_CHILD) {
+              left = lebtPos + 19;
+              top = origCoords.bottom;
+              position = "first-child";
+            }
+          }
           if (expandTimer) {
             expandTimer.stop();
             expandTimer = null;
@@ -454,24 +520,58 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         } else {
           // inside
           indicator.setDomPosition(-1000, -1000);
-          indicator.setUserData("position", "inside");
+          if (accepted.mode & Allowed.INSIDE) {
+            position = "inside";
+          }
           if (!expandTimer) {
             expandTimer = qx.event.Timer.once(function () {
-              control.openNode(orig.getModel());
+              if (accepted.element) {
+                control.openNode(accepted.element);
+              }
             }, this, 1000);
           }
         }
+        indicator.setDomPosition(left, top);
+        indicator.setUserData("position", position);
       }, this);
 
-      control.addListener("drop", function (ev) {
-        console.log("drop in tree element", indicator.getUserData("position"), indicator.getUserData("target"));
-        const element = ev.getData("cv/tree-element");
-        const target = ev.getTarget().getModel();
+      const onDrop = function (element) {
+        const target = accepted.element;
+        switch (indicator.getUserData("position")) {
+          case 'after':
+            if (accepted.mode & Allowed.AFTER) {
+              this.debug("move", element.getDisplayName(), "after", target.getDisplayName());
+              element.moveAfter(target);
+            } else {
+              this.debug("NOT ALLOWED move", element.getDisplayName(), "after", target.getDisplayName());
+            }
+            break;
+          case 'before':
+            if (accepted.mode & Allowed.BEFORE) {
+              this.debug("move", element.getDisplayName(), "before", target.getDisplayName());
+              element.moveBefore(target);
+            } else {
+              this.debug("NOT ALLOWED move", element.getDisplayName(), "after", target.getDisplayName());
+            }
+            break;
 
+          case 'first-child':
+            if (accepted.mode & Allowed.FIRST_CHILD) {
+              this.debug("move", element.getDisplayName(), "into", target.getDisplayName() + "as first child");
+              element.moveBefore(target.getChildren().getItem(0));
+            } else {
+              this.debug("NOT ALLOWED move", element.getDisplayName(), "into", target.getDisplayName() + "as first child");
+            }
+            break;
+        }
+      }.bind(this);
+
+      control.addListener("drop", function (ev) {
+        onDrop(ev.getData("cv/tree-element"));
       }, this);
 
       indicator.addListener("drop", function (ev) {
-        console.log("drop in indicator", indicator.getUserData("position"), indicator.getUserData("target"));
+        onDrop(ev.getData("cv/tree-element"));
       }, this);
 
       control.addListener("dragend", function() {
@@ -483,6 +583,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           expandTimer.stop();
           expandTimer = null;
         }
+        accepted.element = null;
+        accepted.mode = 0;
       });
     },
 

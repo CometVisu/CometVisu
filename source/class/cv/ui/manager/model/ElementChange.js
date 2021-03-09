@@ -77,6 +77,11 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
             }
             break;
 
+          case 'moved':
+            // TODO
+            change = this.getChanges()[0];
+            break;
+
         }
       }
       return success;
@@ -112,6 +117,10 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
               change.parent.insertChild(change.child, change.index, true);
               success = true;
             }
+            break;
+
+          case 'moved':
+            // TODO
             break;
         }
       }

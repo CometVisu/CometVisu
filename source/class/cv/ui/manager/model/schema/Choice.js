@@ -23,11 +23,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
   properties: {
     type: {
       refine: true,
-      init: 'sequence'
-    },
-    elementsHaveOrder: {
-      refine: true,
-      init: true
+      init: 'choice'
     }
   },
 

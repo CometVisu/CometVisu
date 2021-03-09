@@ -256,6 +256,22 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     },
 
     /**
+     * are this elements children sortable? this is not the case if a sequence is used, e.g.
+     *
+     * @return  boolean     are children sortable?
+     */
+    areChildrenSortable: function () {
+      const allowedContent = this.getAllowedContent();
+
+      if (allowedContent._grouping === undefined) {
+        return undefined;
+      }
+
+      // the inverse of "do the elements have a given order?"
+      return !allowedContent._grouping.getElementsHaveOrder();
+    },
+
+    /**
      * get a list of required elements.
      * if an element is required multiple times, it is listed multiple times
      *

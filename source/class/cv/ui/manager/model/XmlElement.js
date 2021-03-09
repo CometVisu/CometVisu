@@ -204,6 +204,47 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
+    /**
+     * Move child node from old position to new one
+     * @param target {cv.ui.manager.model.XmlElement} new direct sibling
+     * @param before {Boolean} move before target if true, otherwise after target
+     * @param skipUndo {Boolean} no not add an undo operation for this
+     * @private
+     */
+    _move: function (target, before, skipUndo) {
+      const parent = this.getParent();
+      const children = parent.getChildren();
+      const targetParent = target.getParent();
+      const changes = [{
+        oldIndex: children.indexOf(this),
+        oldParent: parent,
+        parent: targetParent,
+        child: this,
+        index: 0
+      }];
+      children.remove(this);
+      this.getNode().remove();
+
+      const targetChildren = targetParent.getChildren();
+      changes.index = targetChildren.indexOf(target) + (before ? 0 : 1);
+      targetParent.insertChild(this, changes.index, true);
+      if (!skipUndo) {
+        const editor = this.getEditor();
+        if (editor) {
+          const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+          editor.addUndo(change);
+        }
+      }
+    },
+
+    moveAfter: function (target, skipUndo) {
+      this._move(target, false, skipUndo);
+    },
+
+    moveBefore: function (target, skipUndo) {
+      this._move(target, true, skipUndo);
+    },
+
     insertChild: function (xmlElement, index, skipUndo) {
       const children = this.getChildren();
       let success = false;
@@ -214,7 +255,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         success = true;
       } else if (index === 0) {
         // add before first child
-        this._node.insertBefore(xmlElement.getNode(), this._node.children.getItem(0));
+        this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
         children.shift(xmlElement);
         success = true;
       } else {
