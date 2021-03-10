@@ -499,7 +499,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
         } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
           // below
-          if (!accepted.element.isOpen()) {
+          if (accepted.element && !accepted.element.isOpen()) {
             // when an element is opened this position is not after this element. but before its first child
             if (accepted.mode & Allowed.AFTER) {
               left = leftPos;
@@ -508,7 +508,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           } else {
             if (accepted.mode & Allowed.FIRST_CHILD) {
-              left = lebtPos + 19;
+              left = leftPos + 19;
               top = origCoords.bottom;
               position = "first-child";
             }

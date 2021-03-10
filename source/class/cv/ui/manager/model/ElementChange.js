@@ -64,8 +64,7 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
           case 'deleted':
             change = this.getChanges()[0];
             if (change.parent) {
-              change.parent.insertChild(change.child, change.index, true);
-              success = true;
+              success = change.parent.insertChild(change.child, change.index, true);
             }
             break;
 
@@ -78,8 +77,8 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
             break;
 
           case 'moved':
-            // TODO
             change = this.getChanges()[0];
+            success = change.child.moveTo(change.oldParent, change.oldIndex, true);
             break;
 
         }
@@ -94,6 +93,7 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
     redo: function () {
       const element = this.getElement();
       let success = false;
+      let change;
       if (!element.isDisposed()) {
         switch (this.getChangeType()) {
           case 'content':
@@ -112,15 +112,15 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
             break;
 
           case 'created':
-            const change = this.getChanges()[0];
+            change = this.getChanges()[0];
             if (change.parent) {
-              change.parent.insertChild(change.child, change.index, true);
-              success = true;
+              success = change.parent.insertChild(change.child, change.index, true);
             }
             break;
 
           case 'moved':
-            // TODO
+            change = this.getChanges()[0];
+            success = change.child.moveTo(change.parent, change.index, true);
             break;
         }
       }

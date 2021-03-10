@@ -215,71 +215,149 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       const parent = this.getParent();
       const children = parent.getChildren();
       const targetParent = target.getParent();
+      const targetChildren = targetParent.getChildren();
       const changes = [{
         oldIndex: children.indexOf(this),
         oldParent: parent,
         parent: targetParent,
         child: this,
-        index: 0
+        index: targetChildren.indexOf(target) + (before ? 0 : 1)
       }];
-      children.remove(this);
-      this.getNode().remove();
+      if (targetParent.isChildAllowedAtPosition(this, changes[0].index)) {
+        children.remove(this);
+        this.getNode().remove();
 
-      const targetChildren = targetParent.getChildren();
-      changes.index = targetChildren.indexOf(target) + (before ? 0 : 1);
-      targetParent.insertChild(this, changes.index, true);
-      if (!skipUndo) {
-        const editor = this.getEditor();
-        if (editor) {
-          const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
-          editor.addUndo(change);
+        targetParent.insertChild(this, changes[0].index, true);
+        if (!skipUndo) {
+          const editor = this.getEditor();
+          if (editor) {
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+            editor.addUndo(change);
+          }
         }
+        return true;
       }
+      return false;
+    },
+
+    moveTo: function (newParent, index, skipUndo) {
+      const parent = this.getParent();
+      const children = parent.getChildren();
+      const changes = [{
+        oldIndex: children.indexOf(this),
+        oldParent: parent,
+        parent: newParent,
+        child: this,
+        index: index
+      }];
+      if (newParent.isChildAllowedAtPosition(this, index)) {
+        children.remove(this);
+        this.getNode().remove();
+
+        newParent.insertChild(this, index, true);
+        if (!skipUndo) {
+          const editor = this.getEditor();
+          if (editor) {
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+            editor.addUndo(change);
+          }
+        }
+        return true;
+      }
+      return false;
     },
 
     moveAfter: function (target, skipUndo) {
-      this._move(target, false, skipUndo);
+      return this._move(target, false, skipUndo);
     },
 
     moveBefore: function (target, skipUndo) {
-      this._move(target, true, skipUndo);
+      return this._move(target, true, skipUndo);
+    },
+
+    isChildAllowedAtPosition: function (xmlElement, index) {
+      const schemaElement = this.getSchemaElement();
+      if (!schemaElement.isChildElementAllowed(xmlElement.getName())) {
+        this.debug(xmlElement.getName(), "is not allowed as child of", this.getName());
+        return false;
+      }
+      if (schemaElement.areChildrenSortable()) {
+        // allowed at any position
+        return true;
+      }
+      // check position
+      const allowedSorting = schemaElement.getAllowedElementsSorting();
+      const children = this.getChildren();
+      let currentPosition = index;
+      if (children.length > index) {
+        currentPosition = allowedSorting[children.getItem(index).getName()];
+      } else {
+        currentPosition = children.length;
+      }
+      if (typeof currentPosition === "string") {
+        currentPosition = currentPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+      } else {
+        currentPosition = [currentPosition];
+      }
+      let targetPosition = allowedSorting[xmlElement.getName()];
+      if (typeof targetPosition === "string") {
+        targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+      } else {
+        targetPosition = [targetPosition];
+      }
+      for (let i = 0; i < Math.min(currentPosition.length, targetPosition.length); i++) {
+        if (currentPosition[i] === targetPosition[i]) {
+          // no special position
+          return true
+        } else {
+          // only allow if it can be inserted before
+          const allowed = currentPosition[i] + 1 === targetPosition[i];
+          if (!allowed) {
+            this.debug(xmlElement.getName(), "is not allowed as child of", this.getName());
+            return false;
+          }
+        }
+      }
+      return true;
     },
 
     insertChild: function (xmlElement, index, skipUndo) {
       const children = this.getChildren();
       let success = false;
-      if (index >= children.length) {
-        // append
-        this._node.appendChild(xmlElement.getNode());
-        children.push(xmlElement);
-        success = true;
-      } else if (index === 0) {
-        // add before first child
-        this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
-        children.shift(xmlElement);
-        success = true;
-      } else {
-        const previousChild = children.getItem(index);
-        if (previousChild) {
-          previousChild.getNode().before(xmlElement.getNode());
-          children.insertBefore(previousChild, xmlElement);
+      if (this.isChildAllowedAtPosition(xmlElement, index)) {
+        if (index >= children.length) {
+          // append
+          this._node.appendChild(xmlElement.getNode());
+          children.push(xmlElement);
           success = true;
+        } else if (index === 0) {
+          // add before first child
+          this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
+          children.shift(xmlElement);
+          success = true;
+        } else {
+          const previousChild = children.getItem(index);
+          if (previousChild) {
+            previousChild.getNode().before(xmlElement.getNode());
+            children.insertBefore(previousChild, xmlElement);
+            success = true;
+          }
         }
       }
       if (success) {
         xmlElement.setParent(this);
         this.updateModified();
-      }
-      if (!skipUndo) {
-        const editor = this.getEditor();
-        if (editor) {
-          const changes = [{
-            index: index,
-            parent: this,
-            child: xmlElement
-          }];
-          const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Add %1", this.getDisplayName()), this, changes, 'created');
-          editor.addUndo(change);
+        if (!skipUndo) {
+          const editor = this.getEditor();
+          if (editor) {
+            const changes = [{
+              index: index,
+              parent: this,
+              child: xmlElement
+            }];
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Add %1", this.getDisplayName()), this, changes, 'created');
+            editor.addUndo(change);
+          }
         }
       }
     },
@@ -485,6 +563,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 if (childNode.nodeType === Node.ELEMENT_NODE) {
                   const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
                   children.push(child);
+                  this._initialChildNames.push(childNode.nodeName);
                 } else if (childNode.nodeType === Node.TEXT_NODE) {
                   if (childNode.nodeValue) {
                     const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
@@ -493,13 +572,16 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                       child.setSortable(true);
                     }
                     children.push(child);
+                    if (childNode.nodeValue.trim()) {
+                      this._initialChildNames.push(childNode.nodeName);
+                    }
                   }
-                  this._initialChildNames.push(childNode.nodeName);
                 }
               } else if (childNode.nodeType === Node.ELEMENT_NODE) {
                 // only complain for real childs (no comments, textNodes)
                 throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getName();
               }
+
             }
 
             // read attributes
@@ -559,7 +641,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       const names = [];
       for (let i = 0; i < this._node.childNodes.length; i++) {
         const childNode = this._node.childNodes.item(i);
-        names.push(childNode.nodeName);
+        if (childNode.nodeType === Node.ELEMENT_NODE) {
+          names.push(childNode.nodeName);
+        } else if (childNode.nodeType === Node.TEXT_NODE && childNode.nodeValue.trim()) {
+          names.push(childNode.nodeName);
+        }
       }
       return names;
     }
