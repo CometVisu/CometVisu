@@ -795,7 +795,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onContentChanged: function () {
-      const content = this.getCurrentContent();
+      const tree = this.getChildControl('tree');
+      const rootNode = tree.getModel().getNode();
+      const content = new XMLSerializer().serializeToString(rootNode.ownerDocument);
       if (this._workerWrapper) {
         this._workerWrapper.contentChanged(this.getFile(), content);
       }
@@ -822,7 +824,44 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     getCurrentContent: function () {
       const tree = this.getChildControl('tree');
       const rootNode = tree.getModel().getNode();
-      return new XMLSerializer().serializeToString(rootNode.ownerDocument);
+      // prettify content
+      const prettyContent = `<?xml version="1.0" encoding="UTF-8"?>\n` + this._prettify(rootNode, 0);
+      return prettyContent;
+    },
+
+    _prettify: function (node, level, singleton) {
+      let tabs = Array(level + 1).fill('').join('\t')
+      let newLine = '\n';
+      if (node.nodeType === Node.TEXT_NODE) {
+        if (node.textContent.trim()) {
+          return (singleton ? '' : tabs) + node.textContent.trim() + (singleton ? '' : newLine);
+        } else {
+          return '';
+        }
+      }
+      if (node.nodeType === Node.COMMENT_NODE) {
+        return (singleton ? '' : tabs) + `<!--${node.textContent.trim()}--> ${(singleton ? '' : newLine)}`;
+      }
+      if (!node.tagName) {
+        return this._prettify(node.firstChild, level);
+      }
+      let output = tabs + `<${node.tagName}`; // >\n
+      for (let i = 0; i < node.attributes.length; i++) {
+        output += ` ${node.attributes[i].name}="${node.attributes[i].value}"`;
+      }
+      if (node.childNodes.length === 0) {
+        return output + ' />' + newLine;
+      } else {
+        output += '>';
+      }
+      let onlyOneTextChild = ((node.childNodes.length === 1) && (node.childNodes[0].nodeType === 3));
+      if (!onlyOneTextChild) {
+        output += newLine;
+      }
+      for (let i = 0; i < node.childNodes.length; i++) {
+        output += this._prettify(node.childNodes[i], level + 1, onlyOneTextChild);
+      }
+      return output + (onlyOneTextChild ? '' : tabs) + `</${node.tagName}>` + newLine;
     },
 
     _onSaved: function () {
