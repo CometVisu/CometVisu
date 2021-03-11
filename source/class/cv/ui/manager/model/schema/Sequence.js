@@ -86,6 +86,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
 
         this._sortedContent.push(subObject);
       });
+      this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
     },
 
     /**

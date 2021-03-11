@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
-    this._handledActions = ['save'];
+    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
 
     // init schema
     this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
@@ -52,6 +52,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       check: 'cv.ui.manager.model.XmlElement',
       nullable: true,
       apply: '_applySelected'
+    },
+
+    clipboard: {
+      check: 'cv.ui.manager.model.XmlElement',
+      nullable: true,
+      event: 'changeClipboard'
     }
   },
 
@@ -67,6 +73,36 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __unDos: null,
     __reDos: null,
     __editing: false,
+
+    handleAction: function (actionName) {
+      if (this.canHandleAction(actionName)) {
+        switch (actionName) {
+          case 'undo':
+            this.undo();
+            break;
+
+          case 'redo':
+            this.redo();
+            break;
+
+          case 'cut':
+            this._onCut();
+            break;
+
+          case 'copy':
+            this._onCopy();
+            break;
+
+          case 'paste':
+            this._onPaste();
+            break;
+
+          default:
+            this.base(arguments, actionName);
+            break;
+        }
+      }
+    },
 
     addUndo: function (elementChange) {
       this.assertInstance(elementChange, cv.ui.manager.model.ElementChange);
@@ -156,7 +192,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 16));
            control.setEnabled(false);
            control.addListener('execute', this._onEdit, this);
-           this.bind("file.editable", control, 'icon', {
+           this.bind("file.writeable", control, 'icon', {
              converter: function (value) {
                return value ? cv.theme.dark.Images.getIcon('edit', 16) : cv.theme.dark.Images.getIcon('view', 16)
              }
@@ -268,11 +304,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                controller.bindProperty("showEditButton", "editable", null, item, index);
                controller.bindProperty("sortable", "sortable", null, item, index);
                controller.bindProperty("icon", "icon", null, item, index);
-               controller.bindProperty("valid", 'status', {
-                 converter: function (value) {
-                   return value === true ? 'valid' : 'error';
-                 }
-               }, item, index);
+               controller.bindProperty("status", 'status', null, item, index);
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
@@ -453,9 +485,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // allowed inside
           accepted.mode |= Allowed.INSIDE;
           const allowedSorting = target.getSchemaElement().getAllowedElementsSorting();
-          let targetPosition = allowedSorting[target.getName()];
-          if (targetPosition === 0 || targetPosition.startsWith("0")) {
-            accepted.mode |= Allowed.FIRST_CHILD;
+          if (allowedSorting) {
+            let targetPosition = allowedSorting[target.getName()];
+            if (targetPosition !== undefined && (targetPosition === 0 || targetPosition.startsWith("0"))) {
+              accepted.mode |= Allowed.FIRST_CHILD;
+            }
           }
         }
       }, this);
@@ -649,10 +683,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             })
           }
         });
-      } else if (element.getNode().nodeType === Node.TEXT_NODE) {
+      } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE) {
+        const nodeName = element.getNode().nodeName;
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
-        formData['#text'] = {
+        formData[nodeName] = {
           type: "TextField",
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
@@ -668,11 +703,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
         }
-        this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData['#text'], element.getNode());
-        if (formData['#text'].options && formData['#text'].options instanceof Promise) {
-          promises.push(formData['#text'].options);
-          formData['#text'].options.then((res) => {
-            formData['#text'].options = res;
+        this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
+        if (formData[nodeName].options && formData[nodeName].options instanceof Promise) {
+          promises.push(formData[nodeName].options);
+          formData[nodeName].options.then((res) => {
+            formData[nodeName].options = res;
           })
         }
       }
@@ -699,10 +734,35 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _onDelete: function () {
       const element = this.getSelected();
-      if (element) {
-        // TODO: Check if we can delete this element without creating an invalid config
+      if (element && !element.isRequired()) {
         element.remove();
         this.clearReDos();
+        return element;
+      }
+    },
+
+    _onCut: function () {
+      const element = this._onDelete();
+      if (element) {
+        this.setClipboard(element);
+      }
+    },
+
+    _onCopy: function () {
+      const element = this.getSelected();
+      if (element) {
+        this.setClipboard(element.clone());
+      }
+    },
+
+    _onPaste: function () {
+      const target = this.getSelected();
+      const clipboardElement = this.getClipboard();
+      if (target && clipboardElement) {
+        if (target.insertChild(clipboardElement, -1)) {
+          // this was successful, clean the clipboard
+          this.resetClipboard();
+        }
       }
     },
 

@@ -53,6 +53,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'drag-handle': '@MaterialIcons/drag_handle',
       'expert': '@MaterialIcons/explicit',
       'text-fields': '@MaterialIcons/text_fields',
+      'comment-fields': '@MaterialIcons/settings_ethernet',
       'view': '@MaterialIcons/visibility'
     },
 

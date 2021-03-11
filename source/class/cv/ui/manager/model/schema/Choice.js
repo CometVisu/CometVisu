@@ -49,6 +49,7 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
         subElement.setSortable(true);
         this._allowedElements[subElement.getName()] = subElement;
       });
+      this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
 
       // choices
       Array.from(node.querySelectorAll(':scope > choice')).forEach((grouping) => {

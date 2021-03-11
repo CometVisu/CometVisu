@@ -31,6 +31,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         this.setParent(parent);
       }
       this._maintainIcon();
+      this._maintainStatus();
     } else {
       // this is a fake node needed for children simulation
       this.initName('#temp');
@@ -107,7 +108,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     valid: {
       check: 'Boolean',
       init: true,
-      event: 'changeValid'
+      event: 'changeValid',
+      apply: '_maintainStatus'
+    },
+
+    status: {
+      check: ['error', 'valid', 'comment'],
+      init: 'valid',
+      event: 'changeStatus'
     },
 
     editable: {
@@ -161,10 +169,23 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _initialTextContent: null,
     __initializing: false,
 
+    _maintainStatus: function () {
+      if (this._node.nodeType === Node.COMMENT_NODE) {
+        this.setStatus('comment');
+      } else if (!this.isValid()) {
+        this.setStatus('error');
+      } else {
+        this.setStatus('valid');
+      }
+    },
+
     _maintainIcon: function () {
       if (this._node) {
         if (this._node.nodeType === Node.TEXT_NODE) {
           this.setIcon(cv.theme.dark.Images.getIcon('text-fields', 18));
+          return;
+        } else if (this._node.nodeType === Node.COMMENT_NODE) {
+          this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
           return;
         }
       }
@@ -321,9 +342,48 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       return true;
     },
 
+    findPositionForChild: function(newChild) {
+      const schemaElement = this.getSchemaElement();
+      if (schemaElement.isChildElementAllowed(newChild.getName())) {
+        if (schemaElement.areChildrenSortable()) {
+          // any position is fine, just append it to the end
+          return this.getChildren().length;
+        } else {
+          const allowedSorting = schemaElement.getAllowedElementsSorting();
+          const sorting = allowedSorting[newChild.getName()];
+          if (typeof sorting === "string") {
+            const start = sorting.split(".").shift();
+            if (start === "x") {
+              // any position is fine, just append it to the end
+              return this.getChildren().length;
+            } else {
+              return parseInt(start);
+            }
+          } else if (typeof sorting === "number") {
+            return sorting;
+          }
+        }
+      }
+      return -1;
+    },
+
+    /**
+     * insert child at given index
+     * @param xmlElement {cv.ui.manager.model.XmlElement} new child
+     * @param index {Number} index to insert the child, if set to -1 insert it at any allowed position
+     * @param skipUndo {Boolean} do not add an undo operation for this change
+     * @return {Boolean} true if the child has been added
+     */
     insertChild: function (xmlElement, index, skipUndo) {
       const children = this.getChildren();
       let success = false;
+      if (index === -1) {
+        index = this.findPositionForChild(xmlElement);
+        if (index === -1) {
+          // no valid position found
+          return false
+        }
+      }
       if (this.isChildAllowedAtPosition(xmlElement, index)) {
         if (index >= children.length) {
           // append
@@ -360,6 +420,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
         }
       }
+      return success;
     },
 
     _validateTextContent: function (value) {
@@ -375,7 +436,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _applyTextContent: function (value) {
       if (!this.__initializing) {
         if (this._node) {
-          if (this._node.nodeType === Node.TEXT_NODE) {
+          if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
             this._node.nodeValue = value;
             this._updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
@@ -524,6 +585,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             textContent = textContent.substring(0, 20) + "...";
           }
           displayName += ' "' + textContent + '"';
+        } else if (this._node.nodeType === Node.COMMENT_NODE && this._node.nodeValue.trim()) {
+          let textContent = this._node.nodeValue.trim();
+          if (textContent.length > 26) {
+            textContent = textContent.substring(0, 26) + "...";
+          }
+          displayName = textContent;
         }
       }
       if (this.isModified()) {
@@ -576,12 +643,22 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                       this._initialChildNames.push(childNode.nodeName);
                     }
                   }
+                } else if (childNode.nodeType === Node.COMMENT_NODE) {
+                  if (childNode.nodeValue) {
+                    const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
+                    // comment nodes are allowed everywhere. but we do not allow them to be moved via drag&drop now
+                    // because comments might contains template conditions, which will get invalid when moved and we cannot validate that
+                    child.setSortable(false);
+                    children.push(child);
+                    if (childNode.nodeValue.trim()) {
+                      this._initialChildNames.push(childNode.nodeName);
+                    }
+                  }
                 }
               } else if (childNode.nodeType === Node.ELEMENT_NODE) {
                 // only complain for real childs (no comments, textNodes)
                 throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getName();
               }
-
             }
 
             // read attributes
@@ -590,7 +667,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               const attr = this._node.attributes.item(i);
               this._initialAttributes.set(attr.name, attr.value);
             }
-          } else if (this._node.nodeType === Node.TEXT_NODE) {
+          } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
             this._initialTextContent = this._node.nodeValue;
             this.setTextContent(this._node.nodeValue);
           }
@@ -617,7 +694,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
           this.setModified(false);
         }
-      } else if (this._node.nodeType === Node.TEXT_NODE) {
+      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
         this.setModified(this._initialTextContent !== this.getTextContent());
       }
     },
@@ -631,7 +708,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           this._initialAttributes.set(attr.name, attr.value);
         }
         this._initialChildNames = this._currentChildNames();
-      } else if (this._node.nodeType === Node.TEXT_NODE) {
+      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
         this._initialTextContent = this._node.nodeValue;
       }
       this.setModified(false);
@@ -643,7 +720,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const childNode = this._node.childNodes.item(i);
         if (childNode.nodeType === Node.ELEMENT_NODE) {
           names.push(childNode.nodeName);
-        } else if (childNode.nodeType === Node.TEXT_NODE && childNode.nodeValue.trim()) {
+        } else if ((childNode.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) && childNode.nodeValue.trim()) {
           names.push(childNode.nodeName);
         }
       }

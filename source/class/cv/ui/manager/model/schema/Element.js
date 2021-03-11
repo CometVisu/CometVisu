@@ -308,6 +308,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
       }
 
+      allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
+
       return allowedElements;
     },
 
@@ -394,6 +396,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (child === '#text') {
         // text-nodes are somewhat special :)
         return this.isTextContentAllowed();
+      } else if (child === '#comment') {
+        return true;
       }
 
       // first, get a list of allowed content (don't worry, it's cached)
@@ -425,6 +429,9 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         }
 
         return this.getSchema().getTextNodeSchemaElement();
+      } else if (elementName === '#comment') {
+        // comments are always allowed
+        return this.getSchema().getCommentNodeSchemaElement();
       }
 
 

@@ -37,7 +37,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     },
 
     status: {
-      check: ['valid', 'error'],
+      check: ['valid', 'error', 'comment'],
       nullable: true,
       apply: '_applyStatus'
     },
@@ -92,18 +92,16 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       }
     },
 
-    _applyStatus: function (value) {
-      var control = this.getChildControl('icon');
+    _applyStatus: function (value, old) {
+      const icon = this.getChildControl('icon');
+      const label = this.getChildControl('label');
+      if (old) {
+        icon.removeState(old);
+        label.removeState(old);
+      }
       if (value) {
-        switch (value) {
-          case 'valid':
-            control.removeState('error');
-            break;
-
-          case 'error':
-            control.addState('error');
-            break;
-        }
+        icon.addState(value);
+        label.addState(value);
       }
     },
 
@@ -114,11 +112,13 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
        switch (id) {
          case 'buttons':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+           control.setAnonymous(true);
            break;
 
          case 'move-button':
            control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', 18));
            control.setToolTipText(this.tr("Drag to move"));
+           control.setAnonymous(true);
            this.getChildControl('buttons').add(control);
            break;
        }

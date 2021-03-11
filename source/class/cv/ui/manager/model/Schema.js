@@ -87,6 +87,12 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     __textNodeSchemaElement: null,
 
+    /**
+     * cache for #comment-SchemaElement
+     * @var object
+     */
+    __commentNodeSchemaElement: null,
+
     onLoaded: function (callback, context) {
       if (this.isLoaded()) {
         callback.call(context);
@@ -219,6 +225,23 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     },
 
     /**
+     * get a SchemaElement for a #comment-node
+     *
+     * @return  object  SchemaElement for #comment-node
+     */
+    getCommentNodeSchemaElement: function () {
+      if (this.__commentNodeSchemaElement === null) {
+        // text-content is always a simple string
+        const tmpXML = this.__xsd.createElement('element');
+        tmpXML.setAttribute('name', '#comment');
+        tmpXML.setAttribute('type', 'xsd:string');
+        this.__commentNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this);
+      }
+
+      return this.__commentNodeSchemaElement;
+    },
+
+    /**
      * get the DOM for this Schema
      *
      * @return  object  DOM
@@ -235,6 +258,10 @@ qx.Class.define('cv.ui.manager.model.Schema', {
   */
   destruct: function () {
     this.__xsd = null;
+    this._disposeObjects('__commentNodeSchemaElement', '__textNodeSchemaElement');
+    this._disposeMap('__allowedRootElements');
+    this.__referencedNodeCache = null;
+    this.__typeNodeCache = null;
   }
 });
 

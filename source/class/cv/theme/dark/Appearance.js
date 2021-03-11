@@ -388,7 +388,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style: function(states) {
         return {
-          textColor: states.error ? 'invalid-color' : null
+          textColor: states.comment ? "text-disabled" : (states.error ? 'invalid-color' : null)
         };
       }
     },
@@ -396,8 +396,10 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'element-tree-item/label': {
       include: 'fs-tree-item/label',
 
-      style: function () {
+      style: function (states) {
+
         return {
+          textColor: states.comment ? "text-disabled" : null,
           allowGrowX: true,
           maxWidth: 250
         }
