@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     this._node = node;
     const children = new qx.data.Array();
     if (node) {
+      this._node.$$widget = this;
       this.setSchemaElement(schemaElement);
       this.initName(node.nodeName);
       if (this.hasChildren()) {
@@ -168,6 +169,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _initialChildNames: null,
     _initialTextContent: null,
     __initializing: false,
+
+    clone: function () {
+      return new cv.ui.manager.model.XmlElement(this.getNode(), this.getSchemaElement(), this.getEditor(), this.getParent());
+    },
 
     _maintainStatus: function () {
       if (this._node.nodeType === Node.COMMENT_NODE) {

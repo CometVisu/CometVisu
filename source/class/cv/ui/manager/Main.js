@@ -238,6 +238,9 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _handleFileEvent: function (ev) {
       var data = ev.getData();
       if (data.action === 'deleted') {
@@ -586,12 +589,14 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('rename', renameCommand);
       this.bind('renameableSelection', renameCommand, 'enabled');
 
+      group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
+      group.add('redo', new qx.ui.command.Command('Ctrl+Y'));
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
-      // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
-      // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
-      // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+      group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+      group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+      group.add('paste', new qx.ui.command.Command('Ctrl+V'));
 
       var manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();

@@ -51,6 +51,8 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
       return false;
     },
     handleAction: function () {},
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
     save: function () {},
     getCurrentContent: function () {},
 

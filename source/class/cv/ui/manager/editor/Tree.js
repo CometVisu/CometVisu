@@ -20,9 +20,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       this._draw();
     }, this);
     this.__modifiedElements = [];
-    this.__unDos = new qx.data.Array();
-    this.__reDos = new qx.data.Array();
+    this.initUnDos(new qx.data.Array());
+    this.initReDos(new qx.data.Array());
+    this.__buttonListeners = {};
     qx.core.Init.getApplication().getRoot().addListener("keyup", this._onElementKeyUp, this);
+
   },
 
   /*
@@ -51,13 +53,25 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     selected: {
       check: 'cv.ui.manager.model.XmlElement',
       nullable: true,
+      event: 'changeSelected',
       apply: '_applySelected'
     },
 
     clipboard: {
       check: 'cv.ui.manager.model.XmlElement',
       nullable: true,
-      event: 'changeClipboard'
+      event: 'changeClipboard',
+      apply: '_applyClipboard'
+    },
+
+    unDos: {
+      check: 'qx.data.Array',
+      deferredInit: true
+    },
+
+    reDos: {
+      check: 'qx.data.Array',
+      deferredInit: true
     }
   },
 
@@ -70,9 +84,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _schema: null,
     __modifiedElements: null,
     _workerWrapper: null,
-    __unDos: null,
-    __reDos: null,
     __editing: false,
+    __buttonListeners: null,
 
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
@@ -104,42 +117,133 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
+    configureButton: function (actionId, button) {
+      switch (actionId) {
+        case 'undo':
+          this.__buttonListeners[actionId] = this.getUnDos().addListener('changeLength', () => {
+            const length = this.getUnDos().length;
+            if (length > 0) {
+              button.setEnabled(true);
+              button.setToolTipText(this.tr("Undo: %1", this.getUnDos().getItem(length - 1).getTitle()));
+            } else {
+              button.setEnabled(false);
+              button.resetToolTipText();
+            }
+          }, this);
+          button.setEnabled(this.getUnDos().length > 0);
+          break;
+
+        case 'redo':
+          this.__buttonListeners[actionId] = this.getReDos().addListener('changeLength', () => {
+            const length = this.getReDos().length;
+            if (length > 0) {
+              button.setEnabled(true);
+              button.setToolTipText(this.tr("Undo: %1", this.getReDos().getItem(length - 1).getTitle()));
+            } else {
+              button.setEnabled(false);
+              button.resetToolTipText();
+            }
+          }, this);
+          button.setEnabled(this.getReDos().length > 0);
+          break;
+
+        case 'cut':
+          this.bind('selected', button, 'enabled', {
+            converter: function (value) {
+              return value ? !value.isRequired() : false;
+            }
+          })
+          break;
+
+        case 'copy':
+          this.bind('selected', button, 'enabled', {
+            converter: function (value) {
+              return !!value;
+            }
+          })
+          break;
+
+        case 'paste':
+          this.bind('clipboard', button, 'enabled', {
+            converter: function (value) {
+              return !!value;
+            }
+          })
+          break;
+      }
+    },
+    unConfigureButton: function (actionId, button) {
+      switch (actionId) {
+        case 'undo':
+          if (this.__buttonListeners[actionId]) {
+            this.getUnDos().removeListenerById(this.__buttonListeners[actionId]);
+            delete this.__buttonListeners[actionId];
+          }
+          button.setEnabled(false);
+          break;
+
+        case 'redo':
+          if (this.__buttonListeners[actionId]) {
+            this.getReDos().removeListenerById(this.__buttonListeners[actionId]);
+            delete this.__buttonListeners[actionId];
+          }
+          button.setEnabled(false);
+          break;
+
+        case 'paste':
+        case 'cut':
+        case 'copy':
+          this.removeRelatedBindings(button);
+          break;
+      }
+    },
+
     addUndo: function (elementChange) {
       this.assertInstance(elementChange, cv.ui.manager.model.ElementChange);
-      this.__unDos.push(elementChange);
+      this.getUnDos().push(elementChange);
     },
 
     undo: function () {
-      if (this.__unDos.length > 0) {
-        const elementChange = this.__unDos.pop();
+      const unDos = this.getUnDos();
+      if (unDos.length > 0) {
+        const elementChange = unDos.pop();
         if (elementChange.undo()) {
-          this.__reDos.push(elementChange);
+          this.getReDos().push(elementChange);
         } else {
           this.error("could not undo " + elementChange.getTitle());
-          this.__unDos.push(elementChange);
+          unDos.push(elementChange);
         }
       }
     },
 
     redo: function () {
-      if (this.__reDos.length > 0) {
-        const elementChange = this.__reDos.pop();
+      const reDos = this.getReDos();
+      if (reDos.length > 0) {
+        const elementChange = reDos.pop();
         if (elementChange.redo()) {
-          this.__unDos.push(elementChange);
+          this.getUnDos().push(elementChange);
         } else {
           this.error("could not redo " + elementChange.getTitle());
-          this.__reDos.push(elementChange);
+          reDos.push(elementChange);
         }
       }
     },
 
     clearUnDosReDos: function () {
-      this.__unDos.removeAll().forEach(elem => elem.dispose());
+      this.getUnDos().removeAll().forEach(elem => elem.dispose());
       this.clearReDos();
     },
 
     clearReDos: function () {
-      this.__reDos.removeAll().forEach(elem => elem.dispose());
+      this.getReDos().removeAll().forEach(elem => elem.dispose());
+    },
+
+    _applyClipboard: function (value) {
+      if (value) {
+        navigator.clipboard.writeText(value.getNode().outerHTML);
+      } else {
+        navigator.clipboard.writeText('');
+      }
     },
 
     _initWorker: function () {
@@ -200,38 +304,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.getChildControl('toolbar').add(control);
            break;
 
-         case 'undo-button':
-           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('undo', 16));
-           control.setEnabled(false);
-           this.__unDos.addListener('changeLength', () => {
-             if (this.__unDos.length > 0) {
-               control.setEnabled(true);
-               control.setToolTipText(this.tr("Undo: %1", this.__unDos.getItem(this.__unDos.length - 1).getTitle()));
-             } else {
-               control.setEnabled(false);
-               control.resetToolTipText();
-             }
-           }, this);
-           control.addListener('execute', this.undo, this);
-           this.getChildControl('toolbar').add(control);
-           break;
-
-         case 'redo-button':
-           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('redo', 16));
-           control.setEnabled(false);
-           this.__reDos.addListener('changeLength', () => {
-             if (this.__reDos.length > 0) {
-               control.setEnabled(true);
-               control.setToolTipText(this.tr("Redo: %1", this.__reDos.getItem(this.__reDos.length - 1).getTitle()));
-             } else {
-               control.setEnabled(false);
-               control.resetToolTipText();
-             }
-           }, this);
-           control.addListener('execute', this.redo, this);
-           this.getChildControl('toolbar').add(control);
-           break;
-
          case 'delete-button':
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('delete', 16));
            control.setEnabled(false);
@@ -251,6 +323,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
          case 'toolbar':
            control = new qx.ui.toolbar.ToolBar();
            this.getChildControl('left').addAt(control, 0);
+           break;
+
+         case 'searchbar-container':
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+           this.getChildControl('left').addAt(control, 1);
+           break;
+
+         case 'searchbar':
+           control = new qx.ui.form.TextField();
+           control.set({
+             liveUpdate: true,
+             placeholder: this.tr("Search...")
+           });
+           control.addListener("changeValue", qx.util.Function.debounce(this._onSearch, 250), this);
+           this.getChildControl('searchbar-container').add(control, {flex: 1});
            break;
 
          case 'tree':
@@ -308,7 +395,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
-           this.getChildControl('left').addAt(control, 1, {flex: 1});
+           this.getChildControl('left').addAt(control, 2, {flex: 1});
            break;
 
          case 'drag-indicator':
@@ -337,6 +424,50 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.setSelected(data.added[0]);
       } else {
         this.resetSelected();
+      }
+    },
+
+    _onSearch: function (ev) {
+      const value = ev.getData();
+      if (value.length > 2) {
+        const tree = this.getChildControl('tree');
+        const rootNode = tree.getModel().getNode();
+        const found = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
+          return el.tagName.startsWith(value) || el.hasAttribute("name") && el.getAttribute("name").startsWith(value);
+        });
+        if (found.length > 0) {
+          // find and open the first result and save the rest for traversal (with keyboard arrows
+          const firstMatch = found[0];
+          if (firstMatch.$$widget) {
+            tree.openNodeAndParents(firstMatch.$$widget);
+            tree.getSelection().replace([firstMatch.$$widget]);
+          } else {
+            let current = firstMatch;
+            const ancestors = [];
+            // lookup the path until we find the first one with a widget
+            while (current && !current.$$widget) {
+              current = current.parentElement;
+              if (current) {
+                ancestors.push(current);
+              }
+            }
+            if (current && current.$$widget) {
+              current.$$widget.load();
+              // now git down the path of found ancestors and load them all
+              for (let i = ancestors.length-1; i >= 0; i--) {
+                const p = ancestors[i].$$widget;
+                if (p) {
+                  p.load();
+                }
+              }
+              if (firstMatch.$$widget) {
+                tree.openNodeAndParents(firstMatch.$$widget);
+                tree.getSelection().replace([firstMatch.$$widget]);
+              }
+            }
+          }
+        }
+        // TODO: save results for a keyboard traversal (with up down arrows)
       }
     },
 
@@ -751,7 +882,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _onCopy: function () {
       const element = this.getSelected();
       if (element) {
-        this.setClipboard(element.clone());
+        const copy = element.clone();
+        this.setClipboard(copy);
       }
     },
 
@@ -781,10 +913,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _draw: function () {
       const toolbar = this.getChildControl('toolbar');
+      this._createChildControl('searchbar');
       this._createChildControl('add-button');
-      toolbar.addSeparator();
-      this._createChildControl('undo-button');
-      this._createChildControl('redo-button');
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
@@ -821,7 +951,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onElementKeyUp: function(ev) {
-      if (this.getSelected() && ev.getKeyIdentifier() === "Enter") {
+      if (this.getSelected() && ev.getKeyIdentifier() === "Enter" && this.isVisible()) {
         if (!this.__editing) {
           this._onEdit();
         }
@@ -943,7 +1073,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   destruct: function () {
     this._schema = null;
     this._workerWrapper = null;
-    this._disposeArray('__modifiedElements', '__unDos', '__reDos');
+    this._disposeArray('__modifiedElements');
     qx.core.Init.getApplication().getRoot().removeListener("keyup", this._onElementKeyUp, this);
   }
 });

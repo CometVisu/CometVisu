@@ -69,6 +69,8 @@ qx.Class.define('cv.ui.manager.Start', {
       return false;
     },
     handleAction: function () {},
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
 
     _loadRoot: function (value) {
       this.getChildControl('configs').setFile(value);

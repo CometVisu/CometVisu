@@ -89,28 +89,28 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         // edit menu basics
         'undo': {
           menu: 'edit-menu',
-          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this.tr('Ctrl+Z')],
+          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this._commandGroup.get('undo')],
           enabled: true
         },
         'redo': {
           menu: 'edit-menu',
-          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this.tr('Ctrl+Y')],
+          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this._commandGroup.get('redo')],
           enabled: true
         },
         'cut': {
           menu: 'edit-menu',
-          args: [this.tr('Cut'), null, this.tr('Ctrl+X')],
+          args: [this.tr('Cut'), null, this._commandGroup.get('cut')],
           enabled: false,
           separator: 'before'
         },
         'copy': {
           menu: 'edit-menu',
-          args: [this.tr('Copy'), null, this.tr('Ctrl+C')],
+          args: [this.tr('Copy'), null, this._commandGroup.get('copy')],
           enabled: false
         },
         'paste': {
           menu: 'edit-menu',
-          args: [this.tr('Paste'), null, this.tr('Ctrl+V')],
+          args: [this.tr('Paste'), null, this._commandGroup.get('paste')],
           enabled: false
         },
         // preferences

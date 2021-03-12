@@ -77,6 +77,9 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
     },

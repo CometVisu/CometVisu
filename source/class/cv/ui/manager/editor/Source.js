@@ -209,6 +209,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           case 'copy':
             monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
             break;
+          case 'paste':
+            navigator.clipboard.readText().then(clipText => this._editor.trigger('keyboard', 'type', {text: clipText}));
+            break;
+          case 'undo':
+          case 'redo':
+            this._editor.trigger('external', actionName);
+            break;
 
           default:
             this.base(arguments, actionName);
