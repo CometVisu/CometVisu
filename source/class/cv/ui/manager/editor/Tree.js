@@ -86,6 +86,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _workerWrapper: null,
     __editing: false,
     __buttonListeners: null,
+    __searchResults: null,
+    __searchResultIndex: 0,
 
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
@@ -337,6 +339,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              placeholder: this.tr("Search...")
            });
            control.addListener("changeValue", qx.util.Function.debounce(this._onSearch, 250), this);
+           control.addListener("keyup", function (ev) {
+             switch (ev.getKeyIdentifier()) {
+               case 'Enter':
+               case 'Down':
+                 this._showNextResult();
+                 break;
+               case 'Up':
+                 this._showPreviousResult();
+                 break;
+             }
+             ev.stopPropagation();
+           }, this);
            this.getChildControl('searchbar-container').add(control, {flex: 1});
            break;
 
@@ -429,45 +443,65 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _onSearch: function (ev) {
       const value = ev.getData();
+      this.__searchResults = [];
+      this.__searchResultIndex = 0;
       if (value.length > 2) {
         const tree = this.getChildControl('tree');
         const rootNode = tree.getModel().getNode();
-        const found = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
+        this.__searchResults = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
           return el.tagName.startsWith(value) || el.hasAttribute("name") && el.getAttribute("name").startsWith(value);
         });
-        if (found.length > 0) {
-          // find and open the first result and save the rest for traversal (with keyboard arrows
-          const firstMatch = found[0];
-          if (firstMatch.$$widget) {
-            tree.openNodeAndParents(firstMatch.$$widget);
-            tree.getSelection().replace([firstMatch.$$widget]);
-          } else {
-            let current = firstMatch;
-            const ancestors = [];
-            // lookup the path until we find the first one with a widget
-            while (current && !current.$$widget) {
-              current = current.parentElement;
-              if (current) {
-                ancestors.push(current);
+        this.__showSearchResult();
+      }
+    },
+
+    _showNextResult: function () {
+      if (this.__searchResults.length > this.__searchResultIndex + 1) {
+        this.__searchResultIndex++;
+        this.__showSearchResult();
+      }
+    },
+
+    _showPreviousResult: function () {
+      if (this.__searchResultIndex > 0) {
+        this.__searchResultIndex--;
+        this.__showSearchResult();
+      }
+    },
+
+    __showSearchResult: function () {
+      if (this.__searchResults.length > this.__searchResultIndex) {
+        // find and open the first result and save the rest for traversal (with keyboard arrows
+        const firstMatch = this.__searchResults[this.__searchResultIndex];
+        const tree = this.getChildControl('tree');
+        if (firstMatch.$$widget) {
+          tree.openNodeAndParents(firstMatch.$$widget);
+          tree.getSelection().replace([firstMatch.$$widget]);
+        } else {
+          let current = firstMatch;
+          const ancestors = [];
+          // lookup the path until we find the first one with a widget
+          while (current && !current.$$widget) {
+            current = current.parentElement;
+            if (current) {
+              ancestors.push(current);
+            }
+          }
+          if (current && current.$$widget) {
+            current.$$widget.load();
+            // now git down the path of found ancestors and load them all
+            for (let i = ancestors.length-1; i >= 0; i--) {
+              const p = ancestors[i].$$widget;
+              if (p) {
+                p.load();
               }
             }
-            if (current && current.$$widget) {
-              current.$$widget.load();
-              // now git down the path of found ancestors and load them all
-              for (let i = ancestors.length-1; i >= 0; i--) {
-                const p = ancestors[i].$$widget;
-                if (p) {
-                  p.load();
-                }
-              }
-              if (firstMatch.$$widget) {
-                tree.openNodeAndParents(firstMatch.$$widget);
-                tree.getSelection().replace([firstMatch.$$widget]);
-              }
+            if (firstMatch.$$widget) {
+              tree.openNodeAndParents(firstMatch.$$widget);
+              tree.getSelection().replace([firstMatch.$$widget]);
             }
           }
         }
-        // TODO: save results for a keyboard traversal (with up down arrows)
       }
     },
 
@@ -951,9 +985,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onElementKeyUp: function(ev) {
-      if (this.getSelected() && ev.getKeyIdentifier() === "Enter" && this.isVisible()) {
-        if (!this.__editing) {
-          this._onEdit();
+      if (this.getSelected() && this.isVisible()) {
+        if (ev.getKeyIdentifier() === "Enter") {
+          if (!this.__editing) {
+            this._onEdit();
+          }
         }
       }
     },
