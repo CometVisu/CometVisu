@@ -46,7 +46,7 @@ describe('checking MQTT transforms', function() {
     expect(cv.Transform.encode('MQTT:json:a', -0.5)).toEqual('{"a":-0.5}');
     expect(cv.Transform.encode('MQTT:json:s', '-0.5')).toEqual('{"s":"-0.5"}');
     expect(cv.Transform.encode('MQTT:json:b.c', -0.5)).toEqual('{"b":{"c":-0.5}}');
-    expect(cv.Transform.decode('MQTT:json', '{"b":{"c":-0.5}}')).toEqual('{"b":{"c":-0.5}}');
+    expect(cv.Transform.decode('MQTT:json', '{"b":{"c":-0.5}}')).toEqual({"b":{"c":-0.5}});
     expect(cv.Transform.decode('MQTT:json:a', '{"a":-0.5}')).toEqual(-0.5);
     expect(cv.Transform.decode('MQTT:json:b.c', '{"b":{"c":-0.5}}')).toEqual(-0.5);
 
