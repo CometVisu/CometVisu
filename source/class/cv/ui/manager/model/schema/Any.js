@@ -81,7 +81,7 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
 
     // overridden
     getAllowedElements: function() {
-      return [];
+      return {};
     },
 
     getRegex: function (separator, nocapture) {

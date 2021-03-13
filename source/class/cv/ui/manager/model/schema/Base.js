@@ -210,7 +210,7 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
 
       // also the elements allowed by our sub-choices etc.
       this._subGroupings.forEach((grouping) => {
-        myAllowedElements.push(...grouping.getAllowedElements());
+        Object.assign(myAllowedElements, grouping.getAllowedElements());
       });
 
       return myAllowedElements;

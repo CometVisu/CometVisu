@@ -274,7 +274,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'left':
-           control = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+           control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
            this.getChildControl('splitpane').add(control, 0);
            break;
 
@@ -285,13 +285,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              minWidth: 600
            });
            this.getChildControl('splitpane').add(control, 1);
-           break;
-
-         case 'add-button':
-           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('new-folder', 16));
-           control.setEnabled(this.getFile() && this.getFile().isWriteable());
-           control.setDraggable(true);
-           this.getChildControl('toolbar').add(control);
            break;
 
          case 'edit-button':
@@ -324,12 +317,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
          case 'toolbar':
            control = new qx.ui.toolbar.ToolBar();
-           this.getChildControl('left').addAt(control, 0);
+           this.getChildControl('left').add(control, {
+             top: 0,
+             left: 0,
+             right: 0
+           });
            break;
 
          case 'searchbar-container':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           this.getChildControl('left').addAt(control, 1);
+           this.getChildControl('left').add(control, {
+             top: 36,
+             left: 0,
+             right: 0
+           });
            break;
 
          case 'searchbar':
@@ -409,7 +410,28 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
-           this.getChildControl('left').addAt(control, 2, {flex: 1});
+           this.getChildControl('left').add(control, {
+             top: 60,
+             left: 0,
+             right: 0,
+             bottom: 0
+           });
+           break;
+
+         case 'add-button':
+           control = new qx.ui.container.Composite(new qx.ui.layout.Atom().set({center: true}));
+           control.setAnonymous(true);
+           control.setHeight(32);
+           let button = new qx.ui.basic.Atom(null, cv.theme.dark.Images.getIcon('add', 32));
+           button.setDraggable(true);
+           button.setAppearance("round-button");
+           control.add(button);
+           this.bind('file.writeable', control, 'enabled');
+           this.getChildControl('left').add(control, {
+             left: 0,
+             right: 0,
+             bottom: 16
+           });
            break;
 
          case 'drag-indicator':
@@ -560,13 +582,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         droppable: enabled
       })
       control.addListener("dragstart", function (ev) {
-        const element = ev.getDragTarget().getModel();
-        ev.addAction("copy");
-        if (!element.isRequired() && element.isSortable()) {
-          ev.addAction("move");
+        const dragTarget = ev.getDragTarget();
+        let element;
+        if (dragTarget instanceof cv.ui.manager.model.XmlElement) {
+          element = dragTarget.getModel();
+          ev.addAction("copy");
+          if (!element.isRequired() && element.isSortable()) {
+            ev.addAction("move");
+          }
+          ev.addType("cv/tree-element");
+          ev.addData("cv/tree-element", element);
+        } else {
+          ev.addAction("add");
         }
-        ev.addType("cv/tree-element");
-        ev.addData("cv/tree-element", element);
       }, this);
 
       control.addListener("droprequest", function (ev) {
@@ -583,7 +611,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           ev.addData(type, result);
         }
-        console.log(type, ev.getCurrentAction());
       }, this);
       const Allowed = {
         NONE: 0,
@@ -598,47 +625,68 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
 
       control.addListener("dragover", function (ev) {
-        const element = ev.getData("cv/tree-element");
+        let type = ev.getCurrentType();
+        // add ist a custom action that cannot be detected, so we only check if its supported
+        let action = ev.getCurrentAction() || ev.supportsAction("add") ? "add" : null;
+        let element;
+        if (type === "cv/tree-element") {
+          element = ev.getData("cv/tree-element");
+        }
         const target = ev.getTarget().getModel();
         const parent = target.getParent();
         accepted.element = target;
         if (parent) {
           const parentSchemaElement = target.getParent().getSchemaElement();
-          if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
-            ev.preventDefault();
-            // not allowed on this level
-            accepted.mode = Allowed.NONE;
-          } else if (parentSchemaElement.areChildrenSortable()) {
-            // children are not sorted and can be put anywhere
-            // so this is allowed anywhere
-            accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+          if (action === "add") {
+            const allowedElements = parentSchemaElement.getAllowedElements();
+            if (Object.keys(allowedElements).length > 0) {
+              // check if there could be added more children
+
+              // check if a child could be added at this position
+
+              accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+            } else {
+              ev.preventDefault();
+              // not children allowed here
+              accepted.mode = Allowed.NONE;
+            }
           } else {
-            // check position
-            const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
-            if (allowedSorting) {
-              let currentPosition = allowedSorting[element.getName()];
-              if (typeof currentPosition === "string") {
-                currentPosition = currentPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
-              } else {
-                currentPosition = [currentPosition];
-              }
-              let targetPosition = allowedSorting[target.getName()];
-              if (typeof targetPosition === "string") {
-                targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
-              } else {
-                targetPosition = [targetPosition];
-              }
-              for (let i = 0; i < Math.min(currentPosition.length, targetPosition.length); i++) {
-                if (currentPosition[i] === targetPosition[i]) {
-                  // no special position
-                  accepted.mode = Allowed.BEFORE | Allowed.AFTER;
-                  break;
-                } else if (currentPosition[i] - 1 === targetPosition[i]) {
-                  accepted.mode = Allowed.AFTER;
-                } else if (currentPosition[i] + 1 === targetPosition[i]) {
-                  accepted.mode = Allowed.BEFORE;
+            if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
+              ev.preventDefault();
+              // not allowed on this level
+              accepted.mode = Allowed.NONE;
+            } else if (parentSchemaElement.areChildrenSortable()) {
+              // children are not sorted and can be put anywhere
+              // so this is allowed anywhere
+              accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+            } else {
+              // check position
+              const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
+              if (allowedSorting) {
+                let currentPosition = allowedSorting[element.getName()];
+                if (typeof currentPosition === "string") {
+                  currentPosition = currentPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
                 } else {
-                  accepted.mode = Allowed.NONE;
+                  currentPosition = [currentPosition];
+                }
+                let targetPosition = allowedSorting[target.getName()];
+                if (typeof targetPosition === "string") {
+                  targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+                } else {
+                  targetPosition = [targetPosition];
+                }
+                for (let i = 0; i < Math.min(currentPosition.length, targetPosition.length); i++) {
+                  if (currentPosition[i] === targetPosition[i]) {
+                    // no special position
+                    accepted.mode = Allowed.BEFORE | Allowed.AFTER;
+                    break;
+                  } else if (currentPosition[i] - 1 === targetPosition[i]) {
+                    accepted.mode = Allowed.AFTER;
+                  } else if (currentPosition[i] + 1 === targetPosition[i]) {
+                    accepted.mode = Allowed.BEFORE;
+                  } else {
+                    accepted.mode = Allowed.NONE;
+                  }
                 }
               }
             }
@@ -646,7 +694,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         } else {
           accepted.mode = 0;
         }
-        if (target.getSchemaElement().isChildElementAllowed(element.getName())) {
+        let lookInside;
+        if (action === "add") {
+          lookInside = Object.keys(target.getSchemaElement().getAllowedElements()).length > 0;
+        } else {
+          lookInside = target.getSchemaElement().isChildElementAllowed(element.getName());
+        }
+        if (lookInside) {
           // allowed inside
           accepted.mode |= Allowed.INSIDE;
           const allowedSorting = target.getSchemaElement().getAllowedElementsSorting();
@@ -996,21 +1050,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _applyContent: function(value) {
       const tree = this.getChildControl('tree');
-      if (value) {
+      const file = this.getFile();
+      if (value && file) {
         const document = qx.xml.Document.fromString(value);
         const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
         const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
-        rootNode.setEditable(this.getFile().getWriteable());
+        rootNode.setEditable(file.getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
-        this.getChildControl('add-button').setEnabled(this.getFile().getWriteable());
+        this.getChildControl('add-button').setEnabled(file.getWriteable());
 
         if (this._workerWrapper) {
-          this._workerWrapper.open(this.getFile(), value);
+          this._workerWrapper.open(file, value);
         }
         const preview = this.getChildControl('preview');
         if (!preview.getFile()) {
-          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
           preview.setFile(previewConfig);
         }
         this._updatePreview(value);

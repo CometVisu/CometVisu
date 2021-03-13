@@ -299,7 +299,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       const allowedElements = {};
       if (allowedContent._grouping !== undefined) {
-        allowedElements.push(...allowedContent._grouping.getAllowedElements());
+        Object.assign(allowedElements, allowedContent._grouping.getAllowedElements());
       }
 
 

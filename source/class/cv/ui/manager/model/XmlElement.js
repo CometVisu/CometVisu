@@ -16,6 +16,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     this.base(arguments);
     this._node = node;
     const children = new qx.data.Array();
+    children.addListener('change', this._syncChildNodes, this);
     if (node) {
       this._node.$$widget = this;
       this.setSchemaElement(schemaElement);
@@ -730,6 +731,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         }
       }
       return names;
+    },
+
+    _syncChildNodes: function (ev) {
+      const changes = ev.getData();
+      console.log(changes)
     }
   },
   /*
