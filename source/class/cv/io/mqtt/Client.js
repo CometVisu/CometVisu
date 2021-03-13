@@ -98,7 +98,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @param addresses {Array}
      */
     setInitialAddresses: function(addresses) {
-      console.error('subscribe Initial: ', addresses);
+      console.log('subscribe Initial: ', addresses);
     },
 
     /**
@@ -162,13 +162,13 @@ qx.Class.define('cv.io.mqtt.Client', {
       try {
         this.client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
       } catch (e) {
-        console.error('error',e);
+        console.error( 'MQTT Client error:', e );
         self.setConnected(false);
         return;
       }
 
       this.client.onConnectionLost = function (responseObject) {
-        console.log("Connection Lost: "+responseObject.errorMessage, responseObject);
+        console.log( 'Connection Lost: ' + responseObject.errorMessage, responseObject );
         self.setConnected(false);
       };
 
@@ -179,8 +179,6 @@ qx.Class.define('cv.io.mqtt.Client', {
       };
 
       this.client.connect( options );
-
-      window.client = this.client; // DEBUG
     },
 
     /**
@@ -222,7 +220,7 @@ qx.Class.define('cv.io.mqtt.Client', {
         let message = new Paho.MQTT.Message( value );
         message.destinationName = address;
         message.qos = options.qos;
-         message.retained = options.retain;
+        message.retained = options.retain;
         this.client.send(message);
       }
     },

@@ -36,7 +36,7 @@ qx.Class.define('cv.transforms.Mqtt', {
       'number': {
         name: "MQTT_Number",
         encode: function (phy) {
-          return parseFloat(phy);
+          return phy.toString();
         },
         decode: function (str) {
           return parseFloat(str);
@@ -45,7 +45,7 @@ qx.Class.define('cv.transforms.Mqtt', {
       'string': {
         name: "MQTT_String",
         encode: function (phy) {
-          return phy;
+          return phy.toString();
         },
         decode: function (str) {
           return str.toString();
@@ -67,7 +67,7 @@ qx.Class.define('cv.transforms.Mqtt', {
             );
             return ret_pre + (typeof phy === 'string' ? '"'+phy+'"' : phy) + ret_post;
           }
-          return phy;
+          return phy.toString();
         },
         decode: function (str, parameter) {
           let json = JSON.parse(str);
