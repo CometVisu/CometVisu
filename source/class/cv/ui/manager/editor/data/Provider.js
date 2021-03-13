@@ -161,8 +161,15 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * Returns the available design names as array of suggestions.
      * @returns {Promise<Array>} suggestions
      */
-    getDesigns: function () {
-      return this.__getData('designs', 'designsSync', null,[], function (res) {
+    getDesigns: function (format, config) {
+      return this.__getData('designs', 'designsSync', null,[], format === 'dp' ? function (res) {
+        return res.map(function (designName) {
+          return {
+            label: designName,
+            value: designName
+          };
+        });
+      } : function (res) {
         return res.map(function (designName) {
           return {
             label: designName,
@@ -170,7 +177,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             kind: window.monaco.languages.CompletionItemKind.EnumMember
           };
         });
-      }, this);
+      }, this, config.cache);
     },
 
     /**

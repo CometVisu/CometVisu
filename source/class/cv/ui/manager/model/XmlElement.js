@@ -635,9 +635,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _updateDisplayName: function () {
       let displayName = this.getName();
       if (this._node) {
-        if (this._node.nodeType === Node.ELEMENT_NODE && this._node.hasAttribute('name')) {
-          const nameAttr = this._node.getAttribute('name');
-          displayName += ' "' + nameAttr + '"';
+        if (this._node.nodeType === Node.ELEMENT_NODE) {
+          if (this._node.hasAttribute('name')) {
+            const nameAttr = this._node.getAttribute('name');
+            displayName += ' "' + nameAttr + '"';
+          } else if (this.getName() === "pages" && this._node.hasAttribute('design')) {
+            const designAttr = this._node.getAttribute('design');
+            displayName += ' "' + designAttr + '"';
+          }
         } else if (this._node.nodeType === Node.TEXT_NODE && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
           if (textContent.length > 20) {

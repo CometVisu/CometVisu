@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // be ref'ed
       } else {
         // the element is it's own type
-        type = node;
+        type = node.querySelector(":scope > complexType");
       }
 
       return type;
