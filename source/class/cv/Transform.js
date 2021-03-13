@@ -127,7 +127,7 @@ qx.Class.define('cv.Transform', {
       }
       let
         transformParts = transformation.split(':'),
-        transform = transformParts[0] + ':' + transformParts[1],
+        transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
         parameter = transformParts[2],
         basetrans = transform.split('.')[0];
       var encoding = transform in cv.Transform.registry
@@ -162,7 +162,7 @@ qx.Class.define('cv.Transform', {
       }
       let
         transformParts = transformation.split(':'),
-        transform = transformParts[0] + ':' + transformParts[1],
+        transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
         parameter = transformParts[2],
         basetrans = transform.split('.')[0];
       return transform in cv.Transform.registry

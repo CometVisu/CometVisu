@@ -150,14 +150,14 @@
         </xsd:attribute>
         <xsd:attribute name="qos" type="xsd:decimal" use="optional">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">MQTT: QoS</xsd:documentation>
-            <xsd:documentation xml:lang="de">MQTT: QoS</xsd:documentation>
+            <xsd:documentation xml:lang="en">Only MQTT: QoS</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: QoS</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="retain" type="xsd:boolean" use="optional">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">MQTT: retain flag</xsd:documentation>
-            <xsd:documentation xml:lang="de">MQTT: retain Flag</xsd:documentation>
+            <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
       </xsd:extension>
