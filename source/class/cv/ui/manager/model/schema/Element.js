@@ -76,6 +76,56 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       }
 
       return type;
+    },
+
+    sortChildNodes: function (sorting) {
+      /**
+       * the comparison-function that helps the sorting
+       *
+       * @param   a   mixed   whatever sort gives us
+       * @param   b   mixed   whatever sort gives us
+       * @return  integer     -1, 0, 1 - depending on sort-order
+       */
+      return function (a, b) {
+        let aSortvalue = sorting[a.name];
+        let bSortvalue = sorting[b.name];
+
+        if (aSortvalue === undefined || bSortvalue === undefined) {
+          // undefined means: no sorting available
+          return 0;
+        }
+
+        if (aSortvalue === bSortvalue) {
+          // identical means 'no sorting necessary'
+          return 0;
+        }
+
+        // we need to go through the complete list of values the sorting is composed of,
+        // to find the first one that distinguishes a from b
+
+        // first, typecast to string!
+        if (typeof aSortvalue !== 'string') {
+          aSortvalue = aSortvalue.toString();
+        }
+        if (typeof bSortvalue !== 'string') {
+          bSortvalue = bSortvalue.toString();
+        }
+
+        let aSortvaluesList = aSortvalue.split('.');
+        let bSortvaluesList = bSortvalue.split('.');
+
+        for (let i = 0; i < aSortvaluesList.length; ++i) {
+          if (aSortvaluesList[i] < bSortvaluesList[i]) {
+            return -1;
+          } else if (aSortvaluesList[i] > bSortvaluesList[i]) {
+            return 1;
+          }
+        }
+
+        // if nothing else matched, then they are treated equal
+        return 0;
+
+      }
     }
   },
 

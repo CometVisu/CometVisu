@@ -466,6 +466,30 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           textAlign: "center"
         };
       }
+    },
+    "round-button": {
+      include: 'atom',
+      alias: 'atom',
+      style: function (states) {
+        return {
+          decorator: states.hovered ? 'round-button-hovered' : 'round-button',
+          width: 48,
+          height: 48,
+          textColor: "text",
+          show: "icon",
+          center: true
+        }
+      }
+    },
+    "round-button/icon": {
+      include: 'atom/icon',
+      alias: 'atom/icon',
+      style: function (states) {
+        return {
+          width: 32,
+          height: 32
+        }
+      }
     }
   }
 });

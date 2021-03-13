@@ -220,9 +220,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         }];
         this._node.remove();
         parent.getChildren().remove(this);
+        const editor = this.getEditor();
+        this.$$removed = true;
+        if (editor) {
+          // editor should not consider the modifiecation state of removed elements
+          editor.updateModified(this);
+        }
         parent.updateModified();
         if (!skipUndo) {
-          const editor = this.getEditor();
           if (editor) {
             const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Remove %1", this.getDisplayName()), this, changes, 'deleted');
             editor.addUndo(change);
@@ -452,10 +457,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         }
       }
       if (success) {
+        const editor = this.getEditor();
         xmlElement.setParent(this);
+        if (xmlElement.$$removed) {
+          delete xmlElement.$$removed;
+          if (editor) {
+            editor.updateModified(xmlElement);
+          }
+        }
         this.updateModified();
         if (!skipUndo) {
-          const editor = this.getEditor();
+
           if (editor) {
             const changes = [{
               index: index,
@@ -769,7 +781,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const childNode = this._node.childNodes.item(i);
         if (childNode.nodeType === Node.ELEMENT_NODE) {
           names.push(childNode.nodeName);
-        } else if ((childNode.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) && childNode.nodeValue.trim()) {
+        } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE) && childNode.nodeValue.trim()) {
           names.push(childNode.nodeName);
         }
       }

@@ -426,20 +426,29 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            });
            break;
 
-         case 'add-button':
+         case 'add-button-container':
            control = new qx.ui.container.Composite(new qx.ui.layout.Atom().set({center: true}));
            control.setAnonymous(true);
-           control.setHeight(32);
-           let button = new qx.ui.basic.Atom(null, cv.theme.dark.Images.getIcon('add', 32));
-           button.setDraggable(true);
-           button.setAppearance("round-button");
-           control.add(button);
-           this.bind('file.writeable', control, 'enabled');
+           control.setHeight(48);
+           control.setZIndex(20);
            this.getChildControl('left').add(control, {
              left: 0,
              right: 0,
              bottom: 16
            });
+           break;
+
+         case 'add-button':
+           control = new qx.ui.basic.Atom(null, cv.theme.dark.Images.getIcon('add', 32));
+           control.setDraggable(true);
+           control.setAppearance("round-button");
+           control.addListener("pointerover", () => control.addState("hovered"));
+           control.addListener("pointerout", () => control.removeState("hovered"));
+           control.addListener("tap", () => {
+             dialog.Dialog.alert(this.tr("Please create a new Element by dragging this button to the place where the new element should be inserted."))
+           }, this);
+           this.bind('file.writeable', control, 'enabled');
+           this.getChildControl("add-button-container").add(control);
            break;
 
          case 'drag-indicator':
@@ -535,60 +544,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    __getAttributeFormDefinition: function (element, attribute) {
-      const docs = attribute.getDocumentation();
-      const def = {
-        type: "TextField",
-        label: attribute.getName(),
-        placeholder: " - " + this.tr("not set") + " - ",
-        help: docs.join("<br/>"),
-        enabled: element.isEditable(),
-        value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
-        validation: {
-          required: !attribute.isOptional(),
-          validator: function (value) {
-            if (value instanceof qx.ui.form.ListItem) {
-              value = value.getModel().getValue();
-            }
-            return attribute.isValueValid(value);
-          }
-        }
-      }
-      switch (attribute.getTypeString()) {
-        case 'boolean':
-          def.type = "CheckBox";
-          def.value = def.value === '' || def.value === null || def.value === undefined ? null : def.value === 'true';
-          delete def.placeholder;
-          break;
-
-        case 'string':
-          const enums = attribute.getEnumeration();
-          if (enums.length > 0) {
-            def.type = "SelectBox";
-            delete def.placeholder;
-            def.options = [];
-            enums.forEach(name => {
-              def.options.push({label: name, value: name});
-            });
-            if (attribute.isOptional()) {
-              // allow empty value
-              def.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
-            }
-          } else {
-            // check if we have a dataprovider for this
-            this.__checkProvider(element.getName() + "@" + attribute.getName(), def, element.getNode());
-          }
-          break;
-      }
-      return def;
-    },
-
     _initDragDrop: function (control) {
       const enabled = this.getFile().isWriteable();
       control.set({
         draggable: enabled,
         droppable: enabled
-      })
+      });
+
       control.addListener("dragstart", function (ev) {
         const dragTarget = ev.getDragTarget();
         let element;
@@ -600,9 +562,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           ev.addType("cv/tree-element");
           ev.addData("cv/tree-element", element);
-        } else {
-          ev.addAction("copy");
         }
+      }, this);
+
+      const addButton = this.getChildControl("add-button");
+      addButton.addListener("dragstart", function (ev) {
+        ev.addAction("copy");
+        ev.addType("cv/new-tree-element");
       }, this);
 
       control.addListener("droprequest", function (ev) {
@@ -624,22 +590,29 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const Allowed = cv.ui.manager.editor.Tree.Allowed;
       const accepted = {
         mode: 0,
-        element: null
+        target: null
       }
 
       control.addListener("dragover", function (ev) {
         let type = ev.getCurrentType();
         // add ist a custom action that cannot be detected, so we only check if its supported
-        let action = ev.getCurrentAction()
+        let action = ev.getCurrentAction();
         let element;
         if (type === "cv/tree-element") {
           element = ev.getData("cv/tree-element");
         }
+        const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
+        if (!addNew && !element) {
+          // not for us
+          accepted.mode = Allowed.NONE;
+          ev.preventDefault();
+          return;
+        }
         const target = ev.getTarget().getModel();
         const parent = target.getParent();
-        accepted.element = target;
+        accepted.target = target;
         // because there is not "add" drag action we check for copy and no payload
-        const addNew = action === "copy" && !element;
+
         if (parent) {
           const parentSchemaElement = target.getParent().getSchemaElement();
           if (addNew) {
@@ -727,7 +700,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
       }, this);
 
-      control.addListener("drag", function (ev) {
+      const onDrag = function  (ev) {
         const orig = ev.getOriginalTarget();
         const origCoords = orig.getContentLocation();
         let leftPos = origCoords.left;
@@ -755,7 +728,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
         } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
           // below
-          if (accepted.element && !accepted.element.isOpen()) {
+          if (accepted.target && !accepted.target.isOpen()) {
             // when an element is opened this position is not after this element. but before its first child
             if (accepted.mode & Allowed.AFTER) {
               left = leftPos;
@@ -781,15 +754,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           if (!expandTimer) {
             expandTimer = qx.event.Timer.once(function () {
-              if (accepted.element) {
-                control.openNode(accepted.element);
+              if (accepted.target) {
+                control.openNode(accepted.target);
               }
             }, this, 1000);
           }
         }
         indicator.setDomPosition(left, top);
         indicator.setUserData("position", position);
-      }, this);
+      }
+      control.addListener("drag", onDrag, this);
+      addButton.addListener("drag", onDrag, this);
 
       const onDrop = function (ev) {
         let type = ev.getCurrentType();
@@ -799,7 +774,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           action = "add";
         }
         const elementName = element ? element.getDisplayName() : "new";
-        const target = accepted.element;
+        const target = accepted.target;
         switch (indicator.getUserData("position")) {
           case 'after':
             if (accepted.mode & Allowed.AFTER) {
@@ -868,7 +843,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       control.addListener("drop", onDrop, this);
       indicator.addListener("drop", onDrop, this);
 
-      control.addListener("dragend", function() {
+      const onDragEnd = function(ev) {
         // Move indicator away
         indicator.setDomPosition(-1000, -1000);
         indicator.setUserData("position", null);
@@ -877,9 +852,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           expandTimer.stop();
           expandTimer = null;
         }
-        accepted.element = null;
+        accepted.target = null;
         accepted.mode = 0;
-      });
+      };
+      control.addListener("dragend", onDragEnd, this);
+      addButton.addListener("dragend", onDragEnd, this);
     },
 
     /**
@@ -900,7 +877,65 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // filter allowed elements for this position
         }
       }
-      console.log("possible children", addable);
+      if (addable.length > 0) {
+        let typeChooserForm
+        if (addable.length > 1) {
+          // user has to select a type
+          typeChooserForm = new cv.ui.manager.form.ElementForm({
+            allowCancel: true,
+            context: this,
+            message: this.tr("<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"),
+            formData: {
+              type: {
+                type: "SelectBox",
+                label: this.tr("Choose element"),
+                help: this.tr("Please choose the element you want to add here."),
+                options: addable.sort().map(name => ({label: name, value: name})),
+                validation: {
+                  required: true
+                }
+              }
+            }
+          }).show().promise();
+        } else {
+          typeChooserForm = Promise.resolve({type: addable[0]});
+        }
+        typeChooserForm.then(result => {
+          const type = result.type;
+          // create new element, open the edit dialog and insert it
+          const document = target.getNode().ownerDocument;
+          const element = document.createElement(type);
+          const parentSchemaElement = target.getParent().getSchemaElement();
+          const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
+
+          const initChildren = function (element, schemaElement) {
+            const requiredChildren = schemaElement.getRequiredElements();
+            if (requiredChildren.length > 1) {
+              if (!schemaElement.areChildrenSortable()) {
+                // a special order os required
+                const allowedSorting = schemaElement.getAllowedElementsSorting();
+                requiredChildren.sort(cv.ui.manager.model.schema.Element.sortChildNodes(allowedSorting));
+              }
+            }
+            requiredChildren.forEach(childName => {
+              const child = document.createElement(childName);
+              element.appendChild(child);
+              // do this recursively
+              initChildren(child, schemaElement.getSchemaElementForElementName(childName));
+            });
+          }
+
+          const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), target.getParent());
+          this._onEdit(null, xmlElement).then((data) => {
+            // finally insert the new node
+            if (before) {
+              xmlElement.insertBefore(target);
+            } else {
+              xmlElement.insertAfter(target);
+            }
+          });
+        })
+      }
     },
 
     __getAllowedPositions: function (allowedSorting, elementName, targetName, depth) {
@@ -968,8 +1003,56 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    _onEdit: function () {
-      const element = this.getSelected();
+    __getAttributeFormDefinition: function (element, attribute) {
+      const docs = attribute.getDocumentation();
+      const def = {
+        type: "TextField",
+        label: attribute.getName(),
+        placeholder: " - " + this.tr("not set") + " - ",
+        help: docs.join("<br/>"),
+        enabled: element.isEditable(),
+        value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
+        validation: {
+          required: !attribute.isOptional(),
+          validator: function (value) {
+            if (value instanceof qx.ui.form.ListItem) {
+              value = value.getModel().getValue();
+            }
+            return attribute.isValueValid(value);
+          }
+        }
+      }
+      switch (attribute.getTypeString()) {
+        case 'boolean':
+          def.type = "CheckBox";
+          def.value = def.value === '' || def.value === null || def.value === undefined ? null : def.value === 'true';
+          delete def.placeholder;
+          break;
+
+        case 'string':
+          const enums = attribute.getEnumeration();
+          if (enums.length > 0) {
+            def.type = "SelectBox";
+            delete def.placeholder;
+            def.options = [];
+            enums.forEach(name => {
+              def.options.push({label: name, value: name});
+            });
+            if (attribute.isOptional()) {
+              // allow empty value
+              def.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
+            }
+          } else {
+            // check if we have a dataprovider for this
+            this.__checkProvider(element.getName() + "@" + attribute.getName(), def, element.getNode());
+          }
+          break;
+      }
+      return def;
+    },
+
+    _onEdit: function (ev, newElement) {
+      const element = newElement || this.getSelected();
       element.load();
       const formData = {};
       const promises = [];
@@ -1022,23 +1105,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
       }
       this.__editing = true;
-      Promise.all(promises).then(() => {
+      return Promise.all(promises).then(() => {
         const formDialog = new cv.ui.manager.form.ElementForm({
           allowCancel: true,
           context: this,
           caption:  "",
           message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
           formData: formData,
-          callback: function (data) {
-            if (data && element.isEditable()) {
-              // save changes
-              element.setAttributes(data);
-              this.clearReDos();
-            }
-            this.__editing = false;
-            formDialog.destroy();
-          }.bind(this)
         }).show();
+        return formDialog.promise().then(data => {
+          if (data && element.isEditable()) {
+            // save changes
+            element.setAttributes(data);
+            this.clearReDos();
+          }
+          this.__editing = false;
+          formDialog.destroy();
+        });
       });
     },
 
@@ -1077,14 +1160,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
+    /**
+     * Maintain global modification state.
+     * This method is called by a single cv.ui.manager.model.XmlElement when it has changes its modified state.
+     * @param element {cv.ui.manager.model.XmlElement}
+     */
     updateModified: function (element) {
       const index = this.__modifiedElements.indexOf(element);
-      if (element.isModified()) {
-        if (index === -1) {
-          this.__modifiedElements.push(element);
+      if (element.$$removed) {
+        // we dont care about elements that have been removed
+        if (index >= 0) {
+          this.__modifiedElements.splice(index, 1);
         }
-      } else if (index >= 0) {
-        this.__modifiedElements.splice(index, 1);
+      } else {
+        if (element.isModified()) {
+          if (index === -1) {
+            this.__modifiedElements.push(element);
+          }
+        } else if (index >= 0) {
+          this.__modifiedElements.splice(index, 1);
+        }
       }
       this.getFile().setModified(this.__modifiedElements.length > 0);
       this._onContentChanged();
