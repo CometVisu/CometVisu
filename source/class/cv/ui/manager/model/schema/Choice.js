@@ -112,11 +112,9 @@ qx.Class.define('cv.ui.manager.model.schema.Choice', {
       // append bounds to regex
       regexString += '{';
       const bounds = this.getBounds();
-      if (bounds.min !== 'unbounded') {
-        regexString += bounds.min === undefined ? 1 : bounds.min;
-      }
+      regexString += bounds.min === undefined ? 1 : bounds.min;
       regexString += ',';
-      if (bounds.max !== 'unbounded') {
+      if (bounds.max !== Number.POSITIVE_INFINITY) {
         regexString += bounds.max === undefined ? 1 : bounds.max;
       }
       regexString += '}';

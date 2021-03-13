@@ -509,13 +509,11 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       let boundsMax = '';
       const bounds = this.getBounds();
       if (bounds.min !== undefined) {
-        if (bounds.min !== 'unbounded') {
-          boundsMin = bounds.min;
-        }
+        boundsMin = bounds.min;
       }
 
       if (bounds.max !== undefined) {
-        if (bounds.max !== 'unbounded') {
+        if (bounds.max !== Number.POSITIVE_INFINITY) {
           boundsMax = bounds.max;
         }
       }

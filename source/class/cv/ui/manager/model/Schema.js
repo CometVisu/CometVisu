@@ -235,6 +235,8 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         const tmpXML = this.__xsd.createElement('element');
         tmpXML.setAttribute('name', '#comment');
         tmpXML.setAttribute('type', 'xsd:string');
+        tmpXML.setAttribute('minOccurs', "0");
+        tmpXML.setAttribute('maxOccurs', "unbounded");
         this.__commentNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this);
       }
 

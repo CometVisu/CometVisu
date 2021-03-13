@@ -16,7 +16,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     this.base(arguments);
     this._node = node;
     const children = new qx.data.Array();
-    children.addListener('change', this._syncChildNodes, this);
     if (node) {
       this._node.$$widget = this;
       this.setSchemaElement(schemaElement);
@@ -170,6 +169,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _initialChildNames: null,
     _initialTextContent: null,
     __initializing: false,
+    __addableChildren: null,
 
     clone: function () {
       return new cv.ui.manager.model.XmlElement(this.getNode(), this.getSchemaElement(), this.getEditor(), this.getParent());
@@ -232,7 +232,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     /**
-     * Move child node from old position to new one
+     * Move this node to a new position in relation to the target
      * @param target {cv.ui.manager.model.XmlElement} new direct sibling
      * @param before {Boolean} move before target if true, otherwise after target
      * @param skipUndo {Boolean} no not add an undo operation for this
@@ -300,6 +300,47 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     moveBefore: function (target, skipUndo) {
       return this._move(target, true, skipUndo);
+    },
+
+    insertAfter: function (target, skipUndo) {
+      const targetParent = target.getParent();
+      const newIndex = targetParent.getChildren().indexOf(target) + 1;
+      return targetParent.insertChild(this, newIndex, skipUndo);
+    },
+
+    insertBefore: function (target, skipUndo) {
+      const targetParent = target.getParent();
+      const newIndex = targetParent.getChildren().indexOf(target);
+      return targetParent.insertChild(this, newIndex, skipUndo);
+    },
+
+    /**
+     * Returns a list of element names that can be added to this element.
+     * Checks the allowed elements and their bounds and the existing children
+     * to find out if we can add more of them.
+     */
+    getAddableChildren: function() {
+      if (!this.__addableChildren) {
+        const schemaElement = this.getSchemaElement();
+        const allowed = schemaElement.getAllowedElements();
+        const stillAllowed = [];
+        const countExisting = {};
+        this.getChildren().forEach(child => {
+          if (!countExisting.hasOwnProperty(child.getName())) {
+            countExisting[child.getName()] = 0;
+          }
+          countExisting[child.getName()]++;
+        })
+        Object.keys(allowed).forEach(elementName => {
+          const childBounds = schemaElement.getBoundsForElementName(elementName);
+          const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
+          if (childBounds.max > existing) {
+            stillAllowed.push(elementName);
+          }
+        });
+        this.__addableChildren = stillAllowed;
+      }
+      return this.__addableChildren;
     },
 
     isChildAllowedAtPosition: function (xmlElement, index) {
@@ -623,6 +664,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (!this.isLoaded() || force) {
         this.__initializing = true;
         const children = this.getChildren();
+        children.removeListener('change', this._syncChildNodes, this);
         children.removeAll();
         if (this._node) {
           if (this._node.nodeType === Node.ELEMENT_NODE) {
@@ -679,6 +721,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
         }
         this.setLoaded(true);
+        children.addListener('change', this._syncChildNodes, this);
         this.__initializing = false;
       }
     },
@@ -736,6 +779,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _syncChildNodes: function (ev) {
       const changes = ev.getData();
       console.log(changes)
+      // children have changed clear cache
+      this.__addableChildren = null;
     }
   },
   /*
@@ -747,6 +792,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     this._node = null;
     this._schema = null;
     this._initialAttributes = null;
+    this.__addableChildren = null;
     this._disposeObjects('_schemaElement');
   }
 });

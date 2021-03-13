@@ -124,11 +124,9 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       // append bounds to regex
       regexString += '{';
       const bounds = this.getBounds();
-      if (bounds.min !== 'unbounded') {
-        regexString += bounds.min === undefined ? 1 : bounds.min;
-      }
+      regexString += bounds.min === undefined ? 1 : bounds.min;
       regexString += ',';
-      if (bounds.max !== 'unbounded') {
+      if (bounds.max !== Number.POSITIVE_INFINITY) {
         regexString += bounds.max === undefined ? 1 : bounds.max;
       }
       regexString += '}';
@@ -151,30 +149,25 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           max: 1
         };
 
-        if (elementBounds.min === 'unbounded' || sequenceBounds.min === 'unbounded') {
-          // unbounded is the highest possible value
-          resultBounds.min = 'unbounded';
-        } else {
-          // if it is bounded, we must duplicate element and sequence bounds
-          // (an element may appear as often as the number of sequences times the number of elements
-          // in each sequence - roughly)
-          if (elementBounds.min !== 'undefined') {
-            resultBounds.min = elementBounds.min;
-          }
-
-          if (sequenceBounds.min !== 'undefined') {
-            resultBounds.min = resultBounds.min * sequenceBounds.min;
-          }
+        // if it is bounded, we must duplicate element and sequence bounds
+        // (an element may appear as often as the number of sequences times the number of elements
+        // in each sequence - roughly)
+        if (elementBounds.hasOwnProperty("min")) {
+          resultBounds.min = elementBounds.min;
         }
 
-        if (elementBounds.max === 'unbounded' || sequenceBounds.max === 'unbounded') {
-          resultBounds.max = 'unbounded';
+        if (sequenceBounds.hasOwnProperty("min")) {
+          resultBounds.min = resultBounds.min * sequenceBounds.min;
+        }
+
+        if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
+          resultBounds.max = Number.POSITIVE_INFINITY;
         } else {
-          if (elementBounds.max !== 'undefined') {
+          if (elementBounds.hasOwnProperty("max")) {
             resultBounds.max = elementBounds.max;
           }
 
-          if (sequenceBounds.max !== 'undefined') {
+          if (sequenceBounds.hasOwnProperty("max")) {
             resultBounds.max = resultBounds.max * sequenceBounds.max;
           }
         }
