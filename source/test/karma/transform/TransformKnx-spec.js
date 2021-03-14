@@ -115,6 +115,8 @@ var testcases = [
   { transform: 'DPT:7.001', type: 'decode', source: '0000', target: 0        },
   { transform: 'DPT:7.001', type: 'decode', source: '0064', target: 100      },
   { transform: 'DPT:7.001', type: 'decode', source: 'ffff', target: 65535    },
+  { transform: 'DPT:7.600', type: 'encode', source: 3000,   target: '800bb8' },
+  { transform: 'DPT:7.600', type: 'decode', source: '0bb8', target: 3000     },
   { transform: 'DPT:7'    , type: 'encode', source: 100,    target: '800064' },
   { transform: 'DPT:7'    , type: 'decode', source: '0064', target: 100      },
 
@@ -241,8 +243,8 @@ var testcases = [
   { transform: 'DPT:20.102', type: 'decode', source: '03', target: 'economy'             },
   { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' },
 
-  { transform: 'DPT:24.001', type: 'encode', source: 'Test string',                 target: '805465737420737472696e6700', noNumber: true },
-  { transform: 'DPT:24.001', type: 'decode', source: '5465737420737472696e67',  target: 'Test string' },
+  { transform: 'DPT:24.001', type: 'encode', source: 'Test string',            target: '805465737420737472696e6700', noNumber: true },
+  { transform: 'DPT:24.001', type: 'decode', source: '5465737420737472696e67', target: 'Test string' },
 
   { transform: 'DPT:26.001', type: 'encode', source: 1,    target: '8000' },
   { transform: 'DPT:26.001', type: 'encode', source: 11,   target: '800a' },
@@ -256,7 +258,32 @@ var testcases = [
   { transform: 'DPT:26.001', type: 'decode', source: '3f', target: 64     },
   { transform: 'DPT:26.001', type: 'decode', source: '40', target: 64+1   },
   { transform: 'DPT:26.001', type: 'decode', source: '7f', target: 64+64  },
-  { transform: 'DPT:26'    , type: 'encode', source: 11,   target: '800a' }
+  { transform: 'DPT:26'    , type: 'encode', source: 11,   target: '800a' },
+
+  { transform: 'DPT:232.600', type: 'encode', source: [  0,   0,   0], target: '80000000',      noNumber: true },
+  { transform: 'DPT:232.600', type: 'encode', source: [100, 100, 100], target: '80ffffff',      noNumber: true },
+  { transform: 'DPT:232.600', type: 'decode', source: '000000',        target: [  0,   0,   0], noNumber: true },
+  { transform: 'DPT:232.600', type: 'decode', source: 'ffffff',        target: [100, 100, 100], noNumber: true },
+
+  { transform: 'DPT:251.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
+  { transform: 'DPT:251.600', type: 'encode', source: new Map(
+    [['r',  0],['g',  0],['b',  0],['w',  0],['rValid',false],['gValid',false],['bValid',false],['wValid',false]]
+    ), target: '80000000000000', noNumber: true },
+  { transform: 'DPT:251.600', type: 'encode', source: new Map(
+    [['r', 20],['g', 40],['b', 60],['w', 80],['rValid',true ],['gValid',false],['bValid',true ],['wValid',false]]
+    ), target: '80336699cc000a', noNumber: true },
+  { transform: 'DPT:251.600', type: 'encode', source: new Map(
+    [['r',100],['g',100],['b',100],['w',100],['rValid',true ],['gValid',true ],['bValid',true ],['wValid',true ]]
+    ), target: '80ffffffff000f', noNumber: true },
+  { transform: 'DPT:251.600', type: 'decode', source: '000000000000', target: new Map(
+      [['r',  0],['g',  0],['b',  0],['w',  0],['rValid',false],['gValid',false],['bValid',false],['wValid',false]]
+    ), noNumber: true },
+  { transform: 'DPT:251.600', type: 'decode', source: '336699cc000a', target: new Map(
+      [['r', 20],['g', 40],['b', 60],['w', 80],['rValid',true ],['gValid',false],['bValid',true ],['wValid',false]]
+    ), noNumber: true },
+  { transform: 'DPT:251.600', type: 'decode', source: 'ffffffff000f', target: new Map(
+      [['r',100],['g',100],['b',100],['w',100],['rValid',true ],['gValid',true ],['bValid',true ],['wValid',true ]]
+    ), noNumber: true }
 ];
 
 describe('checking knx transforms', function() {

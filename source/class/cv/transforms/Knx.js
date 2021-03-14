@@ -189,6 +189,11 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16);
         }
       },
+      '7.600': {
+        name: 'DPT_Absolute_Colour_Temperature',
+        unit: 'K',
+        link: '7.001'
+      },
       '7': {
         link: '7.001'
       },
@@ -596,6 +601,49 @@ qx.Class.define('cv.transforms.Knx', {
             parseInt(hex.substr(2,2), 16) * 100 / 255.0,
             parseInt(hex.substr(4,2), 16) * 100 / 255.0
           ];
+        }
+      },
+      '251.600' : {
+        name  : 'DPT_xxx (RGBW)',
+        encode: function( phy ){
+          if( !(phy instanceof Map) ) {
+            return { bus: '80000000000000', raw: '000000000000' };
+          }
+
+          let
+            rValid = phy.has('r') && (phy.get('rValid') || false),
+            gValid = phy.has('g') && (phy.get('gValid') || false),
+            bValid = phy.has('b') && (phy.get('bValid') || false),
+            wValid = phy.has('w') && (phy.get('wValid') || false),
+            r = phy.get('r') || 0,
+            g = phy.get('g') || 0,
+            b = phy.get('b') || 0,
+            w = phy.get('w') || 0,
+            val = [
+              parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(b * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(w * 255 / 100).toString(16).padStart(2, '0'),
+              '00',
+              (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
+            ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function( hex ) {
+          let valid = parseInt( hex[11], 16);
+          return new Map([
+            ['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0],
+            ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0],
+            ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0],
+            ['w', parseInt(hex.substr(6, 2), 16) * 100 / 255.0],
+            ['rValid', (valid & 8) > 0],
+            ['gValid', (valid & 4) > 0],
+            ['bValid', (valid & 2) > 0],
+            ['wValid', (valid & 1) > 0]
+          ]);
         }
       },
       /* 9 Zeilen:
