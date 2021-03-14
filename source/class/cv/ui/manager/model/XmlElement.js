@@ -592,6 +592,18 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           value: newValue,
           old: oldValue
         }
+      } else if (this._node.nodeType === Node.TEXT_NODE && name === '#text') {
+        return this.setText(value);
+      } else if (this._node.nodeType === Node.COMMENT_NODE && name === '#comment') {
+        const oldValue = this.getTextContent();
+        const changed = value !== oldValue;
+        this.setTextContent(value);
+        return {
+          changed: changed,
+          attribute: '#comment',
+          value: value,
+          old: oldValue
+        }
       }
     },
 
@@ -714,7 +726,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   this._initialChildNames.push(childNode.nodeName);
                 } else if (childNode.nodeType === Node.TEXT_NODE) {
                   if (childNode.nodeValue) {
-                    const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
+                    // do not use childSchemaElement here, because our schemeElement already knows how to validate text
+                    const child = new cv.ui.manager.model.XmlElement(childNode, schemaElement, this.getEditor(), this);
                     if (schemaElement.isMixed()) {
                       // text nodes can be re-ordered in mixed content
                       child.setSortable(true);

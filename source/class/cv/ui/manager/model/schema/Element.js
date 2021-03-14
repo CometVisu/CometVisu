@@ -471,6 +471,9 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  object              SchemaElement-object, or undefined if none is found
      */
     getSchemaElementForElementName: function (elementName) {
+      // first, get a list of allowed content (don't worry, it's cached)
+      const allowedContent = this.getAllowedContent();
+
       if (elementName === '#text') {
         // no special handling for mixed nodes, they do have a #text-SchemaElement already!
         // text-nodes may be allowed. we will see ...
@@ -483,10 +486,6 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // comments are always allowed
         return this.getSchema().getCommentNodeSchemaElement();
       }
-
-
-      // first, get a list of allowed content (don't worry, it's cached)
-      var allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping === undefined) {
         // when there is no choice, then there is no allowed element

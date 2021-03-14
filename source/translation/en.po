@@ -206,7 +206,7 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+Z"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Undo"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+Y"
 msgstr ""
 
@@ -222,27 +222,27 @@ msgstr ""
 msgid "Redo"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+X"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Cut"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Copy"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+C"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+V"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Paste"
 msgstr ""
 
@@ -270,7 +270,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Edit"
 msgstr ""
 
@@ -468,11 +468,11 @@ msgstr ""
 msgid "Option key duplicate: \"%1\" in section \"%2\"."
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Saving hidden config failed with error %1 (%2)"
 msgstr ""
 
-#: cv/ui/manager/editor/Source.js
+#: cv/ui/manager/editor/Config.js
 msgid "Hidden config has been saved"
 msgstr ""
 
@@ -492,7 +492,7 @@ msgstr ""
 msgid "Texteditor"
 msgstr ""
 
-#: cv/ui/manager/editor/Xml.js
+#: cv/ui/manager/editor/Tree.js
 msgid "Xml-editor"
 msgstr ""
 
@@ -708,7 +708,7 @@ msgstr ""
 msgid "Confirm saving with warnings"
 msgstr ""
 
-#: cv/ui/manager/editor/Xml.js
+#. NO LONGER USED
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr ""
 
@@ -750,4 +750,128 @@ msgstr ""
 
 #: cv/ui/manager/editor/Diff.js
 msgid "No changes have been made"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Help"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Add child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Undo: %1"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Expertview"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Reload preview"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Search..."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please create a new Element by dragging this button to the place where the new element should be inserted."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Choose element"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please choose the element you want to add here."
+msgstr ""
+
+#: cv/ui/manager/form/CheckBox.js
+msgid "not set"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "This is not a valid value."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit %1"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Show %1"
+msgstr ""
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Value is invalid"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Remove %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Move %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Add %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid text content: %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content not allowed here"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Change %1"
+msgstr ""
+
+#: cv/ui/manager/model/schema/Attribute.js
+msgid "complex type, please see documentation"
+msgstr ""
+
+#: cv/ui/manager/tree/VirtualElementItem.js
+msgid "Drag to move"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js
+msgid "This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window."
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>Search for elements</h3>          <p>You can search for element names (tag names or content of name attribute) by typing a search value here.          All elements whose tag name or name-attribute start with the search term will be found</p>          <p>Search will start automatically when the search term is at least 2 characters long.</p>          <p>The first found element will be opened and selected in the element tree. You can jump to the next          found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element          with the 'Up' key.</p>"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3>          <p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure.          You can traverse through the tree by opening/closing elements with a double-click.</p>          <p>The Xml-Editor will make sure that you do not create an invalid configuration file.          If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>          <h4>Editing attributes</h4>          <p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar          above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>          <h4>Editing elements</h4>          <p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them.          You can add new elements by starting a drag in the round + button on the bottom of the tree, or          by right clicking on an element and choosing the 'add child'-button.</p>          <p>You can delete elements by the delete buttons in the toolbar</p>          <h4>Expert view</h4>          <p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually          are not needed that often. You can access these attributes by toggling to the 'Expertview'-button           in the toolbar directly above the tree.</p>          <h4>Config preview</h4>          <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically          refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>        "
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here.All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the nextfound element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found elementwith the 'Up' key.</p>"
+msgstr ""
+
+#. NO LONGER USED
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure.You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file.If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbarabove the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them.You can add new elements by starting a drag in the round + button on the bottom of the tree, orby right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usuallyare not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automaticallyrefresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
 msgstr ""

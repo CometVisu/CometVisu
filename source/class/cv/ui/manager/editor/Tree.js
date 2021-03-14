@@ -126,8 +126,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             break;
 
           case 'help':
-            const focusedWidget = qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
-            console.log("show help for", focusedWidget);
+            this._showHelp();
             break;
 
           default:
@@ -335,6 +334,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
          case 'refresh-preview':
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 16));
+           control.setToolTipText(this.tr("Reload preview"));
            control.addListener('execute', this._updatePreview, this);
            this.getChildControl('toolbar').add(control);
            break;
@@ -1068,7 +1068,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (value instanceof qx.ui.form.ListItem) {
               value = value.getModel().getValue();
             }
-            return attribute.isValueValid(value);
+            if (!attribute.isValueValid(value)) {
+              throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+            }
           }
         }
       }
@@ -1144,7 +1146,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               if (value instanceof qx.ui.form.ListItem) {
                 value = value.getModel().getValue();
               }
-              return typeElement.isValueValid(value);
+              if (!typeElement.isValueValid(value)) {
+                throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+              }
             }
           }
         }
@@ -1398,11 +1402,54 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _onSaved: function () {
       this.base(arguments);
       this.__modifiedElements.forEach(elem => elem.onSaved());
+      this.__modifiedElements = [];
       this.clearUnDosReDos();
     },
 
     isSupported: function (file) {
       return cv.ui.manager.editor.Tree.SUPPORTED_FILES.test(file.getName());
+    },
+
+    _showHelp: function () {
+      const focusedWidget = qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
+      const dialogConf = {
+        caption: this.tr("Help"),
+        modal: true,
+        minWidth: Math.min(600, qx.bom.Viewport.getWidth()),
+        message: ""
+      }
+      if (focusedWidget === this.getChildControl('searchbar')) {
+        dialogConf.message = this.tr("<h3>Search for elements</h3>\
+<p>You can search for element names (tag names or content of name attribute) by typing a search value here. \
+All elements whose tag name or name-attribute start with the search term will be found</p>\
+<p>Search will start automatically when the search term is at least 2 characters long.</p>\
+<p>The first found element will be opened and selected in the element tree. You can jump to the next \
+found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element \
+with the 'Up' key.</p>");
+      } else {
+        // show general help
+        dialogConf.message = this.tr("<h3>CometVisu XML-Editor - a brief introduction</h3>\
+<p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. \
+You can traverse through the tree by opening/closing elements with a double-click.</p>\
+<p>The Xml-Editor will make sure that you do not create an invalid configuration file. \
+If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>\
+<h4>Editing attributes</h4>\
+<p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar \
+above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>\
+<h4>Editing elements</h4>\
+<p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. \
+You can add new elements by starting a drag in the round + button on the bottom of the tree, or \
+by right clicking on an element and choosing the 'add child'-button.</p>\
+<p>You can delete elements by the delete buttons in the toolbar</p>\
+<h4>Expert view</h4>\
+<p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually \
+are not needed that often. You can access these attributes by toggling to the 'Expertview'-button \
+in the toolbar directly above the tree.</p>\
+<h4>Config preview</h4>\
+<p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically \
+refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>");
+      }
+      new dialog.Alert(dialogConf).show();
     }
   },
 
