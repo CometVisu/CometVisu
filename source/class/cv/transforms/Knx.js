@@ -66,15 +66,46 @@ qx.Class.define('cv.transforms.Knx', {
         link: '1.001'
       },
 
+      '3.007': {
+        name: 'DPT_Control_Dimming',
+        encode: function (phy) {
+          phy = parseFloat(phy);
+          if( phy < -100 || (phy > -1 && phy <= 0) ) {
+            return { bus: '80', raw: '00' }; // down: stop
+          }
+
+          if( phy > 100 || (phy > 0 && phy < 1) ) {
+            return { bus: '88', raw: '08' }; // up: stop
+          }
+
+          let
+            up = phy > 0,
+            stepCode = 7-Math.floor(Math.log2(Math.abs(phy))),
+            val = (stepCode | (up * 0b1000)).toString(16);
+          return {
+            bus: '8' + val,
+            raw: '0' + val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          let
+            val = parseInt(hex, 16),
+            up = (val & 0b1000) > 0;
+          return (up*2-1) * 100/(2**((val& 0b111)-1));
+        }
+      },
+      '3.008': {
+        name: 'DPT_Control_Blinds',
+        link: '3.007'
+      },
       '3': {
-        link: '1.001'
+        link: '3.007'
       },
 
       '4.001': {
         name: 'DPT_Char_ASCII',
         encode: function (phy) {
-          var val = phy.charCodeAt(0).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = phy.charCodeAt(0).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -96,8 +127,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 100.0
         },
         encode: function (phy) {
-          var val = parseInt(phy * 255 / 100).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = parseInt(phy * 255 / 100).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -115,8 +145,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 360.0
         },
         encode: function (phy) {
-          var val = parseInt(phy * 255 / 360).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = parseInt(phy * 255 / 360).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -134,8 +163,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 255.0
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -160,8 +188,7 @@ qx.Class.define('cv.transforms.Knx', {
         encode: function (phy) {
           phy = parseInt(cv.Transform.clip(-128, phy, 127));
           var val = phy < 0 ? phy + 256 : phy;
-          val = val.toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          val = val.toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -179,7 +206,7 @@ qx.Class.define('cv.transforms.Knx', {
       '7.001': {
         name: 'DPT_Value_2_Ucount',
         encode: function (phy) {
-          var val = parseInt(phy).toString(16).padStart(4,"0");
+          var val = parseInt(phy).toString(16).padStart(4,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -203,7 +230,7 @@ qx.Class.define('cv.transforms.Knx', {
         encode: function (phy) {
           var val = parseInt(phy);
           val = val < 0 ? val + 65536 : val;
-          val = val.toString(16).padStart(4,"0");
+          val = val.toString(16).padStart(4,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -229,7 +256,7 @@ qx.Class.define('cv.transforms.Knx', {
             mant >>= 1;
             exp++;
           }
-          var val = ( sign | (exp << 11) | (mant & 0x07ff) ).toString(16).padStart(4,"0");
+          var val = ( sign | (exp << 11) | (mant & 0x07ff) ).toString(16).padStart(4,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -270,9 +297,9 @@ qx.Class.define('cv.transforms.Knx', {
       '10.001': {
         name: 'DPT_TimeOfDay',
         encode: function (phy) {
-          var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2,"0");
-          val += phy.getMinutes().toString(16).padStart(2,"0");
-          val += phy.getSeconds().toString(16).padStart(2,"0");
+          var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2,'0');
+          val += phy.getMinutes().toString(16).padStart(2,'0');
+          val += phy.getSeconds().toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -310,7 +337,7 @@ qx.Class.define('cv.transforms.Knx', {
       '12.001': {
         name: 'DPT_Value_4_Ucount',
         encode: function (phy) {
-          var val = parseInt(phy).toString(16).padStart(8,"0");
+          var val = parseInt(phy).toString(16).padStart(8,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -329,7 +356,7 @@ qx.Class.define('cv.transforms.Knx', {
         encode: function (phy) {
           var val = parseInt(phy);
           val = val < 0 ? val + 4294967296 : val;
-          val = val.toString(16).padStart(8,"0");
+          val = val.toString(16).padStart(8,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -440,8 +467,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+128
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+128)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+128)).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -472,8 +498,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+64
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+64)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+64)).toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -523,8 +548,7 @@ qx.Class.define('cv.transforms.Knx', {
             default: // actually "case 0:" / "auto"
               val = 0;
           }
-          val = val.toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          val = val.toString(16).padStart(2,'0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
