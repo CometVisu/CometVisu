@@ -391,7 +391,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setDelegate({
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
-               item.addListener('longtap', this._onContextMenu, this);
                item.addListener('contextmenu', this._onContextMenu, this);
                return item;
              }.bind(this),
