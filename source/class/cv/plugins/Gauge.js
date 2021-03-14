@@ -216,7 +216,7 @@ qx.Class.define('cv.plugins.Gauge', {
     handleUpdate: function( value, address) {
       if (!address || value === undefined) { return; }
 
-      var variant = this.getAddress()[address][2];
+      var variant = this.getAddress()[address].variantInfo;
       var gaugeElement = this.__gaugeElement;
       if (gaugeElement) {
         switch (variant) {

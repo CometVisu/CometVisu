@@ -70,7 +70,7 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
     _action: function() {
       var value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
       this.sendToBackend(value, function(address) {
-        return !!(address[2] & 1);
+        return !!(address.variantInfo & 1);
       });
     },
 
@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
      */
     _onLongTap: function() {
       this.sendToBackend(this.getSendValue(), function(address) {
-        return !!(address[2] & 2);
+        return !!(address.variantInfo & 2);
       });
     }
   }

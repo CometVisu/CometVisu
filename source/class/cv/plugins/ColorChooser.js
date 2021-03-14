@@ -133,27 +133,27 @@ qx.Class.define('cv.plugins.ColorChooser', {
       for( var addr in address )
       {
         if( !cv.data.Model.isWriteAddress(address[addr]) ) { continue; } // skip when write flag not set
-        switch( address[addr][2] )
+        switch( address[addr].variantInfo )
         {
           case 'r':
-            v = cv.Transform.encode(address[addr][0], r );
-            if( v !== cv.Transform.encode(address[addr][0], br ) )
+            v = cv.Transform.encode(address[addr].transform, r );
+            if( v !== cv.Transform.encode(address[addr].transform, br ) )
             {
               templateEngine.visu.write( addr, v );
               modified = true;
             }
             break;
           case 'g':
-            v = cv.Transform.encode(address[addr][0], g );
-            if( v !== cv.Transform.encode(address[addr][0], bg ) )
+            v = cv.Transform.encode(address[addr].transform, g );
+            if( v !== cv.Transform.encode(address[addr].transform, bg ) )
             {
               templateEngine.visu.write( addr, v );
               modified = true;
             }
             break;
           case 'b':
-            v = cv.Transform.encode(address[addr][0], b );
-            if( v !== cv.Transform.encode(address[addr][0], bb ) )
+            v = cv.Transform.encode(address[addr].transform, b );
+            if( v !== cv.Transform.encode(address[addr].transform, bb ) )
             {
               templateEngine.visu.write( addr, v );
               modified = true;
@@ -162,8 +162,8 @@ qx.Class.define('cv.plugins.ColorChooser', {
           case 'rgb':
             var rgb = [r,g,b];
             var brgb = [br,bg,bb];
-            v = cv.Transform.encode(address[addr][0], rgb );
-            var bv = cv.Transform.encode(address[addr][0], brgb );
+            v = cv.Transform.encode(address[addr].transform, rgb );
+            var bv = cv.Transform.encode(address[addr].transform, brgb );
             if( v !== bv )
             {
               templateEngine.visu.write( addr, v );
@@ -193,11 +193,11 @@ qx.Class.define('cv.plugins.ColorChooser', {
       if (ga === undefined) { return; }
       function toHex( x ) { var r = parseInt( x ).toString(16); return r.length === 1 ? '0'+r : r; }
       var
-        value      = cv.Transform.decode( this.getAddress()[ ga ][0], data ),
+        value      = cv.Transform.decode( this.getAddress()[ ga ].transform, data ),
         farbtastic = jQuery.farbtastic( this.getActor() ),
         color      = farbtastic.color || '#000000';
 
-      switch( this.getAddress()[ ga ][2] )
+      switch( this.getAddress()[ ga ].variantInfo )
       {
         case 'r':
           this.setBusR(value);
