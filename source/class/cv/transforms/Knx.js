@@ -606,6 +606,46 @@ qx.Class.define('cv.transforms.Knx', {
           return val;
         }
       },
+      '225.001' : {
+        name  : 'DPT_ScalingSpeed',
+        encode: function( phy ){
+          let
+            period = phy.get('period') || 0,
+            percent = phy.get('percent') || 0,
+            val = [
+              parseInt(period).toString(16).padStart(4, '0'),
+              parseInt(percent * 255 / 100).toString(16).padStart(2, '0')
+            ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function( hex ){
+          return new Map([
+            ['period', parseInt(hex.substr(0, 4), 16)],
+            ['percent', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]
+          ]);
+        }
+      },
+      '225' : {
+        name: 'DPT_U24',
+        unit: '-',
+        range: {
+          min: 0x0,
+          max: 0xfff
+        },
+        encode: function (phy) {
+          var val = parseInt(cv.Transform.clip(0, phy, 0xffffff)).toString(16).padStart(6,'0');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16);
+        }
+      },
       '232.600' : {
         name  : 'DPT_Colour_RGB',
         encode: function( phy ){
@@ -627,8 +667,44 @@ qx.Class.define('cv.transforms.Knx', {
           ];
         }
       },
+      '242.600' : {
+        name  : 'DPT_Colour_xyY',
+        encode: function( phy ){
+          if( !(phy instanceof Map) ) {
+            return { bus: '80000000000000', raw: '000000000000' };
+          }
+
+          let
+            cValid = phy.has('x') && phy.has('y') && (phy.get('cValid') || false),
+            bValid = phy.has('b') && (phy.get('bValid') || false),
+            x = phy.get('x') || 0,
+            y = phy.get('y') || 0,
+            b = phy.get('b') || 0,
+            val = [
+              parseInt(x * 65535).toString(16).padStart(4, '0'),
+              parseInt(y * 65535).toString(16).padStart(4, '0'),
+              parseInt(b * 255 / 100).toString(16).padStart(2, '0'),
+              (cValid*2 + bValid*1).toString(16).padStart(2, '0')
+            ].join('');
+
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function( hex ){
+          let valid = parseInt( hex[11], 16 );
+          return new Map([
+            ['x', parseInt(hex.substr(0, 4), 16) / 65535.0],
+            ['y', parseInt(hex.substr(4, 4), 16) / 65535.0],
+            ['b', parseInt(hex.substr(8, 2), 16) * 100 / 255.0],
+            ['cValid', (valid & 2) > 0],
+            ['bValid', (valid & 1) > 0]
+          ]);
+        }
+      },
       '251.600' : {
-        name  : 'DPT_xxx (RGBW)',
+        name  : 'DPT_Colour_RGBW',
         encode: function( phy ){
           if( !(phy instanceof Map) ) {
             return { bus: '80000000000000', raw: '000000000000' };
@@ -651,6 +727,7 @@ qx.Class.define('cv.transforms.Knx', {
               '00',
               (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
             ].join('');
+
           return {
             bus: '80' + val,
             raw: val.toUpperCase()

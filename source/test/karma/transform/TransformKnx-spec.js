@@ -279,10 +279,47 @@ var testcases = [
   { transform: 'DPT:26.001', type: 'decode', source: '7f', target: 64+64  },
   { transform: 'DPT:26'    , type: 'encode', source: 11,   target: '800a' },
 
+  { transform: 'DPT:225', type: 'encode', source: 0,        target: '80000000' },
+  { transform: 'DPT:225', type: 'encode', source: 0xffffff, target: '80ffffff' },
+  { transform: 'DPT:225', type: 'decode', source: '000000', target: 0          },
+  { transform: 'DPT:225', type: 'decode', source: 'ffffff', target: 0xffffff   },
+  { transform: 'DPT:225.001', type: 'encode', source: new Map(
+      [['period',     0],['percent',   0]]
+    ), target: '80000000', noNumber: true },
+  { transform: 'DPT:225.001', type: 'encode', source: new Map(
+      [['period', 65535],['percent', 100]]
+    ), target: '80ffffff', noNumber: true },
+  { transform: 'DPT:225.001', type: 'decode', source: '000000', target: new Map(
+      [['period',     0],['percent',   0]]
+    ), noNumber: true },
+  { transform: 'DPT:225.001', type: 'decode', source: 'ffffff', target: new Map(
+      [['period', 65535],['percent', 100]]
+    ), noNumber: true },
+
   { transform: 'DPT:232.600', type: 'encode', source: [  0,   0,   0], target: '80000000',      noNumber: true },
   { transform: 'DPT:232.600', type: 'encode', source: [100, 100, 100], target: '80ffffff',      noNumber: true },
   { transform: 'DPT:232.600', type: 'decode', source: '000000',        target: [  0,   0,   0], noNumber: true },
   { transform: 'DPT:232.600', type: 'decode', source: 'ffffff',        target: [100, 100, 100], noNumber: true },
+
+  { transform: 'DPT:242.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
+  { transform: 'DPT:242.600', type: 'encode', source: new Map(
+      [['x',  0],['y',   0],['b',   0],['cValid',false],['bValid',false]]
+    ), target: '80000000000000', noNumber: true },
+  { transform: 'DPT:242.600', type: 'encode', source: new Map(
+      [['x',0.5],['y',0.25],['b',12.5],['cValid',true ],['bValid',false]]
+    ), target: '807fff3fff1f02', noNumber: true },
+  { transform: 'DPT:242.600', type: 'encode', source: new Map(
+      [['x',  1],['y',   1],['b', 100],['cValid',true ],['bValid',true ]]
+    ), target: '80ffffffffff03', noNumber: true },
+  { transform: 'DPT:242.600', type: 'decode', source: '000000000000', target: new Map(
+      [['x',  0],['y',   0],['b',   0],['cValid',false],['bValid',false]]
+    ), noNumber: true },
+  { transform: 'DPT:242.600', type: 'decode', source: '7fff3fff1f02', target: new Map(
+      [['x',0x7fff/0xffff],['y',0x3fff/0xffff],['b',100*0x1f/0xff],['cValid',true ],['bValid',false]]
+    ), noNumber: true },
+  { transform: 'DPT:242.600', type: 'decode', source: 'ffffffffff03', target: new Map(
+      [['x',  1],['y',   1],['b', 100],['cValid',true ],['bValid',true ]]
+    ), noNumber: true },
 
   { transform: 'DPT:251.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
   { transform: 'DPT:251.600', type: 'encode', source: new Map(
