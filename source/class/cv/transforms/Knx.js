@@ -577,6 +577,27 @@ qx.Class.define('cv.transforms.Knx', {
           return val;
         }
       },
+      '232.600' : {
+        name  : 'DPT_Colour_RGB',
+        encode: function( phy ){
+          let val = [
+            parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(phy[2] * 255 / 100).toString(16).padStart(2, '0')
+          ];
+          return {
+            bus: '80' + val.join(''),
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function( hex ){
+          return [
+            parseInt(hex.substr(0,2), 16) * 100 / 255.0,
+            parseInt(hex.substr(2,2), 16) * 100 / 255.0,
+            parseInt(hex.substr(4,2), 16) * 100 / 255.0
+          ];
+        }
+      },
       /* 9 Zeilen:
       },
       '.001' : {
