@@ -160,13 +160,13 @@ qx.Class.define('cv.plugins.ColorChooser', {
             }
             break;
           case 'rgb':
-            var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
-            var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
+            var rgb = [r,g,b];
+            var brgb = [br,bg,bb];
             v = cv.Transform.encode(address[addr][0], rgb );
             var bv = cv.Transform.encode(address[addr][0], brgb );
-            if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
+            if( v !== bv )
             {
-              templateEngine.visu.write( addr, v.join(",") );
+              templateEngine.visu.write( addr, v );
               modified = true;
             }
             break;

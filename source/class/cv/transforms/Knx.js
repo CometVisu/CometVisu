@@ -584,9 +584,9 @@ qx.Class.define('cv.transforms.Knx', {
             parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'),
             parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'),
             parseInt(phy[2] * 255 / 100).toString(16).padStart(2, '0')
-          ];
+          ].join('');
           return {
-            bus: '80' + val.join(''),
+            bus: '80' + val,
             raw: val.toUpperCase()
           };
         },

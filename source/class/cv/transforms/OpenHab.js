@@ -149,7 +149,7 @@ qx.Class.define('cv.transforms.OpenHab', {
       'color': {
         name: "OH_Color",
         encode: function (rgb) {
-          return qx.util.ColorUtil.rgbToHsb(rgb);
+          return qx.util.ColorUtil.rgbToHsb(rgb).join(',');
         },
         decode: function (hsbString) {
           if (cv.transforms.OpenHab.isUndefined(hsbString)) { return [0,0,0]; }
