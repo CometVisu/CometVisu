@@ -148,13 +148,22 @@ qx.Class.define('cv.transforms.OpenHab', {
       },
       'color': {
         name: "OH_Color",
-        encode: function (rgb) {
-          return qx.util.ColorUtil.rgbToHsb(rgb).join(',');
+        encode: function (phy) {
+          if( !(phy instanceof Map) ) {
+            return '0, 0, 0';
+          }
+          let rgb = [
+            phy.get('r') || 0,
+            phy.get('g') || 0,
+            phy.get('b') || 0
+          ];
+          return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
         },
         decode: function (hsbString) {
-          if (cv.transforms.OpenHab.isUndefined(hsbString)) { return [0,0,0]; }
+          if (cv.transforms.OpenHab.isUndefined(hsbString)) { return new Map([['r',0],['g',0],['b',0]]); }
           // decode HSV/HSB to RGB
-          return qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
+          let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
+          return new Map([ ['r',rgb[0]], ['g',rgb[1]], ['b',rgb[2]] ]);
         }
       }
     });

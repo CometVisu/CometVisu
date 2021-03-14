@@ -649,6 +649,35 @@ qx.Class.define('cv.transforms.Knx', {
       '232.600' : {
         name  : 'DPT_Colour_RGB',
         encode: function( phy ){
+          if( !(phy instanceof Map) ) {
+            return { bus: '80000000', raw: '000000' };
+          }
+
+          let
+            r = phy.get('r') || 0,
+            g = phy.get('g') || 0,
+            b = phy.get('b') || 0,
+            val = [
+            parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(b * 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function( hex ){
+          return new Map([
+            ['r', parseInt(hex.substr(0,2), 16) * 100 / 255.0],
+            ['g', parseInt(hex.substr(2,2), 16) * 100 / 255.0],
+            ['b', parseInt(hex.substr(4,2), 16) * 100 / 255.0]
+          ]);
+        }
+      },
+      '232' : {
+        name  : 'DPT_3U8',
+        encode: function( phy ){
           let val = [
             parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'),
             parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'),

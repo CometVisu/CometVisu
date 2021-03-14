@@ -296,10 +296,28 @@ var testcases = [
       [['period', 65535],['percent', 100]]
     ), noNumber: true },
 
-  { transform: 'DPT:232.600', type: 'encode', source: [  0,   0,   0], target: '80000000',      noNumber: true },
-  { transform: 'DPT:232.600', type: 'encode', source: [100, 100, 100], target: '80ffffff',      noNumber: true },
-  { transform: 'DPT:232.600', type: 'decode', source: '000000',        target: [  0,   0,   0], noNumber: true },
-  { transform: 'DPT:232.600', type: 'decode', source: 'ffffff',        target: [100, 100, 100], noNumber: true },
+  { transform: 'DPT:232', type: 'encode', source: [  0,   0,   0], target: '80000000',      noNumber: true },
+  { transform: 'DPT:232', type: 'encode', source: [100, 100, 100], target: '80ffffff',      noNumber: true },
+  { transform: 'DPT:232', type: 'decode', source: '000000',        target: [  0,   0,   0], noNumber: true },
+  { transform: 'DPT:232', type: 'decode', source: 'ffffff',        target: [100, 100, 100], noNumber: true },
+  { transform: 'DPT:232.600', type: 'encode', source: new Map(
+      [['r',  0],['g',  0],['b',  0]]
+    ), target: '80000000', noNumber: true },
+  { transform: 'DPT:232.600', type: 'encode', source: new Map(
+      [['r', 20],['g', 40],['b', 60]]
+    ), target: '80336699', noNumber: true },
+  { transform: 'DPT:232.600', type: 'encode', source: new Map(
+      [['r',100],['g',100],['b',100]]
+    ), target: '80ffffff', noNumber: true },
+  { transform: 'DPT:232.600', type: 'decode', source: '000000', target: new Map(
+      [['r',  0],['g',  0],['b',  0]]
+    ), noNumber: true },
+  { transform: 'DPT:232.600', type: 'decode', source: '336699', target: new Map(
+      [['r', 20],['g', 40],['b', 60]]
+    ), noNumber: true },
+  { transform: 'DPT:232.600', type: 'decode', source: 'ffffff', target: new Map(
+      [['r',100],['g',100],['b',100]]
+    ), noNumber: true },
 
   { transform: 'DPT:242.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
