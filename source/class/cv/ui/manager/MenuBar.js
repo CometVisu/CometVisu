@@ -37,6 +37,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
       this._createChildControl('title');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
+      this._createChildControl('help');
 
       var editorGroup = new qx.ui.form.RadioGroup();
 
@@ -99,18 +100,18 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         },
         'cut': {
           menu: 'edit-menu',
-          args: [this.tr('Cut'), null, this._commandGroup.get('cut')],
+          args: [this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18), this._commandGroup.get('cut')],
           enabled: false,
           separator: 'before'
         },
         'copy': {
           menu: 'edit-menu',
-          args: [this.tr('Copy'), null, this._commandGroup.get('copy')],
+          args: [this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18), this._commandGroup.get('copy')],
           enabled: false
         },
         'paste': {
           menu: 'edit-menu',
-          args: [this.tr('Paste'), null, this._commandGroup.get('paste')],
+          args: [this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18), this._commandGroup.get('paste')],
           enabled: false
         },
         // preferences
@@ -150,6 +151,12 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           args: [this.tr('Expert mode')],
           general: true,
           enabled: true
+        },
+        'help': {
+          menu: 'help-menu',
+          args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
+          enabled: false,
+
         }
       };
       this.maintainButtons();
@@ -262,6 +269,11 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            this.add(control);
            break;
 
+         case "help":
+           control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
+           this.add(control);
+           break;
+
          case "new":
            control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
            break;
@@ -288,6 +300,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            control = new qx.ui.menu.Menu();
            break;
 
+         case 'help-menu':
+           control = new qx.ui.menu.Menu();
+           break;
        }
 
        return control || this.base(arguments, id);

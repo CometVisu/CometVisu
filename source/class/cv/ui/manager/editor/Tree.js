@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
-    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
+    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo', 'help'];
 
     // init schema
     this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
@@ -80,6 +80,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     reDos: {
       check: 'qx.data.Array',
       deferredInit: true
+    },
+
+    autoRefreshPreview: {
+      check: 'Boolean',
+      init: false
     }
   },
 
@@ -118,6 +123,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
           case 'paste':
             this._onPaste();
+            break;
+
+          case 'help':
+            const focusedWidget = qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
+            console.log("show help for", focusedWidget);
             break;
 
           default:
@@ -323,6 +333,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.getChildControl('toolbar').add(control);
            break;
 
+         case 'refresh-preview':
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 16));
+           control.addListener('execute', this._updatePreview, this);
+           this.getChildControl('toolbar').add(control);
+           break;
+
          case 'toolbar':
            control = new qx.ui.toolbar.ToolBar();
            this.getChildControl('left').add(control, {
@@ -345,7 +361,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control = new qx.ui.form.TextField();
            control.set({
              liveUpdate: true,
-             placeholder: this.tr("Search...")
+             placeholder: this.tr("Search..."),
+             margin: 8
            });
            control.addListener("changeValue", qx.util.Function.debounce(this._onSearch, 250), this);
            control.addListener("keyup", function (ev) {
@@ -368,40 +385,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.set({
              selectionMode: 'single',
              width: 350,
-             openMode: 'tap'
+             openMode: 'dbltap'
            });
            this._initDragDrop(control);
            control.setDelegate({
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
-               let waiting = null;
-               item.addListener('tap', (ev) => {
-                 const current = this.getSelected();
-                 if (current === item.getModel()) {
-                   ev.stopPropagation();
-                   // defer deselect to avoid deselection on dbltap
-                   if (!waiting) {
-                     waiting = qx.event.Timer.once(() => {
-                       if (control.isNodeOpen(current)) {
-                         control.closeNode(current);
-                       } else {
-                         control.openNode(current);
-                       }
-                       waiting = null;
-                     }, this, qx.event.handler.GestureCore.DOUBLETAP_TIME);
-                   }
-                 } else {
-                   this.setSelected(item.getModel());
-                 }
-               }, this);
-               item.addListener('dbltap', () => {
-                 if (waiting) {
-                   waiting.stop();
-                   waiting.dispose();
-                   waiting = null;
-                 }
-                 this._onEdit();
-               }, this);
+               item.addListener('longtap', this._onContextMenu, this);
+               item.addListener('contextmenu', this._onContextMenu, this);
                return item;
              }.bind(this),
 
@@ -419,7 +410,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
            this.getChildControl('left').add(control, {
-             top: 60,
+             top: 72,
              left: 0,
              right: 0,
              bottom: 0
@@ -466,9 +457,57 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setDroppable(true);
            qx.core.Init.getApplication().getRoot().add(control);
            break;
+
+         case 'context-menu':
+           control = new cv.ui.manager.contextmenu.ConfigElement(this);
+           control.addListener('action', this._onContextMenuAction, this);
+           break;
        }
 
        return control || this.base(arguments, id);
+    },
+
+    _onContextMenu: function (ev) {
+      const target = ev.getCurrentTarget();
+      if (target instanceof cv.ui.manager.tree.VirtualElementItem) {
+        const element = target.getModel();
+        this.setSelected(element);
+        const menu = this.getChildControl('context-menu');
+        menu.setElement(element);
+        menu.openAtPointer(ev);
+      }
+
+      // Do not show native menu
+      // don't open any other contextmenus
+      if (ev.getBubbles()) {
+        ev.stop();
+      }
+    },
+
+    _onContextMenuAction: function (ev) {
+      const data = ev.getData();
+      if (this.canHandleAction(data.action)) {
+        this.handleAction(data.action);
+      } else {
+        switch (data.action) {
+          case 'edit':
+            this._onEdit(null, data.element);
+            break;
+
+          case 'delete':
+            this._onDelete(null, data.element);
+            break;
+
+          case 'create':
+            // add a new child
+            this._onCreate(data.element, "inside");
+            break;
+
+          default:
+            this.error("unhandled context menu action", data.action);
+            break;
+        }
+      }
     },
 
     _onChangeTreeSelection: function (ev) {
@@ -863,21 +902,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
      * Create a new element an insert if after target
      *
      * @param target {cv.ui.manager.model.XmlElement} target element
-     * @param before {Boolean} if treu insert is before target
+     * @param position {String} one of "after", "before" or "inside"
      * @param elementName {String?} if not set a selection of possible elements at that position will be shown
      * @private
      */
-    _onCreate: function (target, before, elementName) {
-      const targetParent = target.getParent();
-      const parentSchemaElement = targetParent.getSchemaElement();
-      let addable = targetParent.getAddableChildren();
+    _onCreate: function (target, position, elementName) {
+      const parent = position === 'inside' ? target : target.getParent();
+      const parentSchemaElement = parent.getSchemaElement();
+      let addable = parent.getAddableChildren(false);
       if (addable.length > 0) {
         // check if a child could be added at this position
-        if (!parentSchemaElement.areChildrenSortable()) {
-          // filter allowed elements for this position
+        if (!parentSchemaElement.areChildrenSortable() && position !== 'inside') {
+          // TODO: filter allowed elements for this position
         }
       }
       if (addable.length > 0) {
+        this.__editing = true;
         let typeChooserForm
         if (addable.length > 1) {
           // user has to select a type
@@ -905,7 +945,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // create new element, open the edit dialog and insert it
           const document = target.getNode().ownerDocument;
           const element = document.createElement(type);
-          const parentSchemaElement = target.getParent().getSchemaElement();
           const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
 
           const initChildren = function (element, schemaElement) {
@@ -925,15 +964,27 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             });
           }
 
-          const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), target.getParent());
+          const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
+          // load the "empty" element to init the modification comparison
+          xmlElement.load();
           this._onEdit(null, xmlElement).then((data) => {
             // finally insert the new node
-            if (before) {
-              xmlElement.insertBefore(target);
-            } else {
-              xmlElement.insertAfter(target);
+            switch (position) {
+              case 'before':
+                xmlElement.insertBefore(target);
+                break;
+
+              case 'after':
+                xmlElement.insertAfter(target);
+                break;
+
+              case 'inside':
+                target.insertChild(xmlElement, -1);
+                break;
             }
-          });
+            this.getChildControl('tree').openNodeAndParents(xmlElement);
+            this.getChildControl('tree').setSelection([xmlElement]);
+          }, this);
         })
       }
     },
@@ -1051,8 +1102,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return def;
     },
 
-    _onEdit: function (ev, newElement) {
-      const element = newElement || this.getSelected();
+    _onEdit: function (ev, element) {
+      if (!element) {
+        element = this.getSelected();
+      }
       element.load();
       const formData = {};
       const promises = [];
@@ -1125,8 +1178,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       });
     },
 
-    _onDelete: function () {
-      const element = this.getSelected();
+    _onDelete: function (ev, element) {
+      if (!element) {
+        element = this.getSelected();
+      }
       if (element && !element.isRequired()) {
         element.remove();
         this.clearReDos();
@@ -1192,8 +1247,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
-      toolbar.addSpacer();
+      toolbar.addSeparator();
       this._createChildControl('toggle-expert');
+      toolbar.addSpacer();
+      this._createChildControl('refresh-preview');
 
       this._createChildControl('tree');
       this._createChildControl('preview');
@@ -1254,7 +1311,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
           preview.setFile(previewConfig);
         }
-        this._updatePreview(value);
+        this._updatePreview(null, value);
       } else {
         tree.resetModel();
         this.getChildControl('add-button').setEnabled(false);
@@ -1268,12 +1325,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (this._workerWrapper) {
         this._workerWrapper.contentChanged(this.getFile(), content);
       }
-      this._updatePreview(content);
+      if (this.isAutoRefreshPreview()) {
+        this._updatePreview(null, content);
+      }
     },
 
-    _updatePreview: function (content) {
+    _updatePreview: function (ev, content) {
       const previewFile = this.getChildControl('preview').getFile();
       if (previewFile) {
+        if (!content) {
+          content = this.getCurrentContent(true);
+        }
         this._client.updateSync({
           path: previewFile.getFullPath(),
           hash: 'ignore'
@@ -1288,12 +1350,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    getCurrentContent: function () {
+    getCurrentContent: function (fast) {
       const tree = this.getChildControl('tree');
       const rootNode = tree.getModel().getNode();
-      // prettify content
-      const prettyContent = `<?xml version="1.0" encoding="UTF-8"?>\n` + this._prettify(rootNode, 0);
-      return prettyContent;
+      if (fast) {
+        return new XMLSerializer().serializeToString(rootNode.ownerDocument);
+      } else {
+        // prettify content
+        return `<?xml version="1.0" encoding="UTF-8"?>\n` + this._prettify(rootNode, 0);
+      }
     },
 
     _prettify: function (node, level, singleton) {

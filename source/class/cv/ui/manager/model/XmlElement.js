@@ -323,13 +323,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * Returns a list of element names that can be added to this element.
      * Checks the allowed elements and their bounds and the existing children
      * to find out if we can add more of them.
+     * @param excludeComment {Boolean} exclude #comment child when set to true
      */
-    getAddableChildren: function() {
+    getAddableChildren: function(excludeComment) {
       if (!this.__addableChildren) {
         const schemaElement = this.getSchemaElement();
         const allowed = schemaElement.getAllowedElements();
         const stillAllowed = [];
         const countExisting = {};
+        if (!this.isLoaded()) {
+          this.load();
+        }
         this.getChildren().forEach(child => {
           if (!countExisting.hasOwnProperty(child.getName())) {
             countExisting[child.getName()] = 0;
@@ -337,6 +341,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           countExisting[child.getName()]++;
         })
         Object.keys(allowed).forEach(elementName => {
+          if (excludeComment === true && elementName === "#comment") {
+            return;
+          }
           const childBounds = schemaElement.getBoundsForElementName(elementName);
           const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
           if (childBounds.max > existing) {
@@ -354,12 +361,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         this.debug(xmlElement.getName(), "is not allowed as child of", this.getName());
         return false;
       }
-      if (schemaElement.areChildrenSortable()) {
+      if (!schemaElement.areChildrenSortable()) {
         // allowed at any position
         return true;
       }
       // check position
       const allowedSorting = schemaElement.getAllowedElementsSorting();
+      if (!this.isLoaded()) {
+        this.load();
+      }
       const children = this.getChildren();
       let currentPosition = index;
       if (children.length > index) {
@@ -397,7 +407,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     findPositionForChild: function(newChild) {
       const schemaElement = this.getSchemaElement();
       if (schemaElement.isChildElementAllowed(newChild.getName())) {
-        if (schemaElement.areChildrenSortable()) {
+        if (!this.isLoaded()) {
+          this.load();
+        }
+        if (!schemaElement.areChildrenSortable()) {
           // any position is fine, just append it to the end
           return this.getChildren().length;
         } else {
@@ -427,6 +440,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * @return {Boolean} true if the child has been added
      */
     insertChild: function (xmlElement, index, skipUndo) {
+      if (!this.isLoaded()) {
+        this.load();
+      }
       const children = this.getChildren();
       let success = false;
       if (index === -1) {

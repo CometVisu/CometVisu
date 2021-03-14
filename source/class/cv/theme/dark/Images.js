@@ -54,7 +54,11 @@ qx.Class.define('cv.theme.dark.Images', {
       'expert': '@MaterialIcons/explicit',
       'text-fields': '@MaterialIcons/text_fields',
       'comment-fields': '@MaterialIcons/settings_ethernet',
-      'view': '@MaterialIcons/visibility'
+      'view': '@MaterialIcons/visibility',
+      'cut': '@MaterialIcons/content_cut',
+      'copy': '@MaterialIcons/content_copy',
+      'paste': '@MaterialIcons/content_paste',
+      'help': '@MaterialIcons/help'
     },
 
     getIcon: function (name, size) {

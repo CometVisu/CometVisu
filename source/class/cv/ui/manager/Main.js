@@ -598,6 +598,8 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('copy', new qx.ui.command.Command('Ctrl+C'));
       group.add('paste', new qx.ui.command.Command('Ctrl+V'));
 
+      group.add('help', new qx.ui.command.Command('F1'));
+
       var manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();
       manager.add(group);
