@@ -405,13 +405,19 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @return {Object} address
      */
     makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
-      var address = {};
+      let address = {};
       element.querySelectorAll('address').forEach(function (elem) {
-        var
+        let
           src = elem.textContent,
           transform = elem.getAttribute('transform'),
+          addressInfo = {},
           formatPos = +(elem.getAttribute('format-pos') || 1) | 0, // force integer
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+
+        if( 'mqtt' === cv.Config.backend ) {
+          addressInfo.qos = (elem.getAttribute('qos') || 0) | 0;  // force integer
+          addressInfo.retain = elem.getAttribute('retain') === 'true';
+        }
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
           qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
@@ -431,19 +437,23 @@ qx.Class.define('cv.parser.WidgetParser', {
             mode = 1 | 2;
             break;
         }
-        var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, elem.getAttribute('variant')) : [true, undefined];
+        let variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, elem.getAttribute('variant')) : [true, undefined];
         if (!skipAdding && (mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           this.model.addAddress(src, id);
         }
         if (address[src]) {
           // we already have an entry for this address, merge the modes if the other attribute values are equal
-          if (address[src][0] === transform && address[src][2] === variantInfo[1] && address[src][3] === formatPos) {
-            mode |= address[src][1];
+          if (address[src].transform === transform && address[src].variantInfo === variantInfo[1] && address[src].formatPos === formatPos) {
+            mode |= address[src].mode;
           } else {
             console.error('multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
           }
         }
-        address[src] = [transform, mode, variantInfo[1], formatPos];
+        addressInfo.transform = transform;
+        addressInfo.mode = mode;
+        addressInfo.variantInfo = variantInfo[1];
+        addressInfo.formatPos = formatPos;
+        address[src] = addressInfo;
       }, this);
       return address;
     },

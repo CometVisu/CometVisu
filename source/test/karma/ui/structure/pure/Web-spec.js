@@ -28,8 +28,8 @@ describe("testing a web widget", function() {
     var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
     var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
-    expect(res[0].getAddress()['_Test'][0]).toBe('DPT:1.001');
-    expect(res[0].getAddress()['_Test'][1]).toBe(0);
+    expect(res[0].getAddress()['_Test'].transform).toBe('DPT:1.001');
+    expect(res[0].getAddress()['_Test'].mode).toBe(0);
 
     expect(widget).toHaveClass('web');
     expect(widget).toHaveLabel('Test');
@@ -40,8 +40,8 @@ describe("testing a web widget", function() {
     var defBackend = cv.Config.backend;
     cv.Config.backend = 'oh';
     var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
-    expect(res[0].getAddress()['_Test'][0]).toBe('OH:switch');
-    expect(res[0].getAddress()['_Test'][1]).toBe('OFF');
+    expect(res[0].getAddress()['_Test'].transform).toBe('OH:switch');
+    expect(res[0].getAddress()['_Test'].mode).toBe('OFF');
 
     cv.Config.backend = defBackend;
   });

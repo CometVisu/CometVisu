@@ -136,7 +136,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/1', '8002');
+      expect(client.write).toHaveBeenCalledWith('1/0/1', '8002', jasmine.any(Object));
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 10);
@@ -206,7 +206,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001', jasmine.any(Object));
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
@@ -266,7 +266,7 @@ describe("testing a trigger", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001', jasmine.any(Object));
       expect(client.write.calls.count()).toEqual(1);
 
       // up
@@ -277,7 +277,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001', jasmine.any(Object));
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);

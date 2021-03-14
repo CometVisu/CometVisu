@@ -121,13 +121,13 @@ describe("testing a imagetrigger widget", function() {
     expect(actor).not.toBe(null);
 
     // no write flag
-    res.getAddress()['12/7/37'][1] = 1;
+    res.getAddress()['12/7/37'].mode = 1;
 
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(engine.visu.write).not.toHaveBeenCalled();
     res.sendToBackend.calls.reset();
 
-    res.getAddress()['12/7/37'][1] = 3;
+    res.getAddress()['12/7/37'].mode = 3;
     res.setSendValue("");
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(res.sendToBackend).not.toHaveBeenCalled();

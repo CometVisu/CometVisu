@@ -50,13 +50,13 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
       if (data === undefined || address === undefined) { return; }
       var valElem = this.getValueElement();
 
-      var value = cv.Transform.decode( this.getAddress()[ address ][0], data );
+      var value = cv.Transform.decode( this.getAddress()[ address ].transform, data );
 
       var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
       if( 3 !== bg.length ) {
         bg = [0, 0, 0];
       }
-      switch (this.getAddress()[ address ][2]) {
+      switch (this.getAddress()[ address ].variantInfo) {
         case 'r' :  bg[0] = value; break;
         case 'g' :  bg[1] = value; break;
         case 'b' :  bg[2] = value; break;
