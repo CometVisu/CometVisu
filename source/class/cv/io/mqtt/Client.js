@@ -65,6 +65,11 @@ qx.Class.define('cv.io.mqtt.Client', {
   ***********************************************
   */
   members: {
+    /*
+     * @var {Paho.MQTT.Client}
+     */
+    _client: null,
+
     /**
      * Returns the current backend configuration
      * @return {Map}
@@ -98,7 +103,6 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @param addresses {Array}
      */
     setInitialAddresses: function(addresses) {
-      console.log('subscribe Initial: ', addresses);
     },
 
     /**
@@ -110,7 +114,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     subscribe : function (addresses, filters) {
-      addresses.forEach( value => this.client.subscribe(value) );
+      addresses.forEach( value => this._client.subscribe(value) );
     },
 
     /**
@@ -160,25 +164,25 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       try {
-        this.client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
+        this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
       } catch (e) {
         console.error( 'MQTT Client error:', e );
         self.setConnected(false);
         return;
       }
 
-      this.client.onConnectionLost = function (responseObject) {
+      this._client.onConnectionLost = function (responseObject) {
         console.log( 'Connection Lost: ' + responseObject.errorMessage, responseObject );
         self.setConnected(false);
       };
 
-      this.client.onMessageArrived = function (message) {
+      this._client.onMessageArrived = function (message) {
         let update = {};
         update[ message.topic ] = message.payloadString;
         self.update(update);
       };
 
-      this.client.connect( options );
+      this._client.connect( options );
     },
 
     /**
@@ -221,7 +225,7 @@ qx.Class.define('cv.io.mqtt.Client', {
         message.destinationName = address;
         message.qos = options.qos;
         message.retained = options.retain;
-        this.client.send(message);
+        this._client.send(message);
       }
     },
 
@@ -257,7 +261,17 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError: function(type, message, args) {}
+    showError: function(type, message, args) {},
+
+    /**
+     * Destructor
+     */
+    destruct: function () {
+      if( this.isConnected() ) {
+        this._client.disconnect();
+      }
+      this._client = null;
+    }
   }
 
 });
