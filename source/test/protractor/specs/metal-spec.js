@@ -87,8 +87,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate("1/0/1", 10.2).then(() => {
+        expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      });
     });
 
     // infoaction widget
@@ -122,8 +123,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate("1/0/1", 10.2).then(() => {
+        expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      });
 
       // click the action part
       var action = element(by.css(".infoaction .widgetaction .switch .actor"));
@@ -159,8 +161,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
+      cvMockup.sendUpdate("1/0/1", 10.2).then(() => {
+        expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
+      });
 
     });
   }

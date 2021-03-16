@@ -51,8 +51,9 @@ describe('cometvisu demo config test:', function () {
         });
 
         // send update via backend
-        cvDemo.sendUpdate(address, 0);
-        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        cvDemo.sendUpdate(address, 0).then(() => {
+          expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        });
       });
     });
   });

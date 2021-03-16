@@ -4,48 +4,51 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-var basePage = require("../pages/BasePage.js");
-var request = require('request');
-var fs = require('fs');
-var path = require('path');
-var rootDir = path.join(__dirname, '..', '..', '..', '..');
+const BasePage = require("../pages/BasePage.js");
+const request = require('request');
+const fs = require('fs');
+const path = require('path');
+const rootDir = path.join(__dirname, '..', '..', '..', '..');
 
-var CometVisuEditorMockup = function (target) {
-  'use strict';
-  target = target || "source";
+class CometVisuEditorMockup extends BasePage {
 
-  this.url = 'http://localhost:8000/'+target+'/index.html?testMode=true&manager=1';
+  constructor(target) {
+    super();
+    this.target = target || "source";
+    this.url = 'http://localhost:8000/' + this.target + '/index.html?testMode=true&manager=1';
+    this.pageLoaded = this.and(
+      this.isVisible($('#manager')), this.mockupReady
+    );
+  }
 
-  var mockupReady = false;
-
-  this.mockupConfig = function(config) {
+  mockupConfig(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/'+target+'/rest/manager/index.php/fs?path=visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock/'+this.target+'/rest/manager/index.php/fs?path=visu_config_mockup.xml',
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        mockupReady = true;
+        this.mockupReady = true;
       } else {
         console.log(error);
         console.log(response);
         console.log(body);
       }
     });
-  };
+  }
 
-  this.mockupFixture = function (fixture) {
-    mockupReady = false;
-    var sourceFile = path.join(rootDir, fixture.sourceFile);
+  mockupFixture(fixture) {
+    this.mockupReady = false;
+    let sourceFile = path.join(rootDir, fixture.sourceFile);
     if (fs.existsSync(sourceFile)) {
-      var content = fs.readFileSync(sourceFile);
+      let content = fs.readFileSync(sourceFile);
       request({
         method: 'POST',
         uri: 'http://localhost:8000/mock/' + fixture.targetPath,
         body: content
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-          mockupReady = true;
+          this.mockupReady = true;
         } else {
           console.log(error);
           console.log(response);
@@ -57,11 +60,9 @@ var CometVisuEditorMockup = function (target) {
     }
   };
 
-  this.pageLoaded = this.and(
-    this.isVisible($('#manager')), mockupReady
-  );
 
-  this.editConfig = function (configName) {
+
+  editConfig(configName) {
     const configFile = configName ? 'visu_config_' + configName + '.xml' : 'visu_config.xml';
     return this.dispatchAction('openWith', {
       file: configFile,
@@ -70,16 +71,16 @@ var CometVisuEditorMockup = function (target) {
         noPreview: true
       }
     });
-  };
+  }
 
-  this.dispatchAction = function (action, data) {
+  dispatchAction(action, data) {
     return browser.executeAsyncScript(function (action, data, callback) {
       qx.event.message.Bus.dispatchByName('cv.manager.'+action, data);
       callback(true);
     }, action, data);
-  };
+  }
 
-  this.enableExpertMode = function () {
+  enableExpertMode() {
     return browser.executeAsyncScript(function(callback) {
       const editor = cv.ui.manager.control.ActionDispatcher.getInstance().getFocusedWidget();
       if (editor && editor instanceof cv.ui.manager.editor.Tree) {
@@ -88,7 +89,7 @@ var CometVisuEditorMockup = function (target) {
     });
   }
 
-  this.openWidgetElement = function (selector, edit) {
+  openWidgetElement(selector, edit) {
     return browser.executeAsyncScript(function (selector, edit, callback) {
       function open (editor, sel, edit) {
         if (editor instanceof cv.ui.manager.editor.Tree) {
@@ -114,6 +115,6 @@ var CometVisuEditorMockup = function (target) {
 
     }, selector, edit);
   }
-};
-CometVisuEditorMockup.prototype = basePage;
+}
+
 module.exports = CometVisuEditorMockup;

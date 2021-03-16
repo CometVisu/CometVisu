@@ -12,7 +12,9 @@ const cvMockup = new CometVisuMockup(browser.target || 'source');
 const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
 const editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 let devicePixelRatio = 1;
-
+browser.executeAsyncScript(function (callback) { callback(window.devicePixelRatio); }).then(function(value) {
+   devicePixelRatio = value;
+})
 const errorHandler = function(err) {
   if (err) {
     throw err;
@@ -79,9 +81,6 @@ describe('generation screenshots from jsdoc examples', function () {
   let mockup = null;
 
   beforeEach(function () {
-    // browser.executeScript(function () { return window.devicePixelRatio; }).then(function(value) {
-    //   devicePixelRatio = value;
-    // })
     var mockedConfigData = mockupConfig.shift();
     mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
     if (mockedConfigData.hasOwnProperty('fixtures')) {

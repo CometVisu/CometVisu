@@ -1,17 +1,43 @@
+
+/**
+ * Wrappers for expected conditions
+ *
+ * I find ECs are generally poorly named, so we wrap them in
+ * methods that are 9% more sexy, and allow us to add logging, etc...
+ *
+ * @return {ExpectedCondition}
+ */
+const EC = protractor.ExpectedConditions;
+
 /**
  * The basic PageObject supplies generic helper functions needed for testing the CometVisu app
  * @author Tobias Bräutigam
  * @since 2016
  */
-var BasePage = function () {
+class BasePage {
+
+  constructor() {
+    /**
+     * wrap this.timeout. (ms) in t-shirt sizes
+     */
+    this.timeout = {
+      'xs': 420,
+      's': 1000,
+      'm': 2000,
+      'l': 5000,
+      'xl': 9000,
+      'xxl': 15000
+    };
+  }
+
   /**
    * wait and verify that a page is loaded
    * @return {promise}
    * @requires a page to include `pageLoaded` method
    */
-  this.at = function () {
+  at() {
     return browser.wait(this.pageLoaded(), this.timeout.xl);
-  };
+  }
 
   /**
    * navigate to a page via it's `url` var
@@ -19,80 +45,58 @@ var BasePage = function () {
    *
    * @requires page have both `url` and `pageLoaded` properties
    */
-  this.to = function (urlModification) {
+  to(urlModification) {
     if(urlModification === undefined) {
       urlModification = '';
     }
 
     browser.get(this.url + urlModification, this.timeout.xl);
     return this.at();
-  };
+  }
 
-  /**
-   * Wrappers for expected conditions
-   *
-   * I find ECs are generally poorly named, so we wrap them in
-   * methods that are 9% more sexy, and allow us to add logging, etc...
-   *
-   * @return {ExpectedCondition}
-   */
-  var EC = protractor.ExpectedConditions;
-
-  this.isVisible = function (locator) {
+  isVisible(locator) {
     return EC.visibilityOf(locator);
-  };
+  }
 
-  this.isNotVisible = function (locator) {
+  isNotVisible(locator) {
     return EC.invisibilityOf(locator);
-  };
+  }
 
-  this.inDom = function (locator) {
+  inDom(locator) {
     return EC.presenceOf(locator);
-  };
+  }
 
-  this.notInDom = function (locator) {
+  notInDom(locator) {
     return EC.stalenessOf(locator);
-  };
+  }
 
-  this.isClickable = function (locator) {
+  isClickable(locator) {
     return EC.elementToBeClickable(locator);
-  };
+  }
 
-  this.hasText = function (locator, text) {
+  hasText(locator, text) {
     return EC.textToBePresentInElement(locator, text);
-  };
+  }
 
-  this.and = function (arrayOfFunctions) {
+  and(arrayOfFunctions) {
     return EC.and(arrayOfFunctions);
-  };
+  }
 
-  this.titleIs = function (title) {
+  titleIs(title) {
     return EC.titleIs(title);
-  };
+  }
 
-  /**
-   * wrap this.timeout. (ms) in t-shirt sizes
-   */
-  this.timeout = {
-    'xs': 420,
-    's': 1000,
-    'm': 2000,
-    'l': 5000,
-    'xl': 9000,
-    'xxl': 15000
-  };
-
-  this.getPageTitle = function () {
+  getPageTitle() {
     // Note: as some designs (like "metal") are hiding the h1 the page name
     // must be extracted by this little detour
-    return browser.executeScript("return document.querySelectorAll('.activePage h1')[0].textContent;");
-  };
+    return browser.executeAsyncScript(function (callback) { callback(document.querySelectorAll('.activePage h1')[0].textContent);});
+  }
 
-  this.getPages = function () {
+  getPages() {
     return element.all(by.css(".page"));
-  };
+  }
 
-  this.getPage = function(name) {
+  getPage(name) {
     return element.all(by.css(".page")).then(function(pages) {
       return pages.find(function(page) {
         if (page.element(by.tagName("h1")).getText() === name) {
@@ -100,19 +104,21 @@ var BasePage = function () {
         }
       });
     });
-  };
+  }
 
   /**
    * Navigate to a page by name
    * @param name {String}
    */
-  this.goToPage = function(name, force) {
+  async goToPage(name, force) {
     if(force) {
-      browser.driver.executeScript('cv.TemplateEngine.getInstance().scrollToPage(arguments[0])', name);
-      return;
+      return browser.driver.executeAsyncScript(function (name, callback) {
+        cv.TemplateEngine.getInstance().scrollToPage(name, 0);
+        callback();
+      }, name);
     }
     var done = false;
-    element.all(by.css(".activePage div.pagelink")).then(function(links) {
+    return element.all(by.css(".activePage div.pagelink")).then(function(links) {
       links.some(function(link) {
         var actor = link.element(by.css(".actor"));
         actor.element(by.tagName("a")).getText().then(function(linkName) {
@@ -136,51 +142,55 @@ var BasePage = function () {
         });
       }
     });
-  };
+  }
 
   /**
    * Get the last message that has been send to the backend (aka write message)
    * @return {Map}
    */
-  this.getLastWrite = function() {
-    return browser.executeScript('return window.writeHistory[window.writeHistory.length-1];');
-  };
+  getLastWrite() {
+    return browser.executeAsyncScript(function (callback) { callback(window.writeHistory[window.writeHistory.length-1]);});
+  }
 
   /**
-   * Get the compelte list of write messages, which have been send to the backend
-   * @return {Array}
+   * Get the complete list of write messages, which have been send to the backend
+   * @return {Promise<Array>}
    */
-  this.getWriteHistory = function() {
-    return browser.executeScript('return window.writeHistory;');
-  };
+  getWriteHistory() {
+    return browser.executeAsyncScript(function (callback) { callback(window.writeHistory);});
+  }
 
   /**
    * Send an update to the backend
-   * @param update
+   * @param address {String}
+   * @param value {String}
    */
-  this.sendUpdate = function(address, value) {
-    var data = {
+  sendUpdate(address, value) {
+    let data = {
       i: new Date().getTime(),
       d: {}
     };
     data.d[address] = value;
-    browser.executeScript('window._receive('+JSON.stringify(data)+')');
-  };
+    return browser.executeAsyncScript(function (data, callback) {
+      window._receive(data);
+      callback();
+    }, data);
+  }
 
   /**
    * Get widget data
    * @param path
    * @return {Map}
    */
-  this.getWidgetData = function(path) {
-    return browser.executeScript('return window._widgetDataGet("'+path+'");');
-  };
+  getWidgetData(path) {
+    return browser.executeAsyncScript(function (path, callback) { callback(window._widgetDataGet(path)); }, path);
+  }
 
-  this.getModel = function() {
-    return browser.executeScript('return window._getWidgetDataModel();');
-  };
+  getModel() {
+    return browser.executeAsyncScript(function (callback) { callback(window._getWidgetDataModel()); });
+  }
 
-  this.getWidgetAddress = function(path) {
+  getWidgetAddress(path) {
     this.getWidgetData(path).then(function(data) {
       var address;
       for (var addr in data.address) {
@@ -188,6 +198,6 @@ var BasePage = function () {
       }
     });
 
-  };
-};
-module.exports = new BasePage();
+  }
+}
+module.exports = BasePage;
