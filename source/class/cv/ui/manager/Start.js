@@ -48,6 +48,11 @@ qx.Class.define('cv.ui.manager.Start', {
     external: {
       check: 'Boolean',
       init: false
+    },
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
   },
 

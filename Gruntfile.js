@@ -51,7 +51,7 @@ function mock() {
     }
     if (mockedResponse) {
       if (req.url.endsWith('.xml')) {
-        res.writeHead(200, {'Content-Type': 'application/xml'});
+        res.writeHead(200, {'Content-Type': 'text/xml;charset=UTF-8'});
       } else if (req.url.endsWith('.json')) {
         res.writeHead(200, {'Content-Type': 'application/json'});
       }
@@ -61,7 +61,7 @@ function mock() {
       // untested
       var dir = path.join("source", "resource", "designs");
       var designs = [];
-      fs.readdirSync(dir).forEach(function(designDir) {
+      fs.readdirSync(dir).forEach(function (designDir) {
         var filePath = path.join(dir, designDir);
         var stat = fs.statSync(filePath);
         if (stat.isDirectory()) {
@@ -70,6 +70,23 @@ function mock() {
       });
       res.write(JSON.stringify(designs));
       res.end();
+    } else if (url === "/cgi-bin/l") {
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify({
+        v:"0.0.1",
+        s:"0"
+      }));
+      res.end();
+    } else if (url.indexOf('/rest/manager/index.php/') >= 0) {
+      const relPath = req.url.substr(req.url.indexOf('/rest/manager/index.php/'));
+      if (fs.existsSync(path.join("source", "test", "fixtures", relPath))) {
+        const data = fs.readFileSync(path.join("source", "test", "fixtures", relPath), 'utf8');
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(data);
+        res.end();
+      } else {
+        next();
+      }
     } else {
       next();
     }

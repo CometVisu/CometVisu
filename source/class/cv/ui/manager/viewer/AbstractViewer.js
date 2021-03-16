@@ -38,6 +38,12 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
     external: {
       check: 'Boolean',
       init: false
+    },
+
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
   },
 

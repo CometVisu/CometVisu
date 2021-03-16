@@ -4,26 +4,22 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-var fs = require('fs'),
+const fs = require('fs'),
   path = require('path'),
   easyimg = require('easyimage');
-var CometVisuMockup = require('../source/test/protractor/pages/Mock');
-var cvMockup = new CometVisuMockup(browser.target || 'source');
-var CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
-var editorMockup = new CometVisuEditorMockup(browser.target || 'source');
-var devicePixelRatio = 1;
-browser.executeScript('return window.devicePixelRatio;').then(function(value){
-  devicePixelRatio = value;
-  console.log("#### devicePixelRatio:", devicePixelRatio, " ####");
-})
+const CometVisuMockup = require('../source/test/protractor/pages/Mock');
+const cvMockup = new CometVisuMockup(browser.target || 'source');
+const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
+const editorMockup = new CometVisuEditorMockup(browser.target || 'source');
+let devicePixelRatio = 1;
 
-var errorHandler = function(err) {
+const errorHandler = function(err) {
   if (err) {
     throw err;
   }
 };
 
-var cropInFile = function(size, location, srcFile, width, height) {
+const cropInFile = function(size, location, srcFile, width, height) {
   var args = {
     src: srcFile,
     dst: srcFile,
@@ -47,7 +43,7 @@ var cropInFile = function(size, location, srcFile, width, height) {
   }, errorHandler);
 };
 
-var createDir = function(dir) {
+const createDir = function(dir) {
   if (dir.substring(dir.length-1) === "/") {
     dir = dir.substring(0,dir.length-1);
   }
@@ -78,11 +74,14 @@ var createDir = function(dir) {
 
 describe('generation screenshots from jsdoc examples', function () {
   'use strict';
-  var mockupConfig = [];
-  var mockedFixtures = [];
-  var mockup = null;
+  let mockupConfig = [];
+  let mockedFixtures = [];
+  let mockup = null;
 
   beforeEach(function () {
+    // browser.executeScript(function () { return window.devicePixelRatio; }).then(function(value) {
+    //   devicePixelRatio = value;
+    // })
     var mockedConfigData = mockupConfig.shift();
     mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
     if (mockedConfigData.hasOwnProperty('fixtures')) {
@@ -98,10 +97,16 @@ describe('generation screenshots from jsdoc examples', function () {
 
   afterEach(function () {
     mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
+    browser.manage().logs().get('browser').then(function(browserLogs) {
+      // browserLogs is an array of objects with level and message fields
+      browserLogs.forEach(function(log){
+        console.log('>> ', log.message);
+      });
+    });
   });
 
-  var examplesDir = path.join("cache", "widget_examples");
-  var whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
+  let examplesDir = path.join("cache", "widget_examples");
+  let whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var subDir = path.join(examplesDir, fileName);
@@ -109,21 +114,21 @@ describe('generation screenshots from jsdoc examples', function () {
       return;
     }
     if (fs.statSync(subDir).isDirectory()) {
-      fs.readdirSync(subDir).forEach(function(fileName) {
+      fs.readdirSync(subDir).forEach(async function(fileName) {
         if (whiteList.length > 0 && whiteList.indexOf(fileName) < 0) {
           // skip this one
           return;
         }
-        var filePath = path.join(subDir, fileName);
-        var stat = fs.statSync(filePath);
+        let filePath = path.join(subDir, fileName);
+        let stat = fs.statSync(filePath);
         if (stat.isFile()) {
-          var example = fs.readFileSync(filePath, "utf-8").split("\n");
+          let example = fs.readFileSync(filePath, "utf-8").split("\n");
           if (example[0].substr(0,1) === "{") {
-            var settings = JSON.parse(example.shift());
+            let settings = JSON.parse(example.shift());
             createDir(settings.screenshotDir);
 
-            var selectorPrefix = ".activePage ";
-            var mockedConfigData = {
+            let selectorPrefix = ".activePage ";
+            let mockedConfigData = {
               mode: "cv",
               data: example.join("\n"),
               fixtures: settings.fixtures
@@ -138,106 +143,89 @@ describe('generation screenshots from jsdoc examples', function () {
             }
             mockupConfig.push(mockedConfigData);
 
-            it('should create a screenshot', function () {
-              console.log(">>> processing "+filePath+"...");
+            it('should create a screenshot', async function () {
+              console.log(">>> processing " + filePath + "...");
+              let widget;
               if (settings.editor) {
+                widget = element(by.css('#manager'));
+                await browser.wait(function () {
+                  return widget.isDisplayed();
+                }, 2000);
+
+                await editorMockup.editConfig('mockup');
+                widget = element(by.css('div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]'));
+                await browser.wait(function () {
+                  return widget.isDisplayed();
+                }, 2000);
+
                 if (settings.complex) {
-                  var complexButton = element(by.css(".button.expert"));
-                  browser.wait(function() {
-                    return complexButton.isDisplayed();
-                  }, 1000);
-                  complexButton.click();
+                  await editorMockup.enableExpertMode();
+                  console.log("expert mode enabled");
                 }
-                // expand pages
-                var pagesExpand = element(by.css(".treeType_pages > .tree > .children"));
-                var pageExpand = element(by.css(".treeType_page > .tree > .children"));
-                var widgetButton = element(by.css(".name.nodeType_"+settings.widget));
-                var widgetExpand = element(by.css(".treeType_"+settings.widget+" > .tree > .children"));
-
-                browser.wait(function() {
-                  return pagesExpand.isDisplayed();
-                }, 1000);
-                pagesExpand.click();
-
-                browser.wait(function() {
-                  return pageExpand.isDisplayed();
-                }, 1000);
-                pageExpand.click();
-
-                browser.wait(function() {
-                  return widgetExpand.isDisplayed();
-                }, 1000);
-                widgetExpand.click();
-
-                browser.wait(function() {
-                  return widgetButton.isDisplayed();
-                }, 1000);
-                widgetButton.click();
+                await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
               }
 
               // wait for everything to be rendered
               browser.sleep(settings.sleep || 1000);
-
-              var widget = element(by.css(selectorPrefix+settings.selector));
-              browser.wait(function() {
+              widget = element(by.css(selectorPrefix + settings.selector));
+              await browser.wait(function () {
                 return widget.isDisplayed();
-              }, 2000).then(function() {
-                settings.screenshots.forEach(function(setting) {
-                  if (setting.data && Array.isArray(setting.data)) {
-                    setting.data.forEach(function (data) {
-                      var value = data.value;
-                      if (data.type) {
-                        switch(data.type) {
-                          case "float":
-                            value = parseFloat(value);
-                            break;
-                          case "int":
-                            value = parseInt(value);
-                            break;
-                        }
-                      }
-                      cvMockup.sendUpdate(data.address, value);
-                    });
-                  }
-                  if (setting.clickPath) {
+              }, 2000)
 
-                    var actor = element(by.css(setting.clickPath));
-                    if (actor) {
-                      actor.click();
-                      var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix+settings.selector;
-                      widget = element(by.css(waitFor));
-                      browser.wait(function() {
-                        return widget.isDisplayed();
-                      }, 1000);
+              settings.screenshots.forEach(function (setting) {
+                if (setting.data && Array.isArray(setting.data)) {
+                  setting.data.forEach(function (data) {
+                    var value = data.value;
+                    if (data.type) {
+                      switch (data.type) {
+                        case "float":
+                          value = parseFloat(value);
+                          break;
+                        case "int":
+                          value = parseInt(value);
+                          break;
+                      }
                     }
+                    cvMockup.sendUpdate(data.address, value);
+                  });
+                }
+                if (setting.clickPath) {
+
+                  var actor = element(by.css(setting.clickPath));
+                  if (actor) {
+                    actor.click();
+                    var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
+                    widget = element(by.css(waitFor));
+                    browser.wait(function () {
+                      return widget.isDisplayed();
+                    }, 1000);
                   }
+                }
 
-                  widget.getSize().then(function (size) {
-                    widget.getLocation().then(function (location) {
-                      if (setting.sleep) {
-                        browser.sleep(setting.sleep);
-                      }
-                      console.log("  - creating screenshot '"+setting.name+"'");
-                      browser.takeScreenshot().then(function (data) {
-                        var base64Data = data.replace(/^data:image\/png;base64,/, "");
-                        var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
-                        fs.writeFile(imgFile, base64Data, 'base64', function (err) {
-                          if (err) {
-                            console.log(err);
-                          }
-                          else {
+                widget.getSize().then(function (size) {
+                  widget.getLocation().then(function (location) {
+                    if (setting.sleep) {
+                      browser.sleep(setting.sleep);
+                    }
+                    console.log("  - creating screenshot '" + setting.name + "'");
+                    browser.takeScreenshot().then(function (data) {
+                      var base64Data = data.replace(/^data:image\/png;base64,/, "");
+                      var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
+                      fs.writeFile(imgFile, base64Data, 'base64', function (err) {
+                        if (err) {
+                          console.log(err);
+                        } else {
 
-                            if (settings.scale) {
-                              var scale = parseInt(settings.scale);
-                              var scaledWidth = Math.round(size.width * scale/100);
-                              var scaledHeight = Math.round(size.height * scale/100);
-                              cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
-                            } else {
-                              cropInFile(size, location, imgFile);
-                            }
-                            console.log("  -> OK");
+                          if (settings.scale) {
+                            var scale = parseInt(settings.scale);
+                            var scaledWidth = Math.round(size.width * scale / 100);
+                            var scaledHeight = Math.round(size.height * scale / 100);
+                            cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
+                          } else {
+                            cropInFile(size, location, imgFile);
                           }
-                        });
+                          console.log("  -> OK");
+                        }
                       });
                     });
                   });

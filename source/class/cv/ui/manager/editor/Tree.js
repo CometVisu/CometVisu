@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     // init schema
     this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
     this._schema.onLoaded(function () {
+      this.setReady(true);
       this._draw();
     }, this);
     this.__modifiedElements = [];
@@ -24,7 +25,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.initReDos(new qx.data.Array());
     this.__buttonListeners = {};
     qx.core.Init.getApplication().getRoot().addListener("keyup", this._onElementKeyUp, this);
-
   },
 
   /*
@@ -55,6 +55,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     // show expert level settings
     expert: {
       check: 'Boolean',
+      init: false
+    },
+
+    ready: {
+      refine: true,
       init: false
     },
 
@@ -274,6 +279,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this._workerWrapper.close(old);
       }
       if (file && file.getType() === 'file' && this.isSupported(file)) {
+        const handlerOptions = this.getHandlerOptions();
+        if (this.hasChildControl('preview')) {
+          //if (handlerOptions && handlerOptions.noPreview) {
+            this.getChildControl('preview').exclude();
+          // } else {
+          //   this.getChildControl('preview').show();
+          // }
+        }
         this.base(arguments, file, old);
       } else {
         this.base(arguments, null, old);
@@ -295,13 +308,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.getChildControl('splitpane').add(control, 0);
            break;
 
+         case 'right':
+           control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
+           control.setMinWidth(600);
+           this.getChildControl('splitpane').add(control, 1);
+           break;
+
          case 'preview':
            control = new cv.ui.manager.viewer.Config();
            control.set({
              target: 'iframe',
              minWidth: 600
            });
-           this.getChildControl('splitpane').add(control, 1);
+           const handlerOptions = this.getHandlerOptions();
+           // if (handlerOptions && handlerOptions.noPreview) {
+             control.exclude();
+           // }
+           this.getChildControl('right').add(control, {edge: 0});
            break;
 
          case 'edit-button':
@@ -516,6 +539,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       } else {
         this.resetSelected();
       }
+    },
+
+
+    openByQuerySelector: function (selector, edit) {
+      return new Promise((resolve, reject) => {
+        const tree = this.getChildControl('tree');
+        const rootNode = tree.getModel().getNode();
+        const result = rootNode.querySelector(selector);
+        if (result) {
+          this.__searchResults = [result];
+          this.__searchResultIndex = 0;
+          this.__showSearchResult();
+          if (edit) {
+            this._onEdit();
+          }
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
     },
 
     _onSearch: function (ev) {
@@ -1246,7 +1289,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _draw: function () {
       const toolbar = this.getChildControl('toolbar');
       this._createChildControl('searchbar');
-      this._createChildControl('add-button');
+      if (!this.hasChildControl('add-button')) {
+        this._createChildControl('add-button');
+      }
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
@@ -1255,8 +1300,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       toolbar.addSpacer();
       this._createChildControl('refresh-preview');
 
-      this._createChildControl('tree');
-      this._createChildControl('preview');
+      if (!this.hasChildControl('tree')) {
+        this._createChildControl('tree');
+      }
+      if (!this.hasChildControl('right')) {
+        this._createChildControl('right');
+      }
+      if (!this.hasChildControl('preview')) {
+        this._createChildControl('preview');
+      }
     },
 
     _applySelected: function (value, old) {
@@ -1264,19 +1316,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
         const preview = this.getChildControl('preview');
-        // get page path for this node
-        let path = [];
-        let node = value.getNode();
-        while (node && node.nodeName !== 'pages') {
-          if (node.nodeName === 'page') {
-            path.unshift(node.getAttribute("name"));
+        if (preview.isVisible()) {
+          // get page path for this node
+          let path = [];
+          let node = value.getNode();
+          while (node && node.nodeName !== 'pages') {
+            if (node.nodeName === 'page') {
+              path.unshift(node.getAttribute("name"));
+            }
+            node = node.parentNode;
           }
-          node = node.parentNode;
+          if (path.length > 0) {
+            preview.openPage(path.pop(), path.join("/"));
+          }
         }
-        if (path.length > 0) {
-          preview.openPage(path.pop(), path.join("/"));
-        }
-
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);
@@ -1304,20 +1357,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         rootNode.setEditable(file.getWriteable());
         rootNode.load();
         tree.setModel(rootNode);
-        this.getChildControl('add-button').setEnabled(file.getWriteable());
+        if (this.hasChildControl('add-button')) {
+          this.getChildControl('add-button').setEnabled(file.getWriteable());
+        }
 
         if (this._workerWrapper) {
           this._workerWrapper.open(file, value);
         }
         const preview = this.getChildControl('preview');
-        if (!preview.getFile()) {
+        if (preview.isVisible() && !preview.getFile()) {
           const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
           preview.setFile(previewConfig);
         }
         this._updatePreview(null, value);
       } else {
         tree.resetModel();
-        this.getChildControl('add-button').setEnabled(false);
+        if (this.hasChildControl('add-button')) {
+          this.getChildControl('add-button').setEnabled(false);
+        }
       }
     },
 

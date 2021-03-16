@@ -382,7 +382,11 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
-          editorConfig.instance.setFile(file);
+        }
+        if (!editorConfig.instance.isReady()) {
+          editorConfig.instance.addListenerOnce('changeReady', () => {
+            editorConfig.instance.setFile(file);
+          }, this);
         } else {
           editorConfig.instance.setFile(file);
         }
