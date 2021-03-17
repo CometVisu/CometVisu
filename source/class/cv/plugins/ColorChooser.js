@@ -160,13 +160,13 @@ qx.Class.define('cv.plugins.ColorChooser', {
             }
             break;
           case 'rgb':
-            var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
-            var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
+            var rgb = new Map([['r',r],['g',g],['b',b]]);
+            var brgb = new Map([['r',br],['g',bg],['b',bb]]);
             v = cv.Transform.encode(address[addr].transform, rgb );
             var bv = cv.Transform.encode(address[addr].transform, brgb );
-            if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
+            if( v !== bv )
             {
-              templateEngine.visu.write( addr, v.join(",") );
+              templateEngine.visu.write( addr, v );
               modified = true;
             }
             break;
@@ -220,13 +220,13 @@ qx.Class.define('cv.plugins.ColorChooser', {
             color.substring(7);
           break;
         case 'rgb':
-          this.setBusR(value[0]);
-          this.setBusG(value[1]);
-          this.setBusB(value[2]);
+          this.setBusR(value.get('r'));
+          this.setBusG(value.get('g'));
+          this.setBusB(value.get('b'));
           color = color.substring(0,1) +
-            toHex( value[0]*255/100 )+
-            toHex( value[1]*255/100 )+
-            toHex( value[2]*255/100 )+
+            toHex( value.get('r')*255/100 )+
+            toHex( value.get('g')*255/100 )+
+            toHex( value.get('b')*255/100 )+
             color.substring(7);
           break;
       }

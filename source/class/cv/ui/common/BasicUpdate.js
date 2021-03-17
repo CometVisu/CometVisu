@@ -249,7 +249,12 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     defaultValue2DOM: function (value, modifyFn) {
       var element;
-      if (('string' === typeof value) || ('number' === typeof value) || (value instanceof Uint8Array)) {
+      if (
+        ('string' === typeof value) ||
+        ('number' === typeof value) ||
+        (value instanceof Uint8Array) ||
+        (value instanceof Map)
+      ) {
         modifyFn(value);
       }
       else if ('function' === typeof value) {
