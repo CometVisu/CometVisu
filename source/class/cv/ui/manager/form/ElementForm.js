@@ -44,6 +44,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         map: {},
         inverse: {}
       };
+      let firstWidget;
       if (this._formController) {
         try {
           this.getModel().removeAllBindings();
@@ -91,7 +92,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       }
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
-      let tabIndex = 1;
+      let i = 0;
       for (let key of Object.getOwnPropertyNames(formData)) {
         const mappedKey = this.__mappedKeys.inverse[key]
         let fieldData = formData[key];
@@ -201,6 +202,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         }
         formElement.setUserData("key", key);
         formElement.setUserData("mappedKey", mappedKey);
+        if (i === 0) {
+          firstWidget = formElement;
+        }
+        i++;
         let _this = this;
         if (typeof fieldData.type == "string") {
           switch (fieldData.type.toLowerCase()) {
@@ -348,10 +353,6 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
           formElement.setUserData("help", fieldData.help);
         }
 
-        if (formElement) {
-          formElement.setTabIndex(tabIndex++);
-        }
-
         /**
          * Events
          */
@@ -398,6 +399,11 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       view.bind('height', scroll, 'height');
       this._formContainer.add(scroll);
       this._form.getValidationManager().validate();
+      if (firstWidget) {
+        qx.event.Timer.once(() => {
+          firstWidget.focus();
+        }, this, 200);
+      }
     },
 
     _handleOk: function () {

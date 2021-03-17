@@ -74,6 +74,9 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
           colSpan: 2
         });
         this._row++;
+        if (i === 0) {
+          widget.focus();
+        }
       }
     }
   },

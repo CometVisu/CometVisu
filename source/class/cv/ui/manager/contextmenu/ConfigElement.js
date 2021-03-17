@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
       if (value) {
         const editable = value.isEditable();
         const required = value.isRequired();
-        this.getChildControl('edit-button').setEnabled(editable);
+        this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('copy-button').setEnabled(true);
         ['delete', 'cut'].forEach(name => this.getChildControl(name + "-button").setEnabled(editable && !required));
         if (editable) {
