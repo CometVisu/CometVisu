@@ -45,7 +45,7 @@ class CometVisuMockup extends BasePage {
     let targetPath = fixture.targetPath;
     if (!targetPath.startsWith('/')) {
       // adding target only to relative paths
-      targetPath = '/' + target + '/' + targetPath;
+      targetPath = '/' + this.target + '/' + targetPath;
     }
     if (fs.existsSync(sourceFile)) {
       let content = fs.readFileSync(sourceFile);
@@ -70,7 +70,7 @@ class CometVisuMockup extends BasePage {
   resetMockupFixture(fixture) {
     let targetPath = fixture.targetPath;
     if (!targetPath.startsWith('/')) {
-      targetPath = '/' + target + '/' + targetPath;
+      targetPath = '/' + this.target + '/' + targetPath;
     }
     request({
       method: 'DELETE',
