@@ -281,11 +281,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (file && file.getType() === 'file' && this.isSupported(file)) {
         const handlerOptions = this.getHandlerOptions();
         if (this.hasChildControl('preview')) {
-          //if (handlerOptions && handlerOptions.noPreview) {
+          if (handlerOptions && handlerOptions.noPreview) {
             this.getChildControl('preview').exclude();
-          // } else {
-          //   this.getChildControl('preview').show();
-          // }
+          } else {
+            this.getChildControl('preview').show();
+          }
         }
         this.base(arguments, file, old);
       } else {
@@ -321,9 +321,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              minWidth: 600
            });
            const handlerOptions = this.getHandlerOptions();
-           // if (handlerOptions && handlerOptions.noPreview) {
+           if (handlerOptions && handlerOptions.noPreview) {
              control.exclude();
-           // }
+           }
            this.getChildControl('right').add(control, {edge: 0});
            break;
 
