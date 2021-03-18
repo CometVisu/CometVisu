@@ -13,6 +13,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo', 'help'];
+    this._initWorker();
 
     // init schema
     this._schema = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
@@ -272,6 +273,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
+    },
+
+    showErrors: function (path, errorList) {
+      console.log("errors", path, errorList);
+    },
+    showDecorations: function (path, decorators) {
+      console.log("decorations", path, decorators);
     },
 
     _loadFile: function (file, old) {
@@ -1350,32 +1358,61 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _applyContent: function(value) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
+      this._updatePreview(null, null, true);
       if (value && file) {
-        const document = qx.xml.Document.fromString(value);
-        const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
-        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
-        rootNode.setEditable(file.getWriteable());
-        rootNode.load();
-        tree.setModel(rootNode);
-        if (this.hasChildControl('add-button')) {
-          this.getChildControl('add-button').setEnabled(file.getWriteable());
-        }
-
         if (this._workerWrapper) {
-          this._workerWrapper.open(file, value);
+          this._workerWrapper.open(file, value, null, {
+            validate: false,
+            initialValidation: true,
+            modified: false
+          });
+          this._workerWrapper.validateXmlConfig(value).then(res => {
+            if (res === true) {
+              this.info(file.getPath() + " is a valid config file");
+              this.__loadContent(value);
+            } else {
+              console.log(res);
+              // TODO: show error details and allow opening with text editor from here
+              dialog.Dialog.confirm(
+                this.tr("This is not a valid config file. It is recommended to repair the errors in the text editor. You can proceed in this editor but this can break the config file completely. Do you want to proceed in this editor?"),
+                function (confirmed) {
+                  if (confirmed) {
+                    this.__loadContent(value);
+                  } else {
+
+                  }
+                },
+                this
+              )
+            }
+          });
         }
-        const preview = this.getChildControl('preview');
-        if (preview.isVisible() && !preview.getFile()) {
-          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-          preview.setFile(previewConfig);
-        }
-        this._updatePreview(null, value);
       } else {
         tree.resetModel();
         if (this.hasChildControl('add-button')) {
           this.getChildControl('add-button').setEnabled(false);
         }
       }
+    },
+
+    __loadContent: function (value) {
+      const tree = this.getChildControl('tree');
+      const file = this.getFile();
+      const document = qx.xml.Document.fromString(value);
+      const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
+      const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
+      rootNode.setEditable(file.getWriteable());
+      rootNode.load();
+      tree.setModel(rootNode);
+      if (this.hasChildControl('add-button')) {
+        this.getChildControl('add-button').setEnabled(file.getWriteable());
+      }
+      const preview = this.getChildControl('preview');
+      if (preview.isVisible() && !preview.getFile()) {
+        const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
+        preview.setFile(previewConfig);
+      }
+      this._updatePreview(null, value);
     },
 
     _onContentChanged: function () {
@@ -1390,12 +1427,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    _updatePreview: function (ev, content) {
+    _updatePreview: function (ev, content, reset) {
       const previewFile = this.getChildControl('preview').getFile();
       if (previewFile) {
-        if (!content) {
+        if (!content && !reset) {
           content = this.getCurrentContent(true);
+        } else if (reset === true) {
+          this.getChildControl('preview').hide();
+          return;
         }
+        this.getChildControl('preview').show();
         this._client.updateSync({
           path: previewFile.getFullPath(),
           hash: 'ignore'

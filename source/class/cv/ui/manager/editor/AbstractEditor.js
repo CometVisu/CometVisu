@@ -168,7 +168,10 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       var file = this.getFile();
       file.resetModified();
       file.resetTemporary();
-    }
+    },
+
+    showErrors: function (path, errorList) {},
+    showDecorations: function (path, decorators) {}
   },
 
   /*
