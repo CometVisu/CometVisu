@@ -130,7 +130,8 @@ jobs:
     name: "[DOCKER] - Build and push Docker Container"
     if: github.repository == 'CometVisu/CometVisu' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release-') || github.ref == 'refs/heads/ci-test')
     runs-on: ubuntu-latest
-    needs: [ 'unit-test', 'e2e-test']
+    #needs: [ 'unit-test', 'e2e-test']
+    needs: [ 'unit-test' ]
     steps:
       - uses: actions/checkout@v2
         with:
