@@ -1372,18 +1372,37 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               this.__loadContent(value);
             } else {
               console.log(res);
-              // TODO: show error details and allow opening with text editor from here
-              dialog.Dialog.confirm(
-                this.tr("This is not a valid config file. It is recommended to repair the errors in the text editor. You can proceed in this editor but this can break the config file completely. Do you want to proceed in this editor?"),
-                function (confirmed) {
-                  if (confirmed) {
-                    this.__loadContent(value);
-                  } else {
 
-                  }
-                },
-                this
-              )
+              const dialog = new cv.ui.manager.dialog.ValidationError({
+                message: this.tr("This is not a valid config file. It is recommended to repair the errors in the text editor. You can proceed in this editor but this can break the config file completely. Do you want to proceed in this editor?"),
+              }, value, res);
+              dialog.addListener('action', (ev) => {
+                console.log(ev.getData());
+                switch (ev.getData()) {
+                  case 'proceed':
+                    this.__loadContent(value);
+                    break;
+
+                  case 'open-source':
+                    const file = this.getFile();
+                    cv.ui.manager.Main.getInstance().closeFile(file);
+                    qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                      file: file.getFullPath(),
+                      handler: "cv.ui.manager.editor.Source",
+                      handlerOptions: {
+                        jumpToError: true
+                      }
+                    });
+                    break;
+
+                  case 'cancel':
+                    // close this editor
+                    cv.ui.manager.Main.getInstance().closeFile(this.getFile());
+                    break;
+                }
+                dialog.destroy();
+              }, this);
+              dialog.show();
             }
           });
         }

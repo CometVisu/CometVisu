@@ -118,8 +118,8 @@ class SourceFile {
 
   validateConfig(code, force) {
     if ((this.features.validate || force) && this.isConfigFile) {
-      var lint = xmllint.validateXML({
-        xml: data.code,
+      const lint = xmllint.validateXML({
+        xml: code,
         schema: configSchema
       });
       postMessage(["errors", lint.errors, this.path]);
@@ -172,8 +172,8 @@ function openFile(data, features) { // jshint ignore:line
   openFiles[data.path].open(data);
 }
 
-function closeFile(path) { // jshint ignore:line
-  delete openFiles[path];
+function closeFile(data) { // jshint ignore:line
+  delete openFiles[data.path];
 }
 
 function contentChange(data) { // jshint ignore:line
