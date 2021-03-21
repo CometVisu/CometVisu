@@ -375,7 +375,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           firstErrorLine = line;
         }
       }
-      console.log(errorList);
       if (errorList) {
         errorList.forEach(function (error) {
           check(error.line);
@@ -389,57 +388,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           });
         });
       }
-      // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
-     /* if (errorList) {
-        var currentMessage = null;
-        // collect complete error messages
-        errorList.forEach(function (error) {
-          if (/.*\.xml:[\d]+:.+/.test(error)) {
-            if (currentMessage !== null) {
-              markers.push(Object.assign({
-                severity: window.monaco.MarkerSeverity.Error,
-                startLineNumber: currentMessage.line,
-                endLineNumber: currentMessage.line,
-                message: currentMessage.message
-              }, this._getErrorPosition(currentMessage.line)));
-              check(currentMessage.line);
-            }
-            // add marker for completed message
-            var parts = error.split(":");
-            var file = parts.shift();
-            var line = parseInt(parts.shift());
-
-            // in the last part there might be a more precise line number for the error
-            var match = /.+line ([\d]+) -+/.exec(parts[parts.length-1]);
-            if (match) {
-              line = parseInt(match[1]);
-            }
-            if (isNaN(line)) {
-              return;
-            }
-            // new error line
-            currentMessage = {
-              line: line,
-              message: parts.slice(-2).join(":"),
-              file: file,
-              source: error
-            };
-            check(currentMessage.line);
-          } else {
-            currentMessage.message += "\n"+error;
-          }
-        }, this);
-        if (currentMessage !== null) {
-          // show last error too
-          markers.push(Object.assign({
-            severity: window.monaco.MarkerSeverity.Error,
-            startLineNumber: currentMessage.line,
-            endLineNumber: currentMessage.line,
-            message: currentMessage.message
-          }, this._getErrorPosition(currentMessage.line)));
-          check(currentMessage.line);
-        }
-      }*/
       if (this.getFile().getFullPath() === path) {
         window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
         const options = this.getHandlerOptions();

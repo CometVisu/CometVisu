@@ -144,13 +144,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getElementString: function (element, indent, prefix) {
-      var insertText = indent+prefix+element.name+" ";
+      var insertText = indent+prefix+element.getName()+" ";
       // add all required attributes with default values
       const allowedAttributes = element.getAllowedAttributes();
       Object.getOwnPropertyNames(allowedAttributes).forEach(function(attr) {
         var attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
-          insertText += attr+'="'+(attribute.defaultValue ? attribute.defaultValue : "")+'" ';
+          insertText += attr+'="'+(attribute.getDefaultValue() ? attribute.getDefaultValue() : "")+'" ';
         }
       });
       // add mandatory children
@@ -177,7 +177,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         if (children > 0) {
           insertText += "\n"+indent;
         }
-        insertText += "</"+element.name;
+        insertText += "</"+element.getName();
       }
       return insertText;
     },
@@ -190,7 +190,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (!children) {
         return [];
       }
-      Object.getOwnPropertyNames(children).forEach(function(name) {
+      Object.getOwnPropertyNames(children).filter(name => !name.startsWith('#')).forEach(function(name) {
         // get all element attributes
         var childElem = children[name];
         // the element is a suggestion if it's available

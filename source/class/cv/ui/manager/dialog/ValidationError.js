@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
       container.add(vbox);
 
       let prologue = this.tr('<h3>Config Errors</h3>\
-<p>The validation of "%1" showed some errors. It is not recommended to edit this file in the XML-Tree editor, because \
+<p>The validation of "%1" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
 if can break the file completely. Please open this file in the text editor and fix the errors there. \
 Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>', this._file.getFullPath());
 
@@ -95,7 +95,11 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       // errors
       const errorBox = new qx.ui.container.Composite(new qx.ui.layout.VBox(0));
       const errorScroll = new qx.ui.container.Scroll(errorBox);
-      errorScroll.setHeight(200);
+      errorScroll.set({
+        padding: [0, 0, 8, 8],
+        decorator: 'cv-editor-config-section'
+      })
+      errorScroll.setHeight(300);
       vbox.add(errorScroll);
       const errorLabels = new Map();
       this._errors.forEach(error => {
