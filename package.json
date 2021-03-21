@@ -85,7 +85,7 @@
   "dependencies": {
     "@sentry/browser": "^5.15.5",
     "crc-32": "^1.2.0",
-    "monaco-editor": "^0.20.0",
+    "monaco-editor": "^0.23.0",
     "to": "^0.2.9",
     "update": "^0.7.4"
   }

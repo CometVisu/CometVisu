@@ -12,10 +12,14 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (schemaNode) {
+  /**
+   *
+   * @param schema {cv.ui.manager.model.Schema}
+   */
+  construct: function (schema) {
     this.base(arguments);
     this.__elementCache = {};
-    this._schemaNode = schemaNode;
+    this._schema = schema;
     this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
 
   },
@@ -92,7 +96,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         return null;
       }
       if (!parent) {
-        parent = this._schemaNode.allowedRootElements.pages;
+        parent = this._schema.getElementNode('pages');
       }
       if (currentDepth === undefined) {
         currentDepth = 1;
@@ -143,8 +147,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     getElementString: function (element, indent, prefix) {
       var insertText = indent+prefix+element.name+" ";
       // add all required attributes with default values
-      Object.getOwnPropertyNames(element.allowedAttributes).forEach(function(attr) {
-        var attribute = element.allowedAttributes[attr];
+      const allowedAttributes = element.getAllowedAttributes();
+      Object.getOwnPropertyNames(allowedAttributes).forEach(function(attr) {
+        var attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
           insertText += attr+'="'+(attribute.defaultValue ? attribute.defaultValue : "")+'" ';
         }
@@ -208,7 +213,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     getAvailableAttributes: function (element, usedChildTags) {
       var availableItems = [];
       // get all attributes for the element
-      var attrs = element.allowedAttributes;
+      var attrs = element.getAllowedAttributes();
       Object.getOwnPropertyNames(attrs).forEach(function(name) { // jshint ignore:line
         var attr = attrs[name];
         // accept it in a suggestion list only the attribute is not used yet

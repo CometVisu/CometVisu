@@ -290,7 +290,7 @@ function validateXmlConfig(id, content, format) {
             element = posMatch[1];
             attribute = posMatch.length > 3 ? posMatch[3] : null
             const err = {
-              line: lineNo + 1,
+              line: lineNo,
               title: title,
               message: message,
               element: element,

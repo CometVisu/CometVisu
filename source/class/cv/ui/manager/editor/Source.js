@@ -76,10 +76,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       window.documentationMappingPrefix = "editor/"; // jshint ignore:line
       var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..');
       var loader = new qx.util.DynamicScriptLoader([
-        sourcePath + 'editor/dependencies/jquery.min.js',
-        sourcePath + 'editor/dependencies/jquery.xpath.min.js',
-        sourcePath + 'editor/lib/Messages.js',
-        sourcePath + 'editor/lib/Schema.js',
         sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
         'manager/xml.js'
       ]);
@@ -105,9 +101,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           this.__schema = schema;
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-          var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
-          var completionProvider = new cv.ui.manager.editor.completion.Config(parsedSchema);
-          var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
+          const completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance("visu_config.xsd"));
+          const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
 
@@ -300,13 +295,14 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         if (qx.xml.Document.isXmlDocument(value)) {
           value = value.documentElement.outerHTML;
         }
-        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+        const id = monaco.Uri.parse(file.getUri());
+        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
         newModel.onDidChangeDecorations(function (ev) {
           var errors = false;
           var warnings = false;
           monaco.editor.getModelMarkers({
             owner: newModel.getModeId(),
-            resource: file.getUri()
+            resource: id
           }).some(function (marker) {
             if (marker.severity === monaco.MarkerSeverity.Warning) {
               warnings = true;
@@ -411,8 +407,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
                 severity: window.monaco.MarkerSeverity.Error,
                 startLineNumber: currentMessage.line,
                 endLineNumber: currentMessage.line,
-                message: currentMessage.message,
-                source: currentMessage.source
+                message: currentMessage.message
               }, this._getErrorPosition(currentMessage.line)));
               check(currentMessage.line);
             }
@@ -447,8 +442,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             severity: window.monaco.MarkerSeverity.Error,
             startLineNumber: currentMessage.line,
             endLineNumber: currentMessage.line,
-            message: currentMessage.message,
-            source: currentMessage.source
+            message: currentMessage.message
           }, this._getErrorPosition(currentMessage.line)));
           check(currentMessage.line);
         }
