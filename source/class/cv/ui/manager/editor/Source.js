@@ -35,8 +35,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this._draw();
     this._initWorker();
     this._currentDecorations = [];
-
-    this.__contentRegex = /(\s*)(.*)\s*/;
   },
 
   /*
@@ -128,7 +126,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _currentDecorations: null,
     _configClient: null,
     _onDidChangeContentGuard: 0,
-    __contentRegex: null,
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
@@ -366,23 +363,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       });
     },
 
-    _getErrorPosition: function (lineNo) {
-      const content = this._editor.getModel().getLineContent(lineNo);
-      const match = this.__contentRegex.exec(content);
-      if (match) {
-        const startSpaces = match[1].length + 1;
-        return {
-          startColumn: startSpaces,
-          endColumn: startSpaces + match[2].length
-        }
-      } else {
-        return {
-          startColumn: 1,
-          endColumn: content.length
-        }
-      }
-    },
-
     showErrors: function (path, errorList) {
       var markers = [];
       var model = this._editor.getModel();
@@ -395,9 +375,22 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           firstErrorLine = line;
         }
       }
-      // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
+      console.log(errorList);
       if (errorList) {
-//            console.error(errorList);
+        errorList.forEach(function (error) {
+          check(error.line);
+          markers.push({
+            severity: window.monaco.MarkerSeverity.Error,
+            startLineNumber: error.line,
+            endLineNumber: error.line,
+            message: error.message,
+            startColumn: error.startColumn,
+            endColumn: error.endColumn
+          });
+        });
+      }
+      // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
+     /* if (errorList) {
         var currentMessage = null;
         // collect complete error messages
         errorList.forEach(function (error) {
@@ -446,7 +439,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           }, this._getErrorPosition(currentMessage.line)));
           check(currentMessage.line);
         }
-      }
+      }*/
       if (this.getFile().getFullPath() === path) {
         window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
         const options = this.getHandlerOptions();

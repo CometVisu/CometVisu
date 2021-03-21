@@ -71,19 +71,18 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
       let vbox = new qx.ui.container.Composite(new qx.ui.layout.VBox(10));
       container.add(vbox);
 
-      let prologue = this.tr(`<h3>Config Errors</h3>
-<p>The validation of "%1" showed some errors. It is not recommended to edit this file in the XML-Tree editor, because
-if can break the file completely. Please open this file in the text editor and fix the errors there.
-Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>`, this._file.getFullPath());
+      let prologue = this.tr('<h3>Config Errors</h3>\
+<p>The validation of "%1" showed some errors. It is not recommended to edit this file in the XML-Tree editor, because \
+if can break the file completely. Please open this file in the text editor and fix the errors there. \
+Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>', this._file.getFullPath());
 
-      let options = this.tr(`<p>You can choose between the following options:
-<ul>
-    <li><b>Cancel</b> - Close this editor</li>
-    <li><b>Proceed</b> - Open the defective file in this editor</li>
-    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li>
-</ul>
-</p>
-`);
+      let options = this.tr('<p>You can choose between the following options:\
+<ul>\
+    <li><b>Cancel</b> - Close this editor</li>\
+    <li><b>Proceed</b> - Open the defective file in this editor</li>\
+    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li>\
+</ul>\
+</p>');
       const labelOptions = {
         rich: true,
         width: Math.min(qx.bom.Viewport.getWidth() - 32, 750),

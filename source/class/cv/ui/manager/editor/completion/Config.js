@@ -32,7 +32,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   members: {
     __elementCache: null,
     __metaElementCache: null,
-    _schemaNode: null,
     _dataProvider: null,
 
     getLastOpenedTag: function (text) {
@@ -195,13 +194,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         // get all element attributes
         var childElem = children[name];
         // the element is a suggestion if it's available
-        if (this.isItemAvailable(childElem.name, childElem.getBounds().max, usedItems)) {
+        if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
           // mark it as a 'field', and get the documentation
           availableItems.push({
-            label: childElem.name,
+            label: childElem.getName(),
             insertText: this.getElementString(childElem, "", ""),
             kind: window.monaco.languages.CompletionItemKind.Field,
-            detail: childElem.type,
+            detail: childElem.getType(),
             documentation: childElem.getDocumentation().join("\n")
           });
         }
@@ -220,8 +219,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         if (usedChildTags.indexOf(attr.name) === -1) {
           // mark it as a 'property', and get it's documentation
           availableItems.push({
-            label: attr.name,
-            insertText: attr.name+'=""',
+            label: attr.getName(),
+            insertText: attr.getName()+'=""',
             kind: window.monaco.languages.CompletionItemKind.Property,
             detail: attr.getTypeString(),
             documentation: attr.getDocumentation().join("\n")
@@ -454,15 +453,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               return {suggestions: suggestions};
             });
           }
-          var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta'));
+          var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta'));
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't
           if (isContentSearch) {
             var currentAttribute = usedItems[usedItems.length-1];
 
-            if (currentItem && currentAttribute in currentItem.allowedAttributes) {
-              var attribute = currentItem.allowedAttributes[currentAttribute];
+            if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+              var attribute = currentItem.getAllowedAttributes()[currentAttribute];
               var type = attribute.getTypeString();
               attribute.getEnumeration().forEach(function(entry) {
                 res.push({
@@ -502,7 +501,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   destruct: function () {
     this.__elementCache = null;
-    this._schemaNode = null;
+    this._schema = null;
     this._dataProvider = null;
   }
 });

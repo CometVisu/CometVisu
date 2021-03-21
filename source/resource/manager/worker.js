@@ -122,7 +122,7 @@ class SourceFile {
         xml: code,
         schema: configSchema
       });
-      postMessage(["errors", lint.errors, this.path]);
+      postMessage(["errors", parseErrors(code, lint.errors), this.path]);
     }
   }
 
@@ -185,6 +185,114 @@ function contentChange(data) { // jshint ignore:line
   }
 }
 
+function parseErrors(content, errors, format) {
+  // parse errors and add xpath expressions to the errors to make the position findable
+  const parsedErrors = [];
+  const lineElementMap = new Map();
+  const contentLines = content.split("\n");
+  if (format === "paths") {
+    let currentElement;
+    let currentParents = [];
+    let context;
+    contentLines.forEach((line, lineNo) => {
+      for (let i = 0, l = line.length; i < l; i++) {
+        if (line[i] === "<") {
+          if (line[i + 1] === "!") {
+            context = "comment"
+            i++;
+          } else if (line[i + 1] === "/") {
+            // close tag
+            context = ""
+            if (currentParents.length > 0) {
+              currentElement = currentParents.pop();
+              context = "element";
+            }
+            i++;
+            continue;
+          } else if (line[i + 1] === "?") {
+            context = "header"
+            i++;
+          } else {
+            context = "element";
+          }
+          if (context === "element") {
+            // new tag
+            const match = /^<([^\s>]+)/.exec(line.substr(i));
+            if (currentElement) {
+              currentParents.push(currentElement);
+            }
+            currentElement = match[1];
+            lineElementMap.set(lineNo, {
+              element: currentElement,
+              path: '/' + currentParents.join("/")
+            });
+            i += currentElement.length;
+          }
+        } else if (line[i] === "/") {
+          context = ""
+          if (currentParents.length > 0) {
+            currentElement = currentParents.pop();
+            context = "element";
+          }
+        } else if (line[i] === "?") {
+          if (line[i + 1] === ">") {
+            // end of header
+            context = ""
+            i++;
+          }
+        }
+      }
+    });
+  }
+  errors.forEach(error => {
+    if (/.*\.xml:[\d]+:.+/.test(error)) {
+      const parts = error.split(":");
+      const file = parts.shift();
+      let lineNo = parseInt(parts.shift());
+      const dontcare = parts.shift();
+      const title = parts.shift().trim();
+      const position = parts.shift().trim();
+      const message = parts.join(":").trim();
+      const posMatch = /^Element '([^']+)'(,\sattribute '([^']+)')?/.exec(position);
+      // in the last part there might be a more precise line number for the error
+      const lineMatch = /.+line ([\d]+) -+/.exec(message);
+      if (lineMatch) {
+        lineNo = parseInt(lineMatch[1]);
+      }
+      let element, attribute;
+      const source = contentLines[lineNo-1];
+      if (posMatch) {
+        element = posMatch[1];
+        attribute = posMatch.length > 3 ? posMatch[3] : null
+        const err = {
+          line: lineNo,
+          title: title,
+          message: message,
+          element: element,
+          attribute: attribute,
+          path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null,
+          startColumn: Math.max(0, source.indexOf(element)-1),
+          endColumn: source.length,
+          original: error
+        };
+        if (attribute && source.indexOf(attribute) >= 0) {
+          err.startColumn = source.indexOf(attribute);
+          const attrMatch = /^(="[^"]*").*/.exec(source.substr(err.startColumn + attribute.length));
+          err.endColumn = err.startColumn + attribute.length + attrMatch[1].length;
+        }
+        err.source = source.substr(err.startColumn, err.endColumn - err.startColumn);
+        // in editors columns start counting at 1
+        err.startColumn++;
+        err.endColumn++;
+        parsedErrors.push(err);
+      } else {
+        console.error("could parse position", position);
+      }
+    }
+  });
+  return parsedErrors;
+}
+
 function validateConfig (data) {
   const url = data.path.startsWith('http') ? data.path : '../../' + data.path;
   const content = getFileContent(url);
@@ -196,7 +304,11 @@ function validateConfig (data) {
       xml: content,
       schema: configSchema
     });
-    postMessage(["validationResult", lint.errors || true, data.path]);
+    if (lint.errors) {
+      postMessage(["validationResult", parseErrors(content, lint.errors), data.path]);
+    } else {
+      postMessage(["validationResult", true, data.path]);
+    }
   }
 }
 
@@ -211,102 +323,9 @@ function validateXmlConfig(id, content, format) {
   if (!format || !lint.errors) {
     postMessage(["validationResult", lint.errors || true, id]);
   } else if (lint.errors) {
-    if (format) {
-      // parse errors and add xpath expressions to the errors to make the position findable
-      const parsedErrors = [];
-      const lineElementMap = new Map();
-      if (format === "paths") {
-        const contentLines = content.split("\n");
-        let currentElement;
-        let currentParents = [];
-        let context;
-        contentLines.forEach((line, lineNo) => {
-          for (let i = 0, l = line.length; i < l; i++) {
-            if (line[i] === "<") {
-              if (line[i + 1] === "!") {
-                context = "comment"
-                i++;
-              } else if (line[i + 1] === "/") {
-                // close tag
-                context = ""
-                if (currentParents.length > 0) {
-                  currentElement = currentParents.pop();
-                  context = "element";
-                }
-                i++;
-                continue;
-              } else if (line[i + 1] === "?") {
-                context = "header"
-                i++;
-              } else {
-                context = "element";
-              }
-              if (context === "element") {
-                // new tag
-                const match = /^<([^\s>]+)/.exec(line.substr(i));
-                if (currentElement) {
-                  currentParents.push(currentElement);
-                }
-                currentElement = match[1];
-                lineElementMap.set(lineNo, {
-                  element: currentElement,
-                  path: '/' + currentParents.join("/")
-                });
-                i += currentElement.length;
-              }
-            } else if (line[i] === "/") {
-              context = ""
-              if (currentParents.length > 0) {
-                currentElement = currentParents.pop();
-                context = "element";
-              }
-            } else if (line[i] === "?") {
-              if (line[i + 1] === ">") {
-                // end of header
-                context = ""
-                i++;
-              }
-            }
-          }
-        });
-      }
-      lint.errors.forEach(error => {
-        if (/.*\.xml:[\d]+:.+/.test(error)) {
-          const parts = error.split(":");
-          const file = parts.shift();
-          let lineNo = parseInt(parts.shift());
-          const dontcare = parts.shift();
-          const title = parts.shift().trim();
-          const position = parts.shift().trim();
-          const message = parts.join(":").trim();
-          const posMatch = /^Element '([^']+)'(,\sattribute '([^']+)')?/.exec(position);
-          // in the last part there might be a more precise line number for the error
-          const lineMatch = /.+line ([\d]+) -+/.exec(message);
-          if (lineMatch) {
-            lineNo = parseInt(lineMatch[1]);
-          }
-          let element, attribute;
-          if (posMatch) {
-            element = posMatch[1];
-            attribute = posMatch.length > 3 ? posMatch[3] : null
-            const err = {
-              line: lineNo,
-              title: title,
-              message: message,
-              element: element,
-              attribute: attribute,
-              path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null
-            };
-            parsedErrors.push(err);
-          } else {
-            console.error("could parse position", position);
-          }
-        }
-      });
-      postMessage(["validationResult", parsedErrors, id]);
-    } else {
-      postMessage(["validationResult", lint.errors, id]);
-    }
+    postMessage(["validationResult", parseErrors(content, lint.errors, format), id]);
+  } else {
+    postMessage(["validationResult", true, id]);
   }
 }
 
