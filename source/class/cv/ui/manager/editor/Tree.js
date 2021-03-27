@@ -298,6 +298,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.base(arguments, null, old);
         if (this.hasChildControl('preview')) {
           this.getChildControl('preview').resetFile();
+          console.log("resetting preview");
         }
       }
     },
@@ -1454,6 +1455,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _updatePreview: function (ev, content, reset) {
       const previewFile = this.getChildControl('preview').getFile();
       if (previewFile) {
+        console.log("updating preview, reset:", reset);
         if (!content && !reset) {
           content = this.getCurrentContent(true);
         } else if (reset === true) {
