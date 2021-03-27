@@ -106,6 +106,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
         }
       } else {
         if (this.hasChildControl('iframe')) {
+          this.getChildControl('iframe').resetSource();
           this.getChildControl('iframe').exclude();
         }
         if (this.hasChildControl('hint')) {
@@ -121,7 +122,10 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       var data = ev.getData();
       if (data.type === 'contentChanged') {
         if (this.hasChildControl('iframe')) {
-          this.getChildControl('iframe').reload();
+          const iframe = this.getChildControl('iframe');
+          const url = iframe.getSource();
+          iframe.setSource("");
+          iframe.setSource(url);
         } else if (this._windowRef) {
           this._windowRef.reload();
         }

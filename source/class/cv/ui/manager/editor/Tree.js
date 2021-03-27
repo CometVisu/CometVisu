@@ -276,10 +276,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     showErrors: function (path, errorList) {
-      console.log("errors", path, errorList);
     },
     showDecorations: function (path, decorators) {
-      console.log("decorations", path, decorators);
     },
 
     _loadFile: function (file, old) {
@@ -298,6 +296,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.base(arguments, file, old);
       } else {
         this.base(arguments, null, old);
+        if (this.hasChildControl('preview')) {
+          this.getChildControl('preview').resetFile();
+        }
       }
     },
 
@@ -1476,12 +1477,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     getCurrentContent: function (fast) {
       const tree = this.getChildControl('tree');
-      const rootNode = tree.getModel().getNode();
-      if (fast) {
-        return new XMLSerializer().serializeToString(rootNode.ownerDocument);
+      if (tree.getModel()) {
+        const rootNode = tree.getModel().getNode();
+        if (fast) {
+          return new XMLSerializer().serializeToString(rootNode.ownerDocument);
+        } else {
+          // prettify content
+          return `<?xml version="1.0" encoding="UTF-8"?>\n` + this._prettify(rootNode, 0);
+        }
       } else {
-        // prettify content
-        return `<?xml version="1.0" encoding="UTF-8"?>\n` + this._prettify(rootNode, 0);
+        return null;
       }
     },
 
