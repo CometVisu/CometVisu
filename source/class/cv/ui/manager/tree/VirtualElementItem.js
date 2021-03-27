@@ -110,6 +110,16 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
        var control;
 
        switch (id) {
+         case "icon":
+           control = new cv.ui.manager.basic.Image().set({
+             alignY: "middle",
+             anonymous: true,
+             source: this.getIcon(),
+             maxWidth: 22,
+             maxHeight: 22
+           });
+           break;
+
          case 'buttons':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
            control.setAnonymous(true);

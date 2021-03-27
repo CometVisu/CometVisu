@@ -170,7 +170,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             }
             formElement.setDelegate({
               createItem: function() {
-                return new qx.ui.form.ListItem();
+                return new cv.ui.manager.form.ListItem();
               },
               bindItem:  function (controller, item, index) {
                 controller.bindDefaultProperties(item, index);
@@ -194,14 +194,14 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             new qx.data.controller.List(model, formElement, "label");
             break;
           case "virtualselectbox":
-            formElement = new qx.ui.form.VirtualSelectBox();
+            formElement = new cv.ui.manager.form.VirtualSelectBox();
             model = new qx.data.Array();
             fieldData.options.forEach(item => {
               model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
             });
             formElement.setDelegate({
               createItem: function() {
-                return new qx.ui.form.ListItem();
+                return new cv.ui.manager.form.ListItem();
               },
               bindItem:  function (controller, item, index) {
                 controller.bindDefaultProperties(item, index);
@@ -210,6 +210,15 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             });
             formElement.set({
               labelPath: "label",
+              iconPath: "icon",
+              iconOptions: {
+                converter: function (value) {
+                  if (typeof value === "function") {
+                    return value().trim();
+                  }
+                  return value;
+                }
+              },
               model: model
             });
             break;

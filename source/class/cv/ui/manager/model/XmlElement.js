@@ -193,6 +193,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         } else if (this._node.nodeType === Node.COMMENT_NODE) {
           this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
           return;
+        } else if (this.getName() === "icon" && this.getAttribute("name")) {
+          const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute("name"), 'tree-icon');
+          this.setIcon(source);
+          return;
         }
       }
       if (this.isOpen()) {
@@ -577,6 +581,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               }
               if (name === "name") {
                 this._updateDisplayName();
+                if (this.getName() === "icon") {
+                  this._maintainIcon();
+                }
               }
               changed = true;
             }

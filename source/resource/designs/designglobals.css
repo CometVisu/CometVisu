@@ -32,6 +32,10 @@ a, img {
   height: 2em;
   width: 2em;
 }
+.tree-icon {
+  height: 20px;
+  width: 20px;
+}
 
 /*
  * create a three column layout in the middle of the page to allow navbars

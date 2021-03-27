@@ -453,7 +453,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             return {
               label: iconName,
               value: iconName,
-              icon: iconHandler.get(iconName)
+              icon: iconHandler.getIconSource(iconName)
             };
           });
         }
