@@ -147,10 +147,71 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               })
             }
             break;
+          case "virtualcombobox":
+            formElement = new qx.ui.form.ComboBox();
+            formElement.set({
+              iconPath: "icon",
+              labelPath: "label"
+            });
+            model = new qx.data.Array();
+            if (Array.isArray(fieldData.options)) {
+              fieldData.options.forEach(item => {
+                model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+              });
+            } else if (typeof fieldData.options === 'object') {
+              Object.keys(fieldData.options).forEach(groupName => {
+                const groupModel = new cv.ui.manager.form.Option(groupName);
+                groupModel.setType("group");
+                model.push(groupModel);
+                fieldData.options[groupName].forEach(function (item) {
+                  model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value))
+                });
+              })
+            }
+            formElement.setDelegate({
+              createItem: function() {
+                return new qx.ui.form.ListItem();
+              },
+              bindItem:  function (controller, item, index) {
+                controller.bindDefaultProperties(item, index);
+                controller.bindProperty('type', 'appearance', {
+                  converter: function (value) {
+                    return value === "group" ? "optiongroup" : "listitem";
+                  }
+                }, item, index);
+                controller.bindProperty('type', 'anonymous', {
+                  converter: function (value) {
+                    return value === "group";
+                  }
+                }, item, index);
+              }
+            });
+            formElement.setModel(model);
+            break;
           case "selectbox":
             formElement = new qx.ui.form.SelectBox();
             model = qx.data.marshal.Json.createModel(fieldData.options);
             new qx.data.controller.List(model, formElement, "label");
+            break;
+          case "virtualselectbox":
+            formElement = new qx.ui.form.VirtualSelectBox();
+            model = new qx.data.Array();
+            fieldData.options.forEach(item => {
+              model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+            });
+            formElement.setDelegate({
+              createItem: function() {
+                return new qx.ui.form.ListItem();
+              },
+              bindItem:  function (controller, item, index) {
+                controller.bindDefaultProperties(item, index);
+                controller.bindProperty('value', 'model', null, item, index);
+              }
+            });
+            formElement.set({
+              labelPath: "label",
+              model: model
+            });
             break;
           case "radiogroup":
             formElement = new qx.ui.form.RadioGroup();
@@ -213,12 +274,35 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             case "textfield":
             case "passwordfield":
             case "combobox":
+            case "virtualcombobox":
             case "datefield":
             case "spinner":
               this._formController.addTarget(formElement, "value", mappedKey, true, null, {
                 converter: function (value) {
                   _this._form.getValidationManager().validate();
                   return value;
+                }
+              });
+              break;
+            case "virtualselectbox":
+              this._formController.addTarget(formElement, "value", mappedKey, true, {
+                converter: function (value) {
+                  if (typeof value === "string") {
+                    let option;
+                    this.getModel().some(item => {
+                      if (item.getValue() === value) {
+                        option = item;
+                        return true;
+                      }
+                    });
+                    return option;
+                  }
+                  return value;
+                }.bind(formElement)
+              }, {
+                converter: function (option) {
+                  _this._form.getValidationManager().validate();
+                  return option.getValue();
                 }
               });
               break;
@@ -247,6 +331,18 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 }, formElement)
               });
               break;
+            /*case "virtualselectbox":
+              this._formController.addTarget(formElement, "selection", mappedKey, true, {
+                converter: function(value) {
+
+                }.bind(formElement)
+              }, {
+                converter: function (selection) {
+                  console.log(selection);
+                  return selection.getValue();
+                }.bind(formElement)
+              });
+              break;*/
             case "radiogroup":
               this._formController.addTarget(formElement, "selection", mappedKey, true, {
                 converter: qx.lang.Function.bind(function (value) {

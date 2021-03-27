@@ -1071,13 +1071,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __checkProvider: function (id, formData, element) {
       const provider = cv.ui.manager.editor.data.Provider.get(id);
       if (provider) {
-        formData.type = provider.userInputAllowed ? "ComboBox" : "SelectBox";
+
         if (typeof provider.live === 'function') {
           formData.options = provider.live(element);
         } else if (provider.data) {
           formData.options = provider.data;
         } else {
           this.error("misconfigured provider found for " + id);
+        }
+        // use virtual widgets for large data sets
+        if (Array.isArray(formData.options) && formData.options.length > 50 ||
+          typeof formData.options === "object" && Object.keys(formData.options) > 50) {
+          formData.type = provider.userInputAllowed ? "VirtualComboBox" : "VirtualSelectBox";
+        } else {
+          formData.type = provider.userInputAllowed ? "ComboBox" : "SelectBox";
         }
       } else if (["mapping", "styling"].includes(id.split("@").pop())) {
         const type = id.split("@").pop();
@@ -1091,7 +1098,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           formData.options.push({label: name, value: name});
         });
       }
-      if (formData.type === 'SelectBox') {
+      if (formData.type.endsWith('SelectBox')) {
         // not allowed here
         delete formData.placeholder;
         if (!formData.validation.required) {
