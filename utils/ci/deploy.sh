@@ -76,10 +76,10 @@ if [[ "$NO_API" -eq 0 ]]; then
     # move generate api to target, because we need the build dir for screenshots
     ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 
-    # we need a build to generate screenshots
-    qx compile -t=build -f=false
+    # we need a source-build to generate screenshots
+    qx compile -t=source -f=false
     echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=build --force
+    ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=source
     BUILD_CV=0
 
     # move generated screenshots to the api viewer
@@ -97,11 +97,11 @@ ${CV} doc --process-versions
 
 if [[ "$BUILD_CV" -eq 1 ]]; then
   echo "generating the source version of the CometVisu for screenshot generation"
-  qx compile -t=build -f=false
+  qx compile -t=source -f=false
 fi
 
 echo "generating english manual, including screenshot generation for all languages"
-${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
 echo "generating german manual again with existing screenshots"
 ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 

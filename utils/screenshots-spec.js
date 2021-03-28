@@ -15,7 +15,8 @@ let devicePixelRatio = 1;
 const stats = {
   total: 0,
   success: 0,
-  error: 0
+  error: 0,
+  skipped: 0
 };
 browser.executeAsyncScript(function (callback) { callback(window.devicePixelRatio); }).then(function(value) {
   devicePixelRatio = value;
@@ -86,6 +87,7 @@ describe('generation screenshots from jsdoc examples', function () {
   let mockup = null;
   let results = [];
   let runResult = {};
+  let shotIndex = {};
 
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
@@ -112,13 +114,18 @@ describe('generation screenshots from jsdoc examples', function () {
           runResult.browserErrors.push(log.message);
         });
       });
+    } else if (runResult && runResult.success) {
+      // save shotIndex
+      fs.writeFile(runResult.shotIndexFile, JSON.stringify(shotIndex, null, 4), function (err) {
+        if (err) return console.log(err);
+      });
     }
     results.push(runResult);
   });
 
   afterAll(function () {
     const color = stats.error > 0 ? "\x1b[31m" : "\x1b[32m";
-    const result = stats.success + "/" + stats.total + " screenshots created. " + stats.error + " failed";
+    const result = stats.success + "/" + stats.total + " screenshots created. " + stats.skipped + " skipped. " + stats.error + " failed";
     const separator = "".padEnd(result.length + 8, "#");
     console.log(color);
     console.log("\n" + separator);
@@ -151,152 +158,185 @@ describe('generation screenshots from jsdoc examples', function () {
           // skip this one
           return;
         }
+        if (fileName.split(".").pop() !== "json") {
+          return;
+        }
         let filePath = path.join(subDir, fileName);
         runResult.file = filePath;
         let stat = fs.statSync(filePath);
         if (stat.isFile()) {
-          let example = fs.readFileSync(filePath, "utf-8").split("\n");
-          if (example[0].substr(0,1) === "{") {
-            const settingsStr = example.shift();
-            let settings;
+          const rawData = fs.readFileSync(filePath, "utf-8");
+          let settings;
+          try {
+            settings = JSON.parse(rawData);
+          } catch (e) {
+            console.error("\n>>> error parsing settings", rawData, filePath);
+            console.error(e.message);
+            runResult.failed = true;
+            runResult.error = e;
+            stats.error++;
+            stats.total++;
+            return;
+          }
+          createDir(settings.screenshotDir);
+          const indexFile = path.join(settings.screenshotDir, "shot-index.json");
+          if (fs.existsSync(indexFile)) {
+            const indexData = fs.readFileSync(indexFile, "utf-8");
             try {
-              settings = JSON.parse(settingsStr);
+              shotIndex = JSON.parse(indexData);
             } catch (e) {
-              console.error("\n>>> error parsing settings", settingsStr, filePath);
+              console.error("\n>>> error parsing screenshot index data", indexData, indexFile);
               console.error(e.message);
-              runResult.failed = true;
-              runResult.error = e;
-              stats.error++;
-              stats.total++;
-              return;
             }
-            createDir(settings.screenshotDir);
+          }
 
-            let selectorPrefix = ".activePage ";
-            let mockedConfigData = {
-              mode: "cv",
-              data: example.join("\n"),
-              fixtures: settings.fixtures
-            };
-
-            if (settings.editor) {
-              selectorPrefix = "";
-              mockedConfigData.mode = "editor";
+          // check if we have to renew any ob the screenshots
+          const skippedScreenshots = [];
+          let allSkipped = true;
+          settings.screenshots.forEach((setting) => {
+            if (setting.hasOwnProperty("hash") && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
+              // also check if the file really exists
+              if (fs.existsSync(path.join(settings.screenshotDir, setting.name + ".png"))) {
+                // skip this screenshot because is has not changed since last generation
+                stats.skipped++;
+                stats.total++;
+                skippedScreenshots.push(setting.name);
+              }
+            } else {
+              allSkipped = false;
             }
-            if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
-              selectorPrefix = "";
-            }
-            mockupConfig.push(mockedConfigData);
+          });
+          if (allSkipped) {
+            // nothing to do
+            return;
+          }
 
-            it('should create a screenshot', async function () {
-              //console.log(">>> processing " + filePath + "...");
-              let currentScreenshot = {};
-              try {
-                let widget;
-                if (settings.editor) {
-                  widget = element(by.css('#manager'));
-                  await browser.wait(function () {
-                    return widget.isDisplayed();
-                  }, 2000);
+          let selectorPrefix = ".activePage ";
+          let mockedConfigData = {
+            mode: "cv",
+            data: settings.config,
+            fixtures: settings.fixtures
+          };
 
-                  await editorMockup.editConfig('mockup');
-                  widget = element.all(by.css('div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]')).first();
-                  await browser.wait(function () {
-                    return widget.isDisplayed();
-                  }, 2000);
+          if (settings.editor) {
+            selectorPrefix = "";
+            mockedConfigData.mode = "editor";
+          }
+          if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
+            selectorPrefix = "";
+          }
+          mockupConfig.push(mockedConfigData);
 
-                  if (settings.complex) {
-                    await editorMockup.enableExpertMode();
-                  }
-                  await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
-                }
-
-                // wait for everything to be rendered
-                browser.sleep(settings.sleep || 1000);
-                widget = element.all(by.css(selectorPrefix + settings.selector)).first();
+          it('should create a screenshot', async function () {
+            //console.log(">>> processing " + filePath + "...");
+            let currentScreenshot = {};
+            runResult.shotIndexFile = indexFile;
+            try {
+              let widget;
+              if (settings.editor) {
+                widget = element(by.css('#manager'));
                 await browser.wait(function () {
                   return widget.isDisplayed();
                 }, 2000);
 
-                settings.screenshots.forEach(function (setting) {
-                  currentScreenshot = setting;
-                  runResult.screenshot = setting.name;
+                await editorMockup.editConfig('mockup');
+                widget = element.all(by.css('div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]')).first();
+                await browser.wait(function () {
+                  return widget.isDisplayed();
+                }, 2000);
 
-                  if (setting.data && Array.isArray(setting.data)) {
-                    setting.data.forEach(function (data) {
-                      var value = data.value;
-                      if (data.type) {
-                        switch (data.type) {
-                          case "float":
-                            value = parseFloat(value);
-                            break;
-                          case "int":
-                            value = parseInt(value);
-                            break;
-                        }
-                      }
-                      cvMockup.sendUpdate(data.address, value);
-                    });
-                  }
-                  if (setting.clickPath) {
-
-                    var actor = element.all(by.css(setting.clickPath)).first();
-                    if (actor) {
-                      actor.click();
-                      var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
-                      widget = element(by.css(waitFor));
-                      browser.wait(function () {
-                        return widget.isDisplayed();
-                      }, 1000);
-                    }
-                  }
-                  widget.getSize().then(function (size) {
-                    widget.getLocation().then(function (location) {
-                      if (setting.sleep) {
-                        browser.sleep(setting.sleep);
-                      }
-                      //console.log("  - creating screenshot '" + setting.name + "'");
-                      browser.takeScreenshot().then(function (data) {
-                        var base64Data = data.replace(/^data:image\/png;base64,/, "");
-                        var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
-                        fs.writeFile(imgFile, base64Data, 'base64', function (err) {
-                          if (err) {
-                            runResult.failed = true;
-                            runResult.error = err;
-                            stats.error++;
-                            stats.total++;
-                          } else {
-
-                            if (settings.scale) {
-                              var scale = parseInt(settings.scale);
-                              var scaledWidth = Math.round(size.width * scale / 100);
-                              var scaledHeight = Math.round(size.height * scale / 100);
-                              cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
-                            } else {
-                              cropInFile(size, location, imgFile);
-                            }
-                            stats.success++;
-                            stats.total++;
-                            runResult.success = true;
-                          }
-                        });
-                      });
-                    });
-                  });
-                });
-              } catch (e) {
-                console.error(">>> error creating screenshot", currentScreenshot.name, "from file", filePath);
-                console.error(e.message);
-                stats.error++;
-                stats.total++;
-                runResult.failed = true;
-                runResult.error = e;
-                runResult.screenshot = currentScreenshot.name;
+                if (settings.complex) {
+                  await editorMockup.enableExpertMode();
+                }
+                await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
               }
-            });
-          }
+
+              // wait for everything to be rendered
+              browser.sleep(settings.sleep || 1000);
+              widget = element.all(by.css(selectorPrefix + settings.selector)).first();
+              await browser.wait(function () {
+                return widget.isDisplayed();
+              }, 2000);
+
+              runResult.screenshots = [];
+              for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
+                currentScreenshot = setting;
+                runResult.screenshots.push(setting.name);
+
+                if (setting.data && Array.isArray(setting.data)) {
+                  setting.data.forEach(function (data) {
+                    var value = data.value;
+                    if (data.type) {
+                      switch (data.type) {
+                        case "float":
+                          value = parseFloat(value);
+                          break;
+                        case "int":
+                          value = parseInt(value);
+                          break;
+                      }
+                    }
+                    cvMockup.sendUpdate(data.address, value);
+                  });
+                }
+                if (setting.clickPath) {
+
+                  var actor = element.all(by.css(setting.clickPath)).first();
+                  if (actor) {
+                    actor.click();
+                    var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
+                    widget = element(by.css(waitFor));
+                    browser.wait(function () {
+                      return widget.isDisplayed();
+                    }, 1000);
+                  }
+                }
+                const size = await widget.getSize();
+                const location = await widget.getLocation();
+                if (setting.sleep) {
+                  browser.sleep(setting.sleep);
+                }
+                //console.log("  - creating screenshot '" + setting.name + "'");
+                const data = await browser.takeScreenshot();
+                var base64Data = data.replace(/^data:image\/png;base64,/, "");
+                var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
+                try {
+                  fs.writeFileSync(imgFile, base64Data, 'base64');
+                  if (settings.scale) {
+                    var scale = parseInt(settings.scale);
+                    var scaledWidth = Math.round(size.width * scale / 100);
+                    var scaledHeight = Math.round(size.height * scale / 100);
+                    cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
+                  } else {
+                    cropInFile(size, location, imgFile);
+                  }
+                  stats.success++;
+                  stats.total++;
+                  runResult.success = true;
+                  if (setting.hash) {
+                    shotIndex[setting.name] = setting.hash;
+                  }
+                } catch (err) {
+                  runResult.failed = true;
+                  runResult.error = err;
+                  stats.error++;
+                  stats.total++;
+                }
+              }
+            } catch (e) {
+              console.error(">>> error creating screenshot", currentScreenshot.name, "from file", filePath);
+              console.error(e.message);
+              stats.error++;
+              stats.total++;
+              runResult.failed = true;
+              runResult.error = e;
+              runResult.screenshot = currentScreenshot.name;
+            }
+          });
         }
       });
+      // save the shotindex
+
     }
   });
 });

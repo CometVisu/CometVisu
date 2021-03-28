@@ -20,6 +20,7 @@ from os import path, makedirs
 from lxml import etree
 from io import open
 import json
+import hashlib
 from xml.sax.saxutils import escape
 from settings import config, root_dir
 
@@ -180,12 +181,20 @@ class WidgetExampleParser:
 
         # validate generated config against XSD
         etree.fromstring(visu_config, parser)
+        parsed["settings"]["config"] = visu_config
+
+        # generate hash
+        stripped_data = {k: v for k, v in parsed['settings'].items() if k != "screenshots"}
+        base_hash_value = json.dumps(stripped_data, sort_keys=True).encode("utf-8")
+        for shot in parsed["settings"]["screenshots"]:
+            shot_dump = json.dumps(shot, sort_keys=True).encode("utf-8")
+            shot["hash"] = hashlib.md5(base_hash_value+shot_dump).hexdigest()
 
         if not path.exists(self.example_dir):
             makedirs(self.example_dir)
 
-        with open("%s_%s.xml" % (path.join(self.example_dir, name), self.counters[name]), encoding='utf-8', mode="w") as f:
-            f.write(u"%s\n%s" % (json.dumps(parsed['settings']), visu_config))
+        with open("%s_%s.json" % (path.join(self.example_dir, name), self.counters[name]), encoding='utf-8', mode="w") as f:
+            f.write(u"%s" % json.dumps(parsed['settings'], indent=4))
 
     ##
     # "@widgetexample text"

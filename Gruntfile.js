@@ -435,7 +435,9 @@ module.exports = function(grunt) {
             params: {
               subDir: grunt.option('subDir'),
               screenshots: grunt.option('files'),
-              target: grunt.option('target')
+              target: grunt.option('target'),
+              targetDir: grunt.option('targetDir'),
+              forced: grunt.option('forced')
             }
           }
         }
