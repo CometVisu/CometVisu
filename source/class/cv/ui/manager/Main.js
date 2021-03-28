@@ -634,7 +634,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __getFileNamePrompt: function (message, callback, context, value, caption) {
-      var prompt = new dialog.Prompt({
+      var prompt = new cv.ui.manager.dialog.Prompt({
         message: message,
         callback: callback || null,
         context: context || null,
