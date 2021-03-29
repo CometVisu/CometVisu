@@ -443,7 +443,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  boolean         is this element allowed?
      */
     isChildElementAllowed: function (child) {
-      if (child === '#text') {
+      if (child === '#text' || child === '#cdata-section') {
         // text-nodes are somewhat special :)
         return this.isTextContentAllowed();
       } else if (child === '#comment') {
@@ -474,7 +474,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // first, get a list of allowed content (don't worry, it's cached)
       const allowedContent = this.getAllowedContent();
 
-      if (elementName === '#text') {
+      if (elementName === '#text' || elementName === '#cdata-section') {
         // no special handling for mixed nodes, they do have a #text-SchemaElement already!
         // text-nodes may be allowed. we will see ...
         if (false === this.isTextContentAllowed()) {

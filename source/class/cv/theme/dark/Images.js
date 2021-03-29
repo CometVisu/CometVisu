@@ -58,7 +58,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'cut': '@MaterialIcons/content_cut',
       'copy': '@MaterialIcons/content_copy',
       'paste': '@MaterialIcons/content_paste',
-      'help': '@MaterialIcons/help'
+      'help': '@MaterialIcons/help',
+      'code': '@MaterialIcons/code'
     },
 
     getIcon: function (name, size) {

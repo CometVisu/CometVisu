@@ -1190,12 +1190,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             })
           }
         });
-      } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE) {
+      } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
         const nodeName = element.getNode().nodeName;
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
         formData[nodeName] = {
-          type: element.getNode().nodeType === Node.COMMENT_NODE ? "TextArea" : "TextField",
+          type: element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE ? "TextArea" : "TextField",
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
           help: docs.join("<br/>"),
@@ -1211,6 +1211,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               }
             }
           }
+        }
+        if (formData[nodeName].type === "TextArea") {
+          formData[nodeName].lines = 8;
         }
         this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
         if (formData[nodeName].options && formData[nodeName].options instanceof Promise) {
@@ -1441,9 +1444,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onContentChanged: function () {
-      const tree = this.getChildControl('tree');
-      const rootNode = tree.getModel().getNode();
-      const content = new XMLSerializer().serializeToString(rootNode.ownerDocument);
+      const content = this.getCurrentContent();
       if (this._workerWrapper) {
         this._workerWrapper.contentChanged(this.getFile(), content);
       }
@@ -1455,7 +1456,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _updatePreview: function (ev, content, reset) {
       const previewFile = this.getChildControl('preview').getFile();
       if (previewFile) {
-        console.log("updating preview, reset:", reset);
         if (!content && !reset) {
           content = this.getCurrentContent(true);
         } else if (reset === true) {
@@ -1503,7 +1503,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
       }
       if (node.nodeType === Node.COMMENT_NODE) {
-        return (singleton ? '' : tabs) + `<!--${node.textContent.trim()}--> ${(singleton ? '' : newLine)}`;
+        return (singleton ? '' : tabs) + `<!--${node.textContent}--> ${(singleton ? '' : newLine)}`;
+      } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
+        return (singleton ? '' : tabs) + `<![CDATA[${node.textContent}]]> ${(singleton ? '' : newLine)}`;
       }
       if (!node.tagName) {
         return this._prettify(node.firstChild, level);

@@ -187,7 +187,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _maintainIcon: function () {
       if (this._node) {
-        if (this._node.nodeType === Node.TEXT_NODE) {
+        if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
           this.setIcon(cv.theme.dark.Images.getIcon('text-fields', 18));
           return;
         } else if (this._node.nodeType === Node.COMMENT_NODE) {
@@ -344,13 +344,18 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
           countExisting[child.getName()]++;
         })
+
         Object.keys(allowed).forEach(elementName => {
           if (excludeComment === true && elementName === "#comment") {
             return;
           }
+          if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isMixed()) {
+            stillAllowed.push(elementName);
+            return;
+          }
           const childBounds = schemaElement.getBoundsForElementName(elementName);
           const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
-          if (childBounds.max > existing) {
+          if (childBounds && childBounds.max > existing) {
             stillAllowed.push(elementName);
           }
         });
@@ -515,7 +520,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _applyTextContent: function (value) {
       if (!this.__initializing) {
         if (this._node) {
-          if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
+          if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._node.nodeValue = value;
             this._updateDisplayName();
           } else if (this._node.nodeType === Node.ELEMENT_NODE) {
@@ -529,7 +534,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       return this.getTextContent();
     },
 
-    setText: function (text) {
+    setText: function (text, nodeName) {
       let changed = false;
       let newValue = text;
       let oldValue = '';
@@ -548,7 +553,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
       return {
         changed: changed,
-        attribute: '#text',
+        attribute: nodeName || '#text',
         value: newValue,
         old: oldValue
       }
@@ -599,15 +604,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           value: newValue,
           old: oldValue
         }
-      } else if (this._node.nodeType === Node.TEXT_NODE && name === '#text') {
-        return this.setText(value);
-      } else if (this._node.nodeType === Node.COMMENT_NODE && name === '#comment') {
+      } else if (this._node.nodeType === Node.TEXT_NODE && name === '#text' || (this._node.nodeType === Node.CDATA_SECTION_NODE && name === '#cdata-section')) {
+        return this.setText(value, name);
+      } else if ((this._node.nodeType === Node.COMMENT_NODE && name === '#comment')) {
         const oldValue = this.getTextContent();
         const changed = value !== oldValue;
         this.setTextContent(value);
         return {
           changed: changed,
-          attribute: '#comment',
+          attribute: name,
           value: value,
           old: oldValue
         }
@@ -678,7 +683,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
           }
-        } else if (this._node.nodeType === Node.TEXT_NODE && this._node.nodeValue.trim()) {
+        } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
           if (textContent.length > 20) {
             textContent = textContent.substring(0, 20) + "...";
@@ -703,7 +708,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           for (let i = 0; i < this._node.childNodes.length; i++) {
             const childNode = this._node.childNodes.item(i);
             if (childNode.nodeType === Node.ELEMENT_NODE
-              || (childNode.nodeType === Node.TEXT_NODE && childNode.nodeValue.trim() !== "")) {
+              || ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim() !== "")) {
               return true;
             }
           }
@@ -731,7 +736,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   const child = new cv.ui.manager.model.XmlElement(childNode, childSchemaElement, this.getEditor(), this);
                   children.push(child);
                   this._initialChildNames.push(childNode.nodeName);
-                } else if (childNode.nodeType === Node.TEXT_NODE) {
+                } else if (childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) {
                   if (childNode.nodeValue) {
                     // do not use childSchemaElement here, because our schemeElement already knows how to validate text
                     const child = new cv.ui.manager.model.XmlElement(childNode, schemaElement, this.getEditor(), this);
@@ -768,7 +773,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               const attr = this._node.attributes.item(i);
               this._initialAttributes.set(attr.name, attr.value);
             }
-          } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
+          } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._initialTextContent = this._node.nodeValue;
             this.setTextContent(this._node.nodeValue);
           }
@@ -796,7 +801,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
           this.setModified(false);
         }
-      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
+      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
         this.setModified(this._initialTextContent !== this.getTextContent());
       }
     },
@@ -810,7 +815,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           this._initialAttributes.set(attr.name, attr.value);
         }
         this._initialChildNames = this._currentChildNames();
-      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE) {
+      } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
         this._initialTextContent = this._node.nodeValue;
       }
       this.setModified(false);
@@ -822,7 +827,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const childNode = this._node.childNodes.item(i);
         if (childNode.nodeType === Node.ELEMENT_NODE) {
           names.push(childNode.nodeName);
-        } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE) && childNode.nodeValue.trim()) {
+        } else if ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim()) {
           names.push(childNode.nodeName);
         }
       }
