@@ -8,6 +8,10 @@ Konfigurationsdateien verwalten (anlegen, bearbeiten, ersetzen, löschen).
 Außerdem können die die :ref:`versteckten Konfigurationen <hidden-config>` so wie
 Medien-Dateien (z.B. Hintergrundbilder) verwaltet werden.
 
+.. hint::
+    Der Manager kann geöffnet werden, indem man die Tasten-Kombination "Strg+M" in einer laufenden CometVisu Instanz drückt
+    oder beim Laden der CometVisu den URL-Parameter `manager=1` hinzufügt.
+
 .. figure:: _static/manager.de.png
 
 Die jeweiligen Funktionen sind über Menüs, Toolbars oder Buttons erreichbar. Die Startseite des Managers setzt sich aus

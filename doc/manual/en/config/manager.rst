@@ -8,6 +8,10 @@ edit, replace, delete) various configuration files.
 In addition you can manage the :ref:`hidden configurations <hidden-config>`
 as well as media files (for example backdrops).
 
+.. hint::
+    The manager can be opened by pressing the keys "Ctrl+M" together in a running CometVisu
+    or by adding the url parameter `manager=1` to the CometVisu URL.
+
 .. figure:: _static/manager.en.png
 
 The available functions are accessible via menus, toolbars or buttons. The main page of the manager
