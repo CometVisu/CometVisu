@@ -420,6 +420,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              width: 350,
              openMode: 'dbltap'
            });
+           this.bind("file.writeable", control, "droppable");
            this._initDragDrop(control);
            control.setDelegate({
              createItem: function () {
@@ -636,12 +637,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _initDragDrop: function (control) {
-      const enabled = this.getFile().isWriteable();
-      control.set({
-        draggable: enabled,
-        droppable: enabled
-      });
-
       control.addListener("dragstart", function (ev) {
         const dragTarget = ev.getDragTarget();
         let element;

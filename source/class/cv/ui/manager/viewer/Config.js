@@ -62,6 +62,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   members: {
     _windowRef: null,
     _source: null,
+    _reloading: false,
 
     _applyConnectToWindow: function (value) {
       this.setExternal(!value);
@@ -132,8 +133,10 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           // use href to get the anchor to keep the currently opened page on reload
           const url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
           if (url && url !== "about:blank") {
+            this._reloading = true;
+            this.getChildControl('loading').show();
             iframe.addListenerOnce("load", () => {
-              this.getChildControl('loading').show();
+              this._reloading = false;
               iframe.setSource(url);
             }, this);
           }
@@ -146,7 +149,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _onClose: function () {
       if (this._windowRef) {
-        console.log(this, 'close', this.getFile().getFullPath());
         qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
       }
     },
@@ -171,7 +173,8 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
            control = new qx.ui.embed.Iframe();
            control.exclude();
            control.addListener("load", () => {
-             if (this.hasChildControl('loading')) {
+             console.log("loaded", this.hasChildControl('loading'));
+             if (this.hasChildControl('loading') && !this._reloading) {
                this.getChildControl('loading').exclude();
              }
            }, this);
@@ -199,6 +202,11 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
              font: 'title',
              iconPosition: "top",
              backgroundColor: "rgba(0,0,0,0.2)"
+           });
+           control.addListener("appear", () => {
+             qx.event.Timer.once(() => {
+               control.exclude();
+             }, this, 5000);
            });
            control.exclude();
            this._add(control);
