@@ -26,7 +26,8 @@ folgenden Komponenten zusammen (von oben nach unten):
 Verfügbare CometVisu Konfigurationen
 ------------------------------------
 
-In der Liste werden alle verfügbaren Konfigurationen aufgelistet. Unter jeder Konfigurationsdatei
+In der Liste werden alle verfügbaren Konfigurationen aufgelistet, aufgeteilt in "normale", editierbare
+Konfigurationsdateien und nicht-editierbare Demo-Konfigurationen. Unter jeder Konfigurationsdatei
 befindet sich eine Listen mit Buttons, die den Schnellzugriff auf die wichtigsten Funktionen bereitstellen.
 Damit kann die Datei heruntergeladen, angesehen oder bearbeitet werden. Weitere Funktionen sind über ein
 Kontextmenü, welches über einen Klick mit der rechten Maustaste auf das Datei-Symbol oder einem Klick mit der
@@ -39,20 +40,20 @@ Duplizieren
 
 Öffnen
   Öffnet die Konfiguration mit dem voreingestellen Standard-Editor (Diese Einstellung kann über die oberste Menüleiste
-  unter Einstellungen angepasst werden)
+  unter Einstellungen angepasst werden).
 
 Öffnen mit
-  Konfigurationsdateien können normal geöffnet oder in 2 verschiedenen Editoren bearbeitet werden
+  Konfigurationsdateien können normal geöffnet oder in 2 verschiedenen Editoren bearbeitet werden.
 
 Vergleichen mit
   Steht nur zur Verfügung, wenn die Konfigurationsdatei bereits geändert worden ist. Dann kann die aktuelle Version
   mit älteren Versionen verglichen werden, um ein genaueres Bild von den Änderungen zu bekommen.
 
 Umbenennen
-  Ändern des Dateinamens
+  Ändern des Dateinamens.
 
 Löschen
-  Löscht die Konfiguration
+  Löscht die Konfiguration.
 
 Herunterladen
   Lädt die Konfiguration herunter, so dass diese lokal gesichert oder bearbeitet
