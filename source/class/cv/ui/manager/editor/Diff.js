@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
     },
 
     _loadFile: function (file, old) {
-      if (old) {
+      if (old && old instanceof cv.ui.manager.model.FileItem) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (this._editor) {
