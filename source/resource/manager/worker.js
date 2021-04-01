@@ -252,44 +252,74 @@ function parseErrors(content, errors, format) {
       const parts = error.split(":");
       const file = parts.shift();
       let lineNo = parseInt(parts.shift());
-      const dontcare = parts.shift();
-      const title = parts.shift().trim();
-      const position = parts.shift().trim();
-      const message = parts.join(":").trim();
-      const posMatch = /^Element '([^']+)'(,\sattribute '([^']+)')?/.exec(position);
-      // in the last part there might be a more precise line number for the error
-      const lineMatch = /.+line ([\d]+) -+/.exec(message);
-      if (lineMatch) {
-        lineNo = parseInt(lineMatch[1]);
-      }
-      let element, attribute;
-      const source = contentLines[lineNo-1];
-      if (posMatch) {
-        element = posMatch[1];
-        attribute = posMatch.length > 3 ? posMatch[3] : null
+      const errorType = parts.shift().trim();
+      let title, message;
+      if (errorType === "parser error") {
+        const end = parts[parts.length - 1];
+        title= errorType;
+        message = parts.join(": ");
+        const lineMatch = /.+line ([\d]+).+/.exec(end);
+        if (lineMatch) {
+          lineNo = parseInt(lineMatch[1]);
+        }
+        const source = contentLines[lineNo - 1];
         const err = {
           line: lineNo,
           title: title,
           message: message,
-          element: element,
-          attribute: attribute,
+          element: undefined,
+          attribute: undefined,
           path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null,
-          startColumn: Math.max(0, source.indexOf(element)-1),
+          startColumn: Math.max(0, source.search(/[^\s]/)),
           endColumn: source.length,
           original: error
         };
-        if (attribute && source.indexOf(attribute) >= 0) {
-          err.startColumn = source.indexOf(attribute);
-          const attrMatch = /^(="[^"]*").*/.exec(source.substr(err.startColumn + attribute.length));
-          err.endColumn = err.startColumn + attribute.length + attrMatch[1].length;
-        }
         err.source = source.substr(err.startColumn, err.endColumn - err.startColumn);
         // in editors columns start counting at 1
         err.startColumn++;
         err.endColumn++;
         parsedErrors.push(err);
+      } else if (errorType.startsWith("element")) {
+        title = parts.shift().trim();
+        const position = parts.shift().trim();
+        message = parts.join(":").trim();
+        const posMatch = /^Element '([^']+)'(,\sattribute '([^']+)')?/.exec(position);
+        // in the last part there might be a more precise line number for the error
+        const lineMatch = /.+line ([\d]+) -+/.exec(message);
+        if (lineMatch) {
+          lineNo = parseInt(lineMatch[1]);
+        }
+        let element, attribute;
+        const source = contentLines[lineNo - 1];
+        if (posMatch) {
+          element = posMatch[1];
+          attribute = posMatch.length > 3 ? posMatch[3] : null
+          const err = {
+            line: lineNo,
+            title: title,
+            message: message,
+            element: element,
+            attribute: attribute,
+            path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null,
+            startColumn: Math.max(0, source.indexOf(element) - 1),
+            endColumn: source.length,
+            original: error
+          };
+          if (attribute && source.indexOf(attribute) >= 0) {
+            err.startColumn = source.indexOf(attribute);
+            const attrMatch = /^(="[^"]*").*/.exec(source.substr(err.startColumn + attribute.length));
+            err.endColumn = err.startColumn + attribute.length + attrMatch[1].length;
+          }
+          err.source = source.substr(err.startColumn, err.endColumn - err.startColumn);
+          // in editors columns start counting at 1
+          err.startColumn++;
+          err.endColumn++;
+          parsedErrors.push(err);
+        } else {
+          console.error("could parse position", position);
+        }
       } else {
-        console.error("could parse position", position);
+        console.error("unhandled error type", errorType, error);
       }
     }
   });
