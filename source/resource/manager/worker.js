@@ -186,6 +186,9 @@ function contentChange(data) { // jshint ignore:line
 }
 
 function parseErrors(content, errors, format) {
+  if (!errors) {
+    return [];
+  }
   // parse errors and add xpath expressions to the errors to make the position findable
   const parsedErrors = [];
   const lineElementMap = new Map();
