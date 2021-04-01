@@ -68,12 +68,20 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
       if (value) {
         const editable = value.isEditable();
         const required = value.isRequired();
-        this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('copy-button').setEnabled(true);
         ['delete', 'cut'].forEach(name => this.getChildControl(name + "-button").setEnabled(editable && !required));
         if (editable) {
+          this.getChildControl('view-button').exclude();
+          this.getChildControl('edit-button').show();
+          this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
           let addable = value.getAddableChildren(true);
           this.getChildControl('create-button').setEnabled(addable.length > 0);
+        } else {
+          this.getChildControl('create-button').setEnabled(false);
+          this.getChildControl('view-button').show();
+          // enable view button when there are attributes to show
+          this.getChildControl('view-button').setEnabled(value.getShowEditButton());
+          this.getChildControl('edit-button').exclude();
         }
       } else {
         ['edit', 'delete', 'cut', 'copy', 'paste', 'create'].forEach(name =>this.getChildControl(name + "-button").setEnabled(false));
@@ -82,7 +90,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
     },
 
     _init: function () {
-      ['edit', 'delete'].forEach(name => this.add(this.getChildControl(name + "-button")));
+      ['view', 'edit', 'delete'].forEach(name => this.add(this.getChildControl(name + "-button")));
       this.addSeparator();
       ['cut', 'copy', 'paste'].forEach(name => this.add(this.getChildControl(name + "-button")));
       this.addSeparator();
@@ -99,6 +107,11 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
        let control;
 
        switch (id) {
+         case 'view-button':
+           control = this.__createButton('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
+           control.exclude();
+           break;
+
          case 'edit-button':
            control = this.__createButton('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
            break;

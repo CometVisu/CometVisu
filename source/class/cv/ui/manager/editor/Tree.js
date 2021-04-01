@@ -524,6 +524,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.handleAction(data.action);
       } else {
         switch (data.action) {
+          case 'view':
           case 'edit':
             this._onEdit(null, data.element);
             break;
@@ -1428,7 +1429,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       rootNode.load();
       tree.setModel(rootNode);
       if (this.hasChildControl('add-button')) {
-        this.getChildControl('add-button').setEnabled(file.getWriteable());
+        this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded');
       }
       const preview = this.getChildControl('preview');
       if (preview.isVisible() && !preview.getFile()) {
