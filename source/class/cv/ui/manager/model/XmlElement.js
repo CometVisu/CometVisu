@@ -737,7 +737,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   children.push(child);
                   this._initialChildNames.push(childNode.nodeName);
                 } else if (childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) {
-                  if (childNode.nodeValue) {
+                  if (childNode.nodeValue.trim()) {
                     // do not use childSchemaElement here, because our schemeElement already knows how to validate text
                     const child = new cv.ui.manager.model.XmlElement(childNode, schemaElement, this.getEditor(), this);
                     if (schemaElement.isMixed()) {

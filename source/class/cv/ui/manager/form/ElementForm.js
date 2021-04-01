@@ -340,18 +340,6 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 }, formElement)
               });
               break;
-            /*case "virtualselectbox":
-              this._formController.addTarget(formElement, "selection", mappedKey, true, {
-                converter: function(value) {
-
-                }.bind(formElement)
-              }, {
-                converter: function (selection) {
-                  console.log(selection);
-                  return selection.getValue();
-                }.bind(formElement)
-              });
-              break;*/
             case "radiogroup":
               this._formController.addTarget(formElement, "selection", mappedKey, true, {
                 converter: qx.lang.Function.bind(function (value) {
