@@ -641,7 +641,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       control.addListener("dragstart", function (ev) {
         const dragTarget = ev.getDragTarget();
         let element;
-        if (dragTarget instanceof cv.ui.manager.model.XmlElement) {
+        if (dragTarget instanceof cv.ui.manager.tree.VirtualElementItem) {
           element = dragTarget.getModel();
           ev.addAction("copy");
           if (!element.isRequired() && element.isSortable()) {
@@ -659,18 +659,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }, this);
 
       control.addListener("droprequest", function (ev) {
-        let type = ev.getCurrentType();
         let action = ev.getCurrentAction();
         let result;
-        if (type === "cv/tree-element") {
-          const dragTarget = ev.getDragTarget();
-          const element = dragTarget.getElement();
+        if (ev.supportsType("cv/tree-element")) {
           if (action === "copy") {
-            result = element.clone();
-          } else if (action === "move") {
-            result = element;
+            result = ev.getData("cv/tree-element").clone();
+            ev.addData("cv/tree-element", result);
           }
-          ev.addData(type, result);
         }
       }, this);
 
@@ -685,12 +680,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         // add ist a custom action that cannot be detected, so we only check if its supported
         let action = ev.getCurrentAction();
         let element;
-        if (type === "cv/tree-element") {
+        if (ev.supportsType("cv/tree-element")) {
           element = ev.getData("cv/tree-element");
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         if (!addNew && !element) {
           // not for us
+          this.debug("drop not allowed here, no drag element");
           accepted.mode = Allowed.NONE;
           ev.preventDefault();
           return;
@@ -854,9 +850,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       addButton.addListener("drag", onDrag, this);
 
       const onDrop = function (ev) {
-        let type = ev.getCurrentType();
         let action = ev.getCurrentAction()
-        const element = type === "cv/tree-element" ? ev.getData("cv/tree-element") : null;
+        const element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
         if (action === "copy" && !element) {
           action = "add";
         }
@@ -989,51 +984,53 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           typeChooserForm = Promise.resolve({type: addable[0]});
         }
         typeChooserForm.then(result => {
-          const type = result.type;
-          // create new element, open the edit dialog and insert it
-          const document = target.getNode().ownerDocument;
-          const element = document.createElement(type);
-          const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
+          if (result) {
+            const type = result.type;
+            // create new element, open the edit dialog and insert it
+            const document = target.getNode().ownerDocument;
+            const element = document.createElement(type);
+            const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
 
-          const initChildren = function (element, schemaElement) {
-            const requiredChildren = schemaElement.getRequiredElements();
-            if (requiredChildren.length > 1) {
-              if (!schemaElement.areChildrenSortable()) {
-                // a special order os required
-                const allowedSorting = schemaElement.getAllowedElementsSorting();
-                requiredChildren.sort(cv.ui.manager.model.schema.Element.sortChildNodes(allowedSorting));
+            const initChildren = function (element, schemaElement) {
+              const requiredChildren = schemaElement.getRequiredElements();
+              if (requiredChildren.length > 1) {
+                if (!schemaElement.areChildrenSortable()) {
+                  // a special order os required
+                  const allowedSorting = schemaElement.getAllowedElementsSorting();
+                  requiredChildren.sort(cv.ui.manager.model.schema.Element.sortChildNodes(allowedSorting));
+                }
               }
+              requiredChildren.forEach(childName => {
+                const child = document.createElement(childName);
+                element.appendChild(child);
+                // do this recursively
+                initChildren(child, schemaElement.getSchemaElementForElementName(childName));
+              });
             }
-            requiredChildren.forEach(childName => {
-              const child = document.createElement(childName);
-              element.appendChild(child);
-              // do this recursively
-              initChildren(child, schemaElement.getSchemaElementForElementName(childName));
-            });
+
+            const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
+            // load the "empty" element to init the modification comparison
+            xmlElement.load();
+            this._onEdit(null, xmlElement).then((data) => {
+              // finally insert the new node
+              switch (position) {
+                case 'before':
+                  xmlElement.insertBefore(target);
+                  break;
+
+                case 'after':
+                  xmlElement.insertAfter(target);
+                  break;
+
+                case 'inside':
+                  target.insertChild(xmlElement, -1);
+                  break;
+              }
+              this.getChildControl('tree').openNodeAndParents(xmlElement);
+              this.getChildControl('tree').setSelection([xmlElement]);
+            }, this);
           }
-
-          const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
-          // load the "empty" element to init the modification comparison
-          xmlElement.load();
-          this._onEdit(null, xmlElement).then((data) => {
-            // finally insert the new node
-            switch (position) {
-              case 'before':
-                xmlElement.insertBefore(target);
-                break;
-
-              case 'after':
-                xmlElement.insertAfter(target);
-                break;
-
-              case 'inside':
-                target.insertChild(xmlElement, -1);
-                break;
-            }
-            this.getChildControl('tree').openNodeAndParents(xmlElement);
-            this.getChildControl('tree').setSelection([xmlElement]);
-          }, this);
-        })
+        });
       }
     },
 

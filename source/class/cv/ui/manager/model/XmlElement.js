@@ -470,7 +470,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         } else if (index === 0) {
           // add before first child
           this._node.insertBefore(xmlElement.getNode(), this._node.children[0]);
-          children.shift(xmlElement);
+          children.unshift(xmlElement);
           success = true;
         } else {
           const previousChild = children.getItem(index);
@@ -683,13 +683,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
           }
-        } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) && this._node.nodeValue.trim()) {
-          let textContent = this._node.nodeValue.trim();
-          if (textContent.length > 20) {
-            textContent = textContent.substring(0, 20) + "...";
-          }
-          displayName += ' "' + textContent + '"';
-        } else if (this._node.nodeType === Node.COMMENT_NODE && this._node.nodeValue.trim()) {
+        } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE || this._node.nodeType === Node.COMMENT_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
           if (textContent.length > 26) {
             textContent = textContent.substring(0, 26) + "...";
