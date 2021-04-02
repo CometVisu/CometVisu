@@ -94,6 +94,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   construct: function(props) {
     this.base(arguments, props);
+    this.__color = new cv.util.Color();
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
   },
@@ -150,7 +151,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   members: {
     __mode: undefined,
-    __color: {h:0, s: 0, v: 0, x: 1/3, y: 1/3, r: 0, g: 0, b: 0},
+    __color: undefined,
     __lastBusValue: {},
     __animator: null,
     __button: undefined, // cache for DOM element
@@ -223,204 +224,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       this.__setSliderTo(value, !this.isVisible());
     },
 
-    /**
-     * Set the internal color by changing one component of it
-     * @param component
-     * @param value
-     * @private
-     */
-    __setColor: function( component, value ) {
-      //console.log('__setColor',component, value);
-      function clamp(x) { return Math.min(Math.max(0,x),1); }
-      
-      switch( component ) {
-        case 'h':
-          this.__color.h = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_rgb = true;
-          break;
-
-        case 's':
-          this.__color.s = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_rgb = true;
-          break;
-
-        case 'v':
-          this.__color.v = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_rgb = true;
-          break;
-
-        case 'sv':
-          this.__color.s = clamp(value[0]);
-          this.__color.v = clamp(value[1]);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_rgb = true;
-          break;
-
-        case 'r':
-          this.__color.r = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_hsv = true;
-          break;
-
-        case 'g':
-          this.__color.g = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_hsv = true;
-          break;
-
-        case 'b':
-          this.__color.b = clamp(value);
-          this.__color.invalid_xy = true;
-          this.__color.invalid_hsv = true;
-          break;
-      }
-      
-      this.makeColorValid(this.__color);
-    },
-
-
-    /**
-     * Calculate invalid color components
-     * @param color object, modified in place
-     */
-    makeColorValid: function (color) {
-      let base = this.getBaseColors();
-      if( color.invalid_xy && (color.invalid_rgb || !color.invalid_hsv) ) {
-        // h, s, v assumed to be valid => get x, y
-        // first step: get maximum saturated RGB values
-        let u = (color.h%(1/6))*6, d = 1-u; // up/down ramps
-        let r = 0, g = 0, b = 0;
-        if(color.h < 1/6) {
-          r = 1; g = u; b = 0;
-        } else if(color.h < 2/6) {
-          r = d; g = 1; b = 0;
-        } else if(color.h < 3/6) {
-          r = 0; g = 1; b = u;
-        } else if(color.h < 4/6) {
-          r = 0; g = d; b = 1;
-        } else if(color.h < 5/6) {
-          r = u; g = 0; b = 1;
-        } else {
-          r = 1; g = 0; b = d;
-        }
-        let norm = 1 / (r+g+b);
-        r *= norm;
-        g *= norm;
-        b *= norm;
-
-        // second step: blend with white to take saturation into account and scale with brightness
-        color.x = (r * base.r.x + g * base.g.x + b * base.b.x) * color.s + (1-color.s) * base.w.x;
-        color.y = (r * base.r.y + g * base.g.y + b * base.b.y) * color.s + (1-color.s) * base.w.y;
-        color.invalid_xy = false;
-      }
-
-      if( color.invalid_xy && color.invalid_hsv ) {
-        // r, g, b assumed to be valid => get x, y and v
-        color.x = (color.r * base.r.x + color.g * base.g.x + color.b * base.b.x) / (color.r+color.g+color.b);
-        color.y = (color.r * base.r.y + color.g * base.g.y + color.b * base.b.y) / (color.r+color.g+color.b);
-        color.v = Math.max( color.r, color.g, color.b );
-        color.invalid_xy = false;
-      }
-
-      // at this point of the code the x, y and v is valid
-
-      if( color.invalid_hsv ) {
-        let
-          hDir_x = color.x - base.w.x,
-          hDir_y = color.y - base.w.y;
-
-        if( hDir_x === 0 && hDir_y === 0 ) {
-          color.h = 0;
-          color.s = 0;
-        } else {
-          // color-base.w = r+g+b-w; r||g||b===0; anderer ===1/(r+g+b);letzer in [0;1]
-          let
-            RGx = base.r.x - base.g.x,
-            RGy = base.r.y - base.g.y,
-            WGx = base.w.x - base.g.x,
-            WGy = base.w.y - base.g.y,
-            rg = cv.ui.structure.pure.ColorChooser2.solve2d(RGx, RGy, -hDir_x, -hDir_y, WGx, WGy),
-            GBx = base.g.x - base.b.x,
-            GBy = base.g.y - base.b.y,
-            WBx = base.w.x - base.b.x,
-            WBy = base.w.y - base.b.y,
-            gb = cv.ui.structure.pure.ColorChooser2.solve2d(GBx, GBy, -hDir_x, -hDir_y, WBx, WBy),
-            BRx = base.b.x - base.r.x,
-            BRy = base.b.y - base.r.y,
-            WRx = base.w.x - base.r.x,
-            WRy = base.w.y - base.r.y,
-            br = cv.ui.structure.pure.ColorChooser2.solve2d(BRx, BRy, -hDir_x, -hDir_y, WRx, WRy);
-          if (0 <= rg[0] && rg[0] <= 1 && rg[1] > 0) {
-            if (rg[0] > 0.5) {
-              color.h = (1 - rg[0]) / rg[0] / 6;
-            } else {
-              color.h = (1 - rg[0] / (1 - rg[0])) / 6 + 1/6;
-            }
-            color.s = 1 / rg[1];
-          } else if (0 <= gb[0] && gb[0] <= 1 && gb[1] > 0) {
-            if(gb[0] > 0.5) {
-              color.h = (1-gb[0])/gb[0]/6 + 2/6;
-            } else {
-              color.h = (1-gb[0]/(1-gb[0]))/6 + 3/6;
-            }
-            color.s = 1/gb[1];
-          } else {
-            if(br[0] > 0.5) {
-              color.h = (1-br[0])/br[0]/6 + 4/6;
-            } else {
-              color.h = (1-br[0]/(1-br[0]))/6 + 5/6;
-            }
-            color.s = 1/br[1];
-          }
-        }
-        color.invalid_hsv = false;
-      }
-
-      if( color.invalid_rgb ) {
-        /*
-        let
-          s = Math.max( color.s, 1e-5 ),
-          RBx = base.r.x - base.b.x,
-          RBy = base.r.y - base.b.y,
-          GBx = base.g.x - base.b.x,
-          GBy = base.g.y - base.b.y,
-          cBx = (color.x-(1-s)*base.w.x)/s - base.b.x,
-          cBy = (color.y-(1-s)*base.w.y)/s - base.b.y,
-          rg = cv.ui.structure.pure.ColorChooser2.solve2d(RBx, RBy, GBx, GBy, cBx, cBy);
-        
-        let r =  rg[0], g = rg[1], b = 1-rg[0]-rg[1];
-        r = (r * s + (1-s)) * color.v;
-        g = (g * s + (1-s)) * color.v;
-        b = (b * s + (1-s)) * color.v;
-
-         */
-        let
-          RBx = base.r.x - base.b.x,
-          RBy = base.r.y - base.b.y,
-          GBx = base.g.x - base.b.x,
-          GBy = base.g.y - base.b.y,
-          cBx = color.x - base.b.x,
-          cBy = color.y - base.b.y,
-          rg = cv.ui.structure.pure.ColorChooser2.solve2d(RBx, RBy, GBx, GBy, cBx, cBy)
-          r = rg[0],
-          g = rg[1],
-          b = 1 - r - g,
-          max = Math.max(r,g,b);
-        r *= color.v/max;
-        g *= color.v/max;
-        b *= color.v/max;
-        color.r = r;
-        color.g = g;
-        color.b = b;
-
-        color.invalid_rgb = false;
-      }
-      this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+color.r*100+'% '+color.g*100+'% '+color.b*100+'%)';
-    },
-    
     /**
      * The the internal slider state and its handle and displayed value
      * @param value {Number} The new value
@@ -527,19 +330,26 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
       for( let type in this.__actors ) {
         //console.log('iter',actor) ;
-        let actor = this.__actors[type];
+        let 
+          actor = this.__actors[type],
+          hsv = this.__color.getHSV();
         if( type === 'wheel' ) {
-          let angle = (this.__color.h*360)+'deg';
+          let angle = (hsv.h*360)+'deg';
           actor.sv_triangle.style.transform='rotate('+angle+')';
           actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
-          actor.handle.style.top = (1-this.__color.s) * 75 + '%';
-          actor.handle.style.left = (50+(this.__color.v-0.5)*(1-this.__color.s) * 85) + '%';
+          actor.handle.style.top = (1-hsv.s) * 75 + '%';
+          actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
         } else {
-          let length = this.__color[type] * actor.width;
+          let length = this.__color.getComponent(type) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           actor.range.style.width = length + 'px';
         }
       }
+      
+      //////
+      let rgb = this.__color.getRGB();
+      this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
+      /////
       
       //console.log('__updateHandlePosition', this.__color);
       /*
@@ -602,23 +412,23 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
           if( actorType === 'wheel' ) {
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX,relCoordY,this.__color.h,radius);
+            let sv=cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX,relCoordY,this.__color.getHSV().h,radius);
             if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
               this.__mode = 'wheel_sv';
-              this.__setColor('sv', sv);
+              this.__color.changeComponent('sv', sv);
               this.__inDrag = true;
             } else {
               let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
               console.log(distSqrd,relCoordX,relCoordY,radius**2);
               if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
                 this.__mode = 'wheel_h';
-                this.__setColor('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
+                this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
                 this.__inDrag = true;
               }
             }
           } else {
             this.__mode = actorType;
-            this.__setColor(actorType, relCoordX);
+            this.__color.changeComponent(actorType, relCoordX);
             this.__inDrag = true;
           }
           break;
@@ -648,21 +458,22 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           break;
       }
 
-      console.log(event.type,relCoordX,relCoordY,this.__mode);
+      //console.log(event.type,relCoordX,relCoordY,this.__mode);
       if(event.type !== 'pointerdown') {
         switch (this.__mode) {
           case 'wheel_sv':
-            let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.h, radius);
+            let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
+            let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.getHSV().h, radius);
             //this.__color.s = Math.min( Math.max(sv[0], 0), 1 );
             //this.__color.v = Math.min( Math.max(sv[1], 0), 1 );
-            this.__setColor('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
+            this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'wheel_h':
             //this.__color.h = 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI;
-            this.__setColor('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+            this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
             break;
           default:
-            this.__setColor(this.__mode, relCoordX);
+            this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
       newRatio = 0;//Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
