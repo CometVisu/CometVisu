@@ -286,6 +286,56 @@ button.ui-slider-handle {
   fill: white;
 }
 
+.colorchooser2 .hue {
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+  -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 10px),#fff calc(100% - 9.5px));
+}
+
+.colorchooser2 .sv_triangle {
+  position: absolute;
+  margin:10px;
+  top:0;right:0;bottom:0;left:0;
+  transform:rotate(0deg);
+}
+
+.colorchooser2 .inner {
+  width: 100%;
+  height: 75%;
+  -webkit-mask: conic-gradient(at 50% 0%, transparent 0deg 150deg, #fff 150deg 210deg, transparent 210deg);
+  background: linear-gradient(210deg, transparent 45%, black 90%), linear-gradient(150deg, transparent 45%, white 90%), linear-gradient(45deg, #f00, #f00);
+  Xtransform-origin: 50% 66.6667%;
+  Xtransform: rotate(23deg)
+}
+
+.colorchooser2 .handle_hue {
+  position: absolute;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+  width: 1em;
+  height: 1em;
+  top:calc(-0.5 * 10px - 0.5 * 1em);
+  left:calc(50% - 0.5 * 1em);
+  border-radius:50%;
+  box-sizing:border-box;
+}
+
+.colorchooser2 .handle {
+  position: absolute;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+  width: 1em;
+  height: 1em;
+  top:50%;
+  left:50%;
+  border-radius:50%;
+  box-sizing:border-box;
+  transform:translate(-50%,-50%);
+}
+
 #notification-center {
   position: absolute;
   width: 300px;
