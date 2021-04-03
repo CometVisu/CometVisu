@@ -20,7 +20,7 @@ qx.Class.define('cv.io.rest.Client', {
       if (!this.BASE_URL) {
         var path = ""; 
         var engine = cv.TemplateEngine.getInstance();
-        var clientBackend = engine.visu ? engine.visu.getBackend() : {};
+        var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
         if (clientBackend.resources && clientBackend.resources.rest) {
           path = clientBackend.resources.rest
         } else {
