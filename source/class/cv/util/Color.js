@@ -75,6 +75,7 @@ qx.Class.define('cv.util.Color', {
      * @param T temperature in Kelvin, 1667 K <= T <= 25000 K
      */
     temperature2xy: function (T) {
+      T = Math.max( 1667, Math.min( T, 25000 ));
       let x = T <= 4000
         ? ((-0.2661239e9 / T - 0.2343589e6) / T + 0.8776956e3) / T + 0.179910
         : ((-3.0258469e9 / T + 2.1070379e6) / T + 0.2226347e3) / T + 0.240390;
@@ -141,6 +142,7 @@ qx.Class.define('cv.util.Color', {
     // derived color representations
     __hsv: undefined,
     __rbg: undefined,
+    __T: undefined,
 
     // make derived color valid
     __validateHSV: function (force) {
@@ -237,6 +239,20 @@ qx.Class.define('cv.util.Color', {
         b = (b * s + (1-s)) * color.v;
         */
     },
+
+    __validateT: function (force) {
+      // getting the color temperature from xy is only giving the correlated
+      // color temperature, the temperature of the Planckian radiator whose
+      // perceived color most closely resembles that of a given stimulus at the
+      // same brightness and under specified viewing conditions
+      // This formula works for CCT between 2000 K and 12500 K.
+      if( this.__T === undefined || force ) {
+        let 
+          n = (this.__x - 0.3320) / (this.__y - 0.1858),
+          T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
+        this.__T = Math.max( 2000, Math.min( T, 12500 ));
+      }
+    },
     
     // synchronise xyY
     __syncHSV2xy: function () {
@@ -266,13 +282,24 @@ qx.Class.define('cv.util.Color', {
       this.__y = (r * this.__R.y + g * this.__G.y + b * this.__B.y) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
       this.__Y = this.__hsv.v;
       this.__rgb = undefined;
+      this.__T = undefined;
     },
+
     __syncRGB2xy: function () {
       let rgbInv = 1 / (this.__rgb.r + this.__rgb.g + this.__rgb.b);
       this.__x = (this.__rgb.r * this.__R.x + this.__rgb.g * this.__G.x + this.__rgb.b * this.__B.x) * rgbInv;
       this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       this.__hsv = undefined;
+      this.__T = undefined;
+    },
+
+    __syncT2xy: function () {
+      let xy = cv.util.Color.temperature2xy( this.__T );
+      this.__x = xy.x;
+      this.__y = xy.y;
+      this.__hsv = undefined;
+      this.__rgb = undefined;
     },
 
     /**
@@ -306,7 +333,12 @@ qx.Class.define('cv.util.Color', {
           this.__rgb[component] = clamp(value);
           this.__syncRGB2xy();
           break;
-          
+
+        case 'T':
+          this.__T = Math.max( 1667, Math.min( value, 25000 ) );
+          this.__syncT2xy();
+          break;
+
         case 'xy':
           this.__x = clamp(value.x);
           this.__y = clamp(value.y);
@@ -339,6 +371,10 @@ qx.Class.define('cv.util.Color', {
         case 'b':
           this.__validateRGB();
           return this.__rgb[component];
+          
+        case 'T':
+          this.__validateT();
+          return this.__T;
       }
     }
   }

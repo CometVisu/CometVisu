@@ -34,22 +34,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   statics: {
     /**
-     * Solve the 2 dimenstional linear equation
-     * ( A00 A01 ) (x0) = (y0)
-     * ( A10 A11 ) (x1)   (y1)
-     * @param A00
-     * @param A10
-     * @param A01
-     * @param A11
-     * @param y0
-     * @param y1
-     */
-    solve2d: function (A00, A10, A01, A11, y0, y1 ) {
-      let detInv = 1 / (A00 * A11 - A01 * A10);
-      return [ (y0 * A11 - A01 * y1) * detInv, (A00 * y1 - y0 * A10) * detInv ];
-    },
-
-    /**
      * Calculate the saturation and value from (x,y) relative widget coordinates
      * based on a centered SV-triangle.
      * @param x position for the calculation
@@ -74,15 +58,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         BSy = By - Sy,
         CSx = x - Sx,
         CSy = y - Sy,
-        //det = WSx * BSy - BSx * WSy,
-        //u = (CSx * BSy - BSx * CSy)/det,
-        //v = (WSx * CSy - CSx * WSy)/det,
-        uv = this.solve2d(WSx, WSy, BSx, BSy, CSx, CSy),
+        uv = cv.util.Color.solve2d(WSx, WSy, BSx, BSy, CSx, CSy),
         u = uv[0], v = uv[1],
         // convert (u,v) to S and V
         saturation = 1 - u - v,
         value      = (Math.abs(1 - saturation) < 1e-3) ? 0.5 : u / (1 - saturation);
-      //console.log([x,y],[Sx,Sy],[Wx,Wy],[Bx,By],[u,v]);
       return [saturation, value];
     },
   },
@@ -161,6 +141,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     __pageSizeListener: undefined,
     __inDrag: false,       // is the handle currently dragged?
     __coordMin: undefined, // minimal screen coordinate of slider
+    __Tmin: 2000,   // minimal color temperature to show in slider
+    __Tmax: 12500,  // maximal color temperature to show in slider
 
     // overridden
     _getInnerDomString: function () {
@@ -185,6 +167,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           case 'g':
           case 'b':
           case 'w':
+          case 'T':
           case 'h':
           case 's':
           case 'v':
@@ -340,7 +323,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           actor.handle.style.top = (1-hsv.s) * 75 + '%';
           actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
         } else {
-          let length = this.__color.getComponent(type) * actor.width;
+          let ratio = this.__color.getComponent(type);
+          if( 'T' === type ) {
+            ratio = (ratio - this.__Tmin)/(this.__Tmax - this.__Tmin);
+          }
+          let length = ratio * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           actor.range.style.width = length + 'px';
         }
@@ -427,8 +414,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
               }
             }
           } else {
+            let ratio = relCoordX;
+            if( 'T' === actorType ) {
+              ratio = this.__Tmin + ratio * (this.__Tmax - this.__Tmin);
+            }
             this.__mode = actorType;
-            this.__color.changeComponent(actorType, relCoordX);
+            this.__color.changeComponent(actorType, ratio);
             this.__inDrag = true;
           }
           break;
@@ -471,6 +462,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           case 'wheel_h':
             //this.__color.h = 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI;
             this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+            break;
+          case 'T':
+            this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
             break;
           default:
             this.__color.changeComponent(this.__mode, relCoordX);
