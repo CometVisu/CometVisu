@@ -872,7 +872,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
 
                 case 'add':
-                  this._onCreate(target, false);
+                  this._onCreate(target, indicator.getUserData("position"));
                   break;
               }
             } else {
@@ -892,7 +892,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
 
                 case 'add':
-                  this._onCreate(target, true);
+                  this._onCreate(target, indicator.getUserData("position"));
                   break;
               }
             } else {
@@ -913,11 +913,29 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
 
                 case 'add':
-                  this._onCreate(target.getChildren().getItem(0), true);
+                  this._onCreate(target.getChildren().getItem(0), indicator.getUserData("position"));
                   break;
               }
             } else {
               this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + "as first child");
+            }
+            break;
+
+          case 'inside':
+            if (accepted.mode & Allowed.INSIDE) {
+              this.debug(action, elementName, "into", target.getDisplayName() + "as child");
+              switch (action) {
+                case 'move':
+                case 'copy':
+                  target.insertChild(element);
+                  break;
+
+                case 'add':
+                  this._onCreate(target, indicator.getUserData("position"));
+                  break;
+              }
+            } else {
+              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + "as child");
             }
             break;
         }

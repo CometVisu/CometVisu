@@ -393,6 +393,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
       let targetPosition = allowedSorting[xmlElement.getName()];
       if (typeof targetPosition === "string") {
+        if (targetPosition === 'x') {
+          // allowed anywhere
+          return true;
+        }
         targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
       } else {
         targetPosition = [targetPosition];
