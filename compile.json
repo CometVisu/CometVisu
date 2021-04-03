@@ -178,7 +178,10 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
-
+      "bundle": {
+        "include": ["*.*"],
+        "exclude": ["cv.*"]
+      },
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
@@ -202,18 +205,19 @@
   },
   "ignores": [
     "$",
-    "jQuery",
-    "THREE",
-    "sprintf",
-    "replayLog",
-    "svg4everybody",
     "EVENT_RECORDER",
     "EventSource",
     "Favico",
-    "Sentry",
+    "jQuery",
     "localStorage",
     "monaco",
-    "Worker",
+    "Paho",
+    "replayLog",
+    "Sentry",
+    "sprintf",
+    "svg4everybody",
+    "THREE",
+    "Worker"
     "Node"
   ]
 }

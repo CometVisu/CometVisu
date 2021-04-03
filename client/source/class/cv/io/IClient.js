@@ -119,9 +119,10 @@ qx.Interface.define('cv.io.IClient', {
      * This function sends a value
      * @param address {String} address to send the value to
      * @param value {String} value to send
+     * @param options {Object} optional options, depending on backend
      *
      */
-    write : function (address, value) {},
+    write : function (address, value, options) {},
 
     /**
      * Get the last recorded error

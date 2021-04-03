@@ -310,14 +310,14 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       var addressInfo = this.getAddress()[ ga ];
 
       var phase;
-      if( addressInfo[2][0] === 'I' )
+      if( addressInfo.variantInfo[0] === 'I' )
       {
-        phase = this.isSinglePhase() ? 1 : +(addressInfo[2][1] || 1);
-        var value = cv.Transform.encode( addressInfo[0], data );
+        phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
+        var value = cv.Transform.encode( addressInfo.transform, data );
         this.getCurrent()[phase-1] = value / 1000; // transform mA to A
-      } else if (addressInfo[2].substr(0,8) === 'spectrum' && data.length === 28 ) // sanity check for 14 bytes
+      } else if (addressInfo.variantInfo.substr(0,8) === 'spectrum' && data.length === 28 ) // sanity check for 14 bytes
       {
-        phase = this.isSinglePhase() ? 1 : +(addressInfo[2][8] || 1);
+        phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);
         var
           index = parseInt(data.substr(0, 2), 16),
           factor = this.getCurrent()[phase - 1] || 1,

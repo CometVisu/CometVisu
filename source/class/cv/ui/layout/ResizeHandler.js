@@ -225,25 +225,6 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     __makeNavbarValid: function() {
-      if (cv.Config.mobileDevice) {
-        //do nothing
-      } else {
-        var
-          navbarTop = this.getNavbarTop(),
-          navbarTopRect = navbarTop.getBoundingClientRect(),
-          navbarBottom = this.getNavbarBottom(),
-          navbarBottomRect = navbarBottom.getBoundingClientRect();
-        if (
-          (window.getComputedStyle(navbarTop)['display'] !== 'none' && Math.round(navbarTopRect.bottom - navbarTopRect.top) <= 2) ||
-          (window.getComputedStyle(navbarBottom)['display'] !== 'none' && Math.round(navbarBottomRect.bottom - navbarBottomRect.top) <= 2)
-        ) {
-          // Top/Bottom-Navbar is not initialized yet, re-queue the job
-          new qx.util.DeferredCall(function() {
-            this.queueJob(this.__makeNavbarValid);
-          }, this).schedule();
-          return;
-        }
-      }
       qx.log.Logger.debug(this, "makeNavbarValid");
       if (cv.ui.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths

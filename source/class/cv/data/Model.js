@@ -51,11 +51,11 @@ qx.Class.define('cv.data.Model', {
     WRITE: 2,
 
     isReadAddress: function(address) {
-      return !!(address[1] & cv.data.Model.READ);
+      return !!(address.mode & cv.data.Model.READ);
     },
 
     isWriteAddress: function(address) {
-      return !!(address[1] & cv.data.Model.WRITE);
+      return !!(address.mode & cv.data.Model.WRITE);
     }
   },
 

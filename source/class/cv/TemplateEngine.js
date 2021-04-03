@@ -262,6 +262,7 @@ qx.Class.define('cv.TemplateEngine', {
      */
     initBackendClient: function () {
       let backendName = cv.Config.configSettings.backend || cv.Config.backend;
+      let backendUrl  = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
       const mapping = {
         oh: "openhab",
         oh2: "openhab2"
@@ -269,7 +270,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (mapping.hasOwnProperty(backendName)) {
         backendName = mapping[backendName];
       }
-      this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
+      this.visu = cv.Application.createClient(backendName, backendUrl);
 
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
@@ -442,6 +443,9 @@ qx.Class.define('cv.TemplateEngine', {
 
       if (pagesNode.getAttribute("backend") !== null) {
         settings.backend = pagesNode.getAttribute("backend");
+      }
+      if (pagesNode.getAttribute("backend-url") !== null) {
+        settings.backendUrl = pagesNode.getAttribute("backend-url");
       }
 
       if (pagesNode.getAttribute("token") !== null) {

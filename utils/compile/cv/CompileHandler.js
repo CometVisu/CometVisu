@@ -15,8 +15,7 @@ const additionalResources = [
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
-  'config/hidden.php'
-];
+  'config/hidden.php'];
 
 // files that must be copied in the compiled folder
 const filesToCopy = [

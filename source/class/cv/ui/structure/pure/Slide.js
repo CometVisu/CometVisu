@@ -113,7 +113,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     _update: function (address, data) {
-      let transform = this.getAddress()[address][0];
+      let transform = this.getAddress()[address].transform;
       if (this.__inDrag || this.__lastBusValue[transform] === data) {
         // slider in use -> ignore value from bus
         // internal state unchanged -> also do nothing
