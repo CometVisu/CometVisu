@@ -217,7 +217,7 @@
     "sprintf",
     "svg4everybody",
     "THREE",
-    "Worker"
+    "Worker",
     "Node"
   ]
 }
