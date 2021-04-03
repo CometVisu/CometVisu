@@ -73,7 +73,7 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
 
       let prologue = this.tr('<h3>Config Errors</h3>\
 <p>The validation of "%1" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
-if can break the file completely. Please open this file in the text editor and fix the errors there. \
+it can break the file completely. Please open this file in the text editor and fix the errors there. \
 Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>', this._file.getFullPath());
 
       let options = this.tr('<p>You can choose between the following options:\
@@ -142,7 +142,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       let buttonPane = this._createButtonPane();
 
       // close button
-      let closeButton = new qx.ui.form.Button(this.tr("Close"));
+      let closeButton = new qx.ui.form.Button(this.tr("Cancel"));
       closeButton.addListener("execute",  () => this.fireDataEvent('action', 'cancel'), this);
 
       let proceedButton = new qx.ui.form.Button(this.tr("Proceed"));
