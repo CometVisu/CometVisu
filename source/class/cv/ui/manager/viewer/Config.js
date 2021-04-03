@@ -49,7 +49,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: /^(demo)?\/?visu_config.*\.xml/,
+    SUPPORTED_FILES: /^(demo|\.)?\/?visu_config.*\.xml/,
     TITLE: qx.locale.Manager.tr('Config viewer'),
     ICON: cv.theme.dark.Images.getIcon('preview', 18)
   },

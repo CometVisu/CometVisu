@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
       }
     },
-    DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
+    DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {

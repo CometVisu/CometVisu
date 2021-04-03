@@ -34,7 +34,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: /^(demo)?\/?visu_config.*\.xml/,
+    SUPPORTED_FILES: /^(demo|\.)?\/?visu_config.*\.xml/,
     TITLE: qx.locale.Manager.tr('Xml-editor'),
     ICON: cv.theme.dark.Images.getIcon('xml', 18),
 
@@ -1381,7 +1381,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             } else {
               const dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
               dialog.addListener('action', (ev) => {
-                console.log(ev.getData());
                 switch (ev.getData()) {
                   case 'proceed':
                     this.__loadContent(value);
@@ -1422,21 +1421,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __loadContent: function (value) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
-      const document = qx.xml.Document.fromString(value);
-      const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
-      const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
-      rootNode.setEditable(file.getWriteable());
-      rootNode.load();
-      tree.setModel(rootNode);
-      if (this.hasChildControl('add-button')) {
-        this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded');
+      if (file) {
+        const document = qx.xml.Document.fromString(value);
+        const schemaElement = this._schema.getElementNode(document.documentElement.nodeName);
+        const rootNode = new cv.ui.manager.model.XmlElement(document.documentElement, schemaElement, this);
+        rootNode.setEditable(file.getWriteable());
+        rootNode.load();
+        tree.setModel(rootNode);
+        if (this.hasChildControl('add-button')) {
+          this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded');
+        }
+        const preview = this.getChildControl('preview');
+        if (preview.isVisible() && !preview.getFile()) {
+          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
+          preview.setFile(previewConfig);
+        }
+        this._updatePreview(null, value);
+        if (file.isTemporary()) {
+          this._onContentChanged();
+        }
       }
-      const preview = this.getChildControl('preview');
-      if (preview.isVisible() && !preview.getFile()) {
-        const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-        preview.setFile(previewConfig);
-      }
-      this._updatePreview(null, value);
     },
 
     _onContentChanged: function () {
