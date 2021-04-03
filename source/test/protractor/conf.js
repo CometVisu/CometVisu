@@ -11,9 +11,8 @@ exports.config = {
   directConnect: true,
 
   suites: {
-    // common: ['specs/d*spec.js'],
-    // widgets: ['specs/widgets/*spec.js']
-    widgets: ['specs/widgets/Navbar-spec.js']
+    common: ['specs/d*spec.js'],
+    widgets: ['specs/widgets/*spec.js']
   },
   capabilities: {
     browserName: 'chrome',
