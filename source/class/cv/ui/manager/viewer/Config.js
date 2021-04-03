@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
           var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
           if (this.getTarget() === 'iframe') {
-            url += '&preview=1';
+            url += '&preview=1&libraryCheck=false';
             var control = this.getChildControl('iframe');
             this._source = url;
             this.getChildControl('loading').show();
