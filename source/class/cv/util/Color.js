@@ -325,12 +325,30 @@ qx.Class.define('cv.util.Color', {
           this.__hsv.v = clamp(value[1]);
           this.__syncHSV2xy();
           break;
+          
+        case 'hsv':
+          this.__hsv = {
+            h: clamp(value.h),
+            s: clamp(value.s),
+            v: clamp(value.v)
+          };
+          this.__syncHSV2xy();
+          break;
 
         case 'r':
         case 'g':
         case 'b':
           this.__validateRGB();
           this.__rgb[component] = clamp(value);
+          this.__syncRGB2xy();
+          break;
+
+        case 'rgb':
+          this.__rgb = {
+            r: clamp(value.r),
+            g: clamp(value.g),
+            b: clamp(value.b)
+          };
           this.__syncRGB2xy();
           break;
 

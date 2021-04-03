@@ -42,7 +42,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       var datatype_min, datatype_max;
       Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
@@ -68,6 +68,10 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
         w: {x: 0.3127, y: 0.3290}
       };
       return data;
+    },
+    
+    makeAddressListFn: function(src, transform, mode, variant) {
+      return [true, variant];
     },
 
     getAttributeToPropertyMappings: function () {

@@ -130,7 +130,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   ******************************************************
   */
   members: {
-    __mode: undefined,
+    __mode: '',
     __color: undefined,
     __lastBusValue: {},
     __animator: null,
@@ -198,25 +198,52 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         // internal state unchanged -> also do nothing
         return;
       }
+      
       this.__lastBusValue = {}; // forget all other transforms as they might not be valid anymore
       this.__lastBusValue[transform] = data;
 
-      let value = cv.Transform.decode(transform, data);
+      let 
+        value = cv.Transform.decode(transform, data),
+        variant = this.getAddress()[ address ].variantInfo;
+      
+      switch( variant ) {
+        case 'h':
+        case 's':
+        case 'v':
+        case 'r':
+        case 'g':
+        case 'b':
+          value /= 100;
+          break;
 
+        case 'hsv':
+          value = { h: value.get('h')/100, s: value.get('s')/100, v: value.get('v')/100 };
+          break;
+
+        case 'rgb':
+          value = { r: value.get('r')/100, g: value.get('g')/100, b: value.get('b')/100 };
+          break;
+      }
+      
       // animate when visible, otherwise jump to the target value
-      this.__setSliderTo(value, !this.isVisible());
+      this.__setSliderTo(value, variant, !this.isVisible());
     },
 
     /**
      * The the internal slider state and its handle and displayed value
      * @param value {Number} The new value
+     * @param variant {String} The color component to change
      * @param instant {Boolean} Animate or instant change
      * @param relaxDisplay {Boolean} Let the handle move to an unstable position
      *   to give visual feedback that something does happen during interaction
      * @private
      */
-    __setSliderTo: function(value, instant, relaxDisplay = false) {
+    __setSliderTo: function(value, variant, instant, relaxDisplay = false) {
       ///////////////////////
+      //console.log('setSlider',value, variant, instant, relaxDisplay );
+      this.__color.changeComponent( variant, value );
+      this.__updateHandlePosition();
+      return;
       ///////////////////////
       let min = this.getMin();
       let max = this.getMax();
@@ -470,16 +497,18 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
-      newRatio = 0;//Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
-      let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
-      this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
+      ////newRatio = 0;//Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
+      ////let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
+      //this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
+      this.__updateHandlePosition();
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
-        this.__throttled.call(newValue);
+        this.__throttled.call();
       }
     },
 
-    __onChangeValue: function(value) {
-      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue );
+    __onChangeValue: function() {
+      console.log('__onChangeValue');
+      //this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue );
     }
   },
 
