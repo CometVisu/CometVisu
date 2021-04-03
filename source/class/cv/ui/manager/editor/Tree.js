@@ -1007,7 +1007,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             const type = result.type;
             // create new element, open the edit dialog and insert it
             const document = target.getNode().ownerDocument;
-            const element = document.createElement(type);
+            let element;
+            let isElement = false;
+            switch (type) {
+              case '#comment':
+                element = document.createComment("");
+                break;
+
+              case '#text':
+                element = document.createTextNode("");
+                break;
+
+              case '#cdata-section':
+                element = document.createCDATASection("");
+                break;
+
+              default:
+                element = document.createElement(type);
+                isElement = true;
+                break;
+            }
             const schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
 
             const initChildren = function (element, schemaElement) {
@@ -1025,6 +1044,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 // do this recursively
                 initChildren(child, schemaElement.getSchemaElementForElementName(childName));
               });
+            }
+            if (isElement) {
+              initChildren(element, schemaElement);
             }
 
             const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
