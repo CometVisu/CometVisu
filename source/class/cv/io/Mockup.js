@@ -342,7 +342,7 @@ qx.Class.define('cv.io.Mockup', {
     getProviderUrl: function (name) {
       return null;
     },
-    getProviderConvertFunction : function (name) {
+    getProviderConvertFunction : function (name, format) {
       return null
     }
   }

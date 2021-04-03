@@ -443,9 +443,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
+          } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
+            return this._dataProvider.getAddresses('monaco').then(res => {
+              return {suggestions: res};
+            });
           }
           if (searchedElement === 'rrd') {
-            return {suggestions: this._dataProvider.getRrds()};
+            return this._dataProvider.getRrds('monaco').then(res => {
+              return {suggestions: res};
+            });
           } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
             match = /type="([^"]+)"/.exec(lastOpenedTag.text);
             var typeFilter = !!match ? match[1] : null;

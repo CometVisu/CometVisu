@@ -162,6 +162,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @returns {Promise<Array>} suggestions
      */
     getDesigns: function (format, config) {
+      if (!config) {
+        config = {cache: true};
+      }
       return this.__getData('designs', 'designsSync', null,[], format === 'dp' ? function (res) {
         return res.map(function (designName) {
           return {
@@ -255,8 +258,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
     getAddresses: function (format, config) {
       const client = cv.TemplateEngine.getClient();
+      if (!config) {
+        config = {cache: true};
+      }
       if (client.hasProvider('addresses')) {
-        return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses'), client, config.cache);
+        return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses', format), client, config.cache);
       } else {
         return this.__getData('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       }
@@ -264,8 +270,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
     getRrds: function (format, config) {
       const client = cv.TemplateEngine.getClient();
+      if (!config) {
+        config = {cache: true};
+      }
       if (client.hasProvider('rrd')) {
-        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd'), client,config.cache);
+        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client,config.cache);
       } else {
         return this.__getData('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       }

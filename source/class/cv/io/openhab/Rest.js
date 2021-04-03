@@ -338,36 +338,54 @@ qx.Class.define('cv.io.openhab.Rest', {
           return null;
       }
     },
-    getProviderConvertFunction : function (name) {
+    getProviderConvertFunction : function (name, format) {
       switch (name) {
         case "addresses":
           return function (result) {
-            const data = {};
-            result.forEach(element => {
-              const type = element.type ? element.type.split(":")[0] : "";
-              if (!data.hasOwnProperty(type)) {
-                data[type] = [];
-              }
-              const entry = {
-                value: element.name,
-                label: element.name
-              }
-              if (type) {
-                entry.hints = [
-                  {
-                    transform: "OH:" + type.toLowerCase()
-                  }
-                ];
-              }
-              data[type].push(entry);
-            });
-            return data;
+            let data;
+            if (format === 'monaco') {
+              return result.map(entry => {
+                return {
+                  label: entry.name,
+                  insertText: entry.name,
+                  detail: entry.type,
+                  kind: window.monaco.languages.CompletionItemKind.Value
+                }
+              });
+            } else {
+              data = {};
+              result.forEach(element => {
+                const type = element.type ? element.type.split(":")[0] : "";
+                if (!data.hasOwnProperty(type)) {
+                  data[type] = [];
+                }
+                const entry = {
+                  value: element.name,
+                  label: element.name
+                }
+                if (type) {
+                  entry.hints = [
+                    {
+                      transform: "OH:" + type.toLowerCase()
+                    }
+                  ];
+                }
+                data[type].push(entry);
+              });
+              return data;
+            }
           }
         case "rrd":
           return function (result) {
-            return result.map(element => {
-              return {value: element, label: element};
-            });
+            if (format === 'monaco') {
+              return result.map(element => {
+                return {label: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember};
+              });
+            } else {
+              return result.map(element => {
+                return {value: element, label: element};
+              });
+            }
           }
         default:
           return null;
