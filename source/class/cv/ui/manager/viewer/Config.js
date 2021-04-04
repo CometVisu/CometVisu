@@ -164,6 +164,16 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       }
     },
 
+    setHighlightWidget: function (widgetId) {
+      if (this.hasChildControl('iframe')) {
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+        if (element && element.contentWindow.cv) {
+          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
+          otherEngine.setHighlightedWidget(widgetId);
+        }
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
@@ -173,7 +183,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
            control = new qx.ui.embed.Iframe();
            control.exclude();
            control.addListener("load", () => {
-             console.log("loaded", this.hasChildControl('loading'));
              if (this.hasChildControl('loading') && !this._reloading) {
                this.getChildControl('loading').exclude();
              }

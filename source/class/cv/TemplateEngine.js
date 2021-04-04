@@ -116,6 +116,13 @@ qx.Class.define('cv.TemplateEngine', {
       check: "Boolean",
       init: false,
       event: "changeLoggedIn"
+    },
+
+    // highlight a widget
+    highlightedWidget: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyHighlightedWidget'
     }
   },
 
@@ -838,6 +845,22 @@ qx.Class.define('cv.TemplateEngine', {
       } else {
         this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
       }
+    },
+
+    _applyHighlightedWidget: function (value, old) {
+      if (old) {
+        const oldElement = document.getElementById(old);
+        if (oldElement) {
+          oldElement.classList.remove("highlightedWidget");
+        }
+      }
+      if (value) {
+        const element = document.getElementById(value);
+        if (element) {
+          element.classList.add("highlightedWidget");
+        }
+      }
+
     },
 
     selectDesign: function () {

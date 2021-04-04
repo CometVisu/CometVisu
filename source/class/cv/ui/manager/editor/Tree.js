@@ -1385,11 +1385,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (path.length > 0) {
             preview.openPage(path.pop(), path.join("/"));
           }
+          preview.setHighlightWidget(value.getWidgetPath());
         }
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);
-
+        const preview = this.getChildControl('preview');
+        if (preview.isVisible()) {
+          preview.setHighlightWidget(null);
+        }
       }
     },
 

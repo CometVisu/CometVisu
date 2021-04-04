@@ -93,6 +93,11 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     __commentNodeSchemaElement: null,
 
+    /**
+     * @var {Array<String>}
+     */
+    _widgetNames: null,
+
     onLoaded: function (callback, context) {
       if (this.isLoaded()) {
         callback.call(context);
@@ -250,6 +255,19 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     getSchemaDOM: function () {
       return this.__xsd;
+    },
+
+    /**
+     * A CometVisu-Schema specific helper function that returns an array of all widget names.
+     * @returns {Array<String>}
+     */
+    getWidgetNames: function () {
+      if (!this._widgetNames) {
+        const pages = this.getElementNode("pages");
+        const page = pages.getSchemaElementForElementName("page");
+        this._widgetNames = Object.keys(page.getAllowedElements()).filter(name => !name.startsWith('#') && name !== 'layout');
+      }
+      return this._widgetNames;
     }
   },
 
@@ -264,6 +282,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     this._disposeMap('__allowedRootElements');
     this.__referencedNodeCache = null;
     this.__typeNodeCache = null;
+    this._widgetNames = null;
   }
 });
 

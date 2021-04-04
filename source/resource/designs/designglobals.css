@@ -152,6 +152,11 @@ input, textarea, select, button { font: inherit; }
 .pageActive, html[xmlns] .navbar.clearfix.navbarActive {
   display: block;
 }
+
+.highlightedWidget, .navbar > .highlightedWidget > .widget {
+  box-shadow: inset 0px 0px 8px 2px #cb4606;
+  border-radius: 4px;
+}
 /*
  * global color declarations for stylings in all designs
  * may be overloaded by designs

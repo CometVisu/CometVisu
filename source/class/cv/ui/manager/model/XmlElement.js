@@ -833,10 +833,43 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _syncChildNodes: function (ev) {
-      const changes = ev.getData();
-      console.log(changes)
       // children have changed clear cache
       this.__addableChildren = null;
+    },
+
+    getWidgetPath: function () {
+      if (this.getName() === '#comment') {
+        return '';
+      }
+      const widgets = this.getSchemaElement().getSchema().getWidgetNames();
+      let current = this;
+      while (current && !widgets.includes(current.getName())) {
+        current = current.getParent();
+      }
+      if (!current) {
+        return '';
+      }
+      if (current.getName() === 'navbar') {
+        return 'navbar' + qx.lang.String.firstUp(current.getAttribute('position'));
+      }
+
+      const ids = [];
+      let c = current;
+      while (c) {
+        const parent = c.getParent();
+        if (parent.getName() === "pages") {
+          ids.unshift('id');
+          break;
+        }
+        let id = parent.getChildren().filter(child => child.getNode().nodeType === Node.ELEMENT_NODE && child.getName() !== 'layout').indexOf(c);
+        ids.unshift(id);
+        c = parent;
+      }
+      if (current.getName() === "page") {
+        // make sure that the join ends with '_'
+        ids.push('');
+      }
+      return ids.join('_');
     }
   },
   /*
