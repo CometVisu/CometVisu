@@ -212,7 +212,7 @@ qx.Class.define("cv.core.notifications.Router", {
         }
 
         // process value
-        var transform = config.addressConfig[0];
+        var transform = config.addressConfig.transform;
         state = cv.Transform.decode(transform, state);
 
         var templateData = {
