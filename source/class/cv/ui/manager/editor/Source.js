@@ -253,7 +253,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
         } else if (this.getFile().getHasWarnings()) {
           // ask user if he really want to save a file with warnings
-          dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+          qxl.dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
             if (confirmed) {
               this.__saveHiddenConfig();
             }

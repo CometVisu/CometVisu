@@ -197,7 +197,7 @@ qx.Class.define('cv.io.rest.Client', {
         }
         if (req.getPhase() === 'load') {
           // error during load phase => backend not reachable
-          dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
+          qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
         }
       }, this);
     },

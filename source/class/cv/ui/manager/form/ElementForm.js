@@ -2,7 +2,7 @@
  *
  */
 qx.Class.define('cv.ui.manager.form.ElementForm', {
-  extend: dialog.Form,
+  extend: qxl.dialog.Form,
 
   /*
   ***********************************************

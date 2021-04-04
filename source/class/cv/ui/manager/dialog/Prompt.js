@@ -2,7 +2,7 @@
  *
  */
 qx.Class.define('cv.ui.manager.dialog.Prompt', {
-  extend: dialog.Prompt,
+  extend: qxl.dialog.Prompt,
   /*
   ***********************************************
     MEMBERS

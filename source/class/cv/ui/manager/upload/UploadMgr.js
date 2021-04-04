@@ -94,7 +94,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
                   if (this.isForce()) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Replacing the file failed.'));
                   } else {
-                    dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
+                    qxl.dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
                       if (confirmed) {
                         this.forceUpload(file);
                       }

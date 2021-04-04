@@ -2,7 +2,7 @@
  * Show validation errors for a config file.
  */
 qx.Class.define('cv.ui.manager.dialog.ValidationError', {
-  extend: dialog.Dialog,
+  extend: qxl.dialog.Dialog,
 
   /*
   ***********************************************

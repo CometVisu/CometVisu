@@ -2,7 +2,7 @@
  * Special form renderer for editing XML-Config elements (allows special help texts for items)
  */
 qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
-  extend: dialog.FormRenderer,
+  extend: qxl.dialog.FormRenderer,
   /*
   ***********************************************
     MEMBERS

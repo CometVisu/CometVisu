@@ -470,7 +470,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.addListener("pointerover", () => control.addState("hovered"));
            control.addListener("pointerout", () => control.removeState("hovered"));
            control.addListener("tap", () => {
-             dialog.Dialog.alert(this.tr("Please create a new Element by dragging this button to the place where the new element should be inserted."))
+             qxl.dialog.Dialog.alert(this.tr("Please create a new Element by dragging this button to the place where the new element should be inserted."))
            }, this);
            this.bind('file.writeable', control, 'enabled');
            this.getChildControl("add-button-container").add(control);
@@ -1623,7 +1623,7 @@ in the toolbar directly above the tree.</p>\
 <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically \
 refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>");
       }
-      new dialog.Alert(dialogConf).show();
+      new qxl.dialog.Alert(dialogConf).show();
     }
   },
 

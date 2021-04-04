@@ -496,7 +496,7 @@ qx.Class.define('cv.ui.manager.Main', {
         if (file.isTemporary()) {
           message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
         }
-        dialog.Dialog.confirm(message, function (confirmed) {
+        qxl.dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
             file.resetModified();
             this.closeFile(openFile, true);
