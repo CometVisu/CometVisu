@@ -366,16 +366,6 @@ qx.Class.define('cv.util.Color', {
       }
     },
 
-    getHSV: function () {
-      this.__validateHSV();
-      return this.__hsv;
-    },
-
-    getRGB: function () {
-      this.__validateRGB();
-      return this.__rgb;
-    },
-    
     getComponent: function (component) {
       switch(component) {
         case 'h':
@@ -383,13 +373,21 @@ qx.Class.define('cv.util.Color', {
         case 'v':
           this.__validateHSV();
           return this.__hsv[component];
-          
+
+        case 'hsv':
+          this.__validateHSV();
+          return this.__hsv;
+
         case 'r':
         case 'g':
         case 'b':
           this.__validateRGB();
           return this.__rgb[component];
-          
+
+        case 'rgb':
+          this.__validateRGB();
+          return this.__rgb;
+
         case 'T':
           this.__validateT();
           return this.__T;

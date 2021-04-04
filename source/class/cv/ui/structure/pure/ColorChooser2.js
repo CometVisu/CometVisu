@@ -77,6 +77,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     this.__color = new cv.util.Color();
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
+    this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
   },
   /*
   ***********************************************
@@ -139,6 +140,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     __actors: undefined,
     __buttonWidth: undefined,
     __pageSizeListener: undefined,
+    __components: undefined, // set of all color components required to send
     __inDrag: false,       // is the handle currently dragged?
     __coordMin: undefined, // minimal screen coordinate of slider
     __Tmin: 2000,   // minimal color temperature to show in slider
@@ -342,7 +344,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         //console.log('iter',actor) ;
         let 
           actor = this.__actors[type],
-          hsv = this.__color.getHSV();
+          hsv = this.__color.getComponent('hsv');
         if( type === 'wheel' ) {
           let angle = (hsv.h*360)+'deg';
           actor.sv_triangle.style.transform='rotate('+angle+')';
@@ -361,7 +363,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
       
       //////
-      let rgb = this.__color.getRGB();
+      let rgb = this.__color.getComponent('rgb');
       this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
       /////
       
@@ -426,7 +428,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
           if( actorType === 'wheel' ) {
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX,relCoordY,this.__color.getHSV().h,radius);
+            let sv=cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX,relCoordY,this.__color.getComponent('hsv').h,radius);
             if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
               this.__mode = 'wheel_sv';
               this.__color.changeComponent('sv', sv);
@@ -469,7 +471,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           this.__inDrag = false;
           document.removeEventListener('pointermove', this);
           document.removeEventListener('pointerup', this);
-          console.log('pointermove -> removeEventListener', this);
+          //console.log('pointermove -> removeEventListener', this);
           type = this.__mode.substr(0,5); // clamp "wheel_*" to "wheel"
           relCoordX = (event.clientX - this.__coordMinX)/this.__actors[type].width;
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[type].height;
@@ -481,7 +483,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         switch (this.__mode) {
           case 'wheel_sv':
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.getHSV().h, radius);
+            let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
             //this.__color.s = Math.min( Math.max(sv[0], 0), 1 );
             //this.__color.v = Math.min( Math.max(sv[1], 0), 1 );
             this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
@@ -507,8 +509,28 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     },
 
     __onChangeValue: function() {
-      console.log('__onChangeValue');
-      //this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue );
+      this.__components.forEach((type) => {
+        let value = this.__color.getComponent(type);
+        switch (type) {
+          case 'r':
+          case 'g':
+          case 'b':
+          case 'h':
+          case 's':
+          case 'v':
+            value *= 100;
+            break;
+
+          case 'rgb':
+            value = new Map([['r', value.r*100], ['g', value.g*100], ['b', value.b*100]] );
+            break;
+
+          case 'hsv':
+            value = new Map([['h', value.h*100], ['s', value.s*100], ['v', value.v*100]] );
+            break;
+        }
+        this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
+      });
     }
   },
 
