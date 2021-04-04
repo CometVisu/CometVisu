@@ -352,13 +352,20 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         Object.assign(allowedElements, allowedContent._grouping.getAllowedElements());
       }
 
-
-      if (true === this.isMixed()) {
+      let textOnly = false;
+      if (this.isMixed()) {
         // mixed elements are allowed to have #text-nodes
         allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
+      } else if (allowedContent._text !== undefined && allowedContent._grouping === undefined) {
+        // text only
+        allowedElements['#text'] = allowedContent._text;
+        textOnly = true;
       }
 
-      allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
+      if (!textOnly) {
+        // although its basically allowed to add comments in a text-only content, we do not allow it
+        allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
+      }
 
       return allowedElements;
     },

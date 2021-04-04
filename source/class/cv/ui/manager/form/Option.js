@@ -38,7 +38,8 @@ qx.Class.define('cv.ui.manager.form.Option', {
       event: "changeLabel"
     },
     icon: {
-      event: "changeIcon"
+      event: "changeIcon",
+      nullable: true
     },
     value: {
       check: "String",

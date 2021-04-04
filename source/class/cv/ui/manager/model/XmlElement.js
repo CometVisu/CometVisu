@@ -349,7 +349,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (excludeComment === true && elementName === "#comment") {
             return;
           }
-          if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isMixed()) {
+          if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isTextContentAllowed()) {
             stillAllowed.push(elementName);
             return;
           }
