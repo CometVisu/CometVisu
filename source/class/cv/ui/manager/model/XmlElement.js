@@ -331,35 +331,39 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      */
     getAddableChildren: function(excludeComment) {
       if (!this.__addableChildren) {
-        const schemaElement = this.getSchemaElement();
-        const allowed = schemaElement.getAllowedElements();
-        const stillAllowed = [];
-        const countExisting = {};
-        if (!this.isLoaded()) {
-          this.load();
-        }
-        this.getChildren().forEach(child => {
-          if (!countExisting.hasOwnProperty(child.getName())) {
-            countExisting[child.getName()] = 0;
+        if (this.getName().startsWith('#')) {
+          this.__addableChildren = [];
+        } else {
+          const schemaElement = this.getSchemaElement();
+          const allowed = schemaElement.getAllowedElements();
+          const stillAllowed = [];
+          const countExisting = {};
+          if (!this.isLoaded()) {
+            this.load();
           }
-          countExisting[child.getName()]++;
-        })
+          this.getChildren().forEach(child => {
+            if (!countExisting.hasOwnProperty(child.getName())) {
+              countExisting[child.getName()] = 0;
+            }
+            countExisting[child.getName()]++;
+          })
 
-        Object.keys(allowed).forEach(elementName => {
-          if (excludeComment === true && elementName === "#comment") {
-            return;
-          }
-          if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isTextContentAllowed()) {
-            stillAllowed.push(elementName);
-            return;
-          }
-          const childBounds = schemaElement.getBoundsForElementName(elementName);
-          const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
-          if (childBounds && childBounds.max > existing) {
-            stillAllowed.push(elementName);
-          }
-        });
-        this.__addableChildren = stillAllowed;
+          Object.keys(allowed).forEach(elementName => {
+            if (excludeComment === true && elementName === "#comment") {
+              return;
+            }
+            if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isTextContentAllowed()) {
+              stillAllowed.push(elementName);
+              return;
+            }
+            const childBounds = schemaElement.getBoundsForElementName(elementName);
+            const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
+            if (childBounds && childBounds.max > existing) {
+              stillAllowed.push(elementName);
+            }
+          });
+          this.__addableChildren = stillAllowed;
+        }
       }
       return this.__addableChildren;
     },
