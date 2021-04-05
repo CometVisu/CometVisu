@@ -190,8 +190,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
 
       this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {trailing: true}, this);
 
-      //this.getActor().addEventListener('pointerdown', this);
-      //this.getDomElement().querySelector('.actors').addEventListener('pointerdown', this);
       this.getDomElement().querySelectorAll('.actor').forEach(actor=>actor.addEventListener('pointerdown', this));
     },
 
@@ -253,58 +251,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         this.__animator.setTo(this.__colorOld, true, false );
       }
       this.__animator.setTo(this.__color, instant);
-      return;
-      ///////////////////////
-      /*
-      let min = this.getMin();
-      let max = this.getMax();
-      let step = this.getStep();
-      if (step === 0 || Math.abs((max-min)/step) > 10000) {
-        // limit too small step size - it's not necessary to have more than
-        // 10000 steps for the range as even the biggest screen doesn't have
-        // that many pixels
-        step = (max-min)/10000;
-      }
-      let realValue = Math.min(Math.max(value, min), max);
-
-      if (!this.getShowInvalidValues()) {
-        // map to closest allowed value
-        let stepValue = Math.round((realValue - min) / step) * step + min;
-        // use max when the value is greater than the middle point between the
-        // biggest allowed step and the maximum
-        let maxSwitchValue = (Math.floor((max - min) / step) * step + min + max) / 2;
-        realValue = realValue < maxSwitchValue ? stepValue : max;
-      }
-
-      let ratio = max===min ? 0 : (realValue-min)/(max-min);
-
-      if (relaxDisplay) {
-        let valueRatio = max===min ? 0 : (Math.min(Math.max(value, min), max)-min)/(max-min);
-        let delta = ratio - valueRatio;
-        let stepCount = (max - min) / step;
-        let factor = (2*stepCount) ** 3;
-        ratio -= Math.min(factor * delta**4, Math.abs(delta)) * Math.sign(delta);
-      }
-
-      // store it to be able to suppress sending of unchanged data
-      this.setBasicValue(realValue);
-
-      if (this.getFormat() !== '') {
-        // #2: map it to a value the user wants to see
-        let displayValue = this.applyMapping(realValue);
-
-        // #3: format it in a way the user understands the value
-        displayValue = this.applyFormat(undefined, displayValue);
-        this.setValue(displayValue);
-
-        this.applyStyling(realValue);
-
-        let button = this.getDomElement().querySelector('button');
-        this.defaultValue2DOM(displayValue, (e) => {button.innerHTML = e;});
-      }
-
-      this.__animator.setTo(ratio, true || instant);
-      */
     },
 
     __updateHandlePosition: function (ratio) {
@@ -345,7 +291,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         this.__actors = actors;
       }
 
-      console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
+      //console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
       this.__colorCurrent = ratio; //(ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
       // move handles
       for( let type in this.__actors ) {
@@ -372,50 +318,10 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       //////
       let rgb = this.__colorCurrent.getComponent('rgb');
       this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
-      /////
-      
-      //console.log('__updateHandlePosition', this.__color);
-      /*
-      let element = this.getDomElement();
-      console.log(element );
-      let sv_triangle = element.querySelector('.sv_triangle');
-      let inner = sv_triangle.querySelector('.inner');
-      let handle = element.querySelector('.handle');
-      let angle = (this.__color.h*360)+'deg';
-      sv_triangle.style.transform='rotate('+angle+')';
-      inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
-      handle.style.top = (1-this.__color.s) * 75 + '%';
-      handle.style.left = (50+(this.__color.v-0.5)*(1-this.__color.s) * 85) + '%';
-       */
-      
-      //let x = 0;
-      //let y = 0;
-      //handle.style.transform = 'translate('+x+'px'+y+'px)';
-      ///////////
-      /*
-      if (this.__button === undefined) {
-        let element = this.getDomElement();
-        this.__button = element.querySelector('button');
-        this.__range = element.querySelector('.ui-slider-range');
-      }
-      if (this.__button === null) {
-        // most likely reason: the widget / DOM tree was deleted (e.g. due to
-        // browsing to a new page or during unit tests)
-        this._disposeObjects('__animator');
-        return;
-      }*/
-      /*
-      let length = ratio * this.__actorWidth;
-      this.__button.style.transform = 'translate3d(' + (length-this.__buttonWidth/2) + 'px, 0px, 0px)';
-      this.__range.style.width = length + 'px';
-       */
     },
 
     __invalidateScreensize: function () {
-      let min = this.getMin();
-      let max = this.getMax();
       this.__actors = undefined; // invalidate cached values
-      //this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min), true /* tmp */);
       this.__animator.setTo(this.__color, true /* tmp */);
     },
 
@@ -486,18 +392,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           break;
       }
 
-      //console.log(event.type,relCoordX,relCoordY,this.__mode);
       if(event.type !== 'pointerdown') {
         switch (this.__mode) {
           case 'wheel_sv':
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
             let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
-            //this.__color.s = Math.min( Math.max(sv[0], 0), 1 );
-            //this.__color.v = Math.min( Math.max(sv[1], 0), 1 );
             this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'wheel_h':
-            //this.__color.h = 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI;
             this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
             break;
           case 'T':
@@ -507,10 +409,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
-      ////newRatio = 0;//Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
-      ////let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
-      //this.__setSliderTo(1, this.__inDrag, this.__inDrag);
-      //this.__updateHandlePosition();
       this.__animator.setTo(this.__color, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
