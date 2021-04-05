@@ -250,11 +250,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       //this.__updateHandlePosition();
       if( !instant ) {
         console.log('__setSliderTo animate');
-        this.__animator.setTo(0, true, false );
+        this.__animator.setTo(this.__colorOld, true, false );
       }
-      this.__animator.setTo(1, instant);
+      this.__animator.setTo(this.__color, instant);
       return;
       ///////////////////////
+      /*
       let min = this.getMin();
       let max = this.getMax();
       let step = this.getStep();
@@ -303,6 +304,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
 
       this.__animator.setTo(ratio, true || instant);
+      */
     },
 
     __updateHandlePosition: function (ratio) {
@@ -344,7 +346,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
 
       console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
-      this.__colorCurrent = (ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
+      this.__colorCurrent = ratio; //(ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
       // move handles
       for( let type in this.__actors ) {
         let
@@ -413,7 +415,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       let min = this.getMin();
       let max = this.getMax();
       this.__actors = undefined; // invalidate cached values
-      this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min), true /* tmp */);
+      //this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min), true /* tmp */);
+      this.__animator.setTo(this.__color, true /* tmp */);
     },
 
     handleEvent: function (event) {
@@ -508,7 +511,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       ////let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
       //this.__setSliderTo(1, this.__inDrag, this.__inDrag);
       //this.__updateHandlePosition();
-      this.__animator.setTo(1, true);
+      this.__animator.setTo(this.__color, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
       }

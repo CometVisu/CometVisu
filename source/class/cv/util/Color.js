@@ -87,33 +87,6 @@ qx.Class.define('cv.util.Color', {
           ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
           : (( 3.0817580 * x - 5.87338670) * x + 3.75112997) * x - 0.37001483
       };
-    },
-
-    /**
-     * Create a new color by calculating (1-ratio)*color1 + ratio*color2.
-     * The blending is done by mixing the HSV coordinates.
-     * color1 and color2 must have the same base colors xy coordinates, as this
-     * is not checked or even enforced doing a blend between such different
-     * colors will create an undesired result.
-     * @param color1
-     * @param color2
-     * @param ratio
-     */
-    blend: function (color1, color2, ratio) {
-      let
-        b = (x,y) => ((1-ratio)*x + ratio*y),
-        c = color1.clone(),
-        c1 = color1.getComponent('hsv'),
-        c2 = color2.getComponent('hsv'),
-        s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
-        e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
-
-      c.changeComponent('hsv', {
-        h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
-        s: b(c1.s,c2.s),
-        v: b(c1.v,c2.v)
-      });
-      return c;
     }
   },
   
@@ -426,6 +399,47 @@ qx.Class.define('cv.util.Color', {
      */
     copy: function () {
       return qx.lang.Object.clone( this );
+    },
+
+    /**
+     * Calculate the distance (difference) between this color and the otherColor.
+     * The result will be a number between 0.0 and 1.0
+     * @param otherColor
+     */
+    delta: function (otherColor) {
+      this.__validateHSV();
+      let
+        hsv = otherColor.getComponent('hsv'),
+        dh = this.__hsv.h - hsv.h,
+        ds = this.__hsv.s - hsv.s,
+        dv = this.__hsv.v - hsv.v;
+      return Math.sqrt(Math.min((dh-1)**2, dh*dh, (dh+1)**2) + ds*ds + dv*dv);
+    },
+
+    /**
+     * Create a new color by calculating (1-ratio)*thisColor + ratio*otherColor.
+     * The blending is done by mixing the HSV coordinates.
+     * otherColor must have the same base colors xy coordinates, as this
+     * is not checked or even enforced doing a blend between such different
+     * colors will create an undesired result.
+     * @param {cv.ui.Color} otherColor
+     * @param {Number} ratio
+     */
+    blend: function (otherColor, ratio) {
+      let
+        b = (x,y) => ((1-ratio)*x + ratio*y),
+        c = this.copy(),
+        c1 = this.getComponent('hsv'),
+        c2 = otherColor.getComponent('hsv'),
+        s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
+        e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
+
+      c.changeComponent('hsv', {
+        h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
+        s: b(c1.s,c2.s),
+        v: b(c1.v,c2.v)
+      });
+      return c;
     }
   }
 });

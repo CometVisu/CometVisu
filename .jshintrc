@@ -1,5 +1,6 @@
 {
   "esversion": 7,
+  "laxbreak": true,
   "node": true,
   "browser": true,
   "bitwise": false,
