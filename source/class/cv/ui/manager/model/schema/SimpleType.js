@@ -204,7 +204,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         this.__pattern.forEach((item) => {
           // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
           // so for our purpose, we need to add them
-          const mypattern = this.regexFromString('^' + item + '$');
+          const mypattern = this.regexFromString('^' + item.replace(/\\([\s\S])|(\/|\$)/g, '\\$1$2') + '$');
 
           if (false === mypattern.test(value)) {
             // regular expression did not match
