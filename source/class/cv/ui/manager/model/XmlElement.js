@@ -352,8 +352,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             if (excludeComment === true && elementName === "#comment") {
               return;
             }
-            if ((elementName === "#text" || schemaElement === "#cdata-section") && schemaElement.isTextContentAllowed()) {
-              stillAllowed.push(elementName);
+            if ((elementName === "#text" || schemaElement === "#cdata-section")) {
+              if (schemaElement.isTextContentAllowed()) {
+                stillAllowed.push(elementName);
+              }
               return;
             }
             const childBounds = schemaElement.getBoundsForElementName(elementName);
