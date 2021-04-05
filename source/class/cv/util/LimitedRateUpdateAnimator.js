@@ -103,15 +103,16 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
      * Set the value to a new value.
      * @param {Number} targetRatio the new value.
      * @param {Boolean} instant skip animation when true
+     * @param {Boolean} show skip display update when false
      */
-    setTo: function (targetRatio, instant= false) {
+    setTo: function (targetRatio, instant = false, show = true) {
       let now = performance.now();
 
       this.__targetRatio = targetRatio;
       if(instant) {
         this.__currentRatio = targetRatio;
       }
-      if (this.__animationFrame === undefined) {
+      if (this.__animationFrame === undefined && show) {
         this.__animate(now, now - 10);
       }
     },

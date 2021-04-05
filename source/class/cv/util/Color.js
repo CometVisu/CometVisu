@@ -87,6 +87,33 @@ qx.Class.define('cv.util.Color', {
           ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
           : (( 3.0817580 * x - 5.87338670) * x + 3.75112997) * x - 0.37001483
       };
+    },
+
+    /**
+     * Create a new color by calculating (1-ratio)*color1 + ratio*color2.
+     * The blending is done by mixing the HSV coordinates.
+     * color1 and color2 must have the same base colors xy coordinates, as this
+     * is not checked or even enforced doing a blend between such different
+     * colors will create an undesired result.
+     * @param color1
+     * @param color2
+     * @param ratio
+     */
+    blend: function (color1, color2, ratio) {
+      let
+        b = (x,y) => ((1-ratio)*x + ratio*y),
+        c = color1.clone(),
+        c1 = color1.getComponent('hsv'),
+        c2 = color2.getComponent('hsv'),
+        s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
+        e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
+
+      c.changeComponent('hsv', {
+        h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
+        s: b(c1.s,c2.s),
+        v: b(c1.v,c2.v)
+      });
+      return c;
     }
   },
   
@@ -211,9 +238,9 @@ qx.Class.define('cv.util.Color', {
           g = rg[1],
           b = 1 - r - g,
           max = Math.max(r,g,b);
-        r *= this.__hsv.v/max;
-        g *= this.__hsv.v/max;
-        b *= this.__hsv.v/max;
+        r *= this.__Y/max;
+        g *= this.__Y/max;
+        b *= this.__Y/max;
         this.__rgb.r = r;
         this.__rgb.g = g;
         this.__rgb.b = b;
@@ -392,6 +419,13 @@ qx.Class.define('cv.util.Color', {
           this.__validateT();
           return this.__T;
       }
+    },
+
+    /**
+     * Return a copy from this color
+     */
+    copy: function () {
+      return qx.lang.Object.clone( this );
     }
   }
 });

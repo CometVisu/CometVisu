@@ -132,7 +132,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   members: {
     __mode: '',
-    __color: undefined,
+    __colorOld: undefined,      // the color where the animation started
+    __colorCurrent: undefined,  // the current color of the running animation
+    __color: undefined,         // the current color of the widget, also the target for the animation
     __lastBusValue: {},
     __animator: null,
     __button: undefined, // cache for DOM element
@@ -162,7 +164,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         switch(control) {
           case 'triangle':
             retval += `<div class="actor cc_wheel" style="position:relative;width:195px;height:195px;">
-            <div class="hue"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>`
+            <div class="hue"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>`;
             break;
             
           case 'r':
@@ -243,8 +245,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     __setSliderTo: function(value, variant, instant, relaxDisplay = false) {
       ///////////////////////
       //console.log('setSlider',value, variant, instant, relaxDisplay );
+      this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
       this.__color.changeComponent( variant, value );
-      this.__updateHandlePosition();
+      //this.__updateHandlePosition();
+      if( !instant ) {
+        console.log('__setSliderTo animate');
+        this.__animator.setTo(0, true, false );
+      }
+      this.__animator.setTo(1, instant);
       return;
       ///////////////////////
       let min = this.getMin();
@@ -298,14 +306,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     },
 
     __updateHandlePosition: function (ratio) {
+      // check cache
       if (this.__actors === undefined || this.__buttonWidth === undefined) {
-        /*
-        let actor = this.getDomElement().querySelector('.actor');
-        this.__actorWidth = parseFloat(window.getComputedStyle(actor).getPropertyValue('width'));
-        this.__actorHeight = parseFloat(window.getComputedStyle(actor).getPropertyValue('height'));
-        this.__innerRadius = parseFloat(window.getComputedStyle(actor.querySelector('.sv_triangle')).getPropertyValue('width'));
-        this.__outerRadius = parseFloat(window.getComputedStyle(actor.querySelector('.hue')).getPropertyValue('width'));
-        */
         let actors = {};
         this.getDomElement().querySelectorAll('.actor').forEach(function (actor){
           let type = actor.className.replace(/.*cc_([^ ]*).*/,'$1');
@@ -340,19 +342,22 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         });
         this.__actors = actors;
       }
+
+      console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
+      this.__colorCurrent = (ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
+      // move handles
       for( let type in this.__actors ) {
-        //console.log('iter',actor) ;
-        let 
-          actor = this.__actors[type],
-          hsv = this.__color.getComponent('hsv');
+        let
+          actor = this.__actors[type];
         if( type === 'wheel' ) {
+          let hsv = this.__colorCurrent.getComponent('hsv');
           let angle = (hsv.h*360)+'deg';
           actor.sv_triangle.style.transform='rotate('+angle+')';
           actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
           actor.handle.style.top = (1-hsv.s) * 75 + '%';
           actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
         } else {
-          let ratio = this.__color.getComponent(type);
+          let ratio = this.__colorCurrent.getComponent(type);
           if( 'T' === type ) {
             ratio = (ratio - this.__Tmin)/(this.__Tmax - this.__Tmin);
           }
@@ -363,7 +368,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
       
       //////
-      let rgb = this.__color.getComponent('rgb');
+      let rgb = this.__colorCurrent.getComponent('rgb');
       this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
       /////
       
@@ -501,8 +506,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
       ////newRatio = 0;//Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
       ////let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
-      //this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
-      this.__updateHandlePosition();
+      //this.__setSliderTo(1, this.__inDrag, this.__inDrag);
+      //this.__updateHandlePosition();
+      this.__animator.setTo(1, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
       }
