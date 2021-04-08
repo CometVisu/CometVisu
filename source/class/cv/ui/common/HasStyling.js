@@ -49,9 +49,11 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
             e = element;
           }
         });
-        e.classList.remove.apply( e.classList, sty.classnames.split(" ")); // remove only styling classes
-        if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
-          this._findValue(sty.defaultValue, true, e, sty);
+        if (e) {
+          e.classList.remove.apply(e.classList, sty.classnames.split(" ")); // remove only styling classes
+          if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
+            this._findValue(sty.defaultValue, true, e, sty);
+          }
         }
       }
     },

@@ -98,7 +98,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       return `
         <div class="actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
-          <div class="ui-slider-range" style="margin-left: 0px; width: 0px;"></div>
+          <div class="ui-slider-range value" style="margin-left: 0px; width: 0px;"></div>
         </div>
       `;
     },
