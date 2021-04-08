@@ -286,10 +286,12 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncRGB2xy: function () {
-      let rgbInv = 1 / (this.__rgb.r + this.__rgb.g + this.__rgb.b);
-      this.__x = (this.__rgb.r * this.__R.x + this.__rgb.g * this.__G.x + this.__rgb.b * this.__B.x) * rgbInv;
-      this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
+      if( this.__Y > 0 ) {
+        let rgbInv = 1 / (this.__rgb.r + this.__rgb.g + this.__rgb.b);
+        this.__x = (this.__rgb.r * this.__R.x + this.__rgb.g * this.__G.x + this.__rgb.b * this.__B.x) * rgbInv;
+        this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
+      } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__hsv = undefined;
       this.__T = undefined;
     },

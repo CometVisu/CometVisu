@@ -140,7 +140,8 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
           : this.__currentValue.blend( this.__targetValue, alpha ),
         delta = isNumber
           ? nextValue - this.__currentValue
-          : this.__currentValue.delta(nextValue);
+          : this.__currentValue.delta(nextValue),
+        notFinished = true;
       if (Math.abs(delta) > maxLinearDelta) {
         nextValue = isNumber
           ? this.__currentValue + Math.sign(delta) * maxLinearDelta
@@ -149,12 +150,13 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
       if ((isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
           (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())) {
         nextValue = this.__targetValue;
+        notFinished = false;
       }
       this.__currentValue = isNumber ? nextValue : nextValue.copy();
 
       this.getDisplayFn().call(this.__displayFnContext, this.__currentValue, this.__displayFnParameters);
 
-      if (this.__currentValue !== this.__targetValue) {
+      if (notFinished) {
         this.__animationFrame = window.requestAnimationFrame((time)=>{this.__animate(time, thistime);});
       } else {
         this.__animationFrame = undefined;

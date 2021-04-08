@@ -78,6 +78,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
     this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
+    this.__lastBusValue = {};
   },
   /*
   ***********************************************
@@ -135,12 +136,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     __colorOld: undefined,      // the color where the animation started
     __colorCurrent: undefined,  // the current color of the running animation
     __color: undefined,         // the current color of the widget, also the target for the animation
-    __lastBusValue: {},
+    __lastBusValue: undefined,  // initialize with empty object in the constructor to prevent object being shared between instances
     __animator: null,
     __button: undefined, // cache for DOM element
     __range: undefined,  // cache for DOM element
     __actors: undefined,
-    __buttonWidth: undefined,
     __pageSizeListener: undefined,
     __components: undefined, // set of all color components required to send
     __inDrag: false,       // is the handle currently dragged?
@@ -158,7 +158,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       //     style="position: absolute;padding:10px;top:0;right:0;bottom:0;left:0;transform:rotate(0deg);">
       //  <div className="inner"
       //       style="width:100%;height:75%;-webkit-mask:conic-gradient(at 50% 0%, transparent,transparent 150deg,#fff 150deg,#fff 210deg,transparent 210deg);background:linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),linear-gradient(45deg, #f00, #f00);Xtransform-origin: 50% 66.6667%;Xtransform: rotate(23deg)"></div>
-      console.log('_getInnerDomString', this.getControls());
+      //console.log('_getInnerDomString', this.getControls());
       let retval = '';
       this.getControls().split(';').forEach(function(control){
         switch(control) {
@@ -194,20 +194,22 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     },
 
     _update: function (address, data) {
-      let transform = this.getAddress()[address].transform;
-      if (this.__inDrag || this.__lastBusValue[transform] === data) {
+      let
+        transform = this.getAddress()[address].transform,
+        variant = this.getAddress()[ address ].variantInfo,
+        notKnown = this.__lastBusValue[variant] === undefined;
+      if (this.__inDrag || (this.__lastBusValue[variant] && this.__lastBusValue[variant][transform] === data)) {
         // slider in use -> ignore value from bus
         // internal state unchanged -> also do nothing
         return;
       }
       
-      this.__lastBusValue = {}; // forget all other transforms as they might not be valid anymore
-      this.__lastBusValue[transform] = data;
+      this.__lastBusValue[variant] = {}; // forget all other transforms as they might not be valid anymore
+      this.__lastBusValue[variant][transform] = data;
 
       let 
-        value = cv.Transform.decode(transform, data),
-        variant = this.getAddress()[ address ].variantInfo;
-      
+        value = cv.Transform.decode(transform, data);
+
       switch( variant ) {
         case 'h':
         case 's':
@@ -226,9 +228,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           value = { r: value.get('r')/100, g: value.get('g')/100, b: value.get('b')/100 };
           break;
       }
-      
+
       // animate when visible, otherwise jump to the target value
-      this.__setSliderTo(value, variant, !this.isVisible());
+      this.__setSliderTo(value, variant, !this.isVisible() || notKnown);
     },
 
     /**
@@ -246,8 +248,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
       this.__color.changeComponent( variant, value );
       //this.__updateHandlePosition();
+      instant = instant || this.__color.delta(this.__colorOld) < 0.005;
       if( !instant ) {
-        console.log('__setSliderTo animate');
         this.__animator.setTo(this.__colorOld, true, false );
       }
       this.__animator.setTo(this.__color, instant);
@@ -255,7 +257,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
 
     __updateHandlePosition: function (ratio) {
       // check cache
-      if (this.__actors === undefined || this.__buttonWidth === undefined) {
+      if (this.__actors === undefined) {
         let actors = {};
         this.getDomElement().querySelectorAll('.actor').forEach(function (actor){
           let type = actor.className.replace(/.*cc_([^ ]*).*/,'$1');
@@ -292,6 +294,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       }
 
       //console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
+      //console.log('__updateHandlePosition', ratio.getComponent('hsv'), ratio.getComponent('rgb'), '##',this.__colorCurrent?this.__colorCurrent.delta(ratio):'-','##');
+      //console.trace();
       this.__colorCurrent = ratio; //(ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
       // move handles
       for( let type in this.__actors ) {
@@ -349,7 +353,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
               this.__inDrag = true;
             } else {
               let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
-              console.log(distSqrd,relCoordX,relCoordY,radius**2);
+              //console.log(distSqrd,relCoordX,relCoordY,radius**2);
               if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
                 this.__mode = 'wheel_h';
                 this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
@@ -409,6 +413,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
+      //console.log('setTo', event.type);
       this.__animator.setTo(this.__color, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
@@ -436,7 +441,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             value = new Map([['h', value.h*100], ['s', value.s*100], ['v', value.v*100]] );
             break;
         }
+        let tmp__lastBusValue =  this.__lastBusValue[type];
         this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
+        //console.log('send', type, tmp__lastBusValue, '->',  this.__lastBusValue[type]);
       });
     }
   },
