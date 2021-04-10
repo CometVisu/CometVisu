@@ -43,13 +43,13 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDbs"
+          method: "getInfluxDBs"
         },
         'field': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDbFields",
+          method: "getInfluxDBFields",
         }
       },
       'tag': {
@@ -57,13 +57,13 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDbTags",
+          method: "getInfluxDBTags",
         },
         'value': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDbValues",
+          method: "getInfluxDBValues",
         }
       },
       'icon': {
@@ -116,16 +116,16 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       if (this.Config[element] && this.Config[element][attribute]) {
         config = this.Config[element][attribute];
       } else if (this.Config['*'][attribute]) {
-        config = this.Config['*'][attribute]
+        config = this.Config['*'][attribute];
       }
       if (config) {
         const conf = {};
         if (config.live) {
-          conf.getLive = qx.lang.Function.curry(instance[config.method], format, config)
+          conf.getLive = qx.lang.Function.curry(instance[config.method], format, config).bind(instance);
         } else {
           args.unshift(config);
           args.unshift(format);
-          conf.data = instance[config.method].apply(instance, args)
+          conf.data = instance[config.method].apply(instance, args);
         }
         return Object.assign(conf, config);
       }
@@ -280,38 +280,89 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
     },
 
-    getInfluxDBs: function (format, config) {
-      return this.__getData('influxdbs', 'influxdbsSync', null,[], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+    getInfluxDBs: function (format, config, element) {
+      const args = this.__getInfluxArgs(element, false);
+      return this.__getData('influxdbs', 'influxdbsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
     },
 
-    getInfluxDBFields: function (format, config, measurement) {
-      return this.__getData('influxdbfields|' + measurement, 'influxdbfieldsSync', null,[{measurement: measurement}], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+    __getInfluxArgs: function (element, withMeasurement) {
+      const args = [];
+      if (element.hasAttribute('authentication')) {
+        args.push({auth: element.getAttribute("authentication")});
+      }
+      if (withMeasurement) {
+        let influx = element;
+        // walk the tree to get the selected data source in the influx element
+        while ('influx' !== influx.nodeName) {
+          influx = influx.parentElement;
+          if (undefined === influx) {
+            // this safety measure can not happen without a bug somewhere!
+            throw new Error();
+          }
+        }
+        args.push({measurement: element.getAttribute("measurement")});
+      }
+      return args;
     },
 
-    getInfluxDBTags: function (format, config, measurement) {
-      return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
-        return Object.keys(res).map(function (x) {
-          return {
-            label: x,
-            insertText: x,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember
-          };
-        });
-      }, this, config.cache);
+    getInfluxDBFields: function (format, config, element) {
+     try {
+       const args = this.__getInfluxArgs(element, true);
+       return this.__getData('influxdbfields|' + args.measurement + "|" + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+     } catch (e) {
+       return [];
+     }
     },
 
-    getInfluxDBValues: function (format, config, measurement, tag) {
-      return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
-        var sug = [];
-        res[tag].forEach(function (x) {
-          sug.push({
-            label: x,
-            insertText: x,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember
+    __getInfluxDBTags: function (format, config, element, converter) {
+      try {
+        const args = this.__getInfluxArgs(element, true);
+        return this.__getData('influxdbtags|' + args.measurement + "|" + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
+      } catch (e) {
+        return [];
+      }
+    },
+
+    getInfluxDBTags: function (format, config, element) {
+      return this.__getInfluxDBTags(format, config, element, function (res) {
+        if (format === 'monaco') {
+          return Object.keys(res).map(function (x) {
+            return {
+              label: x,
+              insertText: x,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
           });
-        });
-        return sug;
-      }, this, config.cache);
+        } else {
+          return Object.keys(res).map(function (x) {
+            return {value: x, label: x};
+          });
+        }
+      });
+    },
+
+    getInfluxDBValues: function (format, config, element, tag) {
+      return this.__getInfluxDBTags(format, config, element, function (res) {
+        if (res === null || !(element.attributes.key in res)) {
+          return [];
+        }
+        if (format === 'monaco') {
+          return res[tag].map(function (x) {
+            return {
+              label: x,
+              insertText: x,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            }
+          });
+        } else {
+          return res[tag].map(function (x) {
+            return {
+              label: x,
+              value: x
+            }
+          });
+        }
+      });
     },
 
     _parseDpResponseForMonaco: function (data) {

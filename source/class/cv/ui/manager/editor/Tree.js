@@ -1100,8 +1100,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const provider = cv.ui.manager.editor.data.Provider.get(id);
       if (provider) {
 
-        if (typeof provider.live === 'function') {
-          formData.options = provider.live(element);
+        if (typeof provider.getLive === 'function') {
+          formData.options = provider.getLive(element);
         } else if (provider.data) {
           formData.options = provider.data;
         } else {
@@ -1125,7 +1125,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         delete formData.placeholder;
         if (!formData.validation.required) {
           if (formData.options instanceof Promise) {
-            formData.options.then(res => res.unshift({label: " - " + this.tr("not set") + " - ", value: ""}));
+            formData.options.then(res => {
+              if (Array.isArray(res)) {
+                res.unshift({label: " - " + this.tr("not set") + " - ", value: ""})
+              }
+            });
           } else {
             formData.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
           }
