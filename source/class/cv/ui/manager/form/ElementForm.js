@@ -103,7 +103,13 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             break;
           case "textarea":
             formElement = new qx.ui.form.TextArea();
-            formElement.setHeight(fieldData.lines * 16);
+            formElement.setMinimalLineHeight(fieldData.lines);
+            if (fieldData.autoSize === true) {
+              formElement.setAutoSize(true);
+              formElement.setMinHeight(fieldData.lines * 16);
+            } else {
+              formElement.setHeight(fieldData.lines * 16);
+            }
             formElement.setLiveUpdate(true);
             break;
           case "textfield":

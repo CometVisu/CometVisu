@@ -1222,7 +1222,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const docs = typeElement.getDocumentation();
         formData[nodeName] = {
           type: "TextArea",
-          label: this.tr("Content"),
+          label: "",
+          lines: 1,
+          autoSize: true,
+          width: Math.min(qx.bom.Viewport.getWidth(), 500),
           placeholder: this.tr("not set"),
           help: docs.join("<br/>"),
           enabled: element.isEditable(),
@@ -1237,11 +1240,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               }
             }
           }
-        }
-        if (formData[nodeName].type === "TextArea") {
-          formData[nodeName].lines = 8;
-          formData[nodeName].label = "";
-          formData[nodeName].width = Math.min(qx.bom.Viewport.getWidth(), 500);
         }
         this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
         if (formData[nodeName].options && formData[nodeName].options instanceof Promise) {
