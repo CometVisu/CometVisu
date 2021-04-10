@@ -39,7 +39,8 @@ Refresh
 Bedienung
 ---------
 
-Man kann Elemente in der Struktur ausklappen indem man einen Doppelklick darauf ausführt. Erweiterte Funktionen
+Man kann Elemente in der Struktur ausklappen indem man auf das kleine Dreieck-Icon ganz links klickt. Durch einen
+Doppelklick öffnet sich der Dialog mit dem die Attribute eines Elements bearbeitet werden können. Erweiterte Funktionen
 zu einem ausgewählten Element stehen per Kontextmenü, welches mit rechter Maustaste oder einen Klick + gedrückt halten
 der Linken Maustaste (bzw. dem Finger auf Touchscreens) geöffnet werden kann.
 
@@ -48,7 +49,7 @@ der Linken Maustaste (bzw. dem Finger auf Touchscreens) geöffnet werden kann.
 Das Kontextmenü stellt folgenden Optionen zur Verfügung:
 
 Bearbeiten
-  Öffnet den Bearbeiten Dialog für die Attribute dieses Elements (sofern es für diesem Element-Typ verfügbar).
+  Öffnet den Bearbeiten Dialog für die Attribute dieses Elements (sofern es editierbare Attribute gibt).
 
 Löschen
   Löscht das Element

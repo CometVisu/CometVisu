@@ -40,7 +40,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     handlerOptions: {
       check: 'Map',
-      nullable: true
+      nullable: true,
+      apply: '_applyHandlerOptions'
     },
 
     /**
@@ -89,6 +90,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
     },
+
+    _applyHandlerOptions: function () {},
 
     _loadFile: function (file, old) {
       if (old) {

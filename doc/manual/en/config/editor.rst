@@ -38,7 +38,8 @@ Refresh
 Operation
 ---------
 
-You can expand an element by double-clicking on or. Additional functions are available by an context menu,
+You can expand an element by clicking on the small triangle-icon on the very left. With a double-click on the
+element you can open the attribute editing dialog for that element. Additional functions are available by an context menu,
 that can be opened by right-clicking on an element or be long-pressing on it (e.g. when there is no possibility
 to right-click, e.g. on a touch screen)
 

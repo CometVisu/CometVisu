@@ -90,7 +90,7 @@ msgstr "Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderun
 msgid "openHAB backend settings"
 msgstr "openHAB Backend Einstellungen"
 
-#: cv/plugins/openhab/Settings.js
+#: cv/ui/manager/dialog/ValidationError.js
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -793,10 +793,6 @@ msgid "This is not a valid value."
 msgstr "Dies ist kein gültiger Wert"
 
 #: cv/ui/manager/editor/Tree.js
-msgid "Content"
-msgstr "Inhalt"
-
-#: cv/ui/manager/editor/Tree.js
 msgid "Edit %1"
 msgstr "Bearbeite %1"
 
@@ -848,6 +844,30 @@ msgstr "Diese Konfiguration wurde in einem anderen Fenster geöffnet. Wenn Sie d
 msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>"
 msgstr "<h3>Suche nach Elementen</h3><p>Sie können nach Elementen suchen (Tag-Namen oder Name-Attribut) indem Sie hier einen Suchbegriff eingeben. Es werden alle Elemente gefunden deren Tag-Name oder 'name'-Attribut mit dem Suchbegriff beginnen.</p><p>Die Suche startet automatisch, wenn der Suchbegriff mindestens 2 Zeichen lang ist.</p><p>Das erste gefunden Element wird im Baum angezeigt. Mit der 'enter' oder der 'Pfeil runter'-Taste kann man zum nächsten Suchergebnis springen. Mit der 'Pfeil rauf'-Taste entsprechend zum vorherigen Suchergebnis.</p>"
 
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "View"
+msgstr "Ansehen"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<h3>Config Errors</h3><p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because it can break the file completely. Please open this file in the text editor and fix the errors there. Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<p>You can choose between the following options:<ul>    <li><b>Cancel</b> - Close this editor</li>    <li><b>Proceed</b> - Open the defective file in this editor</li>    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li></ul></p>"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Proceed"
+msgstr "Fortfahren"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Open in text editor"
+msgstr "Im Text-Editor öffnen"
+
+#: cv/ui/manager/viewer/Config.js
+msgid "Loading..."
+msgstr "Lade..."
+
 #: cv/ui/manager/editor/Tree.js
-msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a double-click.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
-msgstr "<h3>CometVisu XML-Editor - eine kurze Einführung</h3><p>Der CometVisu XML-Editor stellt eine CometVisu-Konfigurationsdatei in einer Baumstruktur dar. Man kann die Elemente mit einem Doppelklick öffnen/schließen.</p><p>Der XML-Editor stellt sicher, dass keine ungültig Konfiguration erzeugt werden kann. Falls einige Änderungen nicht möglich sind, dann ist das diesem Umstand geschuldet.</p><h4>Attribute bearbeiten</h4><p>Die Attribute eines Elements können bearbeitet werden indem man das Element selektiert und den 'Bearbeiten'-Button in der Symbolleiste direkt über dem Baum oder im Kontextmenü (öffnen mit rechter Maustaste) klickt.</p><h4>Element bearbeiten</h4><p>Die Elemente im Baum unterstützen eine Umsortierung via Drag&Drop. Sie können ebenfalls ausgeschnitten, kopiert und eingefügt werden. Neue Element können hinzugefügt werden indem man auf den '+'-Button unter dem Baum klickt (Maustaste gedrückt halten) und diesen dann an die Stelle zieht an der man das neuen Element einfügen möchte. Alternativ steht über das Kontextmenü ein 'Kind-Element einfügen'-Button zur Verfügung.</p><p>Selektierte Element können über die Symbolleiste und das Kontektmenü gelöscht werden.</p><h4>Expertenansicht</h4><p>Normalerweise sind einige Attribute nicht sichtbar im Editier-Dialog. Über den 'Expertansicht'-Button in der Symbolleiste kann man diese freischalten.</p><h4>Vorschau</h4><p>Auf der rechten Seite wird eine Vorschau der bearbeiten Konfiguration gezeigt. Diese aktualisiert sich nicht automatisch. Über den Button in der Symbolleiste ganz rechts, kann man die Vorschau aktualisieren.</p>"
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a click on the expand icon.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr "<h3>CometVisu XML-Editor - eine kurze Einführung</h3><p>Der CometVisu XML-Editor stellt eine CometVisu-Konfigurationsdatei in einer Baumstruktur dar. Man kann die Elemente durch einen Klick auf das kleine Dreieck-Icon öffnen/schließen.</p><p>Der XML-Editor stellt sicher, dass keine ungültig Konfiguration erzeugt werden kann. Falls einige Änderungen nicht möglich sind, dann ist das diesem Umstand geschuldet.</p><h4>Attribute bearbeiten</h4><p>Die Attribute eines Elements können bearbeitet werden indem man das Element doppelklickt, oder selektiert und den 'Bearbeiten'-Button in der Symbolleiste direkt über dem Baum oder im Kontextmenü (öffnen mit rechter Maustaste) klickt.</p><h4>Element bearbeiten</h4><p>Die Elemente im Baum unterstützen eine Umsortierung via Drag&Drop. Sie können ebenfalls ausgeschnitten, kopiert und eingefügt werden. Neue Element können hinzugefügt werden indem man auf den '+'-Button unter dem Baum klickt (Maustaste gedrückt halten) und diesen dann an die Stelle zieht an der man das neuen Element einfügen möchte. Alternativ steht über das Kontextmenü ein 'Kind-Element einfügen'-Button zur Verfügung.</p><p>Selektierte Element können über die Symbolleiste und das Kontektmenü gelöscht werden.</p><h4>Expertenansicht</h4><p>Normalerweise sind einige Attribute nicht sichtbar im Editier-Dialog. Über den 'Expertansicht'-Button in der Symbolleiste kann man diese freischalten.</p><h4>Vorschau</h4><p>Auf der rechten Seite wird eine Vorschau der bearbeiten Konfiguration gezeigt. Diese aktualisiert sich nicht automatisch. Über den Button in der Symbolleiste ganz rechts, kann man die Vorschau aktualisieren.</p>"

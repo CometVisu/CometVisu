@@ -26,6 +26,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     this.initReDos(new qx.data.Array());
     this.__buttonListeners = {};
     qx.core.Init.getApplication().getRoot().addListener("keyup", this._onElementKeyUp, this);
+    this.addListener('resize', this._maintainPreviewVisibility, this);
   },
 
   /*
@@ -91,6 +92,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     autoRefreshPreview: {
       check: 'Boolean',
       init: false
+    },
+
+    showPreview: {
+      check: 'Boolean',
+      init: true,
+      apply: '_applyShowPreview',
+      event: 'showPreviewChanged'
     }
   },
 
@@ -107,6 +115,33 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     __buttonListeners: null,
     __searchResults: null,
     __searchResultIndex: 0,
+
+    _applyHandlerOptions: function () {
+      this._maintainPreviewVisibility();
+    },
+
+    _maintainPreviewVisibility: function () {
+      const handlerOptions = this.getHandlerOptions();
+      this.setShowPreview(qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview));
+    },
+
+    _applyShowPreview: function (value) {
+      this.getChildControl('right').setVisibility(value ? 'visible' : 'excluded');
+      if (value) {
+        this.getChildControl('left').clearLayoutProperties();
+        this.getChildControl('left').updateLayoutProperties();
+      } else {
+        this.getChildControl('left').setLayoutProperties({flex: 1});
+      }
+      if (value && this.getFile()) {
+        const preview = this.getChildControl('preview');
+        if (!preview.getFile()) {
+          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+          preview.setFile(previewConfig);
+        }
+        this._updatePreview();
+      }
+    },
 
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
@@ -285,20 +320,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this._workerWrapper.close(old);
       }
       if (file && file.getType() === 'file' && this.isSupported(file)) {
-        const handlerOptions = this.getHandlerOptions();
-        if (this.hasChildControl('preview')) {
-          if (handlerOptions && handlerOptions.noPreview) {
-            this.getChildControl('preview').exclude();
-          } else {
-            this.getChildControl('preview').show();
-          }
-        }
         this.base(arguments, file, old);
       } else {
         this.base(arguments, null, old);
         if (this.hasChildControl('preview')) {
           this.getChildControl('preview').resetFile();
-          console.log("resetting preview");
         }
       }
     },
@@ -309,19 +335,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
        switch (id) {
          case 'splitpane':
-           control = new qx.ui.splitpane.Pane();
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
            this._add(control);
            break;
 
          case 'left':
            control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
-           this.getChildControl('splitpane').add(control, 0);
+           this.getChildControl('splitpane').addAt(control, 0);
            break;
 
          case 'right':
            control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
-           control.setMinWidth(600);
-           this.getChildControl('splitpane').add(control, 1);
+           if (!this.isShowPreview()) {
+             control.exclude();
+           }
+           this.getChildControl('splitpane').addAt(control, 1, {flex: 1});
            break;
 
          case 'preview':
@@ -330,10 +358,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              target: 'iframe',
              minWidth: 600
            });
-           const handlerOptions = this.getHandlerOptions();
-           if (handlerOptions && handlerOptions.noPreview) {
-             control.exclude();
-           }
            this.getChildControl('right').add(control, {edge: 0});
            break;
 
@@ -369,6 +393,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 16));
            control.setToolTipText(this.tr("Reload preview"));
            control.addListener('execute', this._updatePreview, this);
+           this.bind('showPreview', control, 'visibility', {
+             converter: function (value) {
+               return value ? 'visible' : 'hidden'
+             }
+           })
            this.getChildControl('toolbar').add(control);
            break;
 
@@ -498,6 +527,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const target = ev.getCurrentTarget();
       if (target instanceof cv.ui.manager.tree.VirtualElementItem) {
         const element = target.getModel();
+        this.getChildControl('tree').getSelection().replace([element]);
         this.setSelected(element);
         const menu = this.getChildControl('context-menu');
         menu.setElement(element);
@@ -1189,8 +1219,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onEdit: function (ev, element) {
+      if (!this.getFile() || !this.getFile().isWriteable()) {
+        return;
+      }
       if (!element) {
         element = this.getSelected();
+      }
+      if (!element.getShowEditButton()) {
+        return;
       }
       element.load();
       const formData = {};
@@ -1256,6 +1292,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           caption:  "",
           message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
           formData: formData,
+          maxWidth: qx.bom.Viewport.getWidth()
         }).show();
         return formDialog.promise().then(data => {
           if (data && element.isEditable()) {
@@ -1360,8 +1397,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
-        const preview = this.getChildControl('preview');
-        if (preview.isVisible()) {
+        if (this.isShowPreview()) {
+          const preview = this.getChildControl('preview');
           // get page path for this node
           let path = [];
           let node = value.getNode();
@@ -1466,12 +1503,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // extra space für add-button
           tree.setContentPaddingBottom(file.getWriteable() ? 80 : 0);
         }
-        const preview = this.getChildControl('preview');
-        if (preview.isVisible() && !preview.getFile()) {
-          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-          preview.setFile(previewConfig);
+        if (this.isShowPreview()) {
+          const preview = this.getChildControl('preview');
+          if (preview.isVisible() && !preview.getFile()) {
+            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
+            preview.setFile(previewConfig);
+          }
+          this._updatePreview(null, value);
         }
-        this._updatePreview(null, value);
         if (file.isTemporary()) {
           this._onContentChanged();
         }
@@ -1483,7 +1522,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (this._workerWrapper) {
         this._workerWrapper.contentChanged(this.getFile(), content);
       }
-      if (this.isAutoRefreshPreview()) {
+      if (this.isAutoRefreshPreview() && this.isShowPreview()) {
         this._updatePreview(null, content);
       }
     },
@@ -1595,11 +1634,11 @@ with the 'Up' key.</p>");
         // show general help
         dialogConf.message = this.tr("<h3>CometVisu XML-Editor - a brief introduction</h3>\
 <p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. \
-You can traverse through the tree by opening/closing elements with a double-click.</p>\
+You can traverse through the tree by opening/closing elements with a click on the expand icon.</p>\
 <p>The Xml-Editor will make sure that you do not create an invalid configuration file. \
 If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>\
 <h4>Editing attributes</h4>\
-<p>The elements attributes can be edited by selecting an element and clicking on the 'edit'-button in the toolbar \
+<p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar \
 above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>\
 <h4>Editing elements</h4>\
 <p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. \
