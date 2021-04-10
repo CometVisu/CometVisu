@@ -418,7 +418,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.set({
              selectionMode: 'single',
              width: 350,
-             openMode: 'dbltap'
+             openMode: 'none'
            });
            this.bind("file.writeable", control, "droppable");
            this.bind("file.writeable", control, "draggable");
@@ -427,6 +427,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
                item.addListener('contextmenu', this._onContextMenu, this);
+               item.addListener('dbltap', this._onEdit, this);
                return item;
              }.bind(this),
 
