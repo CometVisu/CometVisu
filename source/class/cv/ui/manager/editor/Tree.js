@@ -451,29 +451,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            });
            break;
 
-         case 'add-button-container':
-           control = new qx.ui.container.Composite(new qx.ui.layout.Atom().set({center: true}));
-           control.setAnonymous(true);
-           control.setHeight(48);
-           control.setZIndex(20);
-           this.getChildControl('left').add(control, {
-             left: 0,
-             right: 0,
-             bottom: 16
-           });
-           break;
-
          case 'add-button':
            control = new qx.ui.basic.Atom(null, cv.theme.dark.Images.getIcon('add', 32));
            control.setDraggable(true);
+           control.setMarginLeft(-16);
+           control.setZIndex(20);
            control.setAppearance("round-button");
            control.addListener("pointerover", () => control.addState("hovered"));
            control.addListener("pointerout", () => control.removeState("hovered"));
            control.addListener("tap", () => {
              qxl.dialog.Dialog.alert(this.tr("Please create a new Element by dragging this button to the place where the new element should be inserted."))
            }, this);
-           this.bind('file.writeable', control, 'enabled');
-           this.getChildControl("add-button-container").add(control);
+           this.getChildControl("left").add(control, {
+             bottom: 16,
+             left: "50%"
+           });
            break;
 
          case 'drag-indicator':
@@ -1229,7 +1221,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
         formData[nodeName] = {
-          type: element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE ? "TextArea" : "TextField",
+          type: "TextArea",
           label: this.tr("Content"),
           placeholder: this.tr("not set"),
           help: docs.join("<br/>"),
@@ -1474,6 +1466,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         tree.setModel(rootNode);
         if (this.hasChildControl('add-button')) {
           this.getChildControl('add-button').setVisibility(file.getWriteable() ? 'visible' : 'excluded');
+          // extra space für add-button
+          tree.setContentPaddingBottom(file.getWriteable() ? 80 : 0);
         }
         const preview = this.getChildControl('preview');
         if (preview.isVisible() && !preview.getFile()) {
