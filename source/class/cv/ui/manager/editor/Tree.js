@@ -612,14 +612,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _showNextResult: function () {
-      if (this.__searchResults.length > this.__searchResultIndex + 1) {
+      if (this.__searchResults && this.__searchResults.length > this.__searchResultIndex + 1) {
         this.__searchResultIndex++;
         this.__showSearchResult();
       }
     },
 
     _showPreviousResult: function () {
-      if (this.__searchResultIndex > 0) {
+      if (this.__searchResults && this.__searchResultIndex > 0) {
         this.__searchResultIndex--;
         this.__showSearchResult();
       }

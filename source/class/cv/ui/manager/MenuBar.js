@@ -208,6 +208,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
             }
           } else {
             button = new ButtonClass(label, icon, command);
+            if (qx.core.Environment.get("qx.command.bindEnabled")) {
+              button.bind('enabled', command, 'enabled');
+            }
           }
           button.addListener('execute', function () {
             qx.event.message.Bus.dispatchByName('cv.manager.action.' + id);
