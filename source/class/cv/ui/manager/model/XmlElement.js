@@ -352,9 +352,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             if (excludeComment === true && elementName === "#comment") {
               return;
             }
-            if ((elementName === "#text" || schemaElement === "#cdata-section")) {
+            if ((elementName === "#text" || elementName === "#cdata-section")) {
               if (schemaElement.isTextContentAllowed()) {
-                stillAllowed.push(elementName);
+                if (schemaElement.isMixed() || (!countExisting.hasOwnProperty('#text') && !countExisting.hasOwnProperty('#tcdata-section'))) {
+                  stillAllowed.push(elementName);
+                }
               }
               return;
             }
@@ -370,10 +372,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       return this.__addableChildren;
     },
 
+    /**
+     * Checks if a new child is allowed at the given position
+     * @param xmlElement {cv.ui.manager.model.XmlElement|String} the element or an element name as string
+     * @param index {Number} position to check, use Number.POSITIVE_INFINITY to check if the child is allowed to be appended
+     * @returns {boolean}
+     */
     isChildAllowedAtPosition: function (xmlElement, index) {
       const schemaElement = this.getSchemaElement();
-      if (!schemaElement.isChildElementAllowed(xmlElement.getName())) {
-        this.debug(xmlElement.getName(), "is not allowed as child of", this.getName());
+      const nodeName = xmlElement instanceof cv.ui.manager.model.XmlElement ? xmlElement.getName() : xmlElement;
+      if (!schemaElement.isChildElementAllowed(nodeName)) {
+        this.debug(nodeName, "is not allowed as child of", this.getName());
         return false;
       }
       if (!schemaElement.areChildrenSortable()) {
@@ -397,7 +406,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       } else {
         currentPosition = [currentPosition];
       }
-      let targetPosition = allowedSorting[xmlElement.getName()];
+      let targetPosition = allowedSorting[nodeName];
       if (typeof targetPosition === "string") {
         if (targetPosition === 'x') {
           // allowed anywhere
@@ -415,7 +424,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           // only allow if it can be inserted before
           const allowed = currentPosition[i] + 1 === targetPosition[i];
           if (!allowed) {
-            this.debug(xmlElement.getName(), "is not allowed as child of", this.getName());
+            this.debug(nodeName, "is not allowed as child of", this.getName());
             return false;
           }
         }

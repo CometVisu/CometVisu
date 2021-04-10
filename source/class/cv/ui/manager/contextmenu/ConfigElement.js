@@ -98,7 +98,14 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
     },
 
     _maintainClipboardButtons: function () {
-      const enabled = (this.getElement() ? this.getElement().isEditable() : false) && !!this.getEditor().getClipboard();
+      const content = this.getEditor().getClipboard();
+      const element = this.getElement();
+      let enabled = (element ? element.isEditable() : false) && content instanceof cv.ui.manager.model.XmlElement;
+      if (enabled) {
+        // check if content is allowed as child here
+        let addable = element.getAddableChildren(true);
+        enabled = addable.includes(content.getName()) && element.isChildAllowedAtPosition(content, Number.POSITIVE_INFINITY);
+      }
       this.getChildControl('paste-button').setEnabled(enabled);
     },
 
