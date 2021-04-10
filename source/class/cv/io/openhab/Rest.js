@@ -361,14 +361,12 @@ qx.Class.define('cv.io.openhab.Rest', {
                 }
                 const entry = {
                   value: element.name,
-                  label: element.name
+                  label: element.label || ''
                 }
                 if (type) {
-                  entry.hints = [
-                    {
-                      transform: "OH:" + type.toLowerCase()
-                    }
-                  ];
+                  entry.hints = {
+                    transform: "OH:" + type.toLowerCase()
+                  };
                 }
                 data[type].push(entry);
               });
@@ -379,7 +377,7 @@ qx.Class.define('cv.io.openhab.Rest', {
           return function (result) {
             if (format === 'monaco') {
               return result.map(element => {
-                return {label: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember};
+                return {insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember};
               });
             } else {
               return result.map(element => {

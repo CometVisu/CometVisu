@@ -9,7 +9,7 @@ qx.Class.define('cv.ui.manager.form.Option', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (label, icon, value) {
+  construct: function (label, icon, value, hints) {
     this.base(arguments);
     if (label) {
       this.setLabel(label);
@@ -19,6 +19,9 @@ qx.Class.define('cv.ui.manager.form.Option', {
     }
     if (value) {
       this.setValue(value);
+    }
+    if (hints) {
+      this.setHints(hints);
     }
   },
 
@@ -43,7 +46,12 @@ qx.Class.define('cv.ui.manager.form.Option', {
     },
     value: {
       check: "String",
-      event: "changeValue"
+      event: "changeValue",
+      nullable: true
+    },
+    hints: {
+      check: 'Object',
+      nullable: true
     }
   }
 });

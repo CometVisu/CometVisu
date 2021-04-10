@@ -38,6 +38,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
   */
   members: {
     __mappedKeys: null,
+    __hints: null,
 
     _applyFormData: function (formData, old) {
       this.__mappedKeys = {
@@ -154,15 +155,24 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             }
             break;
           case "virtualcombobox":
-            formElement = new qx.ui.form.ComboBox();
+            formElement = new qx.ui.form.VirtualComboBox();
             formElement.set({
               iconPath: "icon",
-              labelPath: "label"
+              labelPath: "value"
             });
+            const selection = formElement.getChildControl("dropdown").getSelection();
+            selection.addListener('change', function(ev) {
+              const selected = selection.getItem(0);
+              if (selected && selected instanceof cv.ui.manager.form.Option) {
+                this.__hints = selected.getHints();
+              } else {
+                this.__hints = null;
+              }
+            }, this);
             model = new qx.data.Array();
             if (Array.isArray(fieldData.options)) {
               fieldData.options.forEach(item => {
-                model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+                model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
               });
             } else if (typeof fieldData.options === 'object') {
               Object.keys(fieldData.options).forEach(groupName => {
@@ -170,7 +180,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 groupModel.setType("group");
                 model.push(groupModel);
                 fieldData.options[groupName].forEach(function (item) {
-                  model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value))
+                  model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints))
                 });
               })
             }
@@ -179,7 +189,8 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 return new cv.ui.manager.form.ListItem();
               },
               bindItem:  function (controller, item, index) {
-                controller.bindDefaultProperties(item, index);
+                controller.bindProperty('icon', 'icon', null, item, index);
+                controller.bindProperty('label', 'label', null, item, index);
                 controller.bindProperty('type', 'appearance', {
                   converter: function (value) {
                     return value === "group" ? "optiongroup" : "listitem";
@@ -515,7 +526,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             data[this.__mappedKeys.map[mappedKey]] = data[mappedKey];
             delete data[mappedKey];
           }
-        })
+        });
+        if (this.__hints) {
+          Object.keys(this.__hints).forEach(name => data[name] = this.__hints[name]);
+        }
         this.getCallback().call(
           this.getContext(),
           data

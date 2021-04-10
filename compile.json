@@ -178,10 +178,6 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
-      "bundle": {
-        "include": ["*.*"],
-        "exclude": ["cv.*"]
-      },
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,

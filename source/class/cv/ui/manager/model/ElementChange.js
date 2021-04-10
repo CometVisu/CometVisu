@@ -55,7 +55,11 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
         switch (this.getChangeType()) {
           case 'content':
             this.getChanges().forEach(change => {
-              element.setAttribute(change.attribute, change.old);
+              if (change instanceof cv.ui.manager.model.ElementChange) {
+                change.undo();
+              } else {
+                element.setAttribute(change.attribute, change.old);
+              }
             });
             element.updateModified();
             success = true;
@@ -98,7 +102,11 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
         switch (this.getChangeType()) {
           case 'content':
             this.getChanges().forEach(change => {
-              element.setAttribute(change.attribute, change.value);
+              if (change instanceof cv.ui.manager.model.ElementChange) {
+                change.redo();
+              } else {
+                element.setAttribute(change.attribute, change.value);
+              }
             });
             element.updateModified();
             success = true;

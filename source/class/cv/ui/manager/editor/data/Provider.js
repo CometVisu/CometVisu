@@ -319,7 +319,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     _parseDpResponseForEditor: function (data) {
-      return this.__parseDpResponse(data, 'db')
+      return this.__parseDpResponse(data, 'dp')
     },
 
     __parseDpResponse: function (data, format) {

@@ -64,7 +64,7 @@ class DataproviderApi extends AbstractDataproviderApi
     $arrAdresses = array();
 
     // sort the group addresses
-    uksort($arrGA, array('DataproviderApi', 'GASort'));
+    uksort($arrGA, array($this, 'GASort'));
 
     foreach ($arrGA as $strGA => $arrData) {
       $arrGAParts = explode("/", $strGA, 3);

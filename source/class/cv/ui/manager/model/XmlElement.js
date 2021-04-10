@@ -654,14 +654,30 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     setAttributes: function (data) {
       const changes = [];
       let change;
+      const parentChanges = [];
+      const isTextNode = (this.getName() === '#text' || this.getName() === '#cdata-section');
+      const parent = this.getParent();
       Object.keys(data).forEach(attrName => {
-        change = this.setAttribute(attrName, data[attrName]);
-        if (change.changed) {
-          changes.push(change);
+        if (isTextNode && !attrName.startsWith('#')) {
+          // special mode for editing text content from a data provider with hints, those hints must be applied to the parent
+          change = parent.setAttribute(attrName, data[attrName])
+          if (change.changed) {
+            parentChanges.push(change);
+          }
+        } else {
+          change = this.setAttribute(attrName, data[attrName]);
+          if (change.changed) {
+            changes.push(change);
+          }
         }
       });
       const editor = this.getEditor();
       if (editor && changes.length > 0) {
+        if (parentChanges.length > 0) {
+          const parentChange = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", parent.getDisplayName()), parent, parentChanges);
+          changes.push(parentChange);
+          parent.updateModified();
+        }
         editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", this.getDisplayName()), this, changes));
       }
       this.updateModified();

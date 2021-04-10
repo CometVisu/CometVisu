@@ -1107,13 +1107,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         } else {
           this.error("misconfigured provider found for " + id);
         }
-        // use virtual widgets for large data sets
-        if (Array.isArray(formData.options) && formData.options.length > 50 ||
-          typeof formData.options === "object" && Object.keys(formData.options) > 50) {
-          formData.type = provider.userInputAllowed ? "VirtualComboBox" : "VirtualSelectBox";
-        } else {
-          formData.type = provider.userInputAllowed ? "ComboBox" : "SelectBox";
-        }
+        formData.type = provider.userInputAllowed ? "VirtualComboBox" : "VirtualSelectBox";
       } else if (["mapping", "styling"].includes(id.split("@").pop())) {
         const type = id.split("@").pop();
         // these are directly filled from data inside the currently used config
