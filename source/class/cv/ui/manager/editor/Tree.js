@@ -1631,6 +1631,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         caption: this.tr("Help"),
         modal: true,
         minWidth: Math.min(600, qx.bom.Viewport.getWidth()),
+        maxHeight: qx.bom.Viewport.getHeight(),
         message: ""
       }
       if (focusedWidget === this.getChildControl('searchbar')) {
@@ -1664,7 +1665,7 @@ in the toolbar directly above the tree.</p>\
 <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically \
 refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>");
       }
-      new qxl.dialog.Alert(dialogConf).show();
+      new cv.ui.manager.dialog.BigAlert(dialogConf).show();
     }
   },
 
