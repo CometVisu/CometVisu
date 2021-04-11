@@ -40,33 +40,162 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      let data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
-      var datatype_min, datatype_max;
-      Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
-        var transform = elem.getAttribute('transform');
-        if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
-          if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
-            datatype_min = cv.Transform.registry[transform].range.min;
-          }
-          if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
-            datatype_max = cv.Transform.registry[transform].range.max;
-          }
+      /*
+    let datatype_min, datatype_max;
+    Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
+      var transform = elem.getAttribute('transform');
+      if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
+        if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
+          datatype_min = cv.Transform.registry[transform].range.min;
         }
-      });
-      var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
-      var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
+        if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
+          datatype_max = cv.Transform.registry[transform].range.max;
+        }
+      }
+    });*/
+      //var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
+      //var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
 
-      data.min = min;
-      data.max = max;
+      //data.min = min;
+      //data.max = max;
       data.baseColors = { // default to sRGB color space with D65 white point
         r: {x: 0.64, y: 0.33},
         g: {x: 0.30, y: 0.60},
         b: {x: 0.15, y: 0.06},
         w: {x: 0.3127, y: 0.3290}
       };
+      console.log('parse', xml);
+      let
+        r_x          = xml.getAttribute('r_x'),
+        r_y          = xml.getAttribute('r_y'),
+        r_wavelength = xml.getAttribute('r_wavelength'),
+        r_strength   = xml.getAttribute('r_strength'),
+        r_curve      = xml.getAttribute('r_curve'),
+        r_scale      = xml.getAttribute('r_scale'),
+        g_x          = xml.getAttribute('g_x'),
+        g_y          = xml.getAttribute('g_y'),
+        g_wavelength = xml.getAttribute('g_wavelength'),
+        g_strength   = xml.getAttribute('g_strength'),
+        g_curve      = xml.getAttribute('g_curve'),
+        g_scale      = xml.getAttribute('g_scale'),
+        b_x          = xml.getAttribute('b_x'),
+        b_y          = xml.getAttribute('b_y'),
+        b_wavelength = xml.getAttribute('b_wavelength'),
+        b_strength   = xml.getAttribute('b_strength'),
+        b_curve      = xml.getAttribute('b_curve'),
+        b_scale      = xml.getAttribute('b_scale'),
+        w_x          = xml.getAttribute('w_x'),
+        w_y          = xml.getAttribute('w_y'),
+        w_strength   = xml.getAttribute('w_strength'),
+        w_curve      = xml.getAttribute('w_curve'),
+        w_scale      = xml.getAttribute('w_scale');
+
+      if( r_wavelength ) {
+        let xy = cv.util.Color.wavelength2xy(r_wavelength);
+        data.baseColors.r.x = xy.x;
+        data.baseColors.r.y = xy.y;
+      }
+      if( r_x ) { data.baseColors.r.x = parseFloat(r_x); }
+      if( r_y ) { data.baseColors.r.y = parseFloat(r_y); }
+      data.baseColors.r.strength = r_strength ? parseFloat(r_strength) : 1;
+      data.baseColors.r.scale    = r_scale ? parseFloat(r_scale) : 100;
+      switch (r_curve) {
+        case 'exponential':
+          data.baseColors.r.curve = 'exp';
+          break;
+
+        case 'logarithmic':
+          data.baseColors.r.curve = 'log';
+          break;
+
+        case 'linear':
+        case null:
+          data.baseColors.r.curve = [1];
+          break;
+
+        default:
+          data.baseColors.r.curve = r_curve.split(';').map(x=>parseFloat(x));
+      }
+
+      if( g_wavelength ) {
+        let xy = cv.util.Color.wavelength2xy(g_wavelength);
+        data.baseColors.g.x = xy.x;
+        data.baseColors.g.y = xy.y;
+      }
+      if( g_x ) { data.baseColors.g.x = parseFloat(g_x); }
+      if( g_y ) { data.baseColors.g.y = parseFloat(g_y); }
+      data.baseColors.g.strength = g_strength ? parseFloat(g_strength) : 1;
+      data.baseColors.g.scale    = g_scale ? parseFloat(g_scale) : 100;
+      switch (g_curve) {
+        case 'exponential':
+          data.baseColors.g.curve = 'exp';
+          break;
+
+        case 'logarithmic':
+          data.baseColors.g.curve = 'log';
+          break;
+
+        case 'linear':
+        case null:
+          data.baseColors.g.curve = [1];
+          break;
+
+        default:
+          data.baseColors.g.curve = g_curve.split(';').map(x=>parseFloat(x));
+      }
+
+      if( b_wavelength ) {
+        let xy = cv.util.Color.wavelength2xy(b_wavelength);
+        data.baseColors.b.x = xy.x;
+        data.baseColors.b.y = xy.y;
+      }
+      if( b_x ) { data.baseColors.b.x = parseFloat(b_x); }
+      if( b_y ) { data.baseColors.b.y = parseFloat(b_y); }
+      data.baseColors.b.strength = b_strength ? parseFloat(b_strength) : 1;
+      data.baseColors.b.scale    = b_scale ? parseFloat(b_scale) : 100;
+      switch (b_curve) {
+        case 'exponential':
+          data.baseColors.b.curve = 'exp';
+          break;
+
+        case 'logarithmic':
+          data.baseColors.b.curve = 'log';
+          break;
+
+        case 'linear':
+        case null:
+          data.baseColors.b.curve = [1];
+          break;
+
+        default:
+          data.baseColors.b.curve = b_curve.split(';').map(x=>parseFloat(x));
+      }
+      if( w_x ) { data.baseColors.w.x = parseFloat(w_x); }
+      if( w_y ) { data.baseColors.w.y = parseFloat(w_y); }
+      data.baseColors.w.strength = w_strength ? parseFloat(w_strength) : 1;
+      data.baseColors.w.scale    = w_scale ? parseFloat(w_scale) : 100;
+      switch (w_curve) {
+        case 'exponential':
+          data.baseColors.w.curve = 'exp';
+          break;
+
+        case 'logarithmic':
+          data.baseColors.w.curve = 'log';
+          break;
+
+        case 'linear':
+        case null:
+          data.baseColors.w.curve = [1];
+          break;
+
+        default:
+          data.baseColors.w.curve = w_curve.split(';').map(x=>parseFloat(x));
+      }
+
       return data;
     },
     
@@ -76,13 +205,12 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'controls': {"default": 'triangle'},
-        'step': {"default": 0.5, transform: parseFloat},
+        'controls': {'default': 'triangle'},
         'send_on_finish': {
           target: 'sendOnFinish',
-          "default": false,
+          'default': false,
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -91,6 +219,6 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("colorchooser2", statics);
+    cv.parser.WidgetParser.addHandler('colorchooser2', statics);
   }
 });

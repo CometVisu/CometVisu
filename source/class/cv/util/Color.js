@@ -87,7 +87,44 @@ qx.Class.define('cv.util.Color', {
           ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
           : (( 3.0817580 * x - 5.87338670) * x + 3.75112997) * x - 0.37001483
       };
-    }
+    },
+
+    /**
+     * Convert a color component to a real world value by applying the dim curve
+     * @param component {Number}
+     * @param curve {Number}
+     * @param scale {Number}
+     */
+    curve: function (component, curve, scale ) {
+      if( curve === 'log' ) {
+        return scale * Math.max(0, Math.min(1-Math.log10(component)/(-3), 1));
+      }
+      if( curve === 'exp' ) {
+        return scale * Math.max(0, Math.min(10 ** (-3 * (1-component)), 1));
+      }
+      if( curve.length === 1 ) {
+        return scale * component ** curve[0];
+      }
+      // TODO add table conversion
+    },
+
+    /**
+     * Convert a real world value to a color component by applying the inverse dim curve
+     * @param value {Number}
+     * @param scale {Number}
+     */
+    invCurve: function (value, curve, scale ) {
+      if( curve === 'log' ) {
+        return Math.max(0, Math.min(10 ** (-3 * (1-value/scale)), 1));
+      }
+      if( curve === 'exp' ) {
+        return Math.max(0, Math.min(1-Math.log10(value/scale)/(-3), 1));
+      }
+      if( curve.length === 1 ) {
+        return curve[0] > 0 ? (value/scale) ** (1/curve[0]) : 0;
+      }
+      // TODO add table conversion
+    },
   },
   
   /*

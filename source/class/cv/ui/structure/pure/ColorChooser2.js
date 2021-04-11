@@ -74,7 +74,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   construct: function(props) {
     this.base(arguments, props);
-    this.__color = new cv.util.Color();
+
+    let
+      base= this.getBaseColors(),
+      f = (x) => ({x:x.x, y:x.y});
+    this.__color = new cv.util.Color( f(base.r), f(base.g), f(base.b), f(base.w) );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
     this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
@@ -98,27 +102,10 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   */
   properties: {
     controls: {
-      check: "String",
-      //init: 'triangle'
+      check: "String"
     },
     baseColors: {
       check: "Object"
-    },
-    min: {
-      check: "Number",
-      init: 0
-    },
-    max: {
-      check: "Number",
-      init: 100
-    },
-    step: {
-      check: "Number",
-      init: 0.5
-    },
-    showInvalidValues: {
-      check: "Boolean",
-      init: false
     },
     sendOnFinish: {
       check: "Boolean",
@@ -150,7 +137,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
 
     // overridden
     _getInnerDomString: function () {
-      var placeholder = this.getFormat() === '' ? '' : '-';
+      let placeholder = this.getFormat() === '' ? '' : '-';
       //<div className="hue" style="position:absolute;width:100%;height:100%;border-radius:50%;background: conic-gradient(red, magenta, blue, aqua, lime, yellow, red)"></div>
       //-webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 9px),#fff 0)
       //<div className="saturation" style="position:absolute;width:100%;height:100%;border-radius:50%;background: radial-gradient(circle closest-side, rgb(255, 255, 255), transparent)"></div>
@@ -208,15 +195,13 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       this.__lastBusValue[variant][transform] = data;
 
       let 
-        value = cv.Transform.decode(transform, data);
+        value = cv.Transform.decode(transform, data),
+        base;
 
       switch( variant ) {
         case 'h':
         case 's':
         case 'v':
-        case 'r':
-        case 'g':
-        case 'b':
           value /= 100;
           break;
 
@@ -224,8 +209,20 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           value = { h: value.get('h')/100, s: value.get('s')/100, v: value.get('v')/100 };
           break;
 
+        case 'r':
+        case 'g':
+        case 'b':
+          base = this.getBaseColors()[variant];
+          value = cv.util.Color.invCurve( value, base.curve, base.scale );
+          break;
+
         case 'rgb':
-          value = { r: value.get('r')/100, g: value.get('g')/100, b: value.get('b')/100 };
+          base = this.getBaseColors();
+          value = {
+            r: cv.util.Color.invCurve( value.get('r'), base.r.curve, base.r.scale ),
+            g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
+            b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale )
+          };
           break;
       }
 
@@ -238,11 +235,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
      * @param value {Number} The new value
      * @param variant {String} The color component to change
      * @param instant {Boolean} Animate or instant change
-     * @param relaxDisplay {Boolean} Let the handle move to an unstable position
-     *   to give visual feedback that something does happen during interaction
      * @private
      */
-    __setSliderTo: function(value, variant, instant, relaxDisplay = false) {
+    __setSliderTo: function(value, variant, instant) {
       ///////////////////////
       //console.log('setSlider',value, variant, instant, relaxDisplay );
       this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
@@ -422,26 +417,33 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
 
     __onChangeValue: function() {
       this.__components.forEach((type) => {
-        let value = this.__color.getComponent(type);
+        let
+          value = this.__color.getComponent(type),
+          base;
+
         switch (type) {
-          case 'r':
-          case 'g':
-          case 'b':
           case 'h':
           case 's':
           case 'v':
             value *= 100;
             break;
 
-          case 'rgb':
-            value = new Map([['r', value.r*100], ['g', value.g*100], ['b', value.b*100]] );
-            break;
-
           case 'hsv':
             value = new Map([['h', value.h*100], ['s', value.s*100], ['v', value.v*100]] );
             break;
+
+          case 'r':
+          case 'g':
+          case 'b':
+            base = this.getBaseColors()[type];
+            value = cv.util.Color.curve( value, base.curve, base.scale );
+            break;
+
+          case 'rgb':
+            value = new Map([['r', value.r*100], ['g', value.g*100], ['b', value.b*100]] );
+            break;
         }
-        let tmp__lastBusValue =  this.__lastBusValue[type];
+        //let tmp__lastBusValue =  this.__lastBusValue[type];
         this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
         //console.log('send', type, tmp__lastBusValue, '->',  this.__lastBusValue[type]);
       });
