@@ -18,8 +18,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     const children = new qx.data.Array();
     if (node) {
       this._node.$$widget = this;
-      this.setSchemaElement(schemaElement);
       this.initName(node.nodeName);
+      this.setSchemaElement(schemaElement);
       if (this.hasChildren()) {
         // we have to add a fake node to the children to show the tree that this node has children
         // it will be removed when the real children are loaded
@@ -207,7 +207,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _updateShowEditButton: function () {
-      this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
+      this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
     },
 
     getNode: function () {
@@ -385,7 +385,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         this.debug(nodeName, "is not allowed as child of", this.getName());
         return false;
       }
-      if (!schemaElement.areChildrenSortable()) {
+      if (schemaElement.areChildrenSortable()) {
         // allowed at any position
         return true;
       }
@@ -438,7 +438,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (!this.isLoaded()) {
           this.load();
         }
-        if (!schemaElement.areChildrenSortable()) {
+        if (schemaElement.areChildrenSortable()) {
           // any position is fine, just append it to the end
           return this.getChildren().length;
         } else {

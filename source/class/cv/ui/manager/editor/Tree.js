@@ -490,7 +490,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.addListener("pointerover", () => control.addState("hovered"));
            control.addListener("pointerout", () => control.removeState("hovered"));
            control.addListener("tap", () => {
-             qxl.dialog.Dialog.alert(this.tr("Please create a new Element by dragging this button to the place where the new element should be inserted."))
+             if (this.getSelected()) {
+               this._onCreate(this.getSelected(), 'inside');
+             } else {
+               qxl.dialog.Dialog.alert(this.tr("Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element."));
+             }
            }, this);
            this.getChildControl("left").add(control, {
              bottom: 16,
@@ -729,8 +733,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               const addable = target.getParent().getAddableChildren();
               if (addable.length > 0) {
                 // check if a child could be added at this position
-                if (!parentSchemaElement.areChildrenSortable()) {
-                  // children are not sorted and can be put anywhere
+                if (parentSchemaElement.areChildrenSortable()) {
+                  // children can be put anywhere
                   // so this is allowed anywhere
                   accepted.mode = Allowed.BEFORE | Allowed.AFTER;
                 } else {
@@ -757,8 +761,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               ev.preventDefault();
               // not allowed on this level
               accepted.mode = Allowed.NONE;
-            } else if (!parentSchemaElement.areChildrenSortable()) {
-              // children are not sorted and can be put anywhere
+            } else if (parentSchemaElement.areChildrenSortable()) {
+              // children can be put anywhere
               // so this is allowed anywhere
               accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
@@ -778,7 +782,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (lookInside) {
           // allowed inside
           accepted.mode |= Allowed.INSIDE;
-          if (!target.getSchemaElement().areChildrenSortable()) {
+          if (target.getSchemaElement().areChildrenSortable()) {
             accepted.mode |= Allowed.FIRST_CHILD;
           } else {
             const allowedSorting = target.getSchemaElement().getAllowedElementsSorting();
@@ -1015,7 +1019,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 type: "SelectBox",
                 label: this.tr("Choose element"),
                 help: this.tr("Please choose the element you want to add here."),
-                options: addable.sort().map(name => ({label: name, value: name})),
+                options: addable.sort((a, b) => {
+                  if (a.startsWith('#') && !b.startsWith('#')) {
+                    return 1;
+                  } else if (!a.startsWith('#') && b.startsWith('#')) {
+                    return -1;
+                  }
+                  return a.localeCompare(b);
+                }).map(name => ({label: name, value: name})),
                 validation: {
                   required: true
                 }
@@ -1056,7 +1067,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               const requiredChildren = schemaElement.getRequiredElements();
               if (requiredChildren.length > 1) {
                 if (!schemaElement.areChildrenSortable()) {
-                  // a special order os required
+                  // a special order 1s required
                   const allowedSorting = schemaElement.getAllowedElementsSorting();
                   requiredChildren.sort(cv.ui.manager.model.schema.Element.sortChildNodes(allowedSorting));
                 }
