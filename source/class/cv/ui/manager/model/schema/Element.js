@@ -314,7 +314,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping === undefined) {
-        return undefined;
+        return true;
       }
 
       // the inverse of "do the elements have a given order?"

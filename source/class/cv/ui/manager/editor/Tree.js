@@ -455,7 +455,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setDelegate({
              createItem: function () {
                const item = new cv.ui.manager.tree.VirtualElementItem();
-               item.addListener('contextmenu', this._onContextMenu, this);
+               if (!qx.core.Environment.get("device.touch")) {
+                 item.addListener('contextmenu', this._onContextMenu, this);
+               } else {
+                 item.addListener('action', this._onContextMenuAction, this);
+               }
                item.addListener('dbltap', this._onEdit, this);
                return item;
              }.bind(this),
@@ -671,6 +675,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         let element;
         if (dragTarget instanceof cv.ui.manager.tree.VirtualElementItem) {
           element = dragTarget.getModel();
+          if (!element.isEditable() || element.isRequired()) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            return;
+          }
           ev.addAction("copy");
           if (!element.isRequired() && element.isSortable()) {
             ev.addAction("move");
@@ -704,7 +713,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
 
       control.addListener("dragover", function (ev) {
-        let type = ev.getCurrentType();
         // add ist a custom action that cannot be detected, so we only check if its supported
         let action = ev.getCurrentAction();
         let element;
@@ -725,7 +733,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         // because there is not "add" drag action we check for copy and no payload
 
         if (parent) {
-          const parentSchemaElement = target.getParent().getSchemaElement();
+          const parentSchemaElement = parent.getSchemaElement();
           if (addNew) {
             const allowedElements = parentSchemaElement.getAllowedElements();
             if (Object.keys(allowedElements).length > 0) {
@@ -789,7 +797,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (allowedSorting) {
               if (element) {
                 let targetPosition = allowedSorting[element.getName()];
-                if (targetPosition !== undefined && (targetPosition === 0 || targetPosition.startsWith("0"))) {
+                if (targetPosition !== undefined && (targetPosition === 0 || (typeof targetPosition === 'string' && targetPosition.startsWith("0")))) {
                   accepted.mode |= Allowed.FIRST_CHILD;
                 }
               } else {
@@ -812,7 +820,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }, this);
 
       const onDrag = function  (ev) {
-        const orig = ev.getOriginalTarget();
+        const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
+        let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
+        if (!orig) {
+          return;
+        }
+        while (orig.isAnonymous()) {
+          orig = orig.getLayoutParent();
+        }
+        if (ev._native.pointerType === 'touch') {
+          let cursor = ev.getManager().getCursor();
+          if (!cursor) {
+            cursor = qx.ui.core.DragDropCursor.getInstance();
+          }
+          if (!cursor.hasState('touch')) {
+            cursor.addState('touch');
+          }
+        }
+
         const origCoords = orig.getContentLocation();
         let leftPos = origCoords.left;
         if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
@@ -835,8 +860,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             left = leftPos;
             top = origCoords.top;
             position = "before";
+          } else if (accepted.mode & Allowed.INSIDE) {
+            left = -1000;
+            top = -1000;
+            position = "inside";
           }
-
         } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
           // below
           if (accepted.target && !accepted.target.isOpen()) {
@@ -845,6 +873,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               left = leftPos;
               top = origCoords.bottom;
               position = "after";
+            } else if (accepted.mode & Allowed.INSIDE) {
+              left = -1000;
+              top = -1000;
+              position = "inside";
             }
           } else {
             if (accepted.mode & Allowed.FIRST_CHILD) {
@@ -982,6 +1014,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         accepted.target = null;
         accepted.mode = 0;
+        let cursor = ev.getManager().getCursor();
+        if (!cursor) {
+          cursor = qx.ui.core.DragDropCursor.getInstance();
+        }
+        if (cursor.hasState('touch')) {
+          cursor.removeState('touch');
+        }
       };
       control.addListener("dragend", onDragEnd, this);
       addButton.addListener("dragend", onDragEnd, this);

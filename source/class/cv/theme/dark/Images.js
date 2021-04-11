@@ -50,7 +50,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'clone-file': '@MaterialIcons/file_copy',
       'listViewMode': '@MaterialIcons/view_headline',
       'previewMode': '@MaterialIcons/view_module',
-      'drag-handle': '@MaterialIcons/drag_handle',
+      'drag-handle': '@MaterialIcons/drag_indicator',
       'expert': '@MaterialIcons/explicit',
       'text-fields': '@MaterialIcons/text_fields',
       'comment-fields': '@MaterialIcons/settings_ethernet',

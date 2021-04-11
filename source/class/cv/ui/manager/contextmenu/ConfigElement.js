@@ -11,7 +11,9 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
   */
   construct: function (editor) {
     this.base(arguments);
-    this.setEditor(editor);
+    if (editor) {
+      this.setEditor(editor);
+    }
     this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._init();
   },
@@ -39,6 +41,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
 
     editor: {
       check: 'cv.ui.manager.editor.Tree',
+      nullable: true,
       apply: '_applyEditor'
     }
 

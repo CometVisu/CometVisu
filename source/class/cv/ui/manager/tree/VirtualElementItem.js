@@ -65,7 +65,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
   ***********************************************
   */
   events: {
-    edit: 'qx.event.type.Data'
+    edit: 'qx.event.type.Data',
+    action: 'qx.event.type.Data'
   },
 
   /*
@@ -75,6 +76,22 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
   */
   members: {
     __labelAdded: false,
+
+    _applyModel: function (value) {
+      if (qx.core.Environment.get("device.touch")) {
+        if (value) {
+          const menuButton = this.getChildControl('menu-button');
+          menuButton.show();
+          let menu = menuButton.getMenu();
+          menu.setEditor(value.getEditor());
+          menu.setElement(value);
+        } else {
+          this.getChildControl('menu-button').hide();
+        }
+      } else if (this.hasChildControl('menu-button')) {
+        this.getChildControl('menu-button').exclude();
+      }
+    },
 
     _applyTemporary: function (value) {
       if (value) {
@@ -121,7 +138,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
            break;
 
          case 'buttons':
-           control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
            control.setAnonymous(true);
            break;
 
@@ -129,7 +146,16 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
            control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', 18));
            control.setToolTipText(this.tr("Drag to move"));
            control.setAnonymous(true);
-           this.getChildControl('buttons').add(control);
+           control.setShow('icon');
+           this.getChildControl('buttons').addAt(control, 0);
+           break;
+
+         case 'menu-button':
+           control = new qx.ui.form.MenuButton('', cv.theme.dark.Images.getIcon('menu', 14), new cv.ui.manager.contextmenu.ConfigElement());
+           control.getMenu().addListener('action', (ev) => {
+             this.fireDataEvent('action', ev.getData());
+           })
+           this.getChildControl('buttons').addAt(control, 1);
            break;
        }
 

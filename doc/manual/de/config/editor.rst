@@ -41,8 +41,8 @@ Bedienung
 
 Man kann Elemente in der Struktur ausklappen indem man auf das kleine Dreieck-Icon ganz links klickt. Durch einen
 Doppelklick öffnet sich der Dialog mit dem die Attribute eines Elements bearbeitet werden können. Erweiterte Funktionen
-zu einem ausgewählten Element stehen per Kontextmenü, welches mit rechter Maustaste oder einen Klick + gedrückt halten
-der Linken Maustaste (bzw. dem Finger auf Touchscreens) geöffnet werden kann.
+zu einem ausgewählten Element stehen per Kontextmenü, welches mit rechter Maustaste geöffnet werden kann.
+Auf Touchscreens wird ein extra Menu-Button ganz rechts angezeigt, mit dem das Kontextmenü geöffnet werden kann.
 
 .. figure:: _static/editor_node_right_click.png
 
@@ -67,7 +67,7 @@ Kind-Element einfügen
   Fügt dem aktuell ausgewählten Element ein neues Kind-Element hinzu.
 
 
-Elemente können ebenfalls per Drag&Drop verschoben werden. Das Icon mit dem zwei parallelen Strichen rechts neben
+Elemente können ebenfalls per Drag&Drop verschoben werden. Das Icon mit dem 6 Punkten rechts neben
 einem jeweiligen Element zeigt an das dieses Icon via Drag&Drop verschoben werden kann. Fehlt dieses Icon, dann ist
 das Verschieben dieses Elements nicht erlaubt.
 Das Hinzufügen eines neuen Elements ist ebenfalls möglich indem man eine Drag&Drop Geste auf dem + Button

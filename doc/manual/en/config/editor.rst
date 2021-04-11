@@ -40,8 +40,8 @@ Operation
 
 You can expand an element by clicking on the small triangle-icon on the very left. With a double-click on the
 element you can open the attribute editing dialog for that element. Additional functions are available by an context menu,
-that can be opened by right-clicking on an element or be long-pressing on it (e.g. when there is no possibility
-to right-click, e.g. on a touch screen)
+that can be opened by right-clicking on an element. On touchscreen devices a special menu button is shown in the right
+which opens the context menu.
 
 .. figure:: _static/editor_node_right_click.png
 
@@ -66,7 +66,7 @@ Add child
   Add a new child element to the currently selected element.
 
 
-Elements can also be moved around via drag & drop. The icon with the two parallel lines on the right of each element
+Elements can also be moved around via drag & drop. The icon with the 6 dots on the right of each element
 indicates that this element can be moved. If that icon is missing that element is not allowed to be moved.
 Adding a new element is also possible by starting a drag on the + button at the bottom and dropping it on the target
 position.

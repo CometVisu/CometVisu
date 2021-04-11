@@ -490,6 +490,40 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           height: 32
         }
       }
+    },
+    "dragdrop-cursor": {
+      style: function (states) {
+        let icon = "nodrop";
+
+        if (states.copy) {
+          icon = "copy";
+        } else if (states.move) {
+          icon = "move";
+        } else if (states.alias) {
+          icon = "alias";
+        }
+        let leftOffset = 8;
+        if (states.touch) {
+          leftOffset = 44;
+        }
+
+        return {
+          source: osparc.theme.common.Image.URLS["cursor-" + icon],
+          position: "left-middle",
+          offset: [2, leftOffset, 2, 6]
+        };
+      }
+    },
+    "element-tree-item/menu-button": {
+      include: "button",
+      alias: "button",
+      style: function () {
+        return {
+          padding: [2, 4],
+          icon: osparc.theme.common.Image.URLS["arrow-down"],
+          show: "icon"
+        };
+      }
     }
   }
 });
