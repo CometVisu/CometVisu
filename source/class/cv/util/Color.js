@@ -96,6 +96,8 @@ qx.Class.define('cv.util.Color', {
      * @param scale {Number}
      */
     curve: function (component, curve, scale ) {
+      if( component <= 0 ) { return 0; }
+      if( component >= 1 ) { return scale; }
       if( curve === 'log' ) {
         return scale * Math.max(0, Math.min(1-Math.log10(component)/(-3), 1));
       }
@@ -114,6 +116,8 @@ qx.Class.define('cv.util.Color', {
      * @param scale {Number}
      */
     invCurve: function (value, curve, scale ) {
+      if( value <= 0 ) { return 0; }
+      if( value >= scale ) { return 1; }
       if( curve === 'log' ) {
         return Math.max(0, Math.min(10 ** (-3 * (1-value/scale)), 1));
       }
