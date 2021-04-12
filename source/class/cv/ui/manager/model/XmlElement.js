@@ -354,7 +354,22 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             }
             if ((elementName === "#text" || elementName === "#cdata-section")) {
               if (schemaElement.isTextContentAllowed()) {
-                if (schemaElement.isMixed() || (!countExisting.hasOwnProperty('#text') && !countExisting.hasOwnProperty('#tcdata-section'))) {
+                if (schemaElement.isMixed()) {
+                  // is a mixed content has only one text child and no other childs, we do not allow another text child -> avoid direct text siblings
+                  let textNodes = 0;
+                  let otherNodes = 0;
+                  Object.keys(countExisting).forEach(key => {
+                    if (key === '#text' || key === '#cdata-section') {
+                      textNodes+=countExisting[key];
+                    } else {
+                      otherNodes+=countExisting[key];
+                    }
+                  });
+                  if (textNodes<=otherNodes) {
+                    // we do not allow more text nodes than other nodes (e.g. a sequence of #text, elem would allow another #text node after elem)
+                    stillAllowed.push(elementName);
+                  }
+                } else if (!countExisting.hasOwnProperty('#text') && !countExisting.hasOwnProperty('#cdata-section')) {
                   stillAllowed.push(elementName);
                 }
               }
@@ -705,10 +720,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _applyModified: function () {
       this._updateDisplayName();
-      const editor = this.getEditor();
-      if (editor) {
-        editor.updateModified(this);
-      }
     },
 
     _updateDisplayName: function () {
@@ -836,6 +847,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         }
       } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
         this.setModified(this._initialTextContent !== this.getTextContent());
+      }
+      const editor = this.getEditor();
+      if (editor) {
+        editor.updateModified(this);
       }
     },
 
