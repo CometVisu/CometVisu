@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Exception;
+use OpenAPIServer;
 
 require_once(getcwd() . "/src/parse_ini.inc.php");
 require_once(getcwd() . "/src/influx.inc.php");
@@ -135,7 +136,7 @@ class DataproviderApi extends AbstractDataproviderApi
     $auth = $request->getQueryParam('auth');
     $measurement = $request->getQueryParam('measurement');
     try {
-      $data = getFields( $measurement, $auth );
+      $data = OpenAPIServer\getFields( $measurement, $auth );
     } catch (Exception $e) {
       return $this->respondError($response, $e);
     }
@@ -160,7 +161,7 @@ class DataproviderApi extends AbstractDataproviderApi
     $auth = $request->getQueryParam('auth');
     $measurement = $request->getQueryParam('measurement');
     try {
-      $data = getTags($measurement, $auth);
+      $data = OpenAPIServer\getTags($measurement, $auth);
     } catch (Exception $e) {
       return $this->respondError($response, $e);
     }
