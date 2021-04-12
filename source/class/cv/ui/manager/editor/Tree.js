@@ -720,6 +720,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           element = ev.getData("cv/tree-element");
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
+        const target = ev.getTarget();
+        if (target === control) {
+          accepted.mode = Allowed.NONE;
+          ev.preventDefault();
+          return;
+        }
         if (!addNew && !element) {
           // not for us
           this.debug("drop not allowed here, no drag element");
@@ -727,9 +733,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           ev.preventDefault();
           return;
         }
-        const target = ev.getTarget().getModel();
-        const parent = target.getParent();
-        accepted.target = target;
+        const model = target.getModel();
+        if (model && model.getName() === "pages") {
+          debugger;
+        }
+        const parent = model.getParent();
+        accepted.target = model;
         // because there is not "add" drag action we check for copy and no payload
 
         if (parent) {
@@ -738,7 +747,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             const allowedElements = parentSchemaElement.getAllowedElements();
             if (Object.keys(allowedElements).length > 0) {
               // check if there could be added more children
-              const addable = target.getParent().getAddableChildren();
+              const addable = parent.getAddableChildren();
               if (addable.length > 0) {
                 // check if a child could be added at this position
                 if (parentSchemaElement.areChildrenSortable()) {
@@ -749,7 +758,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   let acc = Allowed.NONE;
                   const allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                   addable.some(elementName => {
-                    acc |= this.__getAllowedPositions(allowedSorting, elementName, target.getName());
+                    acc |= this.__getAllowedPositions(allowedSorting, elementName, model.getName());
                     if ((acc & Allowed.BEFORE) && (acc & Allowed.AFTER)) {
                       // we cannot find more
                       return true;
@@ -775,7 +784,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
               // check position
-              accepted.mode = this.__getAllowedPositions(parentSchemaElement.getAllowedElementsSorting(), element.getName(), target.getName());
+              accepted.mode = this.__getAllowedPositions(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
             }
           }
         } else {
@@ -783,17 +792,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         let lookInside;
         if (addNew) {
-          lookInside = Object.keys(target.getSchemaElement().getAllowedElements()).length > 0;
+          lookInside = Object.keys(model.getSchemaElement().getAllowedElements()).length > 0;
         } else {
-          lookInside = target.getSchemaElement().isChildElementAllowed(element.getName());
+          lookInside = model.getSchemaElement().isChildElementAllowed(element.getName());
         }
         if (lookInside) {
           // allowed inside
           accepted.mode |= Allowed.INSIDE;
-          if (target.getSchemaElement().areChildrenSortable()) {
+          if (model.getSchemaElement().areChildrenSortable()) {
             accepted.mode |= Allowed.FIRST_CHILD;
           } else {
-            const allowedSorting = target.getSchemaElement().getAllowedElementsSorting();
+            const allowedSorting = model.getSchemaElement().getAllowedElementsSorting();
             if (allowedSorting) {
               if (element) {
                 let targetPosition = allowedSorting[element.getName()];
