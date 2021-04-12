@@ -203,6 +203,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           var handleResponse = function (err, res) {
             if (err) {
               reject(err);
+            } else if (typeof res === 'string' && res.startsWith('Error:')) {
+              qx.log.Logger.error(this, res);
+              resolve(converter.call(converterContext || this, []));
             } else {
               if (cache) {
                 // cache the raw values not the converted ones
@@ -384,7 +387,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           });
         }, this);
       } else if (format === 'dp') {
-        return data;
+        return data || [];
       }
       return target;
     },

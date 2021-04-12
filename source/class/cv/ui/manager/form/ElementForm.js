@@ -213,9 +213,11 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
           case "virtualselectbox":
             formElement = new cv.ui.manager.form.VirtualSelectBox();
             model = new qx.data.Array();
-            fieldData.options.forEach(item => {
-              model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
-            });
+            if (fieldData.options) {
+              fieldData.options.forEach(item => {
+                model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
+              });
+            }
             formElement.setDelegate({
               createItem: function() {
                 return new cv.ui.manager.form.ListItem();

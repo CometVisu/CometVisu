@@ -1151,7 +1151,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               }
               this.getChildControl('tree').openNodeAndParents(xmlElement);
               this.getChildControl('tree').setSelection([xmlElement]);
-            }, this);
+            }, this).catch(err => this.error(err));
           }
         });
       }
@@ -1219,7 +1219,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               if (Array.isArray(res)) {
                 res.unshift({label: " - " + this.tr("not set") + " - ", value: ""})
               }
-            });
+            }).catch(err => console.error(err));
           } else {
             formData.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
           }
@@ -1307,7 +1307,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             promises.push(formData[name].options);
             formData[name].options.then((res) => {
               formData[name].options = res;
-            })
+            }).catch(err => console.error(err));
           }
         });
       } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
@@ -1340,7 +1340,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           promises.push(formData[nodeName].options);
           formData[nodeName].options.then((res) => {
             formData[nodeName].options = res;
-          })
+          }).catch((err) => {
+            formData[nodeName].options = [];
+          });
         }
       }
       this.__editing = true;
