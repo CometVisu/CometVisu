@@ -422,7 +422,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           return true
         } else {
           // only allow if it can be inserted before
-          const allowed = currentPosition[i] + 1 === targetPosition[i];
+          const allowed = currentPosition[i] + 1 >= targetPosition[i];
           if (!allowed) {
             this.debug(nodeName, "is not allowed as child of", this.getName());
             return false;
@@ -510,6 +510,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
         }
         this.updateModified();
+        if (children.length === 1) {
+          // first child added -> open it
+          this.setOpen(true);
+        }
         if (!skipUndo) {
 
           if (editor) {
@@ -901,6 +905,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         ids.push('');
       }
       return ids.join('_');
+    },
+
+    // overridden
+    clone: function() {
+      return new cv.ui.manager.model.XmlElement(this._node.cloneNode(true), this.getSchemaElement(), this.getEditor());
     }
   },
   /*
