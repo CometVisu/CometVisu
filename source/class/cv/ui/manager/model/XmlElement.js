@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const editor = this.getEditor();
         this.$$removed = true;
         if (editor) {
-          // editor should not consider the modifiecation state of removed elements
+          // editor should not consider the modification state of removed elements
           editor.updateModified(this);
         }
         parent.updateModified();
@@ -852,6 +852,19 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (editor) {
         editor.updateModified(this);
       }
+    },
+
+    /**
+     * Special check if this element has modified children (position, of length)
+     * This is used to determine if the preview highlighting needs to be disabled because the xml structure has changed
+     * @returns {*|boolean}
+     */
+    hasChildrenModified: function () {
+      if (this._node.nodeType === Node.ELEMENT_NODE) {
+        const currentChildNames = this._currentChildNames();
+        return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join(""));
+      }
+      return false;
     },
 
     onSaved: function () {

@@ -524,6 +524,33 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           show: "icon"
         };
       }
+    },
+    "tree-editor": "widget",
+    "tree-editor/preview-sync-hint": {
+      include: "atom",
+      alias: "atom",
+      style: function () {
+        return {
+          padding: [4, 8],
+          iconPosition: 'left',
+          gap: 8,
+          center: true
+        }
+      }
+    },
+    "tree-editor/preview-sync-hint/icon": {
+      include: "atom/icon",
+      style: function (states) {
+        let color = 'valid-color';
+        if (states.error) {
+          color = "invalid-color";
+        } else if (states.warning) {
+          color = "warning-color";
+        }
+        return {
+          textColor: color
+        }
+      }
     }
   }
 });

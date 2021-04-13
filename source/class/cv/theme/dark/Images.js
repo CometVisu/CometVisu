@@ -22,6 +22,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'redo': '@MaterialIcons/redo',
       'hidden-config': '@MaterialIcons/settings',
       'reload': '@MaterialIcons/sync',
+      'out-of-sync': '@MaterialIcons/sync_problem',
       'add': '@MaterialIcons/add',
       'mounted-folder': '@MaterialIcons/folder_special',
       'folder': '@MaterialIcons/folder',

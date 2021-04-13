@@ -22,6 +22,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       this._draw();
     }, this);
     this.__modifiedElements = [];
+    this.__modifiedPreviewElements = new qx.data.Array();
+    this.__modifiedPreviewElements.addListener('changeLength', (ev) => {
+      if (ev.getData() === 0) {
+        this.setPreviewState('synced');
+      } else {
+        const structureChanges = this.__modifiedPreviewElements.some(element => element.hasChildrenModified());
+        this.setPreviewState(structureChanges ? 'structureChanged' : 'changed');
+      }
+    }, this);
     this.initUnDos(new qx.data.Array());
     this.initReDos(new qx.data.Array());
     this.__buttonListeners = {};
@@ -54,6 +63,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   ***********************************************
   */
   properties: {
+    appearance: {
+      refine: true,
+      init: 'tree-editor'
+    },
     // show expert level settings
     expert: {
       check: 'Boolean',
@@ -94,6 +107,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       init: false
     },
 
+    /**
+     * Content and shown preview are equal
+     */
+    previewState: {
+      check: ['synced', 'changed', 'structureChanged'],
+      init: true,
+      event: 'previewStateChanged',
+      apply: '_updateHighlightWidget'
+    },
+
     showPreview: {
       check: 'Boolean',
       init: true,
@@ -110,11 +133,16 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
   members: {
     _schema: null,
     __modifiedElements: null,
+    __modifiedPreviewElements: null,
     _workerWrapper: null,
     __editing: false,
     __buttonListeners: null,
     __searchResults: null,
     __searchResultIndex: 0,
+
+    isPreviewSynced: function () {
+      return this.getPreviewState() === 'synced';
+    },
 
     _applyHandlerOptions: function () {
       this._maintainPreviewVisibility();
@@ -345,7 +373,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'right':
-           control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
+           control = new qx.ui.container.Composite(new qx.ui.layout.VBox());
            if (!this.isShowPreview()) {
              control.exclude();
            }
@@ -358,11 +386,56 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              target: 'iframe',
              minWidth: 600
            });
-           this.getChildControl('right').add(control, {edge: 0});
+           this.getChildControl('right').addAt(control, 1, {flex: 1});
+           break;
+
+         case 'preview-sync-hint':
+           const ok = this.tr("Preview shows the current state of the edited configuration.");
+           const noSync = this.tr("Preview is out of sync. Click here to refresh.");
+           const notOk = this.tr("Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.");
+           control = new qx.ui.basic.Atom(ok, cv.theme.dark.Images.getIcon('valid', 16));
+           control.setRich(true);
+           control.getChildControl('label').setWrap(true);
+           control.addListener("tap", () => {
+             if (!this.isPreviewSynced() && this.isShowPreview()) {
+               this._updatePreview();
+             }
+           }, this);
+           this.getChildControl('right').addAt(control, 0);
+           this.addListener('previewStateChanged', (ev) => {
+             switch (ev.getData()) {
+               case 'synced':
+               control.set({
+                 label: ok,
+                 icon: cv.theme.dark.Images.getIcon('valid', 16)
+               });
+               control.getChildControl("icon").removeState('error');
+                 control.getChildControl("icon").removeState('warning');
+               break;
+
+               case 'changed':
+                 control.set({
+                   label: noSync,
+                   icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
+                 });
+                 control.getChildControl("icon").removeState('error');
+                 control.getChildControl("icon").addState('warning');
+                 break;
+
+               case 'structureChanged':
+                 control.set({
+                   label: notOk,
+                   icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
+                 });
+                 control.getChildControl("icon").addState('error');
+                 control.getChildControl("icon").removeState('warning');
+                 break;
+             }
+           }, this);
            break;
 
          case 'edit-button':
-           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 16));
+           control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 24));
            control.setEnabled(false);
            control.addListener('execute', this._onEdit, this);
            this.bind("file.writeable", control, 'icon', {
@@ -396,6 +469,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            this.bind('showPreview', control, 'visibility', {
              converter: function (value) {
                return value ? 'visible' : 'hidden'
+             }
+           });
+           this.bind('previewState', control, 'enabled', {
+             converter: function (value) {
+               return value !== 'synced';
              }
            })
            this.getChildControl('toolbar').add(control);
@@ -1407,23 +1485,35 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     /**
      * Maintain global modification state.
-     * This method is called by a single cv.ui.manager.model.XmlElement when it has changes its modified state.
+     * This method is called by a single cv.ui.manager.model.XmlElement when it has changed its modified state.
      * @param element {cv.ui.manager.model.XmlElement}
      */
     updateModified: function (element) {
       const index = this.__modifiedElements.indexOf(element);
+      const previewIndex = this.__modifiedPreviewElements.indexOf(element);
       if (element.$$removed) {
-        // we dont care about elements that have been removed
+        // we dont care about elements that have been removed (its the parent that has changed then by loosing a child)
         if (index >= 0) {
           this.__modifiedElements.splice(index, 1);
+        }
+        if (previewIndex >= 0) {
+          this.__modifiedPreviewElements.splice(index, 1);
         }
       } else {
         if (element.isModified()) {
           if (index === -1) {
             this.__modifiedElements.push(element);
           }
-        } else if (index >= 0) {
-          this.__modifiedElements.splice(index, 1);
+          if (previewIndex === -1) {
+            this.__modifiedPreviewElements.push(element);
+          }
+        } else {
+          if (index >= 0) {
+            this.__modifiedElements.splice(index, 1);
+          }
+          if (previewIndex >= 0) {
+            this.__modifiedPreviewElements.splice(index, 1);
+          }
         }
       }
       this.getFile().setModified(this.__modifiedElements.length > 0);
@@ -1450,6 +1540,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (!this.hasChildControl('right')) {
         this._createChildControl('right');
       }
+      if (!this.hasChildControl('preview-sync-hint')) {
+        this._createChildControl('preview-sync-hint');
+      }
       if (!this.hasChildControl('preview')) {
         this._createChildControl('preview');
       }
@@ -1459,11 +1552,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
         this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
-        if (this.isShowPreview()) {
-          const preview = this.getChildControl('preview');
+      } else {
+        this.getChildControl('edit-button').setEnabled(false);
+        this.getChildControl('delete-button').setEnabled(false);
+      }
+      this._updateHighlightWidget();
+    },
+
+    _updateHighlightWidget: function () {
+      const selected = this.getSelected();
+      if (this.isShowPreview()) {
+        const preview = this.getChildControl('preview');
+        if (this.getPreviewState() !== 'structureChanged' && selected) {
           // get page path for this node
           let path = [];
-          let node = value.getNode();
+          let node = selected.getNode();
           while (node && node.nodeName !== 'pages') {
             if (node.nodeName === 'page') {
               path.unshift(node.getAttribute("name"));
@@ -1473,13 +1576,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (path.length > 0) {
             preview.openPage(path.pop(), path.join("/"));
           }
-          preview.setHighlightWidget(value.getWidgetPath());
-        }
-      } else {
-        this.getChildControl('edit-button').setEnabled(false);
-        this.getChildControl('delete-button').setEnabled(false);
-        const preview = this.getChildControl('preview');
-        if (preview.isVisible()) {
+          preview.setHighlightWidget(selected.getWidgetPath());
+        } else {
           preview.setHighlightWidget(null);
         }
       }
@@ -1609,6 +1707,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             data: content,
             source: this
           });
+          this.__modifiedPreviewElements.removeAll();
+          this.resetPreviewState();
         }, this);
       }
     },
@@ -1728,7 +1828,7 @@ refresh after you have changed something. You can refresh is manually by clickin
   destruct: function () {
     this._schema = null;
     this._workerWrapper = null;
-    this._disposeArray('__modifiedElements');
+    this._disposeArray('__modifiedElements', '__modifiedPreviewElements');
     qx.core.Init.getApplication().getRoot().removeListener("keyup", this._onElementKeyUp, this);
   }
 });
