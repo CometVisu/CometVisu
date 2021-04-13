@@ -447,7 +447,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.set({
              selectionMode: 'single',
              width: 350,
-             openMode: 'none'
+             openMode: 'none',
+             itemHeight: qx.core.Environment.get("device.touch") ? 40 : 20
            });
            this.bind("file.writeable", control, "droppable");
            this.bind("file.writeable", control, "draggable");
