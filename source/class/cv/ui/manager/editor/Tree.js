@@ -112,7 +112,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
      */
     previewState: {
       check: ['synced', 'changed', 'structureChanged'],
-      init: true,
+      init: 'synced',
       event: 'previewStateChanged',
       apply: '_updateHighlightWidget'
     },
@@ -238,7 +238,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         case 'cut':
           this.bind('selected', button, 'enabled', {
             converter: function (value) {
-              return value ? !value.isRequired() : false;
+              return value ? !value.isDeletable() : false;
             }
           })
           break;
@@ -754,13 +754,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         let element;
         if (dragTarget instanceof cv.ui.manager.tree.VirtualElementItem) {
           element = dragTarget.getModel();
-          if (!element.isEditable() || element.isRequired()) {
+          if (!element.isEditable() || !element.isDeletable()) {
             ev.preventDefault();
             ev.stopPropagation();
             return;
           }
           ev.addAction("copy");
-          if (!element.isRequired() && element.isSortable()) {
+          if (element.isDeletable()) {
             ev.addAction("move");
           }
           ev.addType("cv/tree-element");
@@ -799,11 +799,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           element = ev.getData("cv/tree-element");
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
-        const target = ev.getTarget();
+        let target = ev.getTarget();
         if (target === control) {
-          accepted.mode = Allowed.NONE;
-          ev.preventDefault();
-          return;
+          const layerContent = control.getPane().getLayers()[0].getContentLocation();
+          if (layerContent && (ev.getDocumentTop() - layerContent.bottom <= 20)) {
+            // when we are not more than 10px away from the last tree element we use that one, otherwise dropping is forbidden
+            const lastElem = document.elementFromPoint(Math.round((layerContent.left + layerContent.right) / 2), layerContent.bottom - 20);
+            target = qx.ui.core.Widget.getWidgetByElement(lastElem);
+            if (target) {
+              while (target.isAnonymous()) {
+                target = target.getLayoutParent();
+              }
+            }
+          } else {
+            target = null;
+          }
+          if (!target) {
+            accepted.mode = Allowed.NONE;
+            ev.preventDefault();
+            return;
+          }
         }
         if (!addNew && !element) {
           // not for us
@@ -813,9 +828,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           return;
         }
         const model = target.getModel();
-        if (model && model.getName() === "pages") {
-          debugger;
-        }
         const parent = model.getParent();
         accepted.target = model;
         // because there is not "add" drag action we check for copy and no payload
@@ -1129,7 +1141,46 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (addable.length > 0) {
         // check if a child could be added at this position
         if (!parentSchemaElement.areChildrenSortable() && position !== 'inside') {
-          // TODO: filter allowed elements for this position
+          const sorting = parentSchemaElement.getAllowedElementsSorting();
+          // we only care about the first level here
+          Object.keys(sorting).forEach(name => {
+            let sort = sorting[name];
+            if (typeof sort === 'string') {
+              sort = parseInt(sort.split('.')[0]);
+            }
+            sorting[name] = sort;
+          });
+          let minPosition = 0;
+          let maxPosition = 0;
+          const children = parent.getChildren();
+          if (position === 'before') {
+            maxPosition = sorting[target.getName()];
+            const targetIndex = children.indexOf(target);
+            if (targetIndex > 0) {
+              // find the first real element before that is not from the same type
+              for (let i = targetIndex-1; i >= 0; i--) {
+                const sibling = children.getItem(i);
+                if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
+                  minPosition = sorting[sibling.getName()];
+                  break;
+                }
+              }
+            }
+          } else if (position === 'after') {
+            minPosition = sorting[target.getName()];
+            const targetIndex = children.indexOf(target);
+            if (targetIndex < children.length - 1) {
+              // find the first real element after that is not from the same type
+              for (let i = targetIndex; i < children.length; i++) {
+                const sibling = children.getItem(i);
+                if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
+                  maxPosition = sorting[sibling.getName()];
+                  break;
+                }
+              }
+            }
+          }
+          addable = addable.filter(name => sorting.hasOwnProperty(name) && sorting[name] <= maxPosition && sorting[name] >= minPosition);
         }
       }
       if (addable.length > 0) {
@@ -1213,23 +1264,30 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             const xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
             // load the "empty" element to init the modification comparison
             xmlElement.load();
-            this._onEdit(null, xmlElement).then((data) => {
-              // finally insert the new node
-              switch (position) {
-                case 'before':
-                  xmlElement.insertBefore(target);
-                  break;
+            let res = Promise.resolve(true);
+            if (xmlElement.isShowEditButton()) {
+              // only show edit dialog when we actually have something to edit
+              res = this._onEdit(null, xmlElement);
+            }
+            res.then((data) => {
+              if (data) {
+                // finally insert the new node
+                switch (position) {
+                  case 'before':
+                    xmlElement.insertBefore(target);
+                    break;
 
-                case 'after':
-                  xmlElement.insertAfter(target);
-                  break;
+                  case 'after':
+                    xmlElement.insertAfter(target);
+                    break;
 
-                case 'inside':
-                  target.insertChild(xmlElement, -1);
-                  break;
+                  case 'inside':
+                    target.insertChild(xmlElement, -1);
+                    break;
+                }
+                this.getChildControl('tree').openNodeAndParents(xmlElement);
+                this.getChildControl('tree').setSelection([xmlElement]);
               }
-              this.getChildControl('tree').openNodeAndParents(xmlElement);
-              this.getChildControl('tree').setSelection([xmlElement]);
             }, this).catch(err => this.error(err));
           }
         });
@@ -1442,6 +1500,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           this.__editing = false;
           formDialog.destroy();
+          return data;
         });
       });
     },
@@ -1450,7 +1509,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (!element) {
         element = this.getSelected();
       }
-      if (element && !element.isRequired()) {
+      if (element && element.isDeletable()) {
         element.remove();
         this.clearReDos();
         return element;
@@ -1549,9 +1608,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _applySelected: function (value, old) {
+      if (old) {
+        old.removeRelatedBindings(this.getChildControl('delete-button'));
+      }
       if (value) {
         this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
-        this.getChildControl('delete-button').setEnabled(this.getFile().isWriteable() && !value.isRequired());
+        if (this.getFile().isWriteable()) {
+          value.bind('deletable', this.getChildControl('delete-button'), 'enabled');
+        }
       } else {
         this.getChildControl('edit-button').setEnabled(false);
         this.getChildControl('delete-button').setEnabled(false);

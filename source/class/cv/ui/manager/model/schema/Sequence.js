@@ -156,7 +156,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           resultBounds.min = elementBounds.min;
         }
 
-        if (sequenceBounds.hasOwnProperty("min")) {
+        if (sequenceBounds.hasOwnProperty("min") && !isNaN(sequenceBounds.min)) {
           resultBounds.min = resultBounds.min * sequenceBounds.min;
         }
 
@@ -167,7 +167,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
             resultBounds.max = elementBounds.max;
           }
 
-          if (sequenceBounds.hasOwnProperty("max")) {
+          if (sequenceBounds.hasOwnProperty("max") && !isNaN(sequenceBounds.max)) {
             resultBounds.max = resultBounds.max * sequenceBounds.max;
           }
         }

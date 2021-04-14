@@ -67,13 +67,17 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
       }
     },
 
-    _applyElement: function(value) {
+    _applyElement: function(value, old) {
+      if (old) {
+        old.removeRelatedBindings(this.getChildControl("delete-button"));
+        old.removeRelatedBindings(this.getChildControl("cut-button"));
+      }
       if (value) {
         const editable = value.isEditable();
-        const required = value.isRequired();
         this.getChildControl('copy-button').setEnabled(true);
-        ['delete', 'cut'].forEach(name => this.getChildControl(name + "-button").setEnabled(editable && !required));
         if (editable) {
+          value.bind('deletable', this.getChildControl("delete-button"), 'enabled');
+          value.bind('deletable', this.getChildControl("cut-button"), 'enabled');
           this.getChildControl('view-button').exclude();
           this.getChildControl('edit-button').show();
           this.getChildControl('edit-button').setEnabled(value.getShowEditButton());

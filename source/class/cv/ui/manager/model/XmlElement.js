@@ -132,6 +132,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       event: 'changeSortable'
     },
 
+    /**
+     * true if this element can be deleted (either no bounds.min or more existing elements)
+     */
+    deletable: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeDeletable'
+    },
+
     modified: {
       check: 'Boolean',
       init: false,
@@ -208,6 +217,28 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _updateShowEditButton: function () {
       this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
+    },
+
+    updateDeletable: function () {
+        const parent = this.getParent();
+        let deletable = false;
+        if (parent) {
+          const schemaElement = parent.getSchemaElement();
+          const requiredFromParent = schemaElement.getRequiredElements();
+          if (requiredFromParent.includes(this.getName())) {
+            const bounds = schemaElement.getBoundsForElementName(this.getName());
+            if (bounds) {
+              const existing = parent.getChildren().filter(child => child.getName() === this.getName()).length;
+              // check if we can afford to delete one
+              deletable = (bounds.min <= existing - 1);
+            } else {
+              deletable = true;
+            }
+          } else {
+            deletable = true;
+          }
+        }
+        this.setDeletable(deletable);
     },
 
     getNode: function () {
@@ -824,6 +855,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         }
         this.setLoaded(true);
         children.addListener('change', this._syncChildNodes, this);
+        this._updateChildrenDeletableFlags();
         this.__initializing = false;
       }
     },
@@ -882,6 +914,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       this.setModified(false);
     },
 
+    isElement: function () {
+      return this._node.nodeType === Node.ELEMENT_NODE;
+    },
+
     _currentChildNames: function () {
       const names = [];
       for (let i = 0; i < this._node.childNodes.length; i++) {
@@ -898,6 +934,16 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _syncChildNodes: function (ev) {
       // children have changed clear cache
       this.__addableChildren = null;
+      // we have to update all deletable flags for this elements children, when their siblings changed
+      this._updateChildrenDeletableFlags();
+    },
+
+    _updateChildrenDeletableFlags: function () {
+      this.getChildren().forEach(child => {
+        if (child.isElement()) {
+          child.updateDeletable();
+        }
+      });
     },
 
     getWidgetPath: function () {
