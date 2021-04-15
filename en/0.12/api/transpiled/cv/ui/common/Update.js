@@ -50,9 +50,9 @@
     construct: function construct() {
       if (this.getAddress) {
         if (this._initOnCreate === true) {
-          this.__P_490_0();
+          this.__P_491_0();
         } else if (qx.Class.getEventType(this.constructor, "domReady")) {
-          this.addListenerOnce("domReady", this.__P_490_0, this);
+          this.addListenerOnce("domReady", this.__P_491_0, this);
         }
       }
     },
@@ -64,7 +64,7 @@
     */
     members: {
       _initOnCreate: false,
-      __P_490_0: function __P_490_0() {
+      __P_491_0: function __P_491_0() {
         var model = cv.data.Model.getInstance();
         Object.getOwnPropertyNames(this.getAddress()).forEach(function (address) {
           if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
@@ -139,4 +139,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1614551300526
+//# sourceMappingURL=Update.js.map?dt=1618502915871

@@ -92,7 +92,7 @@
         var widget = this._renderer.getCellWidget();
 
         widget.setOpen(hasChildren && this._tree.isNodeOpen(item));
-        widget.addListener("changeOpen", this.__P_253_0, this);
+        widget.addListener("changeOpen", this.__P_254_0, this);
         widget.setUserData("cell.childProperty", this.getChildProperty());
         widget.setUserData("cell.showLeafs", this._tree.isShowLeafs());
 
@@ -127,7 +127,7 @@
       },
       // interface implementation
       poolCellWidget: function poolCellWidget(widget) {
-        widget.removeListener("changeOpen", this.__P_253_0, this);
+        widget.removeListener("changeOpen", this.__P_254_0, this);
 
         this._removeBindingsFrom(widget);
 
@@ -268,7 +268,7 @@
        *
        * @param event {qx.event.type.Data} The data event.
        */
-      __P_253_0: function __P_253_0(event) {
+      __P_254_0: function __P_254_0(event) {
         var widget = event.getTarget();
         var row = widget.getUserData("cell.row");
 
@@ -292,4 +292,4 @@
   qx.ui.tree.provider.WidgetProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetProvider.js.map?dt=1614551900857
+//# sourceMappingURL=WidgetProvider.js.map?dt=1618504461710

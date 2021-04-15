@@ -129,9 +129,10 @@
        * This function sends a value
        * @param address {String} address to send the value to
        * @param value {String} value to send
+       * @param options {Object} optional options, depending on backend
        *
        */
-      write: function write(address, value) {},
+      write: function write(address, value, options) {},
 
       /**
        * Get the last recorded error
@@ -171,4 +172,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1614551302387
+//# sourceMappingURL=IClient.js.map?dt=1618502918196

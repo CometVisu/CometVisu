@@ -62,9 +62,9 @@
      */
     construct: function construct(callback, context) {
       qx.core.Object.constructor.call(this);
-      this.__P_98_0 = callback;
-      this.__P_98_1 = context || null;
-      this.__P_98_2 = qx.util.DeferredCallManager.getInstance();
+      this.__P_99_0 = callback;
+      this.__P_99_1 = context || null;
+      this.__P_99_2 = qx.util.DeferredCallManager.getInstance();
     },
 
     /*
@@ -73,29 +73,29 @@
     *****************************************************************************
     */
     members: {
-      __P_98_0: null,
-      __P_98_1: null,
-      __P_98_2: null,
+      __P_99_0: null,
+      __P_99_1: null,
+      __P_99_2: null,
 
       /**
        * Prevent the callback from being called.
        */
       cancel: function cancel() {
-        this.__P_98_2.cancel(this);
+        this.__P_99_2.cancel(this);
       },
 
       /**
        * Issue a deferred call of the callback.
        */
       schedule: function schedule() {
-        this.__P_98_2.schedule(this);
+        this.__P_99_2.schedule(this);
       },
 
       /**
        * Calls the callback directly.
        */
       call: function call() {
-        this.__P_98_1 ? this.__P_98_0.apply(this.__P_98_1) : this.__P_98_0();
+        this.__P_99_1 ? this.__P_99_0.apply(this.__P_99_1) : this.__P_99_0();
       }
     },
 
@@ -106,10 +106,10 @@
     */
     destruct: function destruct() {
       this.cancel();
-      this.__P_98_1 = this.__P_98_0 = this.__P_98_2 = null;
+      this.__P_99_1 = this.__P_99_0 = this.__P_99_2 = null;
     }
   });
   qx.util.DeferredCall.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DeferredCall.js.map?dt=1614551889210
+//# sourceMappingURL=DeferredCall.js.map?dt=1618504447556

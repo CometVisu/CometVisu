@@ -58,10 +58,13 @@
               e = element;
             }
           });
-          e.classList.remove.apply(e.classList, sty.classnames.split(" ")); // remove only styling classes
 
-          if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
-            this._findValue(sty.defaultValue, true, e, sty);
+          if (e) {
+            e.classList.remove.apply(e.classList, sty.classnames.split(" ")); // remove only styling classes
+
+            if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
+              this._findValue(sty.defaultValue, true, e, sty);
+            }
           }
         }
       },
@@ -106,4 +109,4 @@
   cv.ui.common.HasStyling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasStyling.js.map?dt=1614551896883
+//# sourceMappingURL=HasStyling.js.map?dt=1618504456859

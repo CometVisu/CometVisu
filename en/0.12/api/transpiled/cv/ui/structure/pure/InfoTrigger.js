@@ -215,7 +215,7 @@
         }
 
         this.sendToBackend(value, function (address) {
-          return !!(address[2] & bitMask);
+          return !!(address.variantInfo & bitMask);
         });
       },
       getDownActor: function getDownActor() {
@@ -235,4 +235,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1614551270472
+//# sourceMappingURL=InfoTrigger.js.map?dt=1618502875821

@@ -337,7 +337,7 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <div class="figure align-center" id="id2">
-<img alt="../../../_images/de_config_widgets_infotrigger_index_editor_attributes.png" src="../../../_images/de_config_widgets_infotrigger_index_editor_attributes.png" />
+<img alt="config/widgets/infotrigger/_static/de_config_widgets_infotrigger_index_editor_attributes.png" src="config/widgets/infotrigger/_static/de_config_widgets_infotrigger_index_editor_attributes.png" />
 <p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <div class="section" id="wichtig-fur-den-betrieb">
@@ -532,7 +532,7 @@ muss die Option „<strong>absolute</strong>“ ausgewählt werden.</li>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
 <dt>infotrigger</dt><dd><ul class="simple">
 <li><abbr title="Pflichtangabe">address</abbr></li>
 </ul>
@@ -555,6 +555,14 @@ muss die Option „<strong>absolute</strong>“ ausgewählt werden.</li>
 <td>Zahl</td>
 <td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
 </tr>
+<tr class="row-odd"><td>qos</td>
+<td>Zahl</td>
+<td>Nur MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: retain Flag</td>
+</tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>infotrigger</dt><dd><ul class="simple">
 <li>address<ul>
@@ -567,12 +575,12 @@ muss die Option „<strong>absolute</strong>“ ausgewählt werden.</li>
 </td>
 <td>&#160;</td>
 <td>Text</td>
-<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
 </tr>
 </tbody>
 </table>
 <div class="figure align-center" id="id3">
-<img alt="../../../_images/de_config_widgets_infotrigger_index_editor_elements.png" src="../../../_images/de_config_widgets_infotrigger_index_editor_elements.png" />
+<img alt="config/widgets/infotrigger/_static/de_config_widgets_infotrigger_index_editor_elements.png" src="config/widgets/infotrigger/_static/de_config_widgets_infotrigger_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>

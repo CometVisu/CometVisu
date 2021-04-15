@@ -90,7 +90,7 @@
         widget.bind("directory", this, "directory");
       }
 
-      this.__P_513_0 = widget;
+      this.__P_514_0 = widget;
     },
     properties: {
       acceptUpload: {
@@ -113,9 +113,9 @@
       }
     },
     members: {
-      __P_513_0: null,
+      __P_514_0: null,
       getWidget: function getWidget() {
-        return this.__P_513_0;
+        return this.__P_514_0;
       },
       _applyAcceptUpload: function _applyAcceptUpload(value) {
         if (value) this.setAttribute("accept", value, true);else this.removeAttribute("accept", true);
@@ -131,4 +131,4 @@
   com.zenesis.qx.upload.InputElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InputElement.js.map?dt=1614551303073
+//# sourceMappingURL=InputElement.js.map?dt=1618502919069

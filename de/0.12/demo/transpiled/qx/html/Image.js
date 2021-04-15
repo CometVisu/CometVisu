@@ -59,8 +59,8 @@
     *****************************************************************************
     */
     members: {
-      __P_246_0: null,
-      __P_246_1: null,
+      __P_247_0: null,
+      __P_247_1: null,
       // this member variable is only used for IE browsers to be able
       // to the tag name which will be set. This is heavily connected to the runtime
       // change of decorators and the use of external (=unmanaged images). It is
@@ -76,8 +76,8 @@
        * @param paddingTop {Integer} top padding value
        */
       setPadding: function setPadding(paddingLeft, paddingTop) {
-        this.__P_246_1 = paddingLeft;
-        this.__P_246_0 = paddingTop;
+        this.__P_247_1 = paddingLeft;
+        this.__P_247_0 = paddingTop;
 
         if (this.getNodeName() == "div") {
           this.setStyle("backgroundPosition", paddingLeft + "px " + paddingTop + "px");
@@ -115,8 +115,8 @@
           if (source != null) {
             // Normalize "" to null
             source = source || null;
-            styles.paddingTop = this.__P_246_0;
-            styles.paddingLeft = this.__P_246_1;
+            styles.paddingTop = this.__P_247_0;
+            styles.paddingLeft = this.__P_247_1;
             qx.bom.element.Decoration.update(elem, source, repeat, styles);
           }
         }
@@ -227,4 +227,4 @@
   qx.html.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1614551900536
+//# sourceMappingURL=Image.js.map?dt=1618504461320

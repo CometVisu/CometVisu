@@ -4050,6 +4050,7 @@
     "cv.io.Client",
     "cv.io.Mockup",
     "cv.io.openhab.Rest",
+    "cv.io.mqtt.Client",
     "cv.report.Record",
     "cv.TemplateEngine",
     "cv.data.FileWorker",

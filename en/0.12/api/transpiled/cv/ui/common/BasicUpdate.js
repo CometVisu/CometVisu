@@ -158,7 +158,7 @@
        */
       applyTransform: function applyTransform(address, data) {
         if (address) {
-          var transform = this.getAddress()[address][0]; // transform the raw value to a JavaScript type
+          var transform = this.getAddress()[address].transform; // transform the raw value to a JavaScript type
 
           return cv.Transform.decode(transform, data);
         }
@@ -212,7 +212,7 @@
             this.formatValueCache = [this.getFormat()];
           }
 
-          var argListPos = this.getAddress() && this.getAddress()[address] ? this.getAddress()[address][3] : 1;
+          var argListPos = this.getAddress() && this.getAddress()[address] ? this.getAddress()[address].formatPos : 1;
           this.formatValueCache[argListPos] = value;
           return cv.util.String.sprintf.apply(this, this.formatValueCache);
         }
@@ -245,7 +245,7 @@
         }
 
         if (value && value.constructor === Date) {
-          switch (this.getAddress()[address][0]) {
+          switch (this.getAddress()[address].transform) {
             // special case for KNX
             case 'DPT:10.001':
               value = value.toLocaleTimeString();
@@ -282,7 +282,7 @@
       defaultValue2DOM: function defaultValue2DOM(value, modifyFn) {
         var element;
 
-        if ('string' === typeof value || 'number' === typeof value) {
+        if ('string' === typeof value || 'number' === typeof value || value instanceof Uint8Array || value instanceof Map) {
           modifyFn(value);
         } else if ('function' === typeof value) {
           // thisValue(valueElement);
@@ -370,4 +370,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1614551300370
+//# sourceMappingURL=BasicUpdate.js.map?dt=1618502915678

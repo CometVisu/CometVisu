@@ -64,6 +64,60 @@
       "designs/designglobals.css": {
         "resourcePath": "resourcePath"
       },
+      "libs/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/EventRecorder.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/Three.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/favico.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/inobounce.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.edl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.epl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.about.html": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/sprintf.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/strftime.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/svg4everybody.js": {
+        "resourcePath": "resourcePath"
+      },
       "icons/COPYING": {
         "resourcePath": "resourcePath"
       },
@@ -305,15 +359,15 @@
         "width": 450,
         "height": 450
       },
-      "icons/comet_webapp_icon_114.png": {
-        "resourcePath": "resourcePath",
-        "width": 114,
-        "height": 114
-      },
       "icons/comet_webapp_icon.png": {
         "resourcePath": "resourcePath",
         "width": 72,
         "height": 72
+      },
+      "icons/comet_webapp_icon_114.png": {
+        "resourcePath": "resourcePath",
+        "width": 114,
+        "height": 114
       },
       "icons/comet_webapp_icon_120.png": {
         "resourcePath": "resourcePath",
@@ -375,15 +429,15 @@
         "width": 16,
         "height": 16
       },
-      "icons/comet_webapp_icon_android_32.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
       "icons/comet_webapp_icon_android_192.png": {
         "resourcePath": "resourcePath",
         "width": 192,
         "height": 192
+      },
+      "icons/comet_webapp_icon_android_32.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
       },
       "icons/comet_webapp_icon_android_36.png": {
         "resourcePath": "resourcePath",
@@ -436,45 +490,6 @@
       "icons/knx-uf-iconset.svg": {
         "resourcePath": "resourcePath"
       },
-      "libs/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/EventRecorder.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/Three.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/favico.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/inobounce.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/sprintf.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/strftime.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/svg4everybody.js": {
-        "resourcePath": "resourcePath"
-      },
       "manager/crc32.js": {
         "resourcePath": "resourcePath"
       },
@@ -502,13 +517,13 @@
       "test/l": {
         "resourcePath": "resourcePath"
       },
-      "config/backup/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
       "config/.templates/Plugin.js": {
         "resourcePath": "resourcePath"
       },
       "config/.templates/visu_config.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "config/backup/.gitignore": {
         "resourcePath": "resourcePath"
       },
       "config/media/.gitignore": {
@@ -586,21 +601,6 @@
       "demo/media/testmode.js": {
         "resourcePath": "resourcePath"
       },
-      "designs/alaska_slim/basic.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska_slim/colors.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska_slim/custom.css": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska_slim/design_setup.js": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/alaska_slim/mobile.css": {
-        "resourcePath": "resourcePath"
-      },
       "designs/alaska/basic.css": {
         "resourcePath": "resourcePath"
       },
@@ -614,6 +614,21 @@
         "resourcePath": "resourcePath"
       },
       "designs/alaska/mobile.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska_slim/basic.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska_slim/colors.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska_slim/custom.css": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska_slim/design_setup.js": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/alaska_slim/mobile.css": {
         "resourcePath": "resourcePath"
       },
       "designs/discreet/basic.css": {
@@ -670,10 +685,10 @@
       "designs/pitchblack/basic.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/pitchblack/design_setup.js": {
+      "designs/pitchblack/custom.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/pitchblack/custom.css": {
+      "designs/pitchblack/design_setup.js": {
         "resourcePath": "resourcePath"
       },
       "designs/pitchblack/mobile.css": {
@@ -685,10 +700,10 @@
       "designs/planet/custom.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/mobile.css": {
+      "designs/planet/design_setup.js": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/design_setup.js": {
+      "designs/planet/mobile.css": {
         "resourcePath": "resourcePath"
       },
       "designs/pure/basic.css": {
@@ -754,6 +769,9 @@
       "plugins/rsslog/rsslog_mysql.php": {
         "resourcePath": "resourcePath"
       },
+      "plugins/strftime/strftime.css": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/svg/rollo.svg": {
         "resourcePath": "resourcePath",
         "width": 48,
@@ -766,9 +784,6 @@
         "resourcePath": "resourcePath"
       },
       "plugins/tr064/tr064.css": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/strftime/strftime.css": {
         "resourcePath": "resourcePath"
       },
       "plugins/upnpcontroller/mute.php": {
@@ -792,13 +807,13 @@
       "plugins/upnpcontroller/status.php": {
         "resourcePath": "resourcePath"
       },
+      "plugins/upnpcontroller/upnpcontroller.css": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/upnpcontroller/upnpctrl_util.php": {
         "resourcePath": "resourcePath"
       },
       "plugins/upnpcontroller/volume.php": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/upnpcontroller/upnpcontroller.css": {
         "resourcePath": "resourcePath"
       },
       "designs/alaska/fonts/LICENSE.txt": {
@@ -864,6 +879,30 @@
         "width": 14,
         "height": 8
       },
+      "designs/discreet_sand/fonts/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/ChangeLog": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/License.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/README": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/TODO": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/liberationsans-bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/liberationsans-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
       "designs/discreet_sand/images/button_bg.png": {
         "resourcePath": "resourcePath",
         "width": 9,
@@ -894,28 +933,28 @@
         "width": 64,
         "height": 6
       },
-      "designs/discreet_sand/fonts/AUTHORS": {
+      "designs/discreet_slim/fonts/AUTHORS": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/COPYING": {
+      "designs/discreet_slim/fonts/COPYING": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/ChangeLog": {
+      "designs/discreet_slim/fonts/ChangeLog": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/License.txt": {
+      "designs/discreet_slim/fonts/License.txt": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/README": {
+      "designs/discreet_slim/fonts/README": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/TODO": {
+      "designs/discreet_slim/fonts/TODO": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/liberationsans-bold.ttf": {
+      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_sand/fonts/liberationsans-regular.ttf": {
+      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
         "resourcePath": "resourcePath"
       },
       "designs/discreet_slim/images/button_bg.png": {
@@ -948,28 +987,13 @@
         "width": 14,
         "height": 8
       },
-      "designs/discreet_slim/fonts/AUTHORS": {
+      "designs/metal/fonts/Dosis-Medium.ttf": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_slim/fonts/COPYING": {
+      "designs/metal/fonts/FONTLOG.txt": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_slim/fonts/ChangeLog": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/License.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/README": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/TODO": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_slim/fonts/liberationsans-regular.ttf": {
+      "designs/metal/fonts/OFL.txt": {
         "resourcePath": "resourcePath"
       },
       "designs/metal/images/active_page.png": {
@@ -1031,15 +1055,6 @@
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 8
-      },
-      "designs/metal/fonts/Dosis-Medium.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/metal/fonts/FONTLOG.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/metal/fonts/OFL.txt": {
-        "resourcePath": "resourcePath"
       },
       "designs/pitchblack/images/fenster_einfach_auf.png": {
         "resourcePath": "resourcePath",
@@ -1436,6 +1451,246 @@
       "qxl/apiviewer/css/apiviewer.css": {
         "resourcePath": "resourcePath"
       },
+      "qxl/apiviewer/image/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qxl/apiviewer/image/childcontrol18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/close.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/constant18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/cross.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/event18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/includes.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/information18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 22
+      },
+      "qxl/apiviewer/image/interface18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/interface_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/loading66.gif": {
+        "resourcePath": "resourcePath",
+        "width": 66,
+        "height": 66
+      },
+      "qxl/apiviewer/image/method_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/nextlevel.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/open.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/overlay_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_error18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_overridden18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/search18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/vline.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
       "qxl/apiviewer/imagesCombined/symbols.gif": {
         "resourcePath": "resourcePath",
         "width": 18,
@@ -1725,246 +1980,6 @@
             -396
           ]
         }
-      },
-      "qxl/apiviewer/image/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qxl/apiviewer/image/childcontrol18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/close.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/constant18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/cross.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/event18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/includes.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/information18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 22
-      },
-      "qxl/apiviewer/image/interface18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/interface_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/loading66.gif": {
-        "resourcePath": "resourcePath",
-        "width": 66,
-        "height": 66
-      },
-      "qxl/apiviewer/image/method_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/nextlevel.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/open.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/overlay_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_error18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_overridden18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/search18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/vline.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
       }
     },
     "osparc.theme": {
@@ -2398,17 +2413,17 @@
         "width": 80,
         "height": 60
       },
+      "source/Modern/checkbox-checked-disabled.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
       "source/Modern/checkbox-checked-focused-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
       "source/Modern/checkbox-checked-focused.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "source/Modern/checkbox-checked-disabled.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
@@ -2584,15 +2599,15 @@
         "width": 40,
         "height": 20
       },
-      "source/Modern/radio-checked-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
       "source/Modern/pane.png": {
         "resourcePath": "resourcePath",
         "width": 185,
         "height": 250
+      },
+      "source/Modern/radio-checked-focused-invalid.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
       },
       "source/Modern/radio-checked-focused.png": {
         "resourcePath": "resourcePath",
@@ -2714,15 +2729,15 @@
         "width": 181,
         "height": 242
       },
-      "source/Modern/tab-button-bottom-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 45,
-        "height": 21
-      },
       "source/Modern/tab-button-bottom-active.png": {
         "resourcePath": "resourcePath",
         "width": 49,
         "height": 24
+      },
+      "source/Modern/tab-button-bottom-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 45,
+        "height": 21
       },
       "source/Modern/tab-button-left-active.png": {
         "resourcePath": "resourcePath",
@@ -7820,15 +7835,15 @@
         "width": 19,
         "height": 15
       },
-      "qx/decoration/Modern/cursors/nodrop.gif": {
-        "resourcePath": "resourcePath",
-        "width": 20,
-        "height": 20
-      },
       "qx/decoration/Modern/cursors/move.gif": {
         "resourcePath": "resourcePath",
         "width": 13,
         "height": 9
+      },
+      "qx/decoration/Modern/cursors/nodrop.gif": {
+        "resourcePath": "resourcePath",
+        "width": 20,
+        "height": 20
       },
       "qx/decoration/Modern/form/button-b.png": {
         "resourcePath": "resourcePath",
@@ -10050,6 +10065,11 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10066,11 +10086,6 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/contact-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10270,17 +10285,17 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/actions/go-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/go-last.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/go-next.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/go-home.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10770,12 +10785,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/utilities-terminal.png": {
+      "qx/icon/Oxygen/128/apps/utilities-system-monitor.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/utilities-system-monitor.png": {
+      "qx/icon/Oxygen/128/apps/utilities-terminal.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11940,12 +11955,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/categories/office.png": {
+      "qx/icon/Oxygen/16/categories/multimedia.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/categories/multimedia.png": {
+      "qx/icon/Oxygen/16/categories/office.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -23225,17 +23240,17 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/devices/camera-photo.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
       "qx/icon/Tango/64/devices/camera-web.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
       "qx/icon/Tango/64/devices/computer.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23355,12 +23370,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/emotes/face-smile-big.png": {
+      "qx/icon/Tango/64/emotes/face-smile.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/emotes/face-smile.png": {
+      "qx/icon/Tango/64/emotes/face-smile-big.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23470,12 +23485,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/places/user-trash-full.png": {
+      "qx/icon/Tango/64/places/user-trash.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/places/user-trash.png": {
+      "qx/icon/Tango/64/places/user-trash-full.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64

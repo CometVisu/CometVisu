@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 330,
+        "line": 335,
         "column": 3
       }
     },
@@ -436,7 +436,7 @@
           "column": 4
         },
         "end": {
-          "line": 286,
+          "line": 291,
           "column": 5
         }
       },
@@ -464,11 +464,11 @@
     "defaultUpdate": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 301,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 320,
           "column": 5
         }
       },
@@ -518,11 +518,11 @@
     "_applyValueToDom": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 328,
+          "line": 333,
           "column": 5
         }
       },

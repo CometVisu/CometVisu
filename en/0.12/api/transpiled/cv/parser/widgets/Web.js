@@ -65,9 +65,15 @@
           cv.data.Model.getInstance().addAddress(ga);
 
           if (cv.Config.backend.substr(0, 2) === "oh") {
-            data.address['_' + ga] = ['OH:switch', 'OFF'];
+            data.address['_' + ga] = {
+              transform: 'OH:switch',
+              mode: 'OFF'
+            };
           } else {
-            data.address['_' + ga] = ['DPT:1.001', 0];
+            data.address['_' + ga] = {
+              transform: 'DPT:1.001',
+              mode: 0
+            };
           }
         }
 
@@ -102,4 +108,4 @@
   cv.parser.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1614551267174
+//# sourceMappingURL=Web.js.map?dt=1618502871540

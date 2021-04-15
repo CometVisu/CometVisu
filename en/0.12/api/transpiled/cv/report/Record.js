@@ -59,15 +59,15 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_477_0 = [];
-      this.__P_477_1 = {};
-      this.__P_477_2 = Date.now();
-      this.__P_477_3 = {
+      this.__P_478_0 = [];
+      this.__P_478_1 = {};
+      this.__P_478_2 = Date.now();
+      this.__P_478_3 = {
         response: [],
         request: []
       };
-      this.__P_477_4 = {};
-      this.__P_477_5 = {};
+      this.__P_478_4 = {};
+      this.__P_478_5 = {};
     },
 
     /*
@@ -193,50 +193,50 @@
     ******************************************************
     */
     members: {
-      __P_477_2: null,
-      __P_477_0: null,
-      __P_477_3: null,
-      __P_477_1: null,
-      __P_477_4: null,
-      __P_477_6: 50,
-      __P_477_7: 1,
-      __P_477_8: 50,
-      __P_477_5: null,
-      __P_477_9: 0,
+      __P_478_2: null,
+      __P_478_0: null,
+      __P_478_3: null,
+      __P_478_1: null,
+      __P_478_4: null,
+      __P_478_6: 50,
+      __P_478_7: 1,
+      __P_478_8: 50,
+      __P_478_5: null,
+      __P_478_9: 0,
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
             data.t = Date.now();
 
-            this.__P_477_3[path].push(data);
+            this.__P_478_3[path].push(data);
 
             break;
 
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
-            this.__P_477_4[category] = data;
+            this.__P_478_4[category] = data;
             break;
 
           default:
-            this.__P_477_0.push({
+            this.__P_478_0.push({
               c: category,
               t: Date.now(),
               i: path,
               d: data,
               o: options,
-              ID: this.__P_477_9
+              ID: this.__P_478_9
             });
 
         }
 
-        this.__P_477_9++;
+        this.__P_478_9++;
       },
 
       /**
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __P_477_10: function __P_477_10(nativeEvent) {
+      __P_478_10: function __P_478_10(nativeEvent) {
         var data = {
           eventClass: nativeEvent.constructor.name,
           "native": {
@@ -244,8 +244,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: nativeEvent.currentTarget ? this.__P_477_11(nativeEvent.currentTarget) : undefined,
-            relatedTarget: nativeEvent.relatedTarget ? this.__P_477_11(nativeEvent.relatedTarget) : undefined,
+            currentTarget: nativeEvent.currentTarget ? this.__P_478_11(nativeEvent.currentTarget) : undefined,
+            relatedTarget: nativeEvent.relatedTarget ? this.__P_478_11(nativeEvent.relatedTarget) : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -303,29 +303,29 @@
           return;
         }
 
-        ev.$$RID = this.__P_477_9;
+        ev.$$RID = this.__P_478_9;
 
         if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
-          this.__P_477_6 = this.__P_477_7;
+          this.__P_478_6 = this.__P_478_7;
         } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
-          this.__P_477_6 = this.__P_477_8;
+          this.__P_478_6 = this.__P_478_8;
         }
 
         if (/.+(move|over|out)/.test(ev.type)) {
-          if (!this.__P_477_5[ev.type]) {
-            this.__P_477_5[ev.type] = {
+          if (!this.__P_478_5[ev.type]) {
+            this.__P_478_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           } else {
-            var lastDelta = this.__P_477_5[ev.type];
+            var lastDelta = this.__P_478_5[ev.type];
 
-            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_477_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_477_6) {
+            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_478_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_478_6) {
               // below delta -> skip this event
               return;
             }
 
-            this.__P_477_5[ev.type] = {
+            this.__P_478_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
@@ -333,7 +333,7 @@
         } // get path
 
 
-        var path = this.__P_477_11(ev.target);
+        var path = this.__P_478_11(ev.target);
 
         if (!path) {
           return;
@@ -341,7 +341,7 @@
 
         this.debug("recording " + ev.type + " on " + path);
 
-        var data = this.__P_477_10(ev);
+        var data = this.__P_478_10(ev);
 
         this.record(cv.report.Record.USER, path, data);
       },
@@ -356,7 +356,7 @@
         };
         this.record(cv.report.Record.USER, "scroll", data);
       },
-      __P_477_11: function __P_477_11(el) {
+      __P_478_11: function __P_478_11(el) {
         if (el === window) {
           return "Window";
         } else if (el === document) {
@@ -401,10 +401,10 @@
        */
       download: function download() {
         var data = {
-          data: this.__P_477_4,
-          start: this.__P_477_2,
-          xhr: this.__P_477_3,
-          log: this.__P_477_0,
+          data: this.__P_478_4,
+          start: this.__P_478_2,
+          xhr: this.__P_478_3,
+          log: this.__P_478_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         }; // show the user what he gets
@@ -429,4 +429,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1614551299760
+//# sourceMappingURL=Record.js.map?dt=1618502914872

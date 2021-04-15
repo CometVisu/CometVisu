@@ -1,0 +1,66 @@
+{
+  "className": "cv.transforms.Mqtt",
+  "packageName": "cv.transforms",
+  "name": "Mqtt",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 85,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Transformations for the MQTT backend</p>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Christian Mayer"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2021"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "defer": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 9
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class defines the default transforms: encode: transform JavaScript to\n bus value decode: transform bus to JavaScript value</p>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

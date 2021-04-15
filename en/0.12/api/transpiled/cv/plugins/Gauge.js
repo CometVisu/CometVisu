@@ -357,7 +357,7 @@
           return;
         }
 
-        var variant = this.getAddress()[address][2];
+        var variant = this.getAddress()[address].variantInfo;
         var gaugeElement = this.__P_10_0;
 
         if (gaugeElement) {
@@ -444,4 +444,4 @@
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1614551267432
+//# sourceMappingURL=Gauge.js.map?dt=1618502871887

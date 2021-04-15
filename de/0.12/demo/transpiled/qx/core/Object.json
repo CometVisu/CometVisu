@@ -3957,6 +3957,7 @@
     "cv.io.Client",
     "cv.io.Mockup",
     "cv.io.openhab.Rest",
+    "cv.io.mqtt.Client",
     "qx.bom.Blocker",
     "cv.report.Record",
     "qx.ui.command.Command",

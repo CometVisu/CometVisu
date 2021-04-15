@@ -531,12 +531,12 @@
         var address = this.getAddress();
 
         for (var addr in address) {
-          if (address[addr][1] === true) {
+          if (address[addr].mode === true) {
             continue;
           } // skip read only
 
 
-          cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
+          cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
         }
       },
       _updateHands: function _updateHands(hour, minute, second) {
@@ -595,4 +595,4 @@
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1614551882176
+//# sourceMappingURL=Clock.js.map?dt=1618504438712

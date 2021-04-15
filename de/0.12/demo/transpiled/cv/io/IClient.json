@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 160,
+        "line": 161,
         "column": 3
       }
     },
@@ -462,12 +462,12 @@
     "write": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 123,
-          "column": 40
+          "line": 124,
+          "column": 49
         }
       },
       "jsdoc": {
@@ -491,6 +491,13 @@
             "paramName": "value",
             "description": " value to send",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object} optional options, depending on backend",
+            "paramName": "options",
+            "description": " optional options, depending on backend",
+            "type": "Object"
           }
         ]
       },
@@ -500,11 +507,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 131,
           "column": 31
         }
       },
@@ -530,11 +537,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 30
         }
       },
@@ -552,11 +559,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 144,
           "column": 29
         }
       },
@@ -582,11 +589,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 151,
           "column": 35
         }
       },
@@ -620,11 +627,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 159,
           "column": 47
         }
       },

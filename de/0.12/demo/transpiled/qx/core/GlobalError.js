@@ -49,8 +49,8 @@
         qx.core.Assert.assertNotUndefined(exc);
       }
 
-      this.__P_163_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
-      var inst = Error.call(this, this.__P_163_0); // map stack trace properties since they're not added by Error's constructor
+      this.__P_164_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
+      var inst = Error.call(this, this.__P_164_0); // map stack trace properties since they're not added by Error's constructor
 
       if (inst.stack) {
         this.stack = inst.stack;
@@ -60,13 +60,13 @@
         this.stacktrace = inst.stacktrace;
       }
 
-      this.__P_163_1 = args;
-      this.__P_163_2 = exc;
+      this.__P_164_1 = args;
+      this.__P_164_2 = exc;
     },
     members: {
-      __P_163_2: null,
-      __P_163_1: null,
-      __P_163_0: null,
+      __P_164_2: null,
+      __P_164_1: null,
+      __P_164_0: null,
 
       /**
        * Returns the error message.
@@ -74,7 +74,7 @@
        * @return {String} error message
        */
       toString: function toString() {
-        return this.__P_163_0;
+        return this.__P_164_0;
       },
 
       /**
@@ -83,7 +83,7 @@
        * @return {Object} arguments
        */
       getArguments: function getArguments() {
-        return this.__P_163_1;
+        return this.__P_164_1;
       },
 
       /**
@@ -92,11 +92,11 @@
        * @return {Error} source exception
        */
       getSourceException: function getSourceException() {
-        return this.__P_163_2;
+        return this.__P_164_2;
       }
     }
   });
   qx.core.GlobalError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalError.js.map?dt=1614551895199
+//# sourceMappingURL=GlobalError.js.map?dt=1618504454750

@@ -82,15 +82,15 @@
   qx.Bootstrap.define("qx.bom.element.AnimationCss", {
     statics: {
       // initialization
-      __P_191_0: null,
-      __P_191_1: "Anni",
-      __P_191_2: 0,
+      __P_192_0: null,
+      __P_192_1: "Anni",
+      __P_192_2: 0,
 
       /** Static map of rules */
-      __P_191_3: {},
+      __P_192_3: {},
 
       /** The used keys for transforms. */
-      __P_191_4: {
+      __P_192_4: {
         "scale": true,
         "rotate": true,
         "skew": true,
@@ -98,7 +98,7 @@
       },
 
       /** Map of cross browser CSS keys. */
-      __P_191_5: qx.core.Environment.get("css.animation"),
+      __P_192_5: qx.core.Environment.get("css.animation"),
 
       /**
        * This is the main function to start the animation in reverse mode.
@@ -140,7 +140,7 @@
        * @return {qx.bom.element.AnimationHandle} The handle.
        */
       _animate: function _animate(el, desc, duration, reverse) {
-        this.__P_191_6(desc); // debug validation
+        this.__P_192_6(desc); // debug validation
 
 
         // reverse the keep property if the animation is reverse as well
@@ -150,8 +150,8 @@
           keep = 100 - keep;
         }
 
-        if (!this.__P_191_0) {
-          this.__P_191_0 = qx.bom.Stylesheet.createElement();
+        if (!this.__P_192_0) {
+          this.__P_192_0 = qx.bom.Stylesheet.createElement();
         }
 
         var keyFrames = desc.keyFrames;
@@ -161,17 +161,17 @@
         } // if animations are supported
 
 
-        if (this.__P_191_5 != null) {
-          var name = this.__P_191_7(keyFrames, reverse);
+        if (this.__P_192_5 != null) {
+          var name = this.__P_192_7(keyFrames, reverse);
 
           var style = name + " " + duration + "ms " + desc.timing + " " + (desc.delay ? desc.delay + "ms " : "") + desc.repeat + " " + (desc.alternate ? "alternate" : "");
-          qx.bom.Event.addNativeListener(el, this.__P_191_5["start-event"], this.__P_191_8);
-          qx.bom.Event.addNativeListener(el, this.__P_191_5["iteration-event"], this.__P_191_9);
-          qx.bom.Event.addNativeListener(el, this.__P_191_5["end-event"], this.__P_191_10);
-          el.style[qx.lang.String.camelCase(this.__P_191_5["name"])] = style; // use the fill mode property if available and suitable
+          qx.bom.Event.addNativeListener(el, this.__P_192_5["start-event"], this.__P_192_8);
+          qx.bom.Event.addNativeListener(el, this.__P_192_5["iteration-event"], this.__P_192_9);
+          qx.bom.Event.addNativeListener(el, this.__P_192_5["end-event"], this.__P_192_10);
+          el.style[qx.lang.String.camelCase(this.__P_192_5["name"])] = style; // use the fill mode property if available and suitable
 
-          if (keep && keep == 100 && this.__P_191_5["fill-mode"]) {
-            el.style[this.__P_191_5["fill-mode"]] = "forwards";
+          if (keep && keep == 100 && this.__P_192_5["fill-mode"]) {
+            el.style[this.__P_192_5["fill-mode"]] = "forwards";
           }
         }
 
@@ -186,9 +186,9 @@
         } // fallback for browsers not supporting animations
 
 
-        if (this.__P_191_5 == null) {
+        if (this.__P_192_5 == null) {
           window.setTimeout(function () {
-            qx.bom.element.AnimationCss.__P_191_10({
+            qx.bom.element.AnimationCss.__P_192_10({
               target: el
             });
           }, 0);
@@ -201,7 +201,7 @@
        * Handler for the animation start.
        * @param e {Event} The native event from the browser.
        */
-      __P_191_8: function __P_191_8(e) {
+      __P_192_8: function __P_192_8(e) {
         if (e.target.$$animation) {
           e.target.$$animation.emit("start", e.target);
         }
@@ -211,7 +211,7 @@
        * Handler for the animation iteration.
        * @param e {Event} The native event from the browser.
        */
-      __P_191_9: function __P_191_9(e) {
+      __P_192_9: function __P_192_9(e) {
         // It could happen that an animation end event is fired before an
         // animation iteration appears [BUG #6928]
         if (e.target != null && e.target.$$animation != null) {
@@ -223,7 +223,7 @@
        * Handler for the animation end.
        * @param e {Event} The native event from the browser.
        */
-      __P_191_10: function __P_191_10(e) {
+      __P_192_10: function __P_192_10(e) {
         var el = e.target;
         var animation = el.$$animation; // ignore events when already cleaned up
 
@@ -233,18 +233,18 @@
 
         var desc = animation.desc;
 
-        if (qx.bom.element.AnimationCss.__P_191_5 != null) {
+        if (qx.bom.element.AnimationCss.__P_192_5 != null) {
           // reset the styling
-          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__P_191_5["name"]);
+          var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__P_192_5["name"]);
           el.style[key] = "";
-          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__P_191_5["name"], qx.bom.element.AnimationCss.__P_191_10);
+          qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__P_192_5["name"], qx.bom.element.AnimationCss.__P_192_10);
         }
 
         if (desc.origin != null) {
           qx.bom.element.Transform.setOrigin(el, "");
         }
 
-        qx.bom.element.AnimationCss.__P_191_11(el, desc.keyFrames[animation.keep]);
+        qx.bom.element.AnimationCss.__P_192_11(el, desc.keyFrames[animation.keep]);
 
         el.$$animation = null;
         animation.el = null;
@@ -260,12 +260,12 @@
        * @param endFrame {Map} The description of the end frame, which is basically
        *   a map containing CSS properties and values including transforms.
        */
-      __P_191_11: function __P_191_11(el, endFrame) {
+      __P_192_11: function __P_192_11(el, endFrame) {
         // keep the element at this animation step
         var transforms;
 
         for (var style in endFrame) {
-          if (style in qx.bom.element.AnimationCss.__P_191_4) {
+          if (style in qx.bom.element.AnimationCss.__P_192_4) {
             if (!transforms) {
               transforms = {};
             }
@@ -287,7 +287,7 @@
        * set to its default.
        * @param desc {Map} The description of the animation.
        */
-      __P_191_6: function __P_191_6(desc) {
+      __P_192_6: function __P_192_6(desc) {
         if (!desc.hasOwnProperty("alternate")) {
           desc.alternate = false;
         }
@@ -314,7 +314,7 @@
        * @signature function(desc)
        * @param desc {Map} The description of the animation.
        */
-      __P_191_12: null,
+      __P_192_12: null,
 
       /**
        * Helper to add the given frames to an internal CSS stylesheet. It parses
@@ -324,7 +324,7 @@
        *   be added in reverse order.
        * @return {String} The generated name of the keyframes rule.
        */
-      __P_191_7: function __P_191_7(frames, reverse) {
+      __P_192_7: function __P_192_7(frames, reverse) {
         var rule = ""; // for each key frame
 
         for (var position in frames) {
@@ -333,7 +333,7 @@
           var transforms; // each style
 
           for (var style in frame) {
-            if (style in this.__P_191_4) {
+            if (style in this.__P_192_4) {
               if (!transforms) {
                 transforms = {};
               }
@@ -355,28 +355,28 @@
         } // cached shorthand
 
 
-        if (this.__P_191_3[rule]) {
-          return this.__P_191_3[rule];
+        if (this.__P_192_3[rule]) {
+          return this.__P_192_3[rule];
         }
 
-        var name = this.__P_191_1 + this.__P_191_2++;
-        var selector = this.__P_191_5["keyframes"] + " " + name;
-        qx.bom.Stylesheet.addRule(this.__P_191_0, selector, rule);
-        this.__P_191_3[rule] = name;
+        var name = this.__P_192_1 + this.__P_192_2++;
+        var selector = this.__P_192_5["keyframes"] + " " + name;
+        qx.bom.Stylesheet.addRule(this.__P_192_0, selector, rule);
+        this.__P_192_3[rule] = name;
         return name;
       },
 
       /**
        * Internal helper to reset the cache.
        */
-      __P_191_13: function __P_191_13() {
-        this.__P_191_2 = 0;
+      __P_192_13: function __P_192_13() {
+        this.__P_192_2 = 0;
 
-        if (this.__P_191_0) {
-          this.__P_191_0.ownerNode.remove();
+        if (this.__P_192_0) {
+          this.__P_192_0.ownerNode.remove();
 
-          this.__P_191_0 = null;
-          this.__P_191_3 = {};
+          this.__P_192_0 = null;
+          this.__P_192_3 = {};
         }
       }
     },
@@ -386,7 +386,7 @@
       if (qx.core.Environment.get("os.name") === "ios" && parseInt(qx.core.Environment.get("os.version")) >= 8) {
         document.addEventListener("visibilitychange", function () {
           if (!document.hidden) {
-            statics.__P_191_13();
+            statics.__P_192_13();
           }
         }, false);
       }
@@ -395,4 +395,4 @@
   qx.bom.element.AnimationCss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationCss.js.map?dt=1614551896958
+//# sourceMappingURL=AnimationCss.js.map?dt=1618504456955

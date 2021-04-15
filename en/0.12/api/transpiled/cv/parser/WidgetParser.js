@@ -14,7 +14,8 @@
       "cv.TemplateEngine": {},
       "cv.IconHandler": {},
       "qx.xml.Element": {},
-      "cv.ui.layout.Manager": {}
+      "cv.ui.layout.Manager": {},
+      "cv.Config": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -441,9 +442,16 @@
         element.querySelectorAll('address').forEach(function (elem) {
           var src = elem.textContent,
               transform = elem.getAttribute('transform'),
+              addressInfo = {},
               formatPos = +(elem.getAttribute('format-pos') || 1) | 0,
               // force integer
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+
+          if ('mqtt' === cv.Config.backend) {
+            addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
+
+            addressInfo.retain = elem.getAttribute('retain') === 'true';
+          }
 
           if (!src || !transform) {
             // fix broken address-entries in config
@@ -478,14 +486,18 @@
 
           if (address[src]) {
             // we already have an entry for this address, merge the modes if the other attribute values are equal
-            if (address[src][0] === transform && address[src][2] === variantInfo[1] && address[src][3] === formatPos) {
-              mode |= address[src][1];
+            if (address[src].transform === transform && address[src].variantInfo === variantInfo[1] && address[src].formatPos === formatPos) {
+              mode |= address[src].mode;
             } else {
               console.error('multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
             }
           }
 
-          address[src] = [transform, mode, variantInfo[1], formatPos];
+          addressInfo.transform = transform;
+          addressInfo.mode = mode;
+          addressInfo.variantInfo = variantInfo[1];
+          addressInfo.formatPos = formatPos;
+          address[src] = addressInfo;
         }, this);
         return address;
       },
@@ -568,4 +580,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1614551266470
+//# sourceMappingURL=WidgetParser.js.map?dt=1618502870647

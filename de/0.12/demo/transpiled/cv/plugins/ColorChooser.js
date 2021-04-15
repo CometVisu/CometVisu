@@ -167,11 +167,11 @@
           } // skip when write flag not set
 
 
-          switch (address[addr][2]) {
+          switch (address[addr].variantInfo) {
             case 'r':
-              v = cv.Transform.encode(address[addr][0], r);
+              v = cv.Transform.encode(address[addr].transform, r);
 
-              if (v !== cv.Transform.encode(address[addr][0], br)) {
+              if (v !== cv.Transform.encode(address[addr].transform, br)) {
                 templateEngine.visu.write(addr, v);
                 modified = true;
               }
@@ -179,9 +179,9 @@
               break;
 
             case 'g':
-              v = cv.Transform.encode(address[addr][0], g);
+              v = cv.Transform.encode(address[addr].transform, g);
 
-              if (v !== cv.Transform.encode(address[addr][0], bg)) {
+              if (v !== cv.Transform.encode(address[addr].transform, bg)) {
                 templateEngine.visu.write(addr, v);
                 modified = true;
               }
@@ -189,9 +189,9 @@
               break;
 
             case 'b':
-              v = cv.Transform.encode(address[addr][0], b);
+              v = cv.Transform.encode(address[addr].transform, b);
 
-              if (v !== cv.Transform.encode(address[addr][0], bb)) {
+              if (v !== cv.Transform.encode(address[addr].transform, bb)) {
                 templateEngine.visu.write(addr, v);
                 modified = true;
               }
@@ -199,13 +199,13 @@
               break;
 
             case 'rgb':
-              var rgb = [r * 255 / 100.0, g * 255 / 100.0, b * 255 / 100.0];
-              var brgb = [br * 255 / 100.0, bg * 255 / 100.0, bb * 255 / 100.0];
-              v = cv.Transform.encode(address[addr][0], rgb);
-              var bv = cv.Transform.encode(address[addr][0], brgb);
+              var rgb = new Map([['r', r], ['g', g], ['b', b]]);
+              var brgb = new Map([['r', br], ['g', bg], ['b', bb]]);
+              v = cv.Transform.encode(address[addr].transform, rgb);
+              var bv = cv.Transform.encode(address[addr].transform, brgb);
 
-              if (v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2]) {
-                templateEngine.visu.write(addr, v.join(","));
+              if (v !== bv) {
+                templateEngine.visu.write(addr, v);
                 modified = true;
               }
 
@@ -236,11 +236,11 @@
           return r.length === 1 ? '0' + r : r;
         }
 
-        var value = cv.Transform.decode(this.getAddress()[ga][0], data),
+        var value = cv.Transform.decode(this.getAddress()[ga].transform, data),
             farbtastic = jQuery.farbtastic(this.getActor()),
             color = farbtastic.color || '#000000';
 
-        switch (this.getAddress()[ga][2]) {
+        switch (this.getAddress()[ga].variantInfo) {
           case 'r':
             this.setBusR(value);
             color = color.substring(0, 1) + toHex(value * 255 / 100) + color.substring(3);
@@ -257,10 +257,10 @@
             break;
 
           case 'rgb':
-            this.setBusR(value[0]);
-            this.setBusG(value[1]);
-            this.setBusB(value[2]);
-            color = color.substring(0, 1) + toHex(value[0] * 255 / 100) + toHex(value[1] * 255 / 100) + toHex(value[2] * 255 / 100) + color.substring(7);
+            this.setBusR(value.get('r'));
+            this.setBusG(value.get('g'));
+            this.setBusB(value.get('b'));
+            color = color.substring(0, 1) + toHex(value.get('r') * 255 / 100) + toHex(value.get('g') * 255 / 100) + toHex(value.get('b') * 255 / 100) + color.substring(7);
             break;
         }
 
@@ -298,4 +298,4 @@
   cv.plugins.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1614551882226
+//# sourceMappingURL=ColorChooser.js.map?dt=1618504438780

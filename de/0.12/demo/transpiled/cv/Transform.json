@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 163,
+        "line": 175,
         "column": 3
       }
     },
@@ -155,7 +155,7 @@
           "column": 4
         },
         "end": {
-          "line": 134,
+          "line": 140,
           "column": 5
         }
       },
@@ -197,11 +197,11 @@
     "encode": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 151,
           "column": 5
         }
       },
@@ -243,11 +243,11 @@
     "decode": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 173,
           "column": 5
         }
       },

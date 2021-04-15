@@ -625,7 +625,7 @@
         }
 
         var self = this,
-            value = cv.Transform.decode(this.getAddress()[address][0], data),
+            value = cv.Transform.decode(this.getAddress()[address].transform, data),
             target = this.getTargetRatioValue(),
             tspan = Array.from(this.getDomElement().getElementsByTagName('tspan')),
             valueFormat = this.applyFormat(address, value);
@@ -679,4 +679,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1614551270828
+//# sourceMappingURL=Roundbar.js.map?dt=1618502876306

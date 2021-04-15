@@ -96,7 +96,7 @@
       _action: function _action() {
         var value = this.getShortThreshold() > 0 || this.isShortDefault() ? this.getShortValue() : this.getSendValue();
         this.sendToBackend(value, function (address) {
-          return !!(address[2] & 1);
+          return !!(address.variantInfo & 1);
         });
       },
 
@@ -105,7 +105,7 @@
        */
       _onLongTap: function _onLongTap() {
         this.sendToBackend(this.getSendValue(), function (address) {
-          return !!(address[2] & 2);
+          return !!(address.variantInfo & 2);
         });
       }
     }
@@ -113,4 +113,4 @@
   cv.ui.structure.pure.Trigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Trigger.js.map?dt=1614551885952
+//# sourceMappingURL=Trigger.js.map?dt=1618504443502

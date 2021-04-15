@@ -3167,6 +3167,20 @@
             }
           }
         },
+        'fts_balcony': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_balcony')
+            }
+          }
+        },
         'fts_blade_arc_-10': {
           '*': {
             'white': '*/white',
@@ -4270,6 +4284,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_garage_door_90')
+            }
+          }
+        },
+        'fts_garage_motorbike': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_garage_motorbike')
             }
           }
         },
@@ -6051,6 +6079,20 @@
             }
           }
         },
+        'it_wifi_2': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('it_wifi_2')
+            }
+          }
+        },
         'it_wifi': {
           '*': {
             'white': '*/white',
@@ -6275,6 +6317,34 @@
             }
           }
         },
+        'light_disco_ball_on': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_disco_ball_on')
+            }
+          }
+        },
+        'light_disco_ball': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_disco_ball')
+            }
+          }
+        },
         'light_downlight': {
           '*': {
             'white': '*/white',
@@ -6314,6 +6384,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_fairy_lights')
+            }
+          }
+        },
+        'light_floor_lamp_2': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_floor_lamp_2')
             }
           }
         },
@@ -7017,6 +7101,20 @@
             }
           }
         },
+        'light_wall_4': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_wall_4')
+            }
+          }
+        },
         'light_waterfall': {
           '*': {
             'white': '*/white',
@@ -7644,6 +7742,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('measure_pressure_bar')
+            }
+          }
+        },
+        'measure_radioactivity': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('measure_radioactivity')
             }
           }
         },
@@ -8837,6 +8949,20 @@
             }
           }
         },
+        'sani_irrigation_water_plug': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('sani_irrigation_water_plug')
+            }
+          }
+        },
         'sani_irrigation': {
           '*': {
             'white': '*/white',
@@ -9198,6 +9324,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('sani_well_pump')
+            }
+          }
+        },
+        'scene_3d_printer': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_3d_printer')
             }
           }
         },
@@ -9649,6 +9789,20 @@
             }
           }
         },
+        'scene_flash': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_flash')
+            }
+          }
+        },
         'scene_football': {
           '*': {
             'white': '*/white',
@@ -10013,6 +10167,20 @@
             }
           }
         },
+        'scene_multicooker': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_multicooker')
+            }
+          }
+        },
         'scene_night': {
           '*': {
             'white': '*/white',
@@ -10265,6 +10433,62 @@
             }
           }
         },
+        'scene_robo_vac_cleaner_active': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_active')
+            }
+          }
+        },
+        'scene_robo_vac_cleaner_attention': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_attention')
+            }
+          }
+        },
+        'scene_robo_vac_cleaner_charging': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_charging')
+            }
+          }
+        },
+        'scene_robo_vac_cleaner_paused': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_paused')
+            }
+          }
+        },
         'scene_robo_vac_cleaner': {
           '*': {
             'white': '*/white',
@@ -10419,6 +10643,20 @@
             }
           }
         },
+        'scene_solar_panel': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_solar_panel')
+            }
+          }
+        },
         'scene_stairs': {
           '*': {
             'white': '*/white',
@@ -10458,6 +10696,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_stove')
+            }
+          }
+        },
+        'scene_stream_course': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_stream_course')
             }
           }
         },
@@ -12932,4 +13184,4 @@
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1614551301846
+//# sourceMappingURL=IconConfig.js.map?dt=1618502917503

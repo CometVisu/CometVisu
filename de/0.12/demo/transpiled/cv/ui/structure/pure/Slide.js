@@ -135,7 +135,7 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var placeholder = this.getFormat() === '' ? '' : '-';
-        return "\n        <div class=\"actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all\" style=\"touch-action: pan-y;\">\n          <button class=\"ui-slider-handle ui-state-default ui-corner-all\" draggable=\"false\" unselectable=\"true\" style=\"transform: translate3d(0px, 0px, 0px);\">" + placeholder + "</button>\n          <div class=\"ui-slider-range\" style=\"margin-left: 0px; width: 0px;\"></div>\n        </div>\n      ";
+        return "\n        <div class=\"actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all\" style=\"touch-action: pan-y;\">\n          <button class=\"ui-slider-handle ui-state-default ui-corner-all\" draggable=\"false\" unselectable=\"true\" style=\"transform: translate3d(0px, 0px, 0px);\">" + placeholder + "</button>\n          <div class=\"ui-slider-range value\" style=\"margin-left: 0px; width: 0px;\"></div>\n        </div>\n      ";
       },
       // overridden
       _onDomReady: function _onDomReady() {
@@ -147,7 +147,7 @@
         this.getActor().addEventListener('pointerdown', this);
       },
       _update: function _update(address, data) {
-        var transform = this.getAddress()[address][0];
+        var transform = this.getAddress()[address].transform;
 
         if (this.__P_50_9 || this.__P_50_5[transform] === data) {
           // slider in use -> ignore value from bus
@@ -239,9 +239,12 @@
         }
 
         if (this.__P_50_7 === undefined || this.__P_50_8 === undefined) {
-          var actor = this.getDomElement().querySelector('.actor');
-          this.__P_50_7 = parseFloat(window.getComputedStyle(actor).getPropertyValue('width'));
+          var actor = this.getDomElement().querySelector('.actor'),
+              actorStyles = window.getComputedStyle(actor);
+          this.__P_50_7 = parseFloat(actorStyles.getPropertyValue('width'));
           this.__P_50_8 = parseFloat(window.getComputedStyle(this.__P_50_4).getPropertyValue('width'));
+          this.__P_50_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+          this.__P_50_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
         }
 
         var length = ratio * this.__P_50_7;
@@ -306,4 +309,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1614551885865
+//# sourceMappingURL=Slide.js.map?dt=1618504443408

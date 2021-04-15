@@ -157,8 +157,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           };
         }
 
-        var basetrans = transformation.split('.')[0];
-        var encoding = transformation in cv.Transform.registry ? cv.Transform.registry[transformation].encode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value) : value;
+        var transformParts = transformation.split(':'),
+            transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
+            parameter = transformParts[2],
+            basetrans = transform.split('.')[0];
+        var encoding = transform in cv.Transform.registry ? cv.Transform.registry[transform].encode(value, parameter) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value, parameter) : value;
         return encoding.constructor === Object ? encoding : {
           bus: encoding,
           raw: encoding
@@ -187,12 +190,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return value;
         }
 
-        var basetrans = transformation.split('.')[0];
-        return transformation in cv.Transform.registry ? cv.Transform.registry[transformation].decode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].decode(value) : value;
+        var transformParts = transformation.split(':'),
+            transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
+            parameter = transformParts[2],
+            basetrans = transform.split('.')[0];
+        return transform in cv.Transform.registry ? cv.Transform.registry[transform].decode(value, parameter) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].decode(value, parameter) : value;
       }
     }
   });
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1614551300332
+//# sourceMappingURL=Transform.js.map?dt=1618502915624

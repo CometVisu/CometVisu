@@ -803,7 +803,7 @@ one parameter that contains the widget name.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">
 <li><abbr title="mandatory">address</abbr></li>
 </ul>
@@ -826,6 +826,14 @@ one parameter that contains the widget name.</p>
 <td>decimal</td>
 <td>Position for format string when multiple addresses are used.</td>
 </tr>
+<tr class="row-odd"><td>qos</td>
+<td>decimal</td>
+<td>Only MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: retain flag</td>
+</tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">
 <li>address<ul>
@@ -838,7 +846,7 @@ one parameter that contains the widget name.</p>
 </td>
 <td>&#160;</td>
 <td>string</td>
-<td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
+<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
 </tr>
 </tbody>
 </table>

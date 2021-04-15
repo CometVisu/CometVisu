@@ -71,14 +71,14 @@
         }
 
         var valElem = this.getValueElement();
-        var value = cv.Transform.decode(this.getAddress()[address][0], data);
+        var value = cv.Transform.decode(this.getAddress()[address].transform, data);
         var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
 
         if (3 !== bg.length) {
           bg = [0, 0, 0];
         }
 
-        switch (this.getAddress()[address][2]) {
+        switch (this.getAddress()[address].variantInfo) {
           case 'r':
             bg[0] = value;
             break;
@@ -103,4 +103,4 @@
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1614551270719
+//# sourceMappingURL=Rgb.js.map?dt=1618502876158

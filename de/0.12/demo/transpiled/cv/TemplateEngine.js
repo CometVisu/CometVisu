@@ -93,10 +93,10 @@
     construct: function construct() {
       // this.base(arguments);
       this.pagePartsHandler = new cv.ui.PagePartsHandler();
-      this.__P_64_0 = new qx.data.Array();
+      this.__P_65_0 = new qx.data.Array();
       this._domFinishedQueue = [];
 
-      this.__P_64_0.addListener("changeLength", function (ev) {
+      this.__P_65_0.addListener("changeLength", function (ev) {
         this.setPartsLoaded(ev.getData() === 0);
       }, this);
 
@@ -207,12 +207,12 @@
       visu: null,
       pluginsToLoadCount: 0,
       xml: null,
-      __P_64_0: null,
+      __P_65_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: ["plugin-openhab"],
-      __P_64_1: null,
-      __P_64_2: false,
+      __P_65_1: null,
+      __P_65_2: false,
 
       /**
        * Load parts (e.g. plugins, structure)
@@ -234,12 +234,12 @@
           });
         }
 
-        this.__P_64_0.append(parts);
+        this.__P_65_0.append(parts);
 
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === "complete") {
-              this.__P_64_0.remove(part);
+              this.__P_65_0.remove(part);
 
               this.debug("successfully loaded part " + part);
 
@@ -329,6 +329,7 @@
        */
       initBackendClient: function initBackendClient() {
         var backendName = cv.Config.configSettings.backend || cv.Config.backend;
+        var backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
         var mapping = {
           oh: "openhab",
           oh2: "openhab2"
@@ -338,7 +339,7 @@
           backendName = mapping[backendName];
         }
 
-        this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
+        this.visu = cv.Application.createClient(backendName, backendUrl);
         var model = cv.data.Model.getInstance();
         this.visu.update = model.update.bind(model); // override clients update function
 
@@ -380,25 +381,25 @@
         var app = qx.core.Init.getApplication();
 
         if (app.isActive()) {
-          if (!this.visu.isConnected() && this.__P_64_2) {
+          if (!this.visu.isConnected() && this.__P_65_2) {
             // reconnect
             this.visu.restart(true);
           } // wait for 3 seconds before checking the backend connection
 
 
-          if (!this.__P_64_1) {
-            this.__P_64_1 = new qx.event.Timer(3000);
+          if (!this.__P_65_1) {
+            this.__P_65_1 = new qx.event.Timer(3000);
 
-            this.__P_64_1.addListener('interval', function () {
+            this.__P_65_1.addListener('interval', function () {
               if (app.isActive()) {
                 this._checkBackendConnection();
               }
 
-              this.__P_64_1.stop();
+              this.__P_65_1.stop();
             }, this);
           }
 
-          this.__P_64_1.restart();
+          this.__P_65_1.restart();
         } else {
           this._checkBackendConnection();
         }
@@ -411,7 +412,7 @@
           severity: "urgent",
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_64_2 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_65_2 && qx.core.Init.getApplication().isActive()
         };
         var lastError = this.visu.getLastError();
 
@@ -422,7 +423,7 @@
             message.message = qx.locale.Manager.tr("Connection to backend is lost.");
           }
         } else {
-          this.__P_64_2 = true;
+          this.__P_65_2 = true;
         }
 
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
@@ -514,6 +515,10 @@
 
         if (pagesNode.getAttribute("backend") !== null) {
           settings.backend = pagesNode.getAttribute("backend");
+        }
+
+        if (pagesNode.getAttribute("backend-url") !== null) {
+          settings.backendUrl = pagesNode.getAttribute("backend-url");
         }
 
         if (pagesNode.getAttribute("token") !== null) {
@@ -1016,10 +1021,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_64_1");
+      this._disposeObjects("__P_65_1");
     }
   });
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1614551886953
+//# sourceMappingURL=TemplateEngine.js.map?dt=1618504444772

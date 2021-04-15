@@ -87,14 +87,14 @@
     construct: function construct(horizontal) {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this); // Create content
 
-      this.__P_117_0 = this._createListItemContainer(); // Used to fire item add/remove events
+      this.__P_118_0 = this._createListItemContainer(); // Used to fire item add/remove events
 
-      this.__P_117_0.addListener("addChildWidget", this._onAddChild, this);
+      this.__P_118_0.addListener("addChildWidget", this._onAddChild, this);
 
-      this.__P_117_0.addListener("removeChildWidget", this._onRemoveChild, this); // Add to scrollpane
+      this.__P_118_0.addListener("removeChildWidget", this._onRemoveChild, this); // Add to scrollpane
 
 
-      this.getChildControl("pane").add(this.__P_117_0); // Apply orientation
+      this.getChildControl("pane").add(this.__P_118_0); // Apply orientation
 
       if (horizontal) {
         this.setOrientation("horizontal");
@@ -106,7 +106,7 @@
       this.addListener("keypress", this._onKeyPress);
       this.addListener("keyinput", this._onKeyInput); // initialize the search string
 
-      this.__P_117_1 = "";
+      this.__P_118_1 = "";
     },
 
     /*
@@ -195,11 +195,11 @@
     *****************************************************************************
     */
     members: {
-      __P_117_1: null,
-      __P_117_2: null,
+      __P_118_1: null,
+      __P_118_2: null,
 
       /** @type {qx.ui.core.Widget} The children container */
-      __P_117_0: null,
+      __P_118_0: null,
 
       /** @type {Class} Pointer to the selection manager to use */
       SELECTION_MANAGER: qx.ui.core.selection.ScrollArea,
@@ -211,7 +211,7 @@
       */
       // overridden
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_117_0;
+        return this.__P_118_0;
       },
 
       /**
@@ -272,7 +272,7 @@
       */
       // property apply
       _applyOrientation: function _applyOrientation(value, old) {
-        var content = this.__P_117_0; // save old layout for disposal
+        var content = this.__P_118_0; // save old layout for disposal
 
         var oldLayout = content.getLayout(); // Create new layout
 
@@ -292,7 +292,7 @@
       },
       // property apply
       _applySpacing: function _applySpacing(value, old) {
-        this.__P_117_0.getLayout().setSpacing(value);
+        this.__P_118_0.getLayout().setSpacing(value);
       },
       // property readOnly
       _applyReadOnly: function _applyReadOnly(value) {
@@ -398,21 +398,21 @@
         } // Reset string after a second of non pressed key
 
 
-        if (new Date().valueOf() - this.__P_117_2 > 1000) {
-          this.__P_117_1 = "";
+        if (new Date().valueOf() - this.__P_118_2 > 1000) {
+          this.__P_118_1 = "";
         } // Combine keys the user pressed to a string
 
 
-        this.__P_117_1 += e.getChar(); // Find matching item
+        this.__P_118_1 += e.getChar(); // Find matching item
 
-        var matchedItem = this.findItemByLabelFuzzy(this.__P_117_1); // if an item was found, select it
+        var matchedItem = this.findItemByLabelFuzzy(this.__P_118_1); // if an item was found, select it
 
         if (matchedItem) {
           this.setSelection([matchedItem]);
         } // Store timestamp
 
 
-        this.__P_117_2 = new Date().valueOf();
+        this.__P_118_2 = new Date().valueOf();
       },
 
       /**
@@ -506,10 +506,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_117_0");
+      this._disposeObjects("__P_118_0");
     }
   });
   qx.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1614551890742
+//# sourceMappingURL=List.js.map?dt=1618504449464

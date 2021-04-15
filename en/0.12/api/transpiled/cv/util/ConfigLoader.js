@@ -55,7 +55,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_482_0 = new qx.data.Array();
+      this.__P_483_0 = new qx.data.Array();
     },
 
     /*
@@ -64,17 +64,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ******************************************************
     */
     members: {
-      __P_482_0: null,
-      __P_482_1: null,
-      __P_482_2: null,
-      __P_482_3: null,
+      __P_483_0: null,
+      __P_483_1: null,
+      __P_483_2: null,
+      __P_483_3: null,
 
       /**
        * Load a config file
        */
       load: function load(callback, context) {
-        this.__P_482_1 = callback;
-        this.__P_482_2 = context; // get the data once the page was loaded
+        this.__P_483_1 = callback;
+        this.__P_483_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -89,7 +89,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.debug("Requesting " + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__P_482_0.push(uri);
+        this.__P_483_0.push(uri);
 
         ajaxRequest.set({
           accept: "application/xml",
@@ -107,10 +107,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             xml = qx.xml.Document.fromString(xml);
           }
 
-          this.__P_482_3 = xml;
+          this.__P_483_3 = xml;
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
 
-          this.__P_482_0.remove(ajaxRequest.getUrl());
+          this.__P_483_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
             this.configError("parsererror");
@@ -160,12 +160,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
 
-            this.__P_482_0.remove(ajaxRequest.getUrl());
+            this.__P_483_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__P_482_0.push(demoUrl);
+            this.__P_483_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -188,7 +188,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__P_482_0.push(url);
+        this.__P_483_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -200,7 +200,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
           includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
 
-          this.__P_482_0.remove(url);
+          this.__P_483_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -221,8 +221,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_482_0.length === 0) {
-          this.__P_482_1.call(this.__P_482_2, this.__P_482_3);
+        if (this.__P_483_0.length === 0) {
+          this.__P_483_1.call(this.__P_483_2, this.__P_483_3);
 
           this.dispose();
         }
@@ -290,12 +290,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     destruct: function destruct() {
       // remove references
-      this.__P_482_3 = null;
-      this.__P_482_1 = null;
-      this.__P_482_2 = null;
+      this.__P_483_3 = null;
+      this.__P_483_1 = null;
+      this.__P_483_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1614551300183
+//# sourceMappingURL=ConfigLoader.js.map?dt=1618502915420

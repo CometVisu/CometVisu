@@ -454,7 +454,7 @@ daher weg gelassen werden.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
 <dt>wgplugin_info</dt><dd><ul class="simple">
 <li><abbr title="Pflichtangabe">address</abbr></li>
 </ul>
@@ -477,6 +477,14 @@ daher weg gelassen werden.</p>
 <td>Zahl</td>
 <td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
 </tr>
+<tr class="row-odd"><td>qos</td>
+<td>Zahl</td>
+<td>Nur MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: retain Flag</td>
+</tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>wgplugin_info</dt><dd><ul class="simple">
 <li>address<ul>
@@ -489,7 +497,7 @@ daher weg gelassen werden.</p>
 </td>
 <td>&#160;</td>
 <td>Text</td>
-<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
 </tr>
 </tbody>
 </table>

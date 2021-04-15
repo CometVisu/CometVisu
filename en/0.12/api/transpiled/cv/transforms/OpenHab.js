@@ -196,16 +196,22 @@
         },
         'color': {
           name: "OH_Color",
-          encode: function encode(rgb) {
-            return qx.util.ColorUtil.rgbToHsb(rgb);
+          encode: function encode(phy) {
+            if (!(phy instanceof Map)) {
+              return '0, 0, 0';
+            }
+
+            var rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
+            return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
           },
           decode: function decode(hsbString) {
             if (cv.transforms.OpenHab.isUndefined(hsbString)) {
-              return [0, 0, 0];
+              return new Map([['r', 0], ['g', 0], ['b', 0]]);
             } // decode HSV/HSB to RGB
 
 
-            return qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
+            var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
+            return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
           }
         }
       });
@@ -214,4 +220,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1614551268360
+//# sourceMappingURL=OpenHab.js.map?dt=1618502873156

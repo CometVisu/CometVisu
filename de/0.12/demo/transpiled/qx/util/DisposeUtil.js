@@ -205,7 +205,7 @@
           var item = children[i];
           arr.push(item);
 
-          if (this.__P_186_0(item)) {
+          if (this.__P_187_0(item)) {
             this._collectContainerChildren(item, arr);
           }
         }
@@ -218,7 +218,7 @@
        * @return {Boolean} <code>true</code> if the object is a container for
        * child widgets
        */
-      __P_186_0: function __P_186_0(obj) {
+      __P_187_0: function __P_187_0(obj) {
         var classes = [];
 
         if (qx.ui.mobile && obj instanceof qx.ui.mobile.core.Widget) {
@@ -240,4 +240,4 @@
   qx.util.DisposeUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DisposeUtil.js.map?dt=1614551896525
+//# sourceMappingURL=DisposeUtil.js.map?dt=1618504456411

@@ -29,6 +29,7 @@
       "cv.Config": {},
       "cv.io.Mockup": {},
       "cv.io.openhab.Rest": {},
+      "cv.io.mqtt.Client": {},
       "qx.bom.Blocker": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
@@ -171,6 +172,8 @@
             // we only need the rest path not the login resource
             args[1] = args[1].substring(0, args[1].indexOf("cv/"));
           }
+        } else if (args[0] === "mqtt") {
+          Client = cv.io.mqtt.Client;
         }
 
         args.unshift(null);
@@ -876,4 +879,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1614551880396
+//# sourceMappingURL=Application.js.map?dt=1618504436539

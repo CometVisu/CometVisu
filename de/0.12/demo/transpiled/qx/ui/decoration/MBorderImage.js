@@ -238,7 +238,7 @@
 
         var resolvedImage = qx.util.AliasManager.getInstance().resolve(this.getBorderImage());
 
-        var computedSlices = this.__P_325_0(resolvedImage);
+        var computedSlices = this.__P_326_0(resolvedImage);
 
         return {
           top: this.getSliceTop() || computedSlices[0],
@@ -255,7 +255,7 @@
        * @param baseImage {String} Resource Id of the base border image
        * @return {Integer[]} Array with the top, right, bottom and left slice widths
        */
-      __P_325_0: function __P_325_0(baseImage) {
+      __P_326_0: function __P_326_0(baseImage) {
         var mode = this.getBorderImageMode();
         var topSlice = 0;
         var rightSlice = 0;
@@ -283,4 +283,4 @@
   qx.ui.decoration.MBorderImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderImage.js.map?dt=1614551906918
+//# sourceMappingURL=MBorderImage.js.map?dt=1618504468931

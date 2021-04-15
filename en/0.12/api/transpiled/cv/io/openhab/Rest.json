@@ -539,6 +539,13 @@
             "paramName": "value",
             "description": " value to send",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object} optional options, depending on backend",
+            "paramName": "options",
+            "description": " optional options, depending on backend",
+            "type": "Object"
           }
         ]
       }

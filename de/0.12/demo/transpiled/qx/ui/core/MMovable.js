@@ -65,16 +65,16 @@
     *****************************************************************************
     */
     members: {
-      __P_296_0: null,
-      __P_296_1: null,
-      __P_296_2: null,
-      __P_296_3: null,
-      __P_296_4: null,
-      __P_296_5: null,
-      __P_296_6: null,
-      __P_296_7: false,
-      __P_296_8: null,
-      __P_296_9: 0,
+      __P_297_0: null,
+      __P_297_1: null,
+      __P_297_2: null,
+      __P_297_3: null,
+      __P_297_4: null,
+      __P_297_5: null,
+      __P_297_6: null,
+      __P_297_7: false,
+      __P_297_8: null,
+      __P_297_9: 0,
 
       /*
       ---------------------------------------------------------------------------
@@ -88,15 +88,15 @@
        * @param widget {qx.ui.core.Widget} Widget to activate as move handle
        */
       _activateMoveHandle: function _activateMoveHandle(widget) {
-        if (this.__P_296_0) {
+        if (this.__P_297_0) {
           throw new Error("The move handle could not be redefined!");
         }
 
-        this.__P_296_0 = widget;
+        this.__P_297_0 = widget;
         widget.addListener("pointerdown", this._onMovePointerDown, this);
         widget.addListener("pointerup", this._onMovePointerUp, this);
         widget.addListener("pointermove", this._onMovePointerMove, this);
-        widget.addListener("losecapture", this.__P_296_10, this);
+        widget.addListener("losecapture", this.__P_297_10, this);
       },
 
       /**
@@ -104,11 +104,11 @@
        *
        * @return {qx.ui.core.Widget} The resize frame
        */
-      __P_296_11: function __P_296_11() {
-        var frame = this.__P_296_1;
+      __P_297_11: function __P_297_11() {
+        var frame = this.__P_297_1;
 
         if (!frame) {
-          frame = this.__P_296_1 = new qx.ui.core.Widget();
+          frame = this.__P_297_1 = new qx.ui.core.Widget();
           frame.setAppearance("move-frame");
           frame.exclude();
           qx.core.Init.getApplication().getRoot().add(frame);
@@ -120,11 +120,11 @@
       /**
        * Creates, shows and syncs the frame with the widget.
        */
-      __P_296_12: function __P_296_12() {
+      __P_297_12: function __P_297_12() {
         var location = this.getContentLocation();
         var bounds = this.getBounds();
 
-        var frame = this.__P_296_11();
+        var frame = this.__P_297_11();
 
         frame.setUserBounds(location.left, location.top, bounds.width, bounds.height);
         frame.show();
@@ -143,17 +143,17 @@
        * @param e {qx.event.type.Pointer} Pointer event
        * @return {Map} A map with the computed drag coordinates
        */
-      __P_296_13: function __P_296_13(e) {
-        var range = this.__P_296_2;
+      __P_297_13: function __P_297_13(e) {
+        var range = this.__P_297_2;
         var pointerLeft = Math.max(range.left, Math.min(range.right, e.getDocumentLeft()));
         var pointerTop = Math.max(range.top, Math.min(range.bottom, e.getDocumentTop()));
-        var viewportLeft = this.__P_296_3 + pointerLeft;
-        var viewportTop = this.__P_296_4 + pointerTop;
+        var viewportLeft = this.__P_297_3 + pointerLeft;
+        var viewportTop = this.__P_297_4 + pointerTop;
         return {
           viewportLeft: parseInt(viewportLeft, 10),
           viewportTop: parseInt(viewportTop, 10),
-          parentLeft: parseInt(viewportLeft - this.__P_296_5, 10),
-          parentTop: parseInt(viewportTop - this.__P_296_6, 10)
+          parentLeft: parseInt(viewportLeft - this.__P_297_5, 10),
+          parentTop: parseInt(viewportTop - this.__P_297_6, 10)
         };
       },
 
@@ -191,16 +191,16 @@
 
         if (qx.Class.implementsInterface(parent, qx.ui.window.IDesktop)) {
           if (!parent.isBlocked()) {
-            this.__P_296_8 = parent.getBlockerColor();
-            this.__P_296_9 = parent.getBlockerOpacity();
+            this.__P_297_8 = parent.getBlockerColor();
+            this.__P_297_9 = parent.getBlockerOpacity();
             parent.setBlockerColor(null);
             parent.setBlockerOpacity(1);
             parent.blockContent(this.getZIndex() - 1);
-            this.__P_296_7 = true;
+            this.__P_297_7 = true;
           }
         }
 
-        this.__P_296_2 = {
+        this.__P_297_2 = {
           left: parentLocation.left,
           top: parentLocation.top,
           right: parentLocation.left + parentBounds.width,
@@ -208,18 +208,18 @@
         }; // Compute drag positions
 
         var widgetLocation = this.getContentLocation();
-        this.__P_296_5 = parentLocation.left;
-        this.__P_296_6 = parentLocation.top;
-        this.__P_296_3 = widgetLocation.left - e.getDocumentLeft();
-        this.__P_296_4 = widgetLocation.top - e.getDocumentTop(); // Add state
+        this.__P_297_5 = parentLocation.left;
+        this.__P_297_6 = parentLocation.top;
+        this.__P_297_3 = widgetLocation.left - e.getDocumentLeft();
+        this.__P_297_4 = widgetLocation.top - e.getDocumentTop(); // Add state
 
         this.addState("move"); // Enable capturing
 
-        this.__P_296_0.capture(); // Enable drag frame
+        this.__P_297_0.capture(); // Enable drag frame
 
 
         if (this.getUseMoveFrame()) {
-          this.__P_296_12();
+          this.__P_297_12();
         } // Stop event
 
 
@@ -239,10 +239,10 @@
         } // Apply new coordinates using DOM
 
 
-        var coords = this.__P_296_13(e);
+        var coords = this.__P_297_13(e);
 
         if (this.getUseMoveFrame()) {
-          this.__P_296_11().setDomPosition(coords.viewportLeft, coords.viewportTop);
+          this.__P_297_11().setDomPosition(coords.viewportLeft, coords.viewportTop);
         } else {
           var insets = this.getLayoutParent().getInsets();
           this.setDomPosition(coords.parentLeft - (insets.left || 0), coords.parentTop - (insets.top || 0));
@@ -274,21 +274,21 @@
         var parent = this.getLayoutParent();
 
         if (qx.Class.implementsInterface(parent, qx.ui.window.IDesktop)) {
-          if (this.__P_296_7) {
+          if (this.__P_297_7) {
             parent.unblock();
-            parent.setBlockerColor(this.__P_296_8);
-            parent.setBlockerOpacity(this.__P_296_9);
-            this.__P_296_8 = null;
-            this.__P_296_9 = 0;
-            this.__P_296_7 = false;
+            parent.setBlockerColor(this.__P_297_8);
+            parent.setBlockerOpacity(this.__P_297_9);
+            this.__P_297_8 = null;
+            this.__P_297_9 = 0;
+            this.__P_297_7 = false;
           }
         } // Disable capturing
 
 
-        this.__P_296_0.releaseCapture(); // Apply them to the layout
+        this.__P_297_0.releaseCapture(); // Apply them to the layout
 
 
-        var coords = this.__P_296_13(e);
+        var coords = this.__P_297_13(e);
 
         var insets = this.getLayoutParent().getInsets();
         this.setLayoutProperties({
@@ -297,7 +297,7 @@
         }); // Hide frame afterwards
 
         if (this.getUseMoveFrame()) {
-          this.__P_296_11().exclude();
+          this.__P_297_11().exclude();
         }
 
         e.stopPropagation();
@@ -308,7 +308,7 @@
        *
        * @param e {qx.event.type.Event} Lose capture event
        */
-      __P_296_10: function __P_296_10(e) {
+      __P_297_10: function __P_297_10(e) {
         // Check for active move
         if (!this.hasState("move")) {
           return;
@@ -318,7 +318,7 @@
         this.removeState("move"); // Hide frame afterwards
 
         if (this.getUseMoveFrame()) {
-          this.__P_296_11().exclude();
+          this.__P_297_11().exclude();
         }
       }
     },
@@ -329,12 +329,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_296_1", "__P_296_0");
+      this._disposeObjects("__P_297_1", "__P_297_0");
 
-      this.__P_296_2 = null;
+      this.__P_297_2 = null;
     }
   });
   qx.ui.core.MMovable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMovable.js.map?dt=1614551904902
+//# sourceMappingURL=MMovable.js.map?dt=1618504466534

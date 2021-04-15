@@ -76,14 +76,50 @@
         '2': {
           link: '1.001'
         },
+        '3.007': {
+          name: 'DPT_Control_Dimming',
+          encode: function encode(phy) {
+            phy = parseFloat(phy);
+
+            if (phy < -100 || phy > -1 && phy <= 0) {
+              return {
+                bus: '80',
+                raw: '00'
+              }; // down: stop
+            }
+
+            if (phy > 100 || phy > 0 && phy < 1) {
+              return {
+                bus: '88',
+                raw: '08'
+              }; // up: stop
+            }
+
+            var up = phy > 0,
+                stepCode = 7 - Math.floor(Math.log2(Math.abs(phy))),
+                val = (stepCode | up * 8).toString(16);
+            return {
+              bus: '8' + val,
+              raw: '0' + val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            var val = parseInt(hex, 16),
+                up = (val & 8) > 0;
+            return (up * 2 - 1) * 100 / Math.pow(2, (val & 7) - 1);
+          }
+        },
+        '3.008': {
+          name: 'DPT_Control_Blinds',
+          link: '3.007'
+        },
         '3': {
-          link: '1.001'
+          link: '3.007'
         },
         '4.001': {
           name: 'DPT_Char_ASCII',
           encode: function encode(phy) {
-            var val = phy.charCodeAt(0).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = phy.charCodeAt(0).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -104,8 +140,7 @@
             max: 100.0
           },
           encode: function encode(phy) {
-            var val = parseInt(phy * 255 / 100).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = parseInt(phy * 255 / 100).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -123,8 +158,7 @@
             max: 360.0
           },
           encode: function encode(phy) {
-            var val = parseInt(phy * 255 / 360).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = parseInt(phy * 255 / 360).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -142,8 +176,7 @@
             max: 255.0
           },
           encode: function encode(phy) {
-            var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -167,8 +200,7 @@
           encode: function encode(phy) {
             phy = parseInt(cv.Transform.clip(-128, phy, 127));
             var val = phy < 0 ? phy + 256 : phy;
-            val = val.toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            val = val.toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -185,7 +217,7 @@
         '7.001': {
           name: 'DPT_Value_2_Ucount',
           encode: function encode(phy) {
-            var val = parseInt(phy).toString(16).padStart(4, "0");
+            var val = parseInt(phy).toString(16).padStart(4, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -195,6 +227,11 @@
             return parseInt(hex, 16);
           }
         },
+        '7.600': {
+          name: 'DPT_Absolute_Colour_Temperature',
+          unit: 'K',
+          link: '7.001'
+        },
         '7': {
           link: '7.001'
         },
@@ -203,7 +240,7 @@
           encode: function encode(phy) {
             var val = parseInt(phy);
             val = val < 0 ? val + 65536 : val;
-            val = val.toString(16).padStart(4, "0");
+            val = val.toString(16).padStart(4, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -233,7 +270,7 @@
               exp++;
             }
 
-            var val = (sign | exp << 11 | mant & 0x07ff).toString(16).padStart(4, "0");
+            var val = (sign | exp << 11 | mant & 0x07ff).toString(16).padStart(4, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -278,9 +315,9 @@
         '10.001': {
           name: 'DPT_TimeOfDay',
           encode: function encode(phy) {
-            var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, "0");
-            val += phy.getMinutes().toString(16).padStart(2, "0");
-            val += phy.getSeconds().toString(16).padStart(2, "0");
+            var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, '0');
+            val += phy.getMinutes().toString(16).padStart(2, '0');
+            val += phy.getSeconds().toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -317,7 +354,7 @@
         '12.001': {
           name: 'DPT_Value_4_Ucount',
           encode: function encode(phy) {
-            var val = parseInt(phy).toString(16).padStart(8, "0");
+            var val = parseInt(phy).toString(16).padStart(8, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -335,7 +372,7 @@
           encode: function encode(phy) {
             var val = parseInt(phy);
             val = val < 0 ? val + 4294967296 : val;
-            val = val.toString(16).padStart(8, "0");
+            val = val.toString(16).padStart(8, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -449,8 +486,7 @@
             max: 192
           },
           encode: function encode(phy) {
-            var val = parseInt(cv.Transform.clip(0, phy - 1, 191)).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = parseInt(cv.Transform.clip(0, phy - 1, 191)).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -481,8 +517,7 @@
             max: 128
           },
           encode: function encode(phy) {
-            var val = parseInt(cv.Transform.clip(0, phy - 1, 127)).toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            var val = parseInt(cv.Transform.clip(0, phy - 1, 127)).toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -539,8 +574,7 @@
                 val = 0;
             }
 
-            val = val.toString(16);
-            val = val.length === 1 ? '0' + val : val;
+            val = val.toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -610,6 +644,130 @@
             return val;
           }
         },
+        '225.001': {
+          name: 'DPT_ScalingSpeed',
+          encode: function encode(phy) {
+            var period = phy.get('period') || 0,
+                percent = phy.get('percent') || 0,
+                val = [parseInt(period).toString(16).padStart(4, '0'), parseInt(percent * 255 / 100).toString(16).padStart(2, '0')].join('');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return new Map([['period', parseInt(hex.substr(0, 4), 16)], ['percent', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]]);
+          }
+        },
+        '225': {
+          name: 'DPT_U24',
+          unit: '-',
+          range: {
+            min: 0x0,
+            max: 0xfff
+          },
+          encode: function encode(phy) {
+            var val = parseInt(cv.Transform.clip(0, phy, 0xffffff)).toString(16).padStart(6, '0');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return parseInt(hex, 16);
+          }
+        },
+        '232.600': {
+          name: 'DPT_Colour_RGB',
+          encode: function encode(phy) {
+            if (!(phy instanceof Map)) {
+              return {
+                bus: '80000000',
+                raw: '000000'
+              };
+            }
+
+            var r = phy.get('r') || 0,
+                g = phy.get('g') || 0,
+                b = phy.get('b') || 0,
+                val = [parseInt(r * 255 / 100).toString(16).padStart(2, '0'), parseInt(g * 255 / 100).toString(16).padStart(2, '0'), parseInt(b * 255 / 100).toString(16).padStart(2, '0')].join('');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return new Map([['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0], ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0], ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]]);
+          }
+        },
+        '232': {
+          name: 'DPT_3U8',
+          encode: function encode(phy) {
+            var val = [parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'), parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'), parseInt(phy[2] * 255 / 100).toString(16).padStart(2, '0')].join('');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return [parseInt(hex.substr(0, 2), 16) * 100 / 255.0, parseInt(hex.substr(2, 2), 16) * 100 / 255.0, parseInt(hex.substr(4, 2), 16) * 100 / 255.0];
+          }
+        },
+        '242.600': {
+          name: 'DPT_Colour_xyY',
+          encode: function encode(phy) {
+            if (!(phy instanceof Map)) {
+              return {
+                bus: '80000000000000',
+                raw: '000000000000'
+              };
+            }
+
+            var cValid = phy.has('x') && phy.has('y') && (phy.get('cValid') || false),
+                bValid = phy.has('b') && (phy.get('bValid') || false),
+                x = phy.get('x') || 0,
+                y = phy.get('y') || 0,
+                b = phy.get('b') || 0,
+                val = [parseInt(x * 65535).toString(16).padStart(4, '0'), parseInt(y * 65535).toString(16).padStart(4, '0'), parseInt(b * 255 / 100).toString(16).padStart(2, '0'), (cValid * 2 + bValid * 1).toString(16).padStart(2, '0')].join('');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            var valid = parseInt(hex[11], 16);
+            return new Map([['x', parseInt(hex.substr(0, 4), 16) / 65535.0], ['y', parseInt(hex.substr(4, 4), 16) / 65535.0], ['b', parseInt(hex.substr(8, 2), 16) * 100 / 255.0], ['cValid', (valid & 2) > 0], ['bValid', (valid & 1) > 0]]);
+          }
+        },
+        '251.600': {
+          name: 'DPT_Colour_RGBW',
+          encode: function encode(phy) {
+            if (!(phy instanceof Map)) {
+              return {
+                bus: '80000000000000',
+                raw: '000000000000'
+              };
+            }
+
+            var rValid = phy.has('r') && (phy.get('rValid') || false),
+                gValid = phy.has('g') && (phy.get('gValid') || false),
+                bValid = phy.has('b') && (phy.get('bValid') || false),
+                wValid = phy.has('w') && (phy.get('wValid') || false),
+                r = phy.get('r') || 0,
+                g = phy.get('g') || 0,
+                b = phy.get('b') || 0,
+                w = phy.get('w') || 0,
+                val = [parseInt(r * 255 / 100).toString(16).padStart(2, '0'), parseInt(g * 255 / 100).toString(16).padStart(2, '0'), parseInt(b * 255 / 100).toString(16).padStart(2, '0'), parseInt(w * 255 / 100).toString(16).padStart(2, '0'), '00', (rValid * 8 + gValid * 4 + bValid * 2 + wValid * 1).toString(16).padStart(2, '0')].join('');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            var valid = parseInt(hex[11], 16);
+            return new Map([['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0], ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0], ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0], ['w', parseInt(hex.substr(6, 2), 16) * 100 / 255.0], ['rValid', (valid & 8) > 0], ['gValid', (valid & 4) > 0], ['bValid', (valid & 2) > 0], ['wValid', (valid & 1) > 0]]);
+          }
+        },
 
         /* 9 Zeilen:
         },
@@ -640,4 +798,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1614551268325
+//# sourceMappingURL=Knx.js.map?dt=1618502873090
