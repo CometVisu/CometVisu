@@ -293,7 +293,9 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
 
     <pages>
         <meta>
-            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            <templates>
+                <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            </templates>
         </meta>
         <page>
             <page name="Wohnzimmer">

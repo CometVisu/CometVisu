@@ -291,7 +291,9 @@ also be swapped out to an external file.
 
     <pages>
         <meta>
-            <template name="Heizung" ref="resource/config/media/heating.template.xml"/>
+            <templates>
+                <template name="Heizung" ref="resource/config/media/heating.template.xml"/>
+            </templates>
         </meta>
         <page>
             <page name="Living room">
