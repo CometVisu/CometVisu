@@ -385,6 +385,21 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return undefined;
     },
 
+    getFirstLevelElementSorting: function () {
+      const allowedSorting = this.getAllowedElementsSorting();
+      if (allowedSorting) {
+        // we only care about the first level here
+        Object.keys(allowedSorting).forEach(name => {
+          let sort = allowedSorting[name];
+          if (typeof sort === 'string') {
+            sort = parseInt(sort.split('.')[0]);
+          }
+          allowedSorting[name] = sort;
+        });
+      }
+      return allowedSorting;
+    },
+
     /**
      * get the bounds for this elements children (as defined by a choice)
      *

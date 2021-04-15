@@ -893,15 +893,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (model.getSchemaElement().areChildrenSortable()) {
             accepted.mode |= Allowed.FIRST_CHILD;
           } else {
-            const allowedSorting = model.getSchemaElement().getAllowedElementsSorting();
+            const allowedSorting = model.getSchemaElement().getFirstLevelElementSorting();
             if (allowedSorting) {
               if (element) {
                 let targetPosition = allowedSorting[element.getName()];
-                if (targetPosition !== undefined && (targetPosition === 0 || (typeof targetPosition === 'string' && targetPosition.startsWith("0")))) {
+                if (targetPosition !== undefined && targetPosition === 0) {
                   accepted.mode |= Allowed.FIRST_CHILD;
                 }
-              } else {
-                //TODO: check if there is a first child and no one can be added before that
+              } else if (model.getChildren().length > 0) {
+                const firstChild = model.getChildren().getItem(0);
+                let firstChildPosition = allowedSorting[firstChild.getName()];
+                if (firstChildPosition !== undefined && firstChildPosition > 0) {
+                  // first child is not on position 0
+                  accepted.mode |= Allowed.FIRST_CHILD;
+                }
+              } else if (Object.keys(allowedSorting).length > 0) {
+                // target is empty, but children are allowed
+                accepted.mode |= Allowed.FIRST_CHILD;
               }
             }
           }
@@ -1141,15 +1149,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (addable.length > 0) {
         // check if a child could be added at this position
         if (!parentSchemaElement.areChildrenSortable() && position !== 'inside') {
-          const sorting = parentSchemaElement.getAllowedElementsSorting();
           // we only care about the first level here
-          Object.keys(sorting).forEach(name => {
-            let sort = sorting[name];
-            if (typeof sort === 'string') {
-              sort = parseInt(sort.split('.')[0]);
-            }
-            sorting[name] = sort;
-          });
+          const sorting = parentSchemaElement.getFirstLevelElementSorting();
           let minPosition = 0;
           let maxPosition = 0;
           const children = parent.getChildren();

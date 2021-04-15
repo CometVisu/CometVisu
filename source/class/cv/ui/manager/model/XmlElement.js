@@ -488,18 +488,23 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           // any position is fine, just append it to the end
           return this.getChildren().length;
         } else {
-          const allowedSorting = schemaElement.getAllowedElementsSorting();
-          const sorting = allowedSorting[newChild.getName()];
-          if (typeof sorting === "string") {
-            const start = sorting.split(".").shift();
-            if (start === "x") {
-              // any position is fine, just append it to the end
-              return this.getChildren().length;
-            } else {
-              return parseInt(start);
+          const allowedSorting = schemaElement.getFirstLevelElementSorting();
+          if (allowedSorting && allowedSorting.hasOwnProperty(newChild.getName())) {
+            const position = allowedSorting[newChild.getName()];
+            // search for the first sibling with a position > than the newChilds and insert it there
+            let targetIndex = position;
+            const found = this.getChildren().some((child, index) => {
+              const childPos = allowedSorting[child.getName()];
+              if (childPos > position) {
+                targetIndex = index;
+                return true;
+              }
+            });
+            if (!found) {
+              // append to the end
+              targetIndex = this.getChildren().length;
             }
-          } else if (typeof sorting === "number") {
-            return sorting;
+            return targetIndex;
           }
         }
       }
