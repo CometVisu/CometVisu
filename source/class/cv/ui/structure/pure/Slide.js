@@ -200,9 +200,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         return;
       }
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
-        let actor = this.getDomElement().querySelector('.actor');
-        this.__actorWidth = parseFloat(window.getComputedStyle(actor).getPropertyValue('width'));
+        let
+          actor = this.getDomElement().querySelector('.actor'),
+          actorStyles = window.getComputedStyle(actor);
+        this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
         this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
+        this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+        this.__range.style.borderRadius = actorStyles.getPropertyValue('border-radius');
       }
       let length = ratio * this.__actorWidth;
       this.__button.style.transform = 'translate3d(' + (length-this.__buttonWidth/2) + 'px, 0px, 0px)';
