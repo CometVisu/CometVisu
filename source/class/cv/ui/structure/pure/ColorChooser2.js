@@ -150,7 +150,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
       this.getControls().split(';').forEach(function(control){
         switch(control) {
           case 'triangle':
-            retval += `<div class="actor cc_wheel" style="position:relative;width:195px;height:195px;">
+            retval += `<div class="actor cc_wheel">
             <div class="hue"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>`;
             break;
             
@@ -164,7 +164,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           case 'v':
             retval += '<div class="actor cc_' + control + ` ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
-          <div class="ui-slider-range" style="margin-left: 0px; width: 0px;"></div>
+          <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);"></div>
         </div>`;
         }
       });
@@ -203,10 +203,22 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         case 's':
         case 'v':
           value /= 100;
+          delete this.__lastBusValue.hsv;
+          delete this.__lastBusValue.r;
+          delete this.__lastBusValue.g;
+          delete this.__lastBusValue.b;
+          delete this.__lastBusValue.rgb;
           break;
 
         case 'hsv':
           value = { h: value.get('h')/100, s: value.get('s')/100, v: value.get('v')/100 };
+          delete this.__lastBusValue.h;
+          delete this.__lastBusValue.s;
+          delete this.__lastBusValue.v;
+          delete this.__lastBusValue.r;
+          delete this.__lastBusValue.g;
+          delete this.__lastBusValue.b;
+          delete this.__lastBusValue.rgb;
           break;
 
         case 'r':
@@ -214,6 +226,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         case 'b':
           base = this.getBaseColors()[variant];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
+          delete this.__lastBusValue.h;
+          delete this.__lastBusValue.s;
+          delete this.__lastBusValue.v;
+          delete this.__lastBusValue.hsv;
+          delete this.__lastBusValue.rgb;
           break;
 
         case 'rgb':
@@ -223,6 +240,13 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
             b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale )
           };
+          delete this.__lastBusValue.h;
+          delete this.__lastBusValue.s;
+          delete this.__lastBusValue.v;
+          delete this.__lastBusValue.hsv;
+          delete this.__lastBusValue.r;
+          delete this.__lastBusValue.g;
+          delete this.__lastBusValue.b;
           break;
       }
 
@@ -268,7 +292,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
                 inner: inner,
                 handle: handle,
                 width: parseFloat(actorStyle.getPropertyValue('width')),
-                height: parseFloat(actorStyle.getPropertyValue('height')),
+                height: parseFloat(actorStyle.getPropertyValue('padding-top')),
                 innerRadius: parseFloat(window.getComputedStyle(sv_triangle).getPropertyValue('width')),
                 outerRadius: parseFloat(window.getComputedStyle(hue).getPropertyValue('width'))
               };
@@ -310,13 +334,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           }
           let length = ratio * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
-          actor.range.style.width = length + 'px';
+          //actor.range.style.width = length + 'px';
+          actor.range.style.clipPath = 'inset(0 ' + (1-ratio)*100 + '% 0 0)';
         }
       }
       
       //////
       let rgb = this.__colorCurrent.getComponent('rgb');
-      this.__parentWidget__P_101_0.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
+      //console.log(this.__parentWidget__P_101_0, this.__parentWidget__P_101_0.getWidgetElement(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
+      //console.log(this.getPath(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
+      //this.getParentWidget().getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
+      this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
     },
 
     __invalidateScreensize: function () {
@@ -336,7 +364,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMinX = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-          this.__coordMinY = boundingRect.top + parseFloat(computedStyle.paddingTop);
+          this.__coordMinY = boundingRect.top;// + parseFloat(computedStyle.paddingTop);
           relCoordX = (event.clientX - this.__coordMinX)/this.__actors[actorType].width;
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
           if( actorType === 'wheel' ) {
@@ -440,7 +468,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
             break;
 
           case 'rgb':
-            value = new Map([['r', value.r*100], ['g', value.g*100], ['b', value.b*100]] );
+            base = this.getBaseColors();
+            value = new Map([
+              ['r', cv.util.Color.curve(value.r, base.r.curve, base.r.scale )],
+              ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale )],
+              ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale )]
+            ]);
             break;
         }
         //let tmp__lastBusValue =  this.__lastBusValue[type];

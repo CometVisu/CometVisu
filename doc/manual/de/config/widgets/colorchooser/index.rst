@@ -114,6 +114,15 @@ Hier der minimale Beispielcode der das ColorChooser Plugin aus dem folgenden Scr
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
     </colorchooser>
 
+ToDo für Doku
+-------------
+
+Warum zeigen zwei ColorChooser eine komplett unterschiedliche Anzeige?
+- Wenn per RGB gekoppelt, aber ein HSV Chooser, dann ist aufgrund der nicht
+exakt möglichen umrechnung von RGB nach HSV eine unterschiedliche Anzeige möglich, obwohl die selbe Farbe repräsentiert wird
+
+Wenn die Farben im Chooser nicht zu denen der Beleuchtung passen:
+- Dim-Kuven checken
 
 .. rubric:: Fußnoten
 

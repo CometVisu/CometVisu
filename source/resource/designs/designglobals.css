@@ -286,10 +286,26 @@ button.ui-slider-handle {
   fill: white;
 }
 
+.colorchooser2 .actors {
+  width: 30%;
+  float: left;
+}
+
+.colorchooser2 .actor.ui-slider {
+  width: 100%;
+  margin-top: 1.5em;
+}
+.colorchooser2 .cc_wheel {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
 .colorchooser2 .hue {
   position:absolute;
   width:100%;
   height:100%;
+  top: 0;
   border-radius:50%;
   background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
   -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 10px),#fff calc(100% - 9.5px));
@@ -334,6 +350,38 @@ button.ui-slider-handle {
   border-radius:50%;
   box-sizing:border-box;
   transform:translate(-50%,-50%);
+}
+
+.colorchooser2 .ui-slider .ui-slider-range {
+  width: 100%;
+}
+
+.colorchooser2 .cc_r.ui-slider .ui-slider-range {
+  background-color: #f00;
+}
+
+.colorchooser2 .cc_g.ui-slider .ui-slider-range {
+  background-color: #0f0;
+}
+
+.colorchooser2 .cc_b.ui-slider .ui-slider-range {
+  background-color: #00f;
+}
+
+.colorchooser2 .cc_w.ui-slider .ui-slider-range {
+  background-color: #fff;
+}
+
+.colorchooser2 .cc_h.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser2 .cc_s.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(red, yellow, lime, blue);
+}
+
+.colorchooser2 .cc_v.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #000, #fff);
 }
 
 #notification-center {
