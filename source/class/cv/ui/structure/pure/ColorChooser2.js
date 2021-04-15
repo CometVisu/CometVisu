@@ -277,12 +277,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
     __updateHandlePosition: function (ratio) {
       // check cache
       if (this.__actors === undefined) {
-        let actors = {};
+        let
+          actors = {},
+          actorStyle;
         this.getDomElement().querySelectorAll('.actor').forEach(function (actor){
           let type = actor.className.replace(/.*cc_([^ ]*).*/,'$1');
           switch(type) {
             case 'wheel':
-              let actorStyle = window.getComputedStyle(actor);
+              actorStyle = window.getComputedStyle(actor);
               let sv_triangle = actor.querySelector('.sv_triangle');
               let inner = sv_triangle.querySelector('.inner');
               let handle = actor.querySelector('.handle');
@@ -299,14 +301,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
               break;
 
             default:
+              actorStyle = window.getComputedStyle(actor);
               let button = actor.querySelector('button');
               let range = actor.querySelector('.ui-slider-range');
               actors[type] = {
                 button: button,
                 range: range,
-                width: parseFloat(window.getComputedStyle(actor).getPropertyValue('width')),
+                width: parseFloat(actorStyle.getPropertyValue('width')),
                 buttonWidth: parseFloat(window.getComputedStyle(button).getPropertyValue('width'))
               };
+              range.style.borderRadius = actorStyle.getPropertyValue('border-radius');
           }
         });
         this.__actors = actors;
