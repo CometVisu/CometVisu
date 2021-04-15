@@ -485,6 +485,7 @@ shows how to define and use a template.</p>
 <div class="code-block-caption"><span class="caption-text">Example of a template for a heater and its use in different rooms</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
+      <span class="nt">&lt;templates&gt;</span>
         <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
               {{{ additional_content }}}
@@ -513,6 +514,7 @@ shows how to define and use a template.</p>
               <span class="nt">&lt;/infotrigger&gt;</span>
             <span class="nt">&lt;/group&gt;</span>
         <span class="nt">&lt;/template&gt;</span>
+      <span class="nt">&lt;/templates&gt;</span>
     <span class="nt">&lt;/meta&gt;</span>
     <span class="nt">&lt;page&gt;</span>
         <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">&gt;</span>
@@ -552,7 +554,9 @@ also be swapped out to an external file.</p>
 <div class="code-block-caption"><span class="caption-text">Example of a template definition from an external file</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
+      <span class="nt">&lt;templates&gt;</span>
         <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span> <span class="na">ref=</span><span class="s">&quot;resource/config/media/heating.template.xml&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/templates&gt;</span>
     <span class="nt">&lt;/meta&gt;</span>
     <span class="nt">&lt;page&gt;</span>
         <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">&gt;</span>
