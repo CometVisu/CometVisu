@@ -458,43 +458,42 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         return true;
       }
       // check position
-      const allowedSorting = schemaElement.getAllowedElementsSorting();
+      const allowedSorting = schemaElement.getFirstLevelElementSorting();
       if (!this.isLoaded()) {
         this.load();
       }
       const children = this.getChildren();
+      if (children.length === 0) {
+        // no children yet, no position problem
+        return true;
+      }
       let currentPosition = index;
       if (children.length > index) {
         currentPosition = allowedSorting[children.getItem(index).getName()];
       } else {
         currentPosition = children.length;
       }
-      if (typeof currentPosition === "string") {
-        currentPosition = currentPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
-      } else {
-        currentPosition = [currentPosition];
-      }
       let targetPosition = allowedSorting[nodeName];
-      if (typeof targetPosition === "string") {
-        if (targetPosition === 'x') {
-          // allowed anywhere
-          return true;
-        }
-        targetPosition = targetPosition.split(".").map(i => /^\d+$/.test(i) ? parseInt(i) : i);
+      if (currentPosition === targetPosition) {
+        // no special position
+        return true
       } else {
-        targetPosition = [targetPosition];
-      }
-      for (let i = 0; i < Math.min(currentPosition.length, targetPosition.length); i++) {
-        if (currentPosition[i] === targetPosition[i]) {
-          // no special position
-          return true
-        } else {
-          // only allow if it can be inserted before
-          const allowed = currentPosition[i] + 1 >= targetPosition[i];
-          if (!allowed) {
-            this.debug(nodeName, "is not allowed as child of", this.getName());
-            return false;
+        // find the first previous sibling of a different type
+        let previousSibling
+        for (let i = currentPosition - 1; i >= 0; i--) {
+          if (children.getItem(i).getName() !== nodeName) {
+            previousSibling = children.getItem(i).getName();
+            break;
           }
+        }
+        if (previousSibling) {
+          currentPosition = allowedSorting[previousSibling];
+        }
+        // only allow if it can be inserted before
+        const allowed = currentPosition + 1 >= targetPosition;
+        if (!allowed) {
+          this.debug(nodeName, "is not allowed as child of", this.getName());
+          return false;
         }
       }
       return true;
