@@ -51,7 +51,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     /**
      * find the type-node for this element
      *
-     * @return  object  jQuery-fied object of the type-Node
+     * @return  object  object of the type-Node
      */
     getTypeNode: function (node, schema) {
       let type;
@@ -171,6 +171,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     __allowedContentLoaded: false,
     __allowedContent: null,
     __allowedAttributes: null,
+    __textNodeSchemaElement: null,
 
     /**
      * get and set the type-node for the element
@@ -457,6 +458,13 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return false;
     },
 
+    isTextContentRequired: function () {
+      if (this.isTextContentAllowed()) {
+        return !this.isMixed() && !this.getAllowedContent()._text.isValueValid("");
+      }
+      return false;
+    },
+
     /**
      * check if an element (specified by its name) is allowed as one of our immediate children
      * Goes recursive if we have choices.
@@ -503,7 +511,14 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           return undefined;
         }
 
-        return this.getSchema().getTextNodeSchemaElement();
+        if (!this.__textNodeSchemaElement) {
+          const tmpXML = this.getSchema().getSchemaDOM().createElement('element');
+          tmpXML.setAttribute('name', '#text');
+          tmpXML.setAttribute('type', 'xsd:string');
+          this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
+          this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
+        }
+        return this.__textNodeSchemaElement;
       } else if (elementName === '#comment') {
         // comments are always allowed
         return this.getSchema().getCommentNodeSchemaElement();
@@ -627,8 +642,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
   ***********************************************
   */
   destruct: function () {
-    this.__allowedContent = null;
-    this.__allowedContent = null;
-    this.__allowedAttributes = null;
+    this._disposeMap('__allowedAttributes');
+    this._disposeMap('__allowedContent');
+    this._disposeObjects('__textNodeSchemaElement');
   }
 });

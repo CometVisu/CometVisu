@@ -828,7 +828,7 @@ msgstr ""
 msgid "Add %1"
 msgstr ""
 
-#: cv/ui/manager/model/XmlElement.js
+#. NO LONGER USED
 msgid "Invalid text content: %1"
 msgstr ""
 
@@ -922,4 +922,32 @@ msgstr ""
 
 #: cv/ui/manager/editor/Tree.js
 msgid "Preview is out of sync. Click here to refresh."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Line %s"
+msgstr ""
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Line %1"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid text content: '%1'"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid value"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' not allowed"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' is required but missing"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is missing"
 msgstr ""

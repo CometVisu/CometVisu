@@ -185,7 +185,22 @@ function contentChange(data) { // jshint ignore:line
   }
 }
 
-function parseErrors(content, errors, format) {
+function getPath(lineElementMap, lineNo) {
+  if (lineElementMap.has(lineNo)) {
+    const parts = [];
+    let child = lineElementMap.get(lineNo);
+    let parent = child.parent;
+    while (parent) {
+      parts.unshift(`${parent.name}[${parent.children.indexOf(child)}]`);
+      child = parent
+      parent = child.parent;
+    }
+    return '/' + parts.join('/');
+  }
+  return '';
+}
+
+function parseErrors(content, errors, includePaths) {
   if (!errors) {
     return [];
   }
@@ -193,9 +208,10 @@ function parseErrors(content, errors, format) {
   const parsedErrors = [];
   const lineElementMap = new Map();
   const contentLines = content.split("\n");
-  if (format === "paths") {
+  if (includePaths) {
     let currentElement;
-    let currentParents = [];
+    let currentParent;
+    let root;
     let context;
     contentLines.forEach((line, lineNo) => {
       for (let i = 0, l = line.length; i < l; i++) {
@@ -206,15 +222,17 @@ function parseErrors(content, errors, format) {
           } else if (line[i + 1] === "/") {
             // close tag
             context = ""
-            if (currentParents.length > 0) {
-              currentElement = currentParents.pop();
+            if (currentParent) {
+              currentElement = currentParent;
+              currentParent = currentElement.parent;
               context = "element";
             }
             i++;
             continue;
           } else if (line[i + 1] === "?") {
             context = "header"
-            i++;
+            // skip header
+            i = line.indexOf(">", i + 1) + 1;
           } else {
             context = "element";
           }
@@ -222,30 +240,38 @@ function parseErrors(content, errors, format) {
             // new tag
             const match = /^<([^\s>]+)/.exec(line.substr(i));
             if (currentElement) {
-              currentParents.push(currentElement);
+              currentParent = currentElement;
             }
-            currentElement = match[1];
-            lineElementMap.set(lineNo, {
-              element: currentElement,
-              path: '/' + currentParents.join("/")
-            });
-            i += currentElement.length;
+            currentElement = { line: lineNo+1, name: match[1], children: [], parent: currentParent };
+            if (currentParent) {
+              currentParent.children.push(currentElement)
+            }
+            if (!root) {
+              root = currentElement;
+            }
+            lineElementMap.set(lineNo+1, currentElement);
+            let endIndex = line.indexOf(`</${currentElement.name}>`, i);
+            if (endIndex === -1) {
+              endIndex = line.indexOf('/>', i)-1;
+            }
+            if (endIndex > -1) {
+              i = endIndex;
+            } else {
+              // tag does not end in this line, continue in next line
+              continue;
+            }
           }
         } else if (line[i] === "/") {
           context = ""
-          if (currentParents.length > 0) {
-            currentElement = currentParents.pop();
+          if (currentParent) {
+            currentElement = currentParent;
+            currentParent = currentElement.parent;
             context = "element";
-          }
-        } else if (line[i] === "?") {
-          if (line[i + 1] === ">") {
-            // end of header
-            context = ""
-            i++;
           }
         }
       }
     });
+    console.log(lineElementMap);
   }
   errors.forEach(error => {
     if (/.*\.xml:[\d]+:.+/.test(error)) {
@@ -269,7 +295,7 @@ function parseErrors(content, errors, format) {
           message: message,
           element: undefined,
           attribute: undefined,
-          path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null,
+          path: getPath(lineElementMap, lineNo),
           startColumn: Math.max(0, source.search(/[^\s]/)),
           endColumn: source.length,
           original: error
@@ -300,7 +326,7 @@ function parseErrors(content, errors, format) {
             message: message,
             element: element,
             attribute: attribute,
-            path: lineElementMap.has(lineNo) ? lineElementMap.get(lineNo).path : null,
+            path: getPath(lineElementMap, lineNo),
             startColumn: Math.max(0, source.indexOf(element) - 1),
             endColumn: source.length,
             original: error
@@ -315,6 +341,7 @@ function parseErrors(content, errors, format) {
           err.startColumn++;
           err.endColumn++;
           parsedErrors.push(err);
+          console.log(err);
         } else {
           console.error("could parse position", position);
         }
@@ -345,7 +372,7 @@ function validateConfig (data) {
   }
 }
 
-function validateXmlConfig(id, content, format) {
+function validateXmlConfig(id, content, includePaths) {
   if (!configSchema) {
     configSchema = getFileContent('../visu_config.xsd');
   }
@@ -353,10 +380,10 @@ function validateXmlConfig(id, content, format) {
     xml: content,
     schema: configSchema
   });
-  if (!format || !lint.errors) {
+  if (!includePaths || !lint.errors) {
     postMessage(["validationResult", lint.errors || true, id]);
   } else if (lint.errors) {
-    postMessage(["validationResult", parseErrors(content, lint.errors, format), id]);
+    postMessage(["validationResult", parseErrors(content, lint.errors, includePaths), id]);
   } else {
     postMessage(["validationResult", true, id]);
   }

@@ -110,7 +110,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'Boolean',
       init: true,
       event: 'changeValid',
-      apply: '_maintainStatus'
+      apply: '_applyValid'
+    },
+
+    invalidMessage: {
+      check: 'String',
+      init: '',
+      event: 'changeInvalidMessage'
     },
 
     status: {
@@ -194,6 +200,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
+    _applyValid: function (value) {
+      this._maintainStatus();
+      if (value) {
+        this.resetInvalidMessage();
+      }
+    },
+
     _maintainIcon: function () {
       if (this._node) {
         if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
@@ -220,7 +233,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     updateDeletable: function () {
-        const parent = this.getParent();
+      const parent = this.getParent();
+      if (this.isTextNode()) {
+        if (this.getSchemaElement().isTextContentRequired()) {
+          const existing = parent.getChildren().filter(child => child.isTextNode()).length;
+          this.setDeletable(existing > 1);
+        } else {
+          this.setDeletable(true);
+        }
+      } else {
         let deletable = false;
         if (parent) {
           const schemaElement = parent.getSchemaElement();
@@ -239,6 +260,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           }
         }
         this.setDeletable(deletable);
+      }
     },
 
     getNode: function () {
@@ -584,11 +606,70 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     _validateTextContent: function (value) {
       if (this._node) {
         if (!this.getSchemaElement().isValueValid(value)) {
-          throw new qx.core.ValidationError(this.tr("Invalid text content: %1", value));
+          throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
         }
       } else {
-        throw new qx.core.ValidationError(this.tr("Text content not allowed here"));
+        throw new qx.core.ValidationError(qx.locale.Manager.tr("Text content not allowed here"));
       }
+    },
+
+    /**
+     * Validate this element (and its parent when this is a text node)
+     * @param recursive {Boolean} validate children too
+     */
+    validate: function (recursive) {
+      const schemaElement = this.getSchemaElement();
+      if (this.isTextNode()) {
+        this.getParent().validate(false);
+        this.setValid(schemaElement.isValueValid(this.getText()));
+      } else if (this.isElement()) {
+        const allowedAttributes = schemaElement.getAllowedAttributes();
+        const errors = [];
+        // check attribute values
+        for (let i = 0; i < this._node.attributes.length; i++) {
+          const attr = this._node.attributes.item(i);
+          if (allowedAttributes.hasOwnProperty(attr.name)) {
+            if (!allowedAttributes[attr.name].isValueValid(attr.value)) {
+              errors.push({
+                attribute: attr.name,
+                error: qx.locale.Manager.tr("Invalid value")
+              });
+            }
+          } else {
+            errors.push({
+              attribute: attr.name,
+              error: qx.locale.Manager.tr("Attribute '%1' not allowed", attr.name)
+            });
+          }
+        }
+        // check for missing required attributes
+        Object.keys(allowedAttributes).filter(name => !allowedAttributes[name].isOptional()).forEach(name => {
+          if (!this._node.hasAttribute(name)) {
+            errors.push({
+              attribute: name,
+              error: qx.locale.Manager.tr("Attribute '%1' is required but missing", name)
+            });
+          }
+        })
+        if (schemaElement.isTextContentRequired()) {
+          // check if we have at least one non empty #text child
+          const found = this.getChildren().some(child => {
+            return child.isTextNode() && child.getNode().nodeValue.trim() !== "";
+          });
+          if (!found) {
+            errors.push({
+              attribute: '#text',
+              error: qx.locale.Manager.tr("Text content is missing")
+            });
+          }
+        }
+        this.setInvalidMessage(errors.map(err => err.error).join("<br/>"));
+        this.setValid(errors.length === 0);
+      }
+    },
+
+    isTextNode: function () {
+      return this.getName() === '#text' || this.getName() === '#cdata-section';
     },
 
     _applyTextContent: function (value) {
@@ -855,13 +936,24 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             }
           } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
             this._initialTextContent = this._node.nodeValue;
-            this.setTextContent(this._node.nodeValue);
+            try {
+              this.setTextContent(this._node.nodeValue);
+            } catch (e) {
+              this.appendInvalidMessage(e.toString());
+            }
           }
         }
         this.setLoaded(true);
         children.addListener('change', this._syncChildNodes, this);
         this._updateChildrenDeletableFlags();
         this.__initializing = false;
+      }
+    },
+
+    appendInvalidMessage: function (errorMsg) {
+      if (errorMsg) {
+        const existing = this.getInvalidMessage();
+        this.setInvalidMessage(existing ? existing + "<br/>" + errorMsg : errorMsg);
       }
     },
 
@@ -945,7 +1037,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
 
     _updateChildrenDeletableFlags: function () {
       this.getChildren().forEach(child => {
-        if (child.isElement()) {
+        if (child.isElement() || child.isTextNode()) {
           child.updateDeletable();
         }
       });

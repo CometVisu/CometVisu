@@ -122,7 +122,8 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
             minIndent = 0;
           }
           codeSnippet = codeSnippet.map(line => line[0] + ": " + qx.xml.String.escape(line[1].substr(minIndent)));
-          label = new qx.ui.basic.Label(`<h4>Line: ${error.line}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join("\n")}</pre>`);
+          const headline = this.tr("Line %1", error.line);
+          label = new qx.ui.basic.Label(`<h4>${headline}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join("\n")}</pre>`);
           label.set(labelOptions);
           errorLabels.set(errorId, label);
           errorBox.add(label);

@@ -812,7 +812,7 @@ msgstr "Verschiebe %1"
 msgid "Add %1"
 msgstr "Erzeuge %1"
 
-#: cv/ui/manager/model/XmlElement.js
+#. NO LONGER USED
 msgid "Invalid text content: %1"
 msgstr "Ungültiger Text-Inhalt: %1"
 
@@ -846,11 +846,11 @@ msgstr "Ansehen"
 
 #: cv/ui/manager/dialog/ValidationError.js
 msgid "<h3>Config Errors</h3><p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because it can break the file completely. Please open this file in the text editor and fix the errors there. Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>"
-msgstr ""
+msgstr "<h3>Fehler in der Konfiguration</h3><p>Die Überprüfung von \"%1\" hat Fehler gefunden. Es wird NICHT empfohlen, diese Datei im XML-Editor zu bearbeiten, weil die Möglichkeit besteht, dass sie dadurch unbrauchbar wird. Bitte öffnen Sie die Datei im Texteditor und beheben Sie die Fehler dort. Fahren Sie nur fort, wenn Sie wissen was Sie tun.</p>"
 
 #: cv/ui/manager/dialog/ValidationError.js
 msgid "<p>You can choose between the following options:<ul>    <li><b>Cancel</b> - Close this editor</li>    <li><b>Proceed</b> - Open the defective file in this editor</li>    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li></ul></p>"
-msgstr ""
+msgstr "<p>Sie können zwischen folgenden Optionen wählen:<ul>    <li><b>Abbrechen</b> - Diesen Editor schließen</li>    <li><b>Fortfahren</b> - Ungültige Datei in diesem Editor öffnen</li>    <li><b>Öffnen in Text-Editor</b> - Diesen Editor schließen und die ungültige Datei im Text-Editor öffnen</li></ul></p>"
 
 #: cv/ui/manager/dialog/ValidationError.js
 msgid "Proceed"
@@ -883,3 +883,27 @@ msgstr "Bitte erzeugen Sie ein neues Element indem Sie diesen Button auf die Ste
 #: cv/ui/manager/editor/Tree.js
 msgid "Preview is out of sync. Click here to refresh."
 msgstr "Die Vorschau zeigt nicht mehr den aktuellen Zustand der Konfiguration an. Klicken Sie hier, um die Vorschau zu aktualisieren."
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Line %1"
+msgstr "Zeile %1"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid text content: '%1'"
+msgstr "Ungültiger Textinhalt: '%1'"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid value"
+msgstr "Ungültiger Wert"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' not allowed"
+msgstr "Attribut '%1' ist nicht erlaubt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' is required but missing"
+msgstr "Attribut '%1' fehlt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is missing"
+msgstr "Fehlender Textinhalt"

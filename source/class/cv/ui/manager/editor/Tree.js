@@ -553,6 +553,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                controller.bindProperty("sortable", "sortable", null, item, index);
                controller.bindProperty("icon", "icon", null, item, index);
                controller.bindProperty("status", 'status', null, item, index);
+               controller.bindProperty("invalidMessage", "toolTipText", null, item, index);
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
@@ -1257,6 +1258,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 // do this recursively
                 initChildren(child, schemaElement.getSchemaElementForElementName(childName));
               });
+              if (schemaElement.isTextContentRequired()) {
+                const child = document.createTextNode("-");
+                element.appendChild(child);
+              }
             }
             if (isElement) {
               initChildren(element, schemaElement);
@@ -1357,7 +1362,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               if (Array.isArray(res)) {
                 res.unshift({label: " - " + this.tr("not set") + " - ", value: ""})
               }
-            }).catch(err => console.error(err));
+            }).catch(err => this.error(err));
           } else {
             formData.options.unshift({label: " - " + this.tr("not set") + " - ", value: ""});
           }
@@ -1498,6 +1503,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             // save changes
             element.setAttributes(data);
             this.clearReDos();
+            element.validate();
           }
           this.__editing = false;
           formDialog.destroy();
@@ -1678,7 +1684,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               dialog.addListener('action', (ev) => {
                 switch (ev.getData()) {
                   case 'proceed':
-                    this.__loadContent(value);
+                    this.__loadContent(value, res);
                     break;
 
                   case 'open-source':
@@ -1713,7 +1719,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
-    __loadContent: function (value) {
+    __loadContent: function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
       if (file) {
@@ -1738,6 +1744,31 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (file.isTemporary()) {
           this._onContentChanged();
+        }
+        if (errors) {
+          errors.forEach(error => {
+            if (error.path && error.path.startsWith('/pages')) {
+              let current = rootNode;
+              let parts = error.path.substr(1).split("/");
+              while (parts.length > 0) {
+                let part = parts.shift();
+                let match = /^([^[]+)\[(\d)+\]$/.exec(part);
+                if (match) {
+                  current = current.getChildren().getItem(parseInt(match[2]));
+                  current.load();
+                } else {
+                  this.error("patch segment format error: " + part);
+                  current = null;
+                  break;
+                }
+              }
+              if (current) {
+                current.setValid(false);
+                current.validate(false);
+                tree.openNodeAndParents(current);
+              }
+            }
+          });
         }
       }
     },
