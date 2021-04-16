@@ -271,7 +271,6 @@ function parseErrors(content, errors, includePaths) {
         }
       }
     });
-    console.log(lineElementMap);
   }
   errors.forEach(error => {
     if (/.*\.xml:[\d]+:.+/.test(error)) {
@@ -341,7 +340,6 @@ function parseErrors(content, errors, includePaths) {
           err.startColumn++;
           err.endColumn++;
           parsedErrors.push(err);
-          console.log(err);
         } else {
           console.error("could parse position", position);
         }

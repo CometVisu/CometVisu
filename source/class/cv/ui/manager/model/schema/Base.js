@@ -100,8 +100,8 @@ qx.Class.define('cv.ui.manager.model.schema.Base', {
     /// needs to be implemented by the inheriting classes
     parse: function () {
       const n = this.getNode();
-      let min = n.getAttribute('minOccurs') !== undefined ? n.getAttribute('minOccurs') : 1; // default is 1
-      let max = n.getAttribute('maxOccurs') !== undefined ? n.getAttribute('maxOccurs') : 1; // default is 1
+      let min = n.hasAttribute('minOccurs') ? n.getAttribute('minOccurs') : 1; // default is 1
+      let max = n.hasAttribute('maxOccurs') ? n.getAttribute('maxOccurs') : 1; // default is 1
       this._bounds = {
         min: parseInt(min),
         max: max === "unbounded" ? Number.POSITIVE_INFINITY : parseInt(max)
