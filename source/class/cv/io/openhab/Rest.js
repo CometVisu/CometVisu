@@ -253,6 +253,12 @@ qx.Class.define('cv.io.openhab.Rest', {
       }.bind(this);
     },
 
+    terminate: function () {
+      if (this.eventSource) {
+        this.eventSource.close();
+      }
+    },
+
     handleMessage: function(payload) {
       if (payload.type === "message") {
         const data = JSON.parse(payload.data);

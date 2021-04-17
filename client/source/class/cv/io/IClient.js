@@ -136,7 +136,10 @@ qx.Interface.define('cv.io.IClient', {
      */
     restart: function(full) {},
 
-
+    /**
+     * Called directly before the page gets unloaded. Can be used to disconnect correctly.
+     */
+    terminate: function () {},
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
      * It is injected by the project using the client.

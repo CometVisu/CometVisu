@@ -790,6 +790,10 @@ qx.Class.define("cv.Application",
           cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
         });
       }
+    },
+
+    terminate: function() {
+      cv.TemplateEngine.getClient().terminate();
     }
   }
 });
