@@ -176,7 +176,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
         label.setValue(this.getLabel());
       }
 
-      this._add(label, {flex: 1});
+      this._add(label);
+      this._add(new qx.ui.core.Spacer(), {flex: 1});
       const buttons = this.getChildControl('buttons');
       this._add(buttons);
       this.__labelAdded = true;
