@@ -184,6 +184,8 @@ qx.Class.define('cv.util.Color', {
     __hsv: undefined,
     __rbg: undefined,
     __T: undefined,
+    __Lab: undefined, // L*a*b*
+    __LCh: undefined, // L*C*h°
 
     // make derived color valid
     __validateHSV: function (force) {
@@ -294,7 +296,39 @@ qx.Class.define('cv.util.Color', {
         this.__T = Math.max( 2000, Math.min( T, 12500 ));
       }
     },
-    
+
+    __validateLab: function (force) {
+      if( this.__Lab === undefined || force ) {
+        const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
+        let
+          X = this.__x * (this.__Y / this.__y),
+          Z = (1 - this.__x - this.y) * (this.__Y / this.__y),
+          f = function(t) {
+                if(t < 216/24389) {
+                  return (24389/27*t+16)/116;
+                } else {
+                  return t**(1/3);
+                }
+              };
+        this.__Lab = {
+          L: 116 * f(this.__Y/Yn) - 16,
+          a: 500 * (f(X/Xn) - f(this.__Y/Yn)),
+          b: 200 * (f(this.__Y/Yn) - f(Z/Zn))
+        };
+      }
+    },
+
+    __validateLCh: function (force) {
+      this.__validateLab();
+      if (this.__LCh === undefined || force) {
+        this.__LCh = {
+          L: this.__Lab.L,
+          C: Math.sqrt(this.__Lab.a**2 + this.__Lab.b**2),
+          h: Math.atan(this.__Lab.a, this.__Lab.b)
+        };
+      }
+    },
+
     // synchronise xyY
     __syncHSV2xy: function () {
       // first step: get maximum saturated RGB values
