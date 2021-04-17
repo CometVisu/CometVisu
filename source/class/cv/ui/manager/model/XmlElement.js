@@ -315,8 +315,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (targetParent.isChildAllowedAtPosition(this, changes[0].index)) {
         children.remove(this);
         this.getNode().remove();
-
-        targetParent.insertChild(this, changes[0].index, true);
+        if (targetParent === parent) {
+          // target index might have changed by removing
+          changes[0].index = targetChildren.indexOf(target) + (before ? 0 : 1);
+        }
+        targetParent.insertChild(this, changes[0].index, true, 'moved');
         if (!skipUndo) {
           const editor = this.getEditor();
           if (editor) {
@@ -339,11 +342,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         child: this,
         index: index
       }];
+      // save old target index because we are moving inside the same parent, and the target index might change after removing
+      const target = newParent === parent && index < children.length ? children.getItem(index) : null;
       if (newParent.isChildAllowedAtPosition(this, index)) {
         children.remove(this);
         this.getNode().remove();
 
-        newParent.insertChild(this, index, true);
+        if (target) {
+          index = children.indexOf(target);
+          changes[0].index = index;
+        }
+        newParent.insertChild(this, index, true, 'moved');
         if (!skipUndo) {
           const editor = this.getEditor();
           if (editor) {
@@ -367,13 +376,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     insertAfter: function (target, skipUndo) {
       const targetParent = target.getParent();
       const newIndex = targetParent.getChildren().indexOf(target) + 1;
-      return targetParent.insertChild(this, newIndex, skipUndo);
+      return targetParent.insertChild(this, newIndex, skipUndo, 'added');
     },
 
     insertBefore: function (target, skipUndo) {
       const targetParent = target.getParent();
       const newIndex = targetParent.getChildren().indexOf(target);
-      return targetParent.insertChild(this, newIndex, skipUndo);
+      return targetParent.insertChild(this, newIndex, skipUndo, 'added');
     },
 
     /**
@@ -539,7 +548,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * @param skipUndo {Boolean} do not add an undo operation for this change
      * @return {Boolean} true if the child has been added
      */
-    insertChild: function (xmlElement, index, skipUndo) {
+    insertChild: function (xmlElement, index, skipUndo, internalOperation) {
       if (!this.isLoaded()) {
         this.load();
       }
@@ -581,8 +590,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             editor.updateModified(xmlElement);
           }
         }
-        xmlElement.$$added = true;
-        xmlElement.updateModified();
+        if (!internalOperation || internalOperation === 'added') {
+          xmlElement.$$added = true;
+          xmlElement.updateModified();
+        }
         this.updateModified();
         if (children.length === 1) {
           // first child added -> open it

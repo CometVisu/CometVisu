@@ -1117,8 +1117,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               this.debug(action, elementName, "into", target.getDisplayName(), "as child");
               switch (action) {
                 case 'move':
+                  target.insertChild(element, -1, false, 'moved');
+                  break;
+
                 case 'copy':
-                  target.insertChild(element);
+                  target.insertChild(element, -1, false, 'added');
                   break;
 
                 case 'add':
@@ -1319,7 +1322,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                     break;
 
                   case 'inside':
-                    target.insertChild(xmlElement, -1);
+                    target.insertChild(xmlElement, -1, false, 'added');
                     break;
                 }
                 this.getChildControl('tree').openNodeAndParents(xmlElement);
@@ -1573,7 +1576,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const target = this.getSelected();
       const clipboardElement = this.getClipboard();
       if (target && clipboardElement) {
-        if (target.insertChild(clipboardElement, -1)) {
+        if (target.insertChild(clipboardElement, -1, false, 'added')) {
           // this was successful, clean the clipboard
           this.resetClipboard();
         }
