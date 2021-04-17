@@ -160,6 +160,9 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               iconPath: "icon",
               labelPath: "value"
             });
+            if (fieldData.validation) {
+              formElement.getChildControl('textfield').setLiveUpdate(true);
+            }
             const selection = formElement.getChildControl("dropdown").getSelection();
             selection.addListener('change', function(ev) {
               const selected = selection.getItem(0);
