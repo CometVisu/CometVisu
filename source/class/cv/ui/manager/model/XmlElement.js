@@ -581,6 +581,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             editor.updateModified(xmlElement);
           }
         }
+        xmlElement.$$added = true;
+        xmlElement.updateModified();
         this.updateModified();
         if (children.length === 1) {
           // first child added -> open it
@@ -957,7 +959,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     updateModified: function () {
-      if (this._node.nodeType === Node.ELEMENT_NODE) {
+      if (this.$$added) {
+        this.setModified(true);
+      } else if (this._node.nodeType === Node.ELEMENT_NODE) {
         const initial = this._initialAttributes;
         const currentChildNames = this._currentChildNames();
         if (this._node.attributes.length !== initial.size) {
@@ -1006,6 +1010,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         this._initialChildNames = this._currentChildNames();
       } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
         this._initialTextContent = this._node.nodeValue;
+      }
+      if (this.$$added) {
+        delete this.$$added;
       }
       this.setModified(false);
     },
