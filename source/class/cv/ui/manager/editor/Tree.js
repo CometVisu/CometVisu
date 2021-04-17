@@ -1180,6 +1180,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
                 }
               }
+            } else {
+              // we want to append ot to the end
+              maxPosition = minPosition + 1;
             }
           }
           addable = addable.filter(name => sorting.hasOwnProperty(name) && sorting[name] <= maxPosition && sorting[name] >= minPosition);
