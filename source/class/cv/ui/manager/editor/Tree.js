@@ -598,7 +598,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setOpacity(0.5);
            control.setZIndex(100);
            control.setLayoutProperties({left: -1000, top: -1000});
-           control.setDroppable(true);
+           control.setAnonymous(true);
            qx.core.Init.getApplication().getRoot().add(control);
            break;
 
@@ -815,7 +815,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           } else {
             target = null;
           }
-          if (!target) {
+          if (!target || target === control) {
             accepted.mode = Allowed.NONE;
             ev.preventDefault();
             return;
@@ -831,7 +831,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const model = target.getModel();
         const parent = model.getParent();
         accepted.target = model;
-        // because there is not "add" drag action we check for copy and no payload
 
         if (parent) {
           const parentSchemaElement = parent.getSchemaElement();
@@ -859,7 +858,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   accepted.mode = acc;
                 }
               }
-              accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
               ev.preventDefault();
               // not children allowed here
@@ -880,11 +878,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
         } else {
-          accepted.mode = 0;
+          accepted.mode = Allowed.NONE;
         }
         let lookInside;
         if (addNew) {
-          lookInside = Object.keys(model.getSchemaElement().getAllowedElements()).length > 0;
+          lookInside = Object.keys(model.getSchemaElement().getAllowedElements(true)).length > 0;
         } else {
           lookInside = model.getSchemaElement().isChildElementAllowed(element.getName());
         }
@@ -915,6 +913,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
         }
+        if (accepted.mode === Allowed.NONE) {
+          ev.preventDefault();
+        }
       }, this);
 
       const indicator = this.getChildControl("drag-indicator");
@@ -928,7 +929,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
       }, this);
 
-      const onDrag = function  (ev) {
+      const onDrag = function (ev) {
         const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
         let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
         if (!orig) {
@@ -937,11 +938,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         while (orig.isAnonymous()) {
           orig = orig.getLayoutParent();
         }
+        let cursor = ev.getManager().getCursor();
+        if (!cursor) {
+          cursor = qx.ui.core.DragDropCursor.getInstance();
+        }
         if (ev._native.pointerType === 'touch') {
-          let cursor = ev.getManager().getCursor();
-          if (!cursor) {
-            cursor = qx.ui.core.DragDropCursor.getInstance();
-          }
           if (!cursor.hasState('touch')) {
             cursor.addState('touch');
           }
@@ -950,9 +951,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const origCoords = orig.getContentLocation();
         let leftPos = origCoords.left;
         if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
-          leftPos += 8 + orig.getIndent() * orig.getUserData("cell.level");
+          const spacer = orig._getChildren()[0];
+          leftPos = spacer.getWidth() + orig.getPaddingLeft();
           indicator.setWidth(orig.getBounds().width - leftPos);
-        } else if (orig !== indicator) {
+          if (accepted.target && orig.getModel() !== accepted.target) {
+            return;
+          }
+        } else {
           return;
         }
         let left = -1000;
@@ -990,6 +995,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           } else {
             if (accepted.mode & Allowed.FIRST_CHILD) {
               left = leftPos + 19;
+              indicator.setWidth(indicator.getWidth() - 19);
               top = origCoords.bottom;
               position = "first-child";
             }
@@ -1000,9 +1006,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         } else {
           // inside
-          indicator.setDomPosition(-1000, -1000);
-          if (accepted.mode & Allowed.INSIDE) {
-            position = "inside";
+          if (accepted.target && !accepted.target.isOpen()) {
+            // treat dropping on an opened node as "first-child" position
+            if (accepted.mode & Allowed.FIRST_CHILD) {
+              if (indicator.getUserData("position") !== "first-child") {
+                left = leftPos + 19;
+                indicator.setWidth(indicator.getWidth() - 19);
+              }
+              top = origCoords.bottom;
+              position = "first-child";
+            }
+          } else {
+            indicator.setDomPosition(-1000, -1000);
+            if (accepted.mode & Allowed.INSIDE) {
+              position = "inside";
+            }
           }
           if (!expandTimer) {
             expandTimer = qx.event.Timer.once(function () {
@@ -1014,6 +1032,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         indicator.setDomPosition(left, top);
         indicator.setUserData("position", position);
+        if (!position) {
+          cursor.resetAction();
+        } else if (cursor.getAction() !== ev.getCurrentAction()) {
+          cursor.setAction(ev.getCurrentAction());
+        }
       }
       control.addListener("drag", onDrag, this);
       addButton.addListener("drag", onDrag, this);
@@ -1070,7 +1093,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
           case 'first-child':
             if (accepted.mode & Allowed.FIRST_CHILD) {
-              this.debug(action, elementName, "into", target.getDisplayName() + "as first child");
+              this.debug(action, elementName, "into", target.getDisplayName(), "as first child");
               switch (action) {
                 case 'move':
                   element.moveBefore(target.getChildren().getItem(0));
@@ -1081,17 +1104,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
 
                 case 'add':
-                  this._onCreate(target.getChildren().getItem(0), indicator.getUserData("position"));
+                  this._onCreate(target, indicator.getUserData("position"));
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + "as first child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + " as first child");
             }
             break;
 
           case 'inside':
             if (accepted.mode & Allowed.INSIDE) {
-              this.debug(action, elementName, "into", target.getDisplayName() + "as child");
+              this.debug(action, elementName, "into", target.getDisplayName(), "as child");
               switch (action) {
                 case 'move':
                 case 'copy':
@@ -1103,7 +1126,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + "as child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName(), "as child");
             }
             break;
         }
@@ -1144,17 +1167,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
      * @private
      */
     _onCreate: function (target, position, elementName) {
-      const parent = position === 'inside' ? target : target.getParent();
+      const parent = position === 'inside' || position === 'first-child' ? target : target.getParent();
       const parentSchemaElement = parent.getSchemaElement();
       let addable = parent.getAddableChildren(false);
       if (addable.length > 0) {
         // check if a child could be added at this position
-        if (!parentSchemaElement.areChildrenSortable() && position !== 'inside') {
+        const children = parent.getChildren();
+        // only check if we already have children, because otherwise we can add any child even in ordered sequences
+        if (!parentSchemaElement.areChildrenSortable() && position !== 'inside' && children.length > 0) {
           // we only care about the first level here
           const sorting = parentSchemaElement.getFirstLevelElementSorting();
           let minPosition = 0;
           let maxPosition = 0;
-          const children = parent.getChildren();
           if (position === 'before') {
             maxPosition = sorting[target.getName()];
             const targetIndex = children.indexOf(target);
@@ -1184,6 +1208,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               // we want to append ot to the end
               maxPosition = minPosition + 1;
             }
+          } else if (position === 'first-child') {
+            // add before first child
+            const firstChild = children.getItem(0);
+            maxPosition = sorting[firstChild.getName()];
           }
           addable = addable.filter(name => sorting.hasOwnProperty(name) && sorting[name] <= maxPosition && sorting[name] >= minPosition);
         }

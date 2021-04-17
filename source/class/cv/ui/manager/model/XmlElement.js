@@ -992,7 +992,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * @returns {*|boolean}
      */
     hasChildrenModified: function () {
-      if (this._node.nodeType === Node.ELEMENT_NODE) {
+      if (this._node.nodeType === Node.ELEMENT_NODE && this.isLoaded()) {
         const currentChildNames = this._currentChildNames();
         return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join(""));
       }

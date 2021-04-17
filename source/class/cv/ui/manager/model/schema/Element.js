@@ -345,7 +345,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      *
      * @return  object  list of SchemaElement-elements, key is the name
      */
-    getAllowedElements: function () {
+    getAllowedElements: function (excludeComment) {
       const allowedContent = this.getAllowedContent();
 
       const allowedElements = {};
@@ -357,13 +357,13 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (this.isMixed()) {
         // mixed elements are allowed to have #text-nodes
         allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
-      } else if (allowedContent._text !== undefined && allowedContent._grouping === undefined) {
+      } else if (allowedContent._text && allowedContent._grouping === undefined) {
         // text only
         allowedElements['#text'] = allowedContent._text;
         textOnly = true;
       }
 
-      if (!textOnly) {
+      if (!textOnly && !excludeComment) {
         // although its basically allowed to add comments in a text-only content, we do not allow it
         allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
       }
