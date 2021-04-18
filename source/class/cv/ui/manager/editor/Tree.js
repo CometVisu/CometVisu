@@ -122,6 +122,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       init: true,
       apply: '_applyShowPreview',
       event: 'showPreviewChanged'
+    },
+    /**
+     * true while the user is dragging something
+     */
+    dragging: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeDragging'
     }
   },
 
@@ -354,6 +362,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (this.hasChildControl('preview')) {
           this.getChildControl('preview').resetFile();
         }
+        this.resetPreviewState();
       }
     },
 
@@ -570,6 +579,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setDraggable(true);
            control.setMarginLeft(-16);
            control.setZIndex(20);
+           this.addListener('changeDragging', ev => {
+             control.setLayoutProperties({
+               bottom: 16,
+               left: ev.getData() ? -1000 : "50%"
+             });
+           }, this);
            control.setAppearance("round-button");
            control.addListener("pointerover", () => control.addState("hovered"));
            control.addListener("pointerout", () => control.removeState("hovered"));
@@ -767,12 +782,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           ev.addType("cv/tree-element");
           ev.addData("cv/tree-element", element);
         }
+        this.setDragging(true);
       }, this);
 
       const addButton = this.getChildControl("add-button");
       addButton.addListener("dragstart", function (ev) {
         ev.addAction("copy");
         ev.addType("cv/new-tree-element");
+        this.setDragging(true);
       }, this);
 
       control.addListener("droprequest", function (ev) {
@@ -1156,6 +1173,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (cursor.hasState('touch')) {
           cursor.removeState('touch');
         }
+        this.setDragging(false);
       };
       control.addListener("dragend", onDragEnd, this);
       addButton.addListener("dragend", onDragEnd, this);
@@ -1770,11 +1788,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (this.isShowPreview()) {
           const preview = this.getChildControl('preview');
-          if (preview.isVisible() && !preview.getFile()) {
+          if (!preview.getFile()) {
             const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
             preview.setFile(previewConfig);
           }
           this._updatePreview(null, value);
+          if (!preview.isVisible()) {
+            preview.show();
+          }
         }
         if (file.isTemporary()) {
           this._onContentChanged();
