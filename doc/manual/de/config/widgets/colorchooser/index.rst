@@ -15,6 +15,190 @@ Das ColorChooser Plugin
 Beschreibung
 ------------
 
+x###########
+x###########
+x###########
+
+Mit dem ColorChooser lassen sich, z.B. für eine Effektbeleuchtung, Farben
+auswählen und anzeigen. Sowohl eine RGB-Beleuchtung mit roten, grünen und
+blauen Lichtern, also auch eine RGBW-Beleuchtung mit zusätzlichem weißen
+Kanal ist möglich.
+
+Einfacher Modus
+^^^^^^^^^^^^^^^
+
+Für die meisten Anwendungsfälle wird der einfache Modus ausreichen, da hier
+zugunsten einer einfachen Konfiguration auf die Details einer farbverbindlichen
+Wiedergabe verzichtet wird.
+
+Widget-Komponenten
+""""""""""""""""""
+
+Der ColorChooser lässt verschiedene Möglichkeiten und Kombinationen dieser um
+die Farbe auzuwählen und anzuzeigen. So gibt es Slider für die direkte, aber
+aber auch für eine der menschlischen Wahrnehmung besser entsprechenden
+Darstellung:
+
+=== ===============================================================
+`r` Roter Kanal - direkte Ansteuerung
+`g` Grüner Kanal - direkte Ansteuerung
+`b` Blauer Kanal - direkte Ansteuerung
+`w` Weißer Kanal - direkte Ansteuerung (wenn vorhanden)
+`h` hue - Farbton des HSV-Farbraums, indirekte Ansteuerung
+`s` saturation - Sättigung des HSV-Farbraums, indirekte Ansteuerung
+`v` value - Helligkeit des HSV-Farbraums, indirekte Ansteuerung
+`T` Farbtemperatur für Weiß, indirekte Ansteuerung
+=== ===============================================================
+
+Der Slider für die Farbtemperatur nimmt eine Sonderrolle ein, da dieser
+gleichzeitig den Farbton als auch die Sättigung so einstellt, dass diese
+Farbtemperatur mit der Beleuchtung erricht wird.
+
+Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten.
+
+Triangle, Box
+
+Im einfachen Modus sollten diese komplexen Darstellungen im HSV-Modus betrieben
+werden, im professionellen Modus, wenn die Farborte der einzelnen Farben
+konfiguriert wurden, im LCh-Modus.
+
+Dim-Kurven
+""""""""""
+
+Das menschliche Auge nimmt Helligkeit nicht linear sondern logarithmisch war,
+dadurch ist es möglich sowohl in dunkler Nacht als auch mittags bei gleißendem
+Sonnenschein sehen zu können. Verschiedene Beleuchtungssysteme, wie beispielsweise
+DALI, berücksichtigen diese Eigenschaft des Auges und verwenden eine nicht lineare
+Dim-Kurve um eine bessere Übereinstimmung zwischen der eingestellten und der
+wahrgenommenen Helligkeit zu erreichen. Dieses grundsätzlich sinnvolle Verhalten
+ist jedoch bei der Mischung von Farben nachteilig, da hier ein lineares Verhalten
+benötigt wird.
+
+Durch die Attribute `r_curve`, `g_curve`, `b_curve` und `w_curve` lassen sich
+die Verwendeten Dim-Kurven einstellen um das Verhalten des Beleuchtungssystems
+zu kompensieren. Neben der für den professionen Modus gedachten Angabe einer
+Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
+`linear`, `exponential` und `logarithmic` die wichtigsten Kurventypen einstellen.
+
+Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
+entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
+zu berücksichtigen sind, da hier an jeder Stelle ein nicht lineares Verhalten
+möglich sein kann.
+
+Ob die verwendete Kurve korrekt ist lässt sich auch ohne Messgerät leicht
+abschätzen. Hierzu muss der rote Kanal auf 100%, der grüne auf 50% und der blaue
+auf 0% eingestellt werden (der ggf. vorhandene weiße Kanal muss auch auf 0% stehen).
+Die Beleuchtungs-Farbe sollte nun einem satten Orange entsprechen, wenn die
+Dim-Kurven richtig eingestellt sind.
+
+Sollte die Farbe nicht passen, so ist real eingestellte Farbe (ohne dass eine
+Dim-Kurve konfiguriert wurde) mit dieser Tabelle zu vergleichen und der
+Wert aus der letzen Spalte als Dim-Kurve zu verwenden:
+
+.. raw:: html
+
+   <style>
+      .exporange    {background-color:#ffe500; color:#ffe500;}
+      .linearorange {background-color:#ff7f00; color:#ff7f00;}
+      .logorange    {background-color:#ff0800; color:#ff0800;}
+   </style>
+
+.. role:: exporange
+.. role:: linearorange
+.. role:: logorange
+
+====================== ====================== ========================
+Soll-Farbe             reale Farbe            zu verwendende Dim-Kurve
+---------------------- ---------------------- ------------------------
+:linearorange:`------` :logorange:`------`    `logarithmic`
+:linearorange:`------` :linearorange:`------` `linear`
+:linearorange:`------` :exporange:`------`    `exponential`
+====================== ====================== ========================
+
+Meist reicht die Einstellung der korrekten Dim-Kurve um bereits eine gute
+Farbdarstellung zu bekommen. Sollte es jedoch dann noch bei einer RGB-Beleutung
+einen Farbstich geben, wenn die Helligkeit auf 100% und die Sättigung auf 0%
+steht und es eigentlich neutral Weiß leuchten sollte, so kann über die
+`r_strength`, `g_strength` und `b_strength` Werte eine Korrektur erfolgen.
+Dies ist auch bei einer RGBW-Beleuchtung möglich, jedoch wird das Abschätzen
+der Werte noch schwieriger als bei einer RGB-Beleuchtung, so dass hier am
+besten eine Messung der realen Werte durchgeführt werden sollte, so wie im
+nächsten Abschnitt beschrieben.
+
+Professioneller Modus
+^^^^^^^^^^^^^^^^^^^^^
+
+Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder für
+Yachten lässt sich der einfache Modus leicht auf eine farbverbindliche Nutzung
+erweitern.
+
+.. note::
+
+    Beste Ergebnisse benötigen einen kalibrierten Bildschirm. Aber da für die
+    Darstellung bewusst nur der sRGB-Farbraum verwendet wird sollte auch auf
+    unkalibrierten Geräten (wie z.B. Smartphones und Tablets) eine akzeptable
+    Darstellung möglich sein. Trotz der Einschränkung der Bildschirmdarstellung auf
+    sRGB lässt sich durch den ColorChooser der komplette Farbraum der durch die
+    Leuchtmittel möglich ist nutzen.
+
+Der professionelle Modus unterscheidet sich vom einfachen Modus dadurch, dass
+die Farborte des verwendeten Leuchtmittels mit angegeben wird so wie dessen
+Dim-Verhaltens.
+
+Die besten Ergebnisse werden erreicht, wenn für den roten, grünen blauen und, so
+vorhanden, weißen Kanal die Farborte und Helligkeiten mit einem Spektralfotometer
+gemessen werden und als `x` und `y` Koordinaten des CIE-Normfarbsystem übergeben
+werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle und die maximale
+Helligkeit übernommen werden.
+Aufgrund der Alterung des Leuchtmittels müssen - genau so wie bei der
+Monitor-Kalibierung - die Dim-Kurven regelmäßig bestimmt werden und die
+Konfigurationsdatei entsprechend angepasst werden. Die Häufigkeit der Messung
+richtet sich dabei nach dem Anspruch an die zu erreichende Farbtreue.
+
+Ohne Messgerät, aber mit einem Datenblatt des verwendeten Leuchtmittels, lassen
+sich auch noch gute Ergebnisse erzielen. Wenn für die Farben keine `x` und `y`
+Koordinaten angegeben werden, aber zumindest die Wellenlängen so können diese
+alternativ verwendet werden. Dies führt nur bei einer monochromatischen Lichtquelle
+wie einem Laser zu einem korrektem Ergebnis, jedoch besitzen auch RGB-LEDs ein
+annähernd monochromatische Verhalten. Bei dem weißen Kanal kann statt der
+xy-Koordinaten auch die Farbtemperatur verwendet werden. Sollte eine Abweichung
+von der Black-Body-Kurve berücksichtig werden müssen, so muss dies über eine
+Angabe in xy-Koordinaten erfolgen.
+
+Die Helligkeitsangabe muss keine spezifische physikalische Einheit (wie Lumen
+oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur
+relative Größe der Werte untereinander.
+
+Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
+zu erhalten, sollte ein Widget-Element nicht im HSV sondern im LCh-Modus
+verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. Yxy oder
+L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
+Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
+ist. Eine Kommunikation im HSV Farbraum würde auch noch eine gute Farbwiedergabe
+ermöglichen. Für eine direkte Ansteuerung über RGB bzw. RGBW Werte ist eine
+korrekt eingestellte Dim-Kurve unabdingbar.
+
+Beispiel für einen ColorChooser für den OSRAM LINEARlight FLEX Colormix RGBW
+LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und Ansteuerung
+über DALI:
+
+.. widget-example::
+    <colorchooser
+        r_wavelength="622" r_strength="80" r_curve="logarithmic"
+        g_wavelength="534" g_strength="196" g_curve="logarithmic"
+        b_wavelength="468" r_strength="21" b_curve="logarithmic"
+        w_x="0.4290" w_y="0.4010" w_strength="400" w_curve="logarithmic"
+        controls="triangle">
+      <label>LED Strip</label>
+      <layout rowspan="6" colspan="6"/>
+      <address transform="DPT:242.600" mode="read" variant="xyY">1/2/60</address>
+      <address transform="DPT:242.600" mode="write" variant="xyY">1/2/61</address>
+    </colorchooser>
+
+x###########
+x###########
+x###########
+
 Der ColorChooser fügt der Visu einen Farbwahlkreis hinzu. Damit können RGB-Anwendungen realisiert werden.
 
 
