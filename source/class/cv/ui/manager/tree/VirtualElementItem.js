@@ -59,6 +59,12 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     droppable: {
       refine: true,
       init: true
+    },
+
+    dragging: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyDragging'
     }
   },
 
@@ -87,6 +93,15 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       touch: true
     },
     __labelAdded: false,
+
+    // this has to be set by model binding, because the qx way by adding a state does not survive a widget re-binding
+    _applyDragging: function (value) {
+      if (value) {
+        this.addState('drag');
+      } else {
+        this.removeState('drag');
+      }
+    },
 
     _applyModel: function (value) {
       if (qx.core.Environment.get("device.touch")) {

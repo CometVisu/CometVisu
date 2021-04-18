@@ -563,6 +563,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                controller.bindProperty("icon", "icon", null, item, index);
                controller.bindProperty("status", 'status', null, item, index);
                controller.bindProperty("invalidMessage", "toolTipText", null, item, index);
+               controller.bindProperty("dragging", "dragging", null, item, index);
              }
            });
            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
@@ -770,6 +771,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         let element;
         if (dragTarget instanceof cv.ui.manager.tree.VirtualElementItem) {
           element = dragTarget.getModel();
+          element.setDragging(true);
           if (!element.isEditable() || !element.isDeletable()) {
             ev.preventDefault();
             ev.stopPropagation();
@@ -809,6 +811,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         let target = ev.getTarget();
         if (target === element && action !== 'copy') {
           // cannot drop on myself
+          this.debug("dropping on same element forbidden");
           accepted.mode = Allowed.NONE;
           ev.preventDefault();
           return;
@@ -830,6 +833,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           if (!target || target === control) {
             accepted.mode = Allowed.NONE;
             ev.preventDefault();
+            this.debug("drop target not found");
             return;
           }
         }
@@ -874,12 +878,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               ev.preventDefault();
               // not children allowed here
               accepted.mode = Allowed.NONE;
+              this.debug("no children allowed here");
             }
           } else {
             if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
               ev.preventDefault();
               // not allowed on this level
               accepted.mode = Allowed.NONE;
+              this.debug("not allowed as child element");
             } else if (parentSchemaElement.areChildrenSortable()) {
               // children can be put anywhere
               // so this is allowed anywhere
@@ -908,8 +914,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (allowedSorting) {
               if (element) {
                 let targetPosition = allowedSorting[element.getName()];
-                if (targetPosition !== undefined && targetPosition === 0) {
-                  accepted.mode |= Allowed.FIRST_CHILD;
+                if (targetPosition !== undefined) {
+                  if (targetPosition === 0 || model.getChildren().length === 0) {
+                    accepted.mode |= Allowed.FIRST_CHILD;
+                  } else {
+                    // check if we can add it before the current first child
+                    const firstChild = model.getChildren().getItem(0);
+                    const maxPosition = allowedSorting[firstChild.getName()];
+                    if (maxPosition >= targetPosition) {
+                      accepted.mode |= Allowed.FIRST_CHILD;
+                    }
+                  }
                 }
               } else if (model.getChildren().length > 0) {
                 const firstChild = model.getChildren().getItem(0);
@@ -927,6 +942,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (accepted.mode === Allowed.NONE) {
           ev.preventDefault();
+          this.debug("dropping not accepted here");
         }
       }, this);
 
@@ -994,7 +1010,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
           // below
           if (accepted.target && !accepted.target.isOpen()) {
-            // when an element is opened this position is not after this element. but before its first child
             if (accepted.mode & Allowed.AFTER) {
               left = leftPos;
               top = origCoords.bottom;
@@ -1005,11 +1020,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               position = "inside";
             }
           } else {
+            // when an element is opened this position is not after this element. but before its first child
             if (accepted.mode & Allowed.FIRST_CHILD) {
               left = leftPos + 19;
               indicator.setWidth(indicator.getWidth() - 19);
               top = origCoords.bottom;
               position = "first-child";
+            } else {
+              console.log("not allowed as first child");
             }
           }
           if (expandTimer) {
@@ -1018,7 +1036,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         } else {
           // inside
-          if (accepted.target && !accepted.target.isOpen()) {
+          if (accepted.target && accepted.target.isOpen()) {
             // treat dropping on an opened node as "first-child" position
             if (accepted.mode & Allowed.FIRST_CHILD) {
               if (indicator.getUserData("position") !== "first-child") {
@@ -1033,13 +1051,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             if (accepted.mode & Allowed.INSIDE) {
               position = "inside";
             }
-          }
-          if (!expandTimer) {
-            expandTimer = qx.event.Timer.once(function () {
-              if (accepted.target) {
-                control.openNode(accepted.target);
-              }
-            }, this, 1000);
+            if (!expandTimer) {
+              expandTimer = qx.event.Timer.once(function () {
+                if (accepted.target) {
+                  control.openNode(accepted.target);
+                }
+              }, this, 1000);
+            }
           }
         }
         indicator.setDomPosition(left, top);
@@ -1149,7 +1167,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               this.debug(action, elementName, "into", target.getName(), "as child");
               switch (action) {
                 case 'move':
-                  if (target.insertChild(element, -1, false, 'moved')) {
+                  if (element.moveInside(target)) {
                     cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2"', elementName, target.getName()));
                   }
                   break;
@@ -1182,6 +1200,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (expandTimer) {
           expandTimer.stop();
           expandTimer = null;
+        }
+        let element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
+        if (element) {
+          element.resetDragging();
         }
         accepted.target = null;
         accepted.mode = 0;

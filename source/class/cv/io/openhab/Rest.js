@@ -254,6 +254,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     terminate: function () {
+      this.debug("terminating connection");
       if (this.eventSource) {
         this.eventSource.close();
       }

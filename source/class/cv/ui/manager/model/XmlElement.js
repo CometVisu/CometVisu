@@ -168,6 +168,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'String',
       nullable: true,
       event: 'changeIcon'
+    },
+
+    dragging: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeDragging'
     }
   },
 
@@ -298,28 +304,28 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     /**
      * Move this node to a new position in relation to the target
      * @param target {cv.ui.manager.model.XmlElement} new direct sibling
-     * @param before {Boolean} move before target if true, otherwise after target
+     * @param position {String} more 'before', 'after' or 'inside' target
      * @param skipUndo {Boolean} no not add an undo operation for this
      * @private
      */
-    _move: function (target, before, skipUndo) {
+    _move: function (target, position, skipUndo) {
       const parent = this.getParent();
       const children = parent.getChildren();
-      const targetParent = target.getParent();
+      const targetParent = position === 'inside' ? target : target.getParent();
       const targetChildren = targetParent.getChildren();
       const changes = [{
         oldIndex: children.indexOf(this),
         oldParent: parent,
         parent: targetParent,
         child: this,
-        index: targetChildren.indexOf(target) + (before ? 0 : 1)
+        index: targetChildren.indexOf(target) + (position === 'after' ? 1 : 0)
       }];
-      if (targetParent.isChildAllowedAtPosition(this, changes[0].index)) {
+      if ((position === 'inside' && targetParent.getSchemaElement().isChildElementAllowed(this.getName())) || targetParent.isChildAllowedAtPosition(this, changes[0].index)) {
         children.remove(this);
         this.getNode().remove();
         if (targetParent === parent) {
           // target index might have changed by removing
-          changes[0].index = targetChildren.indexOf(target) + (before ? 0 : 1);
+          changes[0].index = targetChildren.indexOf(target) + (position === 'after' ? 1 : 0);
         }
         targetParent.insertChild(this, changes[0].index, true, 'moved');
         if (!skipUndo) {
@@ -368,11 +374,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     moveAfter: function (target, skipUndo) {
-      return this._move(target, false, skipUndo);
+      return this._move(target, 'after', skipUndo);
     },
 
     moveBefore: function (target, skipUndo) {
-      return this._move(target, true, skipUndo);
+      return this._move(target, 'before', skipUndo);
+    },
+
+    moveInside: function (target, skipUndo) {
+      return this._move(target, 'inside', skipUndo);
     },
 
     insertAfter: function (target, skipUndo) {

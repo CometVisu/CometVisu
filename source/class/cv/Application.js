@@ -792,7 +792,7 @@ qx.Class.define("cv.Application",
       }
     },
 
-    terminate: function() {
+    close: function () {
       cv.TemplateEngine.getClient().terminate();
     }
   }
