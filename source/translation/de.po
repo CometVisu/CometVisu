@@ -907,3 +907,7 @@ msgstr "Attribut '%1' fehlt"
 #: cv/ui/manager/model/XmlElement.js
 msgid "Text content is missing"
 msgstr "Fehlender Textinhalt"
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Possible values could no be retrieved, please check browser console for error details"
+msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden."

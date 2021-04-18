@@ -32,7 +32,7 @@ qx.Class.define('cv.ui.manager.form.Option', {
   */
   properties: {
     type: {
-      check: ["default", "group"],
+      check: ["default", "group", "state", "error"],
       init: "default",
       event: "changeType"
     },

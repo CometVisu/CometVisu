@@ -471,6 +471,38 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    "state-option": {
+      style: function (states) {
+        return {
+          textColor: states.error ? "warning-color" : "text-disabled",
+          font: 'italic',
+          height: 25
+        };
+      }
+    },
+    "error-option": {
+      style: function () {
+        return {
+          textColor: "warning-color",
+          font: 'italic',
+          height: 25
+        };
+      }
+    },
+    "selectbox/atom": {
+      style: function (states) {
+        let font = 'default';
+        let textColor = 'text';
+        if (states.error || states.loading) {
+          font = 'italic'
+          textColor = states.error ? "warning-color" : "text-disabled"
+        }
+        return {
+          textColor: textColor,
+          font: font
+        };
+      }
+    },
     "optiongroup": {
       style: function () {
         return {
