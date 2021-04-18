@@ -392,7 +392,15 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'element-tree-item': 'fs-tree-item',
+    'element-tree-item': {
+      include: 'fs-tree-item',
+      alias: 'fs-tree-item',
+      style: function (states) {
+        return {
+          indent: states.touch ? 24 : 19
+        }
+      }
+    },
     'element-tree-item/label': {
       include: 'fs-tree-item/label',
 
@@ -403,6 +411,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           allowGrowX: true,
           maxWidth: 250
         }
+      }
+    },
+    'element-tree-item/open': {
+      include: 'fs-tree-item/open',
+
+      style: function (states) {
+        return {
+          // width must not be greater the the indentation
+          width: states.touch ? 24 : 16,
+          height: states.touch ? 32 : 16,
+          scale: states.touch
+        };
       }
     },
     'cv-file-contextmenu': 'menu',

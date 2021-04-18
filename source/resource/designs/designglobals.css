@@ -589,3 +589,8 @@ pre.inline { display: inline-block; }
   font-size: 14px;
   text-align: center;
 }
+
+#manager div.touch-tree-open-icon {
+  line-height: 32px !important;
+  text-align: right !important;
+}

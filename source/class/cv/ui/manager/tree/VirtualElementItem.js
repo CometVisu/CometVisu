@@ -11,6 +11,9 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
   */
   construct: function (label) {
     this.base(arguments, label);
+    if (qx.core.Environment.get("device.touch")) {
+      this.addState("touch");
+    }
   },
 
   /*
@@ -75,6 +78,14 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
   ***********************************************
   */
   members: {
+    // overridden
+    /**
+     * @lint ignoreReferenceField(_forwardStates)
+     */
+    _forwardStates : {
+      selected : true,
+      touch: true
+    },
     __labelAdded: false,
 
     _applyModel: function (value) {
@@ -119,6 +130,14 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       if (value) {
         icon.addState(value);
         label.addState(value);
+      }
+    },
+
+    _addWidgets: function() {
+      this.base(arguments);
+      const open = this.getChildControl("open", true);
+      if (open && qx.core.Environment.get("device.touch")) {
+        open.getContentElement().addClass('touch-tree-open-icon');
       }
     },
 
