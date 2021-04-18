@@ -792,17 +792,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.setDragging(true);
       }, this);
 
-      control.addListener("droprequest", function (ev) {
-        let action = ev.getCurrentAction();
-        let result;
-        if (ev.supportsType("cv/tree-element")) {
-          if (action === "copy") {
-            result = ev.getData("cv/tree-element").clone();
-            ev.addData("cv/tree-element", result);
-          }
-        }
-      }, this);
-
       const Allowed = cv.ui.manager.editor.Tree.Allowed;
       const accepted = {
         mode: 0,
@@ -818,7 +807,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         let target = ev.getTarget();
-        if (target === element) {
+        if (target === element && action !== 'copy') {
           // cannot drop on myself
           accepted.mode = Allowed.NONE;
           ev.preventDefault();
@@ -1066,9 +1055,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
       const onDrop = function (ev) {
         let action = ev.getCurrentAction()
-        const element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
-        if (action === "copy" && !element) {
-          action = "add";
+        let element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
+        if (action === "copy") {
+          if (element) {
+            element = element.clone();
+          } else {
+            action = "add";
+          }
         }
         const elementName = element ? element.getDisplayName() : "new";
         const target = accepted.target;
@@ -1079,14 +1072,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         switch (indicator.getUserData("position")) {
           case 'after':
             if (accepted.mode & Allowed.AFTER) {
-              this.debug(action, elementName, "after", target.getDisplayName());
+              this.debug(action, elementName, "after", target.getName());
               switch (action) {
                 case 'move':
-                  element.moveAfter(target);
+                  if (element.moveAfter(target)) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved after "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'copy':
-                  element.insertAfter(target);
+                  if (element.insertAfter(target)) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied after "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'add':
@@ -1094,19 +1091,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
+              this.debug("NOT ALLOWED", action, elementName, "after", target.getName());
             }
             break;
           case 'before':
             if (accepted.mode & Allowed.BEFORE) {
-              this.debug(action, elementName, "before", target.getDisplayName());
+              this.debug(action, elementName, "before", target.getName());
               switch (action) {
                 case 'move':
-                  element.moveBefore(target);
+                  if (element.moveBefore(target)) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved before "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'copy':
-                  element.insertBefore(target);
+                  if (element.insertBefore(target)) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied before "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'add':
@@ -1114,20 +1115,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
+              this.debug("NOT ALLOWED", action, elementName, "after", target.getName());
             }
             break;
 
           case 'first-child':
             if (accepted.mode & Allowed.FIRST_CHILD) {
-              this.debug(action, elementName, "into", target.getDisplayName(), "as first child");
+              this.debug(action, elementName, "into", target.getName(), "as first child");
               switch (action) {
                 case 'move':
-                  element.moveBefore(target.getChildren().getItem(0));
+                  if (element.moveBefore(target.getChildren().getItem(0))) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2" as first child', elementName, target.getName()));
+                  }
                   break;
 
                 case 'copy':
-                  element.insertBefore(target.getChildren().getItem(0));
+                  if (element.insertBefore(target.getChildren().getItem(0))) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2" as first child', elementName, target.getName()));
+                  }
                   break;
 
                 case 'add':
@@ -1135,20 +1140,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + " as first child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getName() + " as first child");
             }
             break;
 
           case 'inside':
             if (accepted.mode & Allowed.INSIDE) {
-              this.debug(action, elementName, "into", target.getDisplayName(), "as child");
+              this.debug(action, elementName, "into", target.getName(), "as child");
               switch (action) {
                 case 'move':
-                  target.insertChild(element, -1, false, 'moved');
+                  if (target.insertChild(element, -1, false, 'moved')) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'copy':
-                  target.insertChild(element, -1, false, 'added');
+                  if (target.insertChild(element, -1, false, 'added')) {
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2"', elementName, target.getName()));
+                  }
                   break;
 
                 case 'add':
@@ -1156,7 +1165,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName(), "as child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getName(), "as child");
             }
             break;
         }

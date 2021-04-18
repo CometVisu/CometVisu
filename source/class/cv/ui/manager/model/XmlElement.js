@@ -258,6 +258,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           } else {
             deletable = true;
           }
+        } else {
+          deletable = true;
         }
         this.setDeletable(deletable);
       }

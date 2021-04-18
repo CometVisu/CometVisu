@@ -2630,7 +2630,7 @@ var regexFromString = function (input, modifiers) {
     modifiers = '';
   }
     
-  return new RegExp(input, modifiers);
+  return new RegExp(input.replace(/\\([\s\S])|(\$)/g, '\\$1$2'), modifiers);
 }
 
 /**

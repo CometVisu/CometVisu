@@ -911,3 +911,35 @@ msgstr "Fehlender Textinhalt"
 #: cv/ui/manager/form/ElementForm.js
 msgid "Possible values could no be retrieved, please check browser console for error details"
 msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved after \"%2\""
+msgstr "\"%1\" wurde hinter \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied after \"%2\""
+msgstr "\"%1\" wurde hinter \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved before \"%2\""
+msgstr "\"%1\" wurde vor \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\" as first child"
+msgstr "\"%1\" wurde als erstes Element in \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\" as first child"
+msgstr "\"%1\" wurde als erstes Element in \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\""
+msgstr "\"%1\" wurde in \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\""
+msgstr "\"%1\" wurde in \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied before \"%2\""
+msgstr "\"%1\" wurde vor \"%2\" kopiert"

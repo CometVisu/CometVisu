@@ -955,3 +955,39 @@ msgstr ""
 #: cv/ui/manager/form/ElementForm.js
 msgid "Possible values could no be retrieved, please check browser console for error details"
 msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved after \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied after \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved before \"%2\""
+msgstr ""
+
+#. NO LONGER USED
+msgid "\"%1\" has been inserted before \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\" as first child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\" as first child"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\""
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied before \"%2\""
+msgstr ""
