@@ -818,6 +818,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         let target = ev.getTarget();
+        if (target === element) {
+          // cannot drop on myself
+          accepted.mode = Allowed.NONE;
+          ev.preventDefault();
+          return;
+        }
         if (target === control) {
           const layerContent = control.getPane().getLayers()[0].getContentLocation();
           if (layerContent && (ev.getDocumentTop() - layerContent.bottom <= 20)) {
@@ -1066,6 +1072,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const elementName = element ? element.getDisplayName() : "new";
         const target = accepted.target;
+        if (action === 'move' && element === target) {
+          // cannot move before/after/inside myself
+          return;
+        }
         switch (indicator.getUserData("position")) {
           case 'after':
             if (accepted.mode & Allowed.AFTER) {
