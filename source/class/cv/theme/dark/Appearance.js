@@ -421,7 +421,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           // width must not be greater the the indentation
           width: states.touch ? 24 : 16,
           height: states.touch ? 32 : 16,
-          scale: states.touch
+          scale: true
         };
       }
     },
