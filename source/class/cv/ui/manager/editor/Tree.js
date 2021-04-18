@@ -1484,7 +1484,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
       element.load();
       const formData = {};
-      const promises = [];
       const typeElement = element.getSchemaElement();
       if (element.getNode().nodeType === Node.ELEMENT_NODE) {
         const allowed = typeElement.getAllowedAttributes();
@@ -1498,19 +1497,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
           formData[name] = this.__getAttributeFormDefinition(element, attribute);
-          /*if (formData[name].options && formData[name].options instanceof Promise) {
-            promises.push(formData[name].options);
-            formData[name].options.then((res) => {
-              formData[name].options = res;
-            }).catch(err => {
-              this.error(err);
-              formData[nodeName].options = [];
-              if (formData[nodeName].validation.required) {
-                formData[nodeName].invalidMessage = this.tr("Possible values could no be retrieved, please check browser console for error details");
-                formData[nodeName].invalid = true;
-              }
-            }, this);
-          }*/
         });
       } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
         const nodeName = element.getNode().nodeName;
@@ -1538,42 +1524,27 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         }
         this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
-        /*if (formData[nodeName].options && formData[nodeName].options instanceof Promise) {
-          promises.push(formData[nodeName].options);
-          formData[nodeName].options.then((res) => {
-            formData[nodeName].options = res;
-          }).catch((err) => {
-            this.error(err);
-            formData[nodeName].options = [];
-            if (formData[nodeName].validation.required) {
-              formData[nodeName].invalidMessage = this.tr("Possible values could no be retrieved, please check browser console for error details");
-              formData[nodeName].invalid = true;
-            }
-          }, this);
-        }*/
       }
       this.__editing = true;
-      //return Promise.all(promises).then(() => {
-        const formDialog = new cv.ui.manager.form.ElementForm({
-          allowCancel: true,
-          context: this,
-          caption:  "",
-          message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
-          formData: formData,
-          maxWidth: qx.bom.Viewport.getWidth()
-        }).show();
-        return formDialog.promise().then(data => {
-          if (data && element.isEditable()) {
-            // save changes
-            element.setAttributes(data);
-            this.clearReDos();
-            element.validate();
-          }
-          this.__editing = false;
-          formDialog.destroy();
-          return data;
-        });
-      //});
+      const formDialog = new cv.ui.manager.form.ElementForm({
+        allowCancel: true,
+        context: this,
+        caption:  "",
+        message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
+        formData: formData,
+        maxWidth: qx.bom.Viewport.getWidth()
+      }).show();
+      return formDialog.promise().then(data => {
+        if (data && element.isEditable()) {
+          // save changes
+          element.setAttributes(data);
+          this.clearReDos();
+          element.validate();
+        }
+        this.__editing = false;
+        formDialog.destroy();
+        return data;
+      });
     },
 
     _onDelete: function (ev, element) {
