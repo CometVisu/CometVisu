@@ -766,6 +766,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _initDragDrop: function (control) {
+      let draggedXmlElement;
       control.addListener("dragstart", function (ev) {
         const dragTarget = ev.getDragTarget();
         let element;
@@ -783,6 +784,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           ev.addType("cv/tree-element");
           ev.addData("cv/tree-element", element);
+          draggedXmlElement = element;
         }
         this.setDragging(true);
       }, this);
@@ -809,12 +811,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         let target = ev.getTarget();
-        if (target === element && action !== 'copy') {
-          // cannot drop on myself
-          this.debug("dropping on same element forbidden");
-          accepted.mode = Allowed.NONE;
-          ev.preventDefault();
-          return;
+        if (action !== 'copy') {
+          if (target === element) {
+            // cannot drop on myself
+            this.debug("dropping on same element forbidden");
+            accepted.mode = Allowed.NONE;
+            ev.preventDefault();
+            return;
+          } else if (target && target instanceof cv.ui.manager.tree.VirtualElementItem && element.isAncestor(target.getModel())) {
+            // cannot move into myself
+            this.debug("moving inside own subtree forbidden");
+            accepted.mode = Allowed.NONE;
+            ev.preventDefault();
+            return;
+          }
         }
         if (target === control) {
           const layerContent = control.getPane().getLayers()[0].getContentLocation();
@@ -1201,9 +1211,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           expandTimer.stop();
           expandTimer = null;
         }
-        let element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
-        if (element) {
-          element.resetDragging();
+        if (draggedXmlElement) {
+          draggedXmlElement.resetDragging();
+          draggedXmlElement = null;
         }
         accepted.target = null;
         accepted.mode = 0;

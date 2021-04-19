@@ -302,6 +302,22 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     /**
+     * Check is this element is an ancestor of the given element
+     * @param element {cv.ui.manager.model.XmlElement} element to check
+     * @returns {boolean}
+     */
+    isAncestor: function (element) {
+      let parent = element.getParent();
+      while (parent) {
+        if (parent === this) {
+          return true;
+        }
+        parent = parent.getParent();
+      }
+      return false;
+    },
+
+    /**
      * Move this node to a new position in relation to the target
      * @param target {cv.ui.manager.model.XmlElement} new direct sibling
      * @param position {String} more 'before', 'after' or 'inside' target
@@ -309,6 +325,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * @private
      */
     _move: function (target, position, skipUndo) {
+      if (this.isAncestor(target)) {
+        // we cannot move into ourselves descendants
+        return false;
+      }
       const parent = this.getParent();
       const children = parent.getChildren();
       const targetParent = position === 'inside' ? target : target.getParent();
@@ -341,6 +361,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     moveTo: function (newParent, index, skipUndo) {
+      if (this.isAncestor(newParent)) {
+        // we cannot move into ourselves descendants
+        return false;
+      }
       const parent = this.getParent();
       const children = parent.getChildren();
       const changes = [{
