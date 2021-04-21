@@ -47,6 +47,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
     SUPPORTED_FILES: function (file) {
+      let filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
       if (window.monaco && window.monaco.languages) {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
@@ -61,9 +62,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           });
           cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
         }
-        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(file.getFullPath().toLowerCase())
+        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
       } else {
-        return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
+        return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
       }
     },
     DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
@@ -71,7 +72,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      window.documentationMappingPrefix = "editor/"; // jshint ignore:line
       var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..');
       var loader = new qx.util.DynamicScriptLoader([
         sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
@@ -286,13 +286,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (this._workerWrapper) {
         this._workerWrapper.open(file, value);
       }
-      var newModel = window.monaco.editor.getModel(file.getUri());
+      const id = monaco.Uri.parse(file.getUri());
+      var newModel = window.monaco.editor.getModel(id);
       if (!newModel) {
         // create new model
         if (qx.xml.Document.isXmlDocument(value)) {
           value = value.documentElement.outerHTML;
         }
-        const id = monaco.Uri.parse(file.getUri());
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
         newModel.onDidChangeDecorations(function (ev) {
           var errors = false;

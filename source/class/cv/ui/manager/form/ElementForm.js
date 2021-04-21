@@ -120,6 +120,15 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               formElement.setMaxLength(fieldData.maxLength);
             formElement.setLiveUpdate(true);
             break;
+          case "sourceeditor":
+            formElement = new cv.ui.manager.form.SourceCodeField("", fieldData.language);
+            if (fieldData.autoSize === true) {
+              formElement.setAutoSize(true);
+              formElement.setMinHeight(fieldData.lines * 16);
+            } else {
+              formElement.setHeight(fieldData.lines * 16);
+            }
+            break;
           case "datefield":
           case "date":
             formElement = new qx.ui.form.DateField();
@@ -385,6 +394,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             case "virtualcombobox":
             case "datefield":
             case "spinner":
+            case "sourceeditor":
               this._formController.addTarget(formElement, "value", mappedKey, true, null, {
                 converter: function (value) {
                   this.getValidationManager().validate();
