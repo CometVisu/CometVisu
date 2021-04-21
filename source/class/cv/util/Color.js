@@ -379,6 +379,36 @@ qx.Class.define('cv.util.Color', {
       this.__rgb = undefined;
     },
 
+    __syncLab2xy: function () {
+      const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
+      let
+        fInv = function(t) {
+            if(t < 6/29) {
+              return 3*(6/29)**2*(t-4/29);
+            } else {
+              return t**3;
+            }
+          },
+        Lab = this.__Lab,
+        L16 = (Lab.L + 16)/116,
+        X = Xn * fInv(L16 + Lab.a/500),
+        Y = Yn * fInv(L16),
+        Z = Zn * fInv(L16 - Lab.b/200),
+        XYZ = X + Y + Z;
+      this.__x = XYZ > 0 ? X / XYZ : 0;
+      this.__y = XYZ > 0 ? Y / XYZ : 0;
+      this.__Y = Y;
+    },
+
+    __syncLCh2xy: function () {
+      this.__Lab = {
+        L: this.__LCh.h,
+        a: this.__LCh.C * Math.cos(this.__LCh.h),
+        b: this.__LCh.C * Math.sin(this.__LCh.h)
+      };
+      this.__syncLab2xy();
+    },
+
     /**
      * Change the color by changing one of it's components
      * @param component
