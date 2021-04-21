@@ -129,7 +129,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       check: 'Boolean',
       init: true,
       event: 'changeEditable',
-      apply: '_updateShowEditButton'
+      apply: '_applyEditable'
     },
 
     sortable: {
@@ -234,40 +234,49 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
+    _applyEditable: function () {
+      this._updateShowEditButton();
+      this.updateDeletable();
+    },
+
     _updateShowEditButton: function () {
       this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
     },
 
     updateDeletable: function () {
-      const parent = this.getParent();
-      if (this.isTextNode()) {
-        if (this.getSchemaElement().isTextContentRequired()) {
-          const existing = parent.getChildren().filter(child => child.isTextNode()).length;
-          this.setDeletable(existing > 1);
-        } else {
-          this.setDeletable(true);
-        }
+      if (!this.isEditable()) {
+        this.setDeletable(false);
       } else {
-        let deletable = false;
-        if (parent) {
-          const schemaElement = parent.getSchemaElement();
-          const requiredFromParent = schemaElement.getRequiredElements();
-          if (requiredFromParent.includes(this.getName())) {
-            const bounds = schemaElement.getBoundsForElementName(this.getName());
-            if (bounds) {
-              const existing = parent.getChildren().filter(child => child.getName() === this.getName()).length;
-              // check if we can afford to delete one
-              deletable = (bounds.min <= existing - 1);
+        const parent = this.getParent();
+        if (this.isTextNode()) {
+          if (this.getSchemaElement().isTextContentRequired()) {
+            const existing = parent.getChildren().filter(child => child.isTextNode()).length;
+            this.setDeletable(existing > 1);
+          } else {
+            this.setDeletable(true);
+          }
+        } else {
+          let deletable = false;
+          if (parent) {
+            const schemaElement = parent.getSchemaElement();
+            const requiredFromParent = schemaElement.getRequiredElements();
+            if (requiredFromParent.includes(this.getName())) {
+              const bounds = schemaElement.getBoundsForElementName(this.getName());
+              if (bounds) {
+                const existing = parent.getChildren().filter(child => child.getName() === this.getName()).length;
+                // check if we can afford to delete one
+                deletable = (bounds.min <= existing - 1);
+              } else {
+                deletable = true;
+              }
             } else {
               deletable = true;
             }
           } else {
             deletable = true;
           }
-        } else {
-          deletable = true;
+          this.setDeletable(deletable);
         }
-        this.setDeletable(deletable);
       }
     },
 
@@ -1089,11 +1098,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _updateChildrenDeletableFlags: function () {
-      this.getChildren().forEach(child => {
-        if (child.isElement() || child.isTextNode()) {
-          child.updateDeletable();
-        }
-      });
+      if (this.isEditable()) {
+        this.getChildren().forEach(child => {
+          if (child.isElement() || child.isTextNode()) {
+            child.updateDeletable();
+          }
+        });
+      }
     },
 
     getWidgetPath: function () {

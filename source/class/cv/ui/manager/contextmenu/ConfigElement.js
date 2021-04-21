@@ -84,6 +84,8 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
           let addable = value.getAddableChildren(true);
           this.getChildControl('create-button').setEnabled(addable.length > 0);
         } else {
+          this.getChildControl('delete-button').setEnabled(false);
+          this.getChildControl('cut-button').setEnabled(false);
           this.getChildControl('create-button').setEnabled(false);
           this.getChildControl('view-button').show();
           // enable view button when there are attributes to show
