@@ -177,7 +177,7 @@ relative Größe der Werte untereinander.
 
 Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
 zu erhalten, sollte ein Widget-Element nicht im HSV sondern im LCh-Modus
-verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. Yxy oder
+verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. xyY oder
 L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
 Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
 ist. Eine Kommunikation im HSV Farbraum würde auch noch eine gute Farbwiedergabe
@@ -186,7 +186,7 @@ korrekt eingestellte Dim-Kurve unabdingbar.
 
 .. note::
 
-    Der ColorChooser verwendet intern den CIE Yxy Farbraum. Für die Umrechung
+    Der ColorChooser verwendet intern den CIE xyY Farbraum. Für die Umrechung
     in den L*a*b* bzw. den L*C*h° Farbraum wird die Normlichtart D65 und ein
     Beobachterwinkel von 10° verwendet.
 
@@ -237,7 +237,9 @@ daher weg gelassen werden.
 Erlaubte Attribute im ColorChooser-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Keine.
+.. parameter-information:: colorchooser
+
+...Keine...
 
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -2171,13 +2171,13 @@
     <xsd:attribute name="r_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the red channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des roten Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="r_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the red channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des roten Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="r_wavelength" type="xsd:decimal" use="optional" >
@@ -2207,13 +2207,13 @@
     <xsd:attribute name="g_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the green channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des grünen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="g_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the green channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des grünen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="g_wavelength" type="xsd:decimal" use="optional" >
@@ -2243,13 +2243,13 @@
     <xsd:attribute name="b_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des blauen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="b_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des blauen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="b_wavelength" type="xsd:decimal" use="optional" >
@@ -2279,13 +2279,13 @@
     <xsd:attribute name="w_x" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">x coordinate of the white channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">x Koordniate des weißen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="w_y" type="xsd:decimal" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">y coordinate of the white channel in the CIE xyY color space</xsd:documentation>
-        <xsd:documentation xml:lang="de">y Koordniate des weißen Kanals im CIE xyX Farbraum</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="w_strength" type="xsd:decimal" use="optional" >
