@@ -1100,17 +1100,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         switch (indicator.getUserData("position")) {
           case 'after':
             if (accepted.mode & Allowed.AFTER) {
-              this.debug(action, elementName, "after", target.getName());
+              this.debug(action, elementName, "after", target.getDisplayName());
               switch (action) {
                 case 'move':
                   if (element.moveAfter(target)) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved after "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved after "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
                 case 'copy':
                   if (element.insertAfter(target)) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied after "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied after "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
@@ -1119,22 +1119,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", action, elementName, "after", target.getName());
+              this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
             }
             break;
           case 'before':
             if (accepted.mode & Allowed.BEFORE) {
-              this.debug(action, elementName, "before", target.getName());
+              this.debug(action, elementName, "before", target.getDisplayName());
               switch (action) {
                 case 'move':
                   if (element.moveBefore(target)) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved before "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved before "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
                 case 'copy':
                   if (element.insertBefore(target)) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied before "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied before "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
@@ -1143,23 +1143,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", action, elementName, "after", target.getName());
+              this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
             }
             break;
 
           case 'first-child':
             if (accepted.mode & Allowed.FIRST_CHILD) {
-              this.debug(action, elementName, "into", target.getName(), "as first child");
+              this.debug(action, elementName, "into", target.getDisplayName(), "as first child");
               switch (action) {
                 case 'move':
                   if (element.moveBefore(target.getChildren().getItem(0))) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2" as first child', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2" as first child', elementName, target.getDisplayName()));
                   }
                   break;
 
                 case 'copy':
                   if (element.insertBefore(target.getChildren().getItem(0))) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2" as first child', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2" as first child', elementName, target.getDisplayName()));
                   }
                   break;
 
@@ -1168,23 +1168,23 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getName() + " as first child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + " as first child");
             }
             break;
 
           case 'inside':
             if (accepted.mode & Allowed.INSIDE) {
-              this.debug(action, elementName, "into", target.getName(), "as child");
+              this.debug(action, elementName, "into", target.getDisplayName(), "as child");
               switch (action) {
                 case 'move':
                   if (element.moveInside(target)) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been moved into "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
                 case 'copy':
                   if (target.insertChild(element, -1, false, 'added')) {
-                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2"', elementName, target.getName()));
+                    cv.ui.manager.snackbar.Controller.info(this.tr('"%1" has been copied into "%2"', elementName, target.getDisplayName()));
                   }
                   break;
 
@@ -1193,7 +1193,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   break;
               }
             } else {
-              this.debug("NOT ALLOWED", elementName, "into", target.getName(), "as child");
+              this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName(), "as child");
             }
             break;
         }
