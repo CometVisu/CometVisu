@@ -1,4 +1,4 @@
-/* ColorChooser2.js 
+/* ColorChooser.js
  * 
  * copyright (c) 2010-2021, Christian Mayer and the CometVisu contributers.
  * 
@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
+qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -397,7 +397,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
           if( actorType === 'wheel' ) {
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX,relCoordY,this.__color.getComponent('hsv').h,radius);
+            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent('hsv').h,radius);
             if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
               this.__mode = 'wheel_sv';
               this.__color.changeComponent('sv', sv);
@@ -464,7 +464,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
         switch (this.__mode) {
           case 'wheel_sv':
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv = cv.ui.structure.pure.ColorChooser2.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
+            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
             this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'box_sv':
@@ -531,6 +531,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser2', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("colorchooser2", statics);
+    cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
   }
 });

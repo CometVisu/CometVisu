@@ -5,7 +5,7 @@ CometVisu von swiss (Metal)
 This is where swiss' visually productive Visu is presented.
 
 | **Design**: Metal
-| **Plugins**: colorchooser, rsslog, strftime, diagram
+| **Plugins**: rsslog, strftime, diagram
 | **Config**: :download:`visu_config_metal_swiss.xml <_static/visu_config_metal_swiss.xml>`
 | **Live-Demo**: `Live-Demo <http://demo.wiregate.de/visu-svn_neu/?config=metal_swiss>`__
 |

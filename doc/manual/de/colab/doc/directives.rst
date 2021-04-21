@@ -202,7 +202,7 @@ Momentan sind das die Werte der ``@author`` und ``@since`` Angaben.
     Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
     entspricht, also z.B. für ``structure/pure/Switch.js`` nimmt man ``.. api-doc:: Switch``
     (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
-    z.B. für ``plugins/colorchooser/`` nimmt man ``.. api-doc:: colorchooser``
+    z.B. für ``plugins/clock/`` nimmt man ``.. api-doc:: clock``
 
 Beispiel für das Switch-Widget:
 

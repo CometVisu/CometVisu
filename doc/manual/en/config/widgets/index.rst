@@ -158,7 +158,6 @@ For example:
 
     <plugins>
         <plugin name="diagram" />
-        <plugin name="colorchooser" />
         <plugin name="strftime" />
     </plugins>
 

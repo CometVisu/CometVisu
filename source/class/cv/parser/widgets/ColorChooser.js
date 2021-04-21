@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.ColorChooser2', {
+qx.Class.define('cv.parser.widgets.ColorChooser', {
   type: "static",
 
   /*
@@ -219,6 +219,6 @@ qx.Class.define('cv.parser.widgets.ColorChooser2', {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler('colorchooser2', statics);
+    cv.parser.WidgetParser.addHandler('colorchooser', statics);
   }
 });

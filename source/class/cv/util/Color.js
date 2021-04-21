@@ -274,7 +274,7 @@ qx.Class.define('cv.util.Color', {
           GBy = base.g.y - base.b.y,
           cBx = (color.x-(1-s)*base.w.x)/s - base.b.x,
           cBy = (color.y-(1-s)*base.w.y)/s - base.b.y,
-          rg = cv.ui.structure.pure.ColorChooser2.solve2d(RBx, RBy, GBx, GBy, cBx, cBy);
+          rg = cv.ui.structure.pure.ColorChooser.solve2d(RBx, RBy, GBx, GBy, cBx, cBy);
         
         let r =  rg[0], g = rg[1], b = 1-rg[0]-rg[1];
         r = (r * s + (1-s)) * color.v;

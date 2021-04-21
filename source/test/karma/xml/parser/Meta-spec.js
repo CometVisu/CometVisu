@@ -15,7 +15,7 @@ describe("testing the meta parser", function() {
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <meta>
       <plugins>
-        <plugin name="colorchooser"/>
+        <plugin name="clock"/>
         <plugin name="diagram"/>
         <plugin name="strftime"/>
       </plugins>
@@ -105,7 +105,7 @@ describe("testing the meta parser", function() {
 
       // test plugins
       var plugins = parser.parsePlugins(xml);
-      expect(plugins).toContain("plugin-colorchooser");
+      expect(plugins).toContain("plugin-clock");
       expect(plugins).toContain("plugin-diagram");
       expect(plugins).toContain("plugin-strftime");
 

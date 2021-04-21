@@ -56,11 +56,6 @@
             "cv.plugins.diagram.*"
           ]
         },
-        "plugin-colorchooser": {
-          "include": [
-            "cv.plugins.ColorChooser"
-          ]
-        },
         "plugin-calendarlist": {
           "include": [
             "cv.plugins.CalendarList"

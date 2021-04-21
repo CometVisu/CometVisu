@@ -4,20 +4,26 @@
     CometVisu/ColorChooser
     CometVisu/ColorChooser_(Deutsch)
     CometVisu/Widget/ColorChooser/de
+    CometVisu/de/0.11/manual/config/widgets/plugins/colorchooser/
 
 .. _colorchooser:
 
-Das ColorChooser Plugin
-=======================
+X.. toctree::
+X
+X    Einfacher Modus
+X    Professioneller Modus
 
-.. api-doc:: cv.plugins.ColorChooser
+Der ColorChooser
+================
+
+.. api-doc:: ColorChooser
 
 Beschreibung
 ------------
 
-x###########
-x###########
-x###########
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Mit dem ColorChooser lassen sich, z.B. für eine Effektbeleuchtung, Farben
 auswählen und anzeigen. Sowohl eine RGB-Beleuchtung mit roten, grünen und
@@ -107,13 +113,13 @@ Wert aus der letzen Spalte als Dim-Kurve zu verwenden:
 .. role:: linearorange
 .. role:: logorange
 
-====================== ====================== ========================
-Soll-Farbe             reale Farbe            zu verwendende Dim-Kurve
----------------------- ---------------------- ------------------------
+====================== ====================== =========================================
+Soll-Farbe             reale Farbe            zur Kompensation zu verwendende Dim-Kurve
+---------------------- ---------------------- -----------------------------------------
 :linearorange:`------` :logorange:`------`    `logarithmic`
 :linearorange:`------` :linearorange:`------` `linear`
 :linearorange:`------` :exporange:`------`    `exponential`
-====================== ====================== ========================
+====================== ====================== =========================================
 
 Meist reicht die Einstellung der korrekten Dim-Kurve um bereits eine gute
 Farbdarstellung zu bekommen. Sollte es jedoch dann noch bei einer RGB-Beleutung
@@ -178,15 +184,27 @@ ist. Eine Kommunikation im HSV Farbraum würde auch noch eine gute Farbwiedergab
 ermöglichen. Für eine direkte Ansteuerung über RGB bzw. RGBW Werte ist eine
 korrekt eingestellte Dim-Kurve unabdingbar.
 
+.. note::
+
+    Der ColorChooser verwendet intern den CIE Yxy Farbraum. Für die Umrechung
+    in den L*a*b* bzw. den L*C*h° Farbraum wird die Normlichtart D65 und ein
+    Beobachterwinkel von 10° verwendet.
+
 Beispiel für einen ColorChooser für den OSRAM LINEARlight FLEX Colormix RGBW
-LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und Ansteuerung
-über DALI:
+LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und einer
+Ansteuerung über DALI:
 
 .. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_professional">
+            <caption>Triangle-ColorChooser im professionellen Modus</caption>
+        </screenshot>
+    </settings>
     <colorchooser
         r_wavelength="622" r_strength="80" r_curve="logarithmic"
         g_wavelength="534" g_strength="196" g_curve="logarithmic"
-        b_wavelength="468" r_strength="21" b_curve="logarithmic"
+        b_wavelength="468" b_strength="21" b_curve="logarithmic"
         w_x="0.4290" w_y="0.4010" w_strength="400" w_curve="logarithmic"
         controls="triangle">
       <label>LED Strip</label>
@@ -195,9 +213,9 @@ LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und Ansteuerung
       <address transform="DPT:242.600" mode="write" variant="xyY">1/2/61</address>
     </colorchooser>
 
-x###########
-x###########
-x###########
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Der ColorChooser fügt der Visu einen Farbwahlkreis hinzu. Damit können RGB-Anwendungen realisiert werden.
 
@@ -304,9 +322,6 @@ ToDo für Doku
 Warum zeigen zwei ColorChooser eine komplett unterschiedliche Anzeige?
 - Wenn per RGB gekoppelt, aber ein HSV Chooser, dann ist aufgrund der nicht
 exakt möglichen umrechnung von RGB nach HSV eine unterschiedliche Anzeige möglich, obwohl die selbe Farbe repräsentiert wird
-
-Wenn die Farben im Chooser nicht zu denen der Beleuchtung passen:
-- Dim-Kuven checken
 
 .. rubric:: Fußnoten
 
