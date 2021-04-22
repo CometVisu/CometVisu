@@ -295,8 +295,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     addUndo: function (elementChange) {
-      this.assertInstance(elementChange, cv.ui.manager.model.ElementChange);
-      this.getUnDos().push(elementChange);
+      if (elementChange instanceof cv.ui.manager.model.ElementChange) {
+        this.getUnDos().push(elementChange);
+      }
     },
 
     undo: function () {
