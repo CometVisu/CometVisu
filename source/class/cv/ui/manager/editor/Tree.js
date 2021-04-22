@@ -812,14 +812,14 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         let target = ev.getTarget();
-        if (action !== 'copy') {
-          if (target === element) {
+        if (action !== 'copy' && target && target instanceof cv.ui.manager.tree.VirtualElementItem ) {
+          if (target.getModel() === element) {
             // cannot drop on myself
             this.debug("dropping on same element forbidden");
             accepted.mode = Allowed.NONE;
             ev.preventDefault();
             return;
-          } else if (target && target instanceof cv.ui.manager.tree.VirtualElementItem && element.isAncestor(target.getModel())) {
+          } else if (element.isAncestor(target.getModel())) {
             // cannot move into myself
             this.debug("moving inside own subtree forbidden");
             accepted.mode = Allowed.NONE;
@@ -893,10 +893,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           } else {
             if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
-              ev.preventDefault();
               // not allowed on this level
               accepted.mode = Allowed.NONE;
-              this.debug("not allowed as child element");
+              this.debug("not allowed as child element of", parent.getName());
             } else if (parentSchemaElement.areChildrenSortable()) {
               // children can be put anywhere
               // so this is allowed anywhere
@@ -969,6 +968,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }, this);
 
       const onDrag = function (ev) {
+        if (accepted.mode === Allowed.NONE) {
+          indicator.setDomPosition(-1000, -1000);
+          return;
+        }
         const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
         let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
         if (!orig) {
@@ -1038,7 +1041,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               top = origCoords.bottom;
               position = "first-child";
             } else {
-              console.log("not allowed as first child");
+              this.debug("not allowed as first child");
             }
           }
           if (expandTimer) {
@@ -1074,9 +1077,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         indicator.setDomPosition(left, top);
         indicator.setUserData("position", position);
         if (!position) {
+          indicator.setUserData("action", ev.getCurrentAction());
           cursor.resetAction();
-        } else if (cursor.getAction() !== ev.getCurrentAction()) {
-          cursor.setAction(ev.getCurrentAction());
+        } else if (cursor.getAction() !== indicator.getUserData("action")) {
+          cursor.setAction(indicator.getUserData("action"));
+          indicator.setUserData("action", null);
         }
       }
       control.addListener("drag", onDrag, this);
@@ -1206,8 +1211,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const onDragEnd = function(ev) {
         // Move indicator away
         indicator.setDomPosition(-1000, -1000);
-        indicator.setUserData("position", null);
-        indicator.setUserData("target", null);
+        indicator.resetUserData();
         if (expandTimer) {
           expandTimer.stop();
           expandTimer = null;

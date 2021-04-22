@@ -338,6 +338,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         // we cannot move into ourselves descendants
         return false;
       }
+      if (target === this) {
+        // do not move ourselves before, after or inside ourselves
+        return false;
+      }
       const parent = this.getParent();
       const children = parent.getChildren();
       const targetParent = position === 'inside' ? target : target.getParent();
@@ -634,10 +638,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (editor) {
             editor.updateModified(xmlElement);
           }
-        }
-        if (!internalOperation || internalOperation === 'added') {
-          xmlElement.$$added = true;
           xmlElement.updateModified();
+        } else {
+          if (!internalOperation || internalOperation === 'added') {
+            xmlElement.$$added = true;
+            xmlElement.updateModified();
+          }
         }
         this.updateModified();
         if (children.length === 1) {
