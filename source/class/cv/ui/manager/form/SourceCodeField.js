@@ -135,6 +135,10 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
     getValue : function() {
       if (this._editor) {
         return this._editor.getValue();
+      } else if (this.__delayedValue) {
+        return this.__delayedValue;
+      } else {
+        return '';
       }
     },
 
