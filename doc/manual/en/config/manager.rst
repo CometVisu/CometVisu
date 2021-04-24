@@ -12,7 +12,7 @@ as well as media files (for example backdrops).
     The manager can be opened by pressing the keys "Ctrl+M" together in a running CometVisu
     or by adding the url parameter `manager=1` to the CometVisu URL.
 
-.. figure:: _static/manager.en.png
+.. figure:: _static/manager.png
 
 The available functions are accessible via menus, toolbars or buttons. The main page of the manager
 is composed of the following components (from top to bottom):

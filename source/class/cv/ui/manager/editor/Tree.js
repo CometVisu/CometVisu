@@ -557,6 +557,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
              bindItem: function (controller, item, index) {
                controller.bindProperty("", "model", null, item, index);
                controller.bindProperty("displayName", "label", null, item, index);
+               controller.bindProperty("name", "name", null, item, index);
                controller.bindPropertyReverse("open", "open", null, item, index);
                controller.bindProperty("open", "open", null, item, index);
                controller.bindProperty("showEditButton", "editable", null, item, index);

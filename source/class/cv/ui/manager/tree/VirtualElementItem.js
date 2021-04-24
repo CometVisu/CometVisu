@@ -30,7 +30,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     name: {
       check: 'String',
       init: '',
-      event: 'changeName'
+      event: 'changeName',
+      apply: '_applyName'
     },
 
     temporary: {
@@ -93,6 +94,10 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       touch: true
     },
     __labelAdded: false,
+
+    _applyName: function(value) {
+      this.getContentElement().setAttribute('data-nodename', value);
+    },
 
     // this has to be set by model binding, because the qx way by adding a state does not survive a widget re-binding
     _applyDragging: function (value) {

@@ -35,6 +35,9 @@ exports.config = {
     browser.manage().window().setSize(1300, 800);
     return browser.getProcessedConfig().then(function(config) {
       if (config.params) {
+        if (config.params.source) {
+          browser.source = config.params.source;
+        }
         if (config.params.subDir) {
           browser.onlySubDir = config.params.subDir;
         }

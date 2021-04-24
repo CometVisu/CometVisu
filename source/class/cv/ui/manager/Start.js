@@ -196,6 +196,7 @@ qx.Class.define('cv.ui.manager.Start', {
 
          case 'configs-header':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+           control.getContentElement().setAttribute('data-section', 'configs');
            this.getChildControl('content').add(control);
            break;
 
@@ -233,6 +234,7 @@ qx.Class.define('cv.ui.manager.Start', {
          case 'demo-configs-title':
            control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
            control.setUserData('control', 'demo-configs');
+           control.getContentElement().setAttribute('data-section', 'demo');
            control.addListener('tap', this._onToggleExpand, this);
            this.getChildControl('content').add(control);
            break;
@@ -264,6 +266,7 @@ qx.Class.define('cv.ui.manager.Start', {
 
          case 'media-header':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+           control.getContentElement().setAttribute('data-section', 'media');
            this.getChildControl('content').add(control);
            break;
 
@@ -288,6 +291,7 @@ qx.Class.define('cv.ui.manager.Start', {
          case 'misc-title':
            control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
            control.setUserData('control', 'misc');
+           control.getContentElement().setAttribute('data-section', 'misc');
            control.addListener('tap', this._onToggleExpand, this);
            this.getChildControl('content').add(control);
            break;

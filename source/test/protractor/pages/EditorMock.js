@@ -24,7 +24,7 @@ class CometVisuEditorMockup extends BasePage {
   mockupConfig(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/'+this.target+'/rest/manager/index.php/fs?path=visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock'+encodeURIComponent('/' + this.target+'/rest/manager/index.php/fs?path=visu_config_mockup.xml'),
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
@@ -39,12 +39,36 @@ class CometVisuEditorMockup extends BasePage {
 
   mockupFixture(fixture) {
     this.mockupReady = false;
-    let sourceFile = path.join(rootDir, fixture.sourceFile);
-    if (fs.existsSync(sourceFile)) {
-      let content = fs.readFileSync(sourceFile);
+    let content;
+    if (fixture.hasOwnProperty("sourceFile")) {
+      let sourceFile = path.join(rootDir, fixture.sourceFile);
+      if (fs.existsSync(sourceFile)) {
+        content = fs.readFileSync(sourceFile);
+      } else {
+        console.error("fixture file", sourceFile, 'not found');
+      }
+    } else if (fixture.hasOwnProperty("data")) {
+      if (typeof fixture.data === 'object') {
+        content = JSON.stringify(fixture.data);
+      } else {
+        content = fixture.data;
+      }
+    }
+
+    let queryString = '';
+    if (fixture.mimeType) {
+      queryString = '?mimeType='+encodeURIComponent(fixture.mimeType);
+    }
+
+    if (content !== undefined) {
+      let targetPath = fixture.targetPath;
+      if (!targetPath.startsWith('/')) {
+        // adding target only to relative paths
+        targetPath = '/' + this.target + '/' + targetPath;
+      }
       request({
         method: 'POST',
-        uri: 'http://localhost:8000/mock/' + fixture.targetPath,
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
         body: content
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -55,20 +79,28 @@ class CometVisuEditorMockup extends BasePage {
           console.log(body);
         }
       });
-    } else {
-      console.error("fixture file", sourceFile, 'not found');
     }
   };
 
+  resetMockupFixture(fixture) {
+    let targetPath = fixture.targetPath;
+    if (!targetPath.startsWith('/')) {
+      // adding target only to relative paths
+      targetPath = '/' + this.target + '/' + targetPath;
+    }
+    request({
+      method: 'DELETE',
+      uri: 'http://localhost:8000/mock/' + encodeURIComponent(targetPath),
+    });
+  }
 
-
-  editConfig(configName) {
+  editConfig(configName, showPreview) {
     const configFile = configName ? 'visu_config_' + configName + '.xml' : 'visu_config.xml';
     return this.dispatchAction('openWith', {
       file: configFile,
       handler: 'cv.ui.manager.editor.Tree',
       handlerOptions: {
-        noPreview: true
+        noPreview: !showPreview
       }
     });
   }

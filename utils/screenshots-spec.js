@@ -89,6 +89,10 @@ describe('generation screenshots from jsdoc examples', function () {
   let runResult = {};
   let shotIndex = {};
 
+  let examplesDir = browser.source ? browser.source : path.join("cache", "widget_examples");
+  let subDirsMode = !browser.source;
+  let whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
+
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
     mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
@@ -144,199 +148,275 @@ describe('generation screenshots from jsdoc examples', function () {
     }
   })
 
-  let examplesDir = path.join("cache", "widget_examples");
-  let whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
-
+  const files = [];
   fs.readdirSync(examplesDir).forEach(function(fileName) {
-    var subDir = path.join(examplesDir, fileName);
-    if (browser.onlySubDir && browser.onlySubDir !== fileName) {
-      return;
+    const subDir = path.join(examplesDir, fileName);
+    if (subDirsMode) {
+      if (browser.onlySubDir && browser.onlySubDir !== fileName) {
+        return;
+      }
+      if (fs.statSync(subDir).isDirectory()) {
+        fs.readdirSync(subDir).forEach(async function (fileName) {
+          if (whiteList.length > 0 && whiteList.indexOf(fileName) < 0) {
+            // skip this one
+            return;
+          }
+          if (fileName.split(".").pop() !== "json") {
+            return;
+          }
+          let filePath = path.join(subDir, fileName);
+          files.push(filePath);
+        });
+      }
+    } else {
+      if (whiteList.length > 0 && whiteList.indexOf(fileName) < 0) {
+        // skip this one
+        return;
+      }
+      if (fileName.split(".").pop() !== "json") {
+        return;
+      }
+      files.push(subDir);
     }
-    if (fs.statSync(subDir).isDirectory()) {
-      fs.readdirSync(subDir).forEach(async function(fileName) {
-        if (whiteList.length > 0 && whiteList.indexOf(fileName) < 0) {
-          // skip this one
-          return;
+  });
+
+  files.forEach(async function(filePath) {
+    let stat = fs.statSync(filePath);
+    if (stat.isFile()) {
+      runResult.file = filePath;
+      const rawData = fs.readFileSync(filePath, "utf-8");
+      let settings;
+      try {
+        settings = JSON.parse(rawData);
+      } catch (e) {
+        console.error("\n>>> error parsing settings", rawData, filePath);
+        console.error(e.message);
+        runResult.failed = true;
+        runResult.error = e;
+        stats.error++;
+        stats.total++;
+        return;
+      }
+      createDir(settings.screenshotDir);
+      const indexFile = path.join(settings.screenshotDir, "shot-index.json");
+      if (fs.existsSync(indexFile)) {
+        const indexData = fs.readFileSync(indexFile, "utf-8");
+        try {
+          shotIndex = JSON.parse(indexData);
+        } catch (e) {
+          console.error("\n>>> error parsing screenshot index data", indexData, indexFile);
+          console.error(e.message);
         }
-        if (fileName.split(".").pop() !== "json") {
-          return;
-        }
-        let filePath = path.join(subDir, fileName);
-        runResult.file = filePath;
-        let stat = fs.statSync(filePath);
-        if (stat.isFile()) {
-          const rawData = fs.readFileSync(filePath, "utf-8");
-          let settings;
-          try {
-            settings = JSON.parse(rawData);
-          } catch (e) {
-            console.error("\n>>> error parsing settings", rawData, filePath);
-            console.error(e.message);
-            runResult.failed = true;
-            runResult.error = e;
-            stats.error++;
+      }
+
+      // check if we have to renew any ob the screenshots
+      const skippedScreenshots = [];
+      let allSkipped = true;
+      settings.screenshots.forEach((setting) => {
+        if (setting.hasOwnProperty("hash") && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
+          // also check if the file really exists
+          if (fs.existsSync(path.join(settings.screenshotDir, setting.name + ".png"))) {
+            // skip this screenshot because is has not changed since last generation
+            stats.skipped++;
             stats.total++;
-            return;
+            skippedScreenshots.push(setting.name);
           }
-          createDir(settings.screenshotDir);
-          const indexFile = path.join(settings.screenshotDir, "shot-index.json");
-          if (fs.existsSync(indexFile)) {
-            const indexData = fs.readFileSync(indexFile, "utf-8");
-            try {
-              shotIndex = JSON.parse(indexData);
-            } catch (e) {
-              console.error("\n>>> error parsing screenshot index data", indexData, indexFile);
-              console.error(e.message);
-            }
-          }
+        } else {
+          allSkipped = false;
+        }
+      });
+      if (allSkipped) {
+        // nothing to do
+        return;
+      }
 
-          // check if we have to renew any ob the screenshots
-          const skippedScreenshots = [];
-          let allSkipped = true;
-          settings.screenshots.forEach((setting) => {
-            if (setting.hasOwnProperty("hash") && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
-              // also check if the file really exists
-              if (fs.existsSync(path.join(settings.screenshotDir, setting.name + ".png"))) {
-                // skip this screenshot because is has not changed since last generation
-                stats.skipped++;
-                stats.total++;
-                skippedScreenshots.push(setting.name);
-              }
-            } else {
-              allSkipped = false;
-            }
-          });
-          if (allSkipped) {
-            // nothing to do
-            return;
-          }
+      let selectorPrefix = ".activePage ";
+      let mockedConfigData = {
+        mode: "cv",
+        data: settings.config,
+        fixtures: settings.fixtures
+      };
 
-          let selectorPrefix = ".activePage ";
-          let mockedConfigData = {
-            mode: "cv",
-            data: settings.config,
-            fixtures: settings.fixtures
-          };
+      if (settings.mode) {
+        selectorPrefix = "";
+        mockedConfigData.mode = settings.mode;
+      } else if (settings.editor) {
+        selectorPrefix = "";
+        mockedConfigData.mode = "editor";
+      }
+      let loadManager = mockedConfigData.mode === 'editor' || mockedConfigData.mode === 'manager';
+      if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
+        selectorPrefix = "";
+      }
+      mockupConfig.push(mockedConfigData);
 
-          if (settings.editor) {
-            selectorPrefix = "";
-            mockedConfigData.mode = "editor";
-          }
-          if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
-            selectorPrefix = "";
-          }
-          mockupConfig.push(mockedConfigData);
+      it('should create a screenshot', async function () {
+        //console.log(">>> processing " + filePath + "...");
+        let currentScreenshot = {};
+        runResult.shotIndexFile = indexFile;
+        try {
+          let widget;
+          if (loadManager) {
+            widget = element(by.css('#manager'));
+            await browser.wait(function () {
+              return widget.isDisplayed();
+            }, 2000);
 
-          it('should create a screenshot', async function () {
-            //console.log(">>> processing " + filePath + "...");
-            let currentScreenshot = {};
-            runResult.shotIndexFile = indexFile;
-            try {
-              let widget;
-              if (settings.editor) {
-                widget = element(by.css('#manager'));
-                await browser.wait(function () {
-                  return widget.isDisplayed();
-                }, 2000);
-
-                await editorMockup.editConfig('mockup');
-                widget = element.all(by.css('div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]')).first();
-                await browser.wait(function () {
-                  return widget.isDisplayed();
-                }, 2000);
-
-                if (settings.complex) {
-                  await editorMockup.enableExpertMode();
-                }
-                await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
-              }
-
-              // wait for everything to be rendered
-              browser.sleep(settings.sleep || 1000);
-              widget = element.all(by.css(selectorPrefix + settings.selector)).first();
+            if (mockedConfigData.mode === 'editor') {
+              await editorMockup.editConfig(settings.hasOwnProperty('configFileName') ? settings.configFileName : 'mockup', settings.showPreview);
+              widget = element.all(by.css('div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]')).first();
               await browser.wait(function () {
                 return widget.isDisplayed();
               }, 2000);
 
-              runResult.screenshots = [];
-              for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
-                currentScreenshot = setting;
-                runResult.screenshots.push(setting.name);
+              if (settings.complex) {
+                await editorMockup.enableExpertMode();
+              }
+              await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
 
-                if (setting.data && Array.isArray(setting.data)) {
-                  setting.data.forEach(function (data) {
-                    var value = data.value;
-                    if (data.type) {
-                      switch (data.type) {
-                        case "float":
-                          value = parseFloat(value);
-                          break;
-                        case "int":
-                          value = parseInt(value);
-                          break;
-                      }
-                    }
-                    cvMockup.sendUpdate(data.address, value);
-                  });
-                }
-                if (setting.clickPath) {
-
-                  var actor = element.all(by.css(setting.clickPath)).first();
-                  if (actor) {
-                    actor.click();
-                    var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
-                    widget = element(by.css(waitFor));
-                    browser.wait(function () {
-                      return widget.isDisplayed();
-                    }, 1000);
-                  }
-                }
-                const size = await widget.getSize();
-                const location = await widget.getLocation();
-                if (setting.sleep) {
-                  browser.sleep(setting.sleep);
-                }
-                //console.log("  - creating screenshot '" + setting.name + "'");
-                const data = await browser.takeScreenshot();
-                var base64Data = data.replace(/^data:image\/png;base64,/, "");
-                var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
-                try {
-                  fs.writeFileSync(imgFile, base64Data, 'base64');
-                  if (settings.scale) {
-                    var scale = parseInt(settings.scale);
-                    var scaledWidth = Math.round(size.width * scale / 100);
-                    var scaledHeight = Math.round(size.height * scale / 100);
-                    cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
-                  } else {
-                    cropInFile(size, location, imgFile);
-                  }
-                  stats.success++;
-                  stats.total++;
-                  runResult.success = true;
-                  if (setting.hash) {
-                    shotIndex[setting.name] = setting.hash;
-                  }
-                } catch (err) {
-                  runResult.failed = true;
-                  runResult.error = err;
-                  stats.error++;
-                  stats.total++;
+              if (settings.special) {
+                if (settings.special.contextMenu) {
+                  const ele = element(by.css('div[data-nodename="'+settings.widget+'"]'));
+                  browser.actions().click(ele, protractor.Button.RIGHT).perform();
                 }
               }
-            } catch (e) {
-              console.error(">>> error creating screenshot", currentScreenshot.name, "from file", filePath);
-              console.error(e.message);
-              stats.error++;
-              stats.total++;
-              runResult.failed = true;
-              runResult.error = e;
-              runResult.screenshot = currentScreenshot.name;
             }
-          });
+            if (settings.openFile) {
+              if (settings.openFile.config) {
+                await editorMockup.dispatchAction('openWith', Object.assign({file: settings.openFile.name}, settings.openFile.config));
+              } else {
+                await editorMockup.dispatchAction('open', settings.openFile.name);
+              }
+              widget = element.all(by.css(settings.openFile.waitFor)).first();
+              await browser.wait(function () {
+                return widget.isDisplayed();
+              }, 2000);
+            }
+
+            if (settings.rightClickOn) {
+              const ele = element.all(by.css(settings.rightClickOn)).first();
+              browser.actions().click(ele, protractor.Button.RIGHT).mouseMove({x: 400, y: 0}).perform();
+            }
+          }
+
+          // wait for everything to be rendered
+          browser.sleep(settings.sleep || 1000);
+          widget = element.all(by.css(selectorPrefix + settings.selector)).first();
+          await browser.wait(function () {
+            return widget.isDisplayed();
+          }, 2000);
+
+          runResult.screenshots = [];
+          for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
+            currentScreenshot = setting;
+
+            if (setting.data && Array.isArray(setting.data)) {
+              setting.data.forEach(function (data) {
+                var value = data.value;
+                if (data.type) {
+                  switch (data.type) {
+                    case "float":
+                      value = parseFloat(value);
+                      break;
+                    case "int":
+                      value = parseInt(value);
+                      break;
+                  }
+                }
+                cvMockup.sendUpdate(data.address, value);
+              });
+            }
+            if (setting.clickPath) {
+
+              var actor = element.all(by.css(setting.clickPath)).first();
+              if (actor) {
+                actor.click();
+                var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix + settings.selector;
+                widget = element(by.css(waitFor));
+                browser.wait(function () {
+                  return widget.isDisplayed();
+                }, 1000);
+              }
+            }
+            let size, location;
+            if (setting.size) {
+              size = setting.size;
+            } else {
+              size = await widget.getSize();
+            }
+            if (setting.location) {
+              location = setting.location;
+            } else {
+              location = await widget.getLocation();
+            }
+            if (setting.locationOffset) {
+              location.x += setting.locationOffset.x;
+              location.y += setting.locationOffset.y;
+            }
+            if (setting.margin) {
+              if (!Array.isArray(setting.margin)) {
+                // top, right, bottom, left
+                setting.margin = [setting.margin, setting.margin, setting.margin, setting.margin];
+              }
+              location.y -= setting.margin[0];
+              location.x -= setting.margin[3];
+              size.width += setting.margin[1]+setting.margin[3];
+              size.height += setting.margin[0]+setting.margin[2];
+            }
+            location.x = Math.max(0, location.x);
+            location.y = Math.max(0, location.y);
+            if (setting.sleep) {
+              browser.sleep(setting.sleep);
+            }
+            //console.log("  - creating screenshot '" + setting.name + "'");
+            const locales = setting.locales ? setting.locales : [""]
+            for (const locale of locales) {
+              if (locale) {
+                if (mockedConfigData.mode === 'cv') {
+                  cvMockup.setLocale(locale);
+                } else {
+                  editorMockup.setLocale(locale);
+                }
+              }
+              const data = await browser.takeScreenshot();
+              let base64Data = data.replace(/^data:image\/png;base64,/, "");
+              const imgFile = path.join(...[settings.baseDir, locale, settings.screenshotDir, setting.name + ".png"].filter(name => !!name));
+              try {
+                fs.writeFileSync(imgFile, base64Data, 'base64');
+                if (settings.scale) {
+                  let scale = parseInt(settings.scale);
+                  let scaledWidth = Math.round(size.width * scale / 100);
+                  let scaledHeight = Math.round(size.height * scale / 100);
+                  cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
+                } else {
+                  cropInFile(size, location, imgFile);
+                }
+                stats.success++;
+                stats.total++;
+                runResult.success = true;
+                if (setting.hash) {
+                  shotIndex[setting.name] = setting.hash;
+                }
+              } catch (err) {
+                runResult.failed = true;
+                runResult.error = err;
+                stats.error++;
+                stats.total++;
+              }
+            }
+          }
+        } catch (e) {
+          const name = currentScreenshot.name || settings.screenshots.map(e => e.name).join(",");
+          console.error(">>> error creating screenshot(s)", name, "from file", filePath);
+          //console.error(e.message);
+          stats.error++;
+          stats.total++;
+          runResult.failed = true;
+          runResult.error = e;
+          runResult.screenshot = name;
         }
       });
-      // save the shotindex
-
     }
   });
+  // save the shotindex
 });

@@ -12,7 +12,7 @@ Medien-Dateien (z.B. Hintergrundbilder) verwaltet werden.
     Der Manager kann geöffnet werden, indem man die Tasten-Kombination "Strg+M" in einer laufenden CometVisu Instanz drückt
     oder beim Laden der CometVisu den URL-Parameter `manager=1` hinzufügt.
 
-.. figure:: _static/manager.de.png
+.. figure:: _static/manager.png
 
 Die jeweiligen Funktionen sind über Menüs, Toolbars oder Buttons erreichbar. Die Startseite des Managers setzt sich aus
 folgenden Komponenten zusammen (von oben nach unten):
@@ -37,7 +37,7 @@ Damit kann die Datei heruntergeladen, angesehen oder bearbeitet werden. Weitere 
 Kontextmenü, welches über einen Klick mit der rechten Maustaste auf das Datei-Symbol oder einem Klick mit der
 linken Maustaste auf den 2. Button unter dem Dateisymbol geöffnet werden kann.
 
-.. figure:: _static/manager_context.de.png
+.. figure:: _static/manager_context.png
 
 Duplizieren
   Legt eine Kopie der Konfiguration unter anderem Namen an.
@@ -79,7 +79,7 @@ Vorlieben abzuändern. Textdateien wie z.B. CSS- oder Javascript-Dateien können
 mit dem eingebauten Texteditor direkt bearbeitet werden, anderen Dateien wie z.B. Bilder
 können hochgeladen, ersetzt oder gelöscht werden.
 
-.. figure:: _static/manager_media.de.png
+.. figure:: _static/manager_media.png
 
 Je nach Art der Mediendatei stehen unterschiedliche Möglichkeiten zur Verfügung.
 Bilder werden direkt als kleine Vorschau dargestellt, können herunter geladen oder geöffnet werden.
@@ -98,4 +98,4 @@ CometVisu-Icons
 
 Zeigt eine filterbare Liste mit allen in der CometVisu zur Verfügung stehenden Icons.
 
-.. figure:: _static/manager_icons.de.png
+.. figure:: _static/manager_icons.png

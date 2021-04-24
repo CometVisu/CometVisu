@@ -6,11 +6,18 @@ var fs = require('fs');
 var mocks = [];
 function captureMock() {
   return function (req, res, next) {
-
     // match on POST requests starting with /mock
     if (req.url.indexOf('/mock') === 0) {
+      const startQS = req.url.indexOf('?');
       // everything after /mock is the path that we need to mock
-      var path = req.url.substring(5);
+      var path = decodeURIComponent(req.url.substring(5, startQS > 5 ? startQS : undefined));
+      const queryString = {};
+      if (startQS>=0) {
+        req.url.substr(startQS+1).split('&').map(part => {
+          const splitted = part.split('=');
+          queryString[splitted[0]] = decodeURIComponent(splitted[1]);
+        });
+      }
       if (req.method === 'POST') {
         var body = '';
         req.on('data', function (data) {
@@ -18,7 +25,7 @@ function captureMock() {
         });
         req.on('end', function () {
 
-          mocks[path] = body;
+          mocks[path] = Object.assign({content: body}, queryString);
 
           res.writeHead(200);
           res.end();
@@ -42,20 +49,27 @@ function mock() {
     if (found) {
       url = url.replace(found[1],"");
     }
-    var mockedResponse = mocks[url];
-    if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
-      // try to find mocked url without querystring
-      url = url.split('#')[0];
-      url = url.split('?')[0];
+    let mockedResponse;
+    if (req.method === 'GET') {
       mockedResponse = mocks[url];
+      if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
+        // try to find mocked url without querystring
+        url = url.split('#')[0];
+        url = url.split('?')[0];
+        mockedResponse = mocks[url];
+      }
     }
     if (mockedResponse) {
-      if (req.url.endsWith('.xml')) {
+      if (mockedResponse.hasOwnProperty('mimeType')) {
+        res.writeHead(200, {'Content-Type': mockedResponse.mimeType});
+      } else if (req.url.endsWith('.xml')) {
         res.writeHead(200, {'Content-Type': 'text/xml;charset=UTF-8'});
       } else if (req.url.endsWith('.json')) {
         res.writeHead(200, {'Content-Type': 'application/json'});
+      } else if (req.url.endsWith('.svg')) {
+        res.writeHead(200, {'Content-Type': 'image/svg+xml'});
       }
-      res.write(mockedResponse);
+      res.write(mockedResponse.content);
       res.end();
     } else if (url === "/designs/get_designs.php") {
       // untested
@@ -79,13 +93,28 @@ function mock() {
       res.end();
     } else if (url.indexOf('/rest/manager/index.php/') >= 0) {
       const relPath = req.url.substr(req.url.indexOf('/rest/manager/index.php/'));
-      if (fs.existsSync(path.join("source", "test", "fixtures", relPath))) {
-        const data = fs.readFileSync(path.join("source", "test", "fixtures", relPath), 'utf8');
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.write(data);
-        res.end();
-      } else {
-        next();
+      if (req.method === 'GET') {
+        if (fs.existsSync(path.join("source", "test", "fixtures", relPath))) {
+          const data = fs.readFileSync(path.join("source", "test", "fixtures", relPath), 'utf8');
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.write(data);
+          res.end();
+        } else {
+          next();
+        }
+      } else if (req.method === 'PUT') {
+        if (relPath.startsWith('/rest/manager/index.php/fs?path=/visu_config_previewtemp.xml')) {
+          // we allow writing the previewtemp config to make the preview work correctly
+          let body = '';
+          req.on('data', function (data) {
+            body += data;
+          });
+          req.on('end', function () {
+            fs.writeFileSync(path.join("compiled", "source", "resource", "config", "visu_config_previewtemp.xml"), body);
+            res.writeHead(200);
+            res.end();
+          });
+        }
       }
     } else {
       next();
@@ -433,6 +462,7 @@ module.exports = function(grunt) {
           configFile: "utils/protractor.conf.js",
           args: {
             params: {
+              source: grunt.option('source'),
               subDir: grunt.option('subDir'),
               screenshots: grunt.option('files'),
               target: grunt.option('target'),

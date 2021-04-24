@@ -177,6 +177,13 @@ class BasePage {
     }, data);
   }
 
+  setLocale(locale) {
+    return browser.executeAsyncScript(function (locale, callback) {
+      qx.locale.Manager.getInstance().setLocale(locale);
+      callback();
+    }, locale);
+  }
+
   /**
    * Get widget data
    * @param path

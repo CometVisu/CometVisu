@@ -26,7 +26,7 @@ class CometVisuMockup extends BasePage {
   mockupConfig(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/'+this.target+'/resource/config/visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock'+encodeURIComponent('/' + this.target + '/resource/config/visu_config_mockup.xml'),
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
@@ -51,7 +51,7 @@ class CometVisuMockup extends BasePage {
       let content = fs.readFileSync(sourceFile);
       request({
         method: 'POST',
-        uri: 'http://localhost:8000/mock' + targetPath,
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath),
         body: content
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -74,7 +74,7 @@ class CometVisuMockup extends BasePage {
     }
     request({
       method: 'DELETE',
-      uri: 'http://localhost:8000/mock' + targetPath,
+      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath),
     });
   }
 }

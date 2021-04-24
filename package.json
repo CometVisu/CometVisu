@@ -17,7 +17,8 @@
     "pretest": "qx compile",
     "test": "grunt karma:debug",
     "lint": "echo \"lint is currently disabled\"",
-    "make-client": "cd client && qx compile -t build"
+    "make-client": "cd client && qx compile -t build",
+    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/"
   },
   "license": "GPL-3.0",
   "authors": [
