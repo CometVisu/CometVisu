@@ -79,7 +79,7 @@ qx.Class.define("cv.parser.MetaParser", {
         cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.concat(files.css);
       }
       if (files.js.length > 0) {
-        cv.util.ScriptLoader.getInstance().addScripts(files.js);
+        cv.Config.configSettings.scriptsToLoad = cv.Config.configSettings.scriptsToLoad.concat(files.js);
       }
     },
 

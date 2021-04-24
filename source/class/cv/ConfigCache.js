@@ -36,110 +36,148 @@ qx.Class.define('cv.ConfigCache', {
     _cacheKey : "data",
     _parseCacheData : null,
     _valid : null,
-    
-    dump : function(xml) {
-      if (qx.core.Environment.get("html.storage.local") === false) {
-        return;
+    replayCache: null,
+    __initPromise: null,
+    DB: null,
+
+    init: function () {
+      if (!this.__initPromise) {
+        this.__initPromise = new Promise((resolve, reject) => {
+          if (!cv.ConfigCache.DB) {
+            const request = indexedDB.open("cvCache", 1);
+            request.onsuccess = function (ev) {
+              qx.log.Logger.debug(cv.ConfigCache, "Success creating/accessing IndexedDB database");
+              cv.ConfigCache.DB = request.result;
+
+              cv.ConfigCache.DB.onerror = function (event) {
+                reject(new Error("Error creating/accessing IndexedDB database"))
+              };
+              resolve(cv.ConfigCache.DB);
+            }
+            request.onupgradeneeded = function (event) {
+              const db = event.target.result;
+
+              db.onerror = function (event) {
+                qx.log.Logger.error(cv.ConfigCache, "Error loading database.");
+              };
+              const objectStore = db.createObjectStore("data", {keyPath: "config"});
+              objectStore.createIndex("config", "config", {unique: true});
+            };
+          } else {
+            resolve(cv.ConfigCache.DB);
+          }
+        });
       }
-      var config = JSON.parse(JSON.stringify(cv.Config.configSettings)); // deep copy
-      var model = cv.data.Model.getInstance();
-      this.save(this._cacheKey, {
-        hash: this.toHash(xml),
+      return this.__initPromise;
+    },
+    
+    dump: function(xml, hash) {
+      const model = cv.data.Model.getInstance();
+      this.save({
+        hash: hash || this.toHash(xml),
         VERSION: cv.Version.VERSION,
         REV: cv.Version.REV,
-        data: model.getWidgetDataModel(),
+        data: JSON.stringify(model.getWidgetDataModel()),
         addresses: model.getAddressList(),
-        configSettings: config
+        configSettings: JSON.stringify(cv.Config.configSettings),
+        config: cv.Config.configSuffix,
+        body: document.querySelector('body').innerHTML
       });
-      localStorage.setItem(cv.Config.configSuffix+".body", document.querySelector('body').innerHTML);
     },
 
     restore: function() {
-      var body = document.querySelector("body");
-      var model = cv.data.Model.getInstance();
-      var cache = this.getData();
-      cv.Config.configSettings = cache.configSettings;
-      // restore formulas
-      if (cv.Config.configSettings.mappings) {
-        Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
-          var mapping = cv.Config.configSettings.mappings[name];
-          if (mapping && mapping.formulaSource) {
-            mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
-          }
-        }, this);
-      }
-      model.setWidgetDataModel(cache.data);
-      model.setAddressList(cache.addresses);
-      var widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
-        return cache.data[widgetId].$$initOnCacheLoad === true;
+      const body = document.querySelector("body");
+      const model = cv.data.Model.getInstance();
+      this.getData().then(cache => {
+        cv.Config.configSettings = cache.configSettings;
+        // restore formulas
+        if (cv.Config.configSettings.mappings) {
+          Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
+            const mapping = cv.Config.configSettings.mappings[name];
+            if (mapping && mapping.formulaSource) {
+              mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+            }
+          }, this);
+        }
+        model.setWidgetDataModel(cache.data);
+        model.setAddressList(cache.addresses);
+        const widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
+          return cache.data[widgetId].$$initOnCacheLoad === true;
+        });
+        if (widgetsToInitialize.length > 0) {
+          cv.TemplateEngine.getInstance().addListenerOnce('changeReady', function () {
+            widgetsToInitialize.forEach(function (widgetId) {
+              const widgetData = cache.data[widgetId];
+              cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
+            })
+          }, this);
+        }
+        body.innerHTML = cache.body;
+        qx.log.Logger.debug(this, "content restored from cache");
       });
-      if (widgetsToInitialize.length > 0) {
-        cv.TemplateEngine.getInstance().addListenerOnce('changeReady', function () {
-          widgetsToInitialize.forEach(function (widgetId) {
-            var widgetData = cache.data[widgetId];
-            cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
-          })
-        }, this);
-      }
-      body.innerHTML = cv.ConfigCache.getBody();
     },
     
-    save: function(key, data) {
-      if (qx.core.Environment.get("html.storage.local") === true) {
-        localStorage.setItem(cv.Config.configSuffix + "." + key, JSON.stringify(data));
-      }
+    save: function(data) {
+      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      objectStore.put(data);
     },
     
-    getBody: function() {
-      if (qx.core.Environment.get("html.storage.local") === false) {
-        return null;
-      }
-      return localStorage.getItem(cv.Config.configSuffix + ".body");
-    },
-    
-    getData: function(key) {
-      if (qx.core.Environment.get("html.storage.local") === false) {
-        return null;
-      }
-      if (!this._parseCacheData) {
-        this._parseCacheData = JSON.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
-      }
-      if (!this._parseCacheData) {
-        return null;
-      }
-      if (key) {
-        return this._parseCacheData[key];
-      } else {
-        return this._parseCacheData;
-      }
+    getData: async function(key) {
+      return new Promise((resolve, reject) => {
+        if (!this._parseCacheData) {
+          const objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore('data');
+          const dataRequest = objectStore.get(cv.Config.configSuffix);
+          dataRequest.onsuccess = function(event) {
+            if (!dataRequest.result) {
+              resolve(null);
+            } else {
+              this._parseCacheData = dataRequest.result;
+              // parse stringified data
+              this._parseCacheData.data = JSON.parse(this._parseCacheData.data);
+              this._parseCacheData.configSettings = JSON.parse(this._parseCacheData.configSettings);
+              if (key) {
+                resolve(this._parseCacheData[key]);
+              } else {
+                resolve(this._parseCacheData);
+              }
+            }
+          }.bind(this);
+        } else if (key) {
+          resolve(this._parseCacheData[key]);
+        } else {
+          resolve(this._parseCacheData);
+        }
+      });
     },
     
     /**
      * Returns true if there is an existing cache for the current config file
      */
-    isCached: function() {
-      if (qx.core.Environment.get("html.storage.local") === false) {
+    isCached: async function() {
+      await cv.ConfigCache.init();
+      const data = await this.getData();
+      if (!data) {
         return false;
       }
-      if (localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey) !== null) {
-        // compare versions
-        var cacheVersion = this.getData("VERSION") + '|' + this.getData('REV');
-        qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + '|' + cv.Version.REV);
-        return (cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
-      } else {
-        return false;
-      }
+      // compare versions
+      const cacheVersion = data.VERSION + '|' + data.REV;
+      qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + '|' + cv.Version.REV);
+      return (cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
     },
     
-    isValid: function(xml) {
-      if (qx.core.Environment.get("html.storage.local") === false) {
-        return false;
-      }
+    isValid: async function(xml, hash) {
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
-        var hash = this.toHash(xml);
-        qx.log.Logger.debug(this, "Current hash: '"+hash+"', cached hash: '"+this.getData("hash")+"'");
-        this._valid = hash === this.getData("hash");
+        const cachedHash = await this.getData("hash");
+        if (!cachedHash) {
+          this._valid = false;
+        } else {
+          if (!hash) {
+            hash = this.toHash(xml);
+          }
+          qx.log.Logger.debug(this, "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'");
+          this._valid = hash === cachedHash;
+        }
       }
       return this._valid;
     },
@@ -149,12 +187,12 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     clear: function(configSuffix) {
-      if (qx.core.Environment.get("html.storage.local") === false) {
-        return;
-      }
       configSuffix = configSuffix || cv.Config.configSuffix;
-      localStorage.removeItem(configSuffix+"."+this._cacheKey);
-      localStorage.removeItem(configSuffix+".body");
+      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      const dataRequest = objectStore.delete(configSuffix);
+      dataRequest.onsuccess = function () {
+        qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
+      }
     },
     
     /**
@@ -165,12 +203,12 @@ qx.Class.define('cv.ConfigCache', {
       if (Array.prototype.reduce){
         return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
       }
-      var hash = 0;
+      let hash = 0;
       if (string.length === 0) {
         return hash;
       }
-      for (var i = 0, l = string.length; i < l; i++) {
-        var character  = string.charCodeAt(i);
+      for (let i = 0, l = string.length; i < l; i++) {
+        let character  = string.charCodeAt(i);
         hash  = ((hash<<5)-hash)+character;
         hash = hash & hash; // Convert to 32bit integer
       }
