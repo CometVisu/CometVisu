@@ -144,10 +144,7 @@ qx.Class.define('cv.report.Record', {
      */
     logCache: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, {
-          data: cv.ConfigCache.getData(),
-          body: cv.ConfigCache.getBody()
-        });
+        cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, cv.ConfigCache.getData());
       }
     },
 

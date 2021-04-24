@@ -100,9 +100,11 @@ qx.Class.define('cv.report.Replay', {
       this.__log = log.log;
       this.__data = log.data;
       this.__config = qx.xml.Document.fromString(log.config);
-      if (log.data.cache && qx.core.Environment.get("html.storage.local") === true) {
-        localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
-        localStorage.setItem(cv.Config.configSuffix + ".data", JSON.stringify(log.data.cache.data));
+      if (log.data.cache) {
+        cv.ConfigCache._parseCacheData = log.data.cache;
+        // parse stringified data
+        cv.ConfigCache._parseCacheData.data = JSON.parse(log.data.cache.data);
+        cv.ConfigCache._parseCacheData.configSettings = JSON.parse(log.data.cache.configSettings);
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
