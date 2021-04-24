@@ -80,7 +80,7 @@ qx.Class.define('cv.ConfigCache', {
         data: JSON.stringify(model.getWidgetDataModel()),
         addresses: model.getAddressList(),
         configSettings: JSON.stringify(cv.Config.configSettings),
-        config: cv.Config.configSuffix,
+        config: cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix,
         body: document.querySelector('body').innerHTML
       });
     },
@@ -126,7 +126,7 @@ qx.Class.define('cv.ConfigCache', {
       return new Promise((resolve, reject) => {
         if (!this._parseCacheData) {
           const objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore('data');
-          const dataRequest = objectStore.get(cv.Config.configSuffix);
+          const dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
           dataRequest.onsuccess = function(event) {
             if (!dataRequest.result) {
               resolve(null);
@@ -187,7 +187,7 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     clear: function(configSuffix) {
-      configSuffix = configSuffix || cv.Config.configSuffix;
+      configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
       const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
       const dataRequest = objectStore.delete(configSuffix);
       dataRequest.onsuccess = function () {
