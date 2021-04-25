@@ -14,8 +14,7 @@
     font-family: 'weathericon';
     src:    url('font/weathericons-regular-webfont.eot');
     src:    url('font/weathericons-regular-webfont.woff') format('woff'),
-            url('font/weathericons-regular-webfont.tff') format('truetype'),
-            url('font/weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
+            url('font/weathericons-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
