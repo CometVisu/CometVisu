@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 395,
+        "line": 392,
         "column": 3
       }
     },
@@ -246,7 +246,7 @@
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 149,
           "column": 5
         }
       },
@@ -264,11 +264,11 @@
     "normalizeUrl": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 159,
           "column": 5
         }
       },
@@ -278,11 +278,11 @@
     "download": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 169,
+          "line": 166,
           "column": 5
         }
       },
@@ -294,11 +294,11 @@
     "__start": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 175,
           "column": 17
         }
       },
@@ -308,11 +308,11 @@
     "__log": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 179,
+          "line": 176,
           "column": 15
         }
       },
@@ -322,11 +322,11 @@
     "__xhr": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 177,
           "column": 15
         }
       },
@@ -336,11 +336,11 @@
     "__listeners": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 178,
           "column": 21
         }
       },
@@ -350,11 +350,11 @@
     "__data": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 179,
           "column": 16
         }
       },
@@ -364,11 +364,11 @@
     "__delta": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 180,
           "column": 15
         }
       },
@@ -378,11 +378,11 @@
     "__minDelta": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 181,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 181,
           "column": 17
         }
       },
@@ -392,11 +392,11 @@
     "__maxDelta": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 182,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 182,
           "column": 18
         }
       },
@@ -406,11 +406,11 @@
     "__deltas": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 183,
           "column": 18
         }
       },
@@ -420,11 +420,11 @@
     "__ID": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 184,
           "column": 11
         }
       },
@@ -434,11 +434,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 210,
           "column": 5
         }
       },
@@ -448,11 +448,11 @@
     "__extractDataFromEvent": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 279,
+          "line": 276,
           "column": 5
         }
       },
@@ -476,11 +476,11 @@
     "recordNativeEvent": {
       "location": {
         "start": {
-          "line": 281,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 311,
+          "line": 308,
           "column": 5
         }
       },
@@ -490,11 +490,11 @@
     "recordScroll": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 320,
           "column": 5
         }
       },
@@ -504,11 +504,11 @@
     "__getDomPath": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 322,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 353,
           "column": 5
         }
       },
@@ -518,11 +518,11 @@
     "download": {
       "location": {
         "start": {
-          "line": 361,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 393,
+          "line": 390,
           "column": 5
         }
       },

@@ -112,7 +112,7 @@
     *****************************************************************************
     */
     members: {
-      __P_86_0: true ? qx.core.Property : null,
+      __P_87_0: true ? qx.core.Property : null,
 
       /*
       ---------------------------------------------------------------------------
@@ -221,8 +221,8 @@
         var clazz = this.constructor;
         var clone = new clazz();
         var props = qx.Class.getProperties(clazz);
-        var user = this.__P_86_0.$$store.user;
-        var setter = this.__P_86_0.$$method.set;
+        var user = this.__P_87_0.$$store.user;
+        var setter = this.__P_87_0.$$method.set;
         var name; // Iterate through properties
 
         for (var i = 0, l = props.length; i < l; i++) {
@@ -244,7 +244,7 @@
       */
 
       /** @type {Map} stored user data */
-      __P_86_1: null,
+      __P_87_1: null,
 
       /**
        * Store user defined data inside the object.
@@ -253,11 +253,11 @@
        * @param value {Object} the value of the user data
        */
       setUserData: function setUserData(key, value) {
-        if (!this.__P_86_1) {
-          this.__P_86_1 = {};
+        if (!this.__P_87_1) {
+          this.__P_87_1 = {};
         }
 
-        this.__P_86_1[key] = value;
+        this.__P_87_1[key] = value;
       },
 
       /**
@@ -267,11 +267,11 @@
        * @return {Object} the user data
        */
       getUserData: function getUserData(key) {
-        if (!this.__P_86_1) {
+        if (!this.__P_87_1) {
           return null;
         }
 
-        var data = this.__P_86_1[key];
+        var data = this.__P_87_1[key];
         return data === undefined ? null : data;
       },
 
@@ -279,7 +279,7 @@
        * Clears all user defined data from the object.
        */
       resetUserData: function resetUserData() {
-        this.__P_86_1 = null;
+        this.__P_87_1 = null;
       },
 
       /*
@@ -425,13 +425,13 @@
 
       qx.core.ObjectRegistry.unregister(this); // Cleanup user data
 
-      this.__P_86_1 = null; // only of properties are available
+      this.__P_87_1 = null; // only of properties are available
 
       {
         // Cleanup properties
         var clazz = this.constructor;
         var properties;
-        var store = this.__P_86_0.$$store;
+        var store = this.__P_87_0.$$store;
         var storeUser = store.user;
         var storeTheme = store.theme;
         var storeInherit = store.inherit;
@@ -457,4 +457,4 @@
   qx.core.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1618504446261
+//# sourceMappingURL=Object.js.map?dt=1619362523344

@@ -50,7 +50,7 @@
     */
     members: {
       /** @type {Map} The cached size hint */
-      __P_202_0: null,
+      __P_203_0: null,
 
       /** @type {Boolean} Whether the children cache is valid. This field is protected
        *    because sub classes must be able to access it quickly.
@@ -58,7 +58,7 @@
       _invalidChildrenCache: null,
 
       /** @type {qx.ui.core.Widget} The connected widget */
-      __P_202_1: null,
+      __P_203_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -72,7 +72,7 @@
        * @abstract
        */
       invalidateLayoutCache: function invalidateLayoutCache() {
-        this.__P_202_0 = null;
+        this.__P_203_0 = null;
       },
 
       /**
@@ -97,11 +97,11 @@
        *   is not supported by the layout.
        */
       getSizeHint: function getSizeHint() {
-        if (this.__P_202_0) {
-          return this.__P_202_0;
+        if (this.__P_203_0) {
+          return this.__P_203_0;
         }
 
-        return this.__P_202_0 = this._computeSizeHint();
+        return this.__P_203_0 = this._computeSizeHint();
       },
 
       /**
@@ -165,7 +165,7 @@
       _clearSeparators: function _clearSeparators() {
         // It may be that the widget do not implement clearSeparators which is especially true
         // when it do not inherit from LayoutItem.
-        var widget = this.__P_202_1;
+        var widget = this.__P_203_1;
 
         if (widget instanceof qx.ui.core.LayoutItem) {
           widget.clearSeparators();
@@ -180,7 +180,7 @@
        *    of the separator to render.
        */
       _renderSeparator: function _renderSeparator(separator, bounds) {
-        this.__P_202_1.renderSeparator(separator, bounds);
+        this.__P_203_1.renderSeparator(separator, bounds);
       },
 
       /**
@@ -189,11 +189,11 @@
        * @param widget {qx.ui.core.Widget} The widget to connect to.
        */
       connectToWidget: function connectToWidget(widget) {
-        if (widget && this.__P_202_1) {
+        if (widget && this.__P_203_1) {
           throw new Error("It is not possible to manually set the connected widget.");
         }
 
-        this.__P_202_1 = widget; // Invalidate cache
+        this.__P_203_1 = widget; // Invalidate cache
 
         this.invalidateChildrenCache();
       },
@@ -204,7 +204,7 @@
        * @return {qx.ui.core.Widget} The widget connected to this layout.
        */
       _getWidget: function _getWidget() {
-        return this.__P_202_1;
+        return this.__P_203_1;
       },
 
       /**
@@ -214,8 +214,8 @@
        * Also a generic property apply method for all layout relevant properties.
        */
       _applyLayoutChange: function _applyLayoutChange() {
-        if (this.__P_202_1) {
-          this.__P_202_1.scheduleLayoutUpdate();
+        if (this.__P_203_1) {
+          this.__P_203_1.scheduleLayoutUpdate();
         }
       },
 
@@ -225,7 +225,7 @@
        * @return {Array} List of layout relevant children.
        */
       _getLayoutChildren: function _getLayoutChildren() {
-        return this.__P_202_1.getLayoutChildren();
+        return this.__P_203_1.getLayoutChildren();
       }
     },
 
@@ -235,10 +235,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_202_1 = this.__P_202_0 = null;
+      this.__P_203_1 = this.__P_203_0 = null;
     }
   });
   qx.ui.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1618504457462
+//# sourceMappingURL=Abstract.js.map?dt=1619362534292

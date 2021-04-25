@@ -123,15 +123,6 @@
       height: {
         check: "String",
         nullable: true
-      },
-
-      /**
-       * Internal model for YQL data
-       */
-      model: {
-        check: "qx.data.Array",
-        nullable: true,
-        apply: "_applyModel"
       }
     },
 
@@ -331,7 +322,7 @@
           if (!this.__P_14_4) {
             this.__P_14_9();
           } else {
-            this.__P_14_10();
+            this.error("external sources are no longer supported");
           }
         }
 
@@ -339,8 +330,6 @@
 
         if (this.__P_14_0 instanceof qx.io.request.Xhr) {
           this.__P_14_0.send();
-        } else if (this.__P_14_0 instanceof qx.data.store.Yql) {
-          this.__P_14_0.reload();
         }
 
         var refresh = this.getRefresh();
@@ -381,43 +370,13 @@
           method: "GET"
         });
 
-        this.__P_14_0.addListener("success", this.__P_14_11, this);
+        this.__P_14_0.addListener("success", this.__P_14_10, this);
 
         this.__P_14_0.addListener("error", function (ev) {
           this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
         }, this);
       },
-
-      /**
-       * Fetch data from YQL Service
-       */
-      __P_14_10: function __P_14_10() {
-        if (!this.__P_14_0) {
-          this.__P_14_0 = new qx.data.store.Yql("SELECT * FROM rss WHERE url='" + this.getSrc() + "'", {
-            manipulateData: function manipulateData(data) {
-              if (data.query.results) {
-                return data.query.results.item || data.query.results.entry;
-              } else {
-                return [];
-              }
-            }
-          });
-
-          this.__P_14_0.bind("model", this, "model");
-        }
-      },
-      _applyModel: function _applyModel(value, old) {
-        if (old) {
-          old.removeListener("change", this.__P_14_12, this);
-        }
-
-        if (value) {
-          this.__P_14_12();
-
-          value.addListener("change", this.__P_14_12, this);
-        }
-      },
-      __P_14_13: function __P_14_13(ul, c) {
+      __P_14_11: function __P_14_11(ul, c) {
         c.innerHTML = '';
         c.appendChild(ul); // get height of one entry, calc max num of display items in widget
 
@@ -447,7 +406,7 @@
         c.dataset["last_rowcount"] = displayrows;
         return displayrows;
       },
-      __P_14_11: function __P_14_11(ev) {
+      __P_14_10: function __P_14_10(ev) {
         var result = ev.getTarget().getResponse();
 
         if (typeof result === 'string') {
@@ -456,12 +415,9 @@
           return;
         }
 
-        this.__P_14_14(result.responseData.feed.entries);
+        this.__P_14_12(result.responseData.feed.entries);
       },
-      __P_14_12: function __P_14_12() {
-        this.__P_14_14(this.getModel().toArray());
-      },
-      __P_14_14: function __P_14_14(items) {
+      __P_14_12: function __P_14_12(items) {
         var isBig = this.__P_14_0.getUserData("big");
 
         var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
@@ -470,7 +426,7 @@
         this.debug("ID: " + c.getAttribute("id") + ", Feed: " + this.getSrc());
         var ul = document.createElement("ul");
 
-        var displayrows = this.__P_14_13(ul, c);
+        var displayrows = this.__P_14_11(ul, c);
 
         var itemnum = items.length;
         this.debug('C: #' + this.getPath() + ', ' + itemnum + ' element(s) found, ' + displayrows + ' displayrow(s) available');
@@ -507,7 +463,7 @@
           idx = i >= itemnum ? idx = idx - itemnum : idx;
           var item = items[idx];
 
-          var itemHtml = this.__P_14_15(item, isBig);
+          var itemHtml = this.__P_14_13(item, isBig);
 
           var rowElem = qx.dom.Element.create('li', {
             'class': 'rsslogRow ' + row
@@ -564,7 +520,7 @@
           row = row === 'rsslogodd' ? 'rsslogeven' : 'rsslogodd';
         }
       },
-      __P_14_15: function __P_14_15(item, isBig) {
+      __P_14_13: function __P_14_13(item, isBig) {
         var itemHtml = "";
 
         if (!this.__P_14_4) {
@@ -630,4 +586,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1618504439198
+//# sourceMappingURL=RssLog.js.map?dt=1619362516338

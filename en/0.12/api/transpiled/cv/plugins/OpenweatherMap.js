@@ -60,6 +60,9 @@
    * @asset(plugins/openweathermap/owm_core.js)
    * @asset(plugins/openweathermap/owm_basic_style.css)
    * @asset(plugins/openweathermap/owm_weathericon.css)
+   * @asset(plugins/openweathermap/font/weathericons-regular-webfont.eot)
+   * @asset(plugins/openweathermap/font/weathericons-regular-webfont.woff)
+   * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)
    */
   qx.Class.define('cv.plugins.OpenweatherMap', {
     extend: cv.ui.structure.AbstractWidget,
@@ -241,4 +244,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1618502871988
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1619360964601

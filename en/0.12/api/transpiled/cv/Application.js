@@ -1,3 +1,7 @@
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -31,6 +35,7 @@
       "cv.io.openhab.Rest": {},
       "cv.io.mqtt.Client": {},
       "qx.bom.Blocker": {},
+      "cv.ConfigCache": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
       "cv.Version": {},
@@ -52,7 +57,6 @@
       "qx.event.Registration": {},
       "cv.ui.layout.ResizeHandler": {},
       "qx.bom.Lifecycle": {},
-      "cv.ConfigCache": {},
       "cv.ui.NotificationCenter": {},
       "cv.ui.ToastManager": {},
       "cv.util.ConfigLoader": {},
@@ -261,6 +265,7 @@
        * during startup of the application
        */
       main: function main() {
+        cv.ConfigCache.init();
         qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + " Christian Mayer and the CometVisu contributers.\n" + " Version: " + cv.Version.VERSION + "\n";
@@ -609,128 +614,196 @@
         qx.event.Registration.addListener(window, 'unload', function () {
           cv.io.Client.stopAll();
         }, this);
-        qx.bom.Lifecycle.onReady(function () {
-          // init notification router
-          cv.core.notifications.Router.getInstance();
-          var body = document.querySelector("body");
+        qx.bom.Lifecycle.onReady( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+          var body, isCached, configLoader;
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  // init notification router
+                  cv.core.notifications.Router.getInstance();
+                  body = document.querySelector("body");
+                  isCached = false;
 
-          if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
-            // load settings
-            this.debug("using cache");
-            cv.ConfigCache.restore(); // initialize NotificationCenter
+                  if (!cv.Config.enableCache) {
+                    _context.next = 7;
+                    break;
+                  }
 
-            cv.ui.NotificationCenter.getInstance();
-            cv.ui.ToastManager.getInstance();
-          } else {
-            // load empty HTML structure
-            body.innerHTML = cv.Application.HTML_STRUCT; // initialize NotificationCenter
+                  _context.next = 6;
+                  return cv.ConfigCache.isCached();
 
-            cv.ui.NotificationCenter.getInstance();
-            cv.ui.ToastManager.getInstance();
-          }
+                case 6:
+                  isCached = _context.sent;
 
-          var configLoader = new cv.util.ConfigLoader();
-          configLoader.load(this.bootstrap, this);
-        }, this);
+                case 7:
+                  if (isCached) {
+                    // load settings
+                    this.debug("using cache");
+                    cv.ConfigCache.restore(); // initialize NotificationCenter
+
+                    cv.ui.NotificationCenter.getInstance();
+                    cv.ui.ToastManager.getInstance();
+                  } else {
+                    // load empty HTML structure
+                    body.innerHTML = cv.Application.HTML_STRUCT; // initialize NotificationCenter
+
+                    cv.ui.NotificationCenter.getInstance();
+                    cv.ui.ToastManager.getInstance();
+                  }
+
+                  configLoader = new cv.util.ConfigLoader();
+                  configLoader.load(this.bootstrap, this);
+
+                case 10:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        })), this);
       },
 
       /**
        * Initialize the content
        * @param xml {Document} XML configuration retrieved from backend
        */
-      bootstrap: function bootstrap(xml) {
-        this.debug("bootstrapping");
-        var engine = cv.TemplateEngine.getInstance();
-        var loader = cv.util.ScriptLoader.getInstance();
-        engine.xml = xml;
-        loader.addListenerOnce("finished", function () {
-          engine.setScriptsLoaded(true);
-        }, this);
+      bootstrap: function () {
+        var _bootstrap = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(xml) {
+          var engine, loader, isCached, xmlHash, cacheValid, body, structure, styles, scripts;
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  this.debug("bootstrapping");
+                  engine = cv.TemplateEngine.getInstance();
+                  loader = cv.util.ScriptLoader.getInstance();
+                  engine.xml = xml;
+                  loader.addListenerOnce("finished", function () {
+                    engine.setScriptsLoaded(true);
+                  }, this);
+                  isCached = false;
 
-        if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
-          // check if cache is still valid
-          if (!cv.ConfigCache.isValid(xml)) {
-            this.debug("cache is invalid re-parse xml"); // cache invalid
+                  if (!cv.Config.enableCache) {
+                    _context2.next = 11;
+                    break;
+                  }
 
-            cv.Config.cacheUsed = false;
-            cv.ConfigCache.clear(); // load empty HTML structure
+                  _context2.next = 9;
+                  return cv.ConfigCache.isCached();
 
-            var body = document.querySelector("body");
-            body.innerHTML = cv.Application.HTML_STRUCT; //empty model
+                case 9:
+                  isCached = _context2.sent;
+                  xmlHash = cv.ConfigCache.toHash(xml);
 
-            cv.data.Model.getInstance().resetWidgetDataModel();
-            cv.data.Model.getInstance().resetAddressList();
-          } else {
-            // loaded cache is still valid
-            cv.report.Record.logCache();
-            cv.Config.cacheUsed = true;
-            cv.Config.lazyLoading = true;
-            engine.initBackendClient();
+                case 11:
+                  if (!isCached) {
+                    _context2.next = 16;
+                    break;
+                  }
 
-            this.__P_2_3(); // load part for structure
+                  _context2.next = 14;
+                  return cv.ConfigCache.isValid(null, xmlHash);
+
+                case 14:
+                  cacheValid = _context2.sent;
+
+                  if (!cacheValid) {
+                    this.debug("cache is invalid re-parse xml"); // cache invalid
+
+                    cv.Config.cacheUsed = false;
+                    cv.ConfigCache.clear(); // load empty HTML structure
+
+                    body = document.querySelector("body");
+                    body.innerHTML = cv.Application.HTML_STRUCT; //empty model
+
+                    cv.data.Model.getInstance().resetWidgetDataModel();
+                    cv.data.Model.getInstance().resetAddressList();
+                  } else {
+                    // loaded cache is still valid
+                    cv.report.Record.logCache();
+                    cv.Config.cacheUsed = true;
+                    cv.Config.lazyLoading = true;
+                    engine.initBackendClient();
+
+                    this.__P_2_3(); // load part for structure
 
 
-            var structure = cv.Config.getStructure();
-            this.debug("loading structure " + structure);
-            engine.loadParts([structure], function (states) {
-              if (states === "complete") {
-                this.debug(structure + " has been loaded");
-                this.setStructureLoaded(true);
-              } else {
-                this.error(structure + " could not be loaded");
-                this.setStructureLoaded(false);
+                    structure = cv.Config.getStructure();
+                    this.debug("loading structure " + structure);
+                    engine.loadParts([structure], function (states) {
+                      if (states === "complete") {
+                        this.debug(structure + " has been loaded");
+                        this.setStructureLoaded(true);
+                      } else {
+                        this.error(structure + " could not be loaded");
+                        this.setStructureLoaded(false);
+                      }
+                    }, this);
+                    engine.addListenerOnce("changeReady", function () {
+                      // create the objects
+                      cv.Config.treePath = cv.Config.initialPage;
+                      var data = cv.data.Model.getInstance().getWidgetData("id_");
+                      cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+                    }, this); // check if the current design settings overrides the cache one
+
+                    this.loadPlugins();
+
+                    if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
+                      // we have to replace the cached design scripts styles to load
+                      styles = [];
+                      cv.Config.configSettings.stylesToLoad.forEach(function (style) {
+                        styles.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
+                      }, this);
+                      this.loadStyles(styles);
+                      scripts = [];
+                      cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
+                        scripts.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
+                      }, this);
+                      this.loadScripts(scripts);
+                    } else {
+                      this.loadStyles();
+                      this.loadScripts();
+                    }
+
+                    this.loadIcons();
+                  }
+
+                case 16:
+                  if (!cv.Config.cacheUsed) {
+                    this.debug("starting");
+
+                    this.__P_2_3();
+
+                    engine.parseXML(xml, function () {
+                      this.loadPlugins();
+                      this.loadStyles();
+                      this.loadScripts();
+                      this.debug("done");
+
+                      if (cv.Config.enableCache) {
+                        // cache dom + data when everything is ready
+                        qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+                          cv.ConfigCache.dump(xml, xmlHash);
+                        }, this);
+                      }
+                    }.bind(this));
+                  }
+
+                case 17:
+                case "end":
+                  return _context2.stop();
               }
-            }, this);
-            engine.addListenerOnce("changeReady", function () {
-              // create the objects
-              cv.Config.treePath = cv.Config.initialPage;
-              var data = cv.data.Model.getInstance().getWidgetData("id_");
-              cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-            }, this); // check if the current design settings overrides the cache one
-
-            this.loadPlugins();
-
-            if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
-              // we have to replace the cached design scripts styles to load
-              var styles = [];
-              cv.Config.configSettings.stylesToLoad.forEach(function (style) {
-                styles.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
-              }, this);
-              this.loadStyles(styles);
-              var scripts = [];
-              cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
-                scripts.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
-              }, this);
-              this.loadScripts(scripts);
-            } else {
-              this.loadStyles();
-              this.loadScripts();
             }
+          }, _callee2, this);
+        }));
 
-            this.loadIcons();
-          }
+        function bootstrap(_x) {
+          return _bootstrap.apply(this, arguments);
         }
 
-        if (!cv.Config.cacheUsed) {
-          this.debug("starting");
-
-          this.__P_2_3();
-
-          engine.parseXML(xml, function () {
-            this.loadPlugins();
-            this.loadStyles();
-            this.loadScripts();
-            this.debug("done");
-
-            if (cv.Config.enableCache) {
-              // cache dom + data when everything is ready
-              qx.event.message.Bus.subscribe("setup.dom.finished", function () {
-                cv.ConfigCache.dump(xml);
-              }, this);
-            }
-          }.bind(this));
-        }
-      },
+        return bootstrap;
+      }(),
 
       /**
        * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
@@ -879,4 +952,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1618502869603
+//# sourceMappingURL=Application.js.map?dt=1619360962399

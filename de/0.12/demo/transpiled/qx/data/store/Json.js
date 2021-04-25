@@ -139,7 +139,7 @@
     members: {
       _marshaler: null,
       _delegate: null,
-      __P_146_0: null,
+      __P_147_0: null,
       // apply function
       _applyUrl: function _applyUrl(value, old) {
         if (value != null) {
@@ -157,7 +157,7 @@
        * @return {Object} The request.
        */
       _getRequest: function _getRequest() {
-        return this.__P_146_0;
+        return this.__P_147_0;
       },
 
       /**
@@ -166,7 +166,7 @@
        * @param request {Object} The request.
        */
       _setRequest: function _setRequest(request) {
-        this.__P_146_0 = request;
+        this.__P_147_0 = request;
       },
 
       /**
@@ -179,10 +179,10 @@
        */
       _createRequest: function _createRequest(url) {
         // dispose old request
-        if (this.__P_146_0) {
-          this.__P_146_0.dispose();
+        if (this.__P_147_0) {
+          this.__P_147_0.dispose();
 
-          this.__P_146_0 = null;
+          this.__P_147_0 = null;
         }
 
         var req = new qx.io.request.Xhr(url);
@@ -294,10 +294,10 @@
 
         this.fireDataEvent("loaded", this.getModel()); // get rid of the request object
 
-        if (this.__P_146_0) {
-          this.__P_146_0.dispose();
+        if (this.__P_147_0) {
+          this.__P_147_0.dispose();
 
-          this.__P_146_0 = null;
+          this.__P_147_0 = null;
         }
       },
 
@@ -319,8 +319,8 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      if (this.__P_146_0 != null) {
-        this._disposeObjects("__P_146_0");
+      if (this.__P_147_0 != null) {
+        this._disposeObjects("__P_147_0");
       } // The marshaler internally uses the singleton pattern
       // (constructor.$$instance.
 
@@ -333,4 +333,4 @@
   qx.data.store.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1618504452964
+//# sourceMappingURL=Json.js.map?dt=1619362529835

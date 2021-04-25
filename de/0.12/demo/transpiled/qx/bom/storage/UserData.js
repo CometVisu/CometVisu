@@ -45,10 +45,10 @@
    */
   qx.Bootstrap.define("qx.bom.storage.UserData", {
     statics: {
-      __P_250_0: null,
-      __P_250_1: null,
+      __P_251_0: null,
+      __P_251_1: null,
       // global id used as key for the storage
-      __P_250_2: 0,
+      __P_251_2: 0,
 
       /**
        * Returns an instance of {@link qx.bom.storage.UserData} used to store
@@ -56,11 +56,11 @@
        * @return {qx.bom.storage.UserData} A storage instance.
        */
       getLocal: function getLocal() {
-        if (this.__P_250_0) {
-          return this.__P_250_0;
+        if (this.__P_251_0) {
+          return this.__P_251_0;
         }
 
-        return this.__P_250_0 = new qx.bom.storage.UserData("local");
+        return this.__P_251_0 = new qx.bom.storage.UserData("local");
       },
 
       /**
@@ -69,11 +69,11 @@
        * @return {qx.bom.storage.UserData} A storage instance.
        */
       getSession: function getSession() {
-        if (this.__P_250_1) {
-          return this.__P_250_1;
+        if (this.__P_251_1) {
+          return this.__P_251_1;
         }
 
-        return this.__P_250_1 = new qx.bom.storage.UserData("session");
+        return this.__P_251_1 = new qx.bom.storage.UserData("session");
       }
     },
 
@@ -85,39 +85,39 @@
      */
     construct: function construct(storeName) {
       // create a dummy DOM element used for storage
-      this.__P_250_3 = document.createElement("div");
-      this.__P_250_3.style["display"] = "none";
-      document.getElementsByTagName("head")[0].appendChild(this.__P_250_3);
+      this.__P_251_3 = document.createElement("div");
+      this.__P_251_3.style["display"] = "none";
+      document.getElementsByTagName("head")[0].appendChild(this.__P_251_3);
 
-      this.__P_250_3.addBehavior("#default#userdata");
+      this.__P_251_3.addBehavior("#default#userdata");
 
-      this.__P_250_4 = storeName; // load the inital data which might be stored
+      this.__P_251_4 = storeName; // load the inital data which might be stored
 
-      this.__P_250_3.load(this.__P_250_4); // set up the internal reference maps
+      this.__P_251_3.load(this.__P_251_4); // set up the internal reference maps
 
 
-      this.__P_250_5 = {};
-      this.__P_250_6 = {}; // initialize
+      this.__P_251_5 = {};
+      this.__P_251_6 = {}; // initialize
 
-      var value = this.__P_250_3.getAttribute("qx" + qx.bom.storage.UserData.__P_250_2);
+      var value = this.__P_251_3.getAttribute("qx" + qx.bom.storage.UserData.__P_251_2);
 
       while (value != undefined) {
         value = qx.lang.Json.parse(value); // save the data in the internal storage
 
-        this.__P_250_5[value.key] = value.value; // save the reference
+        this.__P_251_5[value.key] = value.value; // save the reference
 
-        this.__P_250_6[value.key] = "qx" + qx.bom.storage.UserData.__P_250_2;
-        qx.bom.storage.UserData.__P_250_2++;
-        value = this.__P_250_3.getAttribute("qx" + qx.bom.storage.UserData.__P_250_2);
+        this.__P_251_6[value.key] = "qx" + qx.bom.storage.UserData.__P_251_2;
+        qx.bom.storage.UserData.__P_251_2++;
+        value = this.__P_251_3.getAttribute("qx" + qx.bom.storage.UserData.__P_251_2);
       }
     },
     members: {
-      __P_250_3: null,
-      __P_250_4: "qxtest",
+      __P_251_3: null,
+      __P_251_4: "qxtest",
       // storage which holds the key and the value
-      __P_250_5: null,
+      __P_251_5: null,
       // reference store which holds the key and the key used to store
-      __P_250_6: null,
+      __P_251_6: null,
 
       /**
        * Returns the map used to keep a in memory copy of the stored data.
@@ -125,7 +125,7 @@
        * @internal
        */
       getStorage: function getStorage() {
-        return this.__P_250_5;
+        return this.__P_251_5;
       },
 
       /**
@@ -133,7 +133,7 @@
        * @return {Integer} The length of the storage.
        */
       getLength: function getLength() {
-        return Object.keys(this.__P_250_5).length;
+        return Object.keys(this.__P_251_5).length;
       },
 
       /**
@@ -144,11 +144,11 @@
        */
       setItem: function setItem(key, value) {
         // override case
-        if (this.__P_250_6[key]) {
-          var storageKey = this.__P_250_6[key]; // new case
+        if (this.__P_251_6[key]) {
+          var storageKey = this.__P_251_6[key]; // new case
         } else {
-          var storageKey = "qx" + qx.bom.storage.UserData.__P_250_2;
-          qx.bom.storage.UserData.__P_250_2++;
+          var storageKey = "qx" + qx.bom.storage.UserData.__P_251_2;
+          qx.bom.storage.UserData.__P_251_2++;
         } // build and save the data used to store both, key and value
 
 
@@ -157,13 +157,13 @@
           value: value
         });
 
-        this.__P_250_3.setAttribute(storageKey, storageValue);
+        this.__P_251_3.setAttribute(storageKey, storageValue);
 
-        this.__P_250_3.save(this.__P_250_4); // also update the internal mappings
+        this.__P_251_3.save(this.__P_251_4); // also update the internal mappings
 
 
-        this.__P_250_5[key] = value;
-        this.__P_250_6[key] = storageKey;
+        this.__P_251_5[key] = value;
+        this.__P_251_6[key] = storageKey;
       },
 
       /**
@@ -173,7 +173,7 @@
        * @return {var} The stored data.
        */
       getItem: function getItem(key) {
-        return this.__P_250_5[key] || null;
+        return this.__P_251_5[key] || null;
       },
 
       /**
@@ -182,37 +182,37 @@
        */
       removeItem: function removeItem(key) {
         // check if the item is available
-        var storageName = this.__P_250_6[key];
+        var storageName = this.__P_251_6[key];
 
         if (storageName == undefined) {
           return;
         } // remove the item
 
 
-        this.__P_250_3.removeAttribute(storageName); // decrease the id because we removed one item
+        this.__P_251_3.removeAttribute(storageName); // decrease the id because we removed one item
 
 
-        qx.bom.storage.UserData.__P_250_2--; // update the internal maps
+        qx.bom.storage.UserData.__P_251_2--; // update the internal maps
 
-        delete this.__P_250_5[key];
-        delete this.__P_250_6[key]; // check if we have deleted the last item
+        delete this.__P_251_5[key];
+        delete this.__P_251_6[key]; // check if we have deleted the last item
 
-        var lastStoreName = "qx" + qx.bom.storage.UserData.__P_250_2;
+        var lastStoreName = "qx" + qx.bom.storage.UserData.__P_251_2;
 
-        if (this.__P_250_3.getAttribute(lastStoreName)) {
+        if (this.__P_251_3.getAttribute(lastStoreName)) {
           // if not, move the last item to the deleted spot
-          var lastItem = this.__P_250_3.getAttribute("qx" + qx.bom.storage.UserData.__P_250_2);
+          var lastItem = this.__P_251_3.getAttribute("qx" + qx.bom.storage.UserData.__P_251_2);
 
-          this.__P_250_3.removeAttribute(lastStoreName);
+          this.__P_251_3.removeAttribute(lastStoreName);
 
-          this.__P_250_3.setAttribute(storageName, lastItem); // update the reference map
+          this.__P_251_3.setAttribute(storageName, lastItem); // update the reference map
 
 
           var lastKey = qx.lang.Json.parse(lastItem).key;
-          this.__P_250_6[lastKey] = storageName;
+          this.__P_251_6[lastKey] = storageName;
         }
 
-        this.__P_250_3.save(this.__P_250_4);
+        this.__P_251_3.save(this.__P_251_4);
       },
 
       /**
@@ -220,15 +220,15 @@
        */
       clear: function clear() {
         // delete all entries from the storage
-        for (var key in this.__P_250_6) {
-          this.__P_250_3.removeAttribute(this.__P_250_6[key]);
+        for (var key in this.__P_251_6) {
+          this.__P_251_3.removeAttribute(this.__P_251_6[key]);
         }
 
-        this.__P_250_3.save(this.__P_250_4); // reset the internal maps
+        this.__P_251_3.save(this.__P_251_4); // reset the internal maps
 
 
-        this.__P_250_5 = {};
-        this.__P_250_6 = {};
+        this.__P_251_5 = {};
+        this.__P_251_6 = {};
       },
 
       /**
@@ -237,7 +237,7 @@
        * @return {String} The key stored at the given index.
        */
       getKey: function getKey(index) {
-        return Object.keys(this.__P_250_5)[index];
+        return Object.keys(this.__P_251_5)[index];
       },
 
       /**
@@ -261,4 +261,4 @@
   qx.bom.storage.UserData.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UserData.js.map?dt=1618504461495
+//# sourceMappingURL=UserData.js.map?dt=1619362538266

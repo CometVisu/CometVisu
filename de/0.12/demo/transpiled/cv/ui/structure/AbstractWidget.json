@@ -2617,7 +2617,6 @@
     "jsdoc": {}
   },
   "descendants": [
-    "cv.plugins.CalendarList",
     "cv.plugins.Clock",
     "cv.plugins.ColorChooser",
     "cv.plugins.Gauge",

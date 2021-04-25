@@ -114,27 +114,27 @@
     ******************************************************
     */
     members: {
-      __P_482_0: null,
-      __P_482_1: null,
-      __P_482_2: false,
+      __P_483_0: null,
+      __P_483_1: null,
+      __P_483_2: false,
 
       /**
        * Attach to dom element and style it
        */
       _init: function _init() {
-        if (!this.__P_482_0) {
+        if (!this.__P_483_0) {
           // check if there is one (might be restored from cache)
-          this.__P_482_0 = document.querySelector(this.getRootElementId());
+          this.__P_483_0 = document.querySelector(this.getRootElementId());
 
-          if (!this.__P_482_0) {
-            this.__P_482_0 = qx.dom.Element.create("div", {
+          if (!this.__P_483_0) {
+            this.__P_483_0 = qx.dom.Element.create("div", {
               "id": this.getRootElementId()
             });
           }
         }
 
         if (document.querySelectorAll(this.getRootElementId()).length === 0) {
-          document.body.appendChild(this.__P_482_0);
+          document.body.appendChild(this.__P_483_0);
         }
 
         if (document.querySelectorAll("#ToastTemplate").length === 0) {
@@ -146,8 +146,8 @@
           document.body.appendChild(template);
         }
 
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_482_0, "ToastTemplate");
-        qx.event.Registration.addListener(this.__P_482_0, "tap", this._onListTap, this);
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_483_0, "ToastTemplate");
+        qx.event.Registration.addListener(this.__P_483_0, "tap", this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
@@ -165,20 +165,20 @@
     ******************************************************
     */
     destruct: function destruct() {
-      if (this.__P_482_1) {
-        this.__P_482_1.stop();
+      if (this.__P_483_1) {
+        this.__P_483_1.stop();
 
-        this.__P_482_1 = null;
+        this.__P_483_1 = null;
       }
 
-      if (this.__P_482_0) {
-        this.__P_482_0.parentNode.removeChild(this.__P_482_0);
+      if (this.__P_483_0) {
+        this.__P_483_0.parentNode.removeChild(this.__P_483_0);
 
-        this.__P_482_0 = null;
+        this.__P_483_0 = null;
       }
     }
   });
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1618502915339
+//# sourceMappingURL=ToastManager.js.map?dt=1619361006071

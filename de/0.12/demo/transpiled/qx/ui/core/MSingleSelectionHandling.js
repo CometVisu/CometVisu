@@ -64,7 +64,7 @@
     */
     members: {
       /** @type {qx.ui.core.SingleSelectionManager} the single selection manager */
-      __P_237_0: null,
+      __P_238_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -85,7 +85,7 @@
         }
 
         if (item instanceof qx.ui.core.Widget) {
-          this.__P_237_1().setSelected(item);
+          this.__P_238_1().setSelected(item);
 
           return null;
         } else {
@@ -99,14 +99,14 @@
        * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.
        */
       getValue: function getValue() {
-        return this.__P_237_1().getSelected() || null;
+        return this.__P_238_1().getSelected() || null;
       },
 
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
-        this.__P_237_1().resetSelected();
+        this.__P_238_1().resetSelected();
       },
 
       /**
@@ -118,7 +118,7 @@
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        var selected = this.__P_237_1().getSelected();
+        var selected = this.__P_238_1().getSelected();
 
         if (selected) {
           return [selected];
@@ -141,7 +141,7 @@
             break;
 
           case 1:
-            this.__P_237_1().setSelected(items[0]);
+            this.__P_238_1().setSelected(items[0]);
 
             break;
 
@@ -154,7 +154,7 @@
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
-        this.__P_237_1().resetSelected();
+        this.__P_238_1().resetSelected();
       },
 
       /**
@@ -165,7 +165,7 @@
        * @throws {Error} if one of the items is not a child element.
        */
       isSelected: function isSelected(item) {
-        return this.__P_237_1().isSelected(item);
+        return this.__P_238_1().isSelected(item);
       },
 
       /**
@@ -174,7 +174,7 @@
        * @return {Boolean} Whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_237_1().isSelectionEmpty();
+        return this.__P_238_1().isSelectionEmpty();
       },
 
       /**
@@ -185,7 +185,7 @@
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__P_237_1().getSelectables(all);
+        return this.__P_238_1().getSelectables(all);
       },
 
       /*
@@ -215,10 +215,10 @@
        *
        * @return {qx.ui.core.SingleSelectionManager} Single selection manager.
        */
-      __P_237_1: function __P_237_1() {
-        if (this.__P_237_0 == null) {
+      __P_238_1: function __P_238_1() {
+        if (this.__P_238_0 == null) {
           var that = this;
-          this.__P_237_0 = new qx.ui.core.SingleSelectionManager({
+          this.__P_238_0 = new qx.ui.core.SingleSelectionManager({
             getItems: function getItems() {
               return that._getItems();
             },
@@ -231,12 +231,12 @@
             }
           });
 
-          this.__P_237_0.addListener("changeSelected", this._onChangeSelected, this);
+          this.__P_238_0.addListener("changeSelected", this._onChangeSelected, this);
         }
 
-        this.__P_237_0.setAllowEmptySelection(this._isAllowEmptySelection());
+        this.__P_238_0.setAllowEmptySelection(this._isAllowEmptySelection());
 
-        return this.__P_237_0;
+        return this.__P_238_0;
       }
     },
 
@@ -246,10 +246,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_237_0");
+      this._disposeObjects("__P_238_0");
     }
   });
   qx.ui.core.MSingleSelectionHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1618504460517
+//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1619362537293

@@ -17,7 +17,7 @@
         "column": 0
       },
       "end": {
-        "line": 540,
+        "line": 497,
         "column": 3
       }
     },
@@ -243,32 +243,6 @@
       "allowNull": true,
       "check": "String"
     },
-    "model": {
-      "location": {
-        "start": {
-          "line": 85,
-          "column": 4
-        },
-        "end": {
-          "line": 89,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Internal model for YQL data</p>"
-          }
-        ]
-      },
-      "name": "model",
-      "propertyType": "new",
-      "apply": "_applyModel",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.data.Array"
-    },
     "refresh": {
       "type": "property",
       "name": "refresh",
@@ -415,11 +389,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 100,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 106,
           "column": 5
         }
       },
@@ -475,11 +449,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 138,
+          "line": 130,
           "column": 5
         }
       },
@@ -491,11 +465,11 @@
     "__request": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 139,
           "column": 19
         }
       },
@@ -505,11 +479,11 @@
     "__html": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 140,
           "column": 16
         }
       },
@@ -519,11 +493,11 @@
     "__wrapper": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 141,
           "column": 19
         }
       },
@@ -533,11 +507,11 @@
     "__fixedRequestData": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 142,
           "column": 28
         }
       },
@@ -547,11 +521,11 @@
     "__external": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 143,
           "column": 22
         }
       },
@@ -561,11 +535,11 @@
     "__separatordate": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 145,
           "column": 25
         }
       },
@@ -575,11 +549,11 @@
     "__separatoradd": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 146,
           "column": 24
         }
       },
@@ -589,11 +563,11 @@
     "__isFuture": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 147,
           "column": 20
         }
       },
@@ -603,11 +577,11 @@
     "__separatorprevday": {
       "location": {
         "start": {
-          "line": 156,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 156,
+          "line": 148,
           "column": 28
         }
       },
@@ -617,11 +591,11 @@
     "normalizeUrl": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 163,
           "column": 5
         }
       },
@@ -656,11 +630,11 @@
     "_applySrc": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 168,
           "column": 5
         }
       },
@@ -674,11 +648,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 180,
           "column": 5
         }
       },
@@ -702,11 +676,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 182,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 188,
           "column": 5
         }
       },
@@ -716,11 +690,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 204,
           "column": 5
         }
       },
@@ -734,11 +708,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 208,
           "column": 5
         }
       },
@@ -748,11 +722,11 @@
     "_action": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 250,
+          "line": 242,
           "column": 5
         }
       },
@@ -762,11 +736,11 @@
     "refreshRSSlog": {
       "location": {
         "start": {
-          "line": 252,
+          "line": 244,
           "column": 4
         },
         "end": {
-          "line": 280,
+          "line": 270,
           "column": 5
         }
       },
@@ -776,11 +750,11 @@
     "__refreshRss": {
       "location": {
         "start": {
-          "line": 285,
+          "line": 275,
           "column": 4
         },
         "end": {
-          "line": 308,
+          "line": 298,
           "column": 5
         }
       },
@@ -795,53 +769,14 @@
       "type": "function",
       "access": "private"
     },
-    "__refreshYql": {
-      "location": {
-        "start": {
-          "line": 313,
-          "column": 4
-        },
-        "end": {
-          "line": 327,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fetch data from YQL Service</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "private"
-    },
-    "_applyModel": {
-      "location": {
-        "start": {
-          "line": 329,
-          "column": 4
-        },
-        "end": {
-          "line": 337,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "model"
-      ]
-    },
     "__prepareContentElement": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 300,
           "column": 4
         },
         "end": {
-          "line": 365,
+          "line": 326,
           "column": 5
         }
       },
@@ -851,25 +786,11 @@
     "__updateRssContent": {
       "location": {
         "start": {
-          "line": 367,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 375,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "private"
-    },
-    "__updateYqlContent": {
-      "location": {
-        "start": {
-          "line": 377,
-          "column": 4
-        },
-        "end": {
-          "line": 379,
+          "line": 336,
           "column": 5
         }
       },
@@ -879,11 +800,11 @@
     "__updateContent": {
       "location": {
         "start": {
-          "line": 381,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 475,
+          "line": 432,
           "column": 5
         }
       },
@@ -893,11 +814,11 @@
     "__getItemHtml": {
       "location": {
         "start": {
-          "line": 477,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 505,
+          "line": 462,
           "column": 5
         }
       },
@@ -907,11 +828,11 @@
     "_onTap": {
       "location": {
         "start": {
-          "line": 507,
+          "line": 464,
           "column": 4
         },
         "end": {
-          "line": 531,
+          "line": 488,
           "column": 5
         }
       },
@@ -7394,82 +7315,16 @@
           }
         ]
       }
-    },
-    "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.data.Array",
-            "desc": "Returns the value for model"
-          }
-        ]
-      }
-    },
-    "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.data.Array",
-            "paramName": "value",
-            "desc": "Value for model"
-          }
-        ]
-      }
-    },
-    "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ]
-      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 534,
+        "line": 491,
         "column": 9
       },
       "end": {
-        "line": 539,
+        "line": 496,
         "column": 3
       }
     },

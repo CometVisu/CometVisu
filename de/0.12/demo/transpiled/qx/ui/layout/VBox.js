@@ -182,10 +182,10 @@
     *****************************************************************************
     */
     members: {
-      __P_102_0: null,
-      __P_102_1: null,
-      __P_102_2: null,
-      __P_102_3: null,
+      __P_103_0: null,
+      __P_103_1: null,
+      __P_103_2: null,
+      __P_103_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -203,16 +203,16 @@
       /**
        * Rebuilds caches for flex and percent layout properties
        */
-      __P_102_4: function __P_102_4() {
+      __P_103_4: function __P_103_4() {
         var children = this._getLayoutChildren();
 
         var length = children.length;
         var enableFlex = false;
-        var reuse = this.__P_102_0 && this.__P_102_0.length != length && this.__P_102_1 && this.__P_102_0;
+        var reuse = this.__P_103_0 && this.__P_103_0.length != length && this.__P_103_1 && this.__P_103_0;
         var props; // Sparse array (keep old one if lengths has not been modified)
 
-        var heights = reuse ? this.__P_102_0 : new Array(length);
-        var flexs = reuse ? this.__P_102_1 : new Array(length); // Reverse support
+        var heights = reuse ? this.__P_103_0 : new Array(length);
+        var flexs = reuse ? this.__P_103_1 : new Array(length); // Reverse support
 
         if (this.getReversed()) {
           children = children.concat().reverse();
@@ -237,12 +237,12 @@
 
 
         if (!reuse) {
-          this.__P_102_0 = heights;
-          this.__P_102_1 = flexs;
+          this.__P_103_0 = heights;
+          this.__P_103_1 = flexs;
         }
 
-        this.__P_102_2 = enableFlex;
-        this.__P_102_3 = children; // Clear invalidation marker
+        this.__P_103_2 = enableFlex;
+        this.__P_103_3 = children; // Clear invalidation marker
 
         delete this._invalidChildrenCache;
       },
@@ -258,11 +258,11 @@
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         // Rebuild flex/height caches
         if (this._invalidChildrenCache) {
-          this.__P_102_4();
+          this.__P_103_4();
         } // Cache children
 
 
-        var children = this.__P_102_3;
+        var children = this.__P_103_3;
         var length = children.length;
         var util = qx.ui.layout.Util; // Compute gaps
 
@@ -283,7 +283,7 @@
         var allocatedHeight = gaps;
 
         for (i = 0; i < length; i += 1) {
-          percent = this.__P_102_0[i];
+          percent = this.__P_103_0[i];
           hint = children[i].getSizeHint();
           height = percent != null ? Math.floor((availHeight - gaps) * percent) : hint.height; // Limit computed value
 
@@ -298,13 +298,13 @@
         } // Flex support (growing/shrinking)
 
 
-        if (this.__P_102_2 && allocatedHeight != availHeight) {
+        if (this.__P_103_2 && allocatedHeight != availHeight) {
           var flexibles = {};
           var flex, offset;
           var notEnoughSpace = allocatedHeight > availHeight;
 
           for (i = 0; i < length; i += 1) {
-            flex = this.__P_102_1[i];
+            flex = this.__P_103_1[i];
 
             if (flex > 0) {
               hint = children[i].getSizeHint();
@@ -401,11 +401,11 @@
       _computeSizeHint: function _computeSizeHint() {
         // Rebuild flex/height caches
         if (this._invalidChildrenCache) {
-          this.__P_102_4();
+          this.__P_103_4();
         }
 
         var util = qx.ui.layout.Util;
-        var children = this.__P_102_3; // Initialize
+        var children = this.__P_103_3; // Initialize
 
         var minHeight = 0,
             height = 0,
@@ -420,8 +420,8 @@
 
           height += hint.height; // Detect if child is shrinkable or has percent height and update minHeight
 
-          var flex = this.__P_102_1[i];
-          var percent = this.__P_102_0[i];
+          var flex = this.__P_103_1[i];
+          var percent = this.__P_103_0[i];
 
           if (flex) {
             minHeight += hint.minHeight;
@@ -472,10 +472,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_102_0 = this.__P_102_1 = this.__P_102_3 = null;
+      this.__P_103_0 = this.__P_103_1 = this.__P_103_3 = null;
     }
   });
   qx.ui.layout.VBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VBox.js.map?dt=1618504447765
+//# sourceMappingURL=VBox.js.map?dt=1619362524800

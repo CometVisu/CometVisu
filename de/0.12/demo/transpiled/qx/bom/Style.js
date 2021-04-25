@@ -51,13 +51,13 @@
        * Internal lookup table to map property names to CSS names
        * @internal
        */
-      __P_154_0: {},
+      __P_155_0: {},
 
       /**
        * A reference to the native CSS.supports function (supportsCSS in Opera)
        * @internal
        */
-      __P_154_1: null,
+      __P_155_1: null,
 
       /**
        * Takes the name of a style property and returns the name the browser uses
@@ -100,7 +100,7 @@
        * @return {String} CSS property
        */
       getCssName: function getCssName(propertyName) {
-        var cssName = this.__P_154_0[propertyName];
+        var cssName = this.__P_155_0[propertyName];
 
         if (!cssName) {
           // all vendor prefixes (except for "ms") start with an uppercase letter
@@ -112,7 +112,7 @@
             cssName = "-" + cssName;
           }
 
-          this.__P_154_0[propertyName] = cssName;
+          this.__P_155_0[propertyName] = cssName;
         }
 
         return cssName;
@@ -143,8 +143,8 @@
           var supported = false;
           var prefixedVal = vendorPrefixes[i] ? "-" + vendorPrefixes[i].toLowerCase() + "-" + value : value;
 
-          if (qx.bom.Style.__P_154_1) {
-            supported = qx.bom.Style.__P_154_1.call(win, cssProperty, prefixedVal);
+          if (qx.bom.Style.__P_155_1) {
+            supported = qx.bom.Style.__P_155_1.call(win, cssProperty, prefixedVal);
           } else {
             element.style.cssText += cssProperty + ":" + prefixedVal + ";";
             supported = typeof element.style[propertyName] == "string" && element.style[propertyName] !== "";
@@ -160,13 +160,13 @@
     },
     defer: function defer(statics) {
       if (window.CSS && window.CSS.supports) {
-        qx.bom.Style.__P_154_1 = window.CSS.supports.bind(window.CSS);
+        qx.bom.Style.__P_155_1 = window.CSS.supports.bind(window.CSS);
       } else if (window.supportsCSS) {
-        qx.bom.Style.__P_154_1 = window.supportsCSS.bind(window);
+        qx.bom.Style.__P_155_1 = window.supportsCSS.bind(window);
       }
     }
   });
   qx.bom.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1618504454120
+//# sourceMappingURL=Style.js.map?dt=1619362531025

@@ -142,7 +142,7 @@
        * a delay which causes another target and with that, another instance of this handler.
        * last touch was.
        */
-      __P_321_0: null
+      __P_322_0: null
     },
 
     /**
@@ -153,52 +153,52 @@
      * is not supported, e.g. in IE8)
      */
     construct: function construct(target, emitter) {
-      this.__P_321_1 = target;
-      this.__P_321_2 = emitter;
-      this.__P_321_3 = [];
-      this.__P_321_4 = [];
-      this.__P_321_5 = [];
+      this.__P_322_1 = target;
+      this.__P_322_2 = emitter;
+      this.__P_322_3 = [];
+      this.__P_322_4 = [];
+      this.__P_322_5 = [];
       this._processedFlag = "$$qx" + this.classname.substr(this.classname.lastIndexOf(".") + 1) + "Processed";
       var engineName = qx.core.Environment.get("engine.name");
       var docMode = parseInt(qx.core.Environment.get("browser.documentmode"), 10);
 
       if (engineName == "mshtml" && docMode == 10) {
         // listen to native prefixed events and custom unprefixed (see bug #8921)
-        this.__P_321_3 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel", "MSPointerOver", "MSPointerOut", "pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
+        this.__P_322_3 = ["MSPointerDown", "MSPointerMove", "MSPointerUp", "MSPointerCancel", "MSPointerOver", "MSPointerOut", "pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
 
         this._initPointerObserver();
       } else {
         if (qx.core.Environment.get("event.mspointer")) {
-          this.__P_321_6 = true;
+          this.__P_322_6 = true;
         }
 
-        this.__P_321_3 = ["pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
+        this.__P_322_3 = ["pointerdown", "pointermove", "pointerup", "pointercancel", "pointerover", "pointerout"];
 
         this._initPointerObserver();
       }
 
       if (!qx.core.Environment.get("event.mspointer")) {
         if (qx.core.Environment.get("device.touch")) {
-          this.__P_321_3 = ["touchstart", "touchend", "touchmove", "touchcancel"];
+          this.__P_322_3 = ["touchstart", "touchend", "touchmove", "touchcancel"];
 
           this._initObserver(this._onTouchEvent);
         }
 
-        this.__P_321_3 = ["mousedown", "mouseup", "mousemove", "mouseover", "mouseout", "contextmenu"];
+        this.__P_322_3 = ["mousedown", "mouseup", "mousemove", "mouseover", "mouseout", "contextmenu"];
 
         this._initObserver(this._onMouseEvent);
       }
     },
     members: {
-      __P_321_1: null,
-      __P_321_2: null,
-      __P_321_3: null,
-      __P_321_6: false,
-      __P_321_7: null,
-      __P_321_8: 0,
-      __P_321_4: null,
-      __P_321_9: null,
-      __P_321_5: null,
+      __P_322_1: null,
+      __P_322_2: null,
+      __P_322_3: null,
+      __P_322_6: false,
+      __P_322_7: null,
+      __P_322_8: 0,
+      __P_322_4: null,
+      __P_322_9: null,
+      __P_322_5: null,
       _processedFlag: null,
 
       /**
@@ -215,17 +215,17 @@
        * native event
        */
       _initObserver: function _initObserver(callback, useEmitter) {
-        this.__P_321_7 = qx.lang.Function.listener(callback, this);
+        this.__P_322_7 = qx.lang.Function.listener(callback, this);
 
-        this.__P_321_3.forEach(function (type) {
-          if (useEmitter && qx.dom.Node.isDocument(this.__P_321_1)) {
-            if (!this.__P_321_1.$$emitter) {
-              this.__P_321_1.$$emitter = new qx.event.Emitter();
+        this.__P_322_3.forEach(function (type) {
+          if (useEmitter && qx.dom.Node.isDocument(this.__P_322_1)) {
+            if (!this.__P_322_1.$$emitter) {
+              this.__P_322_1.$$emitter = new qx.event.Emitter();
             }
 
-            this.__P_321_1.$$emitter.on(type, this.__P_321_7);
+            this.__P_322_1.$$emitter.on(type, this.__P_322_7);
           } else {
-            qx.bom.Event.addNativeListener(this.__P_321_1, type, this.__P_321_7);
+            qx.bom.Event.addNativeListener(this.__P_322_1, type, this.__P_322_7);
           }
         }.bind(this));
       },
@@ -240,7 +240,7 @@
           return;
         }
 
-        if (!this.__P_321_6) {
+        if (!this.__P_322_6) {
           domEvent.stopPropagation();
         }
 
@@ -267,29 +267,29 @@
         this._determineActiveTouches(domEvent.type, changedTouches); // Detecting vacuum touches. (Touches which are not active anymore, but did not fire a touchcancel event)
 
 
-        if (domEvent.touches.length < this.__P_321_5.length) {
+        if (domEvent.touches.length < this.__P_322_5.length) {
           // Firing pointer cancel for previously active touches.
-          for (var i = this.__P_321_5.length - 1; i >= 0; i--) {
+          for (var i = this.__P_322_5.length - 1; i >= 0; i--) {
             var cancelEvent = new qx.event.type.dom.Pointer("pointercancel", domEvent, {
-              identifier: this.__P_321_5[i].identifier,
+              identifier: this.__P_322_5[i].identifier,
               target: domEvent.target,
               pointerType: "touch",
-              pointerId: this.__P_321_5[i].identifier + 2
+              pointerId: this.__P_322_5[i].identifier + 2
             });
 
             this._fireEvent(cancelEvent, "pointercancel", domEvent.target);
           } // Reset primary identifier
 
 
-          this.__P_321_9 = null; // cleanup of active touches array.
+          this.__P_322_9 = null; // cleanup of active touches array.
 
-          this.__P_321_5 = []; // Do nothing after pointer cancel.
+          this.__P_322_5 = []; // Do nothing after pointer cancel.
 
           return;
         }
 
-        if (domEvent.type == "touchstart" && this.__P_321_9 === null) {
-          this.__P_321_9 = changedTouches[0].identifier;
+        if (domEvent.type == "touchstart" && this.__P_322_9 === null) {
+          this.__P_322_9 = changedTouches[0].identifier;
         }
 
         for (var i = 0, l = changedTouches.length; i < l; i++) {
@@ -315,12 +315,12 @@
             this._fireEvent(overEvt, "pointerover", touchProps.target);
           }
 
-          if (touch.identifier == this.__P_321_9) {
+          if (touch.identifier == this.__P_322_9) {
             touchProps.isPrimary = true; // always simulate left click on touch interactions for primary pointer
 
             touchProps.button = 0;
             touchProps.buttons = 1;
-            qx.event.handler.PointerCore.__P_321_0 = {
+            qx.event.handler.PointerCore.__P_322_0 = {
               "x": touch.clientX,
               "y": touch.clientY,
               "time": new Date().getTime()
@@ -337,8 +337,8 @@
 
             this._fireEvent(outEvt, "pointerout", domEvent.target);
 
-            if (this.__P_321_9 == touch.identifier) {
-              this.__P_321_9 = null;
+            if (this.__P_322_9 == touch.identifier) {
+              this.__P_322_9 = null;
             }
           }
         }
@@ -364,32 +364,32 @@
         }
 
         if (domEvent.type == "mousedown") {
-          this.__P_321_4[domEvent.which] = 1;
+          this.__P_322_4[domEvent.which] = 1;
         } else if (domEvent.type == "mouseup") {
           if (qx.core.Environment.get("os.name") == "osx" && qx.core.Environment.get("engine.name") == "gecko") {
-            if (this.__P_321_4[domEvent.which] != 1 && domEvent.ctrlKey) {
-              this.__P_321_4[1] = 0;
+            if (this.__P_322_4[domEvent.which] != 1 && domEvent.ctrlKey) {
+              this.__P_322_4[1] = 0;
             }
           }
 
-          this.__P_321_4[domEvent.which] = 0;
+          this.__P_322_4[domEvent.which] = 0;
         }
 
         var type = qx.event.handler.PointerCore.MOUSE_TO_POINTER_MAPPING[domEvent.type];
         var target = qx.bom.Event.getTarget(domEvent);
-        var buttonsPressed = qx.lang.Array.sum(this.__P_321_4);
+        var buttonsPressed = qx.lang.Array.sum(this.__P_322_4);
         var mouseProps = {
           pointerType: "mouse",
           pointerId: 1
         }; // if the button state changes but not from or to zero
 
-        if (this.__P_321_8 != buttonsPressed && buttonsPressed !== 0 && this.__P_321_8 !== 0) {
+        if (this.__P_322_8 != buttonsPressed && buttonsPressed !== 0 && this.__P_322_8 !== 0) {
           var moveEvt = new qx.event.type.dom.Pointer("pointermove", domEvent, mouseProps);
 
           this._fireEvent(moveEvt, "pointermove", target);
         }
 
-        this.__P_321_8 = buttonsPressed; // pointerdown should only trigger form the first pressed button.
+        this.__P_322_8 = buttonsPressed; // pointerdown should only trigger form the first pressed button.
 
         if (domEvent.type == "mousedown" && buttonsPressed > 1) {
           return;
@@ -401,7 +401,7 @@
         }
 
         if (domEvent.type == "contextmenu") {
-          this.__P_321_4[domEvent.which] = 0;
+          this.__P_322_4[domEvent.which] = 0;
           return;
         }
 
@@ -418,27 +418,27 @@
       _determineActiveTouches: function _determineActiveTouches(type, changedTouches) {
         if (type == "touchstart") {
           for (var i = 0; i < changedTouches.length; i++) {
-            this.__P_321_5.push(changedTouches[i]);
+            this.__P_322_5.push(changedTouches[i]);
           }
         } else if (type == "touchend" || type == "touchcancel") {
           var updatedActiveTouches = [];
 
-          for (var i = 0; i < this.__P_321_5.length; i++) {
+          for (var i = 0; i < this.__P_322_5.length; i++) {
             var add = true;
 
             for (var j = 0; j < changedTouches.length; j++) {
-              if (this.__P_321_5[i].identifier == changedTouches[j].identifier) {
+              if (this.__P_322_5[i].identifier == changedTouches[j].identifier) {
                 add = false;
                 break;
               }
             }
 
             if (add) {
-              updatedActiveTouches.push(this.__P_321_5[i]);
+              updatedActiveTouches.push(this.__P_322_5[i]);
             }
           }
 
-          this.__P_321_5 = updatedActiveTouches;
+          this.__P_322_5 = updatedActiveTouches;
         }
       },
 
@@ -450,13 +450,13 @@
        * @return {Boolean} <code>true</code> if passed mouse position is a synthetic MouseEvent.
        */
       _isSimulatedMouseEvent: function _isSimulatedMouseEvent(x, y) {
-        var touch = qx.event.handler.PointerCore.__P_321_0;
+        var touch = qx.event.handler.PointerCore.__P_322_0;
 
         if (touch) {
           var timeSinceTouch = new Date().getTime() - touch.time;
           var dist = qx.event.handler.PointerCore.SIM_MOUSE_DISTANCE;
-          var distX = Math.abs(x - qx.event.handler.PointerCore.__P_321_0.x);
-          var distY = Math.abs(y - qx.event.handler.PointerCore.__P_321_0.y);
+          var distX = Math.abs(x - qx.event.handler.PointerCore.__P_322_0.x);
+          var distY = Math.abs(y - qx.event.handler.PointerCore.__P_322_0.y);
 
           if (timeSinceTouch < qx.event.handler.PointerCore.SIM_MOUSE_DELAY) {
             if (distX < dist || distY < dist) {
@@ -472,8 +472,8 @@
        * Removes native pointer event listeners.
        */
       _stopObserver: function _stopObserver() {
-        for (var i = 0; i < this.__P_321_3.length; i++) {
-          qx.bom.Event.removeNativeListener(this.__P_321_1, this.__P_321_3[i], this.__P_321_7);
+        for (var i = 0; i < this.__P_322_3.length; i++) {
+          qx.bom.Event.removeNativeListener(this.__P_322_1, this.__P_322_3[i], this.__P_322_7);
         }
       },
 
@@ -503,7 +503,7 @@
         if (qx.core.Environment.get("event.dispatchevent")) {
           var tracker = {};
 
-          if (!this.__P_321_6) {
+          if (!this.__P_322_6) {
             qx.event.Utils.then(tracker, function () {
               return target.dispatchEvent(domEvent);
             });
@@ -548,11 +548,11 @@
       dispose: function dispose() {
         this._stopObserver();
 
-        this.__P_321_1 = this.__P_321_2 = null;
+        this.__P_322_1 = this.__P_322_2 = null;
       }
     }
   });
   qx.event.handler.PointerCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PointerCore.js.map?dt=1618504468493
+//# sourceMappingURL=PointerCore.js.map?dt=1619362545159

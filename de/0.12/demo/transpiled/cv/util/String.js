@@ -36,7 +36,7 @@
     ******************************************************
     */
     statics: {
-      __P_97_0: null,
+      __P_98_0: null,
 
       /**
        * Decode HTML entities like &amp; to &
@@ -44,12 +44,12 @@
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__P_97_0) {
-          this.__P_97_0 = document.createElement("span");
+        if (!this.__P_98_0) {
+          this.__P_98_0 = document.createElement("span");
         }
 
-        this.__P_97_0.innerHTML = str;
-        return this.__P_97_0.innerText;
+        this.__P_98_0.innerHTML = str;
+        return this.__P_98_0.innerText;
       },
 
       /**
@@ -99,4 +99,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1618504447425
+//# sourceMappingURL=String.js.map?dt=1619362524477

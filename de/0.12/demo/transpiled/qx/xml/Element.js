@@ -109,7 +109,7 @@
    */
   qx.Class.define("qx.xml.Element", {
     statics: {
-      __P_91_0: null,
+      __P_92_0: null,
 
       /**
        * @type {Boolean} <code>true</code> if the native XMLSerializer should be used,
@@ -145,11 +145,11 @@
        */
       selectSingleNode: function selectSingleNode(element, query, namespaces) {
         if (qx.core.Environment.get("html.xpath")) {
-          if (!this.__P_91_0) {
-            this.__P_91_0 = new XPathEvaluator();
+          if (!this.__P_92_0) {
+            this.__P_92_0 = new XPathEvaluator();
           }
 
-          var xpe = this.__P_91_0;
+          var xpe = this.__P_92_0;
           var resolver;
 
           if (namespaces) {
@@ -200,10 +200,10 @@
        */
       selectNodes: function selectNodes(element, query, namespaces) {
         if (qx.core.Environment.get("html.xpath")) {
-          var xpe = this.__P_91_0;
+          var xpe = this.__P_92_0;
 
           if (!xpe) {
-            this.__P_91_0 = xpe = new XPathEvaluator();
+            this.__P_92_0 = xpe = new XPathEvaluator();
           }
 
           var resolver;
@@ -394,4 +394,4 @@
   qx.xml.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1618504447042
+//# sourceMappingURL=Element.js.map?dt=1619362524089

@@ -61,7 +61,7 @@
     extend: qx.type.BaseArray,
     statics: {
       // internal storage for all initializers
-      __P_329_0: [],
+      __P_330_0: [],
       // internal reference to the used qx namespace
       $$qx: qx,
 
@@ -105,8 +105,8 @@
 
         var col = qx.lang.Array.cast(clean, clazz);
 
-        for (var i = 0; i < qxWeb.__P_329_0.length; i++) {
-          qxWeb.__P_329_0[i].call(col);
+        for (var i = 0; i < qxWeb.__P_330_0.length; i++) {
+          qxWeb.__P_330_0[i].call(col);
         }
 
         return col;
@@ -187,7 +187,7 @@
        * @param init {Function} The initialization method for a module.
        */
       $attachInit: function $attachInit(init) {
-        this.__P_329_0.push(init);
+        this.__P_330_0.push(init);
       },
 
       /**
@@ -475,4 +475,4 @@
   qxWeb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=qxWeb.js.map?dt=1618504469230
+//# sourceMappingURL=qxWeb.js.map?dt=1619362545893

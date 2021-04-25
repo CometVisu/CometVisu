@@ -9,7 +9,6 @@
         "require": true
       },
       "cv.Config": {},
-      "cv.util.ScriptLoader": {},
       "qx.core.Init": {},
       "cv.IconHandler": {},
       "cv.core.notifications.Router": {},
@@ -98,7 +97,7 @@
         }
 
         if (files.js.length > 0) {
-          cv.util.ScriptLoader.getInstance().addScripts(files.js);
+          cv.Config.configSettings.scriptsToLoad = cv.Config.configSettings.scriptsToLoad.concat(files.js);
         }
       },
       parseIcons: function parseIcons(elem) {
@@ -486,4 +485,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1618502870503
+//# sourceMappingURL=MetaParser.js.map?dt=1619360963273

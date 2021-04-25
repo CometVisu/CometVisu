@@ -99,4 +99,4 @@
   qx.module.event.TouchHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TouchHandler.js.map?dt=1618502894126
+//# sourceMappingURL=TouchHandler.js.map?dt=1619360985654

@@ -68,10 +68,12 @@
           name: "MQTT_JSON",
           encode: function encode(phy, parameter) {
             if (typeof parameter === 'string') {
+              var _parameter$match;
+
               var ret_pre = '',
                   ret_post = ''; // split on "." but not on "\." to allow the dot to be escaped
 
-              parameter.split(/(?<!\\)\./).forEach(function (e) {
+              (_parameter$match = parameter.match(/(\\\.|[^.])+/g)) === null || _parameter$match === void 0 ? void 0 : _parameter$match.forEach(function (e) {
                 ret_pre += '{"' + e.replace('\\.', '.') + '":';
                 ret_post += '}';
               });
@@ -84,8 +86,10 @@
             var json = JSON.parse(str);
 
             if (typeof parameter === 'string') {
+              var _parameter$match2;
+
               // split on "." but not on "\." to allow the dot to be escaped
-              parameter.split(/(?<!\\)\./).forEach(function (e) {
+              (_parameter$match2 = parameter.match(/(\\\.|[^.])+/g)) === null || _parameter$match2 === void 0 ? void 0 : _parameter$match2.forEach(function (e) {
                 json = json[e.replace('\\.', '.')];
               });
             }
@@ -99,4 +103,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1618502873116
+//# sourceMappingURL=Mqtt.js.map?dt=1619360965632

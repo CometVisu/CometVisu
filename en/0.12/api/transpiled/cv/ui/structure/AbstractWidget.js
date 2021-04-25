@@ -204,11 +204,11 @@
     */
     members: {
       $$domReady: null,
-      __P_489_0: null,
-      __P_489_1: null,
+      __P_490_0: null,
+      __P_490_1: null,
       _skipNextEvent: null,
-      __P_489_2: null,
-      __P_489_3: null,
+      __P_490_2: null,
+      __P_490_3: null,
       // property apply
       _applyVisible: function _applyVisible(value, old) {},
       getResponsiveLayout: function getResponsiveLayout(width) {
@@ -341,27 +341,27 @@
       },
       _onPointerDown: function _onPointerDown(ev) {
         // listen to pointerup globally
-        this.__P_489_0 = ev.getCurrentTarget();
-        this.__P_489_1 = Date.now();
+        this.__P_490_0 = ev.getCurrentTarget();
+        this.__P_490_1 = Date.now();
 
-        if (this.__P_489_2) {
-          this.__P_489_2.stop();
+        if (this.__P_490_2) {
+          this.__P_490_2.stop();
 
-          this.__P_489_2 = null;
+          this.__P_490_2 = null;
         }
 
         qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
 
         if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && !this.isSendLongOnRelease() && this.getShortThreshold() > 0) {
           var clonedEv = ev.clone();
-          this.__P_489_2 = qx.event.Timer.once(function () {
+          this.__P_490_2 = qx.event.Timer.once(function () {
             this._onLongTap(clonedEv);
 
             this._skipNextEvent = "tap";
 
-            this.__P_489_4();
+            this.__P_490_4();
           }, this, this.getShortThreshold());
-          this.__P_489_3 = {
+          this.__P_490_3 = {
             x: ev.getDocumentLeft(),
             y: ev.getDocumentTop()
           }; // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
@@ -369,25 +369,25 @@
           qx.event.Registration.addListener(document, "pointermove", this._onPointerMove, this);
         }
       },
-      __P_489_4: function __P_489_4() {
+      __P_490_4: function __P_490_4() {
         qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
         qx.event.Registration.removeListener(document, "pointermove", this._onPointerMove, this);
-        this.__P_489_1 = null;
-        this.__P_489_3 = null;
+        this.__P_490_1 = null;
+        this.__P_490_3 = null;
 
-        if (this.__P_489_2) {
-          this.__P_489_2.stop();
+        if (this.__P_490_2) {
+          this.__P_490_2.stop();
 
-          this.__P_489_2 = null;
+          this.__P_490_2 = null;
         }
       },
       _onPointerMove: function _onPointerMove(ev) {
         var upElement = ev.getTarget();
-        var distance = Math.max(Math.abs(this.__P_489_3.x - ev.getDocumentLeft()), Math.abs(this.__P_489_3.y - ev.getDocumentTop()));
+        var distance = Math.max(Math.abs(this.__P_490_3.x - ev.getDocumentLeft()), Math.abs(this.__P_490_3.y - ev.getDocumentTop()));
         var abort = distance > 5;
 
         if (!abort) {
-          while (upElement && upElement !== this.__P_489_0) {
+          while (upElement && upElement !== this.__P_490_0) {
             upElement = upElement.parentNode;
 
             if (upElement === this.getDomElement()) {
@@ -395,22 +395,22 @@
             }
           }
 
-          abort = !upElement || upElement !== this.__P_489_0;
+          abort = !upElement || upElement !== this.__P_490_0;
         }
 
         if (abort) {
-          this.__P_489_4();
+          this.__P_490_4();
         }
       },
       _onPointerUp: function _onPointerUp(ev) {
-        if (this.__P_489_1 === null) {
+        if (this.__P_490_1 === null) {
           // ignore pointer ups when the pointerdown has not set a start time
           return;
         }
 
         var upElement = ev.getTarget();
 
-        while (upElement && upElement !== this.__P_489_0) {
+        while (upElement && upElement !== this.__P_490_0) {
           upElement = upElement.parentNode;
 
           if (upElement === this.getDomElement()) {
@@ -418,12 +418,12 @@
           }
         }
 
-        if (upElement && upElement === this.__P_489_0) {
+        if (upElement && upElement === this.__P_490_0) {
           this._skipNextEvent = "tap"; // both events happened on the same element
 
           ev.setCurrentTarget(upElement);
 
-          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_489_1 >= this.getShortThreshold()) {
+          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_490_1 >= this.getShortThreshold()) {
             // this is a longpress
             this._onLongTap(ev);
           } else {
@@ -431,7 +431,7 @@
           }
         }
 
-        this.__P_489_4();
+        this.__P_490_4();
       },
 
       /**
@@ -507,4 +507,4 @@
   cv.ui.structure.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1618502915791
+//# sourceMappingURL=AbstractWidget.js.map?dt=1619361006506

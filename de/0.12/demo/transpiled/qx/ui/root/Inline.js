@@ -120,15 +120,15 @@
     construct: function construct(el, dynamicX, dynamicY) {
       // check the parameter
       // Temporary storage of element to use
-      this.__P_100_0 = el; // Avoid any problems with dynamic resizing
+      this.__P_101_0 = el; // Avoid any problems with dynamic resizing
 
       el.style.overflow = "hidden"; // Avoid any problems with broken layout
 
       el.style.textAlign = "left";
-      this.__P_100_1 = dynamicX || false;
-      this.__P_100_2 = dynamicY || false;
+      this.__P_101_1 = dynamicX || false;
+      this.__P_101_2 = dynamicY || false;
 
-      this.__P_100_3();
+      this.__P_101_3();
 
       qx.ui.root.Abstract.constructor.call(this); // Use static layout
 
@@ -157,42 +157,42 @@
     *****************************************************************************
     */
     members: {
-      __P_100_1: false,
-      __P_100_2: false,
-      __P_100_0: null,
+      __P_101_1: false,
+      __P_101_2: false,
+      __P_101_0: null,
 
       /**
        * Performs several checks for dynamic mode and adds the "resize" listener
        */
-      __P_100_3: function __P_100_3() {
-        if (this.__P_100_1 || this.__P_100_2) {
+      __P_101_3: function __P_101_3() {
+        if (this.__P_101_1 || this.__P_101_2) {
           // Check the DOM element for an usable width and height
-          var elementDimensions = qx.bom.element.Dimension.getSize(this.__P_100_0);
+          var elementDimensions = qx.bom.element.Dimension.getSize(this.__P_101_0);
 
-          if (this.__P_100_1 && elementDimensions.width < 1) {
-            throw new Error("The root element " + this.__P_100_0 + " of " + this + " needs a width when its width size should be used!");
+          if (this.__P_101_1 && elementDimensions.width < 1) {
+            throw new Error("The root element " + this.__P_101_0 + " of " + this + " needs a width when its width size should be used!");
           }
 
-          if (this.__P_100_2) {
+          if (this.__P_101_2) {
             if (elementDimensions.height < 1) {
-              throw new Error("The root element " + this.__P_100_0 + " of " + this + " needs a height when its height size should be used!");
+              throw new Error("The root element " + this.__P_101_0 + " of " + this + " needs a height when its height size should be used!");
             } // check for implicit height. Set the height explicit to prevent that
             // the element grows indefinitely
 
 
-            if (elementDimensions.height >= 1 && qx.bom.element.Style.get(this.__P_100_0, "height", 3) == "") {
-              qx.bom.element.Style.set(this.__P_100_0, "height", elementDimensions.height + "px");
+            if (elementDimensions.height >= 1 && qx.bom.element.Style.get(this.__P_101_0, "height", 3) == "") {
+              qx.bom.element.Style.set(this.__P_101_0, "height", elementDimensions.height + "px");
             }
           }
 
-          qx.event.Registration.addListener(this.__P_100_0, "resize", this._onResize, this);
+          qx.event.Registration.addListener(this.__P_101_0, "resize", this._onResize, this);
         }
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        var el = this.__P_100_0;
+        var el = this.__P_101_0;
 
-        if (this.__P_100_1 || this.__P_100_2) {
+        if (this.__P_101_1 || this.__P_101_2) {
           var rootEl = document.createElement("div");
           el.appendChild(rootEl);
         } else {
@@ -221,7 +221,7 @@
       _onResize: function _onResize(e) {
         var data = e.getData();
 
-        if (data.oldWidth !== data.width && this.__P_100_1 || data.oldHeight !== data.height && this.__P_100_2) {
+        if (data.oldWidth !== data.width && this.__P_101_1 || data.oldHeight !== data.height && this.__P_101_2) {
           qx.ui.core.queue.Layout.add(this);
         }
       },
@@ -242,8 +242,8 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        var dynX = this.__P_100_1;
-        var dynY = this.__P_100_2;
+        var dynX = this.__P_101_1;
+        var dynY = this.__P_101_2;
 
         if (!dynX || !dynY) {
           var hint = qx.ui.root.Inline.prototype._computeSizeHint.base.call(this);
@@ -254,14 +254,14 @@
         var Dimension = qx.bom.element.Dimension;
 
         if (dynX) {
-          var width = Dimension.getContentWidth(this.__P_100_0);
+          var width = Dimension.getContentWidth(this.__P_101_0);
           hint.width = width;
           hint.minWidth = width;
           hint.maxWidth = width;
         }
 
         if (dynY) {
-          var height = Dimension.getContentHeight(this.__P_100_0);
+          var height = Dimension.getContentHeight(this.__P_101_0);
           hint.height = height;
           hint.minHeight = height;
           hint.maxHeight = height;
@@ -286,11 +286,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(this.__P_100_0, "resize", this._onResize, this);
-      this.__P_100_0 = null;
+      qx.event.Registration.removeListener(this.__P_101_0, "resize", this._onResize, this);
+      this.__P_101_0 = null;
     }
   });
   qx.ui.root.Inline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Inline.js.map?dt=1618504447599
+//# sourceMappingURL=Inline.js.map?dt=1619362524641

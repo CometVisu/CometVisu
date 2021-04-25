@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 180,
+        "line": 218,
         "column": 3
       }
     },
@@ -85,14 +85,70 @@
       "type": "variable",
       "access": "protected"
     },
-    "dump": {
+    "replayCache": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__initPromise": {
       "location": {
         "start": {
           "line": 40,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 40,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "DB": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 12
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dump": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
           "column": 5
         }
       },
@@ -102,11 +158,11 @@
     "restore": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 118,
           "column": 5
         }
       },
@@ -116,25 +172,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 91,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getBody": {
-      "location": {
-        "start": {
-          "line": 93,
-          "column": 4
-        },
-        "end": {
-          "line": 98,
+          "line": 123,
           "column": 5
         }
       },
@@ -144,11 +186,11 @@
     "getData": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 151,
           "column": 5
         }
       },
@@ -158,11 +200,11 @@
     "isCached": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 166,
           "column": 5
         }
       },
@@ -180,11 +222,11 @@
     "isValid": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 183,
           "column": 5
         }
       },
@@ -194,11 +236,11 @@
     "toHash": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 187,
           "column": 5
         }
       },
@@ -208,11 +250,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 189,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 196,
           "column": 5
         }
       },
@@ -222,11 +264,11 @@
     "hashCode": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 216,
           "column": 5
         }
       },
