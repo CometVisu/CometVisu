@@ -24,7 +24,10 @@
  * @author Tobias Bräutigam
  * @since 0.10.0
  */
-qx.Class.define('cv.ConfigCache', {
+qx.Class.define(
+
+
+  'cv.ConfigCache', {
   type: "static",
   
   /*

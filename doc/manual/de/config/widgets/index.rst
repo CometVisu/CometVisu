@@ -166,8 +166,6 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | Widget                                                   | Beschreibung                                                        |
 +==========================================================+=====================================================================+
-| CalendarList                                             | externen Kalendar einbinden                                         |
-+----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Clock <plugins/clock/index>`                       | Plugin zum Darstellen der Uhrzeit von einer Adresse.                |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`ColorChooser <plugins/colorchooser/index>`         | Farb-Auswahl-Rad für RGB-Beleuchtung                                |
@@ -203,6 +201,10 @@ also z.B.:
 | UPNPController                                           | UPNP-Controller                                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 
+.. hint::
+
+    Das CalendarList-Plugin steht nicht mehr zur Verfügung, da es auf eine Schnittstelle des Google-Kalenders zugegriffen hat,
+    die nicht mehr verfügbar ist.
 
 .. toctree::
     :titlesonly:
