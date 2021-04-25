@@ -78,14 +78,6 @@ qx.Class.define('cv.plugins.RssLog', {
     height: {
       check: "String",
       nullable: true
-    },
-    /**
-     * Internal model for YQL data
-     */
-    model: {
-      check : "qx.data.Array",
-      nullable: true,
-      apply: "_applyModel"
     }
   },
 
@@ -260,14 +252,12 @@ qx.Class.define('cv.plugins.RssLog', {
           this.__refreshRss();
         }
         else {
-          this.__refreshYql();
+          this.error("external sources are no longer supported");
         }
       }
       this.__request.setUserData("big", isBig);
       if (this.__request instanceof qx.io.request.Xhr) {
         this.__request.send();
-      } else if (this.__request instanceof qx.data.store.Yql) {
-        this.__request.reload();
       }
 
       var refresh = this.getRefresh();
@@ -307,35 +297,6 @@ qx.Class.define('cv.plugins.RssLog', {
       }, this);
     },
 
-    /**
-     * Fetch data from YQL Service
-     */
-    __refreshYql: function() {
-      if (!this.__request) {
-        this.__request = new qx.data.store.Yql("SELECT * FROM rss WHERE url='"+this.getSrc()+"'", {
-          manipulateData: function (data) {
-            if (data.query.results) {
-              return data.query.results.item || data.query.results.entry;
-            } else {
-              return [];
-            }
-          }
-        });
-
-        this.__request.bind("model", this, "model");
-      }
-    },
-
-    _applyModel: function(value, old) {
-      if (old) {
-        old.removeListener("change", this.__updateYqlContent, this);
-      }
-      if (value) {
-        this.__updateYqlContent();
-        value.addListener("change", this.__updateYqlContent, this);
-      }
-    },
-
     __prepareContentElement: function(ul, c) {
       c.innerHTML = '';
 
@@ -372,10 +333,6 @@ qx.Class.define('cv.plugins.RssLog', {
         return;
       }
       this.__updateContent(result.responseData.feed.entries);
-    },
-
-    __updateYqlContent: function() {
-      this.__updateContent(this.getModel().toArray());
     },
 
     __updateContent: function(items) {

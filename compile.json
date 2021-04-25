@@ -62,11 +62,6 @@
             "cv.plugins.ColorChooser"
           ]
         },
-        "plugin-calendarlist": {
-          "include": [
-            "cv.plugins.CalendarList"
-          ]
-        },
         "plugin-clock": {
           "include": [
             "cv.plugins.Clock"
@@ -215,6 +210,7 @@
     "svg4everybody",
     "THREE",
     "Worker",
-    "Node"
+    "Node",
+    "indexedDB"
   ]
 }
