@@ -18,7 +18,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
       "source/test/karma/helper-spec.js",
-      { pattern: "source/cv/polyfill.js", included: false },
+      { pattern: "source/cv/polyfill.js", included: true },
       { pattern: "source/test/karma/*-spec.js" },
       { pattern: "source/test/karma/**/*-spec.js" },
       { pattern: "source/test/fixtures/**", included: false },
