@@ -421,10 +421,27 @@ ${changes}
   async triggerBuild(ref) {
     if (ref) {
       console.log("running build_release for ref", ref);
+
+      // build nightly and deploy it to github
       await this.client.actions.createWorkflowDispatch({
         owner: this.owner,
         repo: this.repo,
         workflow_id: "build_release.yml",
+        ref: ref
+      });
+      // delete old nightlies
+      await this.client.actions.createWorkflowDispatch({
+        owner: this.owner,
+        repo: this.repo,
+        workflow_id: "cleanup_nightly.yml",
+        ref: ref
+      });
+
+      // build nightly and deploy it to sentry + docker
+      await this.client.actions.createWorkflowDispatch({
+        owner: this.owner,
+        repo: this.repo,
+        workflow_id: "main.yml",
         ref: ref
       });
     }
