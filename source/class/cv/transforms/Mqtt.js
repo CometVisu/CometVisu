@@ -59,7 +59,7 @@ qx.Class.define('cv.transforms.Mqtt', {
               ret_pre = '',
               ret_post = '';
             // split on "." but not on "\." to allow the dot to be escaped
-            parameter.split(/(?<!\\)\./).forEach(
+            parameter.match(/(\\\.|[^.])+/g)?.forEach(
               (e)=>{
                 ret_pre += '{"' + e.replace('\\.', '.') + '":';
                 ret_post += '}';
@@ -73,7 +73,7 @@ qx.Class.define('cv.transforms.Mqtt', {
           let json = JSON.parse(str);
           if( typeof parameter === 'string' ) {
             // split on "." but not on "\." to allow the dot to be escaped
-            parameter.split(/(?<!\\)\./).forEach(
+            parameter.match(/(\\\.|[^.])+/g)?.forEach(
               (e)=>{json = json[e.replace('\\.', '.')];}
             );
           }

@@ -44,9 +44,14 @@ const excludeFromCopy = {
   ]
 }
 
+const deleteBefore = [
+  "qx_packages/**/font/*/*.svg"
+]
+
 class CvCompileHandler extends AbstractCompileHandler {
 
   onLoad() {
+    this._onBeforeLoad();
     super.onLoad();
     const command = this._compilerApi.getCommand();
     if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
@@ -76,6 +81,10 @@ class CvCompileHandler extends AbstractCompileHandler {
     } else {
       return Promise.resolve(true);
     }
+  }
+
+  _onBeforeLoad() {
+    deleteBefore.forEach(glob => fg.sync(glob).forEach(file => qx.tool.utils.files.Utils.safeUnlink(file)));
   }
 
   _onCompiledClass(ev) {
