@@ -615,8 +615,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            control.setHeight(0);
            control.setOpacity(0.5);
            control.setZIndex(100);
+           control.setDroppable(true);
            control.setLayoutProperties({left: -1000, top: -1000});
-           control.setAnonymous(true);
            qx.core.Init.getApplication().getRoot().add(control);
            break;
 
@@ -813,6 +813,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         const addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
         let target = ev.getTarget();
+        if (target === indicator) {
+          // no change when we are dragging over the indicator
+          this.debug("dragging over indicator");
+          return;
+        }
         if (action !== 'copy' && target && target instanceof cv.ui.manager.tree.VirtualElementItem ) {
           if (target.getModel() === element) {
             // cannot drop on myself
@@ -820,7 +825,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             accepted.mode = Allowed.NONE;
             ev.preventDefault();
             return;
-          } else if (element.isAncestor(target.getModel())) {
+          } else if (element && element.isAncestor(target.getModel())) {
             // cannot move into myself
             this.debug("moving inside own subtree forbidden");
             accepted.mode = Allowed.NONE;
@@ -961,26 +966,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
       let expandTimer;
 
-      control.addListener("dragleave", function () {
+      control.addListener("dragleave", function (ev) {
         if (expandTimer) {
           expandTimer.stop();
           expandTimer = null;
         }
       }, this);
 
+      let lastTreeItem;
+      const treeContainer = control.getPane();
+
       const onDrag = function (ev) {
-        if (accepted.mode === Allowed.NONE) {
-          indicator.setDomPosition(-1000, -1000);
-          return;
-        }
-        const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
-        let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
-        if (!orig) {
-          return;
-        }
-        while (orig.isAnonymous()) {
-          orig = orig.getLayoutParent();
-        }
+        let left = -1000;
+        let top = -1000;
+        let position = "";
         let cursor = ev.getManager().getCursor();
         if (!cursor) {
           cursor = qx.ui.core.DragDropCursor.getInstance();
@@ -991,96 +990,125 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
         }
 
-        const origCoords = orig.getContentLocation();
-        let leftPos = origCoords.left;
-        if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
-          const spacer = orig._getChildren()[0];
-          leftPos = spacer.getWidth() + orig.getPaddingLeft();
-          indicator.setWidth(orig.getBounds().width - leftPos);
-          if (accepted.target && orig.getModel() !== accepted.target) {
+        if (accepted.mode !== Allowed.NONE) {
+          const origElem = document.elementFromPoint(ev.getDocumentLeft(), ev.getDocumentTop());
+          let orig = qx.ui.core.Widget.getWidgetByElement(origElem);
+          let skipDetection = false;
+          if (!orig) {
             return;
           }
-        } else {
-          return;
-        }
-        let left = -1000;
-        let top = -1000;
-        let position = "";
-        if ((ev.getDocumentTop() - origCoords.top) <= 3) {
-          // above
-          if (expandTimer) {
-            expandTimer.stop();
-            expandTimer = null;
+          while (orig.isAnonymous()) {
+            orig = orig.getLayoutParent();
           }
-          // check if this item is allowed here
-          if (accepted.mode & Allowed.BEFORE) {
-            left = leftPos;
-            top = origCoords.top;
-            position = "before";
-          } else if (accepted.mode & Allowed.INSIDE) {
-            left = -1000;
-            top = -1000;
-            position = "inside";
-          }
-        } else if ((origCoords.bottom - ev.getDocumentTop()) <= 3) {
-          // below
-          if (accepted.target && !accepted.target.isOpen()) {
-            if (accepted.mode & Allowed.AFTER) {
-              left = leftPos;
-              top = origCoords.bottom;
-              position = "after";
-            } else if (accepted.mode & Allowed.INSIDE) {
-              left = -1000;
-              top = -1000;
-              position = "inside";
+
+          const origCoords = orig.getContentLocation();
+          let leftPos = origCoords.left;
+          if (orig instanceof cv.ui.manager.tree.VirtualElementItem) {
+            const spacer = orig._getChildren()[0];
+            leftPos = spacer.getWidth() + orig.getPaddingLeft();
+            indicator.setWidth(orig.getBounds().width - leftPos);
+            if (accepted.target && orig.getModel() !== accepted.target) {
+              skipDetection = true;
             }
-          } else {
-            // when an element is opened this position is not after this element. but before its first child
-            if (accepted.mode & Allowed.FIRST_CHILD) {
-              left = leftPos + 19;
-              indicator.setWidth(indicator.getWidth() - 19);
-              top = origCoords.bottom;
-              position = "first-child";
-            } else {
-              this.debug("not allowed as first child");
-            }
-          }
-          if (expandTimer) {
-            expandTimer.stop();
-            expandTimer = null;
-          }
-        } else {
-          // inside
-          if (accepted.target && accepted.target.isOpen()) {
-            // treat dropping on an opened node as "first-child" position
-            if (accepted.mode & Allowed.FIRST_CHILD) {
-              if (indicator.getUserData("position") !== "first-child") {
-                left = leftPos + 19;
-                indicator.setWidth(indicator.getWidth() - 19);
+            lastTreeItem = orig;
+          } else if (orig !== indicator) {
+            if (orig === treeContainer) {
+              const lastCoords = lastTreeItem.getContentLocation();
+              const distance = ev.getDocumentTop() - lastCoords.bottom;
+              if (distance <= 20 && accepted.mode & Allowed.AFTER) {
+                const spacer = lastTreeItem._getChildren()[0];
+                left = spacer.getWidth() + lastTreeItem.getPaddingLeft();
+                top = lastCoords.bottom;
+                position = "after";
               }
-              top = origCoords.bottom;
-              position = "first-child";
+              skipDetection = true;
+            } else {
+              skipDetection = true;
             }
           } else {
-            indicator.setDomPosition(-1000, -1000);
-            if (accepted.mode & Allowed.INSIDE) {
-              position = "inside";
-            }
-            if (!expandTimer) {
-              expandTimer = qx.event.Timer.once(function () {
-                if (accepted.target) {
-                  control.openNode(accepted.target);
+            // on drag indicator, do nothing here
+            return;
+          }
+          if (!skipDetection) {
+            if ((ev.getDocumentTop() - origCoords.top) <= 5) {
+              // above
+              if (expandTimer) {
+                expandTimer.stop();
+                expandTimer = null;
+              }
+              // check if this item is allowed here
+              if (accepted.mode & Allowed.BEFORE) {
+                left = leftPos;
+                top = origCoords.top;
+                position = "before";
+              } else if (accepted.mode & Allowed.INSIDE) {
+                left = -1000;
+                top = -1000;
+                position = "inside";
+              }
+            } else if ((origCoords.bottom - ev.getDocumentTop()) <= 5) {
+              // below
+              if (accepted.target && !accepted.target.isOpen()) {
+                if (accepted.mode & Allowed.AFTER) {
+                  left = leftPos;
+                  top = origCoords.bottom;
+                  position = "after";
+                } else if (accepted.mode & Allowed.INSIDE) {
+                  left = -1000;
+                  top = -1000;
+                  position = "inside";
                 }
-              }, this, 1000);
+              } else {
+                // when an element is opened this position is not after this element. but before its first child
+                if (accepted.mode & Allowed.FIRST_CHILD) {
+                  left = leftPos + 19;
+                  indicator.setWidth(indicator.getWidth() - 19);
+                  top = origCoords.bottom;
+                  position = "first-child";
+                } else {
+                  this.debug("not allowed as first child");
+                }
+              }
+              if (expandTimer) {
+                expandTimer.stop();
+                expandTimer = null;
+              }
+            } else {
+              // inside
+              if (accepted.target && accepted.target.isOpen()) {
+                // treat dropping on an opened node as "first-child" position
+                if (accepted.mode & Allowed.FIRST_CHILD) {
+                  if (indicator.getUserData("position") !== "first-child") {
+                    left = leftPos + 19;
+                    indicator.setWidth(indicator.getWidth() - 19);
+                  }
+                  top = origCoords.bottom;
+                  position = "first-child";
+                }
+              } else {
+                indicator.setDomPosition(-1000, -1000);
+                if (accepted.mode & Allowed.INSIDE) {
+                  position = "inside";
+                }
+                if (!expandTimer) {
+                  expandTimer = qx.event.Timer.once(function () {
+                    if (accepted.target) {
+                      control.openNode(accepted.target);
+                    }
+                  }, this, 1000);
+                }
+              }
             }
           }
         }
         indicator.setDomPosition(left, top);
         indicator.setUserData("position", position);
-        if (!position) {
+        if (!position && cursor.getAction()) {
           indicator.setUserData("action", ev.getCurrentAction());
           cursor.resetAction();
-        } else if (cursor.getAction() !== indicator.getUserData("action")) {
+          console.assert(left < 0);
+          console.assert(top < 0);
+        } else if (position && !cursor.getAction() && cursor.getAction() !== indicator.getUserData("action")) {
           cursor.setAction(indicator.getUserData("action"));
           indicator.setUserData("action", null);
         }
@@ -1261,13 +1289,19 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             maxPosition = sorting[target.getName()];
             const targetIndex = children.indexOf(target);
             if (targetIndex > 0) {
+              let found = false;
               // find the first real element before that is not from the same type
               for (let i = targetIndex-1; i >= 0; i--) {
                 const sibling = children.getItem(i);
                 if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
                   minPosition = sorting[sibling.getName()];
+                  found = true;
                   break;
                 }
+              }
+              if (!found) {
+                // only siblings of the same type
+                minPosition = maxPosition;
               }
             }
           } else if (position === 'after') {
@@ -1275,12 +1309,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             const targetIndex = children.indexOf(target);
             if (targetIndex < children.length - 1) {
               // find the first real element after that is not from the same type
+              let found = false;
               for (let i = targetIndex; i < children.length; i++) {
                 const sibling = children.getItem(i);
                 if (!sibling.getName().startsWith('#') && sibling.getName() !== target.getName()) {
                   maxPosition = sorting[sibling.getName()];
+                  found = true;
                   break;
                 }
+              }
+              if (!found) {
+                // only siblings of the same type
+                maxPosition = minPosition;
               }
             } else {
               // we want to append ot to the end
@@ -1599,6 +1639,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         caption:  "",
         message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
         formData: formData,
+        minWidth: Math.min(qx.bom.Viewport.getWidth(), 400),
         maxWidth: qx.bom.Viewport.getWidth()
       }).show();
       return formDialog.promise().then(data => {
