@@ -150,7 +150,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     _onClose: function () {
       if (this._windowRef) {
         qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
+        this._windowRef = null;
       }
+      this.resetFile();
     },
 
     openPage: function (page, path) {
