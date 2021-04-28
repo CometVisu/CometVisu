@@ -103,7 +103,7 @@ qx.Class.define('cv.ConfigCache', {
           document.querySelector('body').classList.add('mobile');
           const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith('mobile.css'));
           if (!hasMobile) {
-            cv.Config.configSettings.stylesToLoad.push("design/" + cv.Config.configSettings.clientDesign + "/mobile.css");
+            cv.Config.configSettings.stylesToLoad.push("designs/" + cv.Config.configSettings.clientDesign + "/mobile.css");
           }
         } else {
           // do not load mobile css
