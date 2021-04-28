@@ -174,22 +174,22 @@ class GithubClient {
     limit = parseInt(limit);
     if (zipBuildAssets.length > limit) {
       for (let i = limit; i < zipBuildAssets.length; i++) {
+        console.log("Deleting", zipBuildAssets[i].name, "from", release.name)
         await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
           owner: this.owner,
           repo: this.repo,
           assetId: zipBuildAssets[i].id
         });
-        console.log("Deleting", zipBuildAssets[i].name)
       }
     }
     if (tarBuildAssets.length > limit) {
       for (let i = limit; i < tarBuildAssets.length; i++) {
-        await this.client.deleteReleaseAsset({
+        console.log("Deleting", tarBuildAssets[i].name, "from", release.name)
+        await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
           owner: this.owner,
           repo: this.repo,
           asset_id: tarBuildAssets[i].id
         });
-        console.log("Deleting", tarBuildAssets[i].name)
       }
     }
   }
