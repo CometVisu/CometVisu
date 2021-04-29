@@ -631,7 +631,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);

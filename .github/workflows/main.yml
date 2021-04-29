@@ -196,6 +196,7 @@ jobs:
         uses: ./.github/actions/build-cv
         with:
           target: build
+          build-options: --save-source-in-map
       - run: |
           curl -sL https://sentry.io/get-cli/ | bash
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)

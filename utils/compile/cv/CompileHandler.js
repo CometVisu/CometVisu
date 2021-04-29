@@ -62,7 +62,11 @@ class CvCompileHandler extends AbstractCompileHandler {
       });
     }
     command.addListener("made", () => this._onMade());
+    if (command instanceof qx.tool.cli.commands.Deploy) {
+      command.addListener("afterDeploy", this._onAfterDeploy, this);
+    }
     command.addListener("compiledClass", this._onCompiledClass, this);
+
     const currentDir = process.cwd();
     const targetDir = this._getTargetDir();
     this._excludes = excludeFromCopy.hasOwnProperty(this._config.targetType) ? excludeFromCopy[this._config.targetType].map(d => {
@@ -74,13 +78,20 @@ class CvCompileHandler extends AbstractCompileHandler {
    * Called after all libraries have been loaded and added to the compilation data
    */
   async _onMade() {
-    await this.copyFiles();
+    if (!(this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy)) {
+      await this.copyFiles();
+    }
 
     if (this._config.targetType === 'build') {
       return this.afterBuild();
     } else {
       return Promise.resolve(true);
     }
+  }
+
+  async _onAfterDeploy(ev) {
+    const data = ev.getData();
+    await this.copyFiles(data.deployDir);
   }
 
   _onBeforeLoad() {
@@ -98,9 +109,11 @@ class CvCompileHandler extends AbstractCompileHandler {
     }
   }
 
-  async copyFiles () {
+  async copyFiles (targetDir) {
     const currentDir = process.cwd();
-    const targetDir = this._getTargetDir();
+    if (!targetDir) {
+      targetDir = this._getTargetDir();
+    }
     const command = this._compilerApi.getCommand();
     this._watchList = {};
     const promises = [];
@@ -164,7 +177,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       // copy a fake /cgi-bin/l response to the target folder
       fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'));
     }
-    return Promise.all(promises);
+    return Promise.all(promises).catch(e => console.error);
   }
 
   __filterCopyFiles(from, to) {

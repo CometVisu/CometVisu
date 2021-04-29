@@ -11,7 +11,7 @@
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
     "build": "qx compile --watch -t build --set fakeLogin=true",
-    "make-cv": "qx deploy --out=release --source-maps",
+    "make-cv": "qx deploy --out=release --clean --source-maps --save-source-in-map",
     "compile": "qx compile",
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
