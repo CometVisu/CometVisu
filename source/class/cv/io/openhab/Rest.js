@@ -236,21 +236,23 @@ qx.Class.define('cv.io.openhab.Rest', {
 
       // create sse session
       this.running = true;
-      this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged");
+      if (!cv.report.Record.REPLAYING) {
+        this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged");
 
-      // add default listeners
-      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
-      // add additional listeners
-      //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-      this.eventSource.onerror = function () {
-        this.error("connection lost");
-        this.setConnected(false);
-      }.bind(this);
-      this.eventSource.onopen = function () {
-        this.debug("connection established");
-        this.setConnected(true);
-      }.bind(this);
+        // add default listeners
+        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+        this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+        // add additional listeners
+        //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+        this.eventSource.onerror = function () {
+          this.error("connection lost");
+          this.setConnected(false);
+        }.bind(this);
+        this.eventSource.onopen = function () {
+          this.debug("connection established");
+          this.setConnected(true);
+        }.bind(this);
+      }
     },
 
     terminate: function () {
@@ -262,6 +264,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     handleMessage: function(payload) {
       if (payload.type === "message") {
+        this.record("read", {type: payload.type, data: payload.data});
         const data = JSON.parse(payload.data);
         if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
           //extract item name from topic

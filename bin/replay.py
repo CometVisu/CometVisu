@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -28,15 +28,8 @@ import json
 import shutil
 from sh import npm
 
-try:
-    # Python 2.x
-    from SocketServer import ThreadingMixIn
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-    from BaseHTTPServer import HTTPServer
-except ImportError:
-    # Python 3.x
-    from socketserver import ThreadingMixIn
-    from http.server import SimpleHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 
 class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
@@ -177,7 +170,7 @@ if __name__ == '__main__':
         start_browser("http://localhost:%s/compiled/source/replay.html%s" % (port, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
 
-        while thread.isAlive():
+        while thread.is_alive():
             thread.join(1)
 
     except (KeyboardInterrupt, SystemExit):
