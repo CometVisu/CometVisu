@@ -188,7 +188,7 @@ class GithubClient {
         await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
           owner: this.owner,
           repo: this.repo,
-          asset_id: tarBuildAssets[i].id
+          assetId: tarBuildAssets[i].id
         });
       }
     }
