@@ -1422,7 +1422,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             let res = Promise.resolve(true);
             if (xmlElement.isShowEditButton()) {
               // only show edit dialog when we actually have something to edit
-              res = this._onEdit(null, xmlElement);
+              res = this._onEdit(null, xmlElement,
+                this.tr("Create new %1 element", xmlElement.getName()),
+                this.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", xmlElement.getName())
+              );
             }
             res.then((data) => {
               if (data) {
@@ -1569,7 +1572,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return def;
     },
 
-    _onEdit: function (ev, element) {
+    _onEdit: function (ev, element, title, caption) {
       if (!this.getFile() || !this.getFile().isWriteable()) {
         return;
       }
@@ -1636,8 +1639,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const formDialog = new cv.ui.manager.form.ElementForm({
         allowCancel: true,
         context: this,
-        caption:  "",
-        message: element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
+        caption:  title || this.tr("Edit element attributes"),
+        message: caption ? caption : (element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName())),
         formData: formData,
         minWidth: Math.min(qx.bom.Viewport.getWidth(), 400),
         maxWidth: qx.bom.Viewport.getWidth()

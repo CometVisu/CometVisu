@@ -538,10 +538,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       } else {
         // find the first previous sibling of a different type
         let previousSibling
-        for (let i = currentPosition - 1; i >= 0; i--) {
-          if (children.getItem(i).getName() !== nodeName) {
-            previousSibling = children.getItem(i).getName();
-            break;
+        if (index > 0) {
+          for (let i = index - 1; i >= 0; i--) {
+            if (children.getItem(i).getName() !== nodeName) {
+              previousSibling = children.getItem(i).getName();
+              break;
+            }
           }
         }
         if (previousSibling) {

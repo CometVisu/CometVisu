@@ -943,3 +943,15 @@ msgstr "\"%1\" wurde in \"%2\" kopiert"
 #: cv/ui/manager/editor/Tree.js
 msgid "\"%1\" has been copied before \"%2\""
 msgstr "\"%1\" wurde vor \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Create new %1 element"
+msgstr "Erzeuge neues %1 Element"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please edit the attributes of the new %1 element, that will be added to the chosen position."
+msgstr "Bitte bearbeiten Sie die Attribute des neuen %1 Elements, welches an der gewünschten Stelle erzeugt wird."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element attributes"
+msgstr "Element Attribute bearbeiten"
