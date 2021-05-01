@@ -90,6 +90,27 @@ qx.Class.define('cv.util.Color', {
     },
 
     /**
+     * Convert xy coordinates to sRGB for display on the screen, including
+     * gamma correction
+     * @param xy
+     */
+    xy2sRGB: function (xy, Y = 1) {
+      let
+        X = Y * xy.x / xy.y,
+        Z = Y * (1-xy.x-xy.y) / xy.y,
+        R =  3.2406*X -1.5372*Y -0.4986*Z,
+        G = -0.9689*X +1.8758*Y +0.0415*Z,
+        B =  0.0557*X -0.2040*Y +1.0570*Z,
+        scale = 1 / Math.max(1, R, G, B), // gamut mapping
+        gamma = u => u<=0.0031308 ? (12.92*u) : (1.055*u**(1/2.4) - 0.055);
+      return {
+        r: gamma(R * scale),
+        g: gamma(G * scale),
+        b: gamma(B * scale)
+      };
+    },
+
+    /**
      * Convert a color component to a real world value by applying the dim curve
      * @param component {Number}
      * @param curve {Number}
@@ -301,11 +322,13 @@ qx.Class.define('cv.util.Color', {
       if( this.__Lab === undefined || force ) {
         const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
         let
-          X = this.__x * (this.__Y / this.__y),
-          Z = (1 - this.__x - this.y) * (this.__Y / this.__y),
+          X = this.__x * (this.__Y / Math.max(0.001, this.__y)),
+          Z = (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y)),
           f = function(t) {
-                if(t < 216/24389) {
-                  return (24389/27*t+16)/116;
+                //if(t < 216/24389) {
+                //  return (24389/27*t+16)/116;
+                if(t < (6/29)**3) {
+                  return t/(3*(6/29)**2 + 4/29);
                 } else {
                   return t**(1/3);
                 }
@@ -324,7 +347,7 @@ qx.Class.define('cv.util.Color', {
         this.__LCh = {
           L: this.__Lab.L,
           C: Math.sqrt(this.__Lab.a**2 + this.__Lab.b**2),
-          h: Math.atan(this.__Lab.a, this.__Lab.b)
+          h: (Math.atan2(this.__Lab.b, this.__Lab.a)/(2*Math.PI)+1)%1 // map angle to 0...1
         };
       }
     },
@@ -357,6 +380,8 @@ qx.Class.define('cv.util.Color', {
       this.__y = (r * this.__R.y + g * this.__G.y + b * this.__B.y) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
       this.__Y = this.__hsv.v;
       this.__rgb = undefined;
+      this.__Lab = undefined;
+      this.__LCh = undefined;
       this.__T = undefined;
     },
 
@@ -368,6 +393,8 @@ qx.Class.define('cv.util.Color', {
         this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__hsv = undefined;
+      this.__Lab = undefined;
+      this.__LCh = undefined;
       this.__T = undefined;
     },
 
@@ -377,6 +404,8 @@ qx.Class.define('cv.util.Color', {
       this.__y = xy.y;
       this.__hsv = undefined;
       this.__rgb = undefined;
+      this.__Lab = undefined;
+      this.__LCh = undefined;
     },
 
     __syncLab2xy: function () {
@@ -398,13 +427,18 @@ qx.Class.define('cv.util.Color', {
       this.__x = XYZ > 0 ? X / XYZ : 0;
       this.__y = XYZ > 0 ? Y / XYZ : 0;
       this.__Y = Y;
+
+      this.__T = undefined;
+      this.__hsv = undefined;
+      this.__rgb = undefined;
+      this.__LCh = undefined;
     },
 
     __syncLCh2xy: function () {
       this.__Lab = {
-        L: this.__LCh.h,
-        a: this.__LCh.C * Math.cos(this.__LCh.h),
-        b: this.__LCh.C * Math.sin(this.__LCh.h)
+        L: this.__LCh.L,
+        a: this.__LCh.C * Math.cos(this.__LCh.h*2*Math.PI),
+        b: this.__LCh.C * Math.sin(this.__LCh.h*2*Math.PI)
       };
       this.__syncLab2xy();
     },
@@ -470,11 +504,45 @@ qx.Class.define('cv.util.Color', {
           this.__hsv = undefined;
           this.__rgb = undefined;
           break;
+
+        case 'LCh-L':
+        case 'LCh-C':
+        case 'LCh-h':
+          this.__validateLCh();
+          switch(component.split('-')[1]) {
+            case 'L':
+              this.__LCh.L = 10 * clamp(value);
+              break;
+            case 'C':
+              this.__LCh.C = 10 * clamp(value);
+              break;
+            case 'h':
+              this.__LCh.h = clamp(value);
+              break;
+          }
+          //this.__LCh[component.split('-')[1]] = clamp(value);
+          this.__syncLCh2xy();
+          break;
       }
+    },
+
+    /**
+     * Set the internal value to the given HSV value without checkt.
+     * THIS IS FOR INTERNAL USE ONLY!
+     * @param hsv
+     */
+    _forceHSV: function (hsv) {
+      this.__hsv = hsv;
+      this.__syncHSV2xy();
     },
 
     getComponent: function (component) {
       switch(component) {
+        case 'xy':
+          return {x: this.__x, y: this.__y};
+        case 'Y':
+          return this.__Y;
+
         case 'h':
         case 's':
         case 'v':
@@ -498,6 +566,16 @@ qx.Class.define('cv.util.Color', {
         case 'T':
           this.__validateT();
           return this.__T;
+
+        case 'LCh-L':
+          this.__validateLCh();
+          return this.__LCh[component.split('-')[1]] / 10;
+        case 'LCh-C':
+          this.__validateLCh();
+          return this.__LCh[component.split('-')[1]] / 10;
+        case 'LCh-h':
+          this.__validateLCh();
+          return this.__LCh[component.split('-')[1]];
       }
     },
 
@@ -541,7 +619,7 @@ qx.Class.define('cv.util.Color', {
         s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
         e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
 
-      c.changeComponent('hsv', {
+      c._forceHSV( {
         h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
         s: b(c1.s,c2.s),
         v: b(c1.v,c2.v)

@@ -147,6 +147,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       //       style="width:100%;height:75%;-webkit-mask:conic-gradient(at 50% 0%, transparent,transparent 150deg,#fff 150deg,#fff 210deg,transparent 210deg);background:linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),linear-gradient(45deg, #f00, #f00);Xtransform-origin: 50% 66.6667%;Xtransform: rotate(23deg)"></div>
       //console.log('_getInnerDomString', this.getControls());
       let
+        self = this,
         retval = '',
         historicWidth = this.getLayout().colspan === undefined ? ' style="width:195px"' : '',
         controls = this.getControls().split(';');
@@ -169,14 +170,35 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           case 'g':
           case 'b':
           case 'w':
-          case 'T':
           case 'h':
           case 's':
           case 'v':
+          case 'LCh-L':
+          case 'LCh-C':
+          case 'LCh-h':
             retval += '<div class="actor cc_' + control + ` ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
+              <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
+              <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);"></div>
+            </div>`;
+            break;
+
+          default:
+            let parts = control.split(':');
+            if(parts[0] === 'T') {
+              let temperatures = parts[1].split('-');
+              self.__Tmin = Math.max( 1667, Math.min( temperatures[0] || 2500, 25000 ));
+              self.__Tmax = Math.max( 1667, Math.min( temperatures[1] || 9000, 25000 ));
+              let
+                rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmin)),
+                rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmax)),
+                disp = c => [Math.round(255*c.r), Math.round(255*c.g), Math.round(255*c.b)].join(','),
+                colors = 'rgb(' + disp(rgbTmin) + '), rgb(' + disp(rgbTmax) + ')';
+
+              retval += `<div class="actor cc_T ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
-          <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);"></div>
+          <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);background: linear-gradient(90deg, `+colors+`);"></div>
         </div>`;
+            }
         }
       });
       return '<div class="actors"'+historicWidth+'>' + retval + '</div>';
@@ -364,15 +386,21 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           //actor.range.style.width = length + 'px';
           actor.range.style.clipPath = 'inset(0 ' + (1-ratio)*100 + '% 0 0)';
+          //this.__actors[this.__mode].button.textContent = relCoordX;
+          actor.button.textContent =  ratio;
         }
       }
       
       //////
       let rgb = this.__colorCurrent.getComponent('rgb');
+      let c = cv.util.Color.xy2sRGB(this.__colorCurrent.getComponent('xy'), this.__colorCurrent.getComponent('Y'));
+      //console.log(this.__colorCurrent.getComponent('T'),this.__colorCurrent.getComponent('xy'),rgb,c);
       //console.log(this.__parentWidget__P_101_0, this.__parentWidget__P_101_0.getWidgetElement(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
       //console.log(this.getPath(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
       //this.getParentWidget().getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
-      this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
+      //this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
+      //cv.util.Color.xy2sRGB
+      this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+[Math.round(c.r*255),Math.round(c.g*255),Math.round(c.b*255)].join(',')+')';
     },
 
     __invalidateScreensize: function () {
@@ -480,6 +508,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
             break;
           default:
+            //console.log('changeComponent',this.__mode, relCoordX, this.__actors[this.__mode].button);
+            this.__actors[this.__mode].button.textContent = relCoordX;
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
