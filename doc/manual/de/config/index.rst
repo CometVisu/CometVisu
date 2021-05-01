@@ -162,7 +162,7 @@ Die verfügbaren Designs
 Änderung der Metal-Designs
 --------------------------
 
-In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen daraus
+In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen darin
 Farbverläufe, Text-Schatten und die Schriftart zu verändern um eine moderate Modernisierung zu erreichen.
 
 Die Änderungen können jedoch wieder zurückgesetzt werden indem eine zusätzliche CSS-Datei geladen wird.
