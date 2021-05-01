@@ -516,7 +516,11 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           tmpXML.setAttribute('name', '#text');
           tmpXML.setAttribute('type', 'xsd:string');
           this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
-          this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
+          if (allowedContent._text) {
+            this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
+          } else if (this.isMixed()) {
+            this.__textNodeSchemaElement.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
+          }
         }
         return this.__textNodeSchemaElement;
       } else if (elementName === '#comment') {
