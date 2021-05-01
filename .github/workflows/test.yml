@@ -1,0 +1,17 @@
+name: Build
+on:
+  workflow_dispatch:
+env:
+  NODE_VERSION: '14.15'
+jobs:
+
+  deploy-docker:
+    name: "[DEPLOY] - Deploy Docker container and Sentry release"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - run: git branch --contains "v0.12.0-dev22"
+      - run: git branch --contains "v0.12.0-dev22" | grep "*"
