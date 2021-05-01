@@ -18,9 +18,9 @@ IMAGE_NAME=`echo $GITHUB_REPOSITORY | awk '{print tolower($0)}'`
 
 if [[ $IS_TAG == 1 ]]; then
     MASTER_TAG=$TAG
-    IN_DEVELOP=$(git branch --contains "$TAG" | grep -c develop)
-    IN_MASTER=$(git branch --contains "$TAG" | grep -c master)
-    IN_RELEASE=$(git branch --contains "$TAG" | grep -c release-)
+    IN_DEVELOP=$(git branch -r --contains "$TAG" | grep -c develop)
+    IN_MASTER=$(git branch -r --contains "$TAG" | grep -c master)
+    IN_RELEASE=$(git branch -r --contains "$TAG" | grep -c release-)
     if [[ $IN_DEVELOP == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
@@ -31,7 +31,7 @@ if [[ $IS_TAG == 1 ]]; then
       TAG=""
     else
       echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
-      git branch --contains "$TAG"
+      git branch -r --contains "$TAG"
       exit 1
     fi
 elif [[ "$BRANCH" = "master" ]]; then
