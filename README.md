@@ -1,5 +1,4 @@
-[![Build](https://github.com/CometVisu/CometVisu/actions/workflows/main.yml/badge.svg?label=Test)](https://github.com/CometVisu/CometVisu/actions/workflows/main.yml)
-[![Build nightly](https://github.com/CometVisu/CometVisu/actions/workflows/build_nightly.yml/badge.svg)](https://github.com/CometVisu/CometVisu/releases/tag/v0.12.0-dev1)
+[![Build](https://github.com/CometVisu/CometVisu/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/CometVisu/CometVisu/actions/workflows/main.yml)
 [![Coverage Status](https://coveralls.io/repos/github/CometVisu/CometVisu/badge.svg?branch=develop)](https://coveralls.io/github/CometVisu/CometVisu?branch=develop)
 [![Join the chat at https://gitter.im/CometVisu/CometVisu](https://badges.gitter.im/CometVisu/CometVisu.svg)](https://gitter.im/CometVisu/CometVisu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -14,7 +13,11 @@ extended features it should support PHP, but that is optional and not required.
 How to get it:
 ==============
 
-The latest releases can be downloaded at:
+The latest release can be downloaded at:
+
+    https://github.com/CometVisu/CometVisu/releases/latest
+
+The latest nightly builds can be downloaded at (please be aware that nightly builds are experimental):
 
     https://github.com/CometVisu/CometVisu/releases
     
