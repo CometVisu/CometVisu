@@ -48,6 +48,8 @@ jobs:
       CV_BROWSER: ${{ matrix.browser }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
