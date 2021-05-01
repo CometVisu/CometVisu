@@ -129,6 +129,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }, _this);
           }
 
+          if (cv.Config.mobileDevice) {
+            document.querySelector('body').classList.add('mobile');
+            var hasMobile = cv.Config.configSettings.stylesToLoad.some(function (style) {
+              return style.endsWith('mobile.css');
+            });
+
+            if (!hasMobile) {
+              cv.Config.configSettings.stylesToLoad.push("designs/" + cv.Config.configSettings.clientDesign + "/mobile.css");
+            }
+          } else {
+            // do not load mobile css
+            cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(function (style) {
+              return !style.endsWith('mobile.css');
+            });
+          }
+
           model.setWidgetDataModel(cache.data);
           model.setAddressList(cache.addresses);
           var widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
@@ -340,4 +356,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1619362521561
+//# sourceMappingURL=ConfigCache.js.map?dt=1619884692738

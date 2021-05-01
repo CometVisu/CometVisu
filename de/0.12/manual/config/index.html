@@ -112,6 +112,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="layout.html">Funktionen zur Steuerung des Layouts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="size-attributes.html">Ändern der Größe von Widget-Inhalten</a></li>
@@ -315,9 +316,9 @@ zurück zu navigieren .</li>
 <li>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal notranslate"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</li>
 <li>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.</li>
 </ul>
-<div class="figure align-default" id="id3">
+<div class="figure align-default" id="id2">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
-<p class="caption"><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p class="caption"><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:</p>
 <ul class="simple">
@@ -340,9 +341,20 @@ per GA aufgerufen wurde.</li>
 <li>Alaska</li>
 <li>Alaska Slim</li>
 </ul>
-<div class="admonition-todo admonition" id="id2">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">Weitere Beispielseiten für die anderen Designs</p>
+</div>
+<div class="section" id="anderung-der-metal-designs">
+<h2>Änderung der Metal-Designs<a class="headerlink" href="#anderung-der-metal-designs" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen darin
+Farbverläufe, Text-Schatten und die Schriftart zu verändern um eine moderate Modernisierung zu erreichen.</p>
+<p>Die Änderungen können jedoch wieder zurückgesetzt werden indem eine zusätzliche CSS-Datei geladen wird.
+Dies wird erreicht durch Hinzufügen des folgenden Texts in den Meta-Bereich der Konfigurationsdatei.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;files&gt;</span>
+        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/designs/metal/version1.css<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/files&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="grundlegende-elemente-zum-gestalten-des-layouts">

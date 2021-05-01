@@ -112,6 +112,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changes-of-the-metal-design">Changes of the metal design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="layout.html">Functions for controlling the layout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="size-attributes.html">Resize widget content</a></li>
@@ -335,9 +336,9 @@ option <code class="docutils literal notranslate"><span class="pre">target</span
 <li>A special feature is the <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> at
 the bottom of the screen. From there you can call e.g. external URLs.</li>
 </ul>
-<div class="figure align-default" id="id2">
+<div class="figure align-default" id="id1">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
-<p class="caption"><span class="caption-text">Overview of the most important navigation elements.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Overview of the most important navigation elements.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Furthermore, various functionalities are implemented which result in navigation
 without user intervention:</p>
@@ -361,9 +362,20 @@ function, but will also run if the subpage is called via GA.</li>
 <li>Alaska</li>
 <li>Alaska Slim</li>
 </ul>
-<div class="admonition-todo admonition" id="id1">
-<p class="first admonition-title">Todo</p>
-<p class="last">More example pages for the other designs</p>
+</div>
+<div class="section" id="changes-of-the-metal-design">
+<h2>Changes of the metal design<a class="headerlink" href="#changes-of-the-metal-design" title="Permalink to this headline">¶</a></h2>
+<p>In version 0.12 the metal design has been revised. In order to achieve a cleaner, modern look all
+background gradients, text shadows and the font have been replaced.</p>
+<p>Those changes can be easily reverted by loading an additional css file.
+You can achieve this, by adding the following text to the meta section of your configuration file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;files&gt;</span>
+        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/designs/metal/version1.css<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/files&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="basic-elements-for-designing-the-layout">
