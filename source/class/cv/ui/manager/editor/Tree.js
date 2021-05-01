@@ -1442,6 +1442,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                   case 'inside':
                     target.insertChild(xmlElement, -1, false, 'added');
                     break;
+
+                  case 'first-child':
+                    target.insertChild(xmlElement, 0, false, 'added');
+                    break;
                 }
                 this.getChildControl('tree').openNodeAndParents(xmlElement);
                 this.getChildControl('tree').setSelection([xmlElement]);
