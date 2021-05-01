@@ -594,3 +594,7 @@ pre.inline { display: inline-block; }
   line-height: 32px !important;
   text-align: right !important;
 }
+
+#manager a {
+  color: #CCC;
+}
