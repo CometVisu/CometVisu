@@ -20,13 +20,18 @@ if [[ $IS_TAG == 1 ]]; then
     MASTER_TAG=$TAG
     IN_DEVELOP=$(git branch --contains "$TAG" | grep -c develop)
     IN_MASTER=$(git branch --contains "$TAG" | grep -c master)
+    IN_RELEASE=$(git branch --contains "$TAG" | grep -c release-)
     if [[ $IN_DEVELOP == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
     elif [[ $IN_MASTER == 1 ]]; then
       MASTER_TAG=latest
+    elif [[ $IN_RELEASE == 1 ]]; then
+      # use TAG as MASTER_TAG
+      TAG=""
     else
-      echo "tag '$TAG' needs to be in branch 'master' or 'develop'"
+      echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
+      git branch --contains "$TAG"
       exit 1
     fi
 elif [[ "$BRANCH" = "master" ]]; then
@@ -34,6 +39,8 @@ elif [[ "$BRANCH" = "master" ]]; then
 elif [[ "$BRANCH" = "develop" ]] || [[ "$BRANCH" = "ci-test" ]]; then
     MASTER_TAG=testing
     TESTING=1
+elif [[ "$BRANCH" =~ ^release-.+ ]]; then
+    MASTER_TAG=VERSION_TAG
 else
   echo "unknown branch '$BRANCH' aborting docker build"
   exit 1
@@ -56,9 +63,11 @@ BUILD_DATE=`date --iso-8601=seconds`
 VCS_REF=`git rev-parse --short HEAD`
 
 docker build -t $IMAGE_NAME:$VERSION_TAG --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg GITHUB_RUN_NUMBER --build-arg GITHUB_RUN_ID .
-docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
-docker push "${IMAGE_NAME}:${VERSION_TAG}"
+if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
+  docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
+  docker push "${IMAGE_NAME}:${VERSION_TAG}"
+fi
 
 if [[ "$SUB_TAG" != "" ]]; then
     docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
@@ -72,9 +81,11 @@ fi
 
 echo "building ARM docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG},${TAG} ..."
 docker build -f Dockerfile -t "${IMAGE_NAME}:${VERSION_TAG}-arm" --build-arg CONTAINER_FROM="cometvisu/cometvisuabstractbase:arm32v7-latest" --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg GITHUB_RUN_NUMBER --build-arg GITHUB_RUN_ID .
-docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${MASTER_TAG}-arm"
 docker push "${IMAGE_NAME}:${MASTER_TAG}-arm"
-docker push "${IMAGE_NAME}:${VERSION_TAG}-arm"
+if [[ "$MASTER_TAG" != "$VERSION_TAG" ]]; then
+  docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${MASTER_TAG}-arm"
+  docker push "${IMAGE_NAME}:${VERSION_TAG}-arm"
+fi
 
 if [[ "$SUB_TAG" != "" ]]; then
     docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${SUB_TAG}-arm"
