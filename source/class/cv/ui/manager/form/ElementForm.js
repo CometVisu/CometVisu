@@ -39,6 +39,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
   members: {
     __mappedKeys: null,
     __hints: null,
+    _rootListenerId: null,
 
     _applyFormData: function (formData, old) {
       this.__mappedKeys = {
@@ -593,7 +594,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       view.setAllowGrowX(true);
       const scroll = new qx.ui.container.Scroll(view);
       scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
-      qx.core.Init.getApplication().getRoot().addListener('resize', function () {
+      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener('resize', function () {
         scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
       })
 
@@ -628,6 +629,18 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
         );
       }
       this.resetCallback();
+    }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    if (this._rootListenerId) {
+      qx.core.Init.getApplication().getRoot().removeListenerById(this._rootListenerId);
+      this._rootListenerId = null;
     }
   }
 });

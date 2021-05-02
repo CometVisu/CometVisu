@@ -50,6 +50,8 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
   members: {
     _content: null,
     _errors: null,
+    _rootListenerId: null,
+
     /**
      * @var {cv.ui.manager.model.FileItem}
      */
@@ -98,9 +100,13 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       errorScroll.set({
         padding: [0, 0, 8, 8],
         decorator: 'cv-editor-config-section'
+      });
+      errorScroll.setMinHeight(100);
+      errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
+      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener('resize', function () {
+        errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
       })
-      errorScroll.setHeight(300);
-      vbox.add(errorScroll);
+      vbox.add(errorScroll, {flex: 1});
       const errorLabels = new Map();
       this._errors.forEach(error => {
         const errorId = error.line + error.element + error.attribute;
@@ -171,5 +177,9 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
     this._content = null;
     this._errors = null;
     this._file = null;
+    if (this._rootListenerId) {
+      qx.core.Init.getApplication().getRoot().removeListenerById(this._rootListenerId);
+      this._rootListenerId = null;
+    }
   }
 });
