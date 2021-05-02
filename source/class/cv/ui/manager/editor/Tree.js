@@ -1603,7 +1603,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           formData[name] = this.__getAttributeFormDefinition(element, attribute);
         });
       } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
-        const nodeName = element.getNode().nodeName;
+        let nodeName = element.getNode().nodeName;
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
         formData[nodeName] = {
@@ -1629,6 +1629,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (element.getNode().nodeType === Node.CDATA_SECTION_NODE && element.getParent().getName() === 'status') {
           const type = element.getParent().getAttribute("type");
+          if ((type === 'html' || type === 'xml') && element.getNode().nodeType === Node.TEXT_NODE) {
+            element.convertTextNodeType(Node.CDATA_SECTION_NODE);
+            const newNodeName = element.getNode().nodeName;
+            formData[newNodeName] = formData[nodeName];
+            delete formData[nodeName];
+            nodeName = newNodeName;
+          }
           // special handling for status content: check of source editor supports the type and use it instead of a plain TextArea
           if (type && cv.ui.manager.editor.Source.SUPPORTED_FILES("test." + type)) {
             formData[nodeName].type = "SourceEditor";
@@ -1908,7 +1915,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
                 let match = /^([^[]+)\[(\d)+\]$/.exec(part);
                 if (match) {
                   current = current.getChildren().getItem(parseInt(match[2]));
-                  current.load();
+                  try {
+                    // this can always lead to a loading error, because the element is invalid
+                    current.load();
+                  } catch (e) {
+                    this.error("Error loading " + current.getName() + ": " + e.toString());
+                  }
                 } else {
                   this.error("patch segment format error: " + part);
                   current = null;
@@ -1982,7 +1994,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       let newLine = '\n';
       if (node.nodeType === Node.TEXT_NODE) {
         if (node.textContent.trim()) {
-          return (singleton ? '' : tabs) + node.textContent.trim() + (singleton ? '' : newLine);
+          return (singleton ? '' : tabs) + qx.xml.String.escape(node.textContent.trim()) + (singleton ? '' : newLine);
         } else {
           return '';
         }

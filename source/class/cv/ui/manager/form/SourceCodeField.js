@@ -91,28 +91,11 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
      * @param value {String|null} The new value of the element.
      */
     setValue: function(value) {
-      if (value) {
-        if (this._editor && this.getType()) {
-          const model = this._editor.getModel();
-          const uri = monaco.Uri.parse("cv://SourceCode." + this.getType());
-          let newModel = window.monaco.editor.getModel(uri);
-          if (!newModel) {
-            newModel = window.monaco.editor.createModel(value, this.getType(), uri);
-          }
-          if (model !== newModel) {
-            newModel.updateOptions( {
-              tabSize: 2,
-              indentSize: 2,
-              insertSpaces: true
-            });
-            this._editor.setModel(newModel);
-          } else {
-            this._editor.setValue(value);
-          }
-          this._autoSize();
-        } else {
-          this.__delayedValue = value;
-        }
+      if (this._editor && this.getType()) {
+        this._editor.setValue(value);
+        this._autoSize();
+      } else {
+        this.__delayedValue = value;
       }
     },
 
@@ -166,8 +149,25 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
             },
             theme: 'vs-dark'
           });
+          if (this.getType()) {
+            const model = this._editor.getModel();
+            const uri = monaco.Uri.parse("cv://SourceCode." + this.getType());
+            let newModel = window.monaco.editor.getModel(uri);
+            if (!newModel) {
+              newModel = window.monaco.editor.createModel(this.__delayedValue, this.getType(), uri);
+            } else {
+              newModel.setValue(this.__delayedValue);
+            }
+            if (model !== newModel) {
+              newModel.updateOptions({
+                tabSize: 2,
+                indentSize: 2,
+                insertSpaces: true
+              });
+              this._editor.setModel(newModel);
+            }
+          }
           if (this.__delayedValue) {
-            this.setValue(this.__delayedValue);
             this.__delayedValue = null;
           }
           this._editor.onDidChangeModelContent(this._onContentChange.bind(this));

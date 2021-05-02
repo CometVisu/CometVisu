@@ -213,6 +213,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       }
     },
 
+    convertTextNodeType: function (newType) {
+      if (this.isTextNode() && this._node.nodeType !== newType && (newType === Node.TEXT_NODE || newType === Node.CDATA_SECTION_NODE)) {
+        const content = this.getText();
+        const oldNode = this._node;
+        const newTextNode = newType === Node.CDATA_SECTION_NODE ? this._node.ownerDocument.createCDATASection(content) : this._node.ownerDocument.createTextNode(content);
+        if (oldNode.parentNode) {
+          oldNode.parentNode.replaceChild(newTextNode, oldNode);
+        }
+        this._node = newTextNode;
+        this.setName(this._node.nodeName);
+        this.load(true);
+      }
+    },
+
     _maintainIcon: function () {
       if (this._node) {
         if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
