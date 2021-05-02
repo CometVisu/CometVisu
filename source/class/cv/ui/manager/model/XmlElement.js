@@ -546,7 +546,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         currentPosition = children.length;
       }
       let targetPosition = allowedSorting[nodeName];
-      if (currentPosition === targetPosition) {
+      if (currentPosition === targetPosition || targetPosition >= children.length) {
         // no special position
         return true
       } else {
