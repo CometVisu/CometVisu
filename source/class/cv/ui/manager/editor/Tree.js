@@ -180,7 +180,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     handleAction: function (actionName) {
-      if (this.canHandleAction(actionName)) {
+      if (this.canHandleAction(actionName) && !this.__editing) {
         switch (actionName) {
           case 'undo':
             this.undo();
@@ -1627,7 +1627,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             }
           }
         }
-        if (element.getNode().nodeType === Node.CDATA_SECTION_NODE && element.getParent().getName() === 'status') {
+        if (element.isTextNode() && element.getParent().getName() === 'status') {
           const type = element.getParent().getAttribute("type");
           if ((type === 'html' || type === 'xml') && element.getNode().nodeType === Node.TEXT_NODE) {
             element.convertTextNodeType(Node.CDATA_SECTION_NODE);

@@ -1017,7 +1017,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 }
               } else if (childNode.nodeType === Node.ELEMENT_NODE) {
                 // only complain for real childs (no comments, textNodes)
-                throw 'child element ' + childNode.nodeName + ' not allowed as child of ' + this.getName();
+                this.setValid(false);
+                let msg = this.getInvalidMessage();
+                msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                this.setInvalidMessage(msg);
+                this.setValid(false);
               }
             }
 
