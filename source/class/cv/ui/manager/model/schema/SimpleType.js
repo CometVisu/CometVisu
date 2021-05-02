@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     this.base(arguments, node, schema);
     this.__enumerations = [];
     this.__pattern = [];
-    this.__enumerations = [];
+    this.__regexCache = {};
     this.__bases = [];
     this.parse();
   },
@@ -54,6 +54,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     __pattern: null,
     __enumerations: null,
     __bases: null,
+    __regexCache: null,
 
     parse: function () {
       const node = this.getNode();
@@ -202,16 +203,46 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         let boolValid = true;
 
         this.__pattern.forEach((item) => {
-          // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
-          // so for our purpose, we need to add them
-          const mypattern = this.regexFromString('^' + item.replace(/\\([\s\S])|(\$)/g, '\\$1$2') + '$');
+          if (!this.__regexCache.hasOwnProperty(item)) {
+            // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
+            // so for our purpose, we need to add them for every branch (that is not inside [])
+            const branchIndices = []
+            let start = 0;
+            let i = item.indexOf("|", start);
+            while (i < item.length) {
+              if (i < 0) {
+                break;
+              }
+              // go backwards and look for an [ stop looking on ]
+              let isRootBranch = true;
+              for (let j = i; j >= start; j--) {
+                if (item[j] === ']') {
+                  break;
+                } else if (item[j] === '[') {
+                  isRootBranch = false;
+                }
+              }
+              if (isRootBranch) {
+                branchIndices.push([start, i - start]);
+              }
+              start = i + 1;
+              i = item.indexOf('|', start);
+              if (branchIndices.length > 100) debugger;
+            }
+            if (item.length > start) {
+              // append the rest
+              branchIndices.push([start, item.length - start]);
+            }
+            const branches = branchIndices.map((entry) => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`);
+            this.__regexCache[item] = this.regexFromString(branches.join("|"));
+          }
 
-          if (false === mypattern.test(value)) {
+          if (false === this.__regexCache[item].test(value)) {
             // regular expression did not match
             // bad bad value!
             boolValid = false;
           }
-        });
+        }, this);
 
         // if the value has been marked invalid by a regex, return invalid.
         if (false === boolValid) {
@@ -244,5 +275,6 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
   ***********************************************
   */
   destruct: function () {
+    this.__regexCache = null;
   }
 });

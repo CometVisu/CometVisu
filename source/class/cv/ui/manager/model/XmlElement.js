@@ -553,7 +553,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         // find the first previous sibling of a different type
         let previousSibling
         if (index > 0) {
-          for (let i = index - 1; i >= 0; i--) {
+          for (let i = Math.min(index, children.length) - 1; i >= 0; i--) {
             if (children.getItem(i).getName() !== nodeName) {
               previousSibling = children.getItem(i).getName();
               break;
@@ -683,12 +683,15 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _validateTextContent: function (value) {
-      if (this._node) {
-        if (!this.getSchemaElement().isValueValid(value)) {
-          throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
+      // do not validate content that is loaded from the actual node
+      if (!this.__initializing) {
+        if (this._node) {
+          if (!this.getSchemaElement().isValueValid(value)) {
+            throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
+          }
+        } else {
+          throw new qx.core.ValidationError(qx.locale.Manager.tr("Text content not allowed here"));
         }
-      } else {
-        throw new qx.core.ValidationError(qx.locale.Manager.tr("Text content not allowed here"));
       }
     },
 
@@ -741,6 +744,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               error: qx.locale.Manager.tr("Text content is missing")
             });
           }
+        }
+        if (schemaElement.isTextContentAllowed()) {
+          this.getChildren().forEach(child => {
+            if (child.isTextNode()) {
+              child.load();
+              child.setValid(schemaElement.isValueValid(child.getText()));
+              if (!child.isValid()) {
+                child.setInvalidMessage(qx.locale.Manager.tr("Text content is invalid"));
+              }
+            }
+          });
         }
         this.setInvalidMessage(errors.map(err => err.error).join("<br/>"));
         this.setValid(errors.length === 0);

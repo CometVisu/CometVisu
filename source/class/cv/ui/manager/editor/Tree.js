@@ -1912,14 +1912,20 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               let parts = error.path.substr(1).split("/");
               while (parts.length > 0) {
                 let part = parts.shift();
-                let match = /^([^[]+)\[(\d)+\]$/.exec(part);
+                let match = /^([^[]+)\[(\d+)\]$/.exec(part);
                 if (match) {
                   current = current.getChildren().getItem(parseInt(match[2]));
-                  try {
-                    // this can always lead to a loading error, because the element is invalid
-                    current.load();
-                  } catch (e) {
-                    this.error("Error loading " + current.getName() + ": " + e.toString());
+                  if (current) {
+                    try {
+                      // this can always lead to a loading error, because the element is invalid
+                      current.load();
+                    } catch (e) {
+                      this.error("Error loading " + current.getName() + ": " + e.toString());
+                      current = null;
+                      break;
+                    }
+                  } else {
+                    break;
                   }
                 } else {
                   this.error("patch segment format error: " + part);

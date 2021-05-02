@@ -214,11 +214,29 @@ function parseErrors(content, errors, includePaths) {
     let root;
     let context;
     contentLines.forEach((line, lineNo) => {
-      for (let i = 0, l = line.length; i < l; i++) {
+      if (context === "comment") {
+        // do not parse comments
+        const endOfComment = line.indexOf("-->");
+        if (endOfComment < 0) {
+          // multiline comment goto next line
+          return;
+        }
+      }
+      for (let i = line.search(/[^\s]/), l = line.length; i < l; i++) {
         if (line[i] === "<") {
           if (line[i + 1] === "!") {
-            context = "comment"
+            const oldContext = context;
+            context = "comment";
+            const endOfComment = line.indexOf("-->", i);
             i++;
+            if (endOfComment >= i) {
+              i = endOfComment+2;
+              context = oldContext;
+              continue;
+            } else {
+              // multiline comment goto next line
+              return;
+            }
           } else if (line[i + 1] === "/") {
             // close tag
             context = ""
@@ -252,13 +270,19 @@ function parseErrors(content, errors, includePaths) {
             lineElementMap.set(lineNo+1, currentElement);
             let endIndex = line.indexOf(`</${currentElement.name}>`, i);
             if (endIndex === -1) {
-              endIndex = line.indexOf('/>', i)-1;
+              let endTag = line.substr(i).search(">");
+              if (endTag >= 0) {
+                endTag+=i;
+                if (line.substr(endTag-1, 1) === "/") {
+                  // position pointer before the /
+                  endIndex = endTag - 2;
+                } else {
+                  endIndex = endTag;
+                }
+              }
             }
             if (endIndex > -1) {
               i = endIndex;
-            } else {
-              // tag does not end in this line, continue in next line
-              continue;
             }
           }
         } else if (line[i] === "/") {
