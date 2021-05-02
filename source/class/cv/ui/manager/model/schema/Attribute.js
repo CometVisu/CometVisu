@@ -108,9 +108,9 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
       } else {
         value = '' + value;
       }
-      if (value === '' && this.isOptional()) {
+      if (value === '') {
         // empty values are valid if this node is optional!
-        return true;
+        return this.isOptional();
       }
       return this._type.isValueValid(value);
     },

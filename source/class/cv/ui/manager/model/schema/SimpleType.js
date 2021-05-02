@@ -136,9 +136,9 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         throw 'something is wrong, do not have a baseType for type';
       }
 
-      if (value === '' && this.isOptional()) {
+      if (value === '') {
         // empty values are valid if this node is optional!
-        return true;
+        return this.isOptional();
       }
 
       if (-1 === baseType.search(/^xsd:/)) {
