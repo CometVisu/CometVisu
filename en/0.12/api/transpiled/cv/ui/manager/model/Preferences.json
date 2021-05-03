@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 75,
+        "line": 89,
         "column": 3
       }
     },
@@ -176,14 +176,28 @@
     }
   },
   "members": {
-    "_savePreferences": {
+    "_skipSaving": {
       "location": {
         "start": {
           "line": 65,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 65,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_savePreferences": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
           "column": 5
         }
       },
@@ -199,16 +213,30 @@
     "_restorePreferences": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 79,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected"
+    },
+    "setPreferences": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
     },
     "bind": {
       "type": "function",

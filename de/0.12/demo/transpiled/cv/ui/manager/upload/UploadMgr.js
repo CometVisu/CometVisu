@@ -12,7 +12,7 @@
       "cv.io.rest.Client": {},
       "cv.ui.manager.snackbar.Controller": {},
       "qx.locale.Manager": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "qx.lang.Json": {},
       "qx.event.message.Bus": {},
       "com.zenesis.qx.upload.File": {},
@@ -112,7 +112,7 @@
                     if (this.isForce()) {
                       cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Replacing the file failed.'));
                     } else {
-                      dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
+                      qxl.dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
                         if (confirmed) {
                           this.forceUpload(file);
                         }
@@ -240,4 +240,4 @@
   cv.ui.manager.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1619884690590
+//# sourceMappingURL=UploadMgr.js.map?dt=1620071702563

@@ -59,25 +59,25 @@
     */
     construct: function construct() {
       qx.ui.form.Form.constructor.call(this);
-      this.__P_349_0 = [];
+      this.__P_360_0 = [];
     },
     members: {
       /**
        * the renderer this form uses to be displayed
        */
-      __P_349_1: null,
+      __P_360_1: null,
 
       /**
        * Contains all invalid items.
        */
-      __P_349_0: null,
+      __P_360_0: null,
 
       /**
        * Setter for the renderer private variable
        * @param renderer {qx.ui.mobile.form.renderer.AbstractRenderer} the renderer
        */
       setRenderer: function setRenderer(renderer) {
-        this.__P_349_1 = renderer;
+        this.__P_360_1 = renderer;
       },
 
       /**
@@ -89,10 +89,10 @@
        */
       validate: function validate() {
         var validateResult = qx.ui.mobile.form.Form.prototype.validate.base.call(this);
-        this.__P_349_0 = [];
+        this.__P_360_0 = [];
 
-        if (this.__P_349_1 != null) {
-          this.__P_349_1.resetForm();
+        if (this.__P_360_1 != null) {
+          this.__P_360_1.resetForm();
         }
 
         var groups = this.getGroups();
@@ -104,10 +104,10 @@
             var item = group.items[j];
 
             if (!item.isValid()) {
-              this.__P_349_0.push(item);
+              this.__P_360_0.push(item);
 
-              if (this.__P_349_1 != null) {
-                this.__P_349_1.showErrorForItem(item);
+              if (this.__P_360_1 != null) {
+                this.__P_360_1.showErrorForItem(item);
               } else {
                 alert('error ' + item.getInvalidMessage());
               }
@@ -115,8 +115,8 @@
           }
         }
 
-        if (this.__P_349_1 != null) {
-          this.__P_349_1._domUpdated();
+        if (this.__P_360_1 != null) {
+          this.__P_360_1._domUpdated();
         }
 
         return validateResult;
@@ -131,7 +131,7 @@
         var item = this._getItemByIndex(groupIndex, rowIndex);
 
         if (item) {
-          this.__P_349_1.showItem(item);
+          this.__P_360_1.showItem(item);
         }
       },
 
@@ -144,7 +144,7 @@
         var item = this._getItemByIndex(groupIndex, rowIndex);
 
         if (item) {
-          this.__P_349_1.hideItem(item);
+          this.__P_360_1.hideItem(item);
         }
       },
 
@@ -169,7 +169,7 @@
       reset: function reset() {
         qx.ui.mobile.form.Form.prototype.reset.base.call(this);
 
-        this.__P_349_1.resetForm();
+        this.__P_360_1.resetForm();
       },
 
       /**
@@ -178,11 +178,11 @@
       * @return {qx.ui.mobile.core.Widget[]} The invalid items of the form.
       */
       getInvalidItems: function getInvalidItems() {
-        return this.__P_349_0;
+        return this.__P_360_0;
       }
     }
   });
   qx.ui.mobile.form.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1619883165896
+//# sourceMappingURL=Form.js.map?dt=1620070393672

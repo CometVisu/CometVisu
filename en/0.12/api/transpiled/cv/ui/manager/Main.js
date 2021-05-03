@@ -47,7 +47,7 @@
       "cv.ui.manager.editor.AbstractEditor": {},
       "cv.ui.manager.core.GlobalState": {},
       "cv.ui.manager.model.OpenFile": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "cv.ui.manager.editor.IEditor": {},
       "cv.ui.manager.model.CompareFiles": {},
       "qx.dom.Element": {},
@@ -56,7 +56,7 @@
       "qx.ui.command.Group": {},
       "qx.ui.command.Command": {},
       "cv.ui.manager.control.FileController": {},
-      "dialog.Prompt": {},
+      "cv.ui.manager.dialog.Prompt": {},
       "qx.ui.root.Inline": {},
       "qx.ui.layout.Canvas": {},
       "qx.ui.container.Composite": {},
@@ -322,6 +322,8 @@
             break;
         }
       },
+      configureButton: function configureButton(button) {},
+      unConfigureButton: function unConfigureButton(button) {},
       _handleFileEvent: function _handleFileEvent(ev) {
         var data = ev.getData();
 
@@ -473,7 +475,12 @@
 
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
-            editorConfig.instance.setFile(file);
+          }
+
+          if (!editorConfig.instance.isReady()) {
+            editorConfig.instance.addListenerOnce('changeReady', function () {
+              editorConfig.instance.setFile(file);
+            }, this);
           } else {
             editorConfig.instance.setFile(file);
           }
@@ -600,8 +607,9 @@
             message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
           }
 
-          dialog.Dialog.confirm(message, function (confirmed) {
+          qxl.dialog.Dialog.confirm(message, function (confirmed) {
             if (confirmed) {
+              file.resetModified();
               this.closeFile(openFile, true);
 
               if (file.isTemporary()) {
@@ -705,12 +713,15 @@
 
         var renameCommand = new qx.ui.command.Command('F2');
         group.add('rename', renameCommand);
-        this.bind('renameableSelection', renameCommand, 'enabled'); // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
+        this.bind('renameableSelection', renameCommand, 'enabled');
+        group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
+        group.add('redo', new qx.ui.command.Command('Ctrl+Y')); // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
         // and as we cannot simulate pasting from clipboard, we do not use them here
-        // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
-        // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
-        // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
 
+        group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+        group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+        group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+        group.add('help', new qx.ui.command.Command('F1'));
         var manager = qx.core.Init.getApplication().getCommandManager();
         this._oldCommandGroup = manager.getActive();
         manager.add(group);
@@ -740,7 +751,7 @@
         this._openFilesController.getSelection().replace(openFiles);
       },
       __P_24_7: function __P_24_7(message, callback, context, value, caption) {
-        var prompt = new dialog.Prompt({
+        var prompt = new cv.ui.manager.dialog.Prompt({
           message: message,
           callback: callback || null,
           context: context || null,
@@ -1051,4 +1062,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1619883135892
+//# sourceMappingURL=Main.js.map?dt=1620070360363

@@ -4326,6 +4326,6 @@
   "descendants": [
     "qx.ui.toolbar.PartContainer",
     "qx.ui.popup.Popup",
-    "dialog.FormTag"
+    "qxl.dialog.FormTag"
   ]
 }

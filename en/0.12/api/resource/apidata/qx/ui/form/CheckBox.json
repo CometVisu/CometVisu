@@ -5513,5 +5513,7 @@
       }
     }
   },
-  "descendants": []
+  "descendants": [
+    "cv.ui.manager.form.CheckBox"
+  ]
 }

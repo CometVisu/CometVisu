@@ -101,14 +101,14 @@
     *****************************************************************************
     */
     members: {
-      __P_62_0: null,
-      __P_62_1: null,
+      __P_73_0: null,
+      __P_73_1: null,
       // interface method
       main: function main() {
-        this.__P_62_0 = this._createRootWidget();
+        this.__P_73_0 = this._createRootWidget();
 
         if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
-          this.__P_62_0.setShowScrollbarY(false);
+          this.__P_73_0.setShowScrollbarY(false);
         }
       },
 
@@ -118,7 +118,7 @@
        * @return {qx.ui.mobile.core.Widget} The application's root widget.
        */
       getRoot: function getRoot() {
-        return this.__P_62_0;
+        return this.__P_73_0;
       },
 
       /**
@@ -127,11 +127,11 @@
        * @return {qx.application.Routing} The application's routing.
        */
       getRouting: function getRouting() {
-        if (!this.__P_62_1) {
-          this.__P_62_1 = new qx.application.Routing();
+        if (!this.__P_73_1) {
+          this.__P_73_1 = new qx.application.Routing();
         }
 
-        return this.__P_62_1;
+        return this.__P_73_1;
       },
 
       /**
@@ -157,4 +157,4 @@
   qx.application.Mobile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mobile.js.map?dt=1619883140919
+//# sourceMappingURL=Mobile.js.map?dt=1620070367737

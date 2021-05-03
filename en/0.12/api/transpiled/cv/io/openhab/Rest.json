@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 377,
+        "line": 403,
         "column": 3
       }
     },
@@ -462,7 +462,7 @@
           "column": 4
         },
         "end": {
-          "line": 254,
+          "line": 256,
           "column": 5
         }
       },
@@ -493,14 +493,32 @@
         ]
       }
     },
-    "handleMessage": {
+    "terminate": {
       "location": {
         "start": {
-          "line": 256,
+          "line": 258,
           "column": 4
         },
         "end": {
-          "line": 286,
+          "line": 263,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "handleMessage": {
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
           "column": 5
         }
       },
@@ -510,11 +528,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 288,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 293,
+          "line": 303,
           "column": 5
         }
       },
@@ -553,11 +571,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 295,
+          "line": 305,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 307,
           "column": 5
         }
       },
@@ -567,11 +585,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 325,
           "column": 5
         }
       },
@@ -617,11 +635,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 317,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 329,
           "column": 5
         }
       },
@@ -645,11 +663,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 330,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 332,
           "column": 5
         }
       },
@@ -663,11 +681,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 324,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 324,
+          "line": 334,
           "column": 29
         }
       },
@@ -691,11 +709,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 335,
           "column": 35
         }
       },
@@ -710,11 +728,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 336,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 336,
           "column": 47
         }
       },
@@ -752,11 +770,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 328,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 330,
+          "line": 340,
           "column": 5
         }
       },
@@ -786,11 +804,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 341,
           "column": 4
         },
         "end": {
-          "line": 340,
+          "line": 350,
           "column": 5
         }
       },
@@ -822,11 +840,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 351,
           "column": 4
         },
         "end": {
-          "line": 375,
+          "line": 401,
           "column": 5
         }
       },
@@ -841,6 +859,13 @@
           {
             "name": "@param",
             "body": "name {String}"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "String"
           }
         ]
       }

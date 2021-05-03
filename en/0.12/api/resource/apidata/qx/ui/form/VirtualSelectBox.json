@@ -159,7 +159,7 @@
       },
       "name": "plainMarkers",
       "propertyType": "new",
-      "apply": "__P_314_5",
+      "apply": "__P_325_5",
       "init": [
         "|",
         "|"
@@ -191,7 +191,7 @@
       },
       "name": "htmlMarkers",
       "propertyType": "new",
-      "apply": "__P_314_5",
+      "apply": "__P_325_5",
       "check": "Array"
     },
     "rich": {
@@ -6526,5 +6526,7 @@
     },
     "jsdoc": {}
   },
-  "descendants": []
+  "descendants": [
+    "cv.ui.manager.form.VirtualSelectBox"
+  ]
 }

@@ -946,10 +946,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
           });
         }
+      },
+      close: function close() {
+        cv.TemplateEngine.getClient().terminate();
       }
     }
   });
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1619883132340
+//# sourceMappingURL=Application.js.map?dt=1620070356696

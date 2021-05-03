@@ -273,11 +273,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // current session ID
       loginSettings: null,
       headers: null,
-      __P_474_0: null,
+      __P_485_0: null,
       // property apply
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_474_0 = null;
+          this.__P_485_0 = null;
         }
       },
       setInitialAddresses: function setInitialAddresses(addresses) {
@@ -545,7 +545,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return; // ignore error when already handled
         }
 
-        this.__P_474_0 = {
+        this.__P_485_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -562,7 +562,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_474_0;
+        return this.__P_485_0;
       },
 
       /**
@@ -686,6 +686,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       restart: function restart(full) {
         this.getCurrentTransport().restart(full);
       },
+      terminate: function terminate() {
+        this.getCurrentTransport().abort();
+      },
       update: function update(json) {},
       // jshint ignore:line
 
@@ -711,7 +714,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getProviderUrl: function getProviderUrl(name) {
         return null;
       },
-      getProviderConvertFunction: function getProviderConvertFunction(name) {
+      getProviderConvertFunction: function getProviderConvertFunction(name, format) {
         return null;
       }
     },
@@ -728,4 +731,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1619883175819
+//# sourceMappingURL=Client.js.map?dt=1620070404025

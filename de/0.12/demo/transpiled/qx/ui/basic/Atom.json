@@ -4856,8 +4856,8 @@
   "descendants": [
     "cv.ui.manager.core.IconAtom",
     "qx.ui.form.Button",
-    "qx.ui.form.ToggleButton",
     "qx.ui.form.ListItem",
+    "qx.ui.form.ToggleButton",
     "qx.ui.form.HoverButton"
   ]
 }

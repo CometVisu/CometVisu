@@ -1688,23 +1688,25 @@
       "type": "function",
       "name": "setRequired",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "set",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+            "body": "<p>Sets the required state of a widget.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for required"
+            "body": "required {Boolean} A flag signaling if the widget is required.",
+            "paramName": "required",
+            "description": " A flag signaling if the widget is required.",
+            "type": "Boolean"
           }
         ]
       }
@@ -1713,22 +1715,24 @@
       "type": "function",
       "name": "getRequired",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "get",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+            "body": "<p>Return the current required state of the widget.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
+            "body": "{Boolean} True, if the widget is required.",
             "type": "Boolean",
-            "desc": "Returns the value for required"
+            "description": " True, if the widget is required."
           }
         ]
       }
@@ -1737,23 +1741,25 @@
       "type": "function",
       "name": "setValid",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "set",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+            "body": "<p>Sets the valid state of the widget.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for valid"
+            "body": "valid {Boolean} The valid state of the widget.",
+            "paramName": "valid",
+            "description": " The valid state of the widget.",
+            "type": "Boolean"
           }
         ]
       }
@@ -1762,22 +1768,24 @@
       "type": "function",
       "name": "getValid",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "get",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+            "body": "<p>Returns the valid state of the widget.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
+            "body": "{Boolean} If the state of the widget is valid.",
             "type": "Boolean",
-            "desc": "Returns the value for valid"
+            "description": " If the state of the widget is valid."
           }
         ]
       }
@@ -1786,23 +1794,25 @@
       "type": "function",
       "name": "setInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "set",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+            "body": "<p>Sets the invalid message of the widget.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for invalidMessage"
+            "body": "message {String} The invalid message.",
+            "paramName": "message",
+            "description": " The invalid message.",
+            "type": "String"
           }
         ]
       }
@@ -1811,22 +1821,24 @@
       "type": "function",
       "name": "getInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "get",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+            "body": "<p>Returns the invalid message of the widget.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
+            "body": "{String} The current set message.",
             "type": "String",
-            "desc": "Returns the value for invalidMessage"
+            "description": " The current set message."
           }
         ]
       }
@@ -1835,23 +1847,25 @@
       "type": "function",
       "name": "setRequiredInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "set",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+            "body": "<p>Sets the invalid message if required of the widget.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for requiredInvalidMessage"
+            "body": "message {String} The invalid message.",
+            "paramName": "message",
+            "description": " The invalid message.",
+            "type": "String"
           }
         ]
       }
@@ -1860,22 +1874,24 @@
       "type": "function",
       "name": "getRequiredInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
       "property": "get",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+            "body": "<p>Returns the invalid message if required of the widget.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
+            "body": "{String} The current set message.",
             "type": "String",
-            "desc": "Returns the value for requiredInvalidMessage"
+            "description": " The current set message."
           }
         ]
       }
@@ -1926,9 +1942,10 @@
       "type": "function",
       "name": "isValid",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1950,9 +1967,10 @@
       "type": "function",
       "name": "resetValid",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1967,9 +1985,10 @@
       "type": "function",
       "name": "isRequired",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1991,9 +2010,10 @@
       "type": "function",
       "name": "resetRequired",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2008,9 +2028,10 @@
       "type": "function",
       "name": "resetInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2025,9 +2046,10 @@
       "type": "function",
       "name": "resetRequiredInvalidMessage",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
       "property": "reset",
       "jsdoc": {
         "@description": [

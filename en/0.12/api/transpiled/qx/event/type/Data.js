@@ -43,8 +43,8 @@
     *****************************************************************************
     */
     members: {
-      __P_193_0: null,
-      __P_193_1: null,
+      __P_204_0: null,
+      __P_204_1: null,
 
       /**
        * Initializes an event object.
@@ -61,8 +61,8 @@
        */
       init: function init(data, old, cancelable) {
         qx.event.type.Data.prototype.init.base.call(this, false, cancelable);
-        this.__P_193_0 = data;
-        this.__P_193_1 = old;
+        this.__P_204_0 = data;
+        this.__P_204_1 = old;
         return this;
       },
 
@@ -77,8 +77,8 @@
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Data.prototype.clone.base.call(this, embryo);
-        clone.__P_193_0 = this.__P_193_0;
-        clone.__P_193_1 = this.__P_193_1;
+        clone.__P_204_0 = this.__P_204_0;
+        clone.__P_204_1 = this.__P_204_1;
         return clone;
       },
 
@@ -89,7 +89,7 @@
        * @return {var} The new data of the event
        */
       getData: function getData() {
-        return this.__P_193_0;
+        return this.__P_204_0;
       },
 
       /**
@@ -99,11 +99,11 @@
        * @return {var} The old data of the event
        */
       getOldData: function getOldData() {
-        return this.__P_193_1;
+        return this.__P_204_1;
       }
     }
   });
   qx.event.type.Data.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Data.js.map?dt=1619883151372
+//# sourceMappingURL=Data.js.map?dt=1620070378482

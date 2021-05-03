@@ -80,7 +80,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     include: [com.zenesis.qx.upload.MParameters],
     construct: function construct(widget, uploadUrl) {
       qx.core.Object.constructor.call(this);
-      this.__P_138_0 = {};
+      this.__P_177_0 = {};
       if (widget) this.addWidget(widget);
       if (uploadUrl) this.setUploadUrl(uploadUrl);
     },
@@ -173,10 +173,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     members: {
-      __P_138_0: null,
-      __P_138_1: 0,
-      __P_138_2: null,
-      __P_138_3: 0,
+      __P_177_0: null,
+      __P_177_1: 0,
+      __P_177_2: null,
+      __P_177_3: 0,
 
       /**
        * Adds a widget which is to have an input[type=file] attached; this would
@@ -185,7 +185,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        */
       addWidget: function addWidget(widget) {
         var appearId = widget.addListenerOnce("appear", function (evt) {
-          var data = this.__P_138_0[widget.toHashCode()];
+          var data = this.__P_177_0[widget.toHashCode()];
 
           if (data) {
             data.appearId = null;
@@ -193,14 +193,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             container.setStyle("overflow", "hidden");
             if (widget.getEnabled() && !data.inputElement) container.addAt(this._createInputElement(widget), 0);
 
-            this.__P_138_4(widget);
+            this.__P_177_4(widget);
           }
         }, this);
         var keydownId = null;
 
         if (qx.core.Environment.get("engine.name") != "gecko") {
           keydownId = widget.addListener("keydown", function (evt) {
-            var data = this.__P_138_0[widget.toHashCode()];
+            var data = this.__P_177_0[widget.toHashCode()];
 
             if (data && data.inputElement) {
               var dom = data.inputElement.getDomElement();
@@ -213,14 +213,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }, this);
         }
 
-        this.__P_138_0[widget.toHashCode()] = {
+        this.__P_177_0[widget.toHashCode()] = {
           appearId: appearId,
           keydownId: keydownId,
           widget: widget,
           inputElement: null
         };
         widget.addListener("resize", function (evt) {
-          this.__P_138_4(widget);
+          this.__P_177_4(widget);
         }, this);
         widget.addListener("changeEnabled", function (evt) {
           if (evt.getData()) {
@@ -243,12 +243,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * @param widget {qx.ui.core.Widget} Widget to remvove
        */
       removeWidget: function removeWidget(widget) {
-        var data = this.__P_138_0[widget.toHashCode()];
+        var data = this.__P_177_0[widget.toHashCode()];
 
         if (data) {
           if (data.appearId) widget.removeListener(data.appearId);
           if (data.keydownId) widget.removeListener(data.keydownId);
-          delete this.__P_138_0[widget.toHashCode()];
+          delete this.__P_177_0[widget.toHashCode()];
         }
       },
 
@@ -269,8 +269,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * 
        * @param widget {qx.ui.core.Widget} Widget to fixup size
        */
-      __P_138_4: function __P_138_4(widget) {
-        var data = this.__P_138_0[widget.toHashCode()];
+      __P_177_4: function __P_177_4(widget) {
+        var data = this.__P_177_0[widget.toHashCode()];
 
         if (data && data.inputElement) {
           var bounds = widget.getBounds(); // It may be that if the widgets icon is styled
@@ -291,21 +291,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       // property apply
       _applyMultiple: function _applyMultiple(value, oldValue) {
-        for (var hash in this.__P_138_0) {
-          var data = this.__P_138_0[hash];
+        for (var hash in this.__P_177_0) {
+          var data = this.__P_177_0[hash];
           if (data.inputElement) data.inputElement.setMultiple(value);
         }
       },
       // property directory
       _applyDirectory: function _applyDirectory(value, oldValue) {
-        for (var hash in this.__P_138_0) {
-          var data = this.__P_138_0[hash];
+        for (var hash in this.__P_177_0) {
+          var data = this.__P_177_0[hash];
           if (data.inputElement) data.inputElement.setDirectory(value);
         }
       },
       // property apply
       _applyRequireMultipartFormData: function _applyRequireMultipartFormData(value, oldValue) {
-        if (this.__P_138_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
+        if (this.__P_177_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
       },
 
       /**
@@ -330,9 +330,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * @returns
        */
       _createInputElement: function _createInputElement(widget) {
-        var data = this.__P_138_0[widget.toHashCode()];
+        var data = this.__P_177_0[widget.toHashCode()];
 
-        var name = this.getInputNamePrefix() + '-' + ++this.__P_138_1;
+        var name = this.getInputNamePrefix() + '-' + ++this.__P_177_1;
         qx.core.Assert.assertNull(data.inputElement);
         var elem = data.inputElement = new com.zenesis.qx.upload.InputElement(widget, name);
         elem.addListenerOnce("change", qx.lang.Function.bind(this._onInputChange, this, elem));
@@ -344,7 +344,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * has already been queued for uploading)
        */
       _removeInputElement: function _removeInputElement(widget) {
-        var data = this.__P_138_0[widget.toHashCode()];
+        var data = this.__P_177_0[widget.toHashCode()];
 
         var elem = data.inputElement;
         var container = widget.getContentElement();
@@ -384,11 +384,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * @returns
        */
       getUploadHandler: function getUploadHandler() {
-        if (!this.__P_138_2) {
-          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_138_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_138_2 = new com.zenesis.qx.upload.FormHandler(this);
+        if (!this.__P_177_2) {
+          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_177_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_177_2 = new com.zenesis.qx.upload.FormHandler(this);
         }
 
-        return this.__P_138_2;
+        return this.__P_177_2;
       },
 
       /**
@@ -397,7 +397,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * @param elem {AbstractHandler} The upload handler
        */
       setUploadHandler: function setUploadHandler(handler) {
-        this.__P_138_2 = handler;
+        this.__P_177_2 = handler;
       },
 
       /**
@@ -405,11 +405,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * application code can use to uniquely identify themselves to the server
        */
       allocateUploadId: function allocateUploadId() {
-        return "uploadId:" + ++this.__P_138_3;
+        return "uploadId:" + ++this.__P_177_3;
       }
     }
   });
   com.zenesis.qx.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1619884700061
+//# sourceMappingURL=UploadMgr.js.map?dt=1620071714291

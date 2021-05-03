@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_1_2/source/class/qxl/dialog/formElement/ComboBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "register",
+    "qxl",
+    "dialog",
+    "Dialog",
+    "registerFormElementHandlers",
+    "_registration",
+    "initElement",
+    "fieldType",
+    "fieldData",
+    "key",
+    "formElement",
+    "ui",
+    "form",
+    "ComboBox",
+    "options",
+    "forEach",
+    "item",
+    "listItem",
+    "ListItem",
+    "label",
+    "icon",
+    "add",
+    "addToFormController",
+    "_formController",
+    "addTarget",
+    "converter",
+    "value",
+    "_form",
+    "getValidationManager",
+    "validate",
+    "bind"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,UADF,EACc,KAAKC,aADnB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,cAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWC,QAAf,EAAlB;AACAL,UAAAA,SAAS,CAACM,OAAV,CAAkBC,OAAlB,CAA0B,UAAUC,IAAV,EAAgB;AACxC,gBAAIC,QAAQ,GAAG,IAAIxB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWM,QAAf,CAAwBF,IAAI,CAACG,KAA7B,EAAoCH,IAAI,CAACI,IAAzC,CAAf;AACAV,YAAAA,WAAW,CAACW,GAAZ,CAAgBJ,QAAhB;AACD,WAHD;AAIA,iBAAOP,WAAP;AACD,SARa;AAUdY,QAAAA,mBAAmB,EAAG,6BAASf,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AACrE,eAAKa,eAAL,CAAqBC,SAArB,CAA+Bd,WAA/B,EAA4C,OAA5C,EAAqDD,GAArD,EAA0D,IAA1D,EAAgE,IAAhE,EAAsE;AACpEgB,YAAAA,SAAS,EAAE,UAAUC,KAAV,EAAiB;AAC1B,mBAAKC,KAAL,CAAWC,oBAAX,GAAkCC,QAAlC;;AACA,qBAAOH,KAAP;AACD,aAHU,CAGTI,IAHS,CAGJ,IAHI;AADyD,WAAtE;AAMD;AAjBa;AANlB;AAFF,GADA;AAnBA7B,EAAAA,GAAG,CAACC,MAAJ,CAAWQ,WAAX,CAAuBG,QAAvB,CAAgCjB,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.ComboBox\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"combobox\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.ComboBox();\n        fieldData.options.forEach(function (item) {\n          let listItem = new qx.ui.form.ListItem(item.label, item.icon);\n          formElement.add(listItem);\n        });\n        return formElement;\n      },\n\n      addToFormController : function(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null, {\n          converter: function (value) {\n            this._form.getValidationManager().validate();\n            return value;\n          }.bind(this)\n        });\n      }\n    }\n  }\n});\n"
+  ]
+}

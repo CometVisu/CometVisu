@@ -24,7 +24,7 @@
       "cv.ui.manager.control.FileHandlerRegistry": {},
       "qx.event.message.Bus": {},
       "cv.ui.manager.model.CompareFiles": {},
-      "dialog.Prompt": {},
+      "cv.ui.manager.dialog.Prompt": {},
       "cv.ui.manager.control.FileController": {},
       "cv.theme.dark.Images": {},
       "com.zenesis.qx.upload.UploadMenuButton": {},
@@ -273,7 +273,7 @@
       },
       _onRename: function _onRename() {
         if (this._selectedNode && !this._renameDialog && this.isActive()) {
-          this._renameDialog = new dialog.Prompt({
+          this._renameDialog = new cv.ui.manager.dialog.Prompt({
             message: this.tr('New name'),
             callback: function callback(name) {
               if (name && name !== this._selectedNode.getName()) {
@@ -423,4 +423,4 @@
   cv.ui.manager.contextmenu.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1619884689017
+//# sourceMappingURL=FileItem.js.map?dt=1620071699024

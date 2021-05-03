@@ -54,8 +54,8 @@
       this.initialAddresses = [];
       this._backendName = backendName;
       this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/');
-      this.__P_61_0 = {};
-      this.__P_61_1 = {};
+      this.__P_72_0 = {};
+      this.__P_72_1 = {};
     },
 
     /*
@@ -294,6 +294,11 @@
        * @param args
        */
       showError: function showError(type, message, args) {},
+      terminate: function terminate() {
+        if (this.isConnected()) {
+          this._client.disconnect();
+        }
+      },
 
       /**
        * Destructor
@@ -310,4 +315,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1619884692591
+//# sourceMappingURL=Client.js.map?dt=1620071704543

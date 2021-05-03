@@ -160,7 +160,7 @@
         var actor = '<div class="actor">';
 
         if (this.getUpdateType() === 'show') {
-          actor += '<img src="' + this.__P_45_0(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
+          actor += '<img src="' + this.__P_56_0(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
         } else {
           actor += '<img src=""' + style + ' />';
         }
@@ -175,14 +175,14 @@
           if (value === 0) {
             imageChild.style.display = "none";
           } else {
-            imageChild.setAttribute("src", this.__P_45_0(this.getSrc() + '.' + this.getSuffix()));
+            imageChild.setAttribute("src", this.__P_56_0(this.getSrc() + '.' + this.getSuffix()));
             imageChild.style.display = "block";
           }
         } else if (this.getUpdateType() === "select") {
           if (value === 0) {
             imageChild.style.display = "none";
           } else {
-            imageChild.setAttribute("src", this.__P_45_0(this.getSrc() + value + '.' + this.getSuffix()));
+            imageChild.setAttribute("src", this.__P_56_0(this.getSrc() + value + '.' + this.getSuffix()));
             imageChild.style.display = "block";
           }
         } //TODO: add value if mapping exists
@@ -191,7 +191,7 @@
         //TODO: add SVG-magics
 
       },
-      __P_45_0: function __P_45_0(url) {
+      __P_56_0: function __P_56_0(url) {
         var parsedUri = qx.util.Uri.parseUri(url);
 
         if (!parsedUri.protocol && !url.startsWith("/")) {
@@ -216,4 +216,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1619884690977
+//# sourceMappingURL=ImageTrigger.js.map?dt=1620071702966

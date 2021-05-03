@@ -67,7 +67,7 @@
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementHeight = qx.module.Css.__P_232_0(elem, stylesToSwap, "_getHeight", this);
+              elementHeight = qx.module.Css.__P_243_0(elem, stylesToSwap, "_getHeight", this);
             } else {
               elementHeight = qx.bom.element.Dimension.getHeight(elem);
             }
@@ -104,7 +104,7 @@
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementWidth = qx.module.Css.__P_232_0(elem, stylesToSwap, "_getWidth", this);
+              elementWidth = qx.module.Css.__P_243_0(elem, stylesToSwap, "_getWidth", this);
             } else {
               elementWidth = qx.bom.element.Dimension.getWidth(elem);
             }
@@ -142,7 +142,7 @@
               visibility: "hidden",
               display: "block"
             };
-            contentHeight = qx.module.Css.__P_232_0(obj, stylesToSwap, "_getContentHeight", this);
+            contentHeight = qx.module.Css.__P_243_0(obj, stylesToSwap, "_getContentHeight", this);
           } else {
             contentHeight = qx.bom.element.Dimension.getContentHeight(obj);
           }
@@ -175,7 +175,7 @@
               visibility: "hidden",
               display: "block"
             };
-            contentWidth = qx.module.Css.__P_232_0(obj, stylesToSwap, "_getContentWidth", this);
+            contentWidth = qx.module.Css.__P_243_0(obj, stylesToSwap, "_getContentWidth", this);
           } else {
             contentWidth = qx.bom.element.Dimension.getContentWidth(obj);
           }
@@ -189,7 +189,7 @@
       /**
        * Maps HTML elements to their default "display" style values.
        */
-      __P_232_1: {},
+      __P_243_1: {},
 
       /**
        * Attempts tp determine the default "display" style value for
@@ -200,8 +200,8 @@
        * @return {String} The default "display" value, e.g. <code>inline</code>
        * or <code>block</code>
        */
-      __P_232_2: function __P_232_2(tagName, doc) {
-        var defaults = qx.module.Css.__P_232_1;
+      __P_243_2: function __P_243_2(tagName, doc) {
+        var defaults = qx.module.Css.__P_243_1;
 
         if (!defaults[tagName]) {
           var docu = doc || document;
@@ -225,7 +225,7 @@
        * @param context {Object} the context in which the callback should be called
        * @return {Object} the return value of the callback
        */
-      __P_232_0: function __P_232_0(element, styles, methodName, context) {
+      __P_243_0: function __P_243_0(element, styles, methodName, context) {
         // get the current values
         var currentValues = {};
 
@@ -319,7 +319,7 @@
               newVal = prevVal;
             } else {
               var doc = qxWeb.getDocument(item[0]);
-              newVal = qx.module.Css.__P_232_2(item[0].tagName, doc);
+              newVal = qx.module.Css.__P_243_2(item[0].tagName, doc);
             }
 
             item.setStyle("display", newVal);
@@ -622,4 +622,4 @@
   qx.module.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1619883154869
+//# sourceMappingURL=Css.js.map?dt=1620070382237

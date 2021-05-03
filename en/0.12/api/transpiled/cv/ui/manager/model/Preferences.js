@@ -10,7 +10,8 @@
         "require": true
       },
       "qx.bom.Storage": {},
-      "qx.util.Serializer": {}
+      "qx.util.Serializer": {},
+      "cv.report.Record": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -79,17 +80,30 @@
     ***********************************************
     */
     members: {
+      _skipSaving: false,
       _savePreferences: function _savePreferences() {
-        var store = qx.bom.Storage.getLocal();
-        store.setItem('preferences', qx.util.Serializer.toNativeObject(this));
+        if (!this._skipSaving) {
+          var store = qx.bom.Storage.getLocal();
+          var data = qx.util.Serializer.toNativeObject(this);
+          store.setItem('preferences', data);
+          cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', data);
+        }
       },
       _restorePreferences: function _restorePreferences() {
         var store = qx.bom.Storage.getLocal();
         this.set(store.getItem('preferences'));
+      },
+      setPreferences: function setPreferences(preferences, noSave) {
+        if (noSave) {
+          this._skipSaving = true;
+        }
+
+        this.set(preferences);
+        this._skipSaving = false;
       }
     }
   });
   cv.ui.manager.model.Preferences.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Preferences.js.map?dt=1619883137512
+//# sourceMappingURL=Preferences.js.map?dt=1620070363357

@@ -90,12 +90,12 @@
     ***********************************************
     */
     members: {
-      __P_39_0: null,
+      __P_43_0: null,
       _applyFile: function _applyFile(value, old) {
         if (old) {
           old.removeListener('changeModified', this._maintainPermanent, this);
           old.removeRelatedBindings(this);
-          this.__P_39_0 = null;
+          this.__P_43_0 = null;
         }
 
         if (value) {
@@ -114,12 +114,12 @@
           if (handlerClass && handlerClass.ICON) {
             this.setIcon(handlerClass.ICON);
 
-            if (this.__P_39_0) {
-              file.removeBinding(this.__P_39_0);
-              this.__P_39_0 = null;
+            if (this.__P_43_0) {
+              file.removeBinding(this.__P_43_0);
+              this.__P_43_0 = null;
             }
           } else {
-            this.__P_39_0 = file.bind('icon', this, 'icon');
+            this.__P_43_0 = file.bind('icon', this, 'icon');
           }
         } else {
           this.resetIcon();
@@ -136,4 +136,4 @@
   cv.ui.manager.model.OpenFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenFile.js.map?dt=1619883137490
+//# sourceMappingURL=OpenFile.js.map?dt=1620070363328

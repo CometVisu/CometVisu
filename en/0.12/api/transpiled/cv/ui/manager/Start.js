@@ -80,6 +80,11 @@
       external: {
         check: 'Boolean',
         init: false
+      },
+      ready: {
+        check: 'Boolean',
+        init: true,
+        event: 'changeReady'
       }
     },
 
@@ -100,6 +105,8 @@
         return false;
       },
       handleAction: function handleAction() {},
+      configureButton: function configureButton(button) {},
+      unConfigureButton: function unConfigureButton(button) {},
       _loadRoot: function _loadRoot(value) {
         this.getChildControl('configs').setFile(value);
         var found = 0;
@@ -224,6 +231,7 @@
 
           case 'configs-header':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+            control.getContentElement().setAttribute('data-section', 'configs');
             this.getChildControl('content').add(control);
             break;
 
@@ -263,6 +271,7 @@
           case 'demo-configs-title':
             control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
             control.setUserData('control', 'demo-configs');
+            control.getContentElement().setAttribute('data-section', 'demo');
             control.addListener('tap', this._onToggleExpand, this);
             this.getChildControl('content').add(control);
             break;
@@ -294,6 +303,7 @@
 
           case 'media-header':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+            control.getContentElement().setAttribute('data-section', 'media');
             this.getChildControl('content').add(control);
             break;
 
@@ -318,6 +328,7 @@
           case 'misc-title':
             control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
             control.setUserData('control', 'misc');
+            control.getContentElement().setAttribute('data-section', 'misc');
             control.addListener('tap', this._onToggleExpand, this);
             this.getChildControl('content').add(control);
             break;
@@ -387,4 +398,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1619883136047
+//# sourceMappingURL=Start.js.map?dt=1620070360530

@@ -58,12 +58,12 @@
       qx.bom.History.constructor.call(this);
       this._baseUrl = null;
 
-      this.__P_273_0();
+      this.__P_308_0();
     },
     members: {
-      __P_273_1: null,
-      __P_273_2: null,
-      __P_273_3: false,
+      __P_308_1: null,
+      __P_308_2: null,
+      __P_308_3: false,
       //overridden
       addToHistory: function addToHistory(state, newTitle) {
         if (!qx.lang.Type.isString(state)) {
@@ -84,14 +84,14 @@
        * Initializes the iframe
        *
        */
-      __P_273_0: function __P_273_0() {
-        this.__P_273_2 = this.__P_273_4();
-        document.body.appendChild(this.__P_273_2);
+      __P_308_0: function __P_308_0() {
+        this.__P_308_2 = this.__P_308_4();
+        document.body.appendChild(this.__P_308_2);
 
-        this.__P_273_5(function () {
-          this._baseUrl = this.__P_273_2.contentWindow.document.location.href;
+        this.__P_308_5(function () {
+          this._baseUrl = this.__P_308_2.contentWindow.document.location.href;
 
-          this.__P_273_6();
+          this.__P_308_6();
         }, this);
       },
 
@@ -102,7 +102,7 @@
        *
        * @return {Element}
        */
-      __P_273_4: function __P_273_4() {
+      __P_308_4: function __P_308_4() {
         var iframe = qx.bom.Iframe.create({
           src: qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html") + "#"
         });
@@ -121,44 +121,44 @@
        * @param context {Object?window} The context for the callback.
        * @param retry {Integer} number of tries to initialize the iframe
        */
-      __P_273_5: function __P_273_5(callback, context, retry) {
+      __P_308_5: function __P_308_5(callback, context, retry) {
         if (typeof retry === "undefined") {
           retry = 0;
         }
 
-        if (!this.__P_273_2.contentWindow || !this.__P_273_2.contentWindow.document) {
+        if (!this.__P_308_2.contentWindow || !this.__P_308_2.contentWindow.document) {
           if (retry > 20) {
             throw new Error("can't initialize iframe");
           }
 
           qx.event.Timer.once(function () {
-            this.__P_273_5(callback, context, ++retry);
+            this.__P_308_5(callback, context, ++retry);
           }, this, 10);
           return;
         }
 
-        this.__P_273_3 = true;
+        this.__P_308_3 = true;
         callback.call(context || window);
       },
 
       /**
        * Attach hash change listeners
        */
-      __P_273_6: function __P_273_6() {
-        qx.event.Idle.getInstance().addListener("interval", this.__P_273_7, this);
+      __P_308_6: function __P_308_6() {
+        qx.event.Idle.getInstance().addListener("interval", this.__P_308_7, this);
       },
 
       /**
        * Remove hash change listeners
        */
-      __P_273_8: function __P_273_8() {
-        qx.event.Idle.getInstance().removeListener("interval", this.__P_273_7, this);
+      __P_308_8: function __P_308_8() {
+        qx.event.Idle.getInstance().removeListener("interval", this.__P_308_7, this);
       },
 
       /**
        * hash change event handler
        */
-      __P_273_7: function __P_273_7() {
+      __P_308_7: function __P_308_7() {
         var currentState = this._readState();
 
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
@@ -184,11 +184,11 @@
        * iframe isn't ready yet
        */
       _getHash: function _getHash() {
-        if (!this.__P_273_3) {
+        if (!this.__P_308_3) {
           return null;
         }
 
-        return this.__P_273_2.contentWindow.document.location.hash;
+        return this.__P_308_2.contentWindow.document.location.hash;
       },
 
       /**
@@ -206,24 +206,24 @@
        * @param value {String} the fragment identifier
        */
       _setHash: function _setHash(value) {
-        if (!this.__P_273_2 || !this._baseUrl) {
+        if (!this.__P_308_2 || !this._baseUrl) {
           return;
         }
 
-        var hash = !this.__P_273_2.contentWindow.document.location.hash ? "" : this.__P_273_2.contentWindow.document.location.hash.substr(1);
+        var hash = !this.__P_308_2.contentWindow.document.location.hash ? "" : this.__P_308_2.contentWindow.document.location.hash.substr(1);
 
         if (value != hash) {
-          this.__P_273_2.contentWindow.document.location.hash = value;
+          this.__P_308_2.contentWindow.document.location.hash = value;
         }
       }
     },
     destruct: function destruct() {
-      this.__P_273_8();
+      this.__P_308_8();
 
-      this.__P_273_2 = null;
+      this.__P_308_2 = null;
     }
   });
   qx.bom.HashHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HashHistory.js.map?dt=1619884711296
+//# sourceMappingURL=HashHistory.js.map?dt=1620071725295

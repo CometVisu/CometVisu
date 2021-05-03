@@ -177,7 +177,7 @@
        */
       table: function table(model) {
         var table = new qx.ui.website.Table(this);
-        table.__P_445_0 = model;
+        table.__P_456_0 = model;
         table.init();
         return table;
       },
@@ -187,7 +187,7 @@
        * @param n {String} The String to check the type for
        * @return {Boolean} The result of the check
        */
-      __P_445_1: function __P_445_1(n) {
+      __P_456_1: function __P_456_1(n) {
         return (Object.prototype.toString.call(n) === '[object Number]' || Object.prototype.toString.call(n) === '[object String]') && !isNaN(parseFloat(n)) && isFinite(n.toString().replace(/^-/, ''));
       },
 
@@ -196,7 +196,7 @@
        * @param val {String} The String to check the type for
        * @return {Boolean} The result of the check
        */
-      __P_445_2: function __P_445_2(val) {
+      __P_456_2: function __P_456_2(val) {
         var d = new Date(val);
         return !isNaN(d.valueOf());
       },
@@ -207,7 +207,7 @@
        * @param htmlElement {HTMLElement} The HTMLElement
        * @return {Integer} The position of the htmlElement or -1
        */
-      __P_445_3: function __P_445_3(htmlCollection, htmlElement) {
+      __P_456_3: function __P_456_3(htmlCollection, htmlElement) {
         var index = -1;
 
         for (var i = 0, l = htmlCollection.length; i < l; i++) {
@@ -224,69 +224,69 @@
       * Generates an unique id
       * @return {String} The generated id
       */
-      __P_445_4: function __P_445_4() {
+      __P_456_4: function __P_456_4() {
         return (new Date().getTime() + "" + Math.floor(Math.random() * 1000000)).substr(0, 18);
       },
 
       /** */
-      __P_445_5: ["single", "multiple", "none"],
+      __P_456_5: ["single", "multiple", "none"],
 
       /** */
-      __P_445_6: "qx-table-cell",
+      __P_456_6: "qx-table-cell",
 
       /** */
-      __P_445_7: "qx-table-header",
+      __P_456_7: "qx-table-header",
 
       /** */
-      __P_445_8: "qx-table-row-selection",
+      __P_456_8: "qx-table-row-selection",
 
       /** */
-      __P_445_9: "qx-table-selection-input",
+      __P_456_9: "qx-table-selection-input",
 
       /** */
-      __P_445_10: "qx-table-all-columns",
+      __P_456_10: "qx-table-all-columns",
 
       /** */
-      __P_445_11: "data-qx-table-col-name",
+      __P_456_11: "data-qx-table-col-name",
 
       /** */
-      __P_445_12: "data-qx-table-col-type",
+      __P_456_12: "data-qx-table-col-type",
 
       /** */
-      __P_445_13: "data-qx-table-cell-key",
+      __P_456_13: "data-qx-table-cell-key",
 
       /** */
-      __P_445_14: "cellKey",
+      __P_456_14: "cellKey",
 
       /** */
-      __P_445_15: "qx-table-input-label",
+      __P_456_15: "qx-table-input-label",
 
       /** */
-      __P_445_16: "qx-table-row-selected",
+      __P_456_16: "qx-table-row-selected",
 
       /** */
-      __P_445_17: "qx-table-sort-asc",
+      __P_456_17: "qx-table-sort-asc",
 
       /** */
-      __P_445_18: "qqx-table-sort-desc"
+      __P_456_18: "qqx-table-sort-desc"
     },
     members: {
-      __P_445_0: null,
-      __P_445_19: null,
-      __P_445_20: null,
-      __P_445_21: null,
-      __P_445_22: null,
-      __P_445_23: null,
-      __P_445_24: null,
-      __P_445_25: null,
-      __P_445_26: null,
+      __P_456_0: null,
+      __P_456_19: null,
+      __P_456_20: null,
+      __P_456_21: null,
+      __P_456_22: null,
+      __P_456_23: null,
+      __P_456_24: null,
+      __P_456_25: null,
+      __P_456_26: null,
       // overridden
       init: function init() {
         if (!qx.ui.website.Table.prototype.init.base.call(this)) {
           return false;
         }
 
-        var model = this.__P_445_0;
+        var model = this.__P_456_0;
 
         if (qxWeb.getNodeName(this).toUpperCase() !== "TABLE") {
           throw new Error("collection should contains only table elements !!");
@@ -297,16 +297,16 @@
         }
 
         this.find("tbody td").addClass("qx-table-cell");
-        this.__P_445_24 = "input" + qx.ui.website.Table.__P_445_4();
+        this.__P_456_24 = "input" + qx.ui.website.Table.__P_456_4();
 
-        this.__P_445_27(model);
+        this.__P_456_27(model);
 
         this.setModel(model);
-        this.setSortingFunction(this.__P_445_28);
+        this.setSortingFunction(this.__P_456_28);
 
-        this.__P_445_29();
+        this.__P_456_29();
 
-        this.__P_445_25 = null;
+        this.__P_456_25 = null;
         return true;
       },
 
@@ -319,7 +319,7 @@
       setModel: function setModel(model) {
         if (typeof model != "undefined") {
           if (qx.lang.Type.isArray(model)) {
-            this.__P_445_0 = model;
+            this.__P_456_0 = model;
             this.emit("modelChange", model);
           } else {
             throw new Error("model must be an Array !!");
@@ -336,9 +336,9 @@
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
       setColumnType: function setColumnType(columnName, type) {
-        this.__P_445_30(columnName);
+        this.__P_456_30(columnName);
 
-        this.__P_445_19[columnName].type = type;
+        this.__P_456_19[columnName].type = type;
         return this;
       },
 
@@ -348,9 +348,9 @@
        * @return {String} The type of the specified column
        */
       getColumnType: function getColumnType(columnName) {
-        this.eq(0).__P_445_30(columnName);
+        this.eq(0).__P_456_30(columnName);
 
-        return this.eq(0).__P_445_19[columnName].type;
+        return this.eq(0).__P_456_19[columnName].type;
       },
 
       /**
@@ -360,7 +360,7 @@
        * @return {qxWeb} The cell found at the given position
        */
       getCell: function getCell(row, col) {
-        return qxWeb(this.eq(0).__P_445_31().rows.item(row).cells.item(col));
+        return qxWeb(this.eq(0).__P_456_31().rows.item(row).cells.item(col));
       },
 
       /**
@@ -368,7 +368,7 @@
       * @return {qxWeb} The collection containing the table rows
       */
       getRows: function getRows() {
-        return qxWeb(this.eq(0).__P_445_31().rows);
+        return qxWeb(this.eq(0).__P_456_31().rows);
       },
 
       /**
@@ -414,7 +414,7 @@
       setSortingFunction: function setSortingFunction(func) {
         func = func || function () {};
 
-        this.__P_445_20 = func;
+        this.__P_456_20 = func;
         return this;
       },
 
@@ -423,7 +423,7 @@
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
       unsetSortingFunction: function unsetSortingFunction() {
-        this.__P_445_20 = this.__P_445_28;
+        this.__P_456_20 = this.__P_456_28;
         return this;
       },
 
@@ -433,7 +433,7 @@
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
       setFilterFunction: function setFilterFunction(func) {
-        this.__P_445_21 = func;
+        this.__P_456_21 = func;
         return this;
       },
 
@@ -442,7 +442,7 @@
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
       unsetFilterFunction: function unsetFilterFunction() {
-        this.__P_445_21 = this.__P_445_32;
+        this.__P_456_21 = this.__P_456_32;
         return this;
       },
 
@@ -454,13 +454,13 @@
       *
       */
       setColumnFilter: function setColumnFilter(columnName, func) {
-        this.__P_445_30(columnName);
+        this.__P_456_30(columnName);
 
-        if (!this.__P_445_22) {
-          this.__P_445_22 = {};
+        if (!this.__P_456_22) {
+          this.__P_456_22 = {};
         }
 
-        this.__P_445_22[columnName] = func;
+        this.__P_456_22[columnName] = func;
         return this;
       },
 
@@ -472,8 +472,8 @@
       *
       */
       getColumnFilter: function getColumnFilter(columnName) {
-        if (this.__P_445_22) {
-          return this.__P_445_22[columnName];
+        if (this.__P_456_22) {
+          return this.__P_456_22[columnName];
         }
 
         return null;
@@ -485,11 +485,11 @@
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
       setRowFilter: function setRowFilter(func) {
-        if (!this.__P_445_22) {
-          this.__P_445_22 = {};
+        if (!this.__P_456_22) {
+          this.__P_456_22 = {};
         }
 
-        this.__P_445_22.row = func;
+        this.__P_456_22.row = func;
         return this;
       },
 
@@ -499,8 +499,8 @@
       *
       */
       getRowFilter: function getRowFilter() {
-        if (this.__P_445_22) {
-          return this.__P_445_22.row;
+        if (this.__P_456_22) {
+          return this.__P_456_22.row;
         }
 
         return null;
@@ -513,11 +513,11 @@
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
       sort: function sort(columnName, dir) {
-        this.__P_445_30(columnName);
+        this.__P_456_30(columnName);
 
         this.setSortingClass(columnName, dir);
 
-        this.__P_445_33(this.__P_445_34(columnName, dir));
+        this.__P_456_33(this.__P_456_34(columnName, dir));
 
         this.emit("sort", {
           columName: columnName,
@@ -534,31 +534,31 @@
       */
       filter: function filter(keyword, columnName) {
         if (columnName) {
-          this.__P_445_30(columnName);
+          this.__P_456_30(columnName);
 
           if (keyword == "") {
             this.resetFilter(columnName);
           }
         } else {
-          columnName = qx.ui.website.Table.__P_445_10;
+          columnName = qx.ui.website.Table.__P_456_10;
         }
 
-        if (!this.__P_445_23) {
-          this.__P_445_23 = {};
+        if (!this.__P_456_23) {
+          this.__P_456_23 = {};
         }
 
-        if (this.__P_445_23[columnName]) {
-          this.__P_445_23[columnName].keyword = keyword;
+        if (this.__P_456_23[columnName]) {
+          this.__P_456_23[columnName].keyword = keyword;
 
-          this.__P_445_31().appendChild(this.__P_445_23[columnName].rows);
+          this.__P_456_31().appendChild(this.__P_456_23[columnName].rows);
         } else {
-          this.__P_445_23[columnName] = {
+          this.__P_456_23[columnName] = {
             keyword: keyword,
             rows: document.createDocumentFragment()
           };
         }
 
-        this.__P_445_35(keyword, columnName);
+        this.__P_456_35(keyword, columnName);
 
         this.emit("filter", {
           columName: columnName,
@@ -574,14 +574,14 @@
       */
       resetFilter: function resetFilter(columnName) {
         var filters = null;
-        filters = this.__P_445_23;
+        filters = this.__P_456_23;
 
         if (filters) {
           if (columnName) {
-            this.__P_445_31().appendChild(filters[columnName].rows);
+            this.__P_456_31().appendChild(filters[columnName].rows);
           } else {
             for (var col in filters) {
-              this.__P_445_31().appendChild(filters[col].rows);
+              this.__P_456_31().appendChild(filters[col].rows);
             }
           }
         }
@@ -595,7 +595,7 @@
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
       setContent: function setContent(tableData) {
-        var rows = this.__P_445_36(tableData);
+        var rows = this.__P_456_36(tableData);
 
         var tbody = this.find('tbody');
         tbody.empty();
@@ -610,7 +610,7 @@
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
       appendContent: function appendContent(tableData) {
-        var rows = this.__P_445_36(tableData);
+        var rows = this.__P_456_36(tableData);
 
         var tbody = this.find('tbody');
         rows.appendTo(tbody);
@@ -623,7 +623,7 @@
       * @param data {qxWeb|String} Data containing the rows to be extracted
       * @return {qxWeb} Collection containing extracted rows
       */
-      __P_445_36: function __P_445_36(data) {
+      __P_456_36: function __P_456_36(data) {
         var rows = qxWeb();
 
         if (typeof data == "string") {
@@ -663,13 +663,13 @@
       * @param columnName {String ?} The column name
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
-      __P_445_35: function __P_445_35(keyword, columnName) {
-        var colIndex = this.__P_445_37(columnName);
+      __P_456_35: function __P_456_35(keyword, columnName) {
+        var colIndex = this.__P_456_37(columnName);
 
-        var filterFunc = columnName == qx.ui.website.Table.__P_445_10 ? this.getRowFilter() : this.getColumnFilter(columnName);
-        filterFunc = filterFunc || this.__P_445_32;
+        var filterFunc = columnName == qx.ui.website.Table.__P_456_10 ? this.getRowFilter() : this.getColumnFilter(columnName);
+        filterFunc = filterFunc || this.__P_456_32;
 
-        var rows = this.__P_445_38(),
+        var rows = this.__P_456_38(),
             data = {};
 
         for (var i = 0; i < rows.length; i++) {
@@ -682,7 +682,7 @@
           };
 
           if (!filterFunc.bind(this)(data)) {
-            this.__P_445_23[columnName].rows.appendChild(rows[i]);
+            this.__P_456_23[columnName].rows.appendChild(rows[i]);
           }
         }
 
@@ -694,21 +694,21 @@
        * @return {Map} The map containing the current sorting information
        */
       getSortingData: function getSortingData() {
-        return this.__P_445_26;
+        return this.__P_456_26;
       },
       //overridden
       render: function render() {
         var sortingData = this.getSortingData();
         var rowSelection = this.getConfig("rowSelection");
 
-        this.__P_445_39(this.__P_445_0);
+        this.__P_456_39(this.__P_456_0);
 
-        if (qx.ui.website.Table.__P_445_5.indexOf(rowSelection) != -1) {
-          this.__P_445_40(rowSelection);
+        if (qx.ui.website.Table.__P_456_5.indexOf(rowSelection) != -1) {
+          this.__P_456_40(rowSelection);
         }
 
         if (sortingData) {
-          this.__P_445_33(this.__P_445_34(sortingData.columnName, sortingData.direction));
+          this.__P_456_33(this.__P_456_34(sortingData.columnName, sortingData.direction));
         }
 
         return this;
@@ -720,20 +720,20 @@
       * @param rowSelection {String} The selection mode
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
-      __P_445_40: function __P_445_40(rowSelection) {
+      __P_456_40: function __P_456_40(rowSelection) {
         switch (rowSelection) {
           case "none":
-            qxWeb("." + qx.ui.website.Table.__P_445_8).remove();
+            qxWeb("." + qx.ui.website.Table.__P_456_8).remove();
             break;
 
           case "multiple":
           case "single":
-            this.__P_445_41("checkbox");
+            this.__P_456_41("checkbox");
 
             break;
 
           case "single":
-            this.__P_445_41("radio");
+            this.__P_456_41("radio");
 
             break;
         }
@@ -746,13 +746,13 @@
        * @param type {String} The type of the inputs to creates
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_41: function __P_445_41(type) {
-        this.__P_445_42(this.__P_445_43(), type);
+      __P_456_41: function __P_456_41(type) {
+        this.__P_456_42(this.__P_456_43(), type);
 
         var rows = this.find("tbody")[0].getElementsByTagName("tr");
 
         for (var i = 0; i < rows.length; i++) {
-          this.__P_445_42(rows.item(i), type);
+          this.__P_456_42(rows.item(i), type);
         }
 
         return this;
@@ -764,10 +764,10 @@
       * @param type {String} The type of the input tom create (radio or checkbox)
       * @param nodeName {String} The nodename of the table cell that will contain the input
       */
-      __P_445_42: function __P_445_42(row, type, nodeName) {
+      __P_456_42: function __P_456_42(row, type, nodeName) {
         var cssPrefix = this.getCssPrefix();
         var clazz = qx.ui.website.Table;
-        var headerInput = qxWeb("." + clazz.__P_445_7 + " input");
+        var headerInput = qxWeb("." + clazz.__P_456_7 + " input");
         var selectionMode = this.getConfig("rowSelection");
         var checked = "";
 
@@ -779,18 +779,18 @@
           nodeName = qxWeb.getNodeName(qxWeb(row.cells.item(0)));
         }
 
-        var inputName = this.__P_445_24;
-        var className = nodeName == "th" ? clazz.__P_445_8 + " " + clazz.__P_445_7 : clazz.__P_445_8;
-        var currentInput = qxWeb(row).find("." + clazz.__P_445_8);
+        var inputName = this.__P_456_24;
+        var className = nodeName == "th" ? clazz.__P_456_8 + " " + clazz.__P_456_7 : clazz.__P_456_8;
+        var currentInput = qxWeb(row).find("." + clazz.__P_456_8);
 
         if (currentInput.length > 0) {
           if (currentInput[0].type != type) {
             currentInput[0].type = type;
           }
         } else {
-          var id = qx.ui.website.Table.__P_445_4();
+          var id = qx.ui.website.Table.__P_456_4();
 
-          var inputNode = qxWeb.create("<" + nodeName + " class='" + className + "'><input id='" + id + "' name='" + inputName + "' " + checked + " class='" + cssPrefix + "-" + type + " " + clazz.__P_445_9 + "' type='" + type + "' /><label class='" + clazz.__P_445_15 + "' for='" + id + "'></label></" + nodeName + ">");
+          var inputNode = qxWeb.create("<" + nodeName + " class='" + className + "'><input id='" + id + "' name='" + inputName + "' " + checked + " class='" + cssPrefix + "-" + type + " " + clazz.__P_456_9 + "' type='" + type + "' /><label class='" + clazz.__P_456_15 + "' for='" + id + "'></label></" + nodeName + ">");
 
           if (row.cells.item(0)) {
             inputNode.insertBefore(qxWeb(row.cells.item(0)));
@@ -804,8 +804,8 @@
       * Checks if a column with the specified name exists
       * @param columnName {String} The name of the column to check
       */
-      __P_445_30: function __P_445_30(columnName) {
-        var data = this.__P_445_19;
+      __P_456_30: function __P_456_30(columnName) {
+        var data = this.__P_456_19;
 
         if (data && !data[columnName]) {
           throw new Error("Column " + columnName + " does not exists !");
@@ -816,7 +816,7 @@
       * Returns the row containing the cells with the column names
       * @return {HTMLTableRowElement} The row with meta information
       */
-      __P_445_43: function __P_445_43() {
+      __P_456_43: function __P_456_43() {
         var tHeadOrFoot = this[0].tHead;
 
         if (!tHeadOrFoot) {
@@ -843,35 +843,35 @@
        * @param model {Array} The widget's model
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_27: function __P_445_27(model) {
-        this.__P_445_44(this[0].tHead);
+      __P_456_27: function __P_456_27(model) {
+        this.__P_456_44(this[0].tHead);
 
-        this.__P_445_44(this[0].tFoot);
+        this.__P_456_44(this[0].tFoot);
 
         var data = {},
             cells = null,
             colName = null,
             cell = null;
 
-        var headerRow = this.__P_445_43();
+        var headerRow = this.__P_456_43();
 
         cells = headerRow.cells;
 
         for (var i = 0, l = cells.length; i < l; i++) {
           cell = qxWeb(cells.item(i));
-          colName = this.__P_445_45(cell[0]) || qx.ui.website.Table.__P_445_4();
+          colName = this.__P_456_45(cell[0]) || qx.ui.website.Table.__P_456_4();
 
-          if (!cell[0].getAttribute(qx.ui.website.Table.__P_445_11)) {
-            cell.setAttribute(qx.ui.website.Table.__P_445_11, colName);
+          if (!cell[0].getAttribute(qx.ui.website.Table.__P_456_11)) {
+            cell.setAttribute(qx.ui.website.Table.__P_456_11, colName);
           }
 
           data[colName] = {
-            type: cell[0].getAttribute(qx.ui.website.Table.__P_445_12) || "String",
+            type: cell[0].getAttribute(qx.ui.website.Table.__P_456_12) || "String",
             name: colName
           };
         }
 
-        this.__P_445_19 = data;
+        this.__P_456_19 = data;
         return this;
       },
 
@@ -880,13 +880,13 @@
        * @param footOrHead {HTMLElement} Html element representing the header or footer of the table
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_44: function __P_445_44(footOrHead) {
+      __P_456_44: function __P_456_44(footOrHead) {
         if (footOrHead && footOrHead.rows.length > 0) {
           if (footOrHead.rows.item(0).cells.length > 0) {
-            var row = this.__P_445_43();
+            var row = this.__P_456_43();
 
-            if (!qxWeb(row.cells.item(0)).hasClass(qx.ui.website.Table.__P_445_7)) {
-              qxWeb(row.cells).addClass(qx.ui.website.Table.__P_445_7);
+            if (!qxWeb(row.cells.item(0)).hasClass(qx.ui.website.Table.__P_456_7)) {
+              qxWeb(row.cells).addClass(qx.ui.website.Table.__P_456_7);
             }
           }
         }
@@ -899,12 +899,12 @@
        * @param dataRows {Array} Array containing the sorted rows
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_33: function __P_445_33(dataRows) {
+      __P_456_33: function __P_456_33(dataRows) {
         for (var i = 0, l = dataRows.length; i < l; i++) {
           if (i) {
             qxWeb(dataRows[i]).insertAfter(dataRows[i - 1]);
           } else {
-            qxWeb(dataRows[i]).insertBefore(qxWeb(this.__P_445_31().rows.item(0)));
+            qxWeb(dataRows[i]).insertBefore(qxWeb(this.__P_456_31().rows.item(0)));
           }
         }
 
@@ -915,15 +915,15 @@
        * registers global events
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_29: function __P_445_29() {
-        this.on("tap", this.__P_445_46);
+      __P_456_29: function __P_456_29() {
+        this.on("tap", this.__P_456_46);
         this.on("cellClick", function (data) {
-          if (data.cell && data.cell.hasClass(qx.ui.website.Table.__P_445_7)) {
-            this.__P_445_20.bind(this)(data);
+          if (data.cell && data.cell.hasClass(qx.ui.website.Table.__P_456_7)) {
+            this.__P_456_20.bind(this)(data);
           }
         }, this);
-        this.on("pointerover", this.__P_445_47, this);
-        this.on("pointerout", this.__P_445_48, this);
+        this.on("pointerover", this.__P_456_47, this);
+        this.on("pointerout", this.__P_456_48, this);
         return this;
       },
 
@@ -931,8 +931,8 @@
       * Checks if the selection inputs are already rendered
       * @return {Boolean} True if the inputs are rendered and false otherwise
       */
-      __P_445_49: function __P_445_49() {
-        return qxWeb("." + qx.ui.website.Table.__P_445_8).length > 0;
+      __P_456_49: function __P_456_49() {
+        return qxWeb("." + qx.ui.website.Table.__P_456_8).length > 0;
       },
 
       /**
@@ -940,16 +940,16 @@
       * @param cell {qxWeb} The table cell containing the clicked input
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
-      __P_445_50: function __P_445_50(cell) {
+      __P_456_50: function __P_456_50(cell) {
         var clazz = qx.ui.website.Table;
-        var inputs = qxWeb("." + clazz.__P_445_9);
+        var inputs = qxWeb("." + clazz.__P_456_9);
         var clickedInput = cell.find("input");
         var selectionMode = this.getConfig("rowSelection");
-        var headerInput = qxWeb("." + clazz.__P_445_7 + " input");
+        var headerInput = qxWeb("." + clazz.__P_456_7 + " input");
         var selection = [];
 
         if (selectionMode == "multiple") {
-          if (cell.hasClass(clazz.__P_445_7)) {
+          if (cell.hasClass(clazz.__P_456_7)) {
             inputs.setAttribute("checked", clickedInput[0].checked);
           }
 
@@ -983,8 +983,8 @@
           return elem.parentNode.parentNode;
         });
         selectedRows = qxWeb(selectedRows);
-        qxWeb("." + clazz.__P_445_16).removeClass(clazz.__P_445_16);
-        selectedRows.addClass(clazz.__P_445_16);
+        qxWeb("." + clazz.__P_456_16).removeClass(clazz.__P_456_16);
+        selectedRows.addClass(clazz.__P_456_16);
         this.emit("selectionChange", {
           rows: qxWeb(selectedRows)
         });
@@ -998,19 +998,19 @@
       * @param target {HTMLElement} The native event target
       * @return {Map} Map containing the event data
       */
-      __P_445_51: function __P_445_51(eventType, cell, target) {
+      __P_456_51: function __P_456_51(eventType, cell, target) {
         var row = cell[0].parentNode,
             cells = row.cells;
 
-        var colNumber = qx.ui.website.Table.__P_445_3(cells, cell[0]);
+        var colNumber = qx.ui.website.Table.__P_456_3(cells, cell[0]);
 
-        var tHead = this.__P_445_43();
+        var tHead = this.__P_456_43();
 
         var headCell = tHead.cells.item(colNumber);
 
-        var colName = this.__P_445_45(headCell);
+        var colName = this.__P_456_45(headCell);
 
-        var columnIndex = this.getConfig("rowSelection") != "none" ? this.__P_445_37(colName) - 1 : this.__P_445_37(colName);
+        var columnIndex = this.getConfig("rowSelection") != "none" ? this.__P_456_37(colName) - 1 : this.__P_456_37(colName);
         var data = {
           cell: qxWeb(cell),
           row: qxWeb(row),
@@ -1028,12 +1028,12 @@
        * @param e {Event} The native click event.
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_46: function __P_445_46(e) {
+      __P_456_46: function __P_456_46(e) {
         var target = e.getTarget();
         var cell = qxWeb(target);
         var clazz = qx.ui.website.Table;
 
-        while (!(cell.hasClass(clazz.__P_445_6) || cell.hasClass(clazz.__P_445_7) || cell.hasClass(clazz.__P_445_8))) {
+        while (!(cell.hasClass(clazz.__P_456_6) || cell.hasClass(clazz.__P_456_7) || cell.hasClass(clazz.__P_456_8))) {
           if (cell.hasClass(this.classname)) {
             cell = null;
             break;
@@ -1042,13 +1042,13 @@
           cell = cell.getParents().eq(0);
         }
 
-        if (cell.hasClass(clazz.__P_445_8)) {
+        if (cell.hasClass(clazz.__P_456_8)) {
           window.setTimeout(function () {
-            this.__P_445_50(cell);
+            this.__P_456_50(cell);
           }.bind(this), 5);
         } else {
           if (cell && cell.length > 0) {
-            this.__P_445_51("cellClick", cell, target);
+            this.__P_456_51("cellClick", cell, target);
           }
         }
 
@@ -1060,10 +1060,10 @@
       *
       * @param e {Event} The native over event.
       */
-      __P_445_47: function __P_445_47(e) {
+      __P_456_47: function __P_456_47(e) {
         var target = e.getTarget();
         var cell = qxWeb(target);
-        var hovered = this.__P_445_25;
+        var hovered = this.__P_456_25;
 
         if (!cell.hasClass("qx-table-cell") && !cell.hasClass("qx-table-header")) {
           cell = cell.getClosest(".qx-table-cell, .qx-table-header");
@@ -1074,7 +1074,7 @@
             this.emit("cellOut", hovered);
           }
 
-          this.__P_445_25 = this.__P_445_51("cellHover", cell, target);
+          this.__P_456_25 = this.__P_456_51("cellHover", cell, target);
         }
       },
 
@@ -1083,21 +1083,21 @@
       *
       * @param e {Event} The native over event.
       */
-      __P_445_48: function __P_445_48(e) {
+      __P_456_48: function __P_456_48(e) {
         var relatedTarget = e.getRelatedTarget();
         var cell = qxWeb(relatedTarget);
 
-        if (this.__P_445_25) {
+        if (this.__P_456_25) {
           if (!cell.isChildOf(this)) {
-            this.emit("cellOut", this.__P_445_25);
-            this.__P_445_25 = null;
+            this.emit("cellOut", this.__P_456_25);
+            this.__P_456_25 = null;
           } else {
             if (!cell.hasClass("qx-table-cell") && !cell.hasClass("qx-table-header")) {
               cell = cell.getClosest(".qx-table-cell, .qx-table-header");
 
               if (cell.hasClass("qx-table-row-selection")) {
-                this.emit("cellOut", this.__P_445_25);
-                this.__P_445_25 = null;
+                this.emit("cellOut", this.__P_456_25);
+                this.__P_456_25 = null;
               }
             }
           }
@@ -1110,19 +1110,19 @@
        * @param model {Array} The model to apply
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
        */
-      __P_445_39: function __P_445_39(model) {
+      __P_456_39: function __P_456_39(model) {
         if (model && model.length > 0) {
           var cell, row;
 
-          var tHead = this.__P_445_43();
+          var tHead = this.__P_456_43();
 
           var createdRow = null,
               colMeta = null;
           var renderedRow = null;
           var inputType = this.getConfig("rowSelection") == "single" ? "radio" : "checkbox";
 
-          if (this.__P_445_31().rows.length > model.length) {
-            this.__P_445_52(model.length);
+          if (this.__P_456_31().rows.length > model.length) {
+            this.__P_456_52(model.length);
           }
 
           var renderedColIndex = 0,
@@ -1133,27 +1133,27 @@
           for (var i = 0, rowCount = model.length; i < rowCount; i++) {
             row = model[i];
 
-            if (!this.__P_445_53(i)) {
-              createdRow = this.__P_445_31().insertRow(i);
+            if (!this.__P_456_53(i)) {
+              createdRow = this.__P_456_31().insertRow(i);
 
-              if (this.__P_445_49()) {
-                this.__P_445_42(createdRow, inputType, "td");
+              if (this.__P_456_49()) {
+                this.__P_456_42(createdRow, inputType, "td");
               }
             }
 
             for (var j = 0, colCount = row.length; j < colCount; j++) {
-              renderedColIndex = this.__P_445_49() ? j + 1 : j;
-              colName = this.__P_445_45(tHead.cells.item(renderedColIndex));
-              colMeta = this.__P_445_54(colName);
+              renderedColIndex = this.__P_456_49() ? j + 1 : j;
+              colName = this.__P_456_45(tHead.cells.item(renderedColIndex));
+              colMeta = this.__P_456_54(colName);
               coltemplate = this.getTemplate(colName) || coltemplate;
-              renderedRow = this.__P_445_31().rows.item(i);
+              renderedRow = this.__P_456_31().rows.item(i);
               cell = qxWeb.create(qxWeb.template.render(coltemplate, model[i][j]))[0];
 
               if (cell.nodeName.toUpperCase() != "TD") {
                 break;
               }
 
-              if (!this.__P_445_55(i, renderedColIndex)) {
+              if (!this.__P_456_55(i, renderedColIndex)) {
                 renderedRow.appendChild(cell);
               } else {
                 renderedRow.replaceChild(cell, this.getCell(i, renderedColIndex)[0]);
@@ -1185,8 +1185,8 @@
       * @param  rowCount {Integer} The number of rows the kept
       * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
       */
-      __P_445_52: function __P_445_52(rowCount) {
-        var renderedRows = this.__P_445_31().rows;
+      __P_456_52: function __P_456_52(rowCount) {
+        var renderedRows = this.__P_456_31().rows;
 
         while (renderedRows.length > rowCount) {
           this[0].deleteRow(renderedRows.length);
@@ -1200,15 +1200,15 @@
       * @param columName {String} The name of the column to get the metadata for
       * @return {Map} Map containing the metadata
       */
-      __P_445_54: function __P_445_54(columName) {
-        return this.__P_445_19[columName];
+      __P_456_54: function __P_456_54(columName) {
+        return this.__P_456_19[columName];
       },
 
       /**
        * Gets the Root element containing the data rows
        * @return {HTMLElement} The element containing the data rows
        */
-      __P_445_31: function __P_445_31() {
+      __P_456_31: function __P_456_31() {
         return this[0].tBodies.item(0) || this[0];
       },
 
@@ -1217,8 +1217,8 @@
        * @param index {Integer} The index of the row to check
        * @return {Boolean} The result of the check
        */
-      __P_445_53: function __P_445_53(index) {
-        if (this.__P_445_31().rows.item(index)) {
+      __P_456_53: function __P_456_53(index) {
+        if (this.__P_456_31().rows.item(index)) {
           return true;
         }
 
@@ -1231,12 +1231,12 @@
        * @param colIndex {Integer} The index of the column
        * @return {Boolean} The result of the check
        */
-      __P_445_55: function __P_445_55(rowIndex, colIndex) {
-        if (!this.__P_445_53(rowIndex)) {
+      __P_456_55: function __P_456_55(rowIndex, colIndex) {
+        if (!this.__P_456_53(rowIndex)) {
           return false;
         }
 
-        if (this.__P_445_31().rows.item(rowIndex).cells.item(colIndex)) {
+        if (this.__P_456_31().rows.item(rowIndex).cells.item(colIndex)) {
           return true;
         }
 
@@ -1253,9 +1253,9 @@
           columnName: columnName,
           direction: dir
         };
-        this.__P_445_26 = data;
+        this.__P_456_26 = data;
 
-        this.__P_445_56(this[0].tHead, columnName, dir);
+        this.__P_456_56(this[0].tHead, columnName, dir);
       },
 
       /**
@@ -1264,12 +1264,12 @@
        * @param columnName {String} The name of the sorted column
        * @param dir {String} The sorting direction
        */
-      __P_445_56: function __P_445_56(HeaderOrFooter, columnName, dir) {
-        var rows = this.__P_445_43();
+      __P_456_56: function __P_456_56(HeaderOrFooter, columnName, dir) {
+        var rows = this.__P_456_43();
 
         if (HeaderOrFooter && rows) {
           qxWeb(rows.cells).removeClasses(["qx-table-sort-asc", "qx-table-sort-desc"]);
-          var cell = qxWeb("[" + qx.ui.website.Table.__P_445_11 + "='" + columnName + "'], #" + columnName);
+          var cell = qxWeb("[" + qx.ui.website.Table.__P_456_11 + "='" + columnName + "'], #" + columnName);
           cell.addClass("qx-table-sort-" + dir);
         }
       },
@@ -1280,8 +1280,8 @@
        * @param direction {String} The sorting direction
        * @return {Array} Array containing the sorted rows
        */
-      __P_445_34: function __P_445_34(columnName, direction) {
-        var meta = this.__P_445_54(columnName);
+      __P_456_34: function __P_456_34(columnName, direction) {
+        var meta = this.__P_456_54(columnName);
 
         var columnType = qxWeb.string.firstUp(meta.type);
 
@@ -1291,14 +1291,14 @@
 
         var compareFunc = this.getCompareFunction(columnType).bind(this);
 
-        var model = this.__P_445_38();
+        var model = this.__P_456_38();
 
-        var columnIndex = this.__P_445_37(columnName);
+        var columnIndex = this.__P_456_37(columnName);
 
         return model.sort(function (a, b) {
-          var x = this.__P_445_57(qxWeb(a.cells.item(columnIndex)));
+          var x = this.__P_456_57(qxWeb(a.cells.item(columnIndex)));
 
-          var y = this.__P_445_57(qxWeb(b.cells.item(columnIndex)));
+          var y = this.__P_456_57(qxWeb(b.cells.item(columnIndex)));
 
           return compareFunc(x, y, direction);
         }.bind(this));
@@ -1312,8 +1312,8 @@
        * @return {Integer} The result of the comparison
        */
       _compareNumber: function _compareNumber(x, y, direction) {
-        x = qx.ui.website.Table.__P_445_1(x) ? Number(x) : 0;
-        y = qx.ui.website.Table.__P_445_1(y) ? Number(y) : 0;
+        x = qx.ui.website.Table.__P_456_1(x) ? Number(x) : 0;
+        y = qx.ui.website.Table.__P_456_1(y) ? Number(y) : 0;
 
         if (direction == "asc") {
           return x - y;
@@ -1329,8 +1329,8 @@
       * @param headerCell {HTMLTableCellElement} The cell to get the column name for
       * @return {String} The column name
       */
-      __P_445_45: function __P_445_45(headerCell) {
-        return headerCell.getAttribute(qx.ui.website.Table.__P_445_11) || headerCell.getAttribute("id");
+      __P_456_45: function __P_456_45(headerCell) {
+        return headerCell.getAttribute(qx.ui.website.Table.__P_456_11) || headerCell.getAttribute("id");
       },
 
       /**
@@ -1341,8 +1341,8 @@
        * @return {Integer} The result of the comparison
        */
       _compareDate: function _compareDate(x, y, direction) {
-        x = qx.ui.website.Table.__P_445_2(x) ? new Date(x) : new Date(0);
-        y = qx.ui.website.Table.__P_445_2(y) ? new Date(y) : new Date(0);
+        x = qx.ui.website.Table.__P_456_2(x) ? new Date(x) : new Date(0);
+        y = qx.ui.website.Table.__P_456_2(y) ? new Date(y) : new Date(0);
 
         if (direction == "asc") {
           return x - y;
@@ -1380,8 +1380,8 @@
       * @param cell {qxWeb} The cell to get the value of.
       * @return {String} The sorting key
       */
-      __P_445_57: function __P_445_57(cell) {
-        return cell.getAttribute(qx.ui.website.Table.__P_445_13) || this.__P_445_58(cell);
+      __P_456_57: function __P_456_57(cell) {
+        return cell.getAttribute(qx.ui.website.Table.__P_456_13) || this.__P_456_58(cell);
       },
 
       /**
@@ -1389,7 +1389,7 @@
        * @param cell {qxWeb} The cell to get the value of
        * @return {String} The text content of the cell
        */
-      __P_445_58: function __P_445_58(cell) {
+      __P_456_58: function __P_456_58(cell) {
         return cell[0].textContent || cell[0].innerText || "";
       },
 
@@ -1397,7 +1397,7 @@
        * Gets the table's data rows from the DOM
        * @return {Array} Array containing the rows of the table
        */
-      __P_445_38: function __P_445_38() {
+      __P_456_38: function __P_456_38() {
         var rows = this.find("tbody")[0].rows,
             model = [],
             cell = null,
@@ -1413,8 +1413,8 @@
           for (var j = 0, len = cells.length; j < len; j++) {
             cell = qxWeb(cells[j]);
 
-            if (!cell.hasClass(qx.ui.website.Table.__P_445_6)) {
-              cell.addClass(qx.ui.website.Table.__P_445_6);
+            if (!cell.hasClass(qx.ui.website.Table.__P_456_6)) {
+              cell.addClass(qx.ui.website.Table.__P_456_6);
             }
           }
 
@@ -1428,7 +1428,7 @@
        * Default sorting processing
        * @param data {Map} Sorting data
        */
-      __P_445_28: function __P_445_28(data) {
+      __P_456_28: function __P_456_28(data) {
         var dir = "asc";
         var sortedData = this.getSortingData();
 
@@ -1450,11 +1450,11 @@
       * @param data {Map} Map containing the filter data
       * @return {Boolean} True wenn the row containing the current cell should be kept
       */
-      __P_445_32: function __P_445_32(data) {
+      __P_456_32: function __P_456_32(data) {
         var caseSensitive = this.getConfig("caseSensitive");
-        var cell = data.columnName == qx.ui.website.Table.__P_445_10 ? data.row : data.cell;
+        var cell = data.columnName == qx.ui.website.Table.__P_456_10 ? data.row : data.cell;
 
-        var cellValue = this.__P_445_58(cell);
+        var cellValue = this.__P_456_58(cell);
 
         if (caseSensitive) {
           return cellValue.indexOf(data.keyword) != -1;
@@ -1468,13 +1468,13 @@
        * @param columnName {String} The colukn name
        * @return {Integer} The index of the column or -1 if the column doesn't exists
        */
-      __P_445_37: function __P_445_37(columnName) {
-        var tHead = this.__P_445_43();
+      __P_456_37: function __P_456_37(columnName) {
+        var tHead = this.__P_456_43();
 
         var cells = tHead.cells;
 
         for (var i = 0; i < cells.length; i++) {
-          if (columnName == this.__P_445_45(cells.item(i))) {
+          if (columnName == this.__P_456_45(cells.item(i))) {
             return i;
           }
         }
@@ -1491,4 +1491,4 @@
   qx.ui.website.Table.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Table.js.map?dt=1619883173647
+//# sourceMappingURL=Table.js.map?dt=1620070401617

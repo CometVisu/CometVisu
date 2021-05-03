@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 806,
+        "line": 810,
         "column": 3
       }
     },
@@ -646,6 +646,25 @@
       },
       "type": "function",
       "access": "private"
+    },
+    "close": {
+      "location": {
+        "start": {
+          "line": 806,
+          "column": 4
+        },
+        "end": {
+          "line": 808,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.application.Native",
+      "appearsIn": [
+        "qx.application.Native",
+        "qx.application.IApplication"
+      ]
     },
     "bind": {
       "type": "function",

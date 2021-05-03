@@ -41,13 +41,13 @@
   qx.Class.define("qxl.apiviewer.ClassLoader", {
     extend: qx.core.Object,
     statics: {
-      __P_520_0: null,
+      __P_531_0: null,
       RESOURCEPATH: null,
       setBaseUri: function setBaseUri(baseUri) {
-        this.__P_520_0 = baseUri;
+        this.__P_531_0 = baseUri;
       },
       getBaseUri: function getBaseUri() {
-        return this.__P_520_0;
+        return this.__P_531_0;
       },
       loadClassList: function loadClassList(classes, callback, self) {
         var _this = this;
@@ -86,4 +86,4 @@
   qxl.apiviewer.ClassLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassLoader.js.map?dt=1619883180743
+//# sourceMappingURL=ClassLoader.js.map?dt=1620070408934

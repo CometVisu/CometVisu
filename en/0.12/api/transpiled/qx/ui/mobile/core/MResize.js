@@ -73,8 +73,8 @@
     *****************************************************************************
     */
     members: {
-      __P_342_0: null,
-      __P_342_1: null,
+      __P_353_0: null,
+      __P_353_1: null,
 
       /**
        * Removes fixed size from container.
@@ -107,13 +107,13 @@
             this._setHeight(height);
 
             this._setWidth(width);
-          } else if (this.__P_342_0 != height && this.__P_342_1 != width) {
+          } else if (this.__P_353_0 != height && this.__P_353_1 != width) {
             this._setHeight(height);
 
             this._setWidth(width);
 
-            this.__P_342_1 = width;
-            this.__P_342_0 = height;
+            this.__P_353_1 = width;
+            this.__P_353_0 = height;
 
             this._domUpdated();
           }
@@ -154,4 +154,4 @@
   qx.ui.mobile.core.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1619883165376
+//# sourceMappingURL=MResize.js.map?dt=1620070393150

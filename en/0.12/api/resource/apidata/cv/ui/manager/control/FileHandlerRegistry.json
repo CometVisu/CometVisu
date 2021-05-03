@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 236,
+        "line": 234,
         "column": 3
       }
     },
@@ -37,7 +37,7 @@
         "column": 13
       },
       "end": {
-        "line": 39,
+        "line": 37,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "__registry": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 45,
           "column": 20
         }
       },
@@ -61,11 +61,11 @@
     "__defaults": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 46,
           "column": 20
         }
       },
@@ -75,11 +75,11 @@
     "registerFileHandler": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 91,
           "column": 5
         }
       },
@@ -127,11 +127,11 @@
     "getFileHandler": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 142,
           "column": 5
         }
       },
@@ -141,11 +141,11 @@
     "getFileHandlerById": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 146,
           "column": 5
         }
       },
@@ -155,11 +155,11 @@
     "hasFileHandler": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 153,
           "column": 5
         }
       },
@@ -169,11 +169,11 @@
     "setDefault": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 162,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 173,
           "column": 5
         }
       },
@@ -215,11 +215,11 @@
     "_onChangesDefaultConfigEditor": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 185,
           "column": 5
         }
       },
@@ -229,11 +229,11 @@
     "__canHandle": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 204,
           "column": 5
         }
       },
@@ -243,11 +243,11 @@
     "getAllFileHandlers": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 215,
           "column": 5
         }
       },
@@ -3467,11 +3467,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 225,
+        "line": 223,
         "column": 12
       },
       "end": {
-        "line": 235,
+        "line": 233,
         "column": 3
       }
     },

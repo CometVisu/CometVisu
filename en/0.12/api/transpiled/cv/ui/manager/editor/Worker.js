@@ -46,7 +46,7 @@
     */
     properties: {
       editor: {
-        check: 'cv.ui.manager.editor.Source',
+        check: 'cv.ui.manager.editor.AbstractEditor',
         nullable: true
       }
     },
@@ -59,12 +59,12 @@
     members: {
       _worker: null,
       _files: null,
-      open: function open(file, code, schema) {
+      open: function open(file, code, schema, features) {
         this._worker.postMessage(["openFile", {
           path: file.getFullPath(),
           code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
           schema: schema
-        }]);
+        }, features]);
 
         this._files[file.getFullPath()] = file;
       },
@@ -88,6 +88,9 @@
           qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
         }
       },
+      validateXmlConfig: function validateXmlConfig(content) {
+        return this._worker.validateXmlConfig(content);
+      },
       _onMessage: function _onMessage(e) {
         var topic = e.getData().topic;
         var data = e.getData().data;
@@ -109,6 +112,10 @@
             }
 
             file.setHash(data.currentHash);
+            break;
+
+          case "hash":
+            file.setHash(data);
             break;
 
           case "errors":
@@ -144,4 +151,4 @@
   cv.ui.manager.editor.Worker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Worker.js.map?dt=1619883136821
+//# sourceMappingURL=Worker.js.map?dt=1620070362180

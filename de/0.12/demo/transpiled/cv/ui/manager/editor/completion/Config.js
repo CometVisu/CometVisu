@@ -32,10 +32,15 @@
       CONSTRUCTOR
     ***********************************************
     */
-    construct: function construct(schemaNode) {
+
+    /**
+     *
+     * @param schema {cv.ui.manager.model.Schema}
+     */
+    construct: function construct(schema) {
       qx.core.Object.constructor.call(this);
-      this.__P_33_0 = {};
-      this._schemaNode = schemaNode;
+      this.__P_35_0 = {};
+      this._schema = schema;
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
     },
 
@@ -45,9 +50,8 @@
     ***********************************************
     */
     members: {
-      __P_33_0: null,
-      __P_33_1: null,
-      _schemaNode: null,
+      __P_35_0: null,
+      __P_35_1: null,
       _dataProvider: null,
       getLastOpenedTag: function getLastOpenedTag(text) {
         // get all tags inside of the content
@@ -106,7 +110,7 @@
         }
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_33_1 : this.__P_33_0;
+        var cache = inMeta === true ? this.__P_35_1 : this.__P_35_0;
 
         if (elementName in cache) {
           return cache[elementName];
@@ -117,7 +121,7 @@
         }
 
         if (!parent) {
-          parent = this._schemaNode.allowedRootElements.pages;
+          parent = this._schema.getElementNode('pages');
         }
 
         if (currentDepth === undefined) {
@@ -128,7 +132,7 @@
 
         if (elementName in allowedElements) {
           // console.log("found "+elementName+" in tree level "+currentDepth);
-          this.__P_33_0[elementName] = allowedElements[elementName];
+          this.__P_35_0[elementName] = allowedElements[elementName];
           return allowedElements[elementName];
         } else {
           for (var element in allowedElements) {
@@ -170,13 +174,14 @@
         return count === 0 || parseInt(maxOccurs) > count;
       },
       getElementString: function getElementString(element, indent, prefix) {
-        var insertText = indent + prefix + element.name + " "; // add all required attributes with default values
+        var insertText = indent + prefix + element.getName() + " "; // add all required attributes with default values
 
-        Object.getOwnPropertyNames(element.allowedAttributes).forEach(function (attr) {
-          var attribute = element.allowedAttributes[attr];
+        var allowedAttributes = element.getAllowedAttributes();
+        Object.getOwnPropertyNames(allowedAttributes).forEach(function (attr) {
+          var attribute = allowedAttributes[attr];
 
           if (!attribute.isOptional) {
-            insertText += attr + '="' + (attribute.defaultValue ? attribute.defaultValue : "") + '" ';
+            insertText += attr + '="' + (attribute.getDefaultValue() ? attribute.getDefaultValue() : "") + '" ';
           }
         }); // add mandatory children
 
@@ -205,7 +210,7 @@
             insertText += "\n" + indent;
           }
 
-          insertText += "</" + element.name;
+          insertText += "</" + element.getName();
         }
 
         return insertText;
@@ -218,17 +223,19 @@
           return [];
         }
 
-        Object.getOwnPropertyNames(children).forEach(function (name) {
+        Object.getOwnPropertyNames(children).filter(function (name) {
+          return !name.startsWith('#');
+        }).forEach(function (name) {
           // get all element attributes
           var childElem = children[name]; // the element is a suggestion if it's available
 
-          if (this.isItemAvailable(childElem.name, childElem.getBounds().max, usedItems)) {
+          if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
             // mark it as a 'field', and get the documentation
             availableItems.push({
-              label: childElem.name,
+              label: childElem.getName(),
               insertText: this.getElementString(childElem, "", ""),
               kind: window.monaco.languages.CompletionItemKind.Field,
-              detail: childElem.type,
+              detail: childElem.getType(),
               documentation: childElem.getDocumentation().join("\n")
             });
           }
@@ -239,7 +246,7 @@
       getAvailableAttributes: function getAvailableAttributes(element, usedChildTags) {
         var availableItems = []; // get all attributes for the element
 
-        var attrs = element.allowedAttributes;
+        var attrs = element.getAllowedAttributes();
         Object.getOwnPropertyNames(attrs).forEach(function (name) {
           // jshint ignore:line
           var attr = attrs[name]; // accept it in a suggestion list only the attribute is not used yet
@@ -247,8 +254,8 @@
           if (usedChildTags.indexOf(attr.name) === -1) {
             // mark it as a 'property', and get it's documentation
             availableItems.push({
-              label: attr.name,
-              insertText: attr.name + '=""',
+              label: attr.getName(),
+              insertText: attr.getName() + '=""',
               kind: window.monaco.languages.CompletionItemKind.Property,
               detail: attr.getTypeString(),
               documentation: attr.getDocumentation().join("\n")
@@ -509,12 +516,20 @@
               searchedElement = lastOpenedTag.tagName;
             } else if (!isAttributeSearch && filteredElementSearch) {
               searchedElement = openedTags[openedTags.length - 2];
+            } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
+              return this._dataProvider.getAddresses('monaco').then(function (res) {
+                return {
+                  suggestions: res
+                };
+              });
             }
 
             if (searchedElement === 'rrd') {
-              return {
-                suggestions: this._dataProvider.getRrds()
-              };
+              return this._dataProvider.getRrds('monaco').then(function (res) {
+                return {
+                  suggestions: res
+                };
+              });
             } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
               match = /type="([^"]+)"/.exec(lastOpenedTag.text);
               var typeFilter = !!match ? match[1] : null;
@@ -525,14 +540,14 @@
               });
             }
 
-            var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+            var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
             // array if it doesn't
 
             if (isContentSearch) {
               var currentAttribute = usedItems[usedItems.length - 1];
 
-              if (currentItem && currentAttribute in currentItem.allowedAttributes) {
-                var attribute = currentItem.allowedAttributes[currentAttribute];
+              if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+                var attribute = currentItem.getAllowedAttributes()[currentAttribute];
                 var type = attribute.getTypeString();
                 attribute.getEnumeration().forEach(function (entry) {
                   res.push({
@@ -572,12 +587,12 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_33_0 = null;
-      this._schemaNode = null;
+      this.__P_35_0 = null;
+      this._schema = null;
       this._dataProvider = null;
     }
   });
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1619884689808
+//# sourceMappingURL=Config.js.map?dt=1620071700409

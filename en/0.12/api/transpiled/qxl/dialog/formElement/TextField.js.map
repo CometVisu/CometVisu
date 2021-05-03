@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_1_2/source/class/qxl/dialog/formElement/TextField.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "register",
+    "qxl",
+    "dialog",
+    "Dialog",
+    "registerFormElementHandlers",
+    "_registration",
+    "initElement",
+    "fieldType",
+    "fieldData",
+    "key",
+    "formElement",
+    "ui",
+    "form",
+    "TextField",
+    "maxLength",
+    "setMaxLength",
+    "setLiveUpdate",
+    "addToFormController",
+    "_formController",
+    "addTarget",
+    "converter",
+    "value",
+    "_form",
+    "getValidationManager",
+    "validate",
+    "bind",
+    "postProcess",
+    "allowBrowserAutocomplete",
+    "getContentElement",
+    "setAttribute",
+    "getAllowBrowserAutocomplete"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,WADF,EACe,KAAKC,aADpB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,cAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWC,SAAf,EAAlB;;AACA,cAAIL,SAAS,CAACM,SAAd,EAAyB;AACxBJ,YAAAA,WAAW,CAACK,YAAZ,CAAyBP,SAAS,CAACM,SAAnC;AACA;;AACDJ,UAAAA,WAAW,CAACM,aAAZ,CAA0B,IAA1B;AACA,iBAAON,WAAP;AACD,SARa;AAUdO,QAAAA,mBAAmB,EAAG,6BAASV,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AACrE,eAAKQ,eAAL,CAAqBC,SAArB,CAA+BT,WAA/B,EAA4C,OAA5C,EAAqDD,GAArD,EAA0D,IAA1D,EAAgE,IAAhE,EAAsE;AACpEW,YAAAA,SAAS,EAAE,UAAUC,KAAV,EAAiB;AAC1B,mBAAKC,KAAL,CAAWC,oBAAX,GAAkCC,QAAlC;;AACA,qBAAOH,KAAP;AACD,aAHU,CAGTI,IAHS,CAGJ,IAHI;AADyD,WAAtE;AAMD,SAjBa;AAmBdC,QAAAA,WAAW,EAAG,qBAASnB,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AAC7D;AACR;AACA;AACA;AACA;AACA;AACQ,cAAI,OAAOF,SAAS,CAACmB,wBAAjB,IAA6C,SAAjD,EAA4D;AAC1D,gBAAI,CAACnB,SAAS,CAACmB,wBAAf,EAAyC;AACvC;AACAjB,cAAAA,WAAW,CAACkB,iBAAZ,GAAgCC,YAAhC,CACA,cADA,EACgB,cADhB;AAED,aAJD,MAIO,CACL;AACA;AACD;AACF,WATD,MASO,IAAI,CAAC,KAAKC,2BAAL,EAAL,EAAyC;AAC9C;AACApB,YAAAA,WAAW,CAACkB,iBAAZ,GAAgCC,YAAhC,CACE,cADF,EACkB,cADlB;AAED;AACF;AAxCa;AANlB;AAFF,GADA;AAnBA5B,EAAAA,GAAG,CAACC,MAAJ,CAAWQ,WAAX,CAAuBG,SAAvB,CAAiCjB,aAAjC,GAAiDA,aAAjD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.TextField\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"textfield\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.TextField();\n        if (fieldData.maxLength) {\n         formElement.setMaxLength(fieldData.maxLength);\n        }\n        formElement.setLiveUpdate(true);\n        return formElement;\n      },\n\n      addToFormController : function(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null, {\n          converter: function (value) {\n            this._form.getValidationManager().validate();\n            return value;\n          }.bind(this)\n        });\n      },\n\n      postProcess : function(fieldType, fieldData, key, formElement) {\n        /*\n         * This allows changing the default autocomplete behavior to disable\n         * autocomplete on all text and password fields unless allowed at\n         * either the form level or at the field level using the\n         * allowBrowserAutocomplete key.\n         */\n        if (typeof fieldData.allowBrowserAutocomplete == \"boolean\") {\n          if (!fieldData.allowBrowserAutocomplete) {\n            //turn off autocomplete\n            formElement.getContentElement().setAttribute(\n            \"autocomplete\", \"new-password\");\n          } else {\n            // leave autocomplete alone.\n            // Note: Password field above sets attribute\n          }\n        } else if (!this.getAllowBrowserAutocomplete()) {\n          //turn off autocomplete\n          formElement.getContentElement().setAttribute(\n            \"autocomplete\", \"new-password\");\n        }\n      }\n    }\n  }\n});\n"
+  ]
+}

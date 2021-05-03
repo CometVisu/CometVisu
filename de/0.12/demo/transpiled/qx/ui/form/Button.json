@@ -4901,9 +4901,9 @@
   },
   "descendants": [
     "qx.ui.toolbar.Button",
-    "com.zenesis.qx.upload.UploadButton",
-    "qx.ui.form.MenuButton",
     "qx.ui.form.RadioButton",
+    "qx.ui.form.MenuButton",
+    "com.zenesis.qx.upload.UploadButton",
     "qx.ui.form.RepeatButton"
   ]
 }

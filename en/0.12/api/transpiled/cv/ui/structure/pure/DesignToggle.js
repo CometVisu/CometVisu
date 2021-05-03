@@ -18,7 +18,7 @@
       "qx.data.store.Json": {
         "construct": true
       },
-      "qx.util.ResourceManager": {
+      "cv.io.rest.Client": {
         "construct": true
       },
       "cv.Config": {},
@@ -74,7 +74,7 @@
      */
     construct: function construct(props) {
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
+      var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + "/data/designs");
       store.addListener("loaded", function (ev) {
         this.setAvailableDesigns(ev.getData());
       }, this);
@@ -146,4 +146,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1619883138123
+//# sourceMappingURL=DesignToggle.js.map?dt=1620070364901

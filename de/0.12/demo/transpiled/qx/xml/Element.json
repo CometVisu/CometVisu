@@ -104,7 +104,7 @@
           {
             "name": "@return",
             "body": "{String} Serialized subtree",
-            "type": "String",
+            "type": "qx.xml.String",
             "description": " Serialized subtree"
           }
         ]
@@ -146,7 +146,7 @@
             "body": "query {String} XPath query",
             "paramName": "query",
             "description": " XPath query",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
@@ -202,7 +202,7 @@
             "body": "query {String} XPath query",
             "paramName": "query",
             "description": " XPath query",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
@@ -265,7 +265,7 @@
             "body": "tagname {String} the tagname to look for",
             "paramName": "tagname",
             "description": " the tagname to look for",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ],
         "@return": [
@@ -314,14 +314,14 @@
             "body": "query {String}  XPath query",
             "paramName": "query",
             "description": "  XPath query",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the joined text content of the found element or null if not appropriate.",
-            "type": "String",
+            "type": "qx.xml.String",
             "description": " the joined text content of the found element or null if not appropriate."
           }
         ]
@@ -367,21 +367,21 @@
             "body": "namespaceUri {String} Namespace URI",
             "paramName": "namespaceUri",
             "description": " Namespace URI",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
             "body": "value {String} Attribute value",
             "paramName": "value",
             "description": " Attribute value",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ]
       },
@@ -419,21 +419,21 @@
             "body": "namespaceUri {String} Namespace URI",
             "paramName": "namespaceUri",
             "description": " Namespace URI",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the value of the attribute, empty string if not found",
-            "type": "String",
+            "type": "qx.xml.String",
             "description": " the value of the attribute, empty string if not found"
           }
         ]
@@ -479,14 +479,14 @@
             "body": "name {String} The new element's name",
             "paramName": "name",
             "description": " The new element's name",
-            "type": "String"
+            "type": "qx.xml.String"
           },
           {
             "name": "@param",
             "body": "namespaceUri {String} Namespace URI for the new element",
             "paramName": "namespaceUri",
             "description": " Namespace URI for the new element",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ],
         "@return": [

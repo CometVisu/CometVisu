@@ -32,6 +32,10 @@ a, img {
   height: 2em;
   width: 2em;
 }
+.tree-icon {
+  height: 20px;
+  width: 20px;
+}
 
 /*
  * create a three column layout in the middle of the page to allow navbars
@@ -147,6 +151,11 @@ input, textarea, select, button { font: inherit; }
 
 .pageActive, html[xmlns] .navbar.clearfix.navbarActive {
   display: block;
+}
+
+.highlightedWidget, .navbar > .highlightedWidget > .widget {
+  box-shadow: inset 0px 0px 8px 2px #cb4606;
+  border-radius: 4px;
 }
 /*
  * global color declarations for stylings in all designs
@@ -579,4 +588,13 @@ pre.inline { display: inline-block; }
   width: 200px;
   font-size: 14px;
   text-align: center;
+}
+
+#manager div.touch-tree-open-icon {
+  line-height: 32px !important;
+  text-align: right !important;
+}
+
+#manager a {
+  color: #CCC;
 }

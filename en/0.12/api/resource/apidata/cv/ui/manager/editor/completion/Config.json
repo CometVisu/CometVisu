@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 503,
+        "line": 513,
         "column": 3
       }
     },
@@ -42,25 +42,38 @@
   "construct": {
     "location": {
       "start": {
-        "line": 15,
+        "line": 19,
         "column": 13
       },
       "end": {
-        "line": 21,
+        "line": 25,
         "column": 3
       }
     },
-    "jsdoc": {}
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "schema {cv.ui.manager.model.Schema}"
+        }
+      ]
+    }
   },
   "members": {
     "__elementCache": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 33,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 33,
           "column": 24
         }
       },
@@ -70,39 +83,25 @@
     "__metaElementCache": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 34,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 34,
           "column": 28
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "_schemaNode": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4
-        },
-        "end": {
-          "line": 31,
-          "column": 21
-        }
-      },
-      "type": "variable",
-      "access": "protected"
-    },
     "_dataProvider": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 35,
           "column": 23
         }
       },
@@ -112,11 +111,11 @@
     "getLastOpenedTag": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 37,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 87,
           "column": 5
         }
       },
@@ -126,11 +125,11 @@
     "findElements": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 122,
+          "line": 125,
           "column": 5
         }
       },
@@ -140,11 +139,11 @@
     "isItemAvailable": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 144,
           "column": 5
         }
       },
@@ -154,11 +153,11 @@
     "getElementString": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 179,
+          "line": 183,
           "column": 5
         }
       },
@@ -168,11 +167,11 @@
     "getAvailableElements": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 210,
           "column": 5
         }
       },
@@ -182,11 +181,11 @@
     "getAvailableAttributes": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 233,
           "column": 5
         }
       },
@@ -196,11 +195,11 @@
     "getProvider": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 490,
+          "line": 500,
           "column": 5
         }
       },
@@ -3420,11 +3419,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 498,
+        "line": 508,
         "column": 12
       },
       "end": {
-        "line": 502,
+        "line": 512,
         "column": 3
       }
     },

@@ -122,10 +122,10 @@
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__P_268_0 = manager;
-      this.__P_268_1 = manager.getWindow();
-      this.__P_268_2 = this.__P_268_1.document;
-      qx.event.handler.TouchCore.apply(this, [this.__P_268_2]);
+      this.__P_304_0 = manager;
+      this.__P_304_1 = manager.getWindow();
+      this.__P_304_2 = this.__P_304_1.document;
+      qx.event.handler.TouchCore.apply(this, [this.__P_304_2]);
     },
 
     /*
@@ -169,11 +169,11 @@
     *****************************************************************************
     */
     members: {
-      __P_268_0: null,
-      __P_268_1: null,
-      __P_268_2: null,
+      __P_304_0: null,
+      __P_304_1: null,
+      __P_304_2: null,
       // Checks if the mouse movement is happening while simulating a touch event
-      __P_268_3: false,
+      __P_304_3: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -215,7 +215,7 @@
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__P_268_1, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__P_304_1, "useraction", qx.event.type.Data, [type]);
       },
 
       /*
@@ -238,9 +238,9 @@
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__P_268_4("dispose");
+        this.__P_304_4("dispose");
 
-        this.__P_268_0 = this.__P_268_1 = this.__P_268_2 = null;
+        this.__P_304_0 = this.__P_304_1 = this.__P_304_2 = null;
       },
 
       /**
@@ -249,7 +249,7 @@
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __P_268_4: function __P_268_4(method, args) {
+      __P_304_4: function __P_304_4(method, args) {
         qx.event.handler.TouchCore.prototype[method].apply(this, args || []);
       }
     },
@@ -271,4 +271,4 @@
   qx.event.handler.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1619884710829
+//# sourceMappingURL=Touch.js.map?dt=1620071725050

@@ -45,18 +45,18 @@
      * @param loaded {Boolean?false} Whether the package is already loaded
      */
     construct: function construct(urls, id, loaded) {
-      this.__P_182_0 = loaded ? "complete" : "initialized";
-      this.__P_182_1 = urls;
-      this.__P_182_2 = id;
+      this.__P_218_0 = loaded ? "complete" : "initialized";
+      this.__P_218_1 = urls;
+      this.__P_218_2 = id;
     },
     members: {
-      __P_182_0: null,
-      __P_182_1: null,
-      __P_182_2: null,
-      __P_182_3: null,
-      __P_182_4: null,
-      __P_182_5: null,
-      __P_182_6: null,
+      __P_218_0: null,
+      __P_218_1: null,
+      __P_218_2: null,
+      __P_218_3: null,
+      __P_218_4: null,
+      __P_218_5: null,
+      __P_218_6: null,
 
       /**
        * Get the package ID.
@@ -64,7 +64,7 @@
        * @return {String} The package id
        */
       getId: function getId() {
-        return this.__P_182_2;
+        return this.__P_218_2;
       },
 
       /**
@@ -83,7 +83,7 @@
        * @return {String} The ready state.
        */
       getReadyState: function getReadyState() {
-        return this.__P_182_0;
+        return this.__P_218_0;
       },
 
       /**
@@ -93,7 +93,7 @@
        * @return {String[]} An array of urls of this package.
        */
       getUrls: function getUrls() {
-        return this.__P_182_1;
+        return this.__P_218_1;
       },
 
       /**
@@ -103,19 +103,19 @@
        * @param closure {Function} The code of this package wrapped in a closure.
        */
       saveClosure: function saveClosure(closure) {
-        if (this.__P_182_0 == "error") {
+        if (this.__P_218_0 == "error") {
           return;
         }
 
-        this.__P_182_3 = closure;
+        this.__P_218_3 = closure;
 
-        if (!this.__P_182_4) {
+        if (!this.__P_218_4) {
           this.execute();
         } else {
-          clearTimeout(this.__P_182_5);
-          this.__P_182_0 = "cached";
+          clearTimeout(this.__P_218_5);
+          this.__P_218_0 = "cached";
 
-          this.__P_182_6(this);
+          this.__P_218_6(this);
         }
       },
 
@@ -124,19 +124,19 @@
        * {@link qx.io.part.ClosurePart} is used.
        */
       execute: function execute() {
-        if (this.__P_182_3) {
-          this.__P_182_3();
+        if (this.__P_218_3) {
+          this.__P_218_3();
 
-          delete this.__P_182_3;
+          delete this.__P_218_3;
         }
 
-        if (qx.$$packageData[this.__P_182_2]) {
-          this.__P_182_7(qx.$$packageData[this.__P_182_2]);
+        if (qx.$$packageData[this.__P_218_2]) {
+          this.__P_218_7(qx.$$packageData[this.__P_218_2]);
 
-          delete qx.$$packageData[this.__P_182_2];
+          delete qx.$$packageData[this.__P_218_2];
         }
 
-        this.__P_182_0 = "complete";
+        this.__P_218_0 = "complete";
       },
 
       /**
@@ -148,22 +148,22 @@
        * @param self {Object?} The context of the callback.
        */
       loadClosure: function loadClosure(notifyPackageResult, self) {
-        if (this.__P_182_0 !== "initialized") {
+        if (this.__P_218_0 !== "initialized") {
           return;
         }
 
-        this.__P_182_4 = true;
-        this.__P_182_0 = "loading";
-        this.__P_182_6 = qx.Bootstrap.bind(notifyPackageResult, self);
+        this.__P_218_4 = true;
+        this.__P_218_0 = "loading";
+        this.__P_218_6 = qx.Bootstrap.bind(notifyPackageResult, self);
 
-        this.__P_182_8(this.__P_182_1, function () {}, function () {
-          this.__P_182_0 = "error";
+        this.__P_218_8(this.__P_218_1, function () {}, function () {
+          this.__P_218_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
 
         var pkg = this;
-        this.__P_182_5 = setTimeout(function () {
-          pkg.__P_182_0 = "error";
+        this.__P_218_5 = setTimeout(function () {
+          pkg.__P_218_0 = "error";
           notifyPackageResult.call(self, pkg);
         }, qx.Part.TIMEOUT);
       },
@@ -176,19 +176,19 @@
        * @param self {Object?} The context of the callback.
        */
       load: function load(notifyPackageResult, self) {
-        if (this.__P_182_0 !== "initialized") {
+        if (this.__P_218_0 !== "initialized") {
           return;
         }
 
-        this.__P_182_4 = false;
-        this.__P_182_0 = "loading";
+        this.__P_218_4 = false;
+        this.__P_218_0 = "loading";
 
-        this.__P_182_8(this.__P_182_1, function () {
-          this.__P_182_0 = "complete";
+        this.__P_218_8(this.__P_218_1, function () {
+          this.__P_218_0 = "complete";
           this.execute();
           notifyPackageResult.call(self, this);
         }, function () {
-          this.__P_182_0 = "error";
+          this.__P_218_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
       },
@@ -201,7 +201,7 @@
        * @param errBack {Function} Function to execute on error
        * @param self {Object?window} Context to execute the given function in
        */
-      __P_182_8: function __P_182_8(urlList, callback, errBack, self) {
+      __P_218_8: function __P_218_8(urlList, callback, errBack, self) {
         if (urlList.length == 0) {
           callback.call(self);
           return;
@@ -237,8 +237,8 @@
           };
 
           loader.onerror = function () {
-            if (self.__P_182_0 == "loading") {
-              clearTimeout(self.__P_182_5);
+            if (self.__P_218_0 == "loading") {
+              clearTimeout(self.__P_218_5);
               loader.dispose();
               return errBack.call(self);
             }
@@ -260,10 +260,10 @@
        * @signature function(packageData)
        * @param packageData {Map} Map of package data categories ("resources",...)
        */
-      __P_182_7: qx.$$loader.importPackageData
+      __P_218_7: qx.$$loader.importPackageData
     }
   });
   qx.io.part.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1619884703557
+//# sourceMappingURL=Package.js.map?dt=1620071717652

@@ -81,11 +81,11 @@
      */
     members: {
       _timer: null,
-      __P_492_0: null,
-      __P_492_1: false,
-      __P_492_2: null,
-      __P_492_3: null,
-      __P_492_4: false,
+      __P_503_0: null,
+      __P_503_1: false,
+      __P_503_2: null,
+      __P_503_3: null,
+      __P_503_4: false,
       _applyRestartOnVisible: function _applyRestartOnVisible(value) {
         if (value) {
           this._maintainTimerState();
@@ -96,14 +96,14 @@
        * Stop the while invisible
        */
       _maintainTimerState: function _maintainTimerState() {
-        if (this.__P_492_3) {
+        if (this.__P_503_3) {
           this.debug('aborting restart timer ' + this.getPath());
 
-          this.__P_492_3.stop();
+          this.__P_503_3.stop();
 
-          this.__P_492_3.dispose();
+          this.__P_503_3.dispose();
 
-          this.__P_492_3 = null;
+          this.__P_503_3 = null;
         }
 
         if (!this.isRestartOnVisible()) {
@@ -112,7 +112,7 @@
 
         if (this._timer) {
           if (this.isVisible()) {
-            var delta = this.getRefresh() - (Date.now() - this.__P_492_2);
+            var delta = this.getRefresh() - (Date.now() - this.__P_503_2);
 
             if (delta <= 0) {
               // run immediately
@@ -124,12 +124,12 @@
             } else {
               this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms'); // start when interval is finished
 
-              this.__P_492_3 = qx.event.Timer.once(function () {
+              this.__P_503_3 = qx.event.Timer.once(function () {
                 this._timer.start();
 
                 this._timer.fireEvent('interval');
 
-                this.__P_492_3 = null;
+                this.__P_503_3 = null;
               }, this, delta);
             }
           } else if (this._timer.isEnabled()) {
@@ -141,11 +141,11 @@
       },
       setupRefreshAction: function setupRefreshAction() {
         if (this.getRefresh() && this.getRefresh() > 0) {
-          if (this.__P_492_1 === true) {
+          if (this.__P_503_1 === true) {
             return;
           }
 
-          this.__P_492_1 = true;
+          this.__P_503_1 = true;
 
           if (this._setupRefreshAction) {
             // overridden by inheriting class
@@ -154,7 +154,7 @@
             if (this._timer) {
               // listen to foreign timer to get the last execution time;
               this._timer.addListener('interval', function () {
-                this.__P_492_2 = Date.now();
+                this.__P_503_2 = Date.now();
               }, this);
             }
           } else if (!this._timer || !this._timer.isEnabled()) {
@@ -176,13 +176,13 @@
           }
 
           if (this._timer && this._timer.isEnabled()) {
-            this.__P_492_2 = Date.now();
+            this.__P_503_2 = Date.now();
             this.setRestartOnVisible(true);
           }
         }
       },
       refreshAction: function refreshAction(target, src) {
-        this.__P_492_2 = Date.now();
+        this.__P_503_2 = Date.now();
 
         if (this._refreshAction) {
           this._refreshAction();
@@ -217,7 +217,7 @@
                 break;
 
               case 'force':
-                cv.ui.common.Refresh.__P_492_5(src);
+                cv.ui.common.Refresh.__P_503_5(src);
 
               // not needed as those are NOP:
               // case 'none':
@@ -248,7 +248,7 @@
      */
     statics: {
       // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
-      __P_492_5: function __P_492_5(src, twostage) {
+      __P_503_5: function __P_503_5(src, twostage) {
         var step = 0,
             // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
         elements = document.querySelectorAll('img[src="' + src + '"]'),
@@ -349,4 +349,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1619883177135
+//# sourceMappingURL=Refresh.js.map?dt=1620070405407

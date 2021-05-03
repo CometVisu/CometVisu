@@ -31,6 +31,15 @@
       external: {
         check: 'Boolean',
         init: false
+      },
+
+      /**
+       * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
+       */
+      ready: {
+        check: 'Boolean',
+        init: true,
+        event: 'changeReady'
       }
     },
 
@@ -56,4 +65,4 @@
   cv.ui.manager.editor.IEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEditor.js.map?dt=1619883136664
+//# sourceMappingURL=IEditor.js.map?dt=1620070361515

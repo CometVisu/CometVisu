@@ -50,10 +50,10 @@
         widget = this._getWidget();
       }
 
-      widget.addListener("drag", this.__P_265_0, this);
-      widget.addListener("dragend", this.__P_265_1, this);
-      this.__P_265_2 = ["left", "right"];
-      this.__P_265_3 = ["top", "bottom"];
+      widget.addListener("drag", this.__P_276_0, this);
+      widget.addListener("dragend", this.__P_276_1, this);
+      this.__P_276_2 = ["left", "right"];
+      this.__P_276_3 = ["top", "bottom"];
     },
 
     /*
@@ -87,9 +87,9 @@
     *****************************************************************************
     */
     members: {
-      __P_265_4: null,
-      __P_265_2: null,
-      __P_265_3: null,
+      __P_276_4: null,
+      __P_276_2: null,
+      __P_276_3: null,
 
       /**
        * Finds the first scrollable parent (in the parent chain).
@@ -171,9 +171,9 @@
        * @return {String} Returns 'y' or 'x'.
        */
       _getAxis: function _getAxis(edgeType) {
-        if (this.__P_265_2.indexOf(edgeType) !== -1) {
+        if (this.__P_276_2.indexOf(edgeType) !== -1) {
           return "x";
-        } else if (this.__P_265_3.indexOf(edgeType) !== -1) {
+        } else if (this.__P_276_3.indexOf(edgeType) !== -1) {
           return "y";
         } else {
           throw new Error("Invalid edge type given (" + edgeType + "). Must be: 'left', 'right', 'top' or 'bottom'");
@@ -187,9 +187,9 @@
        * @return {Number} The threshold of the x or y axis.
        */
       _getThresholdByEdgeType: function _getThresholdByEdgeType(edgeType) {
-        if (this.__P_265_2.indexOf(edgeType) !== -1) {
+        if (this.__P_276_2.indexOf(edgeType) !== -1) {
           return this.getDragScrollThresholdX();
-        } else if (this.__P_265_3.indexOf(edgeType) !== -1) {
+        } else if (this.__P_276_3.indexOf(edgeType) !== -1) {
           return this.getDragScrollThresholdY();
         }
       },
@@ -272,7 +272,7 @@
             amount = this._calculateScrollAmount(scrollbarSize, exceedanceAmount);
 
         if (this._isScrollbarExceedingMaxPos(scrollbar, axis, amount)) {
-          this.__P_265_4.stop();
+          this.__P_276_4.stop();
         }
 
         scrollbar.scrollBy(amount);
@@ -289,10 +289,10 @@
        *
        * @param e {qx.event.type.Drag} The drag event instance.
        */
-      __P_265_0: function __P_265_0(e) {
-        if (this.__P_265_4) {
+      __P_276_0: function __P_276_0(e) {
+        if (this.__P_276_4) {
           // stop last scroll action
-          this.__P_265_4.stop();
+          this.__P_276_4.stop();
         }
 
         var target;
@@ -341,17 +341,17 @@
           if (this._isScrollbarVisible(scrollable, axis)) {
             exceedanceAmount = this._calculateThresholdExceedance(diff[edgeType], this._getThresholdByEdgeType(edgeType));
 
-            if (this.__P_265_4) {
-              this.__P_265_4.dispose();
+            if (this.__P_276_4) {
+              this.__P_276_4.dispose();
             }
 
-            this.__P_265_4 = new qx.event.Timer(50);
+            this.__P_276_4 = new qx.event.Timer(50);
 
-            this.__P_265_4.addListener("interval", function (scrollable, axis, amount) {
+            this.__P_276_4.addListener("interval", function (scrollable, axis, amount) {
               this._scrollBy(scrollable, axis, amount);
             }.bind(this, scrollable, axis, exceedanceAmount));
 
-            this.__P_265_4.start();
+            this.__P_276_4.start();
 
             e.stopPropagation();
             return;
@@ -366,19 +366,19 @@
        *
        * @param e {qx.event.type.Drag} The drag event instance.
        */
-      __P_265_1: function __P_265_1(e) {
-        if (this.__P_265_4) {
-          this.__P_265_4.stop();
+      __P_276_1: function __P_276_1(e) {
+        if (this.__P_276_4) {
+          this.__P_276_4.stop();
         }
       }
     },
     destruct: function destruct() {
-      if (this.__P_265_4) {
-        this.__P_265_4.dispose();
+      if (this.__P_276_4) {
+        this.__P_276_4.dispose();
       }
     }
   });
   qx.ui.core.MDragDropScrolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDragDropScrolling.js.map?dt=1619883159079
+//# sourceMappingURL=MDragDropScrolling.js.map?dt=1620070386479

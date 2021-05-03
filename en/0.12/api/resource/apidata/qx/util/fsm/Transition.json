@@ -110,7 +110,7 @@
       },
       "name": "predicate",
       "propertyType": "new",
-      "transform": "__P_471_1"
+      "transform": "__P_482_1"
     },
     "nextState": {
       "location": {
@@ -134,7 +134,7 @@
       "name": "nextState",
       "propertyType": "new",
       "init": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE",
-      "transform": "__P_471_2",
+      "transform": "__P_482_2",
       "defaultValue": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE"
     },
     "autoActionsBeforeOntransition": {
@@ -158,7 +158,7 @@
       },
       "name": "autoActionsBeforeOntransition",
       "propertyType": "new",
-      "transform": "__P_471_3"
+      "transform": "__P_482_3"
     },
     "autoActionsAfterOntransition": {
       "location": {
@@ -181,7 +181,7 @@
       },
       "name": "autoActionsAfterOntransition",
       "propertyType": "new",
-      "transform": "__P_471_4"
+      "transform": "__P_482_4"
     },
     "ontransition": {
       "location": {
@@ -204,7 +204,7 @@
       },
       "name": "ontransition",
       "propertyType": "new",
-      "transform": "__P_471_5"
+      "transform": "__P_482_5"
     },
     "qxOwner": {
       "type": "property",

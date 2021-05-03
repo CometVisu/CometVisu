@@ -70,7 +70,7 @@
     ******************************************************
     */
     construct: function construct(props) {
-      this.__P_48_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
+      this.__P_59_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
       this.addListener("changeVisible", this._onChangeVisible, this); // break out of the constructor
 
@@ -78,7 +78,7 @@
         var parentPage = this.getParentPage();
 
         if (!parentPage) {
-          this.__P_48_0 = [];
+          this.__P_59_0 = [];
         } else {
           this.debug("binding navbar visibility from " + parentPage.getPath() + " to " + this.getPath());
         }
@@ -209,18 +209,18 @@
      ******************************************************
      */
     members: {
-      __P_48_0: null,
-      __P_48_1: null,
-      __P_48_2: null,
+      __P_59_0: null,
+      __P_59_1: null,
+      __P_59_2: null,
       _applyNavbarVisibility: function _applyNavbarVisibility(value, old, name) {
         if (value !== null) {
-          var i_name = this.__P_48_0.indexOf(name);
+          var i_name = this.__P_59_0.indexOf(name);
 
           if (i_name !== -1) {
-            this.__P_48_0.splice(i_name, 1);
+            this.__P_59_0.splice(i_name, 1);
           }
 
-          if (this.__P_48_0.length === 0) {
+          if (this.__P_59_0.length === 0) {
             this.setInitialized(true);
           }
         }
@@ -232,7 +232,7 @@
        */
       _onChangeVisible: function _onChangeVisible(ev) {
         if (ev.getData()) {
-          if (this.__P_48_1 !== cv.ui.layout.Manager.COLSPAN_CLASS) {
+          if (this.__P_59_1 !== cv.ui.layout.Manager.COLSPAN_CLASS) {
             this.applyColumnWidths();
           }
 
@@ -247,7 +247,7 @@
        */
       applyColumnWidths: function applyColumnWidths() {
         cv.ui.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
-        this.__P_48_1 = cv.ui.layout.Manager.COLSPAN_CLASS;
+        this.__P_59_1 = cv.ui.layout.Manager.COLSPAN_CLASS;
       },
       // overridden
       getDomString: function getDomString() {
@@ -381,4 +381,4 @@
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1619884691248
+//# sourceMappingURL=Page.js.map?dt=1620071703208

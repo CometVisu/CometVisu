@@ -58,8 +58,8 @@
       this._setLayout(new qx.ui.layout.HBox()); // add blocker
 
 
-      this.__P_404_0 = new qx.ui.core.Blocker(this);
-      this.__P_404_1 = paneScroller;
+      this.__P_415_0 = new qx.ui.core.Blocker(this);
+      this.__P_415_1 = paneScroller;
     },
 
     /*
@@ -68,10 +68,10 @@
     *****************************************************************************
     */
     members: {
-      __P_404_1: null,
-      __P_404_2: null,
-      __P_404_3: null,
-      __P_404_0: null,
+      __P_415_1: null,
+      __P_415_2: null,
+      __P_415_3: null,
+      __P_415_0: null,
 
       /**
        * Returns the TablePaneScroller this header belongs to.
@@ -79,7 +79,7 @@
        * @return {qx.ui.table.pane.Scroller} the TablePaneScroller.
        */
       getPaneScroller: function getPaneScroller() {
-        return this.__P_404_1;
+        return this.__P_415_1;
       },
 
       /**
@@ -88,7 +88,7 @@
        * @return {qx.ui.table.Table} the table.
        */
       getTable: function getTable() {
-        return this.__P_404_1.getTable();
+        return this.__P_415_1.getTable();
       },
 
       /**
@@ -97,7 +97,7 @@
        * @return {qx.ui.core.Blocker} the blocker.
        */
       getBlocker: function getBlocker() {
-        return this.__P_404_0;
+        return this.__P_415_0;
       },
 
       /**
@@ -152,9 +152,9 @@
        *      null if the pointer is over no column.
        */
       setPointerOverColumn: function setPointerOverColumn(col) {
-        if (col != this.__P_404_3) {
-          if (this.__P_404_3 != null) {
-            var widget = this.getHeaderWidgetAtColumn(this.__P_404_3);
+        if (col != this.__P_415_3) {
+          if (this.__P_415_3 != null) {
+            var widget = this.getHeaderWidgetAtColumn(this.__P_415_3);
 
             if (widget != null) {
               widget.removeState("hovered");
@@ -165,7 +165,7 @@
             this.getHeaderWidgetAtColumn(col).addState("hovered");
           }
 
-          this.__P_404_3 = col;
+          this.__P_415_3 = col;
         }
       },
 
@@ -190,7 +190,7 @@
       showColumnMoveFeedback: function showColumnMoveFeedback(col, x) {
         var pos = this.getContentLocation();
 
-        if (this.__P_404_2 == null) {
+        if (this.__P_415_2 == null) {
           var table = this.getTable();
           var xPos = this.getPaneScroller().getTablePaneModel().getX(col);
 
@@ -216,24 +216,24 @@
             top: pos.top
           });
           this.getApplicationRoot().add(feedback);
-          this.__P_404_2 = feedback;
+          this.__P_415_2 = feedback;
         }
 
-        this.__P_404_2.setLayoutProperties({
+        this.__P_415_2.setLayoutProperties({
           left: pos.left + x
         });
 
-        this.__P_404_2.show();
+        this.__P_415_2.show();
       },
 
       /**
        * Hides the feedback shown while a column is moved by the user.
        */
       hideColumnMoveFeedback: function hideColumnMoveFeedback() {
-        if (this.__P_404_2 != null) {
-          this.__P_404_2.destroy();
+        if (this.__P_415_2 != null) {
+          this.__P_415_2.destroy();
 
-          this.__P_404_2 = null;
+          this.__P_415_2 = null;
         }
       },
 
@@ -244,7 +244,7 @@
        *    currently shown, <code>false</code> otherwise.
        */
       isShowingColumnMoveFeedback: function isShowingColumnMoveFeedback() {
-        return this.__P_404_2 != null;
+        return this.__P_415_2 != null;
       },
 
       /**
@@ -337,12 +337,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_404_0.dispose();
+      this.__P_415_0.dispose();
 
-      this._disposeObjects("__P_404_1");
+      this._disposeObjects("__P_415_1");
     }
   });
   qx.ui.table.pane.Header.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Header.js.map?dt=1619883169896
+//# sourceMappingURL=Header.js.map?dt=1620070397593

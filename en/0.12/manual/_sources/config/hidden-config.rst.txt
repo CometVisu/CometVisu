@@ -40,11 +40,20 @@ stored as a PHP array:
 
     <?php
     // File for configurations that shouldn't be shared with the user
-    $hidden = array(
-      'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
-      'influx' => array('user' => 'InfluxDBTestUser', 'pass' => 'Xsdwfw324SEs')
-    );
-    ?>
+    $data = '{
+      "fritzbox": {
+        "uri": "https://192.168.0.1:49443/",
+        "user": "CometVisuTestUser",
+        "pass": "secret"
+      },
+      "influx": {
+        "uri": "https://172.17.0.1/proxy/ts/query",
+        "user": "docker",
+        "pass": "secret",
+        "selfsigned": "true"
+      }
+    }';
+    $hidden = json_decode($data, true);
 
 Manager
 -------
@@ -52,7 +61,7 @@ Manager
 Conveniently, the content of the hidden configuration can
 be edited via the :ref:`Manager <manager>`.
 
-.. figure:: _static/hidden_config_de.png
+.. figure:: _static/hidden_config.png
 
 Known ``Name`` Entries
 ----------------------

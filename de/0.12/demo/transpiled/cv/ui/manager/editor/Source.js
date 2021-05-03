@@ -37,6 +37,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "qx.util.Uri": {},
       "qx.util.DynamicScriptLoader": {},
       "cv.ui.manager.editor.completion.Config": {},
+      "cv.ui.manager.model.Schema": {},
       "cv.ui.manager.editor.completion.CometVisu": {},
       "qx.log.Logger": {},
       "cv.ui.manager.editor.Worker": {},
@@ -45,7 +46,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "qx.util.ResourceManager": {},
       "cv.io.rest.Client": {},
       "cv.ui.manager.snackbar.Controller": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "qx.xml.Document": {},
       "cv.util.ConfigUpgrader": {}
     }
@@ -92,7 +93,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this._initWorker();
 
       this._currentDecorations = [];
-      this.__P_31_0 = /(\s*)(.*)\s*/;
     },
 
     /*
@@ -105,6 +105,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       COUNTER: 0,
       MONACO_EXTENSION_REGEX: null,
       SUPPORTED_FILES: function SUPPORTED_FILES(file) {
+        var filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
+
         if (window.monaco && window.monaco.languages) {
           if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
             // monaco has already been loaded, we can use its languages configuration to check if this file is supported
@@ -121,19 +123,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
           }
 
-          return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(file.getFullPath().toLowerCase());
+          return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
         } else {
-          return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase());
+          return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
         }
       },
-      DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
+      DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
       load: function load(callback, context) {
         var version = false ? 'dev' : 'min';
-        window.documentationMappingPrefix = "editor/"; // jshint ignore:line
-
         var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
-        var loader = new qx.util.DynamicScriptLoader([sourcePath + 'editor/dependencies/jquery.min.js', sourcePath + 'editor/dependencies/jquery.xpath.min.js', sourcePath + 'editor/lib/Messages.js', sourcePath + 'editor/lib/Schema.js', sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
+        var loader = new qx.util.DynamicScriptLoader([sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
         loader.addListener('ready', function () {
           window.require.config({
             paths: {
@@ -153,12 +153,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__P_31_1 = schema;
+            this.__P_33_0 = schema;
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-            var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
-
-            var completionProvider = new cv.ui.manager.editor.completion.Config(parsedSchema);
+            var completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance("visu_config.xsd"));
             var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
             window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
@@ -177,14 +175,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     members: {
-      __P_31_1: null,
+      __P_33_0: null,
       _editor: null,
       _basePath: null,
       _workerWrapper: null,
       _currentDecorations: null,
       _configClient: null,
       _onDidChangeContentGuard: 0,
-      __P_31_0: null,
       _initWorker: function _initWorker() {
         this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
 
@@ -250,6 +247,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       },
       handleAction: function handleAction(actionName) {
+        var _this = this;
+
         if (this.canHandleAction(actionName)) {
           var monacoAction;
 
@@ -260,6 +259,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
             case 'copy':
               monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
+              break;
+
+            case 'paste':
+              navigator.clipboard.readText().then(function (clipText) {
+                return _this._editor.trigger('keyboard', 'type', {
+                  text: clipText
+                });
+              });
+              break;
+
+            case 'undo':
+            case 'redo':
+              this._editor.trigger('external', actionName);
+
               break;
 
             default:
@@ -311,19 +324,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
           } else if (this.getFile().getHasWarnings()) {
             // ask user if he really want to save a file with warnings
-            dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+            qxl.dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
               if (confirmed) {
-                this.__P_31_2();
+                this.__P_33_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_31_2();
+            this.__P_33_1();
           }
         } else {
           cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
         }
       },
-      __P_31_2: function __P_31_2() {
+      __P_33_1: function __P_33_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -347,7 +360,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           this._workerWrapper.open(file, value);
         }
 
-        var newModel = window.monaco.editor.getModel(file.getUri());
+        var id = monaco.Uri.parse(file.getUri());
+        var newModel = window.monaco.editor.getModel(id);
 
         if (!newModel) {
           // create new model
@@ -355,13 +369,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             value = value.documentElement.outerHTML;
           }
 
-          newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+          newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
           newModel.onDidChangeDecorations(function (ev) {
             var errors = false;
             var warnings = false;
             monaco.editor.getModelMarkers({
               owner: newModel.getModeId(),
-              resource: file.getUri()
+              resource: id
             }).some(function (marker) {
               if (marker.severity === monaco.MarkerSeverity.Warning) {
                 warnings = true;
@@ -429,24 +443,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
         });
       },
-      _getErrorPosition: function _getErrorPosition(lineNo) {
-        var content = this._editor.getModel().getLineContent(lineNo);
-
-        var match = this.__P_31_0.exec(content);
-
-        if (match) {
-          var startSpaces = match[1].length + 1;
-          return {
-            startColumn: startSpaces,
-            endColumn: startSpaces + match[2].length
-          };
-        } else {
-          return {
-            startColumn: 1,
-            endColumn: content.length
-          };
-        }
-      },
       showErrors: function showErrors(path, errorList) {
         var markers = [];
 
@@ -462,65 +458,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           if (firstErrorLine < 0 || firstErrorLine > line) {
             firstErrorLine = line;
           }
-        } // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
-
+        }
 
         if (errorList) {
-          //            console.error(errorList);
-          var currentMessage = null; // collect complete error messages
-
           errorList.forEach(function (error) {
-            if (/.*\.xml:[\d]+:.+/.test(error)) {
-              if (currentMessage !== null) {
-                markers.push(Object.assign({
-                  severity: window.monaco.MarkerSeverity.Error,
-                  startLineNumber: currentMessage.line,
-                  endLineNumber: currentMessage.line,
-                  message: currentMessage.message,
-                  source: currentMessage.source
-                }, this._getErrorPosition(currentMessage.line)));
-                check(currentMessage.line);
-              } // add marker for completed message
-
-
-              var parts = error.split(":");
-              var file = parts.shift();
-              var line = parseInt(parts.shift()); // in the last part there might be a more precise line number for the error
-
-              var match = /.+line ([\d]+) -+/.exec(parts[parts.length - 1]);
-
-              if (match) {
-                line = parseInt(match[1]);
-              }
-
-              if (isNaN(line)) {
-                return;
-              } // new error line
-
-
-              currentMessage = {
-                line: line,
-                message: parts.slice(-2).join(":"),
-                file: file,
-                source: error
-              };
-              check(currentMessage.line);
-            } else {
-              currentMessage.message += "\n" + error;
-            }
-          }, this);
-
-          if (currentMessage !== null) {
-            // show last error too
-            markers.push(Object.assign({
+            check(error.line);
+            markers.push({
               severity: window.monaco.MarkerSeverity.Error,
-              startLineNumber: currentMessage.line,
-              endLineNumber: currentMessage.line,
-              message: currentMessage.message,
-              source: currentMessage.source
-            }, this._getErrorPosition(currentMessage.line)));
-            check(currentMessage.line);
-          }
+              startLineNumber: error.line,
+              endLineNumber: error.line,
+              message: error.message,
+              startColumn: error.startColumn,
+              endColumn: error.endColumn
+            });
+          });
         }
 
         if (this.getFile().getFullPath() === path) {
@@ -602,4 +553,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1619884689587
+//# sourceMappingURL=Source.js.map?dt=1620071699754

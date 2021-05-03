@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 117,
+        "line": 125,
         "column": 3
       }
     },
@@ -59,7 +59,7 @@
       "propertyType": "new",
       "nullable": true,
       "allowNull": true,
-      "check": "cv.ui.manager.editor.Source"
+      "check": "cv.ui.manager.editor.AbstractEditor"
     },
     "qxOwner": {
       "type": "property",
@@ -179,14 +179,28 @@
       "type": "function",
       "access": "public"
     },
-    "_onMessage": {
+    "validateXmlConfig": {
       "location": {
         "start": {
           "line": 73,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 75,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onMessage": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
           "column": 5
         }
       },
@@ -3420,7 +3434,7 @@
         "@return": [
           {
             "name": "@return",
-            "type": "cv.ui.manager.editor.Source",
+            "type": "cv.ui.manager.editor.AbstractEditor",
             "desc": "Returns the value for editor"
           }
         ]
@@ -3444,7 +3458,7 @@
         "@param": [
           {
             "name": "@param",
-            "type": "cv.ui.manager.editor.Source",
+            "type": "cv.ui.manager.editor.AbstractEditor",
             "paramName": "value",
             "desc": "Value for editor"
           }
@@ -3472,11 +3486,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 113,
+        "line": 121,
         "column": 12
       },
       "end": {
-        "line": 116,
+        "line": 124,
         "column": 3
       }
     },

@@ -5,8 +5,8 @@
  * @since 2016
  */
 
-var CometVisuMockup = require('../../pages/Mock');
-var cvMockup = new CometVisuMockup();
+const CometVisuMockup = require('../../pages/Mock');
+const cvMockup = new CometVisuMockup();
 
 describe('switch widget testing', function () {
   'use strict';
@@ -49,8 +49,9 @@ describe('switch widget testing', function () {
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 0);
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+    cvMockup.sendUpdate("12/7/37", 0).then(() => {
+      expect(actor.element(by.css(".value")).getText()).toEqual('0');
+    });
 
     // test that clicking on widgets does nothing
     // we have to move the mouse somewhere where the actor is not, before clicking it
@@ -88,12 +89,12 @@ describe('switch widget testing', function () {
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 0);
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
-
-    // test that clicking on actor also works
-    actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual('1');
+    cvMockup.sendUpdate("12/7/37", 0).then(() => {
+      expect(actor.element(by.css(".value")).getText()).toEqual('0');
+      // test that clicking on actor also works
+      actor.click();
+      expect(actor.element(by.css(".value")).getText()).toEqual('1');
+    });
   });
 
   mockupConfig.push(configParts.start +
@@ -122,8 +123,9 @@ describe('switch widget testing', function () {
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 'turn_off');
-    expect(widget.element(by.css(".value")).getText()).toEqual('turn_off');
+    cvMockup.sendUpdate("12/7/37", 'turn_off').then(() => {
+      expect(widget.element(by.css(".value")).getText()).toEqual('turn_off');
+    });
   });
 
   mockupConfig.push(configParts.start +
@@ -168,9 +170,10 @@ describe('switch widget testing', function () {
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", '0');
-    expect(actor.element(by.css(".value")).getText()).toEqual('Off');
-    expect(actor.getAttribute('class')).toMatch("red");
+    cvMockup.sendUpdate("12/7/37", '0').then(() => {
+      expect(actor.element(by.css(".value")).getText()).toEqual('Off');
+      expect(actor.getAttribute('class')).toMatch("red");
+    });
   });
 
   mockupConfig.push(configParts.start +

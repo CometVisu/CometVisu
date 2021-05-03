@@ -374,8 +374,8 @@
     }
   },
   "descendants": [
+    "qx.util.AliasManager",
     "qx.theme.manager.Color",
-    "qx.theme.manager.Font",
-    "qx.util.AliasManager"
+    "qx.theme.manager.Font"
   ]
 }

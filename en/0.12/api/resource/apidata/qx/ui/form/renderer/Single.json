@@ -4237,6 +4237,6 @@
   "events": {},
   "descendants": [
     "qx.ui.form.renderer.SinglePlaceholder",
-    "dialog.FormRenderer"
+    "qxl.dialog.FormRenderer"
   ]
 }

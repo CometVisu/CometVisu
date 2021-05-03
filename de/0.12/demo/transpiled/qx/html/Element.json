@@ -4254,14 +4254,14 @@
     "jsdoc": {}
   },
   "descendants": [
+    "qx.html.Image",
+    "qx.html.Label",
     "cv.svg.Element",
     "qx.html.Root",
-    "qx.html.Label",
     "qx.ui.splitpane.Blocker",
-    "qx.html.Iframe",
-    "qx.html.Blocker",
-    "qx.html.Image",
+    "qx.html.Input",
     "com.zenesis.qx.upload.InputElement",
-    "qx.html.Input"
+    "qx.html.Iframe",
+    "qx.html.Blocker"
   ]
 }

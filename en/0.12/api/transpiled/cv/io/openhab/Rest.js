@@ -12,7 +12,8 @@
       "cv.io.IClient": {
         "require": true
       },
-      "qx.io.request.Xhr": {}
+      "qx.io.request.Xhr": {},
+      "cv.report.Record": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -54,8 +55,8 @@
       this.initialAddresses = [];
       this._backendName = backendName;
       this._backendUrl = backendUrl || "/rest";
-      this.__P_476_0 = {};
-      this.__P_476_1 = {};
+      this.__P_487_0 = {};
+      this.__P_487_1 = {};
     },
 
     /*
@@ -82,12 +83,12 @@
     ***********************************************
     */
     members: {
-      __P_476_2: null,
+      __P_487_2: null,
       _backendName: null,
       _backendUrl: null,
-      __P_476_3: null,
-      __P_476_0: null,
-      __P_476_1: null,
+      __P_487_3: null,
+      __P_487_0: null,
+      __P_487_1: null,
       getBackend: function getBackend() {
         return {};
       },
@@ -99,7 +100,7 @@
           var params = [];
 
           if (map.start) {
-            var endTime = map.end ? this.__P_476_4(map.end) : new Date();
+            var endTime = map.end ? this.__P_487_4(map.end) : new Date();
             var startTime = new Date();
             var match = /^end-([\d]*)([\w]+)$/.exec(map.start);
 
@@ -149,7 +150,7 @@
 
         return null;
       },
-      __P_476_4: function __P_476_4(time) {
+      __P_487_4: function __P_487_4(time) {
         if (time === "now") {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -179,8 +180,8 @@
        * @private
        */
       authorize: function authorize(req) {
-        if (this.__P_476_3) {
-          req.setRequestHeader("Authorization", this.__P_476_3);
+        if (this.__P_487_3) {
+          req.setRequestHeader("Authorization", this.__P_487_3);
         }
       },
 
@@ -195,7 +196,7 @@
         this.authorize(req);
         return req;
       },
-      __P_476_5: function __P_476_5(type, state) {
+      __P_487_5: function __P_487_5(type, state) {
         switch (type) {
           case "Decimal":
           case "Percent":
@@ -237,19 +238,19 @@
                   state: obj.state
                 };
 
-                if (_this.__P_476_5(obj.type, obj.state)) {
+                if (_this.__P_487_5(obj.type, obj.state)) {
                   active++;
                 }
 
-                if (!_this.__P_476_1.hasOwnProperty(obj.name)) {
-                  _this.__P_476_1[obj.name] = [entry.name];
+                if (!_this.__P_487_1.hasOwnProperty(obj.name)) {
+                  _this.__P_487_1[obj.name] = [entry.name];
                 } else {
-                  _this.__P_476_1[obj.name].push(entry.name);
+                  _this.__P_487_1[obj.name].push(entry.name);
                 }
 
                 return map;
               });
-              this.__P_476_0[entry.name] = {
+              this.__P_487_0[entry.name] = {
                 members: map,
                 active: active
               };
@@ -264,26 +265,40 @@
         req.send(); // create sse session
 
         this.running = true;
-        this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged"); // add default listeners
 
-        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-        this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
-        //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+        if (!cv.report.Record.REPLAYING) {
+          this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged"); // add default listeners
 
-        this.eventSource.onerror = function () {
-          this.error("connection lost");
-          this.setConnected(false);
-        }.bind(this);
+          this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+          this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
+          //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
 
-        this.eventSource.onopen = function () {
-          this.debug("connection established");
-          this.setConnected(true);
-        }.bind(this);
+          this.eventSource.onerror = function () {
+            this.error("connection lost");
+            this.setConnected(false);
+          }.bind(this);
+
+          this.eventSource.onopen = function () {
+            this.debug("connection established");
+            this.setConnected(true);
+          }.bind(this);
+        }
+      },
+      terminate: function terminate() {
+        this.debug("terminating connection");
+
+        if (this.eventSource) {
+          this.eventSource.close();
+        }
       },
       handleMessage: function handleMessage(payload) {
         var _this2 = this;
 
         if (payload.type === "message") {
+          this.record("read", {
+            type: payload.type,
+            data: payload.data
+          });
           var data = JSON.parse(payload.data);
 
           if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
@@ -293,16 +308,16 @@
             var change = JSON.parse(data.payload);
             update[item] = change.value; // check if this Item is part of any group
 
-            if (this.__P_476_1.hasOwnProperty(item)) {
-              var groupNames = this.__P_476_1[item];
+            if (this.__P_487_1.hasOwnProperty(item)) {
+              var groupNames = this.__P_487_1[item];
               groupNames.forEach(function (groupName) {
-                var group = _this2.__P_476_0[groupName];
+                var group = _this2.__P_487_0[groupName];
                 var active = 0;
                 group.members[item].value = change.value;
                 Object.keys(group.members).forEach(function (memberName) {
                   var member = group.members[memberName];
 
-                  if (_this2.__P_476_5(member.type, member.value)) {
+                  if (_this2.__P_487_5(member.type, member.value)) {
                     active++;
                   }
                 });
@@ -327,7 +342,7 @@
       login: function login(loginOnly, credentials, callback, context) {
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_476_3 = "Basic " + btoa(credentials.username + ":" + (credentials.password || ""));
+          this.__P_487_3 = "Basic " + btoa(credentials.username + ":" + (credentials.password || ""));
         } // no login needed we just do a request to the if the backend is reachable
 
 
@@ -344,7 +359,7 @@
         req.send();
       },
       getLastError: function getLastError() {
-        return this.__P_476_2;
+        return this.__P_487_2;
       },
       restart: function restart(full) {
         console.log("Not implemented");
@@ -368,42 +383,65 @@
             return null;
         }
       },
-      getProviderConvertFunction: function getProviderConvertFunction(name) {
+      getProviderConvertFunction: function getProviderConvertFunction(name, format) {
         switch (name) {
           case "addresses":
             return function (result) {
-              var data = {};
-              result.forEach(function (element) {
-                var type = element.type ? element.type.split(":")[0] : "";
+              var data;
 
-                if (!data.hasOwnProperty(type)) {
-                  data[type] = [];
-                }
+              if (format === 'monaco') {
+                return result.map(function (entry) {
+                  return {
+                    label: entry.name,
+                    insertText: entry.name,
+                    detail: entry.type,
+                    kind: window.monaco.languages.CompletionItemKind.Value
+                  };
+                });
+              } else {
+                data = {};
+                result.forEach(function (element) {
+                  var type = element.type ? element.type.split(":")[0] : "";
 
-                var entry = {
-                  value: element.name,
-                  label: element.label || element.name
-                };
+                  if (!data.hasOwnProperty(type)) {
+                    data[type] = [];
+                  }
 
-                if (type) {
-                  entry.hints = [{
-                    transform: "OH:" + type.toLowerCase()
-                  }];
-                }
+                  var entry = {
+                    value: element.name,
+                    label: element.label || ''
+                  };
 
-                data[type].push(entry);
-              });
-              return data;
+                  if (type) {
+                    entry.hints = {
+                      transform: "OH:" + type.toLowerCase()
+                    };
+                  }
+
+                  data[type].push(entry);
+                });
+                return data;
+              }
             };
 
           case "rrd":
             return function (result) {
-              return result.map(function (element) {
-                return {
-                  value: element,
-                  label: element
-                };
-              });
+              if (format === 'monaco') {
+                return result.map(function (element) {
+                  return {
+                    insertText: element,
+                    label: element,
+                    kind: window.monaco.languages.CompletionItemKind.EnumMember
+                  };
+                });
+              } else {
+                return result.map(function (element) {
+                  return {
+                    value: element,
+                    label: element
+                  };
+                });
+              }
             };
 
           default:
@@ -415,4 +453,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1619883175993
+//# sourceMappingURL=Rest.js.map?dt=1620070404210

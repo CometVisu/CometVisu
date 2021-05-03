@@ -202,45 +202,47 @@ anpassen ohne dass man sich mit den Regeln der <a class="reference internal" hre
 auseinander setzen muss.</p>
 <div class="section" id="aufbau">
 <h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Der Editor besteht aus drei Teilen:</p>
+<p>Der Editor besteht aus zwei Bereichen:</p>
 <div class="figure align-default">
 <img alt="../_images/editor.png" src="../_images/editor.png" />
 </div>
-<p>Oben ist eine Menü-Leiste, links wird die Struktur der Konfiguration dargestellt
-und rechts können die Attribute für ein Element angepasst werden.</p>
+<p>Links wird die Struktur der Konfiguration eingestellt, rechts wird eine Vorschau der Konfiguration angezeigt.
+Oberhalb der Struktur auf der Linken Seite befindet sich noch ein Suchfeld mit dem eine textuelle Suche nach
+einzelnen Widgets getätigt werden kann. Darüber ist eine Tab-Bar mit einigen Funktionen im Schnellzugriff:</p>
 <p>Die Optionen der Menüleiste sind:</p>
 <dl class="docutils">
-<dt>save</dt><dd>Speichert den aktuellen Stand der Konfiguration.</dd>
-<dt>complex</dt><dd>Schaltet erweiterte Konfigurationsmöglichkeiten frei.</dd>
-<dt>preview</dt><dd>Zeigt eine Vorschau des aktuellen Stands der Konfiguration an ohne die
-bestehende Version zu überschreiben.</dd>
-<dt>manager</dt><dd>Kehrt zum <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> zurück.</dd>
+<dt>Editieren</dt><dd>Öffnet den Bearbeiten-Dialog für die Attribute des gerade ausgewählten Elements in der Struktur. Sollte der Button
+ausgegraut sein, ist entweder kein Element ausgewählt, oder dieses kann nicht bearbeitet werden.</dd>
+<dt>Löschen</dt><dd>Löscht das gerade ausgewählte Element. Sollte der Button ausgegraut sein, dann ist entweder gerade kein Element
+ausgewählt, oder es darf nicht gelöscht werden.</dd>
+<dt>Expertenansicht</dt><dd>Schaltet erweiterte Konfigurationsmöglichkeiten frei.</dd>
+<dt>Refresh</dt><dd>Aktualisiert die Vorschau (die Vorschau wird nicht automatisch nach jeder Änderung aktualisiert, dies muss manuell
+über diesen Button geschehen)</dd>
 </dl>
 </div>
 <div class="section" id="bedienung">
 <h2>Bedienung<a class="headerlink" href="#bedienung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Wenn links ein Element angeklickt wird, so erscheint rechts eine Tabelle mit den
-dazugehörigen Attributen, wenn für diesen Element-Typen verfügbar.</p>
-<p>Um weitere Elemente hinzuzufügen, muss man das zukünftige Eltern-Element mit
-der rechten Maustaste anklicken.</p>
+<p>Man kann Elemente in der Struktur ausklappen indem man auf das kleine Dreieck-Icon ganz links klickt. Durch einen
+Doppelklick öffnet sich der Dialog mit dem die Attribute eines Elements bearbeitet werden können. Erweiterte Funktionen
+zu einem ausgewählten Element stehen per Kontextmenü, welches mit rechter Maustaste geöffnet werden kann.
+Auf Touchscreens wird ein extra Menu-Button ganz rechts angezeigt, mit dem das Kontextmenü geöffnet werden kann.</p>
 <div class="figure align-default">
 <img alt="../_images/editor_node_right_click.png" src="../_images/editor_node_right_click.png" />
 </div>
-<p>In dem dann erscheinenden Kontext-Menü gibt es Optionen für:</p>
+<p>Das Kontextmenü stellt folgenden Optionen zur Verfügung:</p>
 <dl class="docutils">
-<dt>add child</dt><dd>Ein Kind-Element hinzufügen.</dd>
-<dt>remove</dt><dd>Element löschen.</dd>
-<dt>cut</dt><dd>Element ausschneiden.</dd>
-<dt>copy</dt><dd>Element kopieren.</dd>
-<dt>paste</dt><dd>Ausgeschnittenes oder kopiertes Element einfügen.</dd>
-<dt>sort</dt><dd>Elemente umsortieren (wenn an dieser Stelle möglich).</dd>
+<dt>Bearbeiten</dt><dd>Öffnet den Bearbeiten Dialog für die Attribute dieses Elements (sofern es editierbare Attribute gibt).</dd>
+<dt>Löschen</dt><dd>Löscht das Element</dd>
+<dt>Ausschneiden</dt><dd>Löscht das Element und kopiert es für die spätere Verwendung in die Zwischenablage.</dd>
+<dt>Kopieren</dt><dd>Kopiert das Element in die Zwischenablage</dd>
+<dt>Einfügen</dt><dd>Fügt das Element aus der Zwischenablage als neues Kind-Element des aktuell ausgewählten Elements ein.</dd>
+<dt>Kind-Element einfügen</dt><dd>Fügt dem aktuell ausgewählten Element ein neues Kind-Element hinzu.</dd>
 </dl>
-<div class="figure align-default">
-<img alt="../_images/editor_sort.png" src="../_images/editor_sort.png" />
-</div>
-<p>Um Elemente zu sortieren wird bei einem im Kontext-Menü „sort“ ausgewählt. In
-der dann erscheinenden Darstellung kann durch Klicken auf einen der gelben
-Platzhalter dieses Element dorthin verschoben werden.</p>
+<p>Elemente können ebenfalls per Drag&amp;Drop verschoben werden. Das Icon mit dem 6 Punkten rechts neben
+einem jeweiligen Element zeigt an das dieses Icon via Drag&amp;Drop verschoben werden kann. Fehlt dieses Icon, dann ist
+das Verschieben dieses Elements nicht erlaubt.
+Das Hinzufügen eines neuen Elements ist ebenfalls möglich indem man eine Drag&amp;Drop Geste auf dem + Button
+am unteren Rand der linken Seite startet und an der Ziel-Position beendet.</p>
 </div>
 <div class="section" id="erweitertes-setup">
 <h2>Erweitertes Setup<a class="headerlink" href="#erweitertes-setup" title="Link zu dieser Überschrift">¶</a></h2>

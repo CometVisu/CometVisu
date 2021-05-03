@@ -124,18 +124,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     members: {
-      __P_144_0: null,
-      __P_144_1: null,
+      __P_155_0: null,
+      __P_155_1: null,
       // property apply
       _applyModel: function _applyModel(value, old) {
         // remove the old listener
         if (old != undefined) {
-          if (this.__P_144_0 != undefined) {
-            old.removeListenerById(this.__P_144_0);
+          if (this.__P_155_0 != undefined) {
+            old.removeListenerById(this.__P_155_0);
           }
 
-          if (this.__P_144_1 != undefined) {
-            old.removeListenerById(this.__P_144_1);
+          if (this.__P_155_1 != undefined) {
+            old.removeListenerById(this.__P_155_1);
           }
         } // if a model is set
 
@@ -144,14 +144,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // only for qooxdoo models
           if (value instanceof qx.core.Object) {
             // add new listeners
-            this.__P_144_0 = value.addListener("change", this.update, this);
-            this.__P_144_1 = value.addListener("changeBubble", this.update, this);
+            this.__P_155_0 = value.addListener("change", this.update, this);
+            this.__P_155_1 = value.addListener("changeBubble", this.update, this);
           }
         } else {
           var target = this.getTarget(); // if the model is set to null, we should remove all items in the target
 
           if (target != null) {
-            this.__P_144_2();
+            this.__P_155_2();
           }
         }
 
@@ -173,7 +173,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Responsible for removing all items from the target element.
        */
-      __P_144_2: function __P_144_2() {
+      __P_155_2: function __P_155_2() {
         var target = this.getTarget();
 
         for (var i = target.children.length - 1; i >= 0; i--) {
@@ -211,7 +211,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // empty the target
 
 
-        this.__P_144_2(); // delegate methods
+        this.__P_155_2(); // delegate methods
 
 
         var configureItem = this.getDelegate() && this.getDelegate().configureItem;
@@ -261,4 +261,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.data.controller.website.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1619883147261
+//# sourceMappingURL=List.js.map?dt=1620070374463

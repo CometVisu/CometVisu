@@ -61,8 +61,8 @@
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__P_190_0 = manager;
-      this.__P_190_1 = manager.getWindow();
+      this.__P_201_0 = manager;
+      this.__P_201_1 = manager.getWindow();
     },
 
     /*
@@ -92,8 +92,8 @@
     *****************************************************************************
     */
     members: {
-      __P_190_0: null,
-      __P_190_1: null,
+      __P_201_0: null,
+      __P_201_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -116,7 +116,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_190_0 = this.__P_190_1 = null;
+      this.__P_201_0 = this.__P_201_1 = null;
     },
 
     /*
@@ -131,4 +131,4 @@
   qx.event.handler.UserAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UserAction.js.map?dt=1619883151236
+//# sourceMappingURL=UserAction.js.map?dt=1620070378362

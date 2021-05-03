@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 305,
+        "line": 323,
         "column": 3
       }
     },
@@ -107,7 +107,7 @@
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 177,
           "column": 5
         }
       },
@@ -117,11 +117,11 @@
     "__bindToPreference": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 184,
           "column": 5
         }
       },
@@ -131,11 +131,11 @@
     "maintainButtons": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 245,
           "column": 5
         }
       },
@@ -145,11 +145,11 @@
     "getButton": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 249,
           "column": 5
         }
       },
@@ -159,11 +159,11 @@
     "getButtonConfiguration": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 253,
           "column": 5
         }
       },
@@ -173,11 +173,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 246,
+          "line": 256,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 312,
           "column": 5
         }
       },
@@ -7828,11 +7828,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 302,
+        "line": 320,
         "column": 12
       },
       "end": {
-        "line": 304,
+        "line": 322,
         "column": 3
       }
     },

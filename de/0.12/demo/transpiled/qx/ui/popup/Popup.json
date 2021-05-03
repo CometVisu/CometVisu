@@ -5187,6 +5187,7 @@
   },
   "events": {},
   "descendants": [
-    "qx.ui.tooltip.ToolTip"
+    "qx.ui.tooltip.ToolTip",
+    "qx.ui.form.core.VirtualDropDownList"
   ]
 }

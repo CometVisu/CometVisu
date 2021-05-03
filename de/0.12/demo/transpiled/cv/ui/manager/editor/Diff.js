@@ -32,7 +32,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "cv.ui.manager.model.FileItem": {},
       "qx.event.message.Bus": {},
       "cv.ui.manager.snackbar.Controller": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "qx.bom.Viewport": {}
     }
   };
@@ -160,7 +160,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       },
       _loadFile: function _loadFile(file, old) {
-        if (old) {
+        if (old && old instanceof cv.ui.manager.model.FileItem) {
           qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
         }
 
@@ -186,13 +186,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                     changes = _this$_upgradeConfig2[2];
 
                 if (_err) {
-                  dialog.Dialog.error(_err);
+                  qxl.dialog.Dialog.error(_err);
                   qx.event.message.Bus.dispatchByName('cv.manager.action.close');
                 } else {
                   this.setModifiedContent(this._convertToString(upgradedContent));
                   var changesText = changes.length > 0 ? '<div>' + qx.locale.Manager.tr('The following changes have been made') + '</div>' + '<ul><li>' + changes.join('</li><li>') + '</li></ul>' + '<div>' + qx.locale.Manager.tr('You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.') + '</div>' : '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
                   var msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' + changesText + '<div>' + qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') + '</div>' + '<div>' + qx.locale.Manager.tr('Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.') + '</div>';
-                  var d = dialog.Dialog.confirm(msg, function (ok) {
+                  var d = qxl.dialog.Dialog.confirm(msg, function (ok) {
                     if (ok) {
                       this.save(function () {
                         window.location.reload();
@@ -241,4 +241,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Diff.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diff.js.map?dt=1619884689438
+//# sourceMappingURL=Diff.js.map?dt=1620071699602

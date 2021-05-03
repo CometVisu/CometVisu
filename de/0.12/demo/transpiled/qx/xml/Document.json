@@ -206,7 +206,7 @@
             "body": "str {String} the string to be parsed",
             "paramName": "str",
             "description": " the string to be parsed",
-            "type": "String"
+            "type": "qx.xml.String"
           }
         ],
         "@return": [

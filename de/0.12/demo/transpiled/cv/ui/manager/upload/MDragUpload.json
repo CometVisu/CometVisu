@@ -54,7 +54,7 @@
       },
       "name": "uploadMode",
       "propertyType": "new",
-      "apply": "__P_42_1",
+      "apply": "__P_53_1",
       "init": false,
       "check": "Boolean",
       "defaultValue": false

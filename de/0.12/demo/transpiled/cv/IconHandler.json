@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 246,
+        "line": 266,
         "column": 3
       }
     },
@@ -278,14 +278,61 @@
       "type": "function",
       "access": "public"
     },
-    "fillIcons": {
+    "getIconSource": {
       "location": {
         "start": {
-          "line": 220,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 222,
+          "line": 235,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} icon name",
+            "paramName": "name",
+            "description": " icon name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "classes {String?} optional css classes used in the svg icon code (default is 'icon')",
+            "paramName": "classes",
+            "description": " optional css classes used in the svg icon code (default is 'icon')",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|string|*}",
+            "type": "String|string|*",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fillIcons": {
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
           "column": 5
         }
       },
@@ -303,11 +350,11 @@
     "list": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 250,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 252,
           "column": 5
         }
       },
@@ -333,11 +380,11 @@
     "debug": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 262,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 264,
           "column": 5
         }
       },

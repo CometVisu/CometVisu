@@ -106,6 +106,23 @@
         "qx.ui.form.ToggleButton": "class",
         "qx.ui.core.Widget": "class"
       }
+    },
+    "command": {
+      "type": "property",
+      "name": "command",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "event": "changeCommand",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A command called if the {@link #execute} method is called, e.g. on a\n button tap.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -135,7 +152,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -161,7 +177,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -179,7 +194,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -204,7 +218,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -230,7 +243,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -248,6 +260,23 @@
         ]
       }
     },
+    "execute": {
+      "type": "function",
+      "name": "execute",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire the \"execute\" event on the command.</p>"
+          }
+        ]
+      }
+    },
     "setGroup": {
       "type": "function",
       "name": "setGroup",
@@ -255,7 +284,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -281,7 +309,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -299,6 +326,42 @@
         ]
       }
     },
+    "__onCommandExecute": {
+      "type": "function",
+      "name": "__onCommandExecute",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the execute event of the command.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} The execute event of the command.",
+            "paramName": "e",
+            "description": " The execute event of the command.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      }
+    },
+    "_applyCommand": {
+      "type": "function",
+      "name": "_applyCommand",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "jsdoc": {}
+    },
     "resetCommand": {
       "type": "function",
       "name": "resetCommand",
@@ -306,7 +369,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -324,7 +386,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -349,7 +411,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -375,7 +437,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -393,7 +455,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -417,7 +479,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -442,7 +504,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -460,7 +522,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -485,7 +547,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -511,7 +573,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -529,7 +591,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -554,7 +616,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -580,7 +642,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -598,7 +660,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -623,7 +685,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -649,7 +711,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -667,7 +729,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -692,7 +754,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -718,7 +780,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -736,7 +798,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -761,7 +823,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -787,7 +849,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -805,7 +867,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -830,7 +892,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -856,7 +918,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -874,7 +936,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -899,7 +961,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -924,7 +986,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -950,7 +1012,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -968,7 +1030,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -993,7 +1055,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1018,7 +1080,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1044,7 +1106,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1062,7 +1124,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1087,7 +1149,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1112,7 +1174,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1138,7 +1200,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1156,7 +1218,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1181,7 +1243,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1206,7 +1268,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1232,7 +1294,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1250,7 +1312,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1276,7 +1338,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1294,7 +1356,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1320,7 +1382,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1338,7 +1400,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1363,7 +1425,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1389,7 +1451,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1407,7 +1469,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1432,7 +1494,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1458,7 +1520,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1476,7 +1538,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1501,7 +1563,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1527,7 +1589,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1545,7 +1607,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1570,7 +1632,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1596,7 +1658,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1614,7 +1676,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1640,7 +1702,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1658,7 +1720,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1683,7 +1745,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1709,7 +1771,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1727,7 +1789,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1752,7 +1814,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1778,7 +1840,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1796,7 +1858,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1821,7 +1883,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1847,7 +1909,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1865,7 +1927,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1890,7 +1952,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1916,7 +1978,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1934,7 +1996,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1959,7 +2021,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1985,7 +2047,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2003,7 +2065,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2028,7 +2090,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2054,7 +2116,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2072,7 +2134,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2098,7 +2160,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2116,7 +2178,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2141,7 +2203,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2167,7 +2229,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2185,7 +2247,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2210,7 +2272,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2236,7 +2298,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2254,7 +2316,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2279,7 +2341,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2305,7 +2367,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2323,7 +2385,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2348,7 +2410,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2374,7 +2436,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2392,7 +2454,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2417,7 +2479,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2443,7 +2505,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2461,7 +2523,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2486,7 +2548,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2512,7 +2574,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2530,7 +2592,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2555,7 +2617,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2581,7 +2643,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2599,7 +2661,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2624,7 +2686,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2650,7 +2712,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2668,7 +2730,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2693,7 +2755,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2719,7 +2781,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2737,7 +2799,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2762,7 +2824,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2788,7 +2850,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2806,7 +2868,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2831,7 +2893,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2856,7 +2918,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2882,7 +2944,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2900,7 +2962,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2925,7 +2987,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2950,7 +3012,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2976,7 +3038,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2994,7 +3056,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3019,7 +3081,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3045,7 +3107,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3063,7 +3125,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3088,7 +3150,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3113,7 +3175,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3139,7 +3201,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3157,7 +3219,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3182,7 +3244,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3207,7 +3269,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3233,7 +3295,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3251,7 +3313,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3276,7 +3338,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3302,7 +3364,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3320,7 +3382,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3345,7 +3407,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3370,7 +3432,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3396,7 +3458,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3414,7 +3476,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3439,7 +3501,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3464,7 +3526,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3490,7 +3552,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3508,7 +3570,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3533,7 +3595,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3558,7 +3620,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3584,7 +3646,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3602,7 +3664,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3627,7 +3689,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3652,7 +3714,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3678,7 +3740,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3696,7 +3758,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3721,7 +3783,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3746,7 +3808,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3772,7 +3834,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3790,7 +3852,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3815,7 +3877,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -3840,7 +3902,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3866,7 +3928,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3884,7 +3946,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3909,7 +3971,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3935,7 +3997,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3953,7 +4015,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3978,7 +4040,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4003,7 +4065,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4029,7 +4091,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4047,7 +4109,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4072,7 +4134,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4098,7 +4160,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4116,7 +4178,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4141,7 +4203,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4167,7 +4229,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4185,7 +4247,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4210,7 +4272,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4235,7 +4297,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4261,7 +4323,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4279,7 +4341,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4304,7 +4366,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4330,7 +4392,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4348,7 +4410,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4373,7 +4435,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4399,7 +4461,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4417,7 +4479,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4442,7 +4504,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4468,7 +4530,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4486,7 +4548,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4511,7 +4573,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4537,7 +4599,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4555,7 +4617,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4580,7 +4642,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4605,7 +4667,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4631,7 +4693,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "overriddenFrom": "qx.ui.basic.Atom",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4649,7 +4711,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4674,7 +4735,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4692,7 +4752,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4717,7 +4776,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4742,7 +4800,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4768,7 +4825,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.ToggleButton",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4780,7 +4836,40 @@
       }
     }
   },
-  "events": {},
+  "events": {
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IBooleanForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the value was modified</p>"
+          }
+        ]
+      }
+    },
+    "execute": {
+      "type": "event",
+      "name": "execute",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the widget is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
+          }
+        ]
+      }
+    }
+  },
   "descendants": [
     "qx.ui.toolbar.RadioButton"
   ]

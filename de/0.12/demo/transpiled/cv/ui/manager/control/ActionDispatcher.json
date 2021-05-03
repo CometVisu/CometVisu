@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 93,
+        "line": 112,
         "column": 3
       }
     },
@@ -57,7 +57,7 @@
       },
       "name": "focusedWidget",
       "propertyType": "new",
-      "apply": "updateBarButtons",
+      "apply": "_applyFocusedWidget",
       "nullable": true,
       "allowNull": true,
       "check": "cv.ui.manager.IActionHandler"
@@ -120,12 +120,26 @@
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 57,
           "column": 5
         }
       },
       "type": "function",
-      "access": "public",
+      "access": "public"
+    },
+    "_applyFocusedWidget": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
       "applyFor": [
         "focusedWidget"
       ]
@@ -133,11 +147,11 @@
     "hasHandler": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 80,
           "column": 5
         }
       },
@@ -163,11 +177,11 @@
     "_getHandler": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 90,
           "column": 5
         }
       },
@@ -177,11 +191,11 @@
     "_onAction": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 101,
           "column": 5
         }
       },
@@ -3596,11 +3610,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 90,
+        "line": 109,
         "column": 12
       },
       "end": {
-        "line": 92,
+        "line": 111,
         "column": 3
       }
     },

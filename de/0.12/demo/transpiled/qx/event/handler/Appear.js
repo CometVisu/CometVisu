@@ -88,10 +88,10 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_267_0 = manager;
-      this.__P_267_1 = {}; // Register
+      this.__P_268_0 = manager;
+      this.__P_268_1 = {}; // Register
 
-      qx.event.handler.Appear.__P_267_2[this.toHashCode()] = this;
+      qx.event.handler.Appear.__P_268_2[this.toHashCode()] = this;
     },
 
     /*
@@ -116,7 +116,7 @@
       IGNORE_CAN_HANDLE: true,
 
       /** @type {Map} Stores all appear manager instances */
-      __P_267_2: {},
+      __P_268_2: {},
 
       /**
        * Refreshes all appear handlers. Useful after massive DOM manipulations e.g.
@@ -124,7 +124,7 @@
        *
        */
       refresh: function refresh() {
-        var all = this.__P_267_2;
+        var all = this.__P_268_2;
 
         for (var hash in all) {
           all[hash].refresh();
@@ -138,8 +138,8 @@
     *****************************************************************************
     */
     members: {
-      __P_267_0: null,
-      __P_267_1: null,
+      __P_268_0: null,
+      __P_268_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -151,7 +151,7 @@
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-        var targets = this.__P_267_1;
+        var targets = this.__P_268_1;
 
         if (targets && !targets[hash]) {
           targets[hash] = target;
@@ -161,7 +161,7 @@
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-        var targets = this.__P_267_1;
+        var targets = this.__P_268_1;
 
         if (!targets) {
           return;
@@ -185,7 +185,7 @@
        * @return {qx.Promise?} a promise, if one or more of the event handlers returned one 
        */
       refresh: function refresh() {
-        var targets = this.__P_267_1;
+        var targets = this.__P_268_1;
         var legacyIe = qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9;
         var tracker = {};
         var self = this;
@@ -207,7 +207,7 @@
             if (!!elem.$$displayed !== displayed) {
               elem.$$displayed = displayed;
               var evt = qx.event.Registration.createEvent(displayed ? "appear" : "disappear");
-              return self.__P_267_0.dispatchEvent(elem, evt);
+              return self.__P_268_0.dispatchEvent(elem, evt);
             }
           });
         });
@@ -221,9 +221,9 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_267_0 = this.__P_267_1 = null; // Deregister
+      this.__P_268_0 = this.__P_268_1 = null; // Deregister
 
-      delete qx.event.handler.Appear.__P_267_2[this.toHashCode()];
+      delete qx.event.handler.Appear.__P_268_2[this.toHashCode()];
     },
 
     /*
@@ -238,4 +238,4 @@
   qx.event.handler.Appear.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appear.js.map?dt=1619884710796
+//# sourceMappingURL=Appear.js.map?dt=1620071721652

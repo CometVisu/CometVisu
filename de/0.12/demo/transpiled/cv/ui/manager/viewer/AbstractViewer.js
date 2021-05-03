@@ -62,6 +62,11 @@
       external: {
         check: 'Boolean',
         init: false
+      },
+      ready: {
+        check: 'Boolean',
+        init: true,
+        event: 'changeReady'
       }
     },
 
@@ -75,6 +80,8 @@
         return false;
       },
       handleAction: function handleAction() {},
+      configureButton: function configureButton(button) {},
+      unConfigureButton: function unConfigureButton(button) {},
       save: function save() {},
       getCurrentContent: function getCurrentContent() {},
       _applyFile: function _applyFile(file, old) {// show icon for file type
@@ -105,4 +112,4 @@
   cv.ui.manager.viewer.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1619884690619
+//# sourceMappingURL=AbstractViewer.js.map?dt=1620071702588

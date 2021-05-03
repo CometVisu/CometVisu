@@ -4647,5 +4647,7 @@
     },
     "jsdoc": {}
   },
-  "descendants": []
+  "descendants": [
+    "cv.ui.manager.form.ListItem"
+  ]
 }

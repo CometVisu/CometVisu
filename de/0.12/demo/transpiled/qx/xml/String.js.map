@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/xml/String.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "TO_CHARCODE",
+    "FROM_CHARCODE",
+    "escape",
+    "str",
+    "util",
+    "StringEscape",
+    "unescape",
+    "xml",
+    "String"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,eAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,WAAW,EACX;AACE,gBAAS,EADX;AACe;AACb,eAAS,EAFX;AAEe;AACb,cAAS,EAHX;AAGe;AACb,cAAS,EAJX;AAIe;AACb,gBAAS,EALX,CAKc;;AALd,OAHF;;AAWE;AACAC,MAAAA,aAAa,EACb;AACE,YAAI,MADN;AACc;AACZ,YAAI,KAFN;AAEc;AACZ,YAAI,IAHN;AAGc;AACZ,YAAI,IAJN;AAIc;AACZ,YAAI,MALN,CAKc;;AALd,OAbF;;AAsBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,MAAM,EAAG,gBAASC,GAAT,EAAc;AACrB,eAAOV,EAAE,CAACW,IAAH,CAAQC,YAAR,CAAqBH,MAArB,CAA4BC,GAA5B,EAAiC,KAAKF,aAAtC,CAAP;AACD,OArCH;;AAwCE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIK,MAAAA,QAAQ,EAAG,kBAASH,GAAT,EAAc;AACvB,eAAOV,EAAE,CAACW,IAAH,CAAQC,YAAR,CAAqBC,QAArB,CAA8BH,GAA9B,EAAmC,KAAKH,WAAxC,CAAP;AACD;AArDH;AAFF,GADA;AArBAP,EAAAA,EAAE,CAACc,GAAH,CAAOC,MAAP,CAAcZ,aAAd,GAA8BA,aAA9B",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Escaping and unescaping of XML strings.\n */\nqx.Class.define(\"qx.xml.String\",\n{\n  statics :\n  {\n    /** Mapping of XML entity names to the corresponding char code */\n    TO_CHARCODE :\n    {\n      \"quot\" : 34, // \" - double-quote\n      \"amp\"  : 38, // &\n      \"lt\"   : 60, // <\n      \"gt\"   : 62, // >\n      \"apos\" : 39 // XML apostrophe\n    },\n\n    /** Mapping of char codes to XML entity names */\n    FROM_CHARCODE :\n    {\n      34: \"quot\", // \" - double-quote\n      38: \"amp\",  // &\n      60: \"lt\",   // <\n      62: \"gt\",   // >\n      39: \"apos\"  // XML apostrophe\n    },\n\n\n    /**\n     * Escapes the characters in a <code>String</code> using XML entities.\n     *\n     * For example: <tt>\"bread\" & \"butter\"</tt> =>\n     * <tt>&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;</tt>.\n     *\n     * Supports only the four basic XML entities (gt, lt, quot, amp).\n     * Does not support DTDs or external entities.\n     * Note that unicode characters greater than 0x7f are currently escaped to their numerical \\\\u equivalent.\n     *\n     * @param str {String} the string to be escaped\n     * @return {String} the escaped string\n     */\n    escape : function(str) {\n      return qx.util.StringEscape.escape(str, this.FROM_CHARCODE);\n    },\n\n\n    /**\n     * Unescapes a string containing XML entity escapes to a string\n     * containing the actual Unicode characters corresponding to the\n     * escapes.\n     *\n     * Supports only the four basic XML entities (gt, lt, quot, amp).\n     * Does not support DTDs or external entities.\n     *\n     * @param str {String} the string to be unescaped\n     * @return {String} the unescaped string\n     */\n    unescape : function(str) {\n      return qx.util.StringEscape.unescape(str, this.TO_CHARCODE);\n    }\n  }\n});\n"
+  ]
+}

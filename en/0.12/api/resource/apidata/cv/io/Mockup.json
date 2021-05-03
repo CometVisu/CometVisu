@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 349,
+        "line": 351,
         "column": 3
       }
     },
@@ -578,7 +578,7 @@
         ]
       }
     },
-    "update": {
+    "terminate": {
       "location": {
         "start": {
           "line": 325,
@@ -586,6 +586,24 @@
         },
         "end": {
           "line": 325,
+          "column": 29
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 327,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
           "column": 29
         }
       },
@@ -609,11 +627,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 328,
           "column": 35
         }
       },
@@ -645,11 +663,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 329,
           "column": 47
         }
       },
@@ -687,11 +705,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 331,
+          "line": 333,
           "column": 5
         }
       },
@@ -706,11 +724,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 337,
           "column": 5
         }
       },
@@ -734,11 +752,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 338,
+          "line": 340,
           "column": 5
         }
       },
@@ -760,11 +778,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 341,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 343,
           "column": 5
         }
       },
@@ -794,11 +812,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 342,
+          "line": 344,
           "column": 4
         },
         "end": {
-          "line": 344,
+          "line": 346,
           "column": 5
         }
       },
@@ -830,11 +848,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 347,
           "column": 4
         },
         "end": {
-          "line": 347,
+          "line": 349,
           "column": 5
         }
       },
@@ -849,6 +867,13 @@
           {
             "name": "@param",
             "body": "name {String}"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "String"
           }
         ]
       }

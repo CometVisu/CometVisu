@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 161,
+        "line": 165,
         "column": 3
       }
     },
@@ -181,12 +181,12 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 57,
-          "column": 52
+          "line": 58,
+          "column": 60
         }
       },
       "jsdoc": {
@@ -200,6 +200,13 @@
           {
             "name": "@param",
             "body": "name {String}"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "String"
           }
         ]
       },
@@ -209,11 +216,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 48
         }
       },
@@ -237,11 +244,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 49
         }
       },
@@ -277,11 +284,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 89,
           "column": 67
         }
       },
@@ -329,11 +336,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 95,
           "column": 32
         }
       },
@@ -357,11 +364,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 104,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 104,
           "column": 48
         }
       },
@@ -404,11 +411,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 110,
           "column": 49
         }
       },
@@ -434,11 +441,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 116,
           "column": 42
         }
       },
@@ -462,11 +469,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 125,
           "column": 49
         }
       },
@@ -507,11 +514,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 132,
           "column": 31
         }
       },
@@ -537,11 +544,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 137,
           "column": 30
         }
       },
@@ -556,14 +563,36 @@
       "type": "function",
       "access": "public"
     },
-    "update": {
+    "terminate": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 142,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called directly before the page gets unloaded. Can be used to disconnect correctly.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
           "column": 29
         }
       },
@@ -589,11 +618,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 155,
           "column": 35
         }
       },
@@ -627,11 +656,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 163,
           "column": 47
         }
       },

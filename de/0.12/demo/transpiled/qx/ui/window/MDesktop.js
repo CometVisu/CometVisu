@@ -71,8 +71,8 @@
     *****************************************************************************
     */
     members: {
-      __P_285_0: null,
-      __P_285_1: null,
+      __P_319_0: null,
+      __P_319_1: null,
 
       /**
        * Get the desktop's window manager. Each desktop must have a window manager.
@@ -82,11 +82,11 @@
        * @return {qx.ui.window.IWindowManager} The desktop's window manager
        */
       getWindowManager: function getWindowManager() {
-        if (!this.__P_285_1) {
+        if (!this.__P_319_1) {
           this.setWindowManager(new qx.ui.window.Window.DEFAULT_MANAGER_CLASS());
         }
 
-        return this.__P_285_1;
+        return this.__P_319_1;
       },
 
       /**
@@ -105,12 +105,12 @@
        * @param manager {qx.ui.window.IWindowManager} The window manager
        */
       setWindowManager: function setWindowManager(manager) {
-        if (this.__P_285_1) {
-          this.__P_285_1.setDesktop(null);
+        if (this.__P_319_1) {
+          this.__P_319_1.setDesktop(null);
         }
 
         manager.setDesktop(this);
-        this.__P_285_1 = manager;
+        this.__P_319_1 = manager;
       },
 
       /**
@@ -214,11 +214,11 @@
        * @return {qx.ui.window.Window[]} Array of managed windows
        */
       getWindows: function getWindows() {
-        if (!this.__P_285_0) {
-          this.__P_285_0 = [];
+        if (!this.__P_319_0) {
+          this.__P_319_0 = [];
         }
 
-        return this.__P_285_0;
+        return this.__P_319_0;
       }
     },
 
@@ -228,12 +228,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__P_285_0");
+      this._disposeArray("__P_319_0");
 
-      this._disposeObjects("__P_285_1");
+      this._disposeObjects("__P_319_1");
     }
   });
   qx.ui.window.MDesktop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDesktop.js.map?dt=1619884712811
+//# sourceMappingURL=MDesktop.js.map?dt=1620071726734

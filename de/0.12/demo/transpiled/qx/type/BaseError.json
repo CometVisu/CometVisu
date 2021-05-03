@@ -168,7 +168,7 @@
     }
   },
   "descendants": [
-    "qx.core.AssertionError",
-    "qx.core.ValidationError"
+    "qx.core.ValidationError",
+    "qx.core.AssertionError"
   ]
 }

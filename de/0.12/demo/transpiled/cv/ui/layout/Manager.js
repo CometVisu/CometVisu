@@ -247,7 +247,7 @@
                 w = Math.min(100, ourColspan / areaColspan * 100) + '%';
               }
 
-              this.__P_93_0(child, w);
+              this.__P_104_0(child, w);
             }, this);
           } // and elements inside groups
 
@@ -280,11 +280,11 @@
               w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
             }
 
-            this.__P_93_0(e, w);
+            this.__P_104_0(e, w);
           }, this);
         }, this);
       },
-      __P_93_0: function __P_93_0(elem, widthClassSuffix) {
+      __P_104_0: function __P_104_0(elem, widthClassSuffix) {
         if (widthClassSuffix === 'auto') {
           elem.style.width = widthClassSuffix;
         } else {
@@ -310,4 +310,4 @@
   cv.ui.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1619884695178
+//# sourceMappingURL=Manager.js.map?dt=1620071707211

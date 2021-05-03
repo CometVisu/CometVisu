@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 695,
+        "line": 699,
         "column": 3
       }
     },
@@ -1180,14 +1180,32 @@
         "cv.io.IClient"
       ]
     },
-    "update": {
+    "terminate": {
       "location": {
         "start": {
           "line": 659,
           "column": 4
         },
         "end": {
-          "line": 659,
+          "line": 661,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 4
+        },
+        "end": {
+          "line": 663,
           "column": 29
         }
       },
@@ -1211,11 +1229,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 666,
+          "line": 670,
           "column": 4
         },
         "end": {
-          "line": 666,
+          "line": 670,
           "column": 35
         }
       },
@@ -1253,11 +1271,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 674,
+          "line": 678,
           "column": 4
         },
         "end": {
-          "line": 674,
+          "line": 678,
           "column": 47
         }
       },
@@ -1301,11 +1319,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 676,
+          "line": 680,
           "column": 4
         },
         "end": {
-          "line": 678,
+          "line": 682,
           "column": 5
         }
       },
@@ -1320,11 +1338,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 679,
+          "line": 683,
           "column": 4
         },
         "end": {
-          "line": 681,
+          "line": 685,
           "column": 5
         }
       },
@@ -1356,11 +1374,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 682,
+          "line": 686,
           "column": 4
         },
         "end": {
-          "line": 684,
+          "line": 688,
           "column": 5
         }
       },
@@ -1375,6 +1393,13 @@
           {
             "name": "@param",
             "body": "name {String}"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "String"
           }
         ]
       }
@@ -5057,11 +5082,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 692,
+        "line": 696,
         "column": 12
       },
       "end": {
-        "line": 694,
+        "line": 698,
         "column": 3
       }
     },

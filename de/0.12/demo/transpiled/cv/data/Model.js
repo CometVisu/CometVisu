@@ -48,10 +48,10 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_80_0 = {};
-      this.__P_80_1 = {};
-      this.__P_80_2 = {};
-      this.__P_80_3 = {};
+      this.__P_91_0 = {};
+      this.__P_91_1 = {};
+      this.__P_91_2 = {};
+      this.__P_91_3 = {};
     },
 
     /*
@@ -76,12 +76,12 @@
     ******************************************************
     */
     members: {
-      __P_80_0: null,
-      __P_80_1: null,
-      __P_80_2: null,
-      __P_80_3: null,
+      __P_91_0: null,
+      __P_91_1: null,
+      __P_91_2: null,
+      __P_91_3: null,
       getStateListener: function getStateListener() {
-        return this.__P_80_1;
+        return this.__P_91_1;
       },
 
       /**
@@ -91,12 +91,12 @@
        * @param state {var} new state
        */
       onUpdate: function onUpdate(address, state) {
-        var initial = !this.__P_80_0.hasOwnProperty(address);
-        var changed = initial || this.__P_80_0[address] !== state;
-        this.__P_80_0[address] = state; // notify listeners
+        var initial = !this.__P_91_0.hasOwnProperty(address);
+        var changed = initial || this.__P_91_0[address] !== state;
+        this.__P_91_0[address] = state; // notify listeners
 
-        if (this.__P_80_1[address]) {
-          this.__P_80_1[address].forEach(function (listener) {
+        if (this.__P_91_1[address]) {
+          this.__P_91_1[address].forEach(function (listener) {
             listener[0].call(listener[1], address, state, initial, changed);
           }, this);
         }
@@ -111,7 +111,7 @@
           return;
         }
 
-        var addressList = this.__P_80_2;
+        var addressList = this.__P_91_2;
         Object.getOwnPropertyNames(data).forEach(function (address) {
           if (addressList.hasOwnProperty(address)) {
             this.onUpdate(address, data[address]);
@@ -126,7 +126,7 @@
        * @return {var}
        */
       getState: function getState(address) {
-        return this.__P_80_0[address];
+        return this.__P_91_0[address];
       },
 
       /**
@@ -137,11 +137,11 @@
        * @param context {Object} context of the callback
        */
       addUpdateListener: function addUpdateListener(address, callback, context) {
-        if (!this.__P_80_1[address]) {
-          this.__P_80_1[address] = [];
+        if (!this.__P_91_1[address]) {
+          this.__P_91_1[address] = [];
         }
 
-        this.__P_80_1[address].push([callback, context]);
+        this.__P_91_1[address].push([callback, context]);
       },
 
       /**
@@ -152,10 +152,10 @@
        * @param context {Object} context of the callback
        */
       removeUpdateListener: function removeUpdateListener(address, callback, context) {
-        if (this.__P_80_1[address]) {
+        if (this.__P_91_1[address]) {
           var removeIndex = -1;
 
-          this.__P_80_1[address].some(function (entry, i) {
+          this.__P_91_1[address].some(function (entry, i) {
             if (entry[0] === callback && entry[1] === context) {
               removeIndex = i;
               return true;
@@ -163,10 +163,10 @@
           });
 
           if (removeIndex >= 0) {
-            this.__P_80_1[address].splice(removeIndex, 1);
+            this.__P_91_1[address].splice(removeIndex, 1);
 
-            if (this.__P_80_1[address].length === 0) {
-              delete this.__P_80_1[address];
+            if (this.__P_91_1[address].length === 0) {
+              delete this.__P_91_1[address];
             }
           }
         }
@@ -178,7 +178,7 @@
        * @param id {String} path to the widget
        */
       addAddress: function addAddress(address, id) {
-        var list = this.__P_80_2;
+        var list = this.__P_91_2;
 
         if (address in list) {
           list[address].push(id);
@@ -192,7 +192,7 @@
        * @return {Map} Address -> path mapping
        */
       getAddresses: function getAddresses() {
-        return Object.keys(this.__P_80_2);
+        return Object.keys(this.__P_91_2);
       },
 
       /**
@@ -200,7 +200,7 @@
        * @param value {Map} Address -> path mapping
        */
       setAddressList: function setAddressList(value) {
-        this.__P_80_2 = value;
+        this.__P_91_2 = value;
       },
 
       /**
@@ -208,7 +208,7 @@
        * @return {Map} Address -> path mapping
        */
       getAddressList: function getAddressList() {
-        return this.__P_80_2;
+        return this.__P_91_2;
       },
 
       /**
@@ -216,7 +216,7 @@
        * @internal
        */
       resetAddressList: function resetAddressList() {
-        this.__P_80_2 = {};
+        this.__P_91_2 = {};
       },
 
       /**
@@ -225,7 +225,7 @@
        * @return {Map} widget data map
        */
       getWidgetData: function getWidgetData(path) {
-        return this.__P_80_3[path] || (this.__P_80_3[path] = {});
+        return this.__P_91_3[path] || (this.__P_91_3[path] = {});
       },
 
       /**
@@ -264,7 +264,7 @@
        * @param value {Map} path -> widget data map
        */
       setWidgetDataModel: function setWidgetDataModel(value) {
-        this.__P_80_3 = value;
+        this.__P_91_3 = value;
       },
 
       /**
@@ -272,7 +272,7 @@
        * @return {Map} path -> widget data map
        */
       getWidgetDataModel: function getWidgetDataModel() {
-        return this.__P_80_3;
+        return this.__P_91_3;
       },
 
       /**
@@ -280,7 +280,7 @@
        * @internal
        */
       resetWidgetDataModel: function resetWidgetDataModel() {
-        this.__P_80_3 = {};
+        this.__P_91_3 = {};
       },
 
       /**
@@ -288,14 +288,14 @@
        * @internal
        */
       clear: function clear() {
-        this.__P_80_2 = {};
-        this.__P_80_3 = {};
-        this.__P_80_0 = {};
-        this.__P_80_1 = {};
+        this.__P_91_2 = {};
+        this.__P_91_3 = {};
+        this.__P_91_0 = {};
+        this.__P_91_1 = {};
       }
     }
   });
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1619884693985
+//# sourceMappingURL=Model.js.map?dt=1620071705815

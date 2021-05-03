@@ -103,8 +103,8 @@
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this); // Define shorthands
 
-      this.__P_319_0 = manager;
-      this.__P_319_1 = manager.getWindow();
+      this.__P_346_0 = manager;
+      this.__P_346_1 = manager.getWindow();
 
       this._initObserver();
     },
@@ -136,11 +136,11 @@
     *****************************************************************************
     */
     members: {
-      __P_319_0: null,
-      __P_319_1: null,
-      __P_319_2: null,
+      __P_346_0: null,
+      __P_346_1: null,
+      __P_346_2: null,
       _currentOrientation: null,
-      __P_319_3: null,
+      __P_346_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -167,13 +167,13 @@
        * Initializes the native orientation change event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__P_319_3 = qx.lang.Function.listener(this._onNative, this); // Handle orientation change event for Android devices by the resize event.
+        this.__P_346_3 = qx.lang.Function.listener(this._onNative, this); // Handle orientation change event for Android devices by the resize event.
         // See http://stackoverflow.com/questions/1649086/detect-rotation-of-android-phone-in-the-browser-with-javascript
         // for more information.
 
-        this.__P_319_2 = qx.bom.Event.supportsEvent(this.__P_319_1, "orientationchange") ? "orientationchange" : "resize";
+        this.__P_346_2 = qx.bom.Event.supportsEvent(this.__P_346_1, "orientationchange") ? "orientationchange" : "resize";
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__P_319_1, this.__P_319_2, this.__P_319_3);
+        Event.addNativeListener(this.__P_346_1, this.__P_346_2, this.__P_346_3);
       },
 
       /*
@@ -187,7 +187,7 @@
        */
       _stopObserver: function _stopObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__P_319_1, this.__P_319_2, this.__P_319_3);
+        Event.removeNativeListener(this.__P_346_1, this.__P_346_2, this.__P_346_3);
       },
 
       /*
@@ -225,7 +225,7 @@
         if (this._currentOrientation != orientation) {
           this._currentOrientation = orientation;
           var mode = Viewport.isLandscape(domEvent.target) ? "landscape" : "portrait";
-          qx.event.Registration.fireEvent(this.__P_319_1, "orientationchange", qx.event.type.Orientation, [orientation, mode]);
+          qx.event.Registration.fireEvent(this.__P_346_1, "orientationchange", qx.event.type.Orientation, [orientation, mode]);
         }
       }
     },
@@ -238,7 +238,7 @@
     destruct: function destruct() {
       this._stopObserver();
 
-      this.__P_319_0 = this.__P_319_1 = null;
+      this.__P_346_0 = this.__P_346_1 = null;
     },
 
     /*
@@ -253,4 +253,4 @@
   qx.event.handler.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1619884715275
+//# sourceMappingURL=Orientation.js.map?dt=1620071728926

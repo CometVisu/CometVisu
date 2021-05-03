@@ -166,7 +166,7 @@
         } // Finally create the SWF
 
 
-        var flash = this.__P_66_0(element, attributes, params, win);
+        var flash = this.__P_77_0(element, attributes, params, win);
 
         this._flashObjects[attributes.id] = flash;
         return flash;
@@ -193,21 +193,21 @@
        */
       destroy: function destroy(element, win) {
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 11) {
-          element = this.__P_66_1(element);
+          element = this.__P_77_1(element);
 
           if (element.readyState == 4) {
-            this.__P_66_2(element);
+            this.__P_77_2(element);
           } else {
             if (!win) {
               win = window;
             }
 
             qx.bom.Event.addNativeListener(win, "load", function () {
-              qx.bom.Flash.__P_66_2(element);
+              qx.bom.Flash.__P_77_2(element);
             });
           }
         } else {
-          element = this.__P_66_1(element);
+          element = this.__P_77_1(element);
 
           if (element.parentNode) {
             element.parentNode.removeChild(element);
@@ -223,7 +223,7 @@
        * @param element {Element} The element to look.
        * @return {Element} Flash object element
        */
-      __P_66_1: function __P_66_1(element) {
+      __P_77_1: function __P_77_1(element) {
         if (!element) {
           throw new Error("DOM element is null or undefined!");
         }
@@ -245,7 +245,7 @@
        * @signature function(element)
        * @param element {Element} Flash object element to destroy.
        */
-      __P_66_2: qx.core.Environment.select("engine.name", {
+      __P_77_2: qx.core.Environment.select("engine.name", {
         "mshtml": qx.event.GlobalError.observeMethod(function (element) {
           for (var i in element) {
             if (typeof element[i] == "function") {
@@ -267,18 +267,18 @@
        *
        * @signature function()
        */
-      __P_66_3: qx.event.GlobalError.observeMethod(function () {
+      __P_77_3: qx.event.GlobalError.observeMethod(function () {
         // IE Memory Leak Fix
         for (var key in qx.bom.Flash._flashObjects) {
           qx.bom.Flash.destroy(qx.bom.Flash._flashObjects[key]);
         }
 
-        window.__P_66_4 = function () {};
+        window.__P_77_4 = function () {};
 
-        window.__P_66_5 = function () {}; // Remove listener again
+        window.__P_77_5 = function () {}; // Remove listener again
 
 
-        qx.bom.Event.removeNativeListener(window, "beforeunload", qx.bom.Flash.__P_66_3);
+        qx.bom.Event.removeNativeListener(window, "beforeunload", qx.bom.Flash.__P_77_3);
       }),
 
       /**
@@ -290,7 +290,7 @@
        * @param win {Window} Window to create the element for.
        * @signature function(element, attributes, params, win)
        */
-      __P_66_0: function __P_66_0(element, attributes, params, win) {
+      __P_77_0: function __P_77_0(element, attributes, params, win) {
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 11) {
           // Move data from params to attributes
           params.movie = attributes.data;
@@ -352,11 +352,11 @@
     */
     defer: function defer(statics) {
       if (qx.core.Environment.get("engine.name") == "mshtml") {
-        qx.bom.Event.addNativeListener(window, "beforeunload", statics.__P_66_3);
+        qx.bom.Event.addNativeListener(window, "beforeunload", statics.__P_77_3);
       }
     }
   });
   qx.bom.Flash.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flash.js.map?dt=1619883141356
+//# sourceMappingURL=Flash.js.map?dt=1620070368216

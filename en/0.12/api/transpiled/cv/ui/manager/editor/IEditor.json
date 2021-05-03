@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 45,
+        "line": 54,
         "column": 3
       }
     },
@@ -70,17 +70,43 @@
       "init": false,
       "check": "Boolean",
       "defaultValue": false
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready</p>"
+          }
+        ]
+      },
+      "name": "ready",
+      "propertyType": "new",
+      "event": "changeReady",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     }
   },
   "statics": {
     "TITLE": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 41,
           "column": 13
         }
       },
@@ -92,11 +118,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 50,
           "column": 24
         }
       },
@@ -106,11 +132,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 52,
           "column": 37
         }
       },
@@ -269,6 +295,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>external</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #external}."
+          }
+        ]
+      }
+    },
+    "getReady": {
+      "type": "function",
+      "name": "getReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "isReady": {
+      "type": "function",
+      "name": "isReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "setReady": {
+      "type": "function",
+      "name": "setReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for ready"
+          }
+        ]
+      }
+    },
+    "resetReady": {
+      "type": "function",
+      "name": "resetReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>ready</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #ready}."
           }
         ]
       }

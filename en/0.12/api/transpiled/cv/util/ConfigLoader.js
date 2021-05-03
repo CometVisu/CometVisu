@@ -55,7 +55,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_484_0 = new qx.data.Array();
+      this.__P_495_0 = new qx.data.Array();
     },
 
     /*
@@ -64,17 +64,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ******************************************************
     */
     members: {
-      __P_484_0: null,
-      __P_484_1: null,
-      __P_484_2: null,
-      __P_484_3: null,
+      __P_495_0: null,
+      __P_495_1: null,
+      __P_495_2: null,
+      __P_495_3: null,
 
       /**
        * Load a config file
        */
       load: function load(callback, context) {
-        this.__P_484_1 = callback;
-        this.__P_484_2 = context; // get the data once the page was loaded
+        this.__P_495_1 = callback;
+        this.__P_495_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -89,7 +89,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.debug("Requesting " + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__P_484_0.push(uri);
+        this.__P_495_0.push(uri);
 
         ajaxRequest.set({
           accept: "application/xml",
@@ -107,10 +107,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             xml = qx.xml.Document.fromString(xml);
           }
 
-          this.__P_484_3 = xml;
+          this.__P_495_3 = xml;
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
 
-          this.__P_484_0.remove(ajaxRequest.getUrl());
+          this.__P_495_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
             this.configError("parsererror");
@@ -120,6 +120,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
             if (xmlLibVersion === undefined) {
               xmlLibVersion = -1;
+            } else if (xmlLibVersion === '0') {
+              // special wildcard mode used in screenshot generation fixtures
+              xmlLibVersion = cv.Version.LIBRARY_VERSION;
             } else {
               xmlLibVersion = parseInt(xmlLibVersion);
             }
@@ -160,12 +163,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
 
-            this.__P_484_0.remove(ajaxRequest.getUrl());
+            this.__P_495_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__P_484_0.push(demoUrl);
+            this.__P_495_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -188,7 +191,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__P_484_0.push(url);
+        this.__P_495_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -200,7 +203,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
           includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
 
-          this.__P_484_0.remove(url);
+          this.__P_495_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -221,8 +224,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_484_0.length === 0) {
-          this.__P_484_1.call(this.__P_484_2, this.__P_484_3);
+        if (this.__P_495_0.length === 0) {
+          this.__P_495_1.call(this.__P_495_2, this.__P_495_3);
 
           this.dispose();
         }
@@ -290,12 +293,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     destruct: function destruct() {
       // remove references
-      this.__P_484_3 = null;
-      this.__P_484_1 = null;
-      this.__P_484_2 = null;
+      this.__P_495_3 = null;
+      this.__P_495_1 = null;
+      this.__P_495_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1619883176651
+//# sourceMappingURL=ConfigLoader.js.map?dt=1620070404910

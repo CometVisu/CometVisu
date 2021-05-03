@@ -82,23 +82,23 @@
     ******************************************************
     */
     members: {
-      __P_51_0: null,
+      __P_62_0: null,
       getXhr: function getXhr() {
-        return this.__P_51_0;
+        return this.__P_62_0;
       },
       // property apply
       _applyUrl: function _applyUrl(value) {
         if (value) {
-          if (!this.__P_51_0) {
+          if (!this.__P_62_0) {
             var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
             xhr.set({
               method: "GET",
               accept: "application/html",
               requestData: this.getParams()
             });
-            this.__P_51_0 = xhr;
+            this.__P_62_0 = xhr;
           } else {
-            this.__P_51_0.setUrl(qx.util.ResourceManager.getInstance().toUri(value));
+            this.__P_62_0.setUrl(qx.util.ResourceManager.getInstance().toUri(value));
           }
         }
       },
@@ -121,8 +121,8 @@
       },
       // overridden
       _action: function _action() {
-        if (this.__P_51_0) {
-          this.__P_51_0.send();
+        if (this.__P_62_0) {
+          this.__P_62_0.send();
         }
       }
     },
@@ -133,7 +133,7 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_51_0");
+      this._disposeObjects("__P_62_0");
     },
     defer: function defer(statics) {
       cv.ui.structure.WidgetFactory.registerClass("urltrigger", statics);
@@ -142,4 +142,4 @@
   cv.ui.structure.pure.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1619884691743
+//# sourceMappingURL=UrlTrigger.js.map?dt=1620071703705

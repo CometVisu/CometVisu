@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#verfugbare-cometvisu-konfigurationen">Verfügbare CometVisu Konfigurationen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#verfugbare-mediendateien">Verfügbare Mediendateien</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#versteckte-konfigurationen">Versteckte Konfigurationen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cometvisu-icons">CometVisu-Icons</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
@@ -196,38 +197,79 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Der Manager lässt über eine einfache grafische Oberfläche die verschiedensten
 Konfigurationsdateien verwalten (anlegen, bearbeiten, ersetzen, löschen).
 Außerdem können die die <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfigurationen</span></a> so wie
-Medien-Datien (z.B. Hintergrundbilder) verwaltet werden.</p>
-<div class="figure align-default">
-<img alt="../_images/manager.de.png" src="../_images/manager.de.png" />
+Medien-Dateien (z.B. Hintergrundbilder) verwaltet werden.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Der Manager kann geöffnet werden, indem man die Tasten-Kombination „Strg+M“ in einer laufenden CometVisu Instanz drückt
+oder beim Laden der CometVisu den URL-Parameter <cite>manager=1</cite> hinzufügt.</p>
 </div>
+<div class="figure align-default">
+<img alt="../_images/manager.png" src="../_images/manager.png" />
+</div>
+<p>Die jeweiligen Funktionen sind über Menüs, Toolbars oder Buttons erreichbar. Die Startseite des Managers setzt sich aus
+folgenden Komponenten zusammen (von oben nach unten):</p>
+<ul class="simple">
+<li>Menüleiste ganz oben für generelle Funktionen</li>
+<li>Tab-Leiste zur Anzeige der gerade geöffneten Dateien.</li>
+<li>Tab-Bar zum Wechsel zwischen einer tabellarischen und einer Vorschau-Ansicht.</li>
+<li>Der Liste der Konfigurationsdateien mit eigener Tab-Bar für spezifische Funktionen.</li>
+<li>Der Liste der Demo-Konfigurationsdateien (muss ausgeklappt werden durch Klick auf den Titel)</li>
+<li>Der Liste der Mediendateien (sofern vorhanden)</li>
+<li>Speziellen Funktionen, wie die Versteckte Konfiguration oder eine Ansicht aller Icons.</li>
+</ul>
 <div class="section" id="verfugbare-cometvisu-konfigurationen">
 <h2>Verfügbare CometVisu Konfigurationen<a class="headerlink" href="#verfugbare-cometvisu-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>In der Tabelle werden alle verfügbaren Konfigurationen aufgelistet. Namen mit
-<code class="docutils literal notranslate"><span class="pre">*)</span></code> am Ende sind Demo Konfigurationen die geöffnet aber nicht geändert
-werden können.</p>
+<p>In der Liste werden alle verfügbaren Konfigurationen aufgelistet, aufgeteilt in „normale“, editierbare
+Konfigurationsdateien und nicht-editierbare Demo-Konfigurationen. Unter jeder Konfigurationsdatei
+befindet sich eine Listen mit Buttons, die den Schnellzugriff auf die wichtigsten Funktionen bereitstellen.
+Damit kann die Datei heruntergeladen, angesehen oder bearbeitet werden. Weitere Funktionen sind über ein
+Kontextmenü, welches über einen Klick mit der rechten Maustaste auf das Datei-Symbol oder einem Klick mit der
+linken Maustaste auf den 2. Button unter dem Dateisymbol geöffnet werden kann.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_context.png" src="../_images/manager_context.png" />
+</div>
 <dl class="docutils">
-<dt>Öffnen</dt><dd>Öffnet die Konfiguration und zeigt diese im Browser an.</dd>
-<dt>Überprüfen</dt><dd>Überprüft die Validität der Konfiguration, also ob die Syntax der
-<a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML-Datei</span></a> gültig ist.</dd>
-<dt>Editieren</dt><dd>Öffnet die Konfiguration im <a class="reference internal" href="editor.html#editor"><span class="std std-ref">grafischen Editor</span></a>.</dd>
-<dt>Text editieren</dt><dd>Öffnet die Konfiguration in einem Text-Editor im Browser.</dd>
+<dt>Duplizieren</dt><dd>Legt eine Kopie der Konfiguration unter anderem Namen an.</dd>
+<dt>Öffnen</dt><dd>Öffnet die Konfiguration mit dem voreingestellen Standard-Editor (Diese Einstellung kann über die oberste Menüleiste
+unter Einstellungen angepasst werden).</dd>
+<dt>Öffnen mit</dt><dd>Konfigurationsdateien können normal geöffnet oder in 2 verschiedenen Editoren bearbeitet werden.</dd>
+<dt>Vergleichen mit</dt><dd>Steht nur zur Verfügung, wenn die Konfigurationsdatei bereits geändert worden ist. Dann kann die aktuelle Version
+mit älteren Versionen verglichen werden, um ein genaueres Bild von den Änderungen zu bekommen.</dd>
+<dt>Umbenennen</dt><dd>Ändern des Dateinamens.</dd>
+<dt>Löschen</dt><dd>Löscht die Konfiguration.</dd>
 <dt>Herunterladen</dt><dd>Lädt die Konfiguration herunter, so dass diese lokal gesichert oder bearbeitet
 werden kann.</dd>
 <dt>Ersetzen</dt><dd>Lädt eine Konfiguration hoch und ersetzt die bestehende.</dd>
-<dt>Löschen</dt><dd>Löscht die Konfiguration</dd>
+<dt>Prüfen</dt><dd>Überprüft die Validität der Konfiguration, also ob die Syntax der
+<a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML-Datei</span></a> gültig ist.</dd>
 </dl>
 </div>
 <div class="section" id="verfugbare-mediendateien">
 <h2>Verfügbare Mediendateien<a class="headerlink" href="#verfugbare-mediendateien" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die eigene Konfiguration lässt sich durch Dateien erweitern. Typische Beispiele
 sind Hintergrundbilder oder eigene CSS Regeln um ein Design nach persönlichen
-Vorlieben abzuändern.</p>
+Vorlieben abzuändern. Textdateien wie z.B. CSS- oder Javascript-Dateien können
+mit dem eingebauten Texteditor direkt bearbeitet werden, anderen Dateien wie z.B. Bilder
+können hochgeladen, ersetzt oder gelöscht werden.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_media.png" src="../_images/manager_media.png" />
+</div>
+<p>Je nach Art der Mediendatei stehen unterschiedliche Möglichkeiten zur Verfügung.
+Bilder werden direkt als kleine Vorschau dargestellt, können herunter geladen oder geöffnet werden.
+Bei speziellen Text-basierten Bildformaten wie SVG besteht auch die Möglichkeit diese direkt im Texteditor zu bearbeiten.</p>
 </div>
 <div class="section" id="versteckte-konfigurationen">
 <h2>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Manche Plugins benötigen Konfigurationseinstellungen die nicht an den Browser
 übertragen werden sollen. Dies wird im Handbuch unter
 <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">Versteckte Konfigurationen</span></a> genauer beschrieben.</p>
+</div>
+<div class="section" id="cometvisu-icons">
+<h2>CometVisu-Icons<a class="headerlink" href="#cometvisu-icons" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zeigt eine filterbare Liste mit allen in der CometVisu zur Verfügung stehenden Icons.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_icons.png" src="../_images/manager_icons.png" />
+</div>
 </div>
 </div>
 

@@ -44,7 +44,7 @@
       focusedWidget: {
         check: 'cv.ui.manager.IActionHandler',
         nullable: true,
-        apply: 'updateBarButtons'
+        apply: '_applyFocusedWidget'
       },
       main: {
         check: 'cv.ui.manager.Main',
@@ -59,6 +59,7 @@
     */
     members: {
       updateBarButtons: function updateBarButtons() {
+        var actionHandler = this.getFocusedWidget();
         var menuBar = cv.ui.manager.MenuBar.getInstance();
         var config = menuBar.getButtonConfiguration();
         var button;
@@ -67,8 +68,28 @@
 
           if (button) {
             button.setEnabled(config[actionId].general || this.hasHandler(actionId));
+
+            if (actionHandler) {
+              actionHandler.configureButton(actionId, button);
+            }
           }
         }, this);
+      },
+      _applyFocusedWidget: function _applyFocusedWidget(value, old) {
+        if (old) {
+          var menuBar = cv.ui.manager.MenuBar.getInstance();
+          var config = menuBar.getButtonConfiguration();
+          var button;
+          Object.keys(config).forEach(function (actionId) {
+            button = menuBar.getButton(actionId);
+
+            if (button) {
+              old.unConfigureButton(actionId, button);
+            }
+          }, this);
+        }
+
+        this.updateBarButtons();
       },
 
       /**
@@ -114,4 +135,4 @@
   cv.ui.manager.control.ActionDispatcher.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionDispatcher.js.map?dt=1619883136247
+//# sourceMappingURL=ActionDispatcher.js.map?dt=1620070360984

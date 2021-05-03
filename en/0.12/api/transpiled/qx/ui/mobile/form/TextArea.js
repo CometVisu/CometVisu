@@ -129,7 +129,7 @@
         this.getContentElement().style.height = 'auto';
         this.getContentElement().style.height = this.getContentElement().scrollHeight + 'px';
 
-        var scroll = this.__P_355_0();
+        var scroll = this.__P_366_0();
 
         if (scroll) {
           scroll.refresh();
@@ -140,7 +140,7 @@
       * Returns the parent scroll container of this widget.
       * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>
       */
-      __P_355_0: function __P_355_0() {
+      __P_366_0: function __P_366_0() {
         var scroll = this;
 
         while (!(scroll instanceof qx.ui.mobile.container.Scroll)) {
@@ -171,4 +171,4 @@
   qx.ui.mobile.form.TextArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextArea.js.map?dt=1619883166275
+//# sourceMappingURL=TextArea.js.map?dt=1620070394059

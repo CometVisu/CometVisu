@@ -55,7 +55,7 @@
      ******************************************************
      */
     construct: function construct() {
-      this.__P_82_0 = cv.IconConfig.DB;
+      this.__P_93_0 = cv.IconConfig.DB;
     },
 
     /*
@@ -68,7 +68,7 @@
        * Internal database of the known icons.
        * Initially filled with the default icons.
        */
-      __P_82_0: null,
+      __P_93_0: null,
 
       /**
        * Insert or overwrite one or many icons into the database. The parameter
@@ -85,22 +85,22 @@
         var styling = arguments[5];
         var dynamic = arguments[6];
 
-        if (!this.__P_82_0[name]) {
-          this.__P_82_0[name] = {};
+        if (!this.__P_93_0[name]) {
+          this.__P_93_0[name] = {};
         }
 
-        if (!this.__P_82_0[name][type]) {
-          this.__P_82_0[name][type] = {};
+        if (!this.__P_93_0[name][type]) {
+          this.__P_93_0[name][type] = {};
         }
 
-        if (!this.__P_82_0[name][type][flavour]) {
-          this.__P_82_0[name][type][flavour] = {};
+        if (!this.__P_93_0[name][type][flavour]) {
+          this.__P_93_0[name][type][flavour] = {};
         }
 
         if (dynamic && window[dynamic]) {
-          this.__P_82_0[name][type][flavour][color] = window[dynamic](uri);
+          this.__P_93_0[name][type][flavour][color] = window[dynamic](uri);
         } else {
-          this.__P_82_0[name][type][flavour][color] = {
+          this.__P_93_0[name][type][flavour][color] = {
             uri: uri,
             styling: styling
           };
@@ -117,18 +117,18 @@
        * @return {String} The URI for the icon - or "undefined" if not known
        */
       get: function get(name, type, flavour, color) {
-        if (!this.__P_82_0[name]) {
+        if (!this.__P_93_0[name]) {
           return undefined;
         }
 
-        if (!this.__P_82_0[name][type]) {
+        if (!this.__P_93_0[name][type]) {
           type = '*'; // undefined -> use default
         }
 
         var all;
 
-        if (typeof this.__P_82_0[name][type] === 'string') {
-          type = this.__P_82_0[name][type]; // redirect link
+        if (typeof this.__P_93_0[name][type] === 'string') {
+          type = this.__P_93_0[name][type]; // redirect link
 
           if (type.split('/').length > 1) {
             all = type.split('/');
@@ -140,12 +140,12 @@
           }
         }
 
-        if (!this.__P_82_0[name][type][flavour]) {
+        if (!this.__P_93_0[name][type][flavour]) {
           flavour = '*'; // undefined -> use default
         }
 
-        if (typeof this.__P_82_0[name][type][flavour] === 'string') {
-          flavour = this.__P_82_0[name][type][flavour]; // redirect link
+        if (typeof this.__P_93_0[name][type][flavour] === 'string') {
+          flavour = this.__P_93_0[name][type][flavour]; // redirect link
 
           if (flavour.split('/').length > 1) {
             all = flavour.split('/');
@@ -157,21 +157,21 @@
           }
         }
 
-        if (!this.__P_82_0[name][type][flavour][color]) {
+        if (!this.__P_93_0[name][type][flavour][color]) {
           color = '*'; // undefined -> use default
         } // handle a generic mapping function
 
 
-        if (typeof this.__P_82_0[name][type][flavour]['*'] === 'function') {
-          return this.__P_82_0[name][type][flavour]['*'];
+        if (typeof this.__P_93_0[name][type][flavour]['*'] === 'function') {
+          return this.__P_93_0[name][type][flavour]['*'];
         }
 
-        if (typeof this.__P_82_0[name][type][flavour][color] === 'string') {
-          color = this.__P_82_0[name][type][flavour][color];
+        if (typeof this.__P_93_0[name][type][flavour][color] === 'string') {
+          color = this.__P_93_0[name][type][flavour][color];
         } // redirect link
 
 
-        return this.__P_82_0[name][type][flavour][color];
+        return this.__P_93_0[name][type][flavour][color];
       },
       getURI: function getURI() {
         var i = this.get.apply(this, arguments);
@@ -253,6 +253,28 @@
       },
 
       /**
+       * Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.
+       * @param name {String} icon name
+       * @param classes {String?} optional css classes used in the svg icon code (default is 'icon')
+       * @returns {String|string|*}
+       */
+      getIconSource: function getIconSource(name, classes) {
+        var i = this.get.apply(this, arguments);
+
+        if (i) {
+          if (!classes) {
+            classes = "icon";
+          }
+
+          if (typeof i === 'function') {
+            return i(undefined, undefined, classes, true);
+          } else {
+            return qx.util.ResourceManager.getInstance().toUri(i.uri);
+          }
+        }
+      },
+
+      /**
        * Fill the icons in the array.
        */
       fillIcons: function fillIcons(array) {
@@ -266,7 +288,7 @@
        * @return {Array} List of all known icon names
        */
       list: function list() {
-        return Object.keys(this.__P_82_0);
+        return Object.keys(this.__P_93_0);
       },
 
       /**
@@ -278,11 +300,11 @@
        * @return {Object} The icon database
        */
       debug: function debug() {
-        return this.__P_82_0;
+        return this.__P_93_0;
       }
     }
   });
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1619884694051
+//# sourceMappingURL=IconHandler.js.map?dt=1620071705886

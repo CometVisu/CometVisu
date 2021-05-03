@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 275,
+        "line": 281,
         "column": 3
       }
     },
@@ -803,14 +803,32 @@
         "cv.io.IClient"
       ]
     },
-    "destruct": {
+    "terminate": {
       "location": {
         "start": {
-          "line": 267,
+          "line": 264,
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 268,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "destruct": {
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4
+        },
+        "end": {
+          "line": 278,
           "column": 5
         }
       },

@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_1_2/source/class/qxl/dialog/formElement/TextArea.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "register",
+    "qxl",
+    "dialog",
+    "Dialog",
+    "registerFormElementHandlers",
+    "_registration",
+    "initElement",
+    "fieldType",
+    "fieldData",
+    "key",
+    "formElement",
+    "ui",
+    "form",
+    "TextArea",
+    "setHeight",
+    "lines",
+    "setLiveUpdate",
+    "addToFormController",
+    "_formController",
+    "addTarget",
+    "converter",
+    "value",
+    "_form",
+    "getValidationManager",
+    "validate",
+    "bind"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,UADF,EACc,KAAKC,aADnB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,cAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWC,QAAf,EAAlB;AACAH,UAAAA,WAAW,CAACI,SAAZ,CAAsBN,SAAS,CAACO,KAAV,GAAkB,EAAxC;AACAL,UAAAA,WAAW,CAACM,aAAZ,CAA0B,IAA1B;AACA,iBAAON,WAAP;AACD,SANa;AAQdO,QAAAA,mBAAmB,EAAG,6BAASV,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AACrE,eAAKQ,eAAL,CAAqBC,SAArB,CAA+BT,WAA/B,EAA4C,OAA5C,EAAqDD,GAArD,EAA0D,IAA1D,EAAgE,IAAhE,EAAsE;AACpEW,YAAAA,SAAS,EAAE,UAAUC,KAAV,EAAiB;AAC1B,mBAAKC,KAAL,CAAWC,oBAAX,GAAkCC,QAAlC;;AACA,qBAAOH,KAAP;AACD,aAHU,CAGTI,IAHS,CAGJ,IAHI;AADyD,WAAtE;AAMD;AAfa;AANlB;AAFF,GADA;AAnBAxB,EAAAA,GAAG,CAACC,MAAJ,CAAWQ,WAAX,CAAuBG,QAAvB,CAAgCjB,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.TextArea\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"textarea\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.TextArea();\n        formElement.setHeight(fieldData.lines * 16);\n        formElement.setLiveUpdate(true);\n        return formElement;\n      },\n\n      addToFormController : function(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null, {\n          converter: function (value) {\n            this._form.getValidationManager().validate();\n            return value;\n          }.bind(this)\n        });\n      }\n    }\n  }\n});\n"
+  ]
+}

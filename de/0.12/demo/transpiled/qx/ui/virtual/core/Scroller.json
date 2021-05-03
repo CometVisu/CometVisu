@@ -4604,6 +4604,7 @@
   },
   "events": {},
   "descendants": [
-    "qx.ui.tree.VirtualTree"
+    "qx.ui.tree.VirtualTree",
+    "qx.ui.list.List"
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/dialog/Prompt.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "dialog",
+    "Prompt",
+    "members",
+    "_createWidgetContent",
+    "_textField",
+    "setLiveUpdate",
+    "cv",
+    "ui",
+    "manager"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EAA+C;AAC7CC,IAAAA,MAAM,EAAEC,GAAG,CAACC,MAAJ,CAAWC,MAD0B;;AAE7C;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,oBAAoB,EAAE,gCAAW;AAC/B;;AACA,aAAKC,UAAL,CAAgBC,aAAhB,CAA8B,IAA9B;AACD;AAJM;AAPoC,GAA/C;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcR,MAAd,CAAqBC,MAArB,CAA4BN,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/**\n *\n */\nqx.Class.define('cv.ui.manager.dialog.Prompt', {\n  extend: qxl.dialog.Prompt,\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _createWidgetContent: function() {\n      this.base(arguments);\n      this._textField.setLiveUpdate(true);\n    }\n  }\n});\n"
+  ]
+}

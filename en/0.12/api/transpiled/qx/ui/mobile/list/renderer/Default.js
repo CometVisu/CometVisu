@@ -74,10 +74,10 @@
       this._init();
     },
     members: {
-      __P_362_0: null,
-      __P_362_1: null,
-      __P_362_2: null,
-      __P_362_3: null,
+      __P_373_0: null,
+      __P_373_1: null,
+      __P_373_2: null,
+      __P_373_3: null,
 
       /**
        * Returns the image widget which is used for this renderer.
@@ -85,7 +85,7 @@
        * @return {qx.ui.mobile.basic.Image} The image widget
        */
       getImageWidget: function getImageWidget() {
-        return this.__P_362_0;
+        return this.__P_373_0;
       },
 
       /**
@@ -94,7 +94,7 @@
        * @return {qx.ui.mobile.basic.Label} The title widget
        */
       getTitleWidget: function getTitleWidget() {
-        return this.__P_362_1;
+        return this.__P_373_1;
       },
 
       /**
@@ -103,7 +103,7 @@
        * @return {qx.ui.mobile.basic.Label} The subtitle widget
        */
       getSubtitleWidget: function getSubtitleWidget() {
-        return this.__P_362_2;
+        return this.__P_373_2;
       },
 
       /**
@@ -112,7 +112,7 @@
        * @param source {String} The source to set
        */
       setImage: function setImage(source) {
-        this.__P_362_0.setSource(source);
+        this.__P_373_0.setSource(source);
       },
 
       /**
@@ -122,9 +122,9 @@
        */
       setTitle: function setTitle(title) {
         if (title && title.translate) {
-          this.__P_362_1.setValue(title.translate());
+          this.__P_373_1.setValue(title.translate());
         } else {
-          this.__P_362_1.setValue(title);
+          this.__P_373_1.setValue(title);
         }
       },
 
@@ -135,9 +135,9 @@
        */
       setSubtitle: function setSubtitle(subtitle) {
         if (subtitle && subtitle.translate) {
-          this.__P_362_2.setValue(subtitle.translate());
+          this.__P_373_2.setValue(subtitle.translate());
         } else {
-          this.__P_362_2.setValue(subtitle);
+          this.__P_373_2.setValue(subtitle);
         }
       },
 
@@ -146,19 +146,19 @@
        *
        */
       _init: function _init() {
-        this.__P_362_0 = this._createImage();
-        this.add(this.__P_362_0);
-        this.__P_362_3 = this._createRightContainer();
-        this.add(this.__P_362_3, {
+        this.__P_373_0 = this._createImage();
+        this.add(this.__P_373_0);
+        this.__P_373_3 = this._createRightContainer();
+        this.add(this.__P_373_3, {
           flex: 1
         });
-        this.__P_362_1 = this._createTitle();
+        this.__P_373_1 = this._createTitle();
 
-        this.__P_362_3.add(this.__P_362_1);
+        this.__P_373_3.add(this.__P_373_1);
 
-        this.__P_362_2 = this._createSubtitle();
+        this.__P_373_2 = this._createSubtitle();
 
-        this.__P_362_3.add(this.__P_362_2);
+        this.__P_373_3.add(this.__P_373_2);
       },
 
       /**
@@ -207,18 +207,18 @@
       },
       // overridden
       reset: function reset() {
-        this.__P_362_0.setSource(null);
+        this.__P_373_0.setSource(null);
 
-        this.__P_362_1.setValue("");
+        this.__P_373_1.setValue("");
 
-        this.__P_362_2.setValue("");
+        this.__P_373_2.setValue("");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_362_0", "__P_362_1", "__P_362_2", "__P_362_3");
+      this._disposeObjects("__P_373_0", "__P_373_1", "__P_373_2", "__P_373_3");
     }
   });
   qx.ui.mobile.list.renderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1619883166794
+//# sourceMappingURL=Default.js.map?dt=1620070394602

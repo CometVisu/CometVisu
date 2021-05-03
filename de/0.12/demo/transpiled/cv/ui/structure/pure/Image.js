@@ -93,7 +93,7 @@
     ******************************************************
     */
     members: {
-      __P_44_0: null,
+      __P_55_0: null,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
@@ -111,7 +111,7 @@
           imgStyle += 'height:' + this.getHeight() + ';';
         }
 
-        var src = this.__P_44_1();
+        var src = this.__P_55_1();
 
         if (!src) {
           switch (this.getPlaceholder()) {
@@ -135,8 +135,8 @@
       /**
        * Return the real src value
        */
-      __P_44_1: function __P_44_1() {
-        if (!this.__P_44_0) {
+      __P_55_1: function __P_55_1() {
+        if (!this.__P_55_0) {
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
 
@@ -145,10 +145,10 @@
             src = qx.util.ResourceManager.getInstance().toUri(src);
           }
 
-          this.__P_44_0 = src || "";
+          this.__P_55_0 = src || "";
         }
 
-        return this.__P_44_0;
+        return this.__P_55_0;
       },
       handleUpdate: function handleUpdate(text, address) {
         var valueElem = this.getValueElement();
@@ -156,7 +156,7 @@
         if (!text) {
           switch (this.getPlaceholder()) {
             case 'src':
-              text = this.__P_44_1();
+              text = this.__P_55_1();
               valueElem.style.display = 'inline';
               break;
 
@@ -188,7 +188,7 @@
         }
 
         if (value === true) {
-          valueElem.setAttribute("src", this.__P_44_1());
+          valueElem.setAttribute("src", this.__P_55_1());
         } else {
           valueElem.setAttribute("src", "");
         }
@@ -201,4 +201,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1619884690948
+//# sourceMappingURL=Image.js.map?dt=1620071702930

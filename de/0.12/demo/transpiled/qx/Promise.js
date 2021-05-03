@@ -113,25 +113,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(fn, context) {
       qx.core.Object.constructor.call(this);
 
-      qx.Promise.__P_280_0();
+      qx.Promise.__P_315_0();
 
       if (fn instanceof qx.Promise.Bluebird) {
-        this.__P_280_1 = fn;
+        this.__P_315_1 = fn;
       } else if (fn) {
         if (context !== undefined && context !== null) {
           fn = fn.bind(context);
         }
 
-        this.__P_280_1 = new qx.Promise.Bluebird(fn);
+        this.__P_315_1 = new qx.Promise.Bluebird(fn);
       } else {
-        this.__P_280_1 = new qx.Promise.Bluebird(this.__P_280_2.bind(this));
+        this.__P_315_1 = new qx.Promise.Bluebird(this.__P_315_2.bind(this));
       }
 
-      qx.core.Assert.assertTrue(!this.__P_280_1.$$qxPromise);
-      this.__P_280_1.$$qxPromise = this;
+      qx.core.Assert.assertTrue(!this.__P_315_1.$$qxPromise);
+      this.__P_315_1.$$qxPromise = this;
 
       if (context !== undefined && context !== null) {
-        this.__P_280_1 = this.__P_280_1.bind(context);
+        this.__P_315_1 = this.__P_315_1.bind(context);
       }
     },
 
@@ -139,15 +139,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * Destructor
      */
     destruct: function destruct() {
-      delete this.__P_280_1.$$qxPromise;
-      delete this.__P_280_1;
+      delete this.__P_315_1.$$qxPromise;
+      delete this.__P_315_1;
     },
     members: {
       /** The Promise */
-      __P_280_1: null,
+      __P_315_1: null,
 
       /** Stores data for completing the promise externally */
-      __P_280_3: null,
+      __P_315_3: null,
 
       /* *********************************************************************************
        * 
@@ -196,7 +196,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise} the new promise
        */
       bind: function bind(context) {
-        return qx.Promise.__P_280_4(this.__P_280_1.bind(context));
+        return qx.Promise.__P_315_4(this.__P_315_1.bind(context));
       },
 
       /**
@@ -397,8 +397,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * External promise handler
        */
-      __P_280_2: function __P_280_2(resolve, reject) {
-        this.__P_280_3 = {
+      __P_315_2: function __P_315_2(resolve, reject) {
+        this.__P_315_3 = {
           resolve: resolve,
           reject: reject,
           complete: false
@@ -408,31 +408,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * Returns the data stored by __externalPromise, throws an exception once processed
        */
-      __P_280_5: function __P_280_5() {
-        if (!this.__P_280_3) {
+      __P_315_5: function __P_315_5() {
+        if (!this.__P_315_3) {
           throw new Error("Promise cannot be resolved externally");
         }
 
-        if (this.__P_280_3.complete) {
+        if (this.__P_315_3.complete) {
           throw new Error("Promise has already been resolved or rejected");
         }
 
-        this.__P_280_3.complete = true;
-        return this.__P_280_3;
+        this.__P_315_3.complete = true;
+        return this.__P_315_3;
       },
 
       /**
        * Resolves an external promise
        */
       resolve: function resolve(value) {
-        this.__P_280_5().resolve(value);
+        this.__P_315_5().resolve(value);
       },
 
       /**
        * Rejects an external promise
        */
       reject: function reject(reason) {
-        this.__P_280_5().reject(reason);
+        this.__P_315_5().reject(reason);
       },
 
       /* *********************************************************************************
@@ -445,10 +445,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Helper method used to call Promise methods which iterate over an array
        */
       _callIterableMethod: function _callIterableMethod(methodName, args) {
-        args = qx.Promise.__P_280_6(args);
-        return qx.Promise.__P_280_4(this.__P_280_1.then(function (value) {
+        args = qx.Promise.__P_315_6(args);
+        return qx.Promise.__P_315_4(this.__P_315_1.then(function (value) {
           var newP = qx.Promise.Bluebird.resolve(value instanceof qx.data.Array ? value.toArray() : value);
-          return qx.Promise.__P_280_4(newP[methodName].apply(newP, args));
+          return qx.Promise.__P_315_4(newP[methodName].apply(newP, args));
         }));
       },
 
@@ -456,8 +456,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Helper method used to call a Promise method
        */
       _callMethod: function _callMethod(methodName, args) {
-        args = qx.Promise.__P_280_6(args);
-        return qx.Promise.__P_280_4(this.__P_280_1[methodName].apply(this.__P_280_1, args));
+        args = qx.Promise.__P_315_6(args);
+        return qx.Promise.__P_315_4(this.__P_315_1[methodName].apply(this.__P_315_1, args));
       },
 
       /**
@@ -471,7 +471,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @deprecated {6.0} this API method is subject to change
        */
       toPromise: function toPromise() {
-        return this.__P_280_1;
+        return this.__P_315_1;
       }
     },
     statics: {
@@ -487,7 +487,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /** This is used to suppress warnings about rejections without an Error object, only used if
        * the reason is undefined
        */
-      __P_280_7: new Error("Default Error"),
+      __P_315_7: new Error("Default Error"),
 
       /* *********************************************************************************
        * 
@@ -512,7 +512,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (value instanceof qx.Promise) {
           promise = value;
         } else {
-          promise = qx.Promise.__P_280_4(qx.Promise.Bluebird.resolve(value));
+          promise = qx.Promise.__P_315_4(qx.Promise.Bluebird.resolve(value));
         }
 
         if (context !== undefined) {
@@ -533,12 +533,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (reason === undefined) {
           args.shift();
-          args.unshift(qx.Promise.__P_280_7);
+          args.unshift(qx.Promise.__P_315_7);
         } else if (!(reason instanceof Error)) {
           qx.log.Logger.warn("Rejecting a promise with a non-Error value");
         }
 
-        var promise = qx.Promise.__P_280_8('reject', args, 0);
+        var promise = qx.Promise.__P_315_8('reject', args, 0);
 
         if (context !== undefined) {
           promise = promise.bind(context);
@@ -587,7 +587,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       all: function all(iterable) {
-        return qx.Promise.__P_280_8('all', arguments);
+        return qx.Promise.__P_315_8('all', arguments);
       },
 
       /**
@@ -597,7 +597,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       race: function race(iterable) {
-        return qx.Promise.__P_280_8('race', arguments);
+        return qx.Promise.__P_315_8('race', arguments);
       },
 
       /* *********************************************************************************
@@ -614,7 +614,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       any: function any(iterable) {
-        return qx.Promise.__P_280_8('any', arguments);
+        return qx.Promise.__P_315_8('any', arguments);
       },
 
       /**
@@ -628,7 +628,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       some: function some(iterable, count) {
-        return qx.Promise.__P_280_8('some', arguments);
+        return qx.Promise.__P_315_8('some', arguments);
       },
 
       /**
@@ -646,7 +646,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       forEach: function forEach(iterable, iterator) {
-        return qx.Promise.__P_280_8('each', arguments);
+        return qx.Promise.__P_315_8('each', arguments);
       },
 
       /**
@@ -674,7 +674,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       filter: function filter(iterable, iterator, options) {
-        return qx.Promise.__P_280_8('filter', arguments);
+        return qx.Promise.__P_315_8('filter', arguments);
       },
 
       /**
@@ -719,7 +719,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       map: function map(iterable, iterator, options) {
-        return qx.Promise.__P_280_8('map', arguments);
+        return qx.Promise.__P_315_8('map', arguments);
       },
 
       /**
@@ -758,7 +758,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       mapSeries: function mapSeries(iterable, iterator) {
-        return qx.Promise.__P_280_8('mapSeries', arguments);
+        return qx.Promise.__P_315_8('mapSeries', arguments);
       },
 
       /**
@@ -798,7 +798,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       reduce: function reduce(iterable, reducer, initialValue) {
-        return qx.Promise.__P_280_8('reduce', arguments);
+        return qx.Promise.__P_315_8('reduce', arguments);
       },
 
       /**
@@ -810,7 +810,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       method: function method(cb) {
         var wrappedCb = qx.Promise.Bluebird.method(cb);
         return function () {
-          return qx.Promise.__P_280_4(wrappedCb.apply(this, arguments));
+          return qx.Promise.__P_315_4(wrappedCb.apply(this, arguments));
         };
       },
 
@@ -829,7 +829,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       props: function props(input) {
-        return qx.Promise.__P_280_8('props', arguments);
+        return qx.Promise.__P_315_8('props', arguments);
       },
 
       /**
@@ -886,7 +886,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.Promise}
        */
       promisify: function promisify(f, options) {
-        return qx.Promise.__P_280_8('promisify', arguments);
+        return qx.Promise.__P_315_8('promisify', arguments);
       },
 
       /* *********************************************************************************
@@ -899,7 +899,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Called when the Bluebird Promise class is loaded
        * @param Promise {Class} the Promise class
        */
-      __P_280_9: function __P_280_9(Promise) {
+      __P_315_9: function __P_315_9(Promise) {
         qx.Promise.Bluebird = Promise;
         Promise.config({
           warnings: true,
@@ -909,18 +909,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** Whether one-time initialisaton has happened */
-      __P_280_10: false,
+      __P_315_10: false,
 
       /**
        * One-time initializer
        */
-      __P_280_0: function __P_280_0() {
-        if (qx.Promise.__P_280_10) {
+      __P_315_0: function __P_315_0() {
+        if (qx.Promise.__P_315_10) {
           return;
         }
 
-        qx.Promise.__P_280_10 = true;
-        qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_280_11.bind(this));
+        qx.Promise.__P_315_10 = true;
+        qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_315_11.bind(this));
         {
           qx.log.Logger.error(this, "Promises are installed and initialised but disabled from properties because qx.promise==false; this may cause unexpected behaviour");
         }
@@ -930,7 +930,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Handles unhandled errors and passes them through to Qooxdoo's global error handler
        * @param e {NativeEvent}
        */
-      __P_280_11: function __P_280_11(e) {
+      __P_315_11: function __P_315_11(e) {
         e.preventDefault();
         var reason = null;
 
@@ -951,7 +951,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Object}
        * @return {Object}
        */
-      __P_280_4: function __P_280_4(value) {
+      __P_315_4: function __P_315_4(value) {
         if (value instanceof qx.Promise.Bluebird) {
           if (value.$$qxPromise) {
             value = value.$$qxPromise;
@@ -972,7 +972,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * 	this is used to determine whether the last value is for binding (default is 1)
        * @return {Array} array of new arguments with functions bound as necessary
        */
-      __P_280_6: function __P_280_6(args, minArgs) {
+      __P_315_6: function __P_315_6(args, minArgs) {
         args = qx.lang.Array.fromArguments(args);
 
         if (minArgs === undefined) {
@@ -1003,16 +1003,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param minArgs {Integer?} {@see __bindArgs}
        * @return {Object?}
        */
-      __P_280_8: function __P_280_8(methodName, args, minArgs) {
-        args = qx.Promise.__P_280_6(args, minArgs);
-        return qx.Promise.__P_280_4(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__P_280_12(args)));
+      __P_315_8: function __P_315_8(methodName, args, minArgs) {
+        args = qx.Promise.__P_315_6(args, minArgs);
+        return qx.Promise.__P_315_4(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__P_315_12(args)));
       },
 
       /**
        * Maps all arguments ready for passing to a Bluebird function; qx.data.Array are
        * translated to native arrays and qx.Promise to Promise.  This is not recursive.
        */
-      __P_280_12: function __P_280_12(args) {
+      __P_315_12: function __P_315_12(args) {
         var dest = [];
         args.forEach(function (arg) {
           if (arg instanceof qx.data.Array) {
@@ -1109,7 +1109,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      * Features enabled: core, race, call_get, generators, map, nodeify, promisify, props, reduce, settle, some, using, timers, filter, any, each
      */
     !function (e) {
-      qx.Promise.__P_280_9(e());
+      qx.Promise.__P_315_9(e());
     }(function () {
       var define, module, exports;
       return function e(t, n, r) {
@@ -2273,10 +2273,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                 if (trace !== undefined) {
                   trace.attachExtraTrace(error);
-                } else if (!error.__P_280_13) {
+                } else if (!error.__P_315_13) {
                   var parsed = parseStackAndMessage(error);
                   util.notEnumerableProp(error, "stack", parsed.message + "\n" + parsed.stack.join("\n"));
-                  util.notEnumerableProp(error, "__P_280_13", true);
+                  util.notEnumerableProp(error, "__P_315_13", true);
                 }
               }
             }
@@ -2672,7 +2672,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             };
 
             CapturedTrace.prototype.attachExtraTrace = function (error) {
-              if (error.__P_280_13) return;
+              if (error.__P_315_13) return;
               this.uncycle();
               var parsed = parseStackAndMessage(error);
               var message = parsed.message;
@@ -2687,7 +2687,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               removeCommonRoots(stacks);
               removeDuplicateOrEmptyJumps(stacks);
               util.notEnumerableProp(error, "stack", reconstructStack(message, stacks));
-              util.notEnumerableProp(error, "__P_280_13", true);
+              util.notEnumerableProp(error, "__P_315_13", true);
             };
 
             var captureStackTrace = function stackDetection() {
@@ -5119,9 +5119,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var defaultSuffix = "Async";
             var defaultPromisified = {
-              __P_280_14: true
+              __P_315_14: true
             };
-            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_280_14"];
+            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_315_14"];
             var noCopyPropsPattern = new RegExp("^(?:" + noCopyProps.join("|") + ")$");
 
             var defaultFilter = function defaultFilter(name) {
@@ -5134,7 +5134,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             function isPromisified(fn) {
               try {
-                return fn.__P_280_14 === true;
+                return fn.__P_315_14 === true;
               } catch (e) {
                 return false;
               }
@@ -5185,7 +5185,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             var makeNodePromisifiedEval;
 
-            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_280_15, multiArgs) {
+            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_315_15, multiArgs) {
               var defaultThis = function () {
                 return this;
               }();
@@ -5216,7 +5216,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 return promise;
               }
 
-              util.notEnumerableProp(promisified, "__P_280_14", true);
+              util.notEnumerableProp(promisified, "__P_315_14", true);
               return promisified;
             }
 
@@ -5237,7 +5237,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   var promisified = promisifier(fn, function () {
                     return makeNodePromisified(key, THIS, key, fn, suffix, multiArgs);
                   });
-                  util.notEnumerableProp(promisified, "__P_280_14", true);
+                  util.notEnumerableProp(promisified, "__P_315_14", true);
                   obj[promisifiedKey] = promisified;
                 }
               }
@@ -6141,12 +6141,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               return (this._bitField & 8454144) !== 0;
             };
 
-            Promise.prototype.__P_280_16 = function () {
+            Promise.prototype.__P_315_16 = function () {
               return (this._bitField & 65536) === 65536;
             };
 
             Promise.prototype._isCancelled = function () {
-              return this._target().__P_280_16();
+              return this._target().__P_315_16();
             };
 
             Promise.prototype.isCancelled = function () {
@@ -7059,4 +7059,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.Promise.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promise.js.map?dt=1619884712647
+//# sourceMappingURL=Promise.js.map?dt=1620071726601

@@ -254,7 +254,7 @@
           } // process value
 
 
-          var transform = config.addressConfig[0];
+          var transform = config.addressConfig.transform;
           state = cv.Transform.decode(transform, state);
           var templateData = {
             address: address,
@@ -376,4 +376,4 @@
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1619884685657
+//# sourceMappingURL=Router.js.map?dt=1620071695374

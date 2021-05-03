@@ -4548,6 +4548,7 @@
     }
   },
   "descendants": [
+    "cv.ui.manager.tree.VirtualElementItem",
     "cv.ui.manager.tree.VirtualFsItem"
   ]
 }

@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/VirtualSelectBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "form",
+    "VirtualSelectBox",
+    "members",
+    "_createChildControlImpl",
+    "id",
+    "hash",
+    "control",
+    "cv",
+    "manager",
+    "ListItem",
+    "setCenter",
+    "setAnonymous",
+    "_add",
+    "flex"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EAAuD;AACrDC,IAAAA,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,gBADkC;;AAGrD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACP;AACAC,MAAAA,uBAAuB,EAAG,iCAASC,EAAT,EAAaC,IAAb,EAC1B;AACE,YAAIC,OAAJ;;AAEA,gBAAOF,EAAP;AAEE,eAAK,MAAL;AACEE,YAAAA,OAAO,GAAG,IAAIC,EAAE,CAACR,EAAH,CAAMS,OAAN,CAAcR,IAAd,CAAmBS,QAAvB,CAAgC,EAAhC,CAAV;AACAH,YAAAA,OAAO,CAACI,SAAR,CAAkB,KAAlB;AACAJ,YAAAA,OAAO,CAACK,YAAR,CAAqB,IAArB;;AAEA,iBAAKC,IAAL,CAAUN,OAAV,EAAmB;AAACO,cAAAA,IAAI,EAAC;AAAN,aAAnB;;AACA;AARJ;;AAWA,eAAOP,OAAO,0FAAyBF,EAAzB,EAA6BC,IAA7B,CAAd;AACD;AAlBM;AAR4C,GAAvD;AAHAE,EAAAA,EAAE,CAACR,EAAH,CAAMS,OAAN,CAAcR,IAAd,CAAmBC,gBAAnB,CAAoCN,aAApC,GAAoDA,aAApD",
+  "sourcesContent": [
+    "/**\n * qx.ui.form.VirtualSelectBox that uses cv.ui.manager.form.ListItem as 'atom' childcontrol.\n */\nqx.Class.define('cv.ui.manager.form.VirtualSelectBox', {\n  extend: qx.ui.form.VirtualSelectBox,\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    // overridden\n    _createChildControlImpl : function(id, hash)\n    {\n      var control;\n\n      switch(id)\n      {\n        case \"atom\":\n          control = new cv.ui.manager.form.ListItem(\"\");\n          control.setCenter(false);\n          control.setAnonymous(true);\n\n          this._add(control, {flex:1});\n          break;\n      }\n\n      return control || this.base(arguments, id, hash);\n    },\n  }\n});\n"
+  ]
+}

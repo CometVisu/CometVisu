@@ -51,7 +51,8 @@
       file: {
         check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
         nullable: true,
-        apply: '_loadFile'
+        apply: '_loadFile',
+        event: 'changeFile'
       },
       content: {
         nullable: true,
@@ -60,7 +61,8 @@
       },
       handlerOptions: {
         check: 'Map',
-        nullable: true
+        nullable: true,
+        apply: '_applyHandlerOptions'
       },
 
       /**
@@ -69,6 +71,11 @@
       external: {
         check: 'Boolean',
         init: false
+      },
+      ready: {
+        check: 'Boolean',
+        init: true,
+        event: 'changeReady'
       }
     },
 
@@ -95,9 +102,12 @@
           }
         }
       },
+      configureButton: function configureButton(button) {},
+      unConfigureButton: function unConfigureButton(button) {},
       _initClient: function _initClient() {
         this._client = cv.io.rest.Client.getFsClient();
       },
+      _applyHandlerOptions: function _applyHandlerOptions() {},
       _loadFile: function _loadFile(file, old) {
         if (old) {
           qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
@@ -177,7 +187,9 @@
         var file = this.getFile();
         file.resetModified();
         file.resetTemporary();
-      }
+      },
+      showErrors: function showErrors(path, errorList) {},
+      showDecorations: function showDecorations(path, decorators) {}
     },
 
     /*
@@ -194,4 +206,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1619884689301
+//# sourceMappingURL=AbstractEditor.js.map?dt=1620071699460

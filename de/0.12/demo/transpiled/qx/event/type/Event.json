@@ -1085,9 +1085,9 @@
   },
   "descendants": [
     "qx.event.type.Data",
+    "qx.event.type.Focus",
     "qx.event.type.Native",
     "qx.event.type.Drag",
-    "qx.event.type.Focus",
     "qx.event.type.Orientation"
   ]
 }

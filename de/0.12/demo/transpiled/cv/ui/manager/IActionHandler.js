@@ -30,10 +30,25 @@
        * @param actionName {String} action name
        * @param data {var} action payload
        */
-      handleAction: function handleAction(actionName, data) {}
+      handleAction: function handleAction(actionName, data) {},
+
+      /**
+       * The ActionHandler can configure the menubutton itself, e.g. disable it, when that action is currently not possible
+       * or change the button text / tooltip text etc.
+       * @param actionId {String} ID of the action that button triggers
+       * @param button {Widget} the button that should be configured
+       */
+      configureButton: function configureButton(actionId, button) {},
+
+      /**
+       * Undo all changes that have been applied to the button in configureButton
+       * @param actionId {String} ID of the action that button triggers
+       * @param button {Widget}
+       */
+      unConfigureButton: function unConfigureButton(actionId, button) {}
     }
   });
   cv.ui.manager.IActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IActionHandler.js.map?dt=1619884688546
+//# sourceMappingURL=IActionHandler.js.map?dt=1620071698249

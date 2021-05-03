@@ -53,9 +53,9 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // storage for all form items
 
-      this.__P_228_0 = []; // storage for all results of async validation calls
+      this.__P_251_0 = []; // storage for all results of async validation calls
 
-      this.__P_228_1 = {}; // set the default required field message
+      this.__P_251_1 = {}; // set the default required field message
 
       this.setRequiredFieldMessage(qx.locale.Manager.tr("This field is required"));
     },
@@ -117,10 +117,10 @@
       }
     },
     members: {
-      __P_228_0: null,
-      __P_228_2: null,
-      __P_228_1: null,
-      __P_228_3: null,
+      __P_251_0: null,
+      __P_251_2: null,
+      __P_251_1: null,
+      __P_251_3: null,
 
       /**
        * Add a form item to the validation manager.
@@ -152,12 +152,12 @@
        */
       add: function add(formItem, validator, context) {
         // check for the form API
-        if (!this.__P_228_4(formItem)) {
+        if (!this.__P_251_4(formItem)) {
           throw new Error("Added widget not supported.");
         } // check for the data type
 
 
-        if (this.__P_228_5(formItem) && !formItem.getValue) {
+        if (this.__P_251_5(formItem) && !formItem.getValue) {
           // check for a validator
           if (validator != null) {
             throw new Error("Widgets supporting selection can only be validated in the form validator");
@@ -171,7 +171,7 @@
           context: context
         };
 
-        this.__P_228_0.push(dataEntry);
+        this.__P_251_0.push(dataEntry);
       },
 
       /**
@@ -182,7 +182,7 @@
        *  <code>null</code> if the item could not be found.
        */
       remove: function remove(formItem) {
-        var items = this.__P_228_0;
+        var items = this.__P_251_0;
 
         for (var i = 0, len = items.length; i < len; i++) {
           if (formItem === items[i].item) {
@@ -202,8 +202,8 @@
       getItems: function getItems() {
         var items = [];
 
-        for (var i = 0; i < this.__P_228_0.length; i++) {
-          items.push(this.__P_228_0[i].item);
+        for (var i = 0; i < this.__P_251_0.length; i++) {
+          items.push(this.__P_251_0[i].item);
         }
 
         ;
@@ -223,13 +223,13 @@
        */
       validate: function validate() {
         var valid = true;
-        this.__P_228_3 = true; // collaboration of all synchronous validations
+        this.__P_251_3 = true; // collaboration of all synchronous validations
 
         var items = []; // check all validators for the added form items
 
-        for (var i = 0; i < this.__P_228_0.length; i++) {
-          var formItem = this.__P_228_0[i].item;
-          var validator = this.__P_228_0[i].validator; // store the items in case of form validation
+        for (var i = 0; i < this.__P_251_0.length; i++) {
+          var formItem = this.__P_251_0[i].item;
+          var validator = this.__P_251_0[i].validator; // store the items in case of form validation
 
           items.push(formItem); // ignore all form items without a validator
 
@@ -238,33 +238,33 @@
             var validatorResult = this._validateRequired(formItem);
 
             valid = valid && validatorResult;
-            this.__P_228_3 = validatorResult && this.__P_228_3;
+            this.__P_251_3 = validatorResult && this.__P_251_3;
             continue;
           }
 
-          var validatorResult = this._validateItem(this.__P_228_0[i], formItem.getValue()); // keep that order to ensure that null is returned on async cases
+          var validatorResult = this._validateItem(this.__P_251_0[i], formItem.getValue()); // keep that order to ensure that null is returned on async cases
 
 
           valid = validatorResult && valid;
 
           if (validatorResult != null) {
-            this.__P_228_3 = validatorResult && this.__P_228_3;
+            this.__P_251_3 = validatorResult && this.__P_251_3;
           }
         } // check the form validator (be sure to invoke it even if the form
         // items are already false, so keep the order!)
 
 
-        var formValid = this.__P_228_6(items);
+        var formValid = this.__P_251_6(items);
 
         if (qx.lang.Type.isBoolean(formValid)) {
-          this.__P_228_3 = formValid && this.__P_228_3;
+          this.__P_251_3 = formValid && this.__P_251_3;
         }
 
         valid = formValid && valid;
 
         this._setValid(valid);
 
-        if (qx.lang.Object.isEmpty(this.__P_228_1)) {
+        if (qx.lang.Object.isEmpty(this.__P_251_1)) {
           this.fireEvent("complete");
         }
 
@@ -283,9 +283,9 @@
         if (formItem.getRequired()) {
           var validatorResult; // if its a widget supporting the selection
 
-          if (this.__P_228_5(formItem)) {
+          if (this.__P_251_5(formItem)) {
             validatorResult = !!formItem.getSelection()[0];
-          } else if (this.__P_228_7(formItem)) {
+          } else if (this.__P_251_7(formItem)) {
             validatorResult = formItem.getSelection().getLength() > 0;
           } else {
             var value = formItem.getValue();
@@ -318,9 +318,9 @@
         var context = dataEntry.context;
         var validator = dataEntry.validator; // check for asynchronous validation
 
-        if (this.__P_228_8(validator)) {
+        if (this.__P_251_8(validator)) {
           // used to check if all async validations are done
-          this.__P_228_1[formItem.toHashCode()] = null;
+          this.__P_251_1[formItem.toHashCode()] = null;
           validator.validate(formItem, formItem.getValue(), this, context);
           return null;
         }
@@ -364,7 +364,7 @@
        * @param items {qx.ui.core.Widget[]} An array of all form items.
        * @return {Boolean|null} description
        */
-      __P_228_6: function __P_228_6(items) {
+      __P_251_6: function __P_251_6(items) {
         var formValidator = this.getValidator();
         var context = this.getContext() || this;
 
@@ -375,8 +375,8 @@
 
         this.setInvalidMessage("");
 
-        if (this.__P_228_8(formValidator)) {
-          this.__P_228_1[this.toHashCode()] = null;
+        if (this.__P_251_8(formValidator)) {
+          this.__P_251_1[this.toHashCode()] = null;
           formValidator.validateForm(items, this, context);
           return null;
         }
@@ -414,7 +414,7 @@
        *   The validator to check.
        * @return {Boolean} True, if the given validator is asynchronous.
        */
-      __P_228_8: function __P_228_8(validator) {
+      __P_251_8: function __P_251_8(validator) {
         var async = false;
 
         if (!qx.lang.Type.isFunction(validator)) {
@@ -432,7 +432,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_228_4: function __P_228_4(formItem) {
+      __P_251_4: function __P_251_4(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.ui.form.IForm);
       },
@@ -445,7 +445,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_228_5: function __P_228_5(formItem) {
+      __P_251_5: function __P_251_5(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.ui.core.ISingleSelection);
       },
@@ -458,7 +458,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_228_7: function __P_228_7(formItem) {
+      __P_251_7: function __P_251_7(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.data.controller.ISelection);
       },
@@ -472,8 +472,8 @@
       _setValid: function _setValid(value) {
         this._showToolTip(value);
 
-        var oldValue = this.__P_228_2;
-        this.__P_228_2 = value; // check for the change event
+        var oldValue = this.__P_251_2;
+        this.__P_251_2 = value; // check for the change event
 
         if (oldValue != value) {
           this.fireDataEvent("changeValid", value, oldValue);
@@ -496,8 +496,8 @@
         if (!valid) {
           var firstInvalid;
 
-          for (var i = 0; i < this.__P_228_0.length; i++) {
-            var item = this.__P_228_0[i].item;
+          for (var i = 0; i < this.__P_251_0.length; i++) {
+            var item = this.__P_251_0[i].item;
 
             if (!item.isValid()) {
               firstInvalid = item; // only for desktop widgets
@@ -539,7 +539,7 @@
        * @return {Boolean|null} The valid state of the manager.
        */
       getValid: function getValid() {
-        return this.__P_228_2;
+        return this.__P_251_2;
       },
 
       /**
@@ -560,8 +560,8 @@
       getInvalidMessages: function getInvalidMessages() {
         var messages = []; // combine the messages of all form items
 
-        for (var i = 0; i < this.__P_228_0.length; i++) {
-          var formItem = this.__P_228_0[i].item;
+        for (var i = 0; i < this.__P_251_0.length; i++) {
+          var formItem = this.__P_251_0[i].item;
 
           if (!formItem.getValid()) {
             messages.push(formItem.getInvalidMessage());
@@ -584,8 +584,8 @@
       getInvalidFormItems: function getInvalidFormItems() {
         var res = [];
 
-        for (var i = 0; i < this.__P_228_0.length; i++) {
-          var formItem = this.__P_228_0[i].item;
+        for (var i = 0; i < this.__P_251_0.length; i++) {
+          var formItem = this.__P_251_0[i].item;
 
           if (!formItem.getValid()) {
             res.push(formItem);
@@ -600,14 +600,14 @@
        */
       reset: function reset() {
         // reset all form items
-        for (var i = 0; i < this.__P_228_0.length; i++) {
-          var dataEntry = this.__P_228_0[i]; // set the field to valid
+        for (var i = 0; i < this.__P_251_0.length; i++) {
+          var dataEntry = this.__P_251_0[i]; // set the field to valid
 
           dataEntry.item.setValid(true);
         } // set the manager to its initial valid value
 
 
-        this.__P_228_2 = null;
+        this.__P_251_2 = null;
 
         this._showToolTip(true);
       },
@@ -626,10 +626,10 @@
        */
       setItemValid: function setItemValid(formItem, valid) {
         // store the result
-        this.__P_228_1[formItem.toHashCode()] = valid;
+        this.__P_251_1[formItem.toHashCode()] = valid;
         formItem.setValid(valid);
 
-        this.__P_228_9();
+        this.__P_251_9();
       },
 
       /**
@@ -644,9 +644,9 @@
        * @internal
        */
       setFormValid: function setFormValid(valid) {
-        this.__P_228_1[this.toHashCode()] = valid;
+        this.__P_251_1[this.toHashCode()] = valid;
 
-        this.__P_228_9();
+        this.__P_251_9();
       },
 
       /**
@@ -654,11 +654,11 @@
        * is final and the {@link #complete} event can be fired. If that's not
        * the case, nothing will happen in the method.
        */
-      __P_228_9: function __P_228_9() {
-        var valid = this.__P_228_3; // check if all async validators are done
+      __P_251_9: function __P_251_9() {
+        var valid = this.__P_251_3; // check if all async validators are done
 
-        for (var hash in this.__P_228_1) {
-          var currentResult = this.__P_228_1[hash];
+        for (var hash in this.__P_251_1) {
+          var currentResult = this.__P_251_1[hash];
           valid = currentResult && valid; // the validation is not done so just do nothing
 
           if (currentResult == null) {
@@ -670,7 +670,7 @@
         this._setValid(valid); // reset the results
 
 
-        this.__P_228_1 = {}; // fire the complete event (no entry in the results with null)
+        this.__P_251_1 = {}; // fire the complete event (no entry in the results with null)
 
         this.fireEvent("complete");
       }
@@ -684,10 +684,10 @@
     destruct: function destruct() {
       this._showToolTip(true);
 
-      this.__P_228_0 = null;
+      this.__P_251_0 = null;
     }
   });
   qx.ui.form.validation.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1619884706752
+//# sourceMappingURL=Manager.js.map?dt=1620071720051

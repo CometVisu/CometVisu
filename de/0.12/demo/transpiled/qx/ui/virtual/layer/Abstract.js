@@ -57,7 +57,7 @@
      */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
-      this.__P_339_0 = {};
+      this.__P_355_0 = {};
     },
 
     /*
@@ -79,12 +79,12 @@
     *****************************************************************************
     */
     members: {
-      __P_339_0: null,
-      __P_339_1: null,
-      __P_339_2: null,
-      __P_339_3: null,
-      __P_339_4: null,
-      __P_339_5: null,
+      __P_355_0: null,
+      __P_355_1: null,
+      __P_355_2: null,
+      __P_355_3: null,
+      __P_355_4: null,
+      __P_355_5: null,
 
       /**
        * Get the first rendered row
@@ -92,7 +92,7 @@
        * @return {Integer} The first rendered row
        */
       getFirstRow: function getFirstRow() {
-        return this.__P_339_2;
+        return this.__P_355_2;
       },
 
       /**
@@ -101,7 +101,7 @@
        * @return {Integer} The first rendered column
        */
       getFirstColumn: function getFirstColumn() {
-        return this.__P_339_3;
+        return this.__P_355_3;
       },
 
       /**
@@ -110,7 +110,7 @@
        * @return {Integer[]} List of row heights
        */
       getRowSizes: function getRowSizes() {
-        return this.__P_339_4 || [];
+        return this.__P_355_4 || [];
       },
 
       /**
@@ -119,7 +119,7 @@
        * @return {Integer[]} List of column widths
        */
       getColumnSizes: function getColumnSizes() {
-        return this.__P_339_5 || [];
+        return this.__P_355_5 || [];
       },
       // overridden
       syncWidget: function syncWidget(jobs) {
@@ -129,23 +129,23 @@
           return;
         }
 
-        if (this.__P_339_0.fullUpdate || this.__P_339_0.updateLayerWindow && this.__P_339_0.updateLayerData) {
-          this._fullUpdate.apply(this, this.__P_339_1);
-        } else if (this.__P_339_0.updateLayerWindow) {
-          this._updateLayerWindow.apply(this, this.__P_339_1);
-        } else if (this.__P_339_0.updateLayerData && this.__P_339_4) {
+        if (this.__P_355_0.fullUpdate || this.__P_355_0.updateLayerWindow && this.__P_355_0.updateLayerData) {
+          this._fullUpdate.apply(this, this.__P_355_1);
+        } else if (this.__P_355_0.updateLayerWindow) {
+          this._updateLayerWindow.apply(this, this.__P_355_1);
+        } else if (this.__P_355_0.updateLayerData && this.__P_355_4) {
           this._updateLayerData();
         }
 
-        if (this.__P_339_0.fullUpdate || this.__P_339_0.updateLayerWindow) {
-          var args = this.__P_339_1;
-          this.__P_339_2 = args[0];
-          this.__P_339_3 = args[1];
-          this.__P_339_4 = args[2];
-          this.__P_339_5 = args[3];
+        if (this.__P_355_0.fullUpdate || this.__P_355_0.updateLayerWindow) {
+          var args = this.__P_355_1;
+          this.__P_355_2 = args[0];
+          this.__P_355_3 = args[1];
+          this.__P_355_4 = args[2];
+          this.__P_355_5 = args[3];
         }
 
-        this.__P_339_0 = {};
+        this.__P_355_0 = {};
       },
 
       /**
@@ -155,7 +155,7 @@
        * has been rendered.
        */
       _updateLayerData: function _updateLayerData() {
-        this._fullUpdate(this.__P_339_2, this.__P_339_3, this.__P_339_4, this.__P_339_5);
+        this._fullUpdate(this.__P_355_2, this.__P_355_3, this.__P_355_4, this.__P_355_5);
       },
 
       /**
@@ -195,19 +195,19 @@
       },
       // interface implementation
       updateLayerData: function updateLayerData() {
-        this.__P_339_0.updateLayerData = true;
+        this.__P_355_0.updateLayerData = true;
         qx.ui.core.queue.Widget.add(this);
       },
       // interface implementation
       fullUpdate: function fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__P_339_1 = arguments;
-        this.__P_339_0.fullUpdate = true;
+        this.__P_355_1 = arguments;
+        this.__P_355_0.fullUpdate = true;
         qx.ui.core.queue.Widget.add(this);
       },
       // interface implementation
       updateLayerWindow: function updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__P_339_1 = arguments;
-        this.__P_339_0.updateLayerWindow = true;
+        this.__P_355_1 = arguments;
+        this.__P_355_0.updateLayerWindow = true;
         qx.ui.core.queue.Widget.add(this);
       }
     },
@@ -218,10 +218,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_339_0 = this.__P_339_1 = this.__P_339_4 = this.__P_339_5 = null;
+      this.__P_355_0 = this.__P_355_1 = this.__P_355_4 = this.__P_355_5 = null;
     }
   });
   qx.ui.virtual.layer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1619884717107
+//# sourceMappingURL=Abstract.js.map?dt=1620071730163

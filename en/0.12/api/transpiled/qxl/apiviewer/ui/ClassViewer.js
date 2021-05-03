@@ -391,7 +391,7 @@
           tocItem.innerHTML = qxl.apiviewer.ui.ClassViewer.createImageHtml(panel.getPanelIcon(), panel.getPanelTitle()) + " ";
           q(tocItem).on("tap", function (firstItem) {
             return function () {
-              this.__P_529_0(firstItem);
+              this.__P_540_0(firstItem);
 
               qx.bom.element.Scroll.intoView(panel.getTitleElement(), null, "left", "top");
 
@@ -457,21 +457,21 @@
 
 
         if (classNode.getType() === "interface") {
-          classHtml.add(this.__P_529_1(classNode));
+          classHtml.add(this.__P_540_1(classNode));
         } else {
-          classHtml.add(this.__P_529_2(classNode));
+          classHtml.add(this.__P_540_2(classNode));
         }
 
         return classNode.getChildClasses().then(function (childClasses) {
-          classHtml.add(_this2.__P_529_3(childClasses, "Direct " + subObjectsName + ":"));
-          classHtml.add(_this2.__P_529_3(classNode.getInterfaces(), "Implemented interfaces:"));
-          classHtml.add(_this2.__P_529_3(classNode.getMixins(), "Included mixins:"));
+          classHtml.add(_this2.__P_540_3(childClasses, "Direct " + subObjectsName + ":"));
+          classHtml.add(_this2.__P_540_3(classNode.getInterfaces(), "Implemented interfaces:"));
+          classHtml.add(_this2.__P_540_3(classNode.getMixins(), "Included mixins:"));
           return classNode.getImplementations();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_529_3(classes, "Implementations of this interface:"));
+          classHtml.add(_this2.__P_540_3(classes, "Implementations of this interface:"));
           return classNode.getIncluder();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_529_3(classes, "Classes including this mixin:"));
+          classHtml.add(_this2.__P_540_3(classes, "Classes including this mixin:"));
 
           if (classNode.isDeprecated()) {
             classHtml.add("<h2 class=\"warning\">", "Deprecated:", "</h2>");
@@ -512,7 +512,7 @@
        * @param title {String} headline
        * @return {String} HTML Fragement
        */
-      __P_529_3: function __P_529_3(dependentClasses, title) {
+      __P_540_3: function __P_540_3(dependentClasses, title) {
         var result = "";
 
         if (dependentClasses.length > 0) {
@@ -538,7 +538,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_529_2: function __P_529_2(classNode) {
+      __P_540_2: function __P_540_2(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer; // Create the class hierarchy
 
         var classHtml = new qx.util.StringBuilder("<h2>", "Inheritance hierarchy:", "</h2>");
@@ -580,7 +580,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_529_1: function __P_529_1(classNode) {
+      __P_540_1: function __P_540_1(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer;
         var TreeUtil = qxl.apiviewer.TreeUtil;
         var InfoPanel = qxl.apiviewer.ui.panels.InfoPanel;
@@ -654,7 +654,7 @@
         } // Show properties, private or protected methods if they are hidden
 
 
-        this.__P_529_0(itemNode);
+        this.__P_540_0(itemNode);
 
         var panel = this._getPanelForItemNode(itemNode);
 
@@ -691,7 +691,7 @@
        * properties so that the selected item can be shown.
        * @param itemNode
        */
-      __P_529_0: function __P_529_0(itemNode) {
+      __P_540_0: function __P_540_0(itemNode) {
         var uiModel = qxl.apiviewer.UiModel.getInstance(); // Check for property
 
         if (itemNode.isFromProperty && itemNode.isFromProperty()) {
@@ -757,4 +757,4 @@
   qxl.apiviewer.ui.ClassViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassViewer.js.map?dt=1619883181472
+//# sourceMappingURL=ClassViewer.js.map?dt=1620070409854

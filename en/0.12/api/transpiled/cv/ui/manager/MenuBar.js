@@ -76,6 +76,9 @@
         this.add(new qx.ui.core.Spacer(), {
           flex: 1
         });
+
+        this._createChildControl('help');
+
         var editorGroup = new qx.ui.form.RadioGroup();
         this.__P_25_1 = {
           'new-file': {
@@ -126,28 +129,28 @@
           // edit menu basics
           'undo': {
             menu: 'edit-menu',
-            args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this.tr('Ctrl+Z')],
+            args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this._commandGroup.get('undo')],
             enabled: true
           },
           'redo': {
             menu: 'edit-menu',
-            args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this.tr('Ctrl+Y')],
+            args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this._commandGroup.get('redo')],
             enabled: true
           },
           'cut': {
             menu: 'edit-menu',
-            args: [this.tr('Cut'), null, this.tr('Ctrl+X')],
+            args: [this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18), this._commandGroup.get('cut')],
             enabled: false,
             separator: 'before'
           },
           'copy': {
             menu: 'edit-menu',
-            args: [this.tr('Copy'), null, this.tr('Ctrl+C')],
+            args: [this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18), this._commandGroup.get('copy')],
             enabled: false
           },
           'paste': {
             menu: 'edit-menu',
-            args: [this.tr('Paste'), null, this.tr('Ctrl+V')],
+            args: [this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18), this._commandGroup.get('paste')],
             enabled: false
           },
           // preferences
@@ -187,6 +190,11 @@
             args: [this.tr('Expert mode')],
             general: true,
             enabled: true
+          },
+          'help': {
+            menu: 'help-menu',
+            args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
+            enabled: false
           }
         };
         this.maintainButtons();
@@ -239,6 +247,9 @@
               }
             } else {
               button = new ButtonClass(label, icon, command);
+              {
+                button.bind('enabled', command, 'enabled');
+              }
             }
 
             button.addListener('execute', function () {
@@ -305,6 +316,11 @@
             this.add(control);
             break;
 
+          case "help":
+            control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
+            this.add(control);
+            break;
+
           case "new":
             control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
             break;
@@ -330,6 +346,10 @@
           case 'preferences-menu':
             control = new qx.ui.menu.Menu();
             break;
+
+          case 'help-menu':
+            control = new qx.ui.menu.Menu();
+            break;
         }
 
         return control || cv.ui.manager.MenuBar.prototype._createChildControlImpl.base.call(this, id);
@@ -348,4 +368,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1619883135965
+//# sourceMappingURL=MenuBar.js.map?dt=1620070360439

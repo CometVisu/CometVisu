@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 283,
+        "line": 539,
         "column": 3
       }
     },
@@ -43,15 +43,45 @@
     },
     "jsdoc": {}
   },
-  "members": {
-    "__cache": {
+  "statics": {
+    "Config": {
       "location": {
         "start": {
           "line": 25,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 109,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__cache": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
           "column": 17
         }
       },
@@ -61,11 +91,11 @@
     "_getFromCache": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 146,
           "column": 5
         }
       },
@@ -75,11 +105,11 @@
     "__clearFromCache": {
       "location": {
         "start": {
-          "line": 31,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 154,
           "column": 5
         }
       },
@@ -89,11 +119,11 @@
     "_addToCache": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 158,
           "column": 5
         }
       },
@@ -103,11 +133,11 @@
     "getDesigns": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 184,
           "column": 5
         }
       },
@@ -133,11 +163,11 @@
     "__getData": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 197,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 230,
           "column": 5
         }
       },
@@ -210,14 +240,42 @@
       "type": "function",
       "access": "private"
     },
-    "getRrds": {
+    "__getFromUrl": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 260,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getAddresses": {
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4
+        },
+        "end": {
+          "line": 272,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRrds": {
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4
+        },
+        "end": {
+          "line": 284,
           "column": 5
         }
       },
@@ -227,39 +285,67 @@
     "getInfluxDBs": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 286,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 289,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
+    },
+    "__getInfluxArgs": {
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4
+        },
+        "end": {
+          "line": 309,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
     },
     "getInfluxDBFields": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 318,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
     },
-    "getInfluxDBTags": {
+    "__getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 320,
           "column": 4
         },
         "end": {
-          "line": 122,
+          "line": 327,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getInfluxDBTags": {
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4
+        },
+        "end": {
+          "line": 345,
           "column": 5
         }
       },
@@ -269,39 +355,67 @@
     "getInfluxDBValues": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 347,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 369,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
     },
-    "_parseDpResponse": {
+    "_parseDpResponseForMonaco": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 371,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 373,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected"
     },
-    "getMediaFiles": {
+    "_parseDpResponseForEditor": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 375,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 377,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__parseDpResponse": {
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getMediaFiles": {
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4
+        },
+        "end": {
+          "line": 409,
           "column": 5
         }
       },
@@ -311,11 +425,11 @@
     "getTransforms": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 415,
           "column": 4
         },
         "end": {
-          "line": 203,
+          "line": 451,
           "column": 5
         }
       },
@@ -341,11 +455,11 @@
     "getPlugins": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 457,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 491,
           "column": 5
         }
       },
@@ -371,11 +485,11 @@
     "getIcons": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 493,
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 528,
           "column": 5
         }
       },
@@ -3595,11 +3709,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 280,
+        "line": 536,
         "column": 12
       },
       "end": {
-        "line": 282,
+        "line": 538,
         "column": 3
       }
     },

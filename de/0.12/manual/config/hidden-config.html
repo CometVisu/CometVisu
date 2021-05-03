@@ -217,11 +217,20 @@ Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.</p>
 In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
 <div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
-<span class="nv">$hidden</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">&#39;fritzbox&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.0.1:49443/&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CometVisuTestUser&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pa3bvNM4j9z4&#39;</span><span class="p">)</span>
-  <span class="s1">&#39;influx&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;InfluxDBTestUser&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Xsdwfw324SEs&#39;</span><span class="p">)</span>
-<span class="p">);</span>
-<span class="cp">?&gt;</span><span class="x"></span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;fritzbox&quot;: {</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://192.168.0.1:49443/&quot;,</span>
+<span class="s1">    &quot;user&quot;: &quot;CometVisuTestUser&quot;,</span>
+<span class="s1">    &quot;pass&quot;: &quot;secret&quot;</span>
+<span class="s1">  },</span>
+<span class="s1">  &quot;influx&quot;: {</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://172.17.0.1/proxy/ts/query&quot;,</span>
+<span class="s1">    &quot;user&quot;: &quot;docker&quot;,</span>
+<span class="s1">    &quot;pass&quot;: &quot;secret&quot;,</span>
+<span class="s1">    &quot;selfsigned&quot;: &quot;true&quot;</span>
+<span class="s1">  }</span>
+<span class="s1">}&#39;</span><span class="p">;</span>
+<span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>

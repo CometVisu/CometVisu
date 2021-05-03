@@ -22,7 +22,7 @@
         "construct": true
       },
       "cv.ui.manager.tree.FileSystem": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "qx.lang.String": {},
       "qx.event.message.Bus": {},
       "cv.ui.manager.viewer.Image": {},
@@ -271,7 +271,7 @@
         if (this.getModel().getSpecial() === 'add-file') {
           cv.ui.manager.upload.MDragUpload.uploadFile(cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]);
         } else {
-          dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
+          qxl.dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
             if (confirmed) {
               var newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
               cv.ui.manager.upload.MDragUpload.uploadFile(newFile, this.getModel());
@@ -349,9 +349,9 @@
 
           if (!cv.ui.manager.viewer.Image.getImageData(value)) {
             // wait for image to be loaded
-            control.addListenerOnce('loaded', this.__P_35_0, this);
+            control.addListenerOnce('loaded', this.__P_38_0, this);
           } else {
-            this.__P_35_0();
+            this.__P_38_0();
           }
         }
       },
@@ -396,7 +396,7 @@
           this.getChildControl('bottom-bar').exclude();
         }
       },
-      __P_35_0: function __P_35_0() {
+      __P_38_0: function __P_38_0() {
         var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
         var control = this.getChildControl('atom').getChildControl('icon');
         var sizeHint = control.getSizeHint();
@@ -559,4 +559,4 @@
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1619884689961
+//# sourceMappingURL=FileListItem.js.map?dt=1620071700922

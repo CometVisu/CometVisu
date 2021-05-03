@@ -7370,6 +7370,7 @@
   },
   "events": {},
   "descendants": [
+    "cv.ui.manager.contextmenu.ConfigElement",
     "cv.ui.manager.contextmenu.FileItem"
   ]
 }

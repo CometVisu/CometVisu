@@ -15,7 +15,7 @@
       "cv.ui.manager.snackbar.Controller": {},
       "qx.locale.Manager": {},
       "qx.event.message.Bus": {},
-      "dialog.Dialog": {},
+      "qxl.dialog.Dialog": {},
       "cv.ui.manager.editor.Worker": {}
     }
   };
@@ -35,7 +35,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_28_0 = cv.io.rest.Client.getFsClient();
+      this.__P_30_0 = cv.io.rest.Client.getFsClient();
     },
 
     /*
@@ -44,7 +44,7 @@
     ***********************************************
     */
     members: {
-      __P_28_0: null,
+      __P_30_0: null,
       rename: function rename(file, newName) {
         var newPath = file.getPath() || '';
 
@@ -56,7 +56,7 @@
 
         if (file.isTemporary()) {
           // create new item
-          this.__P_28_0.createSync({
+          this.__P_30_0.createSync({
             path: newPath,
             type: file.getType()
           }, function (err) {
@@ -71,7 +71,7 @@
             }
           }, this);
         } else if (file.getFullPath() !== newPath) {
-          this.__P_28_0.moveSync({
+          this.__P_30_0.moveSync({
             src: file.getFullPath(),
             target: newPath
           }, function (err) {
@@ -95,7 +95,7 @@
        * @param target {String} new path of the file
        */
       move: function move(file, target) {
-        this.__P_28_0.moveSync({
+        this.__P_30_0.moveSync({
           src: file.getFullPath(),
           target: target
         }, function (err) {
@@ -119,7 +119,7 @@
         if (file.isInTrash()) {
           var target = file.getFullPath().replace('.trash/', '');
 
-          this.__P_28_1(file, target);
+          this.__P_30_1(file, target);
         } else if (file.getType() === 'file' && !file.isTemporary()) {
           var match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
 
@@ -136,14 +136,14 @@
               }
             }); // load the backup content
 
-            this.__P_28_0.readSync({
+            this.__P_30_0.readSync({
               path: file.getFullPath()
             }, function (err, res) {
               if (err) {
                 cv.ui.manager.snackbar.Controller.error(err);
               } else {
                 if (targetFile) {
-                  this.__P_28_0.updateSync({
+                  this.__P_30_0.updateSync({
                     path: targetFile.getFullPath(),
                     hash: 'ignore'
                   }, res, function (err) {
@@ -162,7 +162,7 @@
                   }, this);
                 } else {
                   // target file does not exist copy to a new file
-                  this.__P_28_0.createSync({
+                  this.__P_30_0.createSync({
                     path: targetFileName,
                     hash: 'ignore'
                   }, res, function (err) {
@@ -178,8 +178,8 @@
           }
         }
       },
-      __P_28_1: function __P_28_1(file, target) {
-        this.__P_28_0.moveSync({
+      __P_30_1: function __P_30_1(file, target) {
+        this.__P_30_0.moveSync({
           src: file.getFullPath(),
           target: target
         }, function (err) {
@@ -212,9 +212,9 @@
               message = file.getType() === 'file' ? qx.locale.Manager.tr('Do you really want to delete file "%1"?', file.getDisplayName()) : qx.locale.Manager.tr('Do you really want to delete folder "%1"?', file.getDisplayName());
             }
 
-            dialog.Dialog.confirm(message, function (confirmed) {
+            qxl.dialog.Dialog.confirm(message, function (confirmed) {
               if (confirmed) {
-                this.__P_28_2(file, callback, context);
+                this.__P_30_2(file, callback, context);
               } else if (callback) {
                 callback.apply(context, false);
               }
@@ -222,8 +222,8 @@
           }
         }
       },
-      __P_28_2: function __P_28_2(file, callback, context) {
-        this.__P_28_0.deleteSync({
+      __P_30_2: function __P_30_2(file, callback, context) {
+        this.__P_30_0.deleteSync({
           path: file.getFullPath(),
           force: file.isTrash()
         }, null, function (err) {
@@ -269,13 +269,13 @@
       },
       validate: function validate(file) {
         if (file.isConfigFile()) {
-          this.__P_28_3(file);
+          this.__P_30_3(file);
         } else {
           this.info('no validation available for file: ' + file.getFullPath());
         }
       },
-      __P_28_3: function __P_28_3(file) {
-        var d = dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
+      __P_30_3: function __P_30_3(file) {
+        var d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
         cv.ui.manager.editor.Worker.getInstance().validateConfig(file).then(function (res) {
           d.close();
 
@@ -303,10 +303,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_28_0 = null;
+      this.__P_30_0 = null;
     }
   });
   cv.ui.manager.control.FileController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileController.js.map?dt=1619883136316
+//# sourceMappingURL=FileController.js.map?dt=1620070361065

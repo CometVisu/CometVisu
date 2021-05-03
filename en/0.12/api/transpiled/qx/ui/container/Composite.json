@@ -4422,6 +4422,6 @@
     "qx.ui.toolbar.PartContainer",
     "qxl.apiviewer.Viewer",
     "qxl.apiviewer.ui.SearchView",
-    "dialog.FormTag"
+    "qxl.dialog.FormTag"
   ]
 }

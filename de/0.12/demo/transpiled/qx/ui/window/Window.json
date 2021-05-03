@@ -9163,6 +9163,6 @@
     "jsdoc": {}
   },
   "descendants": [
-    "dialog.Dialog"
+    "qxl.dialog.Dialog"
   ]
 }

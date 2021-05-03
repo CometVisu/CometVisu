@@ -4236,6 +4236,6 @@
   },
   "events": {},
   "descendants": [
-    "dialog.FormRenderer"
+    "qxl.dialog.FormRenderer"
   ]
 }

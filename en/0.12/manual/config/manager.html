@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#available-cometvisu-configurations">Available CometVisu Configurations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#available-media-files">Available media files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hidden-configuration">Hidden configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cometvisu-icons">CometVisu-Icons</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="editor.html">Graphical editor</a></li>
@@ -198,35 +199,74 @@ by an online translation service.</p>
 edit, replace, delete) various configuration files.
 In addition you can manage the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden configurations</span></a>
 as well as media files (for example backdrops).</p>
-<div class="figure align-default">
-<img alt="../_images/manager.en.png" src="../_images/manager.en.png" />
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The manager can be opened by pressing the keys “Ctrl+M” together in a running CometVisu
+or by adding the url parameter <cite>manager=1</cite> to the CometVisu URL.</p>
 </div>
+<div class="figure align-default">
+<img alt="../_images/manager.png" src="../_images/manager.png" />
+</div>
+<p>The available functions are accessible via menus, toolbars or buttons. The main page of the manager
+is composed of the following components (from top to bottom):</p>
+<ul class="simple">
+<li>Menubar for general functions.</li>
+<li>Tab-bar to show the currently opened files.</li>
+<li>Tab-bar to change the view between a table-based and an preview-based display of the available files.</li>
+<li>A list of configuration files with an own tab-bar for special functions.</li>
+<li>A list of demo configuration files (has to be expanded by clicking on the title).</li>
+<li>A list of media files (if available)</li>
+<li>Special functions, like the hidden-configuration of an overview of all icons.</li>
+</ul>
 <div class="section" id="available-cometvisu-configurations">
 <h2>Available CometVisu Configurations<a class="headerlink" href="#available-cometvisu-configurations" title="Permalink to this headline">¶</a></h2>
-<p>The table lists all available configurations. Names ending with <code class="docutils literal notranslate"><span class="pre">*)</span></code> are
-demonstration configurations that can be opened but not changed.</p>
+<p>Shows all available configurations files, split into the editable “normal” configurations files and
+the non-editable demo configurations. Below every configuration there is a list of buttons that provide
+a quick access to the most commonly used functions. You can download, view or edit the file with these buttons.
+Additional functions are accessible by a contextmenu that can be opened with a click on the right mouse button
+or a click on the 2nd button below each file.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_context.png" src="../_images/manager_context.png" />
+</div>
 <dl class="docutils">
-<dt>View</dt><dd>Opens the configuration and shows it in the browser.</dd>
-<dt>Check</dt><dd>Checks the validity of the configuration, i.e. whether the syntax of the
-:ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>XML file &lt;xml-format&gt;`is valid.</dd>
-<dt>Edit</dt><dd>Opens the configuration it the <a class="reference internal" href="editor.html#editor"><span class="std std-ref">graphical Editor</span></a>.</dd>
-<dt>Text edit</dt><dd>Opens the configuration an a text editor in the browser.</dd>
-<dt>Download</dt><dd>Download of the configuration so that it can be modified or backuped on the
+<dt>Clone file</dt><dd>Creates a copy of that file with a different name.</dd>
+<dt>Open</dt><dd>Opens the file in the pre-configured editor (this can be configured in the “Preferences”-menu on the very top)</dd>
+<dt>Open with</dt><dd>Config files can be opened or edited in 2 different editors.</dd>
+<dt>Compare with</dt><dd>If available when a configuration file has already been edited. You can compare the current version
+with al older to see what has been changed.</dd>
+<dt>Rename</dt><dd>Change the filename.</dd>
+<dt>Delete</dt><dd>Delete the file.</dd>
+<dt>Download</dt><dd>Download of the configuration so that it can be modified or to get a backup on the
 local machine.</dd>
 <dt>Replace</dt><dd>Upload of a configuration to replace an existing one.</dd>
-<dt>Delete</dt><dd>Deletes a configuration.</dd>
+<dt>Check</dt><dd>Checks the validity of the configuration, i.e. whether the syntax of the
+:ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>XML file &lt;xml-format&gt;`is valid.</dd>
 </dl>
 </div>
 <div class="section" id="available-media-files">
 <h2>Available media files<a class="headerlink" href="#available-media-files" title="Permalink to this headline">¶</a></h2>
 <p>Your own configuration can be extended by additional files. Typical examples
-are backdrop images or custom CSS rules to modify an existing design.</p>
+are backdrop images or custom CSS rules to modify an existing design. Text-based files like
+CSS- or Javascript files can be edited diretly with the build-in text editor, other files, like images, can be
+uploaded, replaced or deleted.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_media.png" src="../_images/manager_media.png" />
+</div>
+<p>Depending on the type of file there are different options available. Images a shown as thumbnail and can be opened
+in a large viewer or downloaded. Special text-based image formats like SVG can be edited in the text editor.</p>
 </div>
 <div class="section" id="hidden-configuration">
 <h2>Hidden configuration<a class="headerlink" href="#hidden-configuration" title="Permalink to this headline">¶</a></h2>
 <p>Some plugins require addition configuration settings that shouldn’t be
 transmitted to the browser. This is described in more detail at the
 <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden configuration</span></a> section of the manual.</p>
+</div>
+<div class="section" id="cometvisu-icons">
+<h2>CometVisu-Icons<a class="headerlink" href="#cometvisu-icons" title="Permalink to this headline">¶</a></h2>
+<p>Shows a list of all available icons that can be filtered by the icon name.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_icons.png" src="../_images/manager_icons.png" />
+</div>
 </div>
 </div>
 

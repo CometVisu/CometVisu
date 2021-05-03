@@ -70,9 +70,9 @@
       qx.core.Object.constructor.call(this);
       this.setPrefetchX(settings.minLeft, settings.maxLeft, settings.minRight, settings.maxRight);
       this.setPrefetchY(settings.minAbove, settings.maxAbove, settings.minBelow, settings.maxBelow);
-      this.__P_423_0 = new qx.event.Timer(this.getInterval());
+      this.__P_434_0 = new qx.event.Timer(this.getInterval());
 
-      this.__P_423_0.addListener("interval", this._onInterval, this);
+      this.__P_434_0.addListener("interval", this._onInterval, this);
 
       if (scroller) {
         this.setScroller(scroller);
@@ -107,11 +107,11 @@
     *****************************************************************************
     */
     members: {
-      __P_423_1: null,
-      __P_423_2: null,
-      __P_423_0: null,
-      __P_423_3: null,
-      __P_423_4: null,
+      __P_434_1: null,
+      __P_434_2: null,
+      __P_434_0: null,
+      __P_434_3: null,
+      __P_434_4: null,
 
       /**
        * Configure horizontal prefetching
@@ -122,7 +122,7 @@
        * @param maxRight {Integer} maximum pixels to prefetch right to the view port
        */
       setPrefetchX: function setPrefetchX(minLeft, maxLeft, minRight, maxRight) {
-        this.__P_423_1 = [minLeft, maxLeft, minRight, maxRight];
+        this.__P_434_1 = [minLeft, maxLeft, minRight, maxRight];
       },
 
       /**
@@ -134,21 +134,21 @@
        * @param maxBelow {Integer} maximum pixels to prefetch below the view port
        */
       setPrefetchY: function setPrefetchY(minAbove, maxAbove, minBelow, maxBelow) {
-        this.__P_423_2 = [minAbove, maxAbove, minBelow, maxBelow];
+        this.__P_434_2 = [minAbove, maxAbove, minBelow, maxBelow];
       },
 
       /**
        * Update prefetching
        */
       _onInterval: function _onInterval() {
-        var px = this.__P_423_1;
+        var px = this.__P_434_1;
 
         if (px[1] && px[3]) {
           this.getScroller().getPane().prefetchX(px[0], px[1], px[2], px[3]);
           qx.ui.core.queue.Manager.flush();
         }
 
-        var py = this.__P_423_2;
+        var py = this.__P_434_2;
 
         if (py[1] && py[3]) {
           this.getScroller().getPane().prefetchY(py[0], py[1], py[2], py[3]);
@@ -158,38 +158,38 @@
       // property apply
       _applyScroller: function _applyScroller(value, old) {
         if (old) {
-          if (this.__P_423_3) {
-            old.getChildControl("scrollbar-x").removeListenerById(this.__P_423_3);
+          if (this.__P_434_3) {
+            old.getChildControl("scrollbar-x").removeListenerById(this.__P_434_3);
           }
 
-          if (this.__P_423_4) {
-            old.getChildControl("scrollbar-y").removeListenerById(this.__P_423_4);
+          if (this.__P_434_4) {
+            old.getChildControl("scrollbar-y").removeListenerById(this.__P_434_4);
           }
         }
 
         if (value) {
           if (!value.getContentElement().getDomElement()) {
-            this.__P_423_0.stop();
+            this.__P_434_0.stop();
 
-            value.addListenerOnce("appear", this.__P_423_0.start, this.__P_423_0);
+            value.addListenerOnce("appear", this.__P_434_0.start, this.__P_434_0);
           } else {
-            this.__P_423_0.restart();
+            this.__P_434_0.restart();
           } //        if (value.hasChildControl("scrollbar-x"))
           //        {
 
 
-          this.__P_423_3 = value.getChildControl("scrollbar-x").addListener("scroll", this.__P_423_0.restart, this.__P_423_0); //        }
+          this.__P_434_3 = value.getChildControl("scrollbar-x").addListener("scroll", this.__P_434_0.restart, this.__P_434_0); //        }
           //        if (value.hasChildControl("scrollbar-y"))
           //        {
 
-          this.__P_423_4 = value.getChildControl("scrollbar-y").addListener("scroll", this.__P_423_0.restart, this.__P_423_0); //        }
+          this.__P_434_4 = value.getChildControl("scrollbar-y").addListener("scroll", this.__P_434_0.restart, this.__P_434_0); //        }
         } else {
-          this.__P_423_0.stop();
+          this.__P_434_0.stop();
         }
       },
       // property apply
       _applyInterval: function _applyInterval(value, old) {
-        this.__P_423_0.setInterval(value);
+        this.__P_434_0.setInterval(value);
       }
     },
 
@@ -200,12 +200,12 @@
      */
     destruct: function destruct() {
       this.setScroller(null);
-      this.__P_423_1 = this.__P_423_2 = null;
+      this.__P_434_1 = this.__P_434_2 = null;
 
-      this._disposeObjects("__P_423_0");
+      this._disposeObjects("__P_434_0");
     }
   });
   qx.ui.virtual.behavior.Prefetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prefetch.js.map?dt=1619883171946
+//# sourceMappingURL=Prefetch.js.map?dt=1620070399741

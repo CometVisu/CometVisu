@@ -44,7 +44,7 @@
   qx.Mixin.define("qx.core.MEvent", {
     members: {
       /** @type {Class} Pointer to the regular event registration class */
-      __P_186_0: qx.event.Registration,
+      __P_222_0: qx.event.Registration,
 
       /**
        * Add event listener to this object.
@@ -64,7 +64,7 @@
        */
       addListener: function addListener(type, listener, self, capture) {
         if (!this.$$disposed) {
-          return this.__P_186_0.addListener(this, type, listener, self, capture);
+          return this.__P_222_0.addListener(this, type, listener, self, capture);
         }
 
         return null;
@@ -128,7 +128,7 @@
             listener = callback;
           }
 
-          return this.__P_186_0.removeListener(this, type, listener, self, capture);
+          return this.__P_222_0.removeListener(this, type, listener, self, capture);
         }
 
         return false;
@@ -143,7 +143,7 @@
        */
       removeListenerById: function removeListenerById(id) {
         if (!this.$$disposed) {
-          return this.__P_186_0.removeListenerById(this, id);
+          return this.__P_222_0.removeListenerById(this, id);
         }
 
         return false;
@@ -158,7 +158,7 @@
        * @return {Boolean} Whether the object has a listener of the given type.
        */
       hasListener: function hasListener(type, capture) {
-        return this.__P_186_0.hasListener(this, type, capture);
+        return this.__P_222_0.hasListener(this, type, capture);
       },
 
       /**
@@ -170,7 +170,7 @@
        */
       dispatchEvent: function dispatchEvent(evt) {
         if (!this.$$disposed) {
-          return this.__P_186_0.dispatchEvent(this, evt);
+          return this.__P_222_0.dispatchEvent(this, evt);
         }
 
         return true;
@@ -188,7 +188,7 @@
        */
       fireEvent: function fireEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_186_0.fireEvent(this, type, clazz, args);
+          return this.__P_222_0.fireEvent(this, type, clazz, args);
         }
 
         return true;
@@ -211,7 +211,7 @@
         }
 
         if (!this.$$disposed) {
-          return this.__P_186_0.fireEventAsync(this, type, clazz, args);
+          return this.__P_222_0.fireEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -231,7 +231,7 @@
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_186_0.fireNonBubblingEvent(this, type, clazz, args);
+          return this.__P_222_0.fireNonBubblingEvent(this, type, clazz, args);
         }
 
         return true;
@@ -257,7 +257,7 @@
         }
 
         if (!this.$$disposed) {
-          return this.__P_186_0.fireNonBubblingEventAsync(this, type, clazz, args);
+          return this.__P_222_0.fireNonBubblingEventAsync(this, type, clazz, args);
         }
 
         return qx.Promise.resolve(true);
@@ -284,7 +284,7 @@
             oldData = null;
           }
 
-          return this.__P_186_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__P_222_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return true;
@@ -316,7 +316,7 @@
             oldData = null;
           }
 
-          return this.__P_186_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+          return this.__P_222_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
         }
 
         return qx.Promise.resolve(true);
@@ -326,4 +326,4 @@
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1619884703715
+//# sourceMappingURL=MEvent.js.map?dt=1620071717811

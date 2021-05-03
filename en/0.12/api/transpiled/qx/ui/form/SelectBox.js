@@ -100,7 +100,7 @@
       this.addListener("pointerout", this._onPointerOut, this);
       this.addListener("tap", this._onTap, this);
       this.addListener("keyinput", this._onKeyInput, this);
-      this.addListener("changeSelection", this.__P_308_0, this);
+      this.addListener("changeSelection", this.__P_319_0, this);
     },
 
     /*
@@ -128,7 +128,7 @@
     */
     members: {
       /** @type {qx.ui.form.ListItem} instance */
-      __P_308_1: null,
+      __P_319_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -225,7 +225,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_308_0: function __P_308_0(e) {
+      __P_319_0: function __P_319_0(e) {
         var listItem = e.getData()[0];
         var list = this.getChildControl("list");
 
@@ -237,15 +237,15 @@
           }
         }
 
-        this.__P_308_2();
+        this.__P_319_2();
 
-        this.__P_308_3();
+        this.__P_319_3();
       },
 
       /**
        * Sets the icon inside the list to match the selected ListItem.
        */
-      __P_308_2: function __P_308_2() {
+      __P_319_2: function __P_319_2() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var icon = listItem ? listItem.getIcon() : "";
@@ -255,7 +255,7 @@
       /**
        * Sets the label inside the list to match the selected ListItem.
        */
-      __P_308_3: function __P_308_3() {
+      __P_319_3: function __P_319_3() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var label = listItem ? listItem.getLabel() : "";
@@ -337,9 +337,9 @@
 
         if (iden == "Enter" || iden == "Space") {
           // Apply pre-selected item (translate quick selection to real selection)
-          if (this.__P_308_1) {
-            this.setSelection([this.__P_308_1]);
-            this.__P_308_1 = null;
+          if (this.__P_319_1) {
+            this.setSelection([this.__P_319_1]);
+            this.__P_319_1 = null;
           }
 
           this.toggle();
@@ -364,9 +364,9 @@
       // overridden
       _onListPointerDown: function _onListPointerDown(e) {
         // Apply pre-selected item (translate quick selection to real selection)
-        if (this.__P_308_1) {
-          this.setSelection([this.__P_308_1]);
-          this.__P_308_1 = null;
+        if (this.__P_319_1) {
+          this.setSelection([this.__P_319_1]);
+          this.__P_319_1 = null;
         }
       },
       // overridden
@@ -375,8 +375,8 @@
         var old = e.getOldData(); // Remove old listeners for icon and label changes.
 
         if (old && old.length > 0) {
-          old[0].removeListener("changeIcon", this.__P_308_2, this);
-          old[0].removeListener("changeLabel", this.__P_308_3, this);
+          old[0].removeListener("changeIcon", this.__P_319_2, this);
+          old[0].removeListener("changeLabel", this.__P_319_3, this);
         }
 
         if (current.length > 0) {
@@ -387,15 +387,15 @@
           var context = list.getSelectionContext();
 
           if (popup.isVisible() && (context == "quick" || context == "key")) {
-            this.__P_308_1 = current[0];
+            this.__P_319_1 = current[0];
           } else {
             this.setSelection([current[0]]);
-            this.__P_308_1 = null;
+            this.__P_319_1 = null;
           } // Add listeners for icon and label changes
 
 
-          current[0].addListener("changeIcon", this.__P_308_2, this);
-          current[0].addListener("changeLabel", this.__P_308_3, this);
+          current[0].addListener("changeIcon", this.__P_319_2, this);
+          current[0].addListener("changeLabel", this.__P_319_3, this);
         } else {
           this.resetSelection();
         }
@@ -443,10 +443,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_308_1 = null;
+      this.__P_319_1 = null;
     }
   });
   qx.ui.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1619883162322
+//# sourceMappingURL=SelectBox.js.map?dt=1620070389825

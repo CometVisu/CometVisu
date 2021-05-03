@@ -34,10 +34,11 @@
     extend: osparc.theme.osparcdark.Color,
     colors: {
       'valid-color': '#22822d',
-      'invalid-color': 'material-textfield-invalid'
+      'invalid-color': 'material-textfield-invalid',
+      'warning-color': '#a85500'
     }
   });
   cv.theme.dark.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1619883178911
+//# sourceMappingURL=Color.js.map?dt=1620070407118

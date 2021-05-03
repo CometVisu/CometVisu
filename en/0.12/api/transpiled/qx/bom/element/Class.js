@@ -75,10 +75,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     statics: {
       /** @type {RegExp} Regular expressions to split class names */
-      __P_103_0: /\s+/g,
+      __P_114_0: /\s+/g,
 
       /** @type {RegExp} String trim regular expression. */
-      __P_103_1: /^\s+|\s+$/g,
+      __P_114_1: /^\s+|\s+$/g,
 
       /**
        * Adds a className to the given element
@@ -130,7 +130,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var old = element.className;
 
           if (old) {
-            result = old.split(this.__P_103_0);
+            result = old.split(this.__P_114_0);
 
             for (var i = 0, l = result.length; i < l; i++) {
               keys[result[i]] = true;
@@ -231,7 +231,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         },
         "default": function _default(element, classes) {
           var reg = new RegExp("\\b" + classes.join("\\b|\\b") + "\\b", "g");
-          return element.className = element.className.replace(reg, "").replace(this.__P_103_1, "").replace(this.__P_103_0, " ");
+          return element.className = element.className.replace(reg, "").replace(this.__P_114_1, "").replace(this.__P_114_0, " ");
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
 
@@ -286,4 +286,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.element.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1619883144229
+//# sourceMappingURL=Class.js.map?dt=1620070371260

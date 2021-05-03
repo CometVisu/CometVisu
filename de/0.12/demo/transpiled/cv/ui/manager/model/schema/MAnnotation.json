@@ -1,0 +1,241 @@
+{
+  "className": "cv.ui.manager.model.schema.MAnnotation",
+  "packageName": "cv.ui.manager.model.schema",
+  "name": "MAnnotation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0
+      },
+      "end": {
+        "line": 159,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 11,
+        "column": 13
+      },
+      "end": {
+        "line": 14,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__appInfoCache": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4
+        },
+        "end": {
+          "line": 26,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getAppinfo</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__linkRegex": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 27,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__language": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4
+        },
+        "end": {
+          "line": 28,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__documentationCache": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getDocumentation</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__getTextNodesByXPath": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getAppinfo": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the appinfo information from the element, if any</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "array   list of texts, or empty list if none"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDocumentation": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the documentation information from the element, if any</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "array   list of texts, or empty list if none"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createDocumentationWebLinks": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 146,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transform documentation text to link to the online documentation when it\n contains a reference.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "string The transformed input string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 154,
+        "column": 12
+      },
+      "end": {
+        "line": 158,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

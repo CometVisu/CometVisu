@@ -74,7 +74,7 @@
       /**
         * Flag to keep the show/hidden state of the toolbar
         */
-      __P_367_0: false,
+      __P_378_0: false,
 
       /**
         * Adds a new child widget.
@@ -97,4 +97,4 @@
   qx.ui.mobile.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1619883167185
+//# sourceMappingURL=ToolBar.js.map?dt=1620070394996

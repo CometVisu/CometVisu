@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 176,
+        "line": 239,
         "column": 3
       }
     },
@@ -132,7 +132,7 @@
         },
         "end": {
           "line": 52,
-          "column": 52
+          "column": 55
         }
       },
       "type": "variable",
@@ -182,14 +182,42 @@
       "type": "variable",
       "access": "protected"
     },
-    "_applyConnectToWindow": {
+    "_source": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_reloading": {
       "location": {
         "start": {
           "line": 65,
           "column": 4
         },
         "end": {
+          "line": 65,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_applyConnectToWindow": {
+      "location": {
+        "start": {
           "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
           "column": 5
         }
       },
@@ -202,11 +230,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 125,
           "column": 5
         }
       },
@@ -220,11 +248,11 @@
     "_onChange": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 148,
           "column": 5
         }
       },
@@ -234,25 +262,53 @@
     "_onClose": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 156,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected"
     },
-    "_createChildControlImpl": {
+    "openPage": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 167,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setHighlightWidget": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 177,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_createChildControlImpl": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
           "column": 5
         }
       },
@@ -424,6 +480,100 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>external</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #external}."
+          }
+        ]
+      }
+    },
+    "getReady": {
+      "type": "function",
+      "name": "getReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "isReady": {
+      "type": "function",
+      "name": "isReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "setReady": {
+      "type": "function",
+      "name": "setReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for ready"
+          }
+        ]
+      }
+    },
+    "resetReady": {
+      "type": "function",
+      "name": "resetReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>ready</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #ready}."
           }
         ]
       }
@@ -4380,11 +4530,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 173,
+        "line": 236,
         "column": 12
       },
       "end": {
-        "line": 175,
+        "line": 238,
         "column": 3
       }
     },

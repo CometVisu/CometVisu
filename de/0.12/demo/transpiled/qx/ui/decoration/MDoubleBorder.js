@@ -70,8 +70,8 @@
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__P_325_0;
-      this._styleBorder = this.__P_325_1;
+      this._getDefaultInsetsForBorder = this.__P_278_0;
+      this._styleBorder = this.__P_278_1;
     },
 
     /*
@@ -179,7 +179,7 @@
        *
        * @param styles {Map} A map to add the styles.
        */
-      __P_325_1: function __P_325_1(styles) {
+      __P_278_1: function __P_278_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
 
@@ -246,7 +246,7 @@
         var innerOpacity = this.getInnerOpacity();
 
         if (innerOpacity < 1) {
-          this.__P_325_2(innerColor, innerOpacity);
+          this.__P_278_2(innerColor, innerOpacity);
         } // inner border
 
 
@@ -323,7 +323,7 @@
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __P_325_2: function __P_325_2(innerColor, innerOpacity) {
+      __P_278_2: function __P_278_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           return;
         }
@@ -343,7 +343,7 @@
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __P_325_0: function __P_325_0() {
+      __P_278_0: function __P_278_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -356,4 +356,4 @@
   qx.ui.decoration.MDoubleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDoubleBorder.js.map?dt=1619884715895
+//# sourceMappingURL=MDoubleBorder.js.map?dt=1620071722324

@@ -53,6 +53,7 @@
     members: {
       _worker: null,
       _validationCallbacks: null,
+      _counter: 0,
       postMessage: function postMessage(msg) {
         this._worker.postMessage(msg);
       },
@@ -68,6 +69,14 @@
           } else {
             this._validationCallbacks[url].push(resolve);
           }
+        }.bind(this));
+      },
+      validateXmlConfig: function validateXmlConfig(code) {
+        return new Promise(function (resolve, reject) {
+          var id = this._counter++;
+          this._validationCallbacks[id] = [resolve];
+
+          this._worker.postMessage(["validateXmlConfig", id, code, true]);
         }.bind(this));
       },
       _onMessage: function _onMessage(e) {
@@ -108,4 +117,4 @@
   cv.data.FileWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileWorker.js.map?dt=1619884693312
+//# sourceMappingURL=FileWorker.js.map?dt=1620071705234

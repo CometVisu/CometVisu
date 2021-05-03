@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 24,
+        "line": 39,
         "column": 3
       }
     },
@@ -91,6 +91,79 @@
             "paramName": "data",
             "description": " action payload",
             "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "configureButton": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 51
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The ActionHandler can configure the menubutton itself, e.g. disable it, when that action is currently not possible\n or change the button text / tooltip text etc.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionId {String} ID of the action that button triggers",
+            "paramName": "actionId",
+            "description": " ID of the action that button triggers",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "button {Widget} the button that should be configured",
+            "paramName": "button",
+            "description": " the button that should be configured",
+            "type": "Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unConfigureButton": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 53
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Undo all changes that have been applied to the button in configureButton</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionId {String} ID of the action that button triggers",
+            "paramName": "actionId",
+            "description": " ID of the action that button triggers",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "button {Widget}"
           }
         ]
       },
