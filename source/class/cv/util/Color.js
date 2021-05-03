@@ -168,18 +168,25 @@ qx.Class.define('cv.util.Color', {
    * @param Wxy
    */
   construct: function (Rxy = undefined, Gxy = undefined, Bxy = undefined, Wxy = undefined) {
-    this.__R = Rxy === undefined ? { x: 0.64, y: 0.33 } : Rxy;
-    this.__G = Gxy === undefined ? { x: 0.30, y: 0.60 } : Gxy;
-    this.__B = Bxy === undefined ? { x: 0.15, y: 0.06 } : Bxy;
+    this.__R = Rxy === undefined ? { x: 0.64, y: 0.33, Y: 0.2126 } : Rxy;
+    this.__G = Gxy === undefined ? { x: 0.30, y: 0.60, Y: 0.7152 } : Gxy;
+    this.__B = Bxy === undefined ? { x: 0.15, y: 0.06, Y: 0.0722 } : Bxy;
     if( undefined !== Wxy ) {
       this.__W = Wxy;
     } else {
       this.__W = {
         x: (this.__R.x + this.__G.x + this.__B.x)/3,
-        y: (this.__R.y + this.__G.y + this.__B.y)/3 
+        y: (this.__R.y + this.__G.y + this.__B.y)/3,
+        Y: 1
       };
     }
-    
+
+    // normalize luminances
+    let normFac = 1 / (this.__R.Y + this.__G.Y + this.__B.Y);
+    this.__R.Y *= normFac;
+    this.__G.Y *= normFac;
+    this.__B.Y *= normFac;
+
     // start color is a complete unsaturated red that is black:
     this.__hsv = { h: 0, s: 0, v: 0 };
     this.__syncHSV2xy();
@@ -191,10 +198,10 @@ qx.Class.define('cv.util.Color', {
   */
   members: {
     // the base colors defining the color space of this color
-    __R: { x: 1.0, y: 0.0 },
-    __G: { x: 0.0, y: 1.0 },
-    __B: { x: 0.0, y: 0.0 },
-    __W: { x: 1/3, y: 1/3 },
+    __R: { x: 1.0, y: 0.0, Y: 1/3 },
+    __G: { x: 0.0, y: 1.0, Y: 1/3 },
+    __B: { x: 0.0, y: 0.0, Y: 1/3 },
+    __W: { x: 1/3, y: 1/3, Y: 1   },
 
     // the color itself
     __x: 1/3,
@@ -325,10 +332,10 @@ qx.Class.define('cv.util.Color', {
           X = this.__x * (this.__Y / Math.max(0.001, this.__y)),
           Z = (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y)),
           f = function(t) {
-                //if(t < 216/24389) {
-                //  return (24389/27*t+16)/116;
-                if(t < (6/29)**3) {
-                  return t/(3*(6/29)**2 + 4/29);
+                if(t < 216/24389) {
+                  return (24389/27*t+16)/116;
+                //if(t < (6/29)**3) {
+                //  return t/(3*(6/29)**2 + 4/29);
                 } else {
                   return t**(1/3);
                 }
@@ -388,9 +395,20 @@ qx.Class.define('cv.util.Color', {
     __syncRGB2xy: function () {
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       if( this.__Y > 0 ) {
+        /*
         let rgbInv = 1 / (this.__rgb.r + this.__rgb.g + this.__rgb.b);
         this.__x = (this.__rgb.r * this.__R.x + this.__rgb.g * this.__G.x + this.__rgb.b * this.__B.x) * rgbInv;
         this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
+         */
+        /*
+        let denom = 1/(this.__rgb.r/this.__R.y + this.__rgb.g/this.__G.y + this.__rgb.b/this.__B.y);
+        this.__x = (this.__R.x/this.__R.y * this.__rgb.r + this.__G.x/this.__G.y * this.__rgb.g + this.__B.x/this.__B.y * this.__rgb.b)*denom;
+        this.__y = (this.__rgb.r + this.__rgb.g + this.__rgb.b)*denom;
+         */
+        let Lr = this.__R.Y * this.__rgb.r, Lg = this.__G.Y * this.__rgb.g, Lb = this.__B.Y * this.__rgb.b;
+        let denom = 1/(Lr/this.__R.y + Lg/this.__G.y + Lb/this.__B.y);
+        this.__x = (this.__R.x/this.__R.y * Lr + this.__G.x/this.__G.y * Lg + this.__B.x/this.__B.y * Lb)*denom;
+        this.__y = (Lr + Lg + Lb)*denom;
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__hsv = undefined;
       this.__Lab = undefined;
@@ -412,6 +430,8 @@ qx.Class.define('cv.util.Color', {
       const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
       let
         fInv = function(t) {
+            //if(t < 216/24389) {
+            //  return (24389/27*t+16)/116;
             if(t < 6/29) {
               return 3*(6/29)**2*(t-4/29);
             } else {
@@ -536,7 +556,7 @@ qx.Class.define('cv.util.Color', {
       this.__syncHSV2xy();
     },
 
-    getComponent: function (component) {
+    getComponent: function (component, force = false) {
       switch(component) {
         case 'xy':
           return {x: this.__x, y: this.__y};
@@ -546,35 +566,35 @@ qx.Class.define('cv.util.Color', {
         case 'h':
         case 's':
         case 'v':
-          this.__validateHSV();
+          this.__validateHSV(force);
           return this.__hsv[component];
 
         case 'hsv':
-          this.__validateHSV();
+          this.__validateHSV(force);
           return this.__hsv;
 
         case 'r':
         case 'g':
         case 'b':
-          this.__validateRGB();
+          this.__validateRGB(force);
           return this.__rgb[component];
 
         case 'rgb':
-          this.__validateRGB();
+          this.__validateRGB(force);
           return this.__rgb;
 
         case 'T':
-          this.__validateT();
+          this.__validateT(force);
           return this.__T;
 
         case 'LCh-L':
-          this.__validateLCh();
+          this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]] / 10;
         case 'LCh-C':
-          this.__validateLCh();
+          this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]] / 10;
         case 'LCh-h':
-          this.__validateLCh();
+          this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]];
       }
     },
