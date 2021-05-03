@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     file: {
       check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      apply: '_loadFile'
+      apply: '_loadFile',
+      event: 'changeFile'
     },
 
     content: {
@@ -39,7 +40,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     handlerOptions: {
       check: 'Map',
-      nullable: true
+      nullable: true,
+      apply: '_applyHandlerOptions'
     },
 
     /**
@@ -48,6 +50,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     external: {
       check: 'Boolean',
       init: false
+    },
+
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
   },
 
@@ -76,9 +84,14 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
     },
+
+    _applyHandlerOptions: function () {},
 
     _loadFile: function (file, old) {
       if (old) {
@@ -158,7 +171,10 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       var file = this.getFile();
       file.resetModified();
       file.resetTemporary();
-    }
+    },
+
+    showErrors: function (path, errorList) {},
+    showDecorations: function (path, decorators) {}
   },
 
   /*

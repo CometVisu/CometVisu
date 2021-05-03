@@ -8,7 +8,7 @@
 var CometVisuMockup = require('../../pages/Mock');
 var cvMockup = new CometVisuMockup();
 
-describe('navbar widget testing', function () {
+xdescribe('navbar widget testing', function () {
   'use strict';
   var mockupConfig = [];
   var configParts = {

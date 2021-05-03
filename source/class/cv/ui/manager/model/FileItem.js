@@ -31,6 +31,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     if (parent) {
       this.setParent(parent);
     }
+    if (qx.core.Environment.get("qx.dynlocale")) {
+      qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+    }
   },
 
   /*
@@ -584,7 +587,18 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           return true;
         }
       }, this);
-    }
+    },
+
+    _onChangeLocale : qx.core.Environment.select("qx.dynlocale", {
+      "true": function () {
+        const content = this.getDisplayName();
+        if (content && content.translate) {
+          this.setDisplayName(content.translate());
+        }
+      },
+
+      "false" : null
+    }),
   },
   
   /*

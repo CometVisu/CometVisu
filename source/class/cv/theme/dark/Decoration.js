@@ -81,6 +81,27 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         color: 'text',
         style: 'dashed'
       }
+    },
+
+    'round-button': {
+      style: {
+        width: 2,
+        radius: 32,
+        color: 'button-border',
+        backgroundColor: "button",
+        shadowSpreadRadius: 0,
+        shadowBlurRadius: 4,
+        shadowHorizontalLength: 1,
+        shadowVerticalLength: 1,
+        shadowColor: 'rgba(255, 255, 255, 0.1)'
+      }
+    },
+    'round-button-hovered': {
+      include: 'round-button',
+      style: {
+        width: 4,
+        color: 'button-border-hovered'
+      }
     }
   }
 });

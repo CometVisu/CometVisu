@@ -49,7 +49,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: /^(demo)?\/?visu_config.*\.xml/,
+    SUPPORTED_FILES: /^(demo|\.)?\/?visu_config.*\.xml/,
     TITLE: qx.locale.Manager.tr('Config viewer'),
     ICON: cv.theme.dark.Images.getIcon('preview', 18)
   },
@@ -61,6 +61,8 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   */
   members: {
     _windowRef: null,
+    _source: null,
+    _reloading: false,
 
     _applyConnectToWindow: function (value) {
       this.setExternal(!value);
@@ -75,8 +77,10 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
           var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
           if (this.getTarget() === 'iframe') {
-            url += '&preview=1';
+            url += '&preview=1&libraryCheck=false';
             var control = this.getChildControl('iframe');
+            this._source = url;
+            this.getChildControl('loading').show();
             control.setSource(url);
             control.show();
             const hint = this.getChildControl('hint', true);
@@ -84,6 +88,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
               hint.exclude();
             }
           } else {
+            this._source = url;
             let ref = window.open(url, configName);
             if (this.isConnectToWindow()) {
               this._windowRef = ref;
@@ -103,9 +108,11 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
         } else {
           cv.ui.manager.snackbar.Controller.error(this.tr('%1 is no configuration file', file.getFullPath()));
+          this._source = null;
         }
       } else {
         if (this.hasChildControl('iframe')) {
+          this.getChildControl('iframe').resetSource();
           this.getChildControl('iframe').exclude();
         }
         if (this.hasChildControl('hint')) {
@@ -121,7 +128,19 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       var data = ev.getData();
       if (data.type === 'contentChanged') {
         if (this.hasChildControl('iframe')) {
-          this.getChildControl('iframe').reload();
+          const iframe = this.getChildControl('iframe');
+          const href = iframe.getDocument().location.href;
+          // use href to get the anchor to keep the currently opened page on reload
+          const url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
+          if (url && url !== "about:blank") {
+            this._reloading = true;
+            this.getChildControl('loading').show();
+            iframe.addListenerOnce("load", () => {
+              this._reloading = false;
+              iframe.setSource(url);
+            }, this);
+          }
+          iframe.setSource("about:blank");
         } else if (this._windowRef) {
           this._windowRef.reload();
         }
@@ -130,8 +149,30 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _onClose: function () {
       if (this._windowRef) {
-        console.log(this, 'close', this.getFile().getFullPath());
         qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
+        this._windowRef = null;
+      }
+      this.resetFile();
+    },
+
+    openPage: function (page, path) {
+      if (this.hasChildControl('iframe')) {
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+        if (element && element.contentWindow.cv) {
+          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
+          const pageId = path ? otherEngine.getPageIdByPath(page, path) : page;
+          otherEngine.scrollToPage(pageId, 0);
+        }
+      }
+    },
+
+    setHighlightWidget: function (widgetId) {
+      if (this.hasChildControl('iframe')) {
+        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+        if (element && element.contentWindow.cv) {
+          const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
+          otherEngine.setHighlightedWidget(widgetId);
+        }
       }
     },
 
@@ -143,6 +184,11 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
          case 'iframe':
            control = new qx.ui.embed.Iframe();
            control.exclude();
+           control.addListener("load", () => {
+             if (this.hasChildControl('loading') && !this._reloading) {
+               this.getChildControl('loading').exclude();
+             }
+           }, this);
            this.getChildControl('scroll').add(control);
            break;
 
@@ -158,6 +204,23 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
              }
            }, this);
            this.getChildControl('scroll').add(control);
+           break;
+
+         case 'loading':
+           control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon("reload", 64));
+           control.set({
+             center: true,
+             font: 'title',
+             iconPosition: "top",
+             backgroundColor: "rgba(0,0,0,0.2)"
+           });
+           control.addListener("appear", () => {
+             qx.event.Timer.once(() => {
+               control.exclude();
+             }, this, 5000);
+           });
+           control.exclude();
+           this._add(control);
            break;
        }
 

@@ -20,7 +20,7 @@ qx.Class.define('cv.io.rest.Client', {
       if (!this.BASE_URL) {
         var path = ""; 
         var engine = cv.TemplateEngine.getInstance();
-        var clientBackend = engine.visu ? engine.visu.getBackend() : {};
+        var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
         if (clientBackend.resources && clientBackend.resources.rest) {
           path = clientBackend.resources.rest
         } else {
@@ -129,6 +129,9 @@ qx.Class.define('cv.io.rest.Client', {
           rrds: {
             method: 'GET', url: '/data/rrds'
           },
+          addresses: {
+            method: 'GET', url: '/data/addresses'
+          },
           influxdbs: {
             method: 'GET', url: '/data/influxdbs?auth={auth}'
           },
@@ -194,7 +197,7 @@ qx.Class.define('cv.io.rest.Client', {
         }
         if (req.getPhase() === 'load') {
           // error during load phase => backend not reachable
-          dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
+          qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
         }
       }, this);
     },

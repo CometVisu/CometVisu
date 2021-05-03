@@ -215,6 +215,26 @@ qx.Class.define('cv.IconHandler', {
     },
 
     /**
+     * Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.
+     * @param name {String} icon name
+     * @param classes {String?} optional css classes used in the svg icon code (default is 'icon')
+     * @returns {String|string|*}
+     */
+    getIconSource: function (name, classes) {
+      var i = this.get.apply(this, arguments);
+      if (i) {
+        if (!classes) {
+          classes = "icon"
+        }
+        if (typeof i === 'function') {
+          return i(undefined, undefined, classes, true);
+        } else {
+          return qx.util.ResourceManager.getInstance().toUri(i.uri);
+        }
+      }
+    },
+
+    /**
      * Fill the icons in the array.
      */
     fillIcons: function (array) {

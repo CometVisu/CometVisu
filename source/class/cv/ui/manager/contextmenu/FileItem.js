@@ -230,7 +230,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     _onRename: function () {
       if (this._selectedNode && !this._renameDialog && this.isActive()) {
-        this._renameDialog = new dialog.Prompt({
+        this._renameDialog = new cv.ui.manager.dialog.Prompt({
           message: this.tr('New name'),
           callback: function (name) {
             if (name && name !== this._selectedNode.getName()) {

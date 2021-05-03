@@ -261,6 +261,12 @@ qx.Class.define('cv.io.mqtt.Client', {
      */
     showError: function(type, message, args) {},
 
+    terminate: function () {
+      if( this.isConnected() ) {
+        this._client.disconnect();
+      }
+    },
+
     /**
      * Destructor
      */

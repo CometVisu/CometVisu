@@ -238,6 +238,9 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _handleFileEvent: function (ev) {
       var data = ev.getData();
       if (data.action === 'deleted') {
@@ -379,7 +382,11 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
-          editorConfig.instance.setFile(file);
+        }
+        if (!editorConfig.instance.isReady()) {
+          editorConfig.instance.addListenerOnce('changeReady', () => {
+            editorConfig.instance.setFile(file);
+          }, this);
         } else {
           editorConfig.instance.setFile(file);
         }
@@ -489,8 +496,9 @@ qx.Class.define('cv.ui.manager.Main', {
         if (file.isTemporary()) {
           message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
         }
-        dialog.Dialog.confirm(message, function (confirmed) {
+        qxl.dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
+            file.resetModified();
             this.closeFile(openFile, true);
             if (file.isTemporary()) {
               qx.event.message.Bus.dispatchByName('cv.manager.file', {
@@ -585,12 +593,16 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('rename', renameCommand);
       this.bind('renameableSelection', renameCommand, 'enabled');
 
+      group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
+      group.add('redo', new qx.ui.command.Command('Ctrl+Y'));
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
-      // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
-      // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
-      // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+      group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+      group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+      group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+
+      group.add('help', new qx.ui.command.Command('F1'));
 
       var manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();
@@ -622,7 +634,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __getFileNamePrompt: function (message, callback, context, value, caption) {
-      var prompt = new dialog.Prompt({
+      var prompt = new cv.ui.manager.dialog.Prompt({
         message: message,
         callback: callback || null,
         context: context || null,

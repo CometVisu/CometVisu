@@ -15,7 +15,8 @@
       "name": "cv",
       "theme": "cv.theme.Dark",
       "environment": {
-        "qx.promise": false
+        "qx.promise": false,
+        "qx.command.bindEnabled": true
       },
       "default": true,
       "include": [
@@ -173,10 +174,6 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
-      "bundle": {
-        "include": ["*.*"],
-        "exclude": ["cv.*"]
-      },
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
@@ -213,6 +210,7 @@
     "svg4everybody",
     "THREE",
     "Worker",
+    "Node",
     "indexedDB"
   ]
 }

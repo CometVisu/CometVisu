@@ -20,6 +20,15 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
     external: {
       check: 'Boolean',
       init: false
+    },
+
+    /**
+     * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
+     */
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
   },
 

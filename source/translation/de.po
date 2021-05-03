@@ -90,7 +90,7 @@ msgstr "Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderun
 msgid "openHAB backend settings"
 msgstr "openHAB Backend Einstellungen"
 
-#: cv/plugins/openhab/Settings.js
+#: cv/ui/manager/dialog/ValidationError.js
 msgid "Cancel"
 msgstr "Abbruch"
 
@@ -206,7 +206,7 @@ msgstr "Löschen"
 msgid "Quit"
 msgstr "Beenden"
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+Z"
 msgstr "Strg+Z"
 
@@ -214,7 +214,7 @@ msgstr "Strg+Z"
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+Y"
 msgstr "Strg+Y"
 
@@ -222,27 +222,27 @@ msgstr "Strg+Y"
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+X"
 msgstr "Strg+X"
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Copy"
 msgstr "Kopieren"
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+C"
 msgstr "Strg+C"
 
-#: cv/ui/manager/MenuBar.js
+#. NO LONGER USED
 msgid "Ctrl+V"
 msgstr "Strg+V"
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Paste"
 msgstr "Einfügen"
 
@@ -270,7 +270,7 @@ msgstr "CometVisu Manager"
 msgid "File"
 msgstr "Datei"
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -492,7 +492,7 @@ msgstr "Datei vergleichen"
 msgid "Texteditor"
 msgstr "Texteditor"
 
-#: cv/ui/manager/editor/Xml.js
+#: cv/ui/manager/editor/Tree.js
 msgid "Xml-editor"
 msgstr "XML-Editor"
 
@@ -708,7 +708,7 @@ msgstr "Die versteckte Konfiguration enthält eventuell Fehler! Es wird empfohle
 msgid "Confirm saving with warnings"
 msgstr "Speichen trotz Warnungen bestätigen"
 
-#: cv/ui/manager/editor/Xml.js
+#. NO LONGER USED
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr "Der XML-Editor unterstützt keine Dateien, die nicht gespeichert werden können!"
 
@@ -743,3 +743,215 @@ msgstr "Prüfen"
 #: cv/ui/manager/editor/Diff.js
 msgid "No changes have been made"
 msgstr "Es wurden keine Änderungen vorgenommen"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Help"
+msgstr "Hilfe"
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "Add child"
+msgstr "Kind-Element einfügen"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Undo: %1"
+msgstr "Rückgängig: %1"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Expertview"
+msgstr "Expertenansicht"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Reload preview"
+msgstr "Vorschau aktualisieren"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Search..."
+msgstr "Suchen..."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"
+msgstr "<p style='font-weight:bold'>Element wählen</p><p>Verschiedene Elemente können an dieser Stelle eingefügt werden, bitte wählen sie eines aus.</p>"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Choose element"
+msgstr "Element wählen"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please choose the element you want to add here."
+msgstr "Bitte wählen sie das Element, welches hinzugefügt werden soll."
+
+#: cv/ui/manager/form/CheckBox.js
+msgid "not set"
+msgstr "nicht angegeben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "This is not a valid value."
+msgstr "Dies ist kein gültiger Wert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit %1"
+msgstr "Bearbeite %1"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Show %1"
+msgstr "Zeige %1"
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Value is invalid"
+msgstr "Wert ist ungültig"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Remove %1"
+msgstr "Lösche %1"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Move %1"
+msgstr "Verschiebe %1"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Add %1"
+msgstr "Erzeuge %1"
+
+#. NO LONGER USED
+msgid "Invalid text content: %1"
+msgstr "Ungültiger Text-Inhalt: %1"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content not allowed here"
+msgstr "Kein Text-Inhalt erlaubt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Change %1"
+msgstr "Ändere %1"
+
+#: cv/ui/manager/model/schema/Attribute.js
+msgid "complex type, please see documentation"
+msgstr "Komplexer Typ, bitte in der Dokumentation nachschauen"
+
+#: cv/ui/manager/tree/VirtualElementItem.js
+msgid "Drag to move"
+msgstr "Klicken & Ziehen zum Verschieben"
+
+#: cv/ui/manager/viewer/Config.js
+msgid "This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window."
+msgstr "Diese Konfiguration wurde in einem anderen Fenster geöffnet. Wenn Sie diese Datei schließen, wird das Fenster ebenfalls geschlossen. Klicken zu hier, um zu dem Fenster zu gelangen."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>"
+msgstr "<h3>Suche nach Elementen</h3><p>Sie können nach Elementen suchen (Tag-Namen oder Name-Attribut) indem Sie hier einen Suchbegriff eingeben. Es werden alle Elemente gefunden deren Tag-Name oder 'name'-Attribut mit dem Suchbegriff beginnen.</p><p>Die Suche startet automatisch, wenn der Suchbegriff mindestens 2 Zeichen lang ist.</p><p>Das erste gefunden Element wird im Baum angezeigt. Mit der 'enter' oder der 'Pfeil runter'-Taste kann man zum nächsten Suchergebnis springen. Mit der 'Pfeil rauf'-Taste entsprechend zum vorherigen Suchergebnis.</p>"
+
+#: cv/ui/manager/contextmenu/ConfigElement.js
+msgid "View"
+msgstr "Ansehen"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<h3>Config Errors</h3><p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because it can break the file completely. Please open this file in the text editor and fix the errors there. Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>"
+msgstr "<h3>Fehler in der Konfiguration</h3><p>Die Überprüfung von \"%1\" hat Fehler gefunden. Es wird NICHT empfohlen, diese Datei im XML-Editor zu bearbeiten, weil die Möglichkeit besteht, dass sie dadurch unbrauchbar wird. Bitte öffnen Sie die Datei im Texteditor und beheben Sie die Fehler dort. Fahren Sie nur fort, wenn Sie wissen was Sie tun.</p>"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "<p>You can choose between the following options:<ul>    <li><b>Cancel</b> - Close this editor</li>    <li><b>Proceed</b> - Open the defective file in this editor</li>    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li></ul></p>"
+msgstr "<p>Sie können zwischen folgenden Optionen wählen:<ul>    <li><b>Abbrechen</b> - Diesen Editor schließen</li>    <li><b>Fortfahren</b> - Ungültige Datei in diesem Editor öffnen</li>    <li><b>Öffnen in Text-Editor</b> - Diesen Editor schließen und die ungültige Datei im Text-Editor öffnen</li></ul></p>"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Proceed"
+msgstr "Fortfahren"
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Open in text editor"
+msgstr "Im Text-Editor öffnen"
+
+#: cv/ui/manager/viewer/Config.js
+msgid "Loading..."
+msgstr "Lade..."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a click on the expand icon.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>"
+msgstr "<h3>CometVisu XML-Editor - eine kurze Einführung</h3><p>Der CometVisu XML-Editor stellt eine CometVisu-Konfigurationsdatei in einer Baumstruktur dar. Man kann die Elemente durch einen Klick auf das kleine Dreieck-Icon öffnen/schließen.</p><p>Der XML-Editor stellt sicher, dass keine ungültige Konfiguration erzeugt werden kann. Falls einige Änderungen nicht möglich sind, dann ist das diesem Umstand geschuldet.</p><h4>Attribute bearbeiten</h4><p>Die Attribute eines Elements können bearbeitet werden, indem man einen Doppelklick auf dem Element ausführt. Alternativ stehen im Kontextmenü (öffnen mit rechter Maustaste) und in der Symbolleiste direkt über dem Baum \"Bearbeiten\"-Buttons zur Verfügung .</p><h4>Element bearbeiten</h4><p>Die Elemente im Baum unterstützen eine Umsortierung via Drag&Drop. Sie können ebenfalls ausgeschnitten, kopiert und eingefügt werden. Neue Elemente können hinzugefügt werden, indem man auf den '+'-Button unter dem Baum klickt (Maustaste gedrückt halten) und diesen dann an die Stelle zieht, an der man das neuen Element einfügen möchte. Alternativ steht über das Kontextmenü ein 'Kind-Element einfügen'-Button zur Verfügung.</p><p>Selektierte Elemente können über die Symbolleiste und das Kontextmenü gelöscht werden.</p><h4>Expertenansicht</h4><p>Normalerweise sind einige Attribute nicht sichtbar im Editier-Dialog. Über den 'Expertansicht'-Button in der Symbolleiste kann man diese freischalten.</p><h4>Vorschau</h4><p>Auf der rechten Seite wird eine Vorschau der Konfiguration gezeigt. Diese aktualisiert sich nicht automatisch. Über den Button in der Symbolleiste ganz rechts, kann man die Vorschau aktualisieren.</p>"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview shows the current state of the edited configuration."
+msgstr "Die Vorschau zeigt den aktuellen Stand der Konfiguration an."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh."
+msgstr "Die Vorschau zeigt nicht mehr den aktuellen Zustand der Konfiguration an. Das Hervorheben des gerade selektierten Elements ist deaktiviert bis die Vorschau aktualisiert wurde. Klicken Sie hier, um die Vorschau zu aktualisieren."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element."
+msgstr "Bitte erzeugen Sie ein neues Element indem Sie diesen Button auf die Stelle an der das neue Element platziert werden soll ziehen oder indem Sie ein Element auswählen und über einen Klick auf diesen Button ein neues Element als Kind-Element der Selektion anlegen."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Preview is out of sync. Click here to refresh."
+msgstr "Die Vorschau zeigt nicht mehr den aktuellen Zustand der Konfiguration an. Klicken Sie hier, um die Vorschau zu aktualisieren."
+
+#: cv/ui/manager/dialog/ValidationError.js
+msgid "Line %1"
+msgstr "Zeile %1"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid text content: '%1'"
+msgstr "Ungültiger Textinhalt: '%1'"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Invalid value"
+msgstr "Ungültiger Wert"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' not allowed"
+msgstr "Attribut '%1' ist nicht erlaubt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Attribute '%1' is required but missing"
+msgstr "Attribut '%1' fehlt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is missing"
+msgstr "Fehlender Textinhalt"
+
+#: cv/ui/manager/form/ElementForm.js
+msgid "Possible values could no be retrieved, please check browser console for error details"
+msgstr "Die möglichen Werte konnten nicht geladen werden. Details zum Fehler können in der Browser-Konsole nachgelesen werden."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved after \"%2\""
+msgstr "\"%1\" wurde hinter \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied after \"%2\""
+msgstr "\"%1\" wurde hinter \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved before \"%2\""
+msgstr "\"%1\" wurde vor \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\" as first child"
+msgstr "\"%1\" wurde als erstes Element in \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\" as first child"
+msgstr "\"%1\" wurde als erstes Element in \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been moved into \"%2\""
+msgstr "\"%1\" wurde in \"%2\" verschoben"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied into \"%2\""
+msgstr "\"%1\" wurde in \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "\"%1\" has been copied before \"%2\""
+msgstr "\"%1\" wurde vor \"%2\" kopiert"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Create new %1 element"
+msgstr "Erzeuge neues %1 Element"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please edit the attributes of the new %1 element, that will be added to the chosen position."
+msgstr "Bitte bearbeiten Sie die Attribute des neuen %1 Elements, welches an der gewünschten Stelle erzeugt wird."
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element attributes"
+msgstr "Element Attribute bearbeiten"

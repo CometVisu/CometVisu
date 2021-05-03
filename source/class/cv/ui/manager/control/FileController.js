@@ -188,7 +188,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
               qx.locale.Manager.tr('Do you really want to delete file "%1"?', file.getDisplayName()) :
               qx.locale.Manager.tr('Do you really want to delete folder "%1"?', file.getDisplayName());
           }
-          dialog.Dialog.confirm(message, function (confirmed) {
+          qxl.dialog.Dialog.confirm(message, function (confirmed) {
             if (confirmed) {
               this.__doDelete(file, callback, context);
             } else if (callback) {
@@ -254,7 +254,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
     },
 
     __validateConfig: function (file) {
-      var d = dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
+      var d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
       cv.ui.manager.editor.Worker.getInstance().validateConfig(file).then(function (res) {
         d.close();
         if (res === true) {

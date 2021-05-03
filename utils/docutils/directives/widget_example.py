@@ -166,9 +166,9 @@ class WidgetExampleDirective(Directive):
             parse_result['settings']['editor'] = editor
             parse_result['settings']['widget'] = parse_result['example_tag']
             if editor == "attributes":
-                parse_result['settings']['selector'] = ".treeType_%s ul.attributes" % parse_result['example_tag']
+                parse_result['settings']['selector'] = "div[qxclass='cv.ui.manager.form.ElementForm']"
             elif editor == "elements":
-                parse_result['settings']['selector'] = ".treeType_%s" % parse_result['example_tag']
+                parse_result['settings']['selector'] = "#manager div[qxclass='qx.ui.virtual.layer.WidgetCell']"
             parse_result['settings']['screenshots'].append({
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}

@@ -42,7 +42,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
    */
   construct: function(props) {
     this.base(arguments, props);
-    var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
+    var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + "/data/designs");
     store.addListener("loaded", function (ev) {
       this.setAvailableDesigns(ev.getData());
     }, this);

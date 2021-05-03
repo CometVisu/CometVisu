@@ -105,7 +105,7 @@ describe('test the notification router', function () {
         titleTemplate: "Kitchen light on",
         messageTemplate: "turned on at {{ time }} o'clock",
         condition: 1,
-        addressConfig: ["raw"]
+        addressConfig: {transform: "raw"}
       }]
     };
     router.registerStateUpdateHandler(config);

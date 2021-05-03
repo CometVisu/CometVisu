@@ -24,6 +24,7 @@ qx.Theme.define("cv.theme.dark.Color", {
 
   colors : {
     'valid-color': '#22822d',
-    'invalid-color': 'material-textfield-invalid'
+    'invalid-color': 'material-textfield-invalid',
+    'warning-color': '#a85500'
   }
 });

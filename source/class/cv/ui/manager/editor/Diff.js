@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
     },
 
     _loadFile: function (file, old) {
-      if (old) {
+      if (old && old instanceof cv.ui.manager.model.FileItem) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (this._editor) {
@@ -137,7 +137,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
               this.setOriginalContent(res);
               const [err, upgradedContent, changes] = this._upgradeConfig(res);
               if (err) {
-                dialog.Dialog.error(err);
+                qxl.dialog.Dialog.error(err);
                 qx.event.message.Bus.dispatchByName('cv.manager.action.close');
               } else {
                 this.setModifiedContent(this._convertToString(upgradedContent));
@@ -150,7 +150,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                 let msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' + changesText +
                   '<div>' + qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') + '</div>' +
                   '<div>' + qx.locale.Manager.tr('Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.') + '</div>';
-                const d = dialog.Dialog.confirm(msg, function (ok) {
+                const d = qxl.dialog.Dialog.confirm(msg, function (ok) {
                   if (ok) {
                     this.save(function () {
                       window.location.reload();
