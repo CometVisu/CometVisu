@@ -1636,13 +1636,15 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             delete formData[nodeName];
             nodeName = newNodeName;
           }
+          // Due to a bug that swallowed whitespaces in the monaco editor from time to time this is disabled for now
+
           // special handling for status content: check of source editor supports the type and use it instead of a plain TextArea
-          if (type && cv.ui.manager.editor.Source.SUPPORTED_FILES("test." + type)) {
+          /*if (type && cv.ui.manager.editor.Source.SUPPORTED_FILES("test." + type)) {
             formData[nodeName].type = "SourceEditor";
             formData[nodeName].language = type;
             formData[nodeName].width = Math.min(qx.bom.Viewport.getWidth(), 800);
             delete formData[nodeName].placeholder;
-          }
+          }*/
         }
         this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
       }

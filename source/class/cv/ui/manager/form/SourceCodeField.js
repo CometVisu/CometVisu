@@ -70,6 +70,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
     _editor: null,
     __delayedValue: null,
     __areaHeight: null,
+    _hasBeenEdited: false,
 
     _applyType: function (value) {
       if (value && this.__delayedValue) {
@@ -91,12 +92,14 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
      * @param value {String|null} The new value of the element.
      */
     setValue: function(value) {
-      if (this._editor && this.getType()) {
-        this._editor.setValue(value);
-        this._autoSize();
-      } else {
-        this.__delayedValue = value;
+      if (!this._hasBeenEdited) {
+        if (this._editor && this.getType()) {
+          this._editor.setValue(value);
+        } else {
+          this.__delayedValue = value;
+        }
       }
+      this._autoSize();
     },
 
 
@@ -176,6 +179,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
     },
 
     _onContentChange: function () {
+      this._hasBeenEdited = true;
       this.fireDataEvent('changeValue', this._editor.getValue());
       this._autoSize();
     },
@@ -217,6 +221,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
   ***********************************************
   */
   destruct: function () {
+    this._hasBeenEdited = false;
     if (this._editor) {
       this._editor.dispose();
       this._editor = null;
