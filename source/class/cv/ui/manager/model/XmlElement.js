@@ -235,10 +235,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         } else if (this._node.nodeType === Node.COMMENT_NODE) {
           this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
           return;
-        } else if (this.getName() === "icon" && this.getAttribute("name")) {
+        } else if (this.getName() === "icon" && this.getAttribute("name") && this.getAttribute("name").indexOf("{{") === -1) {
+          // try to use the configured icon (if its not set by a template variable)
           const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute("name"), 'tree-icon');
-          this.setIcon(source);
-          return;
+          if (source) {
+            this.setIcon(source);
+            return;
+          }
         }
       }
       if (this.isOpen()) {
