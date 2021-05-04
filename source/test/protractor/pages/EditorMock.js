@@ -100,7 +100,8 @@ class CometVisuEditorMockup extends BasePage {
       file: configFile,
       handler: 'cv.ui.manager.editor.Tree',
       handlerOptions: {
-        noPreview: !showPreview
+        noPreview: !showPreview,
+        noStretch: !showPreview,
       }
     });
   }
