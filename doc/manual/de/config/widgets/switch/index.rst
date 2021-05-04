@@ -78,14 +78,14 @@ gesetzt werden (z.B. An in rot und Aus in Grün)
 
         <settings>
             <screenshot name="switch_styling">
-                <data address="1/4/0">0</data>
+                <data address="1/4/0">1</data>
             </screenshot>
         </settings>
         <meta>
             <stylings>
                 <styling name="RedGreen">
-                    <entry value="1">red</entry>
-                    <entry value="0">green</entry>
+                    <entry value="0">red</entry>
+                    <entry value="1">green</entry>
                 </styling>
             </stylings>
         </meta>
@@ -102,7 +102,7 @@ Natürlich kann man auch beides gleichzeitig nutzen:
 
     <settings>
         <screenshot name="switch_mapping_styling">
-            <data address="1/4/0">0</data>
+            <data address="1/4/0">1</data>
         </screenshot>
     </settings>
     <meta>
@@ -114,8 +114,8 @@ Natürlich kann man auch beides gleichzeitig nutzen:
         </mappings>
         <stylings>
             <styling name="RedGreen">
-                <entry value="1">red</entry>
-                <entry value="0">green</entry>
+                <entry value="0">red</entry>
+                <entry value="1">green</entry>
             </styling>
         </stylings>
     </meta>
