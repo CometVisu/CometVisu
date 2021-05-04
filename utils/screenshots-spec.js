@@ -23,7 +23,7 @@ browser.executeAsyncScript(function (callback) { callback(window.devicePixelRati
 })
 const errorHandler = function(err) {
   if (err) {
-    throw err;
+    console.error(err.toString());
   }
 };
 
@@ -46,9 +46,9 @@ const cropInFile = function(size, location, srcFile, width, height) {
         width: width,
         height: height
       };
-      easyimg.resize(args).then(function () { }, errorHandler);
+      return easyimg.resize(args);
     }
-  }, errorHandler);
+  }).catch(errorHandler);
 };
 
 const createDir = function(dir) {

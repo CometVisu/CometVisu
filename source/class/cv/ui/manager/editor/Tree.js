@@ -167,7 +167,10 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.getChildControl('left').clearLayoutProperties();
         this.getChildControl('left').updateLayoutProperties();
       } else {
-        this.getChildControl('left').setLayoutProperties({flex: 1});
+        const handlerOptions = this.getHandlerOptions();
+        if (!handlerOptions || !handlerOptions.noStretch) {
+          this.getChildControl('left').setLayoutProperties({flex: 1});
+        }
       }
       if (value && this.getFile()) {
         const preview = this.getChildControl('preview');
