@@ -257,9 +257,13 @@
           this.getChildControl('left').clearLayoutProperties();
           this.getChildControl('left').updateLayoutProperties();
         } else {
-          this.getChildControl('left').setLayoutProperties({
-            flex: 1
-          });
+          var handlerOptions = this.getHandlerOptions();
+
+          if (!handlerOptions || !handlerOptions.noStretch) {
+            this.getChildControl('left').setLayoutProperties({
+              flex: 1
+            });
+          }
         }
 
         if (value && this.getFile()) {
@@ -2479,4 +2483,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1620070362150
+//# sourceMappingURL=Tree.js.map?dt=1620144795807

@@ -273,10 +273,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else if (this._node.nodeType === Node.COMMENT_NODE) {
             this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
             return;
-          } else if (this.getName() === "icon" && this.getAttribute("name")) {
+          } else if (this.getName() === "icon" && this.getAttribute("name") && this.getAttribute("name").indexOf("{{") === -1) {
+            // try to use the configured icon (if its not set by a template variable)
             var source = cv.IconHandler.getInstance().getIconSource(this.getAttribute("name"), 'tree-icon');
-            this.setIcon(source);
-            return;
+
+            if (source) {
+              this.setIcon(source);
+              return;
+            }
           }
         }
 
@@ -1392,4 +1396,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1620071701746
+//# sourceMappingURL=XmlElement.js.map?dt=1620146193154
