@@ -23,6 +23,6 @@
   ],
   "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,SAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,eAAe,EAAE,CAJV;AAKPC,MAAAA,IAAI,EAAE,0BALC;AAMPC,MAAAA,IAAI,EAAE;AANC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWZ,aAAX,GAA2BA,aAA3B",
   "sourcesContent": [
-    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"d7d9dfb8ce09b7779cccd206c873221e00ff4256\",\n    BRANCH: \"develop\",\n    VERSION: \"0.12.0-dev\",\n    LIBRARY_VERSION: 9,\n    DATE: \"2021-05-04T16:10:35.182Z\",\n    TAGS: { \n    }\n  }\n});    \n"
+    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"531776bf7d00b4e1a3362f74e0b564f481b77c07\",\n    BRANCH: \"develop\",\n    VERSION: \"0.12.0-dev\",\n    LIBRARY_VERSION: 9,\n    DATE: \"2021-05-08T22:11:11.050Z\",\n    TAGS: { \n    }\n  }\n});    \n"
   ]
 }

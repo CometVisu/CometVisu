@@ -93,4 +93,4 @@
   qx.ui.mobile.form.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1620144829027
+//# sourceMappingURL=Button.js.map?dt=1620512047892
