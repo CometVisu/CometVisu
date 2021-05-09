@@ -1584,7 +1584,11 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         return;
       }
       if (!element) {
-        element = this.getSelected();
+        if (this.getSelected()) {
+          element = this.getSelected();
+        } else {
+          return;
+        }
       }
       if (!element.getShowEditButton()) {
         return;
@@ -1605,6 +1609,26 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           formData[name] = this.__getAttributeFormDefinition(element, attribute);
         });
+        if (typeElement.isChildElementAllowed('*')) {
+          const parser = new DOMParser();
+          formData['#outerHTML'] = {
+            type: "TextArea",
+            label: "",
+            lines: 5,
+            autoSize: true,
+            width: Math.min(qx.bom.Viewport.getWidth(), 500),
+            enabled: element.isEditable(),
+            value: element.getNode().outerHTML,
+            validation: {
+              validator: function (value) {
+                const dom = parser.parseFromString(value, "text/xml");
+                if (dom.getElementsByTagName('parsererror').length > 0) {
+                  throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                }
+              }
+            }
+          }
+        }
       } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
         let nodeName = element.getNode().nodeName;
         // only in text-only mode we can add text editing to the form
@@ -1666,7 +1690,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // save changes
           element.setAttributes(data);
           this.clearReDos();
-          element.validate();
+          if (!data.hasOwnProperty('#outerHTML')) {
+            element.validate();
+          }
         }
         this.__editing = false;
         formDialog.destroy();
