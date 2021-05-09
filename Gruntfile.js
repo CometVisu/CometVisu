@@ -293,36 +293,7 @@ module.exports = function(grunt) {
       }
     },
 
-    'github-release': {
-      options: {
-        repository: 'cometvisu/cometvisu',
-        release: {
-          tag_name: 'v' + pkg.version,
-          name: pkg.version,
-          body: pkg.description
-        }
-      },
-      files: {
-        src: [ "CometVisu-"+pkg.version+".zip", "CometVisu-"+pkg.version+".tar.gz" ]
-      }
-    },
     prompt: {
-      target: {
-        options: {
-          questions: [
-            {
-              config: 'github-release.options.auth.user', // set the user to whatever is typed for this question
-              type: 'input',
-              message: 'GitHub username:'
-            },
-            {
-              config: 'github-release.options.auth.password', // set the password to whatever is typed for this question
-              type: 'password',
-              message: 'GitHub password:'
-            }
-          ]
-        }
-      },
       githubChanges: {
         options: {
           questions: [
@@ -659,7 +630,6 @@ module.exports = function(grunt) {
   // Load the plugin tasks
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-github-releaser');
   grunt.loadNpmTasks('grunt-prompt');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-file-creator');
@@ -685,7 +655,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
-  grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
