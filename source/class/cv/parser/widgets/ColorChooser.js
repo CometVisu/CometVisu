@@ -63,10 +63,10 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       //data.min = min;
       //data.max = max;
       data.baseColors = { // default to sRGB color space with D65 white point
-        r: {x: 0.64, y: 0.33},
-        g: {x: 0.30, y: 0.60},
-        b: {x: 0.15, y: 0.06},
-        w: {x: 0.3127, y: 0.3290}
+        r: {x: 0.64, y: 0.33, Y: 0.2126},
+        g: {x: 0.30, y: 0.60, Y: 0.7152},
+        b: {x: 0.15, y: 0.06, Y: 0.0722},
+        w: {x: 0.3127, y: 0.3290, Y: 1}
       };
       console.log('parse', xml);
       let
@@ -101,7 +101,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       }
       if( r_x ) { data.baseColors.r.x = parseFloat(r_x); }
       if( r_y ) { data.baseColors.r.y = parseFloat(r_y); }
-      data.baseColors.r.strength = r_strength ? parseFloat(r_strength) : 1;
+      if( r_strength ) { data.baseColors.r.Y = parseFloat(r_strength); }
       data.baseColors.r.scale    = r_scale ? parseFloat(r_scale) : 100;
       switch (r_curve) {
         case 'exponential':
@@ -128,7 +128,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       }
       if( g_x ) { data.baseColors.g.x = parseFloat(g_x); }
       if( g_y ) { data.baseColors.g.y = parseFloat(g_y); }
-      data.baseColors.g.strength = g_strength ? parseFloat(g_strength) : 1;
+      if( g_strength ) { data.baseColors.g.Y = parseFloat(g_strength); }
       data.baseColors.g.scale    = g_scale ? parseFloat(g_scale) : 100;
       switch (g_curve) {
         case 'exponential':
@@ -155,7 +155,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       }
       if( b_x ) { data.baseColors.b.x = parseFloat(b_x); }
       if( b_y ) { data.baseColors.b.y = parseFloat(b_y); }
-      data.baseColors.b.strength = b_strength ? parseFloat(b_strength) : 1;
+      if( b_strength ) { data.baseColors.b.Y = parseFloat(b_strength); }
       data.baseColors.b.scale    = b_scale ? parseFloat(b_scale) : 100;
       switch (b_curve) {
         case 'exponential':
@@ -176,7 +176,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       }
       if( w_x ) { data.baseColors.w.x = parseFloat(w_x); }
       if( w_y ) { data.baseColors.w.y = parseFloat(w_y); }
-      data.baseColors.w.strength = w_strength ? parseFloat(w_strength) : 1;
+      if( w_strength ) { data.baseColors.w.Y = parseFloat(w_strength); }
       data.baseColors.w.scale    = w_scale ? parseFloat(w_scale) : 100;
       switch (w_curve) {
         case 'exponential':

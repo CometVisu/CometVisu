@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
     let
       base= this.getBaseColors(),
-      f = (x) => ({x:x.x, y:x.y});
+      f = (x) => ({x:x.x, y:x.y, Y:x.Y});
     this.__color = new cv.util.Color( f(base.r), f(base.g), f(base.b), f(base.w) );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});

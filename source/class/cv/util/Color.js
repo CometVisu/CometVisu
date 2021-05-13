@@ -35,7 +35,7 @@ qx.Class.define('cv.util.Color', {
   */
   statics: {
     /**
-     * Solve the 2 dimenstional linear equation
+     * Solve the 2 dimensional linear equation
      * ( A00 A01 ) (x0) = (y0)
      * ( A10 A11 ) (x1)   (y1)
      * @param A00
@@ -48,6 +48,30 @@ qx.Class.define('cv.util.Color', {
     solve2d: function (A00, A10, A01, A11, y0, y1 ) {
       let detInv = 1 / (A00 * A11 - A01 * A10);
       return [ (y0 * A11 - A01 * y1) * detInv, (A00 * y1 - y0 * A10) * detInv ];
+    },
+
+    /**
+     * Solve the 3 dimensional linear equation
+     * ( A00 A01 A02 ) (x0)   (y0)
+     * ( A10 A11 A12 ) (x1) = (y1)
+     * ( A20 A21 A22 ) (x2)   (y2)
+     * @param A00
+     * @param A10
+     * @param A01
+     * @param A11
+     * @param y0
+     * @param y1
+     */
+    solve3d: function (A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
+      function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
+        return A00*A11*A22 + A01*A12*A20 + A02*A10*A21 - A20*A11*A02 - A21*A12*A00 - A22*A10*A01;
+      }
+      let detInv = 1/det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
+      return [
+        det(y0 , y1 , y2 , A01, A11, A21, A02, A12, A22) * detInv,
+        det(A00, A10, A20, y0 , y1 , y2 , A02, A12, A22) * detInv,
+        det(A00, A10, A20, A01, A11, A21, y0 , y1 , y2 ) * detInv
+      ];
     },
 
     /**
@@ -112,9 +136,9 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Convert a color component to a real world value by applying the dim curve
-     * @param component {Number}
-     * @param curve {Number}
-     * @param scale {Number}
+     * @param component {Number} the color component (i.e. r, g or b value) to convert
+     * @param curve {Number} the curve type
+     * @param scale {Number} the maximal number of the real world value, usually 1, 100 or 255
      */
     curve: function (component, curve, scale ) {
       if( component <= 0 ) { return 0; }
@@ -126,7 +150,7 @@ qx.Class.define('cv.util.Color', {
         return scale * Math.max(0, Math.min(10 ** (-3 * (1-component)), 1));
       }
       if( curve.length === 1 ) {
-        return scale * component ** curve[0];
+        return scale * component ** (1/curve[0]);
       }
       // TODO add table conversion
     },
@@ -146,7 +170,7 @@ qx.Class.define('cv.util.Color', {
         return Math.max(0, Math.min(1-Math.log10(value/scale)/(-3), 1));
       }
       if( curve.length === 1 ) {
-        return curve[0] > 0 ? (value/scale) ** (1/curve[0]) : 0;
+        return curve[0] > 0 ? (value/scale) ** curve[0] : 0;
       }
       // TODO add table conversion
     },
@@ -168,18 +192,14 @@ qx.Class.define('cv.util.Color', {
    * @param Wxy
    */
   construct: function (Rxy = undefined, Gxy = undefined, Bxy = undefined, Wxy = undefined) {
-    this.__R = Rxy === undefined ? { x: 0.64, y: 0.33, Y: 0.2126 } : Rxy;
+    this.__R = Rxy === undefined ? { x: 0.64, y: 0.33, Y: 0.2126 } : Rxy; // default: sRGB
     this.__G = Gxy === undefined ? { x: 0.30, y: 0.60, Y: 0.7152 } : Gxy;
     this.__B = Bxy === undefined ? { x: 0.15, y: 0.06, Y: 0.0722 } : Bxy;
-    if( undefined !== Wxy ) {
-      this.__W = Wxy;
-    } else {
-      this.__W = {
-        x: (this.__R.x + this.__G.x + this.__B.x)/3,
-        y: (this.__R.y + this.__G.y + this.__B.y)/3,
-        Y: 1
-      };
-    }
+
+    if( this.__R.Y === undefined ) { this.__R.Y = 1; }
+    if( this.__G.Y === undefined ) { this.__G.Y = 1; }
+    if( this.__B.Y === undefined ) { this.__B.Y = 1; }
+    if( this.__W.Y === undefined ) { this.__W.Y = 1; }
 
     // normalize luminances
     let normFac = 1 / (this.__R.Y + this.__G.Y + this.__B.Y);
@@ -187,7 +207,29 @@ qx.Class.define('cv.util.Color', {
     this.__G.Y *= normFac;
     this.__B.Y *= normFac;
 
-    // start color is a complete unsaturated red that is black:
+    // precalculate X and Z
+    this.__R.X = this.__R.x * this.__R.Y / this.__R.y;
+    this.__R.Z = (1 - this.__R.x - this.__R.y) * this.__R.Y / this.__R.y;
+    this.__G.X = this.__G.x * this.__G.Y / this.__G.y;
+    this.__G.Z = (1 - this.__G.x - this.__G.y) * this.__G.Y / this.__G.y;
+    this.__B.X = this.__B.x * this.__B.Y / this.__B.y;
+    this.__B.Z = (1 - this.__B.x - this.__B.y) * this.__B.Y / this.__B.y;
+
+    if( undefined !== Wxy ) {
+      this.__W = Wxy;
+      this.__W.X = this.__W.x * this.__W.Y / this.__W.y;
+      this.__W.Z = (1 - this.__W.x - this.__W.y) * this.__W.Y / this.__W.y;
+    } else {
+      this.__W = {
+        X: this.__R.X + this.__G.X + this.__B.X,
+        Y: this.__R.Y + this.__G.Y + this.__B.Y,
+        Z: this.__R.Z + this.__G.Z + this.__B.Z
+      };
+      this.__W.x = this.__W.X / (this.__W.X + this.__W.Y + this.__W.Z);
+      this.__W.y = this.__W.Y / (this.__W.X + this.__W.Y + this.__W.Z);
+    }
+
+    // start color is a complete unsaturated red hue that is black:
     this.__hsv = { h: 0, s: 0, v: 0 };
     this.__syncHSV2xy();
   },
@@ -217,77 +259,71 @@ qx.Class.define('cv.util.Color', {
 
     // make derived color valid
     __validateHSV: function (force) {
-      if( this.__hsv === undefined || force ) {
-        let
-          hDir_x = this.__x - this.__W.x,
-          hDir_y = this.__y - this.__W.y;
+      /*
+        solve a special set of equations:
+        A1 * x*y*z + B1 * y*z + C1 * z = D1
+        A2 * x*y*z + B2 * y*z + C2 * z = D2
+        A3 * x*y*z + B3 * y*z + C3 * z = D3
+        Wolfram Language code: Solve[{C1 z + B1 y z + A1 x y z == D1, C2 z + B2 y z + A2 x y z == D2, C3 z + B3 y z + A3 x y z == D3}, {x, y, z}]
+       */
+      function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
+        return [
+          ( B1*C2*D3 - B1*C3*D2 - B2*C1*D3 + B2*C3*D1 + B3*C1*D2 - B3*C2*D1)/(-A1*C2*D3 + A1*C3*D2 + A2*C1*D3 - A2*C3*D1 - A3*C1*D2 + A3*C2*D1),
+          ( A1*C2*D3 - A1*C3*D2 - A2*C1*D3 + A2*C3*D1 + A3*C1*D2 - A3*C2*D1)/(-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1),
+          (-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1)/(-A1*B2*C3 + A1*B3*C2 + A2*B1*C3 - A2*B3*C1 - A3*B1*C2 + A3*B2*C1)
+        ];
+      }
+      function valid(hsv) {
+        hsv[0] = Math.round(hsv[0] * 1000) / 1000;
+        hsv[1] = Math.round(hsv[1] * 1000) / 1000;
+        hsv[2] = Math.round(hsv[2] * 1000) / 1000;
+        return 0 <= hsv[0] && hsv[0] <= 1 && 0 <= hsv[1] && hsv[1] <= 1 && 0 <= hsv[2] && hsv[2] <= 1;
+      }
 
-        this.__hsv = { h: 0, s: 0, v: this.__Y };
-        if( hDir_x !== 0 || hDir_y !== 0 ) {
-          // color-base.w = r+g+b-w; r||g||b===0; anderer ===1/(r+g+b);letzer in [0;1]
-          let
-            RGx = this.__R.x - this.__G.x,
-            RGy = this.__R.y - this.__G.y,
-            WGx = this.__W.x - this.__G.x,
-            WGy = this.__W.y - this.__G.y,
-            rg = cv.util.Color.solve2d(RGx, RGy, -hDir_x, -hDir_y, WGx, WGy),
-            GBx = this.__G.x - this.__B.x,
-            GBy = this.__G.y - this.__B.y,
-            WBx = this.__W.x - this.__B.x,
-            WBy = this.__W.y - this.__B.y,
-            gb = cv.util.Color.solve2d(GBx, GBy, -hDir_x, -hDir_y, WBx, WBy),
-            BRx = this.__B.x - this.__R.x,
-            BRy = this.__B.y - this.__R.y,
-            WRx = this.__W.x - this.__R.x,
-            WRy = this.__W.y - this.__R.y,
-            br = cv.util.Color.solve2d(BRx, BRy, -hDir_x, -hDir_y, WRx, WRy);
-          if (0 <= rg[0] && rg[0] <= 1 && rg[1] > 0) {
-            if (rg[0] > 0.5) {
-              this.__hsv.h = (1 - rg[0]) / rg[0] / 6;
-            } else {
-              this.__hsv.h = (1 - rg[0] / (1 - rg[0])) / 6 + 1/6;
-            }
-            this.__hsv.s = 1 / rg[1];
-          } else if (0 <= gb[0] && gb[0] <= 1 && gb[1] > 0) {
-            if(gb[0] > 0.5) {
-              this.__hsv.h = (1-gb[0])/gb[0]/6 + 2/6;
-            } else {
-              this.__hsv.h = (1-gb[0]/(1-gb[0]))/6 + 3/6;
-            }
-            this.__hsv.s = 1/gb[1];
-          } else {
-            if(br[0] > 0.5) {
-              this.__hsv.h = (1-br[0])/br[0]/6 + 4/6;
-            } else {
-              this.__hsv.h = (1-br[0]/(1-br[0]))/6 + 5/6;
-            }
-            this.__hsv.s = 1/br[1];
-          }
+      if( this.__hsv === undefined || force ) {
+        if( this.__Y < 1e-4 ) {
+          this.__hsv = { h: 0, s: 0, v: this.__Y };
+          return;
+        }
+
+        let Y = this.__Y, X = Y / this.__y * this.__x, Z = Y / this.__y * (1 - this.__x - this.__y);
+        let
+          hsv0 = solve(this.__G.X, this.__G.Y, this.__G.Z, this.__R.X - this.__W.X, this.__R.Y - this.__W.Y, this.__R.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
+          hsv1 = solve(this.__R.X, this.__R.Y, this.__R.Z, this.__G.X - this.__W.X, this.__G.Y - this.__W.Y, this.__G.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
+          hsv2 = solve(this.__B.X, this.__B.Y, this.__B.Z, this.__G.X - this.__W.X, this.__G.Y - this.__W.Y, this.__G.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
+          hsv3 = solve(this.__G.X, this.__G.Y, this.__G.Z, this.__B.X - this.__W.X, this.__B.Y - this.__W.Y, this.__B.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
+          hsv4 = solve(this.__R.X, this.__R.Y, this.__R.Z, this.__B.X - this.__W.X, this.__B.Y - this.__W.Y, this.__B.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
+          hsv5 = solve(this.__B.X, this.__B.Y, this.__B.Z, this.__R.X - this.__W.X, this.__R.Y - this.__W.Y, this.__R.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z);
+        if(valid(hsv0)) {
+          this.__hsv = { h: 0/6+hsv0[0]/6, s: hsv0[1], v: hsv0[2] };
+        } else if(valid(hsv1)) {
+          this.__hsv = { h: 2/6-hsv1[0]/6, s: hsv1[1], v: hsv1[2] };
+        } else if(valid(hsv2)) {
+          this.__hsv = { h: 2/6+hsv2[0]/6, s: hsv2[1], v: hsv2[2] };
+        } else if(valid(hsv3)) {
+          this.__hsv = { h: 4/6-hsv3[0]/6, s: hsv3[1], v: hsv3[2] };
+        } else if(valid(hsv4)) {
+          this.__hsv = { h: 4/6+hsv4[0]/6, s: hsv4[1], v: hsv4[2] };
+        } else if(valid(hsv5)) {
+          this.__hsv = { h: 6/6-hsv5[0]/6, s: hsv5[1], v: hsv5[2] };
+        } else {
+          console.log(hsv0,hsv1,hsv2,hsv3,hsv4,hsv5);
+          console.log('hsv error!');
+          this.__hsv = { h: 0, s: 0, v: this.__Y };
         }
       }
     },
 
     __validateRGB: function (force) {
       if( this.__rgb === undefined || force ) {
-        this.__rgb = { r: 0, g: 0, b: 0 };
-        let
-          RBx = this.__R.x - this.__B.x,
-          RBy = this.__R.y - this.__B.y,
-          GBx = this.__G.x - this.__B.x,
-          GBy = this.__G.y - this.__B.y,
-          cBx = this.__x - this.__B.x,
-          cBy = this.__y - this.__B.y,
-          rg = cv.util.Color.solve2d(RBx, RBy, GBx, GBy, cBx, cBy),
-          r = rg[0],
-          g = rg[1],
-          b = 1 - r - g,
-          max = Math.max(r,g,b);
-        r *= this.__Y/max;
-        g *= this.__Y/max;
-        b *= this.__Y/max;
-        this.__rgb.r = r;
-        this.__rgb.g = g;
-        this.__rgb.b = b;
+        this.__rgb = {};
+        let Y = this.__Y, X = Y / this.__y * this.__x, Z = Y / this.__y * (1 - this.__x - this.__y);
+        [this.__rgb.r, this.__rgb.g, this.__rgb.b] = cv.util.Color.solve3d(
+          this.__R.X, this.__R.Y, this.__R.Z,
+          this.__G.X, this.__G.Y, this.__G.Z,
+          this.__B.X, this.__B.Y, this.__B.Z,
+          X, Y, Z
+        );
       }
     },
 
@@ -334,8 +370,6 @@ qx.Class.define('cv.util.Color', {
           f = function(t) {
                 if(t < 216/24389) {
                   return (24389/27*t+16)/116;
-                //if(t < (6/29)**3) {
-                //  return t/(3*(6/29)**2 + 4/29);
                 } else {
                   return t**(1/3);
                 }
@@ -362,30 +396,41 @@ qx.Class.define('cv.util.Color', {
     // synchronise xyY
     __syncHSV2xy: function () {
       // first step: get maximum saturated RGB values
-      let u = (this.__hsv.h%(1/6))*6, d = 1-u; // up/down ramps
-      let r = 0, g = 0, b = 0;
+      let r, g, b;
       if(this.__hsv.h < 1/6) {
+        let u = (this.__hsv.h - 0/6) * 6;
         r = 1; g = u; b = 0;
       } else if(this.__hsv.h < 2/6) {
+        let u = (this.__hsv.h - 1/6) * 6, d = 1-u;
         r = d; g = 1; b = 0;
       } else if(this.__hsv.h < 3/6) {
+        let u = (this.__hsv.h - 2/6) * 6;
         r = 0; g = 1; b = u;
       } else if(this.__hsv.h < 4/6) {
+        let u = (this.__hsv.h - 3/6) * 6, d = 1-u;
         r = 0; g = d; b = 1;
       } else if(this.__hsv.h < 5/6) {
+        let u = (this.__hsv.h - 4/6) * 6;
         r = u; g = 0; b = 1;
       } else {
+        let u = (this.__hsv.h - 5/6) * 6, d = 1-u;
         r = 1; g = 0; b = d;
       }
-      let norm = 1 / (r+g+b);
-      r *= norm;
-      g *= norm;
-      b *= norm;
 
       // second step: blend with white to take saturation into account and scale with brightness
-      this.__x = (r * this.__R.x + g * this.__G.x + b * this.__B.x) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
-      this.__y = (r * this.__R.y + g * this.__G.y + b * this.__B.y) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
-      this.__Y = this.__hsv.v;
+      //this.__x = (r * this.__R.x + g * this.__G.x + b * this.__B.x) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
+      //this.__y = (r * this.__R.y + g * this.__G.y + b * this.__B.y) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
+      let
+        X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
+        Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
+        Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z), // * this.__hsv.v,
+        XYZ = X + Y + Z;
+
+      if( XYZ > 0 ) {
+        this.__x = X / XYZ;
+        this.__y = Y / XYZ;
+      }
+      this.__Y = Y * this.__hsv.v;
       this.__rgb = undefined;
       this.__Lab = undefined;
       this.__LCh = undefined;
@@ -395,20 +440,16 @@ qx.Class.define('cv.util.Color', {
     __syncRGB2xy: function () {
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       if( this.__Y > 0 ) {
-        /*
-        let rgbInv = 1 / (this.__rgb.r + this.__rgb.g + this.__rgb.b);
-        this.__x = (this.__rgb.r * this.__R.x + this.__rgb.g * this.__G.x + this.__rgb.b * this.__B.x) * rgbInv;
-        this.__y = (this.__rgb.r * this.__R.y + this.__rgb.g * this.__G.y + this.__rgb.b * this.__B.y) * rgbInv;
-         */
-        /*
-        let denom = 1/(this.__rgb.r/this.__R.y + this.__rgb.g/this.__G.y + this.__rgb.b/this.__B.y);
-        this.__x = (this.__R.x/this.__R.y * this.__rgb.r + this.__G.x/this.__G.y * this.__rgb.g + this.__B.x/this.__B.y * this.__rgb.b)*denom;
-        this.__y = (this.__rgb.r + this.__rgb.g + this.__rgb.b)*denom;
-         */
-        let Lr = this.__R.Y * this.__rgb.r, Lg = this.__G.Y * this.__rgb.g, Lb = this.__B.Y * this.__rgb.b;
-        let denom = 1/(Lr/this.__R.y + Lg/this.__G.y + Lb/this.__B.y);
-        this.__x = (this.__R.x/this.__R.y * Lr + this.__G.x/this.__G.y * Lg + this.__B.x/this.__B.y * Lb)*denom;
-        this.__y = (Lr + Lg + Lb)*denom;
+        let
+          min = Math.min(this.__rgb.r, this.__rgb.g, this.__rgb.b),
+          X = this.__R.X * (this.__rgb.r - min) + this.__G.X * (this.__rgb.g - min) + this.__B.X * (this.__rgb.b - min) + this.__W.X * min,
+          Y = this.__R.Y * (this.__rgb.r - min) + this.__G.Y * (this.__rgb.g - min) + this.__B.Y * (this.__rgb.b - min) + this.__W.Y * min,
+          Z = this.__R.Z * (this.__rgb.r - min) + this.__G.Z * (this.__rgb.g - min) + this.__B.Z * (this.__rgb.b - min) + this.__W.Z * min,
+          XYZ = X + Y + Z;
+
+        this.__x = X / XYZ;
+        this.__y = Y / XYZ;
+        this.__Y = Y;
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__hsv = undefined;
       this.__Lab = undefined;
@@ -427,11 +468,10 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncLab2xy: function () {
-      const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
+      //const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
+      const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
       let
         fInv = function(t) {
-            //if(t < 216/24389) {
-            //  return (24389/27*t+16)/116;
             if(t < 6/29) {
               return 3*(6/29)**2*(t-4/29);
             } else {
@@ -444,8 +484,8 @@ qx.Class.define('cv.util.Color', {
         Y = Yn * fInv(L16),
         Z = Zn * fInv(L16 - Lab.b/200),
         XYZ = X + Y + Z;
-      this.__x = XYZ > 0 ? X / XYZ : 0;
-      this.__y = XYZ > 0 ? Y / XYZ : 0;
+      this.__x = XYZ > 0 ? X / XYZ : this.__W.x;
+      this.__y = XYZ > 0 ? Y / XYZ : this.__W.y;
       this.__Y = Y;
 
       this.__T = undefined;
@@ -531,23 +571,22 @@ qx.Class.define('cv.util.Color', {
           this.__validateLCh();
           switch(component.split('-')[1]) {
             case 'L':
-              this.__LCh.L = 10 * clamp(value);
+              this.__LCh.L = 100 * clamp(value);
               break;
             case 'C':
-              this.__LCh.C = 10 * clamp(value);
+              this.__LCh.C = 150 * clamp(value);
               break;
             case 'h':
               this.__LCh.h = clamp(value);
               break;
           }
-          //this.__LCh[component.split('-')[1]] = clamp(value);
           this.__syncLCh2xy();
           break;
       }
     },
 
     /**
-     * Set the internal value to the given HSV value without checkt.
+     * Set the internal value to the given HSV value without a check.
      * THIS IS FOR INTERNAL USE ONLY!
      * @param hsv
      */
@@ -587,12 +626,16 @@ qx.Class.define('cv.util.Color', {
           this.__validateT(force);
           return this.__T;
 
+        case 'Lab':
+          this.__validateLab(force);
+          return this.__Lab;
+
         case 'LCh-L':
           this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]] / 10;
+          return this.__LCh[component.split('-')[1]] / 100;
         case 'LCh-C':
           this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]] / 10;
+          return this.__LCh[component.split('-')[1]] / 150;
         case 'LCh-h':
           this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]];
