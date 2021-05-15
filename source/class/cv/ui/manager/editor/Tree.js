@@ -1611,19 +1611,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         });
         if (typeElement.isChildElementAllowed('*')) {
           const parser = new DOMParser();
-          formData['#outerHTML'] = {
+          const attrName = element.getNode().nodeName === 'custom' ? '#innerHTML' : '#outerHTML';
+          formData[attrName] = {
             type: "TextArea",
             label: "",
             lines: 5,
             autoSize: true,
             width: Math.min(qx.bom.Viewport.getWidth(), 500),
             enabled: element.isEditable(),
-            value: element.getNode().outerHTML,
+            value: attrName === '#outerHTML' ? element.getNode().outerHTML : element.getNode().innerHTML,
             validation: {
               validator: function (value) {
-                const dom = parser.parseFromString(value, "text/xml");
-                if (dom.getElementsByTagName('parsererror').length > 0) {
-                  throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                if (value) {
+                  const dom = parser.parseFromString(value, "text/xml");
+                  if (dom.getElementsByTagName('parsererror').length > 0) {
+                    throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                  }
                 }
               }
             }

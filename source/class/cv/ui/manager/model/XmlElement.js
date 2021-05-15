@@ -901,24 +901,39 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (change.changed) {
             parentChanges.push(change);
           }
-        } else if (attrName === '#outerHTML') {
+        } else if (attrName === '#outerHTML' || attrName === "#innerHTML") {
           if (this.getSchemaElement().isChildElementAllowed('*')) {
             const dom = new DOMParser().parseFromString(data[attrName], 'text/xml');
             if (dom.getElementsByTagName('parsererror').length === 0) {
-              const oldValue = this._node.outerHTML;
-              const oldNode = this._node;
+              const oldValue = attrName === '#outerHTML' ? this._node.outerHTML : this._node.innerHTML;
               const newNode = dom.documentElement;
-              oldNode.parentNode.replaceChild(newNode, oldNode);
-              this._node = newNode;
+              if (attrName === '#outerHTML') {
+                const oldNode = this._node;
+                oldNode.parentNode.replaceChild(newNode, oldNode);
+                this._node = newNode;
+                this.setName(this._node.nodeName);
+              } else {
+                this._node.innerHTML = data[attrName];
+              }
               changes.push({
                 changed: true,
                 attribute: attrName,
                 value: data[attrName],
                 old: oldValue
               });
-              this.setName(this._node.nodeName);
               this.load(true);
             }
+          } else if (attrName === "#innerHTML" && !data[attrName]) {
+            // allow empty values
+            const oldValue = this._node.innerHTML;
+            this._node.innerHTML = data[attrName];
+            changes.push({
+              changed: true,
+              attribute: attrName,
+              value: data[attrName],
+              old: oldValue
+            });
+            this.load(true);
           }
         } else {
           change = this.setAttribute(attrName, data[attrName]);
