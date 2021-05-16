@@ -174,7 +174,7 @@ qx.Class.define('cv.ui.manager.Main', {
         // needs a writeable file
         return false;
       }
-      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
+      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone', 'about'].includes(actionName);
     },
 
     handleAction: function (actionName, data) {
@@ -230,6 +230,10 @@ qx.Class.define('cv.ui.manager.Main', {
 
         case 'upload':
           // nothing to to, this is handled in another way
+          break;
+
+        case 'about':
+          this._showAbout();
           break;
 
         default:
@@ -890,6 +894,25 @@ qx.Class.define('cv.ui.manager.Main', {
       startOpenFile.setCloseable(false);
       this.getOpenFiles().push(startOpenFile);
       list.setModelSelection([startOpenFile]);
+    },
+
+    _showAbout: function () {
+      const dialogConf = {
+        caption: qx.locale.Manager.tr("About"),
+        modal: true,
+        minWidth: Math.min(500, qx.bom.Viewport.getWidth()),
+        maxHeight: qx.bom.Viewport.getHeight(),
+        message: `
+<div class="about-cv">
+ <img src="resource/icons/comet_icon_128x128_ff8000.png" width="128" height="128"/>
+ <h2>CometVisu ${cv.Version.VERSION}</h2>
+ <div class="info">
+   <label for="date">${qx.locale.Manager.tr("Build date")}: </label><span id="date">${cv.Version.DATE}</span><br/>
+   <label for="build">${qx.locale.Manager.tr("Build revision")}: </label><span id="build">${cv.Version.REV}</span><br/>
+   <label for="lib-version">${qx.locale.Manager.tr("Library version")}: </label><span id="lib-version">${cv.Version.LIBRARY_VERSION}</span>
+ </div>
+</div>`};
+      new cv.ui.manager.dialog.BigAlert(dialogConf).show();
     }
   },
 

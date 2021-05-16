@@ -155,8 +155,12 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         'help': {
           menu: 'help-menu',
           args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
-          enabled: false,
-
+          enabled: false
+        },
+        'about': {
+          menu: 'help-menu',
+          args: [this.tr('About')],
+          enabled: false
         }
       };
       this.maintainButtons();
@@ -274,6 +278,11 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
          case "help":
            control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
+           this.add(control);
+           break;
+
+         case "about":
+           control = new qx.ui.menubar.Button(this.tr('About'), null, this.getChildControl('help-menu'));
            this.add(control);
            break;
 
