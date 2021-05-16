@@ -1003,3 +1003,27 @@ msgstr ""
 #: cv/ui/manager/editor/Tree.js
 msgid "Edit element attributes"
 msgstr ""
+
+#: cv/ui/manager/MenuBar.js
+msgid "About"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Build date"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Build revision"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Library version"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is invalid"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Child element '%1' not allowed."
+msgstr ""

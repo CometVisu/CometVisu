@@ -955,3 +955,27 @@ msgstr "Bitte bearbeiten Sie die Attribute des neuen %1 Elements, welches an der
 #: cv/ui/manager/editor/Tree.js
 msgid "Edit element attributes"
 msgstr "Element Attribute bearbeiten"
+
+#: cv/ui/manager/MenuBar.js
+msgid "About"
+msgstr "Über"
+
+#: cv/ui/manager/Main.js
+msgid "Build date"
+msgstr "Erzeugt am"
+
+#: cv/ui/manager/Main.js
+msgid "Build revision"
+msgstr "Revision"
+
+#: cv/ui/manager/Main.js
+msgid "Library version"
+msgstr "Library-Version"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is invalid"
+msgstr "Ungültiger Textinhalt"
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Child element '%1' not allowed."
+msgstr "Kind-Element '%1' ist nicht erlaubt"
