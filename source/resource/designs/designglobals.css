@@ -393,19 +393,22 @@ button.ui-slider-handle {
   width: 100%;
 }
 
-.colorchooser .cc_r.ui-slider .ui-slider-range {
+.colorchooser .cc_RGB-r.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-r.ui-slider .ui-slider-range {
   background-color: #f00;
 }
 
-.colorchooser .cc_g.ui-slider .ui-slider-range {
+.colorchooser .cc_RGB-g.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-g.ui-slider .ui-slider-range {
   background-color: #0f0;
 }
 
-.colorchooser .cc_b.ui-slider .ui-slider-range {
+.colorchooser .cc_RGB-b.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-b.ui-slider .ui-slider-range {
   background-color: #00f;
 }
 
-.colorchooser .cc_w.ui-slider .ui-slider-range {
+.colorchooser .cc_RGBW-w.ui-slider .ui-slider-range {
   background-color: #fff;
 }
 
@@ -413,11 +416,14 @@ button.ui-slider-handle {
   background: linear-gradient(90deg, red, yellow, lime, aqua, blue, magenta, red);
 }
 
-.colorchooser .cc_s.ui-slider .ui-slider-range {
+.colorchooser .cc_s.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-C.ui-slider .ui-slider-range {
   background: linear-gradient(90deg, #888, transparent), linear-gradient(red, yellow, lime, blue);
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245));
 }
 
-.colorchooser .cc_v.ui-slider .ui-slider-range {
+.colorchooser .cc_v.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-v.ui-slider .ui-slider-range {
   background: linear-gradient(90deg, #000, #fff);
 }
 

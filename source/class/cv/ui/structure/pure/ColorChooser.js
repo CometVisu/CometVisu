@@ -165,11 +165,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             retval += `<div class="actor cc_wheel">
             <div class="hue"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>`;
             break;
-            
-          case 'r':
-          case 'g':
-          case 'b':
-          case 'w':
+
+          case 'RGB-r':
+          case 'RGB-g':
+          case 'RGB-b':
+          case 'RGBW-r':
+          case 'RGBW-g':
+          case 'RGBW-b':
+          case 'RGBW-w':
           case 'h':
           case 's':
           case 'v':
@@ -254,9 +257,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           delete this.__lastBusValue.rgb;
           break;
 
-        case 'r':
-        case 'g':
-        case 'b':
+        case 'RGB-r':
+        case 'RGB-g':
+        case 'RGB-b':
           base = this.getBaseColors()[variant];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
           delete this.__lastBusValue.h;
@@ -537,9 +540,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             value = new Map([['h', value.h*100], ['s', value.s*100], ['v', value.v*100]] );
             break;
 
-          case 'r':
-          case 'g':
-          case 'b':
+          case 'RGB-r':
+          case 'RGB-g':
+          case 'RGB-b':
             base = this.getBaseColors()[type];
             value = cv.util.Color.curve( value, base.curve, base.scale );
             break;
