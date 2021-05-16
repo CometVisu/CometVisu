@@ -385,7 +385,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           if( 'T' === type ) {
             ratio = (ratio - this.__Tmin)/(this.__Tmax - this.__Tmin);
           }
-          let length = ratio * actor.width;
+          let length = Math.max(0, Math.min( ratio, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           //actor.range.style.width = length + 'px';
           actor.range.style.clipPath = 'inset(0 ' + (1-ratio)*100 + '% 0 0)';

@@ -252,6 +252,7 @@ qx.Class.define('cv.util.Color', {
 
     // derived color representations
     __hsv: undefined,
+    __h_last: 0, // remember last valid hue for times when there is no hue
     __rbg: undefined,
     __rbgw: undefined,
     __T: undefined,
@@ -278,12 +279,12 @@ qx.Class.define('cv.util.Color', {
         hsv[0] = Math.round(hsv[0] * 1000) / 1000;
         hsv[1] = Math.round(hsv[1] * 1000) / 1000;
         hsv[2] = Math.round(hsv[2] * 1000) / 1000;
-        return 0 <= hsv[0] && hsv[0] <= 1 && 0 <= hsv[1] && hsv[1] <= 1 && 0 <= hsv[2] && hsv[2] <= 1;
+        return 0 <= hsv[0] && hsv[0] <= 1 && 0 <= hsv[1] && hsv[1] <= 1 && 0 <= hsv[2]; // && hsv[2] <= 1;
       }
 
       if( this.__hsv === undefined || force ) {
         if( this.__Y < 1e-4 ) {
-          this.__hsv = { h: 0, s: 0, v: this.__Y };
+          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
           return;
         }
 
@@ -307,11 +308,15 @@ qx.Class.define('cv.util.Color', {
           this.__hsv = { h: 4/6+hsv4[0]/6, s: hsv4[1], v: hsv4[2] };
         } else if(valid(hsv5)) {
           this.__hsv = { h: 6/6-hsv5[0]/6, s: hsv5[1], v: hsv5[2] };
+        } else if(hsv0[1] < 1e-4) {
+          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
         } else {
-          console.log(hsv0,hsv1,hsv2,hsv3,hsv4,hsv5);
+          console.log(hsv0,hsv1,hsv2,hsv3,hsv4,hsv5,this.__Y);
           console.log('hsv error!');
-          this.__hsv = { h: 0, s: 0, v: this.__Y };
+          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
         }
+
+        this.__h_last = this.__hsv.h;
       }
     },
 
@@ -328,7 +333,8 @@ qx.Class.define('cv.util.Color', {
       }
     },
 
-    __validateRGBW: function () {
+    __validateRGBW: function (force) {
+      if( this.__rgbw === undefined || force ) {
       // quick fake:
       /*this.__validateRGB();
       let min = Math.min(this.__rgb.r, this.__rgb.g, this.__rgb.b);
@@ -371,6 +377,7 @@ qx.Class.define('cv.util.Color', {
         g = (g * s + (1-s)) * color.v;
         b = (b * s + (1-s)) * color.v;
         */
+      }
     },
 
     __validateT: function (force) {
@@ -656,43 +663,56 @@ qx.Class.define('cv.util.Color', {
       this.__syncHSV2xy();
     },
 
-    getComponent: function (component, force = false) {
+    getComponent: function (component, gamutMap = true, force = false) {
+      let clamp = (min, x, max) => gamutMap ? Math.max(min, Math.min(x, max)) : x;
+
       switch(component) {
         case 'xy':
-          return {x: this.__x, y: this.__y};
+          return {x: clamp(0, this.__x, 1), y: clamp(0, this.__y, 1)};
         case 'Y':
-          return this.__Y;
+          return clamp(0, this.__Y, 1);
 
         case 'h':
         case 's':
         case 'v':
           this.__validateHSV(force);
-          return this.__hsv[component];
+          return clamp(0, this.__hsv[component], 1);
 
         case 'hsv':
           this.__validateHSV(force);
-          return this.__hsv;
+          return {
+            h: clamp(0, this.__hsv.h, 1),
+            s: clamp(0, this.__hsv.s, 1),
+            v: clamp(0, this.__hsv.v, 1),
+          };
 
         case 'RGB-r':
         case 'RGB-g':
         case 'RGB-b':
           this.__validateRGB(force);
-          return this.__rgb[component.split('-')[1]];
+          let map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
+          return map * this.__rgb[component.split('-')[1]];
 
         case 'rgb':
           this.__validateRGB(force);
-          return this.__rgb;
+          map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
+          return {
+            r: map * this.__rgb.r,
+            g: map * this.__rgb.g,
+            b: map * this.__rgb.b,
+          };
 
         case 'RGBW-r':
         case 'RGBW-g':
         case 'RGBW-b':
         case 'RGBW-w':
           this.__validateRGBW(force);
-          return this.__rgbw[component.split('-')[1]];
+          map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
+          return map * this.__rgbw[component.split('-')[1]];
 
         case 'T':
           this.__validateT(force);
-          return this.__T;
+          return clamp( 1667, this.__T, 25000);
 
         case 'Lab':
           this.__validateLab(force);
