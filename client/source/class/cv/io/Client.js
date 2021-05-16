@@ -656,6 +656,10 @@ qx.Class.define('cv.io.Client', {
       this.getCurrentTransport().restart(full);
     },
 
+    terminate: function () {
+      this.getCurrentTransport().abort();
+    },
+
     update: function(json) {}, // jshint ignore:line
 
     /**
@@ -679,7 +683,7 @@ qx.Class.define('cv.io.Client', {
     getProviderUrl: function (name) {
       return null;
     },
-    getProviderConvertFunction : function (name) {
+    getProviderConvertFunction : function (name, format) {
       return null
     }
   },

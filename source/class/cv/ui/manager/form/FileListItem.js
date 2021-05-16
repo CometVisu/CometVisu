@@ -217,7 +217,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       if (this.getModel().getSpecial() === 'add-file') {
         cv.ui.manager.upload.MDragUpload.uploadFile(cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]);
       } else {
-        dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
+        qxl.dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
           if (confirmed) {
             var newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
             cv.ui.manager.upload.MDragUpload.uploadFile(newFile, this.getModel());

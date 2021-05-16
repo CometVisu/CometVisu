@@ -74,6 +74,9 @@ qx.Class.define('cv.util.ConfigLoader', {
           var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
+          } else if (xmlLibVersion === '0') {
+            // special wildcard mode used in screenshot generation fixtures
+            xmlLibVersion = cv.Version.LIBRARY_VERSION;
           } else {
             xmlLibVersion = parseInt(xmlLibVersion);
           }

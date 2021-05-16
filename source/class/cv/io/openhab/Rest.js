@@ -236,25 +236,35 @@ qx.Class.define('cv.io.openhab.Rest', {
 
       // create sse session
       this.running = true;
-      this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged");
+      if (!cv.report.Record.REPLAYING) {
+        this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged");
 
-      // add default listeners
-      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
-      // add additional listeners
-      //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-      this.eventSource.onerror = function () {
-        this.error("connection lost");
-        this.setConnected(false);
-      }.bind(this);
-      this.eventSource.onopen = function () {
-        this.debug("connection established");
-        this.setConnected(true);
-      }.bind(this);
+        // add default listeners
+        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+        this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+        // add additional listeners
+        //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
+        this.eventSource.onerror = function () {
+          this.error("connection lost");
+          this.setConnected(false);
+        }.bind(this);
+        this.eventSource.onopen = function () {
+          this.debug("connection established");
+          this.setConnected(true);
+        }.bind(this);
+      }
+    },
+
+    terminate: function () {
+      this.debug("terminating connection");
+      if (this.eventSource) {
+        this.eventSource.close();
+      }
     },
 
     handleMessage: function(payload) {
       if (payload.type === "message") {
+        this.record("read", {type: payload.type, data: payload.data});
         const data = JSON.parse(payload.data);
         if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
           //extract item name from topic
@@ -338,36 +348,52 @@ qx.Class.define('cv.io.openhab.Rest', {
           return null;
       }
     },
-    getProviderConvertFunction : function (name) {
+    getProviderConvertFunction : function (name, format) {
       switch (name) {
         case "addresses":
           return function (result) {
-            const data = {};
-            result.forEach(element => {
-              const type = element.type ? element.type.split(":")[0] : "";
-              if (!data.hasOwnProperty(type)) {
-                data[type] = [];
-              }
-              const entry = {
-                value: element.name,
-                label: element.label || element.name
-              }
-              if (type) {
-                entry.hints = [
-                  {
+            let data;
+            if (format === 'monaco') {
+              return result.map(entry => {
+                return {
+                  label: entry.name,
+                  insertText: entry.name,
+                  detail: entry.type,
+                  kind: window.monaco.languages.CompletionItemKind.Value
+                }
+              });
+            } else {
+              data = {};
+              result.forEach(element => {
+                const type = element.type ? element.type.split(":")[0] : "";
+                if (!data.hasOwnProperty(type)) {
+                  data[type] = [];
+                }
+                const entry = {
+                  value: element.name,
+                  label: element.label || ''
+                }
+                if (type) {
+                  entry.hints = {
                     transform: "OH:" + type.toLowerCase()
-                  }
-                ];
-              }
-              data[type].push(entry);
-            });
-            return data;
+                  };
+                }
+                data[type].push(entry);
+              });
+              return data;
+            }
           }
         case "rrd":
           return function (result) {
-            return result.map(element => {
-              return {value: element, label: element};
-            });
+            if (format === 'monaco') {
+              return result.map(element => {
+                return {insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember};
+              });
+            } else {
+              return result.map(element => {
+                return {value: element, label: element};
+              });
+            }
           }
         default:
           return null;

@@ -179,6 +179,7 @@ qx.Class.define("cv.Application",
      * during startup of the application
      */
     main : function() {
+      cv.ConfigCache.init();
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get("qx.debug")) {
         if (typeof replayLog !== "undefined" && replayLog) {
@@ -537,12 +538,15 @@ qx.Class.define("cv.Application",
       qx.event.Registration.addListener(window, 'unload', function () {
         cv.io.Client.stopAll();
       }, this);
-      qx.bom.Lifecycle.onReady(function () {
+      qx.bom.Lifecycle.onReady(async function () {
         // init notification router
         cv.core.notifications.Router.getInstance();
-        var body = document.querySelector("body");
-
-        if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
+        let body = document.querySelector("body");
+        let isCached = false;
+        if (cv.Config.enableCache) {
+          isCached = await cv.ConfigCache.isCached();
+        }
+        if (isCached) {
           // load settings
           this.debug("using cache");
           cv.ConfigCache.restore();
@@ -556,7 +560,7 @@ qx.Class.define("cv.Application",
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
         }
-        var configLoader = new cv.util.ConfigLoader();
+        let configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);
       }, this);
     },
@@ -565,7 +569,7 @@ qx.Class.define("cv.Application",
      * Initialize the content
      * @param xml {Document} XML configuration retrieved from backend
      */
-    bootstrap: function(xml) {
+    bootstrap: async function(xml) {
       this.debug("bootstrapping");
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
@@ -574,10 +578,17 @@ qx.Class.define("cv.Application",
       loader.addListenerOnce("finished", function() {
         engine.setScriptsLoaded(true);
       }, this);
-      if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
+      let isCached = false;
+      let xmlHash;
+      if (cv.Config.enableCache) {
+        isCached = await cv.ConfigCache.isCached();
+        xmlHash = cv.ConfigCache.toHash(xml);
+      }
 
+      if (isCached) {
         // check if cache is still valid
-        if (!cv.ConfigCache.isValid(xml)) {
+        const cacheValid = await cv.ConfigCache.isValid(null, xmlHash);
+        if (!cacheValid) {
           this.debug("cache is invalid re-parse xml");
           // cache invalid
           cv.Config.cacheUsed = false;
@@ -652,7 +663,7 @@ qx.Class.define("cv.Application",
           if (cv.Config.enableCache) {
             // cache dom + data when everything is ready
             qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-              cv.ConfigCache.dump(xml);
+              cv.ConfigCache.dump(xml, xmlHash);
             }, this);
           }
         }.bind(this));
@@ -790,6 +801,10 @@ qx.Class.define("cv.Application",
           cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
         });
       }
+    },
+
+    close: function () {
+      cv.TemplateEngine.getClient().terminate();
     }
   }
 });

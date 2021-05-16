@@ -55,6 +55,7 @@ qx.Class.define('cv.report.Record', {
     XHR: "xhr",
     SCREEN: "screen",
     RUNTIME: "runtime",
+    STORAGE: "storage",
     REPLAYING: false,
     data: null,
 
@@ -144,19 +145,26 @@ qx.Class.define('cv.report.Record', {
      */
     logCache: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, {
-          data: cv.ConfigCache.getData(),
-          body: cv.ConfigCache.getBody()
-        });
+        cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, cv.ConfigCache.getData());
       }
     },
 
     normalizeUrl: function(url) {
-      if (url.indexOf("nocache=") >= 0) {
-        url = url.replace(/[\?|&]nocache=[0-9]+/, "");
-      }
-      if (url.indexOf("ts=") >= 0) {
-        url = url.replace(/[\?|&]ts=[0-9]+/, "");
+      try {
+        const parsed = qx.util.Uri.parseUri(url);
+        url = parsed.path;
+        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== 'nocache' && name !== 'ts');
+        if (filteredParams.length > 0) {
+          url += '?';
+          filteredParams.forEach(param => url += `${param}=${parsed.queryKey[param]}`)
+        }
+      } catch (e) {
+        if (url.indexOf("nocache=") >= 0) {
+          url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+        }
+        if (url.indexOf("ts=") >= 0) {
+          url = url.replace(/[\?|&]ts=[0-9]+/, "");
+        }
       }
       return url;
     },
@@ -268,7 +276,18 @@ qx.Class.define('cv.report.Record', {
           deltaZ : nativeEvent.deltaZ,
           deltaMode : nativeEvent.deltaMode
         });
+      } else if (data.eventClass === "KeyboardEvent") {
+        Object.assign(data.native, {
+          code : nativeEvent.code,
+          composed : nativeEvent.composed,
+          charCode : nativeEvent.charCode,
+          key : nativeEvent.key,
+          keyCode : nativeEvent.keyCode,
+          ctrlKey : nativeEvent.ctrlKey,
+          altKey : nativeEvent.altKey
+        });
       }
+
       // delete undefined values
       Object.keys(data.native).forEach(function(key) {
         if (data.native[key] === undefined || data.native[key] === null) {
@@ -345,7 +364,7 @@ qx.Class.define('cv.report.Record', {
           stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
           return stack.join(">");
         } else if ( sibCount > 1 ) {
-          stack.unshift(el.nodeName.toLowerCase() + ':eq(' + sibIndex + ')');
+          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex+1) + ')');
         } else {
           stack.unshift(el.nodeName.toLowerCase());
         }

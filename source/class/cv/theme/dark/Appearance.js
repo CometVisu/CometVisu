@@ -388,7 +388,40 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style: function(states) {
         return {
-          textColor: states.error ? 'invalid-color' : null
+          textColor: states.comment ? "text-disabled" : (states.error ? 'invalid-color' : null)
+        };
+      }
+    },
+    'element-tree-item': {
+      include: 'fs-tree-item',
+      alias: 'fs-tree-item',
+      style: function (states) {
+        return {
+          indent: states.touch ? 24 : 19
+        }
+      }
+    },
+    'element-tree-item/label': {
+      include: 'fs-tree-item/label',
+
+      style: function (states) {
+
+        return {
+          textColor: states.comment ? "text-disabled" : null,
+          allowGrowX: true,
+          maxWidth: 250
+        }
+      }
+    },
+    'element-tree-item/open': {
+      include: 'fs-tree-item/open',
+
+      style: function (states) {
+        return {
+          // width must not be greater the the indentation
+          width: states.touch ? 24 : 16,
+          height: states.touch ? 32 : 16,
+          scale: true
         };
       }
     },
@@ -403,6 +436,172 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           marginBottom: 5,
           decorator: 'open-file-tabs'
         };
+      }
+    },
+    'helptext': {
+      style: function () {
+        return {
+          font: "small",
+          textColor: "text-disabled"
+        };
+      }
+    },
+    "checkbox/label": {
+      style: function(states) {
+        return {
+          textColor: states.undetermined ? "text-disabled" : "text"
+        };
+      }
+    },
+
+    "toolbar-separator": {
+      style: function() {
+        return {
+          backgroundColor: "border-separator",
+          margin: [7, 0],
+          width: 1
+        };
+      }
+    },
+    "iframe": {
+      style: function () {
+        return {
+          backgroundColor: null,
+          decorator: "main-dark"
+        };
+      }
+    },
+    "state-option": {
+      style: function (states) {
+        return {
+          textColor: states.error ? "warning-color" : "text-disabled",
+          font: 'italic',
+          height: 25
+        };
+      }
+    },
+    "error-option": {
+      style: function () {
+        return {
+          textColor: "warning-color",
+          font: 'italic',
+          height: 25
+        };
+      }
+    },
+    "selectbox/atom": {
+      style: function (states) {
+        let font = 'default';
+        let textColor = 'text';
+        if (states.error || states.loading) {
+          font = 'italic'
+          textColor = states.error ? "warning-color" : "text-disabled"
+        }
+        return {
+          textColor: textColor,
+          font: font
+        };
+      }
+    },
+    "optiongroup": {
+      style: function () {
+        return {
+          textColor: "text-disabled",
+          height: 25
+        };
+      }
+    },
+    "optiongroup/label": {
+      style: function () {
+        return {
+          allowGrowX: true,
+          textAlign: "center"
+        };
+      }
+    },
+    "round-button": {
+      include: 'atom',
+      alias: 'atom',
+      style: function (states) {
+        return {
+          decorator: states.hovered ? 'round-button-hovered' : 'round-button',
+          width: 48,
+          height: 48,
+          textColor: "text",
+          show: "icon",
+          center: true
+        }
+      }
+    },
+    "round-button/icon": {
+      include: 'atom/icon',
+      alias: 'atom/icon',
+      style: function (states) {
+        return {
+          width: 32,
+          height: 32
+        }
+      }
+    },
+    "dragdrop-cursor": {
+      style: function (states) {
+        let icon = "nodrop";
+
+        if (states.copy) {
+          icon = "copy";
+        } else if (states.move) {
+          icon = "move";
+        } else if (states.alias) {
+          icon = "alias";
+        }
+        let leftOffset = 8;
+        if (states.touch) {
+          leftOffset = 44;
+        }
+
+        return {
+          source: osparc.theme.common.Image.URLS["cursor-" + icon],
+          position: "left-middle",
+          offset: [2, leftOffset, 2, 6]
+        };
+      }
+    },
+    "element-tree-item/menu-button": {
+      include: "button",
+      alias: "button",
+      style: function () {
+        return {
+          padding: [2, 4],
+          icon: osparc.theme.common.Image.URLS["arrow-down"],
+          show: "icon"
+        };
+      }
+    },
+    "tree-editor": "widget",
+    "tree-editor/preview-sync-hint": {
+      include: "atom",
+      alias: "atom",
+      style: function () {
+        return {
+          padding: [4, 8],
+          iconPosition: 'left',
+          gap: 8,
+          center: true
+        }
+      }
+    },
+    "tree-editor/preview-sync-hint/icon": {
+      include: "atom/icon",
+      style: function (states) {
+        let color = 'valid-color';
+        if (states.error) {
+          color = "invalid-color";
+        } else if (states.warning) {
+          color = "warning-color";
+        }
+        return {
+          textColor: color
+        }
       }
     }
   }

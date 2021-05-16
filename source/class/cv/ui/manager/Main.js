@@ -174,7 +174,7 @@ qx.Class.define('cv.ui.manager.Main', {
         // needs a writeable file
         return false;
       }
-      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
+      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone', 'about'].includes(actionName);
     },
 
     handleAction: function (actionName, data) {
@@ -232,11 +232,18 @@ qx.Class.define('cv.ui.manager.Main', {
           // nothing to to, this is handled in another way
           break;
 
+        case 'about':
+          this._showAbout();
+          break;
+
         default:
           this.warn(actionName + ' handling is not implemented yet!');
           break;
       }
     },
+
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
 
     _handleFileEvent: function (ev) {
       var data = ev.getData();
@@ -379,7 +386,11 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
-          editorConfig.instance.setFile(file);
+        }
+        if (!editorConfig.instance.isReady()) {
+          editorConfig.instance.addListenerOnce('changeReady', () => {
+            editorConfig.instance.setFile(file);
+          }, this);
         } else {
           editorConfig.instance.setFile(file);
         }
@@ -489,8 +500,9 @@ qx.Class.define('cv.ui.manager.Main', {
         if (file.isTemporary()) {
           message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
         }
-        dialog.Dialog.confirm(message, function (confirmed) {
+        qxl.dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
+            file.resetModified();
             this.closeFile(openFile, true);
             if (file.isTemporary()) {
               qx.event.message.Bus.dispatchByName('cv.manager.file', {
@@ -585,12 +597,16 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('rename', renameCommand);
       this.bind('renameableSelection', renameCommand, 'enabled');
 
+      group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
+      group.add('redo', new qx.ui.command.Command('Ctrl+Y'));
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
-      // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
-      // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
-      // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+      group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+      group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+      group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+
+      group.add('help', new qx.ui.command.Command('F1'));
 
       var manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();
@@ -622,7 +638,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __getFileNamePrompt: function (message, callback, context, value, caption) {
-      var prompt = new dialog.Prompt({
+      var prompt = new cv.ui.manager.dialog.Prompt({
         message: message,
         callback: callback || null,
         context: context || null,
@@ -878,6 +894,25 @@ qx.Class.define('cv.ui.manager.Main', {
       startOpenFile.setCloseable(false);
       this.getOpenFiles().push(startOpenFile);
       list.setModelSelection([startOpenFile]);
+    },
+
+    _showAbout: function () {
+      const dialogConf = {
+        caption: qx.locale.Manager.tr("About"),
+        modal: true,
+        minWidth: Math.min(500, qx.bom.Viewport.getWidth()),
+        maxHeight: qx.bom.Viewport.getHeight(),
+        message: `
+<div class="about-cv">
+ <img src="resource/icons/comet_icon_128x128_ff8000.png" width="128" height="128"/>
+ <h2>CometVisu ${cv.Version.VERSION}</h2>
+ <div class="info">
+   <label for="date">${qx.locale.Manager.tr("Build date")}: </label><span id="date">${cv.Version.DATE}</span><br/>
+   <label for="build">${qx.locale.Manager.tr("Build revision")}: </label><span id="build">${cv.Version.REV}</span><br/>
+   <label for="lib-version">${qx.locale.Manager.tr("Library version")}: </label><span id="lib-version">${cv.Version.LIBRARY_VERSION}</span>
+ </div>
+</div>`};
+      new cv.ui.manager.dialog.BigAlert(dialogConf).show();
     }
   },
 

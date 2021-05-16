@@ -20,7 +20,8 @@ exports.config = {
         // '--no-sandbox',
         '--headless',
         '--disable-gpu',
-        '--window-size=1300,800'
+        '--window-size=1300,800',
+        '--verbose'
       ]
     }
   },
@@ -34,8 +35,14 @@ exports.config = {
     browser.manage().window().setSize(1300, 800);
     return browser.getProcessedConfig().then(function(config) {
       if (config.params) {
+        if (config.params.source) {
+          browser.source = config.params.source;
+        }
         if (config.params.subDir) {
           browser.onlySubDir = config.params.subDir;
+        }
+        if (config.params.hasOwnProperty("forced")) {
+          browser.forced = true;
         }
         if (config.params.screenshots) {
           browser.screenshots = config.params.screenshots;

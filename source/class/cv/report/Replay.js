@@ -100,9 +100,11 @@ qx.Class.define('cv.report.Replay', {
       this.__log = log.log;
       this.__data = log.data;
       this.__config = qx.xml.Document.fromString(log.config);
-      if (log.data.cache && qx.core.Environment.get("html.storage.local") === true) {
-        localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
-        localStorage.setItem(cv.Config.configSuffix + ".data", JSON.stringify(log.data.cache.data));
+      if (log.data.cache) {
+        cv.ConfigCache._parseCacheData = log.data.cache;
+        // parse stringified data
+        cv.ConfigCache._parseCacheData.data = JSON.parse(log.data.cache.data);
+        cv.ConfigCache._parseCacheData.configSettings = JSON.parse(log.data.cache.configSettings);
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
@@ -131,6 +133,15 @@ qx.Class.define('cv.report.Replay', {
         return window;
       } else if (path === "document") {
         return document;
+      } else if (path.includes(':eq(')) {
+        const re = /:eq\(([\d]+)\)/;
+        let match = re.exec(path);
+        while (match) {
+          const index = parseInt(match[1]) + 1;
+          path = path.replace(match[0], ':nth-child('+index+')');
+          match = re.exec(path);
+        }
+        return document.querySelector(path);
       } else {
         return document.querySelector(path);
       }
@@ -161,6 +172,14 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.BACKEND:
           this.__dispatchBackendRecord(record);
+          break;
+
+        case cv.report.Record.STORAGE:
+          const store = qx.bom.Storage.getLocal();
+          store.setItem(record.i, record.d);
+          if (record.i === 'preferences' && cv.ui.manager) {
+            cv.ui.manager.model.Preferences.getInstance().setPreferences(record.d, true);
+          }
           break;
 
         case cv.report.Record.SCREEN:
@@ -226,7 +245,7 @@ qx.Class.define('cv.report.Replay', {
         this.__cursor.innerHTML = "&uarr;";
         document.querySelector("body").appendChild(this.__cursor);
       }
-      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value){this.__cursor.style[key_value[0]]=key_value[1];});
+      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value){this.__cursor.style[key_value[0]]=key_value[1];}, this);
 
       if (/.+(down|start)/.test(record.d.native.type)) {
         this.__cursor.style.color = record.d.native.button === 2 ? "blue" : "red";
@@ -236,11 +255,13 @@ qx.Class.define('cv.report.Replay', {
     },
 
     __dispatchBackendRecord: function(record) {
-      var client = this.__getClient();
+      const client = this.__getClient();
       switch (record.i) {
         case "read":
-          if (this.__client.getCurrentTransport() instanceof cv.io.transport.Sse) {
-            this.__client.getCurrentTransport().handleMessage({data: record.d});
+          if (client instanceof cv.io.openhab.Rest) {
+            client.handleMessage(record.d);
+          } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
+            client.getCurrentTransport().handleMessage({data: record.d});
           } else {
             this.error("long-polling transport should not record 'backend' log events. Skip replaying");
           }
@@ -248,8 +269,10 @@ qx.Class.define('cv.report.Replay', {
         default:
           if (client[record.i]) {
             client[record.i].apply(client, record.d);
-          } else if (this.__client.getCurrentTransport() instanceof cv.io.transport.Sse) {
-            this.__client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
+          } else if (client instanceof cv.io.openhab.Rest) {
+            this.error("unhandled rest backend record of type "+record.i);
+          } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
+            client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
           } else {
             this.error("unhandled backend record of type "+record.i);
           }

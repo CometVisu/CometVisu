@@ -173,9 +173,24 @@ The available designs
 * Alaska
 * Alaska Slim
 
-.. TODO::
 
-    More example pages for the other designs
+Changes of the metal design
+---------------------------
+
+In version 0.12 the metal design has been revised. In order to achieve a cleaner, modern look all
+background gradients, text shadows and the font have been replaced.
+
+Those changes can be easily reverted by loading an additional css file.
+You can achieve this, by adding the following text to the meta section of your configuration file.
+
+.. code-block:: xml
+
+    <meta>
+        <files>
+            <file type="css">resource/designs/metal/version1.css</file>
+        </files>
+        ...
+    </meta>
 
 
 Basic elements for designing the layout

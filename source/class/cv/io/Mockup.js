@@ -322,6 +322,8 @@ qx.Class.define('cv.io.Mockup', {
     authorize: function (req) {
     },
 
+    terminate: function () {},
+
     update: function(json) {},
     record: function(type, data) {},
     showError: function(type, message, args) {},
@@ -342,7 +344,7 @@ qx.Class.define('cv.io.Mockup', {
     getProviderUrl: function (name) {
       return null;
     },
-    getProviderConvertFunction : function (name) {
+    getProviderConvertFunction : function (name, format) {
       return null
     }
   }

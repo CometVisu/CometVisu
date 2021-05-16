@@ -24,11 +24,9 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     // register the basic editors
     this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: 'edit'});
-    this.registerFileHandler(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, {
+    this.registerFileHandler(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree, {
       preview: false,
-      type: 'edit',
-      noTemporaryFiles: true, // the old XML-Editor cannot handle temporary files,
-      noReadOnlyFiles: true // readonly nit supported
+      type: 'edit'
     });
     this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
@@ -181,7 +179,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, true, true);
+          this.setDefault(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree);
           break;
       }
     },

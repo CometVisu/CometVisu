@@ -25,7 +25,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
   */
   properties: {
     editor: {
-      check: 'cv.ui.manager.editor.Source',
+      check: 'cv.ui.manager.editor.AbstractEditor',
       nullable: true
     }
   },
@@ -39,12 +39,12 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
     _worker: null,
     _files: null,
 
-    open: function (file, code, schema) {
+    open: function (file, code, schema, features) {
       this._worker.postMessage(["openFile", {
         path: file.getFullPath(),
         code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
         schema: schema
-      }]);
+      }, features]);
       this._files[file.getFullPath()] = file;
     },
 
@@ -70,6 +70,10 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       }
     },
 
+    validateXmlConfig: function (content) {
+      return this._worker.validateXmlConfig(content);
+    },
+
     _onMessage: function (e) {
       let topic = e.getData().topic;
       let data = e.getData().data;
@@ -87,6 +91,10 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
             file.setModified(data.modified);
           }
           file.setHash(data.currentHash);
+          break;
+
+        case "hash":
+          file.setHash(data);
           break;
 
         case "errors":

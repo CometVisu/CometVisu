@@ -11,6 +11,11 @@ Hier wird die produktiv im Einsatz befindliche Visu von swiss vorgestellt.
 | **Live-Demo**: `Live-Demo <http://demo.wiregate.de/visu-svn_neu/?config=metal_swiss>`__
 |
 
+.. hint ::
+
+    In der Version 0.12 wurde das Metal-Design überarbeitet.
+    Die Screenshots auf dieser Seite zeigen noch das alte Design ohne Überarbeitungen.
+
 Screenshots
 -----------
 

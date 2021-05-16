@@ -1,6 +1,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 const convert = require('xml-js');
+const crypto = require('crypto');
 // const xmllint = require('../../../source/resource/manager/xmllint')
 const { AbstractCompileHandler } = require('../AbstractCompileHandler')
 
@@ -293,20 +294,19 @@ class ApiCompileHandler extends AbstractCompileHandler {
       visuConfigParts.content_end +
       visuConfigParts.end
 
-    // validate generated config against XSD => disabled because its too slow an breaks the compile task
-    // const lint = xmllint.validateXML({
-    //   xml: visu_config,
-    //   schema: this.schema
-    // })
-    // if (lint.errors) {
-    //   console.error('Invalid widget example code:\n' + visu_config + '\n\nERROR:\n  * ' + lint.errors.join('\n  * '))
-    // } else {
-      fs.outputFileSync(
-        path.join(this.exampleDir, control.example_tag) + '_' + this.counters[control.example_tag] + '.xml',
-        JSON.stringify(control.settings) + '\n' + visu_config,
-        'utf8'
-      )
-    // }
+    control.settings.config = visu_config
+    const strippedData = Object.assign({}, control.settings);
+    delete strippedData.screenshots;
+    const baseHashValue = JSON.stringify(strippedData);
+    for (const shot of control.settings.screenshots) {
+      shot.hash = crypto.createHash('md5').update(baseHashValue + JSON.stringify(shot)).digest('hex');
+    }
+
+    fs.outputFileSync(
+      path.join(this.exampleDir, control.example_tag) + '_' + this.counters[control.example_tag] + '.json',
+      JSON.stringify(control.settings, null, 4),
+      'utf8'
+    )
   }
 
   escapeXml(unsafe) {

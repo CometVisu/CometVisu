@@ -127,14 +127,15 @@ jobs:
           CHROME_BIN: ./chrome/google-chrome
 
   deploy-docker:
-    name: "[DOCKER] - Build and push Docker Container"
-    if: github.repository == 'CometVisu/CometVisu' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release-') || github.ref == 'refs/heads/ci-test')
+    name: "[DEPLOY] - Deploy Docker container and Sentry release"
+    if: github.repository == 'CometVisu/CometVisu' && (startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release-'))))
     runs-on: ubuntu-latest
     #needs: [ 'unit-test', 'e2e-test']
     needs: [ 'unit-test' ]
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           submodules: recursive
       - name: Use Node.js
         uses: actions/setup-node@v1
@@ -164,43 +165,14 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-
-  deploy-sentry:
-    name: "[SENTRY] create release and upload sourcemaps"
-    if: github.repository == 'CometVisu/CometVisu' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release-') || github.ref == 'refs/heads/ci-test')
-    runs-on: ubuntu-latest
-    #needs: [ 'unit-test', 'e2e-test']
-    needs: [ 'unit-test' ]
-    env:
-      SENTRY_ORG: cometvisu
-      SENTRY_PROJECT: cometvisu
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-      - name: Build CometVisu
-        uses: ./.github/actions/build-cv
-        with:
-          target: build
       - run: |
           curl -sL https://sentry.io/get-cli/ | bash
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)
           sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps compiled/build --rewrite --strip-common-prefix --no-sourcemap-reference --ignore node_modules/ --ignore test/  --ignore transpiled/
+          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps build --rewrite --strip-common-prefix --no-sourcemap-reference --ignore node_modules/ --ignore test/
           sentry-cli releases finalize $SENTRY_RELEASE
-
+        env:
+          SENTRY_ORG: cometvisu
+          SENTRY_PROJECT: cometvisu
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

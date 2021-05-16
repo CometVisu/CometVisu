@@ -35,6 +35,7 @@ qx.Class.define('cv.data.FileWorker', {
   members: {
     _worker: null,
     _validationCallbacks: null,
+    _counter: 0,
 
     postMessage: function (msg) {
       this._worker.postMessage(msg);
@@ -51,6 +52,14 @@ qx.Class.define('cv.data.FileWorker', {
         } else {
           this._validationCallbacks[url].push(resolve);
         }
+      }.bind(this));
+    },
+
+    validateXmlConfig: function(code) {
+      return new Promise(function (resolve, reject) {
+        const id = this._counter++;
+          this._validationCallbacks[id] = [resolve];
+          this._worker.postMessage(["validateXmlConfig", id, code, true]);
       }.bind(this));
     },
 

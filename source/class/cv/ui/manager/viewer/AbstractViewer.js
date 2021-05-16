@@ -38,6 +38,12 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
     external: {
       check: 'Boolean',
       init: false
+    },
+
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
   },
 
@@ -51,6 +57,8 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
       return false;
     },
     handleAction: function () {},
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
     save: function () {},
     getCurrentContent: function () {},
 

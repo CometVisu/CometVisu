@@ -5,6 +5,10 @@ inputs:
     description: 'Build target (e.g source, build, deploy)'
     required: true
     default: 'source'
+  build-options:
+    description: 'Additional options for the build process'
+    required: false
+    default: ''
 
 runs:
   using: "composite"
@@ -16,5 +20,5 @@ runs:
       run: echo "${PWD}/node_modules/.bin" >> $GITHUB_PATH
       shell: bash
     - name: Compile CometVisu
-      run: qx compile --target=${{ inputs.target }}
+      run: qx compile --target=${{ inputs.target }} ${{ inputs.build-options }}
       shell: bash

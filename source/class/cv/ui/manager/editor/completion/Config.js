@@ -12,10 +12,14 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (schemaNode) {
+  /**
+   *
+   * @param schema {cv.ui.manager.model.Schema}
+   */
+  construct: function (schema) {
     this.base(arguments);
     this.__elementCache = {};
-    this._schemaNode = schemaNode;
+    this._schema = schema;
     this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
 
   },
@@ -28,7 +32,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   members: {
     __elementCache: null,
     __metaElementCache: null,
-    _schemaNode: null,
     _dataProvider: null,
 
     getLastOpenedTag: function (text) {
@@ -92,7 +95,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         return null;
       }
       if (!parent) {
-        parent = this._schemaNode.allowedRootElements.pages;
+        parent = this._schema.getElementNode('pages');
       }
       if (currentDepth === undefined) {
         currentDepth = 1;
@@ -141,12 +144,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getElementString: function (element, indent, prefix) {
-      var insertText = indent+prefix+element.name+" ";
+      var insertText = indent+prefix+element.getName()+" ";
       // add all required attributes with default values
-      Object.getOwnPropertyNames(element.allowedAttributes).forEach(function(attr) {
-        var attribute = element.allowedAttributes[attr];
+      const allowedAttributes = element.getAllowedAttributes();
+      Object.getOwnPropertyNames(allowedAttributes).forEach(function(attr) {
+        var attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
-          insertText += attr+'="'+(attribute.defaultValue ? attribute.defaultValue : "")+'" ';
+          insertText += attr+'="'+(attribute.getDefaultValue() ? attribute.getDefaultValue() : "")+'" ';
         }
       });
       // add mandatory children
@@ -173,7 +177,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         if (children > 0) {
           insertText += "\n"+indent;
         }
-        insertText += "</"+element.name;
+        insertText += "</"+element.getName();
       }
       return insertText;
     },
@@ -186,17 +190,17 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (!children) {
         return [];
       }
-      Object.getOwnPropertyNames(children).forEach(function(name) {
+      Object.getOwnPropertyNames(children).filter(name => !name.startsWith('#')).forEach(function(name) {
         // get all element attributes
         var childElem = children[name];
         // the element is a suggestion if it's available
-        if (this.isItemAvailable(childElem.name, childElem.getBounds().max, usedItems)) {
+        if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
           // mark it as a 'field', and get the documentation
           availableItems.push({
-            label: childElem.name,
+            label: childElem.getName(),
             insertText: this.getElementString(childElem, "", ""),
             kind: window.monaco.languages.CompletionItemKind.Field,
-            detail: childElem.type,
+            detail: childElem.getType(),
             documentation: childElem.getDocumentation().join("\n")
           });
         }
@@ -208,15 +212,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     getAvailableAttributes: function (element, usedChildTags) {
       var availableItems = [];
       // get all attributes for the element
-      var attrs = element.allowedAttributes;
+      var attrs = element.getAllowedAttributes();
       Object.getOwnPropertyNames(attrs).forEach(function(name) { // jshint ignore:line
         var attr = attrs[name];
         // accept it in a suggestion list only the attribute is not used yet
         if (usedChildTags.indexOf(attr.name) === -1) {
           // mark it as a 'property', and get it's documentation
           availableItems.push({
-            label: attr.name,
-            insertText: attr.name+'=""',
+            label: attr.getName(),
+            insertText: attr.getName()+'=""',
             kind: window.monaco.languages.CompletionItemKind.Property,
             detail: attr.getTypeString(),
             documentation: attr.getDocumentation().join("\n")
@@ -439,9 +443,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
+          } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
+            return this._dataProvider.getAddresses('monaco').then(res => {
+              return {suggestions: res};
+            });
           }
           if (searchedElement === 'rrd') {
-            return {suggestions: this._dataProvider.getRrds()};
+            return this._dataProvider.getRrds('monaco').then(res => {
+              return {suggestions: res};
+            });
           } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
             match = /type="([^"]+)"/.exec(lastOpenedTag.text);
             var typeFilter = !!match ? match[1] : null;
@@ -449,15 +459,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               return {suggestions: suggestions};
             });
           }
-          var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta'));
+          var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta'));
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't
           if (isContentSearch) {
             var currentAttribute = usedItems[usedItems.length-1];
 
-            if (currentItem && currentAttribute in currentItem.allowedAttributes) {
-              var attribute = currentItem.allowedAttributes[currentAttribute];
+            if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+              var attribute = currentItem.getAllowedAttributes()[currentAttribute];
               var type = attribute.getTypeString();
               attribute.getEnumeration().forEach(function(entry) {
                 res.push({
@@ -497,7 +507,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   destruct: function () {
     this.__elementCache = null;
-    this._schemaNode = null;
+    this._schema = null;
     this._dataProvider = null;
   }
 });

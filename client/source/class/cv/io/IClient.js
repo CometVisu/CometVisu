@@ -53,8 +53,9 @@ qx.Interface.define('cv.io.IClient', {
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
+     * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor
      */
-    getProviderConvertFunction : function (name) { },
+    getProviderConvertFunction : function (name, format) { },
 
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
@@ -135,7 +136,10 @@ qx.Interface.define('cv.io.IClient', {
      */
     restart: function(full) {},
 
-
+    /**
+     * Called directly before the page gets unloaded. Can be used to disconnect correctly.
+     */
+    terminate: function () {},
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
      * It is injected by the project using the client.

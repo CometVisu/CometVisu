@@ -1,0 +1,48 @@
+{
+  "selector": "#manager div[data-section='media']",
+  "baseDir": "doc/manual",
+  "screenshots": [
+    {
+      "name": "manager_media",
+      "data": {},
+      "locales": ["de", "en"],
+      "size": {
+        "width": 476,
+        "height": 175
+      },
+      "locationOffset": {
+        "y": 2,
+        "x": -10
+      }
+    }
+  ],
+
+  "screenshotDir": "config/_static",
+  "fixtures": [
+    {
+      "targetPath": "rest/manager/index.php/fs?path=.",
+      "data": [
+        {"name":"hidden.php","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+        {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+        {"name":"media","type":"dir","parentFolder":"","hasChildren":true,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+        {"name":"demo","type":"dir","mounted":true,"parentFolder":"","hasChildren":true,"readable":true,"writeable":false},
+        {"name":".trash","type":"dir","mounted":false,"parentFolder":"","hasChildren":false,"readable":true,"writeable":false,"trash":true}
+      ],
+      "mimeType": "application/json"
+    },
+    {
+      "targetPath": "rest/manager/index.php/fs?path=media",
+      "data": [
+        {"name":"cometvisu_icon_raw.svg","type":"file","parentFolder":"media","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+        {"name":"style.css","type":"file","parentFolder":"media","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+        {"name":"test.js","type":"file","parentFolder":"media","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false}
+      ],
+      "mimeType": "application/json"
+    }, {
+      "targetPath": "resource/config/media/cometvisu_icon_raw.svg",
+      "sourceFile": "source/resource/icons/cometvisu_icon_raw.svg"
+    }
+  ],
+  "mode": "manager",
+  "config": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"/>"
+}

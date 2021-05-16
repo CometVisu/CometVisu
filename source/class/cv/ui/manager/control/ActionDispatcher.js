@@ -25,7 +25,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     focusedWidget: {
       check: 'cv.ui.manager.IActionHandler',
       nullable: true,
-      apply: 'updateBarButtons'
+      apply: '_applyFocusedWidget'
     },
 
     main: {
@@ -41,15 +41,34 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   */
   members: {
     updateBarButtons: function () {
-      var menuBar = cv.ui.manager.MenuBar.getInstance();
-      var config = menuBar.getButtonConfiguration();
-      var button;
+      const actionHandler = this.getFocusedWidget();
+      const menuBar = cv.ui.manager.MenuBar.getInstance();
+      const config = menuBar.getButtonConfiguration();
+      let button;
       Object.keys(config).forEach(function (actionId) {
         button = menuBar.getButton(actionId);
         if (button) {
           button.setEnabled(config[actionId].general || this.hasHandler(actionId));
+          if (actionHandler) {
+            actionHandler.configureButton(actionId, button);
+          }
         }
       }, this);
+    },
+
+    _applyFocusedWidget: function (value, old) {
+      if (old) {
+        const menuBar = cv.ui.manager.MenuBar.getInstance();
+        const config = menuBar.getButtonConfiguration();
+        let button;
+        Object.keys(config).forEach(function (actionId) {
+          button = menuBar.getButton(actionId);
+          if (button) {
+            old.unConfigureButton(actionId, button);
+          }
+        }, this);
+      }
+      this.updateBarButtons();
     },
 
     /**
