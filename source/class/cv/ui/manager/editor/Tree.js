@@ -2096,6 +2096,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       const dialogConf = {
         caption: this.tr("Help"),
         modal: true,
+        image: "qxl.dialog.icon.info",
         minWidth: Math.min(600, qx.bom.Viewport.getWidth()),
         maxHeight: qx.bom.Viewport.getHeight(),
         message: ""

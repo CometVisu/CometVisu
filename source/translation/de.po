@@ -972,6 +972,22 @@ msgstr "Elementinhalt bearbeiten"
 msgid "Edit text content"
 msgstr "Textinhalt bearbeiten"
 
+#: cv/ui/manager/MenuBar.js
+msgid "About"
+msgstr "Über"
+
+#: cv/ui/manager/Main.js
+msgid "Build date"
+msgstr "Erzeugt am"
+
+#: cv/ui/manager/Main.js
+msgid "Build revision"
+msgstr "Revision"
+
+#: cv/ui/manager/Main.js
+msgid "Library version"
+msgstr "Library-Version"
+
 #: cv/ui/manager/model/XmlElement.js
 msgid "Text content is invalid"
 msgstr "Textinhalt ist ungültig"
