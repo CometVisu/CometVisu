@@ -1003,3 +1003,27 @@ msgstr ""
 #: cv/ui/manager/editor/Tree.js
 msgid "Edit element attributes"
 msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Please edit the content of the new %1 element, that will be added to the chosen position."
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element and content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit element content"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Edit text content"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Text content is invalid"
+msgstr ""
+
+#: cv/ui/manager/model/XmlElement.js
+msgid "Child element '%1' not allowed."
+msgstr ""
