@@ -1425,10 +1425,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             let res = Promise.resolve(true);
             if (xmlElement.isShowEditButton()) {
               // only show edit dialog when we actually have something to edit
-              res = this._onEdit(null, xmlElement,
-                this.tr("Create new %1 element", xmlElement.getName()),
-                this.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", xmlElement.getName())
-              );
+              res = this._onEdit(null, xmlElement, true);
             }
             res.then((data) => {
               if (data) {
@@ -1579,12 +1576,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       return def;
     },
 
-    _onEdit: function (ev, element, title, caption) {
+    _onEdit: function (ev, element, isNew) {
       if (!this.getFile() || !this.getFile().isWriteable()) {
         return;
       }
+      let title, caption;
       if (!element) {
-        element = this.getSelected();
+        if (this.getSelected()) {
+          element = this.getSelected();
+        } else {
+          return;
+        }
       }
       if (!element.getShowEditButton()) {
         return;
@@ -1592,6 +1594,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       element.load();
       const formData = {};
       const typeElement = element.getSchemaElement();
+      if (isNew) {
+        title = this.tr("Create new %1 element", element.getName());
+        caption = this.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", element.getName());
+      } else {
+        title = this.tr("Edit element attributes");
+        caption = element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName());
+      }
       if (element.getNode().nodeType === Node.ELEMENT_NODE) {
         const allowed = typeElement.getAllowedAttributes();
         Object.keys(allowed).forEach(name => {
@@ -1605,7 +1614,38 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           }
           formData[name] = this.__getAttributeFormDefinition(element, attribute);
         });
+        if (typeElement.isChildElementAllowed('*')) {
+          const parser = new DOMParser();
+          const attrName = element.getNode().nodeName === 'custom' ? '#innerHTML' : '#outerHTML';
+          if (isNew) {
+            title = this.tr("Create new %1 element", element.getName());
+            caption = this.tr("Please edit the content of the new %1 element, that will be added to the chosen position.", element.getName());
+          } else {
+            title = attrName === '#outerHTML' ? this.tr("Edit element and content") : this.tr("Edit element content");
+          }
+          formData[attrName] = {
+            type: "TextArea",
+            label: "",
+            lines: 5,
+            autoSize: true,
+            width: Math.min(qx.bom.Viewport.getWidth(), 500),
+            enabled: element.isEditable(),
+            value: attrName === '#outerHTML' ? element.getNode().outerHTML : element.getNode().innerHTML,
+            validation: {
+              validator: function (value) {
+                if (value) {
+                  const dom = parser.parseFromString(value, "text/xml");
+                  if (dom.getElementsByTagName('parsererror').length > 0) {
+                    throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                  }
+                }
+              }
+            }
+          }
+        }
       } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
+        title = this.tr("Edit text content", element.getName());
+        caption = "";
         let nodeName = element.getNode().nodeName;
         // only in text-only mode we can add text editing to the form
         const docs = typeElement.getDocumentation();
@@ -1652,11 +1692,12 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         this.__checkProvider(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
       }
       this.__editing = true;
+
       const formDialog = new cv.ui.manager.form.ElementForm({
         allowCancel: true,
         context: this,
-        caption:  title || this.tr("Edit element attributes"),
-        message: caption ? caption : (element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName())),
+        caption:  title,
+        message: caption,
         formData: formData,
         minWidth: Math.min(qx.bom.Viewport.getWidth(), 400),
         maxWidth: qx.bom.Viewport.getWidth()
@@ -1666,7 +1707,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // save changes
           element.setAttributes(data);
           this.clearReDos();
-          element.validate();
+          if (!data.hasOwnProperty('#outerHTML') && !data.hasOwnProperty('#innerHTML')) {
+            element.validate();
+          }
         }
         this.__editing = false;
         formDialog.destroy();
