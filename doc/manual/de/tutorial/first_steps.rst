@@ -4,6 +4,12 @@ Tutorial: Erste Schritte - eine Visu in einer halben Minute
 In diesem Tutorial wird gezeigt wie innerhalb einer halben Minute bereits die
 erste (natürlich rudimentäre) Visu erstellt werden kann.
 
+.. IMPORTANT::
+
+    Dieses Tutorial wurde mit der Version 0.11 erstellt. Der Manager und Editor
+    wurde für neuere Versionen grundlegend überarbeitet. Das hier gezeigte
+    Vorgehen ist jedoch leicht übertragbar.
+
 Video
 -----
 
