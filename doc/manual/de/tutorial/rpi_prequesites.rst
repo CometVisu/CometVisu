@@ -240,8 +240,8 @@ Editor
 Standardmäßig ist bereits der Editor ``nano`` installiert, eine gerade auch
 für Einsteiger gute Wahl. Editieren von (Text-)Dateien geht sehr einfach, in
 dem ``nano <Dateiname>`` aufgerufen wird. Änderungen werden dann mit "^O"
-gespeichert, d.h. mit :kbd:`Steuerung` + :kbd:`O`. Der Editor wird mit "^X",
-also :kbd:`Steuerung` + :kbd:`X`, wieder beendet.
+gespeichert, d.h. mit :kbd:`Strg` + :kbd:`O`. Der Editor wird mit "^X",
+also :kbd:`Strg` + :kbd:`X`, wieder beendet.
 
 Sollte jedoch ein anderer Editor bevorzugt werden, so kann dieser jetzt
 installiert werden, z.B. für `vim <https://de.wikipedia.org/wiki/Vim>`__: ::
@@ -366,6 +366,17 @@ Im Anschluss bietet es sich an gleich die Verbindung zu testen. Dazu beendet man
 Bei einem Schlüssel ohne Passwort sollte man nun direkt verbunden sein, bei einem
 mit muss nur das lokale Passwort (und nicht das Passwort des Users ``pi``)
 eingegeben werden.
+
+Weiteres (optional)
+-------------------
+
+Anschließend können noch finale Konfigurationen durchgeführt werden, wie
+beispielsweise die Treiber für das Argon Gehäuse. In diesem konkreten Fall
+würde über ::
+
+    curl https://download.argon40.com/argon1.sh | bash
+
+der Treiber installiert werden und über ``argonone-config`` eingerichtet werden.
 
 Ausblick
 ========

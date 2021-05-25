@@ -99,7 +99,17 @@ ausgegeben. Beispiel: ::
 
 Wie bereits aus der Ausgabe von ``xinput_calibrator`` angegeben muss nun in
 die neue Datei ``/etc/X11/xorg.conf.d/99-calibration.conf`` der ganze Bereich
-ab ``Section`` kopiert werden.
+ab ``Section`` kopiert werden. Hier können auch weitere Anpassungen vorgenommen
+werden, wie beispielsweise auf einen anderen Treiber zu wechseln. So muss bei
+dem konkreten Touch-Display die Datei ``99-calibration.conf`` lauten: ::
+
+    Section "InputClass"
+            Identifier      "calibration"
+            MatchProduct    "eGalax Inc. USB TouchController Touchscreen"
+            Option  "Calibration"   "62 4004 143 3949"
+            Option  "SwapAxes"      "1"
+            Driver "evdev"
+    EndSection
 
 Software einrichten
 -------------------
@@ -112,7 +122,7 @@ werden: ::
 
     sudo xinit chromium-browser
 
-Um den Test zu beenden lässt sich über :kbd:`Steuerung` + :kbd:`C` auf der
+Um den Test zu beenden lässt sich über :kbd:`Strg` + :kbd:`C` auf der
 Konsole der Browser wieder beenden.
 
 Sollte bei diesem Test der Bildschirm, bzw. das Touch Interface nicht korrekt
@@ -176,6 +186,33 @@ Ob die Einrichtung erfolgreich ist lässt sich mit ::
     sudo xinit /root/start_browser.sh
 
 testen.
+
+Zertifikate installieren (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Wenn die CometVisu über eine TLS verschlüsselte Verbindung (also mit dem
+HTTPS-Protokoll) ausgeliefert wird, was dringend empfohlen wird um die
+erweiterten Browser-Features frei zu schalten, so muss der Browser das
+Zertifikat kennen. Für eine Anwendung im Intranet können jedoch nur selbst
+signierte Zertifikate zum Einsatz kommen, die der Browser prinzipbedingt
+nicht kennen kann.
+
+Als erstes ist die Software für der Zertifikate-Management zu installieren: ::
+
+    sudo apt-get install --no-install-recommends libnss3-tools
+
+Nun muss das Zertifikat auf den Raspberry Pi übertragen werden. Wenn die
+CometVisu auf dem Raspberry Pi selbst gehostet wird, so ist von dort das
+Zertifikat zu besorgen. Wenn die CometVisu beispielsweise auf dem Timberwolf
+Server läuft, so kann das notwendige Zertifikat über ::
+
+    wget https://update.timberwolf.io/timberwolf%20web%20ca.crt
+
+in das aktuelle Arbeitsverzeichnis geladen werden. Über einen Befehl wie ::
+
+    certutil -d sql:/home/pi/.pki/nssdb -A -t "CT,C,C" -n "Timberwolf Web CA - Elaborated Networks GmbH" -i timberwolf\ web\ ca.crt
+
+lässt sich dieses nun für den User ``pi`` installieren.
 
 Automatischer Start einrichten
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -354,7 +391,23 @@ Für einen Arbeitsplatz ist dieses Verhalten gewünscht, bei zwei getrennt
 montierten Displays ist dieses Vorgehen jedoch nicht von Vorteil, bei der
 Analyse von Problemen hilft es jedoch dieses Verhalten im Hinterkopf zu behalten.
 
-Als erstes sollen auf beiden Displays jeweils ein eigener Browser erscheinen.
+Um nun die richtige Reihenfolge festzulegen wird die Datei
+``/etc/X11/xorg.conf.d/90-dualscreen.conf`` angelegt und befüllt mit: ::
+
+    Section "Monitor"
+            Identifier "HDMI-1"
+            Option          "Primary" "true"
+    EndSection
+
+    Section "Monitor"
+            Identifier "HDMI-2"
+            Option          "LeftOf" "HDMI-1"
+    EndSection
+
+Mit dieser Datei wird das Display an HDMI Ausgang 2 links von dem am HDMI
+Ausgang 1 dargestellt.
+
+Als zweites sollen auf beiden Displays jeweils ein eigener Browser erscheinen.
 Hierzu ist die Datei ``/root/start_browser.sh`` am Ende um einen weiteren
 Aufruf des Browser zu erweitern. **Wichtig:** da der Aufruf des Browsers nicht
 sofort "zurückkehrt" muss der **erste(!)** Browser nach seinem Aufruf sofort
@@ -417,5 +470,5 @@ Aufrufs ein ``&`` angehängt wird. Somit könnte die Datei z.B. so aussehen: ::
 
 Auch wichtig ist, dass ``--user-data-dir`` auf zwei unterschiedliche
 Verzeichnisse verweist, da sonst Chrome seine beiden Fenster nur übereinander
-legen würde. Neben diesem Parameter muss auch noch `` --window-position``
+legen würde. Neben diesem Parameter muss auch noch ``--window-position``
 basierend der konkreten Bildschirmgröße angepasst werden.
