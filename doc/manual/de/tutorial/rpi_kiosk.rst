@@ -27,7 +27,7 @@ angesteuert werden, was hier im zweiten Teil umgesetzt wird.
     Es ist dabei möglich, dass dies gleichzeitig genau der gleiche Raspberry Pi
     ist, auf dem nun der Kiosk-Modus eingerichtet wird. Als Server kann aber
     auch ein beliebiges anderes System dienen, wie beispielsweise der
-    Timberwolf Server, bei dem die CometVisu als vorbereitete App verfügbar ist.
+    `Timberwolf Server <https://www.timberwolf.io/>`__, bei dem die CometVisu als vorbereitete App verfügbar ist.
 
     Der Kiosk-Modus ist aber so universell, der kann auch 1:1 für beliebige
     andere Anwendungen genutzt werden bei denen ein Browser im Vollbild laufen
@@ -37,7 +37,7 @@ Einrichten des Kiosk-Modus
 ==========================
 
 Ergebnis dieses Tutorials ist ein Kiosk Modus mit Chrome als Browser und nur
-der minimalst notwendigen Umgebung. Daher wird bewusst auf einen Windowmanager
+der minimal notwendigen Umgebung. Daher wird bewusst auf einen Windowmanager
 verzichtet und eine reine X11 Umgebung verwendet.
 
 Als erstes sind dazu die notwendigen Software-Komponenten zu installieren: ::
@@ -79,7 +79,7 @@ Dies wird nun gestartet: ::
 
     sudo xinit xinput_calibrator
 
-Nach erfolgter Kalibrierung werden auf der Konsole die neuen Kalibier-Daten
+Nach erfolgter Kalibrierung werden auf der Konsole die neuen Kalibrierdaten
 ausgegeben. Beispiel: ::
 
     pi@visu:~ $ sudo xinit xinput_calibrator
@@ -173,9 +173,11 @@ einer Auflösung von 1024x768 herausgestellt, d.h. einen Wert für die Höhe der
 um einen Pixel größer ist als die Bildschirmauflösung. Durch das
 ``xsetroot -solid green`` am Anfang lässt sich leicht testen ob der Browser
 ausreichend groß ist, da ein nicht abgedeckter Bildschirmbereich grün sichtbar
-bleibt.
+bleibt. Wenn alles zur Zufriedenheit läuft kann diese Zeile mit einem ``#``
+am Anfang auskommentiert werden, so dass in Zukunft kein grünes Aufblinken
+sichtbar ist.
 
-Außerdem ist die letzte Zeile (``http://192.168.0.30/cometvisu/``) auf die
+Außerdem ist die letzte Zeile (``http://193.168.0.30/cometvisu/``) auf die
 URL anzupassen, die der Browser anzeigen soll.
 
 Über ``sudo chmod a+x /root/start_browser.sh`` wird die Datei nun noch als
@@ -203,8 +205,9 @@ Als erstes ist die Software für der Zertifikate-Management zu installieren: ::
 
 Nun muss das Zertifikat auf den Raspberry Pi übertragen werden. Wenn die
 CometVisu auf dem Raspberry Pi selbst gehostet wird, so ist von dort das
-Zertifikat zu besorgen. Wenn die CometVisu beispielsweise auf dem Timberwolf
-Server läuft, so kann das notwendige Zertifikat über ::
+Zertifikat zu besorgen. Wenn die CometVisu beispielsweise auf dem `Timberwolf
+Server <https://www.timberwolf.io/>`__ läuft, so kann das notwendige Zertifikat
+über ::
 
     wget https://update.timberwolf.io/timberwolf%20web%20ca.crt
 
@@ -249,7 +252,7 @@ Aktiviert wird es mit: ::
     systemctl enable display-manager.service
 
 Nach einem Neustart sollte nun wie gewünscht der Browser mit der richtigen
-URL im Vollbild erscheinen. Die grundlegende Kiosk-Einrichtig ist hiermit
+URL im Vollbild erscheinen. Die grundlegende Kiosk-Einrichtung ist hiermit
 abgeschlossen.
 
 Powermanagement
@@ -311,7 +314,7 @@ Alternative 2: Halbautomatische Steuerung
 """""""""""""""""""""""""""""""""""""""""
 
 Gerade im Bereich der Heimautomatisierung bietet sich jedoch die halbautomatische
-Veriante an. Hier wird der Bildschirm nach einem Timeout ausgeschaltet.
+Variante an. Hier wird der Bildschirm nach einem Timeout ausgeschaltet.
 Eingeschaltet wird er von einem extern gesendetem Kommando (das z.B. von einem
 Bewegungsmelder oder Präsenzmelder getriggert wird). Außerdem lässt sich hier
 der Bildschirm über eine Berührung aktivieren, falls der Bewegungsmelder nicht
@@ -373,6 +376,36 @@ Damit bei einem Start des Rapsberry Pi die für Nicht-Techniker unschönen
 Boot-Meldungen hinter einen schönen Animation versteckt werden kann der
 ``plymouth`` Service eingerichtet werden. Hier gibt es auch eine Animation
 extra für die CometVisu.
+
+Zum Installieren werden diese Befehle benötigt: ::
+
+    sudo apt-get install --no-install-recommends plymouth
+    wget -O CometVisu_Misc.zip https://github.com/CometVisu/Misc/archive/refs/heads/master.zip
+    unzip CometVisu_Misc.zip "Misc-master/plymouth/cometvisu/*"
+    sudo mv Misc-master/plymouth/cometvisu /usr/share/plymouth/themes/
+    rm -rf Misc-master/ CometVisu_Misc.zip
+
+Ob die Installation funktioniert hat sieht man über
+``plymouth-set-default-theme -l``, wenn in der Liste ``cometvisu`` auftaucht.
+Aktiviert wird nun das CometVisu Plymouth Theme über ::
+
+    sudo plymouth-set-default-theme -R cometvisu
+
+Damit beim Boot-Vorgang der Plymouth Bootscreen angezeigt wird muss noch in die
+Datei ``/boot/cmdline.txt`` die Zeile um diese Einträge verlängert werden: ::
+
+    logo.nologo loglevel=1 quiet splash vt.global_cursor_default=0 plymouth.ignore-serial-consoles
+
+Um den "Regenboden-Screen" beim Start des Raspberry Pi zu unterdrücken kann
+außerdem (als ``root``) in der Datei ``/boot/config.txt`` am Ende diese
+Zeile angehängt werden: ::
+
+    disable_splash=1
+
+.. NOTE::
+
+    Da der Boot-Vorgang am Raspberry Pi sehr schnell passiert ist es gut
+    möglich, dass der Plymouth Splash Screen nur kurz sichtbar ist.
 
 Erweiterung auf zwei unabhängige Touch Panels
 =============================================

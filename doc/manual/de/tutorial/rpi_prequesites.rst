@@ -4,7 +4,7 @@ Raspberry Pi: Vorbereitung
 
 Im ersten Teil des Tutorials wird der Raspberry Pi (RPi) so vorbereitet, dass
 dieser mit minimalem Betriebssystem läuft und von einem Arbeitsrechner über
-das Netzwerk erreichbar ist. Wer eine andere Platform als einen Raspberry Pi
+das Netzwerk erreichbar ist. Wer eine andere Plattform als einen Raspberry Pi
 verwenden möchte, wie z.B. einen NUC, kann problemlos den Rechner selbst
 vorbereiten und diesen Teil des Tutorials überspringen um bei einem der
 späteren Teile einzusteigen.
@@ -22,7 +22,7 @@ späteren Teile einzusteigen.
 Warum Raspberry Pi?
 ===================
 
-Der Raspberry Pi ist ein kleiner, sparsammer Einplatinen-Computer, so dass alles
+Der Raspberry Pi ist ein kleiner, sparsamer Einplatinen-Computer, so dass alles
 wichtige für den Betrieb bereits auf der Platine enthalten ist. Ursprünglich
 für Bastel- und Ausbildungsprojekte gedacht hat sich der Raspberry Pi in den
 letzten Jahren auch im professionellen Umfeld einen Namen gemacht und seinen
@@ -61,7 +61,7 @@ Lebensdauer der SD-Karte, da diese nicht auf die dabei auftretende hohe Anzahl
 an Schreibzyklen ausgelegt ist. Hier empfiehlt es sich statt der microSD Karte
 ein USB Massenspeicher zu verwenden (**keinen** USB-Stick, diese sind sogar meist
 mit Flash-Speicher von noch geringerer Qualität ausgestattet). Die
-Spannungversorgung muss ausreichend dimensioniert sein um auf den USB Speicher
+Spannungsversorgung muss ausreichend dimensioniert sein um auf den USB Speicher
 versorgen zu können - oder es muss ein entsprechender Speicher mit externer
 Versorgung verwendet werden.
 
@@ -144,10 +144,10 @@ Erster Start
 Nun ist der Raspberry Pi bereit für den ersten Start, es müssen nur die Speicher,
 das Netzwerk-Kabel und anschließend die Spannungsversorgung verbunden werden.
 
-Wurde auch ein Monitor verbunden, so ist auf diesem die Boot-Sequenz sichbar.
+Wurde auch ein Monitor verbunden, so ist auf diesem die Boot-Sequenz sichtbar.
 An deren Ende erscheint die Netzwerk-Adresse, die über DHCP bezogen wurde und
 unter der der Raspberry Pi zu erreichen ist. Alternativ kann in der Regel auch
-über den DHCP-Server (meist Bestandteil des Internet-Routers) die IP-Addresse
+über den DHCP-Server (meist Bestandteil des Internet-Routers) die IP-Adresse
 in Erfahrung gebracht werden.
 
 Erster Zugriff
@@ -161,7 +161,7 @@ USB Boot einrichten (optional)
 
 Für das empfohlene Setup für langfristigen Betrieb ohne SD-Karte müssen
 nach dem Einloggen auf den `root`-User gewechselt, die Pakete (auf der SD-Karte)
-aktuallisiert und ggf. die Firmware aktuallisiert werden. Im Anschluss wird das
+aktualisiert und ggf. die Firmware aktualisiert werden. Im Anschluss wird das
 Raspberry Pi Software Configuration Tool gestartet: ::
 
     sudo -s
@@ -184,7 +184,7 @@ geändert:
     hat aber - bewusst! - nur eingeschränkte Rechte. Werden für administrative
     Aufgaben erweiterte Rechte benötigt, so müssen diese mit dem Accout ``root``
     durchgeführt werden. Aus Sicherheitsgründen kann man sich normalerweise
-    nicht direkt als ``root`` anmelden, sodern geht über einen normalen Account
+    nicht direkt als ``root`` anmelden, sondern geht über einen normalen Account
     (wie ``pi``) und wechselt dann von dort auf den ``root``-Account.
 
     Für einen einzelnen Befehl geschieht dies, in dem ``sudo`` vor den Befehl
@@ -193,7 +193,7 @@ geändert:
     werden. Durch ein ``exit`` wird wieder zurück gewechselt.
 
 Der Raspberry Pi kann nun über ``shutdown -h now`` herunter gefahren werd, die
-Spannungsversorgnug getrennt, die SD-Karte entfernt und anschlißend über das
+Spannungsversorgnug getrennt, die SD-Karte entfernt und anschließend über das
 Wiedereinstecken der Spannungsversorgung wieder gestartet werden.
 
 Basisadministration
@@ -213,14 +213,14 @@ geändert werden: ::
     später durch den "ssh key exchange" nicht mehr eingegeben werden muss.
 
     Wenn dennoch ein "unsicheres" Passwort gewünscht wird - wovon dringend
-    abgeraten wird - so lässt sich über ``sudo passwd pi`` der Kompleitäts-Schutz
+    abgeraten wird - so lässt sich über ``sudo passwd pi`` der Komplexitäts-Schutz
     umgehen.
 
 System aktuell halten
 ^^^^^^^^^^^^^^^^^^^^^
 
 Seit dem Erstellen des Betriebssystem-Paketes gab es bereits Aktualisierungen
-von einzenlen Software-Bestandteilen. Alle Updates werden installiert über: ::
+von einzelnen Software-Bestandteilen. Alle Updates werden installiert über: ::
 
     sudo apt update
     sudo apt full-upgrade
@@ -285,15 +285,15 @@ Netzwerkzugriff - Teil 2
 Netzwerkaddresse ändern
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Bis jetzt hat sich der Raspberry Pi selbst eine Netzwerkaddresse besorgt. Damit
-dieser aber als Server immer unter der gleichen Addresse zu erreichen ist muss
+Bis jetzt hat sich der Raspberry Pi selbst eine Netzwerkadresse besorgt. Damit
+dieser aber als Server immer unter der gleichen Adresse zu erreichen ist muss
 entweder im DCHP-Server (in der Regel im Internet-Router integriert) für den
-Pi eine feste Addresse festgelegt werden - oder man vergibt eine statische
-Addresse außerhalb des DHCP Bereichs.
+Pi eine feste Adresse festgelegt werden - oder man vergibt eine statische
+Adresse außerhalb des DHCP Bereichs.
 
-Für eine statische IP Addresse muss in die Datei ``/etc/dhcpcd.conf`` um
+Für eine statische IP Adresse muss in die Datei ``/etc/dhcpcd.conf`` um
 die entsprechenden Zeilen ergänzt werden. In diesem Beispiel wird dem
-Ethernet-Interface ``eth0`` die statische Addresse ``192.168.0.52`` mit
+Ethernet-Interface ``eth0`` die statische Adresse ``192.168.0.52`` mit
 dem Router und DNS-Server ``192.168.0.1`` zugewiesen: ::
 
     interface eth0
@@ -326,7 +326,7 @@ der ``wpasupplicant`` Service entfernt werden.
 SSH Key Exchange
 ^^^^^^^^^^^^^^^^
 
-Für einen komportablem Zugriff über SSH wird ein `SSH Key Exchange` durchgeführt.
+Für einen komfortablem Zugriff über SSH wird ein `SSH Key Exchange` durchgeführt.
 Nach einem Key Exchange wird kein Passwort mehr benötigt, sondern es wird
 direkt ein lokal vorliegender kryptographischer Schlüssel verwendet. Dieser
 Schlüssel kann wiederum mit einem (ggf. anderen) Passwort geschützt werden.
@@ -335,9 +335,9 @@ Schlüssel kann wiederum mit einem (ggf. anderen) Passwort geschützt werden.
 
     Wird der Key Exchange mit einem Arbeitsrechner durchgeführt, so sollte in der
     Regel ein Passwort für den Schlüssel vergeben werden. Wenn der Key Exchange
-    mit einem Automatisierungsserver (z.B. einer Node-Red Instanz) durchgefürt
+    mit einem Automatisierungsserver (z.B. einer Node-Red Instanz) durchgeführt
     wird, um so z.B. von außen den Bildschirm aktivieren zu können, so wird dieser
-    meist ohne extra Passwort durchegführt.
+    meist ohne extra Passwort durchgeführt.
 
     In einer geschützten, privaten Umgebung kann dies ausreichend sein. In einer
     professionellen Umgebung wird die Entscheidung über einen notwendigen
@@ -407,7 +407,7 @@ Für die Einrichtung und grundlegende Administration des Raspberry Pi über die
 Kommandozeile werden nicht viele Befehle benötigt. In dieser Liste sind die
 wichtigsten zusammengefasst.
 
-Allegemeine Befehle:
+Allgemeine Befehle:
 
 ``cd <Pfad>``
     Wechsel des Verzeichnisses, ``cd ..`` wechselt ein Verzeichnis "nach oben".
@@ -431,12 +431,12 @@ Allegemeine Befehle:
     den Wechsel des Accounts über ``sudo -s``.
 
 ``shutdown -h now``
-    Sofortiges Herunterfahren und anschließdens Halten. Bei einem Raspberry Pi
-    muss zum anschließdenden neuen Start die Spannnugsversorgung getrennt und
+    Sofortiges Herunterfahren und anschließendes Halten. Bei einem Raspberry Pi
+    muss zum anschließenden neuen Start die Spannungsversorgung getrennt und
     wieder neu verbunden werden.
 
 ``shutdown -r now``
-    Sofortiges Herunterfahren und anschließdener Neustart.
+    Sofortiges Herunterfahren und anschließender Neustart.
 
 ``nano`` oder ``nano <Dateiname>``
     Öffnet den Editor ``nano``.
@@ -446,3 +446,7 @@ Befehle speziell für den Raspberry Pi:
 ``raspi-config``
     Grundlegendste Systemeinstellungen, vergleichbar mit BIOS Einstellungen
     bei einem normalen PC.
+
+Sollte die Boot-Partition in den Systemeinstellungen als `Read-Only`
+konfiguriert worden sein, so kann diese temporär mit
+``sudo mount -o remount,rw /boot`` beschreibbar gemacht werden.
