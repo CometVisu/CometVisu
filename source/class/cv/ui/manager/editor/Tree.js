@@ -183,14 +183,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     handleAction: function (actionName) {
-      if (this.canHandleAction(actionName) && !this.__editing) {
+      if (this.canHandleAction(actionName)) {
         switch (actionName) {
           case 'undo':
-            this.undo();
+            if (!this.__editing) {
+              this.undo();
+            }
             break;
 
           case 'redo':
-            this.redo();
+            if (!this.__editing) {
+              this.redo();
+            }
             break;
 
           case 'cut':
@@ -206,7 +210,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
             break;
 
           case 'help':
-            this._showHelp();
+            if (!this.__editing) {
+              this._showHelp();
+            }
             break;
 
           default:
@@ -1735,17 +1741,25 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     },
 
     _onCut: function () {
-      const element = this._onDelete();
-      if (element) {
-        this.setClipboard(element);
+      if (this.__editing) {
+        document.execCommand("cut");
+      } else {
+        const element = this._onDelete();
+        if (element) {
+          this.setClipboard(element);
+        }
       }
     },
 
     _onCopy: function () {
-      const element = this.getSelected();
-      if (element) {
-        const copy = element.clone();
-        this.setClipboard(copy);
+      if (this.__editing) {
+        document.execCommand("copy");
+      } else {
+        const element = this.getSelected();
+        if (element) {
+          const copy = element.clone();
+          this.setClipboard(copy);
+        }
       }
     },
 
