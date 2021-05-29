@@ -55,7 +55,7 @@ angepasst werden müssen.
 Beispiel: eGalax TouchScreen
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Der eGalax TouchScreen des HomeCockpit Minor wird leicht falsch erkannt, was
+Der eGalax TouchScreen eines HomeCockpit Minor von 2009 wird leicht falsch erkannt, was
 sich durch eine ``udev`` Regel schnell lösen lässt. Hierzu wird die neue
 Datei ``/etc/udev/rules.d/91-libinput-egalax-local.rules`` angelegt und befüllt
 mit dem Inhalt: ::
@@ -80,7 +80,9 @@ Dies wird nun gestartet: ::
     sudo xinit xinput_calibrator
 
 Nach erfolgter Kalibrierung werden auf der Konsole die neuen Kalibrierdaten
-ausgegeben. Beispiel: ::
+ausgegeben.
+
+Beispiel: ::
 
     pi@visu:~ $ sudo xinit xinput_calibrator
     Calibrating EVDEV driver for "eGalax Inc. USB TouchController Touchscreen" id=9
@@ -340,7 +342,7 @@ benötigt, dass noch installiert werden muss: ::
 Von einem Automatisierungsserver muss nun zum Aktivieren des Bildschirms über
 SSH als ``root`` der Befehl ::
 
-    DISPLAY=:0 xdotool mousemove --sync 500 400 mousemove 520 420
+    DISPLAY=:0 xdotool mousemove_relative 1 0 mousemove_relative -- -1 0
 
 gesendet werden.
 
@@ -374,8 +376,8 @@ Start-Animation
 
 Damit bei einem Start des Rapsberry Pi die für Nicht-Techniker unschönen
 Boot-Meldungen hinter einen schönen Animation versteckt werden kann der
-``plymouth`` Service eingerichtet werden. Hier gibt es auch eine Animation
-extra für die CometVisu.
+``plymouth`` Service eingerichtet werden. Hier gibt es auch eine `Animation
+extra für die CometVisu <https://github.com/CometVisu/Misc/tree/master/plymouth>`__.
 
 Zum Installieren werden diese Befehle benötigt: ::
 

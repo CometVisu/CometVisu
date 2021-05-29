@@ -387,7 +387,8 @@ nächstes muss nun die Software installiert werden, durch die der Pi produktiv
 nutzbar wird.
 
 Dies kann die CometVisu selbst sein, die dazu am einfachsten in einer
-Docker-Umgebung läuft: <xxx>
+Docker-Umgebung läuft: :doc:`Raspberry Pi: Docker installieren <rpi_docker>` und
+:doc:`Raspberry Pi: CometVisu in Docker installieren <rpi_cometvisu>`.
 
 Es kann aber auch sein, dass der Raspberry Pi als CometVisu Client laufen soll
 und den Browser mit der CometVisu auf einem Touch Sreen darstellen soll:
