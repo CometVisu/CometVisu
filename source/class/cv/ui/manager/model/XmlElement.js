@@ -257,7 +257,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     },
 
     _updateShowEditButton: function () {
-      this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
+      const schemaElement = this.getSchemaElement();
+      this.setShowEditButton(
+        schemaElement.isTextContentAllowed() && this.getName().startsWith('#') ||
+        Object.keys(schemaElement.getAllowedAttributes()).length > 0 ||
+        schemaElement.isChildElementAllowed('*') // any element allowed, this is edited as text (outerHTML)
+      );
     },
 
     updateDeletable: function () {
@@ -896,6 +901,40 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (change.changed) {
             parentChanges.push(change);
           }
+        } else if (attrName === '#outerHTML' || attrName === "#innerHTML") {
+          if (this.getSchemaElement().isChildElementAllowed('*')) {
+            const dom = new DOMParser().parseFromString(data[attrName], 'text/xml');
+            if (dom.getElementsByTagName('parsererror').length === 0) {
+              const oldValue = attrName === '#outerHTML' ? this._node.outerHTML : this._node.innerHTML;
+              const newNode = dom.documentElement;
+              if (attrName === '#outerHTML') {
+                const oldNode = this._node;
+                oldNode.parentNode.replaceChild(newNode, oldNode);
+                this._node = newNode;
+                this.setName(this._node.nodeName);
+              } else {
+                this._node.innerHTML = data[attrName];
+              }
+              changes.push({
+                changed: true,
+                attribute: attrName,
+                value: data[attrName],
+                old: oldValue
+              });
+              this.load(true);
+            }
+          } else if (attrName === "#innerHTML" && !data[attrName]) {
+            // allow empty values
+            const oldValue = this._node.innerHTML;
+            this._node.innerHTML = data[attrName];
+            changes.push({
+              changed: true,
+              attribute: attrName,
+              value: data[attrName],
+              old: oldValue
+            });
+            this.load(true);
+          }
         } else {
           change = this.setAttribute(attrName, data[attrName]);
           if (change.changed) {
@@ -1019,12 +1058,23 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   }
                 }
               } else if (childNode.nodeType === Node.ELEMENT_NODE) {
-                // only complain for real childs (no comments, textNodes)
-                this.setValid(false);
-                let msg = this.getInvalidMessage();
-                msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
-                this.setInvalidMessage(msg);
-                this.setValid(false);
+                if (schemaElement.isChildElementAllowed(childNode.nodeName)) {
+                  // allowed but no schema element
+                  const child = new cv.ui.manager.model.XmlElement(childNode, schemaElement, this.getEditor(), this);
+                  if (schemaElement.isMixed()) {
+                    // text nodes can be re-ordered in mixed content
+                    child.setSortable(true);
+                  }
+                  children.push(child);
+                  this._initialChildNames.push(childNode.nodeName);
+                } else {
+                  // only complain for real childs (no comments, textNodes)
+                  this.setValid(false);
+                  let msg = this.getInvalidMessage();
+                  msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                  this.setInvalidMessage(msg);
+                  this.setValid(false);
+                }
               }
             }
 

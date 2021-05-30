@@ -193,16 +193,15 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
-        var monacoAction;
         switch (actionName) {
           case 'cut':
-            monacoAction = this._editor.getAction('editor.action.clipboardCutAction');
+            this._editor.trigger('external', 'editor.action.clipboardCutAction');
             break;
           case 'copy':
-            monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
+            this._editor.trigger('external', 'editor.action.clipboardCopyAction');
             break;
           case 'paste':
-            navigator.clipboard.readText().then(clipText => this._editor.trigger('keyboard', 'type', {text: clipText}));
+            this._editor.trigger('external', 'editor.action.clipboardPasteAction');
             break;
           case 'undo':
           case 'redo':
@@ -212,9 +211,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           default:
             this.base(arguments, actionName);
             break;
-        }
-        if (monacoAction) {
-          monacoAction.run();
         }
       }
     },
