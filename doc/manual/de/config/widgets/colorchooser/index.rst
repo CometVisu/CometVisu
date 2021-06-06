@@ -25,9 +25,9 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-Mit dem ColorChooser lassen sich, z.B. für eine Effektbeleuchtung, Farben
-auswählen und anzeigen. Sowohl eine RGB-Beleuchtung mit roten, grünen und
-blauen Lichtern, also auch eine RGBW-Beleuchtung mit zusätzlichem weißen
+Mit dem ColorChooser lassen sich Farben auswählen und anzeigen, beispielsweise
+für eine Effektbeleuchtung. Sowohl eine RGB-Beleuchtung mit roten, grünen und
+blauen Lichtern, aber auch eine RGBW-Beleuchtung mit zusätzlichem weißen
 Kanal ist möglich.
 
 Einfacher Modus
@@ -40,33 +40,46 @@ Wiedergabe verzichtet wird.
 Widget-Komponenten
 """"""""""""""""""
 
-Der ColorChooser lässt verschiedene Möglichkeiten und Kombinationen dieser um
-die Farbe auzuwählen und anzuzeigen. So gibt es Slider für die direkte, aber
-aber auch für eine der menschlischen Wahrnehmung besser entsprechenden
+Der ColorChooser bietet verschiedene Möglichkeiten und Kombinationen um eine
+Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte, aber
+aber welche für eine der menschlischen Wahrnehmung besser entsprechenden
 Darstellung:
 
-=== ===============================================================
-`r` Roter Kanal - direkte Ansteuerung
-`g` Grüner Kanal - direkte Ansteuerung
-`b` Blauer Kanal - direkte Ansteuerung
-`w` Weißer Kanal - direkte Ansteuerung (wenn vorhanden)
-`h` hue - Farbton des HSV-Farbraums, indirekte Ansteuerung
-`s` saturation - Sättigung des HSV-Farbraums, indirekte Ansteuerung
-`v` value - Helligkeit des HSV-Farbraums, indirekte Ansteuerung
-`T` Farbtemperatur für Weiß, indirekte Ansteuerung
-=== ===============================================================
+========== =====================================================================
+``RGB-r``  Roter Kanal - direkte Ansteuerung einer RGB-Beleuchtung
+``RGB-g``  Grüner Kanal - direkte Ansteuerung einer RGB-Beleuchtung
+``RGB-b``  Blauer Kanal - direkte Ansteuerung einer RGB-Beleuchtung
+``RGBW-r`` Roter Kanal - direkte Ansteuerung einer RGBW-Beleuchtung
+``RGBW-g`` Grüner Kanal - direkte Ansteuerung einer RGBW-Beleuchtung
+``RGBW-b`` Blauer Kanal - direkte Ansteuerung einer RGBW-Beleuchtung
+``RGBW-w`` Weißer Kanal - direkte Ansteuerung einer RGBW-Beleuchtung
+``h``      hue - Farbton des HSV-Farbraums, indirekte Ansteuerung
+``s``      saturation - Sättigung des HSV-Farbraums, indirekte Ansteuerung
+``v``      value - Helligkeit des HSV-Farbraums, indirekte Ansteuerung
+``T``      Farbtemperatur für Weiß, indirekte Ansteuerung
+``LCh-L``  lightness - Helligkeit im L*C*h° CIE Farbraum, indirekte Ansteuerung
+``LCh-C``  chroma - Buntheit im L*C*h° CIE Farbraum, indirekte Ansteuerung
+``LCh-h``  hue - Farbtonwinkel im L*C*h° CIE Farbraum, indirekte Ansteuerung
+========== =====================================================================
 
 Der Slider für die Farbtemperatur nimmt eine Sonderrolle ein, da dieser
 gleichzeitig den Farbton als auch die Sättigung so einstellt, dass diese
 Farbtemperatur mit der Beleuchtung erricht wird.
 
-Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten.
+Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten:
 
-Triangle, Box
+================ ====================================================================================
+``box``          Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, HSV-Farbraum
+``triangle``     Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, HSV-Farbraum
+``LCh-box``      Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
+``LCh-triangle`` Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
+================ ====================================================================================
 
-Im einfachen Modus sollten diese komplexen Darstellungen im HSV-Modus betrieben
-werden, im professionellen Modus, wenn die Farborte der einzelnen Farben
-konfiguriert wurden, im LCh-Modus.
+.. NOTE::
+
+    Im einfachen Modus sollten das Farbwahlrad im HSV-Farbraum benutzt
+    werden, im professionellen Modus, wenn die Farborte der einzelnen Farben
+    konfiguriert wurden, im L*C*h°-Farbraum.
 
 Dim-Kurven
 """"""""""
@@ -80,22 +93,22 @@ wahrgenommenen Helligkeit zu erreichen. Dieses grundsätzlich sinnvolle Verhalte
 ist jedoch bei der Mischung von Farben nachteilig, da hier ein lineares Verhalten
 benötigt wird.
 
-Durch die Attribute `r_curve`, `g_curve`, `b_curve` und `w_curve` lassen sich
+Durch die Attribute ``r_curve``, ``g_curve``, ``b_curve`` und ``w_curve`` lassen sich
 die Verwendeten Dim-Kurven einstellen um das Verhalten des Beleuchtungssystems
 zu kompensieren. Neben der für den professionen Modus gedachten Angabe einer
 Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
-`linear`, `exponential` und `logarithmic` die wichtigsten Kurventypen einstellen.
+``linear``, ``exponential`` und ``logarithmic`` die wichtigsten Kurventypen einstellen.
 
 Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
 entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
 zu berücksichtigen sind, da hier an jeder Stelle ein nicht lineares Verhalten
 möglich sein kann.
 
-Ob die verwendete Kurve korrekt ist lässt sich auch ohne Messgerät leicht
+Ob die verwendete Kurve korrekt ist lässt sich grob auch ohne Messgerät leicht
 abschätzen. Hierzu muss der rote Kanal auf 100%, der grüne auf 50% und der blaue
 auf 0% eingestellt werden (der ggf. vorhandene weiße Kanal muss auch auf 0% stehen).
-Die Beleuchtungs-Farbe sollte nun einem satten Orange entsprechen, wenn die
-Dim-Kurven richtig eingestellt sind.
+Die Beleuchtungsfarbe sollte nun, wenn die Dim-Kurven richtig eingestellt sind,
+einem satten Orange entsprechen.
 
 Sollte die Farbe nicht passen, so ist real eingestellte Farbe (ohne dass eine
 Dim-Kurve konfiguriert wurde) mit dieser Tabelle zu vergleichen und der
@@ -121,40 +134,44 @@ Soll-Farbe             reale Farbe            zur Kompensation zu verwendende Di
 :linearorange:`------` :exporange:`------`    `exponential`
 ====================== ====================== =========================================
 
-Meist reicht die Einstellung der korrekten Dim-Kurve um bereits eine gute
-Farbdarstellung zu bekommen. Sollte es jedoch dann noch bei einer RGB-Beleutung
-einen Farbstich geben, wenn die Helligkeit auf 100% und die Sättigung auf 0%
-steht und es eigentlich neutral Weiß leuchten sollte, so kann über die
-`r_strength`, `g_strength` und `b_strength` Werte eine Korrektur erfolgen.
+Meist reicht die Einstellung der korrekten Dim-Kurve aus, um bereits eine gute
+Farbdarstellung zu bekommen. Sollte es jedoch auch nach einer Korrektur bei einer
+RGB-Beleuchtung, wenn die Helligkeit auf 100% und die Sättigung auf 0% steht,
+einen Farbstich geben und nicht neutral Weiß leuchten, so kann über die
+``r_strength``, ``g_strength`` und ``b_strength`` Werte eine Korrektur erfolgen.
 Dies ist auch bei einer RGBW-Beleuchtung möglich, jedoch wird das Abschätzen
 der Werte noch schwieriger als bei einer RGB-Beleuchtung, so dass hier am
-besten eine Messung der realen Werte durchgeführt werden sollte, so wie im
-nächsten Abschnitt beschrieben.
+besten eine Messung der realen Werte durchgeführt werden sollte. Dies wird im
+Abschnitt für den professionellen Modus beschrieben.
 
 Professioneller Modus
 ^^^^^^^^^^^^^^^^^^^^^
 
-Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder für
+Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder
 Yachten lässt sich der einfache Modus leicht auf eine farbverbindliche Nutzung
 erweitern.
 
 .. note::
 
-    Beste Ergebnisse benötigen einen kalibrierten Bildschirm. Aber da für die
-    Darstellung bewusst nur der sRGB-Farbraum verwendet wird sollte auch auf
+    Beste Ergebnisse benötigen einen kalibrierten Bildschirm. Da für die
+    Darstellung bewusst nur der sRGB-Farbraum verwendet wird sollte aber auch auf
     unkalibrierten Geräten (wie z.B. Smartphones und Tablets) eine akzeptable
     Darstellung möglich sein. Trotz der Einschränkung der Bildschirmdarstellung auf
-    sRGB lässt sich durch den ColorChooser der komplette Farbraum der durch die
-    Leuchtmittel möglich ist nutzen.
+    sRGB lässt sich durch den ColorChooser der komplette Farbraum, der durch die
+    Leuchtmittel möglich ist, nutzen.
+
+.. image:: _static/rgb_100px.png
+
+.. image:: _static/rgb_200px.png
 
 Der professionelle Modus unterscheidet sich vom einfachen Modus dadurch, dass
-die Farborte des verwendeten Leuchtmittels mit angegeben wird so wie dessen
+die Farborte des verwendeten Leuchtmittels mit angegeben werden, so wie deren
 Dim-Verhaltens.
 
 Die besten Ergebnisse werden erreicht, wenn für den roten, grünen blauen und, so
 vorhanden, weißen Kanal die Farborte und Helligkeiten mit einem Spektralfotometer
-gemessen werden und als `x` und `y` Koordinaten des CIE-Normfarbsystem übergeben
-werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle und die maximale
+gemessen werden und als ``x`` und ``y`` Koordinaten des CIE-Normfarbsystem übergeben
+werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle so wie die maximale
 Helligkeit übernommen werden.
 Aufgrund der Alterung des Leuchtmittels müssen - genau so wie bei der
 Monitor-Kalibierung - die Dim-Kurven regelmäßig bestimmt werden und die
@@ -162,25 +179,25 @@ Konfigurationsdatei entsprechend angepasst werden. Die Häufigkeit der Messung
 richtet sich dabei nach dem Anspruch an die zu erreichende Farbtreue.
 
 Ohne Messgerät, aber mit einem Datenblatt des verwendeten Leuchtmittels, lassen
-sich auch noch gute Ergebnisse erzielen. Wenn für die Farben keine `x` und `y`
-Koordinaten angegeben werden, aber zumindest die Wellenlängen so können diese
+sich auch noch gute Ergebnisse erzielen. Wenn für die Farben keine ``x`` und ``y``
+Koordinaten angegeben werden, aber zumindest die Wellenlängen, so können diese
 alternativ verwendet werden. Dies führt nur bei einer monochromatischen Lichtquelle
 wie einem Laser zu einem korrektem Ergebnis, jedoch besitzen auch RGB-LEDs ein
 annähernd monochromatische Verhalten. Bei dem weißen Kanal kann statt der
 xy-Koordinaten auch die Farbtemperatur verwendet werden. Sollte eine Abweichung
-von der Black-Body-Kurve berücksichtig werden müssen, so muss dies über eine
+von der Black-Body-Kurve berücksichtig werden müssen, so muss dies jedoch über eine
 Angabe in xy-Koordinaten erfolgen.
 
 Die Helligkeitsangabe muss keine spezifische physikalische Einheit (wie Lumen
-oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur
+oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur die
 relative Größe der Werte untereinander.
 
 Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
-zu erhalten, sollte ein Widget-Element nicht im HSV sondern im LCh-Modus
+zu erhalten, sollte ein Widget-Element nicht im HSV sondern im L*C*h°-Modus
 verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. xyY oder
 L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
 Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
-ist. Eine Kommunikation im HSV Farbraum würde auch noch eine gute Farbwiedergabe
+ist. Eine Kommunikation im HSV-Farbraum würde auch noch eine gute Farbwiedergabe
 ermöglichen. Für eine direkte Ansteuerung über RGB bzw. RGBW Werte ist eine
 korrekt eingestellte Dim-Kurve unabdingbar.
 
