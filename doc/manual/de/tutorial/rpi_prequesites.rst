@@ -22,7 +22,7 @@ späteren Teile einzusteigen.
 Warum Raspberry Pi?
 ===================
 
-Der Raspberry Pi ist ein kleiner, sparsamer Einplatinen-Computer, so dass alles
+Der Raspberry Pi ist ein kleiner, sparsamer Einplatinen-Computer, bei dem alles
 wichtige für den Betrieb bereits auf der Platine enthalten ist. Ursprünglich
 für Bastel- und Ausbildungsprojekte gedacht hat sich der Raspberry Pi in den
 letzten Jahren auch im professionellen Umfeld einen Namen gemacht und seinen
@@ -118,6 +118,13 @@ USB-Speicher zu installieren, z.B. mit dem Raspberry Pi Imager:
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 24px;">
       <iframe src="https://www.youtube-nocookie.com/embed/ntaXWS8Lk34" style="position:absolute;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+.. note::
+
+    Wenn der USB-Speicher verwendet werden soll, so muss in diesem Schritt
+    das Betriebssystem-Image sowohl auf die SD-Card als auch den USB-Speicher
+    installiert werden, denn die SD-Card wird nur benötigt um die Firmware des
+    Raspberry Pi darauf vorzubereiten später von dem USB-Speicher zu starten.
 
 Netzwerkzugriff - Teil 1
 ------------------------
@@ -253,6 +260,8 @@ Auch kann dieser nun konfiguriert werden, z.B. wenn bei `vim` die Mausintegratio
 
     echo "set mouse=" | sudo tee -a /etc/vim/vimrc.local
     echo "set ttymouse=" | sudo tee -a /etc/vim/vimrc.local
+
+.. _bashrc:
 
 Dateianzeige
 """"""""""""
@@ -399,7 +408,7 @@ OpenHAB oder Node-Red zu verwenden.
 
 Gerade wenn der Raspberry Pi mit "etwas Luft" gekauft wurde, so kann dieser
 leicht mehrere dieser Aufgaben gleichzeitig übernehmen, da dieser ja sowieso
-rund um die Durchläuft.
+rund um die Uhr Durchläuft.
 
 Cheat Sheet
 ===========
@@ -414,7 +423,7 @@ Allgemeine Befehle:
     Wechsel des Verzeichnisses, ``cd ..`` wechselt ein Verzeichnis "nach oben".
     ``cd ~`` wechselt in das Heimat-Verzeichnis des aktuellen Accounts.
 
-``ls`` oder (wenn eingerichtet) mit mehr Komfort ``ll``
+``ls`` oder (:ref:`wenn eingerichtet <bashrc>`) mit mehr Komfort ``ll``
     Aktuellen Inhalt des Verzeichnisses anzeigen.
 
 ``whoami``

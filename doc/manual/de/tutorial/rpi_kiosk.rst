@@ -124,11 +124,11 @@ werden: ::
 
     sudo xinit chromium-browser
 
-Um den Test zu beenden lässt sich über :kbd:`Strg` + :kbd:`C` auf der
-Konsole der Browser wieder beenden.
+Um den Test zu beenden lässt sich der Browser über :kbd:`Strg` + :kbd:`C` auf
+der Konsole wieder beenden.
 
 Sollte bei diesem Test der Bildschirm, bzw. das Touch Interface nicht korrekt
-reagiert haben, so ist dies mit einer der weiter oben beschriebenen Methode
+reagiert haben, so ist dies mit einer der weiter oben beschriebenen Methoden
 zu korrigieren. Erst wenn der Browser sich erfolgreich bedienen lässt kann in
 diesem Tutorial zum nächsten Punkt weiter gegangen werden.
 
@@ -222,7 +222,7 @@ lässt sich dieses nun für den User ``pi`` installieren.
 Automatischer Start einrichten
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Wenn der Browser sich manuell erfolgreich starten läst, so kann nun eingerichtet
+Wenn der Browser sich manuell erfolgreich starten lässt, so kann nun eingerichtet
 werden, dass dieser nach einem Boot-Vorgang automatisch gestartet wird. Hierzu
 muss der ``systemd`` ein entsprechendes Ziel bekommen.
 
@@ -290,7 +290,7 @@ Hierzu ist die Datei ``/root/start_browser.sh`` am Anfang (nach der Zeile
     /usr/bin/xset s off
     /usr/bin/xset -dpms
 
-Bildschrim aktivieren und deaktivieren
+Bildschirm aktivieren und deaktivieren
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Da ein Raspberry Pi selbst keinen Schlafzustand kennt und aus einem Halt
@@ -355,7 +355,7 @@ Rechner schlafen legen und aufwecken
     für die Versionen 1 bis 4, die bei Erstellung dieses Tutorials aktuell waren).
     Jedoch bei anderen Kiosk-Rechnern, insbesondere welchen die auf PC Technik
     basieren, kann als Alternative zum Powermanagement mit DPMS auch der ganze
-    Rechne schlafen gelegt werden (Suspend to RAM) um Strom zu sparen und den
+    Rechner schlafen gelegt werden (Suspend to RAM) um Strom zu sparen und den
     Bildschirm zu deaktivieren.
 
 Für den Schlaf-Befehl muss vom Kontroll-Rechner (der Automatisierungs-Server)
@@ -414,7 +414,7 @@ Erweiterung auf zwei unabhängige Touch Panels
 
 Durch die bei dem Raspberry Pi vorhandenen doppelten HDMI Ausgänge bietet es
 sich an zwei Touch Screens mit nur einem Raspberry Pi zu betreiben. Hierdurch
-kann Strom, aber auch Administrationsaufwand und Anschaffungskosten gespart
+kann Strom, aber auch Administrationsaufwand und Anschaffungskosten eingespart
 werden. Die große Flexibilität von Linux kann hier auch ihre Stärke ausspielen,
 da es bei X11 möglich ist zwei unabhängige Cursor gleichzeitig zu nutzen.
 
@@ -426,17 +426,21 @@ Für einen Arbeitsplatz ist dieses Verhalten gewünscht, bei zwei getrennt
 montierten Displays ist dieses Vorgehen jedoch nicht von Vorteil, bei der
 Analyse von Problemen hilft es jedoch dieses Verhalten im Hinterkopf zu behalten.
 
+In dem Tutorial werden nun beide Displays aus Sicht des Raspberry Pi direkt
+nebeneinander als ein großer, virtueller Bildschirm positioniert, auch wenn
+die beiden Touch Screens natürlich getrennt voneinander montiert werden.
+
 Um nun die richtige Reihenfolge festzulegen wird die Datei
 ``/etc/X11/xorg.conf.d/90-dualscreen.conf`` angelegt und befüllt mit: ::
 
     Section "Monitor"
             Identifier "HDMI-1"
-            Option          "Primary" "true"
+            Option     "Primary" "true"
     EndSection
 
     Section "Monitor"
             Identifier "HDMI-2"
-            Option          "LeftOf" "HDMI-1"
+            Option     "LeftOf" "HDMI-1"
     EndSection
 
 Mit dieser Datei wird das Display an HDMI Ausgang 2 links von dem am HDMI
@@ -506,4 +510,5 @@ Aufrufs ein ``&`` angehängt wird. Somit könnte die Datei z.B. so aussehen: ::
 Auch wichtig ist, dass ``--user-data-dir`` auf zwei unterschiedliche
 Verzeichnisse verweist, da sonst Chrome seine beiden Fenster nur übereinander
 legen würde. Neben diesem Parameter muss auch noch ``--window-position``
-basierend der konkreten Bildschirmgröße angepasst werden.
+basierend der konkreten Bildschirmgröße angepasst werden, da hiermit das zweite
+Browserfenster auf den zweiten Bildschirm verschoben wird.

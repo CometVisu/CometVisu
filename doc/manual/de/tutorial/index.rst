@@ -2,7 +2,7 @@
 Tutorials
 #########
 
-Die Tutorials helfen für einen leichteren Einstieg um schnell und
+Die Tutorials helfen bei einem leichteren Einstieg um schnell und
 effizient mit der CometVisu loslegen zu können. In einer ersten Tutorial-Serie
 geht es um ein Setup am Beispiel eines Raspberry Pi. Dieses ist aber in großen
 Teilen auch auf andere Systeme übertragbar und kann, je nach gewünschter
