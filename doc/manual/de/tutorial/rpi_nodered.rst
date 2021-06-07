@@ -1,3 +1,3 @@
 *********************************************
-Raspberry Pi: Node-Red in Docker installieren
+Raspberry Pi: Node-RED in Docker installieren
 *********************************************

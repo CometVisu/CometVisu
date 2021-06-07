@@ -15,7 +15,7 @@ Funktionalität, auch nur in den jeweils interessanten Teilen umgesetzt werden.
     - :doc:`Raspberry Pi: Docker installieren <rpi_docker>`
 
         - :doc:`Raspberry Pi: CometVisu in Docker installieren <rpi_cometvisu>`
-        - :doc:`Raspberry Pi: Node-Red in Docker installieren <rpi_nodered>`
+        - :doc:`Raspberry Pi: Node-RED in Docker installieren <rpi_nodered>`
 
 -  :doc:`Erste Schritte - eine Visu in einer halbe Minute <first_steps>`
 
