@@ -26,7 +26,7 @@ Raspberry Pi der sich um die Heimautomatisierung kümmert:
 Dadurch, dass die ganze Server-Software in einem `Image` für den `Container`
 zusammen gefasst ist lässt sich dieser mit nur einem Befehl
 installieren. Auch reicht nur ein weiterer einfacher Befehl um die Software
-zu aktuallisieren. Somit sind die ganzen Abhängigkeiten und möglichen
+zu aktualisieren. Somit sind die ganzen Abhängigkeiten und möglichen
 Inkompatibilität einer Server-Software gekapselt und können keine Probleme
 verursachen. Auch ist die Installation einer Server-Software als Docker
 Container einfacherer als wenn diese direkt installiert wird.
@@ -63,7 +63,7 @@ Installation von Docker
 
 Die Installation geht sehr einfach. Als erstes ist - wie bei jeder
 Software-Installation das System auf den aktuellsten Stand zu bringen (die
-ggf. kommende Rückfrage über die zu aktuallisierende Software muss mit einem
+ggf. kommende Rückfrage über die zu aktualisierende Software muss mit einem
 ``J`` bestätigt werden): ::
 
     sudo apt-get update
@@ -79,7 +79,7 @@ werden: ::
 
     sudo usermod -aG docker ${USER}
 
-Anschließden muss der Raspberry Pi neu gestartet werden, damit diese Änderungen
+Anschließend muss der Raspberry Pi neu gestartet werden, damit diese Änderungen
 alle aktiv sind: ::
 
     sudo shutdown -r now
@@ -104,7 +104,7 @@ Die Portainer-Installation ist sehr einfach: ::
 
 Um Portainer zu starten - und auch nach einem Boot wieder starten zu lassen: ::
 
-    docker run --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
+    docker run --name portainer --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
 
 Nun kann Portainer aufgerufen werden, in dem der Port ``9000`` des Raspberry Pi
 im Browser geöffet wird, also z.B. mit der URL:
