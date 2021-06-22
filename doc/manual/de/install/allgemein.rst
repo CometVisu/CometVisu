@@ -1,4 +1,6 @@
 .. replaces:: CometVisu/Installation/de
+    CometVisu/de/latest/manual/install/linux.html
+    CometVisu/de/latest/manual/install/nas.html
 
 Voraussetzungen für die Installation
 ====================================
