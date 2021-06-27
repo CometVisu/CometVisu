@@ -29,18 +29,18 @@ installieren. Auch reicht nur ein weiterer einfacher Befehl um die Software
 zu aktualisieren. Somit sind die ganzen Abhängigkeiten und möglichen
 Inkompatibilität einer Server-Software gekapselt und können keine Probleme
 verursachen. Auch ist die Installation einer Server-Software als Docker
-Container einfacherer als wenn diese direkt installiert wird.
+Container einfacher als wenn diese direkt installiert wird.
 
 Philosophie hinter Docker
 -------------------------
 
 Um optimal mit Docker umgehen zu können ist es wichtig die Philosophie hinter
 Docker zu verstehen und diese beizubehalten. Man ist manchmal gerne geneigt als
-"Abkürzung" diese zu verlassen, jedoch holt man sich dadurch Probleme bei der
+"Abkürzung" diese zu verlassen, jedoch erkauft man sich dadurch Probleme bei der
 zukünftigen Wartung.
 
 Bei Docker gilt als Grundsatz, dass immer nur ein "Server" in einem Container
-existieren soll (genauer: nur ein Server-Prozess). Wenn mehere Server
+existieren soll (genauer: nur ein Server-Prozess). Wenn mehrere Server
 gleichzeitig benötigt werden (wie z.B. ein Datenbank-Server und ein Web-Server),
 so werden hierfür zwei getrennte Container gleichzeitig ausgeführt.
 
@@ -93,7 +93,7 @@ Installation von Portainer (optional)
 =====================================
 
 Docker wird über die Kommandozeile administriert. Jedoch gibt es auch sehr
-gute graphische Oberflächen, die gerade "Selten-Administratoren" den Umgang
+gute graphische Oberflächen, die gerade Administratoren mit wenig Erfahrung den Umgang
 deutlich erleichtern können. In diesem Tutorial verwenden wir dafür
 `Portainer <https://www.portainer.io/>`_. Portainer ist selbst ein Docker Image,
 dass wir nun als Container laufen lassen.

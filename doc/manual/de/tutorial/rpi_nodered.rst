@@ -52,7 +52,7 @@ gestartet werden soll.
 .. figure:: _static/portainer_add_nodered_restart.png
 
 Je nach Zeitzone an der der Server laufen soll, muss diese ggf. noch über
-das `Environment` eingestellt werden. Für einen Betrieb in Deutschlad muss
+das `Environment` eingestellt werden. Für einen Betrieb in Deutschland muss
 ``TZ`` mit dem Wert ``Europe/Berlin`` eingestellt werden.
 
 .. figure:: _static/portainer_add_nodered_timezone.png

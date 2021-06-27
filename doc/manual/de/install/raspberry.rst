@@ -9,7 +9,7 @@ Installation auf dem Raspberry PI
 Die CometVisu braucht relativ wenig Ressourcen und Software-Pakete und
 läuft deshalb sehr gut auf einem `Raspberry Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__
 
-Da ein Rapsberry Pi im Grunde ein normaler Computer mit Linux als Betriebssystem
+Da ein Raspberry Pi im Grunde ein normaler Computer mit Linux als Betriebssystem
 ist, gelten hier für die Installation die normalen,
 :doc:`allgemeinen Installations-Informationen <allgemein>`.
 
