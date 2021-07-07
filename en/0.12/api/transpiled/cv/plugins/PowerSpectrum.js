@@ -513,4 +513,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1620512016751
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1625667765323

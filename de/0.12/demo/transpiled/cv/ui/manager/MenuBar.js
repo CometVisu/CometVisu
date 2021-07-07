@@ -195,6 +195,11 @@
             menu: 'help-menu',
             args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
             enabled: false
+          },
+          'about': {
+            menu: 'help-menu',
+            args: [this.tr('About')],
+            enabled: false
           }
         };
         this.maintainButtons();
@@ -321,6 +326,11 @@
             this.add(control);
             break;
 
+          case "about":
+            control = new qx.ui.menubar.Button(this.tr('About'), null, this.getChildControl('help-menu'));
+            this.add(control);
+            break;
+
           case "new":
             control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
             break;
@@ -368,4 +378,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1620513271243
+//# sourceMappingURL=MenuBar.js.map?dt=1625668962824

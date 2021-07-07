@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Raspberry Pi: Node-RED in Docker installieren &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/tutorial/rpi_nodered.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Stichwortverzeichnis"
+              href="../genindex.html"/>
+        <link rel="search" title="Suche" href="../search.html"/>
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Tutorials" href="index.html"/>
+        <link rel="next" title="Tutorial: Erste Schritte - eine Visu in einer halben Minute" href="first_steps.html"/>
+        <link rel="prev" title="Raspberry Pi: CometVisu in Docker installieren" href="rpi_cometvisu.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.12.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rpi_prequesites.html">Raspberry Pi: Vorbereitung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_kiosk.html">Raspberry Pi: Client einrichten (Kiosk Modus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_docker.html">Raspberry Pi: Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_cometvisu.html">Raspberry Pi: CometVisu in Docker installieren</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Raspberry Pi: Node-RED in Docker installieren</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-mit-portainer">Installation mit Portainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ein-volume-erzeugen">Ein <cite>Volume</cite> erzeugen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#einen-neuen-container-hinzufugen">Einen neuen Container hinzufügen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-uber-die-kommandozeile">Installation über die Kommandozeile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Ein <cite>Volume</cite> erzeugen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hinzufugen-des-cometvisu-containers">Hinzufügen des CometVisu Containers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="first_steps.html">Tutorial: Erste Schritte - eine Visu in einer halben Minute</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Raspberry Pi: Node-RED in Docker installieren</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="raspberry-pi-node-red-in-docker-installieren">
+<h1>Raspberry Pi: Node-RED in Docker installieren<a class="headerlink" href="#raspberry-pi-node-red-in-docker-installieren" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Ein Heimautomatisierungsserver braucht neben einer Visualisierung auch die
+Möglichkeit Logiken auszuführen. Hierfür gibt es verschiedene Möglichkeiten
+wie <a class="reference external" href="https://nodered.org/">Node-RED</a> oder
+<a class="reference external" href="https://www.openhab.org/">OpenHAB</a>. In diesem Tutorial wird die Installation
+von Node-RED auf dem Raspberry Pi als Docker Container beschrieben.</p>
+<p>Grundsätzlich kann die Installation über die Kommandozeile erfolgen, was auch
+im <a class="reference internal" href="#nodered-installation-in-terminal"><span class="std std-ref">zweiten Teil</span></a> besprochen wird. Wer jedoch
+bereits dem <a class="reference internal" href="rpi_docker.html"><span class="doc">vorhergehenden Teil des Tutorials</span></a> gefolgt ist,
+kann die Installation komfortabel mit Portainer durchführen.</p>
+<p>Wenn bereits das Tutorial <a class="reference internal" href="rpi_cometvisu.html"><span class="doc">CometVisu in Docker installieren</span></a>
+durchgeführt wurde, so dürften die Schritte in diesem Tutorial bekannt
+vorkommen. Daher werden hier die Schritte ohne Screenshots beschrieben. Sollten
+folglich Fragen aufkommen wo welcher Punkt zu finden ist, so kann das Tutorial
+für die CometVisu Installation als Referenz verwendet werden.</p>
+<div class="section" id="installation-mit-portainer">
+<h2>Installation mit Portainer<a class="headerlink" href="#installation-mit-portainer" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Installation besteht auch für Node-RED aus zwei Teilen. Zu erst muss ein
+<cite>Volume</cite> für die persistenten Daten erzeugt werden bevor der <cite>Container</cite> selbst
+aus dem <cite>Image</cite> erzeugt werden kann.</p>
+<div class="section" id="ein-volume-erzeugen">
+<h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#ein-volume-erzeugen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Als erstes muss ein neues Volume mit dem Namen <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> angelegt werden.</p>
+</div>
+<div class="section" id="einen-neuen-container-hinzufugen">
+<h3>Einen neuen Container hinzufügen<a class="headerlink" href="#einen-neuen-container-hinzufugen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Nun muss ein neuer Container mit dem Namen <code class="docutils literal notranslate"><span class="pre">Node-RED</span></code> angelegt werden. Das
+Image ist <code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code>. Bei den Netzwerk-Ports muss am
+<cite>host</cite> und am <cite>container</cite> jeweils der Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> eingetragen werden.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_nodered.png" src="../_images/portainer_add_nodered.png" />
+</div>
+<p>Bei den <cite>Volumes</cite> muss im Container der Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> auf das vorhin angelegte
+Volume <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> gemappt werden.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_nodered_volume.png" src="../_images/portainer_add_nodered_volume.png" />
+</div>
+<p>Über die <cite>Restart Policy</cite> kann nun noch mit <code class="docutils literal notranslate"><span class="pre">Unless</span> <span class="pre">stopped</span></code> festgelegt
+werden, dass der Container auch nach einem Neustart oder bei einem Fehler neu
+gestartet werden soll.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_nodered_restart.png" src="../_images/portainer_add_nodered_restart.png" />
+</div>
+<p>Je nach Zeitzone an der der Server laufen soll, muss diese ggf. noch über
+das <cite>Environment</cite> eingestellt werden. Für einen Betrieb in Deutschland muss
+<code class="docutils literal notranslate"><span class="pre">TZ</span></code> mit dem Wert <code class="docutils literal notranslate"><span class="pre">Europe/Berlin</span></code> eingestellt werden.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_nodered_timezone.png" src="../_images/portainer_add_nodered_timezone.png" />
+</div>
+<p>Über <cite>Deploy the container</cite> ist die Installation abgeschlossen. Node-RED kann
+nun auf dem Raspberry Pi auf dem Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> mit dem Browser geöffnet werden.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_nodered.png" src="../_images/portainer_nodered.png" />
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p>Als erstes wird Node-RED eine Warnung mit dem Inhalt <cite>WARNING: please check
+you have started this container with a volume that is mounted to /data
+otherwise any flow changes are lost when you redeploy or upgrade the
+container (e.g. upgrade to a more recent node-red docker image).
+If you are using named volumes you can ignore this warning. Double click
+or see info side panel to learn how to start Node-RED in Docker to save
+your work</cite> anzeigen.</p>
+<p class="last">Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
+haben, ist diese Warnung für uns nicht relevant.</p>
+</div>
+</div>
+</div>
+<div class="section" id="installation-uber-die-kommandozeile">
+<span id="nodered-installation-in-terminal"></span><h2>Installation über die Kommandozeile<a class="headerlink" href="#installation-uber-die-kommandozeile" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="id1">
+<h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Das Volume wird einfach erzeugt mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="n">node_red_data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hinzufugen-des-cometvisu-containers">
+<h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#hinzufugen-des-cometvisu-containers" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Node-RED lässt sich über das offizielle Image aus dem <cite>Docker Hub</cite> installieren
+mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">Node</span><span class="o">-</span><span class="n">RED</span> <span class="o">-</span><span class="n">p</span> <span class="mi">1880</span><span class="p">:</span><span class="mi">1880</span> <span class="o">-</span><span class="n">v</span> <span class="n">node_red_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span> <span class="o">-</span><span class="n">e</span> <span class="n">TZ</span><span class="o">=</span><span class="n">Europe</span><span class="o">/</span><span class="n">Berlin</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="n">nodered</span><span class="o">/</span><span class="n">node</span><span class="o">-</span><span class="n">red</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+<p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>
+<dl class="glossary docutils">
+<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code></dt><dd>Hierdurch wird der Container im Hintergrund gestartet.</dd>
+<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code></dt><dd>Der Name unter dem der Container gemanagt wird.</dd>
+<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code></dt><dd>Durch <code class="docutils literal notranslate"><span class="pre">1880:1880</span></code> wird der Port 1880 im Container auf den Port 1880 des
+Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
+Web-Server im Container von außen (über den Port 1880) zugegriffen werden.</dd>
+<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">node_red_data:/data</span></code> wird das vorhin angelegte Volume
+<code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> im Container gemappt.</dd>
+<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code></dt><dd>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
+<code class="docutils literal notranslate"><span class="pre">TZ=Europe/Berlin</span></code> wird die Zeitzone für Node-RED auf <cite>Berlin</cite>
+festgelegt.</dd>
+<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
+automatisch gestartet - so lange er nicht per Befehl explizit beendet
+wurde.</dd>
+<dt id="term-nodered-node-red-latest"><code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code></dt><dd>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</dd>
+</dl>
+<p>Node-RED kann nun auf dem Raspberry Pi auf dem Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> mit dem Browser
+geöffnet werden.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p>Als erstes wird Node-RED eine Warnung mit dem Inhalt <cite>WARNING: please check
+you have started this container with a volume that is mounted to /data
+otherwise any flow changes are lost when you redeploy or upgrade the
+container (e.g. upgrade to a more recent node-red docker image).
+If you are using named volumes you can ignore this warning. Double click
+or see info side panel to learn how to start Node-RED in Docker to save
+your work</cite> anzeigen.</p>
+<p class="last">Da wir das <cite>Named-Volume</cite> <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> gemappt
+haben, ist diese Warnung für uns nicht relevant.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="first_steps.html" class="btn btn-neutral float-right" title="Tutorial: Erste Schritte - eine Visu in einer halben Minute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rpi_cometvisu.html" class="btn btn-neutral" title="Raspberry Pi: CometVisu in Docker installieren" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.12.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../0.10/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../0.11/manual/index.html">0.11.2</a></dd>
+        
+          <dd><a href="../../../0.12/manual/index.html">0.12.0-dev</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

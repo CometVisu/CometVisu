@@ -296,7 +296,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.updateDeletable();
       },
       _updateShowEditButton: function _updateShowEditButton() {
-        this.setShowEditButton(this.getSchemaElement().isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(this.getSchemaElement().getAllowedAttributes()).length > 0);
+        var schemaElement = this.getSchemaElement();
+        this.setShowEditButton(schemaElement.isTextContentAllowed() && this.getName().startsWith('#') || Object.keys(schemaElement.getAllowedAttributes()).length > 0 || schemaElement.isChildElementAllowed('*') // any element allowed, this is edited as text (outerHTML)
+        );
       },
       updateDeletable: function updateDeletable() {
         var _this = this;
@@ -1030,6 +1032,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             if (change.changed) {
               parentChanges.push(change);
             }
+          } else if (attrName === '#outerHTML' || attrName === "#innerHTML") {
+            if (_this3.getSchemaElement().isChildElementAllowed('*')) {
+              var dom = new DOMParser().parseFromString(data[attrName], 'text/xml');
+
+              if (dom.getElementsByTagName('parsererror').length === 0) {
+                var oldValue = attrName === '#outerHTML' ? _this3._node.outerHTML : _this3._node.innerHTML;
+                var newNode = dom.documentElement;
+
+                if (attrName === '#outerHTML') {
+                  var oldNode = _this3._node;
+                  oldNode.parentNode.replaceChild(newNode, oldNode);
+                  _this3._node = newNode;
+
+                  _this3.setName(_this3._node.nodeName);
+                } else {
+                  _this3._node.innerHTML = data[attrName];
+                }
+
+                changes.push({
+                  changed: true,
+                  attribute: attrName,
+                  value: data[attrName],
+                  old: oldValue
+                });
+
+                _this3.load(true);
+              }
+            } else if (attrName === "#innerHTML" && !data[attrName]) {
+              // allow empty values
+              var _oldValue2 = _this3._node.innerHTML;
+              _this3._node.innerHTML = data[attrName];
+              changes.push({
+                changed: true,
+                attribute: attrName,
+                value: data[attrName],
+                old: _oldValue2
+              });
+
+              _this3.load(true);
+            }
           } else {
             change = _this3.setAttribute(attrName, data[attrName]);
 
@@ -1173,12 +1215,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     }
                   }
                 } else if (childNode.nodeType === Node.ELEMENT_NODE) {
-                  // only complain for real childs (no comments, textNodes)
-                  this.setValid(false);
-                  var msg = this.getInvalidMessage();
-                  msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
-                  this.setInvalidMessage(msg);
-                  this.setValid(false);
+                  if (schemaElement.isChildElementAllowed(childNode.nodeName)) {
+                    // allowed but no schema element
+                    var _child3 = new cv.ui.manager.model.XmlElement(childNode, schemaElement, this.getEditor(), this);
+
+                    if (schemaElement.isMixed()) {
+                      // text nodes can be re-ordered in mixed content
+                      _child3.setSortable(true);
+                    }
+
+                    children.push(_child3);
+
+                    this._initialChildNames.push(childNode.nodeName);
+                  } else {
+                    // only complain for real childs (no comments, textNodes)
+                    this.setValid(false);
+                    var msg = this.getInvalidMessage();
+                    msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                    this.setInvalidMessage(msg);
+                    this.setValid(false);
+                  }
                 }
               } // read attributes
 
@@ -1396,4 +1452,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1620512021122
+//# sourceMappingURL=XmlElement.js.map?dt=1625667769381

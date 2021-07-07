@@ -278,14 +278,20 @@
         }
       },
       handleAction: function handleAction(actionName) {
-        if (this.canHandleAction(actionName) && !this.__P_34_3) {
+        if (this.canHandleAction(actionName)) {
           switch (actionName) {
             case 'undo':
-              this.undo();
+              if (!this.__P_34_3) {
+                this.undo();
+              }
+
               break;
 
             case 'redo':
-              this.redo();
+              if (!this.__P_34_3) {
+                this.redo();
+              }
+
               break;
 
             case 'cut':
@@ -304,7 +310,9 @@
               break;
 
             case 'help':
-              this._showHelp();
+              if (!this.__P_34_3) {
+                this._showHelp();
+              }
 
               break;
 
@@ -445,10 +453,15 @@
         });
       },
       _applyClipboard: function _applyClipboard(value) {
-        if (value) {
-          navigator.clipboard.writeText(value.getNode().outerHTML);
-        } else {
-          navigator.clipboard.writeText('');
+        try {
+          if (value) {
+            navigator.clipboard.writeText(value.getNode().outerHTML);
+          } else {
+            navigator.clipboard.writeText('');
+          }
+        } catch (e) {// clipboard api is only available in secure environment, copying to clipboards only use case
+          // here is that it can be pasted in the source editor. And because that also only works when the clipboard
+          // api is available we fail silently here.
         }
       },
       _initWorker: function _initWorker() {
@@ -1678,7 +1691,7 @@
 
               if (xmlElement.isShowEditButton()) {
                 // only show edit dialog when we actually have something to edit
-                res = _this6._onEdit(null, xmlElement, _this6.tr("Create new %1 element", xmlElement.getName()), _this6.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", xmlElement.getName()));
+                res = _this6._onEdit(null, xmlElement, true);
               }
 
               res.then(function (data) {
@@ -1866,15 +1879,21 @@
 
         return def;
       },
-      _onEdit: function _onEdit(ev, element, title, caption) {
+      _onEdit: function _onEdit(ev, element, isNew) {
         var _this8 = this;
 
         if (!this.getFile() || !this.getFile().isWriteable()) {
           return;
         }
 
+        var title, caption;
+
         if (!element) {
-          element = this.getSelected();
+          if (this.getSelected()) {
+            element = this.getSelected();
+          } else {
+            return;
+          }
         }
 
         if (!element.getShowEditButton()) {
@@ -1884,6 +1903,14 @@
         element.load();
         var formData = {};
         var typeElement = element.getSchemaElement();
+
+        if (isNew) {
+          title = this.tr("Create new %1 element", element.getName());
+          caption = this.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", element.getName());
+        } else {
+          title = this.tr("Edit element attributes");
+          caption = element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName());
+        }
 
         if (element.getNode().nodeType === Node.ELEMENT_NODE) {
           var allowed = typeElement.getAllowedAttributes();
@@ -1901,7 +1928,42 @@
 
             formData[name] = _this8.__P_34_9(element, attribute);
           });
+
+          if (typeElement.isChildElementAllowed('*')) {
+            var parser = new DOMParser();
+            var attrName = element.getNode().nodeName === 'custom' ? '#innerHTML' : '#outerHTML';
+
+            if (isNew) {
+              title = this.tr("Create new %1 element", element.getName());
+              caption = this.tr("Please edit the content of the new %1 element, that will be added to the chosen position.", element.getName());
+            } else {
+              title = attrName === '#outerHTML' ? this.tr("Edit element and content") : this.tr("Edit element content");
+            }
+
+            formData[attrName] = {
+              type: "TextArea",
+              label: "",
+              lines: 5,
+              autoSize: true,
+              width: Math.min(qx.bom.Viewport.getWidth(), 500),
+              enabled: element.isEditable(),
+              value: attrName === '#outerHTML' ? element.getNode().outerHTML : element.getNode().innerHTML,
+              validation: {
+                validator: function validator(value) {
+                  if (value) {
+                    var dom = parser.parseFromString(value, "text/xml");
+
+                    if (dom.getElementsByTagName('parsererror').length > 0) {
+                      throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                    }
+                  }
+                }
+              }
+            };
+          }
         } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
+          title = this.tr("Edit text content", element.getName());
+          caption = "";
           var nodeName = element.getNode().nodeName; // only in text-only mode we can add text editing to the form
 
           var docs = typeElement.getDocumentation();
@@ -1956,8 +2018,8 @@
         var formDialog = new cv.ui.manager.form.ElementForm({
           allowCancel: true,
           context: this,
-          caption: title || this.tr("Edit element attributes"),
-          message: caption ? caption : element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName()),
+          caption: title,
+          message: caption,
           formData: formData,
           minWidth: Math.min(qx.bom.Viewport.getWidth(), 400),
           maxWidth: qx.bom.Viewport.getWidth()
@@ -1969,7 +2031,9 @@
 
             _this8.clearReDos();
 
-            element.validate();
+            if (!data.hasOwnProperty('#outerHTML') && !data.hasOwnProperty('#innerHTML')) {
+              element.validate();
+            }
           }
 
           _this8.__P_34_3 = false;
@@ -1989,18 +2053,26 @@
         }
       },
       _onCut: function _onCut() {
-        var element = this._onDelete();
+        if (this.__P_34_3) {
+          document.execCommand("cut");
+        } else {
+          var element = this._onDelete();
 
-        if (element) {
-          this.setClipboard(element);
+          if (element) {
+            this.setClipboard(element);
+          }
         }
       },
       _onCopy: function _onCopy() {
-        var element = this.getSelected();
+        if (this.__P_34_3) {
+          document.execCommand("copy");
+        } else {
+          var element = this.getSelected();
 
-        if (element) {
-          var copy = element.clone();
-          this.setClipboard(copy);
+          if (element) {
+            var copy = element.clone();
+            this.setClipboard(copy);
+          }
         }
       },
       _onPaste: function _onPaste() {
@@ -2425,6 +2497,7 @@
         var dialogConf = {
           caption: this.tr("Help"),
           modal: true,
+          image: "qxl.dialog.icon.info",
           minWidth: Math.min(600, qx.bom.Viewport.getWidth()),
           maxHeight: qx.bom.Viewport.getHeight(),
           message: ""
@@ -2483,4 +2556,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1620513272783
+//# sourceMappingURL=Tree.js.map?dt=1625668964431

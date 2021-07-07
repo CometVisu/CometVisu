@@ -191,4 +191,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.schema.MAnnotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAnnotation.js.map?dt=1620513274578
+//# sourceMappingURL=MAnnotation.js.map?dt=1625668966215

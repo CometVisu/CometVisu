@@ -247,26 +247,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       },
       handleAction: function handleAction(actionName) {
-        var _this = this;
-
         if (this.canHandleAction(actionName)) {
-          var monacoAction;
-
           switch (actionName) {
             case 'cut':
-              monacoAction = this._editor.getAction('editor.action.clipboardCutAction');
+              this._editor.trigger('external', 'editor.action.clipboardCutAction');
+
               break;
 
             case 'copy':
-              monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
+              this._editor.trigger('external', 'editor.action.clipboardCopyAction');
+
               break;
 
             case 'paste':
-              navigator.clipboard.readText().then(function (clipText) {
-                return _this._editor.trigger('keyboard', 'type', {
-                  text: clipText
-                });
-              });
+              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+
               break;
 
             case 'undo':
@@ -278,10 +273,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             default:
               cv.ui.manager.editor.Source.prototype.handleAction.base.call(this, actionName);
               break;
-          }
-
-          if (monacoAction) {
-            monacoAction.run();
           }
         }
       },
@@ -553,4 +544,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1620513272354
+//# sourceMappingURL=Source.js.map?dt=1625668963973

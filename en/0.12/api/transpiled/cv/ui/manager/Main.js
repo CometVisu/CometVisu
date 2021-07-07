@@ -72,6 +72,9 @@
       "qx.data.controller.List": {},
       "cv.ui.manager.form.FileTabItem": {},
       "qx.ui.container.Stack": {},
+      "qx.bom.Viewport": {},
+      "cv.Version": {},
+      "cv.ui.manager.dialog.BigAlert": {},
       "qx.util.DeferredCall": {}
     }
   };
@@ -252,7 +255,7 @@
           return false;
         }
 
-        return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
+        return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone', 'about'].includes(actionName);
       },
       handleAction: function handleAction(actionName, data) {
         switch (actionName) {
@@ -315,6 +318,11 @@
 
           case 'upload':
             // nothing to to, this is handled in another way
+            break;
+
+          case 'about':
+            this._showAbout();
+
             break;
 
           default:
@@ -1031,6 +1039,16 @@
         startOpenFile.setCloseable(false);
         this.getOpenFiles().push(startOpenFile);
         list.setModelSelection([startOpenFile]);
+      },
+      _showAbout: function _showAbout() {
+        var dialogConf = {
+          caption: qx.locale.Manager.tr("About"),
+          modal: true,
+          minWidth: Math.min(500, qx.bom.Viewport.getWidth()),
+          maxHeight: qx.bom.Viewport.getHeight(),
+          message: "\n<div class=\"about-cv\">\n <img src=\"resource/icons/comet_icon_128x128_ff8000.png\" width=\"128\" height=\"128\"/>\n <h2>CometVisu ".concat(cv.Version.VERSION, "</h2>\n <div class=\"info\">\n   <label for=\"date\">").concat(qx.locale.Manager.tr("Build date"), ": </label><span id=\"date\">").concat(cv.Version.DATE, "</span><br/>\n   <label for=\"build\">").concat(qx.locale.Manager.tr("Build revision"), ": </label><span id=\"build\">").concat(cv.Version.REV, "</span><br/>\n   <label for=\"lib-version\">").concat(qx.locale.Manager.tr("Library version"), ": </label><span id=\"lib-version\">").concat(cv.Version.LIBRARY_VERSION, "</span>\n </div>\n</div>")
+        };
+        new cv.ui.manager.dialog.BigAlert(dialogConf).show();
       }
     },
 
@@ -1062,4 +1080,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1620512017964
+//# sourceMappingURL=Main.js.map?dt=1625667766447

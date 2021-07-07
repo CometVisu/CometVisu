@@ -163,7 +163,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} The result of the comparison
        */
       equals: function equals(object1, object2) {
-        return qx.lang.Object.__P_150_0(object1, object2, [], []);
+        return qx.lang.Object.__P_151_0(object1, object2, [], []);
       },
 
       /**
@@ -176,7 +176,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       * @return {Boolean} The result of the comparison
       *
       */
-      __P_150_0: function __P_150_0(object1, object2, aStack, bStack) {
+      __P_151_0: function __P_151_0(object1, object2, aStack, bStack) {
         // Identical objects are equal. `0 === -0`, but they aren't identical.
         // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
         if (object1 === object2) {
@@ -258,7 +258,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (result) {
             // Deep compare the contents, ignoring non-numeric properties.
             while (size--) {
-              if (!(result = qx.lang.Object.__P_150_0(object1[size], object2[size], aStack, bStack))) {
+              if (!(result = qx.lang.Object.__P_151_0(object1[size], object2[size], aStack, bStack))) {
                 break;
               }
             }
@@ -270,7 +270,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               // Count the expected number of properties.
               size++; // Deep compare each member.
 
-              if (!(result = Object.prototype.hasOwnProperty.call(object2, key) && qx.lang.Object.__P_150_0(object1[key], object2[key], aStack, bStack))) {
+              if (!(result = Object.prototype.hasOwnProperty.call(object2, key) && qx.lang.Object.__P_151_0(object1[key], object2[key], aStack, bStack))) {
                 break;
               }
             }
@@ -367,4 +367,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.lang.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1620513282920
+//# sourceMappingURL=Object.js.map?dt=1625668974423

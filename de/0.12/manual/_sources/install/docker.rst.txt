@@ -7,6 +7,13 @@ Vom CometVisu Projekt werden offizielle Docker-Container bereit gestellt, die
 über DockerHub unter `cometvisu/cometvisu <https://hub.docker.com/r/cometvisu/cometvisu/>`_
 bezogen werden können.
 
+.. note::
+
+    Die Installation des Docker-Containers wird - am Beispiel eines Raspberry
+    Pi - auch im Tutorial
+    :ref:`Raspberry Pi: CometVisu in Docker installieren <rpi tutorial cometvisu in docker>`
+    beschrieben.
+
 Versionen
 ---------
 

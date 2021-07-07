@@ -6758,10 +6758,10 @@
       "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
         "resourcePath": "resourcePath"
       },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
         "resourcePath": "resourcePath"
       },
       "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff2": {
@@ -7713,12 +7713,12 @@
         "width": 19,
         "height": 16
       },
-      "qx/decoration/Classic/treevirtual/start_minus.gif": {
+      "qx/decoration/Classic/treevirtual/start_plus.gif": {
         "resourcePath": "resourcePath",
         "width": 19,
         "height": 16
       },
-      "qx/decoration/Classic/treevirtual/start_plus.gif": {
+      "qx/decoration/Classic/treevirtual/start_minus.gif": {
         "resourcePath": "resourcePath",
         "width": 19,
         "height": 16
@@ -8662,6 +8662,11 @@
         "width": 255,
         "height": 59
       },
+      "qx/decoration/Modern/menu/background.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 49
+      },
       "qx/decoration/Modern/menu/bar-background.png": {
         "resourcePath": "resourcePath",
         "width": 40,
@@ -8686,11 +8691,6 @@
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 5
-      },
-      "qx/decoration/Modern/menu/background.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 49
       },
       "qx/decoration/Modern/pane/pane-b.png": {
         "resourcePath": "resourcePath",
@@ -9182,11 +9182,6 @@
         "width": 5,
         "height": 5
       },
-      "qx/decoration/Modern/tabview/tab-button-right-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 47
-      },
       "qx/decoration/Modern/tabview/tab-button-right-inactive-b.png": {
         "resourcePath": "resourcePath",
         "width": 3,
@@ -9196,6 +9191,11 @@
         "resourcePath": "resourcePath",
         "width": 3,
         "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 47
       },
       "qx/decoration/Modern/tabview/tab-button-right-inactive-br.png": {
         "resourcePath": "resourcePath",
@@ -10072,11 +10072,6 @@
       "qx/website/scss/ui/_widget.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Oxygen/128/actions/address-book-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10103,6 +10098,11 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10172,11 +10172,6 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/edit-clear.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/edit-copy.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10197,12 +10192,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/edit-paste.png": {
+      "qx/icon/Oxygen/128/actions/edit-clear.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/edit-redo.png": {
+      "qx/icon/Oxygen/128/actions/edit-paste.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10217,17 +10212,22 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/actions/edit-redo.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/folder-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
+      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/format-indent-more.png": {
+      "qx/icon/Oxygen/128/actions/format-indent-less.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10297,12 +10297,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-home.png": {
+      "qx/icon/Oxygen/128/actions/go-last.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-last.png": {
+      "qx/icon/Oxygen/128/actions/go-home.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10377,12 +10377,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-mark-read.png": {
+      "qx/icon/Oxygen/128/actions/mail-mark-junk.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10392,12 +10392,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
+      "qx/icon/Oxygen/128/actions/mail-message-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10412,12 +10412,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-send.png": {
+      "qx/icon/Oxygen/128/actions/media-eject.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/media-eject.png": {
+      "qx/icon/Oxygen/128/actions/mail-send.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10482,22 +10482,22 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/process-stop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/system-log-out.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/system-run.png": {
+      "qx/icon/Oxygen/128/actions/process-stop.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/system-search.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/system-run.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -12497,11 +12497,6 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Oxygen/22/actions/format-text-bold.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -12568,6 +12563,11 @@
         "height": 22
       },
       "qx/icon/Oxygen/22/actions/go-top.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Oxygen/22/actions/format-justify-right.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -20932,6 +20932,61 @@
         "width": 32,
         "height": 32
       },
+      "qx/icon/Tango/32/categories/accessories.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/development.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/engineering.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/games.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/graphics.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/internet.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/multimedia.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/office.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/science.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/system.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/categories/utilities.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
       "qx/icon/Tango/32/devices/audio-card.png": {
         "resourcePath": "resourcePath",
         "width": 32,
@@ -23517,61 +23572,6 @@
       },
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
-      },
-      "qx/icon/Tango/32/categories/accessories.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/development.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/engineering.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/games.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/graphics.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/internet.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/multimedia.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/office.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/science.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/system.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/categories/utilities.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
       }
     }
   }

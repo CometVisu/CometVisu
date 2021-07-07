@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 323,
+        "line": 332,
         "column": 3
       }
     },
@@ -107,7 +107,7 @@
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 181,
           "column": 5
         }
       },
@@ -117,11 +117,11 @@
     "__bindToPreference": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 188,
           "column": 5
         }
       },
@@ -131,21 +131,7 @@
     "maintainButtons": {
       "location": {
         "start": {
-          "line": 186,
-          "column": 4
-        },
-        "end": {
-          "line": 245,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getButton": {
-      "location": {
-        "start": {
-          "line": 247,
+          "line": 190,
           "column": 4
         },
         "end": {
@@ -156,7 +142,7 @@
       "type": "function",
       "access": "public"
     },
-    "getButtonConfiguration": {
+    "getButton": {
       "location": {
         "start": {
           "line": 251,
@@ -170,14 +156,28 @@
       "type": "function",
       "access": "public"
     },
-    "_createChildControlImpl": {
+    "getButtonConfiguration": {
       "location": {
         "start": {
-          "line": 256,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 257,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_createChildControlImpl": {
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4
+        },
+        "end": {
+          "line": 321,
           "column": 5
         }
       },
@@ -7828,11 +7828,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 320,
+        "line": 329,
         "column": 12
       },
       "end": {
-        "line": 322,
+        "line": 331,
         "column": 3
       }
     },

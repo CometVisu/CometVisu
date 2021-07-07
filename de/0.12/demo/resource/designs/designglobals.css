@@ -598,3 +598,21 @@ pre.inline { display: inline-block; }
 #manager a {
   color: #CCC;
 }
+
+.about-cv {
+  text-align: center;
+}
+
+.about-cv h2 {
+  margin-left: 0;
+}
+
+.about-cv .info {
+  text-align: left;
+}
+
+.about-cv label {
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+}

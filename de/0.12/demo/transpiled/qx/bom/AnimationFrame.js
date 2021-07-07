@@ -99,7 +99,7 @@
       "frame": "Number"
     },
     members: {
-      __P_148_0: false,
+      __P_149_0: false,
 
       /**
        * Method used to start a series of animation frames. The series will end as
@@ -110,11 +110,11 @@
        * @ignore(performance.*)
        */
       startSequence: function startSequence(duration) {
-        this.__P_148_0 = false;
-        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__P_148_1 : Date.now();
+        this.__P_149_0 = false;
+        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__P_149_1 : Date.now();
 
         var cb = function cb(time) {
-          if (this.__P_148_0) {
+          if (this.__P_149_0) {
             this.id = null;
             return;
           } // final call
@@ -138,7 +138,7 @@
        * sequence is running.
        */
       cancelSequence: function cancelSequence() {
-        this.__P_148_0 = true;
+        this.__P_149_0 = true;
       }
     },
     statics: {
@@ -204,7 +204,7 @@
         var cb = function cb(time) {
           // check for high resolution time
           if (time < 1e10) {
-            time = qx.bom.AnimationFrame.__P_148_1 + time;
+            time = qx.bom.AnimationFrame.__P_149_1 + time;
           }
 
           time = time || Date.now();
@@ -228,14 +228,14 @@
      */
     defer: function defer(statics) {
       // check and use the high resolution start time if available
-      statics.__P_148_1 = window.performance && performance.timing && performance.timing.navigationStart; // if not, simply use the current time
+      statics.__P_149_1 = window.performance && performance.timing && performance.timing.navigationStart; // if not, simply use the current time
 
-      if (!statics.__P_148_1) {
-        statics.__P_148_1 = Date.now();
+      if (!statics.__P_149_1) {
+        statics.__P_149_1 = Date.now();
       }
     }
   });
   qx.bom.AnimationFrame.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationFrame.js.map?dt=1620513282839
+//# sourceMappingURL=AnimationFrame.js.map?dt=1625668974343
