@@ -25,6 +25,8 @@ Update
 Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile "Version". Die dort eingestelle
 Versions-Nummer wird installiert, bzw. über Speichern wird auf diese Versionsnummer gewechselt.
 
+.. _timberwolf portainer:
+
 Installation auf dem Timberwolf mittels Portainer
 =================================================
 
@@ -32,6 +34,12 @@ Die fortgeschrittene Methode die CometVisu auf dem Timberwolf-Server zu installi
 benötigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
 `Portainer <https://portainer.io/>`__. Auch für andere Systeme mit Docker und Portainer ist diese Anleitung im
 wesentlichen geeignet.
+
+.. note::
+
+    Für weitere Informationen kann hier auch auf das :ref:`Tutorial zur
+    CometVisu Installation auf dem Raspberry Pi <rpi tutorial cometvisu in docker>`
+    zurück gegriffen werden.
 
 Installation
 ------------
