@@ -381,16 +381,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           actor.handle.style.top = (1-hsv.v) * 100 + '%';
           actor.handle.style.left = (1-hsv.s) * 100 + '%';
         } else {
-          let ratio = this.__colorCurrent.getComponent(type);
+          let ratioComponent = this.__colorCurrent.getComponent(type);
           if( 'T' === type ) {
-            ratio = (ratio - this.__Tmin)/(this.__Tmax - this.__Tmin);
+            ratioComponent = (ratioComponent - this.__Tmin)/(this.__Tmax - this.__Tmin);
           }
-          let length = Math.max(0, Math.min( ratio, 1 )) * actor.width;
+          let length = Math.max(0, Math.min( ratioComponent, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           //actor.range.style.width = length + 'px';
-          actor.range.style.clipPath = 'inset(0 ' + (1-ratio)*100 + '% 0 0)';
+          actor.range.style.clipPath = 'inset(0 ' + (1-ratioComponent)*100 + '% 0 0)';
           //this.__actors[this.__mode].button.textContent = relCoordX;
-          actor.button.textContent =  ratio;
+          actor.button.textContent =  ratioComponent;
         }
       }
       

@@ -114,7 +114,7 @@ qx.Class.define('cv.util.Color', {
     },
 
     /**
-     * Convert xy coordinates to sRGB for display on the screen, including
+     * Convert xy coordinates to sRGB (D65) for display on the screen, including
      * gamma correction
      * @param xy
      */
@@ -122,15 +122,15 @@ qx.Class.define('cv.util.Color', {
       let
         X = Y * xy.x / xy.y,
         Z = Y * (1-xy.x-xy.y) / xy.y,
-        R =  3.2406*X -1.5372*Y -0.4986*Z,
-        G = -0.9689*X +1.8758*Y +0.0415*Z,
-        B =  0.0557*X -0.2040*Y +1.0570*Z,
-        scale = 1 / Math.max(1, R, G, B), // gamut mapping
+        R =  3.2404542*X -1.5371385*Y -0.4985314*Z,
+        G = -0.9692660*X +1.8760108*Y +0.0415560*Z,
+        B =  0.0556434*X -0.2040259*Y +1.0572252*Z,
+      scale = 1 / Math.max(1, R, G, B), // gamut mapping
         gamma = u => u<=0.0031308 ? (12.92*u) : (1.055*u**(1/2.4) - 0.055);
       return {
-        r: gamma(R * scale),
-        g: gamma(G * scale),
-        b: gamma(B * scale)
+        r: gamma(Math.max(R * scale, 0)),
+        g: gamma(Math.max(G * scale, 0)),
+        b: gamma(Math.max(B * scale, 0))
       };
     },
 
@@ -276,10 +276,11 @@ qx.Class.define('cv.util.Color', {
         ];
       }
       function valid(hsv) {
-        hsv[0] = Math.round(hsv[0] * 1000) / 1000;
-        hsv[1] = Math.round(hsv[1] * 1000) / 1000;
-        hsv[2] = Math.round(hsv[2] * 1000) / 1000;
-        return 0 <= hsv[0] && hsv[0] <= 1 && 0 <= hsv[1] && hsv[1] <= 1 && 0 <= hsv[2]; // && hsv[2] <= 1;
+        let
+          h = hsv[0],
+          s = hsv[1],
+          v = hsv[2];
+        return 0 <= h && h <= 1 && 0 <= s && 0 <= v; // && v <= 1;
       }
 
       if( this.__hsv === undefined || force ) {

@@ -283,20 +283,20 @@ describe('checking color class', function() {
     c.changeComponent('RGBW-b', 0.1);
     expect(c.getComponent('xy').x).toBeCloseTo(0.388124, 4);
     expect(c.getComponent('xy').y).toBeCloseTo(0.453671, 4);
-    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.0, 4);
-    expect(c.getComponent('RGBW-w')).toBeCloseTo(0.1, 4);
+    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.1, 4);
+    expect(c.getComponent('RGBW-w')).toBeCloseTo(0.0, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
     c.changeComponent('RGBW-w', 0.2);
-    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.0, 4);
+    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.1, 4);
     expect(c.getComponent('RGBW-w')).toBeCloseTo(0.2, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.4, 4);
-    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.0, 4);
+    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.5, 4);
+    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.1, 4);
     expect(c.getComponent('RGBW-w')).toBeCloseTo(0.2, 4);
 
     c.changeComponent('rgb', {r:0.1, g:0.2, b:0.3});
@@ -367,6 +367,11 @@ describe('checking color class', function() {
     expect(c.getComponent('h')).toBeCloseTo(0.5, 4);
     expect(c.getComponent('s')).toBeCloseTo(1, 4);
     expect(c.getComponent('v')).toBeCloseTo(1, 4);
+    expect(c.getComponent('RGB-r')).toBeCloseTo(0, 4);
+    expect(c.getComponent('RGB-g')).toBeCloseTo(1, 4);
+    expect(c.getComponent('RGB-b')).toBeCloseTo(1, 4);
+    expect(c.getComponent('xy').x).toBeCloseTo(0.224656, 4);
+    expect(c.getComponent('xy').y).toBeCloseTo(0.328760, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
     expect(c.getComponent('h')).toBeCloseTo(0.5, 4);
     expect(c.getComponent('s')).toBeCloseTo(1, 4);
@@ -517,9 +522,9 @@ describe('checking color class', function() {
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
-    expect(c.getComponent('RGB-r')).toBeCloseTo( 4.686705, 2); // linear RGB
-    expect(c.getComponent('RGB-g')).toBeCloseTo(-0.102746, 3); // linear RGB
-    expect(c.getComponent('RGB-b')).toBeCloseTo( 1.063306, 3); // linear RGB
+    expect(c.getComponent('RGB-r')).toBeCloseTo( 4.686705/4.686705, 3); // linear RGB
+    expect(c.getComponent('RGB-g')).toBeCloseTo(-0.102746/4.686705, 3); // linear RGB
+    expect(c.getComponent('RGB-b')).toBeCloseTo( 1.063306/4.686705, 3); // linear RGB
 
     c.changeComponent('LCh-h', 0.25); // LCh-h = 0.25 === CIE LCh h = 90°
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
@@ -535,9 +540,9 @@ describe('checking color class', function() {
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0.25, 4);
-    expect(c.getComponent('RGB-r')).toBeCloseTo( 1.534334, 3); // linear RGB
-    expect(c.getComponent('RGB-g')).toBeCloseTo( 0.955460, 3); // linear RGB
-    expect(c.getComponent('RGB-b')).toBeCloseTo(-0.133152, 3); // linear RGB
+    expect(c.getComponent('RGB-r')).toBeCloseTo( 1.534334/1.534334, 3); // linear RGB
+    expect(c.getComponent('RGB-g')).toBeCloseTo( 0.955460/1.534334, 3); // linear RGB
+    expect(c.getComponent('RGB-b')).toBeCloseTo(-0.133152/1.534334, 3); // linear RGB
   });
 
   it('should convert a wavelength to xy coordiantes', function() {
