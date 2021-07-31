@@ -397,7 +397,7 @@ qx.Class.define('cv.util.Color', {
 
     __validateLab: function (force) {
       if( this.__Lab === undefined || force ) {
-        const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
+        const Xn = 94.811/100, Yn = 100/100, Zn = 107.304/100; // D65, 10 degrees
         let
           X = this.__x * (this.__Y / Math.max(0.001, this.__y)),
           Z = (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y)),
@@ -569,7 +569,7 @@ qx.Class.define('cv.util.Color', {
      * @param value
      */
     changeComponent: function( component, value ) {
-      function clamp(x) { return Math.min(Math.max(0,x),1); }
+      function clamp(x, min=0, max=1) { return Math.min(Math.max(min,x),max); }
 
       switch( component ) {
         case 'h':
@@ -640,10 +640,12 @@ qx.Class.define('cv.util.Color', {
           this.__validateLCh();
           switch(component.split('-')[1]) {
             case 'L':
-              this.__LCh.L = 100 * clamp(value);
+              //this.__LCh.L = 100 * clamp(value);
+              this.__LCh.L = clamp(value, 0, 100);
               break;
             case 'C':
-              this.__LCh.C = 150 * clamp(value);
+              //this.__LCh.C = 150 * clamp(value);
+              this.__LCh.C = clamp(value, 0, 150);
               break;
             case 'h':
               this.__LCh.h = clamp(value);
@@ -721,10 +723,10 @@ qx.Class.define('cv.util.Color', {
 
         case 'LCh-L':
           this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]] / 100;
+          return this.__LCh[component.split('-')[1]]; // / 100;
         case 'LCh-C':
           this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]] / 150;
+          return this.__LCh[component.split('-')[1]]; // / 150;
         case 'LCh-h':
           this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]];

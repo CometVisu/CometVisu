@@ -490,8 +490,8 @@ describe('checking color class', function() {
     expect(c.getComponent('RGB-g')).toBeCloseTo(0, 4);
     expect(c.getComponent('RGB-b')).toBeCloseTo(0, 4);
 
-    c.changeComponent('LCh-L', 1); // LCh-L = 1 === CIE LCh L = 100
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
+    c.changeComponent('LCh-L', 100);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
     expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
@@ -501,16 +501,16 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(0.3290, 4); // sRGB white point D65
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
     expect(c.getComponent('RGB-r')).toBeCloseTo(1, 4);
     expect(c.getComponent('RGB-g')).toBeCloseTo(1, 4);
     expect(c.getComponent('RGB-b')).toBeCloseTo(1, 4);
 
-    c.changeComponent('LCh-C', 1); // LCh-C = 1 === CIE LCh C = 150
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
-    expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
+    c.changeComponent('LCh-C', 150);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
+    expect(c.getComponent('LCh-C')).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
     expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
     expect(c.getComponent('Lab').a).toBeCloseTo(150, 4);
@@ -519,16 +519,16 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(0.239406, 4); // sRGB white point D65
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
-    expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
+    expect(c.getComponent('LCh-C')).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
     expect(c.getComponent('RGB-r')).toBeCloseTo( 4.686705/4.686705, 3); // linear RGB
     expect(c.getComponent('RGB-g')).toBeCloseTo(-0.102746/4.686705, 3); // linear RGB
     expect(c.getComponent('RGB-b')).toBeCloseTo( 1.063306/4.686705, 3); // linear RGB
 
     c.changeComponent('LCh-h', 0.25); // LCh-h = 0.25 === CIE LCh h = 90°
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
-    expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
+    expect(c.getComponent('LCh-C')).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0.25, 4);
     expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
     expect(c.getComponent('Lab').a).toBeCloseTo(0, 4);
@@ -537,8 +537,8 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(0.508264, 4); // sRGB white point D65
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
-    expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
+    expect(c.getComponent('LCh-L')).toBeCloseTo(100, 4);
+    expect(c.getComponent('LCh-C')).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0.25, 4);
     expect(c.getComponent('RGB-r')).toBeCloseTo( 1.534334/1.534334, 3); // linear RGB
     expect(c.getComponent('RGB-g')).toBeCloseTo( 0.955460/1.534334, 3); // linear RGB

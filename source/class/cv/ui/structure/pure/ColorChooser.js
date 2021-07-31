@@ -385,6 +385,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           if( 'T' === type ) {
             ratioComponent = (ratioComponent - this.__Tmin)/(this.__Tmax - this.__Tmin);
           }
+          if( 'LCh-L' === type ) {
+            ratioComponent = ratioComponent / 100;
+          }
+          if( 'LCh-C' === type ) {
+            ratioComponent = ratioComponent / 150;
+          }
           let length = Math.max(0, Math.min( ratioComponent, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           //actor.range.style.width = length + 'px';
@@ -460,6 +466,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             if( 'T' === actorType ) {
               ratio = this.__Tmin + ratio * (this.__Tmax - this.__Tmin);
             }
+            if( 'LCh-L' === actorType ) {
+              ratio *= 100;
+            }
+            if( 'LCh-C' === actorType ) {
+              ratio *= 150;
+            }
             this.__mode = actorType;
             this.__color.changeComponent(actorType, ratio);
             this.__inDrag = true;
@@ -509,6 +521,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             break;
           case 'T':
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
+            break;
+          case 'LCh-L':
+            this.__color.changeComponent('LCh-L', Math.max(0, Math.min(relCoordX, 1)) * 100 );
+            break;
+          case 'LCh-C':
+            this.__color.changeComponent('LCh-C', Math.max(0, Math.min(relCoordX, 1)) * 150 );
             break;
           default:
             //console.log('changeComponent',this.__mode, relCoordX, this.__actors[this.__mode].button);
