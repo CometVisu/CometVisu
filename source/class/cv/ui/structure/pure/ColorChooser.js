@@ -260,7 +260,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGB-r':
         case 'RGB-g':
         case 'RGB-b':
-          base = this.getBaseColors()[variant];
+          base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
           delete this.__lastBusValue.h;
           delete this.__lastBusValue.s;
@@ -542,8 +542,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     __onChangeValue: function() {
-      this.__components.forEach((type) => {
+      this.__components.forEach((typeRaw) => {
         let
+          type = (new Set(['r', 'g', 'b'])).has(typeRaw) ? 'RGB-'+typeRaw : typeRaw,
           value = this.__color.getComponent(type),
           base;
 
@@ -561,7 +562,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
-            base = this.getBaseColors()[type];
+            base = this.getBaseColors()[type.split('-')[1]];
             value = cv.util.Color.curve( value, base.curve, base.scale );
             break;
 
