@@ -214,7 +214,7 @@ qx.Class.define("cv.parser.MetaParser", {
           matches.push(linkMatch);
         }
         let handled = false;
-        const url = new URL(window.location.search);
+        const url = new URL(window.location.href);
         if (url.searchParams.has('config')) {
           search = url.searchParams.get('config');
           search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
