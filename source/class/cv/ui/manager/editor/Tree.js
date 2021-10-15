@@ -352,9 +352,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           navigator.clipboard.writeText('');
         }
       } catch (e) {
-        // clipboard api is only available in secure environment, copying to clipboards only use case
-        // here is that it can be pasted in the source editor. And because that also only works when the clipboard
-        // api is available we fail silently here.
+        // clipboard api is only available in secure environment, otherwise we have to do it ourself
+        cv.ui.manager.editor.AbstractEditor.CLIPBOARD = value ? value.getNode().outerHTML : '';
       }
     },
 

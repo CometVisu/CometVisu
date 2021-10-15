@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   construct: function () {
     this.base(arguments);
     this._initClient();
+    this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
@@ -61,11 +62,22 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    // fake clipboard data when native clipboard is not supported
+    CLIPBOARD: null
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
     _handledActions: null,
+    _nativePasteSupported: false,
 
     canHandleAction: function (actionName) {
       if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {

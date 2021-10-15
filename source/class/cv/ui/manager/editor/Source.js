@@ -196,12 +196,26 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         switch (actionName) {
           case 'cut':
             this._editor.trigger('external', 'editor.action.clipboardCutAction');
+            if (!this._nativePasteSupported) {
+              // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+              // and implement the pasting manually
+              cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+            }
             break;
           case 'copy':
             this._editor.trigger('external', 'editor.action.clipboardCopyAction');
+            if (!this._nativePasteSupported) {
+              // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+              // and implement the pasting manually
+              cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+            }
             break;
           case 'paste':
-            this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+            if (this._nativePasteSupported) {
+              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+            } else {
+              this._paste();
+            }
             break;
           case 'undo':
           case 'redo':
@@ -212,6 +226,25 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             this.base(arguments, actionName);
             break;
         }
+      }
+    },
+
+    /**
+     * Manual paste into source editor is used when the native paste is not supported by the browser.
+     * This is the case when the cometvisu is not running is a safe environment (no https / localhost)
+     * @private
+     */
+    _paste: function () {
+      if (cv.ui.manager.editor.AbstractEditor.CLIPBOARD) {
+        const selection = this._editor.getSelection();
+        const id = {major: 1, minor: 1};
+        const op = {
+          identifier: id,
+          range: selection,
+          text: cv.ui.manager.editor.AbstractEditor.CLIPBOARD,
+          forceMoveMarkers: true
+        };
+        this._editor.executeEdits("clipboard", [op]);
       }
     },
 
