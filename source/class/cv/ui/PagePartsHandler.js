@@ -61,21 +61,30 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     updateTopNavigation: function (path) {
       path = path.split('_'); path.pop();
-      var id = "id_"; //path[0];
-      var pageTitle = document.querySelector("#"+id+" h1").textContent;
-      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
-        pageTitle + '</a>';
-      for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
+      let id = "id_"; //path[0];
+      const pathNode = document.querySelector(".nav_path");
+      pathNode.innerHTML = '';
+      let pageTitle = document.querySelector("#"+id+" h1").textContent;
+      let nav = document.createElement('a');
+      nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+      nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+      nav.appendChild(document.createTextNode(pageTitle));
+      pathNode.appendChild(nav);
+      for (let i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
-        var pageElem = document.querySelector("#"+id);
+        let pageElem = document.querySelector("#"+id);
         if (pageElem && pageElem.classList.contains("page")) { // FIXME is this still needed?!?
           pageTitle = document.querySelector("#"+id+" h1").textContent;
-          nav += '<span> &#x25ba; </span>' +
-            '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
-            pageTitle + '</a>';
+          let span = document.createElement('span');
+          span.innerHTML = ' &#x25ba; ';
+          pathNode.appendChild(span);
+          nav = document.createElement('a');
+          nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+          nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+          nav.appendChild(document.createTextNode(pageTitle));
+          pathNode.appendChild(nav);
         }
       }
-      document.querySelector(".nav_path").innerHTML = nav;
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
     },

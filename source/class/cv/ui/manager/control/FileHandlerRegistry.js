@@ -16,7 +16,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.__defaults = [];
 
     // register viewers
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.viewer.Image, {type: 'view'});
+    this.registerFileHandler(new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.viewer.Image, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder, {type: 'view'});

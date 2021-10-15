@@ -203,7 +203,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
 
         var text = elem.textContent;
-        var search;
+        var search = '';
 
         // compability change to make existing customer configurations work with the new manager links
         // this replaces all document links to old manager tools with the new ones
@@ -214,8 +214,13 @@ qx.Class.define("cv.parser.MetaParser", {
           matches.push(linkMatch);
         }
         let handled = false;
-        search = window.location.search.replace(/\$/g, '$$$$');
-        search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('config')) {
+          search = url.searchParams.get('config');
+          search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
+            return '%' + c.charCodeAt(0).toString(16);
+          });
+        }
         matches.forEach(match => {
           switch (match[1]) {
             case 'manager.php':

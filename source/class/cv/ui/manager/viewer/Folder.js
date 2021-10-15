@@ -22,7 +22,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   construct: function (noToolbar) {
     this.base(arguments);
     cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
-    this._isImageRegex = new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
+    this._isImageRegex = new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
     this.initModel(new qx.data.Array());
     this._setLayout(new qx.ui.layout.VBox(8));
 
