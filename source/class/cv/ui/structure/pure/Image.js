@@ -31,7 +31,7 @@
  * @since 0.8.0 (2012)
  * @asset(qx/static/blank.gif)
  */
-qx.Class.define('cv.ui.structure.pure.Image', {
+qx.Class.define("cv.ui.structure.pure.Image", {
   extend: cv.ui.structure.AbstractWidget,
 
   include: [cv.ui.common.Refresh, cv.ui.common.Update ],
@@ -63,34 +63,33 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var imgStyle = '';
+      var imgStyle = "";
       if (this.getWidth()) {
-        imgStyle += 'width:' + this.getWidth() + ';';
+        imgStyle += "width:" + this.getWidth() + ";";
       }
       if (this.getWidthFit() === true) {
-        imgStyle += 'max-width:100%;';
+        imgStyle += "max-width:100%;";
       }
       if (this.getHeight()) {
-        imgStyle += 'height:' + this.getHeight() + ';';
+        imgStyle += "height:" + this.getHeight() + ";";
       }
       let src = this.__getSrc();
       if (!src) {
         switch (this.getPlaceholder()) {
-          case 'hide':
-            src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
+          case "hide":
+            src = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.gif");
             break;
 
-          case 'exclude':
-            imgStyle += 'display:none;';
+          case "exclude":
+            imgStyle += "display:none;";
             break;
 
-          case 'src':
-            this.error('no src placeholder defined');
+          case "src":
+            this.error("no src placeholder defined");
             break;
         }
-
       }
-      return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
+      return "<div class=\"actor\"><img src=\"" + src + "\" style=\"" + imgStyle + "\" /></div>";
     },
 
     /**
@@ -113,23 +112,22 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       var valueElem = this.getValueElement();
       if (!text) {
         switch (this.getPlaceholder()) {
-          case 'src':
+          case "src":
             text = this.__getSrc();
-            valueElem.style.display = 'inline';
+            valueElem.style.display = "inline";
             break;
 
-          case 'hide':
-            text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
-            valueElem.style.display = 'inline';
+          case "hide":
+            text = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.gif");
+            valueElem.style.display = "inline";
             break;
 
-          case 'exclude':
-            valueElem.style.display = 'none';
+          case "exclude":
+            valueElem.style.display = "none";
             break;
-
         }
       } else {
-        valueElem.style.display = 'inline';
+        valueElem.style.display = "inline";
       }
       valueElem.setAttribute("src", text);
     },

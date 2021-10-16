@@ -18,7 +18,7 @@
  */
 
 
-qx.Class.define('cv.util.ScriptLoader', {
+qx.Class.define("cv.util.ScriptLoader", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -47,7 +47,7 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     isMarkedAsLoaded: function (path) {
       return this.getInstance().isMarkedAsLoaded(path);
-    },
+    }
   },
 
   /*
@@ -86,8 +86,8 @@ qx.Class.define('cv.util.ScriptLoader', {
     __markedAsLoaded: null,
 
     addStyles: function(styleArr) {
-      var queue = (typeof styleArr === 'string' ? [ styleArr ] : styleArr.concat());
-      var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
+      var queue = (typeof styleArr === "string" ? [ styleArr ] : styleArr.concat());
+      var suffix = (cv.Config.forceReload === true) ? "?"+Date.now() : "";
       queue.forEach(function(style) {
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
       }, this);
@@ -95,19 +95,19 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     markAsLoaded: function (path) {
       if (!this.__markedAsLoaded.includes(path)) {
-        this.debug('marking ' + path + ' as loaded')
-        this.__markedAsLoaded.push(path)
+        this.debug("marking " + path + " as loaded");
+        this.__markedAsLoaded.push(path);
       }
     },
 
     isMarkedAsLoaded: function (path) {
-      return this.__markedAsLoaded.includes(path)
+      return this.__markedAsLoaded.includes(path);
     },
 
     addScripts: function(scriptArr, order) {
-      var queue = (typeof scriptArr === 'string' ? [ scriptArr ] : scriptArr);
+      var queue = (typeof scriptArr === "string" ? [ scriptArr ] : scriptArr);
       // make sure that no cached scripts are loaded
-      var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
+      var suffix = (cv.Config.forceReload === true) ? "?"+Date.now() : "";
       var realQueue = [];
       for (var i=0, l = queue.length; i<l; i++) {
         if (!this.__markedAsLoaded.includes(queue[i])) {
@@ -174,17 +174,17 @@ qx.Class.define('cv.util.ScriptLoader', {
       } else if (data.script.includes("/plugins/")) {
         var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
         if (match) {
-          cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
-            title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
-            message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+          cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
+            title: qx.locale.Manager.tr("Error loading plugin \"%1\"", match[1]),
+            message: qx.locale.Manager.tr("File %1 could not be loaded.", data.script),
             severity: "high",
             deletable: true
           });
         }
       } else {
-        cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
-          title: qx.locale.Manager.tr('File loading error'),
-          message:  qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+        cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
+          title: qx.locale.Manager.tr("File loading error"),
+          message:  qx.locale.Manager.tr("File %1 could not be loaded.", data.script),
           severity: "high",
           deletable: true
         });

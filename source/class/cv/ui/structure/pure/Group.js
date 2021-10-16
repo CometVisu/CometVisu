@@ -68,7 +68,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define('cv.ui.structure.pure.Group', {
+qx.Class.define("cv.ui.structure.pure.Group", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
@@ -129,20 +129,20 @@ qx.Class.define('cv.ui.structure.pure.Group', {
     // overridden
     getDomString: function () {
       // heading style
-      var hstyle = '';
+      var hstyle = "";
       if (this.getAlign()) {
-        hstyle += 'style="text-align:' + this.getAlign() + '"';
+        hstyle += "style=\"text-align:" + this.getAlign() + "\"";
       }
 
-      var container = '<div class="clearfix">';
+      var container = "<div class=\"clearfix\">";
       if (this.getName()) {
-        container += '<h2 ' + hstyle + '>' + this.getName() + '</h2>';
+        container += "<h2 " + hstyle + ">" + this.getName() + "</h2>";
       }
 
       container += this.getChildrenDomString();
-      container += '</div>';
+      container += "</div>";
 
-      return '<div class="' + this.getClasses() + '" ' + this.getStyle() + '>' + container + '</div>';
+      return "<div class=\"" + this.getClasses() + "\" " + this.getStyle() + ">" + container + "</div>";
     }
   },
 

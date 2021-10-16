@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
-qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
+qx.Class.define("cv.ui.structure.pure.WidgetInfoAction", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 

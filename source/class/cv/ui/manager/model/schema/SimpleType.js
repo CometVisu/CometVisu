@@ -3,7 +3,7 @@
  * Should be useable for SimpleContent, too.
  * Is usable for attributes, too.
  */
-qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
+qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
   extend: cv.ui.manager.model.schema.Base,
 
   /*
@@ -28,10 +28,10 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
   properties: {
     type: {
       refine: true,
-      init: 'simpleType'
+      init: "simpleType"
     },
     optional: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     },
 
@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
      * @var string
      */
     baseType: {
-      check: 'String',
+      check: "String",
       nullable: true
     }
   },
@@ -58,7 +58,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
 
     parse: function () {
       const node = this.getNode();
-      this.setOptional(node.getAttribute('use') === 'required');
+      this.setOptional(node.getAttribute("use") === "required");
       this.__fillNodeData(node);
     },
 
@@ -70,56 +70,56 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     __fillNodeData: function (node) {
       const schema = this.getSchema();
 
-      if (node.hasAttribute('ref')) {
+      if (node.hasAttribute("ref")) {
         // it's a ref, seek other element!
-        const refName = node.getAttribute('ref');
-        node = schema.getReferencedNode('attribute', refName);
+        const refName = node.getAttribute("ref");
+        node = schema.getReferencedNode("attribute", refName);
 
         if (!node) {
-          throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+          throw "schema/xsd appears to be invalid, can not find element " + refName;
         }
       }
 
-      if (node.hasAttribute('type')) {
+      if (node.hasAttribute("type")) {
         // hacked: allow this to be used for attributes
-        const baseType = node.getAttribute('type');
+        const baseType = node.getAttribute("type");
 
         if (!baseType.match(/^xsd:/)) {
           // if it's not an xsd-default-basetype, we need to find out what it is
-          const subnode = schema.getReferencedNode('simpleType', baseType)
+          const subnode = schema.getReferencedNode("simpleType", baseType);
           this.__fillNodeData(subnode);
         } else {
           this.setBaseType(baseType);
         }
         // is this attribute optional?
-        this.setOptional(node.getAttribute('use') !== 'required');
+        this.setOptional(node.getAttribute("use") !== "required");
 
         return;
       }
 
-      const subNodes = Array.from(node.querySelectorAll(':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension'));
+      const subNodes = Array.from(node.querySelectorAll(":scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension"));
 
-      subNodes.forEach( (subNode) => {
-        const baseType = subNode.getAttribute('base');
+      subNodes.forEach(subNode => {
+        const baseType = subNode.getAttribute("base");
 
         if (!baseType.match(/^xsd:/)) {
           // don't dive in for default-types, they simply can not be found
-          const subnode = schema.getReferencedNode('simpleType', baseType)
+          const subnode = schema.getReferencedNode("simpleType", baseType);
           this.__fillNodeData(subnode);
         } else {
           this.setBaseType(baseType);
         }
-        Array.from(subNode.querySelectorAll(':scope > pattern')).forEach((patternNode) => {
-          this.__pattern.push(patternNode.getAttribute('value'));
+        Array.from(subNode.querySelectorAll(":scope > pattern")).forEach(patternNode => {
+          this.__pattern.push(patternNode.getAttribute("value"));
         });
 
-        Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach((enumerationNode) => {
-          this.__enumerations.push(enumerationNode.getAttribute('value'));
+        Array.from(subNode.querySelectorAll(":scope > enumeration")).forEach(enumerationNode => {
+          this.__enumerations.push(enumerationNode.getAttribute("value"));
         });
       });
 
       if (!this.getBaseType()) {
-        this.setBaseType('xsd:anyType');
+        this.setBaseType("xsd:anyType");
       }
       this.__bases.push(this.getBaseType());
     },
@@ -134,61 +134,61 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
       const baseType = this.getBaseType();
       const schema = this.getSchema();
       if (!baseType) {
-        throw 'something is wrong, do not have a baseType for type';
+        throw "something is wrong, do not have a baseType for type";
       }
 
-      if (value === '') {
+      if (value === "") {
         // empty values are valid if this node is optional!
         return this.isOptional();
       }
 
-      if (-1 === baseType.search(/^xsd:/)) {
+      if (baseType.search(/^xsd:/) === -1) {
         // created our own type, will need to find and use it.
-        const typeNode = schema.getTypeNode('simple', baseType);
+        const typeNode = schema.getTypeNode("simple", baseType);
         const subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
         return subType.isValueValid(value);
-      } else {
+      } 
         // xsd:-namespaces types, those are the originals
         switch (baseType) {
-          case 'xsd:string':
-          case 'xsd:anyURI':
-          case 'xsd:anyType':
-            if (!(typeof(value) == 'string')) {
+          case "xsd:string":
+          case "xsd:anyURI":
+          case "xsd:anyType":
+            if (!(typeof (value) == "string")) {
               // it's not a string, but it should be.
               // pretty much any input a user gives us is string, so this is pretty much moot.
               return false;
             }
             break;
-          case 'xsd:decimal':
+          case "xsd:decimal":
             if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
               return false;
             }
             break;
-          case 'xsd:unsignedByte':
-          case 'xsd:nonNegativeInteger':
+          case "xsd:unsignedByte":
+          case "xsd:nonNegativeInteger":
             if (!value.match(/^[+]?[0-9]+$/)) {
               return false;
             }
             break;
-          case 'xsd:integer':
+          case "xsd:integer":
             if (!value.match(/^[-+]?[0-9]+$/)) {
               return false;
             }
             break;
-          case 'xsd:float':
+          case "xsd:float":
             if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
               return false;
             }
             break;
-          case 'xsd:boolean':
+          case "xsd:boolean":
             if (!value.match(/^(true|false|0|1)$/)) {
               return false;
             }
             break;
           default:
-            throw 'not implemented baseType ' + baseType;
+            throw "not implemented baseType " + baseType;
         }
-      }
+      
 
       // check if the value is in our list of valid values, if there is such a list
       if (this.__enumerations.length > 0) {
@@ -202,11 +202,11 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         // start with assuming it's valid
         let boolValid = true;
 
-        this.__pattern.forEach((item) => {
+        this.__pattern.forEach(item => {
           if (!this.__regexCache.hasOwnProperty(item)) {
             // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
             // so for our purpose, we need to add them for every branch (that is not inside [])
-            const branchIndices = []
+            const branchIndices = [];
             let start = 0;
             let i = item.indexOf("|", start);
             while (i < item.length) {
@@ -216,9 +216,9 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
               // go backwards and look for an [ stop looking on ]
               let isRootBranch = true;
               for (let j = i; j >= start; j--) {
-                if (item[j] === ']') {
+                if (item[j] === "]") {
                   break;
-                } else if (item[j] === '[') {
+                } else if (item[j] === "[") {
                   isRootBranch = false;
                 }
               }
@@ -226,18 +226,20 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
                 branchIndices.push([start, i - start]);
               }
               start = i + 1;
-              i = item.indexOf('|', start);
-              if (branchIndices.length > 100) debugger;
+              i = item.indexOf("|", start);
+              if (branchIndices.length > 100) {
+ debugger; 
+}
             }
             if (item.length > start) {
               // append the rest
               branchIndices.push([start, item.length - start]);
             }
-            const branches = branchIndices.map((entry) => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`);
+            const branches = branchIndices.map(entry => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, "\\$1$2")}$`);
             this.__regexCache[item] = this.regexFromString(branches.join("|"));
           }
 
-          if (false === this.__regexCache[item].test(value)) {
+          if (this.__regexCache[item].test(value) === false) {
             // regular expression did not match
             // bad bad value!
             boolValid = false;
@@ -245,7 +247,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         }, this);
 
         // if the value has been marked invalid by a regex, return invalid.
-        if (false === boolValid) {
+        if (boolValid === false) {
           return false;
         }
       }
@@ -260,9 +262,9 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
      * @return  array   list of allowed values (if there are any)
      */
     getEnumeration: function () {
-      if (this.getBaseType() === 'xsd:boolean') {
+      if (this.getBaseType() === "xsd:boolean") {
         // special handling for boolean, as we KNOW it to be an enumeration
-        return ['true', 'false'];
+        return ["true", "false"];
       }
 
       return this.__enumerations;

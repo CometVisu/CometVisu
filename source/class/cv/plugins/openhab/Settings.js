@@ -156,7 +156,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       var form = this.getChildControl("form");
       config.parameters.forEach(function(param) {
         var field;
-        switch(param.type) {
+        switch (param.type) {
           case "TEXT":
             field = new qx.ui.form.TextField();
             if (param.defaultValue) {
@@ -216,8 +216,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     // overridden
     _createChildControlImpl : function(id, hash) {
       var control;
-      switch(id) {
-
+      switch (id) {
         case "title":
           control = new qx.ui.basic.Label(this.tr("openHAB backend settings"));
           control.set({

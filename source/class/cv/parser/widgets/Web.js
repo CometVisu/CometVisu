@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Web', {
+qx.Class.define("cv.parser.widgets.Web", {
   type: "static",
 
   /*
@@ -49,9 +49,9 @@ qx.Class.define('cv.parser.widgets.Web', {
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
         if (cv.Config.backend.substr(0, 2) === "oh") {
-          data.address['_' + ga] = {transform:'OH:switch', mode: 'OFF'};
+          data.address["_" + ga] = {transform:"OH:switch", mode: "OFF"};
         } else {
-          data.address['_' + ga] = {transform:'DPT:1.001', mode: 0};
+          data.address["_" + ga] = {transform:"DPT:1.001", mode: 0};
         }
       }
       return data;

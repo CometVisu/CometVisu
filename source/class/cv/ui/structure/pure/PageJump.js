@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.PageJump', {
+qx.Class.define("cv.ui.structure.pure.PageJump", {
   extend: cv.ui.structure.AbstractWidget,
   include: [
     cv.ui.common.HasChildren,
@@ -57,8 +57,8 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       init: "0"
     },
     activeScope : {
-      check: ['target', 'path'],
-      init: 'target'
+      check: ["target", "path"],
+      init: "target"
     },
     name : {
       check: "String",
@@ -89,18 +89,18 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var name = page.getName();
 
       // remove old active classes
-      document.querySelectorAll('.pagejump.active').forEach(function(elem) {
-        elem.classList.remove('active');
+      document.querySelectorAll(".pagejump.active").forEach(function(elem) {
+        elem.classList.remove("active");
       }, this);
-      document.querySelectorAll('.pagejump.active_ancestor').forEach(function(elem) {
-        elem.classList.remove('active_ancestor');
+      document.querySelectorAll(".pagejump.active_ancestor").forEach(function(elem) {
+        elem.classList.remove("active_ancestor");
       }, this);
 
       // and set the new active ones
-      document.querySelectorAll('.pagejump').forEach(function(elem) {
+      document.querySelectorAll(".pagejump").forEach(function(elem) {
         var data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
-          elem.classList.add('active');
+          elem.classList.add("active");
         }
       }, this);
 
@@ -108,19 +108,21 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var parentPage = cv.util.Tree.getParentWidget(page, "page");
       // set for all parent pages apart from the root page
 
-      var pageJumps = document.querySelectorAll('.pagejump');
+      var pageJumps = document.querySelectorAll(".pagejump");
       var markPageJumps = function(parentName, elem) {
         var data = model.getWidgetDataByElement(elem);
         if (parentName === data.target || (data.activeScope === "path" && (
-            (typeof data.path === 'string') && data.path.match(parentName + "$") ||
-            (typeof data.targetPath === 'string') && data.targetPath.match(parentName + "$"))
+            (typeof data.path === "string") && data.path.match(parentName + "$") ||
+            (typeof data.targetPath === "string") && data.targetPath.match(parentName + "$"))
         )) {
-          elem.classList.add('active_ancestor');
+          elem.classList.add("active_ancestor");
         }
       };
 
       while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
-        pageJumps.forEach(function(elem){markPageJumps(parentPage.getName(), elem);});
+        pageJumps.forEach(function(elem) {
+ markPageJumps(parentPage.getName(), elem); 
+});
         // recursively find pagejumps for parent pages
         parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
       }
@@ -137,15 +139,15 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
     // overridden
     _getInnerDomString: function() {
-      var actor = '<div class="actor switchUnpressed';
+      var actor = "<div class=\"actor switchUnpressed";
       if (this.getAlign()) {
         actor += this.getAlign();
       }
-      actor += '">';
+      actor += "\">";
       if (this.getName()) {
-        actor += '<div class="value">' + this.getName() + '</div>';
+        actor += "<div class=\"value\">" + this.getName() + "</div>";
       }
-      actor += '</div>';
+      actor += "</div>";
       return actor + this.getChildrenDomString();
     },
 
@@ -153,9 +155,9 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
     action: function() {
       var target = this.getTarget();
       if (this.getTargetPath() !== null) {
-        target = cv.TemplateEngine.getInstance().getPageIdByPath(target,this.getTargetPath());
+        target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
       }
-      cv.TemplateEngine.getInstance().scrollToPage( target );
+      cv.TemplateEngine.getInstance().scrollToPage(target);
     }
   },
 

@@ -37,7 +37,7 @@
  * @author Markus Damman
  * @since 0.8.4 (2014)
  */
-  qx.Class.define('cv.ui.structure.pure.Audio', {
+  qx.Class.define("cv.ui.structure.pure.Audio", {
     extend: cv.ui.structure.AbstractWidget,
 
     include: cv.ui.common.Update,
@@ -68,13 +68,19 @@
       _getInnerDomString: function () {
         // create the main structure
         // create the actor
-        var style = '';
-        if (this.getWidth()) { style += 'width:' + this.getWidth() + ';'; }
-        if (this.getHeight()) { style += 'height:' + this.getHeight() + ';'; }
-        if (style !== '') { style = 'style="' + style + '"'; }
-        var autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
-        var loop = (this.isLoop()) ? ' loop ' : '';
-        return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
+        var style = "";
+        if (this.getWidth()) {
+ style += "width:" + this.getWidth() + ";"; 
+}
+        if (this.getHeight()) {
+ style += "height:" + this.getHeight() + ";"; 
+}
+        if (style !== "") {
+ style = "style=\"" + style + "\""; 
+}
+        var autoplay = (this.isAutoplay()) ? " autoplay " : "";
+        var loop = (this.isLoop()) ? " loop " : "";
+        return "<div class=\"actor\"><audio id=\"" + this.getId() + "\" " + autoplay + loop + style + " controls> <source src=\"" + this.getSrc()+ "\" > </audio> </div>";
       },
 
       // overridden

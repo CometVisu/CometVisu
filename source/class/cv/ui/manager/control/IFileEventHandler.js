@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Interface.define('cv.ui.manager.control.IFileEventHandler', {
+qx.Interface.define("cv.ui.manager.control.IFileEventHandler", {
   /*
   ***********************************************
     MEMBERS

@@ -23,7 +23,7 @@
  * @since 2012
  * @asset(plugins/svg/rollo.svg)
  */
-qx.Class.define('cv.plugins.Svg', {
+qx.Class.define("cv.plugins.Svg", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
 
@@ -58,12 +58,12 @@ qx.Class.define('cv.plugins.Svg', {
   */
   members: {
     _getInnerDomString: function() {
-      return '<div class="actor"></div>';
+      return "<div class=\"actor\"></div>";
     },
 
     _onDomReady: function() {
       this.base(arguments);
-      var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
+      var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/svg/rollo.svg"));
       ajaxRequest.set({
         accept: "text/plain",
         cache: !cv.Config.forceReload
@@ -83,16 +83,16 @@ qx.Class.define('cv.plugins.Svg', {
       var space = 1;
       var total = linewidth + space;
       var line_qty = 48 / total;
-      var line, i, l;
-      for(i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
-        line = element.querySelector('#line'+(i+1));
-        line.setAttribute('y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
-        line.setAttribute('y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
+      var line; var i; var l;
+      for (i = 0, l = Math.floor(value/line_qty); i<=l; i++) {
+        line = element.querySelector("#line"+(i+1));
+        line.setAttribute("y1", 9+total*(i)+((value%line_qty)/line_qty)*total);
+        line.setAttribute("y2", 9+total*(i)+((value%line_qty)/line_qty)*total);
       }
-      for(i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
-        line = element.querySelector('#line'+(i+1));
-        line.setAttribute('y1', 9);
-        line.setAttribute('y2', 9);
+      for (i = Math.floor(value/line_qty)+1; i<=line_qty; i++) {
+        line = element.querySelector("#line"+(i+1));
+        line.setAttribute("y1", 9);
+        line.setAttribute("y2", 9);
       }
     }
   },

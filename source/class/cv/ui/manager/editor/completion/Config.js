@@ -4,7 +4,7 @@
  * @since 0.11.0
  * @author Tobias Bräutigam
  */
-qx.Class.define('cv.ui.manager.editor.completion.Config', {
+qx.Class.define("cv.ui.manager.editor.completion.Config", {
   extend: qx.core.Object,
 
   /*
@@ -21,7 +21,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     this.__elementCache = {};
     this._schema = schema;
     this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
-
   },
 
   /*
@@ -43,14 +42,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       // we need to know which tags are closed
       var closingTags = [];
       for (var i = tags.length - 1; i >= 0; i--) {
-        if (tags[i].indexOf('</') === 0) {
-          closingTags.push(tags[i].substring('</'.length));
-        }
-        else {
+        if (tags[i].indexOf("</") === 0) {
+          closingTags.push(tags[i].substring("</".length));
+        } else {
           // get the last position of the tag
           var tagPosition = text.lastIndexOf(tags[i]);
-          var tag = tags[i].substring('<'.length);
-          var closingBracketIdx = text.indexOf('/>', tagPosition);
+          var tag = tags[i].substring("<".length);
+          var closingBracketIdx = text.indexOf("/>", tagPosition);
           // if the tag wasn't closed
           if (closingBracketIdx === -1) {
             // if there are no closing tags or the current tag wasn't closed
@@ -59,7 +57,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               // a child element or an attribute
               text = text.substring(tagPosition);
 
-              var openedTag = text.indexOf('<') > text.indexOf('>');
+              var openedTag = text.indexOf("<") > text.indexOf(">");
               var contentSearch = false;
               var currentAttribute = null;
               if (openedTag) {
@@ -95,7 +93,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         return null;
       }
       if (!parent) {
-        parent = this._schema.getElementNode('pages');
+        parent = this._schema.getElementNode("pages");
       }
       if (currentDepth === undefined) {
         currentDepth = 1;
@@ -106,9 +104,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         // console.log("found "+elementName+" in tree level "+currentDepth);
         this.__elementCache[elementName] = allowedElements[elementName];
         return allowedElements[elementName];
-      } else {
+      } 
         for (var element in allowedElements) {
-          if (inMeta !== true && element === 'meta') {
+          if (inMeta !== true && element === "meta") {
             continue;
           }
           if (maxDepth > currentDepth) {
@@ -120,15 +118,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             }
           }
         }
-      }
-
     },
 
     isItemAvailable: function (itemName, maxOccurs, items) {
       // the default for 'maxOccurs' is 1
-      maxOccurs = maxOccurs || '1';
+      maxOccurs = maxOccurs || "1";
       // the element can appere infinite times, so it is available
-      if (maxOccurs && maxOccurs === 'unbounded') {
+      if (maxOccurs && maxOccurs === "unbounded") {
         return true;
       }
       // count how many times the element appeared
@@ -150,7 +146,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       Object.getOwnPropertyNames(allowedAttributes).forEach(function(attr) {
         var attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
-          insertText += attr+'="'+(attribute.getDefaultValue() ? attribute.getDefaultValue() : "")+'" ';
+          insertText += attr+"=\""+(attribute.getDefaultValue() ? attribute.getDefaultValue() : "")+"\" ";
         }
       });
       // add mandatory children
@@ -190,7 +186,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (!children) {
         return [];
       }
-      Object.getOwnPropertyNames(children).filter(name => !name.startsWith('#')).forEach(function(name) {
+      Object.getOwnPropertyNames(children).filter(name => !name.startsWith("#")).forEach(function(name) {
         // get all element attributes
         var childElem = children[name];
         // the element is a suggestion if it's available
@@ -220,7 +216,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // mark it as a 'property', and get it's documentation
           availableItems.push({
             label: attr.getName(),
-            insertText: attr.getName()+'=""',
+            insertText: attr.getName()+"=\"\"",
             kind: window.monaco.languages.CompletionItemKind.Property,
             detail: attr.getTypeString(),
             documentation: attr.getDocumentation().join("\n")
@@ -234,7 +230,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
 
     getProvider: function () {
       return {
-        triggerCharacters: ['<', '"'],
+        triggerCharacters: ["<", "\""],
         provideCompletionItems: function (model, position) {
           // get editor content before the pointer
           var textUntilPosition = model.getValueInRange({
@@ -245,12 +241,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           });
           // parse mappings
           var completeText = model.getValue();
-          var metaEndPos = completeText.indexOf('</meta>');
+          var metaEndPos = completeText.indexOf("</meta>");
           var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
           var mappingNames = [];
           var stylingNames = [];
           var templates = {};
-          var map, vmap;
+          var map; var vmap;
           var regex = /<mapping name="([^"]+)"/gm;
           while ((map = regex.exec(textMeta)) !== null) {
             mappingNames.push(map[1]);
@@ -259,10 +255,10 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           while ((map = regex.exec(textMeta)) !== null) {
             stylingNames.push(map[1]);
           }
-          var templatesStart = textMeta.indexOf('<templates>');
+          var templatesStart = textMeta.indexOf("<templates>");
           if (templatesStart >= 0) {
-            var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
-            templatesString.split('</template>').forEach(function (rawTemplate) {
+            var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf("</templates>") - 12).replace(/(?:\r\n|\r|\n)/g, "");
+            templatesString.split("</template>").forEach(function (rawTemplate) {
               var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
               // search for variables
               var variables = [];
@@ -314,13 +310,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   for (i = 0; i < attrs.length; i++) {
                     usedItems.push(attrs[i].nodeName);
                   }
-                }
-                else {
+                } else {
                   // if we are looking for child elements, then used items
                   // should be the elements that were already used
                   var children = lastChild.children;
                   for (i = 0; i < children.length; i++) {
-                    if (children[i].tagName.toLowerCase() !== 'parsererror') {
+                    if (children[i].tagName.toLowerCase() !== "parsererror") {
                       usedItems.push(children[i].tagName);
                     }
                   }
@@ -349,22 +344,22 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           var searchedElement = openedTags[openedTags.length-1];
           if (isContentSearch) {
             // handle data providers if the is one relevant
-            if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
+            if (lastOpenedTag.tagName === "pages" && lastOpenedTag.currentAttribute === "design") {
               return this._dataProvider.getDesigns().then(function (sugg) {
                 return {suggestions: sugg};
               });
-            } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
+            } else if (lastOpenedTag.tagName === "address" && lastOpenedTag.currentAttribute === "transform") {
               return {suggestions: this._dataProvider.getTransforms()};
-            } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
+            } else if (lastOpenedTag.tagName === "plugin" && lastOpenedTag.currentAttribute === "name") {
               return {suggestions: this._dataProvider.getPlugins()};
-            } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
+            } else if (lastOpenedTag.tagName === "icon" && lastOpenedTag.currentAttribute === "name") {
               return {suggestions: this._dataProvider.getIcons()};
-            } else if (lastOpenedTag.tagName === 'influx') {
-              if (lastOpenedTag.currentAttribute === 'measurement') {
+            } else if (lastOpenedTag.tagName === "influx") {
+              if (lastOpenedTag.currentAttribute === "measurement") {
                 return this._dataProvider.getInfluxDBs().then(function (suggestions) {
                   return {suggestions: suggestions};
                 });
-              } else if (lastOpenedTag.currentAttribute === 'field') {
+              } else if (lastOpenedTag.currentAttribute === "field") {
                 match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
                 if (match) {
                   return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
@@ -372,15 +367,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   });
                 }
               }
-            } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
-              var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
-              var attr = influxAttributes.getNamedItem('measurement');
+            } else if (lastOpenedTag.tagName === "tag" && (lastOpenedTag.currentAttribute === "key" || lastOpenedTag.currentAttribute === "value") && openedTags.includes("influx")) {
+              var influxAttributes = openedAttributes[openedTags.indexOf("influx")];
+              var attr = influxAttributes.getNamedItem("measurement");
               if (attr) {
-                if (lastOpenedTag.currentAttribute === 'key') {
+                if (lastOpenedTag.currentAttribute === "key") {
                   return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
                     return {suggestions: suggestions};
                   });
-                } else if (lastOpenedTag.currentAttribute === 'value') {
+                } else if (lastOpenedTag.currentAttribute === "value") {
                   match = /key="([^"]+)"/.exec(lastOpenedTag.text);
                   if (match) {
                     return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
@@ -389,7 +384,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   }
                 }
               }
-            } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('meta')) {
+            } else if (lastOpenedTag.tagName === "template" && lastOpenedTag.currentAttribute === "name" && openedTags.includes("meta")) {
               res = Object.keys(templates).map(function (name) {
                 return {
                   label: name,
@@ -398,10 +393,10 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 };
               }, this);
               return {suggestions: res};
-            } else if (lastOpenedTag.tagName === 'value' &&
-              lastOpenedTag.currentAttribute === 'name' &&
-              !openedTags.includes('meta') &&
-              openedTags.includes('template')) {
+            } else if (lastOpenedTag.tagName === "value" &&
+              lastOpenedTag.currentAttribute === "name" &&
+              !openedTags.includes("meta") &&
+              openedTags.includes("template")) {
               // TODO: find out template name
               var templateNames = Object.keys(templates);
               templateNames.forEach(function (name) {
@@ -409,13 +404,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   res.push({
                     label: variableName,
                     insertText: variableName,
-                    detail: qx.locale.Manager.tr('Variable from template %1', name),
+                    detail: qx.locale.Manager.tr("Variable from template %1", name),
                     kind: window.monaco.languages.CompletionItemKind.Variable
                   });
                 }, this);
               }, this);
               return {suggestions: res};
-            } else if (lastOpenedTag.currentAttribute === 'mapping') {
+            } else if (lastOpenedTag.currentAttribute === "mapping") {
               res = mappingNames.map(function (mappingName) {
                 return {
                   label: mappingName,
@@ -424,7 +419,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 };
               }, this);
               return {suggestions: res};
-            } else if (lastOpenedTag.currentAttribute === 'styling') {
+            } else if (lastOpenedTag.currentAttribute === "styling") {
               res = stylingNames.map(function (stylingName) {
                 return {
                   label: stylingName,
@@ -443,23 +438,19 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
-          } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
-            return this._dataProvider.getAddresses('monaco').then(res => {
-              return {suggestions: res};
-            });
+          } else if (lastOpenedTag.tagName === "address" && lastOpenedTag.currentAttribute === null) {
+            return this._dataProvider.getAddresses("monaco").then(res => ({suggestions: res}));
           }
-          if (searchedElement === 'rrd') {
-            return this._dataProvider.getRrds('monaco').then(res => {
-              return {suggestions: res};
-            });
-          } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
+          if (searchedElement === "rrd") {
+            return this._dataProvider.getRrds("monaco").then(res => ({suggestions: res}));
+          } else if (searchedElement === "file" && !isAttributeSearch && !isContentSearch && openedTags.includes("files")) {
             match = /type="([^"]+)"/.exec(lastOpenedTag.text);
-            var typeFilter = !!match ? match[1] : null;
+            var typeFilter = match ? match[1] : null;
             return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
               return {suggestions: suggestions};
             });
           }
-          var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta'));
+          var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes("meta"));
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't
@@ -478,12 +469,10 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 });
               });
             }
-          }
-          else if (isAttributeSearch) {
+          } else if (isAttributeSearch) {
             // get attributes completions
             res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
-          }
-          else {
+          } else {
             // get elements completions
             if (lastOpenedTag && lastOpenedTag.text.endsWith("</")) {
               res.push({

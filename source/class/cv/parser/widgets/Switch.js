@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Switch', {
+qx.Class.define("cv.parser.widgets.Switch", {
   type: "static",
 
   /*
@@ -48,8 +48,8 @@ qx.Class.define('cv.parser.widgets.Switch', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'on_value': {target: 'onValue', 'default': "1"},
-        'off_value': {target: 'offValue', 'default': "0"}
+        "on_value": {target: "onValue", "default": "1"},
+        "off_value": {target: "offValue", "default": "0"}
       };
     }
   },

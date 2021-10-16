@@ -68,7 +68,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     });
     // register to topics
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-      'cv.*': {}
+      "cv.*": {}
     });
     this._openCommand = new qx.ui.command.Command("Ctrl+N");
     this._openCommand.addListener("execute", this.toggleVisibility, this);
@@ -90,7 +90,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           var iconClasses = message.iconClasses ? " "+message.iconClasses : "";
           message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, "icon" + iconClasses);
         }
-      }.bind(this)
+      }
     });
   },
 
@@ -202,9 +202,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__messagesContainer) {
         // get header+footer heights
         var
-          headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect(),
-          footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect(),
-          messageBoxHeight = height -
+          headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect();
+          var footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect();
+          var messageBoxHeight = height -
             Math.round(headerRect.bottom - headerRect.top) -
             Math.round(footerRect.bottom - footerRect.top);
         this.__messagesContainer.style.height = messageBoxHeight + "px";
@@ -221,7 +221,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this.__blocker = cv.ui.BodyBlocker.getInstance();
 
       this.__favico = new Favico({
-        animation:'fade',
+        animation:"fade",
         bgColor: "#1C391C"
       });
 
@@ -233,16 +233,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
         elem = this.__element = qx.dom.Element.create("div", {
           id: this.getRootElementId(),
           style: "visibility: hidden;",
-          html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
+          html: "<div class=\"badge\"></div><header><h3>" + qx.locale.Manager.tr("Message center") + "<div class=\"action hide\"><a href=\"#\" onclick=\"cv.ui.NotificationCenter.hide()\">X</a></div></h3></header><section class=\"messages\"></section><footer><div class=\"action clear\" onclick=\"cv.ui.NotificationCenter.clear()\">" + qx.locale.Manager.tr("Delete all") + "<div></div></footer>"
         });
         body.appendChild(elem);
 
         // create the template
-        var templateCode = '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}">';
-        templateCode += '{{#icon}}{{ &icon }}{{/icon}}';
-        templateCode += '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
-        templateCode += '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
-        templateCode += '<div class="content">{{&message}}</div></div>';
+        var templateCode = "<div class=\"message {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\""+this.getMessageElementId()+"{{ id }}\">";
+        templateCode += "{{#icon}}{{ &icon }}{{/icon}}";
+        templateCode += "{{#deletable}}<div class=\"action delete\">x</div>{{/deletable}}";
+        templateCode += "{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}";
+        templateCode += "<div class=\"content\">{{&message}}</div></div>";
 
         var template = qx.dom.Element.create("script", {
           id: "MessageTemplate",
@@ -282,7 +282,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (this.getMessages().getLength() === 0) {
           this.hide();
         } else {
-          this.__element.style.visibility = '';
+          this.__element.style.visibility = "";
           this._onSeverityChange();
         }
       }.bind(this);
@@ -298,17 +298,15 @@ qx.Class.define("cv.ui.NotificationCenter", {
       }
       if (messages) {
         this.__badge.innerHTML = ""+messages;
-      } else{
+      } else {
         this.__badge.innerHTML = "";
       }
-
-
     },
 
     _onSeverityChange: function() {
       var severity = this.getGlobalSeverity();
       if (this.__badge) {
-        this.__badge.classList.remove.apply( this.__badge.classList, this._severities );
+        this.__badge.classList.remove.apply(this.__badge.classList, this._severities);
         this.__badge.classList.add(severity);
       }
 
@@ -327,15 +325,15 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
-        this.__element.style.visibility = '';
+        this.__element.style.visibility = "";
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            this.__element.style.transform = 'translate(-300px)';
+            this.__element.style.transform = "translate(-300px)";
           }, this);
         } else {
-          this.__element.style.transform = 'translate(-300px)';
+          this.__element.style.transform = "translate(-300px)";
         }
       }
     },
@@ -361,11 +359,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            this.__element.style.transform = 'translate(-0px)';
+            this.__element.style.transform = "translate(-0px)";
             this.__blocker.unblock();
           }, this);
         } else {
-          this.__element.style.transform = 'translate(-0px)';
+          this.__element.style.transform = "translate(-0px)";
           this.__blocker.unblock();
         }
       }

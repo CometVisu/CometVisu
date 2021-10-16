@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 2012
  */
-qx.Class.define('cv.transforms.OpenHab', {
+qx.Class.define("cv.transforms.OpenHab", {
 
   /*
   ******************************************************
@@ -33,7 +33,7 @@ qx.Class.define('cv.transforms.OpenHab', {
   */
   statics: {
     isUndefined: function(value) {
-      return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
+      return ["NaN", "Uninitialized", "NULL", "UNDEF", undefined, null].indexOf(value) >= 0;
     }
   },
 
@@ -43,101 +43,123 @@ qx.Class.define('cv.transforms.OpenHab', {
    * bus value decode: transform bus to JavaScript value
    */
   defer: function() {
-    cv.Transform.addTransform('OH', {
-      'switch': {
-        name: 'OH_Switch',
+    cv.Transform.addTransform("OH", {
+      "switch": {
+        name: "OH_Switch",
         encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'ON' : 'OFF'; // jshint ignore:line
+          return phy == 1 ? "ON" : "OFF"; // jshint ignore:line
         },
         decode: function (string) {
-          if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
+          if (cv.transforms.OpenHab.isUndefined(string)) {
+ return 0; 
+}
           return (string === "ON" || parseInt(string) > 0) ? 1 : 0;
         }
       },
-      'contact': {
-        name: 'OH_Contact',
+      "contact": {
+        name: "OH_Contact",
         encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'OPEN' : 'CLOSED'; // jshint ignore:line
+          return phy == 1 ? "OPEN" : "CLOSED"; // jshint ignore:line
         },
         decode: function (string) {
-          if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
+          if (cv.transforms.OpenHab.isUndefined(string)) {
+ return 0; 
+}
           return string === "OPEN" ? 1 : 0;
         }
       },
-      'rollershutter': {
+      "rollershutter": {
         name: "OH_RollerShutter",
         encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          if (phy == 1) { return 'DOWN'; } // jshint ignore:line
-          else if (phy == 0) { return 'UP'; } // jshint ignore:line
-          else { return phy; }
+          if (phy == 1) {
+ return "DOWN"; 
+} // jshint ignore:line
+          else if (phy == 0) {
+ return "UP"; 
+} // jshint ignore:line
+           return phy; 
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
-          else if (str === "UP") { return 0; }
-          else if (str === "DOWN") { return 1; }
-          else { return str; }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return 0; 
+} else if (str === "UP") {
+ return 0; 
+} else if (str === "DOWN") {
+ return 1; 
+}
+           return str; 
         }
       },
-      'dimmer': {
+      "dimmer": {
         name: "OH_Dimmer",
         encode: function (phy) {
           return parseInt(phy);
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
-          else if (str === "ON") { return 100; }
-          else if (str === "OFF") { return 0; }
-          else { return parseInt(str); }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return 0; 
+} else if (str === "ON") {
+ return 100; 
+} else if (str === "OFF") {
+ return 0; 
+}
+           return parseInt(str); 
         }
       },
-      'number': {
+      "number": {
         name: "OH_Number",
         encode: function (phy) {
           return parseFloat(phy);
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return 0; 
+}
           return parseFloat(str);
         }
       },
-      'string': {
+      "string": {
         name: "OH_String",
         encode: function (phy) {
           return phy;
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return ''; }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return ""; 
+}
           return str;
         }
       },
-      'datetime': {
+      "datetime": {
         name: "OH_DateTime",
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleDateString();
-          } else {
+          } 
             return phy;
-          }
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return '-'; }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return "-"; 
+}
           return new Date(Date.parse(str));
         }
       },
-      'time': {
+      "time": {
         name: "OH_Time",
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleTimeString();
-          } else {
+          } 
             return phy;
-          }
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) { return '-'; }
+          if (cv.transforms.OpenHab.isUndefined(str)) {
+ return "-"; 
+}
           var date = new Date();
           var parts = str.split(":");
           date.setHours(parseInt(parts[0]));
@@ -146,24 +168,26 @@ qx.Class.define('cv.transforms.OpenHab', {
           return date;
         }
       },
-      'color': {
+      "color": {
         name: "OH_Color",
         encode: function (phy) {
-          if( !(phy instanceof Map) ) {
-            return '0, 0, 0';
+          if (!(phy instanceof Map)) {
+            return "0, 0, 0";
           }
           let rgb = [
-            phy.get('r') || 0,
-            phy.get('g') || 0,
-            phy.get('b') || 0
+            phy.get("r") || 0,
+            phy.get("g") || 0,
+            phy.get("b") || 0
           ];
-          return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
+          return qx.util.ColorUtil.rgbToHsb(rgb).join(", ");
         },
         decode: function (hsbString) {
-          if (cv.transforms.OpenHab.isUndefined(hsbString)) { return new Map([['r',0],['g',0],['b',0]]); }
+          if (cv.transforms.OpenHab.isUndefined(hsbString)) {
+ return new Map([["r", 0], ["g", 0], ["b", 0]]); 
+}
           // decode HSV/HSB to RGB
           let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
-          return new Map([ ['r',rgb[0]], ['g',rgb[1]], ['b',rgb[2]] ]);
+          return new Map([ ["r", rgb[0]], ["g", rgb[1]], ["b", rgb[2]] ]);
         }
       }
     });

@@ -28,7 +28,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
+qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -55,13 +55,13 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
       if (value) {
         if (!this.__request) {
           // create the request
-          this.__request = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
+          this.__request = new qx.io.request.Xhr("/wg-plugindb.php?name=" + value);
           this.__request.set({
             accept: "application/json"
           });
           this.__request.addListener("success", this._onSuccess, this);
         } else {
-          this.__request.setUrl('/wg-plugindb.php?name=' + value);
+          this.__request.setUrl("/wg-plugindb.php?name=" + value);
         }
         cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__request.send, this.__request);
       }
@@ -83,7 +83,7 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
 
     // overridden
     _getInnerDomString: function () {
-      return '<div class="actor"><div class="value">-</div></div>';
+      return "<div class=\"actor\"><div class=\"value\">-</div></div>";
     },
 
     /**

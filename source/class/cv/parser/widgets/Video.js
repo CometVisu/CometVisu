@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Video', {
+qx.Class.define("cv.parser.widgets.Video", {
   type: "static",
 
   /*
@@ -45,10 +45,10 @@ qx.Class.define('cv.parser.widgets.Video', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'width'       :   {},
-        'height'      :   {},
-        'src'         :   {},
-        'autoplay'    :   { target: 'autoplay', transform: function(value) {
+        "width"       :   {},
+        "height"      :   {},
+        "src"         :   {},
+        "autoplay"    :   { target: "autoplay", transform: function(value) {
           return value === "true";
         }}
       };

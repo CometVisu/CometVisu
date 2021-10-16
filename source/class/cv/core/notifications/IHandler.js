@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Interface.define('cv.core.notifications.IHandler', {
+qx.Interface.define("cv.core.notifications.IHandler", {
   /*
   ******************************************************
     MEMBERS
@@ -35,6 +35,6 @@ qx.Interface.define('cv.core.notifications.IHandler', {
      * @param message {Map}
      * @param config {Map?} optional configuration of this message for the handler
      */
-    handleMessage: function(message, config) {}  // jshint ignore:line
+    handleMessage: function(message, config) {} // jshint ignore:line
   }
 });

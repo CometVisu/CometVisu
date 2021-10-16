@@ -22,7 +22,7 @@
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
-qx.Class.define('cv.ui.structure.AbstractWidget', {
+qx.Class.define("cv.ui.structure.AbstractWidget", {
   extend: cv.ui.structure.AbstractBasicWidget,
   include: cv.ui.common.HasStyling,
   type: "abstract",
@@ -76,14 +76,14 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       check: "Boolean",
       init: false
     },
-    flavour           : { check: "String", init: '', nullable: true },
+    flavour           : { check: "String", init: "", nullable: true },
     layout            : { check: "Object", nullable: true},
-    label             : { check: "String", init: '', nullable: true },
+    label             : { check: "String", init: "", nullable: true },
     bindClickToWidget : { check: "Boolean", init: false },
     mapping           : { check: "String", nullable: true },
     align             : { check: "String", nullable: true },
-    classes           : { check: "String", init: '', nullable: true },
-    style             : { check: "String", init: ''},
+    classes           : { check: "String", init: "", nullable: true },
+    style             : { check: "String", init: ""},
     colspan           : { check: "Number", init: 6, transform: "string2number" },
     colspanM          : { check: "Number", init: 6, transform: "string2number" },
     colspanS          : { check: "Number", init: 6, transform: "string2number" },
@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       var suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
       if (suffix) {
         var l = {};
-        ['x', 'y', 'width', 'scale'].forEach(function (prop) {
+        ["x", "y", "width", "scale"].forEach(function (prop) {
           if (layout[prop]) {
             // use default value
             l[prop] = layout[prop];
@@ -200,7 +200,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Element}
      */
     getActor: function() {
-      return this.getDomElement().querySelector('.actor');
+      return this.getDomElement().querySelector(".actor");
     },
 
     /**
@@ -216,7 +216,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Element}
      */
     getWidgetElement: function() {
-      return this.getDomElement().querySelector('.widget');
+      return this.getDomElement().querySelector(".widget");
     },
 
     /**
@@ -289,7 +289,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
 
     _onPointerMove: function(ev) {
       var upElement = ev.getTarget();
-      var distance = Math.max( Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
+      var distance = Math.max(Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
       var abort = distance > 5;
 
       if (!abort) {
@@ -343,7 +343,9 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {var} the listener id
      */
     addElementListener: function(type, callback, context) {
-      if (this.isAnonymous()) { return; }
+      if (this.isAnonymous()) {
+ return; 
+}
       var widget = this.getInteractionElement();
       if (widget) {
         widget.dataset["longtapable"] = type !== "longtap";
@@ -360,7 +362,9 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Boolean} Whether the event was removed..
      */
     removeElementListener: function(type, callback, context) {
-      if (this.isAnonymous()) { return; }
+      if (this.isAnonymous()) {
+ return; 
+}
       var widget = this.getInteractionElement();
       if (widget) {
         return qx.event.Registration.removeListener(widget, type, callback, context);
@@ -374,8 +378,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {String} The widgets DOM representation as string
      */
     getDomString : function() {
-      return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() +
-        this._getInnerDomString() +'</div>';
+      return "<div class=\""+this.getClasses()+"\" " + this.getStyle() + ">" + this.getLabel() +
+        this._getInnerDomString() +"</div>";
     },
 
     /**

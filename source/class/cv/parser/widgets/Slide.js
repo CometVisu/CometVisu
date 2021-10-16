@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Slide', {
+qx.Class.define("cv.parser.widgets.Slide", {
   type: "static",
 
   /*
@@ -44,20 +44,22 @@ qx.Class.define('cv.parser.widgets.Slide', {
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
 
-      var datatype_min, datatype_max;
-      Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
-        var transform = elem.getAttribute('transform');
+      var datatype_min; var datatype_max;
+      Array.from(xml.children).filter(function(m) {
+ return m.matches("address"); 
+}).forEach(function(elem) {
+        var transform = elem.getAttribute("transform");
         if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
-          if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
+          if (!(datatype_min > cv.Transform.registry[transform].range.min)) { // jshint ignore:line
             datatype_min = cv.Transform.registry[transform].range.min;
           }
-          if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
+          if (!(datatype_max < cv.Transform.registry[transform].range.max)) { // jshint ignore:line
             datatype_max = cv.Transform.registry[transform].range.max;
           }
         }
       });
-      var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
-      var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
+      var min = parseFloat(xml.getAttribute("min") || datatype_min || 0);
+      var max = parseFloat(xml.getAttribute("max") || datatype_max || 100);
 
       data.min = min;
       data.max = max;
@@ -66,9 +68,9 @@ qx.Class.define('cv.parser.widgets.Slide', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'step': {"default": 0.5, transform: parseFloat},
-        'send_on_finish': {
-          target: 'sendOnFinish',
+        "step": {"default": 0.5, transform: parseFloat},
+        "send_on_finish": {
+          target: "sendOnFinish",
           "default": false,
           transform: function(value) {
             return value === "true";

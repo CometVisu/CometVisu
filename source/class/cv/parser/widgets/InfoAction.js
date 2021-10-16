@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.InfoAction', {
+qx.Class.define("cv.parser.widgets.InfoAction", {
   type: "static",
 
   /*

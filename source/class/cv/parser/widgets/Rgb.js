@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Rgb', {
+qx.Class.define("cv.parser.widgets.Rgb", {
   type: "static",
 
   /*

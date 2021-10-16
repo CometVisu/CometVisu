@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.form.CheckBox', {
+qx.Class.define("cv.ui.manager.form.CheckBox", {
   extend: qx.ui.form.CheckBox,
   /*
   ***********************************************

@@ -25,7 +25,7 @@
  * @since 0.8.0
  * @asset(plugins/strftime/strftime.css)
  */
-qx.Class.define('cv.plugins.Strftime', {
+qx.Class.define("cv.plugins.Strftime", {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -69,8 +69,8 @@ qx.Class.define('cv.plugins.Strftime', {
 
     getAttributeToPropertyMappings: function() {
       return {
-        'lang': { target: 'locale' },
-        'format': { "default": "%c"}
+        "lang": { target: "locale" },
+        "format": { "default": "%c"}
       };
     },
 
@@ -98,7 +98,7 @@ qx.Class.define('cv.plugins.Strftime', {
     __valueElement: null,
 
     _getInnerDomString: function () {
-      return '<div class="strftime_value"></div>';
+      return "<div class=\"strftime_value\"></div>";
     },
 
     // overridden
@@ -134,32 +134,32 @@ qx.Class.define('cv.plugins.Strftime', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/strftime/strftime.css');
+    loader.addStyles("plugins/strftime/strftime.css");
     cv.parser.WidgetParser.addHandler("strftime", statics);
     cv.ui.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French
     Date.ext.locales.de = {
-      a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-      A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-      b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-      B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-      c: '%a %d %b %Y %T %Z',
-      p: ['', ''],
-      P: ['', ''],
-      x: '%d.%m.%Y',
-      X: '%T'
+      a: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+      A: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+      b: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+      B: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+      c: "%a %d %b %Y %T %Z",
+      p: ["", ""],
+      P: ["", ""],
+      x: "%d.%m.%Y",
+      X: "%T"
     };
     Date.ext.locales.fr = {
-      a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-      A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-      b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
-      B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-      c: '%a %d %b %Y %T %Z',
-      p: ['', ''],
-      P: ['', ''],
-      x: '%d.%m.%Y',
-      X: '%T'
+      a: ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
+      A: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+      b: ["jan", "fév", "mar", "avr", "mai", "jun", "jui", "aoû", "sep", "oct", "nov", "déc"],
+      B: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+      c: "%a %d %b %Y %T %Z",
+      p: ["", ""],
+      P: ["", ""],
+      x: "%d.%m.%Y",
+      X: "%T"
     };
   }
 });

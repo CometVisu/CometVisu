@@ -20,7 +20,7 @@
 /**
  * @ignore(EventSource)
  */
-qx.Class.define('cv.io.transport.Sse', {
+qx.Class.define("cv.io.transport.Sse", {
   extend: qx.core.Object,
 
   /*
@@ -59,10 +59,10 @@ qx.Class.define('cv.io.transport.Sse', {
     handleSession: function (args, connect) {
       var json = this.client.getResponse(args);
       this.sessionId = json.s;
-      this.version = json.v.split('.', 3);
+      this.version = json.v.split(".", 3);
 
-      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
-        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+      if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
+        this.error("ERROR CometVisu Client: too new protocol version (" + json.v + ") used!");
       }
       if (connect) {
         this.connect();
@@ -81,8 +81,8 @@ qx.Class.define('cv.io.transport.Sse', {
         this.client.buildRequest(null, true))
       );
       // add default listeners
-      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+      this.eventSource.addEventListener("message", this.handleMessage.bind(this), false);
+      this.eventSource.addEventListener("error", this.handleError.bind(this), false);
       // add additional listeners
       Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
       this.eventSource.onerror = function () {
@@ -97,6 +97,7 @@ qx.Class.define('cv.io.transport.Sse', {
 
     /**
      * Handle messages send from server as Server-Sent-Event
+     * @param e
      */
     handleMessage: function (e) {
       this.client.record("read", e.data);
@@ -140,6 +141,7 @@ qx.Class.define('cv.io.transport.Sse', {
 
     /**
      * Handle errors
+     * @param e
      */
     handleError: function (e) {
       if (e.readyState === EventSource.CLOSED) {
@@ -161,6 +163,7 @@ qx.Class.define('cv.io.transport.Sse', {
 
     /**
      * Restart the read request
+     * @param doFullReload
      */
     restart: function (doFullReload) {
       if (doFullReload || this.eventSource.readyState === EventSource.CLOSED) {

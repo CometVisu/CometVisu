@@ -21,7 +21,7 @@
 /**
  * Handles all popups
  */
-qx.Class.define('cv.ui.PopupHandler', {
+qx.Class.define("cv.ui.PopupHandler", {
   type: "static",
 
   /*
@@ -41,15 +41,15 @@ qx.Class.define('cv.ui.PopupHandler', {
 
       // register to topics
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-        'cv.config.error': {
+        "cv.config.error": {
           type: "error",
           icon: "message_attention"
         },
-        'cv.error': {
+        "cv.error": {
           type: "error",
           icon: "message_attention"
         },
-        'cv.client.connection': {
+        "cv.client.connection": {
           type: "error",
           icon: "message_attention",
           deletable: true
@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      */
     _onPageChanged: function (ev) {
       Object.keys(this.popups).filter(function (type) {
-        if (type !== 'error') {
+        if (type !== "error") {
           var popup = this.popups[type];
           var domElement = popup.getCurrentDomElement();
           if (domElement && domElement.$$page === ev.getData()) {
@@ -158,9 +158,11 @@ qx.Class.define('cv.ui.PopupHandler', {
      * @param preference {Number}
      * @return {Map}
      */
-    placementStrategy: function( anchor, popup, page, preference ) {
+    placementStrategy: function(anchor, popup, page, preference) {
       var position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
-      if (preference !== undefined) { position_order.unshift(preference); }
+      if (preference !== undefined) {
+ position_order.unshift(preference); 
+}
 
       for (var pos in position_order) {
         var xy = {};

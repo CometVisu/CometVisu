@@ -35,18 +35,18 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     },
 
     folder: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: '_updateUploadUrl'
+      apply: "_updateUploadUrl"
     },
 
     filename: {
-      check: 'String',
+      check: "String",
       nullable: true
     },
 
     force: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     }
   },
@@ -55,8 +55,8 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
 
     _updateUploadUrl: function () {
       var folder = this.getFolder();
-      var path = folder ? folder.getFullPath() : '.';
-      var url = cv.io.rest.Client.getBaseUrl() + '/fs?type=file&path=' + path;
+      var path = folder ? folder.getFullPath() : ".";
+      var url = cv.io.rest.Client.getBaseUrl() + "/fs?type=file&path=" + path;
       this.setUploadUrl(url);
     },
 
@@ -65,10 +65,10 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
         var file = evt.getData();
         var filename = this.getFilename();
         if (filename) {
-          file.setParam('filename', filename);
+          file.setParam("filename", filename);
         }
         if (this.isForce()) {
-          file.setParam('force', true);
+          file.setParam("force", true);
         }
         var progressListenerId = file.addListener("changeProgress", function (evt) {
           var file = evt.getTarget();
@@ -92,18 +92,18 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
               switch (file.getStatus()) {
                 case 406:
                   if (this.isForce()) {
-                    cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Replacing the file failed.'));
+                    cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr("Replacing the file failed."));
                   } else {
-                    qxl.dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
+                    qxl.dialog.Dialog.confirm(qx.locale.Manager.tr("This file already exists, do you want to replace it?"), function (confirmed) {
                       if (confirmed) {
                         this.forceUpload(file);
                       }
-                    }, this, qx.locale.Manager.tr('File already exists'));
+                    }, this, qx.locale.Manager.tr("File already exists"));
                   }
                   break;
 
                 case 403:
-                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Uploading this file is not allowed here.'));
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr("Uploading this file is not allowed here."));
                   break;
 
                 default:
@@ -113,18 +113,17 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
                   } catch (e) {
                   }
                   this.error(err);
-                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('File upload stopped with an error: %1', err));
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr("File upload stopped with an error: %1", err));
                   break;
               }
             } else {
-              cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been uploaded'));
-              qx.event.message.Bus.dispatchByName('cv.manager.file', {
-                action: 'uploaded',
-                path: this.getFolder().getFullPath() + '/' + file.getFilename()
+              cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr("File has been uploaded"));
+              qx.event.message.Bus.dispatchByName("cv.manager.file", {
+                action: "uploaded",
+                path: this.getFolder().getFullPath() + "/" + file.getFilename()
               });
             }
-          }
-          else if (state === "cancelled") {
+          } else if (state === "cancelled") {
             this.debug(file.getFilename() + " (Cancelled)");
           }
           // Remove the listeners
@@ -151,12 +150,12 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
      */
     forceUpload: function (file) {
       this.setForce(true);
-      var newFile =  new com.zenesis.qx.upload.File(file.getBrowserObject(), file.getFilename(), file.getId());
+      var newFile = new com.zenesis.qx.upload.File(file.getBrowserObject(), file.getFilename(), file.getId());
       newFile.set({
         size: file.getSize(),
         uploadWidget: file.getUploadWidget()
       });
-      newFile.setParam('force', true);
+      newFile.setParam("force", true);
       this.getUploadHandler()._addFile(newFile);
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();
@@ -175,7 +174,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
       file.setSize(fileSize);
       if (this.isForce()) {
-        file.setParam('force', true);
+        file.setParam("force", true);
       }
       file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
 
@@ -195,8 +194,8 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       var id = "upload-" + this._getUniqueFileId();
       var filename = replacedFile.getName();
       var file = new com.zenesis.qx.upload.File(bomFile, filename, id);
-      file.setParam('force', true);
-      file.setParam('filename', filename);
+      file.setParam("force", true);
+      file.setParam("filename", filename);
       var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
       file.setSize(fileSize);
       file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());

@@ -65,11 +65,10 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
           return;
         }
 
-        if (text.substring(0,1) === "!") {
+        if (text.substring(0, 1) === "!") {
           // override repeatTimeout, force saying this
           text = text.substring(1);
-        }
-        else if (config.repeatTimeout >= 0) {
+        } else if (config.repeatTimeout >= 0) {
           // do not repeat (within timeout when this.repeatTimeout > 0)
           if (this.__lastSpeech[message.topic] && this.__lastSpeech[message.topic].text === text && (config.repeatTimeout === 0 ||
               config.repeatTimeout >= Math.round((Date.now()-this.__lastSpeech[message.topic].time)/1000))) {
@@ -91,7 +90,6 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
     },
 
     say: /* istanbul ignore next [no need to text the browsers TTS capability] */ function(text, language) {
-
       if (!window.speechSynthesis) {
         this.warn(this, "this browser does not support the Web Speech API");
         return;
@@ -105,16 +103,16 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       // speak
       var utterThis = new SpeechSynthesisUtterance(text);
 
-      var selectedVoice, defaultVoice;
+      var selectedVoice; var defaultVoice;
       var voices = synth.getVoices();
       if (voices.length === 0) {
         synth.onvoiceschanged = function () {
           this.say(text, language);
         }.bind(this);
         return;
-      } else {
+      } 
         synth.onvoiceschanged = null;
-      }
+      
       for (var i = 0, l = voices.length; i < l; i++) {
         if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
           selectedVoice = voices[i];

@@ -25,7 +25,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define('cv.data.Model', {
+qx.Class.define("cv.data.Model", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -97,7 +97,9 @@ qx.Class.define('cv.data.Model', {
      * @param data {Map} Key/value map of address/state
      */
     update: function(data) {
-      if (!data) { return; }
+      if (!data) {
+ return; 
+}
       var addressList = this.__addressList;
       Object.getOwnPropertyNames(data).forEach(function(address) {
         if (addressList.hasOwnProperty(address)) {
@@ -164,8 +166,7 @@ qx.Class.define('cv.data.Model', {
       var list = this.__addressList;
       if (address in list) {
         list[address].push(id);
-      }
-      else {
+      } else {
         list[address] = [id];
       }
     },
@@ -219,11 +220,11 @@ qx.Class.define('cv.data.Model', {
      */
     getWidgetDataByElement: function (element) {
       var
-        parent = element.parentNode,
-        path = parent.getAttribute('id');
+        parent = element.parentNode;
+        var path = parent.getAttribute("id");
 
       if (path === undefined) {
-        path = parent.parentNode.getAttribute('id');
+        path = parent.parentNode.getAttribute("id");
       }
       return this.getWidgetData(path);
     },

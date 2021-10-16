@@ -43,11 +43,9 @@ qx.Mixin.define("cv.ui.common.Operate", {
       }
       if (this._action) {
         this._action(event);
-      } else {
-        if (this.getActionValue) {
+      } else if (this.getActionValue) {
           this.sendToBackend(this.getActionValue(event));
         }
-      }
       if (event && event.getBubbles()) {
         event.stopPropagation();
       }
@@ -87,9 +85,9 @@ qx.Mixin.define("cv.ui.common.Operate", {
             var address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               var
-                encoding = address.transform,
-                encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
-              if( !currentBusValues || encodedValue.raw !== currentBusValues[encoding] ) {
+                encoding = address.transform;
+                var encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
+              if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
                 cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
               }
               encodedValues[encoding] = encodedValue.raw;

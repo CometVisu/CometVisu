@@ -31,7 +31,7 @@
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.woff)
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)
  */
-qx.Class.define('cv.plugins.OpenweatherMap', {
+qx.Class.define("cv.plugins.OpenweatherMap", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Refresh,
 
@@ -41,7 +41,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   ******************************************************
   */
   construct: function(props) {
-    props.refresh = props.refresh * 60;
+    props.refresh *= 60;
     this.base(arguments, props);
     this.__options = {};
     Object.keys(props).forEach(function (key) {
@@ -83,20 +83,20 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': { target: 'cssClass' },
-        'lang':   { },
-        'owID':  { },
-        'q':   { },
-        'lat':   { },
-        'lon':   { },
-        'units':   { },
-        'type':   { },
-        'forecast24hItems':   { },
-        'forecastDailyItems':   { },
-        'detailItems':   { },
-        'showSunrise': { },
-        'appid':   { },
-        'description':   { }
+        "class": { target: "cssClass" },
+        "lang":   { },
+        "owID":  { },
+        "q":   { },
+        "lat":   { },
+        "lon":   { },
+        "units":   { },
+        "type":   { },
+        "forecast24hItems":   { },
+        "forecastDailyItems":   { },
+        "detailItems":   { },
+        "showSunrise": { },
+        "appid":   { },
+        "description":   { }
       };
     }
   },
@@ -173,17 +173,17 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   members: {
     __options: null,
 
-    _getInnerDomString: function(){
+    _getInnerDomString: function() {
       var classes = "widget clearfix text openweathermap";
       if (this.getCssClass()) {
         classes+=" "+this.getCssClass();
       }
-      return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
+      return "<div class=\""+classes+"\"><div id=\"owm_" + this.getPath() + "\" class=\"openweathermap_value\"></div></div>";
     },
 
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener('interval', this._refreshAction, this);
+      this._timer.addListener("interval", this._refreshAction, this);
       this._timer.start();
       // call once immediately
       this._refreshAction();
@@ -197,9 +197,9 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/openweathermap/owm_basic_style.css');
-    loader.addStyles('plugins/openweathermap/owm_weathericon.css');
-    loader.addScripts('plugins/openweathermap/owm_core.js');
+    loader.addStyles("plugins/openweathermap/owm_basic_style.css");
+    loader.addStyles("plugins/openweathermap/owm_weathericon.css");
+    loader.addScripts("plugins/openweathermap/owm_core.js");
     // register the parser
     cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);

@@ -29,7 +29,7 @@
  * @asset(plugins/gauge/dep/steelseries.js)
  * @asset(plugins/gauge/dep/tween.js)
 */ 
-qx.Class.define('cv.plugins.Gauge', {
+qx.Class.define("cv.plugins.Gauge", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate ],
 
@@ -99,52 +99,52 @@ qx.Class.define('cv.plugins.Gauge', {
 
     getAttributeToPropertyMappings: function() {
       return {
-        'target': {target: 'pagejumpTarget'},
-        'type': { target: "gType", "default": "Radial" },
-        'subtype': { },
-        'titleString': { },
-        'unitString': { },
-        'unitStringVisible': {
+        "target": {target: "pagejumpTarget"},
+        "type": { target: "gType", "default": "Radial" },
+        "subtype": { },
+        "titleString": { },
+        "unitString": { },
+        "unitStringVisible": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'size': { "default": 150, transform: parseFloat },
-        'width': { "default": 320, transform: parseFloat },
-        'height': { "default": 140, transform: parseFloat },
-        'minValue': { "default": 0, transform: parseFloat },
-        'maxValue': { "default": 100, transform: parseFloat },
-        'framedesign': { target: 'frameDesign' },
-        'background': { target: 'backgroundColor' },
-        'lcdVisible': {
+        "size": { "default": 150, transform: parseFloat },
+        "width": { "default": 320, transform: parseFloat },
+        "height": { "default": 140, transform: parseFloat },
+        "minValue": { "default": 0, transform: parseFloat },
+        "maxValue": { "default": 100, transform: parseFloat },
+        "framedesign": { target: "frameDesign" },
+        "background": { target: "backgroundColor" },
+        "lcdVisible": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'lcdDecimals': { "default": 0, transform: parseInt },
-        'ledVisible': {
+        "lcdDecimals": { "default": 0, transform: parseInt },
+        "ledVisible": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'valueColor': { },
-        'trendVisible': {
+        "valueColor": { },
+        "trendVisible": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'thresholdRising': {
+        "thresholdRising": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'threshold': { "default": 0, transform: parseFloat },
-        'autoScroll': {
+        "threshold": { "default": 0, transform: parseFloat },
+        "autoScroll": {
           transform: function(value) {
             return value === "true";
           }
         },
-        'valuesNumeric': {
+        "valuesNumeric": {
           transform: function(value) {
             return value === "true";
           }
@@ -152,7 +152,7 @@ qx.Class.define('cv.plugins.Gauge', {
       };
     },
 
-    makeAddressListFn: function( src, transform, mode, variant ) {
+    makeAddressListFn: function(src, transform, mode, variant) {
       return [ true, variant ];
     }
   },
@@ -167,7 +167,7 @@ qx.Class.define('cv.plugins.Gauge', {
     __updateQueue: null,
 
     _getInnerDomString: function() {
-      return '<div class="actor' + (this.getPagejumpTarget() ? 'clickable' : '') + '"><canvas id="gauge_' + this.getPath() + '"></canvas></div>';
+      return "<div class=\"actor" + (this.getPagejumpTarget() ? "clickable" : "") + "\"><canvas id=\"gauge_" + this.getPath() + "\"></canvas></div>";
     },
 
     // overridden
@@ -183,14 +183,14 @@ qx.Class.define('cv.plugins.Gauge', {
         lcdColor: steelseries.LcdColor.STANDARD,
         ledColor: steelseries.LedColor.RED_LED
       };
-      var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional );
+      var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
       this.__gaugeElement = new steelseries[this.getGType()]("gauge_"+this.getPath(), params);
       this.base(arguments);
     },
 
     // overridden
     getValueElement: function() {
-      return this.getDomElement().querySelector('#gauge_' + this.getPath());
+      return this.getDomElement().querySelector("#gauge_" + this.getPath());
     },
 
     // property apply
@@ -213,49 +213,49 @@ qx.Class.define('cv.plugins.Gauge', {
      * @param value {var} Processed incoming value
      * @param address {String} source address of the value
      */
-    handleUpdate: function( value, address) {
-      if (!address || value === undefined) { return; }
+    handleUpdate: function(value, address) {
+      if (!address || value === undefined) {
+ return; 
+}
 
       var variant = this.getAddress()[address].variantInfo;
       var gaugeElement = this.__gaugeElement;
       if (gaugeElement) {
         switch (variant) {
-          case 'average':
+          case "average":
             if (gaugeElement.setValueAnimatedAverage) {
               gaugeElement.setValueAnimatedAverage(value);
             }
             break;
-          case 'setValue':
+          case "setValue":
             if (gaugeElement.setValue) {
               gaugeElement.setValue(value);
             }
             break;
-          case 'trend':
+          case "trend":
             if (gaugeElement.setTrend) {
               var trend;
               if (value > 0) {
                 trend = steelseries.TrendState.UP;
-              }
-              else if (value < 0) {
+              } else if (value < 0) {
                 trend = steelseries.TrendState.DOWN;
-              }
-              else {
+              } else {
                 trend = steelseries.TrendState.STEADY;
               }
               gaugeElement.setTrend(trend);
             }
             break;
-          case 'threshold':
+          case "threshold":
             if (gaugeElement.setThreshold) {
               gaugeElement.setThreshold(value);
             }
             break;
-          case 'min':
+          case "min":
             if (gaugeElement.setMinValue) {
               gaugeElement.setMinValue(value);
             }
             break;
-          case 'max':
+          case "max":
             if (gaugeElement.setMaxValue) {
               gaugeElement.setMaxValue(value);
             }
@@ -274,17 +274,17 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _action: function() {
       if (this.getPagejumpTarget()) {
-        cv.TemplateEngine.getInstance().scrollToPage( this.getPagejumpTarget() );
+        cv.TemplateEngine.getInstance().scrollToPage(this.getPagejumpTarget());
       }
     }
   },
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/gauge/gauge.css');
+    loader.addStyles("plugins/gauge/gauge.css");
     loader.addScripts([
-      'plugins/gauge/dep/tween.js',
-      'plugins/gauge/dep/steelseries.js'
+      "plugins/gauge/dep/tween.js",
+      "plugins/gauge/dep/steelseries.js"
     ]);
     cv.parser.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass("gauge", statics);

@@ -34,8 +34,7 @@ qx.Mixin.define("cv.ui.common.Update", {
     if (this.getAddress) {
       if (this._initOnCreate === true) {
         this.__initUpdater();
-      }
-      else if (qx.Class.getEventType(this.constructor, "domReady")) {
+      } else if (qx.Class.getEventType(this.constructor, "domReady")) {
         this.addListenerOnce("domReady", this.__initUpdater, this);
       }
     }
@@ -52,7 +51,6 @@ qx.Mixin.define("cv.ui.common.Update", {
     __initUpdater : function() {
       var model = cv.data.Model.getInstance();
       Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
-
         if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
           // no read address
           return;
@@ -77,7 +75,9 @@ qx.Mixin.define("cv.ui.common.Update", {
         this._update(address, data);
       } else {
         var value = this.processIncomingValue(address, data);
-        if (this.handleUpdate) { this.handleUpdate(value, address); }
+        if (this.handleUpdate) {
+ this.handleUpdate(value, address); 
+}
       }
     },
 
@@ -102,12 +102,14 @@ qx.Mixin.define("cv.ui.common.Update", {
     update3d: function (ev, data) {
       var l = ev.data.layout;
       var pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
-      ev.data.element.css('left', pos.x + 'px');
-      ev.data.element.css('top', pos.y + 'px');
+      ev.data.element.css("left", pos.x + "px");
+      ev.data.element.css("top", pos.y + "px");
 
       var floorFilter = true;
-      if (l.floorFilter) { floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter]; }
-      ev.data.element.css('display', floorFilter ? '' : 'none');
+      if (l.floorFilter) {
+ floorFilter = data.getState("showFloor") === data.buildingProperties.floorNames[l.floorFilter]; 
+}
+      ev.data.element.css("display", floorFilter ? "" : "none");
     }
   }
 });

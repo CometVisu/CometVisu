@@ -29,7 +29,7 @@
  * @asset(plugins/colorchooser/farbtastic/mask.png)
  * @asset(plugins/colorchooser/farbtastic/marker.png)
  */
-qx.Class.define('cv.plugins.ColorChooser', {
+qx.Class.define("cv.plugins.ColorChooser", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
 
@@ -55,7 +55,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
       return data;
     },
 
-    makeAddressListFn: function( src, transform, mode, variant ) {
+    makeAddressListFn: function(src, transform, mode, variant) {
       return [ true, variant ];
     }
   },
@@ -107,13 +107,13 @@ qx.Class.define('cv.plugins.ColorChooser', {
 
     _onDomReady: function() {
       this.base(arguments);
-      var $actor = $( '#' + this.getPath() + ' .actor' );
-      $actor.farbtastic( function(color){
+      var $actor = $("#" + this.getPath() + " .actor");
+      $actor.farbtastic(function(color) {
         this.setValueR(parseInt(color.substring(1, 3), 16) * 100 / 255.0);
         this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
         this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-        if( this.getRateLimiter() === false && this.__skipSending === false) {// already requests going?
+        if (this.getRateLimiter() === false && this.__skipSending === false) { // already requests going?
           this._rateLimitedSend($actor);
         }
       }.bind(this));
@@ -122,59 +122,54 @@ qx.Class.define('cv.plugins.ColorChooser', {
     _rateLimitedSend: function() {
       var modified = false;
       var address = this.getAddress();
-      var r  = this.getValueR();
-      var g  = this.getValueG();
-      var b  = this.getValueB();
+      var r = this.getValueR();
+      var g = this.getValueG();
+      var b = this.getValueB();
       var br = this.getBusR();
       var bg = this.getBusG();
       var bb = this.getBusB();
       var v;
       var templateEngine = cv.TemplateEngine.getInstance();
-      for( var addr in address )
-      {
-        if( !cv.data.Model.isWriteAddress(address[addr]) ) { continue; } // skip when write flag not set
-        switch( address[addr].variantInfo )
-        {
-          case 'r':
-            v = cv.Transform.encode(address[addr].transform, r );
-            if( v !== cv.Transform.encode(address[addr].transform, br ) )
-            {
-              templateEngine.visu.write( addr, v );
+      for (var addr in address) {
+        if (!cv.data.Model.isWriteAddress(address[addr])) {
+ continue; 
+} // skip when write flag not set
+        switch (address[addr].variantInfo) {
+          case "r":
+            v = cv.Transform.encode(address[addr].transform, r);
+            if (v !== cv.Transform.encode(address[addr].transform, br)) {
+              templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case 'g':
-            v = cv.Transform.encode(address[addr].transform, g );
-            if( v !== cv.Transform.encode(address[addr].transform, bg ) )
-            {
-              templateEngine.visu.write( addr, v );
+          case "g":
+            v = cv.Transform.encode(address[addr].transform, g);
+            if (v !== cv.Transform.encode(address[addr].transform, bg)) {
+              templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case 'b':
-            v = cv.Transform.encode(address[addr].transform, b );
-            if( v !== cv.Transform.encode(address[addr].transform, bb ) )
-            {
-              templateEngine.visu.write( addr, v );
+          case "b":
+            v = cv.Transform.encode(address[addr].transform, b);
+            if (v !== cv.Transform.encode(address[addr].transform, bb)) {
+              templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case 'rgb':
-            var rgb = new Map([['r',r],['g',g],['b',b]]);
-            var brgb = new Map([['r',br],['g',bg],['b',bb]]);
-            v = cv.Transform.encode(address[addr].transform, rgb );
-            var bv = cv.Transform.encode(address[addr].transform, brgb );
-            if( v !== bv )
-            {
-              templateEngine.visu.write( addr, v );
+          case "rgb":
+            var rgb = new Map([["r", r], ["g", g], ["b", b]]);
+            var brgb = new Map([["r", br], ["g", bg], ["b", bb]]);
+            v = cv.Transform.encode(address[addr].transform, rgb);
+            var bv = cv.Transform.encode(address[addr].transform, brgb);
+            if (v !== bv) {
+              templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
         }
       }
 
-      if( modified )
-      {
+      if (modified) {
         this.setBusR(this.getValueR());
         this.setBusG(this.getValueG());
         this.setBusB(this.getValueB());
@@ -186,47 +181,53 @@ qx.Class.define('cv.plugins.ColorChooser', {
     },
 
     _getInnerDomString: function() {
-      return '<div class="actor"></div>';
+      return "<div class=\"actor\"></div>";
     },
 
-    _update: function( ga, data ) {
-      if (ga === undefined) { return; }
-      function toHex( x ) { var r = parseInt( x ).toString(16); return r.length === 1 ? '0'+r : r; }
+    _update: function(ga, data) {
+      if (ga === undefined) {
+ return; 
+}
+      /**
+       * @param x
+       */
+      function toHex(x) {
+ var r = parseInt(x).toString(16); return r.length === 1 ? "0"+r : r; 
+}
       var
-        value      = cv.Transform.decode( this.getAddress()[ ga ].transform, data ),
-        farbtastic = jQuery.farbtastic( this.getActor() ),
-        color      = farbtastic.color || '#000000';
+        value = cv.Transform.decode(this.getAddress()[ga].transform, data);
+        var farbtastic = jQuery.farbtastic(this.getActor());
+        var color = farbtastic.color || "#000000";
 
-      switch( this.getAddress()[ ga ].variantInfo )
-      {
-        case 'r':
+      switch (this.getAddress()[ga].variantInfo) {
+        case "r":
           this.setBusR(value);
-          color = color.substring(0,1) +
-            toHex( value*255/100 )+
+          color = color.substring(0, 1) +
+            toHex(value*255/100)+
             color.substring(3);
           break;
 
-        case 'g':
+        case "g":
           this.setBusG(value);
-          color = color.substring(0,3) +
-            toHex( value*255/100 )+
+          color = color.substring(0, 3) +
+            toHex(value*255/100)+
             color.substring(5);
           break;
 
-        case 'b':
+        case "b":
           this.setBusB(value);
-          color = color.substring(0,5) +
-            toHex( value*255/100 )+
+          color = color.substring(0, 5) +
+            toHex(value*255/100)+
             color.substring(7);
           break;
-        case 'rgb':
-          this.setBusR(value.get('r'));
-          this.setBusG(value.get('g'));
-          this.setBusB(value.get('b'));
-          color = color.substring(0,1) +
-            toHex( value.get('r')*255/100 )+
-            toHex( value.get('g')*255/100 )+
-            toHex( value.get('b')*255/100 )+
+        case "rgb":
+          this.setBusR(value.get("r"));
+          this.setBusG(value.get("g"));
+          this.setBusB(value.get("b"));
+          color = color.substring(0, 1) +
+            toHex(value.get("r")*255/100)+
+            toHex(value.get("g")*255/100)+
+            toHex(value.get("b")*255/100)+
             color.substring(7);
           break;
       }
@@ -236,15 +237,15 @@ qx.Class.define('cv.plugins.ColorChooser', {
         this.__timer = null;
         this.setRateLimiter(false);
       }
-      farbtastic.setColor( color );
+      farbtastic.setColor(color);
       this.__skipSending = false;
     }
   },
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
-    loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.js');
+    loader.addStyles("plugins/colorchooser/farbtastic/farbtastic.css");
+    loader.addScripts("plugins/colorchooser/farbtastic/farbtastic.js");
     // register the parser
     cv.parser.WidgetParser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);

@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.UrlTrigger', {
+qx.Class.define("cv.parser.widgets.UrlTrigger", {
   type: "static",
 
   /*
@@ -48,14 +48,14 @@ qx.Class.define('cv.parser.widgets.UrlTrigger', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'value' : { target: 'sendValue', "default": "0" },
-        'params'  : { "default": '' },
-        'url': { }
+        "value" : { target: "sendValue", "default": "0" },
+        "params"  : { "default": "" },
+        "url": { }
       };
     },
     getDefaultClasses: function(type) {
       // additional trigger class
-      return 'widget clearfix trigger '+type.toLowerCase();
+      return "widget clearfix trigger "+type.toLowerCase();
     }
   },
 

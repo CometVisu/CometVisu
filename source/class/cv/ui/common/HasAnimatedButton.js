@@ -86,15 +86,15 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       if (pressed) {
         buttons.forEach(function(button) {
           if (button) {
-            button.classList.add('switchPressed');
-            button.classList.remove('switchUnpressed');
+            button.classList.add("switchPressed");
+            button.classList.remove("switchUnpressed");
           }
         });
       } else {
         buttons.forEach(function(button) {
           if (button) {
-            button.classList.add('switchUnpressed');
-            button.classList.remove('switchPressed');
+            button.classList.add("switchUnpressed");
+            button.classList.remove("switchPressed");
           }
         });
       }

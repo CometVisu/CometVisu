@@ -1,9 +1,9 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.editor.Worker', {
+qx.Class.define("cv.ui.manager.editor.Worker", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
 
   /*
   ***********************************************
@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
     this._files = {};
     // create WebWorker
     this._worker = cv.data.FileWorker.getInstance();
-    this._worker.addListener('message', this._onMessage, this);
+    this._worker.addListener("message", this._onMessage, this);
   },
 
   /*
@@ -25,7 +25,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
   */
   properties: {
     editor: {
-      check: 'cv.ui.manager.editor.AbstractEditor',
+      check: "cv.ui.manager.editor.AbstractEditor",
       nullable: true
     }
   },
@@ -65,9 +65,8 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
     validateConfig: function (file) {
       if (file.isConfigFile()) {
         return this._worker.validateConfig(file.getServerPath());
-      } else {
-        qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
-      }
+      } 
+        qx.log.Logger.error(this, file.getFullPath() + " is no configuration file");
     },
 
     validateXmlConfig: function (content) {
@@ -79,12 +78,12 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       let data = e.getData().data;
       let path = e.getData().path;
       let file = this._files[path];
-      if (!file && topic !== 'validationResult') {
-        qx.log.Logger.error(this, 'no file found for path ' + path + ' ignoring worker message for topic ' + topic);
+      if (!file && topic !== "validationResult") {
+        qx.log.Logger.error(this, "no file found for path " + path + " ignoring worker message for topic " + topic);
         return;
       }
       let editor = this.getEditor();
-      switch(topic) {
+      switch (topic) {
         case "modified":
           // new files are always modified, to not override that state
           if (!file.isTemporary()) {

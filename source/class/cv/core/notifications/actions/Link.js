@@ -71,10 +71,10 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   members: {
 
     _transformAction: function(value) {
-      if (typeof value === 'function') {
+      if (typeof value === "function") {
         return value;
       }
-      switch(value) {
+      switch (value) {
         case "reload":
         case "restart":
           return cv.util.Location.reload;
@@ -99,11 +99,11 @@ qx.Class.define("cv.core.notifications.actions.Link", {
           var req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
-          cv.util.Location.open(this.getUrl(), '_blank');
+          cv.util.Location.open(this.getUrl(), "_blank");
         }
       }
       if (this.isDeleteMessageAfterExecution) {
-        this.fireEvent('close');
+        this.fireEvent("close");
       }
     },
 

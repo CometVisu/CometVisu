@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.model.CompareFiles', {
+qx.Class.define("cv.ui.manager.model.CompareFiles", {
   extend: qx.core.Object,
 
   /*
@@ -22,35 +22,35 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
   */
   properties: {
     originalFile: {
-      check: 'cv.ui.manager.model.FileItem',
-      event: 'changeOriginal'
+      check: "cv.ui.manager.model.FileItem",
+      event: "changeOriginal"
     },
     modifiedFile: {
-      check: 'cv.ui.manager.model.FileItem',
-      event: 'changeModifiedFile',
-      apply: '_applyModifiedFile'
+      check: "cv.ui.manager.model.FileItem",
+      event: "changeModifiedFile",
+      apply: "_applyModifiedFile"
     },
 
     permanent: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true
     },
 
     name: {
-      check: 'String',
-      init: '',
-      event: 'changeName'
+      check: "String",
+      init: "",
+      event: "changeName"
     },
 
     type: {
-      check: 'String',
-      init: 'file'
+      check: "String",
+      init: "file"
     },
 
     modified: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeModified'
+      event: "changeModified"
     }
   },
 
@@ -73,7 +73,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
     },
 
     _applyModifiedFile: function () {
-      this.setName(qx.locale.Manager.tr('Diff: %1', this.getModifiedFile().getName()));
+      this.setName(qx.locale.Manager.tr("Diff: %1", this.getModifiedFile().getName()));
     },
 
     getParent: function () {
@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
      * @returns {Uri}
      */
     getUri: function () {
-      return 'cv://' + this.getOriginalFile().getFullPath() + '+' + this.getModifiedFile().getFullPath();
+      return "cv://" + this.getOriginalFile().getFullPath() + "+" + this.getModifiedFile().getFullPath();
     }
   }
 });

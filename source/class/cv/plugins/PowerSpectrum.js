@@ -29,7 +29,7 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.resize.min.js)
  * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
-qx.Class.define('cv.plugins.PowerSpectrum', {
+qx.Class.define("cv.plugins.PowerSpectrum", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
 
@@ -77,13 +77,11 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     referenceSin: [[], [], []],
 
     // fix limits for better displaying
-    fixLimits: function( entry, index, array )
-    {
+    fixLimits: function(entry, index, array) {
       array[index][0] -= 0.5;
     },
-    lastShifted: function( array )
-    {
-      var last = array[ array.length-1 ];
+    lastShifted: function(array) {
+      var last = array[array.length-1];
       return [ last[0]+1, last[1] ];
     },
 
@@ -106,56 +104,56 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
 
     getAttributeToPropertyMappings: function() {
       return {
-        'type': {
-          target: 'displayType',
+        "type": {
+          target: "displayType",
           transform: function(value) {
-            return value === 'current' ? cv.plugins.PowerSpectrum.CURRENT : cv.plugins.PowerSpectrum.VOLTAGE;
+            return value === "current" ? cv.plugins.PowerSpectrum.CURRENT : cv.plugins.PowerSpectrum.VOLTAGE;
           }
         },
-        'singlephase': {
-          target: 'singlePhase',
+        "singlephase": {
+          target: "singlePhase",
           transform: function(value) {
             return value === "true";
           }
         },
-        'limitname': {
-          target: 'limitName',
+        "limitname": {
+          target: "limitName",
           "default": "limit"
         },
-        'name1': { },
-        'name2': { },
-        'name3': { },
-        'spectrumonly': {
-          target: 'showCurve',
+        "name1": { },
+        "name2": { },
+        "name3": { },
+        "spectrumonly": {
+          target: "showCurve",
           transform: function(value) {
-            return value !== 'true';
+            return value !== "true";
           }
         },
-        'showlegend': {
-          target: 'showLegend',
+        "showlegend": {
+          target: "showLegend",
           transform: function(value) {
             return value === "true";
           }
         },
-        'limitcolor': {
+        "limitcolor": {
           target: "limitColor",
           "default": "#edc240" // default directly from flot code
         },
-        'color1': {
+        "color1": {
           "default": "#afd8f8"
         },
-        'color2': {
+        "color2": {
           "default": "#cb4b4b"
         },
-        'color3': {
+        "color3": {
           "default": "#4da74d"
         }
       };
     },
 
     makeAddressListFn: function(src, transform, mode, variant) {
-      if( !variant ) {
-        variant = 'spectrum'; // the default
+      if (!variant) {
+        variant = "spectrum"; // the default
       }
       return [true, variant];
     }
@@ -240,11 +238,11 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     
     _getInnerDomString: function() {
       // create the actor
-      var actor = '<div class="actor clickable">';
-      if( this.isShowCurve() ) {
-        actor += '<div class="diagram_inline curve">loading...</div>';
+      var actor = "<div class=\"actor clickable\">";
+      if (this.isShowCurve()) {
+        actor += "<div class=\"diagram_inline curve\">loading...</div>";
       }
-      actor += '<div class="diagram_inline spectrum">loading...</div></div>';
+      actor += "<div class=\"diagram_inline spectrum\">loading...</div></div>";
       return actor;
     },
     
@@ -253,8 +251,8 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       var colors = [ this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3() ];
         
       var
-        diagramCurve = this.isShowCurve() && $( '#' + this.getPath() + ' .actor div.curve' ).empty(),
-        optionsCurve = this.isShowCurve() && {
+        diagramCurve = this.isShowCurve() && $("#" + this.getPath() + " .actor div.curve").empty();
+        var optionsCurve = this.isShowCurve() && {
             colors: colors,
             legend: {
               show: this.isShowLegend()
@@ -265,9 +263,9 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
             yaxis: {
               show: false
             }
-          },
-        diagramSpectrum = $( '#' + this.getPath() + ' .actor div.spectrum' ).empty(),
-        optionsSpectrum = {
+          };
+        var diagramSpectrum = $("#" + this.getPath() + " .actor div.spectrum").empty();
+        var optionsSpectrum = {
           colors: colors,
           series: {
             bars: {
@@ -299,29 +297,30 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
 
       // check if sizes are set yet, otherwise wait some time
       if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
-        cv.ui.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
+        cv.ui.layout.ResizeHandler.states.addListenerOnce("changePageSizeInvalid", init);
       } else {
         init();
       }
     },
 
-    _update: function( ga, data ) {
-      if (ga === undefined) { return; }
-      var addressInfo = this.getAddress()[ ga ];
+    _update: function(ga, data) {
+      if (ga === undefined) {
+ return; 
+}
+      var addressInfo = this.getAddress()[ga];
 
       var phase;
-      if( addressInfo.variantInfo[0] === 'I' )
-      {
+      if (addressInfo.variantInfo[0] === "I") {
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
-        var value = cv.Transform.encode( addressInfo.transform, data );
+        var value = cv.Transform.encode(addressInfo.transform, data);
         this.getCurrent()[phase-1] = value / 1000; // transform mA to A
-      } else if (addressInfo.variantInfo.substr(0,8) === 'spectrum' && data.length === 28 ) // sanity check for 14 bytes
+      } else if (addressInfo.variantInfo.substr(0, 8) === "spectrum" && data.length === 28) // sanity check for 14 bytes
       {
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);
         var
-          index = parseInt(data.substr(0, 2), 16),
-          factor = this.getCurrent()[phase - 1] || 1,
-          values = [];
+          index = parseInt(data.substr(0, 2), 16);
+          var factor = this.getCurrent()[phase - 1] || 1;
+          var values = [];
 
         for (var i = 0; i < 13; i++) {
           if (index + i < 2) {
@@ -344,23 +343,21 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     /**
      * Setup helper
      */
-    setupCurve: function()
-    {
-      return [[0,0],[0.4,0],[0.8,0],[1.2,0],[1.6,0],[2,0],[2.4,0],[2.8,0],[3.2,0],
-        [3.6,0],[4,0],[4.4,0],[4.8,0],[5.2,0],[5.6,0],[6,0],[6.4,0],[6.8,0],[7.2,0],
-        [7.6,0],[8,0],[8.4,0],[8.8,0],[9.2,0],[9.6,0],[10,0],[10.4,0],[10.8,0],
-        [11.2,0],[11.6,0],[12,0],[12.4,0],[12.8,0],[13.2,0],[13.6,0],[14,0],
-        [14.4,0],[14.8,0],[15.2,0],[15.6,0],[16,0],[16.4,0],[16.8,0],[17.2,0],
-        [17.6,0],[18,0],[18.4,0],[18.8,0],[19.2,0],[19.6,0]];
+    setupCurve: function() {
+      return [[0, 0], [0.4, 0], [0.8, 0], [1.2, 0], [1.6, 0], [2, 0], [2.4, 0], [2.8, 0], [3.2, 0],
+        [3.6, 0], [4, 0], [4.4, 0], [4.8, 0], [5.2, 0], [5.6, 0], [6, 0], [6.4, 0], [6.8, 0], [7.2, 0],
+        [7.6, 0], [8, 0], [8.4, 0], [8.8, 0], [9.2, 0], [9.6, 0], [10, 0], [10.4, 0], [10.8, 0],
+        [11.2, 0], [11.6, 0], [12, 0], [12.4, 0], [12.8, 0], [13.2, 0], [13.6, 0], [14, 0],
+        [14.4, 0], [14.8, 0], [15.2, 0], [15.6, 0], [16, 0], [16.4, 0], [16.8, 0], [17.2, 0],
+        [17.6, 0], [18, 0], [18.4, 0], [18.8, 0], [19.2, 0], [19.6, 0]];
     },
-    setupSpectrum: function( offset )
-    {
+    setupSpectrum: function(offset) {
       var ret_val = [];
 
-      if( undefined === offset ) {
+      if (undefined === offset) {
         offset = 0;
       }
-      for( var i = 2; i < 52; i++ ) {
+      for (var i = 2; i < 52; i++) {
         ret_val.push([i + offset, 0]);
       }
       return ret_val;
@@ -368,24 +365,24 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
 
     /**
      * Convert a spectrum to a curve
+     * @param input
+     * @param target
+     * @param phase
      */
-    updateCurve: function( input, target, phase )
-    {
+    updateCurve: function(input, target, phase) {
       var
-        inp = input[phase],
-        out = target[phase],
-        shift = (phase * 2 / 3 - 0.5) * Math.PI;
+        inp = input[phase];
+        var out = target[phase];
+        var shift = (phase * 2 / 3 - 0.5) * Math.PI;
 
-      for( var i = 0; i < 50; i++ )
-      {
+      for (var i = 0; i < 50; i++) {
         var
-          phi  = i * Math.PI / 25,
-          value = Math.cos( phi + shift ); // the base with 50 Hz
+          phi = i * Math.PI / 25;
+          var value = Math.cos(phi + shift); // the base with 50 Hz
 
         // the harmonics
-        for( var j = 2; j < 50; j++ )
-        {
-          value += Math.cos( (phi+shift) * j ) * inp[j][1];
+        for (var j = 2; j < 50; j++) {
+          value += Math.cos((phi+shift) * j) * inp[j][1];
         }
 
         out[i][1] = value;
@@ -395,20 +392,19 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     /**
      * Little helper to setup the Flot dataset structure.
      */
-    createDatasetCurve: function()
-    {
+    createDatasetCurve: function() {
       return this.isSinglePhase() ?
         [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 }, // trick flot to automatically make color darker
-          { label: 'L', data: this.getCurve()[0], color:1 }
+          { label: "L", data: this.getCurve()[0], color:1 }
         ] :
         [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 },
           { label: null, data: this.self(arguments).referenceSin[1], color:14 },
           { label: null, data: this.self(arguments).referenceSin[2], color:15 },
-          { label: 'L1', data: this.getCurve()[0], color:1 },
-          { label: 'L2', data: this.getCurve()[1], color:2 },
-          { label: 'L3', data: this.getCurve()[2], color:3 }
+          { label: "L1", data: this.getCurve()[0], color:1 },
+          { label: "L2", data: this.getCurve()[1], color:2 },
+          { label: "L3", data: this.getCurve()[2], color:3 }
         ];
     },
 
@@ -419,7 +415,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       return this.isSinglePhase() ?
         [
           { label: this.getLimitName(), data: this.getDisplayType()===this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-          { label: this.getName1(), data:this.getSpectrum()[0] , color:1}
+          { label: this.getName1(), data:this.getSpectrum()[0], color:1}
         ] :
         [
           { 
@@ -435,29 +431,28 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts([
-      'plugins/diagram/dep/flot/jquery.flot.min.js',
-      'plugins/diagram/dep/flot/jquery.flot.canvas.min.js',
-      'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
-      'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
+      "plugins/diagram/dep/flot/jquery.flot.min.js",
+      "plugins/diagram/dep/flot/jquery.flot.canvas.min.js",
+      "plugins/diagram/dep/flot/jquery.flot.resize.min.js",
+      "plugins/diagram/dep/flot/jquery.flot.navigate.min.js"
     ]);
     cv.parser.WidgetParser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
     cv.ui.structure.WidgetFactory.registerClass("powerspectrum", statics);
     
     // init
-    statics.limitEN50160_1999.forEach( statics.fixLimits );
-    statics.limitEN50160_1999.push( statics.lastShifted( statics.limitEN50160_1999 ) );
-    statics.limitEN61000_3_2.forEach( statics.fixLimits );
-    statics.limitEN61000_3_2.push( statics.lastShifted( statics.limitEN61000_3_2 ) );
+    statics.limitEN50160_1999.forEach(statics.fixLimits);
+    statics.limitEN50160_1999.push(statics.lastShifted(statics.limitEN50160_1999));
+    statics.limitEN61000_3_2.forEach(statics.fixLimits);
+    statics.limitEN61000_3_2.push(statics.lastShifted(statics.limitEN61000_3_2));
 
     // fill reference
-    for( var phi = 0; phi < 50; phi++ )
-    {
+    for (var phi = 0; phi < 50; phi++) {
       var
         time = phi * 20 / 50; // time in milliseconds
 
-      statics.referenceSin[0].push( [ time, Math.sin( (phi      ) * Math.PI / 25 ) ] );
-      statics.referenceSin[1].push( [ time, Math.sin( (phi+ 50/3) * Math.PI / 25 ) ] );
-      statics.referenceSin[2].push( [ time, Math.sin( (phi+100/3) * Math.PI / 25 ) ] );
+      statics.referenceSin[0].push([ time, Math.sin((phi) * Math.PI / 25) ]);
+      statics.referenceSin[1].push([ time, Math.sin((phi+ 50/3) * Math.PI / 25) ]);
+      statics.referenceSin[2].push([ time, Math.sin((phi+100/3) * Math.PI / 25) ]);
     }
   }
 

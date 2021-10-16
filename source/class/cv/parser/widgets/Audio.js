@@ -21,7 +21,7 @@
 /**
  * Parse &lt;audio;gt; config elements
  */
-  qx.Class.define('cv.parser.widgets.Audio', {
+  qx.Class.define("cv.parser.widgets.Audio", {
     type: "static",
 
     /*

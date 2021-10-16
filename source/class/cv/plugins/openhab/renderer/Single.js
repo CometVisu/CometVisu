@@ -73,8 +73,7 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
     // overridden
     _createChildControlImpl : function(id, hash) {
       var control;
-      switch(id) {
-
+      switch (id) {
         case "content":
           control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
           this._addAt(control, 1);
@@ -101,7 +100,6 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
           control = new qx.ui.container.Composite(hbox);
           this._addAt(control, 3);
           break;
-
       }
       return control || this.base(arguments, id, hash);
     },
@@ -136,8 +134,7 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
           box.add(label, {width: "50%"});
           box.add(item, {width: "50%"});
           container.add(box);
-        }
-        else {
+        } else {
           container.add(label);
           container.add(item);
         }

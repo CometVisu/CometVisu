@@ -1,9 +1,9 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.model.BackupFolder', {
+qx.Class.define("cv.ui.manager.model.BackupFolder", {
   extend: cv.ui.manager.model.FileItem,
-  type: 'singleton',
+  type: "singleton",
 
   /*
   ***********************************************
@@ -11,9 +11,9 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   ***********************************************
   */
   construct: function () {
-    this.base(arguments, 'backup');
+    this.base(arguments, "backup");
     this.load();
-    qx.event.message.Bus.subscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
+    qx.event.message.Bus.subscribe("cv.manager.fs.*", this._onFilesSystemMessage, this);
   },
 
   /*
@@ -26,7 +26,7 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
       if (/^cv\.manager\.fs\.visu_config.*\.xml$/.test(ev.getName())) {
         // Fs event on config file
         var data = ev.getData();
-        if (['contentChanged', 'fsContentChanged'].includes(data.type)) {
+        if (["contentChanged", "fsContentChanged"].includes(data.type)) {
           // config file has been changed or restored, refresh the backups
           this.reload();
         }
@@ -39,25 +39,25 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
      */
     getBackupFiles: function (file) {
       var files = [];
-      if (file.getType() === 'file') {
-        var pathparts = file.getFullPath().split('/');
+      if (file.getType() === "file") {
+        var pathparts = file.getFullPath().split("/");
         pathparts.pop();
-        var path = pathparts.join('\/');
-        var parts = file.getName().split('.');
+        var path = pathparts.join("\/");
+        var parts = file.getName().split(".");
         var suffix = parts.pop();
-        var filename = parts.join('.');
-        var fileRegex = new RegExp(path + filename + '-([\\d]{14})\\.' + suffix);
+        var filename = parts.join(".");
+        var fileRegex = new RegExp(path + filename + "-([\\d]{14})\\." + suffix);
         this.getChildren().filter(function (backupFile) {
-          var match = fileRegex.exec(backupFile.getFullPath().replace('backup/', ''));
+          var match = fileRegex.exec(backupFile.getFullPath().replace("backup/", ""));
           if (match) {
             files.push({
               date: new Date(
-                parseInt(match[1].substring(0,4)),
-                parseInt(match[1].substring(4,6))-1,
-                parseInt(match[1].substring(6,8)),
-                parseInt(match[1].substring(8,10)),
-                parseInt(match[1].substring(10,12)),
-                parseInt(match[1].substring(12,14))
+                parseInt(match[1].substring(0, 4)),
+                parseInt(match[1].substring(4, 6))-1,
+                parseInt(match[1].substring(6, 8)),
+                parseInt(match[1].substring(8, 10)),
+                parseInt(match[1].substring(10, 12)),
+                parseInt(match[1].substring(12, 14))
               ),
               file: backupFile
             });
@@ -74,6 +74,6 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.message.Bus.unsubscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
+    qx.event.message.Bus.unsubscribe("cv.manager.fs.*", this._onFilesSystemMessage, this);
   }
 });

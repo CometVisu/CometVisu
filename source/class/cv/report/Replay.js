@@ -28,7 +28,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define('cv.report.Replay', {
+qx.Class.define("cv.report.Replay", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -114,7 +114,7 @@ qx.Class.define('cv.report.Replay', {
      */
     start: function() {
       var runtime = Math.round((this.__end - this.__start)/1000);
-      console.log("Replay time: "+Math.floor(runtime/60)+":"+ (""+(runtime  % 60)).padStart(2,"0"));
+      console.log("Replay time: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
       this.__startTime = Date.now();
 
       var delay = this.__log[0].t - this.__start;
@@ -133,18 +133,17 @@ qx.Class.define('cv.report.Replay', {
         return window;
       } else if (path === "document") {
         return document;
-      } else if (path.includes(':eq(')) {
+      } else if (path.includes(":eq(")) {
         const re = /:eq\(([\d]+)\)/;
         let match = re.exec(path);
         while (match) {
           const index = parseInt(match[1]) + 1;
-          path = path.replace(match[0], ':nth-child('+index+')');
+          path = path.replace(match[0], ":nth-child("+index+")");
           match = re.exec(path);
         }
         return document.querySelector(path);
-      } else {
+      } 
         return document.querySelector(path);
-      }
     },
 
     __replay: function(index) {
@@ -157,7 +156,7 @@ qx.Class.define('cv.report.Replay', {
           qx.bom.Notification.getInstance().show("Replay", "Replay finished");
           cv.io.Client.stopAll();
           var runtime = Math.round((Date.now() - this.__startTime) / 1000);
-          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ (""+(runtime  % 60)).padStart(2,"0"));
+          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
         }, this, this.__end - this.__log[index].t);
         return;
       }
@@ -169,7 +168,6 @@ qx.Class.define('cv.report.Replay', {
 
     __dispatchRecord: function(record) {
       switch (record.c) {
-
         case cv.report.Record.BACKEND:
           this.__dispatchBackendRecord(record);
           break;
@@ -177,7 +175,7 @@ qx.Class.define('cv.report.Replay', {
         case cv.report.Record.STORAGE:
           const store = qx.bom.Storage.getLocal();
           store.setItem(record.i, record.d);
-          if (record.i === 'preferences' && cv.ui.manager) {
+          if (record.i === "preferences" && cv.ui.manager) {
             cv.ui.manager.model.Preferences.getInstance().setPreferences(record.d, true);
           }
           break;
@@ -245,7 +243,9 @@ qx.Class.define('cv.report.Replay', {
         this.__cursor.innerHTML = "&uarr;";
         document.querySelector("body").appendChild(this.__cursor);
       }
-      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value){this.__cursor.style[key_value[0]]=key_value[1];}, this);
+      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value) {
+ this.__cursor.style[key_value[0]]=key_value[1]; 
+}, this);
 
       if (/.+(down|start)/.test(record.d.native.type)) {
         this.__cursor.style.color = record.d.native.button === 2 ? "blue" : "red";

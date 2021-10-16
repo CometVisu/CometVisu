@@ -24,7 +24,7 @@
  * @author Carsten Tschach (Carsten@Tschach.com)
  * @since 2012
  */
-qx.Class.define('cv.plugins.Timeout', {
+qx.Class.define("cv.plugins.Timeout", {
   extend: cv.ui.structure.AbstractBasicWidget,
 
   /*
@@ -61,9 +61,9 @@ qx.Class.define('cv.plugins.Timeout', {
 
     getAttributeToPropertyMappings: function() {
       return {
-        'target': { "default": "id_" },
-        'time': { "default": 600, transform: parseFloat },
-        'debug': {
+        "target": { "default": "id_" },
+        "time": { "default": 600, transform: parseFloat },
+        "debug": {
           "default": false,
           transform: function(value) {
             return value === "true";

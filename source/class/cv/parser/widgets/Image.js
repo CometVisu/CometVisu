@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Image', {
+qx.Class.define("cv.parser.widgets.Image", {
   type: "static",
 
   /*
@@ -48,11 +48,11 @@ qx.Class.define('cv.parser.widgets.Image', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'width'       :   { "default": "100%" },
-        'height'      :   {},
-        'src'         :   {},
-        'placeholder' :   { "default": "none" },
-        'widthfit'    :   { target: 'widthFit', transform: function(value) {
+        "width"       :   { "default": "100%" },
+        "height"      :   {},
+        "src"         :   {},
+        "placeholder" :   { "default": "none" },
+        "widthfit"    :   { target: "widthFit", transform: function(value) {
           return value === "true";
         }}
       };

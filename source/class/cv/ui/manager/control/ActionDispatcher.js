@@ -2,9 +2,9 @@
  * The ActionDispatcher listens to the events in the 'cv.manager.action' topic and
  * dispatched those events to the currently relevant handler (e.g. the save event to the opened editor).
  */
-qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
+qx.Class.define("cv.ui.manager.control.ActionDispatcher", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
 
   /*
   ***********************************************
@@ -13,7 +13,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   */
   construct: function () {
     this.base(arguments);
-    qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
+    qx.event.message.Bus.subscribe("cv.manager.action.*", this._onAction, this);
   },
 
   /*
@@ -23,13 +23,13 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   */
   properties: {
     focusedWidget: {
-      check: 'cv.ui.manager.IActionHandler',
+      check: "cv.ui.manager.IActionHandler",
       nullable: true,
-      apply: '_applyFocusedWidget'
+      apply: "_applyFocusedWidget"
     },
 
     main: {
-      check: 'cv.ui.manager.Main',
+      check: "cv.ui.manager.Main",
       nullable: true
     }
   },
@@ -73,6 +73,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
 
     /**
      * Check if there is an existing handler for the given actionName.
+     * @param actionName
      * @return {Boolean}
      */
     hasHandler: function (actionName) {
@@ -91,12 +92,12 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
 
     _onAction: function (ev) {
       var topic = ev.getName();
-      var actionName = topic.split('.').pop();
+      var actionName = topic.split(".").pop();
       var handler = this._getHandler(actionName);
       if (handler) {
         handler.handleAction(actionName, ev.getData());
       } else {
-        this.warn('no action handler found for action: ' + actionName);
+        this.warn("no action handler found for action: " + actionName);
       }
     }
   },
@@ -107,6 +108,6 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
+    qx.event.message.Bus.subscribe("cv.manager.action.*", this._onAction, this);
   }
 });

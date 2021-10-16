@@ -25,7 +25,7 @@
  * @since 2016
  */
 /* istanbul ignore next */
-qx.Class.define('cv.io.Mockup', {
+qx.Class.define("cv.io.Mockup", {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -44,7 +44,7 @@ qx.Class.define('cv.io.Mockup', {
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    var testMode = qx.core.Environment.get('cv.testMode');
+    var testMode = qx.core.Environment.get("cv.testMode");
     if (typeof testMode === "string" && testMode !== "true") {
       this.__loadTestData();
     }
@@ -78,7 +78,7 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   members: {
-    backendName: 'mockup',
+    backendName: "mockup",
     addresses: null,
     __xhr: null,
     __sequence: null,
@@ -87,8 +87,8 @@ qx.Class.define('cv.io.Mockup', {
 
     __loadTestData: function () {
       // load the demo data to fill the visu with some values
-      var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
-      r.addListener('success', function (e) {
+      var r = new qx.io.request.Xhr(qx.core.Environment.get("cv.testMode"));
+      r.addListener("success", function (e) {
         cv.Config.initialDemoData = e.getTarget().getResponse();
         this.__applyTestData();
       }, this);
@@ -99,7 +99,7 @@ qx.Class.define('cv.io.Mockup', {
       this.__xhr = cv.Config.initialDemoData.xhr;
       // configure server
       qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-        return url.startsWith('https://sentry.io');
+        return url.startsWith("https://sentry.io");
       }, this);
       var server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(function (request) {
@@ -131,7 +131,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * This function gets called once the communication is established and session information is available
-     *
+     * @param json
      */
     receive: function (json) {
       if (json) {
@@ -144,7 +144,7 @@ qx.Class.define('cv.io.Mockup', {
     login: function (loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
-        if (qx.core.Environment.get('cv.testMode')) {
+        if (qx.core.Environment.get("cv.testMode")) {
           if (cv.Config.initialDemoData) {
             this.receive({
               i: new Date().getTime(),
@@ -199,10 +199,10 @@ qx.Class.define('cv.io.Mockup', {
       }
       var start = false;
       var stop = false;
-      if (simulation.hasOwnProperty('startValues')) {
+      if (simulation.hasOwnProperty("startValues")) {
         // try the more specific matches with address included
         start = simulation.startValues.indexOf(address + "|" + value) >= 0;
-        if (simulation.hasOwnProperty('stopValues')) {
+        if (simulation.hasOwnProperty("stopValues")) {
           stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
         }
         if (!stop) {
@@ -266,7 +266,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * Subscribe to the addresses in the parameter
-     *
+     * @param addresses
      */
     subscribe: function (addresses) {
       this.addresses = addresses ? addresses : [];
@@ -274,7 +274,8 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * This function sends a value
-     *
+     * @param address
+     * @param value
      */
     write: function (address, value) {
       if (cv.report.Record.REPLAYING === true) {
@@ -298,7 +299,7 @@ qx.Class.define('cv.io.Mockup', {
           d: {}
         };
         answer.d[address] = value;
-        this.debug('sending value: ' + value + ' to address: ' + address);
+        this.debug("sending value: " + value + " to address: " + address);
         this.receive(answer);
       }
     },
@@ -345,7 +346,7 @@ qx.Class.define('cv.io.Mockup', {
       return null;
     },
     getProviderConvertFunction : function (name, format) {
-      return null
+      return null;
     }
   }
 });

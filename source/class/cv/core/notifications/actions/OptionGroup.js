@@ -72,13 +72,13 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
       if (this.getOptions().length === 0) {
         return null;
       }
-      var content =  this.getTitle() + ' ';
-      var container = qx.dom.Element.create('div', {
+      var content = this.getTitle() + " ";
+      var container = qx.dom.Element.create("div", {
         style: this.getStyle(),
         html: content
       });
       this.getOptions().forEach(function (option) {
-        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
+        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement("option", option));
       });
       return container;
     }

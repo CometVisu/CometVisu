@@ -21,7 +21,7 @@
  * openHAB Rest client, that uses the native openHAB REST-API directly and does not
  * need the openHAB-cometvisu binding to be installed
  */
-qx.Class.define('cv.io.openhab.Rest', {
+qx.Class.define("cv.io.openhab.Rest", {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -55,7 +55,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     server: {
       check: "String",
       nullable: true,
-      event: 'changedServer'
+      event: "changedServer"
     }
   },
   /*
@@ -80,7 +80,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     getResourcePath : function (name, map) {
-      if (name === 'charts' && map && map.src) {
+      if (name === "charts" && map && map.src) {
         let url = this._backendUrl + "persistence/items/" + map.src;
         const params = [];
         if (map.start) {
@@ -91,22 +91,22 @@ qx.Class.define('cv.io.openhab.Rest', {
             const amount = parseInt(match[1]) || 1;
             let interval = 0;
             switch (match[2]) {
-              case 'second':
+              case "second":
                 interval = 1000;
                 break;
-              case 'minute':
+              case "minute":
                 interval = 60000;
                 break;
-              case 'hour':
+              case "hour":
                 interval = 60 * 60000;
                 break;
-              case 'day':
+              case "day":
                 interval = 24 * 60 * 60000;
                 break;
-              case 'month':
+              case "month":
                 interval = 30 * 24 * 60 * 60000;
                 break;
-              case 'year':
+              case "year":
                 interval = 365 * 24 * 60 * 60000;
                 break;
             }
@@ -240,8 +240,8 @@ qx.Class.define('cv.io.openhab.Rest', {
         this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged");
 
         // add default listeners
-        this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
-        this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+        this.eventSource.addEventListener("message", this.handleMessage.bind(this), false);
+        this.eventSource.addEventListener("error", this.handleError.bind(this), false);
         // add additional listeners
         //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
         this.eventSource.onerror = function () {
@@ -268,7 +268,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         const data = JSON.parse(payload.data);
         if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
           //extract item name from topic
-          const update = {}
+          const update = {};
           const item = data.topic.split("/")[2];
           const change = JSON.parse(data.payload);
           update[item] = change.value;
@@ -287,8 +287,7 @@ qx.Class.define('cv.io.openhab.Rest', {
               });
               group.active = active;
               update["number:" + groupName] = active;
-            })
-
+            });
           }
           this.update(update);
         }
@@ -341,9 +340,9 @@ qx.Class.define('cv.io.openhab.Rest', {
     getProviderUrl: function (name) {
       switch (name) {
         case "addresses":
-          return this._backendUrl + "items?fields=name,type,label"
+          return this._backendUrl + "items?fields=name,type,label";
         case "rrd":
-          return this._backendUrl + "persistence/items"
+          return this._backendUrl + "persistence/items";
         default:
           return null;
       }
@@ -353,16 +352,14 @@ qx.Class.define('cv.io.openhab.Rest', {
         case "addresses":
           return function (result) {
             let data;
-            if (format === 'monaco') {
-              return result.map(entry => {
-                return {
+            if (format === "monaco") {
+              return result.map(entry => ({
                   label: entry.name,
                   insertText: entry.name,
                   detail: entry.type,
                   kind: window.monaco.languages.CompletionItemKind.Value
-                }
-              });
-            } else {
+                }));
+            } 
               data = {};
               result.forEach(element => {
                 const type = element.type ? element.type.split(":")[0] : "";
@@ -371,8 +368,8 @@ qx.Class.define('cv.io.openhab.Rest', {
                 }
                 const entry = {
                   value: element.name,
-                  label: element.label || ''
-                }
+                  label: element.label || ""
+                };
                 if (type) {
                   entry.hints = {
                     transform: "OH:" + type.toLowerCase()
@@ -381,20 +378,14 @@ qx.Class.define('cv.io.openhab.Rest', {
                 data[type].push(entry);
               });
               return data;
-            }
-          }
+          };
         case "rrd":
           return function (result) {
-            if (format === 'monaco') {
-              return result.map(element => {
-                return {insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember};
-              });
-            } else {
-              return result.map(element => {
-                return {value: element, label: element};
-              });
-            }
-          }
+            if (format === "monaco") {
+              return result.map(element => ({insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember}));
+            } 
+              return result.map(element => ({value: element, label: element}));
+          };
         default:
           return null;
       }

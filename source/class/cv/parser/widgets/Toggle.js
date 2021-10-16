@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Toggle', {
+qx.Class.define("cv.parser.widgets.Toggle", {
   type: "static",
 
   /*

@@ -25,7 +25,7 @@
  *
  * @since 2013
  */
-qx.Class.define('cv.ui.structure.pure.PushButton', {
+qx.Class.define("cv.ui.structure.pure.PushButton", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -35,8 +35,8 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
   ******************************************************
   */
   properties: {
-    'downValue': {check: "String", init: "1"},
-    'upValue': {check: "String", init: "0"}
+    "downValue": {check: "String", init: "1"},
+    "upValue": {check: "String", init: "0"}
   },
 
   /*
@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
     },
 
     // overridden
@@ -67,21 +67,19 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
       // compare against the unmapped value
       value = "" + this.getBasicValue();
       var off = this.getUpValue();
-      actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
-      actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
+      actor.classList.remove(value === off ? "switchPressed" : "switchUnpressed");
+      actor.classList.add(value === off ? "switchUnpressed" : "switchPressed");
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
-     *
+     * @param event
      */
     getActionValue: function (event) {
       if (event.type === "pointerup") {
         return this.getUpValue();
-      } else {
+      } 
         return this.getDownValue();
-      }
     },
 
     _onPointerUp: function () {

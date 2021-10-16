@@ -13,7 +13,6 @@ qx.Class.define("cv.report.utils.FakeServer", {
     _index : 0,
 
     init: function (log, build) {
-
       var prependResourcePath = null;
       console.log(build+" log replaying in "+qx.core.Environment.get("cv.build"));
       if (build !== qx.core.Environment.get("cv.build")) {
@@ -50,7 +49,7 @@ qx.Class.define("cv.report.utils.FakeServer", {
         url = url.replace(/[\?|&]nocache=[0-9]+/, "");
       }
       if (!xhrData[url] && !url.startsWith("/") && qx.core.Environment.get("cv.build") === "source") {
-        url = '../source/' + url;
+        url = "../source/" + url;
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
         qx.log.Logger.error(this, "404: no logged responses for URI "+url+" found");

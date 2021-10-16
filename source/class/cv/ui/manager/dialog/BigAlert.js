@@ -29,12 +29,12 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
       let hbox = this._hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
       let scroll = new qx.ui.container.Scroll(hbox);
       scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
-      qx.core.Init.getApplication().getRoot().addListener('resize', function () {
+      qx.core.Init.getApplication().getRoot().addListener("resize", function () {
         scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
       }, this);
       container.add(scroll);
-      hbox.bind('width', scroll, 'width');
-      hbox.bind('height', scroll, 'height');
+      hbox.bind("width", scroll, "width");
+      hbox.bind("height", scroll, "height");
       const image = this.getImage();
       if (image) {
         this._image = new qx.ui.basic.Image(image).set({
@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.addAt(this._message, 1,{
+      hbox.addAt(this._message, 1, {
         flex: 1
       });
       let buttonPane = this._createButtonPane();

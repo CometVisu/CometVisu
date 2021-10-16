@@ -38,8 +38,7 @@ qx.Bootstrap.define("cv.log.appender.Native",
          *
          * @param entry {Map} The entry to process
          */
-        process : function(entry)
-        {
+        process : function(entry) {
           if (cv.Config.enableLogging) {
             // Firefox 4's Web Console doesn't support "debug"
             var level = console[entry.level] ? entry.level : "log";

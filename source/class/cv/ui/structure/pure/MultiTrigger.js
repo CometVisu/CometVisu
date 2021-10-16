@@ -26,7 +26,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
+qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       init: 2
     },
     buttonConfiguration: {
-      check: 'Object',
+      check: "Object",
       nullable: false
     }
   },
@@ -59,7 +59,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var ret_val = '<div class="actor_container" style="float:left">';
+      var ret_val = "<div class=\"actor_container\" style=\"float:left\">";
       var mapping = this.getMapping();
       var elementsPerLine = this.getElementsPerLine();
 
@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         if (mapping) {
           var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
           if (mappedValue !== buttonConfig.value || !label) {
-            label = '';
+            label = "";
             this.defaultValue2DOM(mappedValue, function (e) {
               label += e;
             });
@@ -80,17 +80,17 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         }
 
         if (label) {
-          ret_val += '<div class="actor switchUnpressed"><div class="value">' + label + '</div></div>';
+          ret_val += "<div class=\"actor switchUnpressed\"><div class=\"value\">" + label + "</div></div>";
         }
         if (elementsPerLine > 0 && i % elementsPerLine === 0) {
-          ret_val+= '<br/>';
+          ret_val+= "<br/>";
         }
       }, this);
-      return ret_val + '</div>';
+      return ret_val + "</div>";
     },
 
-    getActors: function(){
-      return this.getDomElement().querySelectorAll('.actor_container .actor');
+    getActors: function() {
+      return this.getDomElement().querySelectorAll(".actor_container .actor");
     },
 
     // overridden, only transform the value, do not apply it to DOM
@@ -105,15 +105,15 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       var children = this.getActors();
       var buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
-        var index = Array.prototype.indexOf.call( children, actor )+1;
+        var index = Array.prototype.indexOf.call(children, actor)+1;
         if (buttonConfiguration.hasOwnProperty(index)) {
-          var isPressed = ('' + this.getBasicValue()) === ('' + buttonConfiguration[index].value); // compare as string
+          var isPressed = ("" + this.getBasicValue()) === ("" + buttonConfiguration[index].value); // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish
           // otherwise it might override the settings here
           new qx.util.DeferredCall(function () {
-            actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
-            actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
+            actor.classList.remove(isPressed ? "switchUnpressed" : "switchPressed");
+            actor.classList.add(isPressed ? "switchPressed" : "switchUnpressed");
           }, this).schedule();
         }
       }, this);
@@ -121,22 +121,23 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
+     * @param event
      */
     getActionValue: function (event) {
-      var index = Array.prototype.indexOf.call( this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget() )+1;
+      var index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll(".actor_container .actor"), event.getCurrentTarget())+1;
       return this.getButtonConfiguration()[index].value;
     },
 
     // overridden
     initListeners: function() {
-      if (this.isAnonymous()) { return; }
+      if (this.isAnonymous()) {
+ return; 
+}
 
       this.getActors().forEach(function(actor) {
         qx.event.Registration.addListener(actor, "tap", this.action, this);
         qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
       }, this);
-
     }
   },
 

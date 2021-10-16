@@ -18,7 +18,7 @@
  */
 
 
-qx.Class.define('cv.ui.structure.WidgetFactory', {
+qx.Class.define("cv.ui.structure.WidgetFactory", {
   type: "static",
 
   /*
@@ -67,7 +67,7 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
     },
 
     getInstanceByElement: function(element) {
-      var instance = this.getInstanceById(element.getAttribute('id'));
+      var instance = this.getInstanceById(element.getAttribute("id"));
       if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();

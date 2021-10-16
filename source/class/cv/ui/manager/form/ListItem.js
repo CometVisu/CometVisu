@@ -1,7 +1,7 @@
 /**
  * ListItem that uses cv.ui.manager.basic.Image
  */
-qx.Class.define('cv.ui.manager.form.ListItem', {
+qx.Class.define("cv.ui.manager.form.ListItem", {
   extend: qx.ui.form.ListItem,
   /*
   ***********************************************
@@ -10,12 +10,10 @@ qx.Class.define('cv.ui.manager.form.ListItem', {
   */
   members: {
     // overridden
-    _createChildControlImpl : function(id, hash)
-    {
+    _createChildControlImpl : function(id, hash) {
       var control;
 
-      switch(id)
-      {
+      switch (id) {
         case "icon":
           control = new cv.ui.manager.basic.Image(this.getIcon());
           control.setAnonymous(true);
@@ -27,6 +25,6 @@ qx.Class.define('cv.ui.manager.form.ListItem', {
       }
 
       return control || this.base(arguments, id);
-    },
+    }
   }
 });

@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Video', {
+qx.Class.define("cv.ui.structure.pure.Video", {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -48,16 +48,18 @@ qx.Class.define('cv.ui.structure.pure.Video', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var style = '';
+      var style = "";
       if (this.getWidth()) {
-        style += 'width:' + this.getWidth() + ';';
+        style += "width:" + this.getWidth() + ";";
       }
       if (this.getHeight()) {
-        style += 'height:' + this.getHeight() + ';';
+        style += "height:" + this.getHeight() + ";";
       }
-      if (style !== '') { style = 'style="' + style + '"'; }
-      var autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
-      return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
+      if (style !== "") {
+ style = "style=\"" + style + "\""; 
+}
+      var autoplay = this.isAutoplay() ? " autoplay=\"autoplay\"" : "";
+      return "<div class=\"actor\"><video src=\"" + this.getSrc() + "\" " + style + autoplay + "  controls=\"controls\" /></div>";
     },
 
     // overridden

@@ -35,7 +35,7 @@
  * @author Christian Mayer
  * @since 0.12.0 (2020)
  */
-qx.Class.define('cv.ui.structure.pure.Roundbar', {
+qx.Class.define("cv.ui.structure.pure.Roundbar", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -46,7 +46,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
   */
   statics: {
     coord: function(position) {
-      return position.x.toFixed(1) + ' ' + position.y.toFixed(1);
+      return position.x.toFixed(1) + " " + position.y.toFixed(1);
     },
     /**
      * Create the SVG path for the round bar.
@@ -62,8 +62,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      */
     createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width, getBBox = false) {
       var
-        startArrowPointAngle = startAngle + startArrowPoint,
-        endArrowPointAngle   = endAngle + endArrowPoint;
+        startArrowPointAngle = startAngle + startArrowPoint;
+        var endArrowPointAngle = endAngle + endArrowPoint;
 
       // The path to generate is using those positions:
       // rO             -- outer --
@@ -75,42 +75,51 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       //     |_______|               |_______|
       //       start      center        end
       var
-        clockwise   = startAngle > endAngle ? 1 : 0,
-        rI  = radius,
-        rIM = radius + width*1/4,
-        rM  = radius + width*2/4,
-        rMO = radius + width*3/4,
-        rO  = radius + width,
-        startInner  = {x: Math.cos(startAngle             )*rI, y: -Math.sin(startAngle             )*rI},
-        startMiddle = {x: Math.cos(startArrowPointAngle   )*rM, y: -Math.sin(startArrowPointAngle   )*rM},
-        startOuter  = {x: Math.cos(startAngle             )*rO, y: -Math.sin(startAngle             )*rO},
-        centerInner = {x: Math.cos((startAngle+endAngle)/2)*rI, y: -Math.sin((startAngle+endAngle)/2)*rI},
-        centerOuter = {x: Math.cos((startAngle+endAngle)/2)*rO, y: -Math.sin((startAngle+endAngle)/2)*rO},
-        endInner    = {x: Math.cos(endAngle               )*rI, y: -Math.sin(endAngle               )*rI},
-        endMiddle   = {x: Math.cos(endArrowPointAngle     )*rM, y: -Math.sin(endArrowPointAngle     )*rM},
-        endOuter    = {x: Math.cos(endAngle               )*rO, y: -Math.sin(endAngle               )*rO},
-        startMiddleFlag = Math.abs(startAngle - startArrowPointAngle)   > Math.PI ? 1 : 0,
-        startEndFlag    = Math.abs(startAngle - endAngle            )/2 > Math.PI ? 1 : 0,
-        endMiddleFlag   = Math.abs(endAngle   - endArrowPointAngle  )   > Math.PI ? 1 : 0,
-        startMiddleDir  = startAngle < startArrowPointAngle ? 1 : 0,
-        endMiddleDir    = endAngle   < endArrowPointAngle   ? 1 : 0;
+        clockwise = startAngle > endAngle ? 1 : 0;
+        var rI = radius;
+        var rIM = radius + width*1/4;
+        var rM = radius + width*2/4;
+        var rMO = radius + width*3/4;
+        var rO = radius + width;
+        var startInner = {x: Math.cos(startAngle)*rI, y: -Math.sin(startAngle)*rI};
+        var startMiddle = {x: Math.cos(startArrowPointAngle)*rM, y: -Math.sin(startArrowPointAngle)*rM};
+        var startOuter = {x: Math.cos(startAngle)*rO, y: -Math.sin(startAngle)*rO};
+        var centerInner = {x: Math.cos((startAngle+endAngle)/2)*rI, y: -Math.sin((startAngle+endAngle)/2)*rI};
+        var centerOuter = {x: Math.cos((startAngle+endAngle)/2)*rO, y: -Math.sin((startAngle+endAngle)/2)*rO};
+        var endInner = {x: Math.cos(endAngle)*rI, y: -Math.sin(endAngle)*rI};
+        var endMiddle = {x: Math.cos(endArrowPointAngle)*rM, y: -Math.sin(endArrowPointAngle)*rM};
+        var endOuter = {x: Math.cos(endAngle)*rO, y: -Math.sin(endAngle)*rO};
+        var startMiddleFlag = Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0;
+        var startEndFlag = Math.abs(startAngle - endAngle)/2 > Math.PI ? 1 : 0;
+        var endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0;
+        var startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0;
+        var endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
 
+      /**
+       * @param start
+       * @param end
+       * @param r
+       * @param flag
+       * @param cw
+       */
       function arc(start, end, r, flag, cw) {
-        return (start.x===end.x) && (start.y===end.y)
-          ? ''
-          : (Math.abs(start.x-end.x)+Math.abs(start.y-end.y) < 2)
-            ? 'L' + cv.ui.structure.pure.Roundbar.coord(end)
-            : ['A', r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(' ');
+        return (start.x===end.x) && (start.y===end.y) ?
+          "" :
+          (Math.abs(start.x-end.x)+Math.abs(start.y-end.y) < 2) ?
+            "L" + cv.ui.structure.pure.Roundbar.coord(end) :
+            ["A", r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(" ");
       }
 
       if (getBBox) {
         var
-          rMax = Math.max(rI, rO),
-          isInside = function(a) {return  (startAngle < a && a < endAngle) || (startAngle > a && a > endAngle);},
-          rMiddle = isInside(-Math.PI*4/2) || isInside(Math.PI*0/2) ?  rMax : startInner.x,
-          uMiddle = isInside(-Math.PI*3/2) || isInside(Math.PI*1/2) ? -rMax : startInner.y,
-          lMiddle = isInside(-Math.PI*2/2) || isInside(Math.PI*2/2) ? -rMax : startInner.x,
-          dMiddle = isInside(-Math.PI*1/2) || isInside(Math.PI*3/2) ?  rMax : startInner.y;
+          rMax = Math.max(rI, rO);
+          var isInside = function(a) {
+ return (startAngle < a && a < endAngle) || (startAngle > a && a > endAngle); 
+};
+          var rMiddle = isInside(-Math.PI*4/2) || isInside(Math.PI*0/2) ? rMax : startInner.x;
+          var uMiddle = isInside(-Math.PI*3/2) || isInside(Math.PI*1/2) ? -rMax : startInner.y;
+          var lMiddle = isInside(-Math.PI*2/2) || isInside(Math.PI*2/2) ? -rMax : startInner.x;
+          var dMiddle = isInside(-Math.PI*1/2) || isInside(Math.PI*3/2) ? rMax : startInner.y;
         return {
           u: Math.min(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, uMiddle),
           d: Math.max(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, dMiddle),
@@ -120,29 +129,29 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       }
 
       // a thin bar path should just be a single line
-      if( width < 1.0 ) {
+      if (width < 1.0) {
         return [
-          'M', cv.ui.structure.pure.Roundbar.coord(startOuter),
+          "M", cv.ui.structure.pure.Roundbar.coord(startOuter),
           arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
           arc(centerOuter, endOuter, rO, startEndFlag, clockwise)
-        ].join('');
+        ].join("");
       }
 
-      return ['M', cv.ui.structure.pure.Roundbar.coord(startInner),
-        startArrowPointAngle === startAngle
-          ? 'L' + cv.ui.structure.pure.Roundbar.coord(startOuter)
-          : arc(startInner, startMiddle, rIM, startMiddleFlag, 1-startMiddleDir) +
+      return ["M", cv.ui.structure.pure.Roundbar.coord(startInner),
+        startArrowPointAngle === startAngle ?
+          "L" + cv.ui.structure.pure.Roundbar.coord(startOuter) :
+          arc(startInner, startMiddle, rIM, startMiddleFlag, 1-startMiddleDir) +
             arc(startMiddle, startOuter, rMO, startMiddleFlag, startMiddleDir),
-        arc(startOuter , centerOuter, rO, startEndFlag, clockwise),
-        arc(centerOuter, endOuter   , rO, startEndFlag, clockwise),
-        endArrowPointAngle === endAngle
-          ? 'L' + cv.ui.structure.pure.Roundbar.coord(endInner)
-          : arc(endOuter, endMiddle, rMO, endMiddleFlag, 1-endMiddleDir) +
+        arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
+        arc(centerOuter, endOuter, rO, startEndFlag, clockwise),
+        endArrowPointAngle === endAngle ?
+          "L" + cv.ui.structure.pure.Roundbar.coord(endInner) :
+          arc(endOuter, endMiddle, rMO, endMiddleFlag, 1-endMiddleDir) +
             arc(endMiddle, endInner, rIM, endMiddleFlag, endMiddleDir),
-        arc(startInner , centerInner, rI, startEndFlag, 1-clockwise),
-        arc(centerInner, startInner , rI, startEndFlag, 1-clockwise),
-        'Z'
-      ].join('');
+        arc(startInner, centerInner, rI, startEndFlag, 1-clockwise),
+        arc(centerInner, startInner, rI, startEndFlag, 1-clockwise),
+        "Z"
+      ].join("");
     },
     /**
      * Create the SVG path for an pointer.
@@ -151,26 +160,25 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      */
     createPointerPath: function(angle, p) {
       var
-        s = Math.sin(angle),
-        c = Math.cos(angle),
-        wx = c * p.width,
-        wy = s * p.width;
+        s = Math.sin(angle);
+        var c = Math.cos(angle);
+        var wx = c * p.width;
+        var wy = s * p.width;
 
-      if(p.thickness > 0) {
+      if (p.thickness > 0) {
         var
-          tx = -s * p.thickness/2,
-          ty =  c * p.thickness/2;
+          tx = -s * p.thickness/2;
+          var ty = c * p.thickness/2;
         return [
-          'M', this.coord({x:c*p.radius+wx-tx,y: -(s*p.radius+wy-ty)}),
-          'L', this.coord({x:c*p.radius      ,y: -(s*p.radius      )}),
-          'L', this.coord({x:c*p.radius+wx+tx,y: -(s*p.radius+wy+ty)})
-        ].join('');
-      } else {
+          "M", this.coord({x:c*p.radius+wx-tx, y: -(s*p.radius+wy-ty)}),
+          "L", this.coord({x:c*p.radius, y: -(s*p.radius)}),
+          "L", this.coord({x:c*p.radius+wx+tx, y: -(s*p.radius+wy+ty)})
+        ].join("");
+      } 
         return [
-          'M', this.coord({x:c*p.radius   ,y: -(s*p.radius   )}),
-          'L', this.coord({x:c*p.radius+wx,y: -(s*p.radius+wy)})
-        ].join('');
-      }
+          "M", this.coord({x:c*p.radius, y: -(s*p.radius)}),
+          "L", this.coord({x:c*p.radius+wx, y: -(s*p.radius+wy)})
+        ].join("");
     }
   },
 
@@ -235,213 +243,225 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
        * @returns {Object} The enlarged bounding box
        */
       function bboxAdd(bbox, x, y) {
-        if (bbox.u > y) { bbox.u = y; }
-        if (bbox.d < y) { bbox.d = y; }
-        if (bbox.l > x) { bbox.l = x; }
-        if (bbox.r < x) { bbox.r = x; }
+        if (bbox.u > y) {
+ bbox.u = y; 
+}
+        if (bbox.d < y) {
+ bbox.d = y; 
+}
+        if (bbox.l > x) {
+ bbox.l = x; 
+}
+        if (bbox.r < x) {
+ bbox.r = x; 
+}
         return bbox;
       }
 
       this.setCurrentRatioValue(Array(this.getIndicators().length).fill(0));
-      this.setTargetRatioValue(Array(this.getIndicators().length).fill([0,false,false]));
+      this.setTargetRatioValue(Array(this.getIndicators().length).fill([0, false, false]));
 
       var
-        self = this,
-        s = this.getStart(),
-        e = this.getEnd(),
-        min = this.getMin(),
-        max = this.getMax(),
-        cntValues = 0,
-        svgMajor = '',
-        svgMinor = '',
-        svgLabels = '',
-        svgRanges = '',
-        svgIndicators = '',
-        svgText = '',
-        createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
+        self = this;
+        var s = this.getStart();
+        var e = this.getEnd();
+        var min = this.getMin();
+        var max = this.getMax();
+        var cntValues = 0;
+        var svgMajor = "";
+        var svgMinor = "";
+        var svgLabels = "";
+        var svgRanges = "";
+        var svgIndicators = "";
+        var svgText = "";
+        var createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
 
       // Determine the bounding box, first get the biggest radius that must fit
       var
-        rMax = this.getAxisradius()+this.getAxiswidth(),
-        sMax = 0,
-        eMax = 0;
+        rMax = this.getAxisradius()+this.getAxiswidth();
+        var sMax = 0;
+        var eMax = 0;
       this.getIndicators().forEach(function (indicator) {
         rMax = Math.max(rMax, indicator.radius, indicator.radius+indicator.width);
         sMax = Math.max(sMax, indicator.startarrow);
         eMax = Math.max(eMax, indicator.endarrow);
       });
-      var BBox = createBarPath( s, sMax, e, eMax, rMax, 0, true );
+      var BBox = createBarPath(s, sMax, e, eMax, rMax, 0, true);
 
       if (this.getMinorwidth() > 0) {
         let
-          spacing = parseFloat(this.getMinorspacing()),
-          rIn = this.getMinorradius(),
-          rOut = this.getMinorwidth() + rIn;
+          spacing = parseFloat(this.getMinorspacing());
+          let rIn = this.getMinorradius();
+          let rOut = this.getMinorwidth() + rIn;
 
         if (/^[0-9]+%/.test(this.getMinorspacing())) { // special case: percentage
           spacing = (max-min) * spacing / 100;
         }
 
-        svgMinor += '<path class="minor" d="';
-        for (var angle=s, delta = (e-s)*spacing/(max-min), cnt=(max-min)/spacing; cnt >= 0; angle+=delta,cnt--) {
+        svgMinor += "<path class=\"minor\" d=\"";
+        for (var angle=s, delta = (e-s)*spacing/(max-min), cnt=(max-min)/spacing; cnt >= 0; angle+=delta, cnt--) {
           var
-            sin = Math.sin(angle),
-            cos = Math.cos(angle);
+            sin = Math.sin(angle);
+            var cos = Math.cos(angle);
           svgMinor += [
-            'M', cv.ui.structure.pure.Roundbar.coord({x:cos*rIn , y:-sin*rIn }),
-            'L', cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
-          ].join('');
+            "M", cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
+            "L", cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
+          ].join("");
 
-          BBox = bboxAdd(BBox, cos*rIn , -sin*rIn );
+          BBox = bboxAdd(BBox, cos*rIn, -sin*rIn);
           BBox = bboxAdd(BBox, cos*rOut, -sin*rOut);
         }
-        if (this.getMinorcolor() !== '') svgMinor += '" style="stroke:' + this.getMinorcolor();
-        svgMinor += '" />';
+        if (this.getMinorcolor() !== "") {
+ svgMinor += "\" style=\"stroke:" + this.getMinorcolor(); 
+}
+        svgMinor += "\" />";
       }
 
       if (this.getMajorwidth() > 0) {
         let
-          rIn = this.getMajorradius(),
-          rOut = this.getMajorwidth() + rIn;
+          rIn = this.getMajorradius();
+          let rOut = this.getMajorwidth() + rIn;
 
-        svgMajor += '<path class="major" d="';
+        svgMajor += "<path class=\"major\" d=\"";
 
-        this.getMajorposition().split(';').forEach(function (position) {
+        this.getMajorposition().split(";").forEach(function (position) {
           switch (position) {
-            case 'min':
+            case "min":
               position = min;
               break;
 
-            case 'max':
+            case "max":
               position = max;
               break;
           }
           var
-            angle = s+(e-s)*(position-min)/(max-min),
-            sin = Math.sin(angle),
-            cos = Math.cos(angle);
+            angle = s+(e-s)*(position-min)/(max-min);
+            var sin = Math.sin(angle);
+            var cos = Math.cos(angle);
           svgMajor += [
-            'M', cv.ui.structure.pure.Roundbar.coord({x:cos*rIn , y:-sin*rIn }),
-            'L', cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
-          ].join('');
+            "M", cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
+            "L", cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
+          ].join("");
 
-          BBox = bboxAdd(BBox, cos*rIn , -sin*rIn );
+          BBox = bboxAdd(BBox, cos*rIn, -sin*rIn);
           BBox = bboxAdd(BBox, cos*rOut, -sin*rOut);
         });
-        if (this.getMajorcolor() !== '') { svgMajor += '" style="stroke:' + this.getMajorcolor(); }
-        svgMajor += '" />';
+        if (this.getMajorcolor() !== "") {
+ svgMajor += "\" style=\"stroke:" + this.getMajorcolor(); 
+}
+        svgMajor += "\" />";
       }
 
       var labelstyle = this.getLabelstyle();
       this.getLabels().forEach(function (label, labelnumber) {
         var
-          angle = s+(e-s)*(label.value-min)/(max-min),
-          x = label.radius * Math.cos(angle),
-          y = label.radius * -Math.sin(angle),
-          alignmentBaseline = '',
-          textAnchor = '';
+          angle = s+(e-s)*(label.value-min)/(max-min);
+          var x = label.radius * Math.cos(angle);
+          var y = label.radius * -Math.sin(angle);
+          var alignmentBaseline = "";
+          var textAnchor = "";
 
         if (label.orientation < 3) {
-          svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
+          svgLabels += "<text class=\"axislabel\" x=\"" + x + "\" y=\"" + y + "\"";
           switch (label.orientation) {
             default:
             case 0: // horizontal
               if (x < 0) {
-                textAnchor = (['end', 'middle', 'start'])[label.position];
+                textAnchor = (["end", "middle", "start"])[label.position];
               } else {
-                textAnchor = (['start', 'middle', 'end'])[label.position];
+                textAnchor = (["start", "middle", "end"])[label.position];
               }
               if (Math.abs(x) < 1) {
-                textAnchor = 'middle';
+                textAnchor = "middle";
               }
               if (y < 0) {
-                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
+                alignmentBaseline = (["baseline", "middle", "hanging"])[label.position];
               } else {
-                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
+                alignmentBaseline = (["hanging", "middle", "baseline"])[label.position];
               }
               if (Math.abs(y) < 1) {
-                alignmentBaseline = 'middle';
+                alignmentBaseline = "middle";
               }
               break;
 
             case 1: // parallel
               var textAngle = -angle * 180 / Math.PI + 90;
               if (y < 0) {
-                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
+                alignmentBaseline = (["baseline", "middle", "hanging"])[label.position];
               } else {
-                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
+                alignmentBaseline = (["hanging", "middle", "baseline"])[label.position];
                 textAngle += 180;
               }
-              textAnchor = 'middle';
-              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
+              textAnchor = "middle";
+              svgLabels += " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
               break;
 
             case 2: // perpendicular
               textAngle = -angle * 180 / Math.PI;
               if (x < 0) {
-                textAnchor = (['end', 'middle', 'start'])[label.position];
+                textAnchor = (["end", "middle", "start"])[label.position];
                 textAngle += 180;
               } else {
-                textAnchor = (['start', 'middle', 'end'])[label.position];
+                textAnchor = (["start", "middle", "end"])[label.position];
               }
-              alignmentBaseline = 'middle';
-              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
+              alignmentBaseline = "middle";
+              svgLabels += " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
               break;
           }
-          svgLabels += ' dominant-baseline="' + alignmentBaseline + '"';
-          svgLabels += ' text-anchor="' + textAnchor + '"';
+          svgLabels += " dominant-baseline=\"" + alignmentBaseline + "\"";
+          svgLabels += " text-anchor=\"" + textAnchor + "\"";
 
-          if (labelstyle !== '') {
-            svgLabels += ' style="' + labelstyle + '"';
+          if (labelstyle !== "") {
+            svgLabels += " style=\"" + labelstyle + "\"";
           }
 
-          svgLabels += '>' + label.name + '</text>';
+          svgLabels += ">" + label.name + "</text>";
         } else { // label.orientation >= 3 -> round
           var
-            labelid = self.$$user_path + '_label' + labelnumber,
-            cw = s < e ? 0 : 1,
-            path = '',
-            align = '';
+            labelid = self.$$user_path + "_label" + labelnumber;
+            var cw = s < e ? 0 : 1;
+            var path = "";
+            var align = "";
 
           switch (label.orientation) {
             case 3: // roundstart
-              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
+              path = ["M", x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y].join(" ");
               break;
 
             case 4: // roundmiddle
-              path = ['M', -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y, 'A', label.radius, label.radius, 0, 0, cw, -x,-y].join(' ');
-              align = ' startOffset="50%" text-anchor="middle"';
+              path = ["M", -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y].join(" ");
+              align = " startOffset=\"50%\" text-anchor=\"middle\"";
               break;
 
             case 5: // roundend
-              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
-              align = ' startOffset="100%" text-anchor="end"';
+              path = ["M", x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y].join(" ");
+              align = " startOffset=\"100%\" text-anchor=\"end\"";
               break;
           }
-          svgLabels += '<path style="stroke:none; fill:none; stroke-width:0" id="' + labelid + '" d="' + path + '"/>';
-          svgLabels += '<text class="axislabel"';
+          svgLabels += "<path style=\"stroke:none; fill:none; stroke-width:0\" id=\"" + labelid + "\" d=\"" + path + "\"/>";
+          svgLabels += "<text class=\"axislabel\"";
 
-          if (labelstyle !== '') {
-            svgLabels += ' style="' + labelstyle + '"';
+          if (labelstyle !== "") {
+            svgLabels += " style=\"" + labelstyle + "\"";
           }
 
-          svgLabels += '><textPath href="#'+labelid+'"' + align + '>' + label.name + '</textPath></text>';
+          svgLabels += "><textPath href=\"#"+labelid+"\"" + align + ">" + label.name + "</textPath></text>";
         }
       });
 
       this.getRanges().forEach(function (range) {
         var
-          sRange = (e-s)*(range.start-min)/(max-min)+s,
-          eRange = (e-s)*(range.end  -min)/(max-min)+s,
-          rRange = range.radius || self.getAxisradius(),
-          wRange = range.width  || self.getAxiswidth(),
-          thisBBox = createBarPath(sRange,0,eRange,0,rRange,wRange, true);
-        svgRanges += '<path class="range" d="';
-        svgRanges += createBarPath(sRange,0,eRange,0,rRange,wRange);
+          sRange = (e-s)*(range.start-min)/(max-min)+s;
+          var eRange = (e-s)*(range.end -min)/(max-min)+s;
+          var rRange = range.radius || self.getAxisradius();
+          var wRange = range.width || self.getAxiswidth();
+          var thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
+        svgRanges += "<path class=\"range\" d=\"";
+        svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
         if (range.style) {
-          svgRanges += '" style="' + range.style;
+          svgRanges += "\" style=\"" + range.style;
         }
-        svgRanges += '" />';
+        svgRanges += "\" />";
 
         BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
         BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
@@ -450,56 +470,58 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       this.__animator = [];
       this.getIndicators().forEach(function (indicator, number) {
         self.__animator.push(new cv.util.LimitedRateUpdateAnimator(self.__updateIndicatorPosition, self, number));
-        svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
+        svgIndicators += "<path class=\"indicator\" style=\"" + indicator.style + "\" />";
 
-        if (indicator.showValue) { cntValues++; }
+        if (indicator.showValue) {
+ cntValues++; 
+}
       });
 
       if (cntValues>0) {
-        svgText += '<text class="value" y="'+this.getTexty()+'"'
-          + ' text-anchor="' + this.getTextanchor() +'"'
-          + ' font-size="' + this.getFontsize() + '">'
-          + '<tspan x="'+this.getTextx()+'" dy="0">-</tspan>'
-          + ('<tspan x="'+this.getTextx()+'" dy="' + this.getLinespace() + '">-</tspan>').repeat(cntValues-1)
-          + '</text>';
+        svgText += "<text class=\"value\" y=\""+this.getTexty()+"\"" +
+          " text-anchor=\"" + this.getTextanchor() +"\"" +
+          " font-size=\"" + this.getFontsize() + "\">" +
+          "<tspan x=\""+this.getTextx()+"\" dy=\"0\">-</tspan>" +
+          ("<tspan x=\""+this.getTextx()+"\" dy=\"" + this.getLinespace() + "\">-</tspan>").repeat(cntValues-1) +
+          "</text>";
 
         var
-          textDistribution = ({start:[0,1],middle:[0.5,0.5],end:[1,0]})[this.getTextanchor()] || [0,1],
-          textU = Math.min(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0)),
-          textD = Math.max(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0));
+          textDistribution = ({start:[0, 1], middle:[0.5, 0.5], end:[1, 0]})[this.getTextanchor()] || [0, 1];
+          var textU = Math.min(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0));
+          var textD = Math.max(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0));
         BBox = bboxAdd(BBox, this.getTextx()-textDistribution[0]*this.getTextlength(), this.getTexty()+textU);
         BBox = bboxAdd(BBox, this.getTextx()+textDistribution[1]*this.getTextlength(), this.getTexty()+textD);
       }
 
-      var html = '<div class="actor">'
-        + '<svg width="100%" height="100%" viewBox="' + [
+      var html = "<div class=\"actor\">" +
+        "<svg width=\"100%\" height=\"100%\" viewBox=\"" + [
           BBox.l - this.getBboxgrow().l,
           BBox.u - this.getBboxgrow().u,
           BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r,
           BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d
-        ].join(' ') + '">';
-      if(this.getDebug()) {
-        html += '<rect width="'+(BBox.r-BBox.l)+'" height="'+(BBox.d-BBox.u)+'" x="'+(BBox.l)+'" y="'+(BBox.u)+'" stroke="blue" fill="none" />'
-          + '<rect width="'+(BBox.r-BBox.l + this.getBboxgrow().l + this.getBboxgrow().r)+'" height="'+(BBox.d-BBox.u + this.getBboxgrow().u + this.getBboxgrow().d)+'" x="'+(BBox.l - this.getBboxgrow().l)+'" y="'+(BBox.u - this.getBboxgrow().u)+'" stroke="green" fill="none" />'
-          + '<circle cx="0" cy="0" r="3" fill="red" />';
+        ].join(" ") + "\">";
+      if (this.getDebug()) {
+        html += "<rect width=\""+(BBox.r-BBox.l)+"\" height=\""+(BBox.d-BBox.u)+"\" x=\""+(BBox.l)+"\" y=\""+(BBox.u)+"\" stroke=\"blue\" fill=\"none\" />" +
+          "<rect width=\""+(BBox.r-BBox.l + this.getBboxgrow().l + this.getBboxgrow().r)+"\" height=\""+(BBox.d-BBox.u + this.getBboxgrow().u + this.getBboxgrow().d)+"\" x=\""+(BBox.l - this.getBboxgrow().l)+"\" y=\""+(BBox.u - this.getBboxgrow().u)+"\" stroke=\"green\" fill=\"none\" />" +
+          "<circle cx=\"0\" cy=\"0\" r=\"3\" fill=\"red\" />";
       }
 
       if (this.getAxisradius() > 0) {
         var
-          sectorPath = createBarPath(s,0,e,0,this.getAxisradius(),0),
-          axisPath = createBarPath(s,0,e,0,this.getAxisradius(),this.getAxiswidth()),
-          stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor(),
-          fill   = this.getAxiswidth() < 1 ? 'none' : stroke;
+          sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
+          var axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
+          var stroke = this.getAxiscolor() === "" ? undefined : this.getAxiscolor();
+          var fill = this.getAxiswidth() < 1 ? "none" : stroke;
         html +=
-          '<path class="sector" d="'+sectorPath+' L0 0Z"/>' +
-          '<path class="axis" d="'+axisPath+'" style="' +
-          (stroke ? 'stroke:'+stroke : '') +
-          (fill   ? ';fill:' +fill   : '') +
-          '"/>';
+          "<path class=\"sector\" d=\""+sectorPath+" L0 0Z\"/>" +
+          "<path class=\"axis\" d=\""+axisPath+"\" style=\"" +
+          (stroke ? "stroke:"+stroke : "") +
+          (fill ? ";fill:" +fill : "") +
+          "\"/>";
       }
 
       html += svgMinor + svgMajor + svgRanges + svgLabels + svgIndicators + svgText;
-      html += '</svg></div>';
+      html += "</svg></div>";
 
       return html;
     },
@@ -511,18 +533,20 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      * @param data {var} incoming data
      */
     _update: function(address, data) {
-      if (data === undefined || address === undefined) { return; }
+      if (data === undefined || address === undefined) {
+ return; 
+}
       var
-        self = this,
-        value = cv.Transform.decode( this.getAddress()[ address ].transform, data ),
-        target = this.getTargetRatioValue(),
-        tspan = Array.from(this.getDomElement().getElementsByTagName('tspan')),
-        valueFormat = this.applyFormat(address, value);
+        self = this;
+        var value = cv.Transform.decode(this.getAddress()[address].transform, data);
+        var target = this.getTargetRatioValue();
+        var tspan = Array.from(this.getDomElement().getElementsByTagName("tspan"));
+        var valueFormat = this.applyFormat(address, value);
 
-      this.getIndicators().forEach(function(indicator,i){
-        if(address === indicator.address) {
+      this.getIndicators().forEach(function(indicator, i) {
+        if (address === indicator.address) {
           target[i] = [
-            (Math.min(Math.max(value,indicator.min),indicator.max)-indicator.min)/(indicator.max-indicator.min),
+            (Math.min(Math.max(value, indicator.min), indicator.max)-indicator.min)/(indicator.max-indicator.min),
             value < indicator.min,
             value > indicator.max
           ];
@@ -543,28 +567,30 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      * performance wise. But as it's assumed that a typical visu config is only containing one roundbar per address
      * a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.
      * Even with a few roundbars using the same address the performance impact is negligible.
+     * @param ratio
+     * @param indicatorNumber
      */
     __updateIndicatorPosition: function (ratio, indicatorNumber) {
       if (this.__indicatorDOMElement.length === 0) {
         // cache
-        this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName('indicator'));
+        this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName("indicator"));
       }
 
       var
-        indicator = this.getIndicators()[indicatorNumber],
-        target = this.getTargetRatioValue()[indicatorNumber],
-        startAngle = this.getStart(),
-        endAngle = this.getEnd(),
-        targetAngle = startAngle + ratio*(endAngle-startAngle),
-        overflowarrow = this.getOverflowarrow();
+        indicator = this.getIndicators()[indicatorNumber];
+        var target = this.getTargetRatioValue()[indicatorNumber];
+        var startAngle = this.getStart();
+        var endAngle = this.getEnd();
+        var targetAngle = startAngle + ratio*(endAngle-startAngle);
+        var overflowarrow = this.getOverflowarrow();
 
       if (!overflowarrow) {
-        targetAngle = (endAngle > startAngle)
-          ? Math.max(startAngle,targetAngle - indicator.endarrow)
-          : Math.min(startAngle,targetAngle - indicator.endarrow);
+        targetAngle = (endAngle > startAngle) ?
+          Math.max(startAngle, targetAngle - indicator.endarrow) :
+          Math.min(startAngle, targetAngle - indicator.endarrow);
       }
       if (indicator.isBar) {
-        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
+        this.__indicatorDOMElement[indicatorNumber].setAttribute("d",
           cv.ui.structure.pure.Roundbar.createBarPath(
             startAngle,
             (overflowarrow&&!(target[1]&&ratio<0.01)) ? 0 : indicator.startarrow,
@@ -575,8 +601,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           )
         );
       } else {
-        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
-          cv.ui.structure.pure.Roundbar.createPointerPath( targetAngle, indicator )
+        this.__indicatorDOMElement[indicatorNumber].setAttribute("d",
+          cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator)
         );
       }
     }

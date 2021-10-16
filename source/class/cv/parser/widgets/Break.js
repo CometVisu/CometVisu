@@ -21,7 +21,7 @@
 /**
  * Parse &lt;break;gt; config elements
  */
-qx.Class.define('cv.parser.widgets.Break', {
+qx.Class.define("cv.parser.widgets.Break", {
   type: "static",
 
   /*

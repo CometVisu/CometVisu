@@ -25,7 +25,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (2017)
  */
-qx.Class.define('cv.ui.structure.pure.PageLink', {
+qx.Class.define("cv.ui.structure.pure.PageLink", {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -41,7 +41,7 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
     },
     wstyle : {
       check: "String",
-      init: ''
+      init: ""
     },
     address : {
       check: "Object",
@@ -63,17 +63,17 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
     getDomString: function() {
       var layout = this.getLayout();
 
-      var style = typeof layout === 'object' ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
+      var style = typeof layout === "object" ? "" : "style=\"" + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + "\"";
 
-      var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
-      ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
-      ret_val += '</div>';
+      var ret_val = "<div class=\"widget clearfix link pagelink " + this.getClasses() + "\" " + style + ">";
+      ret_val += "<div class=\"actor\" " + this.getWstyle() + "><a href=\"javascript:void(0)\">" + this.getName() + "</a></div>";
+      ret_val += "</div>";
       return ret_val;
     },
 
     // overridden
     action: function() {
-      cv.TemplateEngine.getInstance().scrollToPage( this.getPath() + '_' );
+      cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + "_");
     }
   },
 

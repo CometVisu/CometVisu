@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define('cv.report.Record', {
+qx.Class.define("cv.report.Record", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -153,10 +153,10 @@ qx.Class.define('cv.report.Record', {
       try {
         const parsed = qx.util.Uri.parseUri(url);
         url = parsed.path;
-        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== 'nocache' && name !== 'ts');
+        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== "nocache" && name !== "ts");
         if (filteredParams.length > 0) {
-          url += '?';
-          filteredParams.forEach(param => url += `${param}=${parsed.queryKey[param]}`)
+          url += "?";
+          filteredParams.forEach(param => url += `${param}=${parsed.queryKey[param]}`);
         }
       } catch (e) {
         if (url.indexOf("nocache=") >= 0) {
@@ -196,7 +196,6 @@ qx.Class.define('cv.report.Record', {
 
     record: function(category, path, data, options) {
       switch (category) {
-
         case cv.report.Record.XHR:
           data.t = Date.now();
           this.__xhr[path].push(data);
@@ -331,7 +330,7 @@ qx.Class.define('cv.report.Record', {
 
     recordScroll: function(ev) {
       var page = ev.getTarget();
-      var path = (undefined !== page && 'getAttribute' in page) ? page.getAttribute("id") : undefined;
+      var path = (undefined !== page && "getAttribute" in page) ? page.getAttribute("id") : undefined;
       var data = {
         type: ev.getType(),
         page: path,
@@ -348,23 +347,23 @@ qx.Class.define('cv.report.Record', {
         return "document";
       }
       var stack = [];
-      while ( el.parentNode !== null ) {
+      while (el.parentNode !== null) {
         var sibCount = 0;
         var sibIndex = 0;
-        for ( var i = 0; i < el.parentNode.childNodes.length; i++ ) {
+        for (var i = 0; i < el.parentNode.childNodes.length; i++) {
           var sib = el.parentNode.childNodes[i];
-          if ( sib.nodeName === el.nodeName ) {
-            if ( sib === el ) {
+          if (sib.nodeName === el.nodeName) {
+            if (sib === el) {
               sibIndex = sibCount;
             }
             sibCount++;
           }
         }
-        if ( el.hasAttribute('id') && el.id !== '' ) {
-          stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
+        if (el.hasAttribute("id") && el.id !== "") {
+          stack.unshift(el.nodeName.toLowerCase() + "#" + el.id);
           return stack.join(">");
-        } else if ( sibCount > 1 ) {
-          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex+1) + ')');
+        } else if (sibCount > 1) {
+          stack.unshift(el.nodeName.toLowerCase() + ":nth-child(" + (sibIndex+1) + ")");
         } else {
           stack.unshift(el.nodeName.toLowerCase());
         }
@@ -378,7 +377,6 @@ qx.Class.define('cv.report.Record', {
      * Download Log as file
      */
     download: function() {
-
       var data = {
         data: this.__data,
         start: this.__start,
@@ -392,15 +390,15 @@ qx.Class.define('cv.report.Record', {
 
       var d = new Date();
       var ts = d.getFullYear()+
-        (""+(d.getMonth()+1)).padStart(2,"0")+
-        (""+d.getDate()).padStart(2,"0")+"-"+
-        (""+d.getHours()).padStart(2,"0")+
-        (""+d.getMinutes()).padStart(2,"0")+
-        (""+d.getSeconds()).padStart(2,"0");
+        (""+(d.getMonth()+1)).padStart(2, "0")+
+        (""+d.getDate()).padStart(2, "0")+"-"+
+        (""+d.getHours()).padStart(2, "0")+
+        (""+d.getMinutes()).padStart(2, "0")+
+        (""+d.getSeconds()).padStart(2, "0");
 
-      var a = window.document.createElement('a');
-      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: 'application/json'}));
-      a.download = 'CometVisu-replay-'+ts+'.json';
+      var a = window.document.createElement("a");
+      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: "application/json"}));
+      a.download = "CometVisu-replay-"+ts+".json";
 
       // Append anchor to body.
       document.body.appendChild(a);

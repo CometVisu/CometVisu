@@ -23,7 +23,7 @@
  * @since 2011
  * @asset(plugins/rsslog/*)
  */
-qx.Class.define('cv.plugins.RssLog', {
+qx.Class.define("cv.plugins.RssLog", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Refresh, cv.ui.common.Update, cv.ui.common.Operate],
 
@@ -114,7 +114,7 @@ qx.Class.define('cv.plugins.RssLog', {
         datetime:   {
           "default": true,
           transform: function(value) {
-            if (typeof value === 'boolean') {
+            if (typeof value === "boolean") {
               return value;
             }
             return value === "true";
@@ -168,15 +168,15 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _getInnerDomString: function () {
-      var style = '';
+      var style = "";
       if (this.getWidth()) {
-        style += "width:" + this.getWidth() + ';';
+        style += "width:" + this.getWidth() + ";";
       }
       if (this.getHeight()) {
         style += "height:" + this.getHeight();
       }
 
-      return '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' + this.getPath() + '" style="' + style + '"></div></div>';
+      return "<div class=\"actor rsslogBody\"><div class=\"rsslog_inline\" id=\"rss_" + this.getPath() + "\" style=\"" + style + "\"></div></div>";
     },
 
     _setupRefreshAction: function() {
@@ -191,11 +191,11 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.$$domReady) {
         this.base(arguments);
         qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-        this.__html = '<span class="mappedValue"></span><span>{text}</span>';
+        this.__html = "<span class=\"mappedValue\"></span><span>{text}</span>";
         if (this.getDatetime()) {
-          this.__html = '{date}: ' + this.__html;
+          this.__html = "{date}: " + this.__html;
         }
-        this.__wrapper = 'li';
+        this.__wrapper = "li";
 
         if (cv.Config.currentPageId === this.getParentPage().getPath()) {
           this.refreshRSSlog();
@@ -208,12 +208,14 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _action: function () {
-      var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
-      var label = document.querySelector('#' + this.getPath() + ' .label');
-      var title = label ? (label.innerText || '') : '';
+      var brss = cv.util.String.htmlStringToDomElement("<div class=\"rsslog_popup\" id=\"rss_" + this.getPath() + "_big\"/>");
+      var label = document.querySelector("#" + this.getPath() + " .label");
+      var title = label ? (label.innerText || "") : "";
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
-      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];}); // define parent as 100%!
+      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value) {
+ parent.style[key_value[0]]=key_value[1]; 
+}); // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
@@ -227,17 +229,19 @@ qx.Class.define('cv.plugins.RssLog', {
         // But delay it so that any change done to the data has a chance to
         // arrive here.
 
-        if (popup.getCurrentDomElement() && popup.getCurrentDomElement().classList.contains('popup') && this.getItemack() === 'modify') {
+        if (popup.getCurrentDomElement() && popup.getCurrentDomElement().classList.contains("popup") && this.getItemack() === "modify") {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
           for (var addr in this.getAddress()) {
-            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) { continue; }// skip when write flag not set
+            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
+ continue; 
+}// skip when write flag not set
             cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr].transform, 0));
           }
         }
       }, this);
-      popup.getCurrentDomElement().querySelector('.main').style.overflow = "auto";
+      popup.getCurrentDomElement().querySelector(".main").style.overflow = "auto";
       this.refreshRSSlog(true);
     },
 
@@ -250,8 +254,7 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.__request) {
         if (!this.__external) {
           this.__refreshRss();
-        }
-        else {
+        } else {
           this.error("external sources are no longer supported");
         }
       }
@@ -293,27 +296,27 @@ qx.Class.define('cv.plugins.RssLog', {
       });
       this.__request.addListener("success", this.__updateRssContent, this);
       this.__request.addListener("error", function(ev) {
-        this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
+        this.error("C: #rss_%s, Error: %s, Feed: %s", this.getPath(), ev.getTarget().getResponse(), src);
       }, this);
     },
 
     __prepareContentElement: function(ul, c) {
-      c.innerHTML = '';
+      c.innerHTML = "";
 
       c.appendChild(ul);
 
       // get height of one entry, calc max num of display items in widget
       var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
-      ul.innerHTML = '<li class="rsslogRow odd" id="dummydiv">.</li>';
-      var dummyDiv = c.querySelector('#dummydiv'),
-        rect = dummyDiv.getBoundingClientRect(),
-        itemheight = Math.round(rect.bottom - rect.top);
+      ul.innerHTML = "<li class=\"rsslogRow odd\" id=\"dummydiv\">.</li>";
+      var dummyDiv = c.querySelector("#dummydiv");
+        var rect = dummyDiv.getBoundingClientRect();
+        var itemheight = Math.round(rect.bottom - rect.top);
       dummyDiv.parentNode.removeChild(dummyDiv);
       if (itemheight !== 0) {
-        var widget = c.parentNode.parentNode, // get the parent widget
-          widgetRect = widget.getBoundingClientRect(),
-          displayheight = Math.round(widgetRect.bottom - widgetRect.top),
-          labelElem = widget.querySelector('.label');
+        var widget = c.parentNode.parentNode; // get the parent widget
+          var widgetRect = widget.getBoundingClientRect();
+          var displayheight = Math.round(widgetRect.bottom - widgetRect.top);
+          var labelElem = widget.querySelector(".label");
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
           var labelElemRect = labelElem.getBoundingClientRect();
@@ -327,7 +330,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
     __updateRssContent: function(ev) {
       var result = ev.getTarget().getResponse();
-      if (typeof result === 'string') {
+      if (typeof result === "string") {
         // no json -> error
         this.error(result);
         return;
@@ -336,11 +339,10 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     __updateContent: function(items) {
-
       var isBig = this.__request.getUserData("big");
-      var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
+      var selector = "#rss_" + this.getPath() + (isBig === true ? "_big" : "");
       var c = document.querySelector(selector);
-      var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
+      var itemack = isBig === true ? this.getItemack() : (this.getItemack() === "modify" ? "display" : this.getItemack());
 
       this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
 
@@ -348,15 +350,15 @@ qx.Class.define('cv.plugins.RssLog', {
       var displayrows = this.__prepareContentElement(ul, c);
 
       var itemnum = items.length;
-      this.debug('C: #'+this.getPath()+', '+itemnum+' element(s) found, '+displayrows+' displayrow(s) available');
+      this.debug("C: #"+this.getPath()+", "+itemnum+" element(s) found, "+displayrows+" displayrow(s) available");
 
       var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
 
       if (itemnum > displayrows) { // no need to check mode if items are less than rows
-        if (this.getMode() === 'first') {
+        if (this.getMode() === "first") {
           itemoffset = itemnum - displayrows;
         }
-        if (this.getMode() === 'rollover') {
+        if (this.getMode() === "rollover") {
           itemoffset = parseInt(c.dataset["itemoffset"], 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
@@ -365,69 +367,70 @@ qx.Class.define('cv.plugins.RssLog', {
         }
       }
 
-      var row = 'rsslogodd';
+      var row = "rsslogodd";
       var last = itemoffset + displayrows;
       last = (last > itemnum) ? itemnum : last;
 
-      this.__separatordate = new Date().strftime('%d');
+      this.__separatordate = new Date().strftime("%d");
       this.__separatoradd = false;
       this.__separatorprevday = false;
       this.__isFuture = false;
 
       for (var i = itemoffset; i < last; i++) {
-        this.debug('C: #'+this.getPath()+', processing item: '+i+' of '+itemnum);
+        this.debug("C: #"+this.getPath()+", processing item: "+i+" of "+itemnum);
         var idx = i;
-        idx = (i >= itemnum) ? (idx = idx - itemnum) : idx;
+        idx = (i >= itemnum) ? (idx -= itemnum) : idx;
 
         var item = items[idx];
         var itemHtml = this.__getItemHtml(item, isBig);
 
-        var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
+        var rowElem = qx.dom.Element.create("li", { "class" : "rsslogRow " + row });
         rowElem.innerHTML = itemHtml;
 
-        if (item.mapping && item.mapping !== '') {
-          var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
-          var span = rowElem.querySelector('.mappedValue');
+        if (item.mapping && item.mapping !== "") {
+          var mappedValue = this.applyMapping(itemack === "disable" ? 0 : item.state, item.mapping);
+          var span = rowElem.querySelector(".mappedValue");
           var self = this;
-          this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
+          this.defaultValue2DOM(mappedValue, function(e) {
+ self._applyValueToDom(span, e); 
+});
         }
         if (this.__separatoradd && idx !== 0) {
-          rowElem.classList.add('rsslog_separator');
+          rowElem.classList.add("rsslog_separator");
           this.__separatorprevday = true;
-        }
-        else {
+        } else {
           this.__separatorprevday = false;
         }
 
         if (this.__separatorprevday === true) {
-          rowElem.classList.add('rsslog_prevday');
+          rowElem.classList.add("rsslog_prevday");
         }
 
         if (this.__isFuture) {
-          rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
+          rowElem.classList.add((row === "rsslogodd") ? "rsslog_futureeven" : "rsslog_futureodd");
         }
 
-        rowElem.dataset['id'] = item.id;
-        rowElem.dataset['mapping'] = item.mapping;
+        rowElem.dataset["id"] = item.id;
+        rowElem.dataset["mapping"] = item.mapping;
         if (item.tags) {
-          var tmp = rowElem.querySelector('span');
+          var tmp = rowElem.querySelector("span");
           if (Array.isArray(item.tags)) {
-            tmp.classList.add.apply( tmp.classList, item.tags );
+            tmp.classList.add.apply(tmp.classList, item.tags);
           } else {
             tmp.classList.add(item.tags);
           }
         }
-        if (item.state === "1" && itemack !== 'disable') {
+        if (item.state === "1" && itemack !== "disable") {
           rowElem.classList.add("rsslog_ack");
         }
 
-        if (itemack === 'modify') {
+        if (itemack === "modify") {
           qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
         }
         ul.appendChild(rowElem);
 
         // Alternate row classes
-        row = (row === 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
+        row = (row === "rsslogodd") ? "rsslogeven" : "rsslogodd";
       }
     },
 
@@ -440,22 +443,20 @@ qx.Class.define('cv.plugins.RssLog', {
         var entryDate = new Date(item.publishedDate);
         if (entryDate) {
           itemHtml = (this.getTimeformat()) ?
-            (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;')) :
-            (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
-          var thisday = entryDate.strftime('%d');
+            (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + "&nbsp;")) :
+            (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + " " + entryDate.toLocaleTimeString() + "&nbsp;"));
+          var thisday = entryDate.strftime("%d");
           this.__separatoradd = ((this.__separatordate > 0) && (this.__separatordate !== thisday));
           this.__separatordate = thisday;
-          this.__isFuture = (entryDate > new Date() );
-        }
-        else {
-          itemHtml = itemHtml.replace(/\{date\}/, '');
+          this.__isFuture = (entryDate > new Date());
+        } else {
+          itemHtml = itemHtml.replace(/\{date\}/, "");
         }
       } else {
         if (isBig) {
-          return '<b><a href="' + item.getLink() + '">' + item.getTitle() + '</a></b><br/>' + item.getDescription();
-        } else {
-          return '<b>' + item.getTitle() + '</b><br/>' + item.getDescription();
-        }
+          return "<b><a href=\"" + item.getLink() + "\">" + item.getTitle() + "</a></b><br/>" + item.getDescription();
+        } 
+          return "<b>" + item.getTitle() + "</b><br/>" + item.getDescription();
       }
 
       return itemHtml;
@@ -464,23 +465,25 @@ qx.Class.define('cv.plugins.RssLog', {
     _onTap: function(ev) {
       var item = ev.getCurrentTarget();
 
-      var id = item.dataset['id'];
-      var mapping = item.dataset['mapping'];
+      var id = item.dataset["id"];
+      var mapping = item.dataset["mapping"];
       item.classList.toggle("rsslog_ack");
       var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
-      if (mapping && mapping !== '') {
+      if (mapping && mapping !== "") {
         var mappedValue = this.applyMapping(state, mapping);
-        var span = item.querySelector('.mappedValue');
-        span.innerHTML = '';
+        var span = item.querySelector(".mappedValue");
+        span.innerHTML = "";
         var self = this;
-        this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
+        this.defaultValue2DOM(mappedValue, function(e) {
+ self._applyValueToDom(span, e); 
+});
       }
       var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
         requestData: Object.assign({}, this.__fixedRequestData, {
-          'u': id,
-          'state': state
+          "u": id,
+          "state": state
         }),
         accept: "application/json"
       });
@@ -490,7 +493,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/rsslog/rsslog.css');
+    loader.addStyles("plugins/rsslog/rsslog.css");
     cv.parser.WidgetParser.addHandler("rsslog", cv.plugins.RssLog);
     cv.ui.structure.WidgetFactory.registerClass("rsslog", statics);
   }

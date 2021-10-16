@@ -42,8 +42,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
  */
   construct: function () {
     this.base(arguments);
-    if (!cv.Config.request.queryKey.hasOwnProperty('preview')) {
-
+    if (!cv.Config.request.queryKey.hasOwnProperty("preview")) {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
@@ -73,7 +72,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {
-        html: cv.util.IconTools.svgKUF("edit_settings")(null, 'width: 22px; height: 22px;'),
+        html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
         style: "float: left;"
       });
       this._openSettings = new qx.ui.command.Command("Ctrl+S");
@@ -110,7 +109,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       if (!e.data) {
         this.error("invalid content received from SSE: ", e);
       }
-      var json = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
+      var json = typeof e.data === "object" ? e.data : JSON.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
     }
   },

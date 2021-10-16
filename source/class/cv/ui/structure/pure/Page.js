@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Page', {
+qx.Class.define("cv.ui.structure.pure.Page", {
   extend: cv.ui.structure.AbstractWidget,
   implement: cv.ui.structure.IPage,
 
@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   construct: function(props) {
-    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
+    this.__waitForProperties = ["showNavbarTop", "showNavbarBottom", "showNavbarLeft", "showNavbarRight"];
     this.base(arguments, props);
 
     this.addListener("changeVisible", this._onChangeVisible, this);
@@ -53,22 +53,22 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         this.debug("binding navbar visibility from " + parentPage.getPath() + " to " + this.getPath());
       }
       [
-        ['showTopNavigation', true],
-        ['showFooter', true],
-        ['showNavbarTop', false],
-        ['showNavbarBottom', false],
-        ['showNavbarLeft', false],
-        ['showNavbarRight', false]
+        ["showTopNavigation", true],
+        ["showFooter", true],
+        ["showNavbarTop", false],
+        ["showNavbarBottom", false],
+        ["showNavbarLeft", false],
+        ["showNavbarRight", false]
       ].forEach(function (tuple) {
         var property = tuple[0];
         var defaultValue = tuple[1];
-        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
+        if (this["get" + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
+            this["set" + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -88,7 +88,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   statics: {
-    allPages : '',
+    allPages : "",
 
     /**
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
@@ -156,7 +156,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       apply: "_applyNavbarVisibility"
     },
     backdropAlign     : {
-      init: '50% 50%',
+      init: "50% 50%",
       nullable: true
     },
     backdropType      : { check: "String", nullable: true },
@@ -178,8 +178,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     _applyNavbarVisibility: function(value, old, name) {
       if (value !== null) {
         var i_name = this.__waitForProperties.indexOf(name);
-        if( i_name !== -1 ) {
-          this.__waitForProperties.splice(i_name,1);
+        if (i_name !== -1) {
+          this.__waitForProperties.splice(i_name, 1);
         }
         if (this.__waitForProperties.length === 0) {
           this.setInitialized(true);
@@ -206,7 +206,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Set childrens column widths
      */
     applyColumnWidths: function() {
-      cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+      cv.ui.layout.Manager.applyColumnWidths("#"+this.getPath(), false);
       this.__colspanClass = cv.ui.layout.Manager.COLSPAN_CLASS;
     },
 
@@ -214,23 +214,21 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     getDomString: function() {
       var pageType = this.getPageType();
 
-      var subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
-      var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
-      var container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
+      var subpageClass = this.getFlavour() ? (" flavour_" + this.getFlavour()) : "";
+      var subpage = "<div class=\"page type_" + pageType + subpageClass + "\" id=\"" + this.getPath() + "\">";
+      var container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
 
-      if( '2d' === pageType )
-      {
-        var size = 'width:100%;height:100%;';
-        switch( this.getSize() )
-        {
-          case 'fixed':
-            size = '';
+      if (pageType === "2d") {
+        var size = "width:100%;height:100%;";
+        switch (this.getSize()) {
+          case "fixed":
+            size = "";
             break;
 
-          case 'contained':
-            size += 'object-fit:contain;';
-            if(this.getBackdropAlign()) {
-              size += 'object-position:' + this.getBackdropAlign() + ';';
+          case "contained":
+            size += "object-fit:contain;";
+            if (this.getBackdropAlign()) {
+              size += "object-position:" + this.getBackdropAlign() + ";";
             }
             break;
 
@@ -239,9 +237,9 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
         var backdrop = this.getBackdrop();
         if (backdrop) {
-          container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
+          container += "<" + this.getBackdropType() + " src=\"" + qx.util.ResourceManager.getInstance().toUri(backdrop) + "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" + size + "\"/>";
         }
-      } else if( '3d' === pageType && false ) //---Disable 3D for 0.8---
+      } else if (pageType === "3d" && false) //---Disable 3D for 0.8---
       {
         /*
          var floorplan = JSFloorPlan3D( container, backdrop );
@@ -283,12 +281,12 @@ qx.Class.define('cv.ui.structure.pure.Page', {
          */
       }
       container += this.getChildrenDomString();
-      subpage += container + '</div></div>';
+      subpage += container + "</div></div>";
       cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
       return undefined;
     },
 
-    _update: function( ga, data ) {
+    _update: function(ga, data) {
       // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
       // var value = this.defaultValueHandling( ga, data, widgetData );
       // var type = widgetData.address[ ga ][2];

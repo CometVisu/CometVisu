@@ -18,7 +18,7 @@
  */
 
 
-qx.Class.define('cv.util.String', {
+qx.Class.define("cv.util.String", {
   type: "static",
 
   /*
@@ -50,7 +50,7 @@ qx.Class.define('cv.util.String', {
     htmlStringToDomElement: function (str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
-      var div = document.createElement('div');
+      var div = document.createElement("div");
       div.innerHTML = str;
       return div.childNodes[0];
     },
@@ -64,12 +64,11 @@ qx.Class.define('cv.util.String', {
      */
     sprintf: function() {
       var args = Array.prototype.slice.call(arguments);
-      var string = '-';
+      var string = "-";
       try {
         string = sprintf.apply(this, args);
-      }
-      catch ( err ) {
-        console.warn( err, args );
+      } catch (err) {
+        console.warn(err, args);
       }
       return string;
     }

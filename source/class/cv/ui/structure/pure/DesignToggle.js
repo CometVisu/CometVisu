@@ -31,7 +31,7 @@
  * @author Christian Mayer
  * @since 0.5.3 (2010)
  */
-qx.Class.define('cv.ui.structure.pure.DesignToggle', {
+qx.Class.define("cv.ui.structure.pure.DesignToggle", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
 
@@ -65,7 +65,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
+      return "<div class=\"actor switchUnpressed\"><div class=\"value\">" + cv.Config.getDesign() + "</div></div>";
     },
     /**
      * Action performed when the widget got clicked
@@ -75,20 +75,21 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
      * @param actor {Element} - DOMElement
      * @param isCanceled {Boolean} - If true the action does nothing
      */
-    _action: function( path, actor, isCanceled ) {
-      if( isCanceled ) { return; }
+    _action: function(path, actor, isCanceled) {
+      if (isCanceled) {
+ return; 
+}
 
       var designs = this.getAvailableDesigns();
 
-      var oldDesign = this.getDomElement().querySelector('.value').textContent;
+      var oldDesign = this.getDomElement().querySelector(".value").textContent;
       var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
 
       var URL = cv.util.Location.getHref();
       var regexp = new RegExp("design="+oldDesign);
       if (URL.search(regexp) !== -1) { // has URL-parameter design
         cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
-      }
-      else {
+      } else {
         var parts = cv.util.Location.getHref().split("#");
         var req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
         if (parts.length > 1) {

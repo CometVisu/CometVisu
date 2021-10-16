@@ -58,17 +58,19 @@ qx.Class.define("cv.core.notifications.Router", {
       if (!message.hasOwnProperty("condition")) {
         // nothing to evaluate
         return true;
-      } else if (typeof message.condition === 'boolean') {
+      } else if (typeof message.condition === "boolean") {
         return message.condition;
-      } else if (typeof message.condition === 'function') {
+      } else if (typeof message.condition === "function") {
         return message.condition();
-      } else {
+      } 
         qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
-      }
     },
 
     /**
      * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
+     * @param topic
+     * @param message
+     * @param target
      */
     dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
@@ -157,7 +159,7 @@ qx.Class.define("cv.core.notifications.Router", {
         if (this.__stateMessageConfig[address]) {
           delete this.__stateMessageConfig[address];
         }
-      },this);
+      }, this);
     },
 
     /**
@@ -223,7 +225,7 @@ qx.Class.define("cv.core.notifications.Router", {
         };
 
         // transform the raw value to a JavaScript type
-        templateData.value =  cv.Transform.decode(transform, templateData.value);
+        templateData.value = cv.Transform.decode(transform, templateData.value);
         if (config.valueMapping) {
           // apply mapping
           templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
@@ -235,12 +237,12 @@ qx.Class.define("cv.core.notifications.Router", {
         var message = {
           topic: config.hasOwnProperty("topic") ? config.topic : "cv.state.update."+address,
           title: qx.bom.Template.render(""+config.titleTemplate, templateData),
-          message: qx.bom.Template.render(""+config.messageTemplate,templateData),
+          message: qx.bom.Template.render(""+config.messageTemplate, templateData),
           deletable: config.hasOwnProperty("deletable") ? config.deletable : true,
           unique: config.hasOwnProperty("unique") ? config.unique : false,
           severity: config.severity
         };
-        if (config.hasOwnProperty("condition")){
+        if (config.hasOwnProperty("condition")) {
           message.condition = state == config.condition; // jshint ignore:line
         }
         if (config.icon) {
@@ -251,7 +253,6 @@ qx.Class.define("cv.core.notifications.Router", {
         }
         this.dispatchMessage(message.topic, message, config.target);
       }, this);
-
     },
 
     __collectHandlers: function(topic) {
@@ -268,7 +269,7 @@ qx.Class.define("cv.core.notifications.Router", {
           // collect all
           this.__collectAllFromSegment(currentSegment, handlers);
           return true;
-        } else {
+        } 
           if (currentSegment["*"]) {
             handlers.append(currentSegment["*"].__handlers__);
           }
@@ -277,11 +278,10 @@ qx.Class.define("cv.core.notifications.Router", {
               handlers.append(currentSegment[segmentName].__handlers__);
             }
             currentSegment = currentSegment[segmentName];
-          } else{
+          } else {
             // stop searching
             return true;
           }
-        }
       }, this);
       return handlers;
     },

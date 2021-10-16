@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define('cv.ui.structure.pure.Unknown', {
+qx.Class.define("cv.ui.structure.pure.Unknown", {
   extend: qx.core.Object,
 
   /*
@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
      * @return {Element} the DOM element
      */
     getDomElement: function () {
-      return document.querySelector('#' + this.getPath());
+      return document.querySelector("#" + this.getPath());
     },
 
     /**
@@ -85,7 +85,7 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
      * @return {String} HTML code
      */
     getDomString: function () {
-      return '<div class="widget clearfix"><pre>'+qx.locale.Manager.tr("unknown: %1", this.getUnknownType()) + '</pre></div>';
+      return "<div class=\"widget clearfix\"><pre>"+qx.locale.Manager.tr("unknown: %1", this.getUnknownType()) + "</pre></div>";
     }
   },
 

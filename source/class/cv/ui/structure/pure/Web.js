@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Web', {
+qx.Class.define("cv.ui.structure.pure.Web", {
   extend: cv.ui.structure.AbstractWidget,
   include: [
     cv.ui.common.Update,
@@ -72,21 +72,31 @@ qx.Class.define('cv.ui.structure.pure.Web', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      var webStyle = '';
+      var webStyle = "";
       if (this.getWidth()) {
-        webStyle += 'width:' + this.getWidth() + ';';
-      } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
-        webStyle += 'width: 100%;';
+        webStyle += "width:" + this.getWidth() + ";";
+      } else { // default width is 100% of widget space (fix bug #3175343 part 1)
+        webStyle += "width: 100%;";
       }
       var style = this.getStyle();
-      if (this.getHeight()) { webStyle += 'height:' + this.getHeight() + ';'; }
-      if (this.getFrameborder() === false) { style += 'border: 0px ;'; }
-      if (this.getBackground()) { webStyle += 'background-color:' + this.getBackground() + ';'; }
-      if (webStyle !== '') { webStyle = 'style="' + webStyle + '"'; }
+      if (this.getHeight()) {
+ webStyle += "height:" + this.getHeight() + ";"; 
+}
+      if (this.getFrameborder() === false) {
+ style += "border: 0px ;"; 
+}
+      if (this.getBackground()) {
+ webStyle += "background-color:" + this.getBackground() + ";"; 
+}
+      if (webStyle !== "") {
+ webStyle = "style=\"" + webStyle + "\""; 
+}
 
-      var scrolling = '';
-      if (this.getScrolling()) { scrolling = 'scrolling="' + this.getScrolling() + '"'; } // add scrolling parameter to iframe
-      return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
+      var scrolling = "";
+      if (this.getScrolling()) {
+ scrolling = "scrolling=\"" + this.getScrolling() + "\""; 
+} // add scrolling parameter to iframe
+      return "<div class=\"actor\"><iframe src=\"" + this.getSrc() + "\" " + webStyle + scrolling + "></iframe></div>";
     },
 
     /**
@@ -96,13 +106,15 @@ qx.Class.define('cv.ui.structure.pure.Web', {
      * @param data {var} incoming data (already transformed + mapped)
      */
     _update: function(address, data) {
-      var addr = this.getAddress()[ address ];
-      if (!addr) { return; }
+      var addr = this.getAddress()[address];
+      if (!addr) {
+ return; 
+}
       if (data === 1) {
-        var iframe = this.getDomElement().querySelector('iframe');
-        this.refreshAction(iframe, iframe.getAttribute('src'));
+        var iframe = this.getDomElement().querySelector("iframe");
+        this.refreshAction(iframe, iframe.getAttribute("src"));
         // reset the value
-        cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr.transform, 0));
+        cv.TemplateEngine.getInstance().visu.write(address, cv.Transform.encode(addr.transform, 0));
       }
     }
   }

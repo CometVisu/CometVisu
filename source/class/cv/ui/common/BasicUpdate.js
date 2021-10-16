@@ -89,8 +89,12 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
             var valueFloat = parseFloat(v);
             var range = mapping.range;
             for (var min in range) {
-              if (min > valueFloat) { continue; }
-              if (range[min][0] < valueFloat) { continue; } // check max
+              if (min > valueFloat) {
+ continue; 
+}
+              if (range[min][0] < valueFloat) {
+ continue; 
+} // check max
               return range[min][1];
             }
           } else if (mapping["*"]) {
@@ -197,7 +201,6 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @return {var} the processed value
      */
     defaultValueHandling: function (address, data) {
-
       // #1: transform the raw value to a JavaScript type
       var value = this.applyTransform(address, data);
 
@@ -218,16 +221,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       if (value && value.constructor === Date) {
         switch (this.getAddress()[address].transform) // special case for KNX
         {
-          case 'DPT:10.001':
+          case "DPT:10.001":
             value = value.toLocaleTimeString();
             break;
-          case 'DPT:11.001':
+          case "DPT:11.001":
             value = value.toLocaleDateString();
             break;
-          case 'OH:datetime':
+          case "OH:datetime":
             value = value.toLocaleDateString();
             break;
-          case 'OH:time':
+          case "OH:time":
             value = value.toLocaleTimeString();
             break;
         }
@@ -250,18 +253,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     defaultValue2DOM: function (value, modifyFn) {
       var element;
       if (
-        ('string' === typeof value) ||
-        ('number' === typeof value) ||
+        (typeof value === "string") ||
+        (typeof value === "number") ||
         (value instanceof Uint8Array) ||
         (value instanceof Map)
       ) {
         modifyFn(value);
-      }
-      else if ('function' === typeof value) {
+      } else if (typeof value === "function") {
         // thisValue(valueElement);
-        this.error('typeof value === function - special case not handled anymore!');
-      }
-      else if (!Array.isArray(value)) {
+        this.error("typeof value === function - special case not handled anymore!");
+      } else if (!Array.isArray(value)) {
         element = value.cloneNode();
         if (value.getContext) {
           cv.util.IconTools.fillRecoloredIcon(element);
@@ -270,16 +271,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       } else {
         for (var i = 0; i < value.length; i++) {
           var thisValue = value[i];
-          if (!thisValue) { continue; }
+          if (!thisValue) {
+ continue; 
+}
 
-          if (('string' === typeof thisValue) || ('number' === typeof thisValue)) {
+          if ((typeof thisValue === "string") || (typeof thisValue === "number")) {
             modifyFn(thisValue);
-          }
-          else if ('function' === typeof thisValue) {
+          } else if (typeof thisValue === "function") {
             // thisValue(valueElement);
-            this.error('typeof value === function - special case not handled anymore!');
-          }
-          else {
+            this.error("typeof value === function - special case not handled anymore!");
+          } else {
             element = thisValue.cloneNode();
             if (thisValue.getContext) {
               cv.util.IconTools.fillRecoloredIcon(element);
@@ -307,14 +308,15 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       if (this.getAlign()) {
         element.classList.add(this.getAlign());
       }
-      var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-      valueElement.innerHTML = '';
+      var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector(".value");
+      valueElement.innerHTML = "";
       if (undefined !== value) {
         var self = this;
-        this.defaultValue2DOM(value, function(e){self._applyValueToDom(valueElement, e);});
-      }
-      else {
-        valueElement.appendChild(document.createTextNode('-'));
+        this.defaultValue2DOM(value, function(e) {
+ self._applyValueToDom(valueElement, e); 
+});
+      } else {
+        valueElement.appendChild(document.createTextNode("-"));
       }
       return value;
     },
@@ -325,7 +327,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @param e {var} value to add to the element
      */
     _applyValueToDom: function(valueElement, e) {
-      if (typeof e === 'number') {
+      if (typeof e === "number") {
         valueElement.innerText = e;
       } else {
         valueElement.innerHTML += e;

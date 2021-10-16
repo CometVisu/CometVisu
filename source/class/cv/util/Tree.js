@@ -28,7 +28,7 @@
 /**
  * Helper methods for the widget tree
  */
-qx.Class.define('cv.util.Tree', {
+qx.Class.define("cv.util.Tree", {
   type: "static",
 
   /*
@@ -73,7 +73,7 @@ qx.Class.define('cv.util.Tree', {
      */
     getParentPageData: function(path) {
       var data = {};
-      var isPage = path.substr(-1,1) === "_"; // path ends with _
+      var isPage = path.substr(-1, 1) === "_"; // path ends with _
       if (!isPage) {
         path = path.substr(0, path.length - 1);
       }
@@ -102,6 +102,9 @@ qx.Class.define('cv.util.Tree', {
     getParentData: function(path) {
       var data = {};
 
+      /**
+       * @param path
+       */
       function traverseUp(path) {
         var parts = path.split("_");
         if (parts[parts.length - 1] === "") {
@@ -136,10 +139,11 @@ qx.Class.define('cv.util.Tree', {
     getChildElements: function(element, selector) {
       return Array.from(element.childNodes).filter(function(child) {
         if (selector) {
-          return Array.prototype.filter.call(child,function(m){return m.matches(selector);});
-        } else {
+          return Array.prototype.filter.call(child, function(m) {
+ return m.matches(selector); 
+});
+        } 
           return true;
-        }
       }, this);
     },
 
@@ -154,16 +158,20 @@ qx.Class.define('cv.util.Tree', {
     getParent: function(element, until, selector, limit) {
       var parents = [];
       var parent = element.parentNode;
-      while (parent && parent.getAttribute('id') !== "pages") {
+      while (parent && parent.getAttribute("id") !== "pages") {
         var found = [parent];
         if (selector) {
-          found = Array.prototype.filter.call(found,function(m){return m.matches(selector);});
+          found = Array.prototype.filter.call(found, function(m) {
+ return m.matches(selector); 
+});
         }
         parents = parents.concat(found);
         if (limit && parents.length >= limit) {
           break;
         }
-        if (until && Array.prototype.filter.call([parent],function(m){return m.matches(until);}).length > 0) {
+        if (until && Array.prototype.filter.call([parent], function(m) {
+ return m.matches(until); 
+}).length > 0) {
           break;
         }
         parent = parent.parentNode;
@@ -172,17 +180,17 @@ qx.Class.define('cv.util.Tree', {
     },
 
     getClosest: function(elem, selector) {
-
       var findClosest = function (current) {
-        var found = Array.prototype.filter.call([current],function(m){return m.matches(selector);});
+        var found = Array.prototype.filter.call([current], function(m) {
+ return m.matches(selector); 
+});
         if (found.length) {
           return found[0];
-        } else {
+        } 
           current = current.parentNode; // One up
           if (current && current.parentNode) {
             return findClosest(current);
           }
-        }
       };
       return findClosest(elem);
     }

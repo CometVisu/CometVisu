@@ -55,7 +55,7 @@
  * @since 0.10.0
  *
  */
-qx.Class.define('cv.plugins.Speech', {
+qx.Class.define("cv.plugins.Speech", {
   extend: qx.core.Object,
   include: cv.ui.common.Update,
 
@@ -86,15 +86,15 @@ qx.Class.define('cv.plugins.Speech', {
 
       var address = cv.parser.WidgetParser.makeAddressList(element, path);
 
-      return cv.data.Model.getInstance().setWidgetData( path, {
-        'path'    : path,
-        'language': element.getAttribute('lang') ? element.getAttribute('lang') .toLowerCase() : null,
-        'address' : address,
-        'mapping' : element.getAttribute('mapping'),
-        'repeatTimeout': element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
-        '$$type'  : 'speech',
+      return cv.data.Model.getInstance().setWidgetData(path, {
+        "path"    : path,
+        "language": element.getAttribute("lang") ? element.getAttribute("lang").toLowerCase() : null,
+        "address" : address,
+        "mapping" : element.getAttribute("mapping"),
+        "repeatTimeout": element.getAttribute("repeat-timeout") ? parseInt(element.getAttribute("repeat-timeout")) : -1,
+        "$$type"  : "speech",
         // this widget needs to be initialized when the cache is used, otherwise it wont be available
-        '$$initOnCacheLoad': true
+        "$$initOnCacheLoad": true
       });
     }
   },
@@ -138,7 +138,6 @@ qx.Class.define('cv.plugins.Speech', {
     },
 
     handleUpdate: function(text, address) {
-
       if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
         // first call -> skipping
         this.__lastSpeech[address] = {
@@ -155,11 +154,10 @@ qx.Class.define('cv.plugins.Speech', {
         return;
       }
 
-      if (typeof text === "string" && text.substring(0,1) === "!") {
+      if (typeof text === "string" && text.substring(0, 1) === "!") {
         // override repeatTimeout, force saying this
         text = text.substring(1);
-      }
-      else if (this.getRepeatTimeout() >= 0) {
+      } else if (this.getRepeatTimeout() >= 0) {
         // do not repeat (within timeout when this.repeatTimeout > 0)
         if (this.__lastSpeech[address] && this.__lastSpeech[address].text === text && (this.getRepeatTimeout() === 0 ||
           this.getRepeatTimeout() >= Math.round((Date.now()-this.__lastSpeech[address].time)/1000))) {

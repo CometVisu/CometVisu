@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.Rgb', {
+qx.Class.define("cv.ui.structure.pure.Rgb", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
 
@@ -37,7 +37,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return '<div class="actor"><div class="value"></div></div>';
+      return "<div class=\"actor\"><div class=\"value\"></div></div>";
     },
 
     /**
@@ -47,22 +47,24 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
      * @param data {var} incoming data
      */
     _update: function(address, data) {
-      if (data === undefined || address === undefined) { return; }
+      if (data === undefined || address === undefined) {
+ return; 
+}
       var valElem = this.getValueElement();
 
-      var value = cv.Transform.decode( this.getAddress()[ address ].transform, data );
+      var value = cv.Transform.decode(this.getAddress()[address].transform, data);
 
-      var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
-      if( 3 !== bg.length ) {
+      var bg = window.getComputedStyle(valElem)["background-color"].replace(/[a-zA-Z()\s]/g, "").split(/,/);
+      if (bg.length !== 3) {
         bg = [0, 0, 0];
       }
-      switch (this.getAddress()[ address ].variantInfo) {
-        case 'r' :  bg[0] = value; break;
-        case 'g' :  bg[1] = value; break;
-        case 'b' :  bg[2] = value; break;
+      switch (this.getAddress()[address].variantInfo) {
+        case "r": bg[0] = value; break;
+        case "g": bg[1] = value; break;
+        case "b": bg[2] = value; break;
       }
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-      valElem.style['background-color'] = bgs;
+      valElem.style["background-color"] = bgs;
     }
   },
 

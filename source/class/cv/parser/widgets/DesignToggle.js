@@ -21,7 +21,7 @@
 /**
  * Parse &lt;designtoggle;gt; config elements
  */
-qx.Class.define('cv.parser.widgets.DesignToggle', {
+qx.Class.define("cv.parser.widgets.DesignToggle", {
   type: "static",
 
   /*
@@ -35,7 +35,7 @@ qx.Class.define('cv.parser.widgets.DesignToggle', {
     },
 
     getDefaultClasses: function() {
-      return 'widget clearfix toggle';
+      return "widget clearfix toggle";
     }
   },
 

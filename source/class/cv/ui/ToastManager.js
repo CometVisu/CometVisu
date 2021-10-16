@@ -107,7 +107,7 @@ qx.Class.define("cv.ui.ToastManager", {
         var template = qx.dom.Element.create("script", {
           id: "ToastTemplate",
           type: "text/template",
-          html: '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}"><div class="content">{{&message}}</div></div>'
+          html: "<div class=\"toast {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\""+this.getMessageElementId()+"{{ id }}\"><div class=\"content\">{{&message}}</div></div>"
         });
         document.body.appendChild(template);
       }

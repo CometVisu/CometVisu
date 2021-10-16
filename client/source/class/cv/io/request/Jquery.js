@@ -81,9 +81,8 @@ qx.Class.define("cv.io.request.Jquery", {
     getResponseHeader: function(headerName) {
       if (this.__xhr) {
         return this.__xhr.getResponseHeader(headerName);
-      } else {
+      } 
         return null;
-      }
     }
   }
 });

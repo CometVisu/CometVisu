@@ -34,7 +34,7 @@
  * @since 2011
  * @asset(plugins/rss/dep/zrssfeed/jquery.zrssfeed.js)
  */
-qx.Class.define('cv.plugins.Rss', {
+qx.Class.define("cv.plugins.Rss", {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Refresh],
 
@@ -62,19 +62,19 @@ qx.Class.define('cv.plugins.Rss', {
 
     getAttributeToPropertyMappings: function() {
       return {
-        'src': {},
-        'width': { "default": "" },
-        'height': { "default": "" },
-        'limit': { "default": 10 },
-        'header': { "default": true },
-        'date': { "default": true },
-        'content': { "default": true },
-        'snippet': { "default": true },
-        'showerror': { "default": true },
-        'ssl': { "default": false },
-        'linktarget': { "default": "_new" },
-        'link': { "default": true },
-        'title': { "default": true }
+        "src": {},
+        "width": { "default": "" },
+        "height": { "default": "" },
+        "limit": { "default": 10 },
+        "header": { "default": true },
+        "date": { "default": true },
+        "content": { "default": true },
+        "snippet": { "default": true },
+        "showerror": { "default": true },
+        "ssl": { "default": false },
+        "linktarget": { "default": "_new" },
+        "link": { "default": true },
+        "title": { "default": true }
       };
     }
   },
@@ -86,18 +86,18 @@ qx.Class.define('cv.plugins.Rss', {
   */
   properties: {
     src: { check: "String", init: "" },
-    'width': { init: "" },
-    'height': { init: "" },
-    'limit': { init: 10 },
-    'header': { init: true },
-    'date': { init: true },
-    'content': { init: true },
-    'snippet': { init: true },
-    'showerror': { init: true },
-    'ssl': { init: false },
-    'linktarget': { init: "_new" },
-    'link': { init: true },
-    'title': { init: true }
+    "width": { init: "" },
+    "height": { init: "" },
+    "limit": { init: 10 },
+    "header": { init: true },
+    "date": { init: true },
+    "content": { init: true },
+    "snippet": { init: true },
+    "showerror": { init: true },
+    "ssl": { init: false },
+    "linktarget": { init: "_new" },
+    "link": { init: true },
+    "title": { init: true }
   },
 
   /*
@@ -107,10 +107,10 @@ qx.Class.define('cv.plugins.Rss', {
   */
   members: {
     _getInnerDomString: function () {
-      var rssstyle = '' +
-        this.getWidth() ? 'width:' + this.getWidth() : '' +
-        this.getHeight() ? 'height:' + this.getHeight() : '';
-      return '<div class="actor"><div class="rss_inline" id="rss_' + this.getPath() + '" style="' + rssstyle + '"></div>';
+      var rssstyle = "" +
+        this.getWidth() ? "width:" + this.getWidth() : "" +
+        this.getHeight() ? "height:" + this.getHeight() : "";
+      return "<div class=\"actor\"><div class=\"rss_inline\" id=\"rss_" + this.getPath() + "\" style=\"" + rssstyle + "\"></div>";
     },
 
     _onDomReady: function () {
@@ -128,13 +128,13 @@ qx.Class.define('cv.plugins.Rss', {
 
     refreshRSS: function () {
       var data = cv.data.Model.getInstance().getWidgetData(this.getPath());
-      $('#' + this.getPath() + ' .rss_inline').rssfeed(this.getSrc(), data);
+      $("#" + this.getPath() + " .rss_inline").rssfeed(this.getSrc(), data);
     }
   },
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
+    loader.addScripts("plugins/rss/dep/zrssfeed/jquery.zrssfeed.js");
     cv.parser.WidgetParser.addHandler("rss", cv.plugins.Rss);
     cv.ui.structure.WidgetFactory.registerClass("rss", statics);
   }

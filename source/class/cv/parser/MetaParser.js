@@ -33,13 +33,13 @@ qx.Class.define("cv.parser.MetaParser", {
       this.parseFiles(xml);
 
       // parse the icons
-      xml.querySelectorAll('meta > icons icon-definition').forEach(this.parseIcons, this);
+      xml.querySelectorAll("meta > icons icon-definition").forEach(this.parseIcons, this);
 
       // then the mappings
-      xml.querySelectorAll('meta > mappings mapping').forEach(this.parseMappings, this);
+      xml.querySelectorAll("meta > mappings mapping").forEach(this.parseMappings, this);
 
       // then the stylings
-      xml.querySelectorAll('meta > stylings styling').forEach(this.parseStylings, this);
+      xml.querySelectorAll("meta > stylings styling").forEach(this.parseStylings, this);
 
       // then the status bar
       this.parseStatusBar(xml);
@@ -54,16 +54,16 @@ qx.Class.define("cv.parser.MetaParser", {
         css: [],
         js: []
       };
-      xml.querySelectorAll('meta > files file').forEach(function (elem) {
-        var type = elem.getAttribute('type');
-        var content = elem.getAttribute('content');
+      xml.querySelectorAll("meta > files file").forEach(function (elem) {
+        var type = elem.getAttribute("type");
+        var content = elem.getAttribute("content");
         switch (type) {
-          case 'css':
+          case "css":
             files.css.push(elem.textContent);
             break;
 
-          case 'js':
-            if (content === 'plugin') {
+          case "js":
+            if (content === "plugin") {
               cv.Config.configSettings.pluginsToLoad.push(elem.textContent);
             } else {
               files.js.push(elem.textContent);
@@ -71,7 +71,7 @@ qx.Class.define("cv.parser.MetaParser", {
             break;
 
           default:
-            this.warn('ignoring unknown file type', type);
+            this.warn("ignoring unknown file type", type);
             break;
         }
       }, this);
@@ -89,49 +89,46 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseMappings: function(elem) {
-      var name = elem.getAttribute('name');
+      var name = elem.getAttribute("name");
       var mapping = {};
-      var formula = elem.querySelectorAll('formula');
+      var formula = elem.querySelectorAll("formula");
       if (formula.length > 0) {
         mapping.formulaSource = formula[0].textContent;
-        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+        mapping.formula = new Function("x", "var y;" + mapping.formulaSource + "; return y;"); // jshint ignore:line
       }
-      var subElements = elem.querySelectorAll('entry');
+      var subElements = elem.querySelectorAll("entry");
       subElements.forEach(function (subElem) {
         var origin = subElem.childNodes;
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
+          if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === "icon") {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
-          }
-          else if (v && v.nodeType === 3 && v.textContent.trim().length) {
+          } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
             value.push(v.textContent.trim());
           }
         }
         // check for default entry
-        var isDefaultValue = subElem.getAttribute('default');
+        var isDefaultValue = subElem.getAttribute("default");
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
-        }
-        else {
+        } else {
           isDefaultValue = false;
         }
         // now set the mapped values
-        if (subElem.getAttribute('value')) {
-          mapping[subElem.getAttribute('value')] = value.length === 1 ? value[0] : value;
+        if (subElem.getAttribute("value")) {
+          mapping[subElem.getAttribute("value")] = value.length === 1 ? value[0] : value;
           if (isDefaultValue) {
-            mapping.defaultValue = subElem.getAttribute('value');
+            mapping.defaultValue = subElem.getAttribute("value");
           }
-        }
-        else if (subElem.hasAttribute("range_min")) {
+        } else if (subElem.hasAttribute("range_min")) {
           if (!mapping.range) {
             mapping.range = {};
           }
-          mapping.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), value];
+          mapping.range[parseFloat(subElem.getAttribute("range_min"))] = [parseFloat(subElem.getAttribute("range_max")), value];
           if (isDefaultValue) {
-            mapping.defaultValue = parseFloat(subElem.getAttribute('range_min'));
+            mapping.defaultValue = parseFloat(subElem.getAttribute("range_min"));
           }
         } else if (subElements.length === 1) {
           // use as catchall mapping
@@ -142,31 +139,31 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStylings: function(elem) {
-      var name = elem.getAttribute('name');
-      var classnames = '';
+      var name = elem.getAttribute("name");
+      var classnames = "";
       var styling = {};
-      elem.querySelectorAll('entry').forEach(function (subElem) {
-        classnames += subElem.textContent + ' ';
+      elem.querySelectorAll("entry").forEach(function (subElem) {
+        classnames += subElem.textContent + " ";
         // check for default entry
-        var isDefaultValue = subElem.getAttribute('default');
+        var isDefaultValue = subElem.getAttribute("default");
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
         } else {
           isDefaultValue = false;
         }
         // now set the styling values
-        if (subElem.getAttribute('value')) {
-          styling[subElem.getAttribute('value')] = subElem.textContent;
+        if (subElem.getAttribute("value")) {
+          styling[subElem.getAttribute("value")] = subElem.textContent;
           if (isDefaultValue) {
-            styling.defaultValue = subElem.getAttribute('value');
+            styling.defaultValue = subElem.getAttribute("value");
           }
         } else { // a range
           if (!styling.range) {
             styling.range = {};
           }
-          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
+          styling.range[parseFloat(subElem.getAttribute("range_min"))] = [parseFloat(subElem.getAttribute("range_max")), subElem.textContent];
           if (isDefaultValue) {
-            styling.defaultValue = parseFloat(subElem.getAttribute('range_min'));
+            styling.defaultValue = parseFloat(subElem.getAttribute("range_min"));
           }
         }
       }, this);
@@ -175,35 +172,35 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStatusBar: function(xml) {
-      var code = '';
-      xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
-        var condition = elem.getAttribute('condition');
-        var extend = elem.getAttribute('hrefextend');
+      var code = "";
+      xml.querySelectorAll("meta > statusbar status").forEach(function (elem) {
+        var condition = elem.getAttribute("condition");
+        var extend = elem.getAttribute("hrefextend");
         var sPath = window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+        var sPage = sPath.substring(sPath.lastIndexOf("/") + 1);
 
         // @TODO: make this match once the new editor is finished-ish.
-        var editMode = 'edit_config.html' === sPage;
+        var editMode = sPage === "edit_config.html";
 
         // skip this element if it's edit-only and we are non-edit, or the other
         // way
         // round
-        if (editMode && '!edit' === condition) {
+        if (editMode && condition === "!edit") {
           return;
         }
-        if (!editMode && 'edit' === condition) {
+        if (!editMode && condition === "edit") {
           return;
         }
 
-        if (cv.Config.testMode && '!testMode' === condition) {
+        if (cv.Config.testMode && condition === "!testMode") {
           return;
         }
-        if (!cv.Config.testMode && 'testMode' === condition) {
+        if (!cv.Config.testMode && condition === "testMode") {
           return;
         }
 
         var text = elem.textContent;
-        var search = '';
+        var search = "";
 
         // compability change to make existing customer configurations work with the new manager links
         // this replaces all document links to old manager tools with the new ones
@@ -215,28 +212,28 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         let handled = false;
         const url = new URL(window.location.href);
-        if (url.searchParams.has('config')) {
-          search = url.searchParams.get('config');
+        if (url.searchParams.has("config")) {
+          search = url.searchParams.get("config");
           search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
-            return '%' + c.charCodeAt(0).toString(16);
+            return "%" + c.charCodeAt(0).toString(16);
           });
         }
         matches.forEach(match => {
           switch (match[1]) {
-            case 'manager.php':
-              text = text.replace(match[0], 'href="#" onclick="showManager()"');
+            case "manager.php":
+              text = text.replace(match[0], "href=\"#\" onclick=\"showManager()\"");
               handled = true;
               break;
 
-            case 'check_config.php':
-              text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
+            case "check_config.php":
+              text = text.replace(match[0], "href=\"#\" onclick=\"qx.core.Init.getApplication().validateConfig('" + search + "')\"");
               handled = true;
               break;
 
-            case 'editor/':
-            case 'editor':
-              const suffix = search ? '_' + search : '';
-              text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+            case "editor/":
+            case "editor":
+              const suffix = search ? "_" + search : "";
+              text = text.replace(match[0], "href=\"#\" onclick=\"showManager('open', 'visu_config" + suffix + ".xml')\"");
               handled = true;
               break;
           }
@@ -247,39 +244,38 @@ qx.Class.define("cv.parser.MetaParser", {
           extend = null;
         }
         switch (extend) {
-          case 'all': // append all parameters
-            search = window.location.search.replace(/\$/g, '$$$$');
-            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+          case "all": // append all parameters
+            search = window.location.search.replace(/\$/g, "$$$$");
+            text = text.replace(/(href="[^"]*)(")/g, "$1" + search + "$2");
             break;
-          case 'config': // append config file info
-            search = window.location.search.replace(/\$/g, '$$$$');
-            search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
+          case "config": // append config file info
+            search = window.location.search.replace(/\$/g, "$$$$");
+            search = search.replace(/.*(config=[^&]*).*|.*/, "$1");
 
-            var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
-            if (0 < middle.indexOf('?')) {
-              search = '&' + search;
-            }
-            else {
-              search = '?' + search;
+            var middle = text.replace(/.*href="([^"]*)".*/g, "{$1}");
+            if (middle.indexOf("?") > 0) {
+              search = "&" + search;
+            } else {
+              search = "?" + search;
             }
 
-            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            text = text.replace(/(href="[^"]*)(")/g, "$1" + search + "$2");
             break;
 
-          case 'action':
-            search = window.location.search.replace(/\$/g, '$$$$');
-            search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+          case "action":
+            search = window.location.search.replace(/\$/g, "$$$$");
+            search = search.replace(/.*config=([^&]*).*|.*/, "$1");
             const match = /cv-action="([\w]+)"/.exec(text);
             if (match) {
-              let replacement = 'href="#" '
+              let replacement = "href=\"#\" ";
               switch (match[1]) {
-                case 'validate':
-                  replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
+                case "validate":
+                  replacement += "onclick=\"qx.core.Init.getApplication().validateConfig('" + search + "')\"";
                   break;
 
-                case 'edit':
-                  const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                  replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                case "edit":
+                  const configFile = search ? "visu_config_" + search + ".xml" : "visu_config.xml";
+                  replacement += "onclick=\"showManager('open', '" + configFile + "')\"";
                   break;
               }
               text = text.replace(match[0], replacement);
@@ -294,8 +290,8 @@ qx.Class.define("cv.parser.MetaParser", {
 
     parsePlugins: function(xml) {
       var pluginsToLoad = [];
-      xml.querySelectorAll('meta > plugins plugin').forEach(function (elem) {
-        var name = elem.getAttribute('name');
+      xml.querySelectorAll("meta > plugins plugin").forEach(function (elem) {
+        var name = elem.getAttribute("name");
         if (name) {
           pluginsToLoad.push("plugin-"+name);
         }
@@ -305,59 +301,59 @@ qx.Class.define("cv.parser.MetaParser", {
 
     __parseIconDefinition: function(elem) {
       return {
-        name : elem.getAttribute('name'),
-        uri : elem.getAttribute('uri'),
-        type : elem.getAttribute('type'),
-        flavour : elem.getAttribute('flavour'),
-        color : elem.getAttribute('color'),
-        styling : elem.getAttribute('styling'),
-        dynamic : elem.getAttribute('dynamic'),
-        'class' : elem.getAttribute('class')
+        name : elem.getAttribute("name"),
+        uri : elem.getAttribute("uri"),
+        type : elem.getAttribute("type"),
+        flavour : elem.getAttribute("flavour"),
+        color : elem.getAttribute("color"),
+        styling : elem.getAttribute("styling"),
+        dynamic : elem.getAttribute("dynamic"),
+        "class" : elem.getAttribute("class")
       };
     },
 
     parseStateNotifications: function(xml) {
       var stateConfig = {};
-      xml.querySelectorAll('meta > notifications state-notification').forEach(function (elem) {
-        var target = cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
+      xml.querySelectorAll("meta > notifications state-notification").forEach(function (elem) {
+        var target = cv.core.notifications.Router.getTarget(elem.getAttribute("target")) || cv.ui.NotificationCenter.getInstance();
 
-        var addressContainer = elem.querySelector('addresses');
+        var addressContainer = elem.querySelector("addresses");
 
         var config = {
           target: target,
-          severity: elem.getAttribute('severity'),
-          skipInitial: elem.getAttribute('skip-initial') !== "false",
-          deletable: elem.getAttribute('deletable') !== "false",
-          unique: elem.getAttribute('unique') === "true",
-          valueMapping: addressContainer.getAttribute('value-mapping'),
-          addressMapping: addressContainer.getAttribute('address-mapping')
+          severity: elem.getAttribute("severity"),
+          skipInitial: elem.getAttribute("skip-initial") !== "false",
+          deletable: elem.getAttribute("deletable") !== "false",
+          unique: elem.getAttribute("unique") === "true",
+          valueMapping: addressContainer.getAttribute("value-mapping"),
+          addressMapping: addressContainer.getAttribute("address-mapping")
         };
 
-        var name = elem.getAttribute('name');
+        var name = elem.getAttribute("name");
         if (name) {
           config.topic = "cv.state."+name;
         }
-        var icon = elem.getAttribute('icon');
+        var icon = elem.getAttribute("icon");
         if (icon) {
           config.icon = icon;
-          var iconClasses = elem.getAttribute('icon-classes');
+          var iconClasses = elem.getAttribute("icon-classes");
           if (iconClasses) {
             config.iconClasses = iconClasses;
           }
         }
 
         // templates
-        var titleElem = elem.querySelector('title-template');
+        var titleElem = elem.querySelector("title-template");
         if (titleElem) {
           config.titleTemplate = titleElem.innerHTML;
         }
-        var messageElem = elem.querySelector('message-template');
+        var messageElem = elem.querySelector("message-template");
         if (messageElem) {
           config.messageTemplate = messageElem.innerHTML;
         }
 
         // condition
-        var conditionElem = elem.querySelector('condition');
+        var conditionElem = elem.querySelector("condition");
         var condition = conditionElem.textContent;
         if (condition === "true") {
           condition = true;
@@ -383,6 +379,7 @@ qx.Class.define("cv.parser.MetaParser", {
     /**
      * Parses meta template definitions and add them to the WidgetParser
      * @param xml {HTMLElement}
+     * @param done
      */
     parseTemplates: function (xml, done) {
       var __loadQueue = new qx.data.Array();
@@ -392,19 +389,19 @@ qx.Class.define("cv.parser.MetaParser", {
           done();
         }
       };
-      var templates = xml.querySelectorAll('meta > templates template');
+      var templates = xml.querySelectorAll("meta > templates template");
       if (templates.length === 0) {
         done();
       } else {
         templates.forEach(function (elem) {
-          var templateName = elem.getAttribute('name');
-          qx.log.Logger.debug(this, 'loading template:', templateName);
-          var ref = elem.getAttribute('ref');
+          var templateName = elem.getAttribute("name");
+          qx.log.Logger.debug(this, "loading template:", templateName);
+          var ref = elem.getAttribute("ref");
           if (ref) {
             // load template fom external file
             var areq = new qx.io.request.Xhr(ref);
             __loadQueue.push(ref);
-            qx.log.Logger.debug(this, 'loading template from file:', ref);
+            qx.log.Logger.debug(this, "loading template from file:", ref);
             areq.set({
               accept: "text/plain",
               cache: !cv.Config.forceReload
@@ -415,10 +412,10 @@ qx.Class.define("cv.parser.MetaParser", {
               cv.parser.WidgetParser.addTemplate(
                 templateName,
                 // templates can only have one single root element, so we wrap it here
-                '<root>' + req.getResponseText() + '</root>'
+                "<root>" + req.getResponseText() + "</root>"
               );
               __loadQueue.remove(areq.getUrl());
-              qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
+              qx.log.Logger.debug(this, "DONE loading template from file:", ref);
               check();
             }, this);
             areq.addListener("statusError", function () {
@@ -433,11 +430,11 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
-            var cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();
+            var cleaned = elem.innerHTML.replace(/\n\s*/g, "").trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here
-              '<root>' + cleaned + '</root>'
+              "<root>" + cleaned + "</root>"
             );
           }
         }, this);

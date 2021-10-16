@@ -59,8 +59,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
     /**
      * @param source {String?null} The URL of the image to display.
      */
-    construct : function(source)
-    {
+    construct : function(source) {
       this.__contentElements = {};
 
       this.base(arguments);
@@ -243,8 +242,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
 
         // overridden
-        _getContentHint : function()
-        {
+        _getContentHint : function() {
           return {
             width : this.__width || 0,
             height : this.__height || 0
@@ -265,8 +263,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         },
 
         // overridden
-        _applyTextColor : function(value)
-        {
+        _applyTextColor : function(value) {
           if (this.__getMode() === "font") {
             var el = this.getContentElement();
             if (this.__wrapper) {
@@ -282,8 +279,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         },
 
         // overridden
-        _applyPadding : function(value, old, name)
-        {
+        _applyPadding : function(value, old, name) {
           this.base(arguments, value, old, name);
 
           var element = this.getContentElement();
@@ -292,7 +288,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               top: this.getPaddingTop() || 0,
               left: this.getPaddingLeft() || 0
             });
-          } else if (this.__getMode() === 'font') {
+          } else if (this.__getMode() === "font") {
             element.setStyles({
               top: this.getPaddingTop() || 0,
               left: this.getPaddingLeft() || 0
@@ -302,7 +298,6 @@ qx.Class.define("cv.ui.manager.basic.Image",
               this.getPaddingLeft() || 0, this.getPaddingTop() || 0
             );
           }
-
         },
 
         renderLayout : function(left, top, width, height) {
@@ -329,8 +324,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         */
 
         // property apply, overridden
-        _applyEnabled : function(value, old)
-        {
+        _applyEnabled : function(value, old) {
           this.base(arguments, value, old);
 
           if (this.getSource()) {
@@ -340,8 +334,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
 
         // property apply
-        _applySource : function(value, old)
-        {
+        _applySource : function(value, old) {
           // abort loading current image
           if (old) {
             if (qx.io.ImageLoader.isLoading(old)) {
@@ -374,10 +367,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
          *
          * @return {String} current internal mode
          */
-        __getMode : function()
-        {
-          if (this.__mode == null)
-          {
+        __getMode : function() {
+          if (this.__mode == null) {
             var source = this.getSource();
 
             if (source && qx.lang.String.startsWith(source, "@")) {
@@ -410,8 +401,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param mode {String} internal mode
          * @return {qx.html.Image} suitable image content element
          */
-        __createSuitableContentElement : function(mode)
-        {
+        __createSuitableContentElement : function(mode) {
           var scale;
           var tagName;
           var clazz = qx.html.Image;
@@ -450,8 +440,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
           if (mode === "font") {
             element.setRich(true);
-          }
-          else if (mode !== "svg") {
+          } else if (mode !== "svg") {
             element.setScale(scale);
 
             if (qx.core.Environment.get("css.alphaimageloaderneeded")) {
@@ -472,8 +461,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          *
          * @return {qx.html.Image} suitable image contentElement
          */
-        __getSuitableContentElement : function()
-        {
+        __getSuitableContentElement : function() {
           if (this.$$disposed) {
             return null;
           }
@@ -499,8 +487,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * an image to detect sizes and apply it afterwards.
          *
          */
-        _styleSource : function()
-        {
+        _styleSource : function() {
           var AliasManager = qx.util.AliasManager.getInstance();
           var ResourceManager = qx.util.ResourceManager.getInstance();
 
@@ -511,8 +498,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
             element = element.getChild(0);
           }
 
-          if (!source)
-          {
+          if (!source) {
             this.__resetSource(element);
             return;
           }
@@ -521,8 +507,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
           if ((qx.core.Environment.get("engine.name") == "mshtml") &&
             (parseInt(qx.core.Environment.get("engine.version"), 10) < 9 ||
-              qx.core.Environment.get("browser.documentmode") < 9))
-          {
+              qx.core.Environment.get("browser.documentmode") < 9)) {
             var repeat = this.getScale() ? "scale" : "no-repeat";
             element.tagNameHint = qx.bom.element.Decoration.getTagName(repeat, source);
           }
@@ -538,8 +523,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
             }
           } else if (source && source.startsWith("<svg")) {
             this.__setManagedImage(contentEl, source);
-          }
-          else if (ResourceManager.has(source)) {
+          } else if (ResourceManager.has(source)) {
             var highResolutionSource = ResourceManager.findHighResolutionSource(source);
             if (highResolutionSource) {
               var imageWidth = ResourceManager.getImageWidth(source);
@@ -571,10 +555,9 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * helper will be called, if you try to load a managed image or an
          * previously loaded unmanaged image.
          */
-        __fireLoadEvent : function()
-        {
+        __fireLoadEvent : function() {
           this.__requestId++;
-          qx.bom.AnimationFrame.request(function(rId){
+          qx.bom.AnimationFrame.request(function(rId) {
             // prevent firing of the event if source changed in the meantime
             if (rId === this.__requestId) {
               this.fireEvent("loaded");
@@ -589,8 +572,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * Returns the content element.
          * @return {qx.html.Image} content element
          */
-        __getContentElement : function()
-        {
+        __getContentElement : function() {
           var contentEl = this.__currentContentElement;
           if (this.__wrapper) {
             contentEl = contentEl.getChild(0);
@@ -608,8 +590,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          */
         __checkForContentElementSwitch : qx.core.Environment.select("engine.name",
           {
-            "mshtml" : function(source)
-            {
+            "mshtml" : function(source) {
               var alphaImageLoader = qx.core.Environment.get("css.alphaimageloaderneeded");
               var isPng = source.endsWith(".png");
               var isFont = source.startsWith("@");
@@ -619,28 +600,22 @@ qx.Class.define("cv.ui.manager.basic.Image",
                 this.__setMode("font");
               } else if (isSvg) {
                 this.__setMode("svg");
-              } else if (alphaImageLoader && isPng)
-              {
+              } else if (alphaImageLoader && isPng) {
                 if (this.getScale() && this.__getMode() != "alphaScaled") {
                   this.__setMode("alphaScaled");
                 } else if (!this.getScale() && this.__getMode() != "nonScaled") {
                   this.__setMode("nonScaled");
                 }
-              }
-              else
-              {
-                if (this.getScale() && this.__getMode() != "scaled") {
+              } else if (this.getScale() && this.__getMode() != "scaled") {
                   this.__setMode("scaled");
                 } else if (!this.getScale() && this.__getMode() != "nonScaled") {
                   this.__setMode("nonScaled");
                 }
-              }
 
               this.__checkForContentElementReplacement(this.__getSuitableContentElement());
             },
 
-            "default" : function(source)
-            {
+            "default" : function(source) {
               var isFont = source && qx.lang.String.startsWith(source, "@");
               var isSvg = source.startsWith("<svg");
 
@@ -664,21 +639,18 @@ qx.Class.define("cv.ui.manager.basic.Image",
          *
          * @param elementToAdd {qx.html.Image} content element to add
          */
-        __checkForContentElementReplacement : function(elementToAdd)
-        {
+        __checkForContentElementReplacement : function(elementToAdd) {
           var currentContentElement = this.__currentContentElement;
 
-          if (currentContentElement != elementToAdd)
-          {
-            if (currentContentElement != null)
-            {
+          if (currentContentElement != elementToAdd) {
+            if (currentContentElement != null) {
               var pixel = "px";
               var styles = {};
 
               //inherit styles from current element
               var currentStyles = currentContentElement.getAllStyles();
-              if(currentStyles) {
-                for(var prop in currentStyles) {
+              if (currentStyles) {
+                for (var prop in currentStyles) {
                   styles[prop] = currentStyles[prop];
                 }
               }
@@ -690,8 +662,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
               // Copy dimension and location of the current content element
               var bounds = this.getBounds();
-              if (bounds != null)
-              {
+              if (bounds != null) {
                 styles.width = bounds.width + pixel;
                 styles.height = bounds.height + pixel;
               }
@@ -729,8 +700,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               var hint = newEl.getNodeName();
               if (newEl.setSource) {
                 newEl.setSource(null);
-              }
-              else if (newEl.setValue) {
+              } else if (newEl.setValue) {
                 newEl.setValue("");
               } else {
                 newEl.removeAll();
@@ -770,23 +740,18 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param el {Element} image DOM element
          * @param source {String} source path
          */
-        __setManagedImage : function(el, source)
-        {
+        __setManagedImage : function(el, source) {
           var ResourceManager = qx.util.ResourceManager.getInstance();
           var isFont = ResourceManager.isFontUri(source);
           var isSvg = source.startsWith("<svg");
 
           // Try to find a disabled image in registry
-          if (!this.getEnabled())
-          {
+          if (!this.getEnabled()) {
             var disabled = source.replace(/\.([a-z]+)$/, "-disabled.$1");
-            if (!isFont && ResourceManager.has(disabled))
-            {
+            if (!isFont && ResourceManager.has(disabled)) {
               source = disabled;
               this.addState("replacement");
-            }
-            else
-            {
+            } else {
               this.removeState("replacement");
             }
           }
@@ -798,7 +763,6 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
           // Special case for non resource manager handled font icons
           if (isFont) {
-
             // Don't use scale if size is set via postfix
             if (this.getScale() && parseInt(source.split("/")[2], 10)) {
               this.setScale(false);
@@ -811,8 +775,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               var hint = this.getSizeHint();
               width = this.getWidth() || hint.width;
               height = this.getHeight() || hint.height;
-            }
-            else {
+            } else {
               var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
               if (qx.core.Environment.get("qx.debug")) {
                 this.assertObject(font, "Virtual image source contains unkown font descriptor");
@@ -830,8 +793,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
             // Adjust size
             this.__updateContentHint(40, 40);
-          }
-          else {
+          } else {
             // Apply source
             this.__setSource(el, source);
 
@@ -843,8 +805,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
           }
         },
 
-        _applyDimension : function()
-        {
+        _applyDimension : function() {
           this.base(arguments);
 
           var isFont = this.getSource() && qx.lang.String.startsWith(this.getSource(), "@");
@@ -856,8 +817,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
                 var width = this.getWidth() || hint.width || 40;
                 var height = this.getHeight() || hint.height || 40;
                 el.setStyle("fontSize", (width > height ? height : width) + "px");
-              }
-              else {
+              } else {
                 var font = qx.theme.manager.Font.getInstance().resolve(this.getSource().match(/@([^/]+)/)[1]);
                 el.setStyle("fontSize", font.getSize() + "px");
               }
@@ -873,8 +833,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param el {Element} image DOM element
          * @param source {String} source path
          */
-        __setUnmanagedImage : function(el, source)
-        {
+        __setUnmanagedImage : function(el, source) {
           var ImageLoader = qx.io.ImageLoader;
 
           // Apply source
@@ -893,26 +852,22 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param el {Element} image DOM element
          * @param source {String} source path
          */
-        __loadUnmanagedImage : function(el, source)
-        {
+        __loadUnmanagedImage : function(el, source) {
           var ImageLoader = qx.io.ImageLoader;
 
-          if (qx.core.Environment.get("qx.debug"))
-          {
+          if (qx.core.Environment.get("qx.debug")) {
             // loading external images via HTTP/HTTPS is a common usecase, as is
             // using data URLs.
             var sourceLC = source.toLowerCase();
             if (!sourceLC.startsWith("http") &&
-              !sourceLC.startsWith("data:image/"))
-            {
+              !sourceLC.startsWith("data:image/")) {
               var self = this.self(arguments);
 
               if (!self.__warned) {
                 self.__warned = {};
               }
 
-              if (!self.__warned[source])
-              {
+              if (!self.__warned[source]) {
                 this.debug("try to load an unmanaged relative image: " + source);
                 self.__warned[source] = true;
               }
@@ -920,7 +875,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
           }
 
           // only try to load the image if it not already failed
-          if(!ImageLoader.isFailed(source)) {
+          if (!ImageLoader.isFailed(source)) {
             ImageLoader.load(source, this.__loaderCallback, this);
           } else {
             this.__resetSource(el);
@@ -932,16 +887,13 @@ qx.Class.define("cv.ui.manager.basic.Image",
          *
          * @param el {Element} image DOM element
          */
-        __resetSource : function(el)
-        {
+        __resetSource : function(el) {
           if (el != null) {
             if (el instanceof qx.html.Image) {
               el.resetSource();
-            }
-            else if (el instanceof qx.html.Label) {
+            } else if (el instanceof qx.html.Label) {
               el.resetValue();
-            }
-            else {
+            } else {
               el.removeAll();
             }
           }
@@ -983,8 +935,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
             if (this.getScale()) {
               el.setStyle("fontSize", (this.__width > this.__height ? this.__height : this.__width) + "px");
-            }
-            else {
+            } else {
               var size = parseInt(sparts[2] || qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]).getSize());
               el.setStyle("fontSize", size + "px");
             }
@@ -992,8 +943,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
             var resource = ResourceManager.getData(fontSource);
             if (resource) {
               el.setValue(String.fromCharCode(resource[2]));
-            }
-            else {
+            } else {
               var charCode = parseInt(qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)\/(.*)$/)[2]), 16);
               if (qx.core.Environment.get("qx.debug")) {
                 this.assertNumber(charCode, "Font source needs either a glyph name or the unicode number in hex");
@@ -1002,9 +952,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
             }
 
             return;
-          }
-          else if (el.getNodeName() == "div") {
-
+          } else if (el.getNodeName() == "div") {
             // checks if a decorator already set.
             // In this case we have to merge background styles
             var decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
@@ -1044,12 +992,12 @@ qx.Class.define("cv.ui.manager.basic.Image",
               }
             } else {
               // force re-apply to remove old decorator styles
-              if (el.setSource){
+              if (el.setSource) {
                 el.setSource(null);
               }
             }
           }
-          if (el.setSource){
+          if (el.setSource) {
             el.setSource(source);
           }
         },
@@ -1060,8 +1008,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param source {String} Image source which was loaded
          * @param imageInfo {Map} Dimensions of the loaded image
          */
-        __loaderCallback : function(source, imageInfo)
-        {
+        __loaderCallback : function(source, imageInfo) {
           // Ignore the callback on already disposed images
           if (this.$$disposed === true) {
             return;
@@ -1096,7 +1043,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param height {Integer} height of the image
          */
         __updateContentHint : function(width, height) {
-          if (width === undefined ) {
+          if (width === undefined) {
             width = this.__width;
           }
           if (height === undefined) {
@@ -1112,6 +1059,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * Recalculates the size of the image, according to scaling parameters
          * @param maxWidth {Integer?} maximum width restriction
          * @param maxHeight {Integer?} minimum height restriction
+         * @param originalWidth
+         * @param originalHeight
          */
         _recalc: function(originalWidth, originalHeight) {
           var maxWidth = this.getMaxWidth();
@@ -1124,8 +1073,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
           var ratio = originalHeight / originalWidth;
 
-          switch(this.getForceRatio()) {
-            case 'height':
+          switch (this.getForceRatio()) {
+            case "height":
               if (maxHeight !== null && height > maxHeight) {
                 height = maxHeight;
                 width = height / ratio;
@@ -1139,7 +1088,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               }
               break;
 
-            case 'width':
+            case "width":
               if (maxWidth !== null && width > maxWidth) {
                 width = maxWidth;
                 height = width * ratio;
@@ -1153,8 +1102,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
               }
               break;
 
-            case 'auto':
-            case 'bestfit':
+            case "auto":
+            case "bestfit":
               if (maxWidth !== null && width > maxWidth) {
                 width = maxWidth;
                 height = width * ratio;

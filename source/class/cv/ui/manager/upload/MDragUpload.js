@@ -26,7 +26,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     }
     var layout = this._getLayout();
     if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
-      this.addListener('resize', this.__syncBounds, this);
+      this.addListener("resize", this.__syncBounds, this);
     }
   },
 
@@ -76,14 +76,14 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       var folder;
       if (isConfig) {
         // upload to root folder
-        folder = new cv.ui.manager.model.FileItem('.');
+        folder = new cv.ui.manager.model.FileItem(".");
       } else if (cv.ui.manager.tree.FileSystem.isAccepted(file.type)) {
         // upload to media folder
-        folder = new cv.ui.manager.model.FileItem('media');
+        folder = new cv.ui.manager.model.FileItem("media");
       }
       if (folder) {
         folder.set({
-          type: 'dir'
+          type: "dir"
         });
         var manager = new cv.ui.manager.upload.UploadMgr();
         if (replaceFile) {
@@ -106,14 +106,14 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      */
     getFiles: function (ev) {
       var files = [];
-      var i, l, file;
+      var i; var l; var file;
 
       if (ev.dataTransfer.items) {
         // Use DataTransferItemList interface to access the file(s)
         for (i = 0, l = ev.dataTransfer.items.length; i < l; i++) {
           // If dropped items aren't files, reject them
           var item = ev.dataTransfer.items[i];
-          if (item.kind === 'file' && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
+          if (item.kind === "file" && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
             file = item.getAsFile();
             files.push(file);
           }
@@ -141,8 +141,8 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
     __syncBounds: function () {
       var bounds = this.getBounds();
-      this.getChildControl('upload-overlay').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
-      this.getChildControl('upload-dropbox').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+      this.getChildControl("upload-overlay").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+      this.getChildControl("upload-dropbox").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
     },
 
     // overridden
@@ -151,7 +151,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       var bounds = this.getBounds();
       var layout = this._getLayout();
 
-      switch(id) {
+      switch (id) {
         case "upload-overlay":
           control = new qx.ui.container.Composite();
           control.setZIndex(1000000);
@@ -167,16 +167,16 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
         case "upload-dropbox":
           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
-          control.setBackgroundColor('rgba(32, 32, 32, 0.9)');
+          control.setBackgroundColor("rgba(32, 32, 32, 0.9)");
           control.setZIndex(1000);
-          var dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon('upload', 32));
+          var dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon("upload", 32));
           dropBox.set({
-            iconPosition: 'top',
+            iconPosition: "top",
             rich: true,
             center: true
           });
           // control.bind('width', dropBox, 'maxWidth');
-          dropBox.getChildControl('label').setWrap(true);
+          dropBox.getChildControl("label").setWrap(true);
           control.setAnonymous(true);
           control.add(dropBox);
           control.exclude();
@@ -221,7 +221,6 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           this._applyDragListeners();
         }, this);
       }
-
     },
 
     /**
@@ -230,8 +229,8 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     _applyDragListeners: function() {
       var element = this.getChildControl("upload-overlay").getContentElement().getDomElement();
       if (!element) {
-        var lid = this.getChildControl("upload-overlay").addListener('visibility', function (ev) {
-          if (ev.getData() === 'visible') {
+        var lid = this.getChildControl("upload-overlay").addListener("visibility", function (ev) {
+          if (ev.getData() === "visible") {
             this._applyDragListeners();
             this.getChildControl("upload-overlay").removeListenerById(lid);
           }

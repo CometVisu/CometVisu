@@ -2,7 +2,7 @@
  * This mixin patches {qx.io.request.Xhr} during replaying mode of reporting to add the delays to the responses
  * and unqueue aborted responses
  */
-qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
+qx.Mixin.define("cv.report.utils.MXhrReplayHook", {
   /*
   ******************************************************
     CONSTRUCTOR

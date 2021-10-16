@@ -1,7 +1,7 @@
 /**
  * a single attribute from the schema.
  */
-qx.Class.define('cv.ui.manager.model.schema.Attribute', {
+qx.Class.define("cv.ui.manager.model.schema.Attribute", {
   extend: cv.ui.manager.model.schema.Base,
   include: cv.ui.manager.model.schema.MAnnotation,
 
@@ -23,29 +23,29 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
   statics: {
     /**
      * Get the name of a schema-node
-     *
-     * @param   e object  element to find the name of
+     * @param e object  element to find the name of
+     * @param schema
      * @return  string          name of the element
      * @throws  if the name can not be found
      */
     getAttributeName: function(e, schema) {
-      if (e.hasAttribute('name')) {
-        return e.getAttribute('name');
+      if (e.hasAttribute("name")) {
+        return e.getAttribute("name");
       }
 
-      if (e.hasAttribute('ref')) {
+      if (e.hasAttribute("ref")) {
         // it's a ref, seek other element!
-        const refName = e.getAttribute('ref');
-        const ref = schema.getReferencedNode('attribute', refName);
+        const refName = e.getAttribute("ref");
+        const ref = schema.getReferencedNode("attribute", refName);
 
         if (!ref) {
-          throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+          throw "schema/xsd appears to be invalid, can not find element " + refName;
         }
 
-        return ref.getAttribute('name');
+        return ref.getAttribute("name");
       }
 
-      return 'unknown';
+      return "unknown";
     }
   },
 
@@ -57,18 +57,18 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
   properties: {
     type: {
       refine: true,
-      init: 'attribute'
+      init: "attribute"
     },
     name: {
-      check: 'String',
-      init: ''
+      check: "String",
+      init: ""
     },
     optional: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     },
     defaultValue: {
-      check: 'String',
+      check: "String",
       nullable: true
     }
   },
@@ -89,11 +89,11 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
        * @var object  SchemaSimpleType of the attribute, for validating purposes
        */
       this._type = new cv.ui.manager.model.schema.SimpleType(node, schema);
-      this.setName(cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema))
-      if (node.hasAttribute('default')) {
-        this.setDefaultValue(node.getAttribute('default'))
+      this.setName(cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema));
+      if (node.hasAttribute("default")) {
+        this.setDefaultValue(node.getAttribute("default"));
       }
-      this.setOptional(node.getAttribute('use') !== 'required');
+      this.setOptional(node.getAttribute("use") !== "required");
     },
 
     /**
@@ -104,11 +104,11 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      */
     isValueValid: function (value) {
       if (value === null || value === undefined) {
-        value = '';
+        value = "";
       } else {
-        value = '' + value;
+        value = "" + value;
       }
-      if (value === '') {
+      if (value === "") {
         // empty values are valid if this node is optional!
         return this.isOptional();
       }
@@ -124,10 +124,10 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
       const description = this._type.getBaseType();
 
       if (description.match(/xsd\:/)) {
-        return description.replace(/xsd\:/, '');
+        return description.replace(/xsd\:/, "");
       }
 
-      return this.tr('complex type, please see documentation');
+      return this.tr("complex type, please see documentation");
     },
 
     /**

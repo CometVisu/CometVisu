@@ -21,7 +21,7 @@
 /**
  * Font definitions
  */
-qx.Theme.define("cv.theme.dark.Font",{
+qx.Theme.define("cv.theme.dark.Font", {
   extend : osparc.theme.common.Font,
 
   fonts : {

@@ -55,6 +55,6 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
   ***********************************************
   */
   events: {
-    close: 'qx.event.type.Event'
+    close: "qx.event.type.Event"
   }
 });

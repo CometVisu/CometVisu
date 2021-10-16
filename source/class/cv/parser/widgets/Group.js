@@ -21,7 +21,7 @@
 /**
  * Parse group config elements
  */
-qx.Class.define('cv.parser.widgets.Group', {
+qx.Class.define("cv.parser.widgets.Group", {
   type: "static",
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define('cv.parser.widgets.Group', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       if (data.target) {
-        data.classes += ' clickable';
+        data.classes += " clickable";
         data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
       }
       if (data.noWidget === true) {
@@ -54,13 +54,13 @@ qx.Class.define('cv.parser.widgets.Group', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'nowidget': {
-          target: 'noWidget', "default": false, transform: function (value) {
+        "nowidget": {
+          target: "noWidget", "default": false, transform: function (value) {
             return value === "true";
           }
         },
-        'name': { "default": "" },
-        'target': { "default": "" }
+        "name": { "default": "" },
+        "target": { "default": "" }
       };
     }
   },

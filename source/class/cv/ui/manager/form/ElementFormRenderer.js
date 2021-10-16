@@ -1,7 +1,7 @@
 /**
  * Special form renderer for editing XML-Config elements (allows special help texts for items)
  */
-qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
+qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
   extend: qxl.dialog.FormRenderer,
   /*
   ***********************************************
@@ -21,7 +21,7 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
         this._row++;
       }
       for (let i = 0; i < items.length; i++) {
-        let item = items[i],widget,label;
+        let item = items[i]; let widget; let label;
         if (item instanceof qx.ui.form.RadioGroup) {
           if (item.getUserData("orientation") === "horizontal") {
             widget = this._createHBoxForRadioGroup(item);
@@ -79,5 +79,5 @@ qx.Class.define('cv.ui.manager.form.ElementFormRenderer', {
         }
       }
     }
-  },
+  }
 });

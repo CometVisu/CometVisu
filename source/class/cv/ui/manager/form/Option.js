@@ -1,7 +1,7 @@
 /**
  * Option model for a VirtualComboBox / -SelectBox
  */
-qx.Class.define('cv.ui.manager.form.Option', {
+qx.Class.define("cv.ui.manager.form.Option", {
   extend: qx.core.Object,
 
   /*
@@ -50,7 +50,7 @@ qx.Class.define('cv.ui.manager.form.Option', {
       nullable: true
     },
     hints: {
-      check: 'Object',
+      check: "Object",
       nullable: true
     }
   }

@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.form.ElementForm', {
+qx.Class.define("cv.ui.manager.form.ElementForm", {
   extend: qxl.dialog.Form,
 
   /*
@@ -27,7 +27,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
 
     blockerColor: {
       refine: true,
-      init: '#585858'
+      init: "#585858"
     }
   },
 
@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       let modelData = {};
       for (let key of Object.getOwnPropertyNames(formData)) {
         let i = 0;
-        let mappedKey = key.replaceAll(/[-_\.#]+([a-z])/g, (match, p1) => { return p1.toUpperCase() }) + i++;
+        let mappedKey = key.replaceAll(/[-_\.#]+([a-z])/g, (match, p1) => p1.toUpperCase()) + i++;
         while (modelData.hasOwnProperty(mappedKey)) {
           mappedKey = mappedKey.substr(0, mappedKey.length - 1) + i++;
         }
@@ -80,9 +80,9 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
           this.__mappedKeys.map[mappedKey] = key;
           this.__mappedKeys.inverse[key] = mappedKey;
         }
-        modelData[mappedKey] = formData[key].value !== undefined
-          ? formData[key].value
-          : null;
+        modelData[mappedKey] = formData[key].value !== undefined ?
+          formData[key].value :
+          null;
       }
       let model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);
@@ -95,9 +95,9 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
       let i = 0;
-      let loadingStatus, atom;
+      let loadingStatus; let atom;
       for (let key of Object.getOwnPropertyNames(formData)) {
-        const mappedKey = this.__mappedKeys.inverse[key]
+        const mappedKey = this.__mappedKeys.inverse[key];
         let fieldData = formData[key];
         let formElement = null;
         switch (fieldData.type.toLowerCase()) {
@@ -117,8 +117,9 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             break;
           case "textfield":
             formElement = new qx.ui.form.TextField();
-            if (fieldData.maxLength)
-              formElement.setMaxLength(fieldData.maxLength);
+            if (fieldData.maxLength) {
+ formElement.setMaxLength(fieldData.maxLength); 
+}
             formElement.setLiveUpdate(true);
             break;
           case "sourceeditor":
@@ -150,22 +151,22 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                   let listItem = new qx.ui.form.ListItem(item.label, item.icon);
                   formElement.add(listItem);
                 });
-              } else if (typeof options === 'object') {
+              } else if (typeof options === "object") {
                 // grouped options
                 Object.keys(options).forEach(groupName => {
                   let groupItem = new qx.ui.form.ListItem(groupName);
                   groupItem.set({
                     anonymous: true,
-                    appearance: 'optiongroup'
+                    appearance: "optiongroup"
                   });
                   formElement.add(groupItem);
                   options[groupName].forEach(function (item) {
                     let listItem = new qx.ui.form.ListItem(item.label, item.icon, item.value);
                     formElement.add(listItem);
                   });
-                })
+                });
               }
-            }
+            };
             if (fieldData.options instanceof Promise) {
               formElement.setPlaceholder(this.tr("Loading..."));
               fieldData.options.then(options => {
@@ -186,10 +187,10 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               labelPath: "value"
             });
             if (fieldData.validation) {
-              formElement.getChildControl('textfield').setLiveUpdate(true);
+              formElement.getChildControl("textfield").setLiveUpdate(true);
             }
             const selection = formElement.getChildControl("dropdown").getSelection();
-            selection.addListener('change', function(ev) {
+            selection.addListener("change", function(ev) {
               const selected = selection.getItem(0);
               if (selected && selected instanceof cv.ui.manager.form.Option) {
                 this.__hints = selected.getHints();
@@ -201,19 +202,19 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             const parseVComboOptions = function (options) {
               if (Array.isArray(options)) {
                 options.forEach(item => {
-                  model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints));
+                  model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ""), item.icon, item.value, item.hints));
                 });
-              } else if (typeof options === 'object') {
+              } else if (typeof options === "object") {
                 Object.keys(options).forEach(groupName => {
                   const groupModel = new cv.ui.manager.form.Option(groupName);
                   groupModel.setType("group");
                   model.push(groupModel);
                   options[groupName].forEach(function (item) {
-                    model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ''), item.icon, item.value, item.hints))
+                    model.push(new cv.ui.manager.form.Option(item.label + (item.value ? ` (${item.value})` : ""), item.icon, item.value, item.hints));
                   });
-                })
+                });
               }
-            }
+            };
             if (fieldData.options instanceof Promise) {
               formElement.setPlaceholder(this.tr("Loading..."));
               fieldData.options.then(options => {
@@ -232,9 +233,9 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 return new cv.ui.manager.form.ListItem();
               },
               bindItem:  function (controller, item, index) {
-                controller.bindProperty('icon', 'icon', null, item, index);
-                controller.bindProperty('label', 'label', null, item, index);
-                controller.bindProperty('type', 'appearance', {
+                controller.bindProperty("icon", "icon", null, item, index);
+                controller.bindProperty("label", "label", null, item, index);
+                controller.bindProperty("type", "appearance", {
                   converter: function (value) {
                     switch (value) {
                       case "state":
@@ -248,7 +249,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                     }
                   }
                 }, item, index);
-                controller.bindProperty('type', 'anonymous', {
+                controller.bindProperty("type", "anonymous", {
                   converter: function (value) {
                     return value === "group";
                   }
@@ -260,21 +261,21 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
           case "selectbox":
             formElement = new qx.ui.form.SelectBox();
             if (fieldData.options instanceof Promise) {
-              atom = formElement.getChildControl('atom');
+              atom = formElement.getChildControl("atom");
               atom.setLabel(this.tr("Loading..."));
-              atom.addState('loading');
+              atom.addState("loading");
               fieldData.options.then(options => {
-                const atom = formElement.getChildControl('atom');
+                const atom = formElement.getChildControl("atom");
                 atom.resetLabel();
-                atom.removeState('loading');
+                atom.removeState("loading");
                 model = qx.data.marshal.Json.createModel(options);
                 new qx.data.controller.List(model, formElement, "label");
               }, this).catch(err => {
                 this.error(err);
-                const atom = formElement.getChildControl('atom');
+                const atom = formElement.getChildControl("atom");
                 atom.setLabel(this.tr("Possible values could no be retrieved, please check browser console for error details"));
-                atom.removeState('loading');
-                atom.addState('error');
+                atom.removeState("loading");
+                atom.addState("error");
               }, this);
             } else {
               model = qx.data.marshal.Json.createModel(fieldData.options);
@@ -286,22 +287,22 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             model = new qx.data.Array();
             if (fieldData.options) {
               if (fieldData.options instanceof Promise) {
-                atom = formElement.getChildControl('atom');
+                atom = formElement.getChildControl("atom");
                 atom.setLabel(this.tr("Loading..."));
-                atom.addState('loading');
+                atom.addState("loading");
                 fieldData.options.then(options => {
-                  const atom = formElement.getChildControl('atom');
+                  const atom = formElement.getChildControl("atom");
                   atom.resetLabel();
-                  atom.removeState('loading');
+                  atom.removeState("loading");
                   options.forEach(item => {
                     model.push(new cv.ui.manager.form.Option(item.label, item.icon, item.value));
                   });
                 }).catch(err => {
                   this.error(err);
-                  const atom = formElement.getChildControl('atom');
+                  const atom = formElement.getChildControl("atom");
                   atom.setLabel(this.tr("Possible values could no be retrieved, please check browser console for error details"));
-                  atom.removeState('loading');
-                  atom.addState('error');
+                  atom.removeState("loading");
+                  atom.addState("error");
                 }, this);
               } else {
                 fieldData.options.forEach(item => {
@@ -315,7 +316,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               },
               bindItem:  function (controller, item, index) {
                 controller.bindDefaultProperties(item, index);
-                controller.bindProperty('value', 'model', null, item, index);
+                controller.bindProperty("value", "model", null, item, index);
               }
             });
             formElement.set({
@@ -365,13 +366,13 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
             if (fieldData.step) {
               formElement.setSingleStep(fieldData.step);
             }
-            if(fieldData.fractionsDigits) {
+            if (fieldData.fractionsDigits) {
               let fd = fieldData.fractionsDigits;
               let nf = new qx.util.format.NumberFormat();
-              if(fd.min) {
+              if (fd.min) {
                 nf.setMinimumFractionDigits(fd.min);
               }
-              if(fd.max) {
+              if (fd.max) {
                 nf.setMaximumFractionDigits(fd.max);
               }
               formElement.setNumberFormat(nf);
@@ -518,7 +519,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
               // clean
             let proxy = fieldData.validation.proxy.replace(/;\n/g, "");
             try {
-              eval('proxy = ' + proxy + ';');
+              eval("proxy = " + proxy + ";");
             } catch (e) {
               this.warn("Invalid proxy name");
             }
@@ -530,7 +531,7 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
                 if (!validatorObj.__asyncInProgress) {
                   validatorObj.__asyncInProgress = true;
                   proxy(method, [value], function (valid) {
-                    validatorObj.setValid(valid, message || this.tr('Value is invalid'));
+                    validatorObj.setValid(valid, message || this.tr("Value is invalid"));
                     validatorObj.__asyncInProgress = false;
                   });
                 }
@@ -590,16 +591,16 @@ qx.Class.define('cv.ui.manager.form.ElementForm', {
       view.getLayout().setColumnFlex(1, 1);
       view.getLayout().set({
         spacingX: 8
-      })
+      });
       view.setAllowGrowX(true);
       const scroll = new qx.ui.container.Scroll(view);
       scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
-      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener('resize', function () {
+      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener("resize", function () {
         scroll.setMaxHeight(qx.bom.Document.getHeight() - 132);
-      })
+      });
 
-      view.bind('width', scroll, 'width');
-      view.bind('height', scroll, 'height');
+      view.bind("width", scroll, "width");
+      view.bind("height", scroll, "height");
       this._formContainer.add(scroll);
       this._form.getValidationManager().validate();
       if (firstWidget) {

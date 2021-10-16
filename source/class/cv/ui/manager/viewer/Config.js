@@ -1,7 +1,7 @@
 /**
  * Show rendered configs.
  */
-qx.Class.define('cv.ui.manager.viewer.Config', {
+qx.Class.define("cv.ui.manager.viewer.Config", {
   extend: cv.ui.manager.viewer.AbstractViewer,
 
   /*
@@ -12,7 +12,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
-
   },
 
   /*
@@ -23,12 +22,12 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   properties: {
     appearance: {
       refine: true,
-      init: 'config-viewer'
+      init: "config-viewer"
     },
 
     target: {
-      check: ['iframe', 'window'],
-      init: 'window'
+      check: ["iframe", "window"],
+      init: "window"
     },
 
     external: {
@@ -37,9 +36,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     },
 
     connectToWindow: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_applyConnectToWindow'
+      apply: "_applyConnectToWindow"
     }
   },
 
@@ -50,8 +49,8 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   */
   statics: {
     SUPPORTED_FILES: /^(demo|\.)?\/?visu_config.*\.xml/,
-    TITLE: qx.locale.Manager.tr('Config viewer'),
-    ICON: cv.theme.dark.Images.getIcon('preview', 18)
+    TITLE: qx.locale.Manager.tr("Config viewer"),
+    ICON: cv.theme.dark.Images.getIcon("preview", 18)
   },
 
   /*
@@ -75,15 +74,15 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       if (file) {
         if (file.isConfigFile()) {
           var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
-          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
-          if (this.getTarget() === 'iframe') {
-            url += '&preview=1&libraryCheck=false';
-            var control = this.getChildControl('iframe');
+          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri")+ "/..") + "?config=" + (configName || "");
+          if (this.getTarget() === "iframe") {
+            url += "&preview=1&libraryCheck=false";
+            var control = this.getChildControl("iframe");
             this._source = url;
-            this.getChildControl('loading').show();
+            this.getChildControl("loading").show();
             control.setSource(url);
             control.show();
-            const hint = this.getChildControl('hint', true);
+            const hint = this.getChildControl("hint", true);
             if (hint && hint.isVisible()) {
               hint.exclude();
             }
@@ -93,9 +92,9 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
             if (this.isConnectToWindow()) {
               this._windowRef = ref;
               this._windowRef.onbeforeunload = this._onClose.bind(this);
-              const hint = this.getChildControl('hint');
+              const hint = this.getChildControl("hint");
               hint.show();
-              const iframe = this.getChildControl('iframe', true);
+              const iframe = this.getChildControl("iframe", true);
               if (iframe && iframe.isVisible()) {
                 iframe.exclude();
               }
@@ -107,16 +106,16 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
           }
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
         } else {
-          cv.ui.manager.snackbar.Controller.error(this.tr('%1 is no configuration file', file.getFullPath()));
+          cv.ui.manager.snackbar.Controller.error(this.tr("%1 is no configuration file", file.getFullPath()));
           this._source = null;
         }
       } else {
-        if (this.hasChildControl('iframe')) {
-          this.getChildControl('iframe').resetSource();
-          this.getChildControl('iframe').exclude();
+        if (this.hasChildControl("iframe")) {
+          this.getChildControl("iframe").resetSource();
+          this.getChildControl("iframe").exclude();
         }
-        if (this.hasChildControl('hint')) {
-          this.getChildControl('hint').exclude();
+        if (this.hasChildControl("hint")) {
+          this.getChildControl("hint").exclude();
         }
         if (this._windowRef) {
           this._windowRef.close();
@@ -126,15 +125,15 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _onChange: function (ev) {
       var data = ev.getData();
-      if (data.type === 'contentChanged') {
-        if (this.hasChildControl('iframe')) {
-          const iframe = this.getChildControl('iframe');
+      if (data.type === "contentChanged") {
+        if (this.hasChildControl("iframe")) {
+          const iframe = this.getChildControl("iframe");
           const href = iframe.getDocument().location.href;
           // use href to get the anchor to keep the currently opened page on reload
           const url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
           if (url && url !== "about:blank") {
             this._reloading = true;
-            this.getChildControl('loading').show();
+            this.getChildControl("loading").show();
             iframe.addListenerOnce("load", () => {
               this._reloading = false;
               iframe.setSource(url);
@@ -149,15 +148,15 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     _onClose: function () {
       if (this._windowRef) {
-        qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
+        qx.event.message.Bus.dispatchByName("cv.manager.action.close", this.getFile());
         this._windowRef = null;
       }
       this.resetFile();
     },
 
     openPage: function (page, path) {
-      if (this.hasChildControl('iframe')) {
-        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+      if (this.hasChildControl("iframe")) {
+        const element = this.getChildControl("iframe").getContentElement().getDomElement();
         if (element && element.contentWindow.cv) {
           const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
           const pageId = path ? otherEngine.getPageIdByPath(page, path) : page;
@@ -167,8 +166,8 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     },
 
     setHighlightWidget: function (widgetId) {
-      if (this.hasChildControl('iframe')) {
-        const element = this.getChildControl('iframe').getContentElement().getDomElement();
+      if (this.hasChildControl("iframe")) {
+        const element = this.getChildControl("iframe").getContentElement().getDomElement();
         if (element && element.contentWindow.cv) {
           const otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
           otherEngine.setHighlightedWidget(widgetId);
@@ -181,36 +180,36 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
        var control;
 
        switch (id) {
-         case 'iframe':
+         case "iframe":
            control = new qx.ui.embed.Iframe();
            control.exclude();
            control.addListener("load", () => {
-             if (this.hasChildControl('loading') && !this._reloading) {
-               this.getChildControl('loading').exclude();
+             if (this.hasChildControl("loading") && !this._reloading) {
+               this.getChildControl("loading").exclude();
              }
            }, this);
-           this.getChildControl('scroll').add(control);
+           this.getChildControl("scroll").add(control);
            break;
 
-         case 'hint':
-           control = new qx.ui.basic.Atom(this.tr('This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window.'));
+         case "hint":
+           control = new qx.ui.basic.Atom(this.tr("This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window."));
            control.set({
              center: true,
-             font: 'title'
+             font: "title"
            });
-           control.addListener('tap', function () {
+           control.addListener("tap", function () {
              if (this._windowRef) {
                this._windowRef.focus();
              }
            }, this);
-           this.getChildControl('scroll').add(control);
+           this.getChildControl("scroll").add(control);
            break;
 
-         case 'loading':
-           control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon("reload", 64));
+         case "loading":
+           control = new qx.ui.basic.Atom(this.tr("Loading..."), cv.theme.dark.Images.getIcon("reload", 64));
            control.set({
              center: true,
-             font: 'title',
+             font: "title",
              iconPosition: "top",
              backgroundColor: "rgba(0,0,0,0.2)"
            });

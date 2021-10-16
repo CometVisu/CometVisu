@@ -33,7 +33,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
+qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -42,8 +42,8 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   ******************************************************
   */
   construct: function(props) {
-    var classes = props.classes.trim().split(" "),
-        i_right = classes.indexOf("right");
+    var classes = props.classes.trim().split(" ");
+        var i_right = classes.indexOf("right");
 
     if (i_right !== -1) {
       // do not align, but float the container instead
@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
 
     _onChangeGlobalSeverity: function(ev) {
       var classList = this.__getBadgeElement().classList;
-      classList.remove.apply( classList, cv.ui.NotificationCenter.getInstance().getSeverities() );
+      classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
       if (ev.getData()) {
         classList.add(ev.getData());
       }
@@ -128,9 +128,9 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     _getInnerDomString: function () {
       var style = "";
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
-        style = ' style="display: none;"';
+        style = " style=\"display: none;\"";
       }
-      return '<div class="actor badge"'+style+'>'+this.getCounter()+'</div>';
+      return "<div class=\"actor badge\""+style+">"+this.getCounter()+"</div>";
     }
   },
 

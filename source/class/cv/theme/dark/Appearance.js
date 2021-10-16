@@ -23,121 +23,121 @@ qx.Theme.define("cv.theme.dark.Appearance", {
   extend : osparc.theme.common.Appearance,
 
   appearances : {
-    'cv-start': 'widget',
-    'cv-start/configs-header': {
+    "cv-start": "widget",
+    "cv-start/configs-header": {
       style: function () {
         return {
           margin: [20, 10, 0, 10],
-          decorator: 'cv-start-section-title'
+          decorator: "cv-start-section-title"
         };
       }
     },
-    'cv-start/configs-title': {
+    "cv-start/configs-title": {
       style: function () {
         return {
-          iconPosition: 'right',
-          font: 'title',
+          iconPosition: "right",
+          font: "title",
           marginLeft: 10,
           allowGrowX: true
         };
       }
     },
-    'cv-start/configs-toolbar': {
+    "cv-start/configs-toolbar": {
       style: function () {
         return {
 
         };
       }
     },
-    'cv-start/misc-title': {
+    "cv-start/misc-title": {
       style: function () {
         return {
-          iconPosition: 'right',
-          font: 'title',
+          iconPosition: "right",
+          font: "title",
           margin: [20, 10, 0, 10],
           paddingTop: 5,
-          cursor: 'pointer',
+          cursor: "pointer",
           allowGrowX: true,
-          decorator: 'cv-start-section-title'
+          decorator: "cv-start-section-title"
         };
       }
     },
-    'cv-start/demo-configs-title': 'cv-start/misc-title',
-    'cv-start/media-title': 'cv-start/configs-title',
-    'cv-start/media-toolbar': 'cv-start/configs-toolbar',
-    'cv-start/media-header': 'cv-start/configs-header',
+    "cv-start/demo-configs-title": "cv-start/misc-title",
+    "cv-start/media-title": "cv-start/configs-title",
+    "cv-start/media-toolbar": "cv-start/configs-toolbar",
+    "cv-start/media-header": "cv-start/configs-header",
 
-    'cv-file-item': {
-      include: 'listitem',
-      alias: 'listitem',
+    "cv-file-item": {
+      include: "listitem",
+      alias: "listitem",
 
       style: function (states) {
-        return  {
-          iconPosition: states.list ? 'left' : 'top',
-          show: states.list ? 'label' : 'both',
-          font: states.list ? 'default' : 'small',
+        return {
+          iconPosition: states.list ? "left" : "top",
+          show: states.list ? "label" : "both",
+          font: states.list ? "default" : "small",
           width: states.list ? 500 : 160,
-          backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
+          backgroundColor: states.hovered ? "rgba(255, 255, 255, 0.1)" : "transparent"
         };
       }
     },
-    'cv-file-item/atom/label': {
-      include: 'atom/label',
+    "cv-file-item/atom/label": {
+      include: "atom/label",
       style: function () {
         return {
-          alignY: 'middle',
+          alignY: "middle",
           allowGrowY: true
         };
       }
     },
-    'cv-file-item/atom/icon': {
-      include: 'atom/icon',
+    "cv-file-item/atom/icon": {
+      include: "atom/icon",
       style: function () {
-        return  {
+        return {
           width: 70,
           height: 70,
           scale: true
         };
       }
     },
-    'cv-file-item/action-menu': 'menu',
-    'cv-file-item/download-button': {
-      include: 'button',
-      alias: 'button',
+    "cv-file-item/action-menu": "menu",
+    "cv-file-item/download-button": {
+      include: "button",
+      alias: "button",
 
       style: function () {
         return {
           height: 30,
-          show: 'icon'
+          show: "icon"
         };
       }
     },
-    'cv-file-item/action-button': 'cv-file-item/download-button',
-    'cv-file-item/open-button': 'cv-file-item/download-button',
-    'cv-file-item/edit-button': 'cv-file-item/download-button',
-    'cv-icon': 'cv-file-item',
-    'cv-icon/icon': {
-      include: 'atom/icon',
+    "cv-file-item/action-button": "cv-file-item/download-button",
+    "cv-file-item/open-button": "cv-file-item/download-button",
+    "cv-file-item/edit-button": "cv-file-item/download-button",
+    "cv-icon": "cv-file-item",
+    "cv-icon/icon": {
+      include: "atom/icon",
       style: function () {
-        return  {
+        return {
           width: 70,
           height: 70
         };
       }
     },
-    'cv-file-item-add-file': {
-      include: 'cv-file-item',
-      alias: 'cv-file-item',
+    "cv-file-item-add-file": {
+      include: "cv-file-item",
+      alias: "cv-file-item",
 
       style: function (states) {
         return {
-          decorator: 'cv-file-item-add-file',
+          decorator: "cv-file-item-add-file",
           opacity: states.hovered ? 1.0 : 0.5,
-          cursor: 'pointer'
+          cursor: "pointer"
         };
       }
     },
-    'open-file-item': {
+    "open-file-item": {
       alias: "atom",
 
       style: function (states) {
@@ -167,47 +167,47 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'open-file-item/label': {
-      include: 'listitem/label',
+    "open-file-item/label": {
+      include: "listitem/label",
 
       style: function () {
         return {
-          alignY: 'middle'
+          alignY: "middle"
         };
       }
     },
-    'open-file-item/icon': {
-      alias: 'listitem/icon',
+    "open-file-item/icon": {
+      alias: "listitem/icon",
       style: function () {
         return {
-          alignY: 'middle',
+          alignY: "middle",
           padding: [0, 8]
         };
       }
     },
-    'open-file-item/close': {
+    "open-file-item/close": {
 
       style: function () {
         return {
           padding: 8,
-          cursor: 'pointer',
-          alignY: 'middle'
+          cursor: "pointer",
+          alignY: "middle"
         };
       }
     },
 
-    'open-with-button': {
-      include: 'menu-button',
-      alias: 'menu-button',
+    "open-with-button": {
+      include: "menu-button",
+      alias: "menu-button",
 
       style: function (states) {
         return {
-          font: states.default ? 'bold' : 'default'
+          font: states.default ? "bold" : "default"
         };
       }
     },
 
-    'list': {
+    "list": {
       style: function () {
         return {
           decorator: null
@@ -215,7 +215,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-editor-config': {
+    "cv-editor-config": {
       style: function () {
         return {
           padding: 10
@@ -223,17 +223,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-editor-config-section': {
+    "cv-editor-config-section": {
       style: function () {
         return {
           padding: 10,
-          decorator: 'cv-editor-config-section',
+          decorator: "cv-editor-config-section",
           marginBottom: 10
         };
       }
     },
 
-    'cv-editor-config-option': {
+    "cv-editor-config-option": {
       style: function () {
         return {
           marginBottom: 10
@@ -241,9 +241,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-config-textfield': {
-      include: 'textfield',
-      alias: 'textfield',
+    "cv-config-textfield": {
+      include: "textfield",
+      alias: "textfield",
 
       style: function () {
         return {
@@ -252,20 +252,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-editor-config-section/section-title': {
+    "cv-editor-config-section/section-title": {
       style: function () {
         return {
-          font: 'title',
+          font: "title",
           marginRight: 20
         };
       }
     },
 
-    'cv-editor-config-section/options-title': 'cv-editor-config-section/section-title',
-    'cv-editor-config-section/name': 'cv-config-textfield',
-    'cv-editor-config-section/list': {
-      include: 'list',
-      alias: 'list',
+    "cv-editor-config-section/options-title": "cv-editor-config-section/section-title",
+    "cv-editor-config-section/name": "cv-config-textfield",
+    "cv-editor-config-section/list": {
+      include: "list",
+      alias: "list",
 
       style: function() {
         return {
@@ -273,18 +273,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-editor-config-option/value-title': {
+    "cv-editor-config-option/value-title": {
       style: function () {
         return {
           allowGrowX: true,
-          font: 'subtitle'
+          font: "subtitle"
         };
       }
     },
-    'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title',
+    "cv-editor-config-option/key-title": "cv-editor-config-option/value-title",
 
     // snackbar components
-    'cv-snackbar': {
+    "cv-snackbar": {
       style: function () {
         return {
           zIndex: 1000
@@ -292,7 +292,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-snackbar/list': {
+    "cv-snackbar/list": {
       style: function () {
         return {
           height: null,
@@ -302,18 +302,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-snackbar-msg': {
+    "cv-snackbar-msg": {
       style: function () {
         return {
           marginTop: 10,
           padding: 10,
-          textColor: 'text',
-          decorator: 'cv-snackbar-msg'
+          textColor: "text",
+          decorator: "cv-snackbar-msg"
         };
       }
     },
 
-    'cv-snackbar-msg/content': {
+    "cv-snackbar-msg/content": {
       style: function () {
         return {
           allowGrowX: true
@@ -321,16 +321,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'cv-snackbar-msg/close': {
+    "cv-snackbar-msg/close": {
       style: function () {
         return {
-          cursor: 'pointer'
+          cursor: "pointer"
         };
       }
     },
-    'cv-toolbar': {
-      include: 'toolbar',
-      alias: 'toolbar',
+    "cv-toolbar": {
+      include: "toolbar",
+      alias: "toolbar",
 
       style: function () {
         return {
@@ -338,9 +338,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-toolbar-button': {
-      include: 'toolbar-button',
-      alias: 'toolbar-button',
+    "cv-toolbar-button": {
+      include: "toolbar-button",
+      alias: "toolbar-button",
 
       style: function () {
         return {
@@ -349,20 +349,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'image-viewer': {},
-    'image-viewer/scroll': 'scrollarea',
-    'image-viewer/image': {
-      include: 'atom',
-      alias: 'atom',
+    "image-viewer": {},
+    "image-viewer/scroll": "scrollarea",
+    "image-viewer/image": {
+      include: "atom",
+      alias: "atom",
 
       style: function () {
         return {
-          iconPosition: 'top',
+          iconPosition: "top",
           gap: 10,
           center: true
         };
       },
-      'image-viewer/image/label': {
+      "image-viewer/image/label": {
         style: function () {
           return {
             margin: 10
@@ -371,50 +371,49 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'fs-tree-item': {
-      include: 'virtual-tree-folder',
-      alias: 'virtual-tree-folder',
+    "fs-tree-item": {
+      include: "virtual-tree-folder",
+      alias: "virtual-tree-folder",
 
       style: function (states) {
         return {
-          font: states.temporary ? 'italic' : 'default'
+          font: states.temporary ? "italic" : "default"
         };
       }
     },
 
-    'fs-tree-item/icon': {
-      include: 'virtual-tree-folder/icon',
-      alias: 'virtual-tree-folder/icon',
+    "fs-tree-item/icon": {
+      include: "virtual-tree-folder/icon",
+      alias: "virtual-tree-folder/icon",
 
       style: function(states) {
         return {
-          textColor: states.comment ? "text-disabled" : (states.error ? 'invalid-color' : null)
+          textColor: states.comment ? "text-disabled" : (states.error ? "invalid-color" : null)
         };
       }
     },
-    'element-tree-item': {
-      include: 'fs-tree-item',
-      alias: 'fs-tree-item',
+    "element-tree-item": {
+      include: "fs-tree-item",
+      alias: "fs-tree-item",
       style: function (states) {
         return {
           indent: states.touch ? 24 : 19
-        }
+        };
       }
     },
-    'element-tree-item/label': {
-      include: 'fs-tree-item/label',
+    "element-tree-item/label": {
+      include: "fs-tree-item/label",
 
       style: function (states) {
-
         return {
           textColor: states.comment ? "text-disabled" : null,
           allowGrowX: true,
           maxWidth: 250
-        }
+        };
       }
     },
-    'element-tree-item/open': {
-      include: 'fs-tree-item/open',
+    "element-tree-item/open": {
+      include: "fs-tree-item/open",
 
       style: function (states) {
         return {
@@ -425,20 +424,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-file-contextmenu': 'menu',
-    'cv-file-contextmenu/open-with-button': 'menu-button',
-    'cv-file-contextmenu/compare-with-button': 'menu-button',
-    'open-files-tabs': {
+    "cv-file-contextmenu": "menu",
+    "cv-file-contextmenu/open-with-button": "menu-button",
+    "cv-file-contextmenu/compare-with-button": "menu-button",
+    "open-files-tabs": {
       style: function () {
         return {
           height: 34,
           padding: 0,
           marginBottom: 5,
-          decorator: 'open-file-tabs'
+          decorator: "open-file-tabs"
         };
       }
     },
-    'helptext': {
+    "helptext": {
       style: function () {
         return {
           font: "small",
@@ -475,7 +474,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function (states) {
         return {
           textColor: states.error ? "warning-color" : "text-disabled",
-          font: 'italic',
+          font: "italic",
           height: 25
         };
       }
@@ -484,18 +483,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           textColor: "warning-color",
-          font: 'italic',
+          font: "italic",
           height: 25
         };
       }
     },
     "selectbox/atom": {
       style: function (states) {
-        let font = 'default';
-        let textColor = 'text';
+        let font = "default";
+        let textColor = "text";
         if (states.error || states.loading) {
-          font = 'italic'
-          textColor = states.error ? "warning-color" : "text-disabled"
+          font = "italic";
+          textColor = states.error ? "warning-color" : "text-disabled";
         }
         return {
           textColor: textColor,
@@ -520,27 +519,27 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
     "round-button": {
-      include: 'atom',
-      alias: 'atom',
+      include: "atom",
+      alias: "atom",
       style: function (states) {
         return {
-          decorator: states.hovered ? 'round-button-hovered' : 'round-button',
+          decorator: states.hovered ? "round-button-hovered" : "round-button",
           width: 48,
           height: 48,
           textColor: "text",
           show: "icon",
           center: true
-        }
+        };
       }
     },
     "round-button/icon": {
-      include: 'atom/icon',
-      alias: 'atom/icon',
+      include: "atom/icon",
+      alias: "atom/icon",
       style: function (states) {
         return {
           width: 32,
           height: 32
-        }
+        };
       }
     },
     "dragdrop-cursor": {
@@ -584,16 +583,16 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           padding: [4, 8],
-          iconPosition: 'left',
+          iconPosition: "left",
           gap: 8,
           center: true
-        }
+        };
       }
     },
     "tree-editor/preview-sync-hint/icon": {
       include: "atom/icon",
       style: function (states) {
-        let color = 'valid-color';
+        let color = "valid-color";
         if (states.error) {
           color = "invalid-color";
         } else if (states.warning) {
@@ -601,7 +600,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         }
         return {
           textColor: color
-        }
+        };
       }
     }
   }

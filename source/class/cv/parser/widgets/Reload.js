@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Reload', {
+qx.Class.define("cv.parser.widgets.Reload", {
   type: "static",
 
   /*

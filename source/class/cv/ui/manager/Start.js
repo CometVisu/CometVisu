@@ -1,7 +1,7 @@
 /**
  * Simple view that provides all of the file-related features of the old editor in an easy to use way.
  */
-qx.Class.define('cv.ui.manager.Start', {
+qx.Class.define("cv.ui.manager.Start", {
   extend: qx.ui.core.Widget,
   implement: [
     cv.ui.manager.editor.IEditor,
@@ -17,10 +17,10 @@ qx.Class.define('cv.ui.manager.Start', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.VBox());
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
-    [ 'toolbar', 'configs-title', 'configs-toolbar', 'configs',
-      'demo-configs-title', 'demo-configs',
-      'media-title', 'media-toolbar', 'media',
-      'misc-title', 'misc'
+    [ "toolbar", "configs-title", "configs-toolbar", "configs",
+      "demo-configs-title", "demo-configs",
+      "media-title", "media-toolbar", "media",
+      "misc-title", "misc"
     ].forEach(this._createChildControl, this);
   },
 
@@ -31,28 +31,28 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   properties: {
     file: {
-      check: 'cv.ui.manager.model.FileItem',
-      apply: '_loadRoot',
-      event: 'changeFile'
+      check: "cv.ui.manager.model.FileItem",
+      apply: "_loadRoot",
+      event: "changeFile"
     },
     appearance: {
       refine: true,
-      init: 'cv-start'
+      init: "cv-start"
     },
 
     selectedItem: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: '_applySelectedItem'
+      apply: "_applySelectedItem"
     },
     external: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     },
     ready: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeReady'
+      event: "changeReady"
     }
   },
 
@@ -78,17 +78,17 @@ qx.Class.define('cv.ui.manager.Start', {
     unConfigureButton: function (button) {},
 
     _loadRoot: function (value) {
-      this.getChildControl('configs').setFile(value);
+      this.getChildControl("configs").setFile(value);
       var found = 0;
 
       value.load(function () {
         value.getChildren().some(function (file) {
-          if (file.getName() === 'media') {
-            this.getChildControl('media').setFile(file);
-            this.getChildControl('media-toolbar').setFolder(file);
+          if (file.getName() === "media") {
+            this.getChildControl("media").setFile(file);
+            this.getChildControl("media-toolbar").setFolder(file);
             found++;
-          } else if (file.getName() === 'demo') {
-            this.getChildControl('demo-configs').setFile(file);
+          } else if (file.getName() === "demo") {
+            this.getChildControl("demo-configs").setFile(file);
             found++;
           }
           return found === 2;
@@ -103,7 +103,7 @@ qx.Class.define('cv.ui.manager.Start', {
         this._ignoreSelectionChanges = true;
 
         // unselect the other lists
-        ['configs', 'demo-configs', 'media'].forEach(function (name) {
+        ["configs", "demo-configs", "media"].forEach(function (name) {
           var control = this.getChildControl(name);
           if (control !== list) {
             control.resetSelection();
@@ -120,27 +120,26 @@ qx.Class.define('cv.ui.manager.Start', {
     },
 
     _onToggleExpand: function (ev) {
-      var control = this.getChildControl(ev.getTarget().getUserData('control'));
-      if (control.getVisibility() === 'visible') {
+      var control = this.getChildControl(ev.getTarget().getUserData("control"));
+      if (control.getVisibility() === "visible") {
         control.exclude();
-        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon('drop-down', 18));
+        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon("drop-down", 18));
       } else {
         control.show();
-        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon('drop-up', 18));
+        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon("drop-up", 18));
       }
     },
 
     _onChangeViewMode: function () {
       switch (cv.ui.manager.model.Preferences.getInstance().getStartViewMode()) {
-        case 'list':
+        case "list":
           this._radioGroup.setSelection([this._listButton]);
           break;
 
-        case 'preview':
+        case "preview":
           this._radioGroup.setSelection([this._previewButton]);
           break;
       }
-
     },
 
     // overridden
@@ -148,98 +147,98 @@ qx.Class.define('cv.ui.manager.Start', {
        var control;
 
        switch (id) {
-         case 'scroll-container':
+         case "scroll-container":
            control = new qx.ui.container.Scroll();
            this._add(control, {flex: 1});
            break;
 
-         case 'content':
+         case "content":
            control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
-           this.getChildControl('scroll-container').add(control);
+           this.getChildControl("scroll-container").add(control);
            break;
 
-         case 'toolbar':
+         case "toolbar":
            control = new qx.ui.toolbar.ToolBar();
            var part = new qx.ui.toolbar.Part();
-           var listButton = this._listButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('listViewMode', 22));
-           listButton.setUserData('mode', 'list');
+           var listButton = this._listButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("listViewMode", 22));
+           listButton.setUserData("mode", "list");
            listButton.set({
-             show: 'icon',
-             toolTipText: this.tr('List mode')
+             show: "icon",
+             toolTipText: this.tr("List mode")
            });
-           var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('previewMode', 22));
-           previewButton.setUserData('mode', 'preview');
+           var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("previewMode", 22));
+           previewButton.setUserData("mode", "preview");
            previewButton.set({
-             show: 'icon',
-             toolTipText: this.tr('Preview mode')
+             show: "icon",
+             toolTipText: this.tr("Preview mode")
            });
            part.add(listButton);
            part.add(previewButton);
            control.add(part);
            this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
            this._onChangeViewMode();
-           this._radioGroup.addListener('changeSelection', function (ev) {
+           this._radioGroup.addListener("changeSelection", function (ev) {
              var selection = ev.getData()[0];
-             cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData('mode'));
+             cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData("mode"));
            }, this);
-           cv.ui.manager.model.Preferences.getInstance().addListener('changeStartViewMode', this._onChangeViewMode, this);
+           cv.ui.manager.model.Preferences.getInstance().addListener("changeStartViewMode", this._onChangeViewMode, this);
 
            this._add(control);
            break;
 
-         case 'configs-title':
-           control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
-           control.setUserData('control', 'configs');
-           control.addListener('tap', this._onToggleExpand, this);
-           this.getChildControl('configs-header').add(control);
+         case "configs-title":
+           control = new qx.ui.basic.Atom(this.tr("Configurations"), cv.theme.dark.Images.getIcon("drop-up", 18));
+           control.setUserData("control", "configs");
+           control.addListener("tap", this._onToggleExpand, this);
+           this.getChildControl("configs-header").add(control);
            break;
 
-         case 'configs-header':
+         case "configs-header":
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           control.getContentElement().setAttribute('data-section', 'configs');
-           this.getChildControl('content').add(control);
+           control.getContentElement().setAttribute("data-section", "configs");
+           this.getChildControl("content").add(control);
            break;
 
-         case 'configs-toolbar':
-           control = new cv.ui.manager.ToolBar(null, ['new-config-file', 'upload', 'reload']);
+         case "configs-toolbar":
+           control = new cv.ui.manager.ToolBar(null, ["new-config-file", "upload", "reload"]);
            control.setFolder(cv.ui.manager.model.FileItem.ROOT);
-           control.addListener('reload', function () {
+           control.addListener("reload", function () {
              cv.ui.manager.model.FileItem.ROOT.reload();
            }, this);
-           this.getChildControl('configs-header').add(control);
+           this.getChildControl("configs-header").add(control);
            break;
 
-         case 'configs':
+         case "configs":
            control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              permanentFilter: function (file) {
                var match = this._configRegex.exec(file.getName());
-               return !!match && (!match[1] || !match[1].endsWith('temp'));
+               return !!match && (!match[1] || !match[1].endsWith("temp"));
              }.bind(this),
              labelConverter: function (name, file) {
                if (file.isFake()) {
                  return name;
                }
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
-               return configName ? configName : '<Default>';
+               return configName ? configName : "<Default>";
              },
              file: cv.ui.manager.model.FileItem.ROOT,
              disableScrolling: true
            });
-           control.addListener('changeSelection', this._onChangeSelection, this);
-           this.getChildControl('content').add(control);
+           control.addListener("changeSelection", this._onChangeSelection, this);
+           this.getChildControl("content").add(control);
            break;
 
-         case 'demo-configs-title':
-           control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
-           control.setUserData('control', 'demo-configs');
-           control.getContentElement().setAttribute('data-section', 'demo');
-           control.addListener('tap', this._onToggleExpand, this);
-           this.getChildControl('content').add(control);
+         case "demo-configs-title":
+           control = new qx.ui.basic.Atom(this.tr("Demo configurations"), cv.theme.dark.Images.getIcon("drop-down", 18));
+           control.setUserData("control", "demo-configs");
+           control.getContentElement().setAttribute("data-section", "demo");
+           control.addListener("tap", this._onToggleExpand, this);
+           this.getChildControl("content").add(control);
            break;
 
-         case 'demo-configs':
+         case "demo-configs":
            control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
@@ -248,62 +247,62 @@ qx.Class.define('cv.ui.manager.Start', {
              }.bind(this),
              labelConverter: function (name) {
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
-               return configName ? configName : '<Default>';
+               return configName ? configName : "<Default>";
              },
              disableScrolling: true
            });
            control.exclude();
-           control.addListener('changeSelection', this._onChangeSelection, this);
-           this.getChildControl('content').add(control);
+           control.addListener("changeSelection", this._onChangeSelection, this);
+           this.getChildControl("content").add(control);
            break;
 
-         case 'media-title':
-           control = new qx.ui.basic.Atom(this.tr('Media files'), cv.theme.dark.Images.getIcon('drop-up', 18));
-           control.setUserData('control', 'media');
-           control.addListener('tap', this._onToggleExpand, this);
-           this.getChildControl('media-header').add(control);
+         case "media-title":
+           control = new qx.ui.basic.Atom(this.tr("Media files"), cv.theme.dark.Images.getIcon("drop-up", 18));
+           control.setUserData("control", "media");
+           control.addListener("tap", this._onToggleExpand, this);
+           this.getChildControl("media-header").add(control);
            break;
 
-         case 'media-header':
+         case "media-header":
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           control.getContentElement().setAttribute('data-section', 'media');
-           this.getChildControl('content').add(control);
+           control.getContentElement().setAttribute("data-section", "media");
+           this.getChildControl("content").add(control);
            break;
 
-         case 'media-toolbar':
-           control = new cv.ui.manager.ToolBar(null, ['new-file', 'upload', 'reload']);
-           control.addListener('reload', function () {
+         case "media-toolbar":
+           control = new cv.ui.manager.ToolBar(null, ["new-file", "upload", "reload"]);
+           control.addListener("reload", function () {
              control.getFolder().reload();
            }, this);
-           this.getChildControl('media-header').add(control);
+           this.getChildControl("media-header").add(control);
            break;
 
-         case 'media':
+         case "media":
            control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              disableScrolling: true
            });
-           control.addListener('changeSelection', this._onChangeSelection, this);
-           this.getChildControl('content').add(control);
+           control.addListener("changeSelection", this._onChangeSelection, this);
+           this.getChildControl("content").add(control);
            break;
 
-         case 'misc-title':
-           control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
-           control.setUserData('control', 'misc');
-           control.getContentElement().setAttribute('data-section', 'misc');
-           control.addListener('tap', this._onToggleExpand, this);
-           this.getChildControl('content').add(control);
+         case "misc-title":
+           control = new qx.ui.basic.Atom(this.tr("Miscellaneous"), cv.theme.dark.Images.getIcon("drop-up", 18));
+           control.setUserData("control", "misc");
+           control.getContentElement().setAttribute("data-section", "misc");
+           control.addListener("tap", this._onToggleExpand, this);
+           this.getChildControl("content").add(control);
            break;
 
-         case 'misc':
+         case "misc":
            control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              disableScrolling: true
            });
            this.__initMiscFolder(control);
-           this.getChildControl('content').add(control, {flex: 1});
+           this.getChildControl("content").add(control, {flex: 1});
            break;
        }
 
@@ -312,7 +311,7 @@ qx.Class.define('cv.ui.manager.Start', {
 
     __initMiscFolder: function (folderWidget) {
       if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
-        cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', function () {
+        cv.ui.manager.model.FileItem.ROOT.addListenerOnce("changeLoaded", function () {
           this.__initMiscFolder(folderWidget);
         }, this);
         return;
@@ -320,25 +319,25 @@ qx.Class.define('cv.ui.manager.Start', {
       // find the real 'hidden.php' in the root folder
       var specialFiles = [cv.ui.manager.model.FileItem.getIconFile()];
       cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (file) {
-        if (file.getFullPath() === 'hidden.php') {
+        if (file.getFullPath() === "hidden.php") {
           // set some special flags needed to configure the special hidden configuration file
           file.set({
             overrideIcon: true,
-            icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
-            displayName: qx.locale.Manager.tr('Hidden configuration'),
+            icon: cv.theme.dark.Images.getIcon("hidden-config", 15),
+            displayName: qx.locale.Manager.tr("Hidden configuration"),
             fake: true
           });
           specialFiles.unshift(file);
           return true;
         }
       });
-      var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
+      var fakeFolder = new cv.ui.manager.model.FileItem("fake", "fake", cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
         fake: true,
-        type: 'dir',
+        type: "dir",
         loaded: true
       });
       folderWidget.setFile(fakeFolder);
-      folderWidget.addListener('changeSelection', this._onChangeSelection, this);
+      folderWidget.addListener("changeSelection", this._onChangeSelection, this);
     }
   },
 
@@ -349,7 +348,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   destruct: function () {
     this._configRegex = null;
-    cv.ui.manager.model.Preferences.getInstance().removeListener('changeStartViewMode', this._onChangeViewMode, this);
-    this._disposeObjects('_previewButton', '_listButton', '_radioGroup');
+    cv.ui.manager.model.Preferences.getInstance().removeListener("changeStartViewMode", this._onChangeViewMode, this);
+    this._disposeObjects("_previewButton", "_listButton", "_radioGroup");
   }
 });

@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
+qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
   extend: cv.ui.structure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   */
   properties: {
     sendValue: { check: "String", init: "0" },
-    params: { check: "String", init: '' },
+    params: { check: "String", init: "" },
     url: { check: "String", nullable: true, apply: "_applyUrl" }
   },
 
@@ -80,11 +80,11 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
 
     // overridden
     _getInnerDomString: function () {
-      var actor = '<div class="actor switchUnpressed ';
-      if ( this.getAlign() ) {
+      var actor = "<div class=\"actor switchUnpressed ";
+      if (this.getAlign()) {
         actor += this.getAlign();
       }
-      actor += '"><div class="value"></div></div>';
+      actor += "\"><div class=\"value\"></div></div>";
       return actor;
     },
 

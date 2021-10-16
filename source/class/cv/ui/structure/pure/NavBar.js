@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define('cv.ui.structure.pure.NavBar', {
+qx.Class.define("cv.ui.structure.pure.NavBar", {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
@@ -53,7 +53,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     },
     position: {
       check: ["top", "left", "right", "bottom"], 
-      init: 'left'
+      init: "left"
     },
     dynamic: {
       check: "Boolean",
@@ -72,10 +72,10 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
   ******************************************************
   */
   statics: {
-    _navbarTop: '',
-    _navbarLeft: '',
-    _navbarRight: '',
-    _navbarBottom: '',
+    _navbarTop: "",
+    _navbarLeft: "",
+    _navbarRight: "",
+    _navbarBottom: "",
     _touchX: null,
     _touchY: null,
 
@@ -84,11 +84,11 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
      * to the DOM-Tree
      */
     initializeNavbars: function() {
-      ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
-        if (this['_navbar'+pos]) {
-          var elem = document.querySelector('#navbar'+pos);
+      ["Top", "Left", "Right", "Bottom"].forEach(function(pos) {
+        if (this["_navbar"+pos]) {
+          var elem = document.querySelector("#navbar"+pos);
           if (elem) {
-            elem.innerHTML += this['_navbar' + pos];
+            elem.innerHTML += this["_navbar" + pos];
           }
         }
       }, this);
@@ -105,10 +105,10 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       //   horizontal (up to +/-45° tolerance is allowed)
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
-      document.addEventListener('touchstart', function (evt) {
+      document.addEventListener("touchstart", function (evt) {
         var
-          touches = evt.touches[0],
-          pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          touches = evt.touches[0];
+          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
           (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
@@ -119,36 +119,36 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
       }, false);
-      document.addEventListener('touchend', function () {
+      document.addEventListener("touchend", function () {
         self._touchX = null;
         self._touchY = null;
       }, false);
-      document.addEventListener('touchmove', function (evt) {
+      document.addEventListener("touchmove", function (evt) {
         if (self._touchX === null) {
           return; // early exit as this touch isn't relevant for us
         }
 
         var
-          touches = evt.touches[0],
-          x = touches.clientX - self._touchX,
-          y = touches.clientY - self._touchY,
-          necessaryDistance = 10,
-          enoughDistance = Math.abs(x) > necessaryDistance,
-          horizontal = Math.abs(x) > Math.abs(y),
-          toRight = x > 0;
+          touches = evt.touches[0];
+          var x = touches.clientX - self._touchX;
+          var y = touches.clientY - self._touchY;
+          var necessaryDistance = 10;
+          var enoughDistance = Math.abs(x) > necessaryDistance;
+          var horizontal = Math.abs(x) > Math.abs(y);
+          var toRight = x > 0;
         if (horizontal && enoughDistance) {
           var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
             self._touchY = touches.clientY;
             if (!pPH.navbars.left.fadeVisible) {
-              pPH.fadeNavbar('Left', 'in', 250);
+              pPH.fadeNavbar("Left", "in", 250);
             }
           } else { // !toRight
             self._touchX = touches.clientX + necessaryDistance;
             self._touchY = touches.clientY;
             if (pPH.navbars.left.fadeVisible) {
-              pPH.fadeNavbar('Left','out',250);
+              pPH.fadeNavbar("Left", "out", 250);
             }
           }
         }
@@ -169,40 +169,39 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     getGlobalPath: function () {
       var id = this.getPath().split("_");
       id.pop();
-      return id.join('_') + '_' + this.getPosition() + '_navbar';
+      return id.join("_") + "_" + this.getPosition() + "_navbar";
     },
 
     // overridden
     getDomString: function () {
-
-      var container = '<div class="' + this.getClasses() + '" id="' + this.getGlobalPath() + '">';
+      var container = "<div class=\"" + this.getClasses() + "\" id=\"" + this.getGlobalPath() + "\">";
       if (this.getName()) {
-        container += '<h2>' + this.getName() + '</h2>';
+        container += "<h2>" + this.getName() + "</h2>";
       }
       container += this.getChildrenDomString();
 
-      container += '</div>';
+      container += "</div>";
 
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
-        case 'top':
+        case "top":
           this.self(arguments)._navbarTop += container;
           break;
 
-        case 'left':
+        case "left":
           this.self(arguments)._navbarLeft += container;
           break;
 
-        case 'right':
+        case "right":
           this.self(arguments)._navbarRight += container;
           break;
 
-        case 'bottom':
+        case "bottom":
           this.self(arguments)._navbarBottom += container;
           break;
       }
 
-      return '';
+      return "";
     }
   },
 

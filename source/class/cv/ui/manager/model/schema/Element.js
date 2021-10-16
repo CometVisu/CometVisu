@@ -1,7 +1,7 @@
 /**
  * a single element from the schema
  */
-qx.Class.define('cv.ui.manager.model.schema.Element', {
+qx.Class.define("cv.ui.manager.model.schema.Element", {
   extend: cv.ui.manager.model.schema.Base,
   include: cv.ui.manager.model.schema.MAnnotation,
 
@@ -23,50 +23,50 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
   statics: {
     /**
      * Get the name of a schema-element
-     *
-     * @param   e object  element to find the name of
+     * @param e object  element to find the name of
+     * @param schema
      * @return  string          name of the element
      * @throws  if the name can not be found
      */
     getElementName: function(e, schema) {
-      if (e.hasAttribute('name')) {
-        return e.getAttribute('name');
+      if (e.hasAttribute("name")) {
+        return e.getAttribute("name");
       }
 
-      if (e.hasAttribute('ref')) {
+      if (e.hasAttribute("ref")) {
         // it's a ref, seek other element!
-        const refName = e.getAttribute('ref');
-        const ref = schema.getReferencedNode('element', refName);
+        const refName = e.getAttribute("ref");
+        const ref = schema.getReferencedNode("element", refName);
 
         if (ref.length !== 1) {
-          throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+          throw "schema/xsd appears to be invalid, can not find element " + refName;
         }
 
-        return ref.getAttribute('name');
+        return ref.getAttribute("name");
       }
 
-      return 'unknown';
+      return "unknown";
     },
 
     /**
      * find the type-node for this element
-     *
+     * @param node
+     * @param schema
      * @return  object  object of the type-Node
      */
     getTypeNode: function (node, schema) {
       let type;
 
-      if (node.hasAttribute('type')) {
-
-        if (node.getAttribute('type').match(/^xsd:/)) {
+      if (node.hasAttribute("type")) {
+        if (node.getAttribute("type").match(/^xsd:/)) {
           // if it starts with xsd:, it's actually a simple type
           // does not start with
           type = node;
         } else {
           // otherwise, the element is linked to a complexType
-          type = schema.getTypeNode('complex', node.getAttribute('type'));
+          type = schema.getTypeNode("complex", node.getAttribute("type"));
         }
-      } else if (node.hasAttribute('ref')) {
+      } else if (node.hasAttribute("ref")) {
         // the link is a reference to another element, which means it does not even have it's own name.
         // this one is most certainly deprecated, as we do not have many root-level-elements, and only those can
         // be ref'ed
@@ -104,15 +104,15 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // to find the first one that distinguishes a from b
 
         // first, typecast to string!
-        if (typeof aSortvalue !== 'string') {
+        if (typeof aSortvalue !== "string") {
           aSortvalue = aSortvalue.toString();
         }
-        if (typeof bSortvalue !== 'string') {
+        if (typeof bSortvalue !== "string") {
           bSortvalue = bSortvalue.toString();
         }
 
-        let aSortvaluesList = aSortvalue.split('.');
-        let bSortvaluesList = bSortvalue.split('.');
+        let aSortvaluesList = aSortvalue.split(".");
+        let bSortvaluesList = bSortvalue.split(".");
 
         for (let i = 0; i < aSortvaluesList.length; ++i) {
           if (aSortvaluesList[i] < bSortvaluesList[i]) {
@@ -124,8 +124,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
         // if nothing else matched, then they are treated equal
         return 0;
-
-      }
+      };
     }
   },
 
@@ -137,27 +136,27 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
   properties: {
     type: {
       refine: true,
-      init: 'element'
+      init: "element"
     },
 
     name: {
-      check: 'String',
-      init: ''
+      check: "String",
+      init: ""
     },
 
     defaultValue: {
-      check: 'String',
+      check: "String",
       nullable: true
     },
 
     sortable: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      event: 'changeSortable'
+      event: "changeSortable"
     },
 
     mixed: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     }
   },
@@ -185,11 +184,11 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       const schema = this.getSchema();
 
       this._type = cv.ui.manager.model.schema.Element.getTypeNode(node, schema);
-      this.setName(cv.ui.manager.model.schema.Element.getElementName(node, schema))
+      this.setName(cv.ui.manager.model.schema.Element.getElementName(node, schema));
       if (node.hasAttribute("default")) {
-        this.setDefaultValue(node.getAttribute("default"))
+        this.setDefaultValue(node.getAttribute("default"));
       }
-      this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute("mixed") === "true")
+      this.setMixed(this._type.hasAttribute("mixed") && this._type.getAttribute("mixed") === "true");
     },
 
     /**
@@ -206,43 +205,43 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       const allowedContent = {
         _grouping: undefined,
-        _text: false,
+        _text: false
       };
 
       // allowed sub-elements
       // can be either simpleContent, or (choice|sequence|group|all)?
       // 'all' is not supported yet.
 
-      if (this._type.querySelectorAll(':scope > simpleContent').length > 0) {
+      if (this._type.querySelectorAll(":scope > simpleContent").length > 0) {
         // it's simpleContent? Then it's either extension or restriction
         // anyways, we will handle it, as if it were a simpleType
-        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector(':scope > simpleContent'), schema);
-      } else if (this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0) {
+        allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector(":scope > simpleContent"), schema);
+      } else if (this._type.querySelectorAll("complexType > choice, complexType> sequence, complexType > group").length > 0) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
 
-        let tmpDOMGrouping = this._type.querySelector('complexType > choice, complexType > sequence, complexType > group');
+        let tmpDOMGrouping = this._type.querySelector("complexType > choice, complexType > sequence, complexType > group");
 
         // create the appropriate Schema*-object and append it to this very element
         switch (tmpDOMGrouping.nodeName) {
-          case 'xsd:choice':
-          case 'choice':
+          case "xsd:choice":
+          case "choice":
             allowedContent._grouping = new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
             break;
-          case 'xsd:sequence':
-          case 'sequence':
+          case "xsd:sequence":
+          case "sequence":
             allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
             break;
-          case 'xsd:group':
-          case 'group':
+          case "xsd:group":
+          case "group":
             allowedContent._grouping = new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
             break;
-          case 'xsd:any':
-          case 'any':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema)
+          case "xsd:any":
+          case "any":
+            allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
             break;
         }
-      } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
+      } else if (this._type.hasAttribute("type") && this._type.getAttribute("type").match(/^xsd:/)) {
         // this is a really simple node that defines its own baseType
         allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
       } else {
@@ -252,8 +251,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       }
 
 
-      const children = Array.from(this._type.querySelectorAll(':scope > element'));
-      children.forEach( (sub) => {
+      const children = Array.from(this._type.querySelectorAll(":scope > element"));
+      children.forEach(sub => {
         const subElement = new cv.ui.manager.model.schema.Element(sub, schema);
         allowedContent[subElement.getName()] = subElement;
       });
@@ -273,30 +272,30 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         const allowedAttributes = {};
 
         // allowed attributes
-        const attributes = Array.from(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute'));
+        const attributes = Array.from(this._type.querySelectorAll(":scope > attribute, :scope > simpleContent > extension > attribute"));
 
         // now add any attribute that comes from an attribute-group
-        const attributeGroups = Array.from(this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup'));
+        const attributeGroups = Array.from(this._type.querySelectorAll(":scope > attributeGroup, :scope > simpleContent > extension > attributeGroup"));
 
-        attributeGroups.forEach((aGroup) => {
+        attributeGroups.forEach(aGroup => {
           // get get group itself, by reference if necessary
           // then extract all attributes, and add them to the list of already know attributes
 
           let attributeGroup = {};
-          if (aGroup.hasAttribute('ref')) {
+          if (aGroup.hasAttribute("ref")) {
             // we do have a reffed group
-            attributeGroup = this.getSchema().getReferencedNode('attributeGroup', aGroup.getAttribute('ref'));
+            attributeGroup = this.getSchema().getReferencedNode("attributeGroup", aGroup.getAttribute("ref"));
           } else {
             attributeGroup = aGroup;
           }
 
-          Array.from(attributeGroup.querySelectorAll(':scope > attribute')).forEach((child) => {
+          Array.from(attributeGroup.querySelectorAll(":scope > attribute")).forEach(child => {
             attributes.push(child);
           });
         });
 
         // convert all allowed attributes to a more object-oriented approach
-        attributes.forEach((attr) => {
+        attributes.forEach(attr => {
           const attribute = new cv.ui.manager.model.schema.Attribute(attr, this.getSchema());
           allowedAttributes[attribute.getName()] = attribute;
         });
@@ -342,7 +341,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
     /**
      * get a list of all allowed elements for this element
-     *
+     * @param excludeComment
      * @return  object  list of SchemaElement-elements, key is the name
      */
     getAllowedElements: function (excludeComment) {
@@ -356,16 +355,16 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       let textOnly = false;
       if (this.isMixed()) {
         // mixed elements are allowed to have #text-nodes
-        allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
+        allowedElements["#text"] = this.getSchema().getTextNodeSchemaElement();
       } else if (allowedContent._text && allowedContent._grouping === undefined) {
         // text only
-        allowedElements['#text'] = allowedContent._text;
+        allowedElements["#text"] = allowedContent._text;
         textOnly = true;
       }
 
       if (!textOnly && !excludeComment) {
         // although its basically allowed to add comments in a text-only content, we do not allow it
-        allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
+        allowedElements["#comment"] = this.getSchema().getCommentNodeSchemaElement();
       }
 
       return allowedElements;
@@ -392,8 +391,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // we only care about the first level here
         Object.keys(allowedSorting).forEach(name => {
           let sort = allowedSorting[name];
-          if (typeof sort === 'string') {
-            sort = parseInt(sort.split('.')[0]);
+          if (typeof sort === "string") {
+            sort = parseInt(sort.split(".")[0]);
           }
           allowedSorting[name] = sort;
         });
@@ -414,7 +413,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         return undefined;
       }
 
-      if (true === allowedContent._grouping.hasMultiLevelBounds()) {
+      if (allowedContent._grouping.hasMultiLevelBounds() === true) {
         // if our choice has sub-choices, then we have not fucking clue about bounds (or we can not process them)
         return undefined;
       }
@@ -473,10 +472,10 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  boolean         is this element allowed?
      */
     isChildElementAllowed: function (child) {
-      if (child === '#text' || child === '#cdata-section') {
+      if (child === "#text" || child === "#cdata-section") {
         // text-nodes are somewhat special :)
         return this.isTextContentAllowed();
-      } else if (child === '#comment') {
+      } else if (child === "#comment") {
         return true;
       }
 
@@ -486,10 +485,9 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (allowedContent._grouping === undefined) {
         // when there is no choice, then there is no allowed element
         return false;
-      } else {
+      } 
         // see, if this child is allowed with our choice
         return allowedContent._grouping.isElementAllowed(child);
-      }
     },
 
 
@@ -504,17 +502,17 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // first, get a list of allowed content (don't worry, it's cached)
       const allowedContent = this.getAllowedContent();
 
-      if (elementName === '#text' || elementName === '#cdata-section') {
+      if (elementName === "#text" || elementName === "#cdata-section") {
         // no special handling for mixed nodes, they do have a #text-SchemaElement already!
         // text-nodes may be allowed. we will see ...
-        if (false === this.isTextContentAllowed()) {
+        if (this.isTextContentAllowed() === false) {
           return undefined;
         }
 
         if (!this.__textNodeSchemaElement) {
-          const tmpXML = this.getSchema().getSchemaDOM().createElement('element');
-          tmpXML.setAttribute('name', '#text');
-          tmpXML.setAttribute('type', 'xsd:string');
+          const tmpXML = this.getSchema().getSchemaDOM().createElement("element");
+          tmpXML.setAttribute("name", "#text");
+          tmpXML.setAttribute("type", "xsd:string");
           this.__textNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
           if (allowedContent._text) {
             this.__textNodeSchemaElement.getAllowedContent()._text = allowedContent._text;
@@ -523,7 +521,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
           }
         }
         return this.__textNodeSchemaElement;
-      } else if (elementName === '#comment') {
+      } else if (elementName === "#comment") {
         // comments are always allowed
         return this.getSchema().getCommentNodeSchemaElement();
       }
@@ -558,7 +556,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  boolean         is it valid?
      */
     isValueValid: function (value) {
-      if (false === this.isTextContentAllowed()) {
+      if (this.isTextContentAllowed() === false) {
         // if no text-content is allowed, then it can not be valid
         return false;
       }
@@ -581,22 +579,22 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
      * @return  string
      */
     getRegex: function (separator, nocapture) {
-      if (typeof separator === 'undefined' || separator === undefined) {
+      if (typeof separator === "undefined" || separator === undefined) {
         // default to an empty string
-        separator = '';
+        separator = "";
       }
 
-      let regexString = '(';
+      let regexString = "(";
       if (nocapture) {
-        regexString += '?:';
+        regexString += "?:";
       }
 
       // start with the name of the element
-      regexString += this.getName() + separator + ')';
+      regexString += this.getName() + separator + ")";
 
       // append bounds
-      let boundsMin = '';
-      let boundsMax = '';
+      let boundsMin = "";
+      let boundsMax = "";
       const bounds = this.getBounds();
       if (bounds.min !== undefined) {
         boundsMin = bounds.min;
@@ -608,9 +606,9 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         }
       }
 
-      if (boundsMin !== '' || boundsMax !== '') {
+      if (boundsMin !== "" || boundsMax !== "") {
         // append bounds to the regex-string
-        regexString += '{' + boundsMin + ',' + boundsMax + '}';
+        regexString += "{" + boundsMin + "," + boundsMax + "}";
       }
 
       // and thats all
@@ -619,21 +617,21 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
     /**
      * create a full-blown regular expression that describes this elements immediate children
-     *
-     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @param separator   string  the string used to separate different elements, e.g. ';'
+     * @param nocapture
      * @return  string              the regular expression
      */
     getChildrenRegex: function(separator, nocapture) {
-      if (typeof separator == 'undefined' || separator === undefined) {
+      if (typeof separator == "undefined" || separator === undefined) {
         // default to an empty string
-        separator = '';
+        separator = "";
       }
 
       const allowedContent = this.getAllowedContent();
 
       if (allowedContent._grouping === undefined) {
         // not really something to match
-        return '^';
+        return "^";
       }
 
       return allowedContent._grouping.getRegex(separator, nocapture);
@@ -646,8 +644,8 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
   ***********************************************
   */
   destruct: function () {
-    this._disposeMap('__allowedAttributes');
-    this._disposeMap('__allowedContent');
-    this._disposeObjects('__textNodeSchemaElement');
+    this._disposeMap("__allowedAttributes");
+    this._disposeMap("__allowedContent");
+    this._disposeObjects("__textNodeSchemaElement");
   }
 });

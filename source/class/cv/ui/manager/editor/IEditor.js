@@ -1,7 +1,7 @@
 /**
  * Interface all file editors must implement.
  */
-qx.Interface.define('cv.ui.manager.editor.IEditor', {
+qx.Interface.define("cv.ui.manager.editor.IEditor", {
   /*
   ***********************************************
     PROPERTIES
@@ -9,16 +9,16 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   */
   properties: {
     file: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: "cv.ui.manager.model.FileItem",
       nullable: true,
-      apply: '_loadFile'
+      apply: "_loadFile"
     },
 
     /**
      * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
      */
     external: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false
     },
 
@@ -26,9 +26,9 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
      * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
      */
     ready: {
-      check: 'Boolean',
+      check: "Boolean",
       init: true,
-      event: 'changeReady'
+      event: "changeReady"
     }
   },
 
@@ -38,7 +38,7 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   ***********************************************
   */
   statics: {
-    TITLE: ''
+    TITLE: ""
   },
 
   /*

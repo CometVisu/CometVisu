@@ -69,7 +69,7 @@ qx.Class.define("cv.core.notifications.actions.Option", {
     },
 
     getDomElement: function() {
-      var container = qx.dom.Element.create('span', {
+      var container = qx.dom.Element.create("span", {
         style: this.getStyle()
       });
 
@@ -80,9 +80,9 @@ qx.Class.define("cv.core.notifications.actions.Option", {
         "id": this.getName()
       });
       container.appendChild(checkbox);
-      container.appendChild(qx.dom.Element.create('span', {
+      container.appendChild(qx.dom.Element.create("span", {
         html: this.getTitle()
-      }))
+      }));
       return container;
     }
   },

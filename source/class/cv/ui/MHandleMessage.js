@@ -129,7 +129,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
     },
 
     getSeverityColor: function(severity) {
-      switch(severity) {
+      switch (severity) {
         case "urgent":
           return "#FF0000";
         case "high":
@@ -177,7 +177,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
               if (changed) {
                 this._updateHighestSeverity();
               }
-            } else{
+            } else {
               var removedMessage = this._messages.removeAt(index);
               postHookPayload.action = "removed";
               postHookPayload.message = removedMessage;

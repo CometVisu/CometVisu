@@ -3,7 +3,7 @@
  * This parser can handle those strings
  * @ignore($)
  */
-qx.Class.define('cv.io.parser.Json', {
+qx.Class.define("cv.io.parser.Json", {
   type: "static",
 
   /*

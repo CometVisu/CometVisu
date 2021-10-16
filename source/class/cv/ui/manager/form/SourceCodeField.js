@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.form.SourceCodeField', {
+qx.Class.define("cv.ui.manager.form.SourceCodeField", {
   extend : qx.ui.core.Widget,
   implement : [
     qx.ui.form.IStringForm,
@@ -55,9 +55,9 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
       init : true
     },
     autoSize: {
-      check: 'Boolean',
+      check: "Boolean",
       init: false,
-      apply: '_autoSize'
+      apply: "_autoSize"
     }
   },
 
@@ -123,9 +123,8 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
         return this._editor.getValue();
       } else if (this.__delayedValue) {
         return this.__delayedValue;
-      } else {
-        return '';
-      }
+      } 
+        return "";
     },
 
     _init: function () {
@@ -134,7 +133,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
       } else {
         const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
-          this.addListenerOnce('appear', () => {
+          this.addListenerOnce("appear", () => {
             this._init();
           }, this);
         } else {
@@ -146,11 +145,11 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
             dragAndDrop: true,
             formatOnPaste: true,
             formatOnType: true,
-            renderValidationDecorations: 'on',
+            renderValidationDecorations: "on",
             minimap: {
               enabled: false
             },
-            theme: 'vs-dark'
+            theme: "vs-dark"
           });
           if (this.getType()) {
             const model = this._editor.getModel();
@@ -180,7 +179,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
 
     _onContentChange: function () {
       this._hasBeenEdited = true;
-      this.fireDataEvent('changeValue', this._editor.getValue());
+      this.fireDataEvent("changeValue", this._editor.getValue());
       this._autoSize();
     },
 

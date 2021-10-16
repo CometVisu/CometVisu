@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define('cv.plugins.diagram.Diagram', {
+qx.Class.define("cv.plugins.diagram.Diagram", {
   extend: cv.plugins.diagram.AbstractDiagram,
 
   /*
@@ -136,12 +136,12 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
     _getInnerDomString: function() {
       var
-        classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
-        styleStr = 'min-height: 40px' +
-          (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             ) +
-          (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
+        classStr = this.getPreviewlabels() ? "diagram_inline" : "diagram_preview";
+        var styleStr = "min-height: 40px" +
+          (this.getWidth() ? (";width:" + this.getWidth()) : "") +
+          (this.getHeight() ? (";height:" + this.getHeight()) : ";height: 100%");
 
-      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
+      return "<div class=\"actor clickable\" style=\"height: 100%; min-height: 40px;\"><div class=\"" + classStr + "\" style=\"" + styleStr + "\">loading...</div></div>";
     }
   },
 

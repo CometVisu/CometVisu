@@ -1,7 +1,7 @@
 /**
  * This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.
  */
-qx.Mixin.define('cv.report.utils.MXhrHook', {
+qx.Mixin.define("cv.report.utils.MXhrHook", {
   /*
   ******************************************************
     CONSTRUCTOR
@@ -52,14 +52,13 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
           cv.report.utils.MXhrHook.PENDING[hash] = [];
         }
         cv.report.utils.MXhrHook.PENDING[hash].push(cv.report.Record.normalizeUrl(this._getConfiguredUrl()));
-
       } else if (ev.getData() === "load") {
         if (!this.__sendTime) {
           this.error("response received without sendTime set. Not possible to calculate correct delay");
         }
         // response has been received (successful or not) -> log it
         var headers = {};
-        this.getAllResponseHeaders().trim().split("\r\n").forEach(function(entry){
+        this.getAllResponseHeaders().trim().split("\r\n").forEach(function(entry) {
           var parts = entry.split(": ");
           headers[parts[0]] = parts[1];
         });

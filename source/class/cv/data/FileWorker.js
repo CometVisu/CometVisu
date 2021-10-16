@@ -1,9 +1,9 @@
 /**
  * Worker script that handles file related operations like modification checking or xml validation
  */
-qx.Class.define('cv.data.FileWorker', {
+qx.Class.define("cv.data.FileWorker", {
   extend: qx.core.Object,
-  type: 'singleton',
+  type: "singleton",
 
   /*
   ***********************************************
@@ -13,7 +13,7 @@ qx.Class.define('cv.data.FileWorker', {
   construct: function () {
     this.base(arguments);
     this._files = [];
-    this._worker = new Worker(qx.util.ResourceManager.getInstance().toUri('manager/worker.js'));
+    this._worker = new Worker(qx.util.ResourceManager.getInstance().toUri("manager/worker.js"));
     this._worker.onmessage = this._onMessage.bind(this);
     this._validationCallbacks = {};
   },
@@ -24,7 +24,7 @@ qx.Class.define('cv.data.FileWorker', {
   ***********************************************
   */
   events: {
-    message: 'qx.event.type.Data'
+    message: "qx.event.type.Data"
   },
 
   /*
@@ -67,8 +67,8 @@ qx.Class.define('cv.data.FileWorker', {
       let topic = e.data.shift();
       let data = e.data.shift();
       let path = e.data.shift();
-      switch(topic) {
-        case 'validationResult':
+      switch (topic) {
+        case "validationResult":
           if (this._validationCallbacks.hasOwnProperty(path)) {
             const callbacks = this._validationCallbacks[path];
             delete this._validationCallbacks[path];
@@ -78,11 +78,11 @@ qx.Class.define('cv.data.FileWorker', {
           }
           break;
       }
-      this.fireDataEvent('message', {
+      this.fireDataEvent("message", {
         topic: topic,
         data: data,
         path: path
-      })
+      });
     }
   },
 

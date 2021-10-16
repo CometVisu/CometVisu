@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define('cv.parser.widgets.Unknown', {
+qx.Class.define("cv.parser.widgets.Unknown", {
   type: "static",
 
   /*
@@ -36,10 +36,10 @@ qx.Class.define('cv.parser.widgets.Unknown', {
   statics: {
     parse: function (xml, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData(path, {
-        'path': path,
-        'unknownType': xml.nodeName.toLowerCase(),
-        '$$type': "unknown",
-        'pageType': pageType
+        "path": path,
+        "unknownType": xml.nodeName.toLowerCase(),
+        "$$type": "unknown",
+        "pageType": pageType
       });
     }
   },

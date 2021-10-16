@@ -26,7 +26,7 @@
 // of the jQuery-Tools Scrollable. It should be enhanced to allow different
 // page transition animations like blending, etc. pp.
 
-qx.Class.define('cv.ui.PageHandler', {
+qx.Class.define("cv.ui.PageHandler", {
   extend: qx.core.Object,
 
   /*
@@ -42,13 +42,13 @@ qx.Class.define('cv.ui.PageHandler', {
     },
     // name of the easing function
     easing : {
-      check: 'string',
-      init: 'ease'
+      check: "string",
+      init: "ease"
     },
 
     currentPath : {
-      check: 'String',
-      init: ''
+      check: "String",
+      init: ""
     },
 
     animationType: {
@@ -64,16 +64,18 @@ qx.Class.define('cv.ui.PageHandler', {
    */
   members: {
 
-    seekTo : function( target, speed ) {
+    seekTo : function(target, speed) {
       if (isNaN(speed)) {
         speed = 0;
       }
       var currentPath = this.getCurrentPath();
-      if (currentPath !== '') { qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); }
+      if (currentPath !== "") {
+ qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); 
+}
 
       var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
-      if (!pageWidget || !pageWidget.getDomElement()) {// check if page does exist
+      if (!pageWidget || !pageWidget.getDomElement()) { // check if page does exist
         return;
       }
       qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
@@ -85,7 +87,7 @@ qx.Class.define('cv.ui.PageHandler', {
       templateEngine.setCurrentPage(pageWidget);
 
       // update visibility of navbars, top-navigation, footer
-      templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
+      templateEngine.pagePartsHandler.updatePageParts(pageWidget, speed);
 
       // now the animation
       var animationConfig = {};
@@ -110,7 +112,9 @@ qx.Class.define('cv.ui.PageHandler', {
         Object.entries({
           "display": "block",
           "overflow": "hidden"
-        }).forEach(function(key_value){pageWidget.getDomElement().style[key_value[0]]=key_value[1];});
+        }).forEach(function(key_value) {
+ pageWidget.getDomElement().style[key_value[0]]=key_value[1]; 
+});
         // set it to visible
         pageWidget.setVisible(true);
       }
@@ -144,7 +148,7 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param direction {String} "up" or "down"
      */
     __getAnimationConfig: function(direction) {
-      var inAnim, outAnim;
+      var inAnim; var outAnim;
 
       // try to find existing animation configuration
       var type = this.getAnimationType().toUpperCase();
@@ -158,7 +162,6 @@ qx.Class.define('cv.ui.PageHandler', {
       if (!inAnim || !outAnim) {
         // fallback
         switch (this.getAnimationType()) {
-
           case "slide":
             if (direction === "up") {
               inAnim = qx.util.Animation.SLIDE_RIGHT_IN;
@@ -187,7 +190,7 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param oldPageWidget {cv.ui.structure.pure.Page}
      */
     __onLeavePage: function(oldPageWidget) {
-      oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
+      oldPageWidget.getDomElement().classList.remove("pageActive", "activePage");
       oldPageWidget.getDomElement().style.overflow = null;
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
       qx.event.message.Bus.dispatchByName("path.pageLeft", oldPageWidget.getPath());
@@ -203,23 +206,25 @@ qx.Class.define('cv.ui.PageHandler', {
     __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
-      page.classList.add('pageActive', 'activePage');// show new page
+      page.classList.add("pageActive", "activePage");// show new page
       if (updateVisibility === true) {
         // set it to visible
         pageWidget.setVisible(true);
       }
       // final stuff
       this.setCurrentPath(target);
-      cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation( target );
+      cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation(target);
 
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      var styles =  {"overflow": null, "display": null};
+      var styles = {"overflow": null, "display": null};
       if (oldPos) {
         styles.position = oldPos;
       }
-      Object.entries(styles).forEach(function(key_value){page.style[key_value[0]]=key_value[1];});
+      Object.entries(styles).forEach(function(key_value) {
+ page.style[key_value[0]]=key_value[1]; 
+});
     }
   }
 });

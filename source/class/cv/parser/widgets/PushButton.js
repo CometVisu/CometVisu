@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.PushButton', {
+qx.Class.define("cv.parser.widgets.PushButton", {
   type: "static",
 
   /*
@@ -48,8 +48,8 @@ qx.Class.define('cv.parser.widgets.PushButton', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'downValue': {target: 'downValue', "default": "1"},
-        'upValue': {"default": "0"}
+        "downValue": {target: "downValue", "default": "1"},
+        "upValue": {"default": "0"}
       };
     },
 

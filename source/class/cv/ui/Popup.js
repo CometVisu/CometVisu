@@ -19,7 +19,7 @@
 
 
 //noinspection JSUnusedGlobalSymbols
-qx.Class.define('cv.ui.Popup', {
+qx.Class.define("cv.ui.Popup", {
   extend: qx.core.Object,
 
   /*
@@ -31,7 +31,7 @@ qx.Class.define('cv.ui.Popup', {
     if (type) {
       this.setType(type);
     }
-    this.__deactivateSelectors = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
+    this.__deactivateSelectors = ["#top", "#navbarTop", "#centerContainer", "#navbarBottom", "#bottom"];
     this.__elementMap = {};
   },
 
@@ -81,7 +81,7 @@ qx.Class.define('cv.ui.Popup', {
     create: function (attributes) {
       cv.ui.BodyBlocker.getInstance().block(attributes.unique, attributes.topic);
       var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
-      var body = document.querySelector('body');
+      var body = document.querySelector("body");
       var ret_val;
       var classes = ["popup", "popup_background", this.getType()];
       var isNew = true;
@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.Popup', {
           id: "popup_" + this.__counter,
           "class": classes.join(" "),
           style: "visibility:hidden",
-          html: closable ? '<div class="popup_close">X</div>' : ""
+          html: closable ? "<div class=\"popup_close\">X</div>" : ""
         });
         body.appendChild(ret_val);
         this.__elementMap.close = ret_val.querySelector("div.popup_close");
@@ -127,7 +127,6 @@ qx.Class.define('cv.ui.Popup', {
         } else {
           this.__elementMap.title.appendChild(attributes.title);
         }
-
       }
 
       if (attributes.content || attributes.icon || attributes.progress) {
@@ -164,7 +163,7 @@ qx.Class.define('cv.ui.Popup', {
               use.setAttribute("xlink:href", parts[0]+"#kuf-"+attributes.icon);
             }
           }
-        } else  {
+        } else {
           this.destroyElement("icon");
         }
 
@@ -197,14 +196,14 @@ qx.Class.define('cv.ui.Popup', {
           if (cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)] && cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper) {
             wrapper = cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper();
           } else {
-            wrapper = qx.dom.Element.create('div', (actionTypes > index + 1) ? {style: "margin-bottom: 20px"} : {});
+            wrapper = qx.dom.Element.create("div", (actionTypes > index + 1) ? {style: "margin-bottom: 20px"} : {});
           }
           target.appendChild(wrapper);
           target = wrapper;
           typeActions.forEach(function (action) {
             var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
             if (actionButton) {
-              actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
+              actionButton.$$handler && actionButton.$$handler.addListener("close", function () {
                 this.close();
               }, this);
               target.appendChild(actionButton);
@@ -233,16 +232,16 @@ qx.Class.define('cv.ui.Popup', {
           anchor.w = attributes.position.width();
           anchor.h = attributes.position.height();
         } else {
-          if (attributes.position.hasOwnProperty('x')) {
+          if (attributes.position.hasOwnProperty("x")) {
             anchor.x = attributes.position.x;
           }
-          if (attributes.position.hasOwnProperty('y')) {
+          if (attributes.position.hasOwnProperty("y")) {
             anchor.y = attributes.position.y;
           }
-          if (attributes.position.hasOwnProperty('w')) {
+          if (attributes.position.hasOwnProperty("w")) {
             anchor.w = attributes.position.w;
           }
-          if (attributes.position.hasOwnProperty('h')) {
+          if (attributes.position.hasOwnProperty("h")) {
             anchor.h = attributes.position.h;
           }
           if (anchor.w === 0 && anchor.h === 0) {
@@ -254,42 +253,42 @@ qx.Class.define('cv.ui.Popup', {
         align = attributes.align;
       }
       var
-        ret_valRect = ret_val.getBoundingClientRect(),
-        placement = cv.ui.PopupHandler.placementStrategy(
+        ret_valRect = ret_val.getBoundingClientRect();
+        var placement = cv.ui.PopupHandler.placementStrategy(
         anchor,
         {w: Math.round(ret_valRect.right - ret_valRect.left), h: Math.round(ret_valRect.bottom - ret_valRect.top)},
         {w: document.documentElement.clientWidth, h: document.documentElement.clientHeight},
         align
       );
 
-      ret_val.style.left = placement.x + 'px';
-      ret_val.style.top  = placement.y + 'px';
+      ret_val.style.left = placement.x + "px";
+      ret_val.style.top = placement.y + "px";
 
-      if (!closable && ret_val.querySelector('.reload') === null) {
-        var reload = '<div class="reload">' +
-          '<a href="javascript:location.reload(true);">' +
-          qx.locale.Manager.tr('Reload').toString() +
-          '</a>' +
-          '</div>';
-        ret_val.insertAdjacentHTML('beforeend', reload);
+      if (!closable && ret_val.querySelector(".reload") === null) {
+        var reload = "<div class=\"reload\">" +
+          "<a href=\"javascript:location.reload(true);\">" +
+          qx.locale.Manager.tr("Reload").toString() +
+          "</a>" +
+          "</div>";
+        ret_val.insertAdjacentHTML("beforeend", reload);
       }
 
       if (closable && addCloseListeners) {
-        this.addListener('close', this.close, this);
-        qx.event.Registration.addListener(ret_val, 'tap', function () {
+        this.addListener("close", this.close, this);
+        qx.event.Registration.addListener(ret_val, "tap", function () {
           // note: this will call two events - one for the popup itself and
           //       one for the popup_background.
-          this.fireEvent('close');
+          this.fireEvent("close");
         }, this);
         var close = ret_val.querySelector(".popup_close");
-        qx.event.Registration.addListener(close, 'tap', function () {
-          this.fireEvent('close');
+        qx.event.Registration.addListener(close, "tap", function () {
+          this.fireEvent("close");
         }, this);
       }
 
       attributes.id = this.__counter;
       if (isNew) {
-        ret_val.style.visibility = 'visible';
+        ret_val.style.visibility = "visible";
         this.__counter++;
       }
       return ret_val;
@@ -316,7 +315,7 @@ qx.Class.define('cv.ui.Popup', {
       }
     },
 
-    isClosed: function(){
+    isClosed: function() {
       return this.__domElement === null;
     }
   },

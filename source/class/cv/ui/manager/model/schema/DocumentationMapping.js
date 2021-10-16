@@ -1,8 +1,8 @@
 /**
  *
  */
-qx.Class.define('cv.ui.manager.model.schema.DocumentationMapping', {
-  type: 'static',
+qx.Class.define("cv.ui.manager.model.schema.DocumentationMapping", {
+  type: "static",
 
   /*
   ***********************************************

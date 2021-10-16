@@ -22,7 +22,7 @@
  * @author Christian Mayer
  * @since 2010
  */
-qx.Class.define('cv.ui.PagePartsHandler', {
+qx.Class.define("cv.ui.PagePartsHandler", {
   extend: qx.core.Object,
 
   /*
@@ -60,27 +60,27 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     navbars: null,
 
     updateTopNavigation: function (path) {
-      path = path.split('_'); path.pop();
+      path = path.split("_"); path.pop();
       let id = "id_"; //path[0];
       const pathNode = document.querySelector(".nav_path");
-      pathNode.innerHTML = '';
+      pathNode.innerHTML = "";
       let pageTitle = document.querySelector("#"+id+" h1").textContent;
-      let nav = document.createElement('a');
-      nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
-      nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+      let nav = document.createElement("a");
+      nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
+      nav.setAttribute("id", "breadcrump_pagejump_" + id);
       nav.appendChild(document.createTextNode(pageTitle));
       pathNode.appendChild(nav);
       for (let i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
-        id += path[i] + '_';
+        id += path[i] + "_";
         let pageElem = document.querySelector("#"+id);
         if (pageElem && pageElem.classList.contains("page")) { // FIXME is this still needed?!?
           pageTitle = document.querySelector("#"+id+" h1").textContent;
-          let span = document.createElement('span');
-          span.innerHTML = ' &#x25ba; ';
+          let span = document.createElement("span");
+          span.innerHTML = " &#x25ba; ";
           pathNode.appendChild(span);
-          nav = document.createElement('a');
-          nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
-          nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+          nav = document.createElement("a");
+          nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
+          nav.setAttribute("id", "breadcrump_pagejump_" + id);
           nav.appendChild(document.createTextNode(pageTitle));
           pathNode.appendChild(nav);
         }
@@ -93,27 +93,29 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      * Change the size of the selected navbar
      *
      * currently only "left" and "right" are implemented
+     * @param position
+     * @param size
      */
     navbarSetSize: function (position, size) {
-      var cssSize = size + (isFinite(size) ? 'px' : '');
+      var cssSize = size + (isFinite(size) ? "px" : "");
       var navbar;
       switch (position) {
-        case 'left':
-          navbar = document.querySelector('#navbarLeft');
+        case "left":
+          navbar = document.querySelector("#navbarLeft");
           navbar.style.width = cssSize;
           if (!this.navbars.left.fadeVisible) {
-            navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
+            navbar.style.left = -navbar.getBoundingClientRect().width + "px";
           }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
-        case 'right':
-          document.querySelector('#centerContainer').style["padding-right"] = cssSize;
-          navbar = document.querySelector('#navbarRight');
+        case "right":
+          document.querySelector("#centerContainer").style["padding-right"] = cssSize;
+          navbar = document.querySelector("#navbarRight");
           navbar.style.width = cssSize;
-          navbar.style['margin-right'] = '-' + cssSize;
+          navbar.style["margin-right"] = "-" + cssSize;
           if (!this.navbars.right.fadeVisible) {
-            navbar.style.right = -navbar.getBoundingClientRect().width + 'px';
+            navbar.style.right = -navbar.getBoundingClientRect().width + "px";
           }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
@@ -124,23 +126,24 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (!page) {
         page = cv.TemplateEngine.getInstance().getCurrentPage();
       }
-      if (!page) { return {top: true, bottom: true, left: true, right: true}; }
+      if (!page) {
+ return {top: true, bottom: true, left: true, right: true}; 
+}
       if (typeof page === "string") {
         page = cv.ui.structure.WidgetFactory.getInstanceById(page);
-      } else if (page.attributes ) {
-        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute('id'));
+      } else if (page.attributes) {
+        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute("id"));
       }
 
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
-      } else {
+      } 
         return {
           top: page.getShowNavbarTop(),
           bottom: page.getShowNavbarBottom(),
           left: page.getShowNavbarLeft(),
           right: page.getShowNavbarRight()
         };
-      }
     },
 
     /**
@@ -159,7 +162,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         if (!page.isInitialized()) {
           // page is not ready, defer this update
           var self = this;
-          page.addListenerOnce("changeInitialized", function(){self.updatePageParts(page,speed);}, this);
+          page.addListenerOnce("changeInitialized", function() {
+ self.updatePageParts(page, speed); 
+}, this);
           return;
         }
         showtopnavigation = page.getShowTopNavigation();
@@ -169,28 +174,24 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
       if (showtopnavigation) {
         if (topDisplay === "none") {
-          document.querySelectorAll('#top, #top > *').forEach(function(elem) {
+          document.querySelectorAll("#top, #top > *").forEach(function(elem) {
             elem.style.display = "block";
           }, this);
           this.removeInactiveNavbars(page.getPath());
         }
-      } else {
-        if (topDisplay !== "none") {
+      } else if (topDisplay !== "none") {
           document.querySelector("#top").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
-      }
       if (showfooter) {
         if (bottomDisplay === "none") {
           document.querySelector("#bottom").style.display = "block";
           this.removeInactiveNavbars(page.getPath());
         }
-      } else {
-        if (bottomDisplay !== "none") {
+      } else if (bottomDisplay !== "none") {
           document.querySelector("#bottom").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
-      }
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
@@ -205,27 +206,27 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
       var initCss = {};
       var targetCss = {};
-      var navbar = document.querySelector('#navbar' + position);
+      var navbar = document.querySelector("#navbar" + position);
       var key = position.toLowerCase();
       var self = this;
       var onAnimationEnd = function () {
-        self.navbars[key].fadeVisible = direction === 'in';
+        self.navbars[key].fadeVisible = direction === "in";
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
         case "in":
-          if (window.getComputedStyle(navbar).display === 'none') {
-            initCss.display = 'block';
+          if (window.getComputedStyle(navbar).display === "none") {
+            initCss.display = "block";
           }
           targetCss[key] = 0;
           switch (position) {
             case "Top":
             case "Bottom":
-              initCss[key] = -navbar.getBoundingClientRect().height + 'px';
+              initCss[key] = -navbar.getBoundingClientRect().height + "px";
               break;
             case "Left":
             case "Right":
-              initCss[key] = -navbar.getBoundingClientRect().width + 'px';
+              initCss[key] = -navbar.getBoundingClientRect().width + "px";
               break;
           }
           break;
@@ -234,18 +235,22 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           switch (position) {
             case "Top":
             case "Bottom":
-              targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
+              targetCss[key] = -navbar.getBoundingClientRect().height + "px";
               break;
             case "Left":
             case "Right":
-              targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
+              targetCss[key] = -navbar.getBoundingClientRect().width + "px";
               break;
           }
           break;
       }
-      Object.entries(initCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
+      Object.entries(initCss).forEach(function(key_value) {
+ navbar.style[key_value[0]]=key_value[1]; 
+});
       if (speed === 0) {
-        Object.entries(targetCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
+        Object.entries(targetCss).forEach(function(key_value) {
+ navbar.style[key_value[0]]=key_value[1]; 
+});
         onAnimationEnd();
       } else {
         var spec = {
@@ -271,15 +276,15 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     initializeNavbars: function (page_id) {
       var self = this;
       this.removeInactiveNavbars(page_id);
-      var tree = Array.from( document.querySelectorAll('#id_') );
+      var tree = Array.from(document.querySelectorAll("#id_"));
       if (page_id !== "id_") {
         var parts = page_id.split("_");
         parts.pop();
-        parts[0] = '';
+        parts[0] = "";
         for (var i = 0; i < parts.length; i++) {
-          var subPath = parts.slice(0, i + 1).join('_');
+          var subPath = parts.slice(0, i + 1).join("_");
           if (subPath) {
-            var item = document.querySelectorAll('#id' + subPath + "_.page");
+            var item = document.querySelectorAll("#id" + subPath + "_.page");
             if (item.length === 1) {
               tree.push(item[0]);
             }
@@ -289,30 +294,28 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var level = 1;
       var size = {top: 0, right: 0, bottom: 0, left: 0};
       var dynamic = {top: null, right: null, bottom: null, left: null};
-      var positions = ['top','right','bottom','left'];
+      var positions = ["top", "right", "bottom", "left"];
       tree.forEach(function (elem) {
-        var id = elem.getAttribute('id');
+        var id = elem.getAttribute("id");
         positions.forEach(function (pos) {
-          var nav = document.querySelector('#' + id + pos+ '_navbar');
+          var nav = document.querySelector("#" + id + pos+ "_navbar");
           if (nav) {
-            var data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            var data = cv.data.Model.getInstance().getWidgetData(id + pos + "_navbar");
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }
             self.navbars[pos].dynamic = dynamic[pos];
             if (data.scope === undefined || data.scope < 0 || tree.length - level <= data.scope) {
-              nav.classList.add('navbarActive');
+              nav.classList.add("navbarActive");
             } else {
-              nav.classList.remove('navbarActive');
+              nav.classList.remove("navbarActive");
             }
-            if (data.width !== null ) {
+            if (data.width !== null) {
               size[pos] = data.width;
-            } else {
-              if (size[pos] === 0) {
+            } else if (size[pos] === 0) {
                 // navbar with content but no size given so far => use default
                 size[pos] = 300;
               }
-            }
           }
         });
         level++;
@@ -325,13 +328,13 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
-      document.querySelectorAll('.navbar.navbarActive').forEach(function (elem) {
-        var navBarPath = elem.getAttribute('id').split('_');
+      document.querySelectorAll(".navbar.navbarActive").forEach(function (elem) {
+        var navBarPath = elem.getAttribute("id").split("_");
         // skip last 2 elements e.g. '_top_navbar'
-        navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
+        navBarPath = navBarPath.slice(0, navBarPath.length - 2).join("_");
         var expr = new RegExp("^" + navBarPath + ".*", "i");
         if (navBarPath !== page_id && !expr.test(page_id)) {
-          elem.classList.remove('navbarActive');
+          elem.classList.remove("navbarActive");
         }
       });
     }

@@ -19,7 +19,7 @@
 
 
 //noinspection JSUnusedGlobalSymbols
-qx.Class.define('cv.ui.BodyBlocker', {
+qx.Class.define("cv.ui.BodyBlocker", {
   extend: qx.bom.Blocker,
   type: "singleton",
 

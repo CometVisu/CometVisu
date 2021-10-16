@@ -44,8 +44,8 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
       var sty = cv.Config.getStyling(this.getStyling());
       if (sty) {
         var e;
-        this.getDomElement().querySelectorAll('.actor').forEach( function(element){
-          if( element.querySelector('.value') && e === undefined ) {
+        this.getDomElement().querySelectorAll(".actor").forEach(function(element) {
+          if (element.querySelector(".value") && e === undefined) {
             e = element;
           }
         });
@@ -63,23 +63,27 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         return false;
       }
       if (styling[value]) { // fixed value
-        element.classList.add.apply( element.classList, styling[value].split(' ') );
+        element.classList.add.apply(element.classList, styling[value].split(" "));
         return true;
       }
-      else {
+      
         var range = styling.range;
         if (findExact && range[value]) {
-          element.classList.add.apply( element.classList, range[value][1].split(' '));
+          element.classList.add.apply(element.classList, range[value][1].split(" "));
           return true;
         }
         var valueFloat = parseFloat(value);
         for (var min in range) {
-          if (min > valueFloat) { continue; }
-          if (range[min][0] < valueFloat) { continue; }// check max
-          element.classList.add.apply( element.classList, range[min][1].split(' '));
+          if (min > valueFloat) {
+ continue; 
+}
+          if (range[min][0] < valueFloat) {
+ continue; 
+}// check max
+          element.classList.add.apply(element.classList, range[min][1].split(" "));
           return true;
         }
-      }
+      
       return false;
     }
   }

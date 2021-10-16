@@ -18,7 +18,7 @@
  */
 
 
-qx.Class.define('cv.io.transport.LongPolling', {
+qx.Class.define("cv.io.transport.LongPolling", {
   extend: qx.core.Object,
 
   /*
@@ -46,8 +46,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
     watchdog: null,
     doRestart: false, // are we currently in a restart, e.g. due to the watchdog
     xhr: null, // the ongoing AJAX request
-    lastIndex: -1,    // index returned by the last request
-    retryCounter: 0,      // count number of retries (reset with each valid response)
+    lastIndex: -1, // index returned by the last request
+    retryCounter: 0, // count number of retries (reset with each valid response)
     retryServerErrorCounter: 0, // count number of successive temporary server errors
     sessionId: null,
     client: null,
@@ -61,16 +61,16 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @param connect {Boolean} whether to start the connection or not
      */
     handleSession: function (args, connect) {
-      var json =  this.client.getResponse(args);
+      var json = this.client.getResponse(args);
       this.sessionId = json.s;
-      if (!json.hasOwnProperty('v')) {
-        this.error('CometVisu protocol error: missing protocol version');
+      if (!Object.prototype.hasOwnProperty.call(json, "v")) {
+        this.error("CometVisu protocol error: missing protocol version");
         this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION, json);
       } else {
-        this.version = json.v.split('.', 3);
+        this.version = json.v.split(".", 3);
 
-        if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
-          this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+        if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
+          this.error("ERROR CometVisu Client: too new protocol version (" + json.v + ") used!");
         }
         if (connect) {
           this.connect();
@@ -115,7 +115,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     handleRead: function () {
       var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
-      if (this.doRestart || (!json && (-1 === this.lastIndex))) {
+      if (this.doRestart || (!json && (this.lastIndex === -1))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           var delay = 100 * Math.pow(this.retryCounter, 2);
@@ -140,8 +140,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       var data;
       if (json && !this.doRestart) {
-        if (!json.hasOwnProperty('i')) {
-          this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
+        if (!Object.prototype.hasOwnProperty.call(json, "i")) {
+          this.error("CometVisu protocol error: backend responded to a read request without an \"i\"-parameter");
           this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
           return;
         }
@@ -168,7 +168,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     handleReadStart: function () {
       var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
-      if (!json && (-1 === this.lastIndex)) {
+      if (!json && (this.lastIndex === -1)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr.send();
@@ -213,8 +213,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
       "qx": function (ev) {
         var req = ev.getTarget();
         // check for temporary server errors and retry a few times
-        if([408,444,499,502,503,504].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
-          this.info('Temporary connection problem (status: ' + req.getStatus() + ') - retry count: ' + this.retryServerErrorCounter);
+        if ([408, 444, 499, 502, 503, 504].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
+          this.info("Temporary connection problem (status: " + req.getStatus() + ") - retry count: " + this.retryServerErrorCounter);
           this.retryServerErrorCounter++;
           req.serverErrorHandled = true;
           this.restart();
@@ -222,32 +222,32 @@ qx.Class.define('cv.io.transport.LongPolling', {
         }
         // ignore error when connection is irrelevant
         if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
-          this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
+          this.error("Error! Type: \"" + req.getResponse() + "\" readyState: " + req.getStatusText());
           this.client.setConnected(false);
         }
       },
       "jquery": function(xhr, str, excptObj) {
         // ignore error when connection is irrelevant
         if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
-          var readyState = 'UNKNOWN';
+          var readyState = "UNKNOWN";
           switch (xhr.readyState) {
             case 0:
-              readyState = 'UNINITIALIZED';
+              readyState = "UNINITIALIZED";
               break;
             case 1:
-              readyState = 'LOADING';
+              readyState = "LOADING";
               break;
             case 2:
-              readyState = 'LOADED';
+              readyState = "LOADED";
               break;
             case 3:
-              readyState = 'INTERACTIVE';
+              readyState = "INTERACTIVE";
               break;
             case 4:
-              readyState = 'COMPLETED';
+              readyState = "COMPLETED";
               break;
           }
-          this.error('Error! Type: "' + str + '" ExceptionObject: "'+ excptObj + '" readyState: ' + readyState);
+          this.error("Error! Type: \"" + str + "\" ExceptionObject: \""+ excptObj + "\" readyState: " + readyState);
           this.client.setConnected(false);
         }
       }

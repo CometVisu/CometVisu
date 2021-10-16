@@ -24,7 +24,7 @@
  * @author Stefan Borchert [stefan@borchert.cc]
  * @since 2015
  */
-qx.Class.define('cv.plugins.Link', {
+qx.Class.define("cv.plugins.Link", {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -35,15 +35,15 @@ qx.Class.define('cv.plugins.Link', {
   properties: {
     cssClass: {
       check: "String",
-      init: ''
+      init: ""
     },
     text: {
       check: "String",
-      init: ''
+      init: ""
     },
     href: {
       check: "String",
-      init: ''
+      init: ""
     },
     newWindow: {
       check: "Boolean",
@@ -73,10 +73,10 @@ qx.Class.define('cv.plugins.Link', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass', 'default': ''},
-        'text': {'default': ''},
-        'href': {'default': ''},
-        'newWindow': {'default': false, transform: function(value) {
+        "class": {target: "cssClass", "default": ""},
+        "text": {"default": ""},
+        "href": {"default": ""},
+        "newWindow": {"default": false, transform: function(value) {
             return value === "true";
           }}
       };
@@ -94,12 +94,12 @@ qx.Class.define('cv.plugins.Link', {
       if (this.getCssClass()) {
         classes += " "+this.getCssClass();
       }
-      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      var attributes = '';
+      var href = this.getHref() ? " href=\""+this.getHref()+"\"" : "";
+      var attributes = "";
       if (this.isNewWindow()) {
-        attributes += ' target="_blank"';
+        attributes += " target=\"_blank\"";
       }
-      return '<a class="'+classes+'"' + href + attributes + '>' + this.getText() + '</a>';
+      return "<a class=\""+classes+"\"" + href + attributes + ">" + this.getText() + "</a>";
     }
   },
 

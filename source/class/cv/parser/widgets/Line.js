@@ -21,7 +21,7 @@
 /**
  *
  */
-qx.Class.define('cv.parser.widgets.Line', {
+qx.Class.define("cv.parser.widgets.Line", {
   type: "static",
 
   /*
@@ -44,7 +44,7 @@ qx.Class.define('cv.parser.widgets.Line', {
     },
 
     getDefaultClasses: function() {
-      return '';
+      return "";
     }
   },
 
