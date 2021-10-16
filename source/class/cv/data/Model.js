@@ -81,7 +81,7 @@ qx.Class.define("cv.data.Model", {
      * @param state {var} new state
      */
     onUpdate: function(address, state) {
-      var initial = !this.__states.hasOwnProperty(address);
+      var initial = !Object.prototype.hasOwnProperty.call(this.__states, address);
       var changed = initial || this.__states[address] !== state;
       this.__states[address] = state;
       // notify listeners
@@ -102,7 +102,7 @@ qx.Class.define("cv.data.Model", {
 }
       var addressList = this.__addressList;
       Object.getOwnPropertyNames(data).forEach(function(address) {
-        if (addressList.hasOwnProperty(address)) {
+        if (Object.prototype.hasOwnProperty.call(addressList, address)) {
           this.onUpdate(address, data[address]);
         }
       }, this);

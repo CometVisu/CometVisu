@@ -55,7 +55,7 @@ qx.Class.define("cv.core.notifications.Router", {
      * @returns {Boolean}
      */
     evaluateCondition: function(message) {
-      if (!message.hasOwnProperty("condition")) {
+      if (!Object.prototype.hasOwnProperty.call(message, "condition")) {
         // nothing to evaluate
         return true;
       } else if (typeof message.condition === "boolean") {
@@ -235,14 +235,14 @@ qx.Class.define("cv.core.notifications.Router", {
         }
 
         var message = {
-          topic: config.hasOwnProperty("topic") ? config.topic : "cv.state.update."+address,
+          topic: Object.prototype.hasOwnProperty.call(config, "topic") ? config.topic : "cv.state.update."+address,
           title: qx.bom.Template.render(""+config.titleTemplate, templateData),
           message: qx.bom.Template.render(""+config.messageTemplate, templateData),
-          deletable: config.hasOwnProperty("deletable") ? config.deletable : true,
-          unique: config.hasOwnProperty("unique") ? config.unique : false,
+          deletable: Object.prototype.hasOwnProperty.call(config, "deletable") ? config.deletable : true,
+          unique: Object.prototype.hasOwnProperty.call(config, "unique") ? config.unique : false,
           severity: config.severity
         };
-        if (config.hasOwnProperty("condition")) {
+        if (Object.prototype.hasOwnProperty.call(config, "condition")) {
           message.condition = state == config.condition; // jshint ignore:line
         }
         if (config.icon) {

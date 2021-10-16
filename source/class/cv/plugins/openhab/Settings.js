@@ -108,7 +108,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
           Object.getOwnPropertyNames(data).forEach(function(key) {
             n[key.replace(/[\.>]/g, "_")] = data[key];
           });
-          if (!n.hasOwnProperty("autoDownload")) {
+          if (!Object.prototype.hasOwnProperty.call(n, "autoDownload")) {
             n.autoDownload = false;
           }
           return n;

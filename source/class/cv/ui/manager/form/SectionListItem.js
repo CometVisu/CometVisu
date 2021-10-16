@@ -115,7 +115,7 @@ qx.Class.define("cv.ui.manager.form.SectionListItem", {
       }
       // compare options one by one
       var modified = this.getModel().getOptions().some(function (option) {
-        return (!this._originalOptions.hasOwnProperty(option.getKey()) ||
+        return (!Object.prototype.hasOwnProperty.call(this._originalOptions, option.getKey()) ||
           this._originalOptions[option.getKey()] !== option.getValue()
         );
       }, this);

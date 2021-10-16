@@ -167,7 +167,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
             found = msg;
             message.id = msg.id;
             message.tooltip = this._getTooltip(message);
-            if (!message.hasOwnProperty("deletable")) {
+            if (!Object.prototype.hasOwnProperty.call(message,"deletable")) {
               message.deletable = true;
             }
             if (cv.core.notifications.Router.evaluateCondition(message)) {
@@ -195,7 +195,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
           message.id = this._idCounter;
           this._idCounter++;
           message.tooltip = this._getTooltip(message);
-          if (!message.hasOwnProperty("deletable")) {
+          if (!Object.prototype.hasOwnProperty.call(message, "deletable")) {
             message.deletable = true;
           }
           if (this.getMaxEntries() > 0) {

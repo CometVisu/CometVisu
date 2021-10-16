@@ -365,7 +365,7 @@ qx.Class.define("cv.parser.MetaParser", {
         var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer);
         // addresses
         Object.getOwnPropertyNames(addresses).forEach(function(address) {
-          if (!stateConfig.hasOwnProperty(address)) {
+          if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
             stateConfig[address] = [];
           }
           var addressConfig = Object.assign({}, config);

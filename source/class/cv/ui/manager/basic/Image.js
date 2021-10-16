@@ -1142,7 +1142,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
     destruct : function() {
       for (var mode in this.__contentElements) {
-        if (this.__contentElements.hasOwnProperty(mode)) {
+        if (Object.prototype.hasOwnProperty.call(this.__contentElements, mode)) {
           this.__contentElements[mode].disconnectWidget(this);
         }
       }

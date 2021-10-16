@@ -116,7 +116,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
 
     save: function (callback) {
       const handlerOptions = this.getHandlerOptions();
-      if (this.getFile() instanceof cv.ui.manager.model.FileItem && handlerOptions.hasOwnProperty("upgradeVersion") && handlerOptions.upgradeVersion === true) {
+      if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, "upgradeVersion") && handlerOptions.upgradeVersion === true) {
         this.base(arguments, callback, "ignore");
       }
     },
@@ -127,7 +127,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
       }
       if (this._editor) {
         const handlerOptions = this.getHandlerOptions();
-        if (file && file instanceof cv.ui.manager.model.FileItem && handlerOptions.hasOwnProperty("upgradeVersion") && handlerOptions.upgradeVersion === true) {
+        if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, "upgradeVersion") && handlerOptions.upgradeVersion === true) {
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
           this.setEditable(file.isWriteable());
           this._client.readSync({path: file.getFullPath()}, function (err, res) {

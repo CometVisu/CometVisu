@@ -49,7 +49,7 @@ qx.Class.define("cv.parser.widgets.MultiTrigger", {
         var attrib = xml.attributes[i];
         var match = buttonRegex.exec(attrib.name);
         if (match) {
-          if (!buttonConfig.hasOwnProperty(match[1])) {
+          if (!Object.prototype.hasOwnProperty.call(buttonConfig, match[1])) {
             buttonConfig[match[1]] = {};
           }
           buttonConfig[match[1]][match[2]] = attrib.value;

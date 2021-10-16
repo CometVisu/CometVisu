@@ -169,7 +169,7 @@ qx.Class.define("cv.io.Mockup", {
       Object.keys(simulations).forEach(function (mainAddress) {
         var simulation = simulations[mainAddress];
         this.__simulations[mainAddress] = simulation;
-        if (simulation.hasOwnProperty("additionalAddresses")) {
+        if (Object.prototype.hasOwnProperty.call(simulation, "additionalAddresses")) {
           simulation.additionalAddresses.forEach(function (addr) {
             this.__simulations[addr] = simulation;
           }, this);
@@ -199,10 +199,10 @@ qx.Class.define("cv.io.Mockup", {
       }
       var start = false;
       var stop = false;
-      if (simulation.hasOwnProperty("startValues")) {
+      if (Object.prototype.hasOwnProperty.call(simulation, "startValues")) {
         // try the more specific matches with address included
         start = simulation.startValues.indexOf(address + "|" + value) >= 0;
-        if (simulation.hasOwnProperty("stopValues")) {
+        if (Object.prototype.hasOwnProperty.call(simulation, "stopValues")) {
           stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
         }
         if (!stop) {
@@ -290,7 +290,7 @@ qx.Class.define("cv.io.Mockup", {
         ts: ts
       });
 
-      if (this.__simulations && this.__simulations.hasOwnProperty(address)) {
+      if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
       } else {
         // send update

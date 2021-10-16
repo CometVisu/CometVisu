@@ -214,7 +214,7 @@ qx.Class.define("cv.io.openhab.Rest", {
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
               }
-              if (!this.__memberLookup.hasOwnProperty(obj.name)) {
+              if (!Object.prototype.hasOwnProperty.call(this.__memberLookup, obj.name)) {
                 this.__memberLookup[obj.name] = [entry.name];
               } else {
                 this.__memberLookup[obj.name].push(entry.name);
@@ -273,7 +273,7 @@ qx.Class.define("cv.io.openhab.Rest", {
           const change = JSON.parse(data.payload);
           update[item] = change.value;
           // check if this Item is part of any group
-          if (this.__memberLookup.hasOwnProperty(item)) {
+          if (Object.prototype.hasOwnProperty.call(this.__memberLookup, item)) {
             const groupNames = this.__memberLookup[item];
             groupNames.forEach(groupName => {
               const group = this.__groups[groupName];
@@ -363,7 +363,7 @@ qx.Class.define("cv.io.openhab.Rest", {
               data = {};
               result.forEach(element => {
                 const type = element.type ? element.type.split(":")[0] : "";
-                if (!data.hasOwnProperty(type)) {
+                if (!Object.prototype.hasOwnProperty.call(data, type)) {
                   data[type] = [];
                 }
                 const entry = {

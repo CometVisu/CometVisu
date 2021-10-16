@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
 
     error: function (message) {
       var msg = new cv.ui.manager.model.Message();
-      if (typeof message === "object" && message.hasOwnProperty("statusText")) {
+      if (typeof message === "object" && Object.prototype.hasOwnProperty.call(message, "statusText")) {
         message = message.statusText;
       }
       msg.set({

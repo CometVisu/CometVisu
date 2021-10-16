@@ -203,7 +203,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
         let boolValid = true;
 
         this.__pattern.forEach(item => {
-          if (!this.__regexCache.hasOwnProperty(item)) {
+          if (!Object.prototype.hasOwnProperty.call(this.__regexCache, item)) {
             // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
             // so for our purpose, we need to add them for every branch (that is not inside [])
             const branchIndices = [];

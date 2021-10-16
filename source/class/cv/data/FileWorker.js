@@ -44,7 +44,7 @@ qx.Class.define("cv.data.FileWorker", {
     validateConfig: function (url) {
       return new Promise(function (resolve, reject) {
         // check if there is already one validation request ongoing
-        if (!this._validationCallbacks.hasOwnProperty(url)) {
+        if (!Object.prototype.hasOwnProperty.call(this._validationCallbacks, url)) {
           this._validationCallbacks[url] = [resolve];
           this._worker.postMessage(["validateConfig", {
             path: url
@@ -69,7 +69,7 @@ qx.Class.define("cv.data.FileWorker", {
       let path = e.data.shift();
       switch (topic) {
         case "validationResult":
-          if (this._validationCallbacks.hasOwnProperty(path)) {
+          if (Object.prototype.hasOwnProperty.call(this._validationCallbacks, path)) {
             const callbacks = this._validationCallbacks[path];
             delete this._validationCallbacks[path];
             callbacks.forEach(function(cb) {

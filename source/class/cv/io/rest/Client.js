@@ -171,7 +171,7 @@ qx.Class.define("cv.io.rest.Client", {
       client.addListener("success", function (ev) {
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10);
-        if (this.__callbacks.hasOwnProperty(id)) {
+        if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
           this.__callbacks[id](null, ev.getData());
           delete this.__callbacks[id];
         }
@@ -180,7 +180,7 @@ qx.Class.define("cv.io.rest.Client", {
       client.addListener("error", function (ev) {
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10);
-        if (this.__callbacks.hasOwnProperty(id)) {
+        if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
           var data = ev.getData();
           var error;
           if (data) {
@@ -206,7 +206,7 @@ qx.Class.define("cv.io.rest.Client", {
       var req = ev.getRequest();
       var id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
-      if (!this.__callbacks.hasOwnProperty(id)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr("File has been saved"));
       }
     },
@@ -215,7 +215,7 @@ qx.Class.define("cv.io.rest.Client", {
       var req = ev.getRequest();
       var id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
-      if (!this.__callbacks.hasOwnProperty(id)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr("Error saving file"));
       }
     }

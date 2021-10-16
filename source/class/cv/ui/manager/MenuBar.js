@@ -197,7 +197,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
       Object.keys(config).forEach(function (id) {
         var button;
         var buttonConf = config[id];
-        if (!this.__buttons.hasOwnProperty(id)) {
+        if (!Object.prototype.hasOwnProperty.call(this.__buttons, id)) {
           // create button
           var label = buttonConf.args[0];
           var icon = buttonConf.args[1];
@@ -234,7 +234,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
           }
           this.__buttons[id] = button;
 
-          if (buttonConf.hasOwnProperty("onAfterCreate")) {
+          if (Object.prototype.hasOwnProperty.call(buttonConf, "onAfterCreate")) {
             buttonConf.onAfterCreate(button);
           }
         } else {

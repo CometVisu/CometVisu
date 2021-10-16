@@ -51,7 +51,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
      */
     block: function(topic, unique) {
       this.base(arguments, this.__getBody());
-      if (!this.__counters.hasOwnProperty(topic)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__counters, topic)) {
         this.__counters[topic] = 1;
       } else if (!unique) {
         this.__counters[topic]++;
@@ -63,7 +63,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
 
     unblock: function(topic) {
       if (topic) {
-        if (this.__counters.hasOwnProperty(topic)) {
+        if (Object.prototype.hasOwnProperty.call(this.__counters, topic)) {
           this.__counters[topic]--;
           if (this.__counters[topic] === 0) {
             delete this.__counters[topic];

@@ -73,7 +73,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
       for (let key of Object.getOwnPropertyNames(formData)) {
         let i = 0;
         let mappedKey = key.replaceAll(/[-_\.#]+([a-z])/g, (match, p1) => p1.toUpperCase()) + i++;
-        while (modelData.hasOwnProperty(mappedKey)) {
+        while (Object.prototype.hasOwnProperty.call(modelData, mappedKey)) {
           mappedKey = mappedKey.substr(0, mappedKey.length - 1) + i++;
         }
         if (mappedKey !== key) {
@@ -616,7 +616,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
         const data = qx.util.Serializer.toNativeObject(this.getModel());
         const mappedNames = Object.keys(this.__mappedKeys.map);
         mappedNames.forEach(mappedKey => {
-          if (data.hasOwnProperty(mappedKey)) {
+          if (Object.prototype.hasOwnProperty.call(data, mappedKey)) {
             data[this.__mappedKeys.map[mappedKey]] = data[mappedKey];
             delete data[mappedKey];
           }

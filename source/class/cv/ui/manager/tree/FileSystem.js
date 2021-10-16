@@ -44,7 +44,7 @@ qx.Class.define("cv.ui.manager.tree.FileSystem", {
     },
 
     isAccepted: function (mimetype) {
-      return this.MIMETYPES.hasOwnProperty(mimetype);
+      return Object.prototype.hasOwnProperty.call(this.MIMETYPES, mimetype);
     }
   },
 

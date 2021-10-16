@@ -42,7 +42,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
  */
   construct: function () {
     this.base(arguments);
-    if (!cv.Config.request.queryKey.hasOwnProperty("preview")) {
+    if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, "preview")) {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications

@@ -435,7 +435,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
               insertText: key,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
-            if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
+            if (entry.lname && Object.prototype.hasOwnProperty.call(entry.lname, qx.locale.Manager.getInstance().getLanguage())) {
               suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
             }
           }

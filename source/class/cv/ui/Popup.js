@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.Popup", {
      */
     create: function (attributes) {
       cv.ui.BodyBlocker.getInstance().block(attributes.unique, attributes.topic);
-      var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
+      var closable = !Object.prototype.hasOwnProperty.call(attributes,"closable") || attributes.closable;
       var body = document.querySelector("body");
       var ret_val;
       var classes = ["popup", "popup_background", this.getType()];
@@ -232,16 +232,16 @@ qx.Class.define("cv.ui.Popup", {
           anchor.w = attributes.position.width();
           anchor.h = attributes.position.height();
         } else {
-          if (attributes.position.hasOwnProperty("x")) {
+          if (Object.prototype.hasOwnProperty.call(attributes.position,"x")) {
             anchor.x = attributes.position.x;
           }
-          if (attributes.position.hasOwnProperty("y")) {
+          if (Object.prototype.hasOwnProperty.call(attributes.position, "y")) {
             anchor.y = attributes.position.y;
           }
-          if (attributes.position.hasOwnProperty("w")) {
+          if (Object.prototype.hasOwnProperty.call(attributes.position, "w")) {
             anchor.w = attributes.position.w;
           }
-          if (attributes.position.hasOwnProperty("h")) {
+          if (Object.prototype.hasOwnProperty.call(attributes.position, "h")) {
             anchor.h = attributes.position.h;
           }
           if (anchor.w === 0 && anchor.h === 0) {

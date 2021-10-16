@@ -475,7 +475,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
             this.load();
           }
           this.getChildren().forEach(child => {
-            if (!countExisting.hasOwnProperty(child.getName())) {
+            if (!Object.prototype.hasOwnProperty.call(countExisting, child.getName())) {
               countExisting[child.getName()] = 0;
             }
             countExisting[child.getName()]++;
@@ -502,14 +502,14 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
                     // we do not allow more text nodes than other nodes (e.g. a sequence of #text, elem would allow another #text node after elem)
                     stillAllowed.push(elementName);
                   }
-                } else if (!countExisting.hasOwnProperty("#text") && !countExisting.hasOwnProperty("#cdata-section")) {
+                } else if (!Object.prototype.hasOwnProperty.call(countExisting, "#text") && !Object.prototype.hasOwnProperty.call(countExisting, "#cdata-section")) {
                   stillAllowed.push(elementName);
                 }
               }
               return;
             }
             const childBounds = schemaElement.getBoundsForElementName(elementName);
-            const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
+            const existing = Object.prototype.hasOwnProperty.call(countExisting, elementName) ? countExisting[elementName] : 0;
             if (childBounds && childBounds.max > existing) {
               stillAllowed.push(elementName);
             }
@@ -592,7 +592,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           return this.getChildren().length;
         } 
           const allowedSorting = schemaElement.getFirstLevelElementSorting();
-          if (allowedSorting && allowedSorting.hasOwnProperty(newChild.getName())) {
+          if (allowedSorting && Object.prototype.hasOwnProperty.call(allowedSorting, newChild.getName())) {
             const position = allowedSorting[newChild.getName()];
             // search for the first sibling with a position > than the newChilds and insert it there
             let targetIndex = position;
@@ -715,7 +715,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
         // check attribute values
         for (let i = 0; i < this._node.attributes.length; i++) {
           const attr = this._node.attributes.item(i);
-          if (allowedAttributes.hasOwnProperty(attr.name)) {
+          if (Object.prototype.hasOwnProperty.call(allowedAttributes, attr.name)) {
             if (!allowedAttributes[attr.name].isValueValid(attr.value)) {
               errors.push({
                 attribute: attr.name,

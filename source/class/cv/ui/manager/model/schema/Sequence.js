@@ -152,22 +152,22 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
         // if it is bounded, we must duplicate element and sequence bounds
         // (an element may appear as often as the number of sequences times the number of elements
         // in each sequence - roughly)
-        if (elementBounds.hasOwnProperty("min")) {
+        if (Object.prototype.hasOwnProperty.call(elementBounds, "min")) {
           resultBounds.min = elementBounds.min;
         }
 
-        if (sequenceBounds.hasOwnProperty("min") && !isNaN(sequenceBounds.min)) {
+        if (Object.prototype.hasOwnProperty.call(sequenceBounds, "min") && !isNaN(sequenceBounds.min)) {
           resultBounds.min *= sequenceBounds.min;
         }
 
         if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
           resultBounds.max = Number.POSITIVE_INFINITY;
         } else {
-          if (elementBounds.hasOwnProperty("max")) {
+          if (Object.prototype.hasOwnProperty.call(elementBounds, "max")) {
             resultBounds.max = elementBounds.max;
           }
 
-          if (sequenceBounds.hasOwnProperty("max") && !isNaN(sequenceBounds.max)) {
+          if (Object.prototype.hasOwnProperty.call(sequenceBounds, "max") && !isNaN(sequenceBounds.max)) {
             resultBounds.max *= sequenceBounds.max;
           }
         }

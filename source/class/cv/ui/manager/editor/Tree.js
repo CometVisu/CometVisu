@@ -1343,7 +1343,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
             const firstChild = children.getItem(0);
             maxPosition = sorting[firstChild.getName()];
           }
-          addable = addable.filter(name => sorting.hasOwnProperty(name) && sorting[name] <= maxPosition && sorting[name] >= minPosition);
+          addable = addable.filter(name => Object.prototype.hasOwnProperty.call(sorting, name) && sorting[name] <= maxPosition && sorting[name] >= minPosition);
         }
       }
       if (addable.length > 0) {
@@ -1715,7 +1715,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
           // save changes
           element.setAttributes(data);
           this.clearReDos();
-          if (!data.hasOwnProperty("#outerHTML") && !data.hasOwnProperty("#innerHTML")) {
+          if (!Object.prototype.hasOwnProperty.call(data, "#outerHTML") && !Object.prototype.hasOwnProperty.call(data, "#innerHTML")) {
             element.validate();
           }
         }

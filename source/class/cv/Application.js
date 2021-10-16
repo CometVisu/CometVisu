@@ -730,7 +730,7 @@ qx.Class.define("cv.Application",
         var partPlugins = [];
         var path = qx.util.LibraryManager.getInstance().get("cv", "resourceUri");
         plugins.forEach(function(plugin) {
-          if (parts.hasOwnProperty(plugin)) {
+          if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
             partPlugins.push(plugin);
           } else if (!plugin.startsWith("plugin-")) {
             // a real path

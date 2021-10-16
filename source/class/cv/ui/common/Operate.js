@@ -81,7 +81,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
       if (this.getAddress) {
         var list = this.getAddress();
         for (var id in list) {
-          if (list.hasOwnProperty(id)) {
+          if (Object.prototype.hasOwnProperty.call(list, id)) {
             var address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               var

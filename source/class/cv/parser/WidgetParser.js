@@ -62,7 +62,7 @@ qx.Class.define("cv.parser.WidgetParser", {
           variables[variable.getAttribute("name")] = variable.innerHTML;
         });
 
-        if (this.__templates.hasOwnProperty(templateName)) {
+        if (Object.prototype.hasOwnProperty.call(this.__templates, templateName)) {
           var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace("\n", "").trim();
           var helperNode = elem.ownerDocument.createElement("template");
           helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim();
@@ -130,7 +130,7 @@ qx.Class.define("cv.parser.WidgetParser", {
       var data = this.createDefaultWidget(handler, this.getElementType(element), element, path, flavour, pageType);
       if (mappings) {
         for (var key in mappings) {
-          if (mappings.hasOwnProperty(key)) {
+          if (Object.prototype.hasOwnProperty.call(mappings, key)) {
             var map = mappings[key];
             var value = element.getAttribute(key);
             if (map["default"] !== undefined && (value === undefined || value === null)) {

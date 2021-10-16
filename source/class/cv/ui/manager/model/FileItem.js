@@ -434,7 +434,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       if (data) {
         data.forEach(function (node) {
           var child = new cv.ui.manager.model.FileItem(null, null, this);
-          if (node.hasOwnProperty("children")) {
+          if (Object.prototype.hasOwnProperty.call(node, "children")) {
             var nodeChildren = node.children;
             delete node.children;
             if (nodeChildren.length > 0) {

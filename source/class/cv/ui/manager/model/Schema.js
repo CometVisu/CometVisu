@@ -30,7 +30,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     __CACHE: {},
 
     getInstance: function (schemaFile) {
-      if (!this.__CACHE.hasOwnProperty(schemaFile)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__CACHE, schemaFile)) {
         this.__CACHE[schemaFile] = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri(schemaFile));
       }
       return this.__CACHE[schemaFile];
@@ -142,7 +142,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
     },
 
     getElementNode: function (name) {
-      if (this.__allowedRootElements.hasOwnProperty(name)) {
+      if (Object.prototype.hasOwnProperty.call(this.__allowedRootElements, name)) {
         return this.__allowedRootElements[name];
       }
       throw "schema/xsd appears to be invalid, element " + name + " not allowed on root level";
@@ -158,7 +158,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
      * @return  object          jQuery-object of the ref'ed element
      */
     getReferencedNode: function (type, refName) {
-      if (this.__referencedNodeCache.hasOwnProperty(type) && this.__referencedNodeCache[type].hasOwnProperty(refName)) {
+      if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[type], refName)) {
         return this.__referencedNodeCache[type][refName];
       }
 
@@ -173,7 +173,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
         ref = this.getReferencedNode(type, ref.getAttribute("ref"));
       }
 
-      if (!this.__referencedNodeCache.hasOwnProperty(type)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type)) {
         this.__referencedNodeCache[type] = {};
       }
 
@@ -191,7 +191,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
      * @param   name    string  Name of the type to find
      */
     getTypeNode: function (type, name) {
-      if (this.__typeNodeCache.hasOwnProperty(type) && this.__typeNodeCache[type].hasOwnProperty(name)) {
+      if (Object.prototype.hasOwnProperty.call(this.__typeNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__typeNodeCache[type], name)) {
         return this.__typeNodeCache[type][name];
       }
       let typeNode = this.__xsd.querySelector(type + "Type[name=\"" + name + "\"]");
