@@ -6,6 +6,11 @@ const https = require('follow-redirects').https;
 const fs = require('fs');
 const cvInfo = require('../../../package.json');
 
+//
+// For local testing run this with the following environment variables set:
+// GITHUB_REPOSITORY=CometVisu/CometVisu GITHUB_TOKEN=<your-github-token> GITHUB_ACTION=test node .github/actions/github/index.js <action> <options>
+//
+
 let core = {
   getInput(name) {
     const myArgs = process.argv.slice(2);
@@ -227,8 +232,8 @@ class GithubClient {
       repo: this.repo,
       pull_number: pullId
     });
-    let text = pr.data.title.trim();
-    const body = pr.data.body.trim().split("\n").filter(line => !/^s*Signed-off-by:.+$/.test(line))
+    let text = pr.data.title ? pr.data.title.trim() : "";
+    const body = pr.data.body ? pr.data.body.trim().split("\n").filter(line => !/^s*Signed-off-by:.+$/.test(line)) : []
     if (text.endsWith('…') && body.length > 0 && body[0].startsWith('…')) {
       text = text.substr(0, text.length-1) + body.pop().substr(1).trim();
     }
