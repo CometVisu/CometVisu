@@ -43,7 +43,7 @@ qx.Class.define("cv.parser.widgets.WgPluginInfo", {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;

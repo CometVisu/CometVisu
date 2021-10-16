@@ -34,20 +34,20 @@ qx.Class.define("cv.ui.TrickOMatic", {
     id: 0,
 
     run: function () {
-      var svg = this.getSVGDocument();
+      const svg = this.getSVGDocument();
       if (!svg) {
  return; 
 }
 
       // Pipe-O-Matic:
-      var pipes = svg.querySelectorAll(".pipe_group");
+      let pipes = svg.querySelectorAll(".pipe_group");
       pipes.forEach(function (pipe_group) {
         pipe_group.querySelectorAll("path").forEach(function(path) {
-          var halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
-          var opacity = 0.15;
-          for (var width = halfsize - 1; width > 0; width--) {
+          const halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
+          let opacity = 0.15;
+          for (let width = halfsize - 1; width > 0; width--) {
             opacity -= 0.1 / halfsize;
-            var n = path.cloneNode();
+            const n = path.cloneNode();
             n.className.baseVal += " pipe-o-matic_clone";
             n.style.strokeWidth = width * 2;
             n.style.stroke = "#ffffff";
@@ -58,49 +58,49 @@ qx.Class.define("cv.ui.TrickOMatic", {
         });
       });
 
-      var model = cv.data.Model.getInstance();
+      const model = cv.data.Model.getInstance();
 
       // Flow-O-Matic: add Paths
-      var segmentLength = 40;
+      const segmentLength = 40;
       pipes = svg.querySelectorAll(".show_flow");
       pipes.forEach(function (pipe_group) {
-        var length = 0.0;
+        let length = 0.0;
         pipe_group.querySelectorAll("path").forEach(function(path) {
           if (path.className.animVal.split(" ").indexOf("pipe-o-matic_clone") > 0) {
             return;
           }
-          var stroke = path.style.stroke;
-          var r;
-          var g;
-          var b;
+          const stroke = path.style.stroke;
+          let r;
+          let g;
+          let b;
           if (stroke[0] === "#") {
             r = parseInt(path.style.stroke.substring(1, 3), 16);
             g = parseInt(path.style.stroke.substring(3, 5), 16);
             b = parseInt(path.style.stroke.substring(5, 7), 16);
           } else if (stroke.indexOf("rgb(") === 0) {
-            var colors = stroke.replace(/[^0-9,.]*/g, "").split(",");
+            const colors = stroke.replace(/[^0-9,.]*/g, "").split(",");
             r = colors[0];
             g = colors[1];
             b = colors[2];
           }
-          var rTarget = 0; // this color should be somehow user setable but how?
-          var gTarget = 0;
-          var bTarget = 0;
+          const rTarget = 0; // this color should be somehow user setable but how?
+          const gTarget = 0;
+          const bTarget = 0;
 
           /**
            * @param v
            */
           function toHex(v) {
-            var ret = parseInt(v).toString(16);
+            const ret = parseInt(v).toString(16);
             return (ret.length < 2) ? "0" + ret : ret;
           }
 
-          for (var i = segmentLength / 2; i > 0; i -= 2) {
-            var factor = 1 - i / (segmentLength / 2);
-            var offset = (length + segmentLength / 2 - i) % segmentLength;
-            var low = 2 * i;
-            var high = segmentLength - low;
-            var n = path.cloneNode();
+          for (let i = segmentLength / 2; i > 0; i -= 2) {
+            const factor = 1 - i / (segmentLength / 2);
+            const offset = (length + segmentLength / 2 - i) % segmentLength;
+            const low = 2 * i;
+            const high = segmentLength - low;
+            const n = path.cloneNode();
             n.className.baseVal += " flow-o-matic_clone";
             n.style.stroke = "#" + toHex(r * factor + rTarget * (1 - factor)) + toHex(g * factor + gTarget * (1 - factor)) + toHex(b * factor + bTarget * (1 - factor));
             if (high > offset) {
@@ -112,10 +112,10 @@ qx.Class.define("cv.ui.TrickOMatic", {
             pipe_group.insertBefore(n, path.nextElementSibling);
           }
           length += path.getTotalLength();
-          var activeValues = pipe_group.getAttribute("data-cometvisu-active");
+          const activeValues = pipe_group.getAttribute("data-cometvisu-active");
           if (activeValues) {
             activeValues.split(" ").forEach(function (address) {
-              var id = "flow_"+cv.ui.TrickOMatic.id++;
+              const id = "flow_" + cv.ui.TrickOMatic.id++;
               model.addAddress(address, id);
               model.addUpdateListener(address, function (address, data) {
                 cv.ui.TrickOMatic.updateActive(pipe_group, data);
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.TrickOMatic", {
           "@-webkit-keyframes " + name + " {\n" + content + "}\n";
       }
 
-      var keyframes = createKeyframe("move",
+      let keyframes = createKeyframe("move",
         "from {  stroke-dashoffset: " + segmentLength + ";  }\n" +
         "to   {  stroke-dashoffset: 0;  }\n");
 
@@ -160,7 +160,7 @@ qx.Class.define("cv.ui.TrickOMatic", {
         createCSSRules("animation-timing-function", "linear") +
         createCSSRules("animation-iteration-count", "infinite") +
         "}\n";
-      var s = svg.createElementNS("http://www.w3.org/2000/svg",
+      const s = svg.createElementNS("http://www.w3.org/2000/svg",
         "style");
       s.setAttribute("type", "text/css");
       s.textContent = keyframes;

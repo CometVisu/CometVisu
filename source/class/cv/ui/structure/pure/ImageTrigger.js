@@ -99,7 +99,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
   members: {
     // overridden
     _getInnerDomString: function () {
-      var style = "";
+      let style = "";
       if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
@@ -110,7 +110,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
         style = " style=\""+style+"\"";
       }
 
-      var actor = "<div class=\"actor\">";
+      let actor = "<div class=\"actor\">";
       if (this.getUpdateType() === "show") {
         actor += "<img src=\"" + this.__getUrl(this.getSrc() + "." + this.getSuffix()) + "\"" + style.trim() + " />";
       } else {
@@ -122,7 +122,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
     },
 
     _update: function(address, value) {
-      var imageChild = this.getDomElement().querySelector("img");
+      const imageChild = this.getDomElement().querySelector("img");
       if (this.getUpdateType() === "show") {
         if (value === 0) {
           imageChild.style.display = "none";
@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
     },
 
     __getUrl: function(url) {
-      var parsedUri = qx.util.Uri.parseUri(url);
+      const parsedUri = qx.util.Uri.parseUri(url);
       if (!parsedUri.protocol && !url.startsWith("/")) {
         // is relative URI, use the ResourceManager
         url = qx.util.ResourceManager.getInstance().toUri(url);

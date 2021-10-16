@@ -73,28 +73,28 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     applyMapping: function (value, mappingName) {
       if (mappingName && cv.Config.hasMapping(mappingName)) {
-        var mapping = cv.Config.getMapping(mappingName);
+        const mapping = cv.Config.getMapping(mappingName);
 
-        var ret = value;
+        let ret = value;
         if (mapping.formula) {
           ret = mapping.formula(ret);
         }
 
-        var mapValue = function (v) {
+        const mapValue = function (v) {
           if (v === null && mapping.NULL) {
             return mapping.NULL;
           } else if (mapping[v]) {
             return mapping[v];
           } else if (mapping.range) {
-            var valueFloat = parseFloat(v);
-            var range = mapping.range;
-            for (var min in range) {
+            const valueFloat = parseFloat(v);
+            const range = mapping.range;
+            for (let min in range) {
               if (min > valueFloat) {
- continue; 
-}
+                continue;
+              }
               if (range[min][0] < valueFloat) {
- continue; 
-} // check max
+                continue;
+              } // check max
               return range[min][1];
             }
           } else if (mapping["*"]) {
@@ -163,7 +163,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     getNextMappedValue: function (value, this_map) {
       if (this_map && cv.Config.hasMapping(this_map)) {
-        var keys = Object.keys(cv.Config.getMapping(this_map));
+        const keys = Object.keys(cv.Config.getMapping(this_map));
         return keys[(keys.indexOf("" + value) + 1) % keys.length];
       }
       return value;
@@ -183,7 +183,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
           this.formatValueCache = [this.getFormat()];
         }
 
-        var argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address].formatPos : 1;
+        const argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address].formatPos : 1;
 
         this.formatValueCache[argListPos] = value;
 
@@ -202,7 +202,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     defaultValueHandling: function (address, data) {
       // #1: transform the raw value to a JavaScript type
-      var value = this.applyTransform(address, data);
+      let value = this.applyTransform(address, data);
 
       // store it to be able to suppress sending of unchanged data
       if (value !== undefined) {
@@ -219,8 +219,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       }
 
       if (value && value.constructor === Date) {
-        switch (this.getAddress()[address].transform) // special case for KNX
-        {
+        switch (this.getAddress()[address].transform) { // special case for KNX
           case "DPT:10.001":
             value = value.toLocaleTimeString();
             break;
@@ -251,7 +250,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @param modifyFn {Function}
      */
     defaultValue2DOM: function (value, modifyFn) {
-      var element;
+      let element;
       if (
         (typeof value === "string") ||
         (typeof value === "number") ||
@@ -269,8 +268,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         }
         modifyFn(element);
       } else {
-        for (var i = 0; i < value.length; i++) {
-          var thisValue = value[i];
+        for (let i = 0; i < value.length; i++) {
+          const thisValue = value[i];
           if (!thisValue) {
  continue; 
 }
@@ -300,18 +299,18 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @return {var} value
      */
     defaultUpdate: function (ga, data, passedElement) {
-      var element = passedElement || this.getDomElement();
-      var value = this.defaultValueHandling(ga, data);
+      const element = passedElement || this.getDomElement();
+      const value = this.defaultValueHandling(ga, data);
 
       // TODO: check if this is the right place for this
       // might be if the styling removes the align class
       if (this.getAlign()) {
         element.classList.add(this.getAlign());
       }
-      var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector(".value");
+      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector(".value");
       valueElement.innerHTML = "";
       if (undefined !== value) {
-        var self = this;
+        const self = this;
         this.defaultValue2DOM(value, function(e) {
  self._applyValueToDom(valueElement, e); 
 });

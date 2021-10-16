@@ -88,9 +88,9 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
       if (!this.__handlers[type]) {
         qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);
         return null;
-      } 
-        var actionHandler = new (this.__handlers[type])(config);
-        return actionHandler.getDomElement();
+      }
+      const actionHandler = new (this.__handlers[type])(config);
+      return actionHandler.getDomElement();
     }
   }
 });

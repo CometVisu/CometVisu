@@ -46,8 +46,8 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
-      var client = cv.TemplateEngine.getInstance().visu;
-      var sse = client.getCurrentTransport && client.getCurrentTransport();
+      const client = cv.TemplateEngine.getInstance().visu;
+      const sse = client.getCurrentTransport && client.getCurrentTransport();
       if (sse) {
         sse.subscribe("notifications", this._onNotification, this);
       }
@@ -67,11 +67,11 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
     _createSettings: function() {
       // add element structure to notification-center
-      var settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
+      const settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
       qx.dom.Element.insertAfter(settingsRoot, document.querySelector("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages"));
 
       // add a settings button to trigger opening the settings
-      var button = qx.dom.Element.create("div", {
+      const button = qx.dom.Element.create("div", {
         html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
         style: "float: left;"
       });
@@ -109,7 +109,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       if (!e.data) {
         this.error("invalid content received from SSE: ", e);
       }
-      var json = typeof e.data === "object" ? e.data : JSON.parse(e.data);
+      const json = typeof e.data === "object" ? e.data : JSON.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
     }
   },

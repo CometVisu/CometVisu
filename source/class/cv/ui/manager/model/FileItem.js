@@ -55,7 +55,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     getConfigName: function (filename) {
-      var match = /visu_config_?([^.]+)\.xml/.exec(filename);
+      const match = /visu_config_?([^.]+)\.xml/.exec(filename);
       if (match) {
         return match[1];
       }
@@ -313,7 +313,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
       if (this.isFake()) {
         return;
       }
-      var data = ev.getData();
+      const data = ev.getData();
       switch (data.action) {
         case "moved":
           this.reload();
@@ -331,13 +331,14 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
             this.dispose();
           } else if (this.getType() === "dir" && data.path.startsWith(this.getFullPath())) {
             // delete child
-            var children = this.getChildren();
+            const children = this.getChildren();
             children.some(function (child) {
               if (child.getFullPath() === data.path) {
                 children.remove(child);
                 this.removeRelatedBindings(child);
                 return true;
               }
+              return false;
             }, this);
           }
           break;
@@ -354,7 +355,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
 
     getPath: function () {
       if (!this.__path) {
-        var parentFolder = this.getParentFolder();
+        let parentFolder = this.getParentFolder();
         if (!parentFolder) {
           parentFolder = "";
         } else if (!parentFolder.endsWith("/")) {
@@ -413,7 +414,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     addChild: function (child) {
-      var oldParent = child.getParent();
+      const oldParent = child.getParent();
       if (oldParent !== this) {
         oldParent.getChildren().remove(child);
         oldParent.removeRelatedBindings(child);
@@ -427,15 +428,15 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     _onGet: function (data) {
-      var children = this.getChildren();
+      const children = this.getChildren();
       children.removeAll().forEach(function (child) {
         this.removeRelatedBindings(child);
       }, this);
       if (data) {
         data.forEach(function (node) {
-          var child = new cv.ui.manager.model.FileItem(null, null, this);
+          const child = new cv.ui.manager.model.FileItem(null, null, this);
           if (Object.prototype.hasOwnProperty.call(node, "children")) {
-            var nodeChildren = node.children;
+            const nodeChildren = node.children;
             delete node.children;
             if (nodeChildren.length > 0) {
               child.getChildren().replace(nodeChildren);
@@ -459,7 +460,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
     },
 
     _onError: function (err) {
-      console.error(err);
+      this.error(err);
       cv.ui.manager.snackbar.Controller.error(err);
       this.getChildren().removeAll().forEach(function (child) {
         this.removeRelatedBindings(child);
@@ -488,9 +489,8 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
         if (callback) {
           this.addListenerOnce("changeLoading", callback, context);
         }
-      }
-      // If not done yet, resolve the child elements of this container
-      else if (this.isLoaded()) {
+      } else if (this.isLoaded()) {
+        // If not done yet, resolve the child elements of this container
         if (callback) {
           callback.apply(context);
         }
@@ -550,7 +550,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
      *  Sort entries: folders first, files then
      */
     sortElements: function () {
-      var sortF = function (a, b) {
+      const sortF = function (a, b) {
         if (a.getType() === "dir") {
           if (b.getType() === "dir") {
             if (a.isTrash()) {
@@ -559,19 +559,19 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
               return -1;
             }
             return a.getName().localeCompare(b.getName());
-          } 
-            return -1;
+          }
+          return -1;
         } else if (b.getType() === "dir") {
           return 1;
-        } 
-          return a.getName().localeCompare(b.getName());
+        }
+        return a.getName().localeCompare(b.getName());
       };
       this.getChildren().sort(sortF);
     },
 
     openPath: function (path) {
-      var parts = qx.lang.Type.isArray(path) ? path : path.split("/");
-      var relPath = parts.shift();
+      const parts = qx.lang.Type.isArray(path) ? path : path.split("/");
+      const relPath = parts.shift();
       this.getChildren().some(function (child) {
         if (child.getName() === relPath) {
           child.load(function () {
@@ -582,6 +582,7 @@ qx.Class.define("cv.ui.manager.model.FileItem", {
           }, this);
           return true;
         }
+        return false;
       }, this);
     },
 

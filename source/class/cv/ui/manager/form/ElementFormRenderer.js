@@ -21,7 +21,9 @@ qx.Class.define("cv.ui.manager.form.ElementFormRenderer", {
         this._row++;
       }
       for (let i = 0; i < items.length; i++) {
-        let item = items[i]; let widget; let label;
+        let item = items[i];
+        let widget;
+        let label;
         if (item instanceof qx.ui.form.RadioGroup) {
           if (item.getUserData("orientation") === "horizontal") {
             widget = this._createHBoxForRadioGroup(item);

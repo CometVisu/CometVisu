@@ -383,9 +383,9 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
 
     // overridden
     _createChildControlImpl : function(id, hash) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "splitpane":
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
            this._add(control);
@@ -413,7 +413,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
            this.getChildControl("right").addAt(control, 1, {flex: 1});
            break;
 
-         case "preview-sync-hint":
+         case "preview-sync-hint": {
            const ok = this.tr("Preview shows the current state of the edited configuration.");
            const noSync = this.tr("Preview is out of sync. Click here to refresh.");
            const notOk = this.tr("Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.");
@@ -429,13 +429,13 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
            this.addListener("previewStateChanged", ev => {
              switch (ev.getData()) {
                case "synced":
-               control.set({
-                 label: ok,
-                 icon: cv.theme.dark.Images.getIcon("valid", 16)
-               });
-               control.getChildControl("icon").removeState("error");
+                 control.set({
+                   label: ok,
+                   icon: cv.theme.dark.Images.getIcon("valid", 16)
+                 });
+                 control.getChildControl("icon").removeState("error");
                  control.getChildControl("icon").removeState("warning");
-               break;
+                 break;
 
                case "changed":
                  control.set({
@@ -457,6 +457,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
              }
            }, this);
            break;
+         }
 
          case "edit-button":
            control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon("edit", 24));
@@ -901,6 +902,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
                       // we cannot find more
                       return true;
                     }
+                    return false;
                   });
                   accepted.mode = acc;
                 }
@@ -1072,6 +1074,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
                 }
               } else {
                 // when an element is opened this position is not after this element. but before its first child
+                // eslint-disable-next-line no-lonely-if
                 if (accepted.mode & Allowed.FIRST_CHILD) {
                   left = leftPos + 19;
                   indicator.setWidth(indicator.getWidth() - 19);
@@ -1087,6 +1090,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
               }
             } else {
               // inside
+              // eslint-disable-next-line no-lonely-if
               if (accepted.target && accepted.target.isOpen()) {
                 // treat dropping on an opened node as "first-child" position
                 if (accepted.mode & Allowed.FIRST_CHILD) {
@@ -1118,7 +1122,9 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
         if (!position && cursor.getAction()) {
           indicator.setUserData("action", ev.getCurrentAction());
           cursor.resetAction();
+          // eslint-disable-next-line no-console
           console.assert(left < 0);
+          // eslint-disable-next-line no-console
           console.assert(top < 0);
         } else if (position && !cursor.getAction() && cursor.getAction() !== indicator.getUserData("action")) {
           cursor.setAction(indicator.getUserData("action"));
@@ -1490,8 +1496,8 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
             return cv.ui.manager.editor.Tree.Allowed.BEFORE;
           }
         }
-        return cv.ui.manager.editor.Tree.Allowed.NONE;
       }
+      return cv.ui.manager.editor.Tree.Allowed.NONE;
     },
 
     __checkProvider: function (id, formData, element) {
@@ -1562,7 +1568,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
           delete def.placeholder;
           break;
 
-        case "string":
+        case "string": {
           const enums = attribute.getEnumeration();
           if (enums.length > 0) {
             def.type = "SelectBox";
@@ -1580,24 +1586,26 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
             this.__checkProvider(element.getName() + "@" + attribute.getName(), def, element.getNode());
           }
           break;
+        }
       }
       return def;
     },
 
     _onEdit: function (ev, element, isNew) {
       if (!this.getFile() || !this.getFile().isWriteable()) {
-        return;
+        return null;
       }
-      let title; let caption;
+      let title;
+      let caption;
       if (!element) {
         if (this.getSelected()) {
           element = this.getSelected();
         } else {
-          return;
+          return null;
         }
       }
       if (!element.getShowEditButton()) {
-        return;
+        return null;
       }
       element.load();
       const formData = {};
@@ -1734,6 +1742,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
         this.clearReDos();
         return element;
       }
+      return null;
     },
 
     _onCut: function () {
@@ -1906,7 +1915,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
                     this.__loadContent(value, res);
                     break;
 
-                  case "open-source":
+                  case "open-source": {
                     const file = this.getFile();
                     cv.ui.manager.Main.getInstance().closeFile(file);
                     qx.event.message.Bus.dispatchByName("cv.manager.openWith", {
@@ -1917,6 +1926,7 @@ qx.Class.define("cv.ui.manager.editor.Tree", {
                       }
                     });
                     break;
+                  }
 
                   case "cancel":
                     // close this editor

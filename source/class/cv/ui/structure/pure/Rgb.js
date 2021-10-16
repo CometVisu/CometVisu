@@ -50,11 +50,11 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
       if (data === undefined || address === undefined) {
         return;
       }
-      var valElem = this.getValueElement();
+      const valElem = this.getValueElement();
 
-      var value = cv.Transform.decode(this.getAddress()[address].transform, data);
+      const value = cv.Transform.decode(this.getAddress()[address].transform, data);
 
-      var bg = window.getComputedStyle(valElem)["background-color"].replace(/[a-zA-Z()\s]/g, "").split(/,/);
+      let bg = window.getComputedStyle(valElem)["background-color"].replace(/[a-zA-Z()\s]/g, "").split(/,/);
       if (bg.length !== 3) {
         bg = [0, 0, 0];
       }
@@ -69,8 +69,7 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
           bg[2] = value;
           break;
       }
-      var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-      valElem.style["background-color"] = bgs;
+      valElem.style["background-color"] = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
     }
   },
 

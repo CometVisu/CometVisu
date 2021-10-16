@@ -37,12 +37,12 @@ qx.Class.define("cv.TemplateEngine", {
     }, this);
 
     this.defaults = {widget: {}, plugin: {}};
-    var group = new qx.ui.command.Group();
+    const group = new qx.ui.command.Group();
     this.setCommands(group);
-    var app = qx.core.Init.getApplication();
+    const app = qx.core.Init.getApplication();
     if (app) {
       // application is not available in tests
-      var manager = app.getCommandManager();
+      const manager = app.getCommandManager();
       manager.add(group);
       manager.setActive(group);
     }
@@ -171,7 +171,7 @@ qx.Class.define("cv.TemplateEngine", {
       if (!Array.isArray(parts)) {
         parts = [parts];
       }
-      var loadLazyParts = this.lazyPlugins.filter(function(part) {
+      const loadLazyParts = this.lazyPlugins.filter(function (part) {
         return parts.indexOf(part) >= 0;
       });
       if (loadLazyParts.length) {
@@ -227,8 +227,8 @@ qx.Class.define("cv.TemplateEngine", {
         qx.event.message.Bus.dispatchByName("setup.dom.finished");
         // flush the queue
         this._domFinishedQueue.forEach(function(entry) {
-          var callback = entry.shift();
-          var context = entry.shift();
+          const callback = entry.shift();
+          const context = entry.shift();
           callback.apply(context, entry);
         }, this);
         this._domFinishedQueue = [];
@@ -284,22 +284,22 @@ qx.Class.define("cv.TemplateEngine", {
       }
       this.visu = cv.Application.createClient(backendName, backendUrl);
 
-      var model = cv.data.Model.getInstance();
+      const model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
       if (cv.Config.reporting) {
-        var recordInstance = cv.report.Record.getInstance();
+        const recordInstance = cv.report.Record.getInstance();
         this.visu.record = function(p, d) {
          recordInstance.record(cv.report.Record.BACKEND, p, d);
         };
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = "demo_user"; // example for setting a user
-      var visu = this.visu;
+      const visu = this.visu;
 
       if (cv.Config.sentryEnabled && window.Sentry) {
         Sentry.configureScope(function (scope) {
           scope.setTag("backend", visu.backendName);
-          var webServer = visu.getServer();
+          const webServer = visu.getServer();
           if (webServer) {
             scope.setTag("server.backend", webServer);
           }
@@ -309,7 +309,7 @@ qx.Class.define("cv.TemplateEngine", {
         });
         visu.addListener("changedServer", this._updateClientScope, this);
       }
-      var app = qx.core.Init.getApplication();
+      const app = qx.core.Init.getApplication();
       app.addListener("changeActive", this._onActiveChanged, this);
 
       // show connection state in NotificationCenter
@@ -317,7 +317,7 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     _onActiveChanged: function () {
-      var app = qx.core.Init.getApplication();
+      const app = qx.core.Init.getApplication();
       if (app.isActive()) {
         if (!this.visu.isConnected() && this.__hasBeenConnected) {
           // reconnect
@@ -340,8 +340,8 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     _checkBackendConnection: function () {
-      var connected = this.visu.isConnected();
-      var message = {
+      const connected = this.visu.isConnected();
+      const message = {
         topic: "cv.client.connection",
         title: qx.locale.Manager.tr("Connection error"),
         severity: "urgent",
@@ -349,7 +349,7 @@ qx.Class.define("cv.TemplateEngine", {
         deletable: false,
         condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
       };
-      var lastError = this.visu.getLastError();
+      const lastError = this.visu.getLastError();
       if (!connected) {
         if (lastError && (Date.now() - lastError.time) < 100) {
           message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
@@ -363,9 +363,9 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     _updateClientScope: function () {
-      var visu = this.visu;
+      const visu = this.visu;
       Sentry.configureScope(function (scope) {
-        var webServer = visu.getServer();
+        const webServer = visu.getServer();
         if (webServer) {
           scope.setTag("server.backend", webServer);
         }
@@ -436,10 +436,10 @@ qx.Class.define("cv.TemplateEngine", {
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
       // read predefined design in config
-      var settings = cv.Config.configSettings;
-      var pagesNode = loaded_xml.querySelector("pages");
+      const settings = cv.Config.configSettings;
+      const pagesNode = loaded_xml.querySelector("pages");
 
-      var predefinedDesign = pagesNode.getAttribute("design");
+      const predefinedDesign = pagesNode.getAttribute("design");
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {
@@ -497,16 +497,16 @@ qx.Class.define("cv.TemplateEngine", {
         settings.maxMobileScreenWidth = pagesNode.getAttribute("max_mobile_screen_width");
       }
 
-      var globalClass = pagesNode.getAttribute("class");
+      const globalClass = pagesNode.getAttribute("class");
       if (globalClass !== null) {
         document.querySelector("body").classList.add(globalClass);
       }
 
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
-      var design = cv.Config.getDesign();
+      const design = cv.Config.getDesign();
       if (design) {
-        var baseUri = "designs/" + design;
+        let baseUri = "designs/" + design;
         settings.stylesToLoad.push(baseUri + "/basic.css");
         this.debug("cv.Config.mobileDevice: " + cv.Config.mobileDevice);
         if (cv.Config.mobileDevice) {
@@ -521,7 +521,7 @@ qx.Class.define("cv.TemplateEngine", {
             this.error("Failed to load \""+design+"\" design! Falling back to simplified \"pure\"");
 
             baseUri = "designs/pure";
-            var alternativeStyles = [baseUri+"/basic.css"];
+            const alternativeStyles = [baseUri + "/basic.css"];
             if (cv.Config.mobileDevice) {
               alternativeStyles.push(baseUri+"/mobile.css");
             }
@@ -531,7 +531,7 @@ qx.Class.define("cv.TemplateEngine", {
           }
         }, this);
       }
-      var metaParser = new cv.parser.MetaParser();
+      const metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
       settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
@@ -557,7 +557,7 @@ qx.Class.define("cv.TemplateEngine", {
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
-          var page = this.xml.querySelector("pages > page"); // only one page element allowed...
+          const page = this.xml.querySelector("pages > page"); // only one page element allowed...
 
           this.createPages(page, "id");
           this.debug("finalizing");
@@ -568,7 +568,7 @@ qx.Class.define("cv.TemplateEngine", {
         qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
         this.setDomFinished(true);
 
-        var currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         if (currentPage) {
           this.setCurrentPage(currentPage);
         }
@@ -586,7 +586,7 @@ qx.Class.define("cv.TemplateEngine", {
 
         // reaction on browser back button
         qx.bom.History.getInstance().addListener("request", function(e) {
-          var lastPage = e.getData();
+          const lastPage = e.getData();
           if (lastPage) {
             this.scrollToPage(lastPage, 0, true);
           }
@@ -637,11 +637,11 @@ qx.Class.define("cv.TemplateEngine", {
       }
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
-        var startPageAddresses = {};
-        var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        const startPageAddresses = {};
+        const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         pageWidget.getChildWidgets().forEach(function(child) {
-          var address = child.getAddress ? child.getAddress() : {};
-          for (var addr in address) {
+          const address = child.getAddress ? child.getAddress() : {};
+          for (let addr in address) {
             if (Object.prototype.hasOwnProperty.call(address, addr)) {
               startPageAddresses[addr] = 1;
             }
@@ -649,7 +649,7 @@ qx.Class.define("cv.TemplateEngine", {
         }, this);
         this.visu.setInitialAddresses(Object.keys(startPageAddresses));
       }
-      var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
+      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
       if (addressesToSubscribe.length !== 0) {
         this.visu.subscribe(addressesToSubscribe);
       }
@@ -664,13 +664,15 @@ qx.Class.define("cv.TemplateEngine", {
      */
     createPages: function (page, path, flavour, type) {
       cv.parser.WidgetParser.renderTemplates(page);
-      var parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
+      let parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
       }
-      for (var i = 0, l = parsedData.length; i < l; i++) {
-        var data = parsedData[i];
-        var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+      let i = 0;
+      const l = parsedData.length;
+      for (; i < l; i++) {
+        const data = parsedData[i];
+        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
 
         // trigger DOM generation
         if (widget) {
@@ -694,7 +696,7 @@ qx.Class.define("cv.TemplateEngine", {
         return page_name;
       } 
         if (path !== undefined) {
-          var scope = this.traversePath(path);
+          const scope = this.traversePath(path);
           if (scope === null) {
             // path is wrong
             this.error("path '" + path + "' could not be traversed, no page found");
@@ -706,12 +708,12 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     traversePath: function (path, root_page_id) {
-      var path_scope = null;
-      var index = path.indexOf("/");
+      let path_scope = null;
+      let index = path.indexOf("/");
       if (index >= 1) {
         // skip escaped slashes like \/
         while (path.substr(index - 1, 1) === "\\") {
-          var next = path.indexOf("/", index + 1);
+          const next = path.indexOf("/", index + 1);
           if (next >= 0) {
             index = next;
           }
@@ -720,7 +722,7 @@ qx.Class.define("cv.TemplateEngine", {
       //    console.log("traversePath("+path+","+root_page_id+")");
       if (index >= 0) {
         // traverse path one level down
-        var path_page_name = path.substr(0, index);
+        const path_page_name = path.substr(0, index);
         path_scope = this.getPageIdByName(path_page_name, root_page_id);
         path = path.substr(path_page_name.length + 1);
         path_scope = this.traversePath(path, path_scope);
@@ -733,7 +735,7 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     getPageIdByName: function (page_name, scope) {
-      var page_id = null;
+      let page_id = null;
       if (page_name.match(/^id_[0-9_]*$/) !== null) {
         // already a page_id
         return page_name;
@@ -745,19 +747,19 @@ qx.Class.define("cv.TemplateEngine", {
         page_name = decodeURI(page_name.replace("\\\/", "/"));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
-        var selector = (scope !== undefined && scope !== null) ? ".page[id^=\"" + scope + "\"] h1" : ".page h1";
-        var pages = document.querySelectorAll(selector);
-        pages = Array.from(pages).filter(function(h) {
+      const selector = (scope !== undefined && scope !== null) ? ".page[id^=\"" + scope + "\"] h1" : ".page h1";
+      let pages = document.querySelectorAll(selector);
+      pages = Array.from(pages).filter(function(h) {
  return h.textContent === page_name; 
 });
         if (pages.length > 1 && this.getCurrentPage() !== null) {
-          var currentPageId = this.getCurrentPage().getPath();
+          const currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first
-          var fallback = true;
+          let fallback = true;
           pages.some(function (page) {
-            var p = cv.util.Tree.getClosest(page, ".page");
+            const p = cv.util.Tree.getClosest(page, ".page");
             if (page.innerText === page_name) {
-              var pid = p.getAttribute("id");
+              const pid = p.getAttribute("id");
               if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
                 if (currentPageId.indexOf(pid) === 0) {
@@ -810,7 +812,7 @@ qx.Class.define("cv.TemplateEngine", {
       if (undefined === target) {
         target = cv.Config.configSettings.screensave_page;
       }
-      var page_id = this.getPageIdByPath(target);
+      const page_id = this.getPageIdByPath(target);
       if (page_id === null) {
         return;
       }
@@ -830,8 +832,8 @@ qx.Class.define("cv.TemplateEngine", {
 
       // push new state to history
       if (skipHistory === undefined) {
-        var headline = document.querySelectorAll("#"+page_id+" h1");
-        var pageTitle = "CometVisu";
+        const headline = document.querySelectorAll("#" + page_id + " h1");
+        let pageTitle = "CometVisu";
         if (headline.length) {
           pageTitle = headline[0].textContent+ " - "+pageTitle;
         }
@@ -872,7 +874,7 @@ qx.Class.define("cv.TemplateEngine", {
     },
 
     selectDesign: function () {
-      var body = document.querySelector("body");
+      const body = document.querySelector("body");
 
       document.querySelectorAll("body > *").forEach(function(elem) {
         elem.style.display = "none";
@@ -880,7 +882,7 @@ qx.Class.define("cv.TemplateEngine", {
       body.style["background-color"] = "black";
 
 
-      var div = qx.dom.Element.create("div", {id: "designSelector"});
+      const div = qx.dom.Element.create("div", {id: "designSelector"});
       Object.entries({
         background: "#808080",
         width: "400px",
@@ -894,16 +896,16 @@ qx.Class.define("cv.TemplateEngine", {
 
       body.appendChild(div);
 
-      var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
+      const store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
 
       store.addListener("loaded", function () {
-        var html = "<h1>Please select design</h1>";
+        let html = "<h1>Please select design</h1>";
         html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
 
         div.innerHTML = html;
 
         store.getModel().forEach(function(element) {
-          var myDiv = qx.dom.Element.create("div", {
+          const myDiv = qx.dom.Element.create("div", {
             cursor: "pointer",
             padding: "0.5em 1em",
             borderBottom: "1px solid black",
@@ -919,14 +921,14 @@ qx.Class.define("cv.TemplateEngine", {
           div.appendChild(myDiv);
 
 
-          var tDiv = qx.dom.Element.create("div", {
+          const tDiv = qx.dom.Element.create("div", {
             background: "transparent",
             position: "absolute",
             height: "90px",
             width: "160px",
             zIndex: 2
           });
-          var pos = document.querySelector("iframe").getBoundingClientRect();
+          const pos = document.querySelector("iframe").getBoundingClientRect();
           Object.entries({
             left: pos.left + "px",
             top: pos.top + "px"
@@ -944,7 +946,7 @@ qx.Class.define("cv.TemplateEngine", {
           }, this);
 
           qx.event.Registration.addListener(myDiv, "tap", function() {
-            var href = document.location.href;
+            let href = document.location.href;
             if (document.location.hash) {
               href = href.split("#")[0];
             }

@@ -67,13 +67,13 @@ qx.Class.define("cv.report.Record", {
         cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file.");
 
         // apply event recorder
-        var record = cv.report.Record.getInstance();
+        const record = cv.report.Record.getInstance();
         EVENT_RECORDER = record.recordNativeEvent.bind(record);
 
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
 
-        var Reg = qx.event.Registration;
+        const Reg = qx.event.Registration;
 
         // add resize listener
         Reg.addListener(window, "resize", function() {
@@ -85,7 +85,7 @@ qx.Class.define("cv.report.Record", {
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-          var throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
+          const throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
           document.querySelectorAll("#pages > .page").forEach(function (page) {
             Reg.addListener(page, "scroll", throttled, record);
           }, this);
@@ -103,11 +103,11 @@ qx.Class.define("cv.report.Record", {
 
     getClientData: function() {
       // save browser settings
-      var req = qx.util.Uri.parseUri(window.location.href);
+      const req = qx.util.Uri.parseUri(window.location.href);
       // delete reporting queryKey
       delete req.queryKey.reporting;
-      var Env = qx.core.Environment;
-      var runtime = {
+      const Env = qx.core.Environment;
+      const runtime = {
         browserName: Env.get("browser.name"),
         browserVersion: Env.get("browser.version"),
         deviceName: Env.get("device.name"),
@@ -224,7 +224,7 @@ qx.Class.define("cv.report.Record", {
      * @param nativeEvent {Event}
      */
     __extractDataFromEvent: function(nativeEvent) {
-      var data = {
+      const data = {
         eventClass: nativeEvent.constructor.name,
         "native": {
           bubbles: nativeEvent.bubbles,
@@ -236,21 +236,21 @@ qx.Class.define("cv.report.Record", {
           pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
           pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
           returnValue: nativeEvent.returnValue,
-          screenX : Math.round(nativeEvent.screenX),
-          screenY : Math.round(nativeEvent.screenY),
-          wheelDelta : nativeEvent.wheelDelta,
-          wheelDeltaX : nativeEvent.wheelDeltaX,
-          wheelDeltaY : nativeEvent.wheelDeltaY,
-          delta : nativeEvent.delta,
-          deltaX : nativeEvent.deltaX,
-          deltaY : nativeEvent.deltaY,
-          deltaZ : nativeEvent.deltaZ,
-          detail : nativeEvent.detail,
-          axis : nativeEvent.axis,
-          wheelX : nativeEvent.wheelX,
-          wheelY : nativeEvent.wheelY,
-          view : nativeEvent.view ? nativeEvent.view.constructor.name : undefined,
-          HORIZONTAL_AXIS : nativeEvent.HORIZONTAL_AXIS,
+          screenX: Math.round(nativeEvent.screenX),
+          screenY: Math.round(nativeEvent.screenY),
+          wheelDelta: nativeEvent.wheelDelta,
+          wheelDeltaX: nativeEvent.wheelDeltaX,
+          wheelDeltaY: nativeEvent.wheelDeltaY,
+          delta: nativeEvent.delta,
+          deltaX: nativeEvent.deltaX,
+          deltaY: nativeEvent.deltaY,
+          deltaZ: nativeEvent.deltaZ,
+          detail: nativeEvent.detail,
+          axis: nativeEvent.axis,
+          wheelX: nativeEvent.wheelX,
+          wheelY: nativeEvent.wheelY,
+          view: nativeEvent.view ? nativeEvent.view.constructor.name : undefined,
+          HORIZONTAL_AXIS: nativeEvent.HORIZONTAL_AXIS,
           type: nativeEvent.type,
           x: nativeEvent.x,
           y: nativeEvent.y
@@ -310,7 +310,7 @@ qx.Class.define("cv.report.Record", {
         if (!this.__deltas[ev.type]) {
           this.__deltas[ev.type] = {x: ev.clientX, y: ev.clientY};
         } else {
-          var lastDelta = this.__deltas[ev.type];
+          const lastDelta = this.__deltas[ev.type];
           if (Math.abs(lastDelta.x - ev.clientX) <= this.__delta || Math.abs(lastDelta.y - ev.clientY) <= this.__delta) {
             // below delta -> skip this event
             return;
@@ -319,19 +319,19 @@ qx.Class.define("cv.report.Record", {
         }
       }
       // get path
-      var path = this.__getDomPath(ev.target);
+      const path = this.__getDomPath(ev.target);
       if (!path) {
         return;
       }
       this.debug("recording "+ev.type+" on "+path);
-      var data = this.__extractDataFromEvent(ev);
+      const data = this.__extractDataFromEvent(ev);
       this.record(cv.report.Record.USER, path, data);
     },
 
     recordScroll: function(ev) {
-      var page = ev.getTarget();
-      var path = (undefined !== page && "getAttribute" in page) ? page.getAttribute("id") : undefined;
-      var data = {
+      const page = ev.getTarget();
+      const path = (undefined !== page && "getAttribute" in page) ? page.getAttribute("id") : undefined;
+      const data = {
         type: ev.getType(),
         page: path,
         x: page.scrollLeft,
@@ -346,12 +346,12 @@ qx.Class.define("cv.report.Record", {
       } else if (el === document) {
         return "document";
       }
-      var stack = [];
+      const stack = [];
       while (el.parentNode !== null) {
-        var sibCount = 0;
-        var sibIndex = 0;
-        for (var i = 0; i < el.parentNode.childNodes.length; i++) {
-          var sib = el.parentNode.childNodes[i];
+        let sibCount = 0;
+        let sibIndex = 0;
+        for (let i = 0; i < el.parentNode.childNodes.length; i++) {
+          const sib = el.parentNode.childNodes[i];
           if (sib.nodeName === el.nodeName) {
             if (sib === el) {
               sibIndex = sibCount;
@@ -377,7 +377,7 @@ qx.Class.define("cv.report.Record", {
      * Download Log as file
      */
     download: function() {
-      var data = {
+      const data = {
         data: this.__data,
         start: this.__start,
         xhr: this.__xhr,
@@ -386,17 +386,18 @@ qx.Class.define("cv.report.Record", {
         end: Date.now()
       };
       // show the user what he gets
+      // eslint-disable-next-line no-console
       console.log(data);
 
-      var d = new Date();
-      var ts = d.getFullYear()+
-        (""+(d.getMonth()+1)).padStart(2, "0")+
-        (""+d.getDate()).padStart(2, "0")+"-"+
-        (""+d.getHours()).padStart(2, "0")+
-        (""+d.getMinutes()).padStart(2, "0")+
-        (""+d.getSeconds()).padStart(2, "0");
+      const d = new Date();
+      const ts = d.getFullYear() +
+        ("" + (d.getMonth() + 1)).padStart(2, "0") +
+        ("" + d.getDate()).padStart(2, "0") + "-" +
+        ("" + d.getHours()).padStart(2, "0") +
+        ("" + d.getMinutes()).padStart(2, "0") +
+        ("" + d.getSeconds()).padStart(2, "0");
 
-      var a = window.document.createElement("a");
+      const a = window.document.createElement("a");
       a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: "application/json"}));
       a.download = "CometVisu-replay-"+ts+".json";
 

@@ -40,9 +40,9 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "icon":
            control = new cv.ui.manager.viewer.SvgIcon();
            control.setAnonymous(true);

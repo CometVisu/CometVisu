@@ -31,6 +31,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
   construct: function () {
     this.base(arguments);
     this.__counters = {};
+    this.__uniques = [];
     this.setBlockerOpacity(0.5);
     this.setBlockerColor("#000000");
   },
@@ -43,7 +44,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
   members: {
     __body: null,
     __counters: null,
-    __uniques: [],
+    __uniques: null,
 
     /**
      * @param topic {String} topic of the message related to this blocker

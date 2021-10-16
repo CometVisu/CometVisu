@@ -136,7 +136,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
         // do not remove file type in list mode
         return name;
       }
-      var parts = name.split(".");
+      const parts = name.split(".");
       if (parts.length > 1) {
         parts.pop();
       }
@@ -144,8 +144,8 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     },
 
     _getDelegate: function () {
-      var labelConverter = this.getLabelConverter();
-      var converter = {
+      const labelConverter = this.getLabelConverter();
+      const converter = {
         converter: labelConverter ? labelConverter : this._defaultLabelConverter.bind(this)
       };
       return {
@@ -174,8 +174,8 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
                   return null;
                 }
                 // remove size from icon source
-                var parts = source.split("/");
-                if (parts.length === 3) {
+              const parts = source.split("/");
+              if (parts.length === 3) {
                   parts.pop();
                 }
                 return parts.join("/");
@@ -186,7 +186,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     },
 
     _onFsItemRightClick: function (ev) {
-      var file = ev.getCurrentTarget().getModel();
+      const file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === "add-file") {
         ev.preventDefault();
         if (ev.getBubbles()) {
@@ -194,7 +194,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
         }
         return;
       }
-      var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
+      const menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       menu.configure(file);
       ev.getCurrentTarget().setContextMenu(menu);
       menu.openAtPointer(ev);
@@ -207,7 +207,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     },
 
     _onDblTap: function (ev) {
-      var file = ev.getCurrentTarget().getModel();
+      const file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === "add-file") {
         // Select file for upload
 
@@ -222,13 +222,13 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
         this.resetModel();
       }
       if (file) {
-        var container = this.getChildControl("list");
+        const container = this.getChildControl("list");
         if (!this._controller) {
           this._controller = new qx.data.controller.List(null, container);
           this._controller.setDelegate(this._getDelegate());
         }
         file.bind("children", this, "model");
-        var model = this.getModel();
+        const model = this.getModel();
         this._newItem.setParent(file);
         model.addListener("change", function () {
           if (this.getChildControl("filter").getValue() || this.getPermanentFilter()) {
@@ -248,8 +248,8 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     },
 
     _handleFileEvent: function (ev) {
-      var folder = this.getFile();
-      var data = ev.getData();
+      const folder = this.getFile();
+      const data = ev.getData();
       switch (data.action) {
         case "moved":
           folder.reload();
@@ -263,32 +263,36 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
           }
           break;
 
-        case "deleted":
+        case "deleted": {
+          let children;
           if (folder) {
             if (data.path === folder.getFullPath()) {
               // this item has been deleted
               this.dispose();
             } else if (data.path.startsWith(folder.getFullPath())) {
               // delete child
-              var children = folder.getChildren();
+              children = folder.getChildren();
               children.some(function (child) {
                 if (child.getFullPath() === data.path) {
                   children.remove(child);
                   this.removeRelatedBindings(child);
                   return true;
                 }
+                return false;
               }, this);
             }
           }
-          var children = this.getModel();
+          children = this.getModel();
           children.some(function (child) {
             if (child.getFullPath() === data.path) {
               children.remove(child);
               this.removeRelatedBindings(child);
               return true;
             }
+            return false;
           }, this);
           break;
+        }
       }
     },
 
@@ -298,9 +302,9 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
 
     _onFilter: function () {
       if (this._controller) {
-        var filterString = this.getChildControl("filter").getValue();
-        var filterFunction = this.getPermanentFilter();
-        var filtered = this.getModel().filter(function (file) {
+        const filterString = this.getChildControl("filter").getValue();
+        const filterFunction = this.getPermanentFilter();
+        const filtered = this.getModel().filter(function (file) {
           return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
         });
         this._controller.setModel(filtered);
@@ -330,7 +334,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
     },
 
     _onFileEvent: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       switch (data.action) {
         case "deleted":
           break;
@@ -342,7 +346,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
         this.getChildControl("scroll").exclude();
         this._addAt(this.getChildControl("list"), 1, {flex: 1});
       } else {
-        var scrollContainer = this.getChildControl("scroll");
+        const scrollContainer = this.getChildControl("scroll");
         scrollContainer.show();
         scrollContainer.add(this.getChildControl("list"));
         this._addAt(scrollContainer, 1, {flex: 1});
@@ -351,7 +355,7 @@ qx.Class.define("cv.ui.manager.viewer.Folder", {
 
     // overridden
     _createChildControlImpl : function(id) {
-      var control;
+      let control;
 
       switch (id) {
         case "toolbar":

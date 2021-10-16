@@ -96,7 +96,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       if (this.getUrl()) {
         if (this.isHidden()) {
           // open link in background (fire and forget)
-          var req = new qx.io.request.Xhr(this.getUrl());
+          const req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
           cv.util.Location.open(this.getUrl(), "_blank");
@@ -108,7 +108,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     },
 
     getDomElement: function() {
-      var actionButton = qx.dom.Element.create("button", {
+      const actionButton = qx.dom.Element.create("button", {
         "class": "action",
         "text": this.getTitle(),
         "style": this.getStyle()

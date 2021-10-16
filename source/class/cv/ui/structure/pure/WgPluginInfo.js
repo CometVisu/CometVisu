@@ -76,8 +76,8 @@ qx.Class.define("cv.ui.structure.pure.WgPluginInfo", {
      * @param ev {Event}
      */
     _onSuccess: function(ev) {
-      var req = ev.getTarget();
-      var data = req.getResponse();
+      const req = ev.getTarget();
+      const data = req.getResponse();
       this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
     },
 

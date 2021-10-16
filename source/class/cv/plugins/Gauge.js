@@ -91,7 +91,7 @@ qx.Class.define("cv.plugins.Gauge", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -172,7 +172,7 @@ qx.Class.define("cv.plugins.Gauge", {
 
     // overridden
     _onDomReady: function() {
-      var additional = {
+      const additional = {
         gaugeType: this.getSubtype() ? steelseries.GaugeType[this.getSubtype()] : undefined,
         frameDesign: this.getFrameDesign() ? steelseries.FrameDesign[this.getFrameDesign()] : undefined,
         backgroundColor: this.getBackgroundColor() ? steelseries.BackgroundColor[this.getBackgroundColor()] : undefined,
@@ -183,7 +183,7 @@ qx.Class.define("cv.plugins.Gauge", {
         lcdColor: steelseries.LcdColor.STANDARD,
         ledColor: steelseries.LedColor.RED_LED
       };
-      var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
+      const params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
       this.__gaugeElement = new steelseries[this.getGType()]("gauge_"+this.getPath(), params);
       this.base(arguments);
     },
@@ -218,8 +218,8 @@ qx.Class.define("cv.plugins.Gauge", {
  return; 
 }
 
-      var variant = this.getAddress()[address].variantInfo;
-      var gaugeElement = this.__gaugeElement;
+      const variant = this.getAddress()[address].variantInfo;
+      const gaugeElement = this.__gaugeElement;
       if (gaugeElement) {
         switch (variant) {
           case "average":
@@ -234,7 +234,7 @@ qx.Class.define("cv.plugins.Gauge", {
             break;
           case "trend":
             if (gaugeElement.setTrend) {
-              var trend;
+              let trend;
               if (value > 0) {
                 trend = steelseries.TrendState.UP;
               } else if (value < 0) {
@@ -280,7 +280,7 @@ qx.Class.define("cv.plugins.Gauge", {
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/gauge/gauge.css");
     loader.addScripts([
       "plugins/gauge/dep/tween.js",

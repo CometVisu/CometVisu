@@ -68,7 +68,7 @@
       _getInnerDomString: function () {
         // create the main structure
         // create the actor
-        var style = "";
+        let style = "";
         if (this.getWidth()) {
  style += "width:" + this.getWidth() + ";"; 
 }
@@ -78,8 +78,8 @@
         if (style !== "") {
  style = "style=\"" + style + "\""; 
 }
-        var autoplay = (this.isAutoplay()) ? " autoplay " : "";
-        var loop = (this.isLoop()) ? " loop " : "";
+        const autoplay = (this.isAutoplay()) ? " autoplay " : "";
+        const loop = (this.isLoop()) ? " loop " : "";
         return "<div class=\"actor\"><audio id=\"" + this.getId() + "\" " + autoplay + loop + style + " controls> <source src=\"" + this.getSrc()+ "\" > </audio> </div>";
       },
 
@@ -95,9 +95,9 @@
        * @param value {String} Incoming data
        */
       _update: function (address, value) {
-        var on = this.applyMapping(this.getThresholdValue());
+        const on = this.applyMapping(this.getThresholdValue());
         if (value >= on) {
-          var audioWidget = this.getActor();
+          const audioWidget = this.getActor();
           if (audioWidget.paused === true) {
             audioWidget.play();
           }

@@ -189,6 +189,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       if (el) {
         return el;
       }
+      return null;
     },
 
     _setAreaHeight: function(height) {

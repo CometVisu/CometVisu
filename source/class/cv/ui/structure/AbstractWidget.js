@@ -34,7 +34,7 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
   */
   construct: function(props) {
     this.base(arguments, props);
-    var parts = this.getPath().split("_");
+    const parts = this.getPath().split("_");
     parts.shift();
     // var prio = parseInt(parts.join(""))*-1;
     // var broker = cv.MessageBroker.getInstance();
@@ -49,14 +49,14 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
     new qx.util.DeferredCall(function() {
       if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
         // initialize the ancestors
-        var parentData = cv.util.Tree.getParentData(props.path);
+        const parentData = cv.util.Tree.getParentData(props.path);
         if (parentData) {
           // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
-          var parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+          const parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
           this.setParentWidget(parent);
         }
       }
-      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getVisibilityParent();
+      const parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getVisibilityParent();
       if (parentPage) {
         parentPage.bind("visible", this, "visible");
       }
@@ -132,10 +132,10 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
       if (!width) {
         width = cv.ui.layout.Manager.getAvailableWidth();
       }
-      var layout = this.getLayout();
-      var suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
+      const layout = this.getLayout();
+      const suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
       if (suffix) {
-        var l = {};
+        const l = {};
         ["x", "y", "width", "scale"].forEach(function (prop) {
           if (layout[prop]) {
             // use default value
@@ -261,7 +261,7 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
         qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
         !this.isSendLongOnRelease() &&
         this.getShortThreshold() > 0) {
-        var clonedEv = ev.clone();
+        const clonedEv = ev.clone();
         this.__longPressTimer = qx.event.Timer.once(function () {
           this._onLongTap(clonedEv);
           this._skipNextEvent = "tap";
@@ -289,9 +289,9 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
     },
 
     _onPointerMove: function(ev) {
-      var upElement = ev.getTarget();
-      var distance = Math.max(Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
-      var abort = distance > 5;
+      let upElement = ev.getTarget();
+      const distance = Math.max(Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
+      let abort = distance > 5;
 
       if (!abort) {
         while (upElement && upElement !== this.__pointerDownElement) {
@@ -312,7 +312,7 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
         // ignore pointer ups when the pointerdown has not set a start time
         return;
       }
-      var upElement = ev.getTarget();
+      let upElement = ev.getTarget();
       while (upElement && upElement !== this.__pointerDownElement) {
         upElement = upElement.parentNode;
         if (upElement === this.getDomElement()) {
@@ -347,7 +347,7 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
       if (this.isAnonymous()) {
         return null;
       }
-      var widget = this.getInteractionElement();
+      const widget = this.getInteractionElement();
       if (widget) {
         widget.dataset["longtapable"] = type !== "longtap";
         return qx.event.Registration.addListener(widget, type, callback, context);
@@ -366,7 +366,7 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
       if (this.isAnonymous()) {
         return false;
       }
-      var widget = this.getInteractionElement();
+      const widget = this.getInteractionElement();
       if (widget) {
         return qx.event.Registration.removeListener(widget, type, callback, context);
       }

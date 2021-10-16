@@ -87,8 +87,8 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
 
     _onDomReady: function() {
       if (!this.$$domReady) {
-        var pageId = this.getParentPage().getPath();
-        var broker = qx.event.message.Bus;
+        const pageId = this.getParentPage().getPath();
+        const broker = qx.event.message.Bus;
 
         // let the refresh only be active when this widget is visible
         this.setRestartOnVisible(true);
@@ -135,11 +135,10 @@ qx.Class.define("cv.plugins.diagram.Diagram", {
     },
 
     _getInnerDomString: function() {
-      var
-        classStr = this.getPreviewlabels() ? "diagram_inline" : "diagram_preview";
-        var styleStr = "min-height: 40px" +
-          (this.getWidth() ? (";width:" + this.getWidth()) : "") +
-          (this.getHeight() ? (";height:" + this.getHeight()) : ";height: 100%");
+      const classStr = this.getPreviewlabels() ? "diagram_inline" : "diagram_preview";
+      const styleStr = "min-height: 40px" +
+        (this.getWidth() ? (";width:" + this.getWidth()) : "") +
+        (this.getHeight() ? (";height:" + this.getHeight()) : ";height: 100%");
 
       return "<div class=\"actor clickable\" style=\"height: 100%; min-height: 40px;\"><div class=\"" + classStr + "\" style=\"" + styleStr + "\">loading...</div></div>";
     }

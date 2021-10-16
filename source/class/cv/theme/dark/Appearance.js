@@ -141,7 +141,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       alias: "atom",
 
       style: function (states) {
-        var padding = [2, 5, 2, 5];
+        let padding = [2, 5, 2, 5];
         if (states.lead) {
           padding = [1, 4, 1, 4];
         }
@@ -149,7 +149,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding[2] -= 1;
         }
 
-        var backgroundColor;
+        let backgroundColor;
         if (states.selected) {
           backgroundColor = "background-selected";
           if (states.disabled) {

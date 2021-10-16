@@ -104,10 +104,10 @@ qx.Class.define("cv.ui.ToastManager", {
         document.body.appendChild(this.__domElement);
       }
       if (document.querySelectorAll("#ToastTemplate").length === 0) {
-        var template = qx.dom.Element.create("script", {
+        const template = qx.dom.Element.create("script", {
           id: "ToastTemplate",
           type: "text/template",
-          html: "<div class=\"toast {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\""+this.getMessageElementId()+"{{ id }}\"><div class=\"content\">{{&message}}</div></div>"
+          html: "<div class=\"toast {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\"" + this.getMessageElementId() + "{{ id }}\"><div class=\"content\">{{&message}}</div></div>"
         });
         document.body.appendChild(template);
       }

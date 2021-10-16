@@ -63,10 +63,10 @@ qx.Class.define("cv.ui.PopupHandler", {
      * @param ev {Event}
      */
     _onPageChanged: function (ev) {
-      Object.keys(this.popups).filter(function (type) {
+      Object.keys(this.popups).forEach(function (type) {
         if (type !== "error") {
-          var popup = this.popups[type];
-          var domElement = popup.getCurrentDomElement();
+          const popup = this.popups[type];
+          const domElement = popup.getCurrentDomElement();
           if (domElement && domElement.$$page === ev.getData()) {
             this.removePopup(popup);
           }
@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.PopupHandler", {
     },
 
     handleMessage: function(message, config) {
-      var popupConfig = {
+      const popupConfig = {
         title: message.title,
         content: message.message,
         closable: config.deletable || message.deletable,
@@ -89,7 +89,7 @@ qx.Class.define("cv.ui.PopupHandler", {
       if (cv.core.notifications.Router.evaluateCondition(message)) {
         this.showPopup(config.type, popupConfig);
       } else {
-        var popup = this.getPopup(config.type);
+        const popup = this.getPopup(config.type);
         if (!popup.isClosed()) {
           popup.close();
         }
@@ -104,7 +104,7 @@ qx.Class.define("cv.ui.PopupHandler", {
      * @return {cv.ui.Popup} The popup
      */
     showPopup: function (type, attributes) {
-      var popup = this.getPopup(type);
+      const popup = this.getPopup(type);
       // if (!popup.isClosed()) {
       //   popup.close();
       // }
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.PopupHandler", {
      * @return {Object}
      */
     getPopup: function(name) {
-      var p = this.popups[name];
+      const p = this.popups[name];
       if (p === undefined) {
         return this.popups.unknown;
       }
@@ -159,13 +159,13 @@ qx.Class.define("cv.ui.PopupHandler", {
      * @return {Map}
      */
     placementStrategy: function(anchor, popup, page, preference) {
-      var position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
+      const position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
       if (preference !== undefined) {
  position_order.unshift(preference); 
 }
 
-      for (var pos in position_order) {
-        var xy = {};
+      for (let pos in position_order) {
+        const xy = {};
         switch (position_order[pos]) {
           case 0: // page center - will allways work
             return {x: (page.w - popup.w) / 2, y: (page.h - popup.h) / 2};

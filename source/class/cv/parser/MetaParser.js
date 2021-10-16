@@ -50,13 +50,13 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseFiles: function (xml) {
-      var files = {
+      const files = {
         css: [],
         js: []
       };
       xml.querySelectorAll("meta > files file").forEach(function (elem) {
-        var type = elem.getAttribute("type");
-        var content = elem.getAttribute("content");
+        const type = elem.getAttribute("type");
+        const content = elem.getAttribute("content");
         switch (type) {
           case "css":
             files.css.push(elem.textContent);
@@ -89,28 +89,28 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseMappings: function(elem) {
-      var name = elem.getAttribute("name");
-      var mapping = {};
-      var formula = elem.querySelectorAll("formula");
+      const name = elem.getAttribute("name");
+      const mapping = {};
+      const formula = elem.querySelectorAll("formula");
       if (formula.length > 0) {
         mapping.formulaSource = formula[0].textContent;
         mapping.formula = new Function("x", "var y;" + mapping.formulaSource + "; return y;"); // jshint ignore:line
       }
-      var subElements = elem.querySelectorAll("entry");
+      const subElements = elem.querySelectorAll("entry");
       subElements.forEach(function (subElem) {
-        var origin = subElem.childNodes;
-        var value = [];
-        for (var i = 0; i < origin.length; i++) {
-          var v = origin[i];
+        const origin = subElem.childNodes;
+        const value = [];
+        for (let i = 0; i < origin.length; i++) {
+          const v = origin[i];
           if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === "icon") {
-            var icon = this.__parseIconDefinition(v);
+            const icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
             value.push(v.textContent.trim());
           }
         }
         // check for default entry
-        var isDefaultValue = subElem.getAttribute("default");
+        let isDefaultValue = subElem.getAttribute("default");
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
         } else {
@@ -139,13 +139,13 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStylings: function(elem) {
-      var name = elem.getAttribute("name");
-      var classnames = "";
-      var styling = {};
+      const name = elem.getAttribute("name");
+      let classnames = "";
+      const styling = {};
       elem.querySelectorAll("entry").forEach(function (subElem) {
         classnames += subElem.textContent + " ";
         // check for default entry
-        var isDefaultValue = subElem.getAttribute("default");
+        let isDefaultValue = subElem.getAttribute("default");
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
         } else {
@@ -172,15 +172,15 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStatusBar: function(xml) {
-      var code = "";
+      let code = "";
       xml.querySelectorAll("meta > statusbar status").forEach(function (elem) {
-        var condition = elem.getAttribute("condition");
-        var extend = elem.getAttribute("hrefextend");
-        var sPath = window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf("/") + 1);
+        const condition = elem.getAttribute("condition");
+        let extend = elem.getAttribute("hrefextend");
+        const sPath = window.location.pathname;
+        const sPage = sPath.substring(sPath.lastIndexOf("/") + 1);
 
         // @TODO: make this match once the new editor is finished-ish.
-        var editMode = sPage === "edit_config.html";
+        const editMode = sPage === "edit_config.html";
 
         // skip this element if it's edit-only and we are non-edit, or the other
         // way
@@ -199,14 +199,15 @@ qx.Class.define("cv.parser.MetaParser", {
           return;
         }
 
-        var text = elem.textContent;
-        var search = "";
+        let text = elem.textContent;
+        let search = "";
 
         // compability change to make existing customer configurations work with the new manager links
         // this replaces all document links to old manager tools with the new ones
         let linkMatch;
         const linkRegex = /href="([^"]+)"/gm;
         const matches = [];
+        // eslint-disable-next-line no-cond-assign
         while (linkMatch = linkRegex.exec(text)) {
           matches.push(linkMatch);
         }
@@ -231,11 +232,12 @@ qx.Class.define("cv.parser.MetaParser", {
               break;
 
             case "editor/":
-            case "editor":
+            case "editor": {
               const suffix = search ? "_" + search : "";
               text = text.replace(match[0], "href=\"#\" onclick=\"showManager('open', 'visu_config" + suffix + ".xml')\"");
               handled = true;
               break;
+            }
           }
         });
 
@@ -248,11 +250,11 @@ qx.Class.define("cv.parser.MetaParser", {
             search = window.location.search.replace(/\$/g, "$$$$");
             text = text.replace(/(href="[^"]*)(")/g, "$1" + search + "$2");
             break;
-          case "config": // append config file info
+          case "config": { // append config file info
             search = window.location.search.replace(/\$/g, "$$$$");
             search = search.replace(/.*(config=[^&]*).*|.*/, "$1");
 
-            var middle = text.replace(/.*href="([^"]*)".*/g, "{$1}");
+            const middle = text.replace(/.*href="([^"]*)".*/g, "{$1}");
             if (middle.indexOf("?") > 0) {
               search = "&" + search;
             } else {
@@ -261,8 +263,9 @@ qx.Class.define("cv.parser.MetaParser", {
 
             text = text.replace(/(href="[^"]*)(")/g, "$1" + search + "$2");
             break;
+          }
 
-          case "action":
+          case "action": {
             search = window.location.search.replace(/\$/g, "$$$$");
             search = search.replace(/.*config=([^&]*).*|.*/, "$1");
             const match = /cv-action="([\w]+)"/.exec(text);
@@ -273,25 +276,27 @@ qx.Class.define("cv.parser.MetaParser", {
                   replacement += "onclick=\"qx.core.Init.getApplication().validateConfig('" + search + "')\"";
                   break;
 
-                case "edit":
+                case "edit": {
                   const configFile = search ? "visu_config_" + search + ".xml" : "visu_config.xml";
                   replacement += "onclick=\"showManager('open', '" + configFile + "')\"";
                   break;
+                }
               }
               text = text.replace(match[0], replacement);
             }
             break;
+          }
         }
         code += text;
       }, this);
-      var footerElement = document.querySelector(".footer");
+      const footerElement = document.querySelector(".footer");
       footerElement.innerHTML += code;
     },
 
     parsePlugins: function(xml) {
-      var pluginsToLoad = [];
+      const pluginsToLoad = [];
       xml.querySelectorAll("meta > plugins plugin").forEach(function (elem) {
-        var name = elem.getAttribute("name");
+        const name = elem.getAttribute("name");
         if (name) {
           pluginsToLoad.push("plugin-"+name);
         }
@@ -313,13 +318,13 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStateNotifications: function(xml) {
-      var stateConfig = {};
+      const stateConfig = {};
       xml.querySelectorAll("meta > notifications state-notification").forEach(function (elem) {
-        var target = cv.core.notifications.Router.getTarget(elem.getAttribute("target")) || cv.ui.NotificationCenter.getInstance();
+        const target = cv.core.notifications.Router.getTarget(elem.getAttribute("target")) || cv.ui.NotificationCenter.getInstance();
 
-        var addressContainer = elem.querySelector("addresses");
+        const addressContainer = elem.querySelector("addresses");
 
-        var config = {
+        const config = {
           target: target,
           severity: elem.getAttribute("severity"),
           skipInitial: elem.getAttribute("skip-initial") !== "false",
@@ -329,32 +334,32 @@ qx.Class.define("cv.parser.MetaParser", {
           addressMapping: addressContainer.getAttribute("address-mapping")
         };
 
-        var name = elem.getAttribute("name");
+        const name = elem.getAttribute("name");
         if (name) {
           config.topic = "cv.state."+name;
         }
-        var icon = elem.getAttribute("icon");
+        const icon = elem.getAttribute("icon");
         if (icon) {
           config.icon = icon;
-          var iconClasses = elem.getAttribute("icon-classes");
+          const iconClasses = elem.getAttribute("icon-classes");
           if (iconClasses) {
             config.iconClasses = iconClasses;
           }
         }
 
         // templates
-        var titleElem = elem.querySelector("title-template");
+        const titleElem = elem.querySelector("title-template");
         if (titleElem) {
           config.titleTemplate = titleElem.innerHTML;
         }
-        var messageElem = elem.querySelector("message-template");
+        const messageElem = elem.querySelector("message-template");
         if (messageElem) {
           config.messageTemplate = messageElem.innerHTML;
         }
 
         // condition
-        var conditionElem = elem.querySelector("condition");
-        var condition = conditionElem.textContent;
+        const conditionElem = elem.querySelector("condition");
+        let condition = conditionElem.textContent;
         if (condition === "true") {
           condition = true;
         } else if (condition === "false") {
@@ -362,13 +367,13 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         config.condition = condition;
 
-        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer);
+        const addresses = cv.parser.WidgetParser.makeAddressList(addressContainer);
         // addresses
         Object.getOwnPropertyNames(addresses).forEach(function(address) {
           if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
             stateConfig[address] = [];
           }
-          var addressConfig = Object.assign({}, config);
+          const addressConfig = Object.assign({}, config);
           addressConfig.addressConfig = addresses[address];
           stateConfig[address].push(addressConfig);
         });
@@ -382,24 +387,24 @@ qx.Class.define("cv.parser.MetaParser", {
      * @param done
      */
     parseTemplates: function (xml, done) {
-      var __loadQueue = new qx.data.Array();
+      const __loadQueue = new qx.data.Array();
 
-      var check = function () {
+      const check = function () {
         if (__loadQueue.length === 0 && done) {
           done();
         }
       };
-      var templates = xml.querySelectorAll("meta > templates template");
+      const templates = xml.querySelectorAll("meta > templates template");
       if (templates.length === 0) {
         done();
       } else {
         templates.forEach(function (elem) {
-          var templateName = elem.getAttribute("name");
+          const templateName = elem.getAttribute("name");
           qx.log.Logger.debug(this, "loading template:", templateName);
-          var ref = elem.getAttribute("ref");
+          const ref = elem.getAttribute("ref");
           if (ref) {
             // load template fom external file
-            var areq = new qx.io.request.Xhr(ref);
+            const areq = new qx.io.request.Xhr(ref);
             __loadQueue.push(ref);
             qx.log.Logger.debug(this, "loading template from file:", ref);
             areq.set({
@@ -408,7 +413,7 @@ qx.Class.define("cv.parser.MetaParser", {
             });
 
             areq.addListenerOnce("success", function (e) {
-              var req = e.getTarget();
+              const req = e.getTarget();
               cv.parser.WidgetParser.addTemplate(
                 templateName,
                 // templates can only have one single root element, so we wrap it here
@@ -419,7 +424,7 @@ qx.Class.define("cv.parser.MetaParser", {
               check();
             }, this);
             areq.addListener("statusError", function () {
-              var message = {
+              const message = {
                 topic: "cv.config.error",
                 title: qx.locale.Manager.tr("Template loading error"),
                 severity: "urgent",
@@ -430,7 +435,7 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
-            var cleaned = elem.innerHTML.replace(/\n\s*/g, "").trim();
+            const cleaned = elem.innerHTML.replace(/\n\s*/g, "").trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here

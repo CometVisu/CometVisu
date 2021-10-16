@@ -41,9 +41,9 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
   members: {
 
     applyStyling: function (value) {
-      var sty = cv.Config.getStyling(this.getStyling());
+      const sty = cv.Config.getStyling(this.getStyling());
       if (sty) {
-        var e;
+        let e;
         this.getDomElement().querySelectorAll(".actor").forEach(function(element) {
           if (element.querySelector(".value") && e === undefined) {
             e = element;
@@ -66,14 +66,14 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         element.classList.add.apply(element.classList, styling[value].split(" "));
         return true;
       }
-      
-        var range = styling.range;
-        if (findExact && range[value]) {
+
+      const range = styling.range;
+      if (findExact && range[value]) {
           element.classList.add.apply(element.classList, range[value][1].split(" "));
           return true;
         }
-        var valueFloat = parseFloat(value);
-        for (var min in range) {
+      const valueFloat = parseFloat(value);
+      for (let min in range) {
           if (min > valueFloat) {
  continue; 
 }

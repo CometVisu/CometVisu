@@ -104,7 +104,7 @@ qx.Class.define("cv.plugins.Clock", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -231,6 +231,7 @@ qx.Class.define("cv.plugins.Clock", {
 
     _onDomReady: function () {
       let args = arguments;
+      const self = this;
 
       this.__throttled = cv.util.Function.throttle(this.dragAction, 250, {trailing: true}, this);
 
@@ -318,7 +319,7 @@ qx.Class.define("cv.plugins.Clock", {
           this.base(args);
         })
         .catch(error => {
-          console.error("There has been a problem with the reading of the clock SVG:", error);
+          self.error("There has been a problem with the reading of the clock SVG:", error);
         });
     },
 
@@ -377,6 +378,7 @@ qx.Class.define("cv.plugins.Clock", {
           } // jshint ignore:line
           // pass through to end drag when no buttons are pressed anymore
 
+        // eslint-disable-next-line no-fallthrough
         case "pointerup":
         case "pointercancel":
           this.dragHelper(event);
@@ -407,7 +409,7 @@ qx.Class.define("cv.plugins.Clock", {
       let time = this.getValue();
       let minutes;
       switch (this.__inDrag) {
-        case dragMode.hour:
+        case dragMode.hour: {
           let oldHours = time.getHours();
           let pm = oldHours >= 12;
           let hours = Math.floor(angle / 30);
@@ -432,8 +434,9 @@ qx.Class.define("cv.plugins.Clock", {
           time.setHours(hours + pm * 12);
           time.setMinutes(minutes);
           break;
+        }
 
-        case dragMode.minute:
+        case dragMode.minute: {
           if (this.getHideSeconds()) {
             minutes = Math.round(angle / 6);
           } else {
@@ -449,8 +452,9 @@ qx.Class.define("cv.plugins.Clock", {
           time.setMinutes(minutes);
           time.setSeconds((angle % 6) * 10);
           break;
+        }
 
-        case dragMode.second:
+        case dragMode.second: {
           let seconds = Math.round(angle / 6) % 60;
           let oldSeconds = time.getSeconds();
 
@@ -461,6 +465,7 @@ qx.Class.define("cv.plugins.Clock", {
           }
           time.setSeconds(seconds);
           break;
+        }
       }
       if (this.getHideSeconds()) {
         time.setSeconds(0);
@@ -469,8 +474,8 @@ qx.Class.define("cv.plugins.Clock", {
     },
 
     dragAction: function () {
-      var address = this.getAddress();
-      for (var addr in address) {
+      const address = this.getAddress();
+      for (let addr in address) {
         if (address[addr].mode === true) {
  continue; 
 } // skip read only

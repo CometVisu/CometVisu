@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
       this.add(new qx.ui.core.Spacer(), {flex: 1});
       this._createChildControl("help");
 
-      var editorGroup = new qx.ui.form.RadioGroup();
+      const editorGroup = new qx.ui.form.RadioGroup();
 
       this.__defaultButtonConfiguration = {
         "new-file": {
@@ -165,7 +165,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
       };
       this.maintainButtons();
 
-      var prefs = cv.ui.manager.model.Preferences.getInstance();
+      const prefs = cv.ui.manager.model.Preferences.getInstance();
 
       prefs.bind("defaultConfigEditor", editorGroup, "modelSelection", {
         converter: function (value) {
@@ -181,8 +181,8 @@ qx.Class.define("cv.ui.manager.MenuBar", {
     },
 
     __bindToPreference: function (buttonName, preferenceName) {
-      var button = this.getButton(buttonName);
-      var prefs = cv.ui.manager.model.Preferences.getInstance();
+      const button = this.getButton(buttonName);
+      const prefs = cv.ui.manager.model.Preferences.getInstance();
       prefs.bind(preferenceName, button, "value");
       button.bind("value", prefs, preferenceName);
     },
@@ -195,14 +195,14 @@ qx.Class.define("cv.ui.manager.MenuBar", {
         this.__buttonConfiguration = config;
       }
       Object.keys(config).forEach(function (id) {
-        var button;
-        var buttonConf = config[id];
+        let button;
+        const buttonConf = config[id];
         if (!Object.prototype.hasOwnProperty.call(this.__buttons, id)) {
           // create button
-          var label = buttonConf.args[0];
-          var icon = buttonConf.args[1];
-          var command = buttonConf.args[2];
-          var ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
+          const label = buttonConf.args[0];
+          const icon = buttonConf.args[1];
+          const command = buttonConf.args[2];
+          const ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
           if (qx.lang.Type.isString(command) || !command) {
             // no command connected
             button = new ButtonClass(label, icon);
@@ -220,7 +220,7 @@ qx.Class.define("cv.ui.manager.MenuBar", {
             qx.event.message.Bus.dispatchByName("cv.manager.action." + id);
           }, this);
           if (!buttonConf.hidden) {
-            var menu = this.getChildControl(buttonConf.menu);
+            const menu = this.getChildControl(buttonConf.menu);
             if (!menu) {
               throw new Error("no menu named " + buttonConf.menu + " found!");
             }
@@ -257,9 +257,9 @@ qx.Class.define("cv.ui.manager.MenuBar", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "title":
            control = new qx.ui.basic.Label(this.tr("CometVisu Manager"));
            this.add(control);

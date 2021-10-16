@@ -73,11 +73,11 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
       }
       if (file) {
         if (file.isConfigFile()) {
-          var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
-          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri")+ "/..") + "?config=" + (configName || "");
+          const configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
+          let url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + "/..") + "?config=" + (configName || "");
           if (this.getTarget() === "iframe") {
             url += "&preview=1&libraryCheck=false";
-            var control = this.getChildControl("iframe");
+            const control = this.getChildControl("iframe");
             this._source = url;
             this.getChildControl("loading").show();
             control.setSource(url);
@@ -124,7 +124,7 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
     },
 
     _onChange: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if (data.type === "contentChanged") {
         if (this.hasChildControl("iframe")) {
           const iframe = this.getChildControl("iframe");
@@ -177,9 +177,9 @@ qx.Class.define("cv.ui.manager.viewer.Config", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "iframe":
            control = new qx.ui.embed.Iframe();
            control.exclude();

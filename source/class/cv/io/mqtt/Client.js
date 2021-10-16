@@ -178,13 +178,13 @@ qx.Class.define("cv.io.mqtt.Client", {
       try {
         this._client = new Paho.MQTT.Client(this._backendUrl, "CometVisu_" + Math.random().toString(16).substr(2, 8));
       } catch (e) {
-        console.error("MQTT Client error:", e);
+        self.error("MQTT Client error:", e);
         self.setConnected(false);
         return;
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        console.log("Connection Lost: " + responseObject.errorMessage, responseObject);
+        self.log("Connection Lost: " + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 

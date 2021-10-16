@@ -83,10 +83,10 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
      * @protected
      */
     _onScrollToPage: function(ev) {
-      var page_id = ev.getData();
-      var page = cv.ui.structure.WidgetFactory.getInstanceById(page_id);
-      var model = cv.data.Model.getInstance();
-      var name = page.getName();
+      const page_id = ev.getData();
+      const page = cv.ui.structure.WidgetFactory.getInstanceById(page_id);
+      const model = cv.data.Model.getInstance();
+      const name = page.getName();
 
       // remove old active classes
       document.querySelectorAll(".pagejump.active").forEach(function(elem) {
@@ -98,19 +98,19 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
 
       // and set the new active ones
       document.querySelectorAll(".pagejump").forEach(function(elem) {
-        var data = model.getWidgetDataByElement(elem);
+        const data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
           elem.classList.add("active");
         }
       }, this);
 
       // now set the active ancestors
-      var parentPage = cv.util.Tree.getParentWidget(page, "page");
+      let parentPage = cv.util.Tree.getParentWidget(page, "page");
       // set for all parent pages apart from the root page
 
-      var pageJumps = document.querySelectorAll(".pagejump");
-      var markPageJumps = function(parentName, elem) {
-        var data = model.getWidgetDataByElement(elem);
+      const pageJumps = document.querySelectorAll(".pagejump");
+      const markPageJumps = function (parentName, elem) {
+        const data = model.getWidgetDataByElement(elem);
         if (parentName === data.target || (data.activeScope === "path" && (
             (typeof data.path === "string") && data.path.match(parentName + "$") ||
             (typeof data.targetPath === "string") && data.targetPath.match(parentName + "$"))
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
 
     // overridden
     _getInnerDomString: function() {
-      var actor = "<div class=\"actor switchUnpressed";
+      let actor = "<div class=\"actor switchUnpressed";
       if (this.getAlign()) {
         actor += this.getAlign();
       }
@@ -153,7 +153,7 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
 
     // overridden
     action: function() {
-      var target = this.getTarget();
+      let target = this.getTarget();
       if (this.getTargetPath() !== null) {
         target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
       }

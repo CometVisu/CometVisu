@@ -77,16 +77,15 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @return the object/hash of encoded values that were sent last time
      */
     sendToBackend: function (value, filter, currentBusValues) {
-      var encodedValues = {};
+      const encodedValues = {};
       if (this.getAddress) {
-        var list = this.getAddress();
-        for (var id in list) {
+        const list = this.getAddress();
+        for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
-            var address = list[id];
+            const address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              var
-                encoding = address.transform;
-                var encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
+              const encoding = address.transform;
+              const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
               if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
                 cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
               }

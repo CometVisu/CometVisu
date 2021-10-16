@@ -69,11 +69,11 @@ qx.Class.define("cv.core.notifications.actions.Option", {
     },
 
     getDomElement: function() {
-      var container = qx.dom.Element.create("span", {
+      const container = qx.dom.Element.create("span", {
         style: this.getStyle()
       });
 
-      var checkbox = qx.dom.Element.create("input", {
+      const checkbox = qx.dom.Element.create("input", {
         "class": "action",
         "type": "checkbox",
         "value": "true",

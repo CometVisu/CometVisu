@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     MEMBERS
   ***********************************************
   */
-  members: {
+  members: { // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
@@ -148,7 +148,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     },
 
     _applyIcon: function (value) {
-      var control = this.getChildControl("icon");
+      const control = this.getChildControl("icon");
       control.setSource(value);
       if (value) {
         control.show();
@@ -158,10 +158,10 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     },
 
     _applyLabel: function () {
-      var label = this.getChildControl("label");
-      var value = this.getLabel();
+      const label = this.getChildControl("label");
+      const value = this.getLabel();
       if (value) {
-        var labelValue = this.getLabel();
+        let labelValue = this.getLabel();
         if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
           labelValue += " !";
           this.setToolTipText(this.tr("This file is not writeable"));
@@ -187,9 +187,9 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "icon":
            control = new qx.ui.basic.Image();
            control.setAppearance("open-file-item/icon");

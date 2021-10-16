@@ -50,7 +50,7 @@ qx.Class.define("cv.util.String", {
     htmlStringToDomElement: function (str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
-      var div = document.createElement("div");
+      const div = document.createElement("div");
       div.innerHTML = str;
       const elem = div.children[0];
       document.body.appendChild(elem);
@@ -65,8 +65,8 @@ qx.Class.define("cv.util.String", {
      * @return {String}
      */
     sprintf: function() {
-      var args = Array.prototype.slice.call(arguments);
-      var string = "-";
+      const args = Array.prototype.slice.call(arguments);
+      let string = "-";
       try {
         string = sprintf.apply(this, args);
       } catch (err) {

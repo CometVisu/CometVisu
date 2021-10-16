@@ -86,14 +86,14 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
     initializeNavbars: function() {
       ["Top", "Left", "Right", "Bottom"].forEach(function(pos) {
         if (this["_navbar"+pos]) {
-          var elem = document.querySelector("#navbar"+pos);
+          const elem = document.querySelector("#navbar" + pos);
           if (elem) {
             elem.innerHTML += this["_navbar" + pos];
           }
         }
       }, this);
 
-      var self = this;
+      const self = this;
       // Event handlers to allow navbar fade in and fade out.
       // Currently only implemented for the major use case of a left navbar.
       // TODO add logic for other navbars as well
@@ -106,9 +106,8 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
       document.addEventListener("touchstart", function (evt) {
-        var
-          touches = evt.touches[0];
-          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+        const touches = evt.touches[0];
+        const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
           (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
@@ -128,16 +127,15 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
           return; // early exit as this touch isn't relevant for us
         }
 
-        var
-          touches = evt.touches[0];
-          var x = touches.clientX - self._touchX;
-          var y = touches.clientY - self._touchY;
-          var necessaryDistance = 10;
-          var enoughDistance = Math.abs(x) > necessaryDistance;
-          var horizontal = Math.abs(x) > Math.abs(y);
-          var toRight = x > 0;
+        const touches = evt.touches[0];
+        const x = touches.clientX - self._touchX;
+        const y = touches.clientY - self._touchY;
+        const necessaryDistance = 10;
+        const enoughDistance = Math.abs(x) > necessaryDistance;
+        const horizontal = Math.abs(x) > Math.abs(y);
+        const toRight = x > 0;
         if (horizontal && enoughDistance) {
-          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
             self._touchY = touches.clientY;
@@ -167,14 +165,14 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
     },
     
     getGlobalPath: function () {
-      var id = this.getPath().split("_");
+      const id = this.getPath().split("_");
       id.pop();
       return id.join("_") + "_" + this.getPosition() + "_navbar";
     },
 
     // overridden
     getDomString: function () {
-      var container = "<div class=\"" + this.getClasses() + "\" id=\"" + this.getGlobalPath() + "\">";
+      let container = "<div class=\"" + this.getClasses() + "\" id=\"" + this.getGlobalPath() + "\">";
       if (this.getName()) {
         container += "<h2>" + this.getName() + "</h2>";
       }

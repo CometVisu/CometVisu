@@ -45,7 +45,7 @@ qx.Class.define("cv.plugins.MobileMenu", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
@@ -70,14 +70,14 @@ qx.Class.define("cv.plugins.MobileMenu", {
     // overridden
     getDomString: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-        var navLeft = this.__navLeft = document.querySelector("#navbarLeft");
+        const navLeft = this.__navLeft = document.querySelector("#navbarLeft");
         if (!navLeft.classList.contains("mobilemenu")) {
           navLeft.classList.add("mobilemenu");
         }
         navLeft.style.display = "none";
         qx.event.message.Bus.subscribe("path.pageChanged", function() {
-          var navbar = navLeft.querySelector(".navbar");
-          var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
+          const navbar = navLeft.querySelector(".navbar");
+          const animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
           animation.addListenerOnce("end", function() {
             navLeft.style.display = "none";
           }, this);
@@ -98,16 +98,16 @@ qx.Class.define("cv.plugins.MobileMenu", {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
         if (this.isTouchDevice()) {
           this.__navLeft.style.display = "block";
-          var navbar = this.__navLeft.querySelector(".navbar.navbarActive");
+          const navbar = this.__navLeft.querySelector(".navbar.navbarActive");
           qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }
       }
     },
 
     touchScroll: function(id) {
-      var scrollStartPos=0;
+      let scrollStartPos = 0;
 
-      var elem = document.querySelector("#"+id);
+      const elem = document.querySelector("#" + id);
       qx.event.Registration.addListener(elem, "touchstart", function(event) {
         scrollStartPos=this.scrollTop+event.touches[0].pageY;
         event.preventDefault();
@@ -141,7 +141,7 @@ qx.Class.define("cv.plugins.MobileMenu", {
   // });
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/mobilemenu/mobilemenu.css");
     cv.parser.WidgetParser.addHandler("mobilemenu", statics);
     cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);

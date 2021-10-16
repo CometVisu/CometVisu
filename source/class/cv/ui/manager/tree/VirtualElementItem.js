@@ -84,7 +84,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
     MEMBERS
   ***********************************************
   */
-  members: {
+  members: { // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
@@ -163,9 +163,9 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
 
     // overridden
     _createChildControlImpl : function(id, hash) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "icon":
            control = new cv.ui.manager.basic.Image().set({
              alignY: "middle",
@@ -203,7 +203,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualElementItem", {
 
     // overridden
     addLabel : function(text) {
-      var label = this.getChildControl("label");
+      const label = this.getChildControl("label");
 
       if (this.__labelAdded) {
         this._remove(label);

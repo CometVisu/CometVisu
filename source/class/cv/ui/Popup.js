@@ -80,12 +80,12 @@ qx.Class.define("cv.ui.Popup", {
      */
     create: function (attributes) {
       cv.ui.BodyBlocker.getInstance().block(attributes.unique, attributes.topic);
-      var closable = !Object.prototype.hasOwnProperty.call(attributes,"closable") || attributes.closable;
-      var body = document.querySelector("body");
-      var ret_val;
-      var classes = ["popup", "popup_background", this.getType()];
-      var isNew = true;
-      var addCloseListeners = false;
+      const closable = !Object.prototype.hasOwnProperty.call(attributes, "closable") || attributes.closable;
+      const body = document.querySelector("body");
+      let ret_val;
+      const classes = ["popup", "popup_background", this.getType()];
+      let isNew = true;
+      let addCloseListeners = false;
       if (attributes.type) {
         classes.push(attributes.type);
       }
@@ -152,14 +152,14 @@ qx.Class.define("cv.ui.Popup", {
         
         if (attributes.icon) {
           if (!this.__elementMap.icon) {
-            var iconClasses = attributes.iconClasses ? " "+attributes.iconClasses : "";
+            const iconClasses = attributes.iconClasses ? " " + attributes.iconClasses : "";
             this.__elementMap.icon = qx.dom.Element.create("div", {"html": cv.util.IconTools.svgKUF(attributes.icon)(null, null, "icon" + iconClasses)});
             qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
-            var use = this.__elementMap.icon.querySelector("use");
-            var currentIconPath = use.getAttribute("xlink:href");
+            const use = this.__elementMap.icon.querySelector("use");
+            const currentIconPath = use.getAttribute("xlink:href");
             if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
-              var parts = currentIconPath.split("#");
+              const parts = currentIconPath.split("#");
               use.setAttribute("xlink:href", parts[0]+"#kuf-"+attributes.icon);
             }
           }
@@ -169,7 +169,7 @@ qx.Class.define("cv.ui.Popup", {
 
         if (attributes.progress) {
           if (!this.__elementMap.progress) {
-            var bar = new cv.ui.util.ProgressBar();
+            const bar = new cv.ui.util.ProgressBar();
             this.__elementMap.progress = bar.getDomElement();
             this.__elementMap.content.appendChild(this.__elementMap.progress);
           }
@@ -187,12 +187,12 @@ qx.Class.define("cv.ui.Popup", {
           // clear content
           this.__elementMap.actions.innerHTML = "";
         }
-        var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
+        const actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
         Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
-          var typeActions = Array.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
+          const typeActions = Array.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
 
-          var target = this.__elementMap.actions;
-          var wrapper = null;
+          let target = this.__elementMap.actions;
+          let wrapper = null;
           if (cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)] && cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper) {
             wrapper = cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper();
           } else {
@@ -201,7 +201,7 @@ qx.Class.define("cv.ui.Popup", {
           target.appendChild(wrapper);
           target = wrapper;
           typeActions.forEach(function (action) {
-            var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
+            const actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
             if (actionButton) {
               actionButton.$$handler && actionButton.$$handler.addListener("close", function () {
                 this.close();
@@ -222,17 +222,17 @@ qx.Class.define("cv.ui.Popup", {
         ret_val.style.height = attributes.height;
       }
 
-      var anchor = {x: -1, y: -1, w: 0, h: 0};
-      var align;
+      const anchor = {x: -1, y: -1, w: 0, h: 0};
+      let align;
       if (attributes.position) {
         if (attributes.position.offset) {
-          var offset = attributes.position.offset();
+          const offset = attributes.position.offset();
           anchor.x = offset.left;
           anchor.y = offset.top;
           anchor.w = attributes.position.width();
           anchor.h = attributes.position.height();
         } else {
-          if (Object.prototype.hasOwnProperty.call(attributes.position,"x")) {
+          if (Object.prototype.hasOwnProperty.call(attributes.position, "x")) {
             anchor.x = attributes.position.x;
           }
           if (Object.prototype.hasOwnProperty.call(attributes.position, "y")) {
@@ -252,9 +252,8 @@ qx.Class.define("cv.ui.Popup", {
       if (attributes.align !== undefined) {
         align = attributes.align;
       }
-      var
-        ret_valRect = ret_val.getBoundingClientRect();
-        var placement = cv.ui.PopupHandler.placementStrategy(
+      const ret_valRect = ret_val.getBoundingClientRect();
+      const placement = cv.ui.PopupHandler.placementStrategy(
         anchor,
         {w: Math.round(ret_valRect.right - ret_valRect.left), h: Math.round(ret_valRect.bottom - ret_valRect.top)},
         {w: document.documentElement.clientWidth, h: document.documentElement.clientHeight},
@@ -265,7 +264,7 @@ qx.Class.define("cv.ui.Popup", {
       ret_val.style.top = placement.y + "px";
 
       if (!closable && ret_val.querySelector(".reload") === null) {
-        var reload = "<div class=\"reload\">" +
+        const reload = "<div class=\"reload\">" +
           "<a href=\"javascript:location.reload(true);\">" +
           qx.locale.Manager.tr("Reload").toString() +
           "</a>" +
@@ -280,7 +279,7 @@ qx.Class.define("cv.ui.Popup", {
           //       one for the popup_background.
           this.fireEvent("close");
         }, this);
-        var close = ret_val.querySelector(".popup_close");
+        const close = ret_val.querySelector(".popup_close");
         qx.event.Registration.addListener(close, "tap", function () {
           this.fireEvent("close");
         }, this);

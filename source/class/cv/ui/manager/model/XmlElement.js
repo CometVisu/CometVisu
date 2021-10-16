@@ -192,10 +192,6 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
     __initializing: false,
     __addableChildren: null,
 
-    clone: function () {
-      return new cv.ui.manager.model.XmlElement(this.getNode(), this.getSchemaElement(), this.getEditor(), this.getParent());
-    },
-
     _maintainStatus: function () {
       if (this._node.nodeType === Node.COMMENT_NODE) {
         this.setStatus("comment");
@@ -602,6 +598,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
                 targetIndex = index;
                 return true;
               }
+              return false;
             });
             if (!found) {
               // append to the end
@@ -868,6 +865,7 @@ qx.Class.define("cv.ui.manager.model.XmlElement", {
           old: oldValue
         };
       }
+      return null;
     },
 
     /**

@@ -113,11 +113,11 @@ qx.Class.define("cv.report.Replay", {
      * Start replaying the given data
      */
     start: function() {
-      var runtime = Math.round((this.__end - this.__start)/1000);
-      console.log("Replay time: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
+      const runtime = Math.round((this.__end - this.__start) / 1000);
+      this.log("Replay time: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
       this.__startTime = Date.now();
 
-      var delay = this.__log[0].t - this.__start;
+      const delay = this.__log[0].t - this.__start;
       qx.event.Timer.once(function() {
         this.__replay(0);
       }, this, delay);
@@ -148,19 +148,19 @@ qx.Class.define("cv.report.Replay", {
 
     __replay: function(index) {
       this.__currentIndex = index;
-      var record = this.__log[index];
+      const record = this.__log[index];
       this.__dispatchRecord(record);
       if (this.__log.length === index + 1) {
         this.info("All log events have been played, waiting till end of recording time");
         qx.event.Timer.once(function() {
           qx.bom.Notification.getInstance().show("Replay", "Replay finished");
           cv.io.Client.stopAll();
-          var runtime = Math.round((Date.now() - this.__startTime) / 1000);
-          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
+          const runtime = Math.round((Date.now() - this.__startTime) / 1000);
+          this.log("Log replayed in: "+Math.floor(runtime/60)+":"+ (""+(runtime % 60)).padStart(2, "0"));
         }, this, this.__end - this.__log[index].t);
         return;
       }
-      var delay = this.__log[index+1].t - this.__log[index].t;
+      const delay = this.__log[index + 1].t - this.__log[index].t;
       qx.event.Timer.once(function() {
         this.__replay(index+1);
       }, this, delay);
@@ -172,17 +172,18 @@ qx.Class.define("cv.report.Replay", {
           this.__dispatchBackendRecord(record);
           break;
 
-        case cv.report.Record.STORAGE:
+        case cv.report.Record.STORAGE: {
           const store = qx.bom.Storage.getLocal();
           store.setItem(record.i, record.d);
           if (record.i === "preferences" && cv.ui.manager) {
             cv.ui.manager.model.Preferences.getInstance().setPreferences(record.d, true);
           }
           break;
+        }
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          console.log("resize event received "+JSON.stringify(record.d));
+          this.log("resize event received "+JSON.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 
@@ -190,7 +191,7 @@ qx.Class.define("cv.report.Replay", {
           if (record.i === "scroll") {
             this.__playScrollEvent(record);
           } else {
-            var target = this.__findElement(record.i);
+            const target = this.__findElement(record.i);
             if (!target) {
               this.error("no target found for path " + record.i);
               return;
@@ -198,17 +199,17 @@ qx.Class.define("cv.report.Replay", {
             if (/(pointer|mouse|gesture).+/.test(record.d.native.type)) {
               this._simulateCursor(record);
             }
-            var evt = record.d.native;
+            const evt = record.d.native;
             evt.view = evt.view === "Window" ? window : null;
             evt.target = target;
             ["currentTarget", "relatedTarget"].forEach(function (key) {
               evt[key] = evt[key] ? this.__findElement(evt[key]) : null;
             }, this);
-            var event = new window[record.d.eventClass](record.d.native.type, evt);
+            const event = new window[record.d.eventClass](record.d.native.type, evt);
             if (record.d.native.type === "pointerup" && target.nodeName === "A") {
               // workaround for mouse clicks on <a> elemente e.g. in the breadcrumb navigation
               // check for last pointerdown event, if id was on same element we have a click
-              for (var i=this.__currentIndex-1; i>0; i--) {
+              for (let i=this.__currentIndex-1; i>0; i--) {
                 if (this.__log[i].d.native.type === "pointerdown") {
                   if (this.__log[i].i === record.i) {
                     // same element
@@ -229,7 +230,7 @@ qx.Class.define("cv.report.Replay", {
     },
 
     __playScrollEvent: function(record) {
-      var elem = document.querySelector("#"+record.d.page);
+      const elem = document.querySelector("#" + record.d.page);
       elem.scrollTop = record.d.native ? record.d.native.pageY : record.d.y;
       elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },

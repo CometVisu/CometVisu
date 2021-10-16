@@ -59,7 +59,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
     _applyUrl: function(value) {
       if (value) {
         if (!this.__xhr) {
-          var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
           xhr.set({
             method: "GET",
             accept: "application/html",
@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.structure.pure.UrlTrigger", {
 
     // overridden
     _getInnerDomString: function () {
-      var actor = "<div class=\"actor switchUnpressed ";
+      let actor = "<div class=\"actor switchUnpressed ";
       if (this.getAlign()) {
         actor += this.getAlign();
       }

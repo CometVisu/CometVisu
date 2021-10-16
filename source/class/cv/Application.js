@@ -41,7 +41,7 @@ qx.Class.define("cv.Application",
   construct: function () {
     this.base(arguments);
     this.initCommandManager(new qx.ui.command.GroupManager());
-    var lang = qx.locale.Manager.getInstance().getLanguage();
+    const lang = qx.locale.Manager.getInstance().getLanguage();
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
       qx.io.PartLoader.require([lang]);
     }
@@ -189,16 +189,16 @@ qx.Class.define("cv.Application",
       }
       cv.report.Record.prepare();
 
-      var info = "\n"+
-        "  _____                     ___      ___\n"+
-        " / ____|                   | \\ \\    / (_)\n"+
-        "| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n"+
-        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n"+
-        "| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n"+
-        " \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n"+
-        "-----------------------------------------------------------\n"+
-        " ©2010-"+(new Date().getFullYear())+" Christian Mayer and the CometVisu contributers.\n"+
-        " Version: "+cv.Version.VERSION+"\n";
+      let info = "\n" +
+        "  _____                     ___      ___\n" +
+        " / ____|                   | \\ \\    / (_)\n" +
+        "| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n" +
+        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n" +
+        "| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n" +
+        " \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n" +
+        "-----------------------------------------------------------\n" +
+        " ©2010-" + (new Date().getFullYear()) + " Christian Mayer and the CometVisu contributers.\n" +
+        " Version: " + cv.Version.VERSION + "\n";
 
       if (cv.Application.consoleCommands.length) {
         info += "\n Available commands:\n"+
@@ -207,10 +207,11 @@ qx.Class.define("cv.Application",
 
       info += "-----------------------------------------------------------\n\n";
 
+      // eslint-disable-next-line no-console
       console.log(info);
 
       // add command to load and open the manager
-      var manCommand = new qx.ui.command.Command("Ctrl+M");
+      const manCommand = new qx.ui.command.Command("Ctrl+M");
       cv.TemplateEngine.getInstance().getCommands().add("open-manager", manCommand);
       manCommand.addListener("execute", this.showManager, this);
       if (cv.Config.request.queryKey.manager) {
@@ -257,15 +258,15 @@ qx.Class.define("cv.Application",
     showManager: function (action, data) {
       qx.io.PartLoader.require(["manager"], function (states) {
         // break dependency
-        var engine = cv.TemplateEngine.getInstance();
+        const engine = cv.TemplateEngine.getInstance();
         if (!engine.isLoggedIn() && !action) {
           // never start the manager before we are logged in, as the login response might contain information about the REST API URL
           engine.addListenerOnce("changeLoggedIn", this.showManager, this);
           return;
         }
-        var ManagerMain = cv.ui["manager"]["Main"];
+        const ManagerMain = cv.ui["manager"]["Main"];
         const firstCall = !ManagerMain.constructor.$$instance;
-        var manager = ManagerMain.getInstance();
+        const manager = ManagerMain.getInstance();
         if (!action && !firstCall) {
           manager.setVisible(!manager.getVisible());
         } else if (firstCall) {
@@ -347,7 +348,7 @@ qx.Class.define("cv.Application",
           }));
         } else {
           // show result message as dialog
-          console.error(res);
+          qx.log.Logger.error(this, res);
           cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
             target: "popup",
             message: qx.locale.Manager.tr("The %1 configuration has %2 errors!", displayConfigName, res.length),
@@ -371,10 +372,8 @@ qx.Class.define("cv.Application",
 
     __globalErrorHandler: function(ex) {
       // connect client data for Bug-Report
-      var bugData = cv.report.Record.getClientData();
-      var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
-      var exString = "";
-      var maxTraceLength = 2000;
+      let exString = "";
+      const maxTraceLength = 2000;
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       } else if (ex instanceof qx.core.WindowError) {
@@ -392,9 +391,9 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          var lastLine = "";
-          var repeated = 0;
-          var nStack = "";
+          let lastLine = "";
+          let repeated = 0;
+          let nStack = "";
           qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
             if (lastLine === entry) {
               if (repeated === 0) {
@@ -433,13 +432,12 @@ qx.Class.define("cv.Application",
           }
         }
       }
-      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+JSON.stringify(bugData, null, 2)+"\n```";
 
-      var notification = {
+      const notification = {
         topic: "cv.error",
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr("An error occured"),
-        message: "<pre>"+ (ex.stack || exString) +"</pre>",
+        message: "<pre>" + (ex.stack || exString) + "</pre>",
         severity: "urgent",
         deletable: false,
         actions: {
@@ -450,16 +448,16 @@ qx.Class.define("cv.Application",
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
-              action: function(ev) {
-                var parent = ev.getTarget().parentNode;
+              action: function (ev) {
+                let parent = ev.getTarget().parentNode;
                 while (parent) {
                   if (parent.id === "notification-center" || parent.classList.contains("popup")) {
                     break;
                   }
                   parent = parent.parentNode;
                 }
-                var box = parent.querySelector("#enableReporting");
-                var url = window.location.href.split("#").shift();
+                let box = parent.querySelector("#enableReporting");
+                let url = window.location.href.split("#").shift();
                 if (box && box.checked) {
                   // reload with reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
@@ -477,21 +475,15 @@ qx.Class.define("cv.Application",
         }
       };
       // reload with reporting checkbox
-      var reportAction = null;
-      var link = "";
-      if (cv.Config.reporting) {
-        // reporting is enabled -> download log and show hint how to append it to the ticket
-        body = "<!--\n"+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+"\n-->\n\n"+body;
-        reportAction = cv.report.Record.download;
-      } else {
+      let link = "";
+      if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === "de") {
-          link = " <a href=\"http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
+          link = " <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr("Action recording") + link,
           name: "enableReporting"
         });
-        // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
       }
 
       if (qx.core.Environment.get("cv.sentry")) {
@@ -510,7 +502,7 @@ qx.Class.define("cv.Application",
         } else {
           link = "";
           if (qx.locale.Manager.getInstance().getLanguage() === "de") {
-            link = " <a href=\"http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
+            link = " <a href=\"https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors\" target=\"_blank\" title=\"Hilfe\">(?)</a>";
           }
           notification.actions.optionGroup.options.push({
             title: qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
@@ -571,8 +563,8 @@ qx.Class.define("cv.Application",
      */
     bootstrap: async function(xml) {
       this.debug("bootstrapping");
-      var engine = cv.TemplateEngine.getInstance();
-      var loader = cv.util.ScriptLoader.getInstance();
+      const engine = cv.TemplateEngine.getInstance();
+      const loader = cv.util.ScriptLoader.getInstance();
 
       engine.xml = xml;
       loader.addListenerOnce("finished", function() {
@@ -595,7 +587,7 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.clear();
 
           // load empty HTML structure
-          var body = document.querySelector("body");
+          const body = document.querySelector("body");
           body.innerHTML = cv.Application.HTML_STRUCT;
 
           //empty model
@@ -610,7 +602,7 @@ qx.Class.define("cv.Application",
           this.__detectInitialPage();
 
           // load part for structure
-          var structure = cv.Config.getStructure();
+          const structure = cv.Config.getStructure();
           this.debug("loading structure "+structure);
           engine.loadParts([structure], function(states) {
             if (states === "complete") {
@@ -625,20 +617,20 @@ qx.Class.define("cv.Application",
           engine.addListenerOnce("changeReady", function() {
             // create the objects
             cv.Config.treePath = cv.Config.initialPage;
-            var data = cv.data.Model.getInstance().getWidgetData("id_");
+            const data = cv.data.Model.getInstance().getWidgetData("id_");
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);
           // check if the current design settings overrides the cache one
           this.loadPlugins();
           if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
-            var styles = [];
+            const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function(style) {
               styles.push(style.replace("designs/"+cv.Config.configSettings.clientDesign, "designs/"+cv.Config.clientDesign));
             }, this);
             this.loadStyles(styles);
 
-            var scripts = [];
+            const scripts = [];
             cv.Config.configSettings.scriptsToLoad.forEach(function(style) {
               scripts.push(style.replace("designs/"+cv.Config.configSettings.clientDesign, "designs/"+cv.Config.clientDesign));
             }, this);
@@ -708,13 +700,13 @@ qx.Class.define("cv.Application",
      * Load plugins
      */
     loadPlugins: function() {
-      var plugins = cv.Config.configSettings.pluginsToLoad;
+      const plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
-        var standalonePlugins = [];
-        var partsLoaded = false;
-        var allPluginsQueued = false;
+        const standalonePlugins = [];
+        let partsLoaded = false;
+        let allPluginsQueued = false;
         this.debug("loading plugins");
-        var engine = cv.TemplateEngine.getInstance();
+        const engine = cv.TemplateEngine.getInstance();
         engine.addListener("changePartsLoaded", function(ev) {
           if (ev.getData() === true) {
             this.debug("plugins loaded");
@@ -726,9 +718,9 @@ qx.Class.define("cv.Application",
             }
           }
         }, this);
-        var parts = qx.Part.getInstance().getParts();
-        var partPlugins = [];
-        var path = qx.util.LibraryManager.getInstance().get("cv", "resourceUri");
+        const parts = qx.Part.getInstance().getParts();
+        const partPlugins = [];
+        const path = qx.util.LibraryManager.getInstance().get("cv", "resourceUri");
         plugins.forEach(function(plugin) {
           if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
             partPlugins.push(plugin);
@@ -748,7 +740,7 @@ qx.Class.define("cv.Application",
           if (this.getStructureLoaded()) {
             cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
           } else {
-            var lid = this.addListener("changeStructureLoaded", function (ev) {
+            const lid = this.addListener("changeStructureLoaded", function (ev) {
               if (ev.getData() === true) {
                 allPluginsQueued = true;
                 this.debug("loading standalone plugins");
@@ -770,7 +762,7 @@ qx.Class.define("cv.Application",
     },
 
     __detectInitialPage: function() {
-      var startpage = "id_";
+      let startpage = "id_";
       if (cv.Config.startpage) {
         startpage = cv.Config.startpage;
         if (qx.core.Environment.get("html.storage.local") === true) {
@@ -787,7 +779,7 @@ qx.Class.define("cv.Application",
           }
         }
       } else {
-        var req = qx.util.Uri.parseUri(window.location.href);
+        const req = qx.util.Uri.parseUri(window.location.href);
         if (req.anchor && req.anchor.substring(0, 3) === "id_") {
           startpage = req.anchor;
         }

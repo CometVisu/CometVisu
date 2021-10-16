@@ -11,7 +11,7 @@ qx.Class.define("cv.ui.manager.model.schema.DocumentationMapping", {
   */
   statics: {
     MAP: {
-      "_base": "http://www.cometvisu.org/CometVisu/",
+      "_base": "https://www.cometvisu.org/CometVisu/",
       "audio": "/latest/manual/config/widgets/audio/index.html#audio",
       "break": "/latest/manual/config/widgets/break/index.html#break",
       "colorchooser": "/latest/manual/config/widgets/plugins/colorchooser/index.html#colorchooser",

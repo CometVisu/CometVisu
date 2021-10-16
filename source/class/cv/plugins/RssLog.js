@@ -98,7 +98,7 @@ qx.Class.define("cv.plugins.RssLog", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
@@ -155,7 +155,7 @@ qx.Class.define("cv.plugins.RssLog", {
     normalizeUrl: function(value) {
       this.__fixedRequestData = {};
       if (value && value.indexOf("?") > 0) {
-        var parts = qx.util.Uri.parseUri(value);
+        const parts = qx.util.Uri.parseUri(value);
         value = value.substring(0, value.indexOf("?"));
         this.__fixedRequestData = parts.queryKey;
       }
@@ -168,7 +168,7 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     _getInnerDomString: function () {
-      var style = "";
+      let style = "";
       if (this.getWidth()) {
         style += "width:" + this.getWidth() + ";";
       }
@@ -208,11 +208,11 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     _action: function () {
-      var brss = cv.util.String.htmlStringToDomElement("<div class=\"rsslog_popup\" id=\"rss_" + this.getPath() + "_big\"/>");
-      var label = document.querySelector("#" + this.getPath() + " .label");
-      var title = label ? (label.innerText || "") : "";
-      var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
-      var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
+      const brss = cv.util.String.htmlStringToDomElement("<div class=\"rsslog_popup\" id=\"rss_" + this.getPath() + "_big\"/>");
+      const label = document.querySelector("#" + this.getPath() + " .label");
+      const title = label ? (label.innerText || "") : "";
+      const popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
+      const parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value) {
  parent.style[key_value[0]]=key_value[1]; 
 }); // define parent as 100%!
@@ -233,7 +233,7 @@ qx.Class.define("cv.plugins.RssLog", {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
-          for (var addr in this.getAddress()) {
+          for (let addr in this.getAddress()) {
             if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
  continue; 
 }// skip when write flag not set
@@ -246,7 +246,7 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     refreshRSSlog: function (isBig) {
-      var src = this.getSrc();
+      const src = this.getSrc();
       if (!src) {
         this.error("no src given, aborting RSS-Log refresh");
         return;
@@ -263,7 +263,7 @@ qx.Class.define("cv.plugins.RssLog", {
         this.__request.send();
       }
 
-      var refresh = this.getRefresh();
+      const refresh = this.getRefresh();
       if (typeof (refresh) !== "undefined" && refresh) {
         // reload regularly
         if (this._timer && this._timer.isEnabled()) {
@@ -276,8 +276,8 @@ qx.Class.define("cv.plugins.RssLog", {
      * Fetch data from builtin PHP script
      */
     __refreshRss: function() {
-      var src = this.getSrc();
-      var requestData = Object.assign({}, this.__fixedRequestData);
+      const src = this.getSrc();
+      const requestData = Object.assign({}, this.__fixedRequestData);
       if (this.getFilter()) {
         requestData.f = this.getFilter();
       }
@@ -306,20 +306,20 @@ qx.Class.define("cv.plugins.RssLog", {
       c.appendChild(ul);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
+      let displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
       ul.innerHTML = "<li class=\"rsslogRow odd\" id=\"dummydiv\">.</li>";
-      var dummyDiv = c.querySelector("#dummydiv");
-        var rect = dummyDiv.getBoundingClientRect();
-        var itemheight = Math.round(rect.bottom - rect.top);
+      const dummyDiv = c.querySelector("#dummydiv");
+      const rect = dummyDiv.getBoundingClientRect();
+      const itemheight = Math.round(rect.bottom - rect.top);
       dummyDiv.parentNode.removeChild(dummyDiv);
       if (itemheight !== 0) {
-        var widget = c.parentNode.parentNode; // get the parent widget
-          var widgetRect = widget.getBoundingClientRect();
-          var displayheight = Math.round(widgetRect.bottom - widgetRect.top);
-          var labelElem = widget.querySelector(".label");
+        const widget = c.parentNode.parentNode; // get the parent widget
+        const widgetRect = widget.getBoundingClientRect();
+        let displayheight = Math.round(widgetRect.bottom - widgetRect.top);
+        const labelElem = widget.querySelector(".label");
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
-          var labelElemRect = labelElem.getBoundingClientRect();
+          const labelElemRect = labelElem.getBoundingClientRect();
           displayheight -= Math.round(labelElemRect.bottom - labelElemRect.top);
         }
         displayrows = Math.floor(displayheight / itemheight);
@@ -329,7 +329,7 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     __updateRssContent: function(ev) {
-      var result = ev.getTarget().getResponse();
+      const result = ev.getTarget().getResponse();
       if (typeof result === "string") {
         // no json -> error
         this.error(result);
@@ -339,20 +339,20 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     __updateContent: function(items) {
-      var isBig = this.__request.getUserData("big");
-      var selector = "#rss_" + this.getPath() + (isBig === true ? "_big" : "");
-      var c = document.querySelector(selector);
-      var itemack = isBig === true ? this.getItemack() : (this.getItemack() === "modify" ? "display" : this.getItemack());
+      const isBig = this.__request.getUserData("big");
+      const selector = "#rss_" + this.getPath() + (isBig === true ? "_big" : "");
+      const c = document.querySelector(selector);
+      const itemack = isBig === true ? this.getItemack() : (this.getItemack() === "modify" ? "display" : this.getItemack());
 
       this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
 
-      var ul = document.createElement("ul");
-      var displayrows = this.__prepareContentElement(ul, c);
+      const ul = document.createElement("ul");
+      const displayrows = this.__prepareContentElement(ul, c);
 
-      var itemnum = items.length;
+      const itemnum = items.length;
       this.debug("C: #"+this.getPath()+", "+itemnum+" element(s) found, "+displayrows+" displayrow(s) available");
 
-      var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
+      let itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
 
       if (itemnum > displayrows) { // no need to check mode if items are less than rows
         if (this.getMode() === "first") {
@@ -367,8 +367,8 @@ qx.Class.define("cv.plugins.RssLog", {
         }
       }
 
-      var row = "rsslogodd";
-      var last = itemoffset + displayrows;
+      let row = "rsslogodd";
+      let last = itemoffset + displayrows;
       last = (last > itemnum) ? itemnum : last;
 
       this.__separatordate = new Date().strftime("%d");
@@ -376,21 +376,21 @@ qx.Class.define("cv.plugins.RssLog", {
       this.__separatorprevday = false;
       this.__isFuture = false;
 
-      for (var i = itemoffset; i < last; i++) {
+      for (let i = itemoffset; i < last; i++) {
         this.debug("C: #"+this.getPath()+", processing item: "+i+" of "+itemnum);
-        var idx = i;
+        let idx = i;
         idx = (i >= itemnum) ? (idx -= itemnum) : idx;
 
-        var item = items[idx];
-        var itemHtml = this.__getItemHtml(item, isBig);
+        const item = items[idx];
+        const itemHtml = this.__getItemHtml(item, isBig);
 
-        var rowElem = qx.dom.Element.create("li", { "class" : "rsslogRow " + row });
+        const rowElem = qx.dom.Element.create("li", {"class": "rsslogRow " + row});
         rowElem.innerHTML = itemHtml;
 
         if (item.mapping && item.mapping !== "") {
-          var mappedValue = this.applyMapping(itemack === "disable" ? 0 : item.state, item.mapping);
-          var span = rowElem.querySelector(".mappedValue");
-          var self = this;
+          const mappedValue = this.applyMapping(itemack === "disable" ? 0 : item.state, item.mapping);
+          const span = rowElem.querySelector(".mappedValue");
+          const self = this;
           this.defaultValue2DOM(mappedValue, function(e) {
  self._applyValueToDom(span, e); 
 });
@@ -413,7 +413,7 @@ qx.Class.define("cv.plugins.RssLog", {
         rowElem.dataset["id"] = item.id;
         rowElem.dataset["mapping"] = item.mapping;
         if (item.tags) {
-          var tmp = rowElem.querySelector("span");
+          const tmp = rowElem.querySelector("span");
           if (Array.isArray(item.tags)) {
             tmp.classList.add.apply(tmp.classList, item.tags);
           } else {
@@ -435,17 +435,17 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     __getItemHtml: function(item, isBig) {
-      var itemHtml = "";
+      let itemHtml = "";
       if (!this.__external) {
         itemHtml = this.__html;
 
         itemHtml = itemHtml.replace(/\{text\}/, item.content);
-        var entryDate = new Date(item.publishedDate);
+        const entryDate = new Date(item.publishedDate);
         if (entryDate) {
           itemHtml = (this.getTimeformat()) ?
             (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + "&nbsp;")) :
             (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + " " + entryDate.toLocaleTimeString() + "&nbsp;"));
-          var thisday = entryDate.strftime("%d");
+          const thisday = entryDate.strftime("%d");
           this.__separatoradd = ((this.__separatordate > 0) && (this.__separatordate !== thisday));
           this.__separatordate = thisday;
           this.__isFuture = (entryDate > new Date());
@@ -463,22 +463,22 @@ qx.Class.define("cv.plugins.RssLog", {
     },
 
     _onTap: function(ev) {
-      var item = ev.getCurrentTarget();
+      const item = ev.getCurrentTarget();
 
-      var id = item.dataset["id"];
-      var mapping = item.dataset["mapping"];
+      const id = item.dataset["id"];
+      const mapping = item.dataset["mapping"];
       item.classList.toggle("rsslog_ack");
-      var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
+      const state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
       if (mapping && mapping !== "") {
-        var mappedValue = this.applyMapping(state, mapping);
-        var span = item.querySelector(".mappedValue");
+        const mappedValue = this.applyMapping(state, mapping);
+        const span = item.querySelector(".mappedValue");
         span.innerHTML = "";
-        var self = this;
+        const self = this;
         this.defaultValue2DOM(mappedValue, function(e) {
  self._applyValueToDom(span, e); 
 });
       }
-      var req = new qx.io.request.Xhr(this.__request.getUrl());
+      const req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
         requestData: Object.assign({}, this.__fixedRequestData, {
@@ -492,7 +492,7 @@ qx.Class.define("cv.plugins.RssLog", {
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/rsslog/rsslog.css");
     cv.parser.WidgetParser.addHandler("rsslog", cv.plugins.RssLog);
     cv.ui.structure.WidgetFactory.registerClass("rsslog", statics);

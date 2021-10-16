@@ -24,7 +24,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         this._applyStartDragListeners();
       }, this);
     }
-    var layout = this._getLayout();
+    const layout = this._getLayout();
     if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
       this.addListener("resize", this.__syncBounds, this);
     }
@@ -71,9 +71,9 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * @param replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones
      */
     uploadFile: function (file, replaceFile) {
-      var isConfig = cv.ui.manager.model.FileItem.isConfigFile(file.name);
+      const isConfig = cv.ui.manager.model.FileItem.isConfigFile(file.name);
 
-      var folder;
+      let folder;
       if (isConfig) {
         // upload to root folder
         folder = new cv.ui.manager.model.FileItem(".");
@@ -85,7 +85,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         folder.set({
           type: "dir"
         });
-        var manager = new cv.ui.manager.upload.UploadMgr();
+        const manager = new cv.ui.manager.upload.UploadMgr();
         if (replaceFile) {
           manager.replaceFile(file, replaceFile);
         } else {
@@ -105,14 +105,16 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * @private
      */
     getFiles: function (ev) {
-      var files = [];
-      var i; var l; var file;
+      const files = [];
+      let i;
+      let l;
+      let file;
 
       if (ev.dataTransfer.items) {
         // Use DataTransferItemList interface to access the file(s)
         for (i = 0, l = ev.dataTransfer.items.length; i < l; i++) {
           // If dropped items aren't files, reject them
-          var item = ev.dataTransfer.items[i];
+          const item = ev.dataTransfer.items[i];
           if (item.kind === "file" && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
             file = item.getAsFile();
             files.push(file);
@@ -140,16 +142,16 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     _boundOnStop: null,
 
     __syncBounds: function () {
-      var bounds = this.getBounds();
+      const bounds = this.getBounds();
       this.getChildControl("upload-overlay").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
       this.getChildControl("upload-dropbox").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
     },
 
     // overridden
     _createMDragUploadChildControlImpl: function(id) {
-      var control;
-      var bounds = this.getBounds();
-      var layout = this._getLayout();
+      let control;
+      const bounds = this.getBounds();
+      const layout = this._getLayout();
 
       switch (id) {
         case "upload-overlay":
@@ -165,11 +167,11 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           this.getChildControl("upload-dropbox").bind("visibility", control, "visibility");
           break;
 
-        case "upload-dropbox":
+        case "upload-dropbox": {
           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
           control.setBackgroundColor("rgba(32, 32, 32, 0.9)");
           control.setZIndex(1000);
-          var dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon("upload", 32));
+          const dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon("upload", 32));
           dropBox.set({
             iconPosition: "top",
             rich: true,
@@ -187,6 +189,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           }
           this._add(control);
           break;
+        }
       }
       return control;
     },
@@ -227,9 +230,9 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop
      */
     _applyDragListeners: function() {
-      var element = this.getChildControl("upload-overlay").getContentElement().getDomElement();
+      const element = this.getChildControl("upload-overlay").getContentElement().getDomElement();
       if (!element) {
-        var lid = this.getChildControl("upload-overlay").addListener("visibility", function (ev) {
+        const lid = this.getChildControl("upload-overlay").addListener("visibility", function (ev) {
           if (ev.getData() === "visible") {
             this._applyDragListeners();
             this.getChildControl("upload-overlay").removeListenerById(lid);
@@ -243,7 +246,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
       element.addEventListener("dragover", function (ev) {
         ev.preventDefault();
-        var uploadable = false;
+        let uploadable = false;
         if (this._isDroppable) {
           uploadable = this._isDroppable(ev.dataTransfer.items);
         } else if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {

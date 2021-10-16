@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
       this._formController = new qx.data.controller.Object(this.getModel());
       this._onFormReady(this._form);
       let i = 0;
-      let loadingStatus; let atom;
+      let atom;
       for (let key of Object.getOwnPropertyNames(formData)) {
         const mappedKey = this.__mappedKeys.inverse[key];
         let fieldData = formData[key];
@@ -143,7 +143,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             formElement = new qx.ui.form.PasswordField();
             formElement.getContentElement().setAttribute("autocomplete", "password");
             break;
-          case "combobox":
+          case "combobox": {
             formElement = new qx.ui.form.ComboBox();
             const parseComboOptions = function (options) {
               if (Array.isArray(options)) {
@@ -180,7 +180,8 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               parseComboOptions(fieldData.options);
             }
             break;
-          case "virtualcombobox":
+          }
+          case "virtualcombobox": {
             formElement = new qx.ui.form.VirtualComboBox();
             formElement.set({
               iconPath: "icon",
@@ -190,7 +191,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               formElement.getChildControl("textfield").setLiveUpdate(true);
             }
             const selection = formElement.getChildControl("dropdown").getSelection();
-            selection.addListener("change", function(ev) {
+            selection.addListener("change", function (ev) {
               const selected = selection.getItem(0);
               if (selected && selected instanceof cv.ui.manager.form.Option) {
                 this.__hints = selected.getHints();
@@ -229,10 +230,10 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             }
 
             formElement.setDelegate({
-              createItem: function() {
+              createItem: function () {
                 return new cv.ui.manager.form.ListItem();
               },
-              bindItem:  function (controller, item, index) {
+              bindItem: function (controller, item, index) {
                 controller.bindProperty("icon", "icon", null, item, index);
                 controller.bindProperty("label", "label", null, item, index);
                 controller.bindProperty("type", "appearance", {
@@ -258,7 +259,9 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             });
             formElement.setModel(model);
             break;
-          case "selectbox":
+          }
+
+          case "selectbox": {
             formElement = new qx.ui.form.SelectBox();
             if (fieldData.options instanceof Promise) {
               atom = formElement.getChildControl("atom");
@@ -269,6 +272,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 atom.resetLabel();
                 atom.removeState("loading");
                 model = qx.data.marshal.Json.createModel(options);
+                // eslint-disable-next-line no-new
                 new qx.data.controller.List(model, formElement, "label");
               }, this).catch(err => {
                 this.error(err);
@@ -279,9 +283,12 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               }, this);
             } else {
               model = qx.data.marshal.Json.createModel(fieldData.options);
+              // eslint-disable-next-line no-new
               new qx.data.controller.List(model, formElement, "label");
             }
             break;
+          }
+
           case "virtualselectbox":
             formElement = new cv.ui.manager.form.VirtualSelectBox();
             model = new qx.data.Array();
@@ -414,6 +421,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                         option = item;
                         return true;
                       }
+                      return false;
                     });
                     return option;
                   }
@@ -446,8 +454,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 }, formElement)
               }, {
                 converter: qx.lang.Function.bind(function (selection) {
-                  let value = selection[0].getModel().getValue();
-                  return value;
+                  return selection[0].getModel().getValue();
                 }, formElement)
               });
               break;
@@ -468,8 +475,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
                 }, formElement)
               }, {
                 converter: function (selection) {
-                  let value = selection[0].getUserData("value");
-                  return value;
+                  return selection[0].getUserData("value");
                 }
               });
               break;
@@ -519,6 +525,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
               // clean
             let proxy = fieldData.validation.proxy.replace(/;\n/g, "");
             try {
+              // eslint-disable-next-line no-eval
               eval("proxy = " + proxy + ";");
             } catch (e) {
               this.warn("Invalid proxy name");
@@ -526,12 +533,11 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
             if (typeof proxy == "function") {
               let method = fieldData.validation.method;
               let message = fieldData.validation.invalidMessage;
-              let _this = this;
               let validationFunc = function (validatorObj, value) {
                 if (!validatorObj.__asyncInProgress) {
                   validatorObj.__asyncInProgress = true;
                   proxy(method, [value], function (valid) {
-                    validatorObj.setValid(valid, message || this.tr("Value is invalid"));
+                    validatorObj.setValid(valid, message || qx.locale.Manager.tr("Value is invalid"));
                     validatorObj.__asyncInProgress = false;
                   });
                 }
@@ -563,6 +569,7 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
         if (qx.lang.Type.isObject(fieldData.events)) {
           for (let type in fieldData.events) {
             try {
+              // eslint-disable-next-line no-eval
               let func = eval("(" + fieldData.events[type] + ")"); // eval is evil, I know.
               if (!qx.lang.Type.isFunction(func)) {
                 throw new Error();

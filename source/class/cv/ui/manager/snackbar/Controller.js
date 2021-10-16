@@ -26,7 +26,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
   */
   statics: {
     info: function (message) {
-      var msg = new cv.ui.manager.model.Message();
+      const msg = new cv.ui.manager.model.Message();
       msg.set({
         title: message
       });
@@ -34,7 +34,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
     },
 
     error: function (message) {
-      var msg = new cv.ui.manager.model.Message();
+      const msg = new cv.ui.manager.model.Message();
       if (typeof message === "object" && Object.prototype.hasOwnProperty.call(message, "statusText")) {
         message = message.statusText;
       }
@@ -74,7 +74,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
     _listController: null,
 
     _onMessage: function (ev) {
-      var msg = ev.getData();
+      const msg = ev.getData();
       if (msg instanceof cv.ui.manager.model.Message) {
         this.getMessages().push(msg);
         this.show();
@@ -82,7 +82,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
     },
 
     _onCloseMessage: function (ev) {
-      var msg = ev.getData();
+      const msg = ev.getData();
       this.getMessages().remove(msg);
       if (this.getMessages().length === 0) {
         this.exclude();
@@ -92,7 +92,7 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
     _initDelegate: function () {
       this._listController.setDelegate({
         createItem: function () {
-          var item = new cv.ui.manager.snackbar.Message();
+          const item = new cv.ui.manager.snackbar.Message();
           item.addListener("close", this._onCloseMessage, this);
           return item;
         }.bind(this),
@@ -105,9 +105,9 @@ qx.Class.define("cv.ui.manager.snackbar.Controller", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "list":
            control = new qx.ui.form.List();
            this._add(control, {flex: 1});

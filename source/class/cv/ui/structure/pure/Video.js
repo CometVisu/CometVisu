@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.structure.pure.Video", {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var style = "";
+      let style = "";
       if (this.getWidth()) {
         style += "width:" + this.getWidth() + ";";
       }
@@ -58,7 +58,7 @@ qx.Class.define("cv.ui.structure.pure.Video", {
       if (style !== "") {
  style = "style=\"" + style + "\""; 
 }
-      var autoplay = this.isAutoplay() ? " autoplay=\"autoplay\"" : "";
+      const autoplay = this.isAutoplay() ? " autoplay=\"autoplay\"" : "";
       return "<div class=\"actor\"><video src=\"" + this.getSrc() + "\" " + style + autoplay + "  controls=\"controls\" /></div>";
     },
 
@@ -69,7 +69,7 @@ qx.Class.define("cv.ui.structure.pure.Video", {
 
     // overridden
     _applyVisible: function(value) {
-      var video = this.getValueElement();
+      const video = this.getValueElement();
       if (video) {
         if (value === true && this.isAutoplay()) {
           video.play();

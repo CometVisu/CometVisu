@@ -132,9 +132,9 @@ qx.Class.define("cv.io.openhab.Rest", {
       } else if (/^[\d]+$/.test(time)) {
         let d = new Date();
         d.setTime(parseInt(time) * 1000);
-      } else {
-        return null;
+        return d;
       }
+      return null;
     },
 
     hasCustomChartsDataProcessor : function () {
@@ -327,7 +327,7 @@ qx.Class.define("cv.io.openhab.Rest", {
       return this.__lastError;
     },
     restart: function(full) {
-      console.log("Not implemented");
+      this.error("Not implemented");
     },
 
     update: function(json) {}, // jshint ignore:line

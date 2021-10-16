@@ -76,7 +76,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     qx.event.Registration.addListener(window, "resize", this._onResize, this);
 
-    this.debouncedHide = new qx.util.Function.debounce(this.hide.bind(this), 5000, false);
+    this.debouncedHide = qx.util.Function.debounce(this.hide.bind(this), 5000, false);
 
 
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
@@ -87,7 +87,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       prepareMessage: function(message) {
         // resolve icon if there is one
         if (message.icon) {
-          var iconClasses = message.iconClasses ? " "+message.iconClasses : "";
+          const iconClasses = message.iconClasses ? " " + message.iconClasses : "";
           message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, "icon" + iconClasses);
         }
       }
@@ -193,7 +193,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     _onResize: function() {
-      var height = document.documentElement.clientHeight;
+      const height = document.documentElement.clientHeight;
       if (this.__element) {
         this.__element.style.left = document.documentElement.clientWidth + "px";
         this.__element.style.height = height + "px";
@@ -201,12 +201,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       if (this.__messagesContainer) {
         // get header+footer heights
-        var
-          headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect();
-          var footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect();
-          var messageBoxHeight = height -
-            Math.round(headerRect.bottom - headerRect.top) -
-            Math.round(footerRect.bottom - footerRect.top);
+        const headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect();
+        const footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect();
+        const messageBoxHeight = height -
+          Math.round(headerRect.bottom - headerRect.top) -
+          Math.round(footerRect.bottom - footerRect.top);
         this.__messagesContainer.style.height = messageBoxHeight + "px";
       }
     },
@@ -216,8 +215,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @private
      */
     _init: function() {
-      var body = document.querySelector("body");
-      
+      const body = document.querySelector("body");
+
       this.__blocker = cv.ui.BodyBlocker.getInstance();
 
       this.__favico = new Favico({
@@ -226,7 +225,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       });
 
       // check if the element is already there (might have been cached)
-      var elem = this.__element = document.querySelector(this.getRootElementId());
+      let elem = this.__element = document.querySelector(this.getRootElementId());
 
       if (!elem) {
         // create new element
@@ -238,13 +237,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
         body.appendChild(elem);
 
         // create the template
-        var templateCode = "<div class=\"message {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\""+this.getMessageElementId()+"{{ id }}\">";
+        let templateCode = "<div class=\"message {{severity}}{{#actions}} selectable{{/actions}}\" title=\"{{tooltip}}\" id=\"" + this.getMessageElementId() + "{{ id }}\">";
         templateCode += "{{#icon}}{{ &icon }}{{/icon}}";
         templateCode += "{{#deletable}}<div class=\"action delete\">x</div>{{/deletable}}";
         templateCode += "{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}";
         templateCode += "<div class=\"content\">{{&message}}</div></div>";
 
-        var template = qx.dom.Element.create("script", {
+        const template = qx.dom.Element.create("script", {
           id: "MessageTemplate",
           type: "text/template",
           html: templateCode
@@ -271,13 +270,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     __updateBadge: function() {
-      var currentContent = parseInt(this.__badge.getAttribute("html"));
+      let currentContent = parseInt(this.__badge.getAttribute("html"));
       if (isNaN(currentContent)) {
         currentContent = 0;
       }
-      var messages = this.getMessages().getLength();
+      const messages = this.getMessages().getLength();
 
-      var update = function() {
+      const update = function () {
         // still empty
         if (this.getMessages().getLength() === 0) {
           this.hide();
@@ -304,7 +303,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     _onSeverityChange: function() {
-      var severity = this.getGlobalSeverity();
+      const severity = this.getGlobalSeverity();
       if (this.__badge) {
         this.__badge.classList.remove.apply(this.__badge.classList, this._severities);
         this.__badge.classList.add(severity);
@@ -328,7 +327,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__element.style.visibility = "";
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-          var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
+          const anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
             this.__element.style.transform = "translate(-300px)";
           }, this);
@@ -357,7 +356,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__visible = false;
         qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-          var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
+          const anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
             this.__element.style.transform = "translate(-0px)";
             this.__blocker.unblock();

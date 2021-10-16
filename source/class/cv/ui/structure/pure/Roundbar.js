@@ -71,9 +71,8 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
      * @param getBBox {Boolean} return the bounding box instead of the path itself
      */
     createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width, getBBox = false) {
-      var
-        startArrowPointAngle = startAngle + startArrowPoint;
-        var endArrowPointAngle = endAngle + endArrowPoint;
+      const startArrowPointAngle = startAngle + startArrowPoint;
+      const endArrowPointAngle = endAngle + endArrowPoint;
 
       // The path to generate is using those positions:
       // rO             -- outer --
@@ -84,26 +83,31 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       //     |        /             \        |
       //     |_______|               |_______|
       //       start      center        end
-      var
-        clockwise = startAngle > endAngle ? 1 : 0;
-        var rI = radius;
-        var rIM = radius + width*1/4;
-        var rM = radius + width*2/4;
-        var rMO = radius + width*3/4;
-        var rO = radius + width;
-        var startInner = {x: Math.cos(startAngle)*rI, y: -Math.sin(startAngle)*rI};
-        var startMiddle = {x: Math.cos(startArrowPointAngle)*rM, y: -Math.sin(startArrowPointAngle)*rM};
-        var startOuter = {x: Math.cos(startAngle)*rO, y: -Math.sin(startAngle)*rO};
-        var centerInner = {x: Math.cos((startAngle+endAngle)/2)*rI, y: -Math.sin((startAngle+endAngle)/2)*rI};
-        var centerOuter = {x: Math.cos((startAngle+endAngle)/2)*rO, y: -Math.sin((startAngle+endAngle)/2)*rO};
-        var endInner = {x: Math.cos(endAngle)*rI, y: -Math.sin(endAngle)*rI};
-        var endMiddle = {x: Math.cos(endArrowPointAngle)*rM, y: -Math.sin(endArrowPointAngle)*rM};
-        var endOuter = {x: Math.cos(endAngle)*rO, y: -Math.sin(endAngle)*rO};
-        var startMiddleFlag = Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0;
-        var startEndFlag = Math.abs(startAngle - endAngle)/2 > Math.PI ? 1 : 0;
-        var endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0;
-        var startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0;
-        var endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
+      const clockwise = startAngle > endAngle ? 1 : 0;
+      const rI = radius;
+      const rIM = radius + width * 1 / 4;
+      const rM = radius + width * 2 / 4;
+      const rMO = radius + width * 3 / 4;
+      const rO = radius + width;
+      const startInner = {x: Math.cos(startAngle) * rI, y: -Math.sin(startAngle) * rI};
+      const startMiddle = {x: Math.cos(startArrowPointAngle) * rM, y: -Math.sin(startArrowPointAngle) * rM};
+      const startOuter = {x: Math.cos(startAngle) * rO, y: -Math.sin(startAngle) * rO};
+      const centerInner = {
+        x: Math.cos((startAngle + endAngle) / 2) * rI,
+        y: -Math.sin((startAngle + endAngle) / 2) * rI
+      };
+      const centerOuter = {
+        x: Math.cos((startAngle + endAngle) / 2) * rO,
+        y: -Math.sin((startAngle + endAngle) / 2) * rO
+      };
+      const endInner = {x: Math.cos(endAngle) * rI, y: -Math.sin(endAngle) * rI};
+      const endMiddle = {x: Math.cos(endArrowPointAngle) * rM, y: -Math.sin(endArrowPointAngle) * rM};
+      const endOuter = {x: Math.cos(endAngle) * rO, y: -Math.sin(endAngle) * rO};
+      const startMiddleFlag = Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0;
+      const startEndFlag = Math.abs(startAngle - endAngle) / 2 > Math.PI ? 1 : 0;
+      const endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0;
+      const startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0;
+      const endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
 
       /**
        * @param start
@@ -121,15 +125,14 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       }
 
       if (getBBox) {
-        var
-          rMax = Math.max(rI, rO);
-          var isInside = function(a) {
- return (startAngle < a && a < endAngle) || (startAngle > a && a > endAngle); 
-};
-          var rMiddle = isInside(-Math.PI*4/2) || isInside(Math.PI*0/2) ? rMax : startInner.x;
-          var uMiddle = isInside(-Math.PI*3/2) || isInside(Math.PI*1/2) ? -rMax : startInner.y;
-          var lMiddle = isInside(-Math.PI*2/2) || isInside(Math.PI*2/2) ? -rMax : startInner.x;
-          var dMiddle = isInside(-Math.PI*1/2) || isInside(Math.PI*3/2) ? rMax : startInner.y;
+        const rMax = Math.max(rI, rO);
+        const isInside = function (a) {
+          return (startAngle < a && a < endAngle) || (startAngle > a && a > endAngle);
+        };
+        const rMiddle = isInside(-Math.PI * 4 / 2) || isInside(Math.PI * 0 / 2) ? rMax : startInner.x;
+        const uMiddle = isInside(-Math.PI * 3 / 2) || isInside(Math.PI * 1 / 2) ? -rMax : startInner.y;
+        const lMiddle = isInside(-Math.PI * 2 / 2) || isInside(Math.PI * 2 / 2) ? -rMax : startInner.x;
+        const dMiddle = isInside(-Math.PI * 1 / 2) || isInside(Math.PI * 3 / 2) ? rMax : startInner.y;
         return {
           u: Math.min(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, uMiddle),
           d: Math.max(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, dMiddle),
@@ -169,16 +172,14 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
      * @param p {Object} Indicator object
      */
     createPointerPath: function(angle, p) {
-      var
-        s = Math.sin(angle);
-        var c = Math.cos(angle);
-        var wx = c * p.width;
-        var wy = s * p.width;
+      const s = Math.sin(angle);
+      const c = Math.cos(angle);
+      const wx = c * p.width;
+      const wy = s * p.width;
 
       if (p.thickness > 0) {
-        var
-          tx = -s * p.thickness/2;
-          var ty = c * p.thickness/2;
+        const tx = -s * p.thickness / 2;
+        const ty = c * p.thickness / 2;
         return [
           "M", this.coord({x:c*p.radius+wx-tx, y: -(s*p.radius+wy-ty)}),
           "L", this.coord({x:c*p.radius, y: -(s*p.radius)}),
@@ -271,32 +272,30 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       this.setCurrentRatioValue(Array(this.getIndicators().length).fill(0));
       this.setTargetRatioValue(Array(this.getIndicators().length).fill([0, false, false]));
 
-      var
-        self = this;
-        var s = this.getStart();
-        var e = this.getEnd();
-        var min = this.getMin();
-        var max = this.getMax();
-        var cntValues = 0;
-        var svgMajor = "";
-        var svgMinor = "";
-        var svgLabels = "";
-        var svgRanges = "";
-        var svgIndicators = "";
-        var svgText = "";
-        var createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
+      const self = this;
+      const s = this.getStart();
+      const e = this.getEnd();
+      const min = this.getMin();
+      const max = this.getMax();
+      let cntValues = 0;
+      let svgMajor = "";
+      let svgMinor = "";
+      let svgLabels = "";
+      let svgRanges = "";
+      let svgIndicators = "";
+      let svgText = "";
+      const createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
 
       // Determine the bounding box, first get the biggest radius that must fit
-      var
-        rMax = this.getAxisradius()+this.getAxiswidth();
-        var sMax = 0;
-        var eMax = 0;
+      let rMax = this.getAxisradius() + this.getAxiswidth();
+      let sMax = 0;
+      let eMax = 0;
       this.getIndicators().forEach(function (indicator) {
         rMax = Math.max(rMax, indicator.radius, indicator.radius+indicator.width);
         sMax = Math.max(sMax, indicator.startarrow);
         eMax = Math.max(eMax, indicator.endarrow);
       });
-      var BBox = createBarPath(s, sMax, e, eMax, rMax, 0, true);
+      let BBox = createBarPath(s, sMax, e, eMax, rMax, 0, true);
 
       if (this.getMinorwidth() > 0) {
         let
@@ -344,10 +343,9 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
               position = max;
               break;
           }
-          var
-            angle = s+(e-s)*(position-min)/(max-min);
-            var sin = Math.sin(angle);
-            var cos = Math.cos(angle);
+          const angle = s + (e - s) * (position - min) / (max - min);
+          const sin = Math.sin(angle);
+          const cos = Math.cos(angle);
           svgMajor += [
             "M", cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
             "L", cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
@@ -362,14 +360,14 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         svgMajor += "\" />";
       }
 
-      var labelstyle = this.getLabelstyle();
+      const labelstyle = this.getLabelstyle();
       this.getLabels().forEach(function (label, labelnumber) {
-        var
-          angle = s+(e-s)*(label.value-min)/(max-min);
-          var x = label.radius * Math.cos(angle);
-          var y = label.radius * -Math.sin(angle);
-          var alignmentBaseline = "";
-          var textAnchor = "";
+        const angle = s + (e - s) * (label.value - min) / (max - min);
+        const x = label.radius * Math.cos(angle);
+        const y = label.radius * -Math.sin(angle);
+        let alignmentBaseline = "";
+        let textAnchor = "";
+        let textAngle = 0;
 
         if (label.orientation < 3) {
           svgLabels += "<text class=\"axislabel\" x=\"" + x + "\" y=\"" + y + "\"";
@@ -394,8 +392,8 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
               }
               break;
 
-            case 1: // parallel
-              var textAngle = -angle * 180 / Math.PI + 90;
+            case 1: { // parallel
+              let textAngle = -angle * 180 / Math.PI + 90;
               if (y < 0) {
                 alignmentBaseline = (["baseline", "middle", "hanging"])[label.position];
               } else {
@@ -405,6 +403,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
               textAnchor = "middle";
               svgLabels += " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
               break;
+            }
 
             case 2: // perpendicular
               textAngle = -angle * 180 / Math.PI;
@@ -427,11 +426,10 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
 
           svgLabels += ">" + label.name + "</text>";
         } else { // label.orientation >= 3 -> round
-          var
-            labelid = self.$$user_path + "_label" + labelnumber;
-            var cw = s < e ? 0 : 1;
-            var path = "";
-            var align = "";
+          const labelid = self.$$user_path + "_label" + labelnumber;
+          const cw = s < e ? 0 : 1;
+          let path = "";
+          let align = "";
 
           switch (label.orientation) {
             case 3: // roundstart
@@ -460,12 +458,11 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       });
 
       this.getRanges().forEach(function (range) {
-        var
-          sRange = (e-s)*(range.start-min)/(max-min)+s;
-          var eRange = (e-s)*(range.end -min)/(max-min)+s;
-          var rRange = range.radius || self.getAxisradius();
-          var wRange = range.width || self.getAxiswidth();
-          var thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
+        const sRange = (e - s) * (range.start - min) / (max - min) + s;
+        const eRange = (e - s) * (range.end - min) / (max - min) + s;
+        const rRange = range.radius || self.getAxisradius();
+        const wRange = range.width || self.getAxiswidth();
+        const thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
         svgRanges += "<path class=\"range\" d=\"";
         svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
         if (range.style) {
@@ -495,15 +492,14 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           ("<tspan x=\""+this.getTextx()+"\" dy=\"" + this.getLinespace() + "\">-</tspan>").repeat(cntValues-1) +
           "</text>";
 
-        var
-          textDistribution = ({start:[0, 1], middle:[0.5, 0.5], end:[1, 0]})[this.getTextanchor()] || [0, 1];
-          var textU = Math.min(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0));
-          var textD = Math.max(0, -this.getFontsize(), this.getLinespace()*(cntValues-1)-(this.getLinespace()<0?this.getFontsize():0));
+        const textDistribution = ({start: [0, 1], middle: [0.5, 0.5], end: [1, 0]})[this.getTextanchor()] || [0, 1];
+        const textU = Math.min(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
+        const textD = Math.max(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
         BBox = bboxAdd(BBox, this.getTextx()-textDistribution[0]*this.getTextlength(), this.getTexty()+textU);
         BBox = bboxAdd(BBox, this.getTextx()+textDistribution[1]*this.getTextlength(), this.getTexty()+textD);
       }
 
-      var html = "<div class=\"actor\">" +
+      let html = "<div class=\"actor\">" +
         "<svg width=\"100%\" height=\"100%\" viewBox=\"" + [
           BBox.l - this.getBboxgrow().l,
           BBox.u - this.getBboxgrow().u,
@@ -517,11 +513,10 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       }
 
       if (this.getAxisradius() > 0) {
-        var
-          sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
-          var axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
-          var stroke = this.getAxiscolor() === "" ? undefined : this.getAxiscolor();
-          var fill = this.getAxiswidth() < 1 ? "none" : stroke;
+        const sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
+        const axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
+        const stroke = this.getAxiscolor() === "" ? undefined : this.getAxiscolor();
+        const fill = this.getAxiswidth() < 1 ? "none" : stroke;
         html +=
           "<path class=\"sector\" d=\""+sectorPath+" L0 0Z\"/>" +
           "<path class=\"axis\" d=\""+axisPath+"\" style=\"" +
@@ -546,12 +541,11 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       if (data === undefined || address === undefined) {
  return; 
 }
-      var
-        self = this;
-        var value = cv.Transform.decode(this.getAddress()[address].transform, data);
-        var target = this.getTargetRatioValue();
-        var tspan = Array.from(this.getDomElement().getElementsByTagName("tspan"));
-        var valueFormat = this.applyFormat(address, value);
+      const self = this;
+      const value = cv.Transform.decode(this.getAddress()[address].transform, data);
+      const target = this.getTargetRatioValue();
+      const tspan = Array.from(this.getDomElement().getElementsByTagName("tspan"));
+      const valueFormat = this.applyFormat(address, value);
 
       this.getIndicators().forEach(function(indicator, i) {
         if (address === indicator.address) {
@@ -586,13 +580,12 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName("indicator"));
       }
 
-      var
-        indicator = this.getIndicators()[indicatorNumber];
-        var target = this.getTargetRatioValue()[indicatorNumber];
-        var startAngle = this.getStart();
-        var endAngle = this.getEnd();
-        var targetAngle = startAngle + ratio*(endAngle-startAngle);
-        var overflowarrow = this.getOverflowarrow();
+      const indicator = this.getIndicators()[indicatorNumber];
+      const target = this.getTargetRatioValue()[indicatorNumber];
+      const startAngle = this.getStart();
+      const endAngle = this.getEnd();
+      let targetAngle = startAngle + ratio * (endAngle - startAngle);
+      const overflowarrow = this.getOverflowarrow();
 
       if (!overflowarrow) {
         targetAngle = (endAngle > startAngle) ?

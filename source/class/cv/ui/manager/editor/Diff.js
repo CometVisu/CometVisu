@@ -69,7 +69,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this._draw, this);
       } else {
-        var domElement = this.getContentElement().getDomElement();
+        const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
           this.addListenerOnce("appear", this._draw, this);
         } else {
@@ -88,15 +88,15 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
     },
 
     _applyContent: function () {
-      var original = this.getOriginalContent();
-      var modified = this.getModifiedContent();
+      const original = this.getOriginalContent();
+      const modified = this.getModifiedContent();
       if (original && modified) {
-        var file = this.getFile();
+        const file = this.getFile();
         const originalFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getOriginalFile() : file;
         const modifiedFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getModifiedFile() : file;
-        var originalModel = window.monaco.editor.createModel(original, this._getLanguage(originalFile));
+        const originalModel = window.monaco.editor.createModel(original, this._getLanguage(originalFile));
         originalModel.updateOptions(this._getDefaultModelOptions());
-        var modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(modifiedFile));
+        const modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(modifiedFile));
         modifiedModel.updateOptions(this._getDefaultModelOptions());
         this._editor.setModel({
           original: originalModel,

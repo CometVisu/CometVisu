@@ -42,8 +42,8 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
   ******************************************************
   */
   construct: function(props) {
-    var classes = props.classes.trim().split(" ");
-        var i_right = classes.indexOf("right");
+    const classes = props.classes.trim().split(" ");
+    const i_right = classes.indexOf("right");
 
     if (i_right !== -1) {
       // do not align, but float the container instead
@@ -81,7 +81,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
 
     _onDomReady: function() {
       this.base(arguments);
-      var center = cv.ui.NotificationCenter.getInstance();
+      const center = cv.ui.NotificationCenter.getInstance();
       center.getMessages().addListener("changeLength", this._onChangeCounter, this);
       this._onChangeCounter();
       center.addListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     },
 
     _onChangeGlobalSeverity: function(ev) {
-      var classList = this.__getBadgeElement().classList;
+      const classList = this.__getBadgeElement().classList;
       classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
       if (ev.getData()) {
         classList.add(ev.getData());
@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
     },
 
     _onChangeCounter: function() {
-      var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
+      const messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
       this.__getBadgeElement().innerHTML = ""+messages;
       if (this.isHideWhenEmpty()) {
         this.__getBadgeElement().style.display = messages === 0 ? "none" : "block";
@@ -126,7 +126,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
 
     // overridden
     _getInnerDomString: function () {
-      var style = "";
+      let style = "";
       if (this.isHideWhenEmpty() && this.getCounter() === 0) {
         style = " style=\"display: none;\"";
       }
@@ -140,7 +140,7 @@ qx.Class.define("cv.ui.structure.pure.NotificationCenterBadge", {
   ******************************************************
   */
   destruct: function() {
-    var center = cv.ui.NotificationCenter.getInstance();
+    const center = cv.ui.NotificationCenter.getInstance();
     center.getMessages().removeListener("changeLength", this._onChangeCounter, this);
     center.removeListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
   },

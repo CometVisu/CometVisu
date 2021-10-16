@@ -63,7 +63,8 @@ qx.Class.define("cv.core.notifications.Router", {
       } else if (typeof message.condition === "function") {
         return message.condition();
       } 
-        qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
+      qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
+      return true;
     },
 
     /**
@@ -92,7 +93,7 @@ qx.Class.define("cv.core.notifications.Router", {
           if (!window.speechSynthesis) {
             // not supported
             qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-            return;
+            return null;
           }
           return cv.core.notifications.SpeechHandler.getInstance();
         case "toast":
@@ -169,9 +170,9 @@ qx.Class.define("cv.core.notifications.Router", {
      */
     registerMessageHandler: function(handler, topics) {
       Object.getOwnPropertyNames(topics).forEach(function(topic) {
-        var segments = topic.split(".");
-        var firstSegment = segments.shift();
-        var currentSegment = this.__routes[firstSegment];
+        const segments = topic.split(".");
+        const firstSegment = segments.shift();
+        let currentSegment = this.__routes[firstSegment];
         if (!currentSegment) {
           this.__routes[firstSegment] = {__handlers__: []};
           currentSegment = this.__routes[firstSegment];
@@ -203,9 +204,9 @@ qx.Class.define("cv.core.notifications.Router", {
         return;
       }
 
-      var now = new Date();
-      var formattedDate = this.__dateFormat.format(now);
-      var formattedTime =this.__timeFormat.format(now);
+      const now = new Date();
+      const formattedDate = this.__dateFormat.format(now);
+      const formattedTime = this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function(config) {
         if (initial === true && config.skipInitial === true || changed === false) {
@@ -214,10 +215,10 @@ qx.Class.define("cv.core.notifications.Router", {
         }
 
         // process value
-        var transform = config.addressConfig.transform;
+        const transform = config.addressConfig.transform;
         state = cv.Transform.decode(transform, state);
 
-        var templateData = {
+        const templateData = {
           address: address,
           value: state,
           date: formattedDate,
@@ -234,10 +235,10 @@ qx.Class.define("cv.core.notifications.Router", {
           templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
         }
 
-        var message = {
-          topic: Object.prototype.hasOwnProperty.call(config, "topic") ? config.topic : "cv.state.update."+address,
-          title: qx.bom.Template.render(""+config.titleTemplate, templateData),
-          message: qx.bom.Template.render(""+config.messageTemplate, templateData),
+        const message = {
+          topic: Object.prototype.hasOwnProperty.call(config, "topic") ? config.topic : "cv.state.update." + address,
+          title: qx.bom.Template.render("" + config.titleTemplate, templateData),
+          message: qx.bom.Template.render("" + config.messageTemplate, templateData),
           deletable: Object.prototype.hasOwnProperty.call(config, "deletable") ? config.deletable : true,
           unique: Object.prototype.hasOwnProperty.call(config, "unique") ? config.unique : false,
           severity: config.severity
@@ -256,12 +257,12 @@ qx.Class.define("cv.core.notifications.Router", {
     },
 
     __collectHandlers: function(topic) {
-      var handlers = new qx.data.Array();
-      var segments = topic.split(".");
-      var firstSegment = segments.shift();
-      var currentSegment = this.__routes[firstSegment];
-      var last = segments.length-1;
-      segments.some(function(segmentName, idx) {
+      const handlers = new qx.data.Array();
+      const segments = topic.split(".");
+      const firstSegment = segments.shift();
+      let currentSegment = this.__routes[firstSegment];
+      const last = segments.length - 1;
+      segments.some(function (segmentName, idx) {
         if (!currentSegment) {
           // segment does not exists, stop searching
           return true;
@@ -269,19 +270,20 @@ qx.Class.define("cv.core.notifications.Router", {
           // collect all
           this.__collectAllFromSegment(currentSegment, handlers);
           return true;
-        } 
-          if (currentSegment["*"]) {
-            handlers.append(currentSegment["*"].__handlers__);
+        }
+        if (currentSegment["*"]) {
+          handlers.append(currentSegment["*"].__handlers__);
+        }
+        if (currentSegment[segmentName]) {
+          if (idx === last) {
+            handlers.append(currentSegment[segmentName].__handlers__);
           }
-          if (currentSegment[segmentName]) {
-            if (idx === last) {
-              handlers.append(currentSegment[segmentName].__handlers__);
-            }
-            currentSegment = currentSegment[segmentName];
-          } else {
-            // stop searching
-            return true;
-          }
+          currentSegment = currentSegment[segmentName];
+        } else {
+          // stop searching
+          return true;
+        }
+        return false;
       }, this);
       return handlers;
     },

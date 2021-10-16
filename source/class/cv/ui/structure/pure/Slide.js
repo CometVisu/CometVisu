@@ -97,7 +97,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
 
     // overridden
     _getInnerDomString: function () {
-      var placeholder = this.getFormat() === "" ? "" : "-";
+      const placeholder = this.getFormat() === "" ? "" : "-";
       return `
         <div class="actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>

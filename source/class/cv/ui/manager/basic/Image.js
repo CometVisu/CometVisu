@@ -253,9 +253,9 @@ qx.Class.define("cv.ui.manager.basic.Image",
         _applyDecorator : function(value, old) {
           this.base(arguments, value, old);
 
-          var source = this.getSource();
+          let source = this.getSource();
           source = qx.util.AliasManager.getInstance().resolve(source);
-          var el = this.getContentElement();
+          let el = this.getContentElement();
           if (this.__wrapper) {
             el = el.getChild(0);
           }
@@ -265,7 +265,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         // overridden
         _applyTextColor : function(value) {
           if (this.__getMode() === "font") {
-            var el = this.getContentElement();
+            let el = this.getContentElement();
             if (this.__wrapper) {
               el = el.getChild(0);
             }
@@ -282,7 +282,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         _applyPadding : function(value, old, name) {
           this.base(arguments, value, old, name);
 
-          var element = this.getContentElement();
+          const element = this.getContentElement();
           if (this.__wrapper) {
             element.getChild(0).setStyles({
               top: this.getPaddingTop() || 0,
@@ -303,7 +303,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
         renderLayout : function(left, top, width, height) {
           this.base(arguments, left, top, width, height);
 
-          var element = this.getContentElement();
+          const element = this.getContentElement();
           if (this.__wrapper) {
             element.getChild(0).setStyles({
               width: width - (this.getPaddingLeft() || 0) - (this.getPaddingRight() || 0),
@@ -368,16 +368,16 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @return {String} current internal mode
          */
         __getMode : function() {
-          if (this.__mode == null) {
-            var source = this.getSource();
+          if (this.__mode === null) {
+            const source = this.getSource();
 
             if (source && qx.lang.String.startsWith(source, "@")) {
               this.__mode = "font";
             } else if (source && qx.lang.String.startsWith(source, "<svg")) {
               this.__mode = "svg";
             } else {
-              var isPng = false;
-              if (source != null) {
+              let isPng = false;
+              if (source !== null) {
                 isPng = source.endsWith(".png");
               }
 
@@ -402,17 +402,17 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @return {qx.html.Image} suitable image content element
          */
         __createSuitableContentElement : function(mode) {
-          var scale;
-          var tagName;
-          var clazz = qx.html.Image;
+          let scale;
+          let tagName;
+          let Clazz = qx.html.Image;
 
           switch (mode) {
             case "svg":
-              clazz = qx.html.Element;
+              Clazz = qx.html.Element;
               tagName = "div";
               break;
             case "font":
-              clazz = qx.html.Label;
+              Clazz = qx.html.Label;
               scale = true;
               tagName = "div";
               break;
@@ -430,7 +430,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               break;
           }
 
-          var element = new (clazz)(tagName);
+          const element = new (Clazz)(tagName);
           element.connectWidget(this);
           element.setStyles({
             "overflowX": "hidden",
@@ -444,7 +444,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
             element.setScale(scale);
 
             if (qx.core.Environment.get("css.alphaimageloaderneeded")) {
-              var wrapper = this.__wrapper = new qx.html.Element("div");
+              const wrapper = this.__wrapper = new qx.html.Element("div");
               element.connectWidget(this);
               wrapper.setStyle("position", "absolute");
               wrapper.add(element);
@@ -466,13 +466,13 @@ qx.Class.define("cv.ui.manager.basic.Image",
             return null;
           }
 
-          var mode = this.__getMode();
+          const mode = this.__getMode();
 
-          if (this.__contentElements[mode] == null) {
+          if (this.__contentElements[mode] === null) {
             this.__contentElements[mode] = this.__createSuitableContentElement(mode);
           }
 
-          var element = this.__contentElements[mode];
+          const element = this.__contentElements[mode];
 
           if (!this.__currentContentElement) {
             this.__currentContentElement = element;
@@ -488,12 +488,12 @@ qx.Class.define("cv.ui.manager.basic.Image",
          *
          */
         _styleSource : function() {
-          var AliasManager = qx.util.AliasManager.getInstance();
-          var ResourceManager = qx.util.ResourceManager.getInstance();
+          const AliasManager = qx.util.AliasManager.getInstance();
+          const ResourceManager = qx.util.ResourceManager.getInstance();
 
-          var source = AliasManager.resolve(this.getSource());
+          let source = AliasManager.resolve(this.getSource());
 
-          var element = this.getContentElement();
+          let element = this.getContentElement();
           if (this.__wrapper) {
             element = element.getChild(0);
           }
@@ -508,31 +508,31 @@ qx.Class.define("cv.ui.manager.basic.Image",
           if ((qx.core.Environment.get("engine.name") == "mshtml") &&
             (parseInt(qx.core.Environment.get("engine.version"), 10) < 9 ||
               qx.core.Environment.get("browser.documentmode") < 9)) {
-            var repeat = this.getScale() ? "scale" : "no-repeat";
+            const repeat = this.getScale() ? "scale" : "no-repeat";
             element.tagNameHint = qx.bom.element.Decoration.getTagName(repeat, source);
           }
 
-          var contentEl = this.__getContentElement();
+          const contentEl = this.__getContentElement();
 
           // Detect if the image registry knows this image
           if (ResourceManager.isFontUri(source)) {
             this.__setManagedImage(contentEl, source);
-            var color = this.getTextColor();
+            const color = this.getTextColor();
             if (qx.lang.Type.isString(color)) {
               this._applyTextColor(color, null);
             }
           } else if (source && source.startsWith("<svg")) {
             this.__setManagedImage(contentEl, source);
           } else if (ResourceManager.has(source)) {
-            var highResolutionSource = ResourceManager.findHighResolutionSource(source);
+            const highResolutionSource = ResourceManager.findHighResolutionSource(source);
             if (highResolutionSource) {
-              var imageWidth = ResourceManager.getImageWidth(source);
-              var imageHeight = ResourceManager.getImageHeight(source);
+              const imageWidth = ResourceManager.getImageWidth(source);
+              const imageHeight = ResourceManager.getImageHeight(source);
               this.setWidth(imageWidth);
               this.setHeight(imageHeight);
 
               // set background size on current element (div or img)
-              var backgroundSize = imageWidth + "px, " + imageHeight + "px";
+              const backgroundSize = imageWidth + "px, " + imageHeight + "px";
               this.__currentContentElement.setStyle("background-size", backgroundSize);
 
               this.setSource(highResolutionSource);
@@ -573,7 +573,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @return {qx.html.Image} content element
          */
         __getContentElement : function() {
-          var contentEl = this.__currentContentElement;
+          let contentEl = this.__currentContentElement;
           if (this.__wrapper) {
             contentEl = contentEl.getChild(0);
           }
@@ -591,10 +591,10 @@ qx.Class.define("cv.ui.manager.basic.Image",
         __checkForContentElementSwitch : qx.core.Environment.select("engine.name",
           {
             "mshtml" : function(source) {
-              var alphaImageLoader = qx.core.Environment.get("css.alphaimageloaderneeded");
-              var isPng = source.endsWith(".png");
-              var isFont = source.startsWith("@");
-              var isSvg = source.startsWith("<svg");
+              const alphaImageLoader = qx.core.Environment.get("css.alphaimageloaderneeded");
+              const isPng = source.endsWith(".png");
+              const isFont = source.startsWith("@");
+              const isSvg = source.startsWith("<svg");
 
               if (isFont) {
                 this.__setMode("font");
@@ -616,8 +616,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
             },
 
             "default" : function(source) {
-              var isFont = source && qx.lang.String.startsWith(source, "@");
-              var isSvg = source.startsWith("<svg");
+              const isFont = source && qx.lang.String.startsWith(source, "@");
+              const isSvg = source.startsWith("<svg");
 
               if (isFont) {
                 this.__setMode("font");
@@ -640,17 +640,17 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param elementToAdd {qx.html.Image} content element to add
          */
         __checkForContentElementReplacement : function(elementToAdd) {
-          var currentContentElement = this.__currentContentElement;
+          const currentContentElement = this.__currentContentElement;
 
-          if (currentContentElement != elementToAdd) {
-            if (currentContentElement != null) {
-              var pixel = "px";
-              var styles = {};
+          if (currentContentElement !== elementToAdd) {
+            if (currentContentElement !== null) {
+              const pixel = "px";
+              const styles = {};
 
               //inherit styles from current element
-              var currentStyles = currentContentElement.getAllStyles();
+              const currentStyles = currentContentElement.getAllStyles();
               if (currentStyles) {
-                for (var prop in currentStyles) {
+                for (let prop in currentStyles) {
                   styles[prop] = currentStyles[prop];
                 }
               }
@@ -661,19 +661,19 @@ qx.Class.define("cv.ui.manager.basic.Image",
               }
 
               // Copy dimension and location of the current content element
-              var bounds = this.getBounds();
-              if (bounds != null) {
+              const bounds = this.getBounds();
+              if (bounds !== null) {
                 styles.width = bounds.width + pixel;
                 styles.height = bounds.height + pixel;
               }
 
-              var insets = this.getInsets();
+              const insets = this.getInsets();
               styles.left = parseInt(currentContentElement.getStyle("left") || insets.left) + pixel;
               styles.top = parseInt(currentContentElement.getStyle("top") || insets.top) + pixel;
 
               styles.zIndex = 10;
 
-              var newEl = this.__wrapper ? elementToAdd.getChild(0) : elementToAdd;
+              const newEl = this.__wrapper ? elementToAdd.getChild(0) : elementToAdd;
               newEl.setStyles(styles, true);
               newEl.setSelectable(this.getSelectable());
 
@@ -689,15 +689,15 @@ qx.Class.define("cv.ui.manager.basic.Image",
                 elementToAdd.include();
               }
 
-              var container = currentContentElement.getParent();
+              const container = currentContentElement.getParent();
 
               if (container) {
-                var index = container.getChildren().indexOf(currentContentElement);
+                const index = container.getChildren().indexOf(currentContentElement);
                 container.removeAt(index);
                 container.addAt(elementToAdd, index);
               }
               // force re-application of source so __setSource is called again
-              var hint = newEl.getNodeName();
+              const hint = newEl.getNodeName();
               if (newEl.setSource) {
                 newEl.setSource(null);
               } else if (newEl.setValue) {
@@ -705,17 +705,17 @@ qx.Class.define("cv.ui.manager.basic.Image",
               } else {
                 newEl.removeAll();
               }
-              var currentEl = this.__getContentElement();
+              const currentEl = this.__getContentElement();
               newEl.tagNameHint = hint;
               newEl.setAttribute("class", currentEl.getAttribute("class"));
 
               // Flush elements to make sure the DOM elements are created.
               qx.html.Element.flush();
-              var currentDomEl = currentEl.getDomElement();
-              var newDomEl = elementToAdd.getDomElement();
+              const currentDomEl = currentEl.getDomElement();
+              const newDomEl = elementToAdd.getDomElement();
 
               // copy event listeners
-              var listeners = currentContentElement.getListeners() || [];
+              const listeners = currentContentElement.getListeners() || [];
               listeners.forEach(function(listenerData) {
                 elementToAdd.addListener(listenerData.type, listenerData.handler, listenerData.self, listenerData.capture);
               });
@@ -723,7 +723,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
               if (currentDomEl && newDomEl) {
                 // Switch the DOM elements' hash codes. This is required for the event
                 // layer to work [BUG #7447]
-                var currentHash = currentDomEl.$$hash;
+                const currentHash = currentDomEl.$$hash;
                 currentDomEl.$$hash = newDomEl.$$hash;
                 newDomEl.$$hash = currentHash;
               }
@@ -741,13 +741,13 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param source {String} source path
          */
         __setManagedImage : function(el, source) {
-          var ResourceManager = qx.util.ResourceManager.getInstance();
-          var isFont = ResourceManager.isFontUri(source);
-          var isSvg = source.startsWith("<svg");
+          const ResourceManager = qx.util.ResourceManager.getInstance();
+          const isFont = ResourceManager.isFontUri(source);
+          const isSvg = source.startsWith("<svg");
 
           // Try to find a disabled image in registry
           if (!this.getEnabled()) {
-            var disabled = source.replace(/\.([a-z]+)$/, "-disabled.$1");
+            const disabled = source.replace(/\.([a-z]+)$/, "-disabled.$1");
             if (!isFont && ResourceManager.has(disabled)) {
               source = disabled;
               this.addState("replacement");
@@ -769,18 +769,18 @@ qx.Class.define("cv.ui.manager.basic.Image",
             }
 
             // Adjust size if scaling is applied
-            var width;
-            var height;
+            let width;
+            let height;
             if (this.getScale()) {
-              var hint = this.getSizeHint();
+              const hint = this.getSizeHint();
               width = this.getWidth() || hint.width;
               height = this.getHeight() || hint.height;
             } else {
-              var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
+              const font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
               if (qx.core.Environment.get("qx.debug")) {
                 this.assertObject(font, "Virtual image source contains unkown font descriptor");
               }
-              var size = parseInt(source.split("/")[2] || font.getSize(), 10);
+              const size = parseInt(source.split("/")[2] || font.getSize(), 10);
               width = ResourceManager.getImageWidth(source) || size;
               height = ResourceManager.getImageHeight(source) || size;
             }
@@ -808,17 +808,17 @@ qx.Class.define("cv.ui.manager.basic.Image",
         _applyDimension : function() {
           this.base(arguments);
 
-          var isFont = this.getSource() && qx.lang.String.startsWith(this.getSource(), "@");
+          const isFont = this.getSource() && qx.lang.String.startsWith(this.getSource(), "@");
           if (isFont) {
-            var el = this.getContentElement();
+            const el = this.getContentElement();
             if (el) {
               if (this.getScale()) {
-                var hint = this.getSizeHint();
-                var width = this.getWidth() || hint.width || 40;
-                var height = this.getHeight() || hint.height || 40;
+                const hint = this.getSizeHint();
+                const width = this.getWidth() || hint.width || 40;
+                const height = this.getHeight() || hint.height || 40;
                 el.setStyle("fontSize", (width > height ? height : width) + "px");
               } else {
-                var font = qx.theme.manager.Font.getInstance().resolve(this.getSource().match(/@([^/]+)/)[1]);
+                const font = qx.theme.manager.Font.getInstance().resolve(this.getSource().match(/@([^/]+)/)[1]);
                 el.setStyle("fontSize", font.getSize() + "px");
               }
             }
@@ -834,14 +834,14 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param source {String} source path
          */
         __setUnmanagedImage : function(el, source) {
-          var ImageLoader = qx.io.ImageLoader;
+          const ImageLoader = qx.io.ImageLoader;
 
           // Apply source
           this.__setSource(el, source);
 
           // Compare with old sizes and relayout if necessary
-          var width = ImageLoader.getWidth(source);
-          var height = ImageLoader.getHeight(source);
+          const width = ImageLoader.getWidth(source);
+          const height = ImageLoader.getHeight(source);
           this.__updateContentHint(width, height);
         },
 
@@ -853,15 +853,15 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param source {String} source path
          */
         __loadUnmanagedImage : function(el, source) {
-          var ImageLoader = qx.io.ImageLoader;
+          const ImageLoader = qx.io.ImageLoader;
 
           if (qx.core.Environment.get("qx.debug")) {
             // loading external images via HTTP/HTTPS is a common usecase, as is
             // using data URLs.
-            var sourceLC = source.toLowerCase();
+            const sourceLC = source.toLowerCase();
             if (!sourceLC.startsWith("http") &&
               !sourceLC.startsWith("data:image/")) {
-              var self = this.self(arguments);
+              const self = this.self(arguments);
 
               if (!self.__warned) {
                 self.__warned = {};
@@ -888,7 +888,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param el {Element} image DOM element
          */
         __resetSource : function(el) {
-          if (el != null) {
+          if (el !== null) {
             if (el instanceof qx.html.Image) {
               el.resetSource();
             } else if (el instanceof qx.html.Label) {
@@ -907,8 +907,8 @@ qx.Class.define("cv.ui.manager.basic.Image",
          * @param source {String} source path
          */
         __setSource: function (el, source) {
-          var isFont = source && qx.lang.String.startsWith(source, "@");
-          var isSvg = source && qx.lang.String.startsWith(source, "<svg");
+          const isFont = source && qx.lang.String.startsWith(source, "@");
+          const isSvg = source && qx.lang.String.startsWith(source, "<svg");
 
           if (isSvg) {
             const child = new qx.html.Element("svg");
@@ -916,16 +916,16 @@ qx.Class.define("cv.ui.manager.basic.Image",
             el.removeAll();
             el.add(child);
           } else if (isFont) {
-            var sparts = source.split("/");
-            var fontSource = source;
+            const sparts = source.split("/");
+            let fontSource = source;
             if (sparts.length > 2) {
               fontSource = sparts[0] + "/" + sparts[1];
             }
 
 
-            var ResourceManager = qx.util.ResourceManager.getInstance();
-            var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
-            var fontStyles = qx.lang.Object.clone(font.getStyles());
+            const ResourceManager = qx.util.ResourceManager.getInstance();
+            const font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
+            const fontStyles = qx.lang.Object.clone(font.getStyles());
             delete fontStyles.color;
             el.setStyles(fontStyles);
             el.setStyle("font");
@@ -936,15 +936,15 @@ qx.Class.define("cv.ui.manager.basic.Image",
             if (this.getScale()) {
               el.setStyle("fontSize", (this.__width > this.__height ? this.__height : this.__width) + "px");
             } else {
-              var size = parseInt(sparts[2] || qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]).getSize());
+              const size = parseInt(sparts[2] || qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]).getSize());
               el.setStyle("fontSize", size + "px");
             }
 
-            var resource = ResourceManager.getData(fontSource);
+            const resource = ResourceManager.getData(fontSource);
             if (resource) {
               el.setValue(String.fromCharCode(resource[2]));
             } else {
-              var charCode = parseInt(qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)\/(.*)$/)[2]), 16);
+              const charCode = parseInt(qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)\/(.*)$/)[2]), 16);
               if (qx.core.Environment.get("qx.debug")) {
                 this.assertNumber(charCode, "Font source needs either a glyph name or the unicode number in hex");
               }
@@ -955,19 +955,19 @@ qx.Class.define("cv.ui.manager.basic.Image",
           } else if (el.getNodeName() == "div") {
             // checks if a decorator already set.
             // In this case we have to merge background styles
-            var decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
+            const decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
             if (decorator) {
-              var hasGradient = (decorator.getStartColor() && decorator.getEndColor());
-              var hasBackground = decorator.getBackgroundImage();
+              const hasGradient = (decorator.getStartColor() && decorator.getEndColor());
+              const hasBackground = decorator.getBackgroundImage();
               if (hasGradient || hasBackground) {
-                var repeat = this.getScale() ? "scale" : "no-repeat";
+                const repeat = this.getScale() ? "scale" : "no-repeat";
 
                 // get the style attributes for the given source
-                var attr = qx.bom.element.Decoration.getAttributes(source, repeat);
+                const attr = qx.bom.element.Decoration.getAttributes(source, repeat);
                 // get the background image(s) defined by the decorator
-                var decoratorStyle = decorator.getStyles(true);
+                const decoratorStyle = decorator.getStyles(true);
 
-                var combinedStyles = {
+                const combinedStyles = {
                   "backgroundImage": attr.style.backgroundImage,
                   "backgroundPosition": (attr.style.backgroundPosition || "0 0"),
                   "backgroundRepeat": (attr.style.backgroundRepeat || "no-repeat")
@@ -990,11 +990,9 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
                 return;
               }
-            } else {
+            } else if (el.setSource) {
               // force re-apply to remove old decorator styles
-              if (el.setSource) {
-                el.setSource(null);
-              }
+              el.setSource(null);
             }
           }
           if (el.setSource) {
@@ -1057,21 +1055,19 @@ qx.Class.define("cv.ui.manager.basic.Image",
 
         /**
          * Recalculates the size of the image, according to scaling parameters
-         * @param maxWidth {Integer?} maximum width restriction
-         * @param maxHeight {Integer?} minimum height restriction
          * @param originalWidth
          * @param originalHeight
          */
         _recalc: function(originalWidth, originalHeight) {
-          var maxWidth = this.getMaxWidth();
-          var maxHeight = this.getMaxHeight();
-          var minWidth = this.getMinWidth();
-          var minHeight = this.getMinHeight();
+          const maxWidth = this.getMaxWidth();
+          const maxHeight = this.getMaxHeight();
+          const minWidth = this.getMinWidth();
+          const minHeight = this.getMinHeight();
 
-          var width = originalWidth;
-          var height = originalHeight;
+          let width = originalWidth;
+          let height = originalHeight;
 
-          var ratio = originalHeight / originalWidth;
+          const ratio = originalHeight / originalWidth;
 
           switch (this.getForceRatio()) {
             case "height":
@@ -1141,7 +1137,7 @@ qx.Class.define("cv.ui.manager.basic.Image",
     */
 
     destruct : function() {
-      for (var mode in this.__contentElements) {
+      for (let mode in this.__contentElements) {
         if (Object.prototype.hasOwnProperty.call(this.__contentElements, mode)) {
           this.__contentElements[mode].disconnectWidget(this);
         }

@@ -40,15 +40,16 @@ qx.Class.define("cv.parser.widgets.Slide", {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
 
-      var datatype_min; var datatype_max;
+      let datatype_min;
+      let datatype_max;
       Array.from(xml.children).filter(function(m) {
  return m.matches("address"); 
 }).forEach(function(elem) {
-        var transform = elem.getAttribute("transform");
+        const transform = elem.getAttribute("transform");
         if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
           if (!(datatype_min > cv.Transform.registry[transform].range.min)) { // jshint ignore:line
             datatype_min = cv.Transform.registry[transform].range.min;
@@ -58,8 +59,8 @@ qx.Class.define("cv.parser.widgets.Slide", {
           }
         }
       });
-      var min = parseFloat(xml.getAttribute("min") || datatype_min || 0);
-      var max = parseFloat(xml.getAttribute("max") || datatype_max || 100);
+      const min = parseFloat(xml.getAttribute("min") || datatype_min || 0);
+      const max = parseFloat(xml.getAttribute("max") || datatype_max || 100);
 
       data.min = min;
       data.max = max;

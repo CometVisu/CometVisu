@@ -65,8 +65,9 @@ qx.Class.define("cv.ui.manager.editor.Worker", {
     validateConfig: function (file) {
       if (file.isConfigFile()) {
         return this._worker.validateConfig(file.getServerPath());
-      } 
-        qx.log.Logger.error(this, file.getFullPath() + " is no configuration file");
+      }
+      qx.log.Logger.error(this, file.getFullPath() + " is no configuration file");
+      return true;
     },
 
     validateXmlConfig: function (content) {

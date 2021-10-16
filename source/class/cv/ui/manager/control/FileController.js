@@ -24,7 +24,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
     __fsClient: null,
 
     rename: function (file, newName) {
-      var newPath = file.getPath() || "";
+      let newPath = file.getPath() || "";
       if (newPath.length > 0 && !newPath.endsWith("/")) {
         newPath += "/";
       }
@@ -91,22 +91,23 @@ qx.Class.define("cv.ui.manager.control.FileController", {
      */
     restore: function (file) {
       if (file.isInTrash()) {
-        var target = file.getFullPath().replace(".trash/", "");
+        const target = file.getFullPath().replace(".trash/", "");
         this.__moveFile(file, target);
       } else if (file.getType() === "file" && !file.isTemporary()) {
-        var match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
+        const match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
         if (match) {
           // find the existing target config to restore
-          var targetFileName = "visu_config" + match[1] + ".xml";
+          const targetFileName = "visu_config" + match[1] + ".xml";
 
           // find the target file
-          var parentFolder = file.getParent().getParent();
-          var targetFile = null;
+          const parentFolder = file.getParent().getParent();
+          let targetFile = null;
           parentFolder.getChildren().some(function(child) {
             if (child.getFullPath() === targetFileName) {
               targetFile = child;
               return true;
             }
+            return false;
           });
 
           // load the backup content
@@ -173,8 +174,8 @@ qx.Class.define("cv.ui.manager.control.FileController", {
           callback.apply(context, true);
         }
       } else if (file) {
-          var message;
-          if (file.isTrash()) {
+        let message;
+        if (file.isTrash()) {
             message = qx.locale.Manager.tr("Do you really want to clear the trash?");
           } else if (file.isInTrash()) {
             message = file.getType() === "file" ?
@@ -203,7 +204,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
             callback.apply(context, false);
           }
         } else {
-          var message;
+          let message;
           if (file.isTrash()) {
             message = qx.locale.Manager.tr("Trash has been cleared");
           } else if (file.isInTrash()) {
@@ -229,7 +230,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
 
     download: function (file) {
       if (file.getType() === "file") {
-        var element = document.createElement("a");
+        const element = document.createElement("a");
         element.setAttribute("href", cv.io.rest.Client.getBaseUrl() + "/fs?download=true&path=" + file.getFullPath());
         element.style.display = "none";
         document.body.appendChild(element);
@@ -250,7 +251,7 @@ qx.Class.define("cv.ui.manager.control.FileController", {
     },
 
     __validateConfig: function (file) {
-      var d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr("Validating %1", file.getFullPath()));
+      const d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr("Validating %1", file.getFullPath()));
       cv.ui.manager.editor.Worker.getInstance().validateConfig(file).then(function (res) {
         d.close();
         if (res === true) {

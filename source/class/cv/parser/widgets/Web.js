@@ -40,12 +40,12 @@ qx.Class.define("cv.parser.widgets.Web", {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      var ga = xml.getAttribute("ga");
+      const ga = xml.getAttribute("ga");
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
         if (cv.Config.backend.substr(0, 2) === "oh") {

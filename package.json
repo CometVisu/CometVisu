@@ -88,5 +88,41 @@
     "monaco-editor": "^0.29.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@qooxdoo/qx/browser"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "rules": {
+      "no-warning-comments": "off"
+    },
+    "globals": {
+      "cv": "readonly",
+      "osparc": "readonly",
+      "com": "readonly",
+      "steelseries": "readonly",
+      "iconfont": "readonly",
+      "qxl": "readonly",
+      "$": "readonly",
+      "EVENT_RECORDER": "writable",
+      "EventSource": "readonly",
+      "Favico": "readonly",
+      "jQuery": "readonly",
+      "localStorage": "readonly",
+      "monaco": "readonly",
+      "Paho": "readonly",
+      "replayLog": "readonly",
+      "Sentry": "readonly",
+      "sprintf": "readonly",
+      "svg4everybody": "readonly",
+      "THREE": "readonly",
+      "Worker": "readonly",
+      "Node": "readonly",
+      "indexedDB": "readonly",
+      "URL": "readonly"
+    }
   }
 }

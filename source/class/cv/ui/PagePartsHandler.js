@@ -60,12 +60,14 @@ qx.Class.define("cv.ui.PagePartsHandler", {
     navbars: null,
 
     updateTopNavigation: function (path) {
-      path = path.split("_"); path.pop();
+      path = path.split("_");
+      path.pop();
       let id = "id_"; //path[0];
       const pathNode = document.querySelector(".nav_path");
       pathNode.innerHTML = "";
       let pageTitle = document.querySelector("#"+id+" h1").textContent;
       let nav = document.createElement("a");
+      // eslint-disable-next-line no-script-url
       nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
       nav.setAttribute("id", "breadcrump_pagejump_" + id);
       nav.appendChild(document.createTextNode(pageTitle));
@@ -79,6 +81,7 @@ qx.Class.define("cv.ui.PagePartsHandler", {
           span.innerHTML = " &#x25ba; ";
           pathNode.appendChild(span);
           nav = document.createElement("a");
+          // eslint-disable-next-line no-script-url
           nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
           nav.setAttribute("id", "breadcrump_pagejump_" + id);
           nav.appendChild(document.createTextNode(pageTitle));
@@ -97,8 +100,8 @@ qx.Class.define("cv.ui.PagePartsHandler", {
      * @param size
      */
     navbarSetSize: function (position, size) {
-      var cssSize = size + (isFinite(size) ? "px" : "");
-      var navbar;
+      const cssSize = size + (isFinite(size) ? "px" : "");
+      let navbar;
       switch (position) {
         case "left":
           navbar = document.querySelector("#navbarLeft");
@@ -127,8 +130,8 @@ qx.Class.define("cv.ui.PagePartsHandler", {
         page = cv.TemplateEngine.getInstance().getCurrentPage();
       }
       if (!page) {
- return {top: true, bottom: true, left: true, right: true}; 
-}
+        return {top: true, bottom: true, left: true, right: true};
+      }
       if (typeof page === "string") {
         page = cv.ui.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes) {
@@ -154,24 +157,23 @@ qx.Class.define("cv.ui.PagePartsHandler", {
      */
     updatePageParts: function (page, speed) {
       // default values
-      var showtopnavigation = true;
-      var showfooter = true;
-      var shownavbar = this.getNavbarsVisibility(page);
+      let showtopnavigation = true;
+      let showfooter = true;
 
       if (page) {
         if (!page.isInitialized()) {
           // page is not ready, defer this update
-          var self = this;
-          page.addListenerOnce("changeInitialized", function() {
- self.updatePageParts(page, speed); 
-}, this);
+          const self = this;
+          page.addListenerOnce("changeInitialized", function () {
+            self.updatePageParts(page, speed);
+          }, this);
           return;
         }
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }
-      var topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
-      var bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
+      const topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
+      const bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
       if (showtopnavigation) {
         if (topDisplay === "none") {
           document.querySelectorAll("#top, #top > *").forEach(function(elem) {
@@ -204,12 +206,12 @@ qx.Class.define("cv.ui.PagePartsHandler", {
      */
     fadeNavbar: function (position, direction, speed) {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
-      var initCss = {};
-      var targetCss = {};
-      var navbar = document.querySelector("#navbar" + position);
-      var key = position.toLowerCase();
-      var self = this;
-      var onAnimationEnd = function () {
+      const initCss = {};
+      const targetCss = {};
+      const navbar = document.querySelector("#navbar" + position);
+      const key = position.toLowerCase();
+      const self = this;
+      const onAnimationEnd = function () {
         self.navbars[key].fadeVisible = direction === "in";
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
@@ -253,7 +255,7 @@ qx.Class.define("cv.ui.PagePartsHandler", {
 });
         onAnimationEnd();
       } else {
-        var spec = {
+        const spec = {
           duration: speed,
           timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
           keep: 100,
@@ -262,7 +264,7 @@ qx.Class.define("cv.ui.PagePartsHandler", {
             100: targetCss
           }
         };
-        var anim = qx.bom.element.Animation.animate(navbar, spec);
+        const anim = qx.bom.element.Animation.animate(navbar, spec);
         anim.addListenerOnce("end", onAnimationEnd, this);
       }
     },
@@ -274,33 +276,33 @@ qx.Class.define("cv.ui.PagePartsHandler", {
      * @param page_id {String}
      */
     initializeNavbars: function (page_id) {
-      var self = this;
+      const self = this;
       this.removeInactiveNavbars(page_id);
-      var tree = Array.from(document.querySelectorAll("#id_"));
+      const tree = Array.from(document.querySelectorAll("#id_"));
       if (page_id !== "id_") {
-        var parts = page_id.split("_");
+        const parts = page_id.split("_");
         parts.pop();
         parts[0] = "";
-        for (var i = 0; i < parts.length; i++) {
-          var subPath = parts.slice(0, i + 1).join("_");
+        for (let i = 0; i < parts.length; i++) {
+          const subPath = parts.slice(0, i + 1).join("_");
           if (subPath) {
-            var item = document.querySelectorAll("#id" + subPath + "_.page");
+            const item = document.querySelectorAll("#id" + subPath + "_.page");
             if (item.length === 1) {
               tree.push(item[0]);
             }
           }
         }
       }
-      var level = 1;
-      var size = {top: 0, right: 0, bottom: 0, left: 0};
-      var dynamic = {top: null, right: null, bottom: null, left: null};
-      var positions = ["top", "right", "bottom", "left"];
+      let level = 1;
+      const size = {top: 0, right: 0, bottom: 0, left: 0};
+      const dynamic = {top: null, right: null, bottom: null, left: null};
+      const positions = ["top", "right", "bottom", "left"];
       tree.forEach(function (elem) {
-        var id = elem.getAttribute("id");
+        const id = elem.getAttribute("id");
         positions.forEach(function (pos) {
-          var nav = document.querySelector("#" + id + pos+ "_navbar");
+          const nav = document.querySelector("#" + id + pos + "_navbar");
           if (nav) {
-            var data = cv.data.Model.getInstance().getWidgetData(id + pos + "_navbar");
+            const data = cv.data.Model.getInstance().getWidgetData(id + pos + "_navbar");
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }
@@ -329,10 +331,10 @@ qx.Class.define("cv.ui.PagePartsHandler", {
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
       document.querySelectorAll(".navbar.navbarActive").forEach(function (elem) {
-        var navBarPath = elem.getAttribute("id").split("_");
+        let navBarPath = elem.getAttribute("id").split("_");
         // skip last 2 elements e.g. '_top_navbar'
         navBarPath = navBarPath.slice(0, navBarPath.length - 2).join("_");
-        var expr = new RegExp("^" + navBarPath + ".*", "i");
+        const expr = new RegExp("^" + navBarPath + ".*", "i");
         if (navBarPath !== page_id && !expr.test(page_id)) {
           elem.classList.remove("navbarActive");
         }

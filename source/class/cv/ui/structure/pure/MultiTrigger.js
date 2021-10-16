@@ -59,18 +59,18 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var ret_val = "<div class=\"actor_container\" style=\"float:left\">";
-      var mapping = this.getMapping();
-      var elementsPerLine = this.getElementsPerLine();
+      let ret_val = "<div class=\"actor_container\" style=\"float:left\">";
+      const mapping = this.getMapping();
+      const elementsPerLine = this.getElementsPerLine();
 
-      var config = this.getButtonConfiguration();
-      var indices = Object.keys(config).sort();
+      const config = this.getButtonConfiguration();
+      const indices = Object.keys(config).sort();
 
       indices.forEach(function (i) {
-        var buttonConfig = config[i];
-        var label = buttonConfig.label;
+        const buttonConfig = config[i];
+        let label = buttonConfig.label;
         if (mapping) {
-          var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
+          const mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
           if (mappedValue !== buttonConfig.value || !label) {
             label = "";
             this.defaultValue2DOM(mappedValue, function (e) {
@@ -102,12 +102,12 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
      * Handles the incoming data from the backend for this widget
      */
     handleUpdate: function () {
-      var children = this.getActors();
-      var buttonConfiguration = this.getButtonConfiguration();
+      const children = this.getActors();
+      const buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
-        var index = Array.prototype.indexOf.call(children, actor)+1;
+        const index = Array.prototype.indexOf.call(children, actor) + 1;
         if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
-          var isPressed = ("" + this.getBasicValue()) === ("" + buttonConfiguration[index].value); // compare as string
+          const isPressed = ("" + this.getBasicValue()) === ("" + buttonConfiguration[index].value); // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish
           // otherwise it might override the settings here
@@ -124,7 +124,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
      * @param event
      */
     getActionValue: function (event) {
-      var index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll(".actor_container .actor"), event.getCurrentTarget())+1;
+      const index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll(".actor_container .actor"), event.getCurrentTarget()) + 1;
       return this.getButtonConfiguration()[index].value;
     },
 

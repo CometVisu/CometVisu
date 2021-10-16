@@ -44,7 +44,7 @@ qx.Class.define("cv.plugins.Svg", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -63,14 +63,14 @@ qx.Class.define("cv.plugins.Svg", {
 
     _onDomReady: function() {
       this.base(arguments);
-      var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/svg/rollo.svg"));
+      const ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/svg/rollo.svg"));
       ajaxRequest.set({
         accept: "text/plain",
         cache: !cv.Config.forceReload
       });
       ajaxRequest.addListenerOnce("success", function (e) {
-        var req = e.getTarget();
-        var actor = this.getActor();
+        const req = e.getTarget();
+        const actor = this.getActor();
         actor.innerHTML = req.getResponseText();
       }, this);
       ajaxRequest.send();
@@ -78,12 +78,14 @@ qx.Class.define("cv.plugins.Svg", {
 
     _update: function(address, value) {
       value = this.defaultValueHandling(address, value);
-      var element = this.getActor();
-      var linewidth=3;
-      var space = 1;
-      var total = linewidth + space;
-      var line_qty = 48 / total;
-      var line; var i; var l;
+      const element = this.getActor();
+      const linewidth = 3;
+      const space = 1;
+      const total = linewidth + space;
+      const line_qty = 48 / total;
+      let line;
+      let i;
+      let l;
       for (i = 0, l = Math.floor(value/line_qty); i<=l; i++) {
         line = element.querySelector("#line"+(i+1));
         line.setAttribute("y1", 9+total*(i)+((value%line_qty)/line_qty)*total);

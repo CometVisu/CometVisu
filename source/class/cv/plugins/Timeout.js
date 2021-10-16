@@ -112,7 +112,7 @@ qx.Class.define("cv.plugins.Timeout", {
         this.debug("Target Page: " + this.getTarget());
       }
 
-      var deltaT = this.getTime() * 100;
+      const deltaT = this.getTime() * 100;
       this.__timer = new qx.event.Timer(deltaT);
       this.__timer.addListener("interval", this.timeoutTrigger, this);
       this.__timer.start();
@@ -122,7 +122,7 @@ qx.Class.define("cv.plugins.Timeout", {
 
       // Keep track of current page
       qx.event.message.Bus.subscribe("path.pageChanged", function (ev) {
-        var path = ev.getData();
+        const path = ev.getData();
         this.__timeoutCurrentPage = path;
         this.__timeoutCurrentPageTitle = document.querySelector("#" + path+ " div > h1").innerText;
         this.__timeoutIdleCount = 0;
@@ -149,7 +149,7 @@ qx.Class.define("cv.plugins.Timeout", {
       this.__timeoutTargetPage = this.getTarget();
       if (this.__timeoutIdleCount >= 10) {
         this.__timeoutIdleCount = 0;
-        var templateEngine = cv.TemplateEngine.getInstance();
+        const templateEngine = cv.TemplateEngine.getInstance();
 
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
           if (this.isDebug()) {

@@ -19,12 +19,12 @@ qx.Class.define("cv.util.Function", {
         options = {};
       }
 
-      var args;
-      var result;
-      var timeout = null;
-      var previous = 0;
+      let args;
+      let result;
+      let timeout = null;
+      let previous = 0;
 
-      var later = function () {
+      const later = function () {
         previous = options.leading === false ? 0 : new Date();
         timeout = null;
         result = callback.apply(context, args);
@@ -38,12 +38,12 @@ qx.Class.define("cv.util.Function", {
           }
         },
         call: function () {
-          var now = new Date();
+          const now = new Date();
           if (!previous && options.leading === false) {
             previous = now;
           }
 
-          var remaining = interval - (now - previous);
+          const remaining = interval - (now - previous);
           args = arguments;
           if (remaining <= 0) {
             window.clearTimeout(timeout);

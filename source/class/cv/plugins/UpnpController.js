@@ -46,7 +46,7 @@ qx.Class.define("cv.plugins.UpnpController", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
@@ -71,7 +71,7 @@ qx.Class.define("cv.plugins.UpnpController", {
     },
 
     uniqid: function() {
-      var newDate = new Date();
+      const newDate = new Date();
       return newDate.getTime();
     }
   },
@@ -106,10 +106,10 @@ qx.Class.define("cv.plugins.UpnpController", {
     upnpcontroller_song_process_rel: null,
 
     _getInnerDomString: function () {
-      var id = "upnpcontroller_" + this.self(arguments).uniqid();
+      const id = "upnpcontroller_" + this.self(arguments).uniqid();
       this.upnpcontroller_uid = id;
-      var ret_val = "<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">";
-      var controller = "<div>";
+      const ret_val = "<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">";
+      let controller = "<div>";
       controller += "<div id='" + id + "_title' class='upnplabelgroup'><div class='upnplabel'>Title</div><div class='value'>-</div></div>";
       controller += "<div id='" + id + "_artist' class='upnplabelgroup'><div class='upnplabel'>Artist</div><div class='value'>-</div></div>";
       controller += "<div id='" + id + "_album' class='upnplabelgroup'><div class='upnplabel'>Album</div><div class='value'>-</div></div>";
@@ -138,7 +138,7 @@ qx.Class.define("cv.plugins.UpnpController", {
      * Initialize the event listeners
      */
     initListeners: function () {
-      var Reg = qx.event.Registration;
+      const Reg = qx.event.Registration;
       Reg.addListener(document.querySelector("#" + this.upnpcontroller_uid + "_muteButton"), "tap", this.toggleMute, this);
       Reg.addListener(document.querySelector("#" + this.upnpcontroller_uid + "_playButton"), "tap", this.togglePlay, this);
       Reg.addListener(document.querySelector("#" + this.upnpcontroller_uid + "_next"), "tap", this.callNext, this);
@@ -159,15 +159,15 @@ qx.Class.define("cv.plugins.UpnpController", {
     },
 
     refreshUpnpcontroller: function () {
-      var playerIp = this.getPlayerIp();
-      var playerPort = this.getPlayerPort();
+      const playerIp = this.getPlayerIp();
+      const playerPort = this.getPlayerPort();
 
       this.traceLog("debug     : " + this.isTraceFlag());
       this.traceLog("playerIp  : " + playerIp);
       this.traceLog("playerPort: " + playerPort);
 
       this.__callRemote("status", {}, function (ev) {
-        var data = ev.getTarget().getResponse();
+        let data = ev.getTarget().getResponse();
         try {
           if (typeof data === "string") {
             data = JSON.parse(data);
@@ -186,7 +186,7 @@ qx.Class.define("cv.plugins.UpnpController", {
     },
 
     __updateController: function (volume, mute, playMode, title, reltime, duration, artist, album) {
-      var id = this.upnpcontroller_uid;
+      const id = this.upnpcontroller_uid;
 
       if (mute === 0) {
         document.querySelector("#" + id + "_muteButton").classList.replace("switchPressed", "switchUnpressed");
@@ -220,7 +220,7 @@ qx.Class.define("cv.plugins.UpnpController", {
      * @param callback {Function} callback that should be called in success
      */
     __callRemote: function (type, data, callback) {
-      var req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/upnpcontroller/" + type + ".php"));
+      const req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/upnpcontroller/" + type + ".php"));
       if (!data) {
         data = {};
       }
@@ -239,14 +239,14 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     calculateSongProcessed: function (reltime, duration) {
       if (reltime === undefined || duration === undefined) {
- return; 
-}
+        return 0;
+      }
       this.traceLog("calculateSongProcessed");
 
-      var durationParts = duration.split(":");
-      var secondsTotal = Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60;
-      var reltimeParts = reltime.split(":");
-      var secondsProcessed = Number(reltimeParts[2]) + Number(reltimeParts[1]) * 60 + Number(reltimeParts[0]) * 60 * 60;
+      const durationParts = duration.split(":");
+      const secondsTotal = Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60;
+      const reltimeParts = reltime.split(":");
+      const secondsProcessed = Number(reltimeParts[2]) + Number(reltimeParts[1]) * 60 + Number(reltimeParts[0]) * 60 * 60;
       this.traceLog("secondsTotal    : " + secondsTotal);
       this.traceLog("secondsProcessed: " + secondsProcessed);
 
@@ -255,16 +255,16 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     callgetplaylists: function () {
       this.traceLog("click callgetplaylists");
-      var playlist = document.querySelector("#" + this.upnpcontroller_uid + "_getplaylists");
-      var currentValue = playlist.getAttribute("value");
-      var playerIp = this.getPlayerIp();
-      var playerPort = this.getPlayerPort();
+      const playlist = document.querySelector("#" + this.upnpcontroller_uid + "_getplaylists");
+      const currentValue = playlist.getAttribute("value");
+      const playerIp = this.getPlayerIp();
+      const playerPort = this.getPlayerPort();
 
       this.traceLog("currentValue: " + currentValue);
       this.traceLog("playerPort  : " + playerPort);
 
       this.__callRemote("playlists", {}, function (ev) {
-        var data = ev.getTarget().getResponse();
+        let data = ev.getTarget().getResponse();
         try {
           if (typeof data === "string") {
             data = JSON.parse(data);
@@ -273,11 +273,11 @@ qx.Class.define("cv.plugins.UpnpController", {
           this.error(e);
           return;
         }
-        var playlists = "";
+        let playlists = "";
 
         this.traceLog("totalMatches: " + data.totalMatches);
 
-        for (var i = 0; i < data.playLists.length; i++) {
+        for (let i = 0; i < data.playLists.length; i++) {
           playlists += "<a href='" +
             "plugins/upnpcontroller/selectplaylist.php?player_ip_addr=" + playerIp +
             "&listurl=" + data.playLists[i].urlenc + "&port=" + playerPort + "'>" +
@@ -303,10 +303,10 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     callvolumedown: function () {
       this.traceLog("click callvolumedown");
-      var currentVolume = document.querySelector("#" + this.upnpcontroller_uid + "_volume div.value").innerText;
+      const currentVolume = document.querySelector("#" + this.upnpcontroller_uid + "_volume div.value").innerText;
 
       this.traceLog("currentVolume: " + currentVolume);
-      var volume = Number(currentVolume) - 5;
+      const volume = Number(currentVolume) - 5;
       this.__callRemote("volume", {volume: volume}, function (data) {
         this.traceLog("data: " + data);
       });
@@ -314,9 +314,9 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     callvolumeup: function () {
       this.traceLog("click callvolumeup");
-      var currentVolume = document.querySelector("#" + this.upnpcontroller_uid + "_volume div.value").innerText;
+      const currentVolume = document.querySelector("#" + this.upnpcontroller_uid + "_volume div.value").innerText;
       this.traceLog("currentVolume: " + currentVolume);
-      var volume = Number(currentVolume) + 5;
+      const volume = Number(currentVolume) + 5;
 
       this.__callRemote("volume", {volume: volume}, function (data) {
         this.traceLog("data: " + data);
@@ -339,8 +339,8 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     toggleMute: function () {
       this.traceLog("click mute");
-      var muteButton = document.querySelector("#" + this.upnpcontroller_uid + "_muteButton");
-      var muteValue = muteButton.querySelector("div.value").innerText;
+      const muteButton = document.querySelector("#" + this.upnpcontroller_uid + "_muteButton");
+      let muteValue = muteButton.querySelector("div.value").innerText;
 
       this.traceLog("current muteValue: " + muteValue);
 
@@ -362,12 +362,12 @@ qx.Class.define("cv.plugins.UpnpController", {
 
     togglePlay: function () {
       this.traceLog("click play");
-      var playValue = document.querySelector("#" + this.upnpcontroller_uid + "_playButton div.value").innerText;
-      var cmd;
+      const playValue = document.querySelector("#" + this.upnpcontroller_uid + "_playButton div.value").innerText;
+      let cmd;
 
       this.traceLog("current playValue: " + playValue);
 
-      var playButton = document.querySelector("#" + this.upnpcontroller_uid + "_playButton");
+      const playButton = document.querySelector("#" + this.upnpcontroller_uid + "_playButton");
       if (playValue === "Play") {
         cmd = "pause";
         playButton.classList.replace("switchUnpressed", "switchPressed");
@@ -391,7 +391,7 @@ qx.Class.define("cv.plugins.UpnpController", {
   },
   
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/upnpcontroller/upnpcontroller.css");
     cv.parser.WidgetParser.addHandler("upnpcontroller", cv.plugins.UpnpController);
     cv.ui.structure.WidgetFactory.registerClass("upnpcontroller", statics);

@@ -46,7 +46,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
     // break out of the constructor
     new qx.util.DeferredCall(function() {
-      var parentPage = this.getParentPage();
+      const parentPage = this.getParentPage();
       if (!parentPage) {
         this.__waitForProperties = [];
       } else {
@@ -60,8 +60,8 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         ["showNavbarLeft", false],
         ["showNavbarRight", false]
       ].forEach(function (tuple) {
-        var property = tuple[0];
-        var defaultValue = tuple[1];
+        const property = tuple[0];
+        const defaultValue = tuple[1];
         if (this["get" + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
@@ -177,7 +177,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
     _applyNavbarVisibility: function(value, old, name) {
       if (value !== null) {
-        var i_name = this.__waitForProperties.indexOf(name);
+        const i_name = this.__waitForProperties.indexOf(name);
         if (i_name !== -1) {
           this.__waitForProperties.splice(i_name, 1);
         }
@@ -212,14 +212,14 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
     // overridden
     getDomString: function() {
-      var pageType = this.getPageType();
+      const pageType = this.getPageType();
 
-      var subpageClass = this.getFlavour() ? (" flavour_" + this.getFlavour()) : "";
-      var subpage = "<div class=\"page type_" + pageType + subpageClass + "\" id=\"" + this.getPath() + "\">";
-      var container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
+      const subpageClass = this.getFlavour() ? (" flavour_" + this.getFlavour()) : "";
+      let subpage = "<div class=\"page type_" + pageType + subpageClass + "\" id=\"" + this.getPath() + "\">";
+      let container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
 
       if (pageType === "2d") {
-        var size = "width:100%;height:100%;";
+        let size = "width:100%;height:100%;";
         switch (this.getSize()) {
           case "fixed":
             size = "";
@@ -235,7 +235,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
           default: // default: assume scaled
         }
 
-        var backdrop = this.getBackdrop();
+        const backdrop = this.getBackdrop();
         if (backdrop) {
           container += "<" + this.getBackdropType() + " src=\"" + qx.util.ResourceManager.getInstance().toUri(backdrop) + "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" + size + "\"/>";
         }
@@ -317,10 +317,10 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
     sendToBackend: function (value) {
       if (this.getAddress) {
-        var list = this.getAddress();
-        for (var id in list) {
+        const list = this.getAddress();
+        for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
-            var address = list[id];
+            const address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address.transform, value));
             }

@@ -63,7 +63,7 @@ qx.Class.define("cv.ui.structure.pure.Image", {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var imgStyle = "";
+      let imgStyle = "";
       if (this.getWidth()) {
         imgStyle += "width:" + this.getWidth() + ";";
       }
@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.structure.pure.Image", {
     },
 
     handleUpdate: function(text, address) {
-      var valueElem = this.getValueElement();
+      const valueElem = this.getValueElement();
       if (!text) {
         switch (this.getPlaceholder()) {
           case "src":
@@ -139,7 +139,7 @@ qx.Class.define("cv.ui.structure.pure.Image", {
 
     // overridden
     _applyVisible: function(value) {
-      var valueElem = this.getValueElement();
+      const valueElem = this.getValueElement();
       if (!valueElem || this.getRefresh() > 0) {
         return;
       }

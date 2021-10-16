@@ -116,8 +116,8 @@ qx.Class.define("cv.plugins.Strftime", {
     },
 
     __update: function() {
-      var elem = this.getValueElement();
-      var d = new Date();
+      const elem = this.getValueElement();
+      const d = new Date();
       d.locale = this.getLocale();
       elem.innerText = d.strftime(this.getFormat());
     }
@@ -133,7 +133,7 @@ qx.Class.define("cv.plugins.Strftime", {
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/strftime/strftime.css");
     cv.parser.WidgetParser.addHandler("strftime", statics);
     cv.ui.structure.WidgetFactory.registerClass("strftime", statics);

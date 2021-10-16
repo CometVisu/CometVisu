@@ -42,7 +42,7 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function (xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
         return data;

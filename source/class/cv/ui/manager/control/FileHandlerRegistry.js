@@ -55,7 +55,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       if (qx.core.Environment.get("qx.debug")) {
         qx.core.Assert.assertTrue(qx.Interface.classImplements(clazz, cv.ui.manager.editor.IEditor));
       }
-      var config = Object.assign({
+      const config = Object.assign({
         Clazz: clazz,
         instance: null
       }, options || {});
@@ -91,25 +91,25 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
     },
 
     getFileHandler: function (file, type) {
-      var handlers = [];
+      const handlers = [];
       if (!(file instanceof cv.ui.manager.model.CompareFiles)) {
         // check if there is a default first
-        var defaultHandler;
+        let defaultHandler;
         Object.keys(this.__defaults).some(function (key) {
           if (this.__defaults[key].regex.test(file.getFullPath()) &&
             (!file.isTemporary() || !this.__defaults[key].noTemporaryFiles) &&
             (file.isWriteable() || !this.__defaults[key].noReadOnlyFiles)
           ) {
             if (type) {
-              var config = this.getFileHandlerById(this.__defaults[key].clazz.classname);
+              const config = this.getFileHandlerById(this.__defaults[key].clazz.classname);
               if (config.type === type) {
                 defaultHandler = config;
               }
             } else {
               defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
             }
-            return !!defaultHandler;
           }
+          return !!defaultHandler;
         }, this);
         if (defaultHandler) {
           return defaultHandler;
@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       }
 
       Object.keys(this.__registry).forEach(function (classname) {
-        var config = this.__registry[classname];
+        const config = this.__registry[classname];
         if (this.__canHandle(config, file) && (!type || config.type === type)) {
           handlers.push(config);
         }
@@ -146,7 +146,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
 
     hasFileHandler: function (file, type) {
       return Object.keys(this.__registry).some(function (classname) {
-        var config = this.__registry[classname];
+        const config = this.__registry[classname];
         return this.__canHandle(config, file) && (!type || config.type === type);
       }, this);
     },

@@ -20,7 +20,7 @@
 
 /**
  * Transformations for the openHAB backend
- * 
+ *
  * @author Tobias Bräutigam
  * @since 2012
  */
@@ -32,17 +32,17 @@ qx.Class.define("cv.transforms.OpenHab", {
   ******************************************************
   */
   statics: {
-    isUndefined: function(value) {
+    isUndefined: function (value) {
       return ["NaN", "Uninitialized", "NULL", "UNDEF", undefined, null].indexOf(value) >= 0;
     }
   },
 
-  
+
   /**
    * This class defines the default transforms: encode: transform JavaScript to
    * bus value decode: transform bus to JavaScript value
    */
-  defer: function() {
+  defer: function () {
     cv.Transform.addTransform("OH", {
       "switch": {
         name: "OH_Switch",
@@ -52,8 +52,8 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
- return 0; 
-}
+            return 0;
+          }
           return (string === "ON" || parseInt(string) > 0) ? 1 : 0;
         }
       },
@@ -65,8 +65,8 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
- return 0; 
-}
+            return 0;
+          }
           return string === "OPEN" ? 1 : 0;
         }
       },
@@ -74,23 +74,27 @@ qx.Class.define("cv.transforms.OpenHab", {
         name: "OH_RollerShutter",
         encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
+          // noinspection EqualityComparisonWithCoercionJS
           if (phy == 1) {
- return "DOWN"; 
-} // jshint ignore:line
-          else if (phy == 0) {
- return "UP"; 
-} // jshint ignore:line
-           return phy; 
+            return "DOWN";
+            // eslint-disable-next-line no-else-return
+          } else {
+            // noinspection EqualityComparisonWithCoercionJS
+            if (phy == 0) { // eslint-disable-line no-lonely-if
+              return "UP";
+            }
+          }
+          return phy;
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return 0; 
-} else if (str === "UP") {
- return 0; 
-} else if (str === "DOWN") {
- return 1; 
-}
-           return str; 
+            return 0;
+          } else if (str === "UP") {
+            return 0;
+          } else if (str === "DOWN") {
+            return 1;
+          }
+          return str;
         }
       },
       "dimmer": {
@@ -100,13 +104,13 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return 0; 
-} else if (str === "ON") {
- return 100; 
-} else if (str === "OFF") {
- return 0; 
-}
-           return parseInt(str); 
+            return 0;
+          } else if (str === "ON") {
+            return 100;
+          } else if (str === "OFF") {
+            return 0;
+          }
+          return parseInt(str);
         }
       },
       "number": {
@@ -116,8 +120,8 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return 0; 
-}
+            return 0;
+          }
           return parseFloat(str);
         }
       },
@@ -128,8 +132,8 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return ""; 
-}
+            return "";
+          }
           return str;
         }
       },
@@ -138,13 +142,13 @@ qx.Class.define("cv.transforms.OpenHab", {
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleDateString();
-          } 
-            return phy;
+          }
+          return phy;
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return "-"; 
-}
+            return "-";
+          }
           return new Date(Date.parse(str));
         }
       },
@@ -153,15 +157,15 @@ qx.Class.define("cv.transforms.OpenHab", {
         encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleTimeString();
-          } 
-            return phy;
+          }
+          return phy;
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
- return "-"; 
-}
-          var date = new Date();
-          var parts = str.split(":");
+            return "-";
+          }
+          const date = new Date();
+          const parts = str.split(":");
           date.setHours(parseInt(parts[0]));
           date.setMinutes(parseInt(parts[1]));
           date.setSeconds(parseInt(parts[2]));
@@ -183,11 +187,11 @@ qx.Class.define("cv.transforms.OpenHab", {
         },
         decode: function (hsbString) {
           if (cv.transforms.OpenHab.isUndefined(hsbString)) {
- return new Map([["r", 0], ["g", 0], ["b", 0]]); 
-}
+            return new Map([["r", 0], ["g", 0], ["b", 0]]);
+          }
           // decode HSV/HSB to RGB
           let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
-          return new Map([ ["r", rgb[0]], ["g", rgb[1]], ["b", rgb[2]] ]);
+          return new Map([["r", rgb[0]], ["g", rgb[1]], ["b", rgb[2]]]);
         }
       }
     });

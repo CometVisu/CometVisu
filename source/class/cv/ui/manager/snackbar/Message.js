@@ -96,7 +96,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
     },
 
     _onAppear: function () {
-      var timeout = this.getTimeout();
+      const timeout = this.getTimeout();
       if (this._timer) {
         this._timer.stop();
       }
@@ -111,9 +111,9 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "icon":
            control = new qx.ui.basic.Image();
            this._addAt(control, 0);

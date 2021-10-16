@@ -86,8 +86,8 @@ qx.Class.define("cv.util.ScriptLoader", {
     __markedAsLoaded: null,
 
     addStyles: function(styleArr) {
-      var queue = (typeof styleArr === "string" ? [ styleArr ] : styleArr.concat());
-      var suffix = (cv.Config.forceReload === true) ? "?"+Date.now() : "";
+      const queue = (typeof styleArr === "string" ? [styleArr] : styleArr.concat());
+      const suffix = (cv.Config.forceReload === true) ? "?" + Date.now() : "";
       queue.forEach(function(style) {
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
       }, this);
@@ -105,11 +105,13 @@ qx.Class.define("cv.util.ScriptLoader", {
     },
 
     addScripts: function(scriptArr, order) {
-      var queue = (typeof scriptArr === "string" ? [ scriptArr ] : scriptArr);
+      const queue = (typeof scriptArr === "string" ? [scriptArr] : scriptArr);
       // make sure that no cached scripts are loaded
-      var suffix = (cv.Config.forceReload === true) ? "?"+Date.now() : "";
-      var realQueue = [];
-      for (var i=0, l = queue.length; i<l; i++) {
+      const suffix = (cv.Config.forceReload === true) ? "?" + Date.now() : "";
+      const realQueue = [];
+      let i = 0;
+      const l = queue.length;
+      for (; i<l; i++) {
         if (!this.__markedAsLoaded.includes(queue[i])) {
           realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
         }
@@ -120,11 +122,11 @@ qx.Class.define("cv.util.ScriptLoader", {
       this.debug("queueing "+realQueue.length+" scripts");
       this.__scriptQueue.append(realQueue);
       if (order) {
-        var processQueue = function () {
+        const processQueue = function () {
           if (order.length > 0) {
-            var loadIndex = order.shift();
-            var script = realQueue.splice(loadIndex, 1)[0];
-            var loader = this.__loadSingleScript(script);
+            const loadIndex = order.shift();
+            const script = realQueue.splice(loadIndex, 1)[0];
+            const loader = this.__loadSingleScript(script);
             loader.addListener("ready", processQueue, this);
           } else {
             realQueue.forEach(this.__loadSingleScript, this);
@@ -145,7 +147,7 @@ qx.Class.define("cv.util.ScriptLoader", {
      * @param script {String} path to script
      */
     __loadSingleScript: function(script) {
-      var loader = new qx.util.DynamicScriptLoader(script);
+      const loader = new qx.util.DynamicScriptLoader(script);
       this.__loaders.push(loader);
       loader.addListener("loaded", this._onLoaded, this);
       loader.addListener("failed", this._onFailed, this);
@@ -159,20 +161,20 @@ qx.Class.define("cv.util.ScriptLoader", {
     },
 
     _onLoaded: function(ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       this.__scriptQueue.remove(data.script);
       this.debug(data.script+" loaded");
       this._checkQueue();
     },
 
     _onFailed: function(ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       this.__scriptQueue.remove(data.script);
       if (data.script.startsWith("design")) {
-        var failedDesign = data.script.split("/")[1];
+        const failedDesign = data.script.split("/")[1];
         this.fireDataEvent("designError", failedDesign);
       } else if (data.script.includes("/plugins/")) {
-        var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
+        const match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
         if (match) {
           cv.core.notifications.Router.dispatchMessage("cv.loading.error", {
             title: qx.locale.Manager.tr("Error loading plugin \"%1\"", match[1]),

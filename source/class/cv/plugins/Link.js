@@ -90,12 +90,12 @@ qx.Class.define("cv.plugins.Link", {
   */
   members: {
     _getInnerDomString: function () {
-      var classes = "link";
+      let classes = "link";
       if (this.getCssClass()) {
         classes += " "+this.getCssClass();
       }
-      var href = this.getHref() ? " href=\""+this.getHref()+"\"" : "";
-      var attributes = "";
+      const href = this.getHref() ? " href=\"" + this.getHref() + "\"" : "";
+      let attributes = "";
       if (this.isNewWindow()) {
         attributes += " target=\"_blank\"";
       }

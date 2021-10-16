@@ -213,32 +213,5 @@
     "Node",
     "indexedDB",
     "URL"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "@qooxdoo/qx/browser"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 8
-    },
-    "globals": {
-      "$": false,
-      "EVENT_RECORDER": false,
-      "EventSource": false,
-      "Favico": false,
-      "jQuery": false,
-      "localStorage": false,
-      "monaco": false,
-      "Paho": false,
-      "replayLog": false,
-      "Sentry": false,
-      "sprintf": false,
-      "svg4everybody": false,
-      "THREE": false,
-      "Worker": false,
-      "Node": false,
-      "indexedDB": false,
-      "URL": false
-    }
-  }
+  ]
 }

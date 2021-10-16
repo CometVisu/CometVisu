@@ -68,19 +68,19 @@ qx.Class.define("cv.ui.PageHandler", {
       if (isNaN(speed)) {
         speed = 0;
       }
-      var currentPath = this.getCurrentPath();
+      const currentPath = this.getCurrentPath();
       if (currentPath !== "") {
  qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); 
 }
 
-      var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
+      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
       if (!pageWidget || !pageWidget.getDomElement()) { // check if page does exist
         return;
       }
       qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
 
-      var templateEngine = cv.TemplateEngine.getInstance();
+      const templateEngine = cv.TemplateEngine.getInstance();
 
       templateEngine.resetPageValues();
 
@@ -90,21 +90,21 @@ qx.Class.define("cv.ui.PageHandler", {
       templateEngine.pagePartsHandler.updatePageParts(pageWidget, speed);
 
       // now the animation
-      var animationConfig = {};
+      let animationConfig = {};
 
       // update reference, because the appearance might have changed
-      var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
+      const oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
-      var direction = null;
-      var animationEnabled = speed > 0 && this.getAnimationType() !== "none";
+      let direction = null;
+      let animationEnabled = speed > 0 && this.getAnimationType() !== "none";
 
       // browser check
       if (qx.core.Environment.get("browser.name") === "safari" && parseInt(qx.core.Environment.get("browser.version")) <= 5) {
         animationEnabled = false;
       }
       if (animationEnabled) {
-        var currentDepth = currentPath.split("_").length;
-        var targetDepth = target.split("_").length;
+        const currentDepth = currentPath.split("_").length;
+        const targetDepth = target.split("_").length;
         direction = currentDepth<=targetDepth ? "down" : "up";
         animationConfig = this.__getAnimationConfig(direction);
 
@@ -126,16 +126,16 @@ qx.Class.define("cv.ui.PageHandler", {
         this.__onEnterPage(pageWidget, 0, true);
       } else {
         if (oldPageWidget) {
-          var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
+          const outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
           oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
           outAnim.addListenerOnce("end", function() {
             this.__onLeavePage(oldPageWidget);
           }, this);
         }
-        var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
+        const oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
         pageWidget.getDomElement().style.position = "absolute";
         qx.bom.AnimationFrame.request(function() {
-          var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
+          const animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
           animation.addListenerOnce("end", function() {
             this.__onEnterPage(pageWidget, oldPos);
           }, this);
@@ -148,10 +148,11 @@ qx.Class.define("cv.ui.PageHandler", {
      * @param direction {String} "up" or "down"
      */
     __getAnimationConfig: function(direction) {
-      var inAnim; var outAnim;
+      let inAnim;
+      let outAnim;
 
       // try to find existing animation configuration
-      var type = this.getAnimationType().toUpperCase();
+      const type = this.getAnimationType().toUpperCase();
       if (direction === "up") {
         inAnim = qx.util.Animation[type+"_RIGHT_IN"] || qx.util.Animation[type+"_IN"];
         outAnim = qx.util.Animation[type+"_RIGHT_OUT"] || qx.util.Animation[type+"_OUT"];
@@ -204,8 +205,8 @@ qx.Class.define("cv.ui.PageHandler", {
      * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
      */
     __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
-      var page = pageWidget.getDomElement();
-      var target = pageWidget.getPath();
+      const page = pageWidget.getDomElement();
+      const target = pageWidget.getPath();
       page.classList.add("pageActive", "activePage");// show new page
       if (updateVisibility === true) {
         // set it to visible
@@ -218,7 +219,7 @@ qx.Class.define("cv.ui.PageHandler", {
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      var styles = {"overflow": null, "display": null};
+      const styles = {"overflow": null, "display": null};
       if (oldPos) {
         styles.position = oldPos;
       }

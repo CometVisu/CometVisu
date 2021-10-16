@@ -40,12 +40,13 @@ qx.Class.define("cv.io.Reflection", {
      * Return a list of all widgets.
      */
     list: function () {
-      var widgetTree = {};
+      const widgetTree = {};
       document.querySelectorAll(".page").forEach(function (elem) {
-        var id = elem.getAttribute("id").split("_");
-        var thisEntry = widgetTree;
+        const id = elem.getAttribute("id").split("_");
+        let thisEntry = widgetTree;
         if (id.shift() === "id") {
-          var thisNumber;
+          let thisNumber;
+          // eslint-disable-next-line no-cond-assign
           while (thisNumber = id.shift()) { // jshint ignore:line
             if (!(thisNumber in thisEntry)) {
               thisEntry[thisNumber] = {};
@@ -71,8 +72,8 @@ qx.Class.define("cv.io.Reflection", {
      * @param path
      */
     read: function (path) {
-      var widget = this.lookupWidget(path);
-        var data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
+      const widget = this.lookupWidget(path);
+      const data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
       delete data.basicvalue;
       delete data.value;
       return data;
@@ -84,7 +85,7 @@ qx.Class.define("cv.io.Reflection", {
      * @param state
      */
     select: function (path, state) {
-      var container = this.lookupWidget(path);
+      const container = this.lookupWidget(path);
       if (state) {
         container.classList.add("selected");
       } else {
@@ -113,8 +114,8 @@ qx.Class.define("cv.io.Reflection", {
         typeof event.data !== "object" || !("command" in event.data) || !("parameters" in event.data)) {
         return;
       }
-      var answer = "bad command";
-        var parameters = event.data.parameters;
+      let answer = "bad command";
+      const parameters = event.data.parameters;
 
       // note: as the commands are from external, we have to be a bit more
       //       carefull for corectness testing
@@ -192,14 +193,14 @@ qx.Class.define("cv.io.Reflection", {
 
     getParentPageById: function (path, isPageId) {
       if (path.length > 0) {
-        var pathParts = path.split("_");
+        const pathParts = path.split("_");
         if (isPageId) {
  pathParts.pop(); 
 }
         while (pathParts.length > 1) {
           pathParts.pop();
           path = pathParts.join("_") + "_";
-          var page = document.querySelector("#" + path);
+          const page = document.querySelector("#" + path);
           if (page.classList.contains("page")) {
             return page;
           }

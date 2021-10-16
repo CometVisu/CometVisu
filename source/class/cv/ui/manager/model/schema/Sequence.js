@@ -196,9 +196,8 @@ qx.Class.define("cv.ui.manager.model.schema.Sequence", {
      * get the sorting of the allowed elements
      *
      * Warning: this only works if any element can have only ONE position in the parent.
-     * @param sortnumber  integer the sortnumber of a parent (only used when recursive)
-     * @param sortNumber
-     * @return  object              list of allowed elements, with their sort-number as value
+     * @param sortNumber  integer the sortNumber of a parent (only used when recursive)
+     * @return object     list of allowed elements, with their sort-number as value
      */
     getAllowedElementsSorting: function (sortNumber) {
       const namesWithSorting = {};

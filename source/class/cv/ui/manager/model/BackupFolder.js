@@ -25,7 +25,7 @@ qx.Class.define("cv.ui.manager.model.BackupFolder", {
     _onFilesSystemMessage: function (ev) {
       if (/^cv\.manager\.fs\.visu_config.*\.xml$/.test(ev.getName())) {
         // Fs event on config file
-        var data = ev.getData();
+        const data = ev.getData();
         if (["contentChanged", "fsContentChanged"].includes(data.type)) {
           // config file has been changed or restored, refresh the backups
           this.reload();
@@ -38,17 +38,17 @@ qx.Class.define("cv.ui.manager.model.BackupFolder", {
      * @param file {cv.ui.manager.model.FileItem}
      */
     getBackupFiles: function (file) {
-      var files = [];
+      const files = [];
       if (file.getType() === "file") {
-        var pathparts = file.getFullPath().split("/");
+        const pathparts = file.getFullPath().split("/");
         pathparts.pop();
-        var path = pathparts.join("\/");
-        var parts = file.getName().split(".");
-        var suffix = parts.pop();
-        var filename = parts.join(".");
-        var fileRegex = new RegExp(path + filename + "-([\\d]{14})\\." + suffix);
-        this.getChildren().filter(function (backupFile) {
-          var match = fileRegex.exec(backupFile.getFullPath().replace("backup/", ""));
+        const path = pathparts.join("\/");
+        const parts = file.getName().split(".");
+        const suffix = parts.pop();
+        const filename = parts.join(".");
+        const fileRegex = new RegExp(path + filename + "-([\\d]{14})\\." + suffix);
+        this.getChildren().forEach(function (backupFile) {
+          const match = fileRegex.exec(backupFile.getFullPath().replace("backup/", ""));
           if (match) {
             files.push({
               date: new Date(

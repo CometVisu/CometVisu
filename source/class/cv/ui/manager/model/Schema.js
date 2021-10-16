@@ -12,7 +12,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
   construct: function (filename) {
     this.base(arguments);
     if (!filename || !filename.match(/\.xsd$/)) {
-      throw "no, empty or invalid filename given, can not instantiate without one";
+      throw new Error("no, empty or invalid filename given, can not instantiate without one");
     }
     this.__filename = filename;
     this.__allowedRootElements = {};
@@ -145,7 +145,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       if (Object.prototype.hasOwnProperty.call(this.__allowedRootElements, name)) {
         return this.__allowedRootElements[name];
       }
-      throw "schema/xsd appears to be invalid, element " + name + " not allowed on root level";
+      throw new Error("schema/xsd appears to be invalid, element " + name + " not allowed on root level");
     },
 
     /**
@@ -165,7 +165,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       const selector = "schema > " + type + "[name=\"" + refName + "\"]";
       let ref = this.__xsd.querySelector(selector);
       if (!ref) {
-        throw "schema/xsd appears to be invalid, reference " + type + "\"" + refName + "\" can not be found";
+        throw new Error("schema/xsd appears to be invalid, reference " + type + "\"" + refName + "\" can not be found");
       }
 
       if (ref.hasAttribute("ref")) {
@@ -197,7 +197,7 @@ qx.Class.define("cv.ui.manager.model.Schema", {
       let typeNode = this.__xsd.querySelector(type + "Type[name=\"" + name + "\"]");
 
       if (!typeNode) {
-        throw "schema/xsd appears to be invalid, " + type + "Type \"" + name + "\" can not be found";
+        throw new Error("schema/xsd appears to be invalid, " + type + "Type \"" + name + "\" can not be found");
       }
 
       if (typeof this.__typeNodeCache[type] == "undefined") {

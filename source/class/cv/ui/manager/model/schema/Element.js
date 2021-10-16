@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.model.schema.Element", {
         const ref = schema.getReferencedNode("element", refName);
 
         if (ref.length !== 1) {
-          throw "schema/xsd appears to be invalid, can not find element " + refName;
+          throw new Error("schema/xsd appears to be invalid, can not find element " + refName);
         }
 
         return ref.getAttribute("name");

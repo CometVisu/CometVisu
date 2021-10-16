@@ -40,9 +40,9 @@ qx.Class.define("cv.parser.widgets.PageJump", {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
 
-      var widgetInfo = xml.querySelector("widgetinfo > *");
+      const widgetInfo = xml.querySelector("widgetinfo > *");
       if (widgetInfo!==undefined) {
         data.classes += " infoaction";
       }

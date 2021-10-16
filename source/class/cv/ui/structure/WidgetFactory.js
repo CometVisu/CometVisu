@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
         if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
-          var Clazz = this.__typeMapping[type];
+          const Clazz = this.__typeMapping[type];
           if (Clazz) {
             this.registry[data.path] = new Clazz(data); // jshint ignore:line
           } else {
@@ -58,16 +58,16 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
     },
 
     getInstanceById: function (id, skipCreation) {
-      var widget = this.registry[id];
+      let widget = this.registry[id];
       if (!widget && !skipCreation && cv.Config.lazyLoading === true) {
-        var data = cv.data.Model.getInstance().getWidgetData(id);
+        const data = cv.data.Model.getInstance().getWidgetData(id);
         widget = this.createInstance(data.$$type, data);
       }
       return widget;
     },
 
     getInstanceByElement: function(element) {
-      var instance = this.getInstanceById(element.getAttribute("id"));
+      const instance = this.getInstanceById(element.getAttribute("id"));
       if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();

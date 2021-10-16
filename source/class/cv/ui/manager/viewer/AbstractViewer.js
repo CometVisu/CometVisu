@@ -68,7 +68,7 @@ qx.Class.define("cv.ui.manager.viewer.AbstractViewer", {
 
     // overridden
     _createChildControlImpl : function (id) {
-      var control;
+      let control;
 
       switch (id) {
         case "scroll":

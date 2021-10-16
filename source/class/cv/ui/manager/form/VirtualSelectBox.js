@@ -12,7 +12,7 @@ qx.Class.define("cv.ui.manager.form.VirtualSelectBox", {
   members: {
     // overridden
     _createChildControlImpl : function(id, hash) {
-      var control;
+      let control;
 
       switch (id) {
         case "atom":

@@ -129,12 +129,12 @@ qx.Class.define("cv.ui.structure.pure.Group", {
     // overridden
     getDomString: function () {
       // heading style
-      var hstyle = "";
+      let hstyle = "";
       if (this.getAlign()) {
         hstyle += "style=\"text-align:" + this.getAlign() + "\"";
       }
 
-      var container = "<div class=\"clearfix\">";
+      let container = "<div class=\"clearfix\">";
       if (this.getName()) {
         container += "<h2 " + hstyle + ">" + this.getName() + "</h2>";
       }

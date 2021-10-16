@@ -38,8 +38,8 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
     },
 
     _onPhaseChange: function(ev) {
-      var hash = this.getRequestHash();
-      var delay;
+      const hash = this.getRequestHash();
+      let delay;
 
       if (ev.getData() === "opened") {
         this.__sendTime = Date.now();
@@ -57,9 +57,9 @@ qx.Mixin.define("cv.report.utils.MXhrHook", {
           this.error("response received without sendTime set. Not possible to calculate correct delay");
         }
         // response has been received (successful or not) -> log it
-        var headers = {};
+        const headers = {};
         this.getAllResponseHeaders().trim().split("\r\n").forEach(function(entry) {
-          var parts = entry.split(": ");
+          const parts = entry.split(": ");
           headers[parts[0]] = parts[1];
         });
         delay = Date.now() - this.__sendTime;

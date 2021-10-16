@@ -50,7 +50,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
     __lastSpeech: null,
 
     handleMessage: function(message, config) {
-      var text = message.message || message.title;
+      let text = message.message || message.title;
       if (config.skipInitial && !this.__lastSpeech[message.topic]) {
         this.__lastSpeech[message.topic] = {
           text: text,
@@ -94,17 +94,18 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
         this.warn(this, "this browser does not support the Web Speech API");
         return;
       }
-      var synth = window.speechSynthesis;
+      const synth = window.speechSynthesis;
 
       if (!language) {
         language = qx.locale.Manager.getInstance().getLocale();
       }
 
       // speak
-      var utterThis = new SpeechSynthesisUtterance(text);
+      const utterThis = new SpeechSynthesisUtterance(text);
 
-      var selectedVoice; var defaultVoice;
-      var voices = synth.getVoices();
+      let selectedVoice;
+      let defaultVoice;
+      const voices = synth.getVoices();
       if (voices.length === 0) {
         synth.onvoiceschanged = function () {
           this.say(text, language);
@@ -112,8 +113,10 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
         return;
       } 
         synth.onvoiceschanged = null;
-      
-      for (var i = 0, l = voices.length; i < l; i++) {
+
+      let i = 0;
+      const l = voices.length;
+      for (; i < l; i++) {
         if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
           selectedVoice = voices[i];
         }

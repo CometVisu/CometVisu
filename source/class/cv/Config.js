@@ -195,7 +195,7 @@ qx.Class.define("cv.Config", {
       if (!design) {
         design = this.getDesign();
       }
-      for (var structure in this.designStructureMap) {
+      for (let structure in this.designStructureMap) {
         if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
             return "structure-"+structure;
@@ -252,7 +252,7 @@ qx.Class.define("cv.Config", {
   },
 
   defer: function(statics) {
-    var req = qx.util.Uri.parseUri(window.location.href);
+    const req = qx.util.Uri.parseUri(window.location.href);
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
@@ -335,7 +335,7 @@ qx.Class.define("cv.Config", {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    var uagent = navigator.userAgent.toLowerCase();
+    const uagent = navigator.userAgent.toLowerCase();
     cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) {
       cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling

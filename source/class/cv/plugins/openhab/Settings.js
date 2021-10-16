@@ -87,12 +87,12 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     __initialValues: null,
 
     _initStore: function(pid) {
-      var serviceDesc = {
-        "get": { method: "GET", url: "/rest/services/"+pid+"/config" },
-        "delete": { method: "DELETE", url: "/rest/services/"+pid+"/config" },
-        "put": { method: "PUT", url: "/rest/services/"+pid+"/config" }
+      const serviceDesc = {
+        "get": {method: "GET", url: "/rest/services/" + pid + "/config"},
+        "delete": {method: "DELETE", url: "/rest/services/" + pid + "/config"},
+        "put": {method: "PUT", url: "/rest/services/" + pid + "/config"}
       };
-      var service = this.__service = new qx.io.rest.Resource(serviceDesc);
+      const service = this.__service = new qx.io.rest.Resource(serviceDesc);
       const client = cv.TemplateEngine.getInstance().visu;
 
       this._store = new qx.data.store.Rest(service, "get", {
@@ -104,7 +104,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         },
         manipulateData: function(data) {
           // normalize the keys (replace .> with _) for the marshaller
-          var n = {};
+          const n = {};
           Object.getOwnPropertyNames(data).forEach(function(key) {
             n[key.replace(/[\.>]/g, "_")] = data[key];
           });
@@ -122,7 +122,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     },
 
     _saveConfig: function() {
-      var data = qx.util.Serializer.toJson(this._store.getModel());
+      let data = qx.util.Serializer.toJson(this._store.getModel());
       data = data.replace(/icons_mapping_/g, "icons.mapping>");
       data = JSON.parse(data.replace("icons_enableMapping", "icons>enableMapping"));
       this.__service.put(null, data);
@@ -130,11 +130,11 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     },
 
     _initConfigRestClient: function() {
-      var description = {
-        "get": { method: "GET", url: "/rest/config-descriptions/"+this.__uri }
+      const description = {
+        "get": {method: "GET", url: "/rest/config-descriptions/" + this.__uri}
       };
 
-      var config = this.__configDescriptionResource = new qx.io.rest.Resource(description);
+      const config = this.__configDescriptionResource = new qx.io.rest.Resource(description);
       const client = cv.TemplateEngine.getInstance().visu;
 
       config.addListener("getSuccess", function(ev) {
@@ -153,9 +153,9 @@ qx.Class.define("cv.plugins.openhab.Settings", {
 
     _createForm: function(config) {
       this._createChildControl("title");
-      var form = this.getChildControl("form");
+      const form = this.getChildControl("form");
       config.parameters.forEach(function(param) {
-        var field;
+        let field;
         switch (param.type) {
           case "TEXT":
             field = new qx.ui.form.TextField();
@@ -179,7 +179,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         form.add(field, param.label, null, param.name, null, param);
       }, this);
 
-      var renderer = new cv.plugins.openhab.renderer.Single(form);
+      const renderer = new cv.plugins.openhab.renderer.Single(form);
       if (cv.Config.guessIfProxied()) {
         renderer.setBottomText(this.tr("The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing."));
         renderer.getChildControl("bottom-text").set({
@@ -192,7 +192,7 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       renderer.addButton(this.getChildControl("save-button"));
 
       this._addAt(renderer, 1);
-      var controller = new qx.data.controller.Form(null, form);
+      const controller = new qx.data.controller.Form(null, form);
 
       this._store.bind("model", controller, "model");
 
@@ -200,8 +200,8 @@ qx.Class.define("cv.plugins.openhab.Settings", {
     },
 
     _onFormFieldChange: function() {
-      var modified = false;
-      var items = this.getChildControl("form").getItems();
+      let modified = false;
+      const items = this.getChildControl("form").getItems();
       Object.getOwnPropertyNames(items).some(function(name) {
         // noinspection EqualityComparisonWithCoercionJS
         if (this.__initialValues[name] != items[name].getValue()) { // jshint ignore:line
@@ -209,13 +209,14 @@ qx.Class.define("cv.plugins.openhab.Settings", {
           modified = true;
           return true;
         }
+        return false;
       }, this);
       this.setModified(modified);
     },
 
     // overridden
     _createChildControlImpl : function(id, hash) {
-      var control;
+      let control;
       switch (id) {
         case "title":
           control = new qx.ui.basic.Label(this.tr("openHAB backend settings"));

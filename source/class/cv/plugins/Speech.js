@@ -81,10 +81,10 @@ qx.Class.define("cv.plugins.Speech", {
     parse: function (element, path) {
       if (!window.speechSynthesis) {
         qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-        return;
+        return null;
       }
 
-      var address = cv.parser.WidgetParser.makeAddressList(element, path);
+      const address = cv.parser.WidgetParser.makeAddressList(element, path);
 
       return cv.data.Model.getInstance().setWidgetData(path, {
         "path"    : path,
@@ -131,7 +131,7 @@ qx.Class.define("cv.plugins.Speech", {
 
     _processIncomingValue: function(address, data) {
       // #1: transform the raw value to a JavaScript type
-      var value = this.applyTransform(address, data);
+      const value = this.applyTransform(address, data);
 
       // #2: map it to a value the user wants to see
       return this.applyMapping(value);

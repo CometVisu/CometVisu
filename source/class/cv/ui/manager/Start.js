@@ -79,7 +79,7 @@ qx.Class.define("cv.ui.manager.Start", {
 
     _loadRoot: function (value) {
       this.getChildControl("configs").setFile(value);
-      var found = 0;
+      let found = 0;
 
       value.load(function () {
         value.getChildren().some(function (file) {
@@ -98,13 +98,13 @@ qx.Class.define("cv.ui.manager.Start", {
 
     _onChangeSelection: function (ev) {
       if (this._ignoreSelectionChanges === false) {
-        var list = ev.getTarget();
-        var selection = ev.getData();
+        const list = ev.getTarget();
+        const selection = ev.getData();
         this._ignoreSelectionChanges = true;
 
         // unselect the other lists
         ["configs", "demo-configs", "media"].forEach(function (name) {
-          var control = this.getChildControl(name);
+          const control = this.getChildControl(name);
           if (control !== list) {
             control.resetSelection();
           }
@@ -120,7 +120,7 @@ qx.Class.define("cv.ui.manager.Start", {
     },
 
     _onToggleExpand: function (ev) {
-      var control = this.getChildControl(ev.getTarget().getUserData("control"));
+      const control = this.getChildControl(ev.getTarget().getUserData("control"));
       if (control.getVisibility() === "visible") {
         control.exclude();
         ev.getTarget().setIcon(cv.theme.dark.Images.getIcon("drop-down", 18));
@@ -144,9 +144,9 @@ qx.Class.define("cv.ui.manager.Start", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "scroll-container":
            control = new qx.ui.container.Scroll();
            this._add(control, {flex: 1});
@@ -157,16 +157,16 @@ qx.Class.define("cv.ui.manager.Start", {
            this.getChildControl("scroll-container").add(control);
            break;
 
-         case "toolbar":
+         case "toolbar": {
            control = new qx.ui.toolbar.ToolBar();
-           var part = new qx.ui.toolbar.Part();
-           var listButton = this._listButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("listViewMode", 22));
+           const part = new qx.ui.toolbar.Part();
+           const listButton = this._listButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("listViewMode", 22));
            listButton.setUserData("mode", "list");
            listButton.set({
              show: "icon",
              toolTipText: this.tr("List mode")
            });
-           var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("previewMode", 22));
+           const previewButton = this._previewButton = new qx.ui.toolbar.RadioButton("", cv.theme.dark.Images.getIcon("previewMode", 22));
            previewButton.setUserData("mode", "preview");
            previewButton.set({
              show: "icon",
@@ -178,13 +178,14 @@ qx.Class.define("cv.ui.manager.Start", {
            this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
            this._onChangeViewMode();
            this._radioGroup.addListener("changeSelection", function (ev) {
-             var selection = ev.getData()[0];
+             const selection = ev.getData()[0];
              cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData("mode"));
            }, this);
            cv.ui.manager.model.Preferences.getInstance().addListener("changeStartViewMode", this._onChangeViewMode, this);
 
            this._add(control);
            break;
+         }
 
          case "configs-title":
            control = new qx.ui.basic.Atom(this.tr("Configurations"), cv.theme.dark.Images.getIcon("drop-up", 18));
@@ -213,14 +214,14 @@ qx.Class.define("cv.ui.manager.Start", {
            control.set({
              showTextFilter: false,
              permanentFilter: function (file) {
-               var match = this._configRegex.exec(file.getName());
+               const match = this._configRegex.exec(file.getName());
                return !!match && (!match[1] || !match[1].endsWith("temp"));
              }.bind(this),
              labelConverter: function (name, file) {
                if (file.isFake()) {
                  return name;
                }
-               var configName = cv.ui.manager.model.FileItem.getConfigName(name);
+               const configName = cv.ui.manager.model.FileItem.getConfigName(name);
                return configName ? configName : "<Default>";
              },
              file: cv.ui.manager.model.FileItem.ROOT,
@@ -246,7 +247,7 @@ qx.Class.define("cv.ui.manager.Start", {
                return this._configRegex.test(file.getName());
              }.bind(this),
              labelConverter: function (name) {
-               var configName = cv.ui.manager.model.FileItem.getConfigName(name);
+               const configName = cv.ui.manager.model.FileItem.getConfigName(name);
                return configName ? configName : "<Default>";
              },
              disableScrolling: true
@@ -317,7 +318,7 @@ qx.Class.define("cv.ui.manager.Start", {
         return;
       }
       // find the real 'hidden.php' in the root folder
-      var specialFiles = [cv.ui.manager.model.FileItem.getIconFile()];
+      const specialFiles = [cv.ui.manager.model.FileItem.getIconFile()];
       cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (file) {
         if (file.getFullPath() === "hidden.php") {
           // set some special flags needed to configure the special hidden configuration file
@@ -330,8 +331,9 @@ qx.Class.define("cv.ui.manager.Start", {
           specialFiles.unshift(file);
           return true;
         }
+        return false;
       });
-      var fakeFolder = new cv.ui.manager.model.FileItem("fake", "fake", cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
+      const fakeFolder = new cv.ui.manager.model.FileItem("fake", "fake", cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
         fake: true,
         type: "dir",
         loaded: true

@@ -63,10 +63,10 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function (value) {
-      var actor = this.getActor();
+      const actor = this.getActor();
       // compare against the unmapped value
       value = "" + this.getBasicValue();
-      var off = this.getUpValue();
+      const off = this.getUpValue();
       actor.classList.remove(value === off ? "switchPressed" : "switchUnpressed");
       actor.classList.add(value === off ? "switchUnpressed" : "switchPressed");
     },
@@ -83,14 +83,14 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
     },
 
     _onPointerUp: function () {
-      var sendValue = this.getUpValue();
+      const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
         return (!address[2] || address[2] === "up");
       });
     },
 
     _onPointerDown: function () {
-      var sendValue = this.getDownValue();
+      const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
         return (!address[2] || address[2] === "down");
       });

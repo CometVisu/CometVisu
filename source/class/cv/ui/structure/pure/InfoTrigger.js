@@ -91,9 +91,9 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
     // overridden
     _getInnerDomString: function () {
       // create buttons + info
-      var ret_val = "<div style=\"float:left;\">";
+      let ret_val = "<div style=\"float:left;\">";
 
-      var actordown = "<div class=\"actor switchUnpressed downlabel\" ";
+      let actordown = "<div class=\"actor switchUnpressed downlabel\" ";
       if (this.getAlign()) {
         actordown += "style=\"text-align: " + this.getAlign() + "\" ";
       }
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
       actordown += "<div class=\"label\">" + (this.getDownLabel() || "-") + "</div>";
       actordown += "</div>";
 
-      var actorup = "<div class=\"actor switchUnpressed uplabel\" ";
+      let actorup = "<div class=\"actor switchUnpressed uplabel\" ";
       if (this.getAlign()) {
         actorup += "style=\"text-align: " + this.getAlign() + "\" ";
       }
@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
       actorup += "<div class=\"label\">" + (this.getUpLabel() || "+") + "</div>";
       actorup += "</div>";
 
-      var actorinfo = "<div class=\"actor switchInvisible\" ";
+      let actorinfo = "<div class=\"actor switchInvisible\" ";
       if (this.getAlign()) {
         actorinfo += "style=\"text-align: " + this.getAlign() + "\" ";
       }
@@ -167,17 +167,17 @@ qx.Class.define("cv.ui.structure.pure.InfoTrigger", {
     },
 
     __action: function (isShort, isDown) {
-      var value;
+      let value;
       if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
       } else {
         value = isDown ? this.getDownValue() : this.getUpValue();
       }
 
-      var bitMask = (isShort ? 1 : 2);
+      const bitMask = (isShort ? 1 : 2);
 
       if (this.getIsAbsolute()) {
-        var bvalue = parseFloat(this.getBasicValue());
+        let bvalue = parseFloat(this.getBasicValue());
         if (isNaN(bvalue)) {
           bvalue = 0; // anything is better than NaN...
         }

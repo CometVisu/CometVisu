@@ -40,14 +40,14 @@ qx.Class.define("cv.parser.widgets.MultiTrigger", {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
-      var buttonRegex = /^button([\d]+)(label|value)$/;
-      var buttonConfig = {};
+      const buttonRegex = /^button([\d]+)(label|value)$/;
+      const buttonConfig = {};
       for (var i=0; i<xml.attributes.length; i++) {
-        var attrib = xml.attributes[i];
-        var match = buttonRegex.exec(attrib.name);
+        const attrib = xml.attributes[i];
+        const match = buttonRegex.exec(attrib.name);
         if (match) {
           if (!Object.prototype.hasOwnProperty.call(buttonConfig, match[1])) {
             buttonConfig[match[1]] = {};
@@ -57,7 +57,7 @@ qx.Class.define("cv.parser.widgets.MultiTrigger", {
       }
 
       // parse buttons
-      var buttons = xml.querySelectorAll("buttons > button");
+      const buttons = xml.querySelectorAll("buttons > button");
       for (i = 0; i < buttons.length; i++) {
         buttonConfig[i + 1] = {
           value: buttons[i].textContent

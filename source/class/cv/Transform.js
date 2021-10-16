@@ -130,7 +130,7 @@ qx.Class.define("cv.Transform", {
         let transform = transformParts.length > 1 ? transformParts[0] + ":" + transformParts[1] : transformation;
         let parameter = transformParts[2];
         let basetrans = transform.split(".")[0];
-      var encoding = transform in cv.Transform.registry ?
+      const encoding = transform in cv.Transform.registry ?
         cv.Transform.registry[transform].encode(value, parameter) :
         (basetrans in cv.Transform.registry ?
           cv.Transform.registry[basetrans].encode(value, parameter) :

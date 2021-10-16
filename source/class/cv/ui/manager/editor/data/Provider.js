@@ -197,12 +197,12 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
      * @private
      */
     __getData: function (cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
-      var cached = cache ? this._getFromCache(cacheId) : null;
+      const cached = cache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return Promise.resolve(converter.call(converterContext || this, cached));
       } 
         return new Promise(function (resolve, reject) {
-          var handleResponse = function (err, res) {
+          const handleResponse = function (err, res) {
             if (err) {
               reject(err);
             } else if (typeof res === "string" && res.startsWith("Error:")) {
@@ -389,12 +389,12 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
     },
 
     getMediaFiles: function (format, config, typeFilter) {
-      var fsClient = cv.io.rest.Client.getFsClient();
+      const fsClient = cv.io.rest.Client.getFsClient();
       return this.__getData("media", fsClient.readSync, fsClient, [{path: "media", recursive: true}], function (res) {
         return res.filter(function (file) {
           return !typeFilter || file.name.endsWith("." + typeFilter);
         }).map(function (file) {
-          var path = file.parentFolder + file.name;
+          const path = file.parentFolder + file.name;
           return {
             label: path,
             insertText: path,
@@ -419,11 +419,11 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
-      } 
-        var transforms = [];
-        Object.keys(cv.Transform.registry).forEach(function (key) {
-          var entry = cv.Transform.registry[key];
-          var suggestion;
+      }
+      const transforms = [];
+      Object.keys(cv.Transform.registry).forEach(function (key) {
+          const entry = cv.Transform.registry[key];
+          let suggestion;
           if (format === "dp") {
             suggestion = {
               label: entry.name + " [" + key + "]",
@@ -462,12 +462,12 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
-      } 
-        var plugins = [];
-        var qxParts = qx.io.PartLoader.getInstance().getParts();
-        Object.keys(qxParts).forEach(function (partName) {
+      }
+      const plugins = [];
+      const qxParts = qx.io.PartLoader.getInstance().getParts();
+      Object.keys(qxParts).forEach(function (partName) {
           if (partName.startsWith("plugin-")) {
-            var pluginName = partName.substring(7);
+            const pluginName = partName.substring(7);
             if (format === "dp") {
               plugins.push({
                 label: pluginName,

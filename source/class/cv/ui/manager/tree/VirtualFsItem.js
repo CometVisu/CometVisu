@@ -49,7 +49,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
 
     _applyEditing: function (value, old) {
       if (value !== old) {
-        var field = this.getChildControl("edit");
+        const field = this.getChildControl("edit");
         if (value) {
           field.setValue(this.getLabel());
           field.show();
@@ -101,7 +101,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
     },
 
     _applyStatus: function (value) {
-      var control = this.getChildControl("icon");
+      const control = this.getChildControl("icon");
       if (value) {
         switch (value) {
           case "valid":
@@ -121,7 +121,7 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
      * @private
      */
     _onDrop: function (ev) {
-      console.log(ev.getRelatedTarget());
+      this.info(ev.getRelatedTarget());
     },
 
     __cancelEditing: function () {
@@ -139,9 +139,9 @@ qx.Class.define("cv.ui.manager.tree.VirtualFsItem", {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case "edit":
            control = new qx.ui.form.TextField();
            control.addListener("keypress", this._onKeypress, this);

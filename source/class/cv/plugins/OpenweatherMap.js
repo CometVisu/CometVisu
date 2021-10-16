@@ -76,7 +76,7 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
@@ -174,7 +174,7 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
     __options: null,
 
     _getInnerDomString: function() {
-      var classes = "widget clearfix text openweathermap";
+      let classes = "widget clearfix text openweathermap";
       if (this.getCssClass()) {
         classes+=" "+this.getCssClass();
       }
@@ -190,13 +190,13 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
     },
 
     _refreshAction: function() {
-      var elem = $(this.getDomElement());
+      const elem = $(this.getDomElement());
       elem.openweathermap(this.__options);
     }
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles("plugins/openweathermap/owm_basic_style.css");
     loader.addStyles("plugins/openweathermap/owm_weathericon.css");
     loader.addScripts("plugins/openweathermap/owm_core.js");

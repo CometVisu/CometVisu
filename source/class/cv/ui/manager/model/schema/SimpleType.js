@@ -76,7 +76,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
         node = schema.getReferencedNode("attribute", refName);
 
         if (!node) {
-          throw "schema/xsd appears to be invalid, can not find element " + refName;
+          throw new Error("schema/xsd appears to be invalid, can not find element " + refName);
         }
       }
 
@@ -134,7 +134,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
       const baseType = this.getBaseType();
       const schema = this.getSchema();
       if (!baseType) {
-        throw "something is wrong, do not have a baseType for type";
+        throw new Error("something is wrong, do not have a baseType for type");
       }
 
       if (value === "") {
@@ -186,7 +186,7 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
             }
             break;
           default:
-            throw "not implemented baseType " + baseType;
+            throw new Error("not implemented baseType " + baseType);
         }
       
 
@@ -228,8 +228,9 @@ qx.Class.define("cv.ui.manager.model.schema.SimpleType", {
               start = i + 1;
               i = item.indexOf("|", start);
               if (branchIndices.length > 100) {
- debugger; 
-}
+                this.error("too many branchIndices");
+                break;
+              }
             }
             if (item.length > start) {
               // append the rest

@@ -11,14 +11,14 @@ qx.Class.define("cv.ui.manager.form.ListItem", {
   members: {
     // overridden
     _createChildControlImpl : function(id, hash) {
-      var control;
+      let control;
 
       switch (id) {
         case "icon":
           control = new cv.ui.manager.basic.Image(this.getIcon());
           control.setAnonymous(true);
           this._addAt(control, 0);
-          if (this.getIcon() == null || this.getShow() === "label") {
+          if (this.getIcon() === null || this.getShow() === "label") {
             control.exclude();
           }
           break;
