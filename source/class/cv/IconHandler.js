@@ -145,6 +145,7 @@ qx.Class.define("cv.IconHandler", {
       if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
+      return "";
     },
 
     /**
@@ -176,6 +177,7 @@ qx.Class.define("cv.IconHandler", {
         }
         return i.icon;
       }
+      return null;
     },
 
     /**
@@ -209,6 +211,7 @@ qx.Class.define("cv.IconHandler", {
         } 
           return "<img class=\"" + classes + "\" src=\"" + qx.util.ResourceManager.getInstance().toUri(i.uri) + "\"" + styling + "/>";
       }
+      return "";
     },
 
     /**
@@ -228,6 +231,7 @@ qx.Class.define("cv.IconHandler", {
         } 
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
+      return "";
     },
 
     /**

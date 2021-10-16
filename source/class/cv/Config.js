@@ -196,7 +196,7 @@ qx.Class.define("cv.Config", {
         design = this.getDesign();
       }
       for (var structure in this.designStructureMap) {
-        if (this.designStructureMap.hasOwnProperty(structure)) {
+        if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
             return "structure-"+structure;
           }
@@ -227,7 +227,7 @@ qx.Class.define("cv.Config", {
     },
 
     hasMapping: function(name) {
-      return this.configSettings.mappings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
     },
 
     clearMappings: function() {
@@ -243,7 +243,7 @@ qx.Class.define("cv.Config", {
     },
 
     hasStyling: function(name) {
-      return this.configSettings.stylings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
     },
 
     getDesign: function() {
@@ -313,7 +313,7 @@ qx.Class.define("cv.Config", {
     // caching is only possible when localStorage is available
     if (qx.core.Environment.get("html.storage.local") === false) {
       cv.Config.enableCache = false;
-      console.warn("localStorage is not available in your browser. Some advanced features, like caching will not work!");
+      qx.log.Logger.warn(statics, "localStorage is not available in your browser. Some advanced features, like caching will not work!");
     } else if (req.queryKey.enableCache === "invalid") {
         cv.ConfigCache.clear(cv.Config.configSuffix);
         cv.Config.enableCache = true;

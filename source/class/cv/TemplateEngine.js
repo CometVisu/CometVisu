@@ -28,6 +28,7 @@ qx.Class.define("cv.TemplateEngine", {
   construct: function() {
     // this.base(arguments);
     this.pagePartsHandler = new cv.ui.PagePartsHandler();
+    this.lazyPlugins = ["plugin-openhab"];
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
@@ -157,7 +158,7 @@ qx.Class.define("cv.TemplateEngine", {
     _domFinishedQueue: null,
 
     // plugins that do not need to be loaded to proceed with the initial setup
-    lazyPlugins: ["plugin-openhab"],
+    lazyPlugins: null,
     __activeChangedTimer: null,
     __hasBeenConnected: false,
 
@@ -252,7 +253,7 @@ qx.Class.define("cv.TemplateEngine", {
      * Please use {cv.data.Model.getInstance().addAddress()} instead
      * @param address
      * @param id
-     * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().addAddress()} instead
+     * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().addAddress()} instead
      */
     addAddress: function (address, id) {
       this.warn("addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead");
@@ -261,7 +262,7 @@ qx.Class.define("cv.TemplateEngine", {
 
     /**
      * Please use {cv.data.Model.getInstance().getAddresses()} instead
-     * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
+     * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().getAddresses()} instead
      */
     getAddresses: function () {
       this.warn("getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead");
@@ -278,7 +279,7 @@ qx.Class.define("cv.TemplateEngine", {
         oh: "openhab",
         oh2: "openhab2"
       };
-      if (mapping.hasOwnProperty(backendName)) {
+      if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
         backendName = mapping[backendName];
       }
       this.visu = cv.Application.createClient(backendName, backendUrl);
@@ -288,8 +289,8 @@ qx.Class.define("cv.TemplateEngine", {
       if (cv.Config.reporting) {
         var recordInstance = cv.report.Record.getInstance();
         this.visu.record = function(p, d) {
- recordInstance.record.apply(recordInstance, [cv.report.Record.BACKEND, p, d]); 
-};
+         recordInstance.record(cv.report.Record.BACKEND, p, d);
+        };
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = "demo_user"; // example for setting a user
@@ -444,9 +445,8 @@ qx.Class.define("cv.TemplateEngine", {
       if (!cv.Config.clientDesign && !settings.clientDesign) {
         if (predefinedDesign) {
           settings.clientDesign = predefinedDesign;
-        }
-        // selection dialog
-        else {
+        } else {
+          // selection dialog
           this.selectDesign();
         }
       }
@@ -642,7 +642,7 @@ qx.Class.define("cv.TemplateEngine", {
         pageWidget.getChildWidgets().forEach(function(child) {
           var address = child.getAddress ? child.getAddress() : {};
           for (var addr in address) {
-            if (address.hasOwnProperty(addr)) {
+            if (Object.prototype.hasOwnProperty.call(address, addr)) {
               startPageAddresses[addr] = 1;
             }
           }
@@ -754,7 +754,7 @@ qx.Class.define("cv.TemplateEngine", {
           var currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first
           var fallback = true;
-          pages.forEach(function (page) {
+          pages.some(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
             if (page.innerText === page_name) {
               var pid = p.getAttribute("id");
@@ -765,34 +765,37 @@ qx.Class.define("cv.TemplateEngine", {
                   page_id = pid;
                   fallback = false;
                   //break loop
-                  return false;
+                  return true;
                 }
               } else if (pid.indexOf(currentPageId) === 0) {
                   // found page is an descendant of the current page -> we take this one
                   page_id = pid;
                   fallback = false;
                   //break loop
-                  return false;
+                  return true;
                 }
             }
+            return false;
           }, this);
           if (fallback) {
             // take the first page that fits (old behaviour)
-            pages.forEach(function (page) {
+            pages.some(function (page) {
               if (page.innerText === page_name) {
                 page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
                 // break loop
-                return false;
+                return true;
               }
+              return false;
             });
           }
         } else {
-          pages.forEach(function (page) {
+          pages.some(function (page) {
             if (page.innerText === page_name) {
               page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
               // break loop
-              return false;
+              return true;
             }
+            return false;
           });
         }
       

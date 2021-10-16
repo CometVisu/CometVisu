@@ -218,8 +218,12 @@
     "extends": [
       "@qooxdoo/qx/browser"
     ],
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
     "globals": {
-      "$": false
+      "$": false,
+      "Sentry": false
     }
   }
 }

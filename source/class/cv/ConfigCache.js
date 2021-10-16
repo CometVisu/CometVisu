@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0
  */
-qx.Class.define('cv.ConfigCache', {
+qx.Class.define("cv.ConfigCache", {
   type: "static",
   
   /*
@@ -50,10 +50,10 @@ qx.Class.define('cv.ConfigCache', {
               cv.ConfigCache.DB = request.result;
 
               cv.ConfigCache.DB.onerror = function (event) {
-                reject(new Error("Error creating/accessing IndexedDB database"))
+                reject(new Error("Error creating/accessing IndexedDB database"));
               };
               resolve(cv.ConfigCache.DB);
-            }
+            };
             request.onupgradeneeded = function (event) {
               const db = event.target.result;
 
@@ -80,8 +80,8 @@ qx.Class.define('cv.ConfigCache', {
         data: JSON.stringify(model.getWidgetDataModel()),
         addresses: model.getAddressList(),
         configSettings: JSON.stringify(cv.Config.configSettings),
-        config: cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix,
-        body: document.querySelector('body').innerHTML
+        config: cv.Config.configSuffix === null ? "NULL" : cv.Config.configSuffix,
+        body: document.querySelector("body").innerHTML
       });
     },
 
@@ -95,19 +95,19 @@ qx.Class.define('cv.ConfigCache', {
           Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
             const mapping = cv.Config.configSettings.mappings[name];
             if (mapping && mapping.formulaSource) {
-              mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+              mapping.formula = new Function("x", "var y;" + mapping.formulaSource + "; return y;"); // jshint ignore:line
             }
           }, this);
         }
         if (cv.Config.mobileDevice) {
-          document.querySelector('body').classList.add('mobile');
-          const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith('mobile.css'));
+          document.querySelector("body").classList.add("mobile");
+          const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith("mobile.css"));
           if (!hasMobile) {
             cv.Config.configSettings.stylesToLoad.push("designs/" + cv.Config.configSettings.clientDesign + "/mobile.css");
           }
         } else {
           // do not load mobile css
-          cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(style => !style.endsWith('mobile.css'));
+          cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.filter(style => !style.endsWith("mobile.css"));
         }
         model.setWidgetDataModel(cache.data);
         model.setAddressList(cache.addresses);
@@ -115,11 +115,11 @@ qx.Class.define('cv.ConfigCache', {
           return cache.data[widgetId].$$initOnCacheLoad === true;
         });
         if (widgetsToInitialize.length > 0) {
-          cv.TemplateEngine.getInstance().addListenerOnce('changeReady', function () {
+          cv.TemplateEngine.getInstance().addListenerOnce("changeReady", function () {
             widgetsToInitialize.forEach(function (widgetId) {
               const widgetData = cache.data[widgetId];
               cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
-            })
+            });
           }, this);
         }
         body.innerHTML = cache.body;
@@ -128,15 +128,15 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     save: function(data) {
-      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore("data");
       objectStore.put(data);
     },
     
     getData: async function(key) {
       return new Promise((resolve, reject) => {
         if (!this._parseCacheData) {
-          const objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore('data');
-          const dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
+          const objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore("data");
+          const dataRequest = objectStore.get(cv.Config.configSuffix === null ? "NULL" : cv.Config.configSuffix);
           dataRequest.onsuccess = function(event) {
             if (!dataRequest.result) {
               resolve(null);
@@ -170,9 +170,9 @@ qx.Class.define('cv.ConfigCache', {
         return false;
       }
       // compare versions
-      const cacheVersion = data.VERSION + '|' + data.REV;
-      qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + '|' + cv.Version.REV);
-      return (cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
+      const cacheVersion = data.VERSION + "|" + data.REV;
+      qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + "|" + cv.Version.REV);
+      return (cacheVersion === cv.Version.VERSION + "|" + cv.Version.REV);
     },
     
     isValid: async function(xml, hash) {
@@ -197,30 +197,34 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     clear: function(configSuffix) {
-      configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      configSuffix = configSuffix || (cv.Config.configSuffix === null ? "NULL" : cv.Config.configSuffix);
+      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore("data");
       const dataRequest = objectStore.delete(configSuffix);
       dataRequest.onsuccess = function () {
-        qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
-      }
+        qx.log.Logger.debug("cache for " + configSuffix + "cleared");
+      };
     },
     
     /**
+     * @param string
      * @see http://stackoverflow.com/q/7616461/940217
      * @return {number}
      */
-    hashCode: function(string){
-      if (Array.prototype.reduce){
-        return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
+    hashCode: function(string) {
+      if (Array.prototype.reduce) {
+        return string.split("").reduce(function(a, b) {
+         a=((a<<5)-a)+b.charCodeAt(0);
+         return a&a;
+        }, 0);
       }
       let hash = 0;
       if (string.length === 0) {
         return hash;
       }
       for (let i = 0, l = string.length; i < l; i++) {
-        let character  = string.charCodeAt(i);
-        hash  = ((hash<<5)-hash)+character;
-        hash = hash & hash; // Convert to 32bit integer
+        let character = string.charCodeAt(i);
+        hash = ((hash<<5)-hash)+character;
+        hash &= hash; // Convert to 32bit integer
       }
       return hash;
     }
