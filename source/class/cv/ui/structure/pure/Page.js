@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       refine: true,
       init: true
     },
-    name              : {
+    name: {
       check: "String",
       init: "", nullable: true
     },

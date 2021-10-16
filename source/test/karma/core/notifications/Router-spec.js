@@ -1,6 +1,6 @@
 
 
-describe('test the notification router', function () {
+describe("test the notification router", function () {
   var router = null;
 
   beforeEach(function() {
@@ -12,17 +12,25 @@ describe('test the notification router', function () {
   });
 
   it("should evaluate a message condition", function() {
-
     // no condition means true
     expect(cv.core.notifications.Router.evaluateCondition({})).toBeTruthy();
 
     expect(cv.core.notifications.Router.evaluateCondition({condition: true})).toBeTruthy();
     expect(cv.core.notifications.Router.evaluateCondition({condition: false})).toBeFalsy();
 
-    expect(cv.core.notifications.Router.evaluateCondition({condition: function() { return true; }})).toBeTruthy();
-    expect(cv.core.notifications.Router.evaluateCondition({condition: function() { return false; }})).toBeFalsy();
+    expect(cv.core.notifications.Router.evaluateCondition({
+      condition: function () {
+        return true;
+      }
+    })).toBeTruthy();
 
-    expect(cv.core.notifications.Router.evaluateCondition({condition: "unknown-condition"})).toBeUndefined();
+    expect(cv.core.notifications.Router.evaluateCondition({
+      condition: function() {
+        return false;
+      }
+    })).toBeFalsy();
+
+    expect(cv.core.notifications.Router.evaluateCondition({condition: "unknown-condition"})).toBeFalsy();
   });
 
   it("should test the static message dispatching", function() {
@@ -142,7 +150,7 @@ describe('test the notification router', function () {
     // prevent speech target if no browser support
     var speechSynthesis = window.speechSynthesis;
     delete window.speechSynthesis;
-    expect(cv.core.notifications.Router.getTarget("speech")).toBeUndefined();
+    expect(cv.core.notifications.Router.getTarget("speech")).toBeNull();
     window.speechSynthesis = speechSynthesis;
     expect(cv.core.notifications.Router.getTarget("speech")).toEqual(cv.core.notifications.SpeechHandler.getInstance());
 

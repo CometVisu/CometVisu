@@ -64,7 +64,7 @@ qx.Class.define("cv.core.notifications.Router", {
         return message.condition();
       } 
       qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
-      return true;
+      return false;
     },
 
     /**

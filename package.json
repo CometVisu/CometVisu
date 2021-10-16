@@ -41,6 +41,7 @@
     "coffeescript": "^2.6.1",
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
+    "eslint-plugin-jasmine": "^4.1.2",
     "fast-glob": "^3.2.7",
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
@@ -91,7 +92,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "@qooxdoo/qx/browser"
+      "@qooxdoo/qx/browser",
+      "plugin:jasmine/recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 2017
@@ -99,6 +101,20 @@
     "rules": {
       "no-warning-comments": "off"
     },
+    "plugins": [
+      "jasmine"
+    ],
+    "env": {
+      "jasmine": true
+    },
+    "overrides": [
+      {
+        "files": ["source/test/**/*.js"],
+        "rules": {
+          "no-console": "off"
+        }
+      }
+    ],
     "globals": {
       "cv": "readonly",
       "osparc": "readonly",

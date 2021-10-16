@@ -201,7 +201,12 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
      * @return {Element}
      */
     getActor: function() {
-      return this.getDomElement().querySelector(".actor");
+      const elem = this.getDomElement();
+      if (elem) {
+        return elem.querySelector(".actor");
+      }
+      this.error("no dom element found for", this.get$$type(), this.getPath());
+      return null;
     },
 
     /**
@@ -209,7 +214,11 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
      * @return {Element}
      */
     getValueElement: function() {
-      return this.getDomElement().querySelector(".value");
+      const elem = this.getDomElement();
+      if (elem) {
+        return elem.querySelector(".value");
+      }
+      return null;
     },
 
     /**
@@ -217,7 +226,11 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
      * @return {Element}
      */
     getWidgetElement: function() {
-      return this.getDomElement().querySelector(".widget");
+      const elem = this.getDomElement();
+      if (elem) {
+        return elem.querySelector(".widget");
+      }
+      return null;
     },
 
     /**
