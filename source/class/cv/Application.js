@@ -46,7 +46,8 @@ qx.Class.define("cv.Application",
       qx.io.PartLoader.require([lang]);
     }
 
-    qx.bom.PageVisibility.getInstance().addListener("change", function () {
+    qx.bom.PageVisibility.getInstance().addListener('change', function () {
+
       this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
     }, this);
 
