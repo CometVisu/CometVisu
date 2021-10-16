@@ -177,6 +177,12 @@ class GithubClient {
       .filter(asset => /^CometVisu-.+\.tar\.gz$/.test(asset.name))
       .sort((a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at));
     limit = parseInt(limit);
+    const releaseVerRegex = new RegExp("^CometVisu-"+release.tag_name+"(\\.tar\\.gz|\\.zip)$")
+    const containsLatest = release.assets.some(asset => releaseVerRegex.test(asset.name))
+    if (!containsLatest) {
+      // current release is no been attached yet, we need to decrease the limit
+      limit--
+    }
     if (zipBuildAssets.length > limit) {
       for (let i = limit; i < zipBuildAssets.length; i++) {
         console.log("Deleting", zipBuildAssets[i].name, "from", release.name)
