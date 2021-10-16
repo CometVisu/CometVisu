@@ -213,5 +213,13 @@
     "Node",
     "indexedDB",
     "URL"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": [
+      "@qooxdoo/qx/browser"
+    ],
+    "globals": {
+      "$": false
+    }
+  }
 }

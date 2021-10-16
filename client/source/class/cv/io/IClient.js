@@ -1,7 +1,7 @@
 /**
  * Interface all CometVisu-Client must implement.
  */
-qx.Interface.define('cv.io.IClient', {
+qx.Interface.define("cv.io.IClient", {
   /*
   ***********************************************
     PROPERTIES
@@ -21,7 +21,7 @@ qx.Interface.define('cv.io.IClient', {
     server: {
       check: "String",
       nullable: true,
-      event: 'changedServer'
+      event: "changedServer"
     }
   },
   /*
@@ -133,6 +133,7 @@ qx.Interface.define('cv.io.IClient', {
 
     /**
      * Restart the connection
+     * @param full
      */
     restart: function(full) {},
 
@@ -161,5 +162,5 @@ qx.Interface.define('cv.io.IClient', {
      * @param args
      */
     showError: function(type, message, args) {}
-  },
+  }
 });

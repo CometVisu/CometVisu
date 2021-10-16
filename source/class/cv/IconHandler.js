@@ -27,7 +27,7 @@
  * The object "icon" contains the whole API necessary to handle the icons.
  *
  */
-qx.Class.define('cv.IconHandler', {
+qx.Class.define("cv.IconHandler", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -61,9 +61,9 @@ qx.Class.define('cv.IconHandler', {
     insert: function () {
       var name = arguments[0];
       var uri = arguments[1];
-      var type = arguments[2] || '*';
-      var flavour = arguments[3] || '*';
-      var color = arguments[4] || '*';
+      var type = arguments[2] || "*";
+      var flavour = arguments[3] || "*";
+      var color = arguments[4] || "*";
       var styling = arguments[5];
       var dynamic = arguments[6];
 
@@ -79,8 +79,7 @@ qx.Class.define('cv.IconHandler', {
 
       if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
-      }
-      else {
+      } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
           styling: styling
@@ -102,13 +101,13 @@ qx.Class.define('cv.IconHandler', {
         return undefined;
       }
       if (!this.__db[name][type]) {
-        type = '*'; // undefined -> use default
+        type = "*"; // undefined -> use default
       }
       var all;
-      if (typeof this.__db[name][type] === 'string') {
+      if (typeof this.__db[name][type] === "string") {
         type = this.__db[name][type]; // redirect link
-        if (type.split('/').length > 1) {
-          all = type.split('/');
+        if (type.split("/").length > 1) {
+          all = type.split("/");
           type = all.shift();
           if (flavour === undefined) {
             flavour = all.shift();
@@ -116,12 +115,12 @@ qx.Class.define('cv.IconHandler', {
         }
       }
       if (!this.__db[name][type][flavour]) {
-        flavour = '*'; // undefined -> use default
+        flavour = "*"; // undefined -> use default
       }
-      if (typeof this.__db[name][type][flavour] === 'string') {
+      if (typeof this.__db[name][type][flavour] === "string") {
         flavour = this.__db[name][type][flavour]; // redirect link
-        if (flavour.split('/').length > 1) {
-          all = flavour.split('/');
+        if (flavour.split("/").length > 1) {
+          all = flavour.split("/");
           flavour = all.shift();
           if (!color) {
             color = all.shift();
@@ -129,13 +128,13 @@ qx.Class.define('cv.IconHandler', {
         }
       }
       if (!this.__db[name][type][flavour][color]) {
-        color = '*'; // undefined -> use default
+        color = "*"; // undefined -> use default
       }
       // handle a generic mapping function
-      if (typeof this.__db[name][type][flavour]['*'] === 'function') {
-        return this.__db[name][type][flavour]['*'];
+      if (typeof this.__db[name][type][flavour]["*"] === "function") {
+        return this.__db[name][type][flavour]["*"];
       }
-      if (typeof this.__db[name][type][flavour][color] === 'string') {
+      if (typeof this.__db[name][type][flavour][color] === "string") {
         color = this.__db[name][type][flavour][color];
       } // redirect link
       return this.__db[name][type][flavour][color];
@@ -155,7 +154,7 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
         var styling = arguments[4];
-        if (i.icon && !styling && typeof i !== 'function') {
+        if (i.icon && !styling && typeof i !== "function") {
           return i.icon;
         }
 
@@ -164,16 +163,16 @@ qx.Class.define('cv.IconHandler', {
           styling = i.styling;
         }
 
-        var classes = 'icon';
+        var classes = "icon";
         var iconclass = arguments[5];
         if (iconclass) {
-          classes = classes + ' custom_' + iconclass;
+          classes = classes + " custom_" + iconclass;
         }
 
-        if (typeof i === 'function') {
+        if (typeof i === "function") {
           i.icon = i(arguments[3], styling, classes, false);
         } else {
-          i.icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
+          i.icon = "<img class=\"" + classes + "\" src=\"" + qx.util.ResourceManager.getInstance().toUri(i.uri) +"\" style=\"" + (styling ? styling : "") + "\"/>";
         }
         return i.icon;
       }
@@ -195,22 +194,20 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
         if (!styling) {
-          styling = !i.styling ? '' : ' style="' + i.styling + '"';
-        }
-        else {
-          styling = ' style="' + styling + '"';
-        }
-
-        var classes = 'icon';
-        if (iconclass) {
-          classes = classes + ' custom_' + iconclass;
-        }
-
-        if (typeof i === 'function') {
-          return i(color, styling, classes, true);
+          styling = !i.styling ? "" : " style=\"" + i.styling + "\"";
         } else {
-          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
+          styling = " style=\"" + styling + "\"";
         }
+
+        var classes = "icon";
+        if (iconclass) {
+          classes = classes + " custom_" + iconclass;
+        }
+
+        if (typeof i === "function") {
+          return i(color, styling, classes, true);
+        } 
+          return "<img class=\"" + classes + "\" src=\"" + qx.util.ResourceManager.getInstance().toUri(i.uri) + "\"" + styling + "/>";
       }
     },
 
@@ -224,18 +221,18 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
         if (!classes) {
-          classes = "icon"
+          classes = "icon";
         }
-        if (typeof i === 'function') {
+        if (typeof i === "function") {
           return i(undefined, undefined, classes, true);
-        } else {
+        } 
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
-        }
       }
     },
 
     /**
      * Fill the icons in the array.
+     * @param array
      */
     fillIcons: function (array) {
       array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);

@@ -31,7 +31,7 @@
  *
  * @ignore($)
  */
-qx.Class.define('cv.io.Client', {
+qx.Class.define("cv.io.Client", {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -62,8 +62,8 @@ qx.Class.define('cv.io.Client', {
       this.backendName = backendName;
     }
 
-    if (backendName && backendName !== 'default') {
-      if (typeof backendName === 'object') {
+    if (backendName && backendName !== "default") {
+      if (typeof backendName === "object") {
         // override default settings
         this.setBackend(backendName);
       } else if (cv.io.Client.backends[backendName]) {
@@ -71,7 +71,7 @@ qx.Class.define('cv.io.Client', {
         this.setBackend(cv.io.Client.backends[backendName]);
       }
     } else {
-      this.setBackend(cv.io.Client.backends['default']);
+      this.setBackend(cv.io.Client.backends["default"]);
     }
 
     this.backendUrl = backendUrl;
@@ -79,9 +79,9 @@ qx.Class.define('cv.io.Client', {
     this.addresses = [];
     this.initialAddresses = [];
     this.filters = [];
-    this.user = '';
-    this.pass = '';
-    this.device = '';
+    this.user = "";
+    this.pass = "";
+    this.device = "";
     this.headers = {};
   },
 
@@ -111,22 +111,22 @@ qx.Class.define('cv.io.Client', {
 
     // used for backwards compability
     backendNameAliases: {
-      'cgi-bin': 'default',
-      'oh': 'openhab',
-      'oh2': 'openhab2'
+      "cgi-bin": "default",
+      "oh": "openhab",
+      "oh2": "openhab2"
     },
     // setup of the different known backends (openhab2 configures itself by sending the config
     // with the login response so no defaults are defined here
     backends: {
-      'default': {
-        name: 'default',
-        baseURL: '/cgi-bin/',
-        transport: 'long-polling',
+      "default": {
+        name: "default",
+        baseURL: "/cgi-bin/",
+        transport: "long-polling",
         resources: {
-          login: 'l',
-          read: 'r',
-          write: 'w',
-          rrd: 'rrdfetch'
+          login: "l",
+          read: "r",
+          write: "w",
+          rrd: "rrdfetch"
         },
         maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
         maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful
@@ -135,23 +135,23 @@ qx.Class.define('cv.io.Client', {
         maxRetries: 3, // amount of connection retries for temporary server failures
         hooks: {}
       },
-      'openhab': {
-        name: 'openHAB',
-        baseURL: '/services/cv/',
+      "openhab": {
+        name: "openHAB",
+        baseURL: "/services/cv/",
         // keep the e.g. atmosphere tracking-id if there is one
         resendHeaders: {
-          'X-Atmosphere-tracking-id': undefined
+          "X-Atmosphere-tracking-id": undefined
         },
         // fixed headers that are send everytime
         headers: {
-          'X-Atmosphere-Transport': 'long-polling'
+          "X-Atmosphere-Transport": "long-polling"
         },
         hooks: {
           onClose: function () {
             // send an close request to the openHAB server
             var oldValue = this.headers["X-Atmosphere-Transport"];
             this.headers["X-Atmosphere-Transport"] = "close";
-            this.doRequest(this.getResourcePath('read'), null, null, null, {
+            this.doRequest(this.getResourcePath("read"), null, null, null, {
               beforeSend: this.beforeSend
             });
             if (oldValue !== undefined) {
@@ -215,7 +215,7 @@ qx.Class.define('cv.io.Client', {
     server: {
       check: "String",
       nullable: true,
-      event: 'changedServer'
+      event: "changedServer"
     }
   },
 
@@ -253,9 +253,9 @@ qx.Class.define('cv.io.Client', {
 
     setBackend: function(newBackend) {
       // override default settings
-      var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
+      var backend = Object.assign({}, cv.io.Client.backends["default"], newBackend);
       this.backend = backend;
-      if (backend.transport === 'sse' && backend.transportFallback) {
+      if (backend.transport === "sse" && backend.transportFallback) {
         if (window.EventSource === undefined) {
           // browser does not support EventSource object => use fallback
           // transport + settings
@@ -267,7 +267,7 @@ qx.Class.define('cv.io.Client', {
         backend.baseURL += "/";
       }
       var currentTransport = this.getCurrentTransport();
-      switch(backend.transport) {
+      switch (backend.transport) {
         case "long-polling":
           if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
             // replace old transport
@@ -299,6 +299,7 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * manipulates the header of the current ajax query before it is been send to the server
+     * @param xhr
      */
     beforeSend : function (xhr) {
       for (var headerName in this.resendHeaders) {
@@ -314,7 +315,7 @@ qx.Class.define('cv.io.Client', {
     },
 
     getResourcePath : function (name, map) {
-      return this.backend.resources.hasOwnProperty(name) ? this.backend.baseURL + this.backend.resources[name] : null;
+      return Object.prototype.hasOwnProperty.call(this.backend.resources, name) ? this.backend.baseURL + this.backend.resources[name] : null;
     },
 
     hasCustomChartsDataProcessor : function () {
@@ -341,14 +342,12 @@ qx.Class.define('cv.io.Client', {
 
       if (!addresses.length) {
         this.stop(); // stop when new addresses are empty
-      }
-      else if (startCommunication) {
+      } else if (startCommunication) {
         if (this.loginSettings.loginOnly === true) {
           // connect to the backend
           this.getCurrentTransport().connect();
           this.loginSettings.loginOnly = false;
-        }
-        else {
+        } else {
           this.login(false);
         }
       }
@@ -371,18 +370,18 @@ qx.Class.define('cv.io.Client', {
         this.loginSettings.callbackAfterLoggedIn = callback;
         this.loginSettings.context = context;
         var request = {};
-        if ('' !== this.user) {
+        if (this.user !== "") {
           request.u = this.user;
         }
-        if ('' !== this.pass) {
+        if (this.pass !== "") {
           request.p = this.pass;
         }
-        if ('' !== this.device) {
+        if (this.device !== "") {
           request.d = this.device;
         }
         this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
           request, this.handleLogin, this);
-      } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
+      } else if (typeof this.loginSettings.callbackAfterLoggedIn === "function") {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
@@ -404,10 +403,14 @@ qx.Class.define('cv.io.Client', {
 
       "qx": function(args) {
         var ev = args[0];
-        if (!ev) { return null; }
+        if (!ev) {
+ return null; 
+}
         var json = ev.getTarget().getResponse();
-        if (!json) { return null; }
-        if (typeof json === 'string') {
+        if (!json) {
+ return null; 
+}
+        if (typeof json === "string") {
           json = cv.io.parser.Json.parse(json);
         }
         return json;
@@ -466,7 +469,7 @@ qx.Class.define('cv.io.Client', {
         }
         var config = {
           url         : url,
-          dataType    : 'json',
+          dataType    : "json",
           context     : context,
           success     : callback
         };
@@ -496,7 +499,7 @@ qx.Class.define('cv.io.Client', {
           }
           if (options.listeners) {
             Object.getOwnPropertyNames(options.listeners).forEach(function(eventName) {
-              var qxEventName = 'error' !== eventName ? eventName : 'statusError';
+              var qxEventName = eventName !== "error" ? eventName : "statusError";
               ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
@@ -520,7 +523,7 @@ qx.Class.define('cv.io.Client', {
      */
     _onError: function(ev) {
       var req = ev.getTarget();
-      if(req.serverErrorHandled) {
+      if (req.serverErrorHandled) {
         return; // ignore error when already handled
       }
       this.__lastError = {
@@ -574,7 +577,7 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().handleSession(args, true);
       }
       this.loginSettings.loggedIn = true;
-      if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
+      if (typeof this.loginSettings.callbackAfterLoggedIn === "function") {
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;
@@ -595,8 +598,8 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * Build the URL part that contains the addresses and filters
-     *
      * @param addresses {Array}
+     * @param asString
      * @return {Map}
      */
     buildRequest : function (addresses, asString) {
@@ -609,7 +612,7 @@ qx.Class.define('cv.io.Client', {
           qs += "&f="+this.filters.join("&f=");
         }
         return qs;
-      } else {
+      } 
         var data = {
           s: this.session
         };
@@ -621,7 +624,6 @@ qx.Class.define('cv.io.Client', {
           data.f = this.filters;
         }
         return data;
-      }
     },
 
     /**
@@ -651,6 +653,7 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * Restart the connection
+     * @param full
      */
     restart: function(full) {
       this.getCurrentTransport().restart(full);
@@ -675,7 +678,7 @@ qx.Class.define('cv.io.Client', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError: function(type, message, args) {},// jshint ignore:line
+    showError: function(type, message, args) {}, // jshint ignore:line
 
     hasProvider: function (name) {
       return false;
@@ -684,7 +687,7 @@ qx.Class.define('cv.io.Client', {
       return null;
     },
     getProviderConvertFunction : function (name, format) {
-      return null
+      return null;
     }
   },
 

@@ -16,7 +16,7 @@
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "echo \"lint is currently disabled\"",
+    "lint": "qx lint source/class/cv/**/*.js client/source/class/cv/**/*.js",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/"
   },

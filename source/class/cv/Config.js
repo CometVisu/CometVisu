@@ -21,7 +21,7 @@
 /**
  * Main settings that an be accessed from anywhere inside the Application
  */
-qx.Class.define('cv.Config', {
+qx.Class.define("cv.Config", {
   type:"static",
 
   statics: {
@@ -93,7 +93,7 @@ qx.Class.define('cv.Config', {
      * Type of the used backend (*default*, *openhab* or *openhab2*)
      * @type {String}
      */
-    backend : 'default',
+    backend : "default",
     /**
      * Initial URL to the backend
      * @type {String}
@@ -259,7 +259,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.libraryCheck) {
-      cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
+      cv.Config.libraryCheck = req.queryKey.libraryCheck !== "false"; // true unless set to false
     }
     if (req.queryKey.backend) {
       cv.Config.backend = req.queryKey.backend;
@@ -277,19 +277,19 @@ qx.Class.define('cv.Config', {
       if (window.Sentry) {
         cv.Config.sentryEnabled = true;
         Sentry.configureScope(function (scope) {
-          scope.setTag('build.date', cv.Version.DATE);
-          scope.setTag('build.branch', cv.Version.BRANCH);
+          scope.setTag("build.date", cv.Version.DATE);
+          scope.setTag("build.branch", cv.Version.BRANCH);
           Object.keys(cv.Version.TAGS).forEach(function (tag) {
             scope.setTag(tag, cv.Version.TAGS[tag]);
-          })
-        })
+          });
+        });
       }
     }
 
     // store for later usage
     cv.Config.request = req;
 
-    if (qx.core.Environment.get('cv.testMode') !== false) {
+    if (qx.core.Environment.get("cv.testMode") !== false) {
       cv.Config.testMode = true;
     } else if (req.queryKey.testMode) {
       cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
@@ -303,25 +303,23 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.forceReload) {
-      cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set to false
+      cv.Config.forceReload = req.queryKey.forceReload !== "false"; // true unless set to false
     }
 
     if (req.queryKey.reporting) {
-      cv.Config.reporting = req.queryKey.reporting === 'true';
+      cv.Config.reporting = req.queryKey.reporting === "true";
     }
 
     // caching is only possible when localStorage is available
     if (qx.core.Environment.get("html.storage.local") === false) {
       cv.Config.enableCache = false;
-      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
-    } else {
-      if (req.queryKey.enableCache === "invalid") {
+      console.warn("localStorage is not available in your browser. Some advanced features, like caching will not work!");
+    } else if (req.queryKey.enableCache === "invalid") {
         cv.ConfigCache.clear(cv.Config.configSuffix);
         cv.Config.enableCache = true;
       } else {
         cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
       }
-    }
 
     cv.Config.enableLogging = qx.core.Environment.get("html.console");
     if (req.queryKey.log === "false") {
@@ -340,16 +338,15 @@ qx.Class.define('cv.Config', {
     var uagent = navigator.userAgent.toLowerCase();
     cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) {
-      cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+      cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
     }
     if (req.queryKey.forceDevice) { // overwrite detection when set by URL
-      switch( req.queryKey.forceDevice )
-      {
-        case 'mobile':
+      switch (req.queryKey.forceDevice) {
+        case "mobile":
           cv.Config.mobileDevice = true;
           break;
 
-        case 'nonmobile':
+        case "nonmobile":
           cv.Config.mobileDevice = false;
           break;
       }
