@@ -40,14 +40,12 @@ describe("testing a colorchooser plugin", function() {
   });
 
   it("should test the colorchooser creator", function() {
-    var res = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var widgetInstance = res[0];
+    const [widget, element] = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
 
-    expect(widget).toHaveClass('colorchooser');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('colorchooser');
+    expect(element).toHaveLabel('Test');
 
-    expect(widgetInstance.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe("id_0");
   });
 
   // test bug reported here:

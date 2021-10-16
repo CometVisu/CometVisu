@@ -239,9 +239,8 @@ qx.Class.define("cv.ui.structure.pure.Page", {
         if (backdrop) {
           container += "<" + this.getBackdropType() + " src=\"" + qx.util.ResourceManager.getInstance().toUri(backdrop) + "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" + size + "\"/>";
         }
-      } else if (pageType === "3d" && false) //---Disable 3D for 0.8---
-      {
-        /*
+      } /* ---Disable 3D for 0.8---
+      else if (pageType === "3d" && false) {
          var floorplan = JSFloorPlan3D( container, backdrop );
          floorplan.moveToRoom( 'Underground', false, true, false );
          container.data( 'JSFloorPlan3D', floorplan );
@@ -278,8 +277,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
          });
          }
          });
-         */
-      }
+      } */
       container += this.getChildrenDomString();
       subpage += container + "</div></div>";
       cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
@@ -321,7 +319,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       if (this.getAddress) {
         var list = this.getAddress();
         for (var id in list) {
-          if (list.hasOwnProperty(id)) {
+          if (Object.prototype.hasOwnProperty.call(list, id)) {
             var address = list[id];
             if (cv.data.Model.isWriteAddress(address)) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address.transform, value));

@@ -41,9 +41,9 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
         if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
-          var clazz = this.__typeMapping[type];
-          if (clazz) {
-            this.registry[data.path] = new clazz(data); // jshint ignore:line
+          var Clazz = this.__typeMapping[type];
+          if (Clazz) {
+            this.registry[data.path] = new Clazz(data); // jshint ignore:line
           } else {
             qx.log.Logger.error(this, "No handler found for type '"+type+"'");
             return null;

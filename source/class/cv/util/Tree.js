@@ -64,6 +64,7 @@ qx.Class.define("cv.util.Tree", {
         }
         parent = parent.getParentWidget();
       }
+      return null;
     },
 
     /*
@@ -139,11 +140,11 @@ qx.Class.define("cv.util.Tree", {
     getChildElements: function(element, selector) {
       return Array.from(element.childNodes).filter(function(child) {
         if (selector) {
-          return Array.prototype.filter.call(child, function(m) {
- return m.matches(selector); 
-});
-        } 
-          return true;
+          return Array.prototype.filter.call(child, function (m) {
+            return m.matches(selector);
+          });
+        }
+        return true;
       }, this);
     },
 
@@ -161,17 +162,17 @@ qx.Class.define("cv.util.Tree", {
       while (parent && parent.getAttribute("id") !== "pages") {
         var found = [parent];
         if (selector) {
-          found = Array.prototype.filter.call(found, function(m) {
- return m.matches(selector); 
-});
+          found = Array.prototype.filter.call(found, function (m) {
+            return m.matches(selector);
+          });
         }
         parents = parents.concat(found);
         if (limit && parents.length >= limit) {
           break;
         }
-        if (until && Array.prototype.filter.call([parent], function(m) {
- return m.matches(until); 
-}).length > 0) {
+        if (until && Array.prototype.filter.call([parent], function (m) {
+          return m.matches(until);
+        }).length > 0) {
           break;
         }
         parent = parent.parentNode;
@@ -179,18 +180,19 @@ qx.Class.define("cv.util.Tree", {
       return parents;
     },
 
-    getClosest: function(elem, selector) {
+    getClosest: function (elem, selector) {
       var findClosest = function (current) {
-        var found = Array.prototype.filter.call([current], function(m) {
- return m.matches(selector); 
-});
+        var found = Array.prototype.filter.call([current], function (m) {
+          return m.matches(selector);
+        });
         if (found.length) {
           return found[0];
-        } 
-          current = current.parentNode; // One up
-          if (current && current.parentNode) {
-            return findClosest(current);
-          }
+        }
+        current = current.parentNode; // One up
+        if (current && current.parentNode) {
+          return findClosest(current);
+        }
+        return null;
       };
       return findClosest(elem);
     }

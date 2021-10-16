@@ -26,19 +26,17 @@ describe("testing a group widget", function() {
 
   it("should test the group creator", function() {
 
-    var res = this.createTestWidgetString("group");
+    const [widget, element] = this.createTestWidgetString("group");
 
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-
-    expect(widget).toHaveClass('group');
-    expect(widget).toHaveClass('widget');
-    expect(res[0].getColspan()).toBe(6);
-    expect(res[0].getColspanM()).toBe(6);
-    expect(res[0].getColspanS()).toBe(12);
+    expect(element).toHaveClass('group');
+    expect(element).toHaveClass('widget');
+    expect(widget.getColspan()).toBe(6);
+    expect(widget.getColspanM()).toBe(6);
+    expect(widget.getColspanS()).toBe(12);
   });
 
   it("should test the group creator with more attributes", function() {
-    var res = this.createTestWidgetString("group", {
+    const [widget, element] = this.createTestWidgetString("group", {
       nowidget: true,
       class: "test",
       flavour: "potassium",
@@ -46,15 +44,14 @@ describe("testing a group widget", function() {
       name: "Test",
       target: "target"
     }, '<text/>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
-    expect(widget).toHaveClass('group');
-    expect(widget).toHaveClass('custom_test');
-    expect(widget).toHaveClass('flavour_potassium');
-    expect(widget).toHaveClass('clickable');
-    expect(widget).not.toHaveClass('widget');
+    expect(element).toHaveClass('group');
+    expect(element).toHaveClass('custom_test');
+    expect(element).toHaveClass('flavour_potassium');
+    expect(element).toHaveClass('clickable');
+    expect(element).not.toHaveClass('widget');
 
-    expect(widget.querySelector("h2").innerText).toBe("Test")
+    expect(element.querySelector("h2").innerText).toBe("Test")
   });
 
   it('should trigger the group action', function() {

@@ -25,12 +25,11 @@
 describe("testing a refresh widget", function() {
 
   it("should test the refresh creator", function() {
-    var res = this.createTestWidgetString("refresh", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("refresh", {}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('refresh');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('refresh');
+    expect(element).toHaveLabel('Test');
   });
 
   it("should test the refresh actor", function() {

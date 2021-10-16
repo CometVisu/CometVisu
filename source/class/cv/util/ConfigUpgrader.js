@@ -94,7 +94,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
         for (let i = 0, l = node.attributes.length; i < l; i++) {
           const match = nameRegex.exec(node.attributes[i].name);
           if (match) {
-            if (!buttonConf.hasOwnProperty(match[1])) {
+            if (!Object.prototype.hasOwnProperty.call(buttonConf, match[1])) {
               buttonConf[match[1]] = {};
             }
             buttonConf[match[1]][match[2]] = node.attributes[i].value;

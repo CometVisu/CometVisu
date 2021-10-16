@@ -105,8 +105,7 @@ qx.Class.define("cv.util.IconTools", {
        * @param length
        */
     innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf("android") > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf("android") + 8)) < 4.4 ?
-      function (r, g, b, data, length) // for Android version < 4.4
-      {
+      function (r, g, b, data, length) { // for Android version < 4.4
         for (var i = 0; i < length; i += 4) {
           var a = data[i + 3];
           if (a > 127) {
@@ -122,8 +121,7 @@ qx.Class.define("cv.util.IconTools", {
           }
         }
       } :
-      function (r, g, b, data, length) // the normal version
-      {
+      function (r, g, b, data, length) { // the normal version
         for (var i = 0; i < length; i += 4) {
           if (data[i + 3] !== 0) {
             data[i] = r;
@@ -175,7 +173,7 @@ qx.Class.define("cv.util.IconTools", {
             var thisIcon = cv.util.IconTools.iconCache[url].icon;
             var thisIconColors = cv.util.IconTools.iconCache[url].colors;
             var thisFillColor;
-          while (thisFillColor = toFill.pop()) { // jshint ignore:line
+          while (thisFillColor = toFill.pop()) { // eslint-disable-line no-cond-assign
             cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
           }
         };

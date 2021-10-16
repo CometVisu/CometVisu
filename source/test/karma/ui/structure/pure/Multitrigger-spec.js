@@ -26,26 +26,24 @@ describe("testing a multitrigger widget", function() {
 
   it("should test the multitrigger creator", function() {
 
-    var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
+    const [widget, element] = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
 
-    expect(widget).toHaveClass('multitrigger');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('multitrigger');
+    expect(element).toHaveLabel('Test');
 
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe("id_0");
   });
 
   it("should test the multitrigger creator", function() {
 
-    var res = this.createTestWidgetString("multitrigger", {
+    const [widget, element] = this.createTestWidgetString("multitrigger", {
       'showstatus': 'true',
       'mapping': 'test'
     }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
-    var values = widget.querySelectorAll("div.actor > div.value");
+    var values = element.querySelectorAll("div.actor > div.value");
     for (var i=0; i<4; i++) {
       expect(values[i].innerText).toBe('B'+(i+1));
     }

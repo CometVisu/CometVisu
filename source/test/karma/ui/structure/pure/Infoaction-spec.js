@@ -26,12 +26,11 @@ describe("testing a infoaction widget", function() {
 
   it("should test the infoaction creator", function() {
 
-    var res = this.createTestWidgetString("infoaction", {}, '<label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("infoaction", {}, '<label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('infoaction');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('infoaction');
+    expect(element).toHaveLabel('Test');
 
   });
 });

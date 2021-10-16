@@ -31,14 +31,12 @@ describe("testing a page widget", function() {
   });
 
   it("should test the page creator", function() {
-    var res = this.createTestWidgetString("page", {'name': 'Testpage'}, "<label>Test</label>");
-    var pageLink = res[0];
+    const [pageLink, element] = this.createTestWidgetString("page", {'name': 'Testpage'}, "<label>Test</label>");
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     expect(page.getPageType()).toBe("text");
 
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     cv.ui.structure.pure.Page.createFinal();
-    expect(widget).toHaveClass('pagelink');
+    expect(element).toHaveClass('pagelink');
 
     var elem = page.getDomElement();
     expect(elem).toHaveClass("type_text");
@@ -47,7 +45,7 @@ describe("testing a page widget", function() {
 
   it("should test the page creator with some attributes", function() {
 
-    var res = this.createTestWidgetString("page", {
+    const [pageLink, element] = this.createTestWidgetString("page", {
       'name': "TestPage",
       'flavour': 'potassium',
       'bind_click_to_widget': 'true',
@@ -59,11 +57,9 @@ describe("testing a page widget", function() {
       'shownavbar-bottom': 'true',
       'shownavbar-right': 'true'
     });
-    var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
 
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var actor = this.findChild(widget, ".actor");
+    var actor = this.findChild(element, ".actor");
     expect(actor.style['text-align']).toBe('right');
     cv.ui.structure.pure.Page.createFinal();
 
@@ -79,14 +75,13 @@ describe("testing a page widget", function() {
 
   it("should test the 2d-page creator with contained svg backdrop", function() {
 
-    var res = this.createTestWidgetString("page", {
+    const [pageLink, element] = this.createTestWidgetString("page", {
       'name': "TestPage",
       'type': '2d',
       'size': 'contained',
       'backdropalign': 'left',
       'backdrop': 'test.svg'
     });
-    var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     cv.ui.structure.pure.Page.createFinal();
 
@@ -126,14 +121,13 @@ describe("testing a page widget", function() {
     var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
 
-    var res = this.createTestWidgetString("page", {
+    const [pageLink, element] = this.createTestWidgetString("page", {
       'type': 'text',
       'ga': '1/0/0',
       'name': 'Testpage'
     });
-    this.initWidget(res);
+    this.initWidget(pageLink);
 
-    var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     spyOn(page, "sendToBackend");
     cv.ui.structure.pure.Page.createFinal();

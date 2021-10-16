@@ -70,7 +70,9 @@ qx.Class.define("cv.ui.TrickOMatic", {
             return;
           }
           var stroke = path.style.stroke;
-          var r; var g; var b;
+          var r;
+          var g;
+          var b;
           if (stroke[0] === "#") {
             r = parseInt(path.style.stroke.substring(1, 3), 16);
             g = parseInt(path.style.stroke.substring(3, 5), 16);
@@ -146,10 +148,11 @@ qx.Class.define("cv.ui.TrickOMatic", {
        * @param value
        */
       function createCSSRules(style, value) {
-        return style + ": " + value + ";\n" + "-moz-" + style + ": " +
-          value + ";\n" + "-webkit-" + style + ": " + value +
-          ";\n";
-      }
+        return `${style}: ${value};
+-moz-${style}: ${value};
+-webkit-${style}: ${value};
+`;
+    }
 
       keyframes += ".flow_active path {\n" +
         createCSSRules("animation-duration", "3s") +

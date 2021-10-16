@@ -47,18 +47,16 @@ describe("testing a image widget", function() {
 
   it("should test the image creator", function () {
 
-    var res = this.createTestWidgetString("image", {
+    const [widget, element] = this.createTestWidgetString("image", {
       src: '/source/resource/icons/comet_64_ff8000.png',
       flavour: 'potassium'
     }, '<label>Test</label>');
 
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-
-    expect(widget).toHaveClass('image');
-    expect(widget).toHaveLabel('Test');
-    expect(res[0].getPath()).toBe("id_0");
-    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
-    expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;');
+    expect(element).toHaveClass('image');
+    expect(element).toHaveLabel('Test');
+    expect(widget.getPath()).toBe("id_0");
+    expect(element.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
+    expect(element.querySelector("img").getAttribute("style")).toBe('width:100%;');
   });
 
   it("should test the image creator and refreshing", function() {

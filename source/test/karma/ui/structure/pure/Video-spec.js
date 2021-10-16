@@ -26,13 +26,12 @@ describe("testing a video widget", function() {
 
   it("should test the video creator", function() {
 
-    var res = this.createTestWidgetString("video", {src: '', width: "100%", height: "90%"}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-    expect(widget).toHaveClass('video');
-    expect(widget).toHaveLabel('Test');
+    const [widget, element] = this.createTestWidgetString("video", {src: '', width: "100%", height: "90%"}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
+    expect(element).toHaveClass('video');
+    expect(element).toHaveLabel('Test');
 
-    var videoWidget = widget.querySelector("video");
+    const videoWidget = element.querySelector("video");
     expect(videoWidget).toHaveStyleSetting("width", "100%");
     expect(videoWidget).toHaveStyleSetting("height", "90%");
   });

@@ -26,12 +26,11 @@ describe("testing a toggle widget", function() {
 
   it("should test the toggle creator", function() {
 
-    var res = this.createTestWidgetString("toggle", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("toggle", {}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('toggle');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('toggle');
+    expect(element).toHaveLabel('Test');
 
   });
 

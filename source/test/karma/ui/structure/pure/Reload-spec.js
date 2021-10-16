@@ -25,8 +25,8 @@
 describe("testing a reload widget", function() {
 
   it("should test the reload creator", function() {
-    var res = this.createTestWidgetString("reload");
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("reload");
+    expect(widget.getPath()).toBe("id_0");
   });
 
   it("should test the reload action", function() {

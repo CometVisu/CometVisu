@@ -28,11 +28,9 @@ describe("testing a line widget", function() {
 
   it("should test the line creator", function() {
 
-    var res = this.createTestWidgetString("line");
+    const [widget, element] = this.createTestWidgetString("line");
 
-    var line = cv.util.String.htmlStringToDomElement(res[1]);
-
-    expect(line.nodeName.toLowerCase()).toBe('hr');
-    expect(res[0].getPath()).toBe("id_0");
+    expect(element.nodeName.toLowerCase()).toBe('hr');
+    expect(widget.getPath()).toBe("id_0");
   });
 });

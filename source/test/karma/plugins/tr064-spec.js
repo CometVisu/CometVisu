@@ -46,14 +46,12 @@ describe("testing a TR-064 plugin", function() {
   });
 
   it("should test the TR-064:calllist creator", function() {
-    var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var widgetInstance = res[0];
+    const [widget, element] = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
 
-    expect(widget).toHaveClass('calllist');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('calllist');
+    expect(element).toHaveLabel('Test');
 
-    expect(widgetInstance.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe("id_0");
   });
 
   it("should test the TR-064:calllist column selector and table filling", function(done) {

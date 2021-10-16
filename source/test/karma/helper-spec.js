@@ -23,7 +23,7 @@
  * @param name {String} name of the widget creator
  * @param attributes {Map} widget attributes
  * @param content {String} content od the widget
- * @return [{WidgetInstance}, {xml-string}]
+ * @return [{WidgetInstance}, {Element}]
  */
 var createTestWidgetString = function (name, attributes, content) {
 
@@ -45,10 +45,11 @@ var createTestWidgetString = function (name, attributes, content) {
     data = cv.parser.WidgetParser.parse(elem, 'id_0', null, "text");
   }
   var res = [];
+  let inst;
   if (Array.isArray(data)) {
     var widgetInstance = [];
     for (var i = 0, l = data.length; i < l; i++) {
-      var inst = cv.ui.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
+      inst = cv.ui.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
       var source = inst.getDomString ? inst.getDomString() : null;
       if (source) {
         res = [inst, source];
@@ -56,13 +57,11 @@ var createTestWidgetString = function (name, attributes, content) {
         widgetInstance.push(inst);
       }
     }
-    if (res.length == 2) {
-      return res;
-    } else {
-      return [widgetInstance[0], '']
+    if (res.length !== 2) {
+      res = [widgetInstance[0], '']
     }
   } else if (data) {
-    var inst = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+    inst = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     if (inst) {
       res.push(inst);
       if (inst.getDomString) {
@@ -70,7 +69,13 @@ var createTestWidgetString = function (name, attributes, content) {
       }
     }
   }
-
+  if (res[1]) {
+    const element = cv.util.String.htmlStringToDomElement(res[1]);
+    // some widgets always need access to the DOMTree to get their DOMElement, some unit tests only use a shadow dom
+    // this overrides the settings to make that work
+    res[0].setDomElement(element);
+    res[1] = element;
+  }
   return res;
 };
 
@@ -107,13 +112,17 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   var container = document.createElement('div');
   container.setAttribute("class", "widget_container");
   container.setAttribute("id", 'id_0');
-  var res = createTestWidgetString(name, attributes, content);
-  container.innerHTML = res[1];
+  const [widget, element] = createTestWidgetString(name, attributes, content);
+  // revert manual override, we use real DOM here
+  widget.setDomElement(null);
+  if (element) {
+    container.appendChild(element);
+  }
   document.body.appendChild(container);
 
   this.container = container
   cv.TemplateEngine.getInstance().setDomFinished(true);
-  return res[0];
+  return widget;
 };
 
 resetApplication = function() {

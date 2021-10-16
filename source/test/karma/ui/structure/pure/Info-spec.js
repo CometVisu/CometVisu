@@ -25,13 +25,11 @@
 describe("testing a info widget", function() {
 
   it("should test the info creator", function() {
-    var res = this.createTestWidgetString("info", {}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var obj = res[0];
+    const [widget, element] = this.createTestWidgetString("info", {}, "<label>Test</label>");
 
-    expect(widget).toHaveClass('info');
-    expect(widget).toHaveLabel('Test');
-    expect(obj.getPath()).toBe("id_0");
+    expect(element).toHaveClass('info');
+    expect(element).toHaveLabel('Test');
+    expect(widget.getPath()).toBe("id_0");
   });
 
   it("should update an info widget", function() {

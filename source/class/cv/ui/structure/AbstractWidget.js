@@ -34,7 +34,8 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
   */
   construct: function(props) {
     this.base(arguments, props);
-    var parts = this.getPath().split("_"); parts.shift();
+    var parts = this.getPath().split("_");
+    parts.shift();
     // var prio = parseInt(parts.join(""))*-1;
     // var broker = cv.MessageBroker.getInstance();
     if (cv.TemplateEngine.getInstance().isDomFinished()) {
@@ -344,8 +345,8 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
      */
     addElementListener: function(type, callback, context) {
       if (this.isAnonymous()) {
- return; 
-}
+        return null;
+      }
       var widget = this.getInteractionElement();
       if (widget) {
         widget.dataset["longtapable"] = type !== "longtap";
@@ -363,8 +364,8 @@ qx.Class.define("cv.ui.structure.AbstractWidget", {
      */
     removeElementListener: function(type, callback, context) {
       if (this.isAnonymous()) {
- return; 
-}
+        return false;
+      }
       var widget = this.getInteractionElement();
       if (widget) {
         return qx.event.Registration.removeListener(widget, type, callback, context);

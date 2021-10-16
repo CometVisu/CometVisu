@@ -25,23 +25,22 @@ describe("testing a web widget", function() {
 
   it("should test the web creator", function() {
 
-    var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-    expect(res[0].getAddress()['_Test'].transform).toBe('DPT:1.001');
-    expect(res[0].getAddress()['_Test'].mode).toBe(0);
+    const [widget, element] = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getAddress()['_Test'].transform).toBe('DPT:1.001');
+    expect(widget.getAddress()['_Test'].mode).toBe(0);
 
-    expect(widget).toHaveClass('web');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('web');
+    expect(element).toHaveLabel('Test');
 
   });
 
   it("should test the ga with openhab backend", function() {
     var defBackend = cv.Config.backend;
     cv.Config.backend = 'oh';
-    var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
-    expect(res[0].getAddress()['_Test'].transform).toBe('OH:switch');
-    expect(res[0].getAddress()['_Test'].mode).toBe('OFF');
+    const [widget, element] = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
+    expect(widget.getAddress()['_Test'].transform).toBe('OH:switch');
+    expect(widget.getAddress()['_Test'].mode).toBe('OFF');
 
     cv.Config.backend = defBackend;
   });

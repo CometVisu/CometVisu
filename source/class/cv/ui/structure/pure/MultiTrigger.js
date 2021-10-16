@@ -106,7 +106,7 @@ qx.Class.define("cv.ui.structure.pure.MultiTrigger", {
       var buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
         var index = Array.prototype.indexOf.call(children, actor)+1;
-        if (buttonConfiguration.hasOwnProperty(index)) {
+        if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
           var isPressed = ("" + this.getBasicValue()) === ("" + buttonConfiguration[index].value); // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish

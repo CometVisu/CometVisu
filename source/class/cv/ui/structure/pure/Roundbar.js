@@ -40,6 +40,16 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
   include: cv.ui.common.Update,
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    this.__indicatorDOMElement = [];
+    this.base(arguments, props);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -231,7 +241,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
   */
   members: {
     __animator: undefined,
-    __indicatorDOMElement: [],
+    __indicatorDOMElement: null,
 
     // overridden
     _getInnerDomString: function () {

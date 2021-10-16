@@ -19,7 +19,8 @@ qx.Class.define("cv.util.Function", {
         options = {};
       }
 
-      var args; var result;
+      var args;
+      var result;
       var timeout = null;
       var previous = 0;
 

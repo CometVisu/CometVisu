@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.ToastManager", {
     this.setDelegate({
       prepareMessage: function(message) {
         // all toast messages need a duration
-        if (!message.hasOwnProperty("duration")) {
+        if (!Object.prototype.hasOwnProperty.call(message, "duration")) {
           message.duration = this.getMessageDuration();
         }
       }.bind(this),
@@ -120,7 +120,7 @@ qx.Class.define("cv.ui.ToastManager", {
         return false;
       }
       // default is to delete the toast
-      this.deleteMessage(message.id);
+      return this.deleteMessage(message.id);
     }
   },
 

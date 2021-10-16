@@ -26,12 +26,11 @@ describe("testing a wgplugin_info widget", function() {
 
   it("should test the wgplugin_info creator", function() {
 
-    var res = this.createTestWidgetString("wgplugin_info", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("wgplugin_info", {}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('info');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('info');
+    expect(element).toHaveLabel('Test');
   });
 
   it("should test the wgplugin_info update", function() {

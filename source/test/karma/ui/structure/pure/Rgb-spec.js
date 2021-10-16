@@ -26,12 +26,11 @@ describe("testing a rgb widget", function() {
 
   it("should test the rgb creator", function() {
 
-    var res = this.createTestWidgetString("rgb", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("rgb", {}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('rgb');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('rgb');
+    expect(element).toHaveLabel('Test');
   });
 
   it("should test the RGB update in R variant", function() {

@@ -25,13 +25,12 @@
 describe("testing a designtoggle widget", function() {
 
   it("should test the designtoggle creator", function() {
-    var res = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
+    const [widget, element] = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
 
-    expect(widget).toHaveClass('toggle');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('toggle');
+    expect(element).toHaveLabel('Test');
 
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe("id_0");
   });
 
   it('should trigger the designtoggle action', function() {

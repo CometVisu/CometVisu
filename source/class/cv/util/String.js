@@ -45,14 +45,16 @@ qx.Class.define("cv.util.String", {
     /**
      * Clean the string that contains HTML code and convert it to a DOM element
      * @param str {String} string to decode
-     * @return {String}
+     * @return {Element}
      */
     htmlStringToDomElement: function (str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
       var div = document.createElement("div");
       div.innerHTML = str;
-      return div.childNodes[0];
+      const elem = div.children[0];
+      document.body.appendChild(elem);
+      return elem;
     },
 
     /**
@@ -68,7 +70,7 @@ qx.Class.define("cv.util.String", {
       try {
         string = sprintf.apply(this, args);
       } catch (err) {
-        console.warn(err, args);
+        qx.log.Logger.warn(this, err + ", " + JSON.stringify(args));
       }
       return string;
     }

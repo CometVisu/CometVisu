@@ -36,8 +36,9 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
     this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener("changePageSizeInvalid", () => {
- this.__invalidateScreensize(); 
-});
+      this.__invalidateScreensize();
+    });
+    this.__lastBusValue = {};
   },
   /*
   ***********************************************
@@ -84,7 +85,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
   ******************************************************
   */
   members: {
-    __lastBusValue: {},
+    __lastBusValue: null,
     __animator: null,
     __button: undefined, // cache for DOM element
     __range: undefined, // cache for DOM element
@@ -184,8 +185,8 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
 
         let button = this.getDomElement().querySelector("button");
         this.defaultValue2DOM(displayValue, e => {
- button.innerHTML = e; 
-});
+          button.innerHTML = e;
+        });
       }
 
       this.__animator.setTo(ratio, instant);
@@ -228,15 +229,16 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
       let newRatio = 0;
 
       switch (event.type) {
-        case "pointerdown":
+        case "pointerdown": {
           this.__inDrag = true;
           document.addEventListener("pointermove", this);
           document.addEventListener("pointerup", this);
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-          newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
+          newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
           break;
+        }
 
         case "pointermove":
           if (!this.__inDrag) {

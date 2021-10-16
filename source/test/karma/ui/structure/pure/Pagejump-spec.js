@@ -26,47 +26,44 @@ describe("testing a pagejump widget", function() {
 
   it("should test the pagejump creator", function() {
 
-    var res = this.createTestWidgetString("pagejump", {'name': 'Testpage'}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(widget).toHaveClass('pagejump');
-    expect(widget).toHaveLabel('Test');
-    expect(widget).toHaveValue('Testpage');
+    const [widget, element] = this.createTestWidgetString("pagejump", {'name': 'Testpage'}, "<label>Test</label>");
+    expect(element).toHaveClass('pagejump');
+    expect(element).toHaveLabel('Test');
+    expect(element).toHaveValue('Testpage');
 
-    expect(res[0].getPath()).toBe("id_0");
-    expect(res[0].getActiveScope()).toBe("target");
+    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getActiveScope()).toBe("target");
   });
 
   it("should test the pagejump creator with some extra settings", function() {
 
-    var res = this.createTestWidgetString("pagejump", {
+    const [widget, element] = this.createTestWidgetString("pagejump", {
       'align': 'right',
       'flavour': 'potassium',
       'target': 'OtherPage',
       'path': 'ParentPage',
       'active_scope': 'path'
     }, '<layout colspan="6" rowspan="2"></layout>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
-    expect(widget).toHaveClass('right');
-    expect(widget).toHaveClass('innerrowspan');
-    expect(widget).toHaveClass('flavour_potassium');
+    expect(element).toHaveClass('right');
+    expect(element).toHaveClass('innerrowspan');
+    expect(element).toHaveClass('flavour_potassium');
 
-    expect(res[0].getPath()).toBe("id_0");
-    expect(res[0].getTargetPath()).toBe("ParentPage");
-    expect(res[0].getTarget()).toBe("OtherPage");
-    expect(res[0].getAlign()).toBe("right");
-    expect(res[0].getActiveScope()).toBe("path");
-    expect(res[0].getColspan()).toBe(6);
-    expect(res[0].getRowspanClass()).toBe("rowspan rowspan2");
+    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getTargetPath()).toBe("ParentPage");
+    expect(widget.getTarget()).toBe("OtherPage");
+    expect(widget.getAlign()).toBe("right");
+    expect(widget.getActiveScope()).toBe("path");
+    expect(widget.getColspan()).toBe(6);
+    expect(widget.getRowspanClass()).toBe("rowspan rowspan2");
   });
 
   it("should test the pagejump creator with infoaction embedded", function() {
 
-    var res = this.createTestWidgetString("pagejump", {},
+    const [widget, element] = this.createTestWidgetString("pagejump", {},
       '<widgetinfo><text>Test</text></widgetinfo>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
-    expect(widget).toHaveClass('infoaction');
+    expect(element).toHaveClass('infoaction');
   });
 
   it("should trigger the pagejumps downaction", function() {

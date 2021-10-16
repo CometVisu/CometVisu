@@ -26,12 +26,11 @@ describe("testing a pushbutton widget", function() {
 
   it("should test the pushbutton creator", function() {
 
-    var res = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    const [widget, element] = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
+    expect(widget.getPath()).toBe("id_0");
 
-    expect(widget).toHaveClass('pushbutton');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('pushbutton');
+    expect(element).toHaveLabel('Test');
   });
 
   it("should check if the up/down values are used corrent", function() {

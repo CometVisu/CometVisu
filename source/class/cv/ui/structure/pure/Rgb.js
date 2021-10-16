@@ -48,8 +48,8 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
      */
     _update: function(address, data) {
       if (data === undefined || address === undefined) {
- return; 
-}
+        return;
+      }
       var valElem = this.getValueElement();
 
       var value = cv.Transform.decode(this.getAddress()[address].transform, data);
@@ -59,9 +59,15 @@ qx.Class.define("cv.ui.structure.pure.Rgb", {
         bg = [0, 0, 0];
       }
       switch (this.getAddress()[address].variantInfo) {
-        case "r": bg[0] = value; break;
-        case "g": bg[1] = value; break;
-        case "b": bg[2] = value; break;
+        case "r":
+          bg[0] = value;
+          break;
+        case "g":
+          bg[1] = value;
+          break;
+        case "b":
+          bg[2] = value;
+          break;
       }
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       valElem.style["background-color"] = bgs;
