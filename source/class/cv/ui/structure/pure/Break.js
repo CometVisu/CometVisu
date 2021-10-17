@@ -45,6 +45,6 @@ qx.Class.define('cv.ui.structure.pure.Break', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("break", statics);
+    cv.ui.structure.WidgetFactory.registerClass('break', statics);
   }
 });

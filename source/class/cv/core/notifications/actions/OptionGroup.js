@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.OptionGroup", {
+qx.Class.define('cv.core.notifications.actions.OptionGroup', {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -45,11 +45,11 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   */
   properties: {
     title: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     options: {
-      check: "Array",
+      check: 'Array',
       nullable: true
     }
   },
@@ -72,8 +72,8 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
       if (this.getOptions().length === 0) {
         return null;
       }
-      var content =  this.getTitle() + ' ';
-      var container = qx.dom.Element.create('div', {
+      const content = this.getTitle() + ' ';
+      const container = qx.dom.Element.create('div', {
         style: this.getStyle(),
         html: content
       });
@@ -85,6 +85,6 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   },
 
   defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler("optionGroup", cv.core.notifications.actions.OptionGroup);
+    cv.core.notifications.ActionRegistry.registerActionHandler('optionGroup', cv.core.notifications.actions.OptionGroup);
   }
 });

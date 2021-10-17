@@ -19,11 +19,11 @@
 
 
 
-qx.Theme.define("cv.theme.dark.Decoration", {
+qx.Theme.define('cv.theme.dark.Decoration', {
   extend : osparc.theme.common.Decoration,
 
   decorations : {
-    "window-caption-active": {
+    'window-caption-active': {
     },
 
     'cv-editor-config-section': {
@@ -88,7 +88,7 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         width: 2,
         radius: 32,
         color: 'button-border',
-        backgroundColor: "button",
+        backgroundColor: 'button',
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,

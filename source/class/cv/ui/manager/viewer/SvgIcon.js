@@ -63,7 +63,7 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
 
     // overridden
     _createContentElement : function() {
-      var svgElem = new cv.svg.Element('svg');
+      const svgElem = new cv.svg.Element('svg');
       this.__useElement = new cv.svg.Element('use');
       svgElem.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
       svgElem.add(this.__useElement);

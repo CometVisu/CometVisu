@@ -34,7 +34,7 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", nullable: true }
+    sendValue: { check: 'String', nullable: true }
   },
 
   /*

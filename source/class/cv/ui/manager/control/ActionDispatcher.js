@@ -73,6 +73,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
 
     /**
      * Check if there is an existing handler for the given actionName.
+     * @param actionName
      * @return {Boolean}
      */
     hasHandler: function (actionName) {
@@ -80,19 +81,20 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     },
 
     _getHandler: function (actionName) {
-      var handler = this.getFocusedWidget();
-      var main = this.getMain();
+      const handler = this.getFocusedWidget();
+      const main = this.getMain();
       if (handler && handler.canHandleAction(actionName)) {
         return handler;
       } else if (main && main.canHandleAction(actionName)) {
         return main;
       }
+      return null;
     },
 
     _onAction: function (ev) {
-      var topic = ev.getName();
-      var actionName = topic.split('.').pop();
-      var handler = this._getHandler(actionName);
+      const topic = ev.getName();
+      const actionName = topic.split('.').pop();
+      const handler = this._getHandler(actionName);
       if (handler) {
         handler.handleAction(actionName, ev.getData());
       } else {

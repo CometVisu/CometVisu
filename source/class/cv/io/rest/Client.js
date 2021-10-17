@@ -18,11 +18,11 @@ qx.Class.define('cv.io.rest.Client', {
 
     getBaseUrl: function () {
       if (!this.BASE_URL) {
-        var path = ""; 
-        var engine = cv.TemplateEngine.getInstance();
-        var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
+        let path = '';
+        const engine = cv.TemplateEngine.getInstance();
+        const clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
         if (clientBackend.resources && clientBackend.resources.rest) {
-          path = clientBackend.resources.rest
+          path = clientBackend.resources.rest;
         } else {
           path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
         }
@@ -33,7 +33,7 @@ qx.Class.define('cv.io.rest.Client', {
 
     getConfigClient: function() {
       if (!this.__configFile) {
-        var config = {
+        const config = {
           get: {
             method: 'GET', url: '/config/hidden/{section}/{key}'
           },
@@ -43,7 +43,7 @@ qx.Class.define('cv.io.rest.Client', {
           post: {
             method: 'POST', url: '/config/hidden/{section}/{key}'
           },
-          "delete": {
+          'delete': {
             method: 'DELETE', url: '/config/hidden/{section}/{key}'
           },
           save: {
@@ -66,7 +66,7 @@ qx.Class.define('cv.io.rest.Client', {
 
     getFsClient: function () {
       if (!this.__dirClient) {
-        var config = {
+        const config = {
           read: {
             method: 'GET', url: '/fs?path={path}'
           },
@@ -76,7 +76,7 @@ qx.Class.define('cv.io.rest.Client', {
           create: {
             method: 'POST', url: '/fs?path={path}&type={type}'
           },
-          "delete": {
+          'delete': {
             method: 'DELETE', url: '/fs?path={path}&force={force}'
           },
           move: {
@@ -96,10 +96,10 @@ qx.Class.define('cv.io.rest.Client', {
             req.setUrl(req.getUrl() + '&recursive=true');
           }
           if (action === 'update' || action === 'create') {
-            var parts = params.path.split('.');
+            const parts = params.path.split('.');
             if (parts.length > 1) {
-              var type = parts.pop();
-              var mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
+              const type = parts.pop();
+              const mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
               req.setRequestHeader('Content-Type', mimetype || 'text/plain');
             } else {
               req.setRequestHeader('Content-Type', 'text/plain');
@@ -122,7 +122,7 @@ qx.Class.define('cv.io.rest.Client', {
 
     getDataProviderClient: function () {
       if (!this.__dpClient) {
-        var config = {
+        const config = {
           designs: {
             method: 'GET', url: '/data/designs'
           },
@@ -154,9 +154,9 @@ qx.Class.define('cv.io.rest.Client', {
       // install the callback calls
       Object.keys(config).forEach(function (callName) {
         client[callName + 'Sync'] = function () {
-          var args = qx.lang.Array.fromArguments(arguments);
-          var callback;
-          var context = args.pop();
+          const args = qx.lang.Array.fromArguments(arguments);
+          let callback;
+          let context = args.pop();
           if (qx.lang.Type.isFunction(context)) {
             callback = context;
             context = this;
@@ -169,20 +169,20 @@ qx.Class.define('cv.io.rest.Client', {
 
       // add the general listeners
       client.addListener('success', function (ev) {
-        var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10);
-        if (this.__callbacks.hasOwnProperty(id)) {
+        const req = ev.getRequest();
+        const id = parseInt(req.toHashCode(), 10);
+        if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
           this.__callbacks[id](null, ev.getData());
           delete this.__callbacks[id];
         }
       }, this);
 
       client.addListener('error', function (ev) {
-        var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10);
-        if (this.__callbacks.hasOwnProperty(id)) {
-          var data = ev.getData();
-          var error;
+        const req = ev.getRequest();
+        const id = parseInt(req.toHashCode(), 10);
+        if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
+          const data = ev.getData();
+          let error;
           if (data) {
             error = data.message;
           } else {
@@ -203,19 +203,19 @@ qx.Class.define('cv.io.rest.Client', {
     },
 
     _onSaveSuccess: function (ev) {
-      var req = ev.getRequest();
-      var id = parseInt(req.toHashCode(), 10);
+      const req = ev.getRequest();
+      const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
-      if (!this.__callbacks.hasOwnProperty(id)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
       }
     },
 
     _onSaveError: function (ev) {
-      var req = ev.getRequest();
-      var id = parseInt(req.toHashCode(), 10);
+      const req = ev.getRequest();
+      const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
-      if (!this.__callbacks.hasOwnProperty(id)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
         cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
       }
     }

@@ -2,7 +2,7 @@
  * A dialog that alerts the user to something.
  *
  */
-qx.Class.define("cv.ui.manager.dialog.BigAlert", {
+qx.Class.define('cv.ui.manager.dialog.BigAlert', {
   extend: qxl.dialog.Alert,
   members: {
     _hbox: null,
@@ -17,7 +17,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
         this._hbox.addAt(this._image, 0);
       }
       this._image.setSource(value);
-      this._image.setVisibility(value ? "visible" : "excluded");
+      this._image.setVisibility(value ? 'visible' : 'excluded');
     },
 
     /**
@@ -48,7 +48,7 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
       this._message.setRich(true);
       this._message.setWidth(200);
       this._message.setAllowStretchX(true);
-      hbox.addAt(this._message, 1,{
+      hbox.addAt(this._message, 1, {
         flex: 1
       });
       let buttonPane = this._createButtonPane();
@@ -64,6 +64,6 @@ qx.Class.define("cv.ui.manager.dialog.BigAlert", {
   ***********************************************
   */
   destruct: function () {
-    this._disposeObjects("_hbox");
+    this._disposeObjects('_hbox');
   }
 });

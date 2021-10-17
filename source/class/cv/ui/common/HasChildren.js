@@ -22,7 +22,7 @@
  * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
  * and the methods for the widget instance.
  */
-qx.Mixin.define("cv.ui.common.HasChildren", {
+qx.Mixin.define('cv.ui.common.HasChildren', {
 
   /*
   ******************************************************
@@ -30,14 +30,14 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
   ******************************************************
   */
   construct: function(props) {
-    var children = [];
+    const children = [];
     // create children
-    var model = cv.data.Model.getInstance();
+    const model = cv.data.Model.getInstance();
     if (cv.Config.lazyLoading === false || cv.Config.treePath.indexOf(props.path) >= 0) {
       // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
       props.children.forEach(function (path) {
-        var data = model.getWidgetData(path);
-        var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+        const data = model.getWidgetData(path);
+        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {
           children.push(widget);
           widget.setParentWidget(this);
@@ -58,7 +58,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child paths
      */
     children: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
 
@@ -66,7 +66,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child widget objects
      */
     childWidgets: {
-      check: "Array",
+      check: 'Array',
       init: []
     }
   },
@@ -84,10 +84,10 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * @return {String} HTML code
      */
     getChildrenDomString: function (noWidgetContainer) {
-      var container = '';
+      let container = '';
 
       this.getChildWidgets().forEach(function (widget) {
-        var subelement = widget.getDomString();
+        const subelement = widget.getDomString();
         if (undefined === subelement) {
           return;
         }
@@ -97,7 +97,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
           container += '<div class="widget_container' +
             (widget.getRowspanClass ? ' '+widget.getRowspanClass() : '') +
             (widget.getContainerClass && widget.getContainerClass() ? ' '+widget.getContainerClass() : '') +
-            ('break' === widget.get$$type() ? ' break_container' : '') + // special case for break widget
+            (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
             '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
         }
       }, this);

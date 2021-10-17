@@ -84,7 +84,6 @@ qx.Class.define('cv.ui.manager.model.ElementChange', {
             change = this.getChanges()[0];
             success = change.child.moveTo(change.oldParent, change.oldIndex, true);
             break;
-
         }
       }
       return success;

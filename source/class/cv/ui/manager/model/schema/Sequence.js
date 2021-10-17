@@ -51,8 +51,8 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       // so we have to use a 'mixed' approach in reading them
       const subNodes = Array.from(this.getNode().children);
 
-      subNodes.forEach((subNode) => {
-        let subObject = undefined;
+      subNodes.forEach(subNode => {
+        let subObject;
 
         switch (subNode.nodeName) {
           case 'xsd:element':
@@ -64,22 +64,22 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
             break;
           case 'xsd:choice':
           case 'choice':
-            subObject = new cv.ui.manager.model.schema.Choice(subNode, schema)
+            subObject = new cv.ui.manager.model.schema.Choice(subNode, schema);
             this._subGroupings.push(subObject);
             break;
           case 'xsd:sequence':
           case 'sequence':
-            subObject = new cv.ui.manager.model.schema.Sequence(subNode, schema)
+            subObject = new cv.ui.manager.model.schema.Sequence(subNode, schema);
             this._subGroupings.push(subObject);
             break;
           case 'xsd:group':
           case 'group':
-            subObject = new cv.ui.manager.model.schema.Group(subNode, schema)
+            subObject = new cv.ui.manager.model.schema.Group(subNode, schema);
             this._subGroupings.push(subObject);
             break;
           case 'xsd:any':
           case 'any':
-            subObject = new cv.ui.manager.model.schema.Any(subNode, schema)
+            subObject = new cv.ui.manager.model.schema.Any(subNode, schema);
             this._subGroupings.push(subObject);
             break;
         }
@@ -112,7 +112,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       const elementRegexes = [];
 
       // this goes over ALL elements AND sub-groupings
-      this._sortedContent.forEach((element) => {
+      this._sortedContent.forEach(element => {
         elementRegexes.push(element.getRegex(separator, nocapture));
       });
 
@@ -152,30 +152,30 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
         // if it is bounded, we must duplicate element and sequence bounds
         // (an element may appear as often as the number of sequences times the number of elements
         // in each sequence - roughly)
-        if (elementBounds.hasOwnProperty("min")) {
+        if (Object.prototype.hasOwnProperty.call(elementBounds, 'min')) {
           resultBounds.min = elementBounds.min;
         }
 
-        if (sequenceBounds.hasOwnProperty("min") && !isNaN(sequenceBounds.min)) {
-          resultBounds.min = resultBounds.min * sequenceBounds.min;
+        if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') && !isNaN(sequenceBounds.min)) {
+          resultBounds.min *= sequenceBounds.min;
         }
 
         if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
           resultBounds.max = Number.POSITIVE_INFINITY;
         } else {
-          if (elementBounds.hasOwnProperty("max")) {
+          if (Object.prototype.hasOwnProperty.call(elementBounds, 'max')) {
             resultBounds.max = elementBounds.max;
           }
 
-          if (sequenceBounds.hasOwnProperty("max") && !isNaN(sequenceBounds.max)) {
-            resultBounds.max = resultBounds.max * sequenceBounds.max;
+          if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') && !isNaN(sequenceBounds.max)) {
+            resultBounds.max *= sequenceBounds.max;
           }
         }
 
         return resultBounds;
       }
 
-      let childBounds = undefined;
+      let childBounds;
 
       let tmpBounds;
 
@@ -196,14 +196,13 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
      * get the sorting of the allowed elements
      *
      * Warning: this only works if any element can have only ONE position in the parent.
-     *
-     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
-     * @return  object              list of allowed elements, with their sort-number as value
+     * @param sortNumber  integer the sortNumber of a parent (only used when recursive)
+     * @return object     list of allowed elements, with their sort-number as value
      */
     getAllowedElementsSorting: function (sortNumber) {
       const namesWithSorting = {};
 
-      this._sortedContent.forEach( (item, i) => {
+      this._sortedContent.forEach((item, i) => {
         let mySortNumber = i;
         if (sortNumber !== undefined) {
           mySortNumber = sortNumber + '.' + i;

@@ -97,6 +97,6 @@ qx.Class.define('cv.ui.structure.pure.InfoAction', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("infoaction", statics);
+    cv.ui.structure.WidgetFactory.registerClass('infoaction', statics);
   }
 });

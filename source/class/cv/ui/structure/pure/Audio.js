@@ -48,13 +48,13 @@
     ******************************************************
     */
     properties: {
-      src: { check: "String", nullable: true },
-      id: { check: "String", nullable: true },
-      width: { check: "String", nullable: true },
-      height: { check: "String", nullable: true },
-      autoplay: { check: "Boolean", init: false },
-      loop: { check: "Boolean", init: false },
-      thresholdValue: { check: "Number", init: 1 }
+      src: { check: 'String', nullable: true },
+      id: { check: 'String', nullable: true },
+      width: { check: 'String', nullable: true },
+      height: { check: 'String', nullable: true },
+      autoplay: { check: 'Boolean', init: false },
+      loop: { check: 'Boolean', init: false },
+      thresholdValue: { check: 'Number', init: 1 }
     },
 
     /*
@@ -68,18 +68,24 @@
       _getInnerDomString: function () {
         // create the main structure
         // create the actor
-        var style = '';
-        if (this.getWidth()) { style += 'width:' + this.getWidth() + ';'; }
-        if (this.getHeight()) { style += 'height:' + this.getHeight() + ';'; }
-        if (style !== '') { style = 'style="' + style + '"'; }
-        var autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
-        var loop = (this.isLoop()) ? ' loop ' : '';
+        let style = '';
+        if (this.getWidth()) {
+ style += 'width:' + this.getWidth() + ';'; 
+}
+        if (this.getHeight()) {
+ style += 'height:' + this.getHeight() + ';'; 
+}
+        if (style !== '') {
+ style = 'style="' + style + '"'; 
+}
+        const autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
+        const loop = (this.isLoop()) ? ' loop ' : '';
         return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
       },
 
       // overridden
       getActor: function() {
-        return this.getDomElement().querySelector(".actor audio");
+        return this.getDomElement().querySelector('.actor audio');
       },
 
       /**
@@ -89,9 +95,9 @@
        * @param value {String} Incoming data
        */
       _update: function (address, value) {
-        var on = this.applyMapping(this.getThresholdValue());
+        const on = this.applyMapping(this.getThresholdValue());
         if (value >= on) {
-          var audioWidget = this.getActor();
+          const audioWidget = this.getActor();
           if (audioWidget.paused === true) {
             audioWidget.play();
           }
@@ -100,6 +106,6 @@
     },
 
     defer: function(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("audio", statics);
+      cv.ui.structure.WidgetFactory.registerClass('audio', statics);
     }
   });

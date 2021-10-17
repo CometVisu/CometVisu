@@ -28,14 +28,14 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           cache: true,
           userInputAllowed: true,
           grouped: true,
-          method: "getAddresses"
+          method: 'getAddresses'
         }
       },
       'rrd': {
         '#text': {
           cache: true,
           userInputAllowed: true,
-          method: "getRrds"
+          method: 'getRrds'
         }
       },
       'influx': {
@@ -43,13 +43,13 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBs"
+          method: 'getInfluxDBs'
         },
         'field': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBFields",
+          method: 'getInfluxDBFields'
         }
       },
       'tag': {
@@ -57,48 +57,48 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBTags",
+          method: 'getInfluxDBTags'
         },
         'value': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBValues",
+          method: 'getInfluxDBValues'
         }
       },
       'icon': {
         'name': {
           cache: true,
           userInputAllowed: false,
-          method: "getIcons",
+          method: 'getIcons'
         }
       },
       'plugin': {
         'name': {
           cache: true,
           userInputAllowed: false,
-          method: "getPlugins"
+          method: 'getPlugins'
         }
       },
       'pages': {
         'design': {
-          method: "getDesigns",
+          method: 'getDesigns',
           cache: true,
-          userInputAllowed: false,
+          userInputAllowed: false
         }
       },
       // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
       '*': {
         'rrd': {
-          method: "getRrds",
+          method: 'getRrds',
           cache: true,
-          userInputAllowed: true,
+          userInputAllowed: true
         },
         'ga': {
-          method: "getAddresses",
+          method: 'getAddresses',
           cache: true,
           userInputAllowed: true,
-          grouped: true,
+          grouped: true
         },
         'transform': {
           method: 'getTransforms',
@@ -111,7 +111,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     get: function (id, ...args) {
       const instance = cv.ui.manager.editor.data.Provider.getInstance();
       const format = 'dp';
-      const [element, attribute] = id.split("@");
+      const [element, attribute] = id.split('@');
       let config = null;
       if (this.Config[element] && this.Config[element][attribute]) {
         config = this.Config[element][attribute];
@@ -159,13 +159,15 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
     /**
      * Returns the available design names as array of suggestions.
+     * @param format
+     * @param config
      * @returns {Promise<Array>} suggestions
      */
     getDesigns: function (format, config) {
       if (!config) {
         config = {cache: true};
       }
-      return this.__getData('designs', 'designsSync', null,[], format === 'dp' ? function (res) {
+      return this.__getData('designs', 'designsSync', null, [], format === 'dp' ? function (res) {
         return res.map(function (designName) {
           return {
             label: designName,
@@ -184,23 +186,23 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     /**
-     *
      * @param cacheId {String}
      * @param rpc {String|Function} rpcname to use with this._client or function to call
      * @param rpcContext {Object} rpc context
      * @param args {Array} rpc arguments
      * @param converter {Function} converter that converts the response to suggestions for the text editor
      * @param converterContext {Object} context fot the converter function
+     * @param cache
      * @returns {Promise<any>}
      * @private
      */
     __getData: function (cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
-      var cached = cache ?  this._getFromCache(cacheId) : null;
+      const cached = cache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return Promise.resolve(converter.call(converterContext || this, cached));
-      } else {
+      } 
         return new Promise(function (resolve, reject) {
-          var handleResponse = function (err, res) {
+          const handleResponse = function (err, res) {
             if (err) {
               reject(err);
             } else if (typeof res === 'string' && res.startsWith('Error:')) {
@@ -226,37 +228,35 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
             rpc.apply(rpcContext, args);
           }
         }.bind(this));
-      }
     },
 
     __getFromUrl: function (url, converter, converterContext, cache) {
       let cached = cache ? this._getFromCache(url) : null;
       if (cached) {
         if (converter) {
-          cached = converter.call(converterContext || this, cached)
+          cached = converter.call(converterContext || this, cached);
         }
         return Promise.resolve(cached);
-      } else {
+      } 
         return new Promise(function (resolve, reject) {
           const xhr = new qx.io.request.Xhr(url);
           cv.TemplateEngine.getClient().authorize(xhr);
           xhr.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
-          xhr.addListener("success", (ev) => {
+          xhr.addListener('success', ev => {
             let data = ev.getTarget().getResponse();
             if (cache) {
               this._addToCache(url, data);
             }
             if (converter) {
-              data = converter.call(converterContext || this, data)
+              data = converter.call(converterContext || this, data);
             }
             resolve(data);
             }, this);
-          xhr.addListener("statusError", reject, this);
+          xhr.addListener('statusError', reject, this);
           xhr.send();
         }.bind(this));
-      }
     },
 
     getAddresses: function (format, config) {
@@ -266,9 +266,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
       if (client.hasProvider('addresses')) {
         return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses', format), client, config.cache);
-      } else {
+      } 
         return this.__getData('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
-      }
     },
 
     getRrds: function (format, config) {
@@ -277,10 +276,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         config = {cache: true};
       }
       if (client.hasProvider('rrd')) {
-        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client,config.cache);
-      } else {
+        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
+      } 
         return this.__getData('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
-      }
     },
 
     getInfluxDBs: function (format, config, element) {
@@ -291,19 +289,19 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     __getInfluxArgs: function (element, withMeasurement) {
       const args = [];
       if (element.hasAttribute('authentication')) {
-        args.push({auth: element.getAttribute("authentication")});
+        args.push({auth: element.getAttribute('authentication')});
       }
       if (withMeasurement) {
         let influx = element;
         // walk the tree to get the selected data source in the influx element
-        while ('influx' !== influx.nodeName) {
+        while (influx.nodeName !== 'influx') {
           influx = influx.parentElement;
           if (undefined === influx) {
             // this safety measure can not happen without a bug somewhere!
             throw new Error();
           }
         }
-        args.push({measurement: element.getAttribute("measurement")});
+        args.push({measurement: element.getAttribute('measurement')});
       }
       return args;
     },
@@ -311,7 +309,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     getInfluxDBFields: function (format, config, element) {
      try {
        const args = this.__getInfluxArgs(element, true);
-       return this.__getData('influxdbfields|' + args.measurement + "|" + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+       return this.__getData('influxdbfields|' + args.measurement + '|' + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
      } catch (e) {
        return [];
      }
@@ -320,7 +318,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     __getInfluxDBTags: function (format, config, element, converter) {
       try {
         const args = this.__getInfluxArgs(element, true);
-        return this.__getData('influxdbtags|' + args.measurement + "|" + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
+        return this.__getData('influxdbtags|' + args.measurement + '|' + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
       } catch (e) {
         return [];
       }
@@ -336,11 +334,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
-        } else {
+        } 
           return Object.keys(res).map(function (x) {
             return {value: x, label: x};
           });
-        }
       });
     },
 
@@ -355,25 +352,24 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
               label: x,
               insertText: x,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
-            }
+            };
           });
-        } else {
+        } 
           return res[tag].map(function (x) {
             return {
               label: x,
               value: x
-            }
+            };
           });
-        }
       });
     },
 
     _parseDpResponseForMonaco: function (data) {
-      return this.__parseDpResponse(data, 'monaco')
+      return this.__parseDpResponse(data, 'monaco');
     },
 
     _parseDpResponseForEditor: function (data) {
-      return this.__parseDpResponse(data, 'dp')
+      return this.__parseDpResponse(data, 'dp');
     },
 
     __parseDpResponse: function (data, format) {
@@ -393,12 +389,12 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     getMediaFiles: function (format, config, typeFilter) {
-      var fsClient = cv.io.rest.Client.getFsClient();
-      return this.__getData('media', fsClient.readSync, fsClient,[{path: 'media', recursive: true}], function (res) {
+      const fsClient = cv.io.rest.Client.getFsClient();
+      return this.__getData('media', fsClient.readSync, fsClient, [{path: 'media', recursive: true}], function (res) {
         return res.filter(function (file) {
           return !typeFilter || file.name.endsWith('.' + typeFilter);
         }).map(function (file) {
-          var path = file.parentFolder + file.name;
+          const path = file.parentFolder + file.name;
           return {
             label: path,
             insertText: path,
@@ -410,6 +406,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
 
     /**
      * Returns the list of available transformations as suggestion entry array.
+     * @param format
+     * @param config
      * @returns {Array}
      */
     getTransforms: function (format, config) {
@@ -421,11 +419,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
-      } else {
-        var transforms = [];
-        Object.keys(cv.Transform.registry).forEach(function (key) {
-          var entry = cv.Transform.registry[key];
-          var suggestion;
+      }
+      const transforms = [];
+      Object.keys(cv.Transform.registry).forEach(function (key) {
+          const entry = cv.Transform.registry[key];
+          let suggestion;
           if (format === 'dp') {
             suggestion = {
               label: entry.name + ' [' + key + ']',
@@ -437,7 +435,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
               insertText: key,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
-            if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
+            if (entry.lname && Object.prototype.hasOwnProperty.call(entry.lname, qx.locale.Manager.getInstance().getLanguage())) {
               suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
             }
           }
@@ -447,11 +445,12 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           this._addToCache(cacheId, transforms);
         }
         return transforms;
-      }
     },
 
     /**
      * Returns the plugin names (all defined parts staring with 'plugin-')
+     * @param format
+     * @param config
      * @returns {Array}
      */
     getPlugins: function (format, config) {
@@ -463,12 +462,12 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
-      } else {
-        var plugins = [];
-        var qxParts = qx.io.PartLoader.getInstance().getParts();
-        Object.keys(qxParts).forEach(function (partName) {
+      }
+      const plugins = [];
+      const qxParts = qx.io.PartLoader.getInstance().getParts();
+      Object.keys(qxParts).forEach(function (partName) {
           if (partName.startsWith('plugin-')) {
-            var pluginName = partName.substring(7);
+            const pluginName = partName.substring(7);
             if (format === 'dp') {
               plugins.push({
                 label: pluginName,
@@ -487,7 +486,6 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           this._addToCache(cacheId, plugins);
         }
         return plugins;
-      }
     },
 
     getIcons: function (format, config) {
@@ -499,7 +497,7 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
-      } else {
+      } 
         let icons;
         const iconHandler = cv.IconHandler.getInstance();
         if (format === 'monaco') {
@@ -524,7 +522,6 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           this._addToCache(cacheId, icons);
         }
         return icons;
-      }
     }
   },
 

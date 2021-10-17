@@ -83,12 +83,12 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   ******************************************************
   */
   properties: {
-    height: { check: "String", nullable: true },
-    updateType: {check: "String", init: ''},
-    width: {check: "String", init: '100%'},
-    src: { check: "String", nullable: true },
-    suffix: { check: "String", nullable: true },
-    sendValue: { check: "String", init: ''}
+    height: { check: 'String', nullable: true },
+    updateType: {check: 'String', init: ''},
+    width: {check: 'String', init: '100%'},
+    src: { check: 'String', nullable: true },
+    suffix: { check: 'String', nullable: true },
+    sendValue: { check: 'String', init: ''}
   },
 
   /*
@@ -99,8 +99,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   members: {
     // overridden
     _getInnerDomString: function () {
-
-      var style = "";
+      let style = '';
       if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
@@ -111,11 +110,10 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
         style = ' style="'+style+'"';
       }
 
-      var actor = '<div class="actor">';
-      if ( this.getUpdateType() === 'show' ) {
+      let actor = '<div class="actor">';
+      if (this.getUpdateType() === 'show') {
         actor += '<img src="' + this.__getUrl(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
-      }
-      else {
+      } else {
         actor += '<img src=""' + style + ' />';
       }
 
@@ -124,23 +122,20 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _update: function(address, value) {
-      var imageChild = this.getDomElement().querySelector("img");
-      if (this.getUpdateType() === "show") {
+      const imageChild = this.getDomElement().querySelector('img');
+      if (this.getUpdateType() === 'show') {
         if (value === 0) {
-          imageChild.style.display = "none";
+          imageChild.style.display = 'none';
+        } else {
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
-        else {
-          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
-          imageChild.style.display = "block";
-        }
-      }
-      else if (this.getUpdateType() === "select") {
+      } else if (this.getUpdateType() === 'select') {
         if (value === 0) {
-          imageChild.style.display = "none";
-        }
-        else {
-          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
-          imageChild.style.display = "block";
+          imageChild.style.display = 'none';
+        } else {
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
       }
 
@@ -151,8 +146,8 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     __getUrl: function(url) {
-      var parsedUri = qx.util.Uri.parseUri(url);
-      if (!parsedUri.protocol && !url.startsWith("/")) {
+      const parsedUri = qx.util.Uri.parseUri(url);
+      if (!parsedUri.protocol && !url.startsWith('/')) {
         // is relative URI, use the ResourceManager
         url = qx.util.ResourceManager.getInstance().toUri(url);
       }
@@ -160,12 +155,14 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _action: function() {
-      if (this.getSendValue() === "") { return; }
+      if (this.getSendValue() === '') {
+ return; 
+}
       this.sendToBackend(this.getSendValue());
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("imagetrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('imagetrigger', statics);
   }
 });

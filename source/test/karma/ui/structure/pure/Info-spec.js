@@ -22,24 +22,22 @@
  * Unit tests for info widget
  *
  */
-describe("testing a info widget", function() {
+describe('testing a info widget', function() {
+  it('should test the info creator', function() {
+    const [widget, element] = this.createTestWidgetString('info', {}, '<label>Test</label>');
 
-  it("should test the info creator", function() {
-    var res = this.createTestWidgetString("info", {}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var obj = res[0];
-
-    expect(widget).toHaveClass('info');
-    expect(widget).toHaveLabel('Test');
-    expect(obj.getPath()).toBe("id_0");
+    expect(element).toHaveClass('info');
+    expect(element).toHaveLabel('Test');
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should update an info widget", function() {
+  it('should update an info widget', function() {
     var creator = this.createTestElement('info');
 
     creator.update('12/7/37', 1);
     var actor = creator.getActor();
+
     expect(actor).not.toBe(null);
-    expect(actor).toHaveValue("1");
+    expect(actor).toHaveValue('1');
   });
 });

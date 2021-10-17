@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Image', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,7 +40,7 @@ qx.Class.define('cv.parser.widgets.Image', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path, true);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -48,12 +48,12 @@ qx.Class.define('cv.parser.widgets.Image', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'width'       :   { "default": "100%" },
+        'width'       :   { 'default': '100%' },
         'height'      :   {},
         'src'         :   {},
-        'placeholder' :   { "default": "none" },
+        'placeholder' :   { 'default': 'none' },
         'widthfit'    :   { target: 'widthFit', transform: function(value) {
-          return value === "true";
+          return value === 'true';
         }}
       };
     }
@@ -61,6 +61,6 @@ qx.Class.define('cv.parser.widgets.Image', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("image", statics);
+    cv.parser.WidgetParser.addHandler('image', statics);
   }
 });

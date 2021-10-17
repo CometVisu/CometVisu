@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
   */
   events: {
     /** Fired when the value was modified */
-    "changeValue" : "qx.event.type.Data"
+    'changeValue' : 'qx.event.type.Data'
   },
 
   /*
@@ -45,9 +45,9 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
   */
   properties: {
     type: {
-      check: "String",
-      init: "xml",
-      apply: "_applyType"
+      check: 'String',
+      init: 'xml',
+      apply: '_applyType'
     },
     // overridden
     focusable: {
@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
      */
     resetValue : function() {
       if (this._editor) {
-        this._editor.setValue("");
+        this._editor.setValue('');
       }
     },
 
@@ -123,9 +123,8 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
         return this._editor.getValue();
       } else if (this.__delayedValue) {
         return this.__delayedValue;
-      } else {
+      } 
         return '';
-      }
     },
 
     _init: function () {
@@ -154,7 +153,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
           });
           if (this.getType()) {
             const model = this._editor.getModel();
-            const uri = monaco.Uri.parse("cv://SourceCode." + this.getType());
+            const uri = monaco.Uri.parse('cv://SourceCode.' + this.getType());
             let newModel = window.monaco.editor.getModel(uri);
             if (!newModel) {
               newModel = window.monaco.editor.createModel(this.__delayedValue, this.getType(), uri);
@@ -190,6 +189,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
       if (el) {
         return el;
       }
+      return null;
     },
 
     _setAreaHeight: function(height) {

@@ -17,8 +17,8 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     this._createChildControl('label');
     this._createChildControl('close');
 
-    this.addListener("pointerover", this._onPointerOver, this);
-    this.addListener("pointerout", this._onPointerOut, this);
+    this.addListener('pointerover', this._onPointerOver, this);
+    this.addListener('pointerout', this._onPointerOut, this);
   },
 
   /*
@@ -30,7 +30,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     'close': 'qx.event.type.Data',
 
     /** (Fired by {@link qx.ui.form.List}) */
-    "action" : "qx.event.type.Event"
+    'action' : 'qx.event.type.Event'
   },
 
   /*
@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     MEMBERS
   ***********************************************
   */
-  members: {
+  members: { // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
@@ -113,7 +113,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
      * Event handler for the pointer over event.
      */
     _onPointerOver : function() {
-      this.addState("hovered");
+      this.addState('hovered');
     },
 
     _transformFilename: function(name) {
@@ -127,7 +127,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
      * Event handler for the pointer out event.
      */
     _onPointerOut : function() {
-      this.removeState("hovered");
+      this.removeState('hovered');
     },
 
     _applyPermanent: function (value) {
@@ -148,7 +148,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     },
 
     _applyIcon: function (value) {
-      var control = this.getChildControl('icon');
+      const control = this.getChildControl('icon');
       control.setSource(value);
       if (value) {
         control.show();
@@ -158,10 +158,10 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     },
 
     _applyLabel: function () {
-      var label = this.getChildControl("label");
-      var value = this.getLabel();
+      const label = this.getChildControl('label');
+      const value = this.getLabel();
       if (value) {
-        var labelValue = this.getLabel();
+        let labelValue = this.getLabel();
         if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
           labelValue += ' !';
           this.setToolTipText(this.tr('This file is not writeable'));
@@ -187,9 +187,9 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'icon':
            control = new qx.ui.basic.Image();
            control.setAppearance('open-file-item/icon');
@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
   ***********************************************
   */
   destruct: function () {
-    this.removeListener("pointerover", this._onPointerOver, this);
-    this.removeListener("pointerout", this._onPointerOut, this);
+    this.removeListener('pointerover', this._onPointerOver, this);
+    this.removeListener('pointerout', this._onPointerOut, this);
   }
 });

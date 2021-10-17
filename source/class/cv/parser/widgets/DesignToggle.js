@@ -22,7 +22,7 @@
  * Parse &lt;designtoggle;gt; config elements
  */
 qx.Class.define('cv.parser.widgets.DesignToggle', {
-  type: "static",
+  type: 'static',
 
   /*
    ******************************************************
@@ -41,6 +41,6 @@ qx.Class.define('cv.parser.widgets.DesignToggle', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("designtoggle", statics);
+    cv.parser.WidgetParser.addHandler('designtoggle', statics);
   }
 });

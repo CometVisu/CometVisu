@@ -12,7 +12,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
-
   },
 
   /*
@@ -74,11 +73,11 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       }
       if (file) {
         if (file.isConfigFile()) {
-          var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
-          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
+          const configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
+          let url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..') + '?config=' + (configName || '');
           if (this.getTarget() === 'iframe') {
             url += '&preview=1&libraryCheck=false';
-            var control = this.getChildControl('iframe');
+            const control = this.getChildControl('iframe');
             this._source = url;
             this.getChildControl('loading').show();
             control.setSource(url);
@@ -125,22 +124,22 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     },
 
     _onChange: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if (data.type === 'contentChanged') {
         if (this.hasChildControl('iframe')) {
           const iframe = this.getChildControl('iframe');
           const href = iframe.getDocument().location.href;
           // use href to get the anchor to keep the currently opened page on reload
           const url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
-          if (url && url !== "about:blank") {
+          if (url && url !== 'about:blank') {
             this._reloading = true;
             this.getChildControl('loading').show();
-            iframe.addListenerOnce("load", () => {
+            iframe.addListenerOnce('load', () => {
               this._reloading = false;
               iframe.setSource(url);
             }, this);
           }
-          iframe.setSource("about:blank");
+          iframe.setSource('about:blank');
         } else if (this._windowRef) {
           this._windowRef.reload();
         }
@@ -178,13 +177,13 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'iframe':
            control = new qx.ui.embed.Iframe();
            control.exclude();
-           control.addListener("load", () => {
+           control.addListener('load', () => {
              if (this.hasChildControl('loading') && !this._reloading) {
                this.getChildControl('loading').exclude();
              }
@@ -207,14 +206,14 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
            break;
 
          case 'loading':
-           control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon("reload", 64));
+           control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon('reload', 64));
            control.set({
              center: true,
              font: 'title',
-             iconPosition: "top",
-             backgroundColor: "rgba(0,0,0,0.2)"
+             iconPosition: 'top',
+             backgroundColor: 'rgba(0,0,0,0.2)'
            });
-           control.addListener("appear", () => {
+           control.addListener('appear', () => {
              qx.event.Timer.once(() => {
                control.exclude();
              }, this, 5000);

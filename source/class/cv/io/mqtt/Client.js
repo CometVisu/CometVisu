@@ -33,7 +33,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;
-    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/,'ws://$1:8083/');
+    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/');
     this.__groups = {};
     this.__memberLookup = {};
   },
@@ -45,13 +45,13 @@ qx.Class.define('cv.io.mqtt.Client', {
   */
   properties: {
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeConnected"
+      event: 'changeConnected'
     },
 
     server: {
-      check: "String",
+      check: 'String',
       nullable: true,
       event: 'changedServer'
     }
@@ -72,27 +72,35 @@ qx.Class.define('cv.io.mqtt.Client', {
      * Returns the current backend configuration
      * @return {Map}
      */
-    getBackend: function() { return {}; },
+    getBackend: function() {
+ return {}; 
+},
 
     /**
      * Returns true, when the backend provides a special data provider for this kins of data
      * @param name {String}
      * @return {Boolean}
      */
-    hasProvider: function (name) { return false; },
+    hasProvider: function (name) {
+ return false; 
+},
 
     /**
      * URL to the provided data
      * @param name
      * @return {String}
      */
-    getProviderUrl: function (name) { return null; },
+    getProviderUrl: function (name) {
+ return null; 
+},
 
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
      */
-    getProviderConvertFunction : function (name) { return null; },
+    getProviderConvertFunction : function (name) {
+ return null; 
+},
 
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
@@ -112,7 +120,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     subscribe : function (addresses, filters) {
-      addresses.forEach( value => this._client.subscribe(value) );
+      addresses.forEach(value => this._client.subscribe(value));
     },
 
     /**
@@ -129,6 +137,9 @@ qx.Class.define('cv.io.mqtt.Client', {
     login : function (loginOnly, credentials, callback, context) {
       let self = this;
 
+      /**
+       * @param param
+       */
       function onConnect(param) {
         self.setConnected(true);
         if (callback) {
@@ -136,15 +147,18 @@ qx.Class.define('cv.io.mqtt.Client', {
         }
       }
 
+      /**
+       * @param param
+       */
       function onFailure(param) {
         self.setConnected(false);
         let n = cv.core.notifications.Router.getInstance();
-        n.dispatchMessage('cv.client.connection',{
+        n.dispatchMessage('cv.client.connection', {
           title: 'MQTT: ' + qx.locale.Manager.tr('Connection error'),
-          message: param.errorMessage + "<br/>\nCode: " + param.errorCode,
+          message: param.errorMessage + '<br/>\nCode: ' + param.errorCode,
           severity: 'urgent',
           unique: true,
-          deletable: false,
+          deletable: false
         }, 'popup');
       }
 
@@ -154,33 +168,33 @@ qx.Class.define('cv.io.mqtt.Client', {
         onFailure: onFailure
       };
 
-      if( null !== credentials && 'username' in credentials && null !== credentials.username ) {
+      if (credentials !== null && 'username' in credentials && credentials.username !== null) {
         options.userName = credentials.username;
       }
-      if( null !== credentials && 'password' in credentials && null !== credentials.password ) {
+      if (credentials !== null && 'password' in credentials && credentials.password !== null) {
         options.password = credentials.password;
       }
 
       try {
         this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
       } catch (e) {
-        console.error( 'MQTT Client error:', e );
+        self.error('MQTT Client error:', e);
         self.setConnected(false);
         return;
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        console.log( 'Connection Lost: ' + responseObject.errorMessage, responseObject );
+        self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 
       this._client.onMessageArrived = function (message) {
         let update = {};
-        update[ message.topic ] = message.payloadString;
+        update[message.topic] = message.payloadString;
         self.update(update);
       };
 
-      this._client.connect( options );
+      this._client.connect(options);
     },
 
     /**
@@ -218,8 +232,8 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     write : function (address, value, options) {
-      if( this.isConnected() ) {
-        let message = new Paho.MQTT.Message( value );
+      if (this.isConnected()) {
+        let message = new Paho.MQTT.Message(value);
         message.destinationName = address;
         message.qos = options.qos;
         message.retained = options.retain;
@@ -236,6 +250,7 @@ qx.Class.define('cv.io.mqtt.Client', {
 
     /**
      * Restart the connection
+     * @param full
      */
     restart: function(full) {},
 
@@ -262,7 +277,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     showError: function(type, message, args) {},
 
     terminate: function () {
-      if( this.isConnected() ) {
+      if (this.isConnected()) {
         this._client.disconnect();
       }
     },
@@ -271,7 +286,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * Destructor
      */
     destruct: function () {
-      if( this.isConnected() ) {
+      if (this.isConnected()) {
         this._client.disconnect();
       }
       this._client = null;

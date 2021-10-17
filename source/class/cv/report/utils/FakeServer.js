@@ -1,6 +1,6 @@
 
-qx.Class.define("cv.report.utils.FakeServer", {
-  type: "static",
+qx.Class.define('cv.report.utils.FakeServer', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -13,21 +13,20 @@ qx.Class.define("cv.report.utils.FakeServer", {
     _index : 0,
 
     init: function (log, build) {
-
-      var prependResourcePath = null;
-      console.log(build+" log replaying in "+qx.core.Environment.get("cv.build"));
-      if (build !== qx.core.Environment.get("cv.build")) {
+      let prependResourcePath = null;
+      qx.log.Logger.info(this, build+' log replaying in '+qx.core.Environment.get('cv.build'));
+      if (build !== qx.core.Environment.get('cv.build')) {
         // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
-        if (build === "build") {
+        if (build === 'build') {
           // map from build to source
-          prependResourcePath = "../source/";
+          prependResourcePath = '../source/';
         }
       }
 
       // split by URI
       log.response.forEach(function (entry) {
-        var url = entry.url;
-        if (prependResourcePath && url.startsWith("resource/")) {
+        let url = entry.url;
+        if (prependResourcePath && url.startsWith('resource/')) {
           url = prependResourcePath+url;
         }
         if (!this._xhr[url]) {
@@ -38,25 +37,25 @@ qx.Class.define("cv.report.utils.FakeServer", {
       }, this);
 
       // configure server
-      var server = qx.dev.FakeServer.getInstance().getFakeServer();
+      const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(this.__respond.bind(this));
       this._responseDelays.unshift(10);
     },
 
     __respond: function(request) {
-      var xhrData = cv.report.utils.FakeServer._xhr;
-      var url = cv.report.Record.normalizeUrl(request.url);
-      if (url.indexOf("nocache=") >= 0) {
-        url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+      const xhrData = cv.report.utils.FakeServer._xhr;
+      let url = cv.report.Record.normalizeUrl(request.url);
+      if (url.indexOf('nocache=') >= 0) {
+        url = url.replace(/[\?|&]nocache=[0-9]+/, '');
       }
-      if (!xhrData[url] && !url.startsWith("/") && qx.core.Environment.get("cv.build") === "source") {
+      if (!xhrData[url] && !url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
         url = '../source/' + url;
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
-        qx.log.Logger.error(this, "404: no logged responses for URI "+url+" found");
+        qx.log.Logger.error(this, '404: no logged responses for URI '+url+' found');
       } else {
-        qx.log.Logger.debug(this, "faking response for "+url);
-        var response = "";
+        qx.log.Logger.debug(this, 'faking response for '+url);
+        let response = '';
         if (xhrData[url].length === 1) {
           response = xhrData[url][0];
         } else {

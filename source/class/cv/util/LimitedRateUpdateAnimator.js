@@ -29,7 +29,7 @@
  * Helper function to allow widgets animate a displayed property with a
  * limited speed of change to look smoother for the user.
  */
-qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
+qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   extend: qx.core.Object,
   /*
   ******************************************************
@@ -70,22 +70,22 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
   properties: {
     linearRateLimit: {
       // in ratio/second
-      check: "Number",
+      check: 'Number',
       init: 2
     },
     expDampTimeConstant: {
       // time constant for exponential dampening
-      check: "Number",
+      check: 'Number',
       init: 0.01
     },
     epsilon: {
       // a difference between current and target ratio smaller than the epsilon
       // will be immediately closed
-      check: "Number",
+      check: 'Number',
       init: 0.001
     },
     displayRatioFn: {
-      check: "Function"
+      check: 'Function'
     }
   },
   /*
@@ -108,7 +108,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
       let now = performance.now();
 
       this.__targetRatio = targetRatio;
-      if(instant) {
+      if (instant) {
         this.__currentRatio = targetRatio;
       }
       if (this.__animationFrame === undefined) {
@@ -124,9 +124,9 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
      */
     __animate: function (thistime, lasttime) {
       let dt = (thistime - lasttime) / 1000; // in seconds
-      let maxLinearDelta =  this.getLinearRateLimit() * dt;
+      let maxLinearDelta = this.getLinearRateLimit() * dt;
       let alpha = Math.exp(-dt / this.getExpDampTimeConstant());
-      let nextRatio =  this.__targetRatio * alpha + this.__currentRatio * (1 - alpha);
+      let nextRatio = this.__targetRatio * alpha + this.__currentRatio * (1 - alpha);
       let delta = nextRatio - this.__currentRatio;
       if (Math.abs(delta) > maxLinearDelta) {
         nextRatio = this.__currentRatio + Math.sign(delta) * maxLinearDelta;
@@ -139,7 +139,9 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
       this.getDisplayRatioFn().call(this.__displayRatioFnContext, this.__currentRatio, this.__displayRatioFnParameters);
 
       if (this.__currentRatio !== this.__targetRatio) {
-        this.__animationFrame = window.requestAnimationFrame((time)=>{this.__animate(time, thistime);});
+        this.__animationFrame = window.requestAnimationFrame(time => {
+ this.__animate(time, thistime); 
+});
       } else {
         this.__animationFrame = undefined;
       }

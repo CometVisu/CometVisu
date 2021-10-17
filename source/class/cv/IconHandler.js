@@ -29,7 +29,7 @@
  */
 qx.Class.define('cv.IconHandler', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
    ******************************************************
@@ -59,13 +59,13 @@ qx.Class.define('cv.IconHandler', {
      * flavour.
      */
     insert: function () {
-      var name = arguments[0];
-      var uri = arguments[1];
-      var type = arguments[2] || '*';
-      var flavour = arguments[3] || '*';
-      var color = arguments[4] || '*';
-      var styling = arguments[5];
-      var dynamic = arguments[6];
+      const name = arguments[0];
+      const uri = arguments[1];
+      const type = arguments[2] || '*';
+      const flavour = arguments[3] || '*';
+      const color = arguments[4] || '*';
+      const styling = arguments[5];
+      const dynamic = arguments[6];
 
       if (!this.__db[name]) {
         this.__db[name] = {};
@@ -79,8 +79,7 @@ qx.Class.define('cv.IconHandler', {
 
       if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
-      }
-      else {
+      } else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
           styling: styling
@@ -104,7 +103,7 @@ qx.Class.define('cv.IconHandler', {
       if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
       }
-      var all;
+      let all;
       if (typeof this.__db[name][type] === 'string') {
         type = this.__db[name][type]; // redirect link
         if (type.split('/').length > 1) {
@@ -142,19 +141,20 @@ qx.Class.define('cv.IconHandler', {
     },
 
     getURI: function () {
-      var i = this.get.apply(this, arguments);
+      const i = this.get.apply(this, arguments);
       if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
+      return '';
     },
 
     /**
      * Return an icon DOM element.
      */
     getIconElement: function () {
-      var i = this.get.apply(this, arguments);
+      const i = this.get.apply(this, arguments);
       if (i) {
-        var styling = arguments[4];
+        let styling = arguments[4];
         if (i.icon && !styling && typeof i !== 'function') {
           return i.icon;
         }
@@ -164,8 +164,8 @@ qx.Class.define('cv.IconHandler', {
           styling = i.styling;
         }
 
-        var classes = 'icon';
-        var iconclass = arguments[5];
+        let classes = 'icon';
+        const iconclass = arguments[5];
         if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
@@ -177,6 +177,7 @@ qx.Class.define('cv.IconHandler', {
         }
         return i.icon;
       }
+      return null;
     },
 
     /**
@@ -192,26 +193,25 @@ qx.Class.define('cv.IconHandler', {
      * @param iconclass {String?} icon class
      */
     getIconText: function (name, type, flavour, color, styling, iconclass) {
-      var i = this.get.apply(this, arguments);
+      const i = this.get.apply(this, arguments);
       if (i) {
         if (!styling) {
           styling = !i.styling ? '' : ' style="' + i.styling + '"';
-        }
-        else {
+        } else {
           styling = ' style="' + styling + '"';
         }
 
-        var classes = 'icon';
+        let classes = 'icon';
         if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
           return i(color, styling, classes, true);
-        } else {
+        } 
           return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
-        }
       }
+      return '';
     },
 
     /**
@@ -221,21 +221,22 @@ qx.Class.define('cv.IconHandler', {
      * @returns {String|string|*}
      */
     getIconSource: function (name, classes) {
-      var i = this.get.apply(this, arguments);
+      const i = this.get.apply(this, arguments);
       if (i) {
         if (!classes) {
-          classes = "icon"
+          classes = 'icon';
         }
         if (typeof i === 'function') {
           return i(undefined, undefined, classes, true);
-        } else {
+        } 
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
-        }
       }
+      return '';
     },
 
     /**
      * Fill the icons in the array.
+     * @param array
      */
     fillIcons: function (array) {
       array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);

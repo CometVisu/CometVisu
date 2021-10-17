@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Sat Mar 05 2016 11:10:08 GMT+0100 (CET)
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function(config) {
   'use strict';
@@ -17,22 +17,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
-      "source/test/karma/helper-spec.js",
-      { pattern: "source/cv/polyfill.js", included: true },
-      { pattern: "source/test/karma/*-spec.js" },
-      { pattern: "source/test/karma/**/*-spec.js" },
-      { pattern: "source/test/fixtures/**", included: false },
-      { pattern: "source/resource/**/*", included: false, served: true, watched: false },
-      { pattern: "source/transpiled/**/*", included: false, served: true, watched: false },
-      { pattern: "source/**/*.map", included: false, served: true, watched: false }
+      'source/test/karma/helper-spec.js',
+      { pattern: 'source/cv/polyfill.js', included: true },
+      { pattern: 'source/test/karma/*-spec.js' },
+      { pattern: 'source/test/karma/**/*-spec.js' },
+      { pattern: 'source/test/fixtures/*', included: false, served: true },
+      'source/test/fixtures/karma/**',
+      { pattern: 'source/resource/**/*', included: false, served: true, watched: false },
+      { pattern: 'source/transpiled/**/*', included: false, served: true, watched: false },
+      { pattern: 'source/**/*.map', included: false, served: true, watched: false }
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'source/transpiled/cv/{*.js,!(report)/**/*.js}': ['coverage']
+      'source/transpiled/cv/{*.js,!(report)/**/*.js}': ['coverage'],
+      'source/test/fixtures/karma/*.xml': ['html2js']
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -40,11 +41,11 @@ module.exports = function(config) {
     reporters: ['spec', 'coverage', 'remap-coverage'],
 
     specReporter: {
-      maxLogLines: 5,         // limit number of lines logged per test
-      suppressErrorSummary: true,  // do not print error summary
-      suppressFailed: false,  // do not print information about failed tests
-      suppressPassed: false,  // do not print information about passed tests
-      suppressSkipped: true,  // do not print information about skipped tests
+      maxLogLines: 5, // limit number of lines logged per test
+      suppressErrorSummary: true, // do not print error summary
+      suppressFailed: false, // do not print information about failed tests
+      suppressPassed: false, // do not print information about passed tests
+      suppressSkipped: true, // do not print information about skipped tests
       showSpecTiming: false // print the time elapsed for each spec
     },
 
@@ -53,21 +54,22 @@ module.exports = function(config) {
     },
     remapOptions: {
       mapFileName: function (file) {
-        const relPath = file.split('/transpiled/')[1]
-        let filePath = path.join('source', 'class', relPath)
+        const relPath = file.split('/transpiled/')[1];
+        let filePath = path.join('source', 'class', relPath);
         if (!fs.existsSync(filePath)) {
           // check for client source
-          filePath = path.join('client', filePath)
+          filePath = path.join('client', filePath);
         }
-        return filePath
+        return filePath;
       },
       readJSON: function (filePath) {
-        const path = filePath.split('?')[0]
+        const path = filePath.split('?')[0];
         if (fs.existsSync(path)) {
-          const content = JSON.parse(fs.readFileSync(path))
-          content.file = path
-          return content
+          const content = JSON.parse(fs.readFileSync(path));
+          content.file = path;
+          return content;
         }
+        return null;
       }
     },
     remapCoverageReporter: {
@@ -128,6 +130,10 @@ module.exports = function(config) {
       }
     },
 
+    html2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'source/test/fixtures/karma/'
+    },
 
     // Concurrency level
     // how many browser should be started simultaneous
@@ -136,7 +142,7 @@ module.exports = function(config) {
     qooxdooFramework: {
       testSources: true,
       codePath: 'source/',
-      scriptFile: "cv/index.js"
+      scriptFile: 'cv/index.js'
     }
   });
 };

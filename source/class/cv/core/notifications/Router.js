@@ -25,9 +25,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.Router", {
+qx.Class.define('cv.core.notifications.Router', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -37,10 +37,10 @@ qx.Class.define("cv.core.notifications.Router", {
   construct: function() {
     this.base(arguments);
     this.__routes = {};
-    this.debug("new router");
+    this.debug('new router');
 
-    this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
-    this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
+    this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
+    this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
   },
 
   /*
@@ -55,20 +55,23 @@ qx.Class.define("cv.core.notifications.Router", {
      * @returns {Boolean}
      */
     evaluateCondition: function(message) {
-      if (!message.hasOwnProperty("condition")) {
+      if (!Object.prototype.hasOwnProperty.call(message, 'condition')) {
         // nothing to evaluate
         return true;
       } else if (typeof message.condition === 'boolean') {
         return message.condition;
       } else if (typeof message.condition === 'function') {
         return message.condition();
-      } else {
-        qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
-      }
+      } 
+      qx.log.Logger.error(this, 'unhandled message condition type: '+message.condition);
+      return false;
     },
 
     /**
      * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
+     * @param topic
+     * @param message
+     * @param target
      */
     dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
@@ -82,18 +85,18 @@ qx.Class.define("cv.core.notifications.Router", {
      */
     getTarget: function(name) {
       switch (name) {
-        case "popup":
+        case 'popup':
           return cv.ui.PopupHandler;
-        case "notificationCenter":
+        case 'notificationCenter':
           return cv.ui.NotificationCenter.getInstance();
-        case "speech":
+        case 'speech':
           if (!window.speechSynthesis) {
             // not supported
-            qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-            return;
+            qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
+            return null;
           }
           return cv.core.notifications.SpeechHandler.getInstance();
-        case "toast":
+        case 'toast':
           return cv.ui.ToastManager.getInstance();
       }
       return null;
@@ -157,7 +160,7 @@ qx.Class.define("cv.core.notifications.Router", {
         if (this.__stateMessageConfig[address]) {
           delete this.__stateMessageConfig[address];
         }
-      },this);
+      }, this);
     },
 
     /**
@@ -167,9 +170,9 @@ qx.Class.define("cv.core.notifications.Router", {
      */
     registerMessageHandler: function(handler, topics) {
       Object.getOwnPropertyNames(topics).forEach(function(topic) {
-        var segments = topic.split(".");
-        var firstSegment = segments.shift();
-        var currentSegment = this.__routes[firstSegment];
+        const segments = topic.split('.');
+        const firstSegment = segments.shift();
+        let currentSegment = this.__routes[firstSegment];
         if (!currentSegment) {
           this.__routes[firstSegment] = {__handlers__: []};
           currentSegment = this.__routes[firstSegment];
@@ -201,9 +204,9 @@ qx.Class.define("cv.core.notifications.Router", {
         return;
       }
 
-      var now = new Date();
-      var formattedDate = this.__dateFormat.format(now);
-      var formattedTime =this.__timeFormat.format(now);
+      const now = new Date();
+      const formattedDate = this.__dateFormat.format(now);
+      const formattedTime = this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function(config) {
         if (initial === true && config.skipInitial === true || changed === false) {
@@ -212,10 +215,10 @@ qx.Class.define("cv.core.notifications.Router", {
         }
 
         // process value
-        var transform = config.addressConfig.transform;
+        const transform = config.addressConfig.transform;
         state = cv.Transform.decode(transform, state);
 
-        var templateData = {
+        const templateData = {
           address: address,
           value: state,
           date: formattedDate,
@@ -223,7 +226,7 @@ qx.Class.define("cv.core.notifications.Router", {
         };
 
         // transform the raw value to a JavaScript type
-        templateData.value =  cv.Transform.decode(transform, templateData.value);
+        templateData.value = cv.Transform.decode(transform, templateData.value);
         if (config.valueMapping) {
           // apply mapping
           templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
@@ -232,15 +235,15 @@ qx.Class.define("cv.core.notifications.Router", {
           templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
         }
 
-        var message = {
-          topic: config.hasOwnProperty("topic") ? config.topic : "cv.state.update."+address,
-          title: qx.bom.Template.render(""+config.titleTemplate, templateData),
-          message: qx.bom.Template.render(""+config.messageTemplate,templateData),
-          deletable: config.hasOwnProperty("deletable") ? config.deletable : true,
-          unique: config.hasOwnProperty("unique") ? config.unique : false,
+        const message = {
+          topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
+          title: qx.bom.Template.render('' + config.titleTemplate, templateData),
+          message: qx.bom.Template.render('' + config.messageTemplate, templateData),
+          deletable: Object.prototype.hasOwnProperty.call(config, 'deletable') ? config.deletable : true,
+          unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
           severity: config.severity
         };
-        if (config.hasOwnProperty("condition")){
+        if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
           message.condition = state == config.condition; // jshint ignore:line
         }
         if (config.icon) {
@@ -251,37 +254,36 @@ qx.Class.define("cv.core.notifications.Router", {
         }
         this.dispatchMessage(message.topic, message, config.target);
       }, this);
-
     },
 
     __collectHandlers: function(topic) {
-      var handlers = new qx.data.Array();
-      var segments = topic.split(".");
-      var firstSegment = segments.shift();
-      var currentSegment = this.__routes[firstSegment];
-      var last = segments.length-1;
-      segments.some(function(segmentName, idx) {
+      const handlers = new qx.data.Array();
+      const segments = topic.split('.');
+      const firstSegment = segments.shift();
+      let currentSegment = this.__routes[firstSegment];
+      const last = segments.length - 1;
+      segments.some(function (segmentName, idx) {
         if (!currentSegment) {
           // segment does not exists, stop searching
           return true;
-        } else if (segmentName === "*") {
+        } else if (segmentName === '*') {
           // collect all
           this.__collectAllFromSegment(currentSegment, handlers);
           return true;
-        } else {
-          if (currentSegment["*"]) {
-            handlers.append(currentSegment["*"].__handlers__);
-          }
-          if (currentSegment[segmentName]) {
-            if (idx === last) {
-              handlers.append(currentSegment[segmentName].__handlers__);
-            }
-            currentSegment = currentSegment[segmentName];
-          } else{
-            // stop searching
-            return true;
-          }
         }
+        if (currentSegment['*']) {
+          handlers.append(currentSegment['*'].__handlers__);
+        }
+        if (currentSegment[segmentName]) {
+          if (idx === last) {
+            handlers.append(currentSegment[segmentName].__handlers__);
+          }
+          currentSegment = currentSegment[segmentName];
+        } else {
+          // stop searching
+          return true;
+        }
+        return false;
       }, this);
       return handlers;
     },
@@ -289,7 +291,7 @@ qx.Class.define("cv.core.notifications.Router", {
     __collectAllFromSegment: function(segment, handlers) {
       handlers.append(segment.__handlers__);
       Object.getOwnPropertyNames(segment).forEach(function(segmentName) {
-        if (segmentName !== "__handlers__") {
+        if (segmentName !== '__handlers__') {
           this.__collectAllFromSegment(segment[segmentName], handlers);
         }
       }, this);
@@ -301,11 +303,11 @@ qx.Class.define("cv.core.notifications.Router", {
         target = cv.core.notifications.Router.getTarget(message.target);
       }
       if (target && target.handleMessage) {
-        this.debug("dispatching '" + topic + "' message to handler: " + target);
+        this.debug('dispatching \'' + topic + '\' message to handler: ' + target);
         target.handleMessage(message, {});
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
-          this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
+          this.debug('dispatching \'' + topic + '\' message to handler: ' + entry.handler);
           entry.handler.handleMessage(message, entry.config);
         }, this);
       }
@@ -324,6 +326,6 @@ qx.Class.define("cv.core.notifications.Router", {
   */
   destruct: function() {
     this.clear();
-    this._disposeObjects("__dateFormat", "__timeFormat");
+    this._disposeObjects('__dateFormat', '__timeFormat');
   }
 });

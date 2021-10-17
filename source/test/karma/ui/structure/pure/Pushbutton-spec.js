@@ -22,36 +22,36 @@
  * Unit tests for pushbutton widget
  *
  */
-describe("testing a pushbutton widget", function() {
+describe('testing a pushbutton widget', function() {
+  it('should test the pushbutton creator', function() {
+    const [widget, element] = this.createTestWidgetString('pushbutton', {}, '<label>Test</label>');
 
-  it("should test the pushbutton creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('pushbutton');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('pushbutton');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should check if the up/down values are used corrent", function() {
+  it('should check if the up/down values are used corrent', function() {
+    var button = this.createTestElement('pushbutton');
 
-    var button = this.createTestElement("pushbutton");
-    expect(button.getActionValue({type: 'pointerup'})).toBe("0");
-    expect(button.getActionValue({type: 'pointerdown'})).toBe("1");
+    expect(button.getActionValue({type: 'pointerup'})).toBe('0');
+    expect(button.getActionValue({type: 'pointerdown'})).toBe('1');
   });
 
-  it("should test the events", function() {
-    var button = this.createTestElement("pushbutton");
+  it('should test the events', function() {
+    var button = this.createTestElement('pushbutton');
     var actor = button.getActor();
 
     this.initWidget(button);
-    spyOn(button, "sendToBackend");
+    spyOn(button, 'sendToBackend');
     var Reg = qx.event.Registration;
 
-    Reg.fireEvent(actor, "pointerdown");
-    expect(button.sendToBackend).toHaveBeenCalledWith("1", jasmine.any(Function));
-    Reg.fireEvent(actor, "pointerup");
-    expect(button.sendToBackend).toHaveBeenCalledWith("0", jasmine.any(Function));
+    Reg.fireEvent(actor, 'pointerdown');
+
+    expect(button.sendToBackend).toHaveBeenCalledWith('1', jasmine.any(Function));
+    Reg.fireEvent(actor, 'pointerup');
+
+    expect(button.sendToBackend).toHaveBeenCalledWith('0', jasmine.any(Function));
   });
 });

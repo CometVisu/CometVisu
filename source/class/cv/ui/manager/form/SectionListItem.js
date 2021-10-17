@@ -11,7 +11,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
   */
   construct: function () {
     this.base(arguments);
-    var grid = new qx.ui.layout.Grid(8, 8);
+    const grid = new qx.ui.layout.Grid(8, 8);
     grid.setColumnFlex(1, 1);
     grid.setColumnAlign(0, 'left', 'top');
     this._setLayout(grid);
@@ -32,7 +32,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
     },
 
     model: {
-      check: "cv.ui.manager.model.config.Section",
+      check: 'cv.ui.manager.model.config.Section',
       nullable: false,
       apply: '_applyModel'
     },
@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
     _originalOptions: null,
 
     _applyModel: function (value, old) {
-      var nameField = this.getChildControl('name');
+      const nameField = this.getChildControl('name');
       this.__unbindModel(old);
       if (value) {
         value.bind('name', nameField, 'value');
@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         value.bind('options', this._listController, 'model');
         // add at least one empty entry, when there are no options
         if (value.getOptions().length === 0) {
-          var emptyOption = new cv.ui.manager.model.config.Option('', '')
+          const emptyOption = new cv.ui.manager.model.config.Option('', '');
           value.getOptions().push(emptyOption);
         }
       } else {
@@ -90,7 +90,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
 
     __unbindModel: function (model) {
       if (model) {
-        var nameField = this.getChildControl('name');
+        const nameField = this.getChildControl('name');
         if (this._listController) {
           model.removeRelatedBindings(this._listController);
         }
@@ -114,8 +114,8 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         return;
       }
       // compare options one by one
-      var modified = this.getModel().getOptions().some(function (option) {
-        return (!this._originalOptions.hasOwnProperty(option.getKey()) ||
+      const modified = this.getModel().getOptions().some(function (option) {
+        return (!Object.prototype.hasOwnProperty.call(this._originalOptions, option.getKey()) ||
           this._originalOptions[option.getKey()] !== option.getValue()
         );
       }, this);
@@ -123,14 +123,14 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
     },
 
     _onDeleteOption: function (ev) {
-      var option = ev.getData();
-      var options = this.getModel().getOptions();
+      const option = ev.getData();
+      const options = this.getModel().getOptions();
       if (options.length === 1) {
         // do not delete the last option, just reset its values
         option.resetKey();
         option.resetValue();
       } else {
-        var removed = this.getModel().getOptions().remove(option);
+        const removed = this.getModel().getOptions().remove(option);
         if (removed) {
           removed.removeListener('change', this.__checkForModification, this);
         }
@@ -139,7 +139,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
     },
 
     _onAddOption: function () {
-      var option = new cv.ui.manager.model.config.Option('', '');
+      const option = new cv.ui.manager.model.config.Option('', '');
       option.addListener('change', this.__checkForModification, this);
       this.getModel().getOptions().push(option);
       this.__checkForModification();
@@ -147,9 +147,9 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'section-title':
            control = new qx.ui.basic.Label(this.tr('Section'));
            this._add(control, {row: 0, column: 0});

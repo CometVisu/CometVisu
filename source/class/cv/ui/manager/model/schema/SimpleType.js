@@ -76,7 +76,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         node = schema.getReferencedNode('attribute', refName);
 
         if (!node) {
-          throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+          throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
         }
       }
 
@@ -86,7 +86,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
 
         if (!baseType.match(/^xsd:/)) {
           // if it's not an xsd-default-basetype, we need to find out what it is
-          const subnode = schema.getReferencedNode('simpleType', baseType)
+          const subnode = schema.getReferencedNode('simpleType', baseType);
           this.__fillNodeData(subnode);
         } else {
           this.setBaseType(baseType);
@@ -99,21 +99,21 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
 
       const subNodes = Array.from(node.querySelectorAll(':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension'));
 
-      subNodes.forEach( (subNode) => {
+      subNodes.forEach(subNode => {
         const baseType = subNode.getAttribute('base');
 
         if (!baseType.match(/^xsd:/)) {
           // don't dive in for default-types, they simply can not be found
-          const subnode = schema.getReferencedNode('simpleType', baseType)
+          const subnode = schema.getReferencedNode('simpleType', baseType);
           this.__fillNodeData(subnode);
         } else {
           this.setBaseType(baseType);
         }
-        Array.from(subNode.querySelectorAll(':scope > pattern')).forEach((patternNode) => {
+        Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(patternNode => {
           this.__pattern.push(patternNode.getAttribute('value'));
         });
 
-        Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach((enumerationNode) => {
+        Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(enumerationNode => {
           this.__enumerations.push(enumerationNode.getAttribute('value'));
         });
       });
@@ -134,7 +134,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
       const baseType = this.getBaseType();
       const schema = this.getSchema();
       if (!baseType) {
-        throw 'something is wrong, do not have a baseType for type';
+        throw new Error('something is wrong, do not have a baseType for type');
       }
 
       if (value === '') {
@@ -142,18 +142,18 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         return this.isOptional();
       }
 
-      if (-1 === baseType.search(/^xsd:/)) {
+      if (baseType.search(/^xsd:/) === -1) {
         // created our own type, will need to find and use it.
         const typeNode = schema.getTypeNode('simple', baseType);
         const subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
         return subType.isValueValid(value);
-      } else {
+      } 
         // xsd:-namespaces types, those are the originals
         switch (baseType) {
           case 'xsd:string':
           case 'xsd:anyURI':
           case 'xsd:anyType':
-            if (!(typeof(value) == 'string')) {
+            if (!(typeof (value) == 'string')) {
               // it's not a string, but it should be.
               // pretty much any input a user gives us is string, so this is pretty much moot.
               return false;
@@ -186,9 +186,9 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
             }
             break;
           default:
-            throw 'not implemented baseType ' + baseType;
+            throw new Error('not implemented baseType ' + baseType);
         }
-      }
+      
 
       // check if the value is in our list of valid values, if there is such a list
       if (this.__enumerations.length > 0) {
@@ -202,13 +202,13 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         // start with assuming it's valid
         let boolValid = true;
 
-        this.__pattern.forEach((item) => {
-          if (!this.__regexCache.hasOwnProperty(item)) {
+        this.__pattern.forEach(item => {
+          if (!Object.prototype.hasOwnProperty.call(this.__regexCache, item)) {
             // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
             // so for our purpose, we need to add them for every branch (that is not inside [])
-            const branchIndices = []
+            const branchIndices = [];
             let start = 0;
-            let i = item.indexOf("|", start);
+            let i = item.indexOf('|', start);
             while (i < item.length) {
               if (i < 0) {
                 break;
@@ -227,17 +227,20 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
               }
               start = i + 1;
               i = item.indexOf('|', start);
-              if (branchIndices.length > 100) debugger;
+              if (branchIndices.length > 100) {
+                this.error('too many branchIndices');
+                break;
+              }
             }
             if (item.length > start) {
               // append the rest
               branchIndices.push([start, item.length - start]);
             }
-            const branches = branchIndices.map((entry) => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`);
-            this.__regexCache[item] = this.regexFromString(branches.join("|"));
+            const branches = branchIndices.map(entry => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`);
+            this.__regexCache[item] = this.regexFromString(branches.join('|'));
           }
 
-          if (false === this.__regexCache[item].test(value)) {
+          if (this.__regexCache[item].test(value) === false) {
             // regular expression did not match
             // bad bad value!
             boolValid = false;
@@ -245,7 +248,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         }, this);
 
         // if the value has been marked invalid by a regex, return invalid.
-        if (false === boolValid) {
+        if (boolValid === false) {
           return false;
         }
       }

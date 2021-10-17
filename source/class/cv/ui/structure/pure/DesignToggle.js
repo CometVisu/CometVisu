@@ -42,8 +42,8 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
    */
   construct: function(props) {
     this.base(arguments, props);
-    var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + "/data/designs");
-    store.addListener("loaded", function (ev) {
+    const store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
+    store.addListener('loaded', function (ev) {
       this.setAvailableDesigns(ev.getData());
     }, this);
   },
@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
    ******************************************************
    */
   properties: {
-    availableDesigns: { check: "Array", init: [] }
+    availableDesigns: { check: 'Array', init: [] }
   },
 
   /*
@@ -75,24 +75,25 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
      * @param actor {Element} - DOMElement
      * @param isCanceled {Boolean} - If true the action does nothing
      */
-    _action: function( path, actor, isCanceled ) {
-      if( isCanceled ) { return; }
+    _action: function(path, actor, isCanceled) {
+      if (isCanceled) {
+ return; 
+}
 
-      var designs = this.getAvailableDesigns();
+      const designs = this.getAvailableDesigns();
 
-      var oldDesign = this.getDomElement().querySelector('.value').textContent;
-      var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
+      const oldDesign = this.getDomElement().querySelector('.value').textContent;
+      const newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
 
-      var URL = cv.util.Location.getHref();
-      var regexp = new RegExp("design="+oldDesign);
+      const URL = cv.util.Location.getHref();
+      const regexp = new RegExp('design=' + oldDesign);
       if (URL.search(regexp) !== -1) { // has URL-parameter design
-        cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
-      }
-      else {
-        var parts = cv.util.Location.getHref().split("#");
-        var req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
+        cv.util.Location.setHref(URL.replace(regexp, 'design='+newDesign));
+      } else {
+        const parts = cv.util.Location.getHref().split('#');
+        let req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
         if (parts.length > 1) {
-          req += "#"+parts[1];
+          req += '#'+parts[1];
         }
         cv.util.Location.setHref(req);
       }
@@ -100,6 +101,6 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("designtoggle", statics);
+    cv.ui.structure.WidgetFactory.registerClass('designtoggle', statics);
   }
 });

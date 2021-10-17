@@ -35,7 +35,10 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   construct: function(props) {
     this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
-    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
+    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+      this.__invalidateScreensize();
+    });
+    this.__lastBusValue = {};
   },
   /*
   ***********************************************
@@ -55,23 +58,23 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   */
   properties: {
     min: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     max: {
-      check: "Number",
+      check: 'Number',
       init: 100
     },
     step: {
-      check: "Number",
+      check: 'Number',
       init: 0.5
     },
     showInvalidValues: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     sendOnFinish: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -82,19 +85,19 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   ******************************************************
   */
   members: {
-    __lastBusValue: {},
+    __lastBusValue: null,
     __animator: null,
     __button: undefined, // cache for DOM element
-    __range: undefined,  // cache for DOM element
+    __range: undefined, // cache for DOM element
     __actorWidth: undefined,
     __buttonWidth: undefined,
     __pageSizeListener: undefined,
-    __inDrag: false,       // is the handle currently dragged?
+    __inDrag: false, // is the handle currently dragged?
     __coordMin: undefined, // minimal screen coordinate of slider
 
     // overridden
     _getInnerDomString: function () {
-      var placeholder = this.getFormat() === '' ? '' : '-';
+      const placeholder = this.getFormat() === '' ? '' : '-';
       return `
         <div class="actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
@@ -181,7 +184,9 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         this.applyStyling(realValue);
 
         let button = this.getDomElement().querySelector('button');
-        this.defaultValue2DOM(displayValue, (e) => {button.innerHTML = e;});
+        this.defaultValue2DOM(displayValue, e => {
+          button.innerHTML = e;
+        });
       }
 
       this.__animator.setTo(ratio, instant);
@@ -201,8 +206,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       }
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
         let
-          actor = this.getDomElement().querySelector('.actor'),
-          actorStyles = window.getComputedStyle(actor);
+          actor = this.getDomElement().querySelector('.actor');
+          let actorStyles = window.getComputedStyle(actor);
         this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
         this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
         this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
@@ -223,16 +228,17 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     handleEvent: function (event) {
       let newRatio = 0;
 
-      switch(event.type) {
-        case 'pointerdown':
+      switch (event.type) {
+        case 'pointerdown': {
           this.__inDrag = true;
           document.addEventListener('pointermove', this);
           document.addEventListener('pointerup', this);
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-          newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
+          newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
           break;
+        }
 
         case 'pointermove':
           if (!this.__inDrag) {
@@ -258,11 +264,11 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     __onChangeValue: function(value) {
-      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue );
+      this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("slide", statics);
+    cv.ui.structure.WidgetFactory.registerClass('slide', statics);
   }
 });

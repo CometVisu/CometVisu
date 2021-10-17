@@ -43,7 +43,7 @@
  * @since 2010
  */
 qx.Class.define('cv.Transform', {
-  type: "static",
+  type: 'static',
 
   /*
    ******************************************************
@@ -126,11 +126,11 @@ qx.Class.define('cv.Transform', {
         return {bus: value, raw: value};
       }
       let
-        transformParts = transformation.split(':'),
-        transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
-        parameter = transformParts[2],
-        basetrans = transform.split('.')[0];
-      var encoding = transform in cv.Transform.registry
+        transformParts = transformation.split(':');
+        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
+        let parameter = transformParts[2];
+        let basetrans = transform.split('.')[0];
+      const encoding = transform in cv.Transform.registry
         ? cv.Transform.registry[transform].encode(value, parameter)
         : (basetrans in cv.Transform.registry
           ? cv.Transform.registry[basetrans].encode(value, parameter)
@@ -161,10 +161,10 @@ qx.Class.define('cv.Transform', {
         return value;
       }
       let
-        transformParts = transformation.split(':'),
-        transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
-        parameter = transformParts[2],
-        basetrans = transform.split('.')[0];
+        transformParts = transformation.split(':');
+        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
+        let parameter = transformParts[2];
+        let basetrans = transform.split('.')[0];
       return transform in cv.Transform.registry
         ? cv.Transform.registry[transform].decode(value, parameter)
         : (basetrans in cv.Transform.registry

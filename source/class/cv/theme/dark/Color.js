@@ -19,7 +19,7 @@
 
 
 
-qx.Theme.define("cv.theme.dark.Color", {
+qx.Theme.define('cv.theme.dark.Color', {
   extend : osparc.theme.osparcdark.Color,
 
   colors : {

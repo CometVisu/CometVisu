@@ -64,7 +64,7 @@ qx.Class.define('cv.theme.dark.Images', {
     },
 
     getIcon: function (name, size) {
-      return this.ICONS.hasOwnProperty(name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
+      return Object.prototype.hasOwnProperty.call(this.ICONS, name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
     }
   }
 });

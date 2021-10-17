@@ -4,17 +4,16 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-const BasePage = require("../pages/BasePage.js");
+const BasePage = require('../pages/BasePage.js');
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const rootDir = path.join(__dirname, '..', '..', '..', '..');
 
 class CometVisuEditorMockup extends BasePage {
-
   constructor(target) {
     super();
-    this.target = target || "source";
+    this.target = target || 'source';
     this.url = 'http://localhost:8000/' + this.target + '/index.html?testMode=true&manager=1';
     this.pageLoaded = this.and(
       this.isVisible($('#manager')), this.mockupReady
@@ -40,14 +39,14 @@ class CometVisuEditorMockup extends BasePage {
   mockupFixture(fixture) {
     this.mockupReady = false;
     let content;
-    if (fixture.hasOwnProperty("sourceFile")) {
+    if (fixture.hasOwnProperty('sourceFile')) {
       let sourceFile = path.join(rootDir, fixture.sourceFile);
       if (fs.existsSync(sourceFile)) {
         content = fs.readFileSync(sourceFile);
       } else {
-        console.error("fixture file", sourceFile, 'not found');
+        console.error('fixture file', sourceFile, 'not found');
       }
-    } else if (fixture.hasOwnProperty("data")) {
+    } else if (fixture.hasOwnProperty('data')) {
       if (typeof fixture.data === 'object') {
         content = JSON.stringify(fixture.data);
       } else {
@@ -80,7 +79,7 @@ class CometVisuEditorMockup extends BasePage {
         }
       });
     }
-  };
+  }
 
   resetMockupFixture(fixture) {
     let targetPath = fixture.targetPath;
@@ -90,7 +89,7 @@ class CometVisuEditorMockup extends BasePage {
     }
     request({
       method: 'DELETE',
-      uri: 'http://localhost:8000/mock/' + encodeURIComponent(targetPath),
+      uri: 'http://localhost:8000/mock/' + encodeURIComponent(targetPath)
     });
   }
 
@@ -101,11 +100,12 @@ class CometVisuEditorMockup extends BasePage {
       handler: 'cv.ui.manager.editor.Tree',
       handlerOptions: {
         noPreview: !showPreview,
-        noStretch: !showPreview,
+        noStretch: !showPreview
       }
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   dispatchAction(action, data) {
     return browser.executeAsyncScript(function (action, data, callback) {
       qx.event.message.Bus.dispatchByName('cv.manager.'+action, data);
@@ -113,6 +113,7 @@ class CometVisuEditorMockup extends BasePage {
     }, action, data);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   enableExpertMode() {
     return browser.executeAsyncScript(function(callback) {
       const editor = cv.ui.manager.control.ActionDispatcher.getInstance().getFocusedWidget();
@@ -122,8 +123,14 @@ class CometVisuEditorMockup extends BasePage {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   openWidgetElement(selector, edit) {
     return browser.executeAsyncScript(function (selector, edit, callback) {
+      /**
+       * @param editor
+       * @param sel
+       * @param edit
+       */
       function open (editor, sel, edit) {
         if (editor instanceof cv.ui.manager.editor.Tree) {
           editor.openByQuerySelector(sel, edit);
@@ -145,7 +152,6 @@ class CometVisuEditorMockup extends BasePage {
       } else {
         open(editor, selector, edit);
       }
-
     }, selector, edit);
   }
 }
