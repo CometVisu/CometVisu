@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Refresh", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Refresh', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,13 +48,13 @@ qx.Class.define("cv.parser.widgets.Refresh", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "value": {target: "sendValue"}
+        'value': {target: 'sendValue'}
       };
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("refresh", statics);
+    cv.parser.WidgetParser.addHandler('refresh', statics);
   }
 });

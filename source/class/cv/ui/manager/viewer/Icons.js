@@ -1,7 +1,7 @@
 /**
  * Shows the available icons.
  */
-qx.Class.define("cv.ui.manager.viewer.Icons", {
+qx.Class.define('cv.ui.manager.viewer.Icons', {
   extend: cv.ui.manager.viewer.Folder,
 
   /*
@@ -21,8 +21,8 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
   */
   statics: {
     SUPPORTED_FILES: /^CometVisu-Icons$/i,
-    TITLE: qx.locale.Manager.tr("Show icons"),
-    ICON: cv.theme.dark.Images.getIcon("icons", 18)
+    TITLE: qx.locale.Manager.tr('Show icons'),
+    ICON: cv.theme.dark.Images.getIcon('icons', 18)
   },
 
   /*
@@ -38,13 +38,13 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
         },
 
         bindItem: function (controller, item, index) {
-          controller.bindProperty("", "label", null, item, index);
+          controller.bindProperty('', 'label', null, item, index);
         }
       };
     },
 
     _onFilter: function () {
-      const filterString = this.getChildControl("filter").getValue();
+      const filterString = this.getChildControl('filter').getValue();
       const filtered = this.getModel().filter(function (name) {
         return name.includes(filterString);
       });
@@ -53,7 +53,7 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
 
     _applyFile: function(file, old) {
       if (file) {
-        const container = this.getChildControl("list");
+        const container = this.getChildControl('list');
         if (!this._controller) {
           this._controller = new qx.data.controller.List(null, container);
           this._controller.setDelegate(this._getDelegate());
@@ -62,11 +62,11 @@ qx.Class.define("cv.ui.manager.viewer.Icons", {
         // as the file is just a fake file, we do not really care about it
         Object.keys(cv.IconConfig.DB).filter(function (name) {
           const entry = cv.IconConfig.DB[name];
-          return entry["*"] && entry["*"]["*"] && qx.lang.Type.isFunction(entry["*"]["*"]["*"]);
+          return entry['*'] && entry['*']['*'] && qx.lang.Type.isFunction(entry['*']['*']['*']);
         }).forEach(function (name) {
           model.push(name);
         }, this);
-        if (this.getChildControl("filter").getValue() || this.getPermanentFilter()) {
+        if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
           this._controller.setModel(model);

@@ -19,9 +19,9 @@
 
 
 //noinspection JSUnusedGlobalSymbols
-qx.Class.define("cv.ui.BodyBlocker", {
+qx.Class.define('cv.ui.BodyBlocker', {
   extend: qx.bom.Blocker,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -33,7 +33,7 @@ qx.Class.define("cv.ui.BodyBlocker", {
     this.__counters = {};
     this.__uniques = [];
     this.setBlockerOpacity(0.5);
-    this.setBlockerColor("#000000");
+    this.setBlockerColor('#000000');
   },
 
   /*
@@ -57,8 +57,8 @@ qx.Class.define("cv.ui.BodyBlocker", {
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
-        elem.classList.add("blurred");
+      document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function(elem) {
+        elem.classList.add('blurred');
       });
     },
 
@@ -70,8 +70,8 @@ qx.Class.define("cv.ui.BodyBlocker", {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               this.base(arguments);
-              document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-                elem.classList.remove("blurred");
+              document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+                elem.classList.remove('blurred');
               });
             }
           }
@@ -80,15 +80,15 @@ qx.Class.define("cv.ui.BodyBlocker", {
         // not topic given unblock all
         this.__counters = {};
         this.base(arguments);
-        document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-          elem.classList.remove("blurred");
+        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+          elem.classList.remove('blurred');
         });
       }
     },
 
     __getBody: function() {
       if (!this.__body) {
-        this.__body = document.querySelector("body");
+        this.__body = document.querySelector('body');
       }
       return this.__body;
     }

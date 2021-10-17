@@ -27,8 +27,8 @@
  * calculations are only done as often as really necessary.
  *
  */
-qx.Class.define("cv.ui.layout.ResizeHandler", {
-  type: "static",
+qx.Class.define('cv.ui.layout.ResizeHandler', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -62,21 +62,21 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
 
     getPageSize: function (noCache) {
       if (!this.$pageSize || noCache === true) {
-        this.$pageSize = document.querySelector("#pageSize");
+        this.$pageSize = document.querySelector('#pageSize');
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function (noCache) {
       if (!this.$navbarTop || noCache === true) {
-        this.$navbarTop = document.querySelector("#navbarTop");
+        this.$navbarTop = document.querySelector('#navbarTop');
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function (noCache) {
       if (!this.$navbarBottom || noCache === true) {
-        this.$navbarBottom = document.querySelector("#navbarBottom");
+        this.$navbarBottom = document.querySelector('#navbarBottom');
       }
       return this.$navbarBottom;
     },
@@ -118,7 +118,7 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
     },
 
     __makeBackdropValid: function () {
-      qx.log.Logger.debug(this, "makeBackdropValid");
+      qx.log.Logger.debug(this, 'makeBackdropValid');
       // TODO: this is structure.pure specific and should be handled by the structure itself
       const templateEngine = cv.TemplateEngine.getInstance();
       const page = templateEngine.getCurrentPage();
@@ -127,26 +127,26 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
       }
       // TODO use page object
 
-      if (page.getPageType() === "2d") {
+      if (page.getPageType() === '2d') {
         const cssPosRegEx = /(\d*)(.*)/;
-        const backdrop = page.getDomElement().querySelector("div > " + page.getBackdropType());
+        const backdrop = page.getDomElement().querySelector('div > ' + page.getBackdropType());
         try {
-          const backdropSVG = page.getBackdropType() === "embed" ? backdrop.getSVGDocument() : null;
+          const backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
           const backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {};
           const backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width;
           const backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height;
           const backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight);
           const backdropWidth = backdropNWidth * backdropScale;
           const backdropHeight = backdropNHeight * backdropScale;
-          const backdropPos = page.getBackdropAlign().split(" ");
+          const backdropPos = page.getBackdropAlign().split(' ');
           const backdropLeftRaw = backdropPos[0].match(cssPosRegEx);
           const backdropTopRaw = backdropPos[1].match(cssPosRegEx);
-          const backdropLeft = backdropLeftRaw[2] === "%" ? (this.width > backdropWidth ? ((this.width - backdropWidth) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1];
-          const backdropTop = backdropTopRaw[2] === "%" ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1]) / 100) : 0) : +backdropTopRaw[1];
+          const backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1];
+          const backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1]) / 100) : 0) : +backdropTopRaw[1];
           const uagent = navigator.userAgent.toLowerCase();
 
           if (backdrop.complete === false ||
-            (page.getBackdropType() === "embed" && backdropSVG === null) ||
+            (page.getBackdropType() === 'embed' && backdropSVG === null) ||
             (backdropBBox.width === 0 && backdropBBox.height === 0) ||
             (this.width === 0 && this.height === 0)
           ) {
@@ -161,20 +161,20 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
           // object-position although object-fit itself does work
           // Note 2: The embed element allways needs it
           if (
-            page.getBackdropType() === "embed" ||
-            (uagent.indexOf("safari") !== -1 && uagent.indexOf("chrome") === -1)
+            page.getBackdropType() === 'embed' ||
+            (uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1)
           ) {
             Object.entries({
-              width: backdropWidth + "px",
-              height: backdropHeight + "px",
-              left: backdropLeft + "px",
-              top: backdropTop + "px"
+              width: backdropWidth + 'px',
+              height: backdropHeight + 'px',
+              left: backdropLeft + 'px',
+              top: backdropTop + 'px'
             }).forEach(function(key_value) {
  backdrop.style[key_value[0]]=key_value[1]; 
 });
           }
 
-          page.getDomElement().querySelectorAll(".widget_container").forEach(function (widgetContainer) {
+          page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
             const widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
             let value;
             const layout = widget.getResponsiveLayout();
@@ -183,40 +183,40 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
               // this assumes that a .widget_container has only one child and this
               // is the .widget itself
               const style = widgetContainer.children[0].style;
-              if (layout.scale === "false") {
+              if (layout.scale === 'false') {
                 scale = 1.0;
               }
 
-              if ("x" in layout) {
+              if ('x' in layout) {
                 value = layout.x.match(cssPosRegEx);
-                if (value[2] === "px") {
-                  style.left = (backdropLeft + value[1] * scale) + "px";
+                if (value[2] === 'px') {
+                  style.left = (backdropLeft + value[1] * scale) + 'px';
                 } else {
                   style.left = layout.x;
                 }
               }
 
-              if ("y" in layout) {
+              if ('y' in layout) {
                 value = layout.y.match(cssPosRegEx);
-                if (value[2] === "px") {
-                  style.top = (backdropTop + value[1] * scale) + "px";
+                if (value[2] === 'px') {
+                  style.top = (backdropTop + value[1] * scale) + 'px';
                 } else {
                   style.top = layout.y;
                 }
               }
 
-              if ("width" in layout) {
+              if ('width' in layout) {
                 style.width = layout.width;
               }
 
-              if ("height" in layout) {
+              if ('height' in layout) {
                 style.height = layout.height;
               }
             }
           }, this);
           this.__backdropRetries = 0;
         } catch (e) {
-          if (e.name === "NotSupportedError") {
+          if (e.name === 'NotSupportedError') {
             if (this.__backdropRetries <= 5) {
               qx.bom.AnimationFrame.request(this.__makeBackdropValid, this);
               this.__backdropRetries++;
@@ -234,7 +234,7 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
     },
 
     __makeNavbarValid: function() {
-      qx.log.Logger.debug(this, "makeNavbarValid");
+      qx.log.Logger.debug(this, 'makeNavbarValid');
       if (cv.ui.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.ui.layout.Manager.applyColumnWidths();
@@ -256,10 +256,10 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
       if (!cv.Config.currentPageId) {
  return; 
 }
-      qx.log.Logger.debug(this, "makePagesizeValid");
+      qx.log.Logger.debug(this, 'makePagesizeValid');
       const page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
       if (page && !page.isInitialized()) {
-        page.addListenerOnce("changeInitialized", this.__makePagesizeValid, this);
+        page.addListenerOnce('changeInitialized', this.__makePagesizeValid, this);
         return;
       }
       this.width = cv.ui.layout.Manager.getAvailableWidth();
@@ -267,7 +267,7 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
       const pageSizeElement = this.getPageSize();
 
       if (pageSizeElement) {
-        pageSizeElement.innerHTML = "#main,.page{width:" + this.width + "px;height:" + this.height + "px;}";
+        pageSizeElement.innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
       }
 
       this.states.setPageSizeInvalid(false);
@@ -278,18 +278,18 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
     },
 
     __makeRowspanValid: function () {
-      qx.log.Logger.debug(this, "makeRowspanValid");
-      let elem = document.querySelector("#calcrowspan");
+      qx.log.Logger.debug(this, 'makeRowspanValid');
+      let elem = document.querySelector('#calcrowspan');
       if (!elem) {
-        elem = qx.dom.Element.create("div", {
-          "class": "clearfix",
-          "id": "calcrowspan",
-          "html": "<div id=\"containerDiv\" class=\"widget_container\"><div class=\"widget clearfix text\" id=\"innerDiv\"></div>"
+        elem = qx.dom.Element.create('div', {
+          'class': 'clearfix',
+          'id': 'calcrowspan',
+          'html': '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
         });
         document.body.appendChild(elem);
       }
       // use the internal div for height as in mobile view the elem uses the full screen height
-      this.__updateRowHeight(elem.querySelector("#containerDiv"));
+      this.__updateRowHeight(elem.querySelector('#containerDiv'));
     },
 
     __updateRowHeight: function(elem) {
@@ -303,18 +303,18 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
 }, this);
         return;
       }
-      let styles = "";
+      let styles = '';
 
       for (let rowspan in cv.Config.configSettings.usedRowspans) {
-        styles += ".rowspan.rowspan" + rowspan + " { height: " + Math.round(rowspan * height) + "px;}\n";
+        styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + 'px;}\n';
       }
-      const calcrowspan = document.querySelector("#calcrowspan");
+      const calcrowspan = document.querySelector('#calcrowspan');
       if (calcrowspan) {
         calcrowspan.parentNode.removeChild(calcrowspan);
       }
 
       // set css style
-      const rowSpanStyle = document.querySelector("#rowspanStyle");
+      const rowSpanStyle = document.querySelector('#rowspanStyle');
       if (rowSpanStyle) {
         rowSpanStyle.innerHTML = styles;
       }
@@ -322,12 +322,12 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
     },
 
     invalidateBackdrop: function () {
-      qx.log.Logger.debug(this, "backdrop");
+      qx.log.Logger.debug(this, 'backdrop');
       this.states.setBackdropInvalid(true);
       this.makeAllSizesValid();
     },
     invalidateNavbar: function () {
-      qx.log.Logger.debug(this, "invalidateNavbar");
+      qx.log.Logger.debug(this, 'invalidateNavbar');
       this.states.setNavbarInvalid(true);
       this.states.setPageSizeInvalid(true);
       this.makeAllSizesValid();
@@ -337,7 +337,7 @@ qx.Class.define("cv.ui.layout.ResizeHandler", {
       this.makeAllSizesValid();
     },
     invalidateScreensize: function () {
-      qx.log.Logger.debug(this, "invalidateScreensize");
+      qx.log.Logger.debug(this, 'invalidateScreensize');
       this.states.set({
         pageSizeInvalid: true,
         rowspanInvalid: true,

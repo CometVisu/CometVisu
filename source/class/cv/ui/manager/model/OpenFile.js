@@ -1,7 +1,7 @@
 /**
  * Data model for currently opened files, a combination of cv.ui.manager.model.FileItem and a certain FileHandler.
  */
-qx.Class.define("cv.ui.manager.model.OpenFile", {
+qx.Class.define('cv.ui.manager.model.OpenFile', {
   extend: qx.core.Object,
 
 
@@ -26,20 +26,20 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
   */
   properties: {
     file: {
-      check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
+      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      event: "changeFile",
-      apply: "_applyFile"
+      event: 'changeFile',
+      apply: '_applyFile'
     },
 
     handlerId: {
-      check: "!!qx.Class.getByName(value)",
+      check: '!!qx.Class.getByName(value)',
       nullable: true,
-      apply: "_maintainIcon"
+      apply: '_maintainIcon'
     },
 
     handlerOptions: {
-      check: "Map",
+      check: 'Map',
       nullable: true
     },
 
@@ -49,24 +49,24 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
      * In permanent mode a new tab will be created, which content will not be replaced.
      */
     permanent: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changePermanent"
+      event: 'changePermanent'
     },
 
     /**
      * Icon to show in e.g. the File-Tab
      */
     icon: {
-      check: "String",
-      init: "",
-      event: "changeIcon"
+      check: 'String',
+      init: '',
+      event: 'changeIcon'
     },
 
     closeable: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeCloseable"
+      event: 'changeCloseable'
     }
   },
 
@@ -80,12 +80,12 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
 
     _applyFile: function (value, old) {
       if (old) {
-        old.removeListener("changeModified", this._maintainPermanent, this);
+        old.removeListener('changeModified', this._maintainPermanent, this);
         old.removeRelatedBindings(this);
         this.__ibid = null;
       }
       if (value) {
-        value.addListener("changeModified", this._maintainPermanent, this);
+        value.addListener('changeModified', this._maintainPermanent, this);
       }
       this._maintainIcon();
     },
@@ -102,7 +102,7 @@ qx.Class.define("cv.ui.manager.model.OpenFile", {
             this.__ibid = null;
           }
         } else {
-          this.__ibid = file.bind("icon", this, "icon");
+          this.__ibid = file.bind('icon', this, 'icon');
         }
       } else {
         this.resetIcon();

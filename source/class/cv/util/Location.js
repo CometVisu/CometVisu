@@ -21,8 +21,8 @@
  * Helper function to proxy access to <code>window.location.*</code> functions.
  * The main purpose of proxying them is to allow them to be spyable in unit tests.
  */
-qx.Class.define("cv.util.Location", {
-  type: "static",
+qx.Class.define('cv.util.Location', {
+  type: 'static',
 
   /*
   ******************************************************

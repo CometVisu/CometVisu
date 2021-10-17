@@ -1,7 +1,7 @@
 /**
  * Show validation errors for a config file.
  */
-qx.Class.define("cv.ui.manager.dialog.ValidationError", {
+qx.Class.define('cv.ui.manager.dialog.ValidationError', {
   extend: qxl.dialog.Dialog,
 
   /*
@@ -18,13 +18,13 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
    */
   construct: function (file, content, errors, properties) {
     this._file = file;
-    this._content = content.split("\n");
+    this._content = content.split('\n');
     this._errors = errors;
     this.base(arguments, Object.assign(properties || {}, {
       useBlocker: true
     }));
 
-    this.addListener("appear", () => {
+    this.addListener('appear', () => {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this.highlight, this);
       } else {
@@ -39,7 +39,7 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
   ***********************************************
   */
   events: {
-   action: "qx.event.type.Data"
+   action: 'qx.event.type.Data'
   },
 
   /*
@@ -58,9 +58,9 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
     _file: null,
 
     highlight: function () {
-      Array.from(document.querySelectorAll("pre.highlight")).forEach(elem => {
+      Array.from(document.querySelectorAll('pre.highlight')).forEach(elem => {
         monaco.editor.colorizeElement(elem, {
-          theme: "vs-dark"
+          theme: 'vs-dark'
         });
       });
     },
@@ -73,18 +73,18 @@ qx.Class.define("cv.ui.manager.dialog.ValidationError", {
       let vbox = new qx.ui.container.Composite(new qx.ui.layout.VBox(10));
       container.add(vbox);
 
-      let prologue = this.tr("<h3>Config Errors</h3>\
-<p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
+      let prologue = this.tr('<h3>Config Errors</h3>\
+<p>The validation of "%1" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because \
 it can break the file completely. Please open this file in the text editor and fix the errors there. \
-Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>", this._file.getFullPath());
+Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>', this._file.getFullPath());
 
-      let options = this.tr("<p>You can choose between the following options:\
+      let options = this.tr('<p>You can choose between the following options:\
 <ul>\
     <li><b>Cancel</b> - Close this editor</li>\
     <li><b>Proceed</b> - Open the defective file in this editor</li>\
     <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li>\
 </ul>\
-</p>");
+</p>');
       const labelOptions = {
         rich: true,
         width: Math.min(qx.bom.Viewport.getWidth() - 32, 750),
@@ -99,11 +99,11 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       const errorScroll = new qx.ui.container.Scroll(errorBox);
       errorScroll.set({
         padding: [0, 0, 8, 8],
-        decorator: "cv-editor-config-section"
+        decorator: 'cv-editor-config-section'
       });
       errorScroll.setMinHeight(100);
       errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
-      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener("resize", function () {
+      this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener('resize', function () {
         errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
       });
       vbox.add(errorScroll, {flex: 1});
@@ -127,16 +127,16 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
           if (minIndent === Number.POSITIVE_INFINITY) {
             minIndent = 0;
           }
-          codeSnippet = codeSnippet.map(line => line[0] + ": " + qx.xml.String.escape(line[1].substr(minIndent)));
-          const headline = this.tr("Line %1", error.line);
-          label = new qx.ui.basic.Label(`<h4>${headline}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join("\n")}</pre>`);
+          codeSnippet = codeSnippet.map(line => line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent)));
+          const headline = this.tr('Line %1', error.line);
+          label = new qx.ui.basic.Label(`<h4>${headline}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join('\n')}</pre>`);
           label.set(labelOptions);
           errorLabels.set(errorId, label);
           errorBox.add(label);
         } else {
           label = errorLabels.get(errorId);
         }
-        if (!error.message.startsWith("[facet")) {
+        if (!error.message.startsWith('[facet')) {
           label.setValue(label.getValue() + `<p>${error.message}</p>`);
         }
       }, this);
@@ -149,14 +149,14 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       let buttonPane = this._createButtonPane();
 
       // close button
-      let closeButton = new qx.ui.form.Button(this.tr("Cancel"));
-      closeButton.addListener("execute", () => this.fireDataEvent("action", "cancel"), this);
+      let closeButton = new qx.ui.form.Button(this.tr('Cancel'));
+      closeButton.addListener('execute', () => this.fireDataEvent('action', 'cancel'), this);
 
-      let proceedButton = new qx.ui.form.Button(this.tr("Proceed"));
-      proceedButton.addListener("execute", () => this.fireDataEvent("action", "proceed"), this);
+      let proceedButton = new qx.ui.form.Button(this.tr('Proceed'));
+      proceedButton.addListener('execute', () => this.fireDataEvent('action', 'proceed'), this);
 
-      let openSourceButton = new qx.ui.form.Button(this.tr("Open in text editor"));
-      openSourceButton.addListener("execute", () => this.fireDataEvent("action", "open-source"), this);
+      let openSourceButton = new qx.ui.form.Button(this.tr('Open in text editor'));
+      openSourceButton.addListener('execute', () => this.fireDataEvent('action', 'open-source'), this);
 
       buttonPane.add(closeButton);
       buttonPane.add(proceedButton);

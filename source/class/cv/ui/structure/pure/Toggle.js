@@ -26,7 +26,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Toggle", {
+qx.Class.define('cv.ui.structure.pure.Toggle', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
@@ -38,7 +38,7 @@ qx.Class.define("cv.ui.structure.pure.Toggle", {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     /**

@@ -1,13 +1,13 @@
 /**
  * Abstract base class for all editors.
  */
-qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
+qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   extend: qx.ui.core.Widget,
   implement: [
     cv.ui.manager.editor.IEditor,
     cv.ui.manager.IActionHandler
   ],
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -17,7 +17,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
   construct: function () {
     this.base(arguments);
     this._initClient();
-    this._nativePasteSupported = document.queryCommandSupported("paste");
+    this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
@@ -27,36 +27,36 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
  */
   properties: {
     file: {
-      check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
+      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      apply: "_loadFile",
-      event: "changeFile"
+      apply: '_loadFile',
+      event: 'changeFile'
     },
 
     content: {
       nullable: true,
-      event: "changeContent",
-      apply: "_applyContent"
+      event: 'changeContent',
+      apply: '_applyContent'
     },
 
     handlerOptions: {
-      check: "Map",
+      check: 'Map',
       nullable: true,
-      apply: "_applyHandlerOptions"
+      apply: '_applyHandlerOptions'
     },
 
     /**
      * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
      */
     external: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
 
     ready: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeReady"
+      event: 'changeReady'
     }
   },
 
@@ -80,7 +80,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
     _nativePasteSupported: false,
 
     canHandleAction: function (actionName) {
-      if (actionName === "save" && this.getFile() && !this.getFile().isWriteable()) {
+      if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
         return false;
       }
       return this._handledActions && this._handledActions.includes(actionName);
@@ -89,7 +89,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
         switch (actionName) {
-          case "save":
+          case 'save':
             this.save();
             break;
         }
@@ -109,7 +109,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
       if (old) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
-      if (file && file.getType() === "file") {
+      if (file && file.getType() === 'file') {
         if (file.getContent() !== null) {
           this.setContent(file.getContent());
         } else {
@@ -133,7 +133,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
 
     _onChange: function (ev) {
       const data = ev.getData();
-      if (data.type === "fsContentChanged" && data.source !== this) {
+      if (data.type === 'fsContentChanged' && data.source !== this) {
         this.setContent(data.data);
       }
     },
@@ -149,7 +149,7 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
         const file = this.getFile();
-        const message = type === "created" ? this.tr("File has been created") : this.tr("File has been saved");
+        const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
         qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
@@ -168,13 +168,13 @@ qx.Class.define("cv.ui.manager.editor.AbstractEditor", {
           this._client.createSync({
             path: file.getFullPath(),
             hash: overrideHash || file.getHash(),
-            type: "file"
-          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, "created"), this);
+            type: 'file'
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'), this);
         } else {
           this._client.updateSync({
             path: file.getFullPath(),
             hash: overrideHash || file.getHash()
-          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, "contentChanged"), this);
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'), this);
         }
       }
     },

@@ -25,7 +25,7 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (2017)
  */
-qx.Class.define("cv.ui.structure.pure.PageLink", {
+qx.Class.define('cv.ui.structure.pure.PageLink', {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -35,16 +35,16 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
    */
   properties: {
     name : {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     },
     wstyle : {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
     address : {
-      check: "Object",
+      check: 'Object',
       init: {}
     },
     bindClickToWidget: {
@@ -63,21 +63,21 @@ qx.Class.define("cv.ui.structure.pure.PageLink", {
     getDomString: function() {
       const layout = this.getLayout();
 
-      const style = typeof layout === "object" ? "" : "style=\"" + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + "\"";
+      const style = typeof layout === 'object' ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
 
-      let ret_val = "<div class=\"widget clearfix link pagelink " + this.getClasses() + "\" " + style + ">";
-      ret_val += "<div class=\"actor\" " + this.getWstyle() + "><a href=\"javascript:void(0)\">" + this.getName() + "</a></div>";
-      ret_val += "</div>";
+      let ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
+      ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';
+      ret_val += '</div>';
       return ret_val;
     },
 
     // overridden
     action: function() {
-      cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + "_");
+      cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + '_');
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pagelink", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pagelink', statics);
   }
 });

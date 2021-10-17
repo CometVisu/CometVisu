@@ -21,8 +21,8 @@
 /**
  * Parse &lt;audio;gt; config elements
  */
-  qx.Class.define("cv.parser.widgets.Audio", {
-    type: "static",
+  qx.Class.define('cv.parser.widgets.Audio', {
+    type: 'static',
 
     /*
     ******************************************************
@@ -68,20 +68,20 @@
           height: {},
           autoplay: {
             transform: function (value) {
-              return value === "autoplay" || value === "true";
+              return value === 'autoplay' || value === 'true';
             }
           },
           loop: {
             transform: function (value) {
-              return value === "loop" || value === "true";
+              return value === 'loop' || value === 'true';
             }
           },
-          thresholdValue: {"default": 1}
+          thresholdValue: {'default': 1}
         };
       }
     },
     defer: function(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("audio", statics);
+      cv.parser.WidgetParser.addHandler('audio', statics);
     }
   });

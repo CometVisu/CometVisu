@@ -1,7 +1,7 @@
 /**
  * Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute
  */
-qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
+qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
 
   /*
   ***********************************************
@@ -9,8 +9,8 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
   ***********************************************
   */
   construct: function () {
-    this.__linkRegex = new RegExp(":ref:[`'](.+?)[`']", "g");
-    this.__language = qx.locale.Manager.getInstance().getLanguage() === "de" ? "de" : "en";
+    this.__linkRegex = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
+    this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
   },
 
   /*
@@ -46,7 +46,7 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
           thisNode = iterator.iterateNext();
         }
       } catch (e) {
-        this.error("Error: Document tree modified during iteration " + e);
+        this.error('Error: Document tree modified during iteration ' + e);
       }
       return texts;
     },
@@ -61,21 +61,21 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
         return this.__appInfoCache;
       }
       const node = this.getNode();
-      const appInfo = this.__getTextNodesByXPath(node, "xsd:annotation/xsd:appinfo");
+      const appInfo = this.__getTextNodesByXPath(node, 'xsd:annotation/xsd:appinfo');
       const type = this.getType();
-      if (type === "element") {
+      if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll(":scope > complexType").length === 0) {
-          appInfo.push(...this.__getTextNodesByXPath(this._type, "xsd:annotation/xsd:appinfo"));
+        if (node.querySelectorAll(':scope > complexType').length === 0) {
+          appInfo.push(...this.__getTextNodesByXPath(this._type, 'xsd:annotation/xsd:appinfo'));
         }
-      } else if (type === "attribute") {
-        if (node.hasAttribute("ref")) {
+      } else if (type === 'attribute') {
+        if (node.hasAttribute('ref')) {
           // the attribute is a reference, so take appinfo from there, too
 
-          const refName = node.getAttribute("ref");
-          const ref = this.getSchema().getReferencedNode("attribute", refName);
+          const refName = node.getAttribute('ref');
+          const ref = this.getSchema().getReferencedNode('attribute', refName);
 
-          appInfo.push(...this.__getTextNodesByXPath(ref, "xsd:annotation/xsd:appinfo"));
+          appInfo.push(...this.__getTextNodesByXPath(ref, 'xsd:annotation/xsd:appinfo'));
         }
       }
 
@@ -97,23 +97,23 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
       const node = this.getNode();
 
       const lang = qx.locale.Manager.getInstance().getLanguage();
-      const selector = "xsd:annotation/xsd:documentation[@xml:lang='" + lang + "']";
+      const selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
 
       // any appinfo this element itself might carry
       let documentation = this.__getTextNodesByXPath(node, selector);
 
       const type = this.getType();
-      if (type === "element") {
+      if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
-        if (node.querySelectorAll(":scope > complexType").length === 0) {
+        if (node.querySelectorAll(':scope > complexType').length === 0) {
           documentation.push(...this.__getTextNodesByXPath(this._type, selector));
         }
-      } else if (type === "attribute") {
-        if (node.hasAttribute("ref")) {
+      } else if (type === 'attribute') {
+        if (node.hasAttribute('ref')) {
           // the attribute is a reference, so take appinfo from there, too
 
-          const refName = node.getAttribute("ref");
-          const ref = this.getSchema().getReferencedNode("attribute", refName);
+          const refName = node.getAttribute('ref');
+          const ref = this.getSchema().getReferencedNode('attribute', refName);
 
           documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
@@ -140,7 +140,7 @@ qx.Mixin.define("cv.ui.manager.model.schema.MAnnotation", {
           const label = reference ? reference[1] : contents;
           const key = reference ? reference[2] : contents;
 
-        return "<a class=\"doclink\" target=\"_blank\" href=\"" + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + "\">" + label + "</a>";
+        return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
       });
     }
   },

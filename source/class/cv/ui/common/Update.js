@@ -22,7 +22,7 @@
  * This role provides the update method for incoming data
  *
  */
-qx.Mixin.define("cv.ui.common.Update", {
+qx.Mixin.define('cv.ui.common.Update', {
   include: cv.ui.common.BasicUpdate,
 
   /*
@@ -34,8 +34,8 @@ qx.Mixin.define("cv.ui.common.Update", {
     if (this.getAddress) {
       if (this._initOnCreate === true) {
         this.__initUpdater();
-      } else if (qx.Class.getEventType(this.constructor, "domReady")) {
-        this.addListenerOnce("domReady", this.__initUpdater, this);
+      } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
+        this.addListenerOnce('domReady', this.__initUpdater, this);
       }
     }
   },
@@ -102,14 +102,14 @@ qx.Mixin.define("cv.ui.common.Update", {
     update3d: function (ev, data) {
       const l = ev.data.layout;
       const pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
-      ev.data.element.css("left", pos.x + "px");
-      ev.data.element.css("top", pos.y + "px");
+      ev.data.element.css('left', pos.x + 'px');
+      ev.data.element.css('top', pos.y + 'px');
 
       let floorFilter = true;
       if (l.floorFilter) {
- floorFilter = data.getState("showFloor") === data.buildingProperties.floorNames[l.floorFilter]; 
+ floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter]; 
 }
-      ev.data.element.css("display", floorFilter ? "" : "none");
+      ev.data.element.css('display', floorFilter ? '' : 'none');
     }
   }
 });

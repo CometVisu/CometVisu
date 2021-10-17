@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Slide", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Slide', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -47,9 +47,9 @@ qx.Class.define("cv.parser.widgets.Slide", {
       let datatype_min;
       let datatype_max;
       Array.from(xml.children).filter(function(m) {
- return m.matches("address"); 
+ return m.matches('address'); 
 }).forEach(function(elem) {
-        const transform = elem.getAttribute("transform");
+        const transform = elem.getAttribute('transform');
         if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
           if (!(datatype_min > cv.Transform.registry[transform].range.min)) { // jshint ignore:line
             datatype_min = cv.Transform.registry[transform].range.min;
@@ -59,8 +59,8 @@ qx.Class.define("cv.parser.widgets.Slide", {
           }
         }
       });
-      const min = parseFloat(xml.getAttribute("min") || datatype_min || 0);
-      const max = parseFloat(xml.getAttribute("max") || datatype_max || 100);
+      const min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
+      const max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
 
       data.min = min;
       data.max = max;
@@ -69,12 +69,12 @@ qx.Class.define("cv.parser.widgets.Slide", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "step": {"default": 0.5, transform: parseFloat},
-        "send_on_finish": {
-          target: "sendOnFinish",
-          "default": false,
+        'step': {'default': 0.5, transform: parseFloat},
+        'send_on_finish': {
+          target: 'sendOnFinish',
+          'default': false,
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         }
       };
@@ -83,6 +83,6 @@ qx.Class.define("cv.parser.widgets.Slide", {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("slide", statics);
+    cv.parser.WidgetParser.addHandler('slide', statics);
   }
 });

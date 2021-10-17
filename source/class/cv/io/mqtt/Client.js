@@ -20,7 +20,7 @@
 /**
  * MQTT client
  */
-qx.Class.define("cv.io.mqtt.Client", {
+qx.Class.define('cv.io.mqtt.Client', {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -33,7 +33,7 @@ qx.Class.define("cv.io.mqtt.Client", {
     this.base(arguments);
     this.initialAddresses = [];
     this._backendName = backendName;
-    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, "ws://$1:8083/");
+    this._backendUrl = backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/');
     this.__groups = {};
     this.__memberLookup = {};
   },
@@ -45,15 +45,15 @@ qx.Class.define("cv.io.mqtt.Client", {
   */
   properties: {
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeConnected"
+      event: 'changeConnected'
     },
 
     server: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      event: "changedServer"
+      event: 'changedServer'
     }
   },
 
@@ -153,13 +153,13 @@ qx.Class.define("cv.io.mqtt.Client", {
       function onFailure(param) {
         self.setConnected(false);
         let n = cv.core.notifications.Router.getInstance();
-        n.dispatchMessage("cv.client.connection", {
-          title: "MQTT: " + qx.locale.Manager.tr("Connection error"),
-          message: param.errorMessage + "<br/>\nCode: " + param.errorCode,
-          severity: "urgent",
+        n.dispatchMessage('cv.client.connection', {
+          title: 'MQTT: ' + qx.locale.Manager.tr('Connection error'),
+          message: param.errorMessage + '<br/>\nCode: ' + param.errorCode,
+          severity: 'urgent',
           unique: true,
           deletable: false
-        }, "popup");
+        }, 'popup');
       }
 
       let options = {
@@ -168,23 +168,23 @@ qx.Class.define("cv.io.mqtt.Client", {
         onFailure: onFailure
       };
 
-      if (credentials !== null && "username" in credentials && credentials.username !== null) {
+      if (credentials !== null && 'username' in credentials && credentials.username !== null) {
         options.userName = credentials.username;
       }
-      if (credentials !== null && "password" in credentials && credentials.password !== null) {
+      if (credentials !== null && 'password' in credentials && credentials.password !== null) {
         options.password = credentials.password;
       }
 
       try {
-        this._client = new Paho.MQTT.Client(this._backendUrl, "CometVisu_" + Math.random().toString(16).substr(2, 8));
+        this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
       } catch (e) {
-        self.error("MQTT Client error:", e);
+        self.error('MQTT Client error:', e);
         self.setConnected(false);
         return;
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        self.log("Connection Lost: " + responseObject.errorMessage, responseObject);
+        self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 

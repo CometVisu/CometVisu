@@ -18,8 +18,8 @@
  */
 
 
-qx.Class.define("cv.ui.structure.WidgetFactory", {
-  type: "static",
+qx.Class.define('cv.ui.structure.WidgetFactory', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -45,7 +45,7 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
           if (Clazz) {
             this.registry[data.path] = new Clazz(data); // jshint ignore:line
           } else {
-            qx.log.Logger.error(this, "No handler found for type '"+type+"'");
+            qx.log.Logger.error(this, 'No handler found for type \''+type+'\'');
             return null;
           }
         } else {
@@ -67,7 +67,7 @@ qx.Class.define("cv.ui.structure.WidgetFactory", {
     },
 
     getInstanceByElement: function(element) {
-      const instance = this.getInstanceById(element.getAttribute("id"));
+      const instance = this.getInstanceById(element.getAttribute('id'));
       if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();

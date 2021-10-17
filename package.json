@@ -100,7 +100,8 @@
     },
     "rules": {
       "no-warning-comments": "off",
-      "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }]
+      "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
+      "quotes": ["error", "single"]
     },
     "plugins": [
       "jasmine"

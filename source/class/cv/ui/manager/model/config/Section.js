@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.model.config.Section", {
+qx.Class.define('cv.ui.manager.model.config.Section', {
   extend: qx.core.Object,
 
   /*
@@ -22,15 +22,15 @@ qx.Class.define("cv.ui.manager.model.config.Section", {
   */
   properties: {
     name: {
-      check: "String",
-      event: "changeName",
-      init: ""
+      check: 'String',
+      event: 'changeName',
+      init: ''
     },
 
     options: {
-      check: "qx.data.Array",
+      check: 'qx.data.Array',
       deferredInit: true,
-      event: "changeOptions"
+      event: 'changeOptions'
     }
   },
 

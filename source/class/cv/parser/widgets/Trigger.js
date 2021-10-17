@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Trigger", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Trigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,23 +48,23 @@ qx.Class.define("cv.parser.widgets.Trigger", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "value"      : { target: "sendValue", "default": "0" },
-        "shorttime"  : { target: "shortThreshold", "default": -1, transform: parseFloat},
-        "shortvalue" : { target: "shortValue", "default": "0" },
-        "send-long-on-release" : {target: "sendLongOnRelease", transform: function (value) {
-            return value ? value === "true" : true;
+        'value'      : { target: 'sendValue', 'default': '0' },
+        'shorttime'  : { target: 'shortThreshold', 'default': -1, transform: parseFloat},
+        'shortvalue' : { target: 'shortValue', 'default': '0' },
+        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
+            return value ? value === 'true' : true;
         }}
       };
     },
 
     makeAddressListFn: function(src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [ true, variant === "short" ? 1 : (variant === "button" ? 2 : 1|2) ];
+      return [ true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1|2) ];
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("trigger", statics);
+    cv.parser.WidgetParser.addHandler('trigger', statics);
   }
 });

@@ -28,8 +28,8 @@
 /**
  * Helper methods for the widget tree
  */
-qx.Class.define("cv.util.Tree", {
-  type: "static",
+qx.Class.define('cv.util.Tree', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -74,23 +74,23 @@ qx.Class.define("cv.util.Tree", {
      */
     getParentPageData: function(path) {
       let data = {};
-      const isPage = path.substr(-1, 1) === "_"; // path ends with _
+      const isPage = path.substr(-1, 1) === '_'; // path ends with _
       if (!isPage) {
         path = path.substr(0, path.length - 1);
       }
       let parentPath = path;
-      if (parentPath === "id_") {
+      if (parentPath === 'id_') {
         return null;
       }
       const model = cv.data.Model.getInstance();
       while (Object.keys(data).length === 0 && parentPath.length > 2) {
         data = model.getWidgetData(parentPath);
-        if (parentPath === "id_") {
+        if (parentPath === 'id_') {
           break;
         }
-        const parts = parentPath.substr(0, parentPath.length - 1).split("_");
+        const parts = parentPath.substr(0, parentPath.length - 1).split('_');
         parts.pop();
-        parentPath = parts.join("_") + "_";
+        parentPath = parts.join('_') + '_';
       }
       return data;
     },
@@ -107,17 +107,17 @@ qx.Class.define("cv.util.Tree", {
        * @param path
        */
       function traverseUp(path) {
-        const parts = path.split("_");
-        if (parts[parts.length - 1] === "") {
+        const parts = path.split('_');
+        if (parts[parts.length - 1] === '') {
           parts.pop();
         } else {
-          parts[parts.length - 1] = "";
+          parts[parts.length - 1] = '';
         }
-        return parts.join("_");
+        return parts.join('_');
       }
 
       let parentPath = traverseUp(path);
-      if (parentPath === "id") {
+      if (parentPath === 'id') {
         // no parent
         return null;
       }
@@ -125,7 +125,7 @@ qx.Class.define("cv.util.Tree", {
       const model = cv.data.Model.getInstance();
       while (parentPath.length >= 2) {
         data = model.getWidgetData(parentPath);
-        if (parentPath === "id_" || (data.children && data.children.indexOf(path) >= 0)) {
+        if (parentPath === 'id_' || (data.children && data.children.indexOf(path) >= 0)) {
           return data;
         }
         parentPath = traverseUp(parentPath);
@@ -150,17 +150,17 @@ qx.Class.define("cv.util.Tree", {
     },
 
     getParentPage: function(element) {
-      return this.getParent(element, "#pages", ".page", 1)[0];
+      return this.getParent(element, '#pages', '.page', 1)[0];
     },
 
     getParentGroup: function(element) {
-      return this.getParent(element, "#pages", ".group", 1)[0];
+      return this.getParent(element, '#pages', '.group', 1)[0];
     },
 
     getParent: function(element, until, selector, limit) {
       let parents = [];
       let parent = element.parentNode;
-      while (parent && parent.getAttribute("id") !== "pages") {
+      while (parent && parent.getAttribute('id') !== 'pages') {
         let found = [parent];
         if (selector) {
           found = Array.prototype.filter.call(found, function (m) {

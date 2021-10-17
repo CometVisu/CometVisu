@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.ImageTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.ImageTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -49,22 +49,22 @@ qx.Class.define("cv.parser.widgets.ImageTrigger", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "height" : { "default": "0" },
-        "width" : { "default": "0" },
-        "type"  : { target: "updateType", "default": "" },
-        "src": { },
-        "suffix": { },
-        "sendValue": { "default": ""}
+        'height' : { 'default': '0' },
+        'width' : { 'default': '0' },
+        'type'  : { target: 'updateType', 'default': '' },
+        'src': { },
+        'suffix': { },
+        'sendValue': { 'default': ''}
       };
     },
     getDefaultClasses: function(type) {
       // additional image class
-      return "widget clearfix image "+type.toLowerCase();
+      return 'widget clearfix image '+type.toLowerCase();
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("imagetrigger", statics);
+    cv.parser.WidgetParser.addHandler('imagetrigger', statics);
   }
 });

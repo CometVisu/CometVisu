@@ -18,8 +18,8 @@
  */
 
 
-qx.Class.define("cv.util.String", {
-  type: "static",
+qx.Class.define('cv.util.String', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -36,7 +36,7 @@ qx.Class.define("cv.util.String", {
      */
     decodeHtmlEntities: function (str) {
       if (!this.__elem) {
-        this.__elem = document.createElement("span");
+        this.__elem = document.createElement('span');
       }
       this.__elem.innerHTML = str;
       return this.__elem.innerText;
@@ -50,7 +50,7 @@ qx.Class.define("cv.util.String", {
     htmlStringToDomElement: function (str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
-      const div = document.createElement("div");
+      const div = document.createElement('div');
       div.innerHTML = str;
       const elem = div.children[0];
       document.body.appendChild(elem);
@@ -66,11 +66,11 @@ qx.Class.define("cv.util.String", {
      */
     sprintf: function() {
       const args = Array.prototype.slice.call(arguments);
-      let string = "-";
+      let string = '-';
       try {
         string = sprintf.apply(this, args);
       } catch (err) {
-        qx.log.Logger.warn(this, err + ", " + JSON.stringify(args));
+        qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));
       }
       return string;
     }

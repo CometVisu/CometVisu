@@ -31,7 +31,7 @@
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.woff)
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)
  */
-qx.Class.define("cv.plugins.OpenweatherMap", {
+qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Refresh,
 
@@ -52,7 +52,7 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
     if (cv.TemplateEngine.getInstance().isDomFinished()) {
       this._refreshAction();
     } else {
-      qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+      qx.event.message.Bus.subscribe('setup.dom.finished', function () {
         // init once
         this._refreshAction();
       }, this);
@@ -83,20 +83,20 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "class": { target: "cssClass" },
-        "lang":   { },
-        "owID":  { },
-        "q":   { },
-        "lat":   { },
-        "lon":   { },
-        "units":   { },
-        "type":   { },
-        "forecast24hItems":   { },
-        "forecastDailyItems":   { },
-        "detailItems":   { },
-        "showSunrise": { },
-        "appid":   { },
-        "description":   { }
+        'class': { target: 'cssClass' },
+        'lang':   { },
+        'owID':  { },
+        'q':   { },
+        'lat':   { },
+        'lon':   { },
+        'units':   { },
+        'type':   { },
+        'forecast24hItems':   { },
+        'forecastDailyItems':   { },
+        'detailItems':   { },
+        'showSunrise': { },
+        'appid':   { },
+        'description':   { }
       };
     }
   },
@@ -108,59 +108,59 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
   */
   properties: {
     cssClass: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     lang: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     owID: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     q: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     lat: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     lon: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     units: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     type: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     forecast24hItems: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     forecastDailyhItems: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     showSunrise: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     detailItems: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     appid: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     description: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -174,16 +174,16 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
     __options: null,
 
     _getInnerDomString: function() {
-      let classes = "widget clearfix text openweathermap";
+      let classes = 'widget clearfix text openweathermap';
       if (this.getCssClass()) {
-        classes+=" "+this.getCssClass();
+        classes+=' '+this.getCssClass();
       }
-      return "<div class=\""+classes+"\"><div id=\"owm_" + this.getPath() + "\" class=\"openweathermap_value\"></div></div>";
+      return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
     },
 
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener("interval", this._refreshAction, this);
+      this._timer.addListener('interval', this._refreshAction, this);
       this._timer.start();
       // call once immediately
       this._refreshAction();
@@ -197,11 +197,11 @@ qx.Class.define("cv.plugins.OpenweatherMap", {
 
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles("plugins/openweathermap/owm_basic_style.css");
-    loader.addStyles("plugins/openweathermap/owm_weathericon.css");
-    loader.addScripts("plugins/openweathermap/owm_core.js");
+    loader.addStyles('plugins/openweathermap/owm_basic_style.css');
+    loader.addStyles('plugins/openweathermap/owm_weathericon.css');
+    loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
-    cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
-    cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
+    cv.parser.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
+    cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
   }
 });

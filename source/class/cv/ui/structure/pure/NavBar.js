@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.NavBar", {
+qx.Class.define('cv.ui.structure.pure.NavBar', {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
@@ -40,23 +40,23 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
       init: true
     },
     name: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     scope: {
-      check: "Number",
+      check: 'Number',
       init: -1
     },
     width: {
-      check: "String",
-      init: "300"
+      check: 'String',
+      init: '300'
     },
     position: {
-      check: ["top", "left", "right", "bottom"], 
-      init: "left"
+      check: ['top', 'left', 'right', 'bottom'], 
+      init: 'left'
     },
     dynamic: {
-      check: "Boolean",
+      check: 'Boolean',
       nullable : true,
       init: null
     },
@@ -72,10 +72,10 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
   ******************************************************
   */
   statics: {
-    _navbarTop: "",
-    _navbarLeft: "",
-    _navbarRight: "",
-    _navbarBottom: "",
+    _navbarTop: '',
+    _navbarLeft: '',
+    _navbarRight: '',
+    _navbarBottom: '',
     _touchX: null,
     _touchY: null,
 
@@ -84,11 +84,11 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
      * to the DOM-Tree
      */
     initializeNavbars: function() {
-      ["Top", "Left", "Right", "Bottom"].forEach(function(pos) {
-        if (this["_navbar"+pos]) {
-          const elem = document.querySelector("#navbar" + pos);
+      ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
+        if (this['_navbar'+pos]) {
+          const elem = document.querySelector('#navbar' + pos);
           if (elem) {
-            elem.innerHTML += this["_navbar" + pos];
+            elem.innerHTML += this['_navbar' + pos];
           }
         }
       }, this);
@@ -105,7 +105,7 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
       //   horizontal (up to +/-45° tolerance is allowed)
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
-      document.addEventListener("touchstart", function (evt) {
+      document.addEventListener('touchstart', function (evt) {
         const touches = evt.touches[0];
         const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
 
@@ -118,11 +118,11 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
         self._touchX = touches.clientX;
         self._touchY = touches.clientY;
       }, false);
-      document.addEventListener("touchend", function () {
+      document.addEventListener('touchend', function () {
         self._touchX = null;
         self._touchY = null;
       }, false);
-      document.addEventListener("touchmove", function (evt) {
+      document.addEventListener('touchmove', function (evt) {
         if (self._touchX === null) {
           return; // early exit as this touch isn't relevant for us
         }
@@ -140,13 +140,13 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
             self._touchX = touches.clientX - necessaryDistance;
             self._touchY = touches.clientY;
             if (!pPH.navbars.left.fadeVisible) {
-              pPH.fadeNavbar("Left", "in", 250);
+              pPH.fadeNavbar('Left', 'in', 250);
             }
           } else { // !toRight
             self._touchX = touches.clientX + necessaryDistance;
             self._touchY = touches.clientY;
             if (pPH.navbars.left.fadeVisible) {
-              pPH.fadeNavbar("Left", "out", 250);
+              pPH.fadeNavbar('Left', 'out', 250);
             }
           }
         }
@@ -165,46 +165,46 @@ qx.Class.define("cv.ui.structure.pure.NavBar", {
     },
     
     getGlobalPath: function () {
-      const id = this.getPath().split("_");
+      const id = this.getPath().split('_');
       id.pop();
-      return id.join("_") + "_" + this.getPosition() + "_navbar";
+      return id.join('_') + '_' + this.getPosition() + '_navbar';
     },
 
     // overridden
     getDomString: function () {
-      let container = "<div class=\"" + this.getClasses() + "\" id=\"" + this.getGlobalPath() + "\">";
+      let container = '<div class="' + this.getClasses() + '" id="' + this.getGlobalPath() + '">';
       if (this.getName()) {
-        container += "<h2>" + this.getName() + "</h2>";
+        container += '<h2>' + this.getName() + '</h2>';
       }
       container += this.getChildrenDomString();
 
-      container += "</div>";
+      container += '</div>';
 
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
-        case "top":
+        case 'top':
           this.self(arguments)._navbarTop += container;
           break;
 
-        case "left":
+        case 'left':
           this.self(arguments)._navbarLeft += container;
           break;
 
-        case "right":
+        case 'right':
           this.self(arguments)._navbarRight += container;
           break;
 
-        case "bottom":
+        case 'bottom':
           this.self(arguments)._navbarBottom += container;
           break;
       }
 
-      return "";
+      return '';
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("navbar", statics);
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", statics.initializeNavbars, statics);
+    cv.ui.structure.WidgetFactory.registerClass('navbar', statics);
+    qx.event.message.Bus.subscribe('setup.dom.finished.before', statics.initializeNavbars, statics);
   }
 });

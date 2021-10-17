@@ -27,9 +27,9 @@
  * The object "icon" contains the whole API necessary to handle the icons.
  *
  */
-qx.Class.define("cv.IconHandler", {
+qx.Class.define('cv.IconHandler', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
    ******************************************************
@@ -61,9 +61,9 @@ qx.Class.define("cv.IconHandler", {
     insert: function () {
       const name = arguments[0];
       const uri = arguments[1];
-      const type = arguments[2] || "*";
-      const flavour = arguments[3] || "*";
-      const color = arguments[4] || "*";
+      const type = arguments[2] || '*';
+      const flavour = arguments[3] || '*';
+      const color = arguments[4] || '*';
       const styling = arguments[5];
       const dynamic = arguments[6];
 
@@ -101,13 +101,13 @@ qx.Class.define("cv.IconHandler", {
         return undefined;
       }
       if (!this.__db[name][type]) {
-        type = "*"; // undefined -> use default
+        type = '*'; // undefined -> use default
       }
       let all;
-      if (typeof this.__db[name][type] === "string") {
+      if (typeof this.__db[name][type] === 'string') {
         type = this.__db[name][type]; // redirect link
-        if (type.split("/").length > 1) {
-          all = type.split("/");
+        if (type.split('/').length > 1) {
+          all = type.split('/');
           type = all.shift();
           if (flavour === undefined) {
             flavour = all.shift();
@@ -115,12 +115,12 @@ qx.Class.define("cv.IconHandler", {
         }
       }
       if (!this.__db[name][type][flavour]) {
-        flavour = "*"; // undefined -> use default
+        flavour = '*'; // undefined -> use default
       }
-      if (typeof this.__db[name][type][flavour] === "string") {
+      if (typeof this.__db[name][type][flavour] === 'string') {
         flavour = this.__db[name][type][flavour]; // redirect link
-        if (flavour.split("/").length > 1) {
-          all = flavour.split("/");
+        if (flavour.split('/').length > 1) {
+          all = flavour.split('/');
           flavour = all.shift();
           if (!color) {
             color = all.shift();
@@ -128,13 +128,13 @@ qx.Class.define("cv.IconHandler", {
         }
       }
       if (!this.__db[name][type][flavour][color]) {
-        color = "*"; // undefined -> use default
+        color = '*'; // undefined -> use default
       }
       // handle a generic mapping function
-      if (typeof this.__db[name][type][flavour]["*"] === "function") {
-        return this.__db[name][type][flavour]["*"];
+      if (typeof this.__db[name][type][flavour]['*'] === 'function') {
+        return this.__db[name][type][flavour]['*'];
       }
-      if (typeof this.__db[name][type][flavour][color] === "string") {
+      if (typeof this.__db[name][type][flavour][color] === 'string') {
         color = this.__db[name][type][flavour][color];
       } // redirect link
       return this.__db[name][type][flavour][color];
@@ -145,7 +145,7 @@ qx.Class.define("cv.IconHandler", {
       if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
-      return "";
+      return '';
     },
 
     /**
@@ -155,7 +155,7 @@ qx.Class.define("cv.IconHandler", {
       const i = this.get.apply(this, arguments);
       if (i) {
         let styling = arguments[4];
-        if (i.icon && !styling && typeof i !== "function") {
+        if (i.icon && !styling && typeof i !== 'function') {
           return i.icon;
         }
 
@@ -164,16 +164,16 @@ qx.Class.define("cv.IconHandler", {
           styling = i.styling;
         }
 
-        let classes = "icon";
+        let classes = 'icon';
         const iconclass = arguments[5];
         if (iconclass) {
-          classes = classes + " custom_" + iconclass;
+          classes = classes + ' custom_' + iconclass;
         }
 
-        if (typeof i === "function") {
+        if (typeof i === 'function') {
           i.icon = i(arguments[3], styling, classes, false);
         } else {
-          i.icon = "<img class=\"" + classes + "\" src=\"" + qx.util.ResourceManager.getInstance().toUri(i.uri) +"\" style=\"" + (styling ? styling : "") + "\"/>";
+          i.icon = '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) +'" style="' + (styling ? styling : '') + '"/>';
         }
         return i.icon;
       }
@@ -196,22 +196,22 @@ qx.Class.define("cv.IconHandler", {
       const i = this.get.apply(this, arguments);
       if (i) {
         if (!styling) {
-          styling = !i.styling ? "" : " style=\"" + i.styling + "\"";
+          styling = !i.styling ? '' : ' style="' + i.styling + '"';
         } else {
-          styling = " style=\"" + styling + "\"";
+          styling = ' style="' + styling + '"';
         }
 
-        let classes = "icon";
+        let classes = 'icon';
         if (iconclass) {
-          classes = classes + " custom_" + iconclass;
+          classes = classes + ' custom_' + iconclass;
         }
 
-        if (typeof i === "function") {
+        if (typeof i === 'function') {
           return i(color, styling, classes, true);
         } 
-          return "<img class=\"" + classes + "\" src=\"" + qx.util.ResourceManager.getInstance().toUri(i.uri) + "\"" + styling + "/>";
+          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
       }
-      return "";
+      return '';
     },
 
     /**
@@ -224,14 +224,14 @@ qx.Class.define("cv.IconHandler", {
       const i = this.get.apply(this, arguments);
       if (i) {
         if (!classes) {
-          classes = "icon";
+          classes = 'icon';
         }
-        if (typeof i === "function") {
+        if (typeof i === 'function') {
           return i(undefined, undefined, classes, true);
         } 
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
       }
-      return "";
+      return '';
     },
 
     /**

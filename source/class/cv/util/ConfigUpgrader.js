@@ -22,7 +22,7 @@
  * @since 0.12.0
  * @author Tobias Bräutigam
  */
-qx.Class.define("cv.util.ConfigUpgrader", {
+qx.Class.define('cv.util.ConfigUpgrader', {
   extend: qx.core.Object,
 
   /*
@@ -40,32 +40,32 @@ qx.Class.define("cv.util.ConfigUpgrader", {
      */
     upgrade (source) {
       this.__log = [];
-      if (typeof source === "string") {
+      if (typeof source === 'string') {
         source = qx.xml.Document.fromString(source);
       }
       // read version from config
-      const pagesNode = source.querySelector("pages");
-      let version = parseInt(pagesNode.getAttribute("lib_version"));
+      const pagesNode = source.querySelector('pages');
+      let version = parseInt(pagesNode.getAttribute('lib_version'));
       if (version === cv.Version.LIBRARY_VERSION) {
         // nothing to do
         return [null, source, this.__log];
       } 
         while (version < cv.Version.LIBRARY_VERSION) {
           // upgrade step by step
-          const method = this["from" + version + "to" + (version + 1)];
+          const method = this['from' + version + 'to' + (version + 1)];
           if (method) {
             version = method.call(this, source);
           } else {
-            return [qx.locale.Manager.tr("Upgrader from version %1 not implemented", version), source, this.__log];
+            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__log];
           }
         }
-        this.info("  - " + this.__log.join("\n  - "));
+        this.info('  - ' + this.__log.join('\n  - '));
         return [null, source, this.__log];
     },
 
     from7to8 (source) {
       let c = 0;
-      source.querySelectorAll("plugins > plugin[name='gweather']").forEach(node => {
+      source.querySelectorAll('plugins > plugin[name=\'gweather\']').forEach(node => {
         const parent = node.parentNode;
         const indentNode = node.previousSibling;
         parent.removeChild(node);
@@ -76,18 +76,18 @@ qx.Class.define("cv.util.ConfigUpgrader", {
       });
       this.__setVersion(source, 8);
       if (c > 0) {
-        this.__log.push("removed " + c + " 'plugin'-nodes with obsolete plugin (gweather)");
+        this.__log.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
       }
       return 8;
     },
 
     from8to9 (source) {
       let c = 0;
-      const singleIndent = "".padEnd(this.__indentation, " ");
-      source.querySelectorAll("multitrigger").forEach(node => {
+      const singleIndent = ''.padEnd(this.__indentation, ' ');
+      source.querySelectorAll('multitrigger').forEach(node => {
         let level = this.__getLevel(node);
         level++;
-        const indent = "".padEnd(this.__indentation * level, " ");
+        const indent = ''.padEnd(this.__indentation * level, ' ');
         const buttonConf = {};
         const attributesToDelete = [];
         const nameRegex = /^button([\d]+)(label|value)$/;
@@ -104,27 +104,27 @@ qx.Class.define("cv.util.ConfigUpgrader", {
         attributesToDelete.forEach(attr => node.removeAttributeNode(attr));
         const buttonIds = Object.keys(buttonConf).sort();
         if (buttonIds.length > 0) {
-          const buttons = source.createElement("buttons");
+          const buttons = source.createElement('buttons');
           buttonIds.forEach(bid => {
-            const button = source.createElement("button");
+            const button = source.createElement('button');
             button.textContent = buttonConf[bid].value;
             if (buttonConf[bid].label) {
-              button.setAttribute("label", buttonConf[bid].label);
+              button.setAttribute('label', buttonConf[bid].label);
             }
-            const ind = source.createTextNode("\n" + indent + singleIndent);
+            const ind = source.createTextNode('\n' + indent + singleIndent);
             buttons.appendChild(ind);
             buttons.appendChild(button);
           });
-          buttons.appendChild(source.createTextNode("\n" + indent));
+          buttons.appendChild(source.createTextNode('\n' + indent));
           node.appendChild(source.createTextNode(singleIndent));
           node.appendChild(buttons);
-          node.appendChild(source.createTextNode("\n" + "".padEnd(this.__indentation * (level - 1), " ")));
+          node.appendChild(source.createTextNode('\n' + ''.padEnd(this.__indentation * (level - 1), ' ')));
           c++;
         }
       });
       this.__setVersion(source, 9);
       if (c > 0) {
-        this.__log.push("converted " + c + " 'multitrigger'-nodes to new button configuration");
+        this.__log.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
       }
       return 9;
     },
@@ -132,7 +132,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
     __getLevel (node) {
       let level = 1;
       let parent = node.parentNode;
-      while (parent && parent.nodeName !== "pages") {
+      while (parent && parent.nodeName !== 'pages') {
         parent = parent.parentNode;
         level++;
       }
@@ -140,7 +140,7 @@ qx.Class.define("cv.util.ConfigUpgrader", {
     },
 
     __setVersion (xml, version) {
-      xml.querySelector("pages").getAttributeNode("lib_version").value = version;
+      xml.querySelector('pages').getAttributeNode('lib_version').value = version;
     }
   }
 });

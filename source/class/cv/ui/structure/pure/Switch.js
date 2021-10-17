@@ -56,7 +56,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Switch", {
+qx.Class.define('cv.ui.structure.pure.Switch', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -67,12 +67,12 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
    */
   properties: {
     onValue: {
-      check: "String",
-      init: "1"
+      check: 'String',
+      init: '1'
     },
     offValue: {
-      check: "String",
-      init: "0"
+      check: 'String',
+      init: '0'
     }
   },
 
@@ -85,7 +85,7 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
 
     // overridden
     _getInnerDomString: function () {
-      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     /**
@@ -99,8 +99,8 @@ qx.Class.define("cv.ui.structure.pure.Switch", {
       value = this.getBasicValue();
       const off = this.getOffValue();
       // using == comparisons to make sure that e.g. 1 equals "1"
-      actor.classList.remove(value == off ? "switchPressed" : "switchUnpressed"); // jshint ignore:line
-      actor.classList.add(value == off ? "switchUnpressed" : "switchPressed"); // jshint ignore:line
+      actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
+      actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
     },
 
     /**

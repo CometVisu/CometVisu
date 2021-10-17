@@ -22,7 +22,7 @@
  * @author Christian Mayer
  * @since 2010
  */
-qx.Class.define("cv.ui.PagePartsHandler", {
+qx.Class.define('cv.ui.PagePartsHandler', {
   extend: qx.core.Object,
 
   /*
@@ -60,30 +60,30 @@ qx.Class.define("cv.ui.PagePartsHandler", {
     navbars: null,
 
     updateTopNavigation: function (path) {
-      path = path.split("_");
+      path = path.split('_');
       path.pop();
-      let id = "id_"; //path[0];
-      const pathNode = document.querySelector(".nav_path");
-      pathNode.innerHTML = "";
-      let pageTitle = document.querySelector("#"+id+" h1").textContent;
-      let nav = document.createElement("a");
+      let id = 'id_'; //path[0];
+      const pathNode = document.querySelector('.nav_path');
+      pathNode.innerHTML = '';
+      let pageTitle = document.querySelector('#'+id+' h1').textContent;
+      let nav = document.createElement('a');
       // eslint-disable-next-line no-script-url
-      nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
-      nav.setAttribute("id", "breadcrump_pagejump_" + id);
+      nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+      nav.setAttribute('id', 'breadcrump_pagejump_' + id);
       nav.appendChild(document.createTextNode(pageTitle));
       pathNode.appendChild(nav);
       for (let i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
-        id += path[i] + "_";
-        let pageElem = document.querySelector("#"+id);
-        if (pageElem && pageElem.classList.contains("page")) { // FIXME is this still needed?!?
-          pageTitle = document.querySelector("#"+id+" h1").textContent;
-          let span = document.createElement("span");
-          span.innerHTML = " &#x25ba; ";
+        id += path[i] + '_';
+        let pageElem = document.querySelector('#'+id);
+        if (pageElem && pageElem.classList.contains('page')) { // FIXME is this still needed?!?
+          pageTitle = document.querySelector('#'+id+' h1').textContent;
+          let span = document.createElement('span');
+          span.innerHTML = ' &#x25ba; ';
           pathNode.appendChild(span);
-          nav = document.createElement("a");
+          nav = document.createElement('a');
           // eslint-disable-next-line no-script-url
-          nav.setAttribute("href", "javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + "')");
-          nav.setAttribute("id", "breadcrump_pagejump_" + id);
+          nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+          nav.setAttribute('id', 'breadcrump_pagejump_' + id);
           nav.appendChild(document.createTextNode(pageTitle));
           pathNode.appendChild(nav);
         }
@@ -100,25 +100,25 @@ qx.Class.define("cv.ui.PagePartsHandler", {
      * @param size
      */
     navbarSetSize: function (position, size) {
-      const cssSize = size + (isFinite(size) ? "px" : "");
+      const cssSize = size + (isFinite(size) ? 'px' : '');
       let navbar;
       switch (position) {
-        case "left":
-          navbar = document.querySelector("#navbarLeft");
+        case 'left':
+          navbar = document.querySelector('#navbarLeft');
           navbar.style.width = cssSize;
           if (!this.navbars.left.fadeVisible) {
-            navbar.style.left = -navbar.getBoundingClientRect().width + "px";
+            navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
           }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
-        case "right":
-          document.querySelector("#centerContainer").style["padding-right"] = cssSize;
-          navbar = document.querySelector("#navbarRight");
+        case 'right':
+          document.querySelector('#centerContainer').style['padding-right'] = cssSize;
+          navbar = document.querySelector('#navbarRight');
           navbar.style.width = cssSize;
-          navbar.style["margin-right"] = "-" + cssSize;
+          navbar.style['margin-right'] = '-' + cssSize;
           if (!this.navbars.right.fadeVisible) {
-            navbar.style.right = -navbar.getBoundingClientRect().width + "px";
+            navbar.style.right = -navbar.getBoundingClientRect().width + 'px';
           }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
@@ -132,10 +132,10 @@ qx.Class.define("cv.ui.PagePartsHandler", {
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
       }
-      if (typeof page === "string") {
+      if (typeof page === 'string') {
         page = cv.ui.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes) {
-        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute("id"));
+        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute('id'));
       }
 
       if (!page) {
@@ -164,7 +164,7 @@ qx.Class.define("cv.ui.PagePartsHandler", {
         if (!page.isInitialized()) {
           // page is not ready, defer this update
           const self = this;
-          page.addListenerOnce("changeInitialized", function () {
+          page.addListenerOnce('changeInitialized', function () {
             self.updatePageParts(page, speed);
           }, this);
           return;
@@ -172,26 +172,26 @@ qx.Class.define("cv.ui.PagePartsHandler", {
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }
-      const topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
-      const bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
+      const topDisplay = window.getComputedStyle(document.querySelector('#top'))['display'];
+      const bottomDisplay = window.getComputedStyle(document.querySelector('#bottom'))['display'];
       if (showtopnavigation) {
-        if (topDisplay === "none") {
-          document.querySelectorAll("#top, #top > *").forEach(function(elem) {
-            elem.style.display = "block";
+        if (topDisplay === 'none') {
+          document.querySelectorAll('#top, #top > *').forEach(function(elem) {
+            elem.style.display = 'block';
           }, this);
           this.removeInactiveNavbars(page.getPath());
         }
-      } else if (topDisplay !== "none") {
-          document.querySelector("#top").style.display = "none";
+      } else if (topDisplay !== 'none') {
+          document.querySelector('#top').style.display = 'none';
           this.removeInactiveNavbars(page.getPath());
         }
       if (showfooter) {
-        if (bottomDisplay === "none") {
-          document.querySelector("#bottom").style.display = "block";
+        if (bottomDisplay === 'none') {
+          document.querySelector('#bottom').style.display = 'block';
           this.removeInactiveNavbars(page.getPath());
         }
-      } else if (bottomDisplay !== "none") {
-          document.querySelector("#bottom").style.display = "none";
+      } else if (bottomDisplay !== 'none') {
+          document.querySelector('#bottom').style.display = 'none';
           this.removeInactiveNavbars(page.getPath());
         }
       cv.ui.layout.ResizeHandler.invalidateNavbar();
@@ -208,40 +208,40 @@ qx.Class.define("cv.ui.PagePartsHandler", {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
       const initCss = {};
       const targetCss = {};
-      const navbar = document.querySelector("#navbar" + position);
+      const navbar = document.querySelector('#navbar' + position);
       const key = position.toLowerCase();
       const self = this;
       const onAnimationEnd = function () {
-        self.navbars[key].fadeVisible = direction === "in";
+        self.navbars[key].fadeVisible = direction === 'in';
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
-        case "in":
-          if (window.getComputedStyle(navbar).display === "none") {
-            initCss.display = "block";
+        case 'in':
+          if (window.getComputedStyle(navbar).display === 'none') {
+            initCss.display = 'block';
           }
           targetCss[key] = 0;
           switch (position) {
-            case "Top":
-            case "Bottom":
-              initCss[key] = -navbar.getBoundingClientRect().height + "px";
+            case 'Top':
+            case 'Bottom':
+              initCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
-            case "Left":
-            case "Right":
-              initCss[key] = -navbar.getBoundingClientRect().width + "px";
+            case 'Left':
+            case 'Right':
+              initCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
-        case "out":
+        case 'out':
           initCss[key] = 0;
           switch (position) {
-            case "Top":
-            case "Bottom":
-              targetCss[key] = -navbar.getBoundingClientRect().height + "px";
+            case 'Top':
+            case 'Bottom':
+              targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
-            case "Left":
-            case "Right":
-              targetCss[key] = -navbar.getBoundingClientRect().width + "px";
+            case 'Left':
+            case 'Right':
+              targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
@@ -265,7 +265,7 @@ qx.Class.define("cv.ui.PagePartsHandler", {
           }
         };
         const anim = qx.bom.element.Animation.animate(navbar, spec);
-        anim.addListenerOnce("end", onAnimationEnd, this);
+        anim.addListenerOnce('end', onAnimationEnd, this);
       }
     },
 
@@ -278,15 +278,15 @@ qx.Class.define("cv.ui.PagePartsHandler", {
     initializeNavbars: function (page_id) {
       const self = this;
       this.removeInactiveNavbars(page_id);
-      const tree = Array.from(document.querySelectorAll("#id_"));
-      if (page_id !== "id_") {
-        const parts = page_id.split("_");
+      const tree = Array.from(document.querySelectorAll('#id_'));
+      if (page_id !== 'id_') {
+        const parts = page_id.split('_');
         parts.pop();
-        parts[0] = "";
+        parts[0] = '';
         for (let i = 0; i < parts.length; i++) {
-          const subPath = parts.slice(0, i + 1).join("_");
+          const subPath = parts.slice(0, i + 1).join('_');
           if (subPath) {
-            const item = document.querySelectorAll("#id" + subPath + "_.page");
+            const item = document.querySelectorAll('#id' + subPath + '_.page');
             if (item.length === 1) {
               tree.push(item[0]);
             }
@@ -296,21 +296,21 @@ qx.Class.define("cv.ui.PagePartsHandler", {
       let level = 1;
       const size = {top: 0, right: 0, bottom: 0, left: 0};
       const dynamic = {top: null, right: null, bottom: null, left: null};
-      const positions = ["top", "right", "bottom", "left"];
+      const positions = ['top', 'right', 'bottom', 'left'];
       tree.forEach(function (elem) {
-        const id = elem.getAttribute("id");
+        const id = elem.getAttribute('id');
         positions.forEach(function (pos) {
-          const nav = document.querySelector("#" + id + pos + "_navbar");
+          const nav = document.querySelector('#' + id + pos + '_navbar');
           if (nav) {
-            const data = cv.data.Model.getInstance().getWidgetData(id + pos + "_navbar");
+            const data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
             if (data.dynamic !== null) {
               dynamic[pos] = data.dynamic;
             }
             self.navbars[pos].dynamic = dynamic[pos];
             if (data.scope === undefined || data.scope < 0 || tree.length - level <= data.scope) {
-              nav.classList.add("navbarActive");
+              nav.classList.add('navbarActive');
             } else {
-              nav.classList.remove("navbarActive");
+              nav.classList.remove('navbarActive');
             }
             if (data.width !== null) {
               size[pos] = data.width;
@@ -330,13 +330,13 @@ qx.Class.define("cv.ui.PagePartsHandler", {
 
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
-      document.querySelectorAll(".navbar.navbarActive").forEach(function (elem) {
-        let navBarPath = elem.getAttribute("id").split("_");
+      document.querySelectorAll('.navbar.navbarActive').forEach(function (elem) {
+        let navBarPath = elem.getAttribute('id').split('_');
         // skip last 2 elements e.g. '_top_navbar'
-        navBarPath = navBarPath.slice(0, navBarPath.length - 2).join("_");
-        const expr = new RegExp("^" + navBarPath + ".*", "i");
+        navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
+        const expr = new RegExp('^' + navBarPath + '.*', 'i');
         if (navBarPath !== page_id && !expr.test(page_id)) {
-          elem.classList.remove("navbarActive");
+          elem.classList.remove('navbarActive');
         }
       });
     }

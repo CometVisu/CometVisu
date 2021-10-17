@@ -1,7 +1,7 @@
 /**
  * Monaco Texteditor integration
  */
-qx.Class.define("cv.ui.manager.editor.Source", {
+qx.Class.define('cv.ui.manager.editor.Source', {
   extend: cv.ui.manager.editor.AbstractEditor,
 
   /*
@@ -11,25 +11,25 @@ qx.Class.define("cv.ui.manager.editor.Source", {
   */
   construct: function () {
     this.base(arguments);
-    this._handledActions = ["save", "cut", "copy", "paste", "undo", "redo"];
-    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + "/config/";
-    this.getContentElement().setAttribute("contentEditable", "true");
+    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
+    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/';
+    this.getContentElement().setAttribute('contentEditable', 'true');
     this.set({
       droppable: false,
       focusable: true
     });
-    this.addListener("dragover", function (ev) {
+    this.addListener('dragover', function (ev) {
       ev.preventDefault();
-      ev.dataTransfer.effectAllowed = "none";
-      ev.dataTransfer.dropEffect = "none";
+      ev.dataTransfer.effectAllowed = 'none';
+      ev.dataTransfer.dropEffect = 'none';
     });
-    this.addListener("drop", function (ev) {
+    this.addListener('drop', function (ev) {
       ev.preventDefault();
     });
-    this.addListener("appear", function () {
+    this.addListener('appear', function () {
       qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(false);
     });
-    this.addListener("disappear", function () {
+    this.addListener('disappear', function () {
       qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
     });
     this._draw();
@@ -43,68 +43,68 @@ qx.Class.define("cv.ui.manager.editor.Source", {
   ***********************************************
   */
   statics: {
-    TITLE: qx.locale.Manager.tr("Texteditor"),
+    TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
     SUPPORTED_FILES: function (file) {
-      let filename = typeof file === "string" ? file : file.getFullPath().toLowerCase();
+      let filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
       if (window.monaco && window.monaco.languages) {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
           const extensions = [];
           monaco.languages.getLanguages().forEach(function (lang) {
             lang.extensions.forEach(function (ext) {
-              ext = ext.replace(/\./g, "\\.");
+              ext = ext.replace(/\./g, '\\.');
               if (extensions.indexOf(ext) ===-1) {
                 extensions.push(ext);
               }
             });
           });
-          cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp("(" + extensions.join("|") + ")$");
+          cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
         }
         return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
       } 
         return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
     },
     DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
-    ICON: cv.theme.dark.Images.getIcon("text", 18),
+    ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
-      const version = qx.core.Environment.get("qx.debug") ? "dev" : "min";
-      const sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + "/..");
+      const version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
+      const sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
       const loader = new qx.util.DynamicScriptLoader([
-        sourcePath + "node_modules/monaco-editor/" + version + "/vs/loader.js",
-        "manager/xml.js"
+        sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
+        'manager/xml.js'
       ]);
-      loader.addListener("ready", function () {
+      loader.addListener('ready', function () {
         window.require.config({
           paths: {
-            "vs": sourcePath + "node_modules/monaco-editor/" + version + "/vs"
+            'vs': sourcePath + 'node_modules/monaco-editor/' + version + '/vs'
           }
         });
         window.require.config({
-          "vs/nls" : {
+          'vs/nls' : {
             availableLanguages: {
-              "*": qx.locale.Manager.getInstance().getLanguage() !== "en" ? qx.locale.Manager.getInstance().getLanguage() : ""
+              '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
             }
           }
         });
-        const noCacheSuffix = "?" + Math.random();
+        const noCacheSuffix = '?' + Math.random();
         window.require([
-          "xml!./resource/visu_config.xsd" + noCacheSuffix,
-          "xml!*./resource/manager/completion-libs/qooxdoo.d.ts", // the xml loader can load any file by adding * before the path,
-          "vs/editor/editor.main"
+          'xml!./resource/visu_config.xsd' + noCacheSuffix,
+          'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
+          'vs/editor/editor.main'
         ], function (schema, qxLib) {
           this.__schema = schema;
           callback.apply(context);
-          window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, "qooxdoo.d.ts");
-          const completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance("visu_config.xsd"));
+          window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
+          const completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance('visu_config.xsd'));
           const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
-          window.monaco.languages.registerCompletionItemProvider("xml", completionProvider.getProvider());
-          window.monaco.languages.registerCompletionItemProvider("javascript", cvCompletionProvider.getProvider());
+          window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+          window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
         }.bind(this));
       }, this);
-      loader.addListener("failed", function (ev) {
+      loader.addListener('failed', function (ev) {
         qx.log.Logger.error(this, ev.getData());
       }, this);
       loader.start();
@@ -144,7 +144,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
       } else {
         const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
-          this.addListenerOnce("appear", this._draw, this);
+          this.addListenerOnce('appear', this._draw, this);
         } else {
           this._editor = window.monaco.editor.create(domElement, {
             suggestOnTriggerCharacters: true,
@@ -154,27 +154,27 @@ qx.Class.define("cv.ui.manager.editor.Source", {
             dragAndDrop: true,
             formatOnPaste: true,
             formatOnType: true,
-            renderValidationDecorations: "on",
+            renderValidationDecorations: 'on',
             minimap: {
               enabled: true
             },
-            theme: "vs-dark"
+            theme: 'vs-dark'
           });
-          const baseVersion = cv.Version.VERSION.split("-")[0];
-          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("hidden-schema.json"));
+          const baseVersion = cv.Version.VERSION.split('-')[0];
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('hidden-schema.json'));
           xhr.set({
-            method: "GET",
-            accept: "application/json"
+            method: 'GET',
+            accept: 'application/json'
           });
-          xhr.addListenerOnce("success", function (e) {
+          xhr.addListenerOnce('success', function (e) {
             const req = e.getTarget();
             const schema = req.getResponse();
             window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
               validate: true,
               allowComments: true,
               schemas: [{
-                uri: "https://www.cometvisu.org/CometVisu/schemas/" + baseVersion + "/hidden-schema.json",
-                fileMatch: ["hidden.php"],
+                uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
+                fileMatch: ['hidden.php'],
                 schema: schema
               }]
             });
@@ -192,32 +192,32 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
         switch (actionName) {
-          case "cut":
-            this._editor.trigger("external", "editor.action.clipboardCutAction");
+          case 'cut':
+            this._editor.trigger('external', 'editor.action.clipboardCutAction');
             if (!this._nativePasteSupported) {
               // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
               // and implement the pasting manually
               cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
             }
             break;
-          case "copy":
-            this._editor.trigger("external", "editor.action.clipboardCopyAction");
+          case 'copy':
+            this._editor.trigger('external', 'editor.action.clipboardCopyAction');
             if (!this._nativePasteSupported) {
               // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
               // and implement the pasting manually
               cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
             }
             break;
-          case "paste":
+          case 'paste':
             if (this._nativePasteSupported) {
-              this._editor.trigger("external", "editor.action.clipboardPasteAction");
+              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
             } else {
               this._paste();
             }
             break;
-          case "undo":
-          case "redo":
-            this._editor.trigger("external", actionName);
+          case 'undo':
+          case 'redo':
+            this._editor.trigger('external', actionName);
             break;
 
           default:
@@ -242,7 +242,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
           text: cv.ui.manager.editor.AbstractEditor.CLIPBOARD,
           forceMoveMarkers: true
         };
-        this._editor.executeEdits("clipboard", [op]);
+        this._editor.executeEdits('clipboard', [op]);
       }
     },
 
@@ -251,7 +251,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
         this._workerWrapper.close(old);
       }
       if (this._editor) {
-        if (file && file.getType() === "file" && this.isSupported(file)) {
+        if (file && file.getType() === 'file' && this.isSupported(file)) {
           this.base(arguments, file, old);
         } else {
           this.base(arguments, null, old);
@@ -260,31 +260,31 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     },
 
     _loadFromFs: function () {
-      if (this.getFile().getName() === "hidden.php") {
+      if (this.getFile().getName() === 'hidden.php') {
         if (!this._configClient) {
           this._configClient = cv.io.rest.Client.getConfigClient();
-          this._configClient.addListener("getSuccess", function (ev) {
+          this._configClient.addListener('getSuccess', function (ev) {
             this.setContent(JSON.stringify(ev.getData(), null, 2));
           }, this);
-          this._configClient.addListener("updateSuccess", this._onSaved, this);
+          this._configClient.addListener('updateSuccess', this._onSaved, this);
         }
-        this._configClient.get({section: "*", key: "*"});
+        this._configClient.get({section: '*', key: '*'});
       } else {
         this.base(arguments);
       }
     },
 
     save: function (callback, overrideHash) {
-      if (this.getFile().getName() === "hidden.php") {
+      if (this.getFile().getName() === 'hidden.php') {
         if (!this.getFile().isValid()) {
-          cv.ui.manager.snackbar.Controller.error(this.tr("Hidden config is invalid, please correct the errors"));
+          cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
         } else if (this.getFile().getHasWarnings()) {
           // ask user if he really want to save a file with warnings
-          qxl.dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+          qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
             if (confirmed) {
               this.__saveHiddenConfig();
             }
-          }, this, qx.locale.Manager.tr("Confirm saving with warnings"));
+          }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
         } else {
           this.__saveHiddenConfig();
         }
@@ -296,9 +296,9 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     __saveHiddenConfig: function () {
       this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
         if (err) {
-          cv.ui.manager.snackbar.Controller.error(this.tr("Saving hidden config failed with error %1 (%2)", err.status, err.statusText));
+          cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
         } else {
-          cv.ui.manager.snackbar.Controller.info(this.tr("Hidden config has been saved"));
+          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
           this._onSaved();
         }
       }, this);
@@ -352,7 +352,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
 
     _processHandlerOptions: function (content) {
       const handlerOptions = this.getHandlerOptions() || {};
-      if (Object.prototype.hasOwnProperty.call(handlerOptions, "upgradeVersion") && handlerOptions.upgradeVersion === true && content) {
+      if (Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
         const [err, res] = this._upgradeConfig(content);
         if (err) {
           this.error(err);
@@ -363,7 +363,7 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     },
 
     _convertToString: function (xml) {
-      return "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" + xml.documentElement.outerHTML;
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml.documentElement.outerHTML;
     },
 
     _upgradeConfig: function (content) {
@@ -382,9 +382,9 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     },
 
     isSupported: function (file) {
-      const parts = file.getName().split(".");
-      const fileType = parts.length > 1 ? parts.pop() : "txt";
-      const typeExt = "." + fileType;
+      const parts = file.getName().split('.');
+      const fileType = parts.length > 1 ? parts.pop() : 'txt';
+      const typeExt = '.' + fileType;
       return monaco.languages.getLanguages().some(function (lang) {
         return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
       });
@@ -440,29 +440,29 @@ qx.Class.define("cv.ui.manager.editor.Source", {
     },
 
     _getLanguage: function (file) {
-      if (file.getName() === "hidden.php") {
+      if (file.getName() === 'hidden.php') {
         // override this setting as we are loading the hidden config from its REST endpoint as JSON
-        return "json";
+        return 'json';
       }
-      let type = file.getName().split(".").pop();
+      let type = file.getName().split('.').pop();
       switch (type) {
-        case "svg":
-          return "xml";
-        case "js":
-          return "javascript";
-        case "md":
-          return "markdown";
+        case 'svg':
+          return 'xml';
+        case 'js':
+          return 'javascript';
+        case 'md':
+          return 'markdown';
         default: {
           if (!type) {
-            return "txt";
+            return 'txt';
           }
           // check if monaco knows this ending, otherwise fallback to plaintext
-          const typeExt = "." + type;
+          const typeExt = '.' + type;
           const found = monaco.languages.getLanguages().some(function (lang) {
             return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
           });
           if (!found) {
-            type = "txt";
+            type = 'txt';
           }
           return type;
         }

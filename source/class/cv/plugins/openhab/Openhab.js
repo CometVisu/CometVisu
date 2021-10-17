@@ -31,9 +31,9 @@
  *
  * @require(qx.ui.root.Inline)
  */
-qx.Class.define("cv.plugins.openhab.Openhab", {
+qx.Class.define('cv.plugins.openhab.Openhab', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
  *****************************************************************************
@@ -42,14 +42,14 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
  */
   construct: function () {
     this.base(arguments);
-    if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, "preview")) {
+    if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, 'preview')) {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
       const client = cv.TemplateEngine.getInstance().visu;
       const sse = client.getCurrentTransport && client.getCurrentTransport();
       if (sse) {
-        sse.subscribe("notifications", this._onNotification, this);
+        sse.subscribe('notifications', this._onNotification, this);
       }
       cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
     }
@@ -67,22 +67,22 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
     _createSettings: function() {
       // add element structure to notification-center
-      const settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
-      qx.dom.Element.insertAfter(settingsRoot, document.querySelector("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages"));
+      const settingsRoot = qx.dom.Element.create('section', {'id': 'qxsettings', 'html': '<div></div>'});
+      qx.dom.Element.insertAfter(settingsRoot, document.querySelector('#'+cv.ui.NotificationCenter.getInstance().getRootElementId()+' section.messages'));
 
       // add a settings button to trigger opening the settings
-      const button = qx.dom.Element.create("div", {
-        html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
-        style: "float: left;"
+      const button = qx.dom.Element.create('div', {
+        html: cv.util.IconTools.svgKUF('edit_settings')(null, 'width: 22px; height: 22px;'),
+        style: 'float: left;'
       });
-      this._openSettings = new qx.ui.command.Command("Ctrl+S");
-      this._openSettings.addListener("execute", function() {
+      this._openSettings = new qx.ui.command.Command('Ctrl+S');
+      this._openSettings.addListener('execute', function() {
         cv.ui.NotificationCenter.getInstance().show();
         this.__settings.show();
       }, this);
-      cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
-      qx.dom.Element.insertBegin(button, document.querySelector("#notification-center footer"));
-      qx.event.Registration.addListener(button, "tap", function() {
+      cv.TemplateEngine.getInstance().getCommands().add('open-settings', this._openSettings);
+      qx.dom.Element.insertBegin(button, document.querySelector('#notification-center footer'));
+      qx.event.Registration.addListener(button, 'tap', function() {
         this.__settings.show();
       }, this);
 
@@ -93,7 +93,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       // and that breaks the inline container sizes)
       // qx.ui.tooltip.Manager.getInstance();
 
-      this._inline = new qx.ui.root.Inline(document.querySelector("#qxsettings > div"), true, false);
+      this._inline = new qx.ui.root.Inline(document.querySelector('#qxsettings > div'), true, false);
       this._inline.setLayout(new qx.ui.layout.VBox());
       this.__settings = new cv.plugins.openhab.Settings();
       this.__settings.exclude();
@@ -107,10 +107,10 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
      */
     _onNotification: function(e) {
       if (!e.data) {
-        this.error("invalid content received from SSE: ", e);
+        this.error('invalid content received from SSE: ', e);
       }
-      const json = typeof e.data === "object" ? e.data : JSON.parse(e.data);
-      this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
+      const json = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
+      this.__notificationRouter.dispatchMessage(json.topic || 'cv.backend', json);
     }
   },
 
@@ -120,7 +120,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   ******************************************************
   */
   destruct: function() {
-    this._disposeObjects("__settings", "_openSettings");
+    this._disposeObjects('__settings', '_openSettings');
     this.__notificationRouter = null;
   },
 

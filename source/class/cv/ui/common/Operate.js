@@ -22,7 +22,7 @@
  * Provides methods for widgets that can be controlled by the user.
  * Usually this operation includes sending values to the backend.
  */
-qx.Mixin.define("cv.ui.common.Operate", {
+qx.Mixin.define('cv.ui.common.Operate', {
 
   /*
   ******************************************************

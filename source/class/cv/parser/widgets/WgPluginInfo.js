@@ -24,8 +24,8 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.parser.widgets.WgPluginInfo", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.WgPluginInfo', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -51,17 +51,17 @@ qx.Class.define("cv.parser.widgets.WgPluginInfo", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "variable" : {}
+        'variable' : {}
       };
     },
     getDefaultClasses: function(type) {
       // additional info class
-      return "widget clearfix info "+type.toLowerCase();
+      return 'widget clearfix info '+type.toLowerCase();
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("wgplugin_info", statics);
+    cv.parser.WidgetParser.addHandler('wgplugin_info', statics);
   }
 });

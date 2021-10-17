@@ -8,7 +8,7 @@
  *   </pre>
  *   to their own _createChildControlImpl method
  */
-qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
+qx.Mixin.define('cv.ui.manager.upload.MDragUpload', {
 
   /*
   *****************************************************************************
@@ -20,13 +20,13 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     if (this.getBounds()) {
       this._applyStartDragListeners();
     } else {
-      this.addListenerOnce("appear", function() {
+      this.addListenerOnce('appear', function() {
         this._applyStartDragListeners();
       }, this);
     }
     const layout = this._getLayout();
     if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
-      this.addListener("resize", this.__syncBounds, this);
+      this.addListener('resize', this.__syncBounds, this);
     }
   },
 
@@ -37,14 +37,14 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
   */
   properties : {
     uploadMode: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "__applyUploadMode"
+      apply: '__applyUploadMode'
     },
 
     uploadHint: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     }
   },
 
@@ -76,14 +76,14 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       let folder;
       if (isConfig) {
         // upload to root folder
-        folder = new cv.ui.manager.model.FileItem(".");
+        folder = new cv.ui.manager.model.FileItem('.');
       } else if (cv.ui.manager.tree.FileSystem.isAccepted(file.type)) {
         // upload to media folder
-        folder = new cv.ui.manager.model.FileItem("media");
+        folder = new cv.ui.manager.model.FileItem('media');
       }
       if (folder) {
         folder.set({
-          type: "dir"
+          type: 'dir'
         });
         const manager = new cv.ui.manager.upload.UploadMgr();
         if (replaceFile) {
@@ -115,7 +115,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         for (i = 0, l = ev.dataTransfer.items.length; i < l; i++) {
           // If dropped items aren't files, reject them
           const item = ev.dataTransfer.items[i];
-          if (item.kind === "file" && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
+          if (item.kind === 'file' && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
             file = item.getAsFile();
             files.push(file);
           }
@@ -143,8 +143,8 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
     __syncBounds: function () {
       const bounds = this.getBounds();
-      this.getChildControl("upload-overlay").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
-      this.getChildControl("upload-dropbox").setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+      this.getChildControl('upload-overlay').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
+      this.getChildControl('upload-dropbox').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
     },
 
     // overridden
@@ -154,7 +154,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       const layout = this._getLayout();
 
       switch (id) {
-        case "upload-overlay":
+        case 'upload-overlay':
           control = new qx.ui.container.Composite();
           control.setZIndex(1000000);
           control.exclude();
@@ -164,21 +164,21 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
             control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
           }
           this._add(control);
-          this.getChildControl("upload-dropbox").bind("visibility", control, "visibility");
+          this.getChildControl('upload-dropbox').bind('visibility', control, 'visibility');
           break;
 
-        case "upload-dropbox": {
+        case 'upload-dropbox': {
           control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
-          control.setBackgroundColor("rgba(32, 32, 32, 0.9)");
+          control.setBackgroundColor('rgba(32, 32, 32, 0.9)');
           control.setZIndex(1000);
-          const dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon("upload", 32));
+          const dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon('upload', 32));
           dropBox.set({
-            iconPosition: "top",
+            iconPosition: 'top',
             rich: true,
             center: true
           });
           // control.bind('width', dropBox, 'maxWidth');
-          dropBox.getChildControl("label").setWrap(true);
+          dropBox.getChildControl('label').setWrap(true);
           control.setAnonymous(true);
           control.add(dropBox);
           control.exclude();
@@ -197,7 +197,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     _onStopDragging: function(ev) {
       ev.preventDefault();
       this.setUploadMode(false);
-      document.removeEventListener("dragend", this._boundOnStop, false);
+      document.removeEventListener('dragend', this._boundOnStop, false);
     },
 
     /**
@@ -205,7 +205,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      */
     _applyStartDragListeners: function() {
       // add the start listener to this widget
-      this.getContentElement().getDomElement().addEventListener("dragenter", function(ev) {
+      this.getContentElement().getDomElement().addEventListener('dragenter', function(ev) {
         // ev.preventDefault();
         if (this._isDroppable) {
           if (this._isDroppable(ev.dataTransfer.items)) {
@@ -217,10 +217,10 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           this.setUploadMode(true);
         }
       }.bind(this), false);
-      if (this.getChildControl("upload-overlay").getBounds()) {
+      if (this.getChildControl('upload-overlay').getBounds()) {
         this._applyDragListeners();
       } else {
-        this.getChildControl("upload-overlay").addListenerOnce("appear", function() {
+        this.getChildControl('upload-overlay').addListenerOnce('appear', function() {
           this._applyDragListeners();
         }, this);
       }
@@ -230,21 +230,21 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop
      */
     _applyDragListeners: function() {
-      const element = this.getChildControl("upload-overlay").getContentElement().getDomElement();
+      const element = this.getChildControl('upload-overlay').getContentElement().getDomElement();
       if (!element) {
-        const lid = this.getChildControl("upload-overlay").addListener("visibility", function (ev) {
-          if (ev.getData() === "visible") {
+        const lid = this.getChildControl('upload-overlay').addListener('visibility', function (ev) {
+          if (ev.getData() === 'visible') {
             this._applyDragListeners();
-            this.getChildControl("upload-overlay").removeListenerById(lid);
+            this.getChildControl('upload-overlay').removeListenerById(lid);
           }
         }, this);
         return;
       }
-      element.addEventListener("dragexit", function() {
+      element.addEventListener('dragexit', function() {
         this.setUploadMode(false);
       }.bind(this), false);
 
-      element.addEventListener("dragover", function (ev) {
+      element.addEventListener('dragover', function (ev) {
         ev.preventDefault();
         let uploadable = false;
         if (this._isDroppable) {
@@ -257,17 +257,17 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
       this._boundOnStop = this._onStopDragging.bind(this);
 
-      element.addEventListener("dragleave", this._boundOnStop, false);
-      element.addEventListener("dragend", function() {
+      element.addEventListener('dragleave', this._boundOnStop, false);
+      element.addEventListener('dragend', function() {
         this.setUploadMode(false);
       }.bind(this), false);
 
-      document.addEventListener("dragend", this._boundOnStop, false);
+      document.addEventListener('dragend', this._boundOnStop, false);
 
       if (this._onDrop) {
-        element.addEventListener("drop", this._onDrop.bind(this), false);
+        element.addEventListener('drop', this._onDrop.bind(this), false);
       } else {
-        element.addEventListener("drop", function (ev) {
+        element.addEventListener('drop', function (ev) {
           cv.ui.manager.upload.MDragUpload.onHtml5Drop(ev);
           this._onStopDragging(ev);
         }.bind(this), false);
@@ -277,17 +277,17 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     // property apply
     __applyUploadMode: function(value) {
       if (value === true) {
-        this.getChildControl("upload-dropbox").show();
-        if (this.hasChildControl("empty-info") && this.getChildControl("empty-info").isVisible()) {
-          this.getChildControl("empty-info").exclude();
+        this.getChildControl('upload-dropbox').show();
+        if (this.hasChildControl('empty-info') && this.getChildControl('empty-info').isVisible()) {
+          this.getChildControl('empty-info').exclude();
           this.__hasEmptyInfo = true;
         } else {
           this.__hasEmptyInfo = false;
         }
       } else {
-        this.getChildControl("upload-dropbox").exclude();
+        this.getChildControl('upload-dropbox').exclude();
         if (this.__hasEmptyInfo === true) {
-          this.getChildControl("empty-info").show();
+          this.getChildControl('empty-info').show();
         }
       }
     }

@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Slide", {
+qx.Class.define('cv.ui.structure.pure.Slide', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
   construct: function(props) {
     this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
-    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener("changePageSizeInvalid", () => {
+    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
       this.__invalidateScreensize();
     });
     this.__lastBusValue = {};
@@ -58,23 +58,23 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
   */
   properties: {
     min: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     max: {
-      check: "Number",
+      check: 'Number',
       init: 100
     },
     step: {
-      check: "Number",
+      check: 'Number',
       init: 0.5
     },
     showInvalidValues: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     sendOnFinish: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -97,7 +97,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
 
     // overridden
     _getInnerDomString: function () {
-      const placeholder = this.getFormat() === "" ? "" : "-";
+      const placeholder = this.getFormat() === '' ? '' : '-';
       return `
         <div class="actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
           <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
@@ -112,7 +112,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
 
       this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {trailing: true}, this);
 
-      this.getActor().addEventListener("pointerdown", this);
+      this.getActor().addEventListener('pointerdown', this);
     },
 
     _update: function (address, data) {
@@ -173,7 +173,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
       // store it to be able to suppress sending of unchanged data
       this.setBasicValue(realValue);
 
-      if (this.getFormat() !== "") {
+      if (this.getFormat() !== '') {
         // #2: map it to a value the user wants to see
         let displayValue = this.applyMapping(realValue);
 
@@ -183,7 +183,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
 
         this.applyStyling(realValue);
 
-        let button = this.getDomElement().querySelector("button");
+        let button = this.getDomElement().querySelector('button');
         this.defaultValue2DOM(displayValue, e => {
           button.innerHTML = e;
         });
@@ -195,27 +195,27 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
     __updateHandlePosition: function (ratio) {
       if (this.__button === undefined) {
         let element = this.getDomElement();
-        this.__button = element.querySelector("button");
-        this.__range = element.querySelector(".ui-slider-range");
+        this.__button = element.querySelector('button');
+        this.__range = element.querySelector('.ui-slider-range');
       }
       if (this.__button === null) {
         // most likely reason: the widget / DOM tree was deleted (e.g. due to
         // browsing to a new page or during unit tests)
-        this._disposeObjects("__animator");
+        this._disposeObjects('__animator');
         return;
       }
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
         let
-          actor = this.getDomElement().querySelector(".actor");
+          actor = this.getDomElement().querySelector('.actor');
           let actorStyles = window.getComputedStyle(actor);
-        this.__actorWidth = parseFloat(actorStyles.getPropertyValue("width"));
-        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue("width"));
-        this.__range.style.marginLeft = "-" + actorStyles.getPropertyValue("padding-left");
-        this.__range.style.borderRadius = actorStyles.getPropertyValue("border-radius");
+        this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
+        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
+        this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+        this.__range.style.borderRadius = actorStyles.getPropertyValue('border-radius');
       }
       let length = ratio * this.__actorWidth;
-      this.__button.style.transform = "translate3d(" + (length-this.__buttonWidth/2) + "px, 0px, 0px)";
-      this.__range.style.width = length + "px";
+      this.__button.style.transform = 'translate3d(' + (length-this.__buttonWidth/2) + 'px, 0px, 0px)';
+      this.__range.style.width = length + 'px';
     },
 
     __invalidateScreensize: function () {
@@ -229,10 +229,10 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
       let newRatio = 0;
 
       switch (event.type) {
-        case "pointerdown": {
+        case 'pointerdown': {
           this.__inDrag = true;
-          document.addEventListener("pointermove", this);
-          document.addEventListener("pointerup", this);
+          document.addEventListener('pointermove', this);
+          document.addEventListener('pointerup', this);
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
@@ -240,17 +240,17 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
           break;
         }
 
-        case "pointermove":
+        case 'pointermove':
           if (!this.__inDrag) {
             return;
           }
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
           break;
 
-        case "pointerup":
+        case 'pointerup':
           this.__inDrag = false;
-          document.removeEventListener("pointermove", this);
-          document.removeEventListener("pointerup", this);
+          document.removeEventListener('pointermove', this);
+          document.removeEventListener('pointerup', this);
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
           break;
       }
@@ -258,7 +258,7 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
       newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
       let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
       this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
-      if (!this.getSendOnFinish() || event.type === "pointerup") {
+      if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call(newValue);
       }
     },
@@ -269,6 +269,6 @@ qx.Class.define("cv.ui.structure.pure.Slide", {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("slide", statics);
+    cv.ui.structure.WidgetFactory.registerClass('slide', statics);
   }
 });

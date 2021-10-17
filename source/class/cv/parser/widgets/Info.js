@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Info", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Info', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -49,7 +49,7 @@ qx.Class.define("cv.parser.widgets.Info", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("info", statics);
+    cv.parser.WidgetParser.addHandler('info', statics);
   }
 });
 

@@ -29,7 +29,7 @@
  * Helper function to allow widgets animate a displayed property with a
  * limited speed of change to look smoother for the user.
  */
-qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
+qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   extend: qx.core.Object,
   /*
   ******************************************************
@@ -70,22 +70,22 @@ qx.Class.define("cv.util.LimitedRateUpdateAnimator", {
   properties: {
     linearRateLimit: {
       // in ratio/second
-      check: "Number",
+      check: 'Number',
       init: 2
     },
     expDampTimeConstant: {
       // time constant for exponential dampening
-      check: "Number",
+      check: 'Number',
       init: 0.01
     },
     epsilon: {
       // a difference between current and target ratio smaller than the epsilon
       // will be immediately closed
-      check: "Number",
+      check: 'Number',
       init: 0.001
     },
     displayRatioFn: {
-      check: "Function"
+      check: 'Function'
     }
   },
   /*

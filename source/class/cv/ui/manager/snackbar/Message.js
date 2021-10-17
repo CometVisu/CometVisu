@@ -1,7 +1,7 @@
 /**
  * View component that shows a snackbar message.
  */
-qx.Class.define("cv.ui.manager.snackbar.Message", {
+qx.Class.define('cv.ui.manager.snackbar.Message', {
   extend: qx.ui.core.Widget,
   /*
   ***********************************************
@@ -11,7 +11,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.HBox(8));
-    this.addListener("appear", this._onAppear, this);
+    this.addListener('appear', this._onAppear, this);
   },
 
   /*
@@ -20,7 +20,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   ***********************************************
   */
   events: {
-    "close": "qx.event.type.Data"
+    'close': 'qx.event.type.Data'
   },
 
   /*
@@ -31,25 +31,25 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-snackbar-msg"
+      init: 'cv-snackbar-msg'
     },
 
     model: {
-      check: "cv.ui.manager.model.Message",
+      check: 'cv.ui.manager.model.Message',
       nullable: true,
-      apply: "_applyModel"
+      apply: '_applyModel'
     },
 
     timeout: {
-      check: "Number",
+      check: 'Number',
       init: 5000,
-      apply: "_applyTimeout"
+      apply: '_applyTimeout'
     },
 
     type: {
-      check: ["alert", "hint", "warning", "error"],
+      check: ['alert', 'hint', 'warning', 'error'],
       nullable: true,
-      apply: "_applyType"
+      apply: '_applyType'
     }
   },
 
@@ -64,23 +64,23 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
     _applyModel: function (value, old) {
       if (old) {
         old.removeRelatedBindings(this);
-        old.removeRelatedBindings(this.getChildControl("content"));
+        old.removeRelatedBindings(this.getChildControl('content'));
       }
       if (value) {
-        value.bind("title", this.getChildControl("content"), "value");
-        value.bind("type", this, "type");
-        value.bind("sticky", this, "timeout", {
+        value.bind('title', this.getChildControl('content'), 'value');
+        value.bind('type', this, 'type');
+        value.bind('sticky', this, 'timeout', {
           converter: function (value) {
             return value ? 0 : 5000;
           }
         });
-        this.getChildControl("close");
+        this.getChildControl('close');
       }
     },
 
     _applyType: function (value) {
       if (value) {
-        this.setDecorator(this.getAppearance() + "-" + value);
+        this.setDecorator(this.getAppearance() + '-' + value);
       } else {
         this.setDecorator(this.getAppearance());
       }
@@ -106,7 +106,7 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
     },
 
     close: function () {
-      this.fireDataEvent("close", this.getModel());
+      this.fireDataEvent('close', this.getModel());
     },
 
     // overridden
@@ -114,19 +114,19 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
       let control;
 
       switch (id) {
-         case "icon":
+         case 'icon':
            control = new qx.ui.basic.Image();
            this._addAt(control, 0);
            break;
 
-         case "content":
+         case 'content':
            control = new qx.ui.basic.Label();
            this._addAt(control, 1, {flex: 1});
            break;
 
-         case "close":
-           control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon("close", 15));
-           control.addListener("tap", this.close, this);
+         case 'close':
+           control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon('close', 15));
+           control.addListener('tap', this.close, this);
            this._addAt(control, 2);
            break;
        }
@@ -141,6 +141,6 @@ qx.Class.define("cv.ui.manager.snackbar.Message", {
   ***********************************************
   */
   destruct: function () {
-    this._disposeObjects("_timer");
+    this._disposeObjects('_timer');
   }
 });

@@ -30,7 +30,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Line", {
+qx.Class.define('cv.ui.structure.pure.Line', {
   extend: cv.ui.structure.AbstractWidget,
 
   /*
@@ -41,7 +41,7 @@ qx.Class.define("cv.ui.structure.pure.Line", {
   members: {
     // overridden
     getDomString: function () {
-      return "<hr " + (this.getClasses() ? "class=\""+this.getClasses()+"\"" : "") + "/>";
+      return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
     }
   }
 });

@@ -24,7 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.Page", {
+qx.Class.define('cv.ui.structure.pure.Page', {
   extend: cv.ui.structure.AbstractWidget,
   implement: cv.ui.structure.IPage,
 
@@ -39,10 +39,10 @@ qx.Class.define("cv.ui.structure.pure.Page", {
   ******************************************************
   */
   construct: function(props) {
-    this.__waitForProperties = ["showNavbarTop", "showNavbarBottom", "showNavbarLeft", "showNavbarRight"];
+    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
     this.base(arguments, props);
 
-    this.addListener("changeVisible", this._onChangeVisible, this);
+    this.addListener('changeVisible', this._onChangeVisible, this);
 
     // break out of the constructor
     new qx.util.DeferredCall(function() {
@@ -50,25 +50,25 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       if (!parentPage) {
         this.__waitForProperties = [];
       } else {
-        this.debug("binding navbar visibility from " + parentPage.getPath() + " to " + this.getPath());
+        this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
       }
       [
-        ["showTopNavigation", true],
-        ["showFooter", true],
-        ["showNavbarTop", false],
-        ["showNavbarBottom", false],
-        ["showNavbarLeft", false],
-        ["showNavbarRight", false]
+        ['showTopNavigation', true],
+        ['showFooter', true],
+        ['showNavbarTop', false],
+        ['showNavbarBottom', false],
+        ['showNavbarLeft', false],
+        ['showNavbarRight', false]
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
-        if (this["get" + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
+        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this["set" + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
+            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -88,14 +88,14 @@ qx.Class.define("cv.ui.structure.pure.Page", {
   ******************************************************
   */
   statics: {
-    allPages : "",
+    allPages : '',
 
     /**
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      document.querySelector("#pages").innerHTML = this.allPages;
-      qx.event.message.Bus.unsubscribe("setup.dom.append", this.createFinal, this);
+      document.querySelector('#pages').innerHTML = this.allPages;
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }
 
   },
@@ -108,9 +108,9 @@ qx.Class.define("cv.ui.structure.pure.Page", {
    */
   properties: {
     initialized: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeInitialized"
+      event: 'changeInitialized'
     },
 
     anonymous : {
@@ -118,51 +118,51 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       init: true
     },
     name: {
-      check: "String",
-      init: "", nullable: true
+      check: 'String',
+      init: '', nullable: true
     },
     showTopNavigation : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowTopNavigation"
+      event: 'changeShowTopNavigation'
     },
     showFooter        : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowFooter"
+      event: 'changeShowFooter'
     },
     showNavbarTop : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarTop",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarTop',
+      apply: '_applyNavbarVisibility'
     },
     showNavbarBottom : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarBottom",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarBottom',
+      apply: '_applyNavbarVisibility'
     },
     showNavbarLeft : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarLeft",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarLeft',
+      apply: '_applyNavbarVisibility'
     },
     showNavbarRight : {
-      check: "Boolean",
+      check: 'Boolean',
       nullable: true,
-      event: "changeShowNavbarRight",
-      apply: "_applyNavbarVisibility"
+      event: 'changeShowNavbarRight',
+      apply: '_applyNavbarVisibility'
     },
     backdropAlign     : {
-      init: "50% 50%",
+      init: '50% 50%',
       nullable: true
     },
-    backdropType      : { check: "String", nullable: true },
-    linkVisible       : { check: "Boolean", init: true, nullable: true },
-    size              : { check: "String", nullable: true },
-    backdrop          : { check: "String", nullable: true }
+    backdropType      : { check: 'String', nullable: true },
+    linkVisible       : { check: 'Boolean', init: true, nullable: true },
+    size              : { check: 'String', nullable: true },
+    backdrop          : { check: 'String', nullable: true }
   },
 
   /*
@@ -206,7 +206,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
      * Set childrens column widths
      */
     applyColumnWidths: function() {
-      cv.ui.layout.Manager.applyColumnWidths("#"+this.getPath(), false);
+      cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
       this.__colspanClass = cv.ui.layout.Manager.COLSPAN_CLASS;
     },
 
@@ -214,21 +214,21 @@ qx.Class.define("cv.ui.structure.pure.Page", {
     getDomString: function() {
       const pageType = this.getPageType();
 
-      const subpageClass = this.getFlavour() ? (" flavour_" + this.getFlavour()) : "";
-      let subpage = "<div class=\"page type_" + pageType + subpageClass + "\" id=\"" + this.getPath() + "\">";
-      let container = "<div class=\"clearfix\"><h1>" + this.getName() + "</h1>";
+      const subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
+      let subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
+      let container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
 
-      if (pageType === "2d") {
-        let size = "width:100%;height:100%;";
+      if (pageType === '2d') {
+        let size = 'width:100%;height:100%;';
         switch (this.getSize()) {
-          case "fixed":
-            size = "";
+          case 'fixed':
+            size = '';
             break;
 
-          case "contained":
-            size += "object-fit:contain;";
+          case 'contained':
+            size += 'object-fit:contain;';
             if (this.getBackdropAlign()) {
-              size += "object-position:" + this.getBackdropAlign() + ";";
+              size += 'object-position:' + this.getBackdropAlign() + ';';
             }
             break;
 
@@ -237,7 +237,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
 
         const backdrop = this.getBackdrop();
         if (backdrop) {
-          container += "<" + this.getBackdropType() + " src=\"" + qx.util.ResourceManager.getInstance().toUri(backdrop) + "\" style=\"position: absolute; top: 0px; left: 0px;z-index:-1;" + size + "\"/>";
+          container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
         }
       } /* ---Disable 3D for 0.8---
       else if (pageType === "3d" && false) {
@@ -279,7 +279,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
          });
       } */
       container += this.getChildrenDomString();
-      subpage += container + "</div></div>";
+      subpage += container + '</div></div>';
       cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
       return undefined;
     },
@@ -310,7 +310,7 @@ qx.Class.define("cv.ui.structure.pure.Page", {
       // TODO: data comparision has to be refactored to use DPT and a value
       if (parseInt(data) === 1) {
         cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
-        this.sendToBackend("0");
+        this.sendToBackend('0');
       }
       // }
     },
@@ -331,6 +331,6 @@ qx.Class.define("cv.ui.structure.pure.Page", {
   },
 
   defer: function(statics) {
-    qx.event.message.Bus.subscribe("setup.dom.append", statics.createFinal, statics);
+    qx.event.message.Bus.subscribe('setup.dom.append', statics.createFinal, statics);
   }
 });

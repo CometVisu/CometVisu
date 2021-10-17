@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.form.SourceCodeField", {
+qx.Class.define('cv.ui.manager.form.SourceCodeField', {
   extend : qx.ui.core.Widget,
   implement : [
     qx.ui.form.IStringForm,
@@ -35,7 +35,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
   */
   events: {
     /** Fired when the value was modified */
-    "changeValue" : "qx.event.type.Data"
+    'changeValue' : 'qx.event.type.Data'
   },
 
   /*
@@ -45,9 +45,9 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
   */
   properties: {
     type: {
-      check: "String",
-      init: "xml",
-      apply: "_applyType"
+      check: 'String',
+      init: 'xml',
+      apply: '_applyType'
     },
     // overridden
     focusable: {
@@ -55,9 +55,9 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       init : true
     },
     autoSize: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_autoSize"
+      apply: '_autoSize'
     }
   },
 
@@ -108,7 +108,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
      */
     resetValue : function() {
       if (this._editor) {
-        this._editor.setValue("");
+        this._editor.setValue('');
       }
     },
 
@@ -124,7 +124,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       } else if (this.__delayedValue) {
         return this.__delayedValue;
       } 
-        return "";
+        return '';
     },
 
     _init: function () {
@@ -133,7 +133,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
       } else {
         const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
-          this.addListenerOnce("appear", () => {
+          this.addListenerOnce('appear', () => {
             this._init();
           }, this);
         } else {
@@ -145,15 +145,15 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
             dragAndDrop: true,
             formatOnPaste: true,
             formatOnType: true,
-            renderValidationDecorations: "on",
+            renderValidationDecorations: 'on',
             minimap: {
               enabled: false
             },
-            theme: "vs-dark"
+            theme: 'vs-dark'
           });
           if (this.getType()) {
             const model = this._editor.getModel();
-            const uri = monaco.Uri.parse("cv://SourceCode." + this.getType());
+            const uri = monaco.Uri.parse('cv://SourceCode.' + this.getType());
             let newModel = window.monaco.editor.getModel(uri);
             if (!newModel) {
               newModel = window.monaco.editor.createModel(this.__delayedValue, this.getType(), uri);
@@ -179,7 +179,7 @@ qx.Class.define("cv.ui.manager.form.SourceCodeField", {
 
     _onContentChange: function () {
       this._hasBeenEdited = true;
-      this.fireDataEvent("changeValue", this._editor.getValue());
+      this.fireDataEvent('changeValue', this._editor.getValue());
       this._autoSize();
     },
 

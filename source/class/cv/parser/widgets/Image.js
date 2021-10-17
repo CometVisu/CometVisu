@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Image", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Image', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,12 +48,12 @@ qx.Class.define("cv.parser.widgets.Image", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "width"       :   { "default": "100%" },
-        "height"      :   {},
-        "src"         :   {},
-        "placeholder" :   { "default": "none" },
-        "widthfit"    :   { target: "widthFit", transform: function(value) {
-          return value === "true";
+        'width'       :   { 'default': '100%' },
+        'height'      :   {},
+        'src'         :   {},
+        'placeholder' :   { 'default': 'none' },
+        'widthfit'    :   { target: 'widthFit', transform: function(value) {
+          return value === 'true';
         }}
       };
     }
@@ -61,6 +61,6 @@ qx.Class.define("cv.parser.widgets.Image", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("image", statics);
+    cv.parser.WidgetParser.addHandler('image', statics);
   }
 });

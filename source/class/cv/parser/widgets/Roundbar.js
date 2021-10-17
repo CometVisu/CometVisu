@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Roundbar", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Roundbar', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -45,29 +45,29 @@ qx.Class.define("cv.parser.widgets.Roundbar", {
      */
     parse: function (xml, path, flavour, pageType) {
       const self = this;
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings(xml.getAttribute("preset")));
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings(xml.getAttribute('preset')));
       let indicatorValueCnt = 0;
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       data.indicators = [];
       data.radius = 50; // default
       data.width = 10; // default
-      xml.querySelectorAll("address").forEach(function (elem, i) {
-        data.radius = parseFloat(elem.getAttribute("radius") || (data.radius + (i === 0 ? 0 : data.spacing+data.width)));
-        indicatorValueCnt = parseInt(elem.getAttribute("valuepos") || indicatorValueCnt+1);
+      xml.querySelectorAll('address').forEach(function (elem, i) {
+        data.radius = parseFloat(elem.getAttribute('radius') || (data.radius + (i === 0 ? 0 : data.spacing+data.width)));
+        indicatorValueCnt = parseInt(elem.getAttribute('valuepos') || indicatorValueCnt+1);
         data.indicators.push({
           address:    elem.textContent,
-          showValue:  elem.getAttribute("showvalue") !== "false",
+          showValue:  elem.getAttribute('showvalue') !== 'false',
           valuepos:   indicatorValueCnt,
-          isBar:      elem.getAttribute("type") !== "pointer",
-          min:        elem.getAttribute("min") || data.min,
-          max:        elem.getAttribute("max") || data.max,
+          isBar:      elem.getAttribute('type') !== 'pointer',
+          min:        elem.getAttribute('min') || data.min,
+          max:        elem.getAttribute('max') || data.max,
           radius:     data.radius,
           startarrow: self.deg2rad(data.startarrow), // * Math.PI / 180,
           endarrow:   self.deg2rad(data.endarrow), // * Math.PI / 180,
-          width:      parseFloat(elem.getAttribute("width") || data.width),
-          thickness:  elem.getAttribute("thickness") || data.thickness,
-          style:      elem.getAttribute("style") || ""
+          width:      parseFloat(elem.getAttribute('width') || data.width),
+          thickness:  elem.getAttribute('thickness') || data.thickness,
+          style:      elem.getAttribute('style') || ''
         });
       });
       return data;
@@ -75,21 +75,21 @@ qx.Class.define("cv.parser.widgets.Roundbar", {
 
     getAttributeToPropertyMappings: function (preset) {
       const retObj = {
-        "min": {"default": 0.0, transform: parseFloat},
-        "max": {"default": 100.0, transform: parseFloat},
-        "axisradius": {"default": 50.0, transform: parseFloat},
-        "axiswidth": {"default": 0.0, transform: parseFloat},
-        "axiscolor": {"default": ""},
-        "ranges": {
-          "default": "",
+        'min': {'default': 0.0, transform: parseFloat},
+        'max': {'default': 100.0, transform: parseFloat},
+        'axisradius': {'default': 50.0, transform: parseFloat},
+        'axiswidth': {'default': 0.0, transform: parseFloat},
+        'axiscolor': {'default': ''},
+        'ranges': {
+          'default': '',
           transform: function (value) {
             if (!value) {
               return [];
             }
             const retval = [];
-            value.split(";").forEach(function (range) {
-              const components = range.split(",");
-              const startEnd = components.shift().split("...");
+            value.split(';').forEach(function (range) {
+              const components = range.split(',');
+              const startEnd = components.shift().split('...');
               const thisRange = {start: parseFloat(startEnd[0]), end: parseFloat(startEnd[1])};
 
               if (isNaN(thisRange.end)) {
@@ -103,97 +103,97 @@ qx.Class.define("cv.parser.widgets.Roundbar", {
               }
               if (components.length > 0) {
                 const style = components.shift();
-                thisRange.style = /:/.test(style) ? style : "fill:" + style + ";stroke:" + style;
+                thisRange.style = /:/.test(style) ? style : 'fill:' + style + ';stroke:' + style;
               }
               retval.push(thisRange);
             });
             return retval;
           }
         },
-        "minorradius": {"default": 0.0, transform: parseFloat},
-        "minorwidth": {"default": 0.0, transform: parseFloat},
-        "minorspacing": {"default": "25%"},
-        "minorcolor": {"default": ""},
-        "majorradius": {"default": 0.0, transform: parseFloat},
-        "majorwidth": {"default": 0.0, transform: parseFloat},
-        "majorposition": {"default": "min;max"},
-        "majorcolor": {"default": ""},
-        "labels": {
-          "default": "",
+        'minorradius': {'default': 0.0, transform: parseFloat},
+        'minorwidth': {'default': 0.0, transform: parseFloat},
+        'minorspacing': {'default': '25%'},
+        'minorcolor': {'default': ''},
+        'majorradius': {'default': 0.0, transform: parseFloat},
+        'majorwidth': {'default': 0.0, transform: parseFloat},
+        'majorposition': {'default': 'min;max'},
+        'majorcolor': {'default': ''},
+        'labels': {
+          'default': '',
           transform: function (value) {
             if (!value) {
               return [];
             }
             const retval = [];
             let radius = 50;
-            let position = "outside";
-            let orientation = "horizontal";
+            let position = 'outside';
+            let orientation = 'horizontal';
 
-            value.split(";").forEach(function (label) {
-              const components = label.split(":");
+            value.split(';').forEach(function (label) {
+              const components = label.split(':');
 
               if (components.length > 1) {
-                const subcompontents = components[0].split(",");
-                if (subcompontents[0] !== "") {
+                const subcompontents = components[0].split(',');
+                if (subcompontents[0] !== '') {
                   position = subcompontents[0];
                 }
-                if (subcompontents[1] !== "") {
+                if (subcompontents[1] !== '') {
                   orientation = subcompontents[1];
                 }
                 components.shift();
               }
 
-              const valueName = components[0].split(",");
-              if (valueName.length > 1 && valueName[1] !== "") {
+              const valueName = components[0].split(',');
+              if (valueName.length > 1 && valueName[1] !== '') {
                 radius = parseFloat(valueName[1]);
               }
-              if (valueName.length < 3 || valueName[2] === "") {
+              if (valueName.length < 3 || valueName[2] === '') {
                 valueName[2] = valueName[0];
               }
               retval.push({
-                "value": parseFloat(valueName[0]),
-                "radius": radius,
-                "name": valueName[2],
-                "position": ({"outside": 0, "center": 1, "inside": 2})[position] || 0,
-                "orientation": ({
-                  "horizontal": 0,
-                  "parallel": 1,
-                  "perpendicular": 2,
-                  "roundstart": 3,
-                  "roundmiddle": 4,
-                  "roundend": 5
+                'value': parseFloat(valueName[0]),
+                'radius': radius,
+                'name': valueName[2],
+                'position': ({'outside': 0, 'center': 1, 'inside': 2})[position] || 0,
+                'orientation': ({
+                  'horizontal': 0,
+                  'parallel': 1,
+                  'perpendicular': 2,
+                  'roundstart': 3,
+                  'roundmiddle': 4,
+                  'roundend': 5
                 })[orientation] || 0
               });
             });
             return retval;
           }
         },
-        "labelstyle": {"default": ""},
-        "start": {"default": 270.0, transform: this.deg2rad},
-        "startarrow": {"default": 5.0, transform: parseFloat},
-        "end": {"default": 0.0, transform: this.deg2rad},
-        "endarrow": {"default": -5.0, transform: parseFloat},
-        "arrowtype": {
-          "default": 0, transform: function (t) {
-            return ({"angle": 0, "distance": 1})[t] || 0;
+        'labelstyle': {'default': ''},
+        'start': {'default': 270.0, transform: this.deg2rad},
+        'startarrow': {'default': 5.0, transform: parseFloat},
+        'end': {'default': 0.0, transform: this.deg2rad},
+        'endarrow': {'default': -5.0, transform: parseFloat},
+        'arrowtype': {
+          'default': 0, transform: function (t) {
+            return ({'angle': 0, 'distance': 1})[t] || 0;
           }
         },
-        "spacing": {"default": 10.0, transform: parseFloat},
-        "overflowarrow": {
-          "default": "true", transform: function (value) {
-            return value === "true";
+        'spacing': {'default': 10.0, transform: parseFloat},
+        'overflowarrow': {
+          'default': 'true', transform: function (value) {
+            return value === 'true';
           }
         },
-        "fontsize": {"default": 40, transform: parseFloat},
-        "textx": {"default": 10, transform: parseFloat},
-        "texty": {"default": 50, transform: parseFloat},
-        "textlength": {"default": 0, transform: parseFloat},
-        "textanchor": {"default": ""},
-        "linespace": {"default": 12, transform: parseFloat},
-        "bboxgrow": {
-          "default": "1",
+        'fontsize': {'default': 40, transform: parseFloat},
+        'textx': {'default': 10, transform: parseFloat},
+        'texty': {'default': 50, transform: parseFloat},
+        'textlength': {'default': 0, transform: parseFloat},
+        'textanchor': {'default': ''},
+        'linespace': {'default': 12, transform: parseFloat},
+        'bboxgrow': {
+          'default': '1',
           transform: function (value) {
-            const parts = value.split(";");
+            const parts = value.split(';');
             switch (parts.length) {
               default:
               case 1: // one value for all sides
@@ -222,34 +222,34 @@ qx.Class.define("cv.parser.widgets.Roundbar", {
             }
           }
         },
-        "debug": {
-          "default": false, transform: function (v) {
-            return v === "true";
+        'debug': {
+          'default': false, transform: function (v) {
+            return v === 'true';
           }
         }
       };
       const thisPreset = ({
-        "A": {
+        'A': {
           start: 225,
           fontsize: 40,
           linespace: 25,
-          textanchor: "end",
+          textanchor: 'end',
           textx: 60,
           texty: 40
         },
-        "B": {
+        'B': {
           start: 360,
           end: 135,
           fontsize: 40,
           linespace: -25,
-          textanchor: "end",
+          textanchor: 'end',
           textx: 60,
           texty: -10
         },
-        "bridge": {
+        'bridge': {
           start: 180,
           end: 0,
-          textanchor: "middle",
+          textanchor: 'middle',
           textx: 0,
           texty: 0
         }
@@ -265,6 +265,6 @@ qx.Class.define("cv.parser.widgets.Roundbar", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("roundbar", statics);
+    cv.parser.WidgetParser.addHandler('roundbar', statics);
   }
 });

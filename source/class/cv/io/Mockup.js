@@ -25,7 +25,7 @@
  * @since 2016
  */
 /* istanbul ignore next */
-qx.Class.define("cv.io.Mockup", {
+qx.Class.define('cv.io.Mockup', {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -44,8 +44,8 @@ qx.Class.define("cv.io.Mockup", {
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    const testMode = qx.core.Environment.get("cv.testMode");
-    if (typeof testMode === "string" && testMode !== "true") {
+    const testMode = qx.core.Environment.get('cv.testMode');
+    if (typeof testMode === 'string' && testMode !== 'true') {
       this.__loadTestData();
     }
     this.addresses = [];
@@ -58,17 +58,17 @@ qx.Class.define("cv.io.Mockup", {
   */
   properties: {
     dataReceived : {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
     server: {
-      check: "String",
-      init: "Mockup"
+      check: 'String',
+      init: 'Mockup'
     },
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      event: "changeConnected"
+      event: 'changeConnected'
     }
   },
 
@@ -78,7 +78,7 @@ qx.Class.define("cv.io.Mockup", {
   ******************************************************
   */
   members: {
-    backendName: "mockup",
+    backendName: 'mockup',
     addresses: null,
     __xhr: null,
     __sequence: null,
@@ -87,8 +87,8 @@ qx.Class.define("cv.io.Mockup", {
 
     __loadTestData: function () {
       // load the demo data to fill the visu with some values
-      const r = new qx.io.request.Xhr(qx.core.Environment.get("cv.testMode"));
-      r.addListener("success", function (e) {
+      const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      r.addListener('success', function (e) {
         cv.Config.initialDemoData = e.getTarget().getResponse();
         this.__applyTestData();
       }, this);
@@ -99,19 +99,19 @@ qx.Class.define("cv.io.Mockup", {
       this.__xhr = cv.Config.initialDemoData.xhr;
       // configure server
       qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-        return url.startsWith("https://sentry.io");
+        return url.startsWith('https://sentry.io');
       }, this);
       const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(function (request) {
         let url = cv.report.Record.normalizeUrl(request.url);
-        if (url.indexOf("nocache=") >= 0) {
-          url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+        if (url.indexOf('nocache=') >= 0) {
+          url = url.replace(/[\?|&]nocache=[0-9]+/, '');
         }
         if (!this.__xhr[url] || this.__xhr[url].length === 0) {
-          qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
+          qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
         } else {
-          qx.log.Logger.debug(this, "faking response for " + url);
-          let response = "";
+          qx.log.Logger.debug(this, 'faking response for ' + url);
+          let response = '';
           if (this.__xhr[url].length === 1) {
             response = this.__xhr[url][0];
           } else {
@@ -144,7 +144,7 @@ qx.Class.define("cv.io.Mockup", {
     login: function (loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
-        if (qx.core.Environment.get("cv.testMode")) {
+        if (qx.core.Environment.get('cv.testMode')) {
           if (cv.Config.initialDemoData) {
             this.receive({
               i: new Date().getTime(),
@@ -169,7 +169,7 @@ qx.Class.define("cv.io.Mockup", {
       Object.keys(simulations).forEach(function (mainAddress) {
         const simulation = simulations[mainAddress];
         this.__simulations[mainAddress] = simulation;
-        if (Object.prototype.hasOwnProperty.call(simulation, "additionalAddresses")) {
+        if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
           simulation.additionalAddresses.forEach(function (addr) {
             this.__simulations[addr] = simulation;
           }, this);
@@ -199,11 +199,11 @@ qx.Class.define("cv.io.Mockup", {
       }
       let start = false;
       let stop = false;
-      if (Object.prototype.hasOwnProperty.call(simulation, "startValues")) {
+      if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
         // try the more specific matches with address included
-        start = simulation.startValues.indexOf(address + "|" + value) >= 0;
-        if (Object.prototype.hasOwnProperty.call(simulation, "stopValues")) {
-          stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
+        start = simulation.startValues.indexOf(address + '|' + value) >= 0;
+        if (Object.prototype.hasOwnProperty.call(simulation, 'stopValues')) {
+          stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
         }
         if (!stop) {
           // the the more general ones
@@ -213,8 +213,8 @@ qx.Class.define("cv.io.Mockup", {
       }
       if (start) {
         // start simulation
-        if (simulation.type === "shutter") {
-          simulation.direction = value === "0" ? "up" : "down";
+        if (simulation.type === 'shutter') {
+          simulation.direction = value === '0' ? 'up' : 'down';
           let initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
           if (initValue === undefined) {
             initValue = 0;
@@ -226,9 +226,9 @@ qx.Class.define("cv.io.Mockup", {
           } else {
             simulation.timer = new qx.event.Timer(simulation.interval || 100);
             const stepSize = simulation.stepSize || 10;
-            simulation.timer.addListener("interval", function () {
+            simulation.timer.addListener('interval', function () {
               let newValue = simulation.value;
-              if (simulation.direction === "up") {
+              if (simulation.direction === 'up') {
                 // drive up
                 newValue = simulation.value + stepSize;
                 if (newValue > 100) {
@@ -299,7 +299,7 @@ qx.Class.define("cv.io.Mockup", {
           d: {}
         };
         answer.d[address] = value;
-        this.debug("sending value: " + value + " to address: " + address);
+        this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
     },

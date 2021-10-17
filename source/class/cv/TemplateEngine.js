@@ -21,18 +21,18 @@
 /**
  *
  */
-qx.Class.define("cv.TemplateEngine", {
+qx.Class.define('cv.TemplateEngine', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   construct: function() {
     // this.base(arguments);
     this.pagePartsHandler = new cv.ui.PagePartsHandler();
-    this.lazyPlugins = ["plugin-openhab"];
+    this.lazyPlugins = ['plugin-openhab'];
 
     this.__partQueue = new qx.data.Array();
     this._domFinishedQueue = [];
-    this.__partQueue.addListener("changeLength", function(ev) {
+    this.__partQueue.addListener('changeLength', function(ev) {
       this.setPartsLoaded(ev.getData() === 0);
     }, this);
 
@@ -68,19 +68,19 @@ qx.Class.define("cv.TemplateEngine", {
      * Shows the loading state of the parts
      */
     partsLoaded: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyLoaded",
-      event: "changePartsLoaded"
+      apply: '_applyLoaded',
+      event: 'changePartsLoaded'
     },
 
     /**
      * Shows the loading state of the scripts
      */
     scriptsLoaded: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyLoaded"
+      apply: '_applyLoaded'
     },
 
     /**
@@ -88,42 +88,42 @@ qx.Class.define("cv.TemplateEngine", {
      * external stuff (pars, scripts, etc.) has been loaded.
      */
     ready: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeReady",
-      apply: "_applyReady"
+      event: 'changeReady',
+      apply: '_applyReady'
     },
 
     currentPage: {
-      check: "cv.ui.structure.IPage",
+      check: 'cv.ui.structure.IPage',
       nullable: true,
-      event: "changeCurrentPage"
+      event: 'changeCurrentPage'
     },
 
     domFinished: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyDomFinished",
-      event: "changeDomFinished"
+      apply: '_applyDomFinished',
+      event: 'changeDomFinished'
     },
 
     commands: {
-      check: "qx.ui.command.Group",
+      check: 'qx.ui.command.Group',
       nullable: true
     },
     
     // sent after the client is logged in to the backend
     loggedIn: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeLoggedIn"
+      event: 'changeLoggedIn'
     },
 
     // highlight a widget
     highlightedWidget: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyHighlightedWidget"
+      apply: '_applyHighlightedWidget'
     }
   },
 
@@ -148,7 +148,7 @@ qx.Class.define("cv.TemplateEngine", {
     defaults : null,
 
     main_scroll : null,
-    old_scroll : "",
+    old_scroll : '',
     visu : null,
 
     pluginsToLoadCount : 0,
@@ -182,14 +182,14 @@ qx.Class.define("cv.TemplateEngine", {
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
-          if (states[idx] === "complete") {
+          if (states[idx] === 'complete') {
             this.__partQueue.remove(part);
-            this.debug("successfully loaded part "+part);
-            if (part.startsWith("structure-")) {
+            this.debug('successfully loaded part '+part);
+            if (part.startsWith('structure-')) {
               qx.core.Init.getApplication().setStructureLoaded(true);
             }
           } else {
-            this.error("error loading part "+part);
+            this.error('error loading part '+part);
           }
         }, this);
       }, this);
@@ -197,10 +197,10 @@ qx.Class.define("cv.TemplateEngine", {
       // load the lazy plugins no one needs to wait for
       qx.io.PartLoader.require(loadLazyParts, function(states) {
         loadLazyParts.forEach(function(part, idx) {
-          if (states[idx] === "complete") {
-            this.debug("successfully loaded part "+part);
+          if (states[idx] === 'complete') {
+            this.debug('successfully loaded part '+part);
           } else {
-            this.error("error loading part "+part);
+            this.error('error loading part '+part);
           }
         }, this);
       }, this);
@@ -215,7 +215,7 @@ qx.Class.define("cv.TemplateEngine", {
 
     // property apply
     _applyLoaded: function(value, old, name) {
-      this.debug(name+" is "+value+" now");
+      this.debug(name+' is '+value+' now');
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
       }
@@ -224,7 +224,7 @@ qx.Class.define("cv.TemplateEngine", {
     // property apply
     _applyDomFinished: function(value) {
       if (value) {
-        qx.event.message.Bus.dispatchByName("setup.dom.finished");
+        qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
         this._domFinishedQueue.forEach(function(entry) {
           const callback = entry.shift();
@@ -256,7 +256,7 @@ qx.Class.define("cv.TemplateEngine", {
      * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().addAddress()} instead
      */
     addAddress: function (address, id) {
-      this.warn("addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead");
+      this.warn('addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead');
       cv.data.Model.getInstance().addAddress(address, id);
     },
 
@@ -265,7 +265,7 @@ qx.Class.define("cv.TemplateEngine", {
      * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().getAddresses()} instead
      */
     getAddresses: function () {
-      this.warn("getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead");
+      this.warn('getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead');
       return cv.data.Model.getInstance().getAddresses();
     },
 
@@ -276,8 +276,8 @@ qx.Class.define("cv.TemplateEngine", {
       let backendName = cv.Config.configSettings.backend || cv.Config.backend;
       let backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
       const mapping = {
-        oh: "openhab",
-        oh2: "openhab2"
+        oh: 'openhab',
+        oh2: 'openhab2'
       };
       if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
         backendName = mapping[backendName];
@@ -293,27 +293,27 @@ qx.Class.define("cv.TemplateEngine", {
         };
       }
       this.visu.showError = this._handleClientError.bind(this);
-      this.visu.user = "demo_user"; // example for setting a user
+      this.visu.user = 'demo_user'; // example for setting a user
       const visu = this.visu;
 
       if (cv.Config.sentryEnabled && window.Sentry) {
         Sentry.configureScope(function (scope) {
-          scope.setTag("backend", visu.backendName);
+          scope.setTag('backend', visu.backendName);
           const webServer = visu.getServer();
           if (webServer) {
-            scope.setTag("server.backend", webServer);
+            scope.setTag('server.backend', webServer);
           }
           if (cv.Config.configServer) {
-            scope.setTag("server.web", cv.Config.configServer);
+            scope.setTag('server.web', cv.Config.configServer);
           }
         });
-        visu.addListener("changedServer", this._updateClientScope, this);
+        visu.addListener('changedServer', this._updateClientScope, this);
       }
       const app = qx.core.Init.getApplication();
-      app.addListener("changeActive", this._onActiveChanged, this);
+      app.addListener('changeActive', this._onActiveChanged, this);
 
       // show connection state in NotificationCenter
-      this.visu.addListener("changeConnected", this._checkBackendConnection, this);
+      this.visu.addListener('changeConnected', this._checkBackendConnection, this);
     },
 
     _onActiveChanged: function () {
@@ -326,7 +326,7 @@ qx.Class.define("cv.TemplateEngine", {
         // wait for 3 seconds before checking the backend connection
         if (!this.__activeChangedTimer) {
           this.__activeChangedTimer = new qx.event.Timer(3000);
-          this.__activeChangedTimer.addListener("interval", function () {
+          this.__activeChangedTimer.addListener('interval', function () {
             if (app.isActive()) {
               this._checkBackendConnection();
             }
@@ -342,9 +342,9 @@ qx.Class.define("cv.TemplateEngine", {
     _checkBackendConnection: function () {
       const connected = this.visu.isConnected();
       const message = {
-        topic: "cv.client.connection",
-        title: qx.locale.Manager.tr("Connection error"),
-        severity: "urgent",
+        topic: 'cv.client.connection',
+        title: qx.locale.Manager.tr('Connection error'),
+        severity: 'urgent',
         unique: true,
         deletable: false,
         condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
@@ -352,9 +352,9 @@ qx.Class.define("cv.TemplateEngine", {
       const lastError = this.visu.getLastError();
       if (!connected) {
         if (lastError && (Date.now() - lastError.time) < 100) {
-          message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+          message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
         } else {
-          message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+          message.message = qx.locale.Manager.tr('Connection to backend is lost.');
         }
       } else {
         this.__hasBeenConnected = true;
@@ -367,7 +367,7 @@ qx.Class.define("cv.TemplateEngine", {
       Sentry.configureScope(function (scope) {
         const webServer = visu.getServer();
         if (webServer) {
-          scope.setTag("server.backend", webServer);
+          scope.setTag('server.backend', webServer);
         }
       });
     },
@@ -376,21 +376,21 @@ qx.Class.define("cv.TemplateEngine", {
       varargs = Array.prototype.slice.call(arguments, 1);
       varargs = JSON.stringify(varargs[0], null, 2);
       // escape HTML:
-      let div = document.createElement("div");
+      let div = document.createElement('div');
       div.innerText = varargs;
       varargs = div.innerHTML;
       let notification;
       switch (errorCode) {
         case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
           notification = {
-            topic: "cv.error",
-            title: qx.locale.Manager.tr("CometVisu protocol error"),
-            message:  qx.locale.Manager.tr("The backend did send an invalid response to the %1Login%2 request: missing protocol version.",
-              "<a href=\"https://github.com/CometVisu/CometVisu/wiki/Protocol#Login\" target=\"_blank\">",
-              "</a>") + "<br/>" +
-              qx.locale.Manager.tr("Please try to fix the problem in the backend.") +
-            "<br/><br/><strong>" + qx.locale.Manager.tr("Backend-Response:") + "</strong><pre>" + varargs + "</pre></div>",
-            severity: "urgent",
+            topic: 'cv.error',
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
+            severity: 'urgent',
             unique: true,
             deletable: false
           };
@@ -398,14 +398,14 @@ qx.Class.define("cv.TemplateEngine", {
 
         case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
           notification = {
-            topic: "cv.error",
-            title: qx.locale.Manager.tr("CometVisu protocol error"),
-            message:  qx.locale.Manager.tr("The backend did send an invalid response to a %1read%2 request: Missing \"i\" value.",
-              "<a href=\"https://github.com/CometVisu/CometVisu/wiki/Protocol#Login\" target=\"_blank\">",
-              "</a>") + "<br/>" +
-              qx.locale.Manager.tr("Please try to fix the problem in the backend.") +
-              "<br/><br/><strong>" + qx.locale.Manager.tr("Backend-Response:") + "</strong><pre>" + varargs +"</pre></div>",
-            severity: "urgent",
+            topic: 'cv.error',
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs +'</pre></div>',
+            severity: 'urgent',
             unique: true,
             deletable: false
           };
@@ -437,9 +437,9 @@ qx.Class.define("cv.TemplateEngine", {
        */
       // read predefined design in config
       const settings = cv.Config.configSettings;
-      const pagesNode = loaded_xml.querySelector("pages");
+      const pagesNode = loaded_xml.querySelector('pages');
 
-      const predefinedDesign = pagesNode.getAttribute("design");
+      const predefinedDesign = pagesNode.getAttribute('design');
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {
@@ -454,80 +454,80 @@ qx.Class.define("cv.TemplateEngine", {
       // load structure-part
       this.loadParts([cv.Config.getStructure()]);
 
-      if (pagesNode.getAttribute("backend") !== null) {
-        settings.backend = pagesNode.getAttribute("backend");
+      if (pagesNode.getAttribute('backend') !== null) {
+        settings.backend = pagesNode.getAttribute('backend');
       }
-      if (pagesNode.getAttribute("backend-url") !== null) {
-        settings.backendUrl = pagesNode.getAttribute("backend-url");
+      if (pagesNode.getAttribute('backend-url') !== null) {
+        settings.backendUrl = pagesNode.getAttribute('backend-url');
       }
 
-      if (pagesNode.getAttribute("token") !== null) {
-        settings.credentials.token = pagesNode.getAttribute("token");
+      if (pagesNode.getAttribute('token') !== null) {
+        settings.credentials.token = pagesNode.getAttribute('token');
       }
-      if (pagesNode.getAttribute("username") !== null) {
-        settings.credentials.username = pagesNode.getAttribute("username");
+      if (pagesNode.getAttribute('username') !== null) {
+        settings.credentials.username = pagesNode.getAttribute('username');
       }
-      if (pagesNode.getAttribute("password") !== null) {
-        settings.credentials.password = pagesNode.getAttribute("password");
+      if (pagesNode.getAttribute('password') !== null) {
+        settings.credentials.password = pagesNode.getAttribute('password');
       }
       this.initBackendClient();
 
-      if (pagesNode.getAttribute("scroll_speed") === null) {
+      if (pagesNode.getAttribute('scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {
-        settings.scrollSpeed = parseInt(pagesNode.getAttribute("scroll_speed"));
+        settings.scrollSpeed = parseInt(pagesNode.getAttribute('scroll_speed'));
       }
 
-      if (pagesNode.getAttribute("bind_click_to_widget") !== null) {
-        settings.bindClickToWidget = pagesNode.getAttribute("bind_click_to_widget") === "true";
+      if (pagesNode.getAttribute('bind_click_to_widget') !== null) {
+        settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === 'true';
       }
-      if (pagesNode.getAttribute("default_columns") !== null) {
-        settings.defaultColumns = pagesNode.getAttribute("default_columns");
+      if (pagesNode.getAttribute('default_columns') !== null) {
+        settings.defaultColumns = pagesNode.getAttribute('default_columns');
       }
-      if (pagesNode.getAttribute("min_column_width") !== null) {
-        settings.minColumnWidth = pagesNode.getAttribute("min_column_width");
+      if (pagesNode.getAttribute('min_column_width') !== null) {
+        settings.minColumnWidth = pagesNode.getAttribute('min_column_width');
       }
-      settings.screensave_time = pagesNode.getAttribute("screensave_time");
+      settings.screensave_time = pagesNode.getAttribute('screensave_time');
       if (settings.screensave_time) {
         settings.screensave_time = parseInt(settings.screensave_time, 10);
       }
-      settings.screensave_page = pagesNode.getAttribute("screensave_page");
+      settings.screensave_page = pagesNode.getAttribute('screensave_page');
 
-      if (pagesNode.getAttribute("max_mobile_screen_width") !== null) {
-        settings.maxMobileScreenWidth = pagesNode.getAttribute("max_mobile_screen_width");
+      if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
+        settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
       }
 
-      const globalClass = pagesNode.getAttribute("class");
+      const globalClass = pagesNode.getAttribute('class');
       if (globalClass !== null) {
-        document.querySelector("body").classList.add(globalClass);
+        document.querySelector('body').classList.add(globalClass);
       }
 
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
       const design = cv.Config.getDesign();
       if (design) {
-        let baseUri = "designs/" + design;
-        settings.stylesToLoad.push(baseUri + "/basic.css");
-        this.debug("cv.Config.mobileDevice: " + cv.Config.mobileDevice);
+        let baseUri = 'designs/' + design;
+        settings.stylesToLoad.push(baseUri + '/basic.css');
+        this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
         if (cv.Config.mobileDevice) {
-          settings.stylesToLoad.push(baseUri + "/mobile.css");
-          document.querySelector("body").classList.add("mobile");
+          settings.stylesToLoad.push(baseUri + '/mobile.css');
+          document.querySelector('body').classList.add('mobile');
         }
-        settings.stylesToLoad.push(baseUri + "/custom.css");
-        settings.scriptsToLoad.push("designs/" + design + "/design_setup.js");
+        settings.stylesToLoad.push(baseUri + '/custom.css');
+        settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
-        cv.util.ScriptLoader.getInstance().addListenerOnce("designError", function(ev) {
+        cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function(ev) {
           if (ev.getData() === design) {
-            this.error("Failed to load \""+design+"\" design! Falling back to simplified \"pure\"");
+            this.error('Failed to load "'+design+'" design! Falling back to simplified "pure"');
 
-            baseUri = "designs/pure";
-            const alternativeStyles = [baseUri + "/basic.css"];
+            baseUri = 'designs/pure';
+            const alternativeStyles = [baseUri + '/basic.css'];
             if (cv.Config.mobileDevice) {
-              alternativeStyles.push(baseUri+"/mobile.css");
+              alternativeStyles.push(baseUri+'/mobile.css');
             }
-            alternativeStyles.push(baseUri+"/custom.css");
+            alternativeStyles.push(baseUri+'/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
-            cv.util.ScriptLoader.getInstance().addScripts(baseUri+"/design_setup.js");
+            cv.util.ScriptLoader.getInstance().addScripts(baseUri+'/design_setup.js');
           }
         }, this);
       }
@@ -537,7 +537,7 @@ qx.Class.define("cv.TemplateEngine", {
       settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
       // and then the rest
       metaParser.parse(loaded_xml, done);
-      this.debug("parsed");
+      this.debug('parsed');
     },
 
     /**
@@ -545,27 +545,27 @@ qx.Class.define("cv.TemplateEngine", {
      */
     setupPage: function () {
       // and now setup the pages
-      this.debug("setup");
+      this.debug('setup');
 
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, cv.Config.configSettings.credentials, function () {
-        this.debug("logged in");
+        this.debug('logged in');
         this.setLoggedIn(true);
 
         // as we are sure that the default CSS were loaded now:
-        document.querySelectorAll("link[href*=\"mobile.css\"]").forEach(function (elem) {
+        document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
         });
         if (!cv.Config.cacheUsed) {
-          this.debug("creating pages");
-          const page = this.xml.querySelector("pages > page"); // only one page element allowed...
+          this.debug('creating pages');
+          const page = this.xml.querySelector('pages > page'); // only one page element allowed...
 
-          this.createPages(page, "id");
-          this.debug("finalizing");
-          qx.event.message.Bus.dispatchByName("setup.dom.append");
-          this.debug("pages created");
+          this.createPages(page, 'id');
+          this.debug('finalizing');
+          qx.event.message.Bus.dispatchByName('setup.dom.append');
+          this.debug('pages created');
         }
-        this.debug("setup.dom.finished");
-        qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
+        this.debug('setup.dom.finished');
+        qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
         this.setDomFinished(true);
 
         const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
@@ -573,7 +573,7 @@ qx.Class.define("cv.TemplateEngine", {
           this.setCurrentPage(currentPage);
         }
         cv.ui.layout.Manager.adjustColumns();
-        cv.ui.layout.Manager.applyColumnWidths("#"+cv.Config.initialPage, true);
+        cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 
         this.main_scroll = new cv.ui.PageHandler();
         if (this.scrollSpeed !== undefined) {
@@ -585,7 +585,7 @@ qx.Class.define("cv.TemplateEngine", {
         }, this).schedule();
 
         // reaction on browser back button
-        qx.bom.History.getInstance().addListener("request", function(e) {
+        qx.bom.History.getInstance().addListener('request', function(e) {
           const lastPage = e.getData();
           if (lastPage) {
             this.scrollToPage(lastPage, 0, true);
@@ -593,7 +593,7 @@ qx.Class.define("cv.TemplateEngine", {
         }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        document.querySelectorAll("embed").forEach(function(elem) {
+        document.querySelectorAll('embed').forEach(function(elem) {
           elem.onload = cv.ui.TrickOMatic.run;
         });
 
@@ -601,13 +601,13 @@ qx.Class.define("cv.TemplateEngine", {
 
         this.xml = null; // not needed anymore - free the space
 
-        document.querySelectorAll(".icon").forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
-        document.querySelectorAll(".loading").forEach(function(elem) {
-          elem.classList.remove("loading");
+        document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
+        document.querySelectorAll('.loading').forEach(function(elem) {
+          elem.classList.remove('loading');
         }, this);
 
         this.startScreensaver();
-        if (qx.core.Environment.get("qx.aspects")) {
+        if (qx.core.Environment.get('qx.aspects')) {
           qx.dev.Profile.stop();
           qx.dev.Profile.showResults(50);
         }
@@ -618,13 +618,13 @@ qx.Class.define("cv.TemplateEngine", {
      * Start the screensaver if a screensave time is set
      */
     startScreensaver: function() {
-      if (typeof cv.Config.configSettings.screensave_time === "number") {
+      if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
-        this.screensave.addListener("interval", function () {
+        this.screensave.addListener('interval', function () {
           this.scrollToPage();
         }, this);
         this.screensave.start();
-        qx.event.Registration.addListener(window, "useraction", this.screensave.restart, this.screensave);
+        qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
       }
     },
 
@@ -632,7 +632,7 @@ qx.Class.define("cv.TemplateEngine", {
      * Start retrieving data from backend
      */
     startInitialRequest: function() {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         cv.report.Replay.start();
       }
       if (cv.Config.enableAddressQueue) {
@@ -699,7 +699,7 @@ qx.Class.define("cv.TemplateEngine", {
           const scope = this.traversePath(path);
           if (scope === null) {
             // path is wrong
-            this.error("path '" + path + "' could not be traversed, no page found");
+            this.error('path \'' + path + '\' could not be traversed, no page found');
             return null;
           }
           return this.getPageIdByName(page_name, scope);
@@ -709,11 +709,11 @@ qx.Class.define("cv.TemplateEngine", {
 
     traversePath: function (path, root_page_id) {
       let path_scope = null;
-      let index = path.indexOf("/");
+      let index = path.indexOf('/');
       if (index >= 1) {
         // skip escaped slashes like \/
-        while (path.substr(index - 1, 1) === "\\") {
-          const next = path.indexOf("/", index + 1);
+        while (path.substr(index - 1, 1) === '\\') {
+          const next = path.indexOf('/', index + 1);
           if (next >= 0) {
             index = next;
           }
@@ -744,10 +744,10 @@ qx.Class.define("cv.TemplateEngine", {
         // decode html code (e.g. like &apos; => ')
         page_name = cv.util.String.decodeHtmlEntities(page_name);
         // remove escaped slashes
-        page_name = decodeURI(page_name.replace("\\\/", "/"));
+        page_name = decodeURI(page_name.replace('\\\/', '/'));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
-      const selector = (scope !== undefined && scope !== null) ? ".page[id^=\"" + scope + "\"] h1" : ".page h1";
+      const selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1' : '.page h1';
       let pages = document.querySelectorAll(selector);
       pages = Array.from(pages).filter(function(h) {
  return h.textContent === page_name; 
@@ -757,9 +757,9 @@ qx.Class.define("cv.TemplateEngine", {
           // More than one Page found -> search in the current pages descendants first
           let fallback = true;
           pages.some(function (page) {
-            const p = cv.util.Tree.getClosest(page, ".page");
+            const p = cv.util.Tree.getClosest(page, '.page');
             if (page.innerText === page_name) {
-              const pid = p.getAttribute("id");
+              const pid = p.getAttribute('id');
               if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
                 if (currentPageId.indexOf(pid) === 0) {
@@ -783,7 +783,7 @@ qx.Class.define("cv.TemplateEngine", {
             // take the first page that fits (old behaviour)
             pages.some(function (page) {
               if (page.innerText === page_name) {
-                page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
+                page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id');
                 // break loop
                 return true;
               }
@@ -793,7 +793,7 @@ qx.Class.define("cv.TemplateEngine", {
         } else {
           pages.some(function (page) {
             if (page.innerText === page_name) {
-              page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
+              page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id');
               // break loop
               return true;
             }
@@ -826,16 +826,16 @@ qx.Class.define("cv.TemplateEngine", {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get('html.storage.local')) {
         localStorage.lastpage = page_id;
       }
 
       // push new state to history
       if (skipHistory === undefined) {
-        const headline = document.querySelectorAll("#" + page_id + " h1");
-        let pageTitle = "CometVisu";
+        const headline = document.querySelectorAll('#' + page_id + ' h1');
+        let pageTitle = 'CometVisu';
         if (headline.length) {
-          pageTitle = headline[0].textContent+ " - "+pageTitle;
+          pageTitle = headline[0].textContent+ ' - '+pageTitle;
         }
         qx.bom.History.getInstance().addToHistory(page_id, pageTitle);
       }
@@ -847,14 +847,14 @@ qx.Class.define("cv.TemplateEngine", {
         switch (this.pagePartsHandler.navbars.left.dynamic) {
           case null:
           case true:
-            this.pagePartsHandler.fadeNavbar("Left", "out", 0);
+            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
             break;
 
           case false:
-            this.pagePartsHandler.fadeNavbar("Left", "in", 0);
+            this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
         }
       } else {
-        this.pagePartsHandler.fadeNavbar("Left", "in", 0);
+        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
       }
     },
 
@@ -862,98 +862,98 @@ qx.Class.define("cv.TemplateEngine", {
       if (old) {
         const oldElement = document.getElementById(old);
         if (oldElement) {
-          oldElement.classList.remove("highlightedWidget");
+          oldElement.classList.remove('highlightedWidget');
         }
       }
       if (value) {
         const element = document.getElementById(value);
         if (element) {
-          element.classList.add("highlightedWidget");
+          element.classList.add('highlightedWidget');
         }
       }
     },
 
     selectDesign: function () {
-      const body = document.querySelector("body");
+      const body = document.querySelector('body');
 
-      document.querySelectorAll("body > *").forEach(function(elem) {
-        elem.style.display = "none";
+      document.querySelectorAll('body > *').forEach(function(elem) {
+        elem.style.display = 'none';
       }, this);
-      body.style["background-color"] = "black";
+      body.style['background-color'] = 'black';
 
 
-      const div = qx.dom.Element.create("div", {id: "designSelector"});
+      const div = qx.dom.Element.create('div', {id: 'designSelector'});
       Object.entries({
-        background: "#808080",
-        width: "400px",
-        color: "white",
-        margin: "auto",
-        padding: "0.5em"
+        background: '#808080',
+        width: '400px',
+        color: 'white',
+        margin: 'auto',
+        padding: '0.5em'
       }).forEach(function(key_value) {
  body.style[key_value[0]]=key_value[1]; 
 });
-      div.innerHTML = "Loading ...";
+      div.innerHTML = 'Loading ...';
 
       body.appendChild(div);
 
-      const store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
+      const store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php'));
 
-      store.addListener("loaded", function () {
-        let html = "<h1>Please select design</h1>";
-        html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
+      store.addListener('loaded', function () {
+        let html = '<h1>Please select design</h1>';
+        html += '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
 
         div.innerHTML = html;
 
         store.getModel().forEach(function(element) {
-          const myDiv = qx.dom.Element.create("div", {
-            cursor: "pointer",
-            padding: "0.5em 1em",
-            borderBottom: "1px solid black",
-            margin: "auto",
-            width: "262px",
-            position: "relative"
+          const myDiv = qx.dom.Element.create('div', {
+            cursor: 'pointer',
+            padding: '0.5em 1em',
+            borderBottom: '1px solid black',
+            margin: 'auto',
+            width: '262px',
+            position: 'relative'
           });
 
-          myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-          myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+          myDiv.innerHTML = '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' + element + '</div>';
+          myDiv.innerHTML += '<iframe src="'+qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html')+'?design=' + element + '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
+          myDiv.innerHTML += '<img width="60" height="30" src="'+qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png')+'" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
 
           div.appendChild(myDiv);
 
 
-          const tDiv = qx.dom.Element.create("div", {
-            background: "transparent",
-            position: "absolute",
-            height: "90px",
-            width: "160px",
+          const tDiv = qx.dom.Element.create('div', {
+            background: 'transparent',
+            position: 'absolute',
+            height: '90px',
+            width: '160px',
             zIndex: 2
           });
-          const pos = document.querySelector("iframe").getBoundingClientRect();
+          const pos = document.querySelector('iframe').getBoundingClientRect();
           Object.entries({
-            left: pos.left + "px",
-            top: pos.top + "px"
+            left: pos.left + 'px',
+            top: pos.top + 'px'
           }).forEach(function(key_value) {
  tDiv.style[key_value[0]]=key_value[1]; 
 });
           myDiv.appendChild(tDiv);
 
-          qx.event.Registration.addListener(myDiv, "pointerover", function() {
-            myDiv.style.background = "#bbbbbb";
+          qx.event.Registration.addListener(myDiv, 'pointerover', function() {
+            myDiv.style.background = '#bbbbbb';
           }, this);
 
-          qx.event.Registration.addListener(myDiv, "pointerout", function() {
-            myDiv.style.background = "transparent";
+          qx.event.Registration.addListener(myDiv, 'pointerout', function() {
+            myDiv.style.background = 'transparent';
           }, this);
 
-          qx.event.Registration.addListener(myDiv, "tap", function() {
+          qx.event.Registration.addListener(myDiv, 'tap', function() {
             let href = document.location.href;
             if (document.location.hash) {
-              href = href.split("#")[0];
+              href = href.split('#')[0];
             }
-            if (document.location.search === "") {
-              document.location.href = href + "?design=" + element;
+            if (document.location.search === '') {
+              document.location.href = href + '?design=' + element;
             } else {
-              document.location.href = href + "&design=" + element;
+              document.location.href = href + '&design=' + element;
             }
           });
         });
@@ -967,6 +967,6 @@ qx.Class.define("cv.TemplateEngine", {
   ***********************************************
   */
   destruct: function () {
-    this._disposeObjects("__activeChangedTimer");
+    this._disposeObjects('__activeChangedTimer');
   }
 });

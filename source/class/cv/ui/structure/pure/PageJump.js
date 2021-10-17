@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.Class.define("cv.ui.structure.pure.PageJump", {
+qx.Class.define('cv.ui.structure.pure.PageJump', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
     cv.ui.common.HasChildren,
@@ -53,19 +53,19 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
   */
   properties: {
     target : {
-      check: "String",
-      init: "0"
+      check: 'String',
+      init: '0'
     },
     activeScope : {
-      check: ["target", "path"],
-      init: "target"
+      check: ['target', 'path'],
+      init: 'target'
     },
     name : {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     targetPath : {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -89,42 +89,42 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
       const name = page.getName();
 
       // remove old active classes
-      document.querySelectorAll(".pagejump.active").forEach(function(elem) {
-        elem.classList.remove("active");
+      document.querySelectorAll('.pagejump.active').forEach(function(elem) {
+        elem.classList.remove('active');
       }, this);
-      document.querySelectorAll(".pagejump.active_ancestor").forEach(function(elem) {
-        elem.classList.remove("active_ancestor");
+      document.querySelectorAll('.pagejump.active_ancestor').forEach(function(elem) {
+        elem.classList.remove('active_ancestor');
       }, this);
 
       // and set the new active ones
-      document.querySelectorAll(".pagejump").forEach(function(elem) {
+      document.querySelectorAll('.pagejump').forEach(function(elem) {
         const data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
-          elem.classList.add("active");
+          elem.classList.add('active');
         }
       }, this);
 
       // now set the active ancestors
-      let parentPage = cv.util.Tree.getParentWidget(page, "page");
+      let parentPage = cv.util.Tree.getParentWidget(page, 'page');
       // set for all parent pages apart from the root page
 
-      const pageJumps = document.querySelectorAll(".pagejump");
+      const pageJumps = document.querySelectorAll('.pagejump');
       const markPageJumps = function (parentName, elem) {
         const data = model.getWidgetDataByElement(elem);
-        if (parentName === data.target || (data.activeScope === "path" && (
-            (typeof data.path === "string") && data.path.match(parentName + "$") ||
-            (typeof data.targetPath === "string") && data.targetPath.match(parentName + "$"))
+        if (parentName === data.target || (data.activeScope === 'path' && (
+            (typeof data.path === 'string') && data.path.match(parentName + '$') ||
+            (typeof data.targetPath === 'string') && data.targetPath.match(parentName + '$'))
         )) {
-          elem.classList.add("active_ancestor");
+          elem.classList.add('active_ancestor');
         }
       };
 
-      while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
+      while (parentPage && cv.util.Tree.getParentWidget(parentPage, 'page')) {
         pageJumps.forEach(function(elem) {
  markPageJumps(parentPage.getName(), elem); 
 });
         // recursively find pagejumps for parent pages
-        parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
+        parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
       }
     }
   },
@@ -139,15 +139,15 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
 
     // overridden
     _getInnerDomString: function() {
-      let actor = "<div class=\"actor switchUnpressed";
+      let actor = '<div class="actor switchUnpressed';
       if (this.getAlign()) {
         actor += this.getAlign();
       }
-      actor += "\">";
+      actor += '">';
       if (this.getName()) {
-        actor += "<div class=\"value\">" + this.getName() + "</div>";
+        actor += '<div class="value">' + this.getName() + '</div>';
       }
-      actor += "</div>";
+      actor += '</div>';
       return actor + this.getChildrenDomString();
     },
 
@@ -162,7 +162,7 @@ qx.Class.define("cv.ui.structure.pure.PageJump", {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pagejump", statics);
-    qx.event.message.Bus.subscribe("path.pageChanged", statics._onScrollToPage, statics);
+    cv.ui.structure.WidgetFactory.registerClass('pagejump', statics);
+    qx.event.message.Bus.subscribe('path.pageChanged', statics._onScrollToPage, statics);
   }
 });

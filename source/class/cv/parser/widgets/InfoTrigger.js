@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.InfoTrigger", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.InfoTrigger', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,32 +48,32 @@ qx.Class.define("cv.parser.widgets.InfoTrigger", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "downvalue": {target: "downValue", transform: parseFloat, "default": 0},
-        "shortdownvalue": {target: "shortDownValue", transform: function (value) {
+        'downvalue': {target: 'downValue', transform: parseFloat, 'default': 0},
+        'shortdownvalue': {target: 'shortDownValue', transform: function (value) {
             return value ? parseFloat(value) : null;
           }},
-        "downlabel": {target: "downLabel"},
-        "upvalue": {target: "upValue", transform: parseFloat, "default": 0},
-        "shortupvalue": {target: "shortUpValue", transform: function (value) {
+        'downlabel': {target: 'downLabel'},
+        'upvalue': {target: 'upValue', transform: parseFloat, 'default': 0},
+        'shortupvalue': {target: 'shortUpValue', transform: function (value) {
           return value ? parseFloat(value) : null;
          }},
-        "uplabel": {target: "upLabel"},
-        "shorttime": {target: "shortThreshold", transform: parseFloat, "default": -1},
-        "send-long-on-release" : {target: "sendLongOnRelease", transform: function (value) {
-            return value ? value === "true" : true;
+        'uplabel': {target: 'upLabel'},
+        'shorttime': {target: 'shortThreshold', transform: parseFloat, 'default': -1},
+        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
+            return value ? value === 'true' : true;
          }},
-        "change": {
-          target: "isAbsolute", transform: function (value) {
-            return (value || "relative") === "absolute";
+        'change': {
+          target: 'isAbsolute', transform: function (value) {
+            return (value || 'relative') === 'absolute';
           }
         },
-        "min": {transform: parseFloat, "default": 0},
-        "max": {transform: parseFloat, "default": 255},
-        "infoposition": {
-          target: "infoPosition",
-          "default": "left",
+        'min': {transform: parseFloat, 'default': 0},
+        'max': {transform: parseFloat, 'default': 255},
+        'infoposition': {
+          target: 'infoPosition',
+          'default': 'left',
           transform: function (value) {
-            return ["middle", "right"].includes(value) ? value : "left";
+            return ['middle', 'right'].includes(value) ? value : 'left';
           }
         }
       };
@@ -81,12 +81,12 @@ qx.Class.define("cv.parser.widgets.InfoTrigger", {
 
     makeAddressListFn: function (src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [true, variant === "short" ? 1 : (variant === "button" ? 2 : 1 | 2)];
+      return [true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1 | 2)];
     }
   },
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("infotrigger", statics);
+    cv.parser.WidgetParser.addHandler('infotrigger', statics);
   }
 });

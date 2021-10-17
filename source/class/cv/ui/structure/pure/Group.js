@@ -68,7 +68,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.Group", {
+qx.Class.define('cv.ui.structure.pure.Group', {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
@@ -79,15 +79,15 @@ qx.Class.define("cv.ui.structure.pure.Group", {
   */
   properties: {
     noWidget: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     name: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     },
     target: {
-      check: "String",
+      check: 'String',
       nullable: true
     }
   },
@@ -123,30 +123,30 @@ qx.Class.define("cv.ui.structure.pure.Group", {
     // overridden
     _onDomReady: function() {
       this.base(arguments);
-      this.getDomElement().style["z-index"] = 1;
+      this.getDomElement().style['z-index'] = 1;
     },
 
     // overridden
     getDomString: function () {
       // heading style
-      let hstyle = "";
+      let hstyle = '';
       if (this.getAlign()) {
-        hstyle += "style=\"text-align:" + this.getAlign() + "\"";
+        hstyle += 'style="text-align:' + this.getAlign() + '"';
       }
 
-      let container = "<div class=\"clearfix\">";
+      let container = '<div class="clearfix">';
       if (this.getName()) {
-        container += "<h2 " + hstyle + ">" + this.getName() + "</h2>";
+        container += '<h2 ' + hstyle + '>' + this.getName() + '</h2>';
       }
 
       container += this.getChildrenDomString();
-      container += "</div>";
+      container += '</div>';
 
-      return "<div class=\"" + this.getClasses() + "\" " + this.getStyle() + ">" + container + "</div>";
+      return '<div class="' + this.getClasses() + '" ' + this.getStyle() + '>' + container + '</div>';
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("group", statics);
+    cv.ui.structure.WidgetFactory.registerClass('group', statics);
   }
 });

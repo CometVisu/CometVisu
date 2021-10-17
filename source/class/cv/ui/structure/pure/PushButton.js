@@ -25,7 +25,7 @@
  *
  * @since 2013
  */
-qx.Class.define("cv.ui.structure.pure.PushButton", {
+qx.Class.define('cv.ui.structure.pure.PushButton', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
@@ -35,8 +35,8 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   ******************************************************
   */
   properties: {
-    "downValue": {check: "String", init: "1"},
-    "upValue": {check: "String", init: "0"}
+    'downValue': {check: 'String', init: '1'},
+    'upValue': {check: 'String', init: '0'}
   },
 
   /*
@@ -47,13 +47,13 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return "<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     // overridden
     initListeners: function() {
-      this.addElementListener("pointerdown", this._onPointerDown, this);
-      this.addElementListener("pointerup", this._onPointerUp, this);
+      this.addElementListener('pointerdown', this._onPointerDown, this);
+      this.addElementListener('pointerup', this._onPointerUp, this);
     },
 
     /**
@@ -65,10 +65,10 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
     handleUpdate: function (value) {
       const actor = this.getActor();
       // compare against the unmapped value
-      value = "" + this.getBasicValue();
+      value = '' + this.getBasicValue();
       const off = this.getUpValue();
-      actor.classList.remove(value === off ? "switchPressed" : "switchUnpressed");
-      actor.classList.add(value === off ? "switchUnpressed" : "switchPressed");
+      actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
+      actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**
@@ -76,7 +76,7 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
      * @param event
      */
     getActionValue: function (event) {
-      if (event.type === "pointerup") {
+      if (event.type === 'pointerup') {
         return this.getUpValue();
       } 
         return this.getDownValue();
@@ -85,19 +85,19 @@ qx.Class.define("cv.ui.structure.pure.PushButton", {
     _onPointerUp: function () {
       const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === "up");
+        return (!address[2] || address[2] === 'up');
       });
     },
 
     _onPointerDown: function () {
       const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === "down");
+        return (!address[2] || address[2] === 'down');
       });
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("pushbutton", statics);
+    cv.ui.structure.WidgetFactory.registerClass('pushbutton', statics);
   }
 });

@@ -1,7 +1,7 @@
 /**
  * Monaco Texteditor for file content comparison
  */
-qx.Class.define("cv.ui.manager.editor.Diff", {
+qx.Class.define('cv.ui.manager.editor.Diff', {
   extend: cv.ui.manager.editor.Source,
 
   /*
@@ -21,8 +21,8 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
   */
   statics: {
     COUNTER: 0,
-    TITLE: qx.locale.Manager.tr("File compare"),
-    ICON: cv.theme.dark.Images.getIcon("compare", 18)
+    TITLE: qx.locale.Manager.tr('File compare'),
+    ICON: cv.theme.dark.Images.getIcon('compare', 18)
   },
 
   /*
@@ -32,21 +32,21 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
   */
   properties: {
     originalContent: {
-      check: "String",
-      init: "",
-      apply: "_applyContent"
+      check: 'String',
+      init: '',
+      apply: '_applyContent'
     },
 
     modifiedContent: {
-      check: "String",
-      init: "",
-      apply: "_applyContent"
+      check: 'String',
+      init: '',
+      apply: '_applyContent'
     },
 
     editable: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyEditable"
+      apply: '_applyEditable'
     }
   },
 
@@ -71,13 +71,13 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
       } else {
         const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
-          this.addListenerOnce("appear", this._draw, this);
+          this.addListenerOnce('appear', this._draw, this);
         } else {
           this._editor = window.monaco.editor.createDiffEditor(domElement, {
             folding: true,
             autoIndent: true,
             automaticLayout: true,
-            theme: "vs-dark",
+            theme: 'vs-dark',
             readOnly: !this.getEditable()
           });
           if (this.getFile()) {
@@ -116,8 +116,8 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
 
     save: function (callback) {
       const handlerOptions = this.getHandlerOptions();
-      if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, "upgradeVersion") && handlerOptions.upgradeVersion === true) {
-        this.base(arguments, callback, "ignore");
+      if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
+        this.base(arguments, callback, 'ignore');
       }
     },
 
@@ -127,7 +127,7 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
       }
       if (this._editor) {
         const handlerOptions = this.getHandlerOptions();
-        if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, "upgradeVersion") && handlerOptions.upgradeVersion === true) {
+        if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
           this.setEditable(file.isWriteable());
           this._client.readSync({path: file.getFullPath()}, function (err, res) {
@@ -138,29 +138,29 @@ qx.Class.define("cv.ui.manager.editor.Diff", {
               const [err, upgradedContent, changes] = this._upgradeConfig(res);
               if (err) {
                 qxl.dialog.Dialog.error(err);
-                qx.event.message.Bus.dispatchByName("cv.manager.action.close");
+                qx.event.message.Bus.dispatchByName('cv.manager.action.close');
               } else {
                 this.setModifiedContent(this._convertToString(upgradedContent));
                 let changesText = changes.length > 0
-                  ? "<div>" + qx.locale.Manager.tr("The following changes have been made") + "</div>" +
-                  "<ul><li>"+changes.join("</li><li>")+ "</li></ul>" +
-                  "<div>" + qx.locale.Manager.tr("You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.") + "</div>"
-                  : "<div><strong>" + qx.locale.Manager.tr("No changes have been made") + "</strong></div>";
+                  ? '<div>' + qx.locale.Manager.tr('The following changes have been made') + '</div>' +
+                  '<ul><li>'+changes.join('</li><li>')+ '</li></ul>' +
+                  '<div>' + qx.locale.Manager.tr('You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.') + '</div>'
+                  : '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
 
-                let msg = "<h3>" + qx.locale.Manager.tr("Config file has been upgraded to the current library version.").translate().toString() + "</h3>" + changesText +
-                  "<div>" + qx.locale.Manager.tr("Click \"Apply\" if you want to save the changes and reload the browser.") + "</div>" +
-                  "<div>" + qx.locale.Manager.tr("Click \"Check\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.") + "</div>";
+                let msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' + changesText +
+                  '<div>' + qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') + '</div>' +
+                  '<div>' + qx.locale.Manager.tr('Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.') + '</div>';
                 const d = qxl.dialog.Dialog.confirm(msg, function (ok) {
                   if (ok) {
                     this.save(function () {
                       window.location.reload();
                     });
                   }
-                }, this, qx.locale.Manager.tr("Upgrade successful"));
+                }, this, qx.locale.Manager.tr('Upgrade successful'));
                 d.set({
                   width: Math.min(qx.bom.Viewport.getWidth(), 600),
-                  yesButtonLabel: qx.locale.Manager.tr("Apply"),
-                  noButtonLabel: qx.locale.Manager.tr("Check")
+                  yesButtonLabel: qx.locale.Manager.tr('Apply'),
+                  noButtonLabel: qx.locale.Manager.tr('Check')
                 });
                 file.setModified(true);
               }

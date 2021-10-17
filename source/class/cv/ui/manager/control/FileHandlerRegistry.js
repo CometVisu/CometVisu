@@ -1,9 +1,9 @@
 /**
  * Central registry for all available file editors/viewers.
  */
-qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
+qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -16,23 +16,23 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
     this.__defaults = [];
 
     // register viewers
-    this.registerFileHandler(new RegExp("\\.(" + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join("|") + ")$", "i"), cv.ui.manager.viewer.Image, {type: "view"});
-    this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config, {type: "view"});
-    this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons, {type: "view"});
-    this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder, {type: "view"});
-    this.registerFileHandler(null, cv.ui.manager.Start, {type: "view"});
+    this.registerFileHandler(new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.viewer.Image, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder, {type: 'view'});
+    this.registerFileHandler(null, cv.ui.manager.Start, {type: 'view'});
 
     // register the basic editors
-    this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: "edit"});
+    this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: 'edit'});
     this.registerFileHandler(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree, {
       preview: false,
-      type: "edit"
+      type: 'edit'
     });
-    this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: "view"});
+    this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
-    this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, {type: "edit"});
+    this.registerFileHandler('hidden.php', cv.ui.manager.editor.Config, {type: 'edit'});
 
-    cv.ui.manager.model.Preferences.getInstance().addListener("changeDefaultConfigEditor", this._onChangesDefaultConfigEditor, this);
+    cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._onChangesDefaultConfigEditor, this);
     this._onChangesDefaultConfigEditor();
   },
 
@@ -52,7 +52,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
      * @param options {Map?} additional options to store in the registry
      */
     registerFileHandler: function (selector, clazz, options) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertTrue(qx.Interface.classImplements(clazz, cv.ui.manager.editor.IEditor));
       }
       const config = Object.assign({
@@ -61,30 +61,30 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       }, options || {});
       if (qx.Class.isClass(selector)) {
         config.instanceOf = selector;
-        config.selectorId = "instanceOf:" + selector.classname;
+        config.selectorId = 'instanceOf:' + selector.classname;
         // highest priority
         config.priority = 0;
       } else if (qx.lang.Type.isRegExp(selector)) {
         config.regex = selector;
-        config.selectorId = "regex:" + selector.toString();
+        config.selectorId = 'regex:' + selector.toString();
         config.priority = 4;
       } else if (qx.lang.Type.isFunction(selector)) {
-        config.selectorId = "function:" + selector.name;
+        config.selectorId = 'function:' + selector.name;
         config.priority = 3;
         config.function = selector;
       } else if (qx.lang.Type.isString(selector)) {
         // simple file matcher
-        if (selector.includes("/")) {
+        if (selector.includes('/')) {
           config.fullPath = selector;
-          config.selectorId = "fullPath:" + selector;
+          config.selectorId = 'fullPath:' + selector;
           config.priority = 1;
         } else {
           config.fileName = selector;
-          config.selectorId = "fileName:" + selector;
+          config.selectorId = 'fileName:' + selector;
           config.priority = 2;
         }
       } else {
-        config.selectorId = "none";
+        config.selectorId = 'none';
         config.priority = 10;
       }
       this.__registry[clazz.classname] = config;
@@ -123,9 +123,9 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
         }
       }, this);
       if (handlers.length === 0) {
-        if (!file.isFake() && file.getDisplayName().split(".").length === 1) {
+        if (!file.isFake() && file.getDisplayName().split('.').length === 1) {
           // file without file ending => use the source code editor
-          return this.getFileHandlerById("cv.ui.manager.editor.Source");
+          return this.getFileHandlerById('cv.ui.manager.editor.Source');
         }
         // no editors found
         return null;
@@ -159,7 +159,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
      * @param noReadOnlyFiles {Boolean} fleag to prevent this default editor from being used to open file that are not writeable
      */
     setDefault: function (selector, clazz, noTemporaryFiles, noReadOnlyFiles) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertRegExp(selector);
         qx.core.Assert.assertTrue(qx.Class.isClass(clazz));
       }
@@ -173,11 +173,11 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
 
     _onChangesDefaultConfigEditor: function () {
       switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
-        case "source":
+        case 'source':
           this.setDefault(cv.ui.manager.editor.Source.DEFAULT_FOR, cv.ui.manager.editor.Source);
           break;
 
-        case "xml":
+        case 'xml':
           this.setDefault(cv.ui.manager.editor.Tree.SUPPORTED_FILES, cv.ui.manager.editor.Tree);
           break;
       }
@@ -203,7 +203,7 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
     },
 
     getAllFileHandlers: function (file, type) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertTrue(file instanceof cv.ui.manager.model.FileItem || file instanceof cv.ui.manager.model.CompareFiles);
       }
       return Object.keys(this.__registry).filter(function (key) {
@@ -228,6 +228,6 @@ qx.Class.define("cv.ui.manager.control.FileHandlerRegistry", {
       }
     }, this);
 
-    cv.ui.manager.model.Preferences.getInstance().removeListener("changeDefaultConfigEditor", this._onChangesDefaultConfigEditor, this);
+    cv.ui.manager.model.Preferences.getInstance().removeListener('changeDefaultConfigEditor', this._onChangesDefaultConfigEditor, this);
   }
 });

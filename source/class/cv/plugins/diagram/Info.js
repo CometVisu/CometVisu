@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-qx.Class.define("cv.plugins.diagram.Info", {
+qx.Class.define('cv.plugins.diagram.Info', {
   extend: cv.plugins.diagram.AbstractDiagram,
   include: [cv.ui.common.Update],
 
@@ -62,7 +62,7 @@ qx.Class.define("cv.plugins.diagram.Info", {
    */
   members: {
     _getInnerDomString: function() {
-      return "<div class=\"actor clickable switchUnpressed\"><div class=\"value\">-</div></div>";
+      return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
     },
     _update: function(address, data) {
       if (address !== undefined && data !== undefined) {
@@ -74,7 +74,7 @@ qx.Class.define("cv.plugins.diagram.Info", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("diagram_info", statics);
-    cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
+    cv.parser.WidgetParser.addHandler('diagram_info', statics);
+    cv.ui.structure.WidgetFactory.registerClass('diagram_info', statics);
   }
 });

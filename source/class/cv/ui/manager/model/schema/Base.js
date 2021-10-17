@@ -1,9 +1,9 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.model.schema.Base", {
+qx.Class.define('cv.ui.manager.model.schema.Base', {
   extend: qx.core.Object,
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -38,19 +38,19 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @var string
      */
     type: {
-      check: "String",
-      init: "unknown"
+      check: 'String',
+      init: 'unknown'
     },
     elementsHaveOrder: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     schema: {
-      check: "cv.ui.manager.model.Schema",
+      check: 'cv.ui.manager.model.Schema',
       nullable: false
     },
     node: {
-      check: "Node",
+      check: 'Node',
       nullable: false
     },
     /**
@@ -58,7 +58,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @var array
      */
     subGroupings: {
-      check: "Array"
+      check: 'Array'
     }
   },
   /*
@@ -100,11 +100,11 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
     /// needs to be implemented by the inheriting classes
     parse: function () {
       const n = this.getNode();
-      let min = n.hasAttribute("minOccurs") ? n.getAttribute("minOccurs") : 1; // default is 1
-      let max = n.hasAttribute("maxOccurs") ? n.getAttribute("maxOccurs") : 1; // default is 1
+      let min = n.hasAttribute('minOccurs') ? n.getAttribute('minOccurs') : 1; // default is 1
+      let max = n.hasAttribute('maxOccurs') ? n.getAttribute('maxOccurs') : 1; // default is 1
       this._bounds = {
         min: parseInt(min),
-        max: max === "unbounded" ? Number.POSITIVE_INFINITY : parseInt(max)
+        max: max === 'unbounded' ? Number.POSITIVE_INFINITY : parseInt(max)
       };
     },
 
@@ -117,7 +117,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @return  boolean         is it allowed?
      */
     isElementAllowed: function (element) {
-      if (typeof this._allowedElements[element] !== "undefined") {
+      if (typeof this._allowedElements[element] !== 'undefined') {
         // this element is immediately allowed
         return true;
       }
@@ -140,7 +140,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @return  object              SchemaElement-object, or undefined if none is found
      */
     getSchemaElementForElementName: function (elementName) {
-      if (typeof this._allowedElements[elementName] != "undefined") {
+      if (typeof this._allowedElements[elementName] != 'undefined') {
         // this element is immediately allowed
         return this._allowedElements[elementName];
       }
@@ -235,7 +235,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      * @return  string  regex
      */
     getRegex: function (separator, nocapture) {
-      return "";
+      return '';
     },
 
 
@@ -282,7 +282,7 @@ qx.Class.define("cv.ui.manager.model.schema.Base", {
      */
     regexFromString: function (input, modifiers) {
       if (modifiers === undefined) {
-        modifiers = "";
+        modifiers = '';
       }
 
       return new RegExp(input, modifiers);

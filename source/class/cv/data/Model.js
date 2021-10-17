@@ -25,9 +25,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define("cv.data.Model", {
+qx.Class.define('cv.data.Model', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -221,10 +221,10 @@ qx.Class.define("cv.data.Model", {
      */
     getWidgetDataByElement: function (element) {
       const parent = element.parentNode;
-      let path = parent.getAttribute("id");
+      let path = parent.getAttribute('id');
 
       if (path === undefined) {
-        path = parent.parentNode.getAttribute("id");
+        path = parent.parentNode.getAttribute('id');
       }
       return this.getWidgetData(path);
     },

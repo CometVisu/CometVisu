@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Web", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Web', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -45,13 +45,13 @@ qx.Class.define("cv.parser.widgets.Web", {
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      const ga = xml.getAttribute("ga");
+      const ga = xml.getAttribute('ga');
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) === "oh") {
-          data.address["_" + ga] = {transform:"OH:switch", mode: "OFF"};
+        if (cv.Config.backend.substr(0, 2) === 'oh') {
+          data.address['_' + ga] = {transform:'OH:switch', mode: 'OFF'};
         } else {
-          data.address["_" + ga] = {transform:"DPT:1.001", mode: 0};
+          data.address['_' + ga] = {transform:'DPT:1.001', mode: 0};
         }
       }
       return data;
@@ -68,7 +68,7 @@ qx.Class.define("cv.parser.widgets.Web", {
         height: {},
         frameborder: {
           transform: function (value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         background: {},
@@ -80,7 +80,7 @@ qx.Class.define("cv.parser.widgets.Web", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("web", statics);
+    cv.parser.WidgetParser.addHandler('web', statics);
   }
 });
 

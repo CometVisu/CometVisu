@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.ui.util.ProgressBar", {
+qx.Class.define('cv.ui.util.ProgressBar', {
   extend: qx.core.Object,
 
   /*
@@ -44,9 +44,9 @@ qx.Class.define("cv.ui.util.ProgressBar", {
   */
   properties: {
     value: {
-      check: "Integer",
+      check: 'Integer',
       init: 0,
-      apply: "_applyValue"
+      apply: '_applyValue'
     }
   },
 
@@ -62,7 +62,7 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     _applyValue: function(value) {
       const rect = this.__domElement.getBoundingClientRect();
       const totalWidth = Math.round(rect.right - rect.left);
-      this.__progressElement.style.width = Math.round(totalWidth * value / 100) + "px";
+      this.__progressElement.style.width = Math.round(totalWidth * value / 100) + 'px';
     },
 
     getDomElement: function() {
@@ -70,9 +70,9 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     },
 
     _createDomElement: function() {
-      const container = this.__domElement = qx.dom.Element.create("div", {"class": "progressbar"});
+      const container = this.__domElement = qx.dom.Element.create('div', {'class': 'progressbar'});
       this.__domElement.$$widget = this;
-      const progress = this.__progressElement = qx.dom.Element.create("div", {"class": "completed"});
+      const progress = this.__progressElement = qx.dom.Element.create('div', {'class': 'completed'});
       container.appendChild(progress);
       return container;
     }

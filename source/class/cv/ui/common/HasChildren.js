@@ -22,7 +22,7 @@
  * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
  * and the methods for the widget instance.
  */
-qx.Mixin.define("cv.ui.common.HasChildren", {
+qx.Mixin.define('cv.ui.common.HasChildren', {
 
   /*
   ******************************************************
@@ -58,7 +58,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child paths
      */
     children: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
 
@@ -66,7 +66,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * Array with child widget objects
      */
     childWidgets: {
-      check: "Array",
+      check: 'Array',
       init: []
     }
   },
@@ -84,7 +84,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
      * @return {String} HTML code
      */
     getChildrenDomString: function (noWidgetContainer) {
-      let container = "";
+      let container = '';
 
       this.getChildWidgets().forEach(function (widget) {
         const subelement = widget.getDomString();
@@ -94,11 +94,11 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
         if (noWidgetContainer === true) {
           container += subelement;
         } else {
-          container += "<div class=\"widget_container" +
-            (widget.getRowspanClass ? " "+widget.getRowspanClass() : "") +
-            (widget.getContainerClass && widget.getContainerClass() ? " "+widget.getContainerClass() : "") +
-            (widget.get$$type() === "break" ? " break_container" : "") + // special case for break widget
-            "\" id=\"" + widget.getPath() + "\" data-type=\"" + widget.get$$type() + "\">" + subelement + "</div>";
+          container += '<div class="widget_container' +
+            (widget.getRowspanClass ? ' '+widget.getRowspanClass() : '') +
+            (widget.getContainerClass && widget.getContainerClass() ? ' '+widget.getContainerClass() : '') +
+            (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
+            '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
         }
       }, this);
       return container;

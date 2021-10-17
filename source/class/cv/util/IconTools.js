@@ -22,8 +22,8 @@
  * @author Christian Mayer
  * @since 2015
  */
-qx.Class.define("cv.util.IconTools", {
-  type: "static",
+qx.Class.define('cv.util.IconTools', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -35,15 +35,15 @@ qx.Class.define("cv.util.IconTools", {
     // "global" functions (=> state less)
     hexColorRegEx: /#[0-9a-fA-F]{6}/,
     colorMapping: { // as a convenience, definition of a few colors
-      white: "#ffffff",
-      orange: "#ff8000",
-      red: "#ff4444",
-      green: "#44ff44",
-      blue: "#4444ff",
-      purple: "#ff44ff",
-      yellow: "#ffff00",
-      grey: "#777777",
-      black: "#000000"
+      white: '#ffffff',
+      orange: '#ff8000',
+      red: '#ff4444',
+      green: '#44ff44',
+      blue: '#4444ff',
+      purple: '#ff44ff',
+      yellow: '#ffff00',
+      grey: '#777777',
+      black: '#000000'
     },
     iconCache: {}, // the Image() of all knows (i.e. used) icons
     iconCacheMap: [], // mapping of ID to Cache entry (URL)
@@ -81,7 +81,7 @@ qx.Class.define("cv.util.IconTools", {
      * @param classes
      */
     createCanvas: function (iconId, styling, classes) {
-      return "<canvas class=\"" + iconId + " " + classes + "\" " + styling + "/>";
+      return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
     },
     /**
      * Fill the canvas with the ImageData. Also resize the
@@ -92,7 +92,7 @@ qx.Class.define("cv.util.IconTools", {
     fillCanvas: function (canvas, imageData) {
       canvas.width = imageData.width;
       canvas.height = imageData.height;
-      canvas.getContext("2d").putImageData(imageData, 0, 0);
+      canvas.getContext('2d').putImageData(imageData, 0, 0);
     },
     /**
        * Two versions of a recoloring funtion to work around an Android bug:
@@ -104,7 +104,7 @@ qx.Class.define("cv.util.IconTools", {
        * @param data
        * @param length
        */
-    innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf("android") > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf("android") + 8)) < 4.4
+    innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android') + 8)) < 4.4
       ? function (r, g, b, data, length) { // for Android version < 4.4
         for (let i = 0; i < length; i += 4) {
           const a = data[i + 3];
@@ -148,7 +148,7 @@ qx.Class.define("cv.util.IconTools", {
       const imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
-          qx.log.Logger.error(this, "Error! \"" + color + "\" is not a valid color for icon recoloring! It must have a shape like \"#aabbcc\".");
+          qx.log.Logger.error(this, 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
         }
         const r = parseInt(color.substr(1, 2), 16);
         const g = parseInt(color.substr(3, 2), 16);
@@ -202,12 +202,12 @@ qx.Class.define("cv.util.IconTools", {
         }
 
         if (color === undefined) {
-          color = "#ffffff";
+          color = '#ffffff';
         }
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        const c = "icon" + cv.util.IconTools.iconCache[url].id + "_" + color.substr(1, 6);
+        const c = 'icon' + cv.util.IconTools.iconCache[url].id + '_' + color.substr(1, 6);
         cv.util.IconTools.iconCache[url].toFill.push(color);
 
         // when already available - fill it now. Otherwise the onLoad will do it.
@@ -233,13 +233,13 @@ qx.Class.define("cv.util.IconTools", {
      * @param icon
      */
     fillRecoloredIcon: function (icon) {
-      const parameters = (icon.className.split ? icon.className.split(" ") : icon.className.baseVal.split(" "))[0].substring(4).split("_");
+      const parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
       if (parameters.length === 2) {
         const cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
-        const coloredIcon = cacheEntry.colors["#" + parameters[1]];
+        const coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
         if (undefined === coloredIcon) {
-          cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, "#" + parameters[1]);
+          cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
         } else {
           cv.util.IconTools.fillCanvas(icon, coloredIcon);
         }
@@ -251,22 +251,22 @@ qx.Class.define("cv.util.IconTools", {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        const iconPath = qx.util.ResourceManager.getInstance().toUri("icons/knx-uf-iconset.svg");
-        let style = styling || "";
+        const iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
+        let style = styling || '';
         if (color) {
-          style += "color:" + color + ";";
+          style += 'color:' + color + ';';
         }
         if (style) {
-          style = " style=\""+style+"\"";
+          style = ' style="'+style+'"';
         }
-        return "<svg " + style + " class=\"" + classes + "\"><use xlink:href=\""+iconPath+"#kuf-" + iconID + "\"></use></svg>";
+        return '<svg ' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
       };
     }
   },
 
   defer: function() {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     this.defer.self.tmpCanvas = canvas;
-    this.defer.self.tmpCtx = canvas.getContext("2d");
+    this.defer.self.tmpCtx = canvas.getContext('2d');
   }
 });

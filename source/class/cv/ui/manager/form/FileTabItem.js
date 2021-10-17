@@ -1,7 +1,7 @@
 /**
  *
  */
-qx.Class.define("cv.ui.manager.form.FileTabItem", {
+qx.Class.define('cv.ui.manager.form.FileTabItem', {
   extend: qx.ui.core.Widget,
   implement : [qx.ui.form.IModel],
 
@@ -13,12 +13,12 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.HBox());
-    this._createChildControl("icon");
-    this._createChildControl("label");
-    this._createChildControl("close");
+    this._createChildControl('icon');
+    this._createChildControl('label');
+    this._createChildControl('close');
 
-    this.addListener("pointerover", this._onPointerOver, this);
-    this.addListener("pointerout", this._onPointerOut, this);
+    this.addListener('pointerover', this._onPointerOver, this);
+    this.addListener('pointerout', this._onPointerOut, this);
   },
 
   /*
@@ -27,10 +27,10 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   ***********************************************
   */
   events: {
-    "close": "qx.event.type.Data",
+    'close': 'qx.event.type.Data',
 
     /** (Fired by {@link qx.ui.form.List}) */
-    "action" : "qx.event.type.Event"
+    'action' : 'qx.event.type.Event'
   },
 
   /*
@@ -41,52 +41,52 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   properties: {
     appearance: {
       refine: true,
-      init: "open-file-item"
+      init: 'open-file-item'
     },
 
     model: {
       nullable: true,
-      event: "changeModel",
-      apply: "_applyModel",
+      event: 'changeModel',
+      apply: '_applyModel',
       dereference: true
     },
 
     label: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      transform: "_transformFilename",
-      event: "changeLabel",
-      apply: "_applyLabel"
+      transform: '_transformFilename',
+      event: 'changeLabel',
+      apply: '_applyLabel'
     },
 
     icon: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyIcon"
+      apply: '_applyIcon'
     },
 
     permanent: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyPermanent"
+      apply: '_applyPermanent'
     },
 
     modified: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      apply: "_applyLabel"
+      apply: '_applyLabel'
     },
 
     closeable: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      apply: "_applyCloseable"
+      apply: '_applyCloseable'
     },
 
     writeable:{
-      check: "Boolean",
+      check: 'Boolean',
       init: true,
-      apply: "_applyLabel"
+      apply: '_applyLabel'
     }
   },
 
@@ -113,12 +113,12 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
      * Event handler for the pointer over event.
      */
     _onPointerOver : function() {
-      this.addState("hovered");
+      this.addState('hovered');
     },
 
     _transformFilename: function(name) {
-      if (name === ".") {
-        return "";
+      if (name === '.') {
+        return '';
       }
       return name;
     },
@@ -127,15 +127,15 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
      * Event handler for the pointer out event.
      */
     _onPointerOut : function() {
-      this.removeState("hovered");
+      this.removeState('hovered');
     },
 
     _applyPermanent: function (value) {
-      this.setFont(value ? "default" : "italic");
+      this.setFont(value ? 'default' : 'italic');
     },
 
     _applyCloseable: function (value) {
-      this.getChildControl("close").setVisibility(value ? "visible" : "excluded");
+      this.getChildControl('close').setVisibility(value ? 'visible' : 'excluded');
     },
 
     _applyModel: function (value, old) {
@@ -143,12 +143,12 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
         old.removeRelatedBindings(this);
       }
       if (value) {
-        value.bind("file.writeable", this, "writeable");
+        value.bind('file.writeable', this, 'writeable');
       }
     },
 
     _applyIcon: function (value) {
-      const control = this.getChildControl("icon");
+      const control = this.getChildControl('icon');
       control.setSource(value);
       if (value) {
         control.show();
@@ -158,18 +158,18 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
     },
 
     _applyLabel: function () {
-      const label = this.getChildControl("label");
+      const label = this.getChildControl('label');
       const value = this.getLabel();
       if (value) {
         let labelValue = this.getLabel();
         if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
-          labelValue += " !";
-          this.setToolTipText(this.tr("This file is not writeable"));
+          labelValue += ' !';
+          this.setToolTipText(this.tr('This file is not writeable'));
         } else {
           this.resetToolTipText();
         }
         if (this.isModified()) {
-          labelValue += " *";
+          labelValue += ' *';
         }
         label.setValue(labelValue);
         label.show();
@@ -181,7 +181,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
 
     _onClose: function () {
       if (this.isCloseable()) {
-        this.fireDataEvent("close", this.getModel());
+        this.fireDataEvent('close', this.getModel());
       }
     },
 
@@ -190,26 +190,26 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
       let control;
 
       switch (id) {
-         case "icon":
+         case 'icon':
            control = new qx.ui.basic.Image();
-           control.setAppearance("open-file-item/icon");
+           control.setAppearance('open-file-item/icon');
            control.setAnonymous(true);
            control.exclude();
            this._addAt(control, 0);
            break;
 
-         case "label":
+         case 'label':
            control = new qx.ui.basic.Label();
-           control.setAppearance("open-file-item/label");
+           control.setAppearance('open-file-item/label');
            control.setAnonymous(true);
            this._addAt(control, 1);
            break;
 
-         case "close":
-           control = new qx.ui.basic.Image("decoration/tabview/close.gif");
-           control.setAppearance("open-file-item/close");
+         case 'close':
+           control = new qx.ui.basic.Image('decoration/tabview/close.gif');
+           control.setAppearance('open-file-item/close');
            if (this.isCloseable()) {
-             control.addListener("tap", this._onClose, this);
+             control.addListener('tap', this._onClose, this);
            } else {
              control.exclude();
            }
@@ -227,7 +227,7 @@ qx.Class.define("cv.ui.manager.form.FileTabItem", {
   ***********************************************
   */
   destruct: function () {
-    this.removeListener("pointerover", this._onPointerOver, this);
-    this.removeListener("pointerout", this._onPointerOut, this);
+    this.removeListener('pointerover', this._onPointerOver, this);
+    this.removeListener('pointerout', this._onPointerOut, this);
   }
 });

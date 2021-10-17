@@ -1,9 +1,9 @@
 /**
  * Wrapper class for all data providers.
  */
-qx.Class.define("cv.ui.manager.editor.data.Provider", {
+qx.Class.define('cv.ui.manager.editor.data.Provider', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -23,85 +23,85 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
   */
   statics: {
     Config: {
-      "address": {
-        "#text": {
+      'address': {
+        '#text': {
           cache: true,
           userInputAllowed: true,
           grouped: true,
-          method: "getAddresses"
+          method: 'getAddresses'
         }
       },
-      "rrd": {
-        "#text": {
+      'rrd': {
+        '#text': {
           cache: true,
           userInputAllowed: true,
-          method: "getRrds"
+          method: 'getRrds'
         }
       },
-      "influx": {
-        "measurement": {
+      'influx': {
+        'measurement': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBs"
+          method: 'getInfluxDBs'
         },
-        "field": {
+        'field': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBFields"
+          method: 'getInfluxDBFields'
         }
       },
-      "tag": {
-        "key": {
+      'tag': {
+        'key': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBTags"
+          method: 'getInfluxDBTags'
         },
-        "value": {
+        'value': {
           cache: false,
           live: true,
           userInputAllowed: false,
-          method: "getInfluxDBValues"
+          method: 'getInfluxDBValues'
         }
       },
-      "icon": {
-        "name": {
+      'icon': {
+        'name': {
           cache: true,
           userInputAllowed: false,
-          method: "getIcons"
+          method: 'getIcons'
         }
       },
-      "plugin": {
-        "name": {
+      'plugin': {
+        'name': {
           cache: true,
           userInputAllowed: false,
-          method: "getPlugins"
+          method: 'getPlugins'
         }
       },
-      "pages": {
-        "design": {
-          method: "getDesigns",
+      'pages': {
+        'design': {
+          method: 'getDesigns',
           cache: true,
           userInputAllowed: false
         }
       },
       // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
-      "*": {
-        "rrd": {
-          method: "getRrds",
+      '*': {
+        'rrd': {
+          method: 'getRrds',
           cache: true,
           userInputAllowed: true
         },
-        "ga": {
-          method: "getAddresses",
+        'ga': {
+          method: 'getAddresses',
           cache: true,
           userInputAllowed: true,
           grouped: true
         },
-        "transform": {
-          method: "getTransforms",
+        'transform': {
+          method: 'getTransforms',
           cache: true,
           userInputAllowed: false
         }
@@ -110,13 +110,13 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
 
     get: function (id, ...args) {
       const instance = cv.ui.manager.editor.data.Provider.getInstance();
-      const format = "dp";
-      const [element, attribute] = id.split("@");
+      const format = 'dp';
+      const [element, attribute] = id.split('@');
       let config = null;
       if (this.Config[element] && this.Config[element][attribute]) {
         config = this.Config[element][attribute];
-      } else if (this.Config["*"][attribute]) {
-        config = this.Config["*"][attribute];
+      } else if (this.Config['*'][attribute]) {
+        config = this.Config['*'][attribute];
       }
       if (config) {
         const conf = {};
@@ -167,7 +167,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       if (!config) {
         config = {cache: true};
       }
-      return this.__getData("designs", "designsSync", null, [], format === "dp" ? function (res) {
+      return this.__getData('designs', 'designsSync', null, [], format === 'dp' ? function (res) {
         return res.map(function (designName) {
           return {
             label: designName,
@@ -205,7 +205,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           const handleResponse = function (err, res) {
             if (err) {
               reject(err);
-            } else if (typeof res === "string" && res.startsWith("Error:")) {
+            } else if (typeof res === 'string' && res.startsWith('Error:')) {
               qx.log.Logger.error(this, res);
               resolve(converter.call(converterContext || this, []));
             } else {
@@ -242,9 +242,9 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
           const xhr = new qx.io.request.Xhr(url);
           cv.TemplateEngine.getClient().authorize(xhr);
           xhr.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
-          xhr.addListener("success", ev => {
+          xhr.addListener('success', ev => {
             let data = ev.getTarget().getResponse();
             if (cache) {
               this._addToCache(url, data);
@@ -254,7 +254,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
             }
             resolve(data);
             }, this);
-          xhr.addListener("statusError", reject, this);
+          xhr.addListener('statusError', reject, this);
           xhr.send();
         }.bind(this));
     },
@@ -264,10 +264,10 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       if (!config) {
         config = {cache: true};
       }
-      if (client.hasProvider("addresses")) {
-        return this.__getFromUrl(client.getProviderUrl("addresses"), client.getProviderConvertFunction("addresses", format), client, config.cache);
+      if (client.hasProvider('addresses')) {
+        return this.__getFromUrl(client.getProviderUrl('addresses'), client.getProviderConvertFunction('addresses', format), client, config.cache);
       } 
-        return this.__getData("addresses", "addressesSync", null, [], format === "dp" ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+        return this.__getData('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
     },
 
     getRrds: function (format, config) {
@@ -275,33 +275,33 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       if (!config) {
         config = {cache: true};
       }
-      if (client.hasProvider("rrd")) {
-        return this.__getFromUrl(client.getProviderUrl("rrd"), client.getProviderConvertFunction("rrd", format), client, config.cache);
+      if (client.hasProvider('rrd')) {
+        return this.__getFromUrl(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
       } 
-        return this.__getData("rrds", "rrdsSync", null, [], format === "dp" ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+        return this.__getData('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
     },
 
     getInfluxDBs: function (format, config, element) {
       const args = this.__getInfluxArgs(element, false);
-      return this.__getData("influxdbs", "influxdbsSync", null, args, format === "dp" ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+      return this.__getData('influxdbs', 'influxdbsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
     },
 
     __getInfluxArgs: function (element, withMeasurement) {
       const args = [];
-      if (element.hasAttribute("authentication")) {
-        args.push({auth: element.getAttribute("authentication")});
+      if (element.hasAttribute('authentication')) {
+        args.push({auth: element.getAttribute('authentication')});
       }
       if (withMeasurement) {
         let influx = element;
         // walk the tree to get the selected data source in the influx element
-        while (influx.nodeName !== "influx") {
+        while (influx.nodeName !== 'influx') {
           influx = influx.parentElement;
           if (undefined === influx) {
             // this safety measure can not happen without a bug somewhere!
             throw new Error();
           }
         }
-        args.push({measurement: element.getAttribute("measurement")});
+        args.push({measurement: element.getAttribute('measurement')});
       }
       return args;
     },
@@ -309,7 +309,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
     getInfluxDBFields: function (format, config, element) {
      try {
        const args = this.__getInfluxArgs(element, true);
-       return this.__getData("influxdbfields|" + args.measurement + "|" + args.auth, "influxdbfieldsSync", null, args, format === "dp" ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+       return this.__getData('influxdbfields|' + args.measurement + '|' + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
      } catch (e) {
        return [];
      }
@@ -318,7 +318,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
     __getInfluxDBTags: function (format, config, element, converter) {
       try {
         const args = this.__getInfluxArgs(element, true);
-        return this.__getData("influxdbtags|" + args.measurement + "|" + args.auth, "influxdbtagsSync", null, args, converter, this, config.cache);
+        return this.__getData('influxdbtags|' + args.measurement + '|' + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
       } catch (e) {
         return [];
       }
@@ -326,7 +326,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
 
     getInfluxDBTags: function (format, config, element) {
       return this.__getInfluxDBTags(format, config, element, function (res) {
-        if (format === "monaco") {
+        if (format === 'monaco') {
           return Object.keys(res).map(function (x) {
             return {
               label: x,
@@ -346,7 +346,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
         if (res === null || !(element.attributes.key in res)) {
           return [];
         }
-        if (format === "monaco") {
+        if (format === 'monaco') {
           return res[tag].map(function (x) {
             return {
               label: x,
@@ -365,16 +365,16 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
     },
 
     _parseDpResponseForMonaco: function (data) {
-      return this.__parseDpResponse(data, "monaco");
+      return this.__parseDpResponse(data, 'monaco');
     },
 
     _parseDpResponseForEditor: function (data) {
-      return this.__parseDpResponse(data, "dp");
+      return this.__parseDpResponse(data, 'dp');
     },
 
     __parseDpResponse: function (data, format) {
       const target = [];
-      if (!format || format === "monaco") {
+      if (!format || format === 'monaco') {
         data.forEach(function (entry) {
           target.push({
             label: entry.label,
@@ -382,7 +382,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
             kind: window.monaco.languages.CompletionItemKind.EnumMember
           });
         }, this);
-      } else if (format === "dp") {
+      } else if (format === 'dp') {
         return data || [];
       }
       return target;
@@ -390,9 +390,9 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
 
     getMediaFiles: function (format, config, typeFilter) {
       const fsClient = cv.io.rest.Client.getFsClient();
-      return this.__getData("media", fsClient.readSync, fsClient, [{path: "media", recursive: true}], function (res) {
+      return this.__getData('media', fsClient.readSync, fsClient, [{path: 'media', recursive: true}], function (res) {
         return res.filter(function (file) {
-          return !typeFilter || file.name.endsWith("." + typeFilter);
+          return !typeFilter || file.name.endsWith('.' + typeFilter);
         }).map(function (file) {
           const path = file.parentFolder + file.name;
           return {
@@ -412,9 +412,9 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
      */
     getTransforms: function (format, config) {
       if (!format) {
-        format = "monaco";
+        format = 'monaco';
       }
-      const cacheId = "transforms|" + format;
+      const cacheId = 'transforms|' + format;
       const useCache = !config || config.cache === true;
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
@@ -424,9 +424,9 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       Object.keys(cv.Transform.registry).forEach(function (key) {
           const entry = cv.Transform.registry[key];
           let suggestion;
-          if (format === "dp") {
+          if (format === 'dp') {
             suggestion = {
-              label: entry.name + " [" + key + "]",
+              label: entry.name + ' [' + key + ']',
               value: key
             };
           } else {
@@ -455,10 +455,10 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
      */
     getPlugins: function (format, config) {
       if (!format) {
-        format = "monaco";
+        format = 'monaco';
       }
       const useCache = !config || config.cache === true;
-      const cacheId = "plugins|" + format;
+      const cacheId = 'plugins|' + format;
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
@@ -466,9 +466,9 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
       const plugins = [];
       const qxParts = qx.io.PartLoader.getInstance().getParts();
       Object.keys(qxParts).forEach(function (partName) {
-          if (partName.startsWith("plugin-")) {
+          if (partName.startsWith('plugin-')) {
             const pluginName = partName.substring(7);
-            if (format === "dp") {
+            if (format === 'dp') {
               plugins.push({
                 label: pluginName,
                 value: pluginName
@@ -490,17 +490,17 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
 
     getIcons: function (format, config) {
       if (!format) {
-        format = "monaco";
+        format = 'monaco';
       }
       const useCache = !config || config.cache === true;
-      const cacheId = "icons|" + format;
+      const cacheId = 'icons|' + format;
       const cached = useCache ? this._getFromCache(cacheId) : null;
       if (cached) {
         return cached;
       } 
         let icons;
         const iconHandler = cv.IconHandler.getInstance();
-        if (format === "monaco") {
+        if (format === 'monaco') {
           icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
             return {
               label: iconName,
@@ -508,7 +508,7 @@ qx.Class.define("cv.ui.manager.editor.data.Provider", {
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
           });
-        } else if (format === "dp") {
+        } else if (format === 'dp') {
           // dataprovider format
           icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
             return {

@@ -22,7 +22,7 @@
  * This role provides the basic update methods
  *
  */
-qx.Mixin.define("cv.ui.common.BasicUpdate", {
+qx.Mixin.define('cv.ui.common.BasicUpdate', {
   include: cv.ui.common.HasAddress,
 
   /*
@@ -37,7 +37,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     value: {
       nullable: true,
       init: null,
-      event: "changeValue"
+      event: 'changeValue'
     },
 
     /**
@@ -52,8 +52,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * Format to apply to incoming values
      */
     format: {
-      check: "String",
-      init: "",
+      check: 'String',
+      init: '',
       nullable: true
     }
   },
@@ -97,9 +97,9 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
               } // check max
               return range[min][1];
             }
-          } else if (mapping["*"]) {
+          } else if (mapping['*']) {
             // catchall mapping
-            return mapping["*"];
+            return mapping['*'];
           }
           return v; // pass through when nothing was found
         };
@@ -164,7 +164,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     getNextMappedValue: function (value, this_map) {
       if (this_map && cv.Config.hasMapping(this_map)) {
         const keys = Object.keys(cv.Config.getMapping(this_map));
-        return keys[(keys.indexOf("" + value) + 1) % keys.length];
+        return keys[(keys.indexOf('' + value) + 1) % keys.length];
       }
       return value;
     },
@@ -220,16 +220,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
 
       if (value && value.constructor === Date) {
         switch (this.getAddress()[address].transform) { // special case for KNX
-          case "DPT:10.001":
+          case 'DPT:10.001':
             value = value.toLocaleTimeString();
             break;
-          case "DPT:11.001":
+          case 'DPT:11.001':
             value = value.toLocaleDateString();
             break;
-          case "OH:datetime":
+          case 'OH:datetime':
             value = value.toLocaleDateString();
             break;
-          case "OH:time":
+          case 'OH:time':
             value = value.toLocaleTimeString();
             break;
         }
@@ -252,15 +252,15 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     defaultValue2DOM: function (value, modifyFn) {
       let element;
       if (
-        (typeof value === "string") ||
-        (typeof value === "number") ||
+        (typeof value === 'string') ||
+        (typeof value === 'number') ||
         (value instanceof Uint8Array) ||
         (value instanceof Map)
       ) {
         modifyFn(value);
-      } else if (typeof value === "function") {
+      } else if (typeof value === 'function') {
         // thisValue(valueElement);
-        this.error("typeof value === function - special case not handled anymore!");
+        this.error('typeof value === function - special case not handled anymore!');
       } else if (!Array.isArray(value)) {
         element = value.cloneNode();
         if (value.getContext) {
@@ -274,11 +274,11 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
  continue; 
 }
 
-          if ((typeof thisValue === "string") || (typeof thisValue === "number")) {
+          if ((typeof thisValue === 'string') || (typeof thisValue === 'number')) {
             modifyFn(thisValue);
-          } else if (typeof thisValue === "function") {
+          } else if (typeof thisValue === 'function') {
             // thisValue(valueElement);
-            this.error("typeof value === function - special case not handled anymore!");
+            this.error('typeof value === function - special case not handled anymore!');
           } else {
             element = thisValue.cloneNode();
             if (thisValue.getContext) {
@@ -307,15 +307,15 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       if (this.getAlign()) {
         element.classList.add(this.getAlign());
       }
-      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector(".value");
-      valueElement.innerHTML = "";
+      const valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
+      valueElement.innerHTML = '';
       if (undefined !== value) {
         const self = this;
         this.defaultValue2DOM(value, function(e) {
  self._applyValueToDom(valueElement, e); 
 });
       } else {
-        valueElement.appendChild(document.createTextNode("-"));
+        valueElement.appendChild(document.createTextNode('-'));
       }
       return value;
     },
@@ -326,7 +326,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @param e {var} value to add to the element
      */
     _applyValueToDom: function(valueElement, e) {
-      if (typeof e === "number") {
+      if (typeof e === 'number') {
         valueElement.innerText = e;
       } else {
         valueElement.innerHTML += e;

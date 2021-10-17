@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.NavBar", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.NavBar', {
+  type: 'static',
   
   /*
   ******************************************************
@@ -46,34 +46,34 @@ qx.Class.define("cv.parser.widgets.NavBar", {
     },
 
     createDefaultWidget: function (widgetType, n, path) {
-      let classes = "navbar clearfix";
-      if (n.getAttribute("flavour")) {
-        classes += " flavour_" + n.getAttribute("flavour");
+      let classes = 'navbar clearfix';
+      if (n.getAttribute('flavour')) {
+        classes += ' flavour_' + n.getAttribute('flavour');
       }// sub design choice
 
       // store scope globally
-      const id = path.split("_");
+      const id = path.split('_');
       id.pop();
-      const pos = n.getAttribute("position") || "left";
-      cv.data.Model.getInstance().setWidgetData(id.join("_") + "_" + pos + "_navbar", {
-        "dynamic": cv.parser.widgets.NavBar._transformDynamic(n.getAttribute("dynamic")),
-        "scope": cv.parser.widgets.NavBar._transformScope(n.getAttribute("scope")),
-        "width": n.getAttribute("width")
+      const pos = n.getAttribute('position') || 'left';
+      cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
+        'dynamic': cv.parser.widgets.NavBar._transformDynamic(n.getAttribute('dynamic')),
+        'scope': cv.parser.widgets.NavBar._transformScope(n.getAttribute('scope')),
+        'width': n.getAttribute('width')
       });
 
       return cv.data.Model.getInstance().setWidgetData(cv.parser.WidgetParser.getStoragePath(n, path), {
-        "path": path,
-        "classes": classes,
-        "$$type": widgetType
+        'path': path,
+        'classes': classes,
+        '$$type': widgetType
       });
     },
 
     _transformDynamic: function(value) {
       switch (value) {
-        case "true":
+        case 'true':
           return true;
 
-        case "false":
+        case 'false':
           return false;
       }
       return null;
@@ -89,16 +89,16 @@ qx.Class.define("cv.parser.widgets.NavBar", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "scope": {"default": -1, transform: cv.parser.widgets.NavBar._transformScope},
-        "name": {},
-        "dynamic": {transform: cv.parser.widgets.NavBar._transformDynamic},
-        "width": {"default": "300"},
-        "position": {"default": "left"}
+        'scope': {'default': -1, transform: cv.parser.widgets.NavBar._transformScope},
+        'name': {},
+        'dynamic': {transform: cv.parser.widgets.NavBar._transformDynamic},
+        'width': {'default': '300'},
+        'position': {'default': 'left'}
       };
     }
   },
   
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("navbar", statics);
+    cv.parser.WidgetParser.addHandler('navbar', statics);
   }
 });

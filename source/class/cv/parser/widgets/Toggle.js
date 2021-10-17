@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Toggle", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Toggle', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -49,6 +49,6 @@ qx.Class.define("cv.parser.widgets.Toggle", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("toggle", statics);
+    cv.parser.WidgetParser.addHandler('toggle', statics);
   }
 });

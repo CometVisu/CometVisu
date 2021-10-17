@@ -42,8 +42,8 @@
  * @author Christian Mayer
  * @since 2010
  */
-qx.Class.define("cv.Transform", {
-  type: "static",
+qx.Class.define('cv.Transform', {
+  type: 'static',
 
   /*
    ******************************************************
@@ -52,8 +52,8 @@ qx.Class.define("cv.Transform", {
    */
   statics: {
     registry: {
-      "raw": {
-        name: "Only the RAW value",
+      'raw': {
+        name: 'Only the RAW value',
         encode: function (i) {
           return i;
         },
@@ -61,8 +61,8 @@ qx.Class.define("cv.Transform", {
           return i;
         }
       },
-      "int": {
-        name: "Cast to Int",
+      'int': {
+        name: 'Cast to Int',
         encode: function (i) {
           return i.toString();
         },
@@ -70,8 +70,8 @@ qx.Class.define("cv.Transform", {
           return parseInt(i);
         }
       },
-      "float": {
-        name: "Cast to Float",
+      'float': {
+        name: 'Cast to Float',
         encode: function (i) {
           return i.toString();
         },
@@ -94,9 +94,9 @@ qx.Class.define("cv.Transform", {
     addTransform: function (prefix, transforms) {
       for (let [transName, transform] of Object.entries(transforms)) {
         if (transform.link) {
-          this.registry[prefix + ":" + transName] = Object.assign({}, transforms[transform.link], transform);
+          this.registry[prefix + ':' + transName] = Object.assign({}, transforms[transform.link], transform);
         } else {
-          this.registry[prefix + ":" + transName] = transform;
+          this.registry[prefix + ':' + transName] = transform;
         }
       }
     },
@@ -126,10 +126,10 @@ qx.Class.define("cv.Transform", {
         return {bus: value, raw: value};
       }
       let
-        transformParts = transformation.split(":");
-        let transform = transformParts.length > 1 ? transformParts[0] + ":" + transformParts[1] : transformation;
+        transformParts = transformation.split(':');
+        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
         let parameter = transformParts[2];
-        let basetrans = transform.split(".")[0];
+        let basetrans = transform.split('.')[0];
       const encoding = transform in cv.Transform.registry
         ? cv.Transform.registry[transform].encode(value, parameter)
         : (basetrans in cv.Transform.registry
@@ -161,10 +161,10 @@ qx.Class.define("cv.Transform", {
         return value;
       }
       let
-        transformParts = transformation.split(":");
-        let transform = transformParts.length > 1 ? transformParts[0] + ":" + transformParts[1] : transformation;
+        transformParts = transformation.split(':');
+        let transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
         let parameter = transformParts[2];
-        let basetrans = transform.split(".")[0];
+        let basetrans = transform.split('.')[0];
       return transform in cv.Transform.registry
         ? cv.Transform.registry[transform].decode(value, parameter)
         : (basetrans in cv.Transform.registry

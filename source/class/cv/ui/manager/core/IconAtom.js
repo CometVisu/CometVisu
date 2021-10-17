@@ -1,7 +1,7 @@
 /**
  * Atom with cv.ui.manager.viewer.SvgIcon instead ob an qx.ui.basic.Image
  */
-qx.Class.define("cv.ui.manager.core.IconAtom", {
+qx.Class.define('cv.ui.manager.core.IconAtom', {
   extend: qx.ui.basic.Atom,
 
   /*
@@ -12,7 +12,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
   properties: {
     appearance: {
       refine: true,
-      init: "cv-icon"
+      init: 'cv-icon'
     }
   },
 
@@ -24,17 +24,17 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
   members: {
     _applyLabel: function (value) {
       this.base(arguments, value);
-      this.getChildControl("icon").setName(value);
+      this.getChildControl('icon').setName(value);
     },
 
     /**
      * Updates the visibility of the icon
      */
     _handleIcon : function() {
-      if (!this.getChildControl("icon").getName() || this.getShow() === "label") {
-        this._excludeChildControl("icon");
+      if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
+        this._excludeChildControl('icon');
       } else {
-        this._showChildControl("icon");
+        this._showChildControl('icon');
       }
     },
 
@@ -43,7 +43,7 @@ qx.Class.define("cv.ui.manager.core.IconAtom", {
       let control;
 
       switch (id) {
-         case "icon":
+         case 'icon':
            control = new cv.ui.manager.viewer.SvgIcon();
            control.setAnonymous(true);
            this._addAt(control, 0);

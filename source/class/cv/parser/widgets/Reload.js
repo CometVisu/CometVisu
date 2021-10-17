@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Reload", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Reload', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -48,6 +48,6 @@ qx.Class.define("cv.parser.widgets.Reload", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("reload", statics);
+    cv.parser.WidgetParser.addHandler('reload', statics);
   }
 });

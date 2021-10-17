@@ -2,7 +2,7 @@
  * a single group.
  * may be recursive
  */
-qx.Class.define("cv.ui.manager.model.schema.Group", {
+qx.Class.define('cv.ui.manager.model.schema.Group', {
   extend: cv.ui.manager.model.schema.Base,
 
   /*
@@ -23,7 +23,7 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
   properties: {
     type: {
       refine: true,
-      init: "group"
+      init: 'group'
     }
   },
 
@@ -43,17 +43,17 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
       const schema = this.getSchema();
 
       let group = this.getNode();
-      if (group.hasAttribute("ref")) {
+      if (group.hasAttribute('ref')) {
         // if this is a reference, unravel it.
-        group = schema.getReferencedNode("group", group.getAttribute("ref"));
+        group = schema.getReferencedNode('group', group.getAttribute('ref'));
       }
 
       // we are allowed choice and sequence, but only ONE AT ALL is allowed
-      let grouping = group.querySelector(":scope > choice");
+      let grouping = group.querySelector(':scope > choice');
       if (grouping) {
         this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
       } else {
-        grouping = group.querySelector(":scope > sequence");
+        grouping = group.querySelector(':scope > sequence');
         if (grouping) {
           this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
         }
@@ -85,12 +85,12 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
       const allowedElements = this.getAllowedElements();
       Object.keys(allowedElements).forEach(name => {
         const item = allowedElements[name];
-        let mySortNumber = "x"; // for a group, sortNumber is always the same
+        let mySortNumber = 'x'; // for a group, sortNumber is always the same
         if (sortNumber !== undefined) {
-          mySortNumber = sortNumber + "." + mySortNumber;
+          mySortNumber = sortNumber + '.' + mySortNumber;
         }
 
-        if (item.getType() === "element") {
+        if (item.getType() === 'element') {
           namesWithSorting[item.getName()] = mySortNumber;
         } else {
           // go recursive
@@ -114,27 +114,27 @@ qx.Class.define("cv.ui.manager.model.schema.Group", {
         return this._regexCache;
       }
 
-      let regexString = "(";
+      let regexString = '(';
 
       // collect the regex for each and every grouping we might have;
       // 'each and every' means 'the only ONE'
       this._subGroupings.forEach(grouping => {
-        regexString = "(";
+        regexString = '(';
         if (nocapture) {
- regexString += "?:"; 
+ regexString += '?:'; 
 }
-        regexString += grouping.getRegex(separator, nocapture) + ")";
+        regexString += grouping.getRegex(separator, nocapture) + ')';
       });
 
       // append bounds to regex
-      regexString += "{";
+      regexString += '{';
       const bounds = this.getBounds();
       regexString += bounds.min === undefined ? 1 : bounds.min;
-      regexString += ",";
+      regexString += ',';
       if (bounds.max !== Number.POSITIVE_INFINITY) {
         regexString += bounds.max === undefined ? 1 : bounds.max;
       }
-      regexString += "}";
+      regexString += '}';
 
       // fill the cache
       this._regexCache = regexString;

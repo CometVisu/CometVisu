@@ -35,7 +35,7 @@
  * @author Christian Mayer
  * @since 0.12.0 (2020)
  */
-qx.Class.define("cv.ui.structure.pure.Roundbar", {
+qx.Class.define('cv.ui.structure.pure.Roundbar', {
   extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Update,
 
@@ -56,7 +56,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
   */
   statics: {
     coord: function(position) {
-      return position.x.toFixed(1) + " " + position.y.toFixed(1);
+      return position.x.toFixed(1) + ' ' + position.y.toFixed(1);
     },
     /**
      * Create the SVG path for the round bar.
@@ -118,10 +118,10 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
        */
       function arc(start, end, r, flag, cw) {
         return (start.x===end.x) && (start.y===end.y)
-          ? ""
+          ? ''
           : (Math.abs(start.x-end.x)+Math.abs(start.y-end.y) < 2)
-            ? "L" + cv.ui.structure.pure.Roundbar.coord(end)
-            : ["A", r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(" ");
+            ? 'L' + cv.ui.structure.pure.Roundbar.coord(end)
+            : ['A', r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(' ');
       }
 
       if (getBBox) {
@@ -144,27 +144,27 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       // a thin bar path should just be a single line
       if (width < 1.0) {
         return [
-          "M", cv.ui.structure.pure.Roundbar.coord(startOuter),
+          'M', cv.ui.structure.pure.Roundbar.coord(startOuter),
           arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
           arc(centerOuter, endOuter, rO, startEndFlag, clockwise)
-        ].join("");
+        ].join('');
       }
 
-      return ["M", cv.ui.structure.pure.Roundbar.coord(startInner),
+      return ['M', cv.ui.structure.pure.Roundbar.coord(startInner),
         startArrowPointAngle === startAngle
-          ? "L" + cv.ui.structure.pure.Roundbar.coord(startOuter)
+          ? 'L' + cv.ui.structure.pure.Roundbar.coord(startOuter)
           : arc(startInner, startMiddle, rIM, startMiddleFlag, 1-startMiddleDir) +
             arc(startMiddle, startOuter, rMO, startMiddleFlag, startMiddleDir),
         arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
         arc(centerOuter, endOuter, rO, startEndFlag, clockwise),
         endArrowPointAngle === endAngle
-          ? "L" + cv.ui.structure.pure.Roundbar.coord(endInner)
+          ? 'L' + cv.ui.structure.pure.Roundbar.coord(endInner)
           : arc(endOuter, endMiddle, rMO, endMiddleFlag, 1-endMiddleDir) +
             arc(endMiddle, endInner, rIM, endMiddleFlag, endMiddleDir),
         arc(startInner, centerInner, rI, startEndFlag, 1-clockwise),
         arc(centerInner, startInner, rI, startEndFlag, 1-clockwise),
-        "Z"
-      ].join("");
+        'Z'
+      ].join('');
     },
     /**
      * Create the SVG path for an pointer.
@@ -181,15 +181,15 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         const tx = -s * p.thickness / 2;
         const ty = c * p.thickness / 2;
         return [
-          "M", this.coord({x:c*p.radius+wx-tx, y: -(s*p.radius+wy-ty)}),
-          "L", this.coord({x:c*p.radius, y: -(s*p.radius)}),
-          "L", this.coord({x:c*p.radius+wx+tx, y: -(s*p.radius+wy+ty)})
-        ].join("");
+          'M', this.coord({x:c*p.radius+wx-tx, y: -(s*p.radius+wy-ty)}),
+          'L', this.coord({x:c*p.radius, y: -(s*p.radius)}),
+          'L', this.coord({x:c*p.radius+wx+tx, y: -(s*p.radius+wy+ty)})
+        ].join('');
       } 
         return [
-          "M", this.coord({x:c*p.radius, y: -(s*p.radius)}),
-          "L", this.coord({x:c*p.radius+wx, y: -(s*p.radius+wy)})
-        ].join("");
+          'M', this.coord({x:c*p.radius, y: -(s*p.radius)}),
+          'L', this.coord({x:c*p.radius+wx, y: -(s*p.radius+wy)})
+        ].join('');
     }
   },
 
@@ -199,40 +199,40 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
    ******************************************************
    */
   properties: {
-    type: { check: "Array" },
-    indicators: { check: "Array" },
+    type: { check: 'Array' },
+    indicators: { check: 'Array' },
 
-    min: { check: "Number" },
-    max: { check: "Number" },
-    axisradius: { check: "Number" },
-    axiswidth: { check: "Number" },
-    axiscolor: { check: "String" },
-    ranges: { check: "Array" },
-    minorradius: { check: "Number" },
-    minorwidth: { check: "Number" },
-    minorspacing: { check: "String" },
-    minorcolor: { check: "String" },
-    majorradius: { check: "Number" },
-    majorwidth: { check: "Number" },
-    majorposition: { check: "String" },
-    majorcolor: { check: "String" },
-    labels: { check: "Array" },
-    labelstyle: { check: "String" },
-    start: { check: "Number" },
-    end: { check: "Number" },
-    arrowtype: { check: "Number" },
-    spacing: { check: "Number" },
-    overflowarrow: { check: "Boolean" },
-    fontsize: { check: "Number" },
-    textx: { check: "Number" },
-    texty: { check: "Number" },
-    textlength: { check: "Number" },
-    textanchor: { check: "String" },
-    linespace: { check: "Number" },
-    bboxgrow: { check: "Object" },
-    debug: { check: "Boolean" },
-    currentRatioValue: { check: "Array", init: [] },
-    targetRatioValue: { check: "Array", init: [] }
+    min: { check: 'Number' },
+    max: { check: 'Number' },
+    axisradius: { check: 'Number' },
+    axiswidth: { check: 'Number' },
+    axiscolor: { check: 'String' },
+    ranges: { check: 'Array' },
+    minorradius: { check: 'Number' },
+    minorwidth: { check: 'Number' },
+    minorspacing: { check: 'String' },
+    minorcolor: { check: 'String' },
+    majorradius: { check: 'Number' },
+    majorwidth: { check: 'Number' },
+    majorposition: { check: 'String' },
+    majorcolor: { check: 'String' },
+    labels: { check: 'Array' },
+    labelstyle: { check: 'String' },
+    start: { check: 'Number' },
+    end: { check: 'Number' },
+    arrowtype: { check: 'Number' },
+    spacing: { check: 'Number' },
+    overflowarrow: { check: 'Boolean' },
+    fontsize: { check: 'Number' },
+    textx: { check: 'Number' },
+    texty: { check: 'Number' },
+    textlength: { check: 'Number' },
+    textanchor: { check: 'String' },
+    linespace: { check: 'Number' },
+    bboxgrow: { check: 'Object' },
+    debug: { check: 'Boolean' },
+    currentRatioValue: { check: 'Array', init: [] },
+    targetRatioValue: { check: 'Array', init: [] }
   },
 
   /*
@@ -278,12 +278,12 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       const min = this.getMin();
       const max = this.getMax();
       let cntValues = 0;
-      let svgMajor = "";
-      let svgMinor = "";
-      let svgLabels = "";
-      let svgRanges = "";
-      let svgIndicators = "";
-      let svgText = "";
+      let svgMajor = '';
+      let svgMinor = '';
+      let svgLabels = '';
+      let svgRanges = '';
+      let svgIndicators = '';
+      let svgText = '';
       const createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
 
       // Determine the bounding box, first get the biggest radius that must fit
@@ -307,23 +307,23 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           spacing = (max-min) * spacing / 100;
         }
 
-        svgMinor += "<path class=\"minor\" d=\"";
+        svgMinor += '<path class="minor" d="';
         for (var angle=s, delta = (e-s)*spacing/(max-min), cnt=(max-min)/spacing; cnt >= 0; angle+=delta, cnt--) {
           var
             sin = Math.sin(angle);
             var cos = Math.cos(angle);
           svgMinor += [
-            "M", cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
-            "L", cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
-          ].join("");
+            'M', cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
+            'L', cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
+          ].join('');
 
           BBox = bboxAdd(BBox, cos*rIn, -sin*rIn);
           BBox = bboxAdd(BBox, cos*rOut, -sin*rOut);
         }
-        if (this.getMinorcolor() !== "") {
- svgMinor += "\" style=\"stroke:" + this.getMinorcolor(); 
+        if (this.getMinorcolor() !== '') {
+ svgMinor += '" style="stroke:' + this.getMinorcolor(); 
 }
-        svgMinor += "\" />";
+        svgMinor += '" />';
       }
 
       if (this.getMajorwidth() > 0) {
@@ -331,15 +331,15 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           rIn = this.getMajorradius();
           let rOut = this.getMajorwidth() + rIn;
 
-        svgMajor += "<path class=\"major\" d=\"";
+        svgMajor += '<path class="major" d="';
 
-        this.getMajorposition().split(";").forEach(function (position) {
+        this.getMajorposition().split(';').forEach(function (position) {
           switch (position) {
-            case "min":
+            case 'min':
               position = min;
               break;
 
-            case "max":
+            case 'max':
               position = max;
               break;
           }
@@ -347,17 +347,17 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           const sin = Math.sin(angle);
           const cos = Math.cos(angle);
           svgMajor += [
-            "M", cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
-            "L", cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
-          ].join("");
+            'M', cv.ui.structure.pure.Roundbar.coord({x:cos*rIn, y:-sin*rIn }),
+            'L', cv.ui.structure.pure.Roundbar.coord({x:cos*rOut, y:-sin*rOut})
+          ].join('');
 
           BBox = bboxAdd(BBox, cos*rIn, -sin*rIn);
           BBox = bboxAdd(BBox, cos*rOut, -sin*rOut);
         });
-        if (this.getMajorcolor() !== "") {
- svgMajor += "\" style=\"stroke:" + this.getMajorcolor(); 
+        if (this.getMajorcolor() !== '') {
+ svgMajor += '" style="stroke:' + this.getMajorcolor(); 
 }
-        svgMajor += "\" />";
+        svgMajor += '" />';
       }
 
       const labelstyle = this.getLabelstyle();
@@ -365,95 +365,95 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         const angle = s + (e - s) * (label.value - min) / (max - min);
         const x = label.radius * Math.cos(angle);
         const y = label.radius * -Math.sin(angle);
-        let alignmentBaseline = "";
-        let textAnchor = "";
+        let alignmentBaseline = '';
+        let textAnchor = '';
         let textAngle = 0;
 
         if (label.orientation < 3) {
-          svgLabels += "<text class=\"axislabel\" x=\"" + x + "\" y=\"" + y + "\"";
+          svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
           switch (label.orientation) {
             default:
             case 0: // horizontal
               if (x < 0) {
-                textAnchor = (["end", "middle", "start"])[label.position];
+                textAnchor = (['end', 'middle', 'start'])[label.position];
               } else {
-                textAnchor = (["start", "middle", "end"])[label.position];
+                textAnchor = (['start', 'middle', 'end'])[label.position];
               }
               if (Math.abs(x) < 1) {
-                textAnchor = "middle";
+                textAnchor = 'middle';
               }
               if (y < 0) {
-                alignmentBaseline = (["baseline", "middle", "hanging"])[label.position];
+                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
               } else {
-                alignmentBaseline = (["hanging", "middle", "baseline"])[label.position];
+                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
               }
               if (Math.abs(y) < 1) {
-                alignmentBaseline = "middle";
+                alignmentBaseline = 'middle';
               }
               break;
 
             case 1: { // parallel
               let textAngle = -angle * 180 / Math.PI + 90;
               if (y < 0) {
-                alignmentBaseline = (["baseline", "middle", "hanging"])[label.position];
+                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
               } else {
-                alignmentBaseline = (["hanging", "middle", "baseline"])[label.position];
+                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
                 textAngle += 180;
               }
-              textAnchor = "middle";
-              svgLabels += " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
+              textAnchor = 'middle';
+              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
             }
 
             case 2: // perpendicular
               textAngle = -angle * 180 / Math.PI;
               if (x < 0) {
-                textAnchor = (["end", "middle", "start"])[label.position];
+                textAnchor = (['end', 'middle', 'start'])[label.position];
                 textAngle += 180;
               } else {
-                textAnchor = (["start", "middle", "end"])[label.position];
+                textAnchor = (['start', 'middle', 'end'])[label.position];
               }
-              alignmentBaseline = "middle";
-              svgLabels += " transform=\"rotate(" + textAngle + "," + x + "," + y + ")\"";
+              alignmentBaseline = 'middle';
+              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
           }
-          svgLabels += " dominant-baseline=\"" + alignmentBaseline + "\"";
-          svgLabels += " text-anchor=\"" + textAnchor + "\"";
+          svgLabels += ' dominant-baseline="' + alignmentBaseline + '"';
+          svgLabels += ' text-anchor="' + textAnchor + '"';
 
-          if (labelstyle !== "") {
-            svgLabels += " style=\"" + labelstyle + "\"";
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
           }
 
-          svgLabels += ">" + label.name + "</text>";
+          svgLabels += '>' + label.name + '</text>';
         } else { // label.orientation >= 3 -> round
-          const labelid = self.$$user_path + "_label" + labelnumber;
+          const labelid = self.$$user_path + '_label' + labelnumber;
           const cw = s < e ? 0 : 1;
-          let path = "";
-          let align = "";
+          let path = '';
+          let align = '';
 
           switch (label.orientation) {
             case 3: // roundstart
-              path = ["M", x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y].join(" ");
+              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
               break;
 
             case 4: // roundmiddle
-              path = ["M", -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y].join(" ");
-              align = " startOffset=\"50%\" text-anchor=\"middle\"";
+              path = ['M', -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y].join(' ');
+              align = ' startOffset="50%" text-anchor="middle"';
               break;
 
             case 5: // roundend
-              path = ["M", x, y, "A", label.radius, label.radius, 0, 0, cw, -x, -y, "A", label.radius, label.radius, 0, 0, cw, x, y].join(" ");
-              align = " startOffset=\"100%\" text-anchor=\"end\"";
+              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
+              align = ' startOffset="100%" text-anchor="end"';
               break;
           }
-          svgLabels += "<path style=\"stroke:none; fill:none; stroke-width:0\" id=\"" + labelid + "\" d=\"" + path + "\"/>";
-          svgLabels += "<text class=\"axislabel\"";
+          svgLabels += '<path style="stroke:none; fill:none; stroke-width:0" id="' + labelid + '" d="' + path + '"/>';
+          svgLabels += '<text class="axislabel"';
 
-          if (labelstyle !== "") {
-            svgLabels += " style=\"" + labelstyle + "\"";
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
           }
 
-          svgLabels += "><textPath href=\"#"+labelid+"\"" + align + ">" + label.name + "</textPath></text>";
+          svgLabels += '><textPath href="#'+labelid+'"' + align + '>' + label.name + '</textPath></text>';
         }
       });
 
@@ -463,12 +463,12 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         const rRange = range.radius || self.getAxisradius();
         const wRange = range.width || self.getAxiswidth();
         const thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
-        svgRanges += "<path class=\"range\" d=\"";
+        svgRanges += '<path class="range" d="';
         svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
         if (range.style) {
-          svgRanges += "\" style=\"" + range.style;
+          svgRanges += '" style="' + range.style;
         }
-        svgRanges += "\" />";
+        svgRanges += '" />';
 
         BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
         BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
@@ -477,7 +477,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       this.__animator = [];
       this.getIndicators().forEach(function (indicator, number) {
         self.__animator.push(new cv.util.LimitedRateUpdateAnimator(self.__updateIndicatorPosition, self, number));
-        svgIndicators += "<path class=\"indicator\" style=\"" + indicator.style + "\" />";
+        svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
 
         if (indicator.showValue) {
  cntValues++; 
@@ -485,12 +485,12 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       });
 
       if (cntValues>0) {
-        svgText += "<text class=\"value\" y=\""+this.getTexty()+"\"" +
-          " text-anchor=\"" + this.getTextanchor() +"\"" +
-          " font-size=\"" + this.getFontsize() + "\">" +
-          "<tspan x=\""+this.getTextx()+"\" dy=\"0\">-</tspan>" +
-          ("<tspan x=\""+this.getTextx()+"\" dy=\"" + this.getLinespace() + "\">-</tspan>").repeat(cntValues-1) +
-          "</text>";
+        svgText += '<text class="value" y="'+this.getTexty()+'"' +
+          ' text-anchor="' + this.getTextanchor() +'"' +
+          ' font-size="' + this.getFontsize() + '">' +
+          '<tspan x="'+this.getTextx()+'" dy="0">-</tspan>' +
+          ('<tspan x="'+this.getTextx()+'" dy="' + this.getLinespace() + '">-</tspan>').repeat(cntValues-1) +
+          '</text>';
 
         const textDistribution = ({start: [0, 1], middle: [0.5, 0.5], end: [1, 0]})[this.getTextanchor()] || [0, 1];
         const textU = Math.min(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
@@ -499,34 +499,34 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
         BBox = bboxAdd(BBox, this.getTextx()+textDistribution[1]*this.getTextlength(), this.getTexty()+textD);
       }
 
-      let html = "<div class=\"actor\">" +
-        "<svg width=\"100%\" height=\"100%\" viewBox=\"" + [
+      let html = '<div class="actor">' +
+        '<svg width="100%" height="100%" viewBox="' + [
           BBox.l - this.getBboxgrow().l,
           BBox.u - this.getBboxgrow().u,
           BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r,
           BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d
-        ].join(" ") + "\">";
+        ].join(' ') + '">';
       if (this.getDebug()) {
-        html += "<rect width=\""+(BBox.r-BBox.l)+"\" height=\""+(BBox.d-BBox.u)+"\" x=\""+(BBox.l)+"\" y=\""+(BBox.u)+"\" stroke=\"blue\" fill=\"none\" />" +
-          "<rect width=\""+(BBox.r-BBox.l + this.getBboxgrow().l + this.getBboxgrow().r)+"\" height=\""+(BBox.d-BBox.u + this.getBboxgrow().u + this.getBboxgrow().d)+"\" x=\""+(BBox.l - this.getBboxgrow().l)+"\" y=\""+(BBox.u - this.getBboxgrow().u)+"\" stroke=\"green\" fill=\"none\" />" +
-          "<circle cx=\"0\" cy=\"0\" r=\"3\" fill=\"red\" />";
+        html += '<rect width="'+(BBox.r-BBox.l)+'" height="'+(BBox.d-BBox.u)+'" x="'+(BBox.l)+'" y="'+(BBox.u)+'" stroke="blue" fill="none" />' +
+          '<rect width="'+(BBox.r-BBox.l + this.getBboxgrow().l + this.getBboxgrow().r)+'" height="'+(BBox.d-BBox.u + this.getBboxgrow().u + this.getBboxgrow().d)+'" x="'+(BBox.l - this.getBboxgrow().l)+'" y="'+(BBox.u - this.getBboxgrow().u)+'" stroke="green" fill="none" />' +
+          '<circle cx="0" cy="0" r="3" fill="red" />';
       }
 
       if (this.getAxisradius() > 0) {
         const sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
         const axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
-        const stroke = this.getAxiscolor() === "" ? undefined : this.getAxiscolor();
-        const fill = this.getAxiswidth() < 1 ? "none" : stroke;
+        const stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor();
+        const fill = this.getAxiswidth() < 1 ? 'none' : stroke;
         html +=
-          "<path class=\"sector\" d=\""+sectorPath+" L0 0Z\"/>" +
-          "<path class=\"axis\" d=\""+axisPath+"\" style=\"" +
-          (stroke ? "stroke:"+stroke : "") +
-          (fill ? ";fill:" +fill : "") +
-          "\"/>";
+          '<path class="sector" d="'+sectorPath+' L0 0Z"/>' +
+          '<path class="axis" d="'+axisPath+'" style="' +
+          (stroke ? 'stroke:'+stroke : '') +
+          (fill ? ';fill:' +fill : '') +
+          '"/>';
       }
 
       html += svgMinor + svgMajor + svgRanges + svgLabels + svgIndicators + svgText;
-      html += "</svg></div>";
+      html += '</svg></div>';
 
       return html;
     },
@@ -544,7 +544,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       const self = this;
       const value = cv.Transform.decode(this.getAddress()[address].transform, data);
       const target = this.getTargetRatioValue();
-      const tspan = Array.from(this.getDomElement().getElementsByTagName("tspan"));
+      const tspan = Array.from(this.getDomElement().getElementsByTagName('tspan'));
       const valueFormat = this.applyFormat(address, value);
 
       this.getIndicators().forEach(function(indicator, i) {
@@ -577,7 +577,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
     __updateIndicatorPosition: function (ratio, indicatorNumber) {
       if (this.__indicatorDOMElement.length === 0) {
         // cache
-        this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName("indicator"));
+        this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName('indicator'));
       }
 
       const indicator = this.getIndicators()[indicatorNumber];
@@ -593,7 +593,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           : Math.min(startAngle, targetAngle - indicator.endarrow);
       }
       if (indicator.isBar) {
-        this.__indicatorDOMElement[indicatorNumber].setAttribute("d",
+        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
           cv.ui.structure.pure.Roundbar.createBarPath(
             startAngle,
             (overflowarrow&&!(target[1]&&ratio<0.01)) ? 0 : indicator.startarrow,
@@ -604,7 +604,7 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
           )
         );
       } else {
-        this.__indicatorDOMElement[indicatorNumber].setAttribute("d",
+        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
           cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator)
         );
       }

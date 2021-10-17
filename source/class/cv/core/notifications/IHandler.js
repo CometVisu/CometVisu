@@ -23,7 +23,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Interface.define("cv.core.notifications.IHandler", {
+qx.Interface.define('cv.core.notifications.IHandler', {
   /*
   ******************************************************
     MEMBERS

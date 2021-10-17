@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.PageJump", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.PageJump', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -42,9 +42,9 @@ qx.Class.define("cv.parser.widgets.PageJump", {
     parse: function (xml, path, flavour, pageType) {
       const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
 
-      const widgetInfo = xml.querySelector("widgetinfo > *");
+      const widgetInfo = xml.querySelector('widgetinfo > *');
       if (widgetInfo!==undefined) {
-        data.classes += " infoaction";
+        data.classes += ' infoaction';
       }
 
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
@@ -54,16 +54,16 @@ qx.Class.define("cv.parser.widgets.PageJump", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "target"      : { "default": "0" },
-        "active_scope": { target: "activeScope", "default": "target" },
-        "name"        : {},
-        "path"        : { target: "targetPath" }
+        'target'      : { 'default': '0' },
+        'active_scope': { target: 'activeScope', 'default': 'target' },
+        'name'        : {},
+        'path'        : { target: 'targetPath' }
       };
     }
   },
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("pagejump", statics);
+    cv.parser.WidgetParser.addHandler('pagejump', statics);
   }
 });

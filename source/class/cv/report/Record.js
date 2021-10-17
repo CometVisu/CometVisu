@@ -24,9 +24,9 @@
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define("cv.report.Record", {
+qx.Class.define('cv.report.Record', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -48,14 +48,14 @@ qx.Class.define("cv.report.Record", {
   ******************************************************
   */
   statics: {
-    CONFIG: "config",
-    BACKEND: "backend",
-    USER: "user",
-    CACHE: "cache",
-    XHR: "xhr",
-    SCREEN: "screen",
-    RUNTIME: "runtime",
-    STORAGE: "storage",
+    CONFIG: 'config',
+    BACKEND: 'backend',
+    USER: 'user',
+    CACHE: 'cache',
+    XHR: 'xhr',
+    SCREEN: 'screen',
+    RUNTIME: 'runtime',
+    STORAGE: 'storage',
     REPLAYING: false,
     data: null,
 
@@ -64,7 +64,7 @@ qx.Class.define("cv.report.Record", {
 
     prepare: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file.");
+        cv.Application.registerConsoleCommand('downloadLog', cv.report.Record.download, 'Download recorded log file.');
 
         // apply event recorder
         const record = cv.report.Record.getInstance();
@@ -76,25 +76,25 @@ qx.Class.define("cv.report.Record", {
         const Reg = qx.event.Registration;
 
         // add resize listener
-        Reg.addListener(window, "resize", function() {
-          this.record(this.SCREEN, "resize", {
+        Reg.addListener(window, 'resize', function() {
+          this.record(this.SCREEN, 'resize', {
             w: document.documentElement.clientWidth,
             h: document.documentElement.clientHeight
           });
         }, this);
 
         // add scroll listeners to all pages
-        qx.event.message.Bus.subscribe("setup.dom.finished", function() {
+        qx.event.message.Bus.subscribe('setup.dom.finished', function() {
           const throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
-          document.querySelectorAll("#pages > .page").forEach(function (page) {
-            Reg.addListener(page, "scroll", throttled, record);
+          document.querySelectorAll('#pages > .page').forEach(function (page) {
+            Reg.addListener(page, 'scroll', throttled, record);
           }, this);
         }, this);
 
-        this.record(this.RUNTIME, "config", this.getClientData());
+        this.record(this.RUNTIME, 'config', this.getClientData());
 
         // save initial size
-        this.record(this.SCREEN, "resize", {
+        this.record(this.SCREEN, 'resize', {
           w: document.documentElement.clientWidth,
           h: document.documentElement.clientHeight
         });
@@ -108,15 +108,15 @@ qx.Class.define("cv.report.Record", {
       delete req.queryKey.reporting;
       const Env = qx.core.Environment;
       const runtime = {
-        browserName: Env.get("browser.name"),
-        browserVersion: Env.get("browser.version"),
-        deviceName: Env.get("device.name"),
-        deviceType: Env.get("device.type"),
-        pixelRatio: Env.get("device.pixelRatio"),
-        touch: Env.get("device.touch"),
-        osName: Env.get("os.name"),
-        osVersion: Env.get("os.version"),
-        build: Env.get("cv.build"),
+        browserName: Env.get('browser.name'),
+        browserVersion: Env.get('browser.version'),
+        deviceName: Env.get('device.name'),
+        deviceType: Env.get('device.type'),
+        pixelRatio: Env.get('device.pixelRatio'),
+        touch: Env.get('device.touch'),
+        osName: Env.get('os.name'),
+        osVersion: Env.get('os.version'),
+        build: Env.get('cv.build'),
         locale: qx.bom.client.Locale.getLocale(),
         cv: {},
         width: document.documentElement.clientWidth,
@@ -153,17 +153,17 @@ qx.Class.define("cv.report.Record", {
       try {
         const parsed = qx.util.Uri.parseUri(url);
         url = parsed.path;
-        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== "nocache" && name !== "ts");
+        const filteredParams = Object.keys(parsed.queryKey).filter(name => name !== 'nocache' && name !== 'ts');
         if (filteredParams.length > 0) {
-          url += "?";
+          url += '?';
           filteredParams.forEach(param => url += `${param}=${parsed.queryKey[param]}`);
         }
       } catch (e) {
-        if (url.indexOf("nocache=") >= 0) {
-          url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+        if (url.indexOf('nocache=') >= 0) {
+          url = url.replace(/[\?|&]nocache=[0-9]+/, '');
         }
-        if (url.indexOf("ts=") >= 0) {
-          url = url.replace(/[\?|&]ts=[0-9]+/, "");
+        if (url.indexOf('ts=') >= 0) {
+          url = url.replace(/[\?|&]ts=[0-9]+/, '');
         }
       }
       return url;
@@ -226,7 +226,7 @@ qx.Class.define("cv.report.Record", {
     __extractDataFromEvent: function(nativeEvent) {
       const data = {
         eventClass: nativeEvent.constructor.name,
-        "native": {
+        'native': {
           bubbles: nativeEvent.bubbles,
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
@@ -257,7 +257,7 @@ qx.Class.define("cv.report.Record", {
         }
       };
 
-      if (data.eventClass === "PointerEvent") {
+      if (data.eventClass === 'PointerEvent') {
         Object.assign(data.native, {
           pointerId : nativeEvent.pointerId,
           width : nativeEvent.width,
@@ -268,14 +268,14 @@ qx.Class.define("cv.report.Record", {
           pointerType : nativeEvent.pointerType,
           isPrimary : nativeEvent.isPrimary
         });
-      } else if (data.eventClass === "WheelEvent") {
+      } else if (data.eventClass === 'WheelEvent') {
         Object.assign(data.native, {
           deltaX : nativeEvent.deltaX,
           deltaY : nativeEvent.deltaY,
           deltaZ : nativeEvent.deltaZ,
           deltaMode : nativeEvent.deltaMode
         });
-      } else if (data.eventClass === "KeyboardEvent") {
+      } else if (data.eventClass === 'KeyboardEvent') {
         Object.assign(data.native, {
           code : nativeEvent.code,
           composed : nativeEvent.composed,
@@ -301,9 +301,9 @@ qx.Class.define("cv.report.Record", {
         return;
       }
       ev.$$RID = this.__ID;
-      if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
+      if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
         this.__delta = this.__minDelta;
-      } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
+      } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
         this.__delta = this.__maxDelta;
       }
       if (/.+(move|over|out)/.test(ev.type)) {
@@ -323,28 +323,28 @@ qx.Class.define("cv.report.Record", {
       if (!path) {
         return;
       }
-      this.debug("recording "+ev.type+" on "+path);
+      this.debug('recording '+ev.type+' on '+path);
       const data = this.__extractDataFromEvent(ev);
       this.record(cv.report.Record.USER, path, data);
     },
 
     recordScroll: function(ev) {
       const page = ev.getTarget();
-      const path = (undefined !== page && "getAttribute" in page) ? page.getAttribute("id") : undefined;
+      const path = (undefined !== page && 'getAttribute' in page) ? page.getAttribute('id') : undefined;
       const data = {
         type: ev.getType(),
         page: path,
         x: page.scrollLeft,
         y: page.scrollTop
       };
-      this.record(cv.report.Record.USER, "scroll", data);
+      this.record(cv.report.Record.USER, 'scroll', data);
     },
 
     __getDomPath: function(el) {
       if (el === window) {
-        return "Window";
+        return 'Window';
       } else if (el === document) {
-        return "document";
+        return 'document';
       }
       const stack = [];
       while (el.parentNode !== null) {
@@ -359,18 +359,18 @@ qx.Class.define("cv.report.Record", {
             sibCount++;
           }
         }
-        if (el.hasAttribute("id") && el.id !== "") {
-          stack.unshift(el.nodeName.toLowerCase() + "#" + el.id);
-          return stack.join(">");
+        if (el.hasAttribute('id') && el.id !== '') {
+          stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
+          return stack.join('>');
         } else if (sibCount > 1) {
-          stack.unshift(el.nodeName.toLowerCase() + ":nth-child(" + (sibIndex+1) + ")");
+          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex+1) + ')');
         } else {
           stack.unshift(el.nodeName.toLowerCase());
         }
         el = el.parentNode;
       }
 
-      return stack.slice(1).join(">"); // removes the html element
+      return stack.slice(1).join('>'); // removes the html element
     },
 
     /**
@@ -391,15 +391,15 @@ qx.Class.define("cv.report.Record", {
 
       const d = new Date();
       const ts = d.getFullYear() +
-        ("" + (d.getMonth() + 1)).padStart(2, "0") +
-        ("" + d.getDate()).padStart(2, "0") + "-" +
-        ("" + d.getHours()).padStart(2, "0") +
-        ("" + d.getMinutes()).padStart(2, "0") +
-        ("" + d.getSeconds()).padStart(2, "0");
+        ('' + (d.getMonth() + 1)).padStart(2, '0') +
+        ('' + d.getDate()).padStart(2, '0') + '-' +
+        ('' + d.getHours()).padStart(2, '0') +
+        ('' + d.getMinutes()).padStart(2, '0') +
+        ('' + d.getSeconds()).padStart(2, '0');
 
-      const a = window.document.createElement("a");
-      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: "application/json"}));
-      a.download = "CometVisu-replay-"+ts+".json";
+      const a = window.document.createElement('a');
+      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: 'application/json'}));
+      a.download = 'CometVisu-replay-'+ts+'.json';
 
       // Append anchor to body.
       document.body.appendChild(a);

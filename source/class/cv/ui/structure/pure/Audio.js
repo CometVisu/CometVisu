@@ -37,7 +37,7 @@
  * @author Markus Damman
  * @since 0.8.4 (2014)
  */
-  qx.Class.define("cv.ui.structure.pure.Audio", {
+  qx.Class.define('cv.ui.structure.pure.Audio', {
     extend: cv.ui.structure.AbstractWidget,
 
     include: cv.ui.common.Update,
@@ -48,13 +48,13 @@
     ******************************************************
     */
     properties: {
-      src: { check: "String", nullable: true },
-      id: { check: "String", nullable: true },
-      width: { check: "String", nullable: true },
-      height: { check: "String", nullable: true },
-      autoplay: { check: "Boolean", init: false },
-      loop: { check: "Boolean", init: false },
-      thresholdValue: { check: "Number", init: 1 }
+      src: { check: 'String', nullable: true },
+      id: { check: 'String', nullable: true },
+      width: { check: 'String', nullable: true },
+      height: { check: 'String', nullable: true },
+      autoplay: { check: 'Boolean', init: false },
+      loop: { check: 'Boolean', init: false },
+      thresholdValue: { check: 'Number', init: 1 }
     },
 
     /*
@@ -68,24 +68,24 @@
       _getInnerDomString: function () {
         // create the main structure
         // create the actor
-        let style = "";
+        let style = '';
         if (this.getWidth()) {
- style += "width:" + this.getWidth() + ";"; 
+ style += 'width:' + this.getWidth() + ';'; 
 }
         if (this.getHeight()) {
- style += "height:" + this.getHeight() + ";"; 
+ style += 'height:' + this.getHeight() + ';'; 
 }
-        if (style !== "") {
- style = "style=\"" + style + "\""; 
+        if (style !== '') {
+ style = 'style="' + style + '"'; 
 }
-        const autoplay = (this.isAutoplay()) ? " autoplay " : "";
-        const loop = (this.isLoop()) ? " loop " : "";
-        return "<div class=\"actor\"><audio id=\"" + this.getId() + "\" " + autoplay + loop + style + " controls> <source src=\"" + this.getSrc()+ "\" > </audio> </div>";
+        const autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
+        const loop = (this.isLoop()) ? ' loop ' : '';
+        return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
       },
 
       // overridden
       getActor: function() {
-        return this.getDomElement().querySelector(".actor audio");
+        return this.getDomElement().querySelector('.actor audio');
       },
 
       /**
@@ -106,6 +106,6 @@
     },
 
     defer: function(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("audio", statics);
+      cv.ui.structure.WidgetFactory.registerClass('audio', statics);
     }
   });

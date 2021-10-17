@@ -1,7 +1,7 @@
 /**
  * qx.ui.form.VirtualSelectBox that uses cv.ui.manager.form.ListItem as 'atom' childcontrol.
  */
-qx.Class.define("cv.ui.manager.form.VirtualSelectBox", {
+qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
   extend: qx.ui.form.VirtualSelectBox,
 
   /*
@@ -15,8 +15,8 @@ qx.Class.define("cv.ui.manager.form.VirtualSelectBox", {
       let control;
 
       switch (id) {
-        case "atom":
-          control = new cv.ui.manager.form.ListItem("");
+        case 'atom':
+          control = new cv.ui.manager.form.ListItem('');
           control.setCenter(false);
           control.setAnonymous(true);
 

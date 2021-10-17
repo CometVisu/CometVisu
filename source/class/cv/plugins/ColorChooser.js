@@ -29,7 +29,7 @@
  * @asset(plugins/colorchooser/farbtastic/mask.png)
  * @asset(plugins/colorchooser/farbtastic/marker.png)
  */
-qx.Class.define("cv.plugins.ColorChooser", {
+qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
 
@@ -67,31 +67,31 @@ qx.Class.define("cv.plugins.ColorChooser", {
   */
   properties: {
     valueR: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     valueG: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     valueB: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     busR: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     busG: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     busB: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     rateLimiter: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -107,7 +107,7 @@ qx.Class.define("cv.plugins.ColorChooser", {
 
     _onDomReady: function () {
       this.base(arguments);
-      const $actor = $("#" + this.getPath() + " .actor");
+      const $actor = $('#' + this.getPath() + ' .actor');
       $actor.farbtastic(function (color) {
         this.setValueR(parseInt(color.substring(1, 3), 16) * 100 / 255.0);
         this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
@@ -135,30 +135,30 @@ qx.Class.define("cv.plugins.ColorChooser", {
           continue;
         } // skip when write flag not set
         switch (address[addr].variantInfo) {
-          case "r":
+          case 'r':
             v = cv.Transform.encode(address[addr].transform, r);
             if (v !== cv.Transform.encode(address[addr].transform, br)) {
               templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case "g":
+          case 'g':
             v = cv.Transform.encode(address[addr].transform, g);
             if (v !== cv.Transform.encode(address[addr].transform, bg)) {
               templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case "b":
+          case 'b':
             v = cv.Transform.encode(address[addr].transform, b);
             if (v !== cv.Transform.encode(address[addr].transform, bb)) {
               templateEngine.visu.write(addr, v);
               modified = true;
             }
             break;
-          case "rgb": {
-            const rgb = new Map([["r", r], ["g", g], ["b", b]]);
-            const brgb = new Map([["r", br], ["g", bg], ["b", bb]]);
+          case 'rgb': {
+            const rgb = new Map([['r', r], ['g', g], ['b', b]]);
+            const brgb = new Map([['r', br], ['g', bg], ['b', bb]]);
             v = cv.Transform.encode(address[addr].transform, rgb);
             const bv = cv.Transform.encode(address[addr].transform, brgb);
             if (v !== bv) {
@@ -182,7 +182,7 @@ qx.Class.define("cv.plugins.ColorChooser", {
     },
 
     _getInnerDomString: function () {
-      return "<div class=\"actor\"></div>";
+      return '<div class="actor"></div>';
     },
 
     _update: function (ga, data) {
@@ -195,42 +195,42 @@ qx.Class.define("cv.plugins.ColorChooser", {
        */
       function toHex(x) {
         const r = parseInt(x).toString(16);
-        return r.length === 1 ? "0" + r : r;
+        return r.length === 1 ? '0' + r : r;
       }
 
       const value = cv.Transform.decode(this.getAddress()[ga].transform, data);
       const farbtastic = jQuery.farbtastic(this.getActor());
-      let color = farbtastic.color || "#000000";
+      let color = farbtastic.color || '#000000';
 
       switch (this.getAddress()[ga].variantInfo) {
-        case "r":
+        case 'r':
           this.setBusR(value);
           color = color.substring(0, 1) +
             toHex(value * 255 / 100) +
             color.substring(3);
           break;
 
-        case "g":
+        case 'g':
           this.setBusG(value);
           color = color.substring(0, 3) +
             toHex(value * 255 / 100) +
             color.substring(5);
           break;
 
-        case "b":
+        case 'b':
           this.setBusB(value);
           color = color.substring(0, 5) +
             toHex(value * 255 / 100) +
             color.substring(7);
           break;
-        case "rgb":
-          this.setBusR(value.get("r"));
-          this.setBusG(value.get("g"));
-          this.setBusB(value.get("b"));
+        case 'rgb':
+          this.setBusR(value.get('r'));
+          this.setBusG(value.get('g'));
+          this.setBusB(value.get('b'));
           color = color.substring(0, 1) +
-            toHex(value.get("r") * 255 / 100) +
-            toHex(value.get("g") * 255 / 100) +
-            toHex(value.get("b") * 255 / 100) +
+            toHex(value.get('r') * 255 / 100) +
+            toHex(value.get('g') * 255 / 100) +
+            toHex(value.get('b') * 255 / 100) +
             color.substring(7);
           break;
       }
@@ -247,11 +247,11 @@ qx.Class.define("cv.plugins.ColorChooser", {
 
   defer: function (statics) {
     const loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles("plugins/colorchooser/farbtastic/farbtastic.css");
-    loader.addScripts("plugins/colorchooser/farbtastic/farbtastic.js");
+    loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
+    loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.js');
     // register the parser
-    cv.parser.WidgetParser.addHandler("colorchooser", statics);
-    cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
+    cv.parser.WidgetParser.addHandler('colorchooser', statics);
+    cv.ui.structure.WidgetFactory.registerClass('colorchooser', statics);
   },
 
   /*

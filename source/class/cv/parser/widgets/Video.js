@@ -21,8 +21,8 @@
 /**
  *
  */
-qx.Class.define("cv.parser.widgets.Video", {
-  type: "static",
+qx.Class.define('cv.parser.widgets.Video', {
+  type: 'static',
 
   /*
   ******************************************************
@@ -45,11 +45,11 @@ qx.Class.define("cv.parser.widgets.Video", {
 
     getAttributeToPropertyMappings: function () {
       return {
-        "width"       :   {},
-        "height"      :   {},
-        "src"         :   {},
-        "autoplay"    :   { target: "autoplay", transform: function(value) {
-          return value === "true";
+        'width'       :   {},
+        'height'      :   {},
+        'src'         :   {},
+        'autoplay'    :   { target: 'autoplay', transform: function(value) {
+          return value === 'true';
         }}
       };
     }
@@ -57,6 +57,6 @@ qx.Class.define("cv.parser.widgets.Video", {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("video", statics);
+    cv.parser.WidgetParser.addHandler('video', statics);
   }
 });

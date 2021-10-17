@@ -68,7 +68,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
+qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
@@ -83,12 +83,12 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
   ******************************************************
   */
   properties: {
-    height: { check: "String", nullable: true },
-    updateType: {check: "String", init: ""},
-    width: {check: "String", init: "100%"},
-    src: { check: "String", nullable: true },
-    suffix: { check: "String", nullable: true },
-    sendValue: { check: "String", init: ""}
+    height: { check: 'String', nullable: true },
+    updateType: {check: 'String', init: ''},
+    width: {check: 'String', init: '100%'},
+    src: { check: 'String', nullable: true },
+    suffix: { check: 'String', nullable: true },
+    sendValue: { check: 'String', init: ''}
   },
 
   /*
@@ -99,43 +99,43 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
   members: {
     // overridden
     _getInnerDomString: function () {
-      let style = "";
+      let style = '';
       if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
-        style += "height:" + this.getHeight() + ";";
+        style += 'height:' + this.getHeight() + ';';
       }
       if (style.length > 0) {
-        style = " style=\""+style+"\"";
+        style = ' style="'+style+'"';
       }
 
-      let actor = "<div class=\"actor\">";
-      if (this.getUpdateType() === "show") {
-        actor += "<img src=\"" + this.__getUrl(this.getSrc() + "." + this.getSuffix()) + "\"" + style.trim() + " />";
+      let actor = '<div class="actor">';
+      if (this.getUpdateType() === 'show') {
+        actor += '<img src="' + this.__getUrl(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
       } else {
-        actor += "<img src=\"\"" + style + " />";
+        actor += '<img src=""' + style + ' />';
       }
 
-      actor += "</div>";
+      actor += '</div>';
       return actor;
     },
 
     _update: function(address, value) {
-      const imageChild = this.getDomElement().querySelector("img");
-      if (this.getUpdateType() === "show") {
+      const imageChild = this.getDomElement().querySelector('img');
+      if (this.getUpdateType() === 'show') {
         if (value === 0) {
-          imageChild.style.display = "none";
+          imageChild.style.display = 'none';
         } else {
-          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + "." + this.getSuffix()));
-          imageChild.style.display = "block";
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
-      } else if (this.getUpdateType() === "select") {
+      } else if (this.getUpdateType() === 'select') {
         if (value === 0) {
-          imageChild.style.display = "none";
+          imageChild.style.display = 'none';
         } else {
-          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + value + "." + this.getSuffix()));
-          imageChild.style.display = "block";
+          imageChild.setAttribute('src', this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
+          imageChild.style.display = 'block';
         }
       }
 
@@ -147,7 +147,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
 
     __getUrl: function(url) {
       const parsedUri = qx.util.Uri.parseUri(url);
-      if (!parsedUri.protocol && !url.startsWith("/")) {
+      if (!parsedUri.protocol && !url.startsWith('/')) {
         // is relative URI, use the ResourceManager
         url = qx.util.ResourceManager.getInstance().toUri(url);
       }
@@ -155,7 +155,7 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
     },
 
     _action: function() {
-      if (this.getSendValue() === "") {
+      if (this.getSendValue() === '') {
  return; 
 }
       this.sendToBackend(this.getSendValue());
@@ -163,6 +163,6 @@ qx.Class.define("cv.ui.structure.pure.ImageTrigger", {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("imagetrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('imagetrigger', statics);
   }
 });

@@ -1,9 +1,9 @@
 /**
  * Global singleton that hold some states that are relevant for many parts of the manager.
  */
-qx.Class.define("cv.ui.manager.core.GlobalState", {
+qx.Class.define('cv.ui.manager.core.GlobalState', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ***********************************************
@@ -12,10 +12,10 @@ qx.Class.define("cv.ui.manager.core.GlobalState", {
   */
   properties: {
     openedFocusedFile: {
-      check: "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
+      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      event: "changeOpenedFocusedFile",
-      apply: "_applyFile"
+      event: 'changeOpenedFocusedFile',
+      apply: '_applyFile'
     }
   },
 

@@ -24,17 +24,17 @@
  * @author Christian Mayer
  * @since 2021
  */
-qx.Class.define("cv.transforms.Mqtt", {
-  type: "static",
+qx.Class.define('cv.transforms.Mqtt', {
+  type: 'static',
 
   /**
    * This class defines the default transforms: encode: transform JavaScript to
    * bus value decode: transform bus to JavaScript value
    */
   defer: function() {
-    cv.Transform.addTransform("MQTT", {
-      "number": {
-        name: "MQTT_Number",
+    cv.Transform.addTransform('MQTT', {
+      'number': {
+        name: 'MQTT_Number',
         encode: function (phy) {
           return phy.toString();
         },
@@ -42,8 +42,8 @@ qx.Class.define("cv.transforms.Mqtt", {
           return parseFloat(str);
         }
       },
-      "string": {
-        name: "MQTT_String",
+      'string': {
+        name: 'MQTT_String',
         encode: function (phy) {
           return phy.toString();
         },
@@ -51,34 +51,34 @@ qx.Class.define("cv.transforms.Mqtt", {
           return str.toString();
         }
       },
-      "json": {
-        name: "MQTT_JSON",
+      'json': {
+        name: 'MQTT_JSON',
         encode: function (phy, parameter) {
-          if (typeof parameter === "string") {
+          if (typeof parameter === 'string') {
             let
-              ret_pre = "";
-              let ret_post = "";
+              ret_pre = '';
+              let ret_post = '';
             // split on "." but not on "\." to allow the dot to be escaped
             const match = parameter.match(/(\\\.|[^.])+/g);
             if (match) {
               match.forEach(e => {
-                ret_pre += "{\"" + e.replace("\\.", ".") + "\":";
-                ret_post += "}";
+                ret_pre += '{"' + e.replace('\\.', '.') + '":';
+                ret_post += '}';
               });
             }
-            return ret_pre + (typeof phy === "string" ? "\""+phy+"\"" : phy) + ret_post;
+            return ret_pre + (typeof phy === 'string' ? '"'+phy+'"' : phy) + ret_post;
           }
           return phy.toString();
         },
         decode: function (str, parameter) {
           let json = JSON.parse(str);
-          if (typeof parameter === "string") {
+          if (typeof parameter === 'string') {
             // split on "." but not on "\." to allow the dot to be escaped
             const match = parameter.match(/(\\\.|[^.])+/g);
             if (match) {
               match.forEach(
                 e => {
-                  json = json[e.replace("\\.", ".")];
+                  json = json[e.replace('\\.', '.')];
                 }
               );
             }
