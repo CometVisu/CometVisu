@@ -31,7 +31,7 @@
  *
  * @ignore($)
  */
-qx.Class.define("cv.io.Client", {
+qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,
   implement: cv.io.IClient,
 
@@ -62,8 +62,8 @@ qx.Class.define("cv.io.Client", {
       this.backendName = backendName;
     }
 
-    if (backendName && backendName !== "default") {
-      if (typeof backendName === "object") {
+    if (backendName && backendName !== 'default') {
+      if (typeof backendName === 'object') {
         // override default settings
         this.setBackend(backendName);
       } else if (cv.io.Client.backends[backendName]) {
@@ -71,7 +71,7 @@ qx.Class.define("cv.io.Client", {
         this.setBackend(cv.io.Client.backends[backendName]);
       }
     } else {
-      this.setBackend(cv.io.Client.backends["default"]);
+      this.setBackend(cv.io.Client.backends['default']);
     }
 
     this.backendUrl = backendUrl;
@@ -79,9 +79,9 @@ qx.Class.define("cv.io.Client", {
     this.addresses = [];
     this.initialAddresses = [];
     this.filters = [];
-    this.user = "";
-    this.pass = "";
-    this.device = "";
+    this.user = '';
+    this.pass = '';
+    this.device = '';
     this.headers = {};
   },
 
@@ -111,22 +111,22 @@ qx.Class.define("cv.io.Client", {
 
     // used for backwards compability
     backendNameAliases: {
-      "cgi-bin": "default",
-      "oh": "openhab",
-      "oh2": "openhab2"
+      'cgi-bin': 'default',
+      'oh': 'openhab',
+      'oh2': 'openhab2'
     },
     // setup of the different known backends (openhab2 configures itself by sending the config
     // with the login response so no defaults are defined here
     backends: {
-      "default": {
-        name: "default",
-        baseURL: "/cgi-bin/",
-        transport: "long-polling",
+      'default': {
+        name: 'default',
+        baseURL: '/cgi-bin/',
+        transport: 'long-polling',
         resources: {
-          login: "l",
-          read: "r",
-          write: "w",
-          rrd: "rrdfetch"
+          login: 'l',
+          read: 'r',
+          write: 'w',
+          rrd: 'rrdfetch'
         },
         maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
         maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful
@@ -135,37 +135,37 @@ qx.Class.define("cv.io.Client", {
         maxRetries: 3, // amount of connection retries for temporary server failures
         hooks: {}
       },
-      "openhab": {
-        name: "openHAB",
-        baseURL: "/services/cv/",
+      'openhab': {
+        name: 'openHAB',
+        baseURL: '/services/cv/',
         // keep the e.g. atmosphere tracking-id if there is one
         resendHeaders: {
-          "X-Atmosphere-tracking-id": undefined
+          'X-Atmosphere-tracking-id': undefined
         },
         // fixed headers that are send everytime
         headers: {
-          "X-Atmosphere-Transport": "long-polling"
+          'X-Atmosphere-Transport': 'long-polling'
         },
         hooks: {
           onClose: function () {
             // send an close request to the openHAB server
-            var oldValue = this.headers["X-Atmosphere-Transport"];
-            this.headers["X-Atmosphere-Transport"] = "close";
-            this.doRequest(this.getResourcePath("read"), null, null, null, {
+            var oldValue = this.headers['X-Atmosphere-Transport'];
+            this.headers['X-Atmosphere-Transport'] = 'close';
+            this.doRequest(this.getResourcePath('read'), null, null, null, {
               beforeSend: this.beforeSend
             });
             if (oldValue !== undefined) {
-              this.headers["X-Atmosphere-Transport"] = oldValue;
+              this.headers['X-Atmosphere-Transport'] = oldValue;
             } else {
-              delete this.headers["X-Atmosphere-Transport"];
+              delete this.headers['X-Atmosphere-Transport'];
             }
           }
         }
       },
-      "openhab2": {
-        name: "openHAB2",
-        baseURL: "/rest/cv/",
-        transport: "sse"
+      'openhab2': {
+        name: 'openHAB2',
+        baseURL: '/rest/cv/',
+        transport: 'sse'
       }
     }
   },
@@ -180,26 +180,26 @@ qx.Class.define("cv.io.Client", {
      * Is the communication running at the moment?
      */
     running : {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeRunning"
+      event: 'changeRunning'
     },
 
     /**
      * Is the client connected to a backend at the moment?
      */
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeConnected",
-      apply: "_applyConnected"
+      event: 'changeConnected',
+      apply: '_applyConnected'
     },
 
     /**
      * needed to be able to check if the incoming update is the initial answer or a successing update
      */
     dataReceived : {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     /**
@@ -213,9 +213,9 @@ qx.Class.define("cv.io.Client", {
      * The server we are currently speaking to (read from the login response)
      */
     server: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      event: "changedServer"
+      event: 'changedServer'
     }
   },
 
@@ -253,9 +253,9 @@ qx.Class.define("cv.io.Client", {
 
     setBackend: function(newBackend) {
       // override default settings
-      var backend = Object.assign({}, cv.io.Client.backends["default"], newBackend);
+      var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
       this.backend = backend;
-      if (backend.transport === "sse" && backend.transportFallback) {
+      if (backend.transport === 'sse' && backend.transportFallback) {
         if (window.EventSource === undefined) {
           // browser does not support EventSource object => use fallback
           // transport + settings
@@ -263,12 +263,12 @@ qx.Class.define("cv.io.Client", {
         }
       }
       // add trailing slash to baseURL if not set
-      if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
-        backend.baseURL += "/";
+      if (backend.baseURL && backend.baseURL.substr(-1) !== '/') {
+        backend.baseURL += '/';
       }
       var currentTransport = this.getCurrentTransport();
       switch (backend.transport) {
-        case "long-polling":
+        case 'long-polling':
           if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
             // replace old transport
             if (currentTransport) {
@@ -277,7 +277,7 @@ qx.Class.define("cv.io.Client", {
             this.setCurrentTransport(new cv.io.transport.LongPolling(this));
           }
           break;
-        case "sse":
+        case 'sse':
           if (!(currentTransport instanceof cv.io.transport.Sse)) {
             // replace old transport
             if (currentTransport) {
@@ -287,7 +287,7 @@ qx.Class.define("cv.io.Client", {
           }
           break;
       }
-      if (this.backend.name === "openHAB") {
+      if (this.backend.name === 'openHAB') {
         // use the fallback parser
         qx.util.ResponseParser.PARSER.json = cv.io.parser.Json.parse;
       }
@@ -370,18 +370,18 @@ qx.Class.define("cv.io.Client", {
         this.loginSettings.callbackAfterLoggedIn = callback;
         this.loginSettings.context = context;
         var request = {};
-        if (this.user !== "") {
+        if (this.user !== '') {
           request.u = this.user;
         }
-        if (this.pass !== "") {
+        if (this.pass !== '') {
           request.p = this.pass;
         }
-        if (this.device !== "") {
+        if (this.device !== '') {
           request.d = this.device;
         }
-        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
+        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath('login'),
           request, this.handleLogin, this);
-      } else if (typeof this.loginSettings.callbackAfterLoggedIn === "function") {
+      } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
@@ -392,16 +392,16 @@ qx.Class.define("cv.io.Client", {
     /**
      * Get the json response from the parameter received from the used XHR transport
      */
-    getResponse: qx.core.Environment.select("cv.xhr", {
-      "jquery": function(args) {
+    getResponse: qx.core.Environment.select('cv.xhr', {
+      'jquery': function(args) {
         var data = args[0];
-        if (data && $.type(data) === "string") {
+        if (data && $.type(data) === 'string') {
           data = cv.io.parser.Json.parse(data);
         }
         return data;
       },
 
-      "qx": function(args) {
+      'qx': function(args) {
         var ev = args[0];
         if (!ev) {
  return null; 
@@ -410,18 +410,18 @@ qx.Class.define("cv.io.Client", {
         if (!json) {
  return null; 
 }
-        if (typeof json === "string") {
+        if (typeof json === 'string') {
           json = cv.io.parser.Json.parse(json);
         }
         return json;
       }
     }),
 
-    getResponseHeader: qx.core.Environment.select("cv.xhr", {
-      "jquery": function (args, name) {
+    getResponseHeader: qx.core.Environment.select('cv.xhr', {
+      'jquery': function (args, name) {
         return args[2].getResponseHeader(name);
       },
-      "qx": function (args, name) {
+      'qx': function (args, name) {
         if (!args[0]) {
           return null;
         }
@@ -430,16 +430,16 @@ qx.Class.define("cv.io.Client", {
     }),
 
     getQueryString: function(data) {
-      var prefix = "";
-      var suffix = "";
+      var prefix = '';
+      var suffix = '';
       if (data) {
         Object.getOwnPropertyNames(data).forEach(function (key) {
-          if (key === "i" || key === "t") {
-            prefix += key + "=" + data[key] + "&";
+          if (key === 'i' || key === 't') {
+            prefix += key + '=' + data[key] + '&';
           } else if (Array.isArray(data[key])) {
-            suffix += key + "=" + data[key].join("&" + key + "=") + "&";
+            suffix += key + '=' + data[key].join('&' + key + '=') + '&';
           } else {
-            suffix += key + "=" + data[key] + "&";
+            suffix += key + '=' + data[key] + '&';
           }
         });
         if (suffix.length) {
@@ -460,16 +460,16 @@ qx.Class.define("cv.io.Client", {
      * @param context {Object} context fot the callback
      * @return {qx.io.request.Xhr|jQuery}
      */
-    doRequest: qx.core.Environment.select("cv.xhr", {
-      "jquery": function(url, data, callback, context, options) {
-        var qs = "";
+    doRequest: qx.core.Environment.select('cv.xhr', {
+      'jquery': function(url, data, callback, context, options) {
+        var qs = '';
         if (data) {
           qs = this.getQueryString(data);
           url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
         var config = {
           url         : url,
-          dataType    : "json",
+          dataType    : 'json',
           context     : context,
           success     : callback
         };
@@ -484,9 +484,9 @@ qx.Class.define("cv.io.Client", {
         request.send();
         return request;
       },
-      "qx": function(url, data, callback, context, options) {
+      'qx': function(url, data, callback, context, options) {
         // append data to URL
-        var qs = "";
+        var qs = '';
         if (data) {
           qs = this.getQueryString(data);
           url = qx.util.Uri.appendParamsToUrl(url, qs);
@@ -499,19 +499,19 @@ qx.Class.define("cv.io.Client", {
           }
           if (options.listeners) {
             Object.getOwnPropertyNames(options.listeners).forEach(function(eventName) {
-              var qxEventName = eventName !== "error" ? eventName : "statusError";
+              var qxEventName = eventName !== 'error' ? eventName : 'statusError';
               ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
           }
         }
         ajaxRequest.set(Object.assign({
-          accept: "application/json"
+          accept: 'application/json'
         }, options || {}));
         if (callback) {
-          ajaxRequest.addListener("success", callback, context);
+          ajaxRequest.addListener('success', callback, context);
         }
-        ajaxRequest.addListener("statusError", this._onError, this);
+        ajaxRequest.addListener('statusError', this._onError, this);
         ajaxRequest.send();
         return ajaxRequest;
       }
@@ -534,7 +534,7 @@ qx.Class.define("cv.io.Client", {
         time: Date.now()
       };
       this.setConnected(false);
-      this.fireDataEvent("changeConnected", false);
+      this.fireDataEvent('changeConnected', false);
     },
 
     /**
@@ -567,8 +567,8 @@ qx.Class.define("cv.io.Client", {
       if (json.c) {
         this.setBackend(Object.assign(this.getBackend(), json.c));
       }
-      this.session = json.s || "SESSION";
-      this.setServer(this.getResponseHeader(args, "Server"));
+      this.session = json.s || 'SESSION';
+      this.setServer(this.getResponseHeader(args, 'Server'));
 
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {
@@ -577,7 +577,7 @@ qx.Class.define("cv.io.Client", {
         this.getCurrentTransport().handleSession(args, true);
       }
       this.loginSettings.loggedIn = true;
-      if (typeof this.loginSettings.callbackAfterLoggedIn === "function") {
+      if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;
@@ -605,11 +605,11 @@ qx.Class.define("cv.io.Client", {
     buildRequest : function (addresses, asString) {
       if (asString === true) {
         // return as query string
-        var qs = "s="+this.session;
+        var qs = 's='+this.session;
         addresses = addresses ? addresses : this.addresses;
-        qs += "&a="+addresses.join("&a=");
+        qs += '&a='+addresses.join('&a=');
         if (this.filters.length) {
-          qs += "&f="+this.filters.join("&f=");
+          qs += '&f='+this.filters.join('&f=');
         }
         return qs;
       } 
@@ -638,13 +638,13 @@ qx.Class.define("cv.io.Client", {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      this.doRequest(this.getResourcePath("write"), {
+      this.doRequest(this.getResourcePath('write'), {
         s: this.session,
         a: address,
         v: value,
         ts: ts
       }, null, null, {
-        accept: "application/json, text/javascript, */*; q=0.01"
+        accept: 'application/json, text/javascript, */*; q=0.01'
       });
     },
 

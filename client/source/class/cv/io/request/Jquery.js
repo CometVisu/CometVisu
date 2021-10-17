@@ -8,7 +8,7 @@
  * @asset(lib/jquery.js)
  */
 
-qx.Class.define("cv.io.request.Jquery", {
+qx.Class.define('cv.io.request.Jquery', {
   extend: qx.core.Object,
 
   /*
@@ -27,9 +27,9 @@ qx.Class.define("cv.io.request.Jquery", {
   */
   properties: {
     requestData: {
-      check: "Object",
+      check: 'Object',
       init: {},
-      apply: "_applyRequestData"
+      apply: '_applyRequestData'
     }
   },
 
@@ -46,7 +46,7 @@ qx.Class.define("cv.io.request.Jquery", {
     // property apply
     _applyRequestData: function(value) {
       if (!this.__lastRequest) {
-        this.__lastRequest["data"] = value;
+        this.__lastRequest['data'] = value;
       }
     },
 
@@ -62,7 +62,7 @@ qx.Class.define("cv.io.request.Jquery", {
       if (this.__lastRequest) {
         $.ajax(this.__lastRequest);
       } else {
-        this.error("no request settings found, skipping");
+        this.error('no request settings found, skipping');
       }
     },
 

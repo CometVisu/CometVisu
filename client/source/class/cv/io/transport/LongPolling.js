@@ -18,7 +18,7 @@
  */
 
 
-qx.Class.define("cv.io.transport.LongPolling", {
+qx.Class.define('cv.io.transport.LongPolling', {
   extend: qx.core.Object,
 
   /*
@@ -63,14 +63,14 @@ qx.Class.define("cv.io.transport.LongPolling", {
     handleSession: function (args, connect) {
       var json = this.client.getResponse(args);
       this.sessionId = json.s;
-      if (!Object.prototype.hasOwnProperty.call(json, "v")) {
-        this.error("CometVisu protocol error: missing protocol version");
+      if (!Object.prototype.hasOwnProperty.call(json, 'v')) {
+        this.error('CometVisu protocol error: missing protocol version');
         this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION, json);
       } else {
-        this.version = json.v.split(".", 3);
+        this.version = json.v.split('.', 3);
 
         if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
-          this.error("ERROR CometVisu Client: too new protocol version (" + json.v + ") used!");
+          this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
         }
         if (connect) {
           this.connect();
@@ -106,7 +106,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
           error: this.handleError
         }
       };
-      this.xhr = this.client.doRequest(this.client.getResourcePath("read"), data, callback, this, options);
+      this.xhr = this.client.doRequest(this.client.getResourcePath('read'), data, callback, this, options);
     },
 
     /**
@@ -122,9 +122,9 @@ qx.Class.define("cv.io.transport.LongPolling", {
           this.retryCounter++;
           if (this.doRestart) {
             // planned restart, only inform user
-            this.info("restarting XHR read requests in "+delay+" ms");
+            this.info('restarting XHR read requests in '+delay+' ms');
           } else {
-            this.error("restarting XHR read requests in "+delay+" ms");
+            this.error('restarting XHR read requests in '+delay+' ms');
           }
           if (!this.watchdog.isActive()) {
             // watchdog has been stopped in the abort function -> restart it
@@ -140,8 +140,8 @@ qx.Class.define("cv.io.transport.LongPolling", {
 
       var data;
       if (json && !this.doRestart) {
-        if (!Object.prototype.hasOwnProperty.call(json, "i")) {
-          this.error("CometVisu protocol error: backend responded to a read request without an \"i\"-parameter");
+        if (!Object.prototype.hasOwnProperty.call(json, 'i')) {
+          this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
           this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
           return;
         }
@@ -159,7 +159,7 @@ qx.Class.define("cv.io.transport.LongPolling", {
         this.retryCounter++;
         data = this.client.buildRequest();
         data.i = this.lastIndex;
-        var url = this.xhr.getUrl().split("?").shift()+"?"+this.client.getQueryString(data);
+        var url = this.xhr.getUrl().split('?').shift()+'?'+this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.send();
         this.watchdog.ping();
@@ -194,10 +194,10 @@ qx.Class.define("cv.io.transport.LongPolling", {
         }
         var data = this.client.buildRequest(diffAddresses);
         data.t = 0;
-        var url = this.xhr.getUrl().split("?").shift()+"?"+this.client.getQueryString(data);
+        var url = this.xhr.getUrl().split('?').shift()+'?'+this.client.getQueryString(data);
         this.xhr.setUrl(url);
-        this.xhr.removeListener("success", this.handleReadStart, this);
-        this.xhr.addListener("success", this.handleRead, this);
+        this.xhr.removeListener('success', this.handleReadStart, this);
+        this.xhr.addListener('success', this.handleRead, this);
         this.xhr.send();
         this.watchdog.ping();
       }
@@ -209,12 +209,12 @@ qx.Class.define("cv.io.transport.LongPolling", {
      *
      * @param ev {Event}
      */
-    handleError: qx.core.Environment.select("cv.xhr", {
-      "qx": function (ev) {
+    handleError: qx.core.Environment.select('cv.xhr', {
+      'qx': function (ev) {
         var req = ev.getTarget();
         // check for temporary server errors and retry a few times
         if ([408, 444, 499, 502, 503, 504].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
-          this.info("Temporary connection problem (status: " + req.getStatus() + ") - retry count: " + this.retryServerErrorCounter);
+          this.info('Temporary connection problem (status: ' + req.getStatus() + ') - retry count: ' + this.retryServerErrorCounter);
           this.retryServerErrorCounter++;
           req.serverErrorHandled = true;
           this.restart();
@@ -222,32 +222,32 @@ qx.Class.define("cv.io.transport.LongPolling", {
         }
         // ignore error when connection is irrelevant
         if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
-          this.error("Error! Type: \"" + req.getResponse() + "\" readyState: " + req.getStatusText());
+          this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
           this.client.setConnected(false);
         }
       },
-      "jquery": function(xhr, str, excptObj) {
+      'jquery': function(xhr, str, excptObj) {
         // ignore error when connection is irrelevant
         if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
-          var readyState = "UNKNOWN";
+          var readyState = 'UNKNOWN';
           switch (xhr.readyState) {
             case 0:
-              readyState = "UNINITIALIZED";
+              readyState = 'UNINITIALIZED';
               break;
             case 1:
-              readyState = "LOADING";
+              readyState = 'LOADING';
               break;
             case 2:
-              readyState = "LOADED";
+              readyState = 'LOADED';
               break;
             case 3:
-              readyState = "INTERACTIVE";
+              readyState = 'INTERACTIVE';
               break;
             case 4:
-              readyState = "COMPLETED";
+              readyState = 'COMPLETED';
               break;
           }
-          this.error("Error! Type: \"" + str + "\" ExceptionObject: \""+ excptObj + "\" readyState: " + readyState);
+          this.error('Error! Type: "' + str + '" ExceptionObject: "'+ excptObj + '" readyState: ' + readyState);
           this.client.setConnected(false);
         }
       }
