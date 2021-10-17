@@ -4,17 +4,16 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-const BasePage = require("../pages/BasePage.js");
+const BasePage = require('../pages/BasePage.js');
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const rootDir = path.join(__dirname, '..', '..', '..', '..');
 
 class CometVisuMockup extends BasePage {
-
   constructor(target) {
     super();
-    this.target = target || "source";
+    this.target = target || 'source';
     this.url = 'http://localhost:8000/' + this.target + '/index.html?config=mockup&testMode=true&enableCache=false';
     this.mockupReady = false;
 
@@ -63,7 +62,7 @@ class CometVisuMockup extends BasePage {
         }
       });
     } else {
-      console.error("fixture file", sourceFile, 'not found');
+      console.error('fixture file', sourceFile, 'not found');
     }
   }
 
@@ -74,7 +73,7 @@ class CometVisuMockup extends BasePage {
     }
     request({
       method: 'DELETE',
-      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath),
+      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
     });
   }
 }

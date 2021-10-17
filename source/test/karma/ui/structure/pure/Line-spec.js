@@ -24,13 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a line widget", function() {
-
-  it("should test the line creator", function() {
-
-    const [widget, element] = this.createTestWidgetString("line");
+describe('testing a line widget', function() {
+  it('should test the line creator', function() {
+    const [widget, element] = this.createTestWidgetString('line');
 
     expect(element.nodeName.toLowerCase()).toBe('hr');
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 });

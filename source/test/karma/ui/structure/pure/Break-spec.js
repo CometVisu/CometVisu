@@ -24,11 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a break", function() {
+describe('testing a break', function() {
+  it('should test the break creator', function() {
+    const [widget, element] = this.createTestWidgetString('break');
 
-  it("should test the break creator", function() {
-    const [widget, element] = this.createTestWidgetString("break");
     expect(element.tagName.toLowerCase()).toBe('br');
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 });

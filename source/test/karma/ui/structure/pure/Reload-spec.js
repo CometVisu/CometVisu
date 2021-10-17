@@ -22,19 +22,21 @@
  * Unit tests for reload widget
  *
  */
-describe("testing a reload widget", function() {
+describe('testing a reload widget', function() {
+  it('should test the reload creator', function() {
+    const [widget, element] = this.createTestWidgetString('reload');
 
-  it("should test the reload creator", function() {
-    const [widget, element] = this.createTestWidgetString("reload");
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the reload action", function() {
-    var widgetInstance = this.createTestElement("reload", null, null, '1/0/0');
-    spyOn(cv.util.Location, "reload");
+  it('should test the reload action', function() {
+    var widgetInstance = this.createTestElement('reload', null, null, '1/0/0');
+    spyOn(cv.util.Location, 'reload');
     widgetInstance._update('1/0/0', 0);
+
     expect(cv.util.Location.reload).not.toHaveBeenCalled();
     widgetInstance._update('1/0/0', 1);
+
     expect(cv.util.Location.reload).toHaveBeenCalledWith(true);
   });
 });

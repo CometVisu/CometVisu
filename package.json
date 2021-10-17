@@ -42,6 +42,7 @@
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
     "eslint-plugin-jasmine": "^4.1.2",
+    "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.2.7",
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
@@ -71,6 +72,7 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-firefox-launcher": "^2.1.1",
+    "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^4.0.1",
     "karma-qooxdoo": "^0.7.2",
     "karma-remap-coverage": "^0.1.5",
@@ -93,27 +95,78 @@
   "eslintConfig": {
     "extends": [
       "@qooxdoo/qx/browser",
-      "plugin:jasmine/recommended"
+      "plugin:jasmine/recommended",
+      "plugin:protractor/recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 2017
     },
     "rules": {
       "no-warning-comments": "off",
-      "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
-      "quotes": ["error", "single"]
+      "operator-linebreak": [
+        "error",
+        "after",
+        {
+          "overrides": {
+            "?": "before",
+            ":": "before"
+          }
+        }
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ]
     },
     "plugins": [
-      "jasmine"
+      "jasmine",
+      "protractor"
     ],
-    "env": {
-      "jasmine": true
-    },
     "overrides": [
       {
-        "files": ["source/test/**/*.js"],
+        "files": [
+          "source/test/karma/*.js",
+          "source/test/karma/karma.conf.js",
+          "source/test/karma/**/*.js"
+        ],
+        "env": {
+          "jasmine": true
+        },
         "rules": {
-          "no-console": "off"
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off",
+          "protractor/no-shadowing": "off",
+          "jasmine/prefer-toHaveBeenCalledWith": "off"
+        }
+      },
+      {
+        "files": [
+          "source/test/karma/karma.conf.js"
+        ],
+        "env": {
+          "node": true
+        }
+      },
+      {
+        "files": [
+          "source/test/protractor/**/*.js",
+          "source/test/protractor/*.js"
+        ],
+        "env": {
+          "jasmine": true,
+          "node": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off",
+          "protractor/no-describe-selectors": "off",
+          "protractor/no-repetitive-locators": "off",
+          "protractor/no-repetitive-selectors": "off",
+          "protractor/no-browser-sleep": "off",
+          "protractor/no-by-xpath": "off",
+          "jasmine/no-disabled-tests": "off"
         }
       }
     ],

@@ -24,12 +24,11 @@
  * @author Christian Mayer
  * @since 2018
  */
-describe("testing a TR-064 plugin", function() {
-
+describe('testing a TR-064 plugin', function() {
   beforeAll(function(done) {
     cv.util.ScriptLoader.getInstance().setAllQueued(false);
     qx.io.PartLoader.require(['plugin-tr064'], function () {
-      cv.util.ScriptLoader.getInstance().addListenerOnce("finished", function () {
+      cv.util.ScriptLoader.getInstance().addListenerOnce('finished', function () {
         done();
       }, this);
       qx.event.Timer.once(function() {
@@ -45,35 +44,35 @@ describe("testing a TR-064 plugin", function() {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
   });
 
-  it("should test the TR-064:calllist creator", function() {
-    const [widget, element] = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
+  it('should test the TR-064:calllist creator', function() {
+    const [widget, element] = this.createTestWidgetString('calllist', {id: 'test', device: 'testdevice'}, '<label>Test</label>');
 
     expect(element).toHaveClass('calllist');
     expect(element).toHaveLabel('Test');
 
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the TR-064:calllist column selector and table filling", function(done) {
-    var widgetInstance = this.createTestElement("calllist", {id: 'test', device: 'testdevice', columns:"type;tam;name;caller;date;nameOrCaller"}, '<label>Test</label>');
+  it('should test the TR-064:calllist column selector and table filling', function(done) {
+    var widgetInstance = this.createTestElement('calllist', {id: 'test', device: 'testdevice', columns:'type;tam;name;caller;date;nameOrCaller'}, '<label>Test</label>');
     spyOn(widgetInstance, '_displayCalllist').and.callThrough();
 
     var widget = widgetInstance.getDomElement();
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName('setup.dom.finished');
 
     widgetInstance.addListener('tr064ListRefreshed', function () {
       expect(widgetInstance._displayCalllist).toHaveBeenCalled();
       expect(widget.querySelector('tr').childElementCount).toBe(6); // expect 6 columns
-      expect(widget.querySelectorAll('tr').length).toBe(3);         // expect 2 rows
+      expect(widget.querySelectorAll('tr').length).toBe(3); // expect 2 rows
       done();
     });
   });
 
-  it("should test the TR-064:calllist refresh", function(done) {
-    var widgetInstance = this.createTestElement("calllist", {id: 'test', device: 'testdevice', refresh:1, columns:"type;tam;date;nameOrCaller"}, '<label>Test</label>');
+  it('should test the TR-064:calllist refresh', function(done) {
+    var widgetInstance = this.createTestElement('calllist', {id: 'test', device: 'testdevice', refresh:1, columns:'type;tam;date;nameOrCaller'}, '<label>Test</label>');
     spyOn(widgetInstance, 'refreshCalllist').and.callThrough();
 
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName('setup.dom.finished');
     var widget = widgetInstance.getDomElement();
 
     widgetInstance.addListener('tr064ListRefreshed', function () {

@@ -25,23 +25,23 @@
  * @param content {String} content od the widget
  * @return [{WidgetInstance}, {Element}]
  */
-var createTestWidgetString = function (name, attributes, content) {
+const createTestWidgetString = function (name, attributes, content) {
   if (!content) {
-    content = "";
+    content = '';
   }
   var elem = qx.dom.Element.create(name, attributes);
   elem.innerHTML = content;
 
   var data = null;
-  if (name !== "page") {
+  if (name !== 'page') {
     // create surrounding root page
-    var page = qx.dom.Element.create("page", {visible: "false"});
+    var page = qx.dom.Element.create('page', {visible: 'false'});
     page.appendChild(elem);
-    data = cv.parser.WidgetParser.parse(page, "id", null, "text");
+    data = cv.parser.WidgetParser.parse(page, 'id', null, 'text');
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
   } else {
-    data = cv.parser.WidgetParser.parse(elem, "id_0", null, "text");
+    data = cv.parser.WidgetParser.parse(elem, 'id_0', null, 'text');
   }
   var res = [];
   let inst;
@@ -57,7 +57,7 @@ var createTestWidgetString = function (name, attributes, content) {
       }
     }
     if (res.length !== 2) {
-      res = [widgetInstance[0], ""];
+      res = [widgetInstance[0], ''];
     }
   } else if (data) {
     inst = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
@@ -78,13 +78,13 @@ var createTestWidgetString = function (name, attributes, content) {
   return res;
 };
 
-var createTestElement = function (name, attributes, content, address, addressAttributes) {
+const createTestElement = function (name, attributes, content, address, addressAttributes) {
   cv.TemplateEngine.getInstance().setDomFinished(false);
   if (!address && address !== false) {
     address = '12/7/37';
   }
   if (!content) {
-    content = "";
+    content = '';
   }
   if (address) {
     if (!addressAttributes) {
@@ -96,21 +96,21 @@ var createTestElement = function (name, attributes, content, address, addressAtt
       address = [address];
     }
     if (!Array.isArray(addressAttributes)) {
-      addressAttributes = [addressAttributes]
+      addressAttributes = [addressAttributes];
     }
 
     address.forEach(function (addr, index) {
-      content += "<address";
+      content += '<address';
       for (var key in addressAttributes[index]) {
-        content += " " + key + "=\"" + addressAttributes[index][key] + "\"";
+        content += ' ' + key + '="' + addressAttributes[index][key] + '"';
       }
-      content += ">" + addr + "</address>";
+      content += '>' + addr + '</address>';
     });
   }
 
   var container = document.createElement('div');
-  container.setAttribute("class", "widget_container");
-  container.setAttribute("id", 'id_0');
+  container.setAttribute('class', 'widget_container');
+  container.setAttribute('id', 'id_0');
   const [widget, element] = createTestWidgetString(name, attributes, content);
   // revert manual override, we use real DOM here
   widget.setDomElement(null);
@@ -119,12 +119,12 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   }
   document.body.appendChild(container);
 
-  this.container = container
+  this.container = container;
   cv.TemplateEngine.getInstance().setDomFinished(true);
   return widget;
 };
 
-resetApplication = function() {
+const resetApplication = function() {
   var templateEngine = cv.TemplateEngine.getInstance();
   // cleanup
   cv.data.Model.getInstance().clear();
@@ -135,7 +135,7 @@ resetApplication = function() {
     delete subs[topic];
   });
 
-  var body = document.querySelector("body");
+  var body = document.querySelector('body');
   // load empty HTML structure
   body.innerHTML = cv.Application.HTML_STRUCT;
 
@@ -151,22 +151,23 @@ resetApplication = function() {
 
 // DOM Helpers
 
-var findChild = function(elem, selector) {
-  return Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches(selector);})[0];
+const findChild = function(elem, selector) {
+  return Array.from(elem.getElementsByTagName('*')).filter(function(m) {
+ return m.matches(selector); 
+})[0];
 };
 
-var customMatchers = {
+const customMatchers = {
   toHaveFlavour: function() {
-    return  {
+    return {
       compare: function(actual, expected) {
         var result = {};
 
         result.pass = actual.classList.contains('flavour_'+expected);
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to be flavoured with "+expected;
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to be flavoured with "+expected+", but is was not";
+          result.message = 'Expected ' + actual.tagName + ' not to be flavoured with '+expected;
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to be flavoured with '+expected+', but is was not';
         }
         return result;
       }
@@ -174,15 +175,14 @@ var customMatchers = {
   },
 
   toHaveClass: function() {
-    return  {
+    return {
       compare: function(actual, expected) {
         var result = {};
         result.pass = actual.classList.contains(expected);
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to have class "+expected;
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to have class "+expected+", but it does not";
+          result.message = 'Expected ' + actual.tagName + ' not to have class '+expected;
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to have class '+expected+', but it does not';
         }
         return result;
       }
@@ -190,16 +190,17 @@ var customMatchers = {
   },
 
   toHaveLabel: function() {
-    return  {
+    return {
       compare: function(actual, expected) {
         var result = {};
-        var label = Array.from(actual.children).filter(function(m){return m.matches("div.label");})[0];
+        var label = Array.from(actual.children).filter(function(m) {
+ return m.matches('div.label'); 
+})[0];
         result.pass = label && label.innerText === expected;
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to have value "+expected;
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+label.innerText;
+          result.message = 'Expected ' + actual.tagName + ' not to have value '+expected;
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to have value '+expected+', but it has '+label.innerText;
         }
         return result;
       }
@@ -207,16 +208,17 @@ var customMatchers = {
   },
 
   toHaveValue: function() {
-    return  {
+    return {
       compare: function(actual, expected) {
         var result = {};
-        var label = Array.from(actual.getElementsByTagName("*")).filter(function(m){return m.matches(".value");})[0];
+        var label = Array.from(actual.getElementsByTagName('*')).filter(function(m) {
+ return m.matches('.value'); 
+})[0];
         result.pass = label && label.innerText === expected;
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to have label "+expected;
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+label.innerText;
+          result.message = 'Expected ' + actual.tagName + ' not to have label '+expected;
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to have label '+expected+', but it has '+label.innerText;
         }
         return result;
       }
@@ -229,17 +231,17 @@ var customMatchers = {
    * computed css value as the jQuery.css function does.
    */
   toHaveStyleSetting: function() {
-    return  {
+    return {
       compare: function(actual, cssKey, cssValue) {
         var result = {};
         if (!actual.hasAttribute('style')) {
           result.pass = false;
-          result.message = "Expected " + actual.tagName + " has no style aattribute";
+          result.message = 'Expected ' + actual.tagName + ' has no style aattribute';
           return result;
         }
-        var styles = actual.getAttribute('style').split(";");
+        var styles = actual.getAttribute('style').split(';');
         for (var key in styles) {
-          var styleParts = styles[key].split(":");
+          var styleParts = styles[key].split(':');
           if (styleParts[0].trim() == cssKey) {
             result.pass = styleParts[1].trim() == cssValue;
             break;
@@ -247,10 +249,9 @@ var customMatchers = {
         }
 
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set";
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set, but it has not";
+          result.message = 'Expected ' + actual.tagName + ' to have style \''+cssKey+':'+cssValue+' set';
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to have style \''+cssKey+':'+cssValue+' set, but it has not';
         }
         return result;
       }
@@ -258,15 +259,14 @@ var customMatchers = {
   },
 
   toHaveAttribute: function() {
-    return  {
+    return {
       compare: function(actual, expected) {
         var result = {};
         result.pass = actual.hasAttribute(expected);
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to have attribute "+expected;
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to have attribute "+expected+", but it does not";
+          result.message = 'Expected ' + actual.tagName + ' not to have attribute '+expected;
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to have attribute '+expected+', but it does not';
         }
         return result;
       }
@@ -274,15 +274,14 @@ var customMatchers = {
   },
 
   toBeVisible: function() {
-    return  {
+    return {
       compare: function(actual) {
         var result = {};
         result.pass = window.getComputedStyle(actual)['display'] !== 'none';
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+window.getComputedStyle(actual)['display'];
-        }
-        else{
-          result.message = "Expected " + actual.tagName + " to be visible";
+          result.message = 'Expected ' + actual.tagName + ' not to be visible, but it is '+window.getComputedStyle(actual)['display'];
+        } else {
+          result.message = 'Expected ' + actual.tagName + ' to be visible';
         }
         return result;
       }
@@ -297,21 +296,21 @@ beforeAll(function (done) {
     try {
       cv.Config.enableCache = false;
       // always test in 'en' locale
-      qx.locale.Manager.getInstance().setLocale("en");
+      qx.locale.Manager.getInstance().setLocale('en');
       var templateEngine = cv.TemplateEngine.getInstance();
       var startUp = function () {
         resetApplication();
         setTimeout(done, 100);
-      }
+      };
       if (templateEngine.isDomFinished()) {
-        startUp()
+        startUp();
       } else {
         qx.event.message.Bus.subscribe('setup.dom.finished', startUp, this);
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }, 2000)
+  }, 2000);
 });
 
 beforeEach(function () {
@@ -328,8 +327,8 @@ beforeEach(function () {
       }
     }
     widget.setVisible && widget.setVisible(true);
-    qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+    qx.event.message.Bus.dispatchByName('setup.dom.finished');
   };
   var model = cv.data.Model.getInstance();
   templateEngine.visu.update = model.update.bind(model); // override clients update function
@@ -351,7 +350,7 @@ afterEach(function () {
     try {
       document.body.removeChild(this.container);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
     this.container = null;
   }
@@ -359,7 +358,7 @@ afterEach(function () {
     this.creator = null;
   }
 
-  var body = document.querySelector("body");
+  var body = document.querySelector('body');
   // load empty HTML structure
   body.innerHTML = cv.Application.HTML_STRUCT;
   cv.TemplateEngine.getInstance().resetDomFinished();

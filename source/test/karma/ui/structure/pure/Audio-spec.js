@@ -24,28 +24,25 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a audio widget", function() {
-
-  it("should test the audio creator", function() {
-
-    const [widget, element] = this.createTestWidgetString("audio", {id: 'test'}, '<label>Test</label>');
+describe('testing a audio widget', function() {
+  it('should test the audio creator', function() {
+    const [widget, element] = this.createTestWidgetString('audio', {id: 'test'}, '<label>Test</label>');
 
     expect(element).toHaveClass('audio');
     expect(element).toHaveLabel('Test');
 
-    const audio = element.querySelector("audio");
+    const audio = element.querySelector('audio');
 
-    expect(audio).not.toHaveAttribute("autoplay");
-    expect(audio).not.toHaveAttribute("loop");
-    expect(audio).not.toHaveAttribute("style");
-    expect(audio).toHaveAttribute("controls");
+    expect(audio).not.toHaveAttribute('autoplay');
+    expect(audio).not.toHaveAttribute('loop');
+    expect(audio).not.toHaveAttribute('style');
+    expect(audio).toHaveAttribute('controls');
 
-    expect(widget.getPath()).toBe("id_0");
-
+    expect(widget.getPath()).toBe('id_0');
   });
 
-  it("should test the audio creator with more attributes", function() {
-    const [widget, element] = this.createTestWidgetString("audio", {
+  it('should test the audio creator with more attributes', function() {
+    const [widget, element] = this.createTestWidgetString('audio', {
       id: 'test',
       width: '50%',
       height: '50%',
@@ -56,29 +53,31 @@ describe("testing a audio widget", function() {
     expect(element).toHaveClass('audio');
     expect(element).toHaveLabel('Test');
 
-    const audio = element.querySelector("audio");
-    expect(audio).toHaveAttribute("autoplay");
-    expect(audio).toHaveAttribute("loop");
-    expect(audio).toHaveAttribute("controls");
+    const audio = element.querySelector('audio');
+
+    expect(audio).toHaveAttribute('autoplay');
+    expect(audio).toHaveAttribute('loop');
+    expect(audio).toHaveAttribute('controls');
     expect(audio.getAttribute('style')).toBe('width:50%;height:50%;');
     expect(audio.getAttribute('id')).toBe('test');
-
   });
 
-  it("should update a audio item", function() {
-    var widgetInstance = this.createTestElement("audio", {id: 'test'});
+  it('should update a audio item', function() {
+    var widgetInstance = this.createTestElement('audio', {id: 'test'});
 
     var actor = widgetInstance.getActor();
-    spyOn(actor, "play");
+    spyOn(actor, 'play');
 
-    spyOn(widgetInstance, "getActor").and.callFake(function() {
+    spyOn(widgetInstance, 'getActor').and.callFake(function() {
       return actor;
     });
 
     widgetInstance.update('12/7/37', 0);
+
     expect(actor.play).not.toHaveBeenCalled();
 
     widgetInstance.update('12/7/37', 1);
+
     expect(actor.play).toHaveBeenCalled();
   });
 });

@@ -22,17 +22,17 @@
  * Unit tests for video widget
  *
  */
-describe("testing a video widget", function() {
+describe('testing a video widget', function() {
+  it('should test the video creator', function() {
+    const [widget, element] = this.createTestWidgetString('video', {src: '', width: '100%', height: '90%'}, '<label>Test</label>');
 
-  it("should test the video creator", function() {
-
-    const [widget, element] = this.createTestWidgetString("video", {src: '', width: "100%", height: "90%"}, '<label>Test</label>');
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
     expect(element).toHaveClass('video');
     expect(element).toHaveLabel('Test');
 
-    const videoWidget = element.querySelector("video");
-    expect(videoWidget).toHaveStyleSetting("width", "100%");
-    expect(videoWidget).toHaveStyleSetting("height", "90%");
+    const videoWidget = element.querySelector('video');
+
+    expect(videoWidget).toHaveStyleSetting('width', '100%');
+    expect(videoWidget).toHaveStyleSetting('height', '90%');
   });
 });

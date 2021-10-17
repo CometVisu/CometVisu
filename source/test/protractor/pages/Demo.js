@@ -4,7 +4,7 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-const BasePage = require("../pages/BasePage.js");
+const BasePage = require('../pages/BasePage.js');
 
 class CometVisuDemo extends BasePage {
   constructor() {

@@ -22,11 +22,9 @@
  * Unit tests for group widget
  *
  */
-describe("testing a group widget", function() {
-
-  it("should test the group creator", function() {
-
-    const [widget, element] = this.createTestWidgetString("group");
+describe('testing a group widget', function() {
+  it('should test the group creator', function() {
+    const [widget, element] = this.createTestWidgetString('group');
 
     expect(element).toHaveClass('group');
     expect(element).toHaveClass('widget');
@@ -35,14 +33,14 @@ describe("testing a group widget", function() {
     expect(widget.getColspanS()).toBe(12);
   });
 
-  it("should test the group creator with more attributes", function() {
-    const [widget, element] = this.createTestWidgetString("group", {
+  it('should test the group creator with more attributes', function() {
+    const [widget, element] = this.createTestWidgetString('group', {
       nowidget: true,
-      class: "test",
-      flavour: "potassium",
-      align: "right",
-      name: "Test",
-      target: "target"
+      class: 'test',
+      flavour: 'potassium',
+      align: 'right',
+      name: 'Test',
+      target: 'target'
     }, '<text/>');
 
     expect(element).toHaveClass('group');
@@ -51,21 +49,23 @@ describe("testing a group widget", function() {
     expect(element).toHaveClass('clickable');
     expect(element).not.toHaveClass('widget');
 
-    expect(element.querySelector("h2").innerText).toBe("Test")
+    expect(element.querySelector('h2').innerText).toBe('Test');
   });
 
   it('should trigger the group action', function() {
     var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
-    var res = this.createTestElement("group", { target: "target" }, "", false);
+    var res = this.createTestElement('group', { target: 'target' }, '', false);
 
     this.initWidget(res);
     var Reg = qx.event.Registration;
 
     var actor = res.getInteractionElement();
+
     expect(actor).not.toBe(null);
 
-    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith("target");
+    Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
+
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('target');
   });
 });

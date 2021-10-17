@@ -22,15 +22,13 @@
  * Unit tests for infoaction widget
  *
  */
-describe("testing a infoaction widget", function() {
+describe('testing a infoaction widget', function() {
+  it('should test the infoaction creator', function() {
+    const [widget, element] = this.createTestWidgetString('infoaction', {}, '<label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction>');
 
-  it("should test the infoaction creator", function() {
-
-    const [widget, element] = this.createTestWidgetString("infoaction", {}, '<label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction>');
-    expect(widget.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
 
     expect(element).toHaveClass('infoaction');
     expect(element).toHaveLabel('Test');
-
   });
 });
