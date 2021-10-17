@@ -442,9 +442,9 @@ qx.Class.define("cv.plugins.RssLog", {
         itemHtml = itemHtml.replace(/\{text\}/, item.content);
         const entryDate = new Date(item.publishedDate);
         if (entryDate) {
-          itemHtml = (this.getTimeformat()) ?
-            (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + "&nbsp;")) :
-            (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + " " + entryDate.toLocaleTimeString() + "&nbsp;"));
+          itemHtml = (this.getTimeformat())
+            ? (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + "&nbsp;"))
+            : (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + " " + entryDate.toLocaleTimeString() + "&nbsp;"));
           const thisday = entryDate.strftime("%d");
           this.__separatoradd = ((this.__separatordate > 0) && (this.__separatordate !== thisday));
           this.__separatordate = thisday;

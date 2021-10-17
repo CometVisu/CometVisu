@@ -117,11 +117,11 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
        * @param cw
        */
       function arc(start, end, r, flag, cw) {
-        return (start.x===end.x) && (start.y===end.y) ?
-          "" :
-          (Math.abs(start.x-end.x)+Math.abs(start.y-end.y) < 2) ?
-            "L" + cv.ui.structure.pure.Roundbar.coord(end) :
-            ["A", r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(" ");
+        return (start.x===end.x) && (start.y===end.y)
+          ? ""
+          : (Math.abs(start.x-end.x)+Math.abs(start.y-end.y) < 2)
+            ? "L" + cv.ui.structure.pure.Roundbar.coord(end)
+            : ["A", r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(" ");
       }
 
       if (getBBox) {
@@ -151,15 +151,15 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       }
 
       return ["M", cv.ui.structure.pure.Roundbar.coord(startInner),
-        startArrowPointAngle === startAngle ?
-          "L" + cv.ui.structure.pure.Roundbar.coord(startOuter) :
-          arc(startInner, startMiddle, rIM, startMiddleFlag, 1-startMiddleDir) +
+        startArrowPointAngle === startAngle
+          ? "L" + cv.ui.structure.pure.Roundbar.coord(startOuter)
+          : arc(startInner, startMiddle, rIM, startMiddleFlag, 1-startMiddleDir) +
             arc(startMiddle, startOuter, rMO, startMiddleFlag, startMiddleDir),
         arc(startOuter, centerOuter, rO, startEndFlag, clockwise),
         arc(centerOuter, endOuter, rO, startEndFlag, clockwise),
-        endArrowPointAngle === endAngle ?
-          "L" + cv.ui.structure.pure.Roundbar.coord(endInner) :
-          arc(endOuter, endMiddle, rMO, endMiddleFlag, 1-endMiddleDir) +
+        endArrowPointAngle === endAngle
+          ? "L" + cv.ui.structure.pure.Roundbar.coord(endInner)
+          : arc(endOuter, endMiddle, rMO, endMiddleFlag, 1-endMiddleDir) +
             arc(endMiddle, endInner, rIM, endMiddleFlag, endMiddleDir),
         arc(startInner, centerInner, rI, startEndFlag, 1-clockwise),
         arc(centerInner, startInner, rI, startEndFlag, 1-clockwise),
@@ -588,9 +588,9 @@ qx.Class.define("cv.ui.structure.pure.Roundbar", {
       const overflowarrow = this.getOverflowarrow();
 
       if (!overflowarrow) {
-        targetAngle = (endAngle > startAngle) ?
-          Math.max(startAngle, targetAngle - indicator.endarrow) :
-          Math.min(startAngle, targetAngle - indicator.endarrow);
+        targetAngle = (endAngle > startAngle)
+          ? Math.max(startAngle, targetAngle - indicator.endarrow)
+          : Math.min(startAngle, targetAngle - indicator.endarrow);
       }
       if (indicator.isBar) {
         this.__indicatorDOMElement[indicatorNumber].setAttribute("d",

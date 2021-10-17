@@ -272,9 +272,9 @@ qx.Class.define("cv.plugins.diagram.AbstractDiagram", {
         url = chartsResource;
         key = url;
       } else {
-        url = ((ts.tsType === "influx") ?
-            "resource/plugins/diagram/influxfetch.php?ts=" + ts.src :
-            client.getResourcePath("rrd") + "?rrd=" + encodeURIComponent(ts.src) + ".rrd") +
+        url = ((ts.tsType === "influx")
+            ? "resource/plugins/diagram/influxfetch.php?ts=" + ts.src
+            : client.getResourcePath("rrd") + "?rrd=" + encodeURIComponent(ts.src) + ".rrd") +
             "&ds=" + encodeURIComponent(ts.cFunc) +
             // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
             //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")

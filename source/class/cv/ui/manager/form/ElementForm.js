@@ -80,9 +80,9 @@ qx.Class.define("cv.ui.manager.form.ElementForm", {
           this.__mappedKeys.map[mappedKey] = key;
           this.__mappedKeys.inverse[key] = mappedKey;
         }
-        modelData[mappedKey] = formData[key].value !== undefined ?
-          formData[key].value :
-          null;
+        modelData[mappedKey] = formData[key].value !== undefined
+          ? formData[key].value
+          : null;
       }
       let model = qx.data.marshal.Json.createModel(modelData);
       this.setModel(model);

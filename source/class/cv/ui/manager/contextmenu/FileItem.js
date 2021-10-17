@@ -84,9 +84,9 @@ qx.Class.define("cv.ui.manager.contextmenu.FileItem", {
           });
         }
         this.getChildControl("clone-file-button").setVisibility(file.isConfigFile() && !isBackup ? "visible" : "excluded");
-        this.getChildControl("delete-button").setLabel(file.isTrash() ?
-          this.tr("Clear") :
-          this.tr("Delete"));
+        this.getChildControl("delete-button").setLabel(file.isTrash()
+          ? this.tr("Clear")
+          : this.tr("Delete"));
 
         // create compare menu
         if (!this._noCompare) {

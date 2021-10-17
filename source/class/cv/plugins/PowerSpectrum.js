@@ -388,12 +388,12 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
      * Little helper to setup the Flot dataset structure.
      */
     createDatasetCurve: function() {
-      return this.isSinglePhase() ?
-        [
+      return this.isSinglePhase()
+        ? [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 }, // trick flot to automatically make color darker
           { label: "L", data: this.getCurve()[0], color:1 }
-        ] :
-        [
+        ]
+        : [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 },
           { label: null, data: this.self(arguments).referenceSin[1], color:14 },
           { label: null, data: this.self(arguments).referenceSin[2], color:15 },
@@ -407,12 +407,12 @@ qx.Class.define("cv.plugins.PowerSpectrum", {
      * Little helper to setup the Flot dataset structure.
      */
     createDatasetSpectrum: function() {
-      return this.isSinglePhase() ?
-        [
+      return this.isSinglePhase()
+        ? [
           { label: this.getLimitName(), data: this.getDisplayType()===this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
           { label: this.getName1(), data:this.getSpectrum()[0], color:1}
-        ] :
-        [
+        ]
+        : [
           { 
             label: this.getLimitName(), 
             data: this.getDisplayType() === this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },

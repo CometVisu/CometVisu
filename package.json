@@ -99,7 +99,8 @@
       "ecmaVersion": 2017
     },
     "rules": {
-      "no-warning-comments": "off"
+      "no-warning-comments": "off",
+      "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }]
     },
     "plugins": [
       "jasmine"

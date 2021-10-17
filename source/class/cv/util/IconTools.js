@@ -104,8 +104,8 @@ qx.Class.define("cv.util.IconTools", {
        * @param data
        * @param length
        */
-    innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf("android") > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf("android") + 8)) < 4.4 ?
-      function (r, g, b, data, length) { // for Android version < 4.4
+    innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf("android") > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf("android") + 8)) < 4.4
+      ? function (r, g, b, data, length) { // for Android version < 4.4
         for (let i = 0; i < length; i += 4) {
           const a = data[i + 3];
           if (a > 127) {
@@ -120,8 +120,8 @@ qx.Class.define("cv.util.IconTools", {
             data[i + 3] = 0;
           }
         }
-      } :
-      function (r, g, b, data, length) { // the normal version
+      }
+      : function (r, g, b, data, length) { // the normal version
         for (let i = 0; i < length; i += 4) {
           if (data[i + 3] !== 0) {
             data[i] = r;
