@@ -15,8 +15,6 @@ class CometVisuDemo extends BasePage {
     this.pageLoaded = this.and(
       this.isVisible($('#id_40_5_2'))
     );
-
-    this.pageChangeTimeout = 600;
   }
 }
 module.exports = new CometVisuDemo();

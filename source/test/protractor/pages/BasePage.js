@@ -119,6 +119,13 @@ class BasePage {
     });
   }
 
+  async disablePageAnimations() { // eslint-disable-line class-methods-use-this
+    await browser.driver.executeAsyncScript(function (callback) {
+      cv.Config.configSettings.scrollSpeed = 0;
+      callback();
+    });
+  }
+
   /**
    * Navigate to a page by name
    * @param name {String}

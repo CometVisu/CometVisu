@@ -21,8 +21,9 @@ describe('cometvisu demo config test:', function () {
   });
 
   it('should navigate to a page', async function() {
+    await cvDemo.disablePageAnimations();
     await cvDemo.goToPage('Format Test');
-    browser.driver.sleep(500);
+    browser.driver.sleep(10);
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 
