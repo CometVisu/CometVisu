@@ -64,9 +64,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     configure: function (file) {
       this._selectedNode = file;
       if (file) {
-        var isFolder = file.getType() === 'dir';
-        var folder = isFolder ? file : file.getParent();
-        var isBackup = false;
+        const isFolder = file.getType() === 'dir';
+        const folder = isFolder ? file : file.getParent();
+        let isBackup = false;
         if (folder && folder.getFullPath().startsWith('backup') || file.getFullPath().startsWith('backup')) {
           isBackup = true;
         }
@@ -84,34 +84,34 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           });
         }
         this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
-        this.getChildControl('delete-button').setLabel(file.isTrash() ?
-          this.tr('Clear') :
-          this.tr('Delete'));
+        this.getChildControl('delete-button').setLabel(file.isTrash()
+          ? this.tr('Clear')
+          : this.tr('Delete'));
 
         // create compare menu
         if (!this._noCompare) {
-          var compareMenu = this.getChildControl('compare-menu');
+          const compareMenu = this.getChildControl('compare-menu');
           compareMenu.removeAll();
           if (!isBackup) {
             this.getChildControl('compare-with-button').show();
-            var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
+            const backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
             this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
             backups.sort(function (a, b) {
               return b.date.getTime() - a.date.getTime();
             });
-            var group = null;
+            let group = null;
             backups.forEach(function (backupEntry) {
-              var date = this._dateFormat.format(backupEntry.date);
+              const date = this._dateFormat.format(backupEntry.date);
               if (group !== date) {
                 if (group !== null) {
                   compareMenu.add(new qx.ui.menu.Separator());
                 }
-                var groupButton = new qx.ui.menu.Button(date);
+                const groupButton = new qx.ui.menu.Button(date);
                 groupButton.setEnabled(false);
                 compareMenu.add(groupButton);
                 group = date;
               }
-              var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
+              const button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
               button.setUserData('file', backupEntry.file);
               button.addListener('execute', this._onCompareWith, this);
               compareMenu.add(button);
@@ -121,14 +121,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           }
         }
 
-        var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+        const defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
         // open with menu
-        var openWithMenu = this.getChildControl('open-with-menu');
+        const openWithMenu = this.getChildControl('open-with-menu');
         openWithMenu.removeAll();
         if (!isBackup) {
           this.getChildControl('open-with-button').show();
-          var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
+          const availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
 
           // this menu only makes sense when there is more than one option to select from
           this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
@@ -136,7 +136,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
             return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
           });
           availableHandlers.forEach(function (handlerConf) {
-            var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
+            const button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
             button.setAppearance('open-with-button');
             if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
               button.addState('default');
@@ -197,8 +197,8 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       this.add(this.getChildControl('restore-button'));
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('download-button'));
-      var sep = new qx.ui.menu.Separator();
-      var button = this.getChildControl('replace-button');
+      let sep = new qx.ui.menu.Separator();
+      let button = this.getChildControl('replace-button');
       this.add(sep);
       this.add(button);
       button.bind('visibility', sep, 'visibility');
@@ -211,7 +211,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     _onCompareWith: function (ev) {
       if (this.isActive()) {
-        var compareWith = ev.getTarget().getUserData('file');
+        const compareWith = ev.getTarget().getUserData('file');
         qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
           new cv.ui.manager.model.CompareFiles(compareWith, this._selectedNode)
         );
@@ -220,7 +220,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     _onOpenWith: function (ev) {
       if (this.isActive()) {
-        var handlerId = ev.getTarget().getUserData('handlerId');
+        const handlerId = ev.getTarget().getUserData('handlerId');
         qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
           file: this._selectedNode,
           handler: handlerId
@@ -274,9 +274,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'new-file-button':
            control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
            control.addListener('execute', function () {

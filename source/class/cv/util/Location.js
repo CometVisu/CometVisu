@@ -22,7 +22,7 @@
  * The main purpose of proxying them is to allow them to be spyable in unit tests.
  */
 qx.Class.define('cv.util.Location', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************

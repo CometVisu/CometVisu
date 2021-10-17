@@ -118,10 +118,11 @@ qx.Class.define('cv.ui.manager.model.schema.Group', {
 
       // collect the regex for each and every grouping we might have;
       // 'each and every' means 'the only ONE'
-      this._subGroupings.forEach((grouping) => {
+      this._subGroupings.forEach(grouping => {
         regexString = '(';
-        if( nocapture )
-          regexString += '?:';
+        if (nocapture) {
+ regexString += '?:'; 
+}
         regexString += grouping.getRegex(separator, nocapture) + ')';
       });
 

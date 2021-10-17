@@ -55,7 +55,7 @@ qx.Class.define('cv.plugins.Rss', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
@@ -63,18 +63,18 @@ qx.Class.define('cv.plugins.Rss', {
     getAttributeToPropertyMappings: function() {
       return {
         'src': {},
-        'width': { "default": "" },
-        'height': { "default": "" },
-        'limit': { "default": 10 },
-        'header': { "default": true },
-        'date': { "default": true },
-        'content': { "default": true },
-        'snippet': { "default": true },
-        'showerror': { "default": true },
-        'ssl': { "default": false },
-        'linktarget': { "default": "_new" },
-        'link': { "default": true },
-        'title': { "default": true }
+        'width': { 'default': '' },
+        'height': { 'default': '' },
+        'limit': { 'default': 10 },
+        'header': { 'default': true },
+        'date': { 'default': true },
+        'content': { 'default': true },
+        'snippet': { 'default': true },
+        'showerror': { 'default': true },
+        'ssl': { 'default': false },
+        'linktarget': { 'default': '_new' },
+        'link': { 'default': true },
+        'title': { 'default': true }
       };
     }
   },
@@ -85,9 +85,9 @@ qx.Class.define('cv.plugins.Rss', {
   ******************************************************
   */
   properties: {
-    src: { check: "String", init: "" },
-    'width': { init: "" },
-    'height': { init: "" },
+    src: { check: 'String', init: '' },
+    'width': { init: '' },
+    'height': { init: '' },
     'limit': { init: 10 },
     'header': { init: true },
     'date': { init: true },
@@ -95,7 +95,7 @@ qx.Class.define('cv.plugins.Rss', {
     'snippet': { init: true },
     'showerror': { init: true },
     'ssl': { init: false },
-    'linktarget': { init: "_new" },
+    'linktarget': { init: '_new' },
     'link': { init: true },
     'title': { init: true }
   },
@@ -107,9 +107,9 @@ qx.Class.define('cv.plugins.Rss', {
   */
   members: {
     _getInnerDomString: function () {
-      var rssstyle = '' +
-        this.getWidth() ? 'width:' + this.getWidth() : '' +
-        this.getHeight() ? 'height:' + this.getHeight() : '';
+      const rssstyle = '' +
+      this.getWidth() ? 'width:' + this.getWidth() : '' +
+      this.getHeight() ? 'height:' + this.getHeight() : '';
       return '<div class="actor"><div class="rss_inline" id="rss_' + this.getPath() + '" style="' + rssstyle + '"></div>';
     },
 
@@ -120,22 +120,22 @@ qx.Class.define('cv.plugins.Rss', {
 
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener("interval", function () {
+      this._timer.addListener('interval', function () {
         this.refreshRSS();
       }, this);
       this._timer.start();
     },
 
     refreshRSS: function () {
-      var data = cv.data.Model.getInstance().getWidgetData(this.getPath());
+      const data = cv.data.Model.getInstance().getWidgetData(this.getPath());
       $('#' + this.getPath() + ' .rss_inline').rssfeed(this.getSrc(), data);
     }
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
-    cv.parser.WidgetParser.addHandler("rss", cv.plugins.Rss);
-    cv.ui.structure.WidgetFactory.registerClass("rss", statics);
+    cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
+    cv.ui.structure.WidgetFactory.registerClass('rss', statics);
   }
 });

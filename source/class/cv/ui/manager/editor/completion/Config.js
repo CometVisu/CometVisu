@@ -21,7 +21,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     this.__elementCache = {};
     this._schema = schema;
     this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
-
   },
 
   /*
@@ -36,21 +35,20 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
 
     getLastOpenedTag: function (text) {
       // get all tags inside of the content
-      var tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
+      const tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
       if (!tags) {
-        return undefined;
+        return null;
       }
       // we need to know which tags are closed
-      var closingTags = [];
-      for (var i = tags.length - 1; i >= 0; i--) {
+      const closingTags = [];
+      for (let i = tags.length - 1; i >= 0; i--) {
         if (tags[i].indexOf('</') === 0) {
           closingTags.push(tags[i].substring('</'.length));
-        }
-        else {
+        } else {
           // get the last position of the tag
-          var tagPosition = text.lastIndexOf(tags[i]);
-          var tag = tags[i].substring('<'.length);
-          var closingBracketIdx = text.indexOf('/>', tagPosition);
+          const tagPosition = text.lastIndexOf(tags[i]);
+          const tag = tags[i].substring('<'.length);
+          const closingBracketIdx = text.indexOf('/>', tagPosition);
           // if the tag wasn't closed
           if (closingBracketIdx === -1) {
             // if there are no closing tags or the current tag wasn't closed
@@ -59,15 +57,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               // a child element or an attribute
               text = text.substring(tagPosition);
 
-              var openedTag = text.indexOf('<') > text.indexOf('>');
-              var contentSearch = false;
-              var currentAttribute = null;
+              const openedTag = text.indexOf('<') > text.indexOf('>');
+              let contentSearch = false;
+              let currentAttribute = null;
               if (openedTag) {
-                var attrMatch = /([\w\-_\.\d]+)="[^"]*$/.exec(text);
+                const attrMatch = /([\w\-_\.\d]+)="[^"]*$/.exec(text);
                 contentSearch = !!attrMatch;
                 currentAttribute = attrMatch ? attrMatch[1] : null;
               }
-              var filteredElementSearch = /<[\w-_\d]+$/.test(text);
+              const filteredElementSearch = /<[\w-_\d]+$/.test(text);
               return {
                 tagName: tag,
                 currentAttribute: currentAttribute,
@@ -84,10 +82,11 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           text = text.substring(0, tagPosition);
         }
       }
+      return null;
     },
 
     findElements: function (parent, elementName, maxDepth, currentDepth, inMeta) {
-      var cache = inMeta === true ? this.__metaElementCache : this.__elementCache;
+      const cache = inMeta === true ? this.__metaElementCache : this.__elementCache;
       if (elementName in cache) {
         return cache[elementName];
       }
@@ -100,28 +99,27 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       if (currentDepth === undefined) {
         currentDepth = 1;
       }
-      var allowedElements = parent.getAllowedElements();
+      const allowedElements = parent.getAllowedElements();
       // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
       if (elementName in allowedElements) {
         // console.log("found "+elementName+" in tree level "+currentDepth);
         this.__elementCache[elementName] = allowedElements[elementName];
         return allowedElements[elementName];
-      } else {
-        for (var element in allowedElements) {
-          if (inMeta !== true && element === 'meta') {
-            continue;
-          }
-          if (maxDepth > currentDepth) {
-            var result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
-            if (result) {
-              cache[elementName] = result;
-              // console.log("found " + elementName + " in tree level " + currentDepth);
-              return result;
-            }
+      }
+      for (let element in allowedElements) {
+        if (inMeta !== true && element === 'meta') {
+          continue;
+        }
+        if (maxDepth > currentDepth) {
+          const result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
+          if (result) {
+            cache[elementName] = result;
+            // console.log("found " + elementName + " in tree level " + currentDepth);
+            return result;
           }
         }
       }
-
+      return null;
     },
 
     isItemAvailable: function (itemName, maxOccurs, items) {
@@ -132,8 +130,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         return true;
       }
       // count how many times the element appeared
-      var count = 0;
-      for (var i = 0; i < items.length; i++) {
+      let count = 0;
+      for (let i = 0; i < items.length; i++) {
         if (items[i] === itemName) {
           count++;
         }
@@ -144,47 +142,47 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getElementString: function (element, indent, prefix) {
-      var insertText = indent+prefix+element.getName()+" ";
+      let insertText = indent + prefix + element.getName() + ' ';
       // add all required attributes with default values
       const allowedAttributes = element.getAllowedAttributes();
       Object.getOwnPropertyNames(allowedAttributes).forEach(function(attr) {
-        var attribute = allowedAttributes[attr];
+        const attribute = allowedAttributes[attr];
         if (!attribute.isOptional) {
-          insertText += attr+'="'+(attribute.getDefaultValue() ? attribute.getDefaultValue() : "")+'" ';
+          insertText += attr+'="'+(attribute.getDefaultValue() ? attribute.getDefaultValue() : '')+'" ';
         }
       });
       // add mandatory children
-      var requiredElements = element.getRequiredElements();
-      var allowedContent = element.getAllowedContent();
-      var isContentAllowed = allowedContent._text || requiredElements.length > 0 || !!allowedContent._grouping;
+      const requiredElements = element.getRequiredElements();
+      const allowedContent = element.getAllowedContent();
+      const isContentAllowed = allowedContent._text || requiredElements.length > 0 || !!allowedContent._grouping;
       if (!isContentAllowed) {
         // close tag
-        insertText = insertText.trim()+"/";
+        insertText = insertText.trim()+'/';
       } else {
         // close open tag
-        insertText = insertText.trim()+">";
+        insertText = insertText.trim()+'>';
 
         // insert required elements
-        var children = 0;
+        let children = 0;
         requiredElements.forEach(function(elemName) {
-          var elem = this.findElements(element, elemName, 1, 0);
+          const elem = this.findElements(element, elemName, 1, 0);
           if (elem) {
-            insertText += "\n    " + this.getElementString(elem, indent + "    ", "<") + ">";
+            insertText += '\n    ' + this.getElementString(elem, indent + '    ', '<') + '>';
             children++;
           }
         }, this);
         // add closing tag
         if (children > 0) {
-          insertText += "\n"+indent;
+          insertText += '\n'+indent;
         }
-        insertText += "</"+element.getName();
+        insertText += '</'+element.getName();
       }
       return insertText;
     },
 
     getAvailableElements: function (element, usedItems) {
-      var availableItems = [];
-      var children = element.getAllowedElements();
+      const availableItems = [];
+      const children = element.getAllowedElements();
 
       // if there are no such elements, then there are no suggestions
       if (!children) {
@@ -192,16 +190,16 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       }
       Object.getOwnPropertyNames(children).filter(name => !name.startsWith('#')).forEach(function(name) {
         // get all element attributes
-        var childElem = children[name];
+        const childElem = children[name];
         // the element is a suggestion if it's available
         if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
           // mark it as a 'field', and get the documentation
           availableItems.push({
             label: childElem.getName(),
-            insertText: this.getElementString(childElem, "", ""),
+            insertText: this.getElementString(childElem, '', ''),
             kind: window.monaco.languages.CompletionItemKind.Field,
             detail: childElem.getType(),
-            documentation: childElem.getDocumentation().join("\n")
+            documentation: childElem.getDocumentation().join('\n')
           });
         }
       }, this);
@@ -210,11 +208,11 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     getAvailableAttributes: function (element, usedChildTags) {
-      var availableItems = [];
+      const availableItems = [];
       // get all attributes for the element
-      var attrs = element.getAllowedAttributes();
+      const attrs = element.getAllowedAttributes();
       Object.getOwnPropertyNames(attrs).forEach(function(name) { // jshint ignore:line
-        var attr = attrs[name];
+        const attr = attrs[name];
         // accept it in a suggestion list only the attribute is not used yet
         if (usedChildTags.indexOf(attr.name) === -1) {
           // mark it as a 'property', and get it's documentation
@@ -223,7 +221,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             insertText: attr.getName()+'=""',
             kind: window.monaco.languages.CompletionItemKind.Property,
             detail: attr.getTypeString(),
-            documentation: attr.getDocumentation().join("\n")
+            documentation: attr.getDocumentation().join('\n')
           });
         }
       }, this);
@@ -237,21 +235,22 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         triggerCharacters: ['<', '"'],
         provideCompletionItems: function (model, position) {
           // get editor content before the pointer
-          var textUntilPosition = model.getValueInRange({
+          const textUntilPosition = model.getValueInRange({
             startLineNumber: 1,
             startColumn: 1,
             endLineNumber: position.lineNumber,
             endColumn: position.column
           });
           // parse mappings
-          var completeText = model.getValue();
-          var metaEndPos = completeText.indexOf('</meta>');
-          var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
-          var mappingNames = [];
-          var stylingNames = [];
-          var templates = {};
-          var map, vmap;
-          var regex = /<mapping name="([^"]+)"/gm;
+          const completeText = model.getValue();
+          const metaEndPos = completeText.indexOf('</meta>');
+          const textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+          const mappingNames = [];
+          const stylingNames = [];
+          const templates = {};
+          let map;
+          let vmap;
+          let regex = /<mapping name="([^"]+)"/gm;
           while ((map = regex.exec(textMeta)) !== null) {
             mappingNames.push(map[1]);
           }
@@ -259,14 +258,14 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           while ((map = regex.exec(textMeta)) !== null) {
             stylingNames.push(map[1]);
           }
-          var templatesStart = textMeta.indexOf('<templates>');
+          const templatesStart = textMeta.indexOf('<templates>');
           if (templatesStart >= 0) {
-            var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
+            const templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
             templatesString.split('</template>').forEach(function (rawTemplate) {
-              var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
+              const nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
               // search for variables
-              var variables = [];
-              var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+              const variables = [];
+              const vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
               while ((vmap = vregex.exec(rawTemplate)) !== null) {
                 variables.push(vmap[1]);
               }
@@ -275,32 +274,32 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           }
 
           // if we want suggestions, inside of which tag are we?
-          var lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
+          const lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
           // console.log(lastOpenedTag);
           // get opened tags to see what tag we should look for in the XSD schema
-          var openedTags = [];
+          const openedTags = [];
           // attrobutes of the ancestors
-          var openedAttributes = [];
+          const openedAttributes = [];
           // get the elements/attributes that are already mentioned in the element we're in
-          var usedItems = [];
-          var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
-          var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-          var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
+          const usedItems = [];
+          const isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
+          const isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
+          const filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
           // no need to calculate the position in the XSD schema if we are in the root element
-          var parts;
+          let parts;
           if (lastOpenedTag) {
             // try to create a valid XML document
-            parts = lastOpenedTag.text.split(" ");
+            parts = lastOpenedTag.text.split(' ');
             parts.shift();
-            var cleanedText = textUntilPosition;
+            let cleanedText = textUntilPosition;
             if (parts.length) {
-              cleanedText = cleanedText.substring(0, cleanedText.length-parts.join(" ").length)+">";
+              cleanedText = cleanedText.substring(0, cleanedText.length-parts.join(' ').length)+'>';
             }
             // parse the content (not cleared text) into an xml document
-            var xmlDoc = qx.xml.Document.fromString(cleanedText);
-            var lastChild = xmlDoc.lastElementChild;
-            var i;
-            var lastFound = false;
+            const xmlDoc = qx.xml.Document.fromString(cleanedText);
+            let lastChild = xmlDoc.lastElementChild;
+            let i;
+            let lastFound = false;
             while (lastChild) {
               openedTags.push(lastChild.tagName);
               openedAttributes.push(lastChild.attributes);
@@ -310,15 +309,14 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 // if we are looking for attributes, then used items should
                 // be the attributes we already used
                 if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
-                  var attrs = lastChild.attributes;
+                  const attrs = lastChild.attributes;
                   for (i = 0; i < attrs.length; i++) {
                     usedItems.push(attrs[i].nodeName);
                   }
-                }
-                else {
+                } else {
                   // if we are looking for child elements, then used items
                   // should be the elements that were already used
-                  var children = lastChild.children;
+                  const children = lastChild.children;
                   for (i = 0; i < children.length; i++) {
                     if (children[i].tagName.toLowerCase() !== 'parsererror') {
                       usedItems.push(children[i].tagName);
@@ -334,19 +332,19 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             if (!lastFound) {
               // fallback -> parse string
               if (isAttributeSearch || isContentSearch) {
-                parts = lastOpenedTag.text.split(" ");
+                parts = lastOpenedTag.text.split(' ');
                 // skip tag name
                 parts.shift();
                 parts.forEach(function(entry) {
-                  usedItems.push(entry.split("=").shift());
+                  usedItems.push(entry.split('=').shift());
                 });
               }
             }
           }
-          var res = [];
-          var match;
+          let res = [];
+          let match;
           // find the last opened tag in the schema to see what elements/attributes it can have
-          var searchedElement = openedTags[openedTags.length-1];
+          let searchedElement = openedTags[openedTags.length - 1];
           if (isContentSearch) {
             // handle data providers if the is one relevant
             if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
@@ -373,8 +371,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 }
               }
             } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
-              var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
-              var attr = influxAttributes.getNamedItem('measurement');
+              const influxAttributes = openedAttributes[openedTags.indexOf('influx')];
+              const attr = influxAttributes.getNamedItem('measurement');
               if (attr) {
                 if (lastOpenedTag.currentAttribute === 'key') {
                   return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
@@ -403,7 +401,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               !openedTags.includes('meta') &&
               openedTags.includes('template')) {
               // TODO: find out template name
-              var templateNames = Object.keys(templates);
+              const templateNames = Object.keys(templates);
               templateNames.forEach(function (name) {
                 templates[name].forEach(function (variableName) {
                   res.push({
@@ -444,48 +442,43 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
           } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
-            return this._dataProvider.getAddresses('monaco').then(res => {
-              return {suggestions: res};
-            });
+            return this._dataProvider.getAddresses('monaco').then(res => ({suggestions: res}));
           }
           if (searchedElement === 'rrd') {
-            return this._dataProvider.getRrds('monaco').then(res => {
-              return {suggestions: res};
-            });
+            return this._dataProvider.getRrds('monaco').then(res => ({suggestions: res}));
           } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
             match = /type="([^"]+)"/.exec(lastOpenedTag.text);
-            var typeFilter = !!match ? match[1] : null;
+            const typeFilter = match ? match[1] : null;
             return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
               return {suggestions: suggestions};
             });
           }
-          var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta'));
+          const currentItem = this.findElements(this._schema.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta'));
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't
           if (isContentSearch) {
-            var currentAttribute = usedItems[usedItems.length-1];
+            const currentAttribute = usedItems[usedItems.length - 1];
 
             if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
-              var attribute = currentItem.getAllowedAttributes()[currentAttribute];
-              var type = attribute.getTypeString();
+              const attribute = currentItem.getAllowedAttributes()[currentAttribute];
+              const type = attribute.getTypeString();
               attribute.getEnumeration().forEach(function(entry) {
                 res.push({
                   label: entry,
                   kind: window.monaco.languages.CompletionItemKind.Value,
                   detail: type,
-                  documentation: attribute.getDocumentation().join("\n")
+                  documentation: attribute.getDocumentation().join('\n')
                 });
               });
             }
-          }
-          else if (isAttributeSearch) {
+          } else if (isAttributeSearch) {
             // get attributes completions
             res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
-          }
-          else {
+          } else {
             // get elements completions
-            if (lastOpenedTag && lastOpenedTag.text.endsWith("</")) {
+            // eslint-disable-next-line no-lonely-if
+            if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
               res.push({
                 label: lastOpenedTag.tagName,
                 kind: window.monaco.languages.CompletionItemKind.Field

@@ -38,9 +38,9 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", init: "0" },
-    params: { check: "String", init: '' },
-    url: { check: "String", nullable: true, apply: "_applyUrl" }
+    sendValue: { check: 'String', init: '0' },
+    params: { check: 'String', init: '' },
+    url: { check: 'String', nullable: true, apply: '_applyUrl' }
   },
 
   /*
@@ -59,10 +59,10 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     _applyUrl: function(value) {
       if (value) {
         if (!this.__xhr) {
-          var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
           xhr.set({
-            method: "GET",
-            accept: "application/html",
+            method: 'GET',
+            accept: 'application/html',
             requestData: this.getParams()
           });
           this.__xhr = xhr;
@@ -80,8 +80,8 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
 
     // overridden
     _getInnerDomString: function () {
-      var actor = '<div class="actor switchUnpressed ';
-      if ( this.getAlign() ) {
+      let actor = '<div class="actor switchUnpressed ';
+      if (this.getAlign()) {
         actor += this.getAlign();
       }
       actor += '"><div class="value"></div></div>';
@@ -102,10 +102,10 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   ******************************************************
   */
   destruct: function() {
-    this._disposeObjects("__xhr");
+    this._disposeObjects('__xhr');
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("urltrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('urltrigger', statics);
   }
 });

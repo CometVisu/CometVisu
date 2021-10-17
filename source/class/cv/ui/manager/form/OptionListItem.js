@@ -32,7 +32,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     },
 
     model: {
-      check: "cv.ui.manager.model.config.Option",
+      check: 'cv.ui.manager.model.config.Option',
       nullable: true,
       apply: '_applyModel'
     }
@@ -63,10 +63,10 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     setIcon: function () {},
 
     _applyModel: function (value, old) {
-      var keyField = this.getChildControl('key');
-      var valueField = this.getChildControl('value');
-      var keyTitleField = this.getChildControl('key-title');
-      var valueTitleField = this.getChildControl('value-title');
+      const keyField = this.getChildControl('key');
+      const valueField = this.getChildControl('value');
+      const keyTitleField = this.getChildControl('key-title');
+      const valueTitleField = this.getChildControl('value-title');
       this.__unbindModel(old);
       if (value) {
         // bi-directional bind
@@ -92,8 +92,8 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
 
     __unbindModel: function (model) {
       if (model) {
-        var keyField = this.getChildControl('key');
-        var valueField = this.getChildControl('value');
+        const keyField = this.getChildControl('key');
+        const valueField = this.getChildControl('value');
         if (model) {
           model.removeRelatedBindings(keyField);
           model.removeRelatedBindings(valueField);
@@ -105,9 +105,9 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'key':
            control = new qx.ui.form.TextField();
            control.set({

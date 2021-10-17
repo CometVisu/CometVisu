@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
   construct: function (filename) {
     this.base(arguments);
     if (!filename || !filename.match(/\.xsd$/)) {
-      throw 'no, empty or invalid filename given, can not instantiate without one';
+      throw new Error('no, empty or invalid filename given, can not instantiate without one');
     }
     this.__filename = filename;
     this.__allowedRootElements = {};
@@ -30,7 +30,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     __CACHE: {},
 
     getInstance: function (schemaFile) {
-      if (!this.__CACHE.hasOwnProperty(schemaFile)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__CACHE, schemaFile)) {
         this.__CACHE[schemaFile] = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri(schemaFile));
       }
       return this.__CACHE[schemaFile];
@@ -112,9 +112,9 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     _cacheXSD: function () {
       const ajaxRequest = new qx.io.request.Xhr(this.__filename);
       ajaxRequest.set({
-        accept: "application/xml"
+        accept: 'application/xml'
       });
-      ajaxRequest.addListenerOnce("success", function (e) {
+      ajaxRequest.addListenerOnce('success', function (e) {
         const req = e.getTarget();
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
@@ -125,7 +125,6 @@ qx.Class.define('cv.ui.manager.model.Schema', {
 
         // parse the data, to have at least a list of root-level-elements
         this._parseXSD();
-
       }, this);
       ajaxRequest.send();
     },
@@ -143,10 +142,10 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     },
 
     getElementNode: function (name) {
-      if (this.__allowedRootElements.hasOwnProperty(name)) {
+      if (Object.prototype.hasOwnProperty.call(this.__allowedRootElements, name)) {
         return this.__allowedRootElements[name];
       }
-      throw 'schema/xsd appears to be invalid, element ' + name + ' not allowed on root level';
+      throw new Error('schema/xsd appears to be invalid, element ' + name + ' not allowed on root level');
     },
 
     /**
@@ -159,14 +158,14 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @return  object          jQuery-object of the ref'ed element
      */
     getReferencedNode: function (type, refName) {
-      if (this.__referencedNodeCache.hasOwnProperty(type) && this.__referencedNodeCache[type].hasOwnProperty(refName)) {
+      if (Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__referencedNodeCache[type], refName)) {
         return this.__referencedNodeCache[type][refName];
       }
 
       const selector = 'schema > ' + type + '[name="' + refName + '"]';
       let ref = this.__xsd.querySelector(selector);
       if (!ref) {
-        throw 'schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found';
+        throw new Error('schema/xsd appears to be invalid, reference ' + type + '"' + refName + '" can not be found');
       }
 
       if (ref.hasAttribute('ref')) {
@@ -174,7 +173,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         ref = this.getReferencedNode(type, ref.getAttribute('ref'));
       }
 
-      if (!this.__referencedNodeCache.hasOwnProperty(type)) {
+      if (!Object.prototype.hasOwnProperty.call(this.__referencedNodeCache, type)) {
         this.__referencedNodeCache[type] = {};
       }
 
@@ -192,14 +191,13 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @param   name    string  Name of the type to find
      */
     getTypeNode: function (type, name) {
-
-      if (this.__typeNodeCache.hasOwnProperty(type) && this.__typeNodeCache[type].hasOwnProperty(name)) {
+      if (Object.prototype.hasOwnProperty.call(this.__typeNodeCache, type) && Object.prototype.hasOwnProperty.call(this.__typeNodeCache[type], name)) {
         return this.__typeNodeCache[type][name];
       }
       let typeNode = this.__xsd.querySelector(type + 'Type[name="' + name + '"]');
 
       if (!typeNode) {
-        throw 'schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found';
+        throw new Error('schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found');
       }
 
       if (typeof this.__typeNodeCache[type] == 'undefined') {
@@ -240,8 +238,8 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         const tmpXML = this.__xsd.createElement('element');
         tmpXML.setAttribute('name', '#comment');
         tmpXML.setAttribute('type', 'xsd:string');
-        tmpXML.setAttribute('minOccurs', "0");
-        tmpXML.setAttribute('maxOccurs', "unbounded");
+        tmpXML.setAttribute('minOccurs', '0');
+        tmpXML.setAttribute('maxOccurs', 'unbounded');
         this.__commentNodeSchemaElement = new cv.ui.manager.model.schema.Element(tmpXML, this);
       }
 
@@ -263,8 +261,8 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     getWidgetNames: function () {
       if (!this._widgetNames) {
-        const pages = this.getElementNode("pages");
-        const page = pages.getSchemaElementForElementName("page");
+        const pages = this.getElementNode('pages');
+        const page = pages.getSchemaElementForElementName('page');
         this._widgetNames = Object.keys(page.getAllowedElements()).filter(name => !name.startsWith('#') && name !== 'layout');
       }
       return this._widgetNames;

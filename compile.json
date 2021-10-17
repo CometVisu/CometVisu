@@ -206,6 +206,7 @@
     "THREE",
     "Worker",
     "Node",
-    "indexedDB"
+    "indexedDB",
+    "URL"
   ]
 }

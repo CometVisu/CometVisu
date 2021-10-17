@@ -21,7 +21,7 @@
 /**
  * Add the address property to widgets
  */
-qx.Mixin.define("cv.ui.common.HasAddress", {
+qx.Mixin.define('cv.ui.common.HasAddress', {
   /*
    ******************************************************
    PROPERTIES

@@ -11,8 +11,8 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
   */
   construct: function (label) {
     this.base(arguments, label);
-    if (qx.core.Environment.get("device.touch")) {
-      this.addState("touch");
+    if (qx.core.Environment.get('device.touch')) {
+      this.addState('touch');
     }
   },
 
@@ -84,7 +84,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     MEMBERS
   ***********************************************
   */
-  members: {
+  members: { // eslint-disable-line @qooxdoo/qx/no-refs-in-members
     // overridden
     /**
      * @lint ignoreReferenceField(_forwardStates)
@@ -109,7 +109,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     },
 
     _applyModel: function (value) {
-      if (qx.core.Environment.get("device.touch")) {
+      if (qx.core.Environment.get('device.touch')) {
         if (value) {
           const menuButton = this.getChildControl('menu-button');
           menuButton.show();
@@ -155,20 +155,20 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
 
     _addWidgets: function() {
       this.base(arguments);
-      const open = this.getChildControl("open", true);
-      if (open && qx.core.Environment.get("device.touch")) {
+      const open = this.getChildControl('open', true);
+      if (open && qx.core.Environment.get('device.touch')) {
         open.getContentElement().addClass('touch-tree-open-icon');
       }
     },
 
     // overridden
     _createChildControlImpl : function(id, hash) {
-       var control;
+      let control;
 
-       switch (id) {
-         case "icon":
+      switch (id) {
+         case 'icon':
            control = new cv.ui.manager.basic.Image().set({
-             alignY: "middle",
+             alignY: 'middle',
              anonymous: true,
              source: this.getIcon(),
              maxWidth: 22,
@@ -182,18 +182,18 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
            break;
 
          case 'move-button':
-           control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get("device.touch") ? 36 : 18));
-           control.setToolTipText(this.tr("Drag to move"));
+           control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get('device.touch') ? 36 : 18));
+           control.setToolTipText(this.tr('Drag to move'));
            control.setAnonymous(true);
            control.setShow('icon');
            this.getChildControl('buttons').addAt(control, 0);
            break;
 
          case 'menu-button':
-           control = new qx.ui.form.MenuButton('', cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get("device.touch") ? 24 : 14), new cv.ui.manager.contextmenu.ConfigElement());
-           control.getMenu().addListener('action', (ev) => {
+           control = new qx.ui.form.MenuButton('', cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get('device.touch') ? 24 : 14), new cv.ui.manager.contextmenu.ConfigElement());
+           control.getMenu().addListener('action', ev => {
              this.fireDataEvent('action', ev.getData());
-           })
+           });
            this.getChildControl('buttons').addAt(control, 1);
            break;
        }
@@ -203,7 +203,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
 
     // overridden
     addLabel : function(text) {
-      var label = this.getChildControl("label");
+      const label = this.getChildControl('label');
 
       if (this.__labelAdded) {
         this._remove(label);
@@ -220,6 +220,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
       const buttons = this.getChildControl('buttons');
       this._add(buttons);
       this.__labelAdded = true;
-    },
+    }
   }
 });

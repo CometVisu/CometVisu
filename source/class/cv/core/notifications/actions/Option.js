@@ -24,7 +24,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.Option", {
+qx.Class.define('cv.core.notifications.actions.Option', {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -45,12 +45,12 @@ qx.Class.define("cv.core.notifications.actions.Option", {
   */
   properties: {
     title: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     name: {
-      check: "String",
-      init: ""
+      check: 'String',
+      init: ''
     }
   },
 
@@ -69,25 +69,25 @@ qx.Class.define("cv.core.notifications.actions.Option", {
     },
 
     getDomElement: function() {
-      var container = qx.dom.Element.create('span', {
+      const container = qx.dom.Element.create('span', {
         style: this.getStyle()
       });
 
-      var checkbox = qx.dom.Element.create("input", {
-        "class": "action",
-        "type": "checkbox",
-        "value": "true",
-        "id": this.getName()
+      const checkbox = qx.dom.Element.create('input', {
+        'class': 'action',
+        'type': 'checkbox',
+        'value': 'true',
+        'id': this.getName()
       });
       container.appendChild(checkbox);
       container.appendChild(qx.dom.Element.create('span', {
         html: this.getTitle()
-      }))
+      }));
       return container;
     }
   },
 
   defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler("option", cv.core.notifications.actions.Option);
+    cv.core.notifications.ActionRegistry.registerActionHandler('option', cv.core.notifications.actions.Option);
   }
 });

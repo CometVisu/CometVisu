@@ -4,7 +4,7 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-const BasePage = require("../pages/BasePage.js");
+const BasePage = require('../pages/BasePage.js');
 
 class CometVisuDemo extends BasePage {
   constructor() {
@@ -15,8 +15,6 @@ class CometVisuDemo extends BasePage {
     this.pageLoaded = this.and(
       this.isVisible($('#id_40_5_2'))
     );
-
-    this.pageChangeTimeout = 600;
   }
 }
 module.exports = new CometVisuDemo();

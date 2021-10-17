@@ -11,14 +11,12 @@ qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
   */
   members: {
     // overridden
-    _createChildControlImpl : function(id, hash)
-    {
-      var control;
+    _createChildControlImpl : function(id, hash) {
+      let control;
 
-      switch(id)
-      {
-        case "atom":
-          control = new cv.ui.manager.form.ListItem("");
+      switch (id) {
+        case 'atom':
+          control = new cv.ui.manager.form.ListItem('');
           control.setCenter(false);
           control.setAnonymous(true);
 
@@ -27,6 +25,6 @@ qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
       }
 
       return control || this.base(arguments, id, hash);
-    },
+    }
   }
 });

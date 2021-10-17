@@ -9,7 +9,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
   ***********************************************
   */
   construct: function () {
-    this.__linkRegex = new RegExp( ":ref:[`'](.+?)[`']", 'g');
+    this.__linkRegex = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
     this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
   },
 
@@ -34,7 +34,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
     __documentationCache: null,
 
     __getTextNodesByXPath: function (node, xpath) {
-      const texts = []
+      const texts = [];
       const doc = node.ownerDocument;
       const nsResolver = doc.createNSResolver(doc.documentElement);
       let iterator = doc.evaluate(xpath, node, nsResolver, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
@@ -45,9 +45,8 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
           texts.push(thisNode.textContent);
           thisNode = iterator.iterateNext();
         }
-      }
-      catch (e) {
-        this.error( 'Error: Document tree modified during iteration ' + e );
+      } catch (e) {
+        this.error('Error: Document tree modified during iteration ' + e);
       }
       return texts;
     },
@@ -118,7 +117,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
 
           documentation.push(...this.__getTextNodesByXPath(ref, selector));
 
-          documentation = documentation.map(entry => this.createDocumentationWebLinks(entry))
+          documentation = documentation.map(entry => this.createDocumentationWebLinks(entry));
         }
       }
       this.__documentationCache = documentation;
@@ -130,16 +129,16 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
     /**
      * Transform documentation text to link to the online documentation when it
      * contains a reference.
-     *
+     * @param text
      * @return string The transformed input string.
      */
     createDocumentationWebLinks: function (text) {
       const language = this.__language;
       return text.replace(this.__linkRegex, function(match, contents) {
         const
-          reference = contents.match( /^(.*?) *<([^<]*)>$/ ),
-          label     = reference ? reference[1] : contents,
-          key       = reference ? reference[2] : contents
+          reference = contents.match(/^(.*?) *<([^<]*)>$/);
+          const label = reference ? reference[1] : contents;
+          const key = reference ? reference[2] : contents;
 
         return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
       });

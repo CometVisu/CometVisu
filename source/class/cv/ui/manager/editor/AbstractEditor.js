@@ -7,7 +7,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     cv.ui.manager.editor.IEditor,
     cv.ui.manager.IActionHandler
   ],
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   construct: function () {
     this.base(arguments);
     this._initClient();
+    this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
@@ -61,11 +62,22 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    // fake clipboard data when native clipboard is not supported
+    CLIPBOARD: null
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
   members: {
     _handledActions: null,
+    _nativePasteSupported: false,
 
     canHandleAction: function (actionName) {
       if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
@@ -120,7 +132,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     _onChange: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if (data.type === 'fsContentChanged' && data.source !== this) {
         this.setContent(data.data);
       }
@@ -136,8 +148,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
-        var file = this.getFile();
-        var message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved')
+        const file = this.getFile();
+        const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
         qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
@@ -150,7 +162,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     save: function (callback, overrideHash) {
-      var file = this.getFile();
+      const file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
           this._client.createSync({
@@ -168,7 +180,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     _onSaved: function () {
-      var file = this.getFile();
+      const file = this.getFile();
       file.resetModified();
       file.resetTemporary();
     },

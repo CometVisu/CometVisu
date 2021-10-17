@@ -35,11 +35,11 @@ qx.Interface.define('cv.core.notifications.IActionHandler', {
      *
      * @param ev {Event}
      */
-    handleAction: function(ev) {},  // jshint ignore:line
+    handleAction: function(ev) {}, // jshint ignore:line
 
     /**
      * Get a DOM element which usually starts the action
      */
-    getDomElement: function() {}  // jshint ignore:line
+    getDomElement: function() {} // jshint ignore:line
   }
 });

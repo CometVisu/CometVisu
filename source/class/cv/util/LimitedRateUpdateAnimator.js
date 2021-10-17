@@ -35,7 +35,7 @@
  * * value1.blend(value2,ratio) - return a new value that is the ratio dependent blend
  * * value.copy()               - return a copy of the value
  */
-qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
+qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   extend: qx.core.Object,
   /*
   ******************************************************
@@ -76,22 +76,22 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
   properties: {
     linearRateLimit: {
       // in ratio/second
-      check: "Number",
+      check: 'Number',
       init: 2
     },
     expDampTimeConstant: {
       // time constant for exponential dampening
-      check: "Number",
+      check: 'Number',
       init: 0.01
     },
     epsilon: {
       // a difference between current and target value smaller than the epsilon
       // will be immediately closed
-      check: "Number",
+      check: 'Number',
       init: 0.001
     },
     displayFn: {
-      check: "Function"
+      check: 'Function'
     }
   },
   /*
@@ -115,7 +115,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
       let now = performance.now();
 
       this.__targetValue = targetValue;
-      if(instant || this.__currentValue === undefined) {
+      if (instant || this.__currentValue === undefined) {
         this.__currentValue = targetValue;
       }
       if (this.__animationFrame === undefined && show) {
@@ -130,18 +130,17 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
      * @private
      */
     __animate: function (thistime, lasttime) {
-      let
-        isNumber = typeof this.__currentValue === 'number',
-        dt = (thistime - lasttime) / 1000, // in seconds
-        maxLinearDelta =  this.getLinearRateLimit() * dt,
-        alpha = Math.exp(-dt / this.getExpDampTimeConstant()),
-        nextValue = isNumber
+      let isNumber = typeof this.__currentValue === 'number';
+      let dt = (thistime - lasttime) / 1000; // in seconds
+      let maxLinearDelta = this.getLinearRateLimit() * dt;
+      let alpha = Math.exp(-dt / this.getExpDampTimeConstant());
+      let nextValue = isNumber
           ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
-          : this.__currentValue.blend( this.__targetValue, alpha ),
-        delta = isNumber
+          : this.__currentValue.blend( this.__targetValue, alpha );
+      let delta = isNumber
           ? nextValue - this.__currentValue
-          : this.__currentValue.delta(nextValue),
-        notFinished = true;
+          : this.__currentValue.delta(nextValue);
+      let notFinished = true;
       if (Math.abs(delta) > maxLinearDelta) {
         nextValue = isNumber
           ? this.__currentValue + Math.sign(delta) * maxLinearDelta

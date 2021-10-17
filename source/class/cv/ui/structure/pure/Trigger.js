@@ -42,8 +42,8 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", init: "0" },
-    shortValue: { check: "String", init: "0" }
+    sendValue: { check: 'String', init: '0' },
+    shortValue: { check: 'String', init: '0' }
   },
 
   /*
@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
      * If there is no short threshold set, this send the value for long presses to the backend.
      */
     _action: function() {
-      var value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
+      const value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
       this.sendToBackend(value, function(address) {
         return !!(address.variantInfo & 1);
       });

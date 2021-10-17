@@ -10,16 +10,16 @@ qx.Interface.define('cv.io.IClient', {
   properties: {
 
     connected: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false,
-      event: "changeConnected"
+      event: 'changeConnected'
     },
 
     /**
      * The server the client is currently speaking to
      */
     server: {
-      check: "String",
+      check: 'String',
       nullable: true,
       event: 'changedServer'
     }
@@ -133,6 +133,7 @@ qx.Interface.define('cv.io.IClient', {
 
     /**
      * Restart the connection
+     * @param full
      */
     restart: function(full) {},
 
@@ -161,5 +162,5 @@ qx.Interface.define('cv.io.IClient', {
      * @param args
      */
     showError: function(type, message, args) {}
-  },
+  }
 });

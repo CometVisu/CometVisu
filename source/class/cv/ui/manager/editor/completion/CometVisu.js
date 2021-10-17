@@ -24,73 +24,73 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
     getTemplates: function () {
       if (!this.TEMPLATES) {
         this.TEMPLATES = [{
-          filterText: "cvclass",
+          filterText: 'cvclass',
           label: 'CometVisu-Class',
           kind: window.monaco.languages.CompletionItemKind.Class,
-          detail: "A generic CometVisu class.",
+          detail: 'A generic CometVisu class.',
           insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.$0", {\n  extend: qx.core.Object,\n\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvwidget",
+          filterText: 'cvwidget',
           label: 'CometVisu-Widget',
           kind: window.monaco.languages.CompletionItemKind.Class,
-          detail: "A CometVisu class for a widget.",
+          detail: 'A CometVisu class for a widget.',
           insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.AbstractWidget,\n\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvinterface",
+          filterText: 'cvinterface',
           label: 'CometVisu-Interface',
           kind: window.monaco.languages.CompletionItemKind.Interface,
-          detail: "A generic CometVisu Interface.",
+          detail: 'A generic CometVisu Interface.',
           insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Interface.define("cv.$0", {\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvmixin",
+          filterText: 'cvmixin',
           label: 'CometVisu-Mixin',
           kind: window.monaco.languages.CompletionItemKind.Class,
-          detail: "A generic CometVisu Mixin.",
+          detail: 'A generic CometVisu Mixin.',
           insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Mixin.define("cv.$0", {\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvmembers",
+          filterText: 'cvmembers',
           label: 'CometVisu-Class members',
           kind: window.monaco.languages.CompletionItemKind.Struct,
-          detail: "A CometVisu classes members section.",
+          detail: 'A CometVisu classes members section.',
           insertText: '  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    $0\n  },\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvproperties",
+          filterText: 'cvproperties',
           label: 'CometVisu-Class properties',
           kind: window.monaco.languages.CompletionItemKind.Struct,
-          detail: "A CometVisu classes properties section.",
+          detail: 'A CometVisu classes properties section.',
           insertText: '  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    $0\n  },\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvstatics",
+          filterText: 'cvstatics',
           label: 'CometVisu-Class statics',
           kind: window.monaco.languages.CompletionItemKind.Struct,
-          detail: "statics section.",
+          detail: 'statics section.',
           insertText: '  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    $0\n  },\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvevents",
+          filterText: 'cvevents',
           label: 'CometVisu-Class events',
           kind: window.monaco.languages.CompletionItemKind.Struct,
-          detail: "events section.",
+          detail: 'events section.',
           insertText: '  /*\n  ***********************************************\n    EVENTS\n  ***********************************************\n  */\n  events: {\n    $0\n  },\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvconstructor",
+          filterText: 'cvconstructor',
           label: 'Constructor',
           kind: window.monaco.languages.CompletionItemKind.Method,
-          detail: "constructor.",
+          detail: 'constructor.',
           insertText: '  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct: function () {\n    this.base(arguments);\n    $0\n  },\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvdestructor",
+          filterText: 'cvdestructor',
           label: 'Destructor',
           kind: window.monaco.languages.CompletionItemKind.Method,
-          detail: "destructor.",
+          detail: 'destructor.',
           insertText: '  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct: function () {\n    this.base(arguments);\n    $0\n  }\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }];
@@ -102,10 +102,10 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               reject(err);
             } else {
               this.TEMPLATES.push({
-                filterText: "cvplugin",
+                filterText: 'cvplugin',
                 label: 'CometVisu-Plugin',
                 kind: window.monaco.languages.CompletionItemKind.Class,
-                detail: "A CometVisu class for a plugin.",
+                detail: 'A CometVisu class for a plugin.',
                 insertText: res.replace('###SINCE###', cv.Version.VERSION.replace('-dev', '')+ ' ($CURRENT_YEAR)'),
                 insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
               });

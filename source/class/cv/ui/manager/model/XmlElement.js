@@ -70,20 +70,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       event: 'changeDisplayName'
     },
     open : {
-      check : "Boolean",
-      event : "changeOpen",
+      check : 'Boolean',
+      event : 'changeOpen',
       init : false,
-      apply : "_onOpen",
+      apply : '_onOpen'
     },
     loaded : {
-      check : "Boolean",
-      event : "changeLoaded",
+      check : 'Boolean',
+      event : 'changeLoaded',
       init : false
     },
     children : {
-      check : "qx.data.Array",
-      event : "changeChildren",
-      apply: "_applyEventPropagation",
+      check : 'qx.data.Array',
+      event : 'changeChildren',
+      apply: '_applyEventPropagation',
       deferredInit : true
     },
 
@@ -192,10 +192,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     __initializing: false,
     __addableChildren: null,
 
-    clone: function () {
-      return new cv.ui.manager.model.XmlElement(this.getNode(), this.getSchemaElement(), this.getEditor(), this.getParent());
-    },
-
     _maintainStatus: function () {
       if (this._node.nodeType === Node.COMMENT_NODE) {
         this.setStatus('comment');
@@ -235,9 +231,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         } else if (this._node.nodeType === Node.COMMENT_NODE) {
           this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
           return;
-        } else if (this.getName() === "icon" && this.getAttribute("name") && this.getAttribute("name").indexOf("{{") === -1) {
+        } else if (this.getName() === 'icon' && this.getAttribute('name') && this.getAttribute('name').indexOf('{{') === -1) {
           // try to use the configured icon (if its not set by a template variable)
-          const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute("name"), 'tree-icon');
+          const source = cv.IconHandler.getInstance().getIconSource(this.getAttribute('name'), 'tree-icon');
           if (source) {
             this.setIcon(source);
             return;
@@ -325,7 +321,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         parent.updateModified();
         if (!skipUndo) {
           if (editor) {
-            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Remove %1", this.getDisplayName()), this, changes, 'deleted');
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Remove %1', this.getDisplayName()), this, changes, 'deleted');
             editor.addUndo(change);
           }
         }
@@ -386,7 +382,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (!skipUndo) {
           const editor = this.getEditor();
           if (editor) {
-            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Move %1', this.getDisplayName()), this, changes, 'moved');
             editor.addUndo(change);
           }
         }
@@ -423,7 +419,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (!skipUndo) {
           const editor = this.getEditor();
           if (editor) {
-            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Move %1', this.getDisplayName()), this, changes, 'moved');
             editor.addUndo(change);
           }
         }
@@ -475,17 +471,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             this.load();
           }
           this.getChildren().forEach(child => {
-            if (!countExisting.hasOwnProperty(child.getName())) {
+            if (!Object.prototype.hasOwnProperty.call(countExisting, child.getName())) {
               countExisting[child.getName()] = 0;
             }
             countExisting[child.getName()]++;
-          })
+          });
 
           Object.keys(allowed).forEach(elementName => {
-            if (excludeComment === true && elementName === "#comment") {
+            if (excludeComment === true && elementName === '#comment') {
               return;
             }
-            if ((elementName === "#text" || elementName === "#cdata-section")) {
+            if ((elementName === '#text' || elementName === '#cdata-section')) {
               if (schemaElement.isTextContentAllowed()) {
                 if (schemaElement.isMixed()) {
                   // is a mixed content has only one text child and no other childs, we do not allow another text child -> avoid direct text siblings
@@ -502,14 +498,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                     // we do not allow more text nodes than other nodes (e.g. a sequence of #text, elem would allow another #text node after elem)
                     stillAllowed.push(elementName);
                   }
-                } else if (!countExisting.hasOwnProperty('#text') && !countExisting.hasOwnProperty('#cdata-section')) {
+                } else if (!Object.prototype.hasOwnProperty.call(countExisting, '#text') && !Object.prototype.hasOwnProperty.call(countExisting, '#cdata-section')) {
                   stillAllowed.push(elementName);
                 }
               }
               return;
             }
             const childBounds = schemaElement.getBoundsForElementName(elementName);
-            const existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
+            const existing = Object.prototype.hasOwnProperty.call(countExisting, elementName) ? countExisting[elementName] : 0;
             if (childBounds && childBounds.max > existing) {
               stillAllowed.push(elementName);
             }
@@ -530,7 +526,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       const schemaElement = this.getSchemaElement();
       const nodeName = xmlElement instanceof cv.ui.manager.model.XmlElement ? xmlElement.getName() : xmlElement;
       if (!schemaElement.isChildElementAllowed(nodeName)) {
-        this.debug(nodeName, "is not allowed as child of", this.getName());
+        this.debug(nodeName, 'is not allowed as child of', this.getName());
         return false;
       }
       if (schemaElement.areChildrenSortable()) {
@@ -556,10 +552,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       let targetPosition = allowedSorting[nodeName];
       if (currentPosition === targetPosition || targetPosition >= children.length) {
         // no special position
-        return true
-      } else {
+        return true;
+      } 
         // find the first previous sibling of a different type
-        let previousSibling
+        let previousSibling;
         if (index > 0) {
           for (let i = Math.min(index, children.length) - 1; i >= 0; i--) {
             if (children.getItem(i).getName() !== nodeName) {
@@ -574,10 +570,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         // only allow if it can be inserted before
         const allowed = currentPosition + 1 >= targetPosition;
         if (!allowed) {
-          this.debug(nodeName, "is not allowed as child of", this.getName());
+          this.debug(nodeName, 'is not allowed as child of', this.getName());
           return false;
         }
-      }
+      
       return true;
     },
 
@@ -590,9 +586,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (schemaElement.areChildrenSortable()) {
           // any position is fine, just append it to the end
           return this.getChildren().length;
-        } else {
+        } 
           const allowedSorting = schemaElement.getFirstLevelElementSorting();
-          if (allowedSorting && allowedSorting.hasOwnProperty(newChild.getName())) {
+          if (allowedSorting && Object.prototype.hasOwnProperty.call(allowedSorting, newChild.getName())) {
             const position = allowedSorting[newChild.getName()];
             // search for the first sibling with a position > than the newChilds and insert it there
             let targetIndex = position;
@@ -602,6 +598,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                 targetIndex = index;
                 return true;
               }
+              return false;
             });
             if (!found) {
               // append to the end
@@ -609,7 +606,6 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             }
             return targetIndex;
           }
-        }
       }
       return -1;
     },
@@ -619,6 +615,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
      * @param xmlElement {cv.ui.manager.model.XmlElement} new child
      * @param index {Number} index to insert the child, if set to -1 insert it at any allowed position
      * @param skipUndo {Boolean} do not add an undo operation for this change
+     * @param internalOperation
      * @return {Boolean} true if the child has been added
      */
     insertChild: function (xmlElement, index, skipUndo, internalOperation) {
@@ -631,7 +628,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         index = this.findPositionForChild(xmlElement);
         if (index === -1) {
           // no valid position found
-          return false
+          return false;
         }
       }
       if (this.isChildAllowedAtPosition(xmlElement, index)) {
@@ -663,26 +660,23 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             editor.updateModified(xmlElement);
           }
           xmlElement.updateModified();
-        } else {
-          if (!internalOperation || internalOperation === 'added') {
+        } else if (!internalOperation || internalOperation === 'added') {
             xmlElement.$$added = true;
             xmlElement.updateModified();
           }
-        }
         this.updateModified();
         if (children.length === 1) {
           // first child added -> open it
           this.setOpen(true);
         }
         if (!skipUndo) {
-
           if (editor) {
             const changes = [{
               index: index,
               parent: this,
               child: xmlElement
             }];
-            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Add %1", this.getDisplayName()), this, changes, 'created');
+            const change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Add %1', this.getDisplayName()), this, changes, 'created');
             editor.addUndo(change);
           }
         }
@@ -695,10 +689,10 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       if (!this.__initializing) {
         if (this._node) {
           if (!this.getSchemaElement().isValueValid(value)) {
-            throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
+            throw new qx.core.ValidationError(qx.locale.Manager.tr('Invalid text content: \'%1\'', value));
           }
         } else {
-          throw new qx.core.ValidationError(qx.locale.Manager.tr("Text content not allowed here"));
+          throw new qx.core.ValidationError(qx.locale.Manager.tr('Text content not allowed here'));
         }
       }
     },
@@ -718,17 +712,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         // check attribute values
         for (let i = 0; i < this._node.attributes.length; i++) {
           const attr = this._node.attributes.item(i);
-          if (allowedAttributes.hasOwnProperty(attr.name)) {
+          if (Object.prototype.hasOwnProperty.call(allowedAttributes, attr.name)) {
             if (!allowedAttributes[attr.name].isValueValid(attr.value)) {
               errors.push({
                 attribute: attr.name,
-                error: qx.locale.Manager.tr("Invalid value")
+                error: qx.locale.Manager.tr('Invalid value')
               });
             }
           } else {
             errors.push({
               attribute: attr.name,
-              error: qx.locale.Manager.tr("Attribute '%1' not allowed", attr.name)
+              error: qx.locale.Manager.tr('Attribute \'%1\' not allowed', attr.name)
             });
           }
         }
@@ -737,19 +731,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (!this._node.hasAttribute(name)) {
             errors.push({
               attribute: name,
-              error: qx.locale.Manager.tr("Attribute '%1' is required but missing", name)
+              error: qx.locale.Manager.tr('Attribute \'%1\' is required but missing', name)
             });
           }
-        })
+        });
         if (schemaElement.isTextContentRequired()) {
           // check if we have at least one non empty #text child
-          const found = this.getChildren().some(child => {
-            return child.isTextNode() && child.getNode().nodeValue.trim() !== "";
-          });
+          const found = this.getChildren().some(child => child.isTextNode() && child.getNode().nodeValue.trim() !== '');
           if (!found) {
             errors.push({
               attribute: '#text',
-              error: qx.locale.Manager.tr("Text content is missing")
+              error: qx.locale.Manager.tr('Text content is missing')
             });
           }
         }
@@ -759,12 +751,12 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               child.load();
               child.setValid(schemaElement.isValueValid(child.getText()));
               if (!child.isValid()) {
-                child.setInvalidMessage(qx.locale.Manager.tr("Text content is invalid"));
+                child.setInvalidMessage(qx.locale.Manager.tr('Text content is invalid'));
               }
             }
           });
         }
-        this.setInvalidMessage(errors.map(err => err.error).join("<br/>"));
+        this.setInvalidMessage(errors.map(err => err.error).join('<br/>'));
         this.setValid(errors.length === 0);
       }
     },
@@ -802,17 +794,17 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
             changed = true;
           }
         } else {
-          this.error("'"+text+"' is no valid text content for a '"+this.getName() + "' element");
+          this.error('\''+text+'\' is no valid text content for a \''+this.getName() + '\' element');
         }
       } else {
-        this.error("text content is not allowed for a '"+this.getName() + "' element");
+        this.error('text content is not allowed for a \''+this.getName() + '\' element');
       }
       return {
         changed: changed,
         attribute: nodeName || '#text',
         value: newValue,
         old: oldValue
-      }
+      };
     },
 
     getAttribute: function (name) {
@@ -840,26 +832,26 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               } else {
                 this._node.setAttribute(name, value);
               }
-              if (name === "name") {
+              if (name === 'name') {
                 this._updateDisplayName();
-                if (this.getName() === "icon") {
+                if (this.getName() === 'icon') {
                   this._maintainIcon();
                 }
               }
               changed = true;
             }
           } else {
-            this.error("'" + value + "' is not allowed for attribute '" + name + "'");
+            this.error('\'' + value + '\' is not allowed for attribute \'' + name + '\'');
           }
         } else {
-          this.error("'" + name + "' is no allowed attribute for a '" + this.getName() + "' element");
+          this.error('\'' + name + '\' is no allowed attribute for a \'' + this.getName() + '\' element');
         }
         return {
           changed: changed,
           attribute: name,
           value: newValue,
           old: oldValue
-        }
+        };
       } else if (this._node.nodeType === Node.TEXT_NODE && name === '#text' || (this._node.nodeType === Node.CDATA_SECTION_NODE && name === '#cdata-section')) {
         return this.setText(value, name);
       } else if ((this._node.nodeType === Node.COMMENT_NODE && name === '#comment')) {
@@ -871,8 +863,9 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           attribute: name,
           value: value,
           old: oldValue
-        }
+        };
       }
+      return null;
     },
 
     /**
@@ -897,11 +890,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       Object.keys(data).forEach(attrName => {
         if (isTextNode && !attrName.startsWith('#')) {
           // special mode for editing text content from a data provider with hints, those hints must be applied to the parent
-          change = parent.setAttribute(attrName, data[attrName])
+          change = parent.setAttribute(attrName, data[attrName]);
           if (change.changed) {
             parentChanges.push(change);
           }
-        } else if (attrName === '#outerHTML' || attrName === "#innerHTML") {
+        } else if (attrName === '#outerHTML' || attrName === '#innerHTML') {
           if (this.getSchemaElement().isChildElementAllowed('*')) {
             const dom = new DOMParser().parseFromString(data[attrName], 'text/xml');
             if (dom.getElementsByTagName('parsererror').length === 0) {
@@ -923,7 +916,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
               });
               this.load(true);
             }
-          } else if (attrName === "#innerHTML" && !data[attrName]) {
+          } else if (attrName === '#innerHTML' && !data[attrName]) {
             // allow empty values
             const oldValue = this._node.innerHTML;
             this._node.innerHTML = data[attrName];
@@ -945,11 +938,11 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       const editor = this.getEditor();
       if (editor && changes.length > 0) {
         if (parentChanges.length > 0) {
-          const parentChange = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", parent.getDisplayName()), parent, parentChanges);
+          const parentChange = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Change %1', parent.getDisplayName()), parent, parentChanges);
           changes.push(parentChange);
           parent.updateModified();
         }
-        editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", this.getDisplayName()), this, changes));
+        editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Change %1', this.getDisplayName()), this, changes));
       }
       this.updateModified();
     },
@@ -981,20 +974,20 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
           if (this._node.hasAttribute('name')) {
             const nameAttr = this._node.getAttribute('name');
             displayName += ' "' + nameAttr + '"';
-          } else if (this.getName() === "pages" && this._node.hasAttribute('design')) {
+          } else if (this.getName() === 'pages' && this._node.hasAttribute('design')) {
             const designAttr = this._node.getAttribute('design');
             displayName += ' "' + designAttr + '"';
           }
         } else if ((this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE || this._node.nodeType === Node.COMMENT_NODE) && this._node.nodeValue.trim()) {
           let textContent = this._node.nodeValue.trim();
           if (textContent.length > 26) {
-            textContent = textContent.substring(0, 26) + "...";
+            textContent = textContent.substring(0, 26) + '...';
           }
           displayName = textContent;
         }
       }
       if (this.isModified()) {
-        displayName += " *";
+        displayName += ' *';
       }
       this.setDisplayName(displayName);
     },
@@ -1003,8 +996,8 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         if (this._node && this._node.hasChildNodes()) {
           for (let i = 0; i < this._node.childNodes.length; i++) {
             const childNode = this._node.childNodes.item(i);
-            if (childNode.nodeType === Node.ELEMENT_NODE
-              || ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim() !== "")) {
+            if (childNode.nodeType === Node.ELEMENT_NODE ||
+              ((childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim() !== '')) {
               return true;
             }
           }
@@ -1071,7 +1064,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
                   // only complain for real childs (no comments, textNodes)
                   this.setValid(false);
                   let msg = this.getInvalidMessage();
-                  msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                  msg = (msg ? msg + '<br/>' : '') + qx.locale.Manager.tr('Child element \'%1\' not allowed.', childNode.nodeName);
                   this.setInvalidMessage(msg);
                   this.setValid(false);
                 }
@@ -1103,7 +1096,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     appendInvalidMessage: function (errorMsg) {
       if (errorMsg) {
         const existing = this.getInvalidMessage();
-        this.setInvalidMessage(existing ? existing + "<br/>" + errorMsg : errorMsg);
+        this.setInvalidMessage(existing ? existing + '<br/>' + errorMsg : errorMsg);
       }
     },
 
@@ -1115,13 +1108,13 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         const currentChildNames = this._currentChildNames();
         if (this._node.attributes.length !== initial.size) {
           this.setModified(true);
-        } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join("")) {
+        } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join('')) {
           this.setModified(true);
         } else {
           for (const [key, value] of initial) {
             if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
               this.setModified(true);
-              return
+              return;
             }
           }
           this.setModified(false);
@@ -1143,7 +1136,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
     hasChildrenModified: function () {
       if (this._node.nodeType === Node.ELEMENT_NODE && this.isLoaded()) {
         const currentChildNames = this._currentChildNames();
-        return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join(""));
+        return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join(''));
       }
       return false;
     },
@@ -1220,7 +1213,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
       let c = current;
       while (c) {
         const parent = c.getParent();
-        if (parent.getName() === "pages") {
+        if (parent.getName() === 'pages') {
           ids.unshift('id');
           break;
         }
@@ -1228,7 +1221,7 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         ids.unshift(id);
         c = parent;
       }
-      if (current.getName() === "page") {
+      if (current.getName() === 'page') {
         // make sure that the join ends with '_'
         ids.push('');
       }

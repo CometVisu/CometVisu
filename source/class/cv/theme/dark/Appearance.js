@@ -19,7 +19,7 @@
 
 
 
-qx.Theme.define("cv.theme.dark.Appearance", {
+qx.Theme.define('cv.theme.dark.Appearance', {
   extend : osparc.theme.common.Appearance,
 
   appearances : {
@@ -72,7 +72,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       alias: 'listitem',
 
       style: function (states) {
-        return  {
+        return {
           iconPosition: states.list ? 'left' : 'top',
           show: states.list ? 'label' : 'both',
           font: states.list ? 'default' : 'small',
@@ -93,7 +93,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'cv-file-item/atom/icon': {
       include: 'atom/icon',
       style: function () {
-        return  {
+        return {
           width: 70,
           height: 70,
           scale: true
@@ -119,7 +119,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'cv-icon/icon': {
       include: 'atom/icon',
       style: function () {
-        return  {
+        return {
           width: 70,
           height: 70
         };
@@ -138,10 +138,10 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
     'open-file-item': {
-      alias: "atom",
+      alias: 'atom',
 
       style: function (states) {
-        var padding = [2, 5, 2, 5];
+        let padding = [2, 5, 2, 5];
         if (states.lead) {
           padding = [1, 4, 1, 4];
         }
@@ -149,17 +149,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding[2] -= 1;
         }
 
-        var backgroundColor;
+        let backgroundColor;
         if (states.selected) {
-          backgroundColor = "background-selected";
+          backgroundColor = 'background-selected';
           if (states.disabled) {
-            backgroundColor += "-disabled";
+            backgroundColor += '-disabled';
           }
         }
         return {
           backgroundColor: backgroundColor,
-          textColor: states.selected ? "text-selected" : undefined,
-          decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
+          textColor: states.selected ? 'text-selected' : undefined,
+          decorator: states.lead ? 'lead-item' : states.dragover ? 'dragover' : undefined,
           opacity: states.drag ? 0.5 : undefined,
           height: 26,
           padding: padding,
@@ -388,7 +388,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
       style: function(states) {
         return {
-          textColor: states.comment ? "text-disabled" : (states.error ? 'invalid-color' : null)
+          textColor: states.comment ? 'text-disabled' : (states.error ? 'invalid-color' : null)
         };
       }
     },
@@ -398,19 +398,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function (states) {
         return {
           indent: states.touch ? 24 : 19
-        }
+        };
       }
     },
     'element-tree-item/label': {
       include: 'fs-tree-item/label',
 
       style: function (states) {
-
         return {
-          textColor: states.comment ? "text-disabled" : null,
+          textColor: states.comment ? 'text-disabled' : null,
           allowGrowX: true,
           maxWidth: 250
-        }
+        };
       }
     },
     'element-tree-item/open': {
@@ -441,61 +440,61 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'helptext': {
       style: function () {
         return {
-          font: "small",
-          textColor: "text-disabled"
+          font: 'small',
+          textColor: 'text-disabled'
         };
       }
     },
-    "checkbox/label": {
+    'checkbox/label': {
       style: function(states) {
         return {
-          textColor: states.undetermined ? "text-disabled" : "text"
+          textColor: states.undetermined ? 'text-disabled' : 'text'
         };
       }
     },
 
-    "toolbar-separator": {
+    'toolbar-separator': {
       style: function() {
         return {
-          backgroundColor: "border-separator",
+          backgroundColor: 'border-separator',
           margin: [7, 0],
           width: 1
         };
       }
     },
-    "iframe": {
+    'iframe': {
       style: function () {
         return {
           backgroundColor: null,
-          decorator: "main-dark"
+          decorator: 'main-dark'
         };
       }
     },
-    "state-option": {
+    'state-option': {
       style: function (states) {
         return {
-          textColor: states.error ? "warning-color" : "text-disabled",
+          textColor: states.error ? 'warning-color' : 'text-disabled',
           font: 'italic',
           height: 25
         };
       }
     },
-    "error-option": {
+    'error-option': {
       style: function () {
         return {
-          textColor: "warning-color",
+          textColor: 'warning-color',
           font: 'italic',
           height: 25
         };
       }
     },
-    "selectbox/atom": {
+    'selectbox/atom': {
       style: function (states) {
         let font = 'default';
         let textColor = 'text';
         if (states.error || states.loading) {
-          font = 'italic'
-          textColor = states.error ? "warning-color" : "text-disabled"
+          font = 'italic';
+          textColor = states.error ? 'warning-color' : 'text-disabled';
         }
         return {
           textColor: textColor,
@@ -503,23 +502,23 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    "optiongroup": {
+    'optiongroup': {
       style: function () {
         return {
-          textColor: "text-disabled",
+          textColor: 'text-disabled',
           height: 25
         };
       }
     },
-    "optiongroup/label": {
+    'optiongroup/label': {
       style: function () {
         return {
           allowGrowX: true,
-          textAlign: "center"
+          textAlign: 'center'
         };
       }
     },
-    "round-button": {
+    'round-button': {
       include: 'atom',
       alias: 'atom',
       style: function (states) {
@@ -527,32 +526,32 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           decorator: states.hovered ? 'round-button-hovered' : 'round-button',
           width: 48,
           height: 48,
-          textColor: "text",
-          show: "icon",
+          textColor: 'text',
+          show: 'icon',
           center: true
-        }
+        };
       }
     },
-    "round-button/icon": {
+    'round-button/icon': {
       include: 'atom/icon',
       alias: 'atom/icon',
       style: function (states) {
         return {
           width: 32,
           height: 32
-        }
+        };
       }
     },
-    "dragdrop-cursor": {
+    'dragdrop-cursor': {
       style: function (states) {
-        let icon = "nodrop";
+        let icon = 'nodrop';
 
         if (states.copy) {
-          icon = "copy";
+          icon = 'copy';
         } else if (states.move) {
-          icon = "move";
+          icon = 'move';
         } else if (states.alias) {
-          icon = "alias";
+          icon = 'alias';
         }
         let leftOffset = 8;
         if (states.touch) {
@@ -560,48 +559,48 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         }
 
         return {
-          source: osparc.theme.common.Image.URLS["cursor-" + icon],
-          position: "left-middle",
+          source: osparc.theme.common.Image.URLS['cursor-' + icon],
+          position: 'left-middle',
           offset: [2, leftOffset, 2, 6]
         };
       }
     },
-    "element-tree-item/menu-button": {
-      include: "button",
-      alias: "button",
+    'element-tree-item/menu-button': {
+      include: 'button',
+      alias: 'button',
       style: function () {
         return {
           padding: [2, 4],
-          icon: osparc.theme.common.Image.URLS["arrow-down"],
-          show: "icon"
+          icon: osparc.theme.common.Image.URLS['arrow-down'],
+          show: 'icon'
         };
       }
     },
-    "tree-editor": "widget",
-    "tree-editor/preview-sync-hint": {
-      include: "atom",
-      alias: "atom",
+    'tree-editor': 'widget',
+    'tree-editor/preview-sync-hint': {
+      include: 'atom',
+      alias: 'atom',
       style: function () {
         return {
           padding: [4, 8],
           iconPosition: 'left',
           gap: 8,
           center: true
-        }
+        };
       }
     },
-    "tree-editor/preview-sync-hint/icon": {
-      include: "atom/icon",
+    'tree-editor/preview-sync-hint/icon': {
+      include: 'atom/icon',
       style: function (states) {
         let color = 'valid-color';
         if (states.error) {
-          color = "invalid-color";
+          color = 'invalid-color';
         } else if (states.warning) {
-          color = "warning-color";
+          color = 'warning-color';
         }
         return {
           textColor: color
-        }
+        };
       }
     }
   }

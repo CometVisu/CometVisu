@@ -41,43 +41,43 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   */
   properties: {
     'downValue': {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     'shortDownValue': {
-      check: "Number",
+      check: 'Number',
       nullable: true
     },
     'downLabel': {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     'upValue': {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     'shortUpValue': {
-      check: "Number",
+      check: 'Number',
       nullable: true
     },
     'upLabel': {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     'isAbsolute': {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     'min': {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     'max': {
-      check: "Number",
+      check: 'Number',
       init: 255
     },
     'infoPosition': {
-      check: ["left", "middle", "right"],
+      check: ['left', 'middle', 'right'],
       init: 'middle'
     }
   },
@@ -91,9 +91,9 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     // overridden
     _getInnerDomString: function () {
       // create buttons + info
-      var ret_val = '<div style="float:left;">';
+      let ret_val = '<div style="float:left;">';
 
-      var actordown = '<div class="actor switchUnpressed downlabel" ';
+      let actordown = '<div class="actor switchUnpressed downlabel" ';
       if (this.getAlign()) {
         actordown += 'style="text-align: ' + this.getAlign() + '" ';
       }
@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
       actordown += '</div>';
 
-      var actorup = '<div class="actor switchUnpressed uplabel" ';
+      let actorup = '<div class="actor switchUnpressed uplabel" ';
       if (this.getAlign()) {
         actorup += 'style="text-align: ' + this.getAlign() + '" ';
       }
@@ -109,7 +109,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       actorup += '<div class="label">' + (this.getUpLabel() || '+') + '</div>';
       actorup += '</div>';
 
-      var actorinfo = '<div class="actor switchInvisible" ';
+      let actorinfo = '<div class="actor switchInvisible" ';
       if (this.getAlign()) {
         actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
       }
@@ -136,16 +136,15 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
-    getActors: function(){
-      return this.getDomElement().querySelectorAll(".actor.uplabel, .actor.downlabel");
+    getActors: function() {
+      return this.getDomElement().querySelectorAll('.actor.uplabel, .actor.downlabel');
     },
 
     // overridden
     initListeners: function() {
       this.getActors().forEach(function(actor) {
-        qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
+        qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
-
     },
 
     __findActor: function (element) {
@@ -168,17 +167,17 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     __action: function (isShort, isDown) {
-      var value;
+      let value;
       if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
       } else {
         value = isDown ? this.getDownValue() : this.getUpValue();
       }
 
-      var bitMask = (isShort ? 1 : 2);
+      const bitMask = (isShort ? 1 : 2);
 
       if (this.getIsAbsolute()) {
-        var bvalue = parseFloat(this.getBasicValue());
+        let bvalue = parseFloat(this.getBasicValue());
         if (isNaN(bvalue)) {
           bvalue = 0; // anything is better than NaN...
         }
@@ -192,19 +191,19 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     getDownActor: function() {
-      return this.getDomElement().querySelector(".actor.downlabel");
+      return this.getDomElement().querySelector('.actor.downlabel');
     },
 
     getUpActor: function() {
-      return this.getDomElement().querySelector(".actor.uplabel");
+      return this.getDomElement().querySelector('.actor.uplabel');
     },
 
     getInfoActor: function() {
-      return this.getDomElement().querySelector(".actor.switchInvisible");
+      return this.getDomElement().querySelector('.actor.switchInvisible');
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("infotrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('infotrigger', statics);
   }
 });

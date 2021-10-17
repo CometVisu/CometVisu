@@ -33,10 +33,14 @@ qx.Class.define('cv.plugins.tr064.CallList', {
   include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
   /*
-  ******************************************************
+  ***********************************************
     CONSTRUCTOR
-  ******************************************************
+  ***********************************************
   */
+  construct: function (props) {
+    this.base(arguments, props);
+    this.__TAMeventAttached = {};
+  },
 
   /*
   ******************************************************
@@ -55,7 +59,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
@@ -65,7 +69,11 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     getAttributeToPropertyMappings: function () {
       return {
         'device': {},
-        'max': {transform: function(value) { return +value;}},
+        'max': {
+          transform: function (value) {
+            return +value;
+          }
+        },
         'columns': { 'default': 'type;date;nameOrCaller;tam' },
         'TAM':          { 'default': 'phone_answering' },
         'TAMColor':     { 'default': '' },
@@ -155,7 +163,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
      * as the keys are unique a share doesn't matter:
      * @lint ignoreReferenceField(__TAMeventAttached)
      */
-    __TAMeventAttached: {},
+    __TAMeventAttached: null,
     
     _getInnerDomString: function () {
       this.refreshCalllist('initial');
@@ -164,65 +172,59 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', function () {
-        if( !this.__refreshingCalllist )
-        {
+        if (!this.__refreshingCalllist) {
           this.refreshCalllist('timer');
         }
       }, this);
       this._timer.start();
     },
     _update: function(address, value) {
-      if( !this.__refreshingCalllist )
-      {
+      if (!this.__refreshingCalllist) {
         this.refreshCalllist('update');
       }
     },
       
     _displayCalllist: function() {
-      var 
-        self = this,
-        clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0],
-        sid  = this.__calllistUri ? this.__calllistUri.replace(/.*sid=/,'') : '',
-        html = '',
-        types = {
-          0:  { name: this.getTypeUnknown()          , color: this.getTypeUnknownColor()           },
-          1:  { name: this.getTypeIncoming()         , color: this.getTypeIncomingColor()          },
-          2:  { name: this.getTypeMissed()           , color: this.getTypeMissedColor()            },
-          3:  { name: this.getTypeOutgoing()         , color: this.getTypeOutgoingColor()          },
-          9:  { name: this.getTypeActiveIncoming ()  , color: this.getTypeActiveIncomingColor()    },
-          10: { name: this.getTypeRejectedIncoming() , color: this.getTypeRejectedIncomingColor()  },
-          11: { name: this.getTypeActiveOutgoing()   , color: this.getTypeActiveOutgoingColor()    }
-        };
-      
-      this.__calllistList.forEach(function(cl){
-        var 
-          audio = '',
-          type = (cl.Type in types) ? types[cl.Type] : types[0];
-        
-        if( cl.Path )
-        {
-          audio = '<audio preload="none">'
-            + '<source src="resource/plugins/tr064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">'
-            + '</audio>'
-            + '<div class="tam clickable">'
-            + cv.IconHandler.getInstance().getIconText( self.getTAM(), '*', '*', self.getTAMColor() )
-            + '</div>';
+      const self = this;
+      const clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0];
+      const sid = this.__calllistUri ? this.__calllistUri.replace(/.*sid=/, '') : '';
+      let html = '';
+      const types = {
+        0: {name: this.getTypeUnknown(), color: this.getTypeUnknownColor()},
+        1: {name: this.getTypeIncoming(), color: this.getTypeIncomingColor()},
+        2: {name: this.getTypeMissed(), color: this.getTypeMissedColor()},
+        3: {name: this.getTypeOutgoing(), color: this.getTypeOutgoingColor()},
+        9: {name: this.getTypeActiveIncoming(), color: this.getTypeActiveIncomingColor()},
+        10: {name: this.getTypeRejectedIncoming(), color: this.getTypeRejectedIncomingColor()},
+        11: {name: this.getTypeActiveOutgoing(), color: this.getTypeActiveOutgoingColor()}
+      };
+
+      this.__calllistList.forEach(function(cl) {
+        let audio = '';
+        const type = (cl.Type in types) ? types[cl.Type] : types[0];
+
+        if (cl.Path) {
+          audio = '<audio preload="none">' +
+            '<source src="resource/plugins/tr064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">' +
+            '</audio>' +
+            '<div class="tam clickable">' +
+            cv.IconHandler.getInstance().getIconText(self.getTAM(), '*', '*', self.getTAMColor()) +
+            '</div>';
         }
         
         html += '<tr>';
-        self.getColumns().split(';').forEach( function(col){
-          switch( col )
-          {
+        self.getColumns().split(';').forEach(function(col) {
+          switch (col) {
             case 'type':
-              html += '<td>' + cv.IconHandler.getInstance().getIconText( type.name, '*', '*', type.color )  + '</td>';
+              html += '<td>' + cv.IconHandler.getInstance().getIconText(type.name, '*', '*', type.color) + '</td>';
               break;
             
             case 'date':
-              html += '<td>' + cl.Date   + '</td>';
+              html += '<td>' + cl.Date + '</td>';
               break;
             
             case 'name':
-              html += '<td>' + cl.Name   + '</td>';
+              html += '<td>' + cl.Name + '</td>';
               break;
             
             case 'caller':
@@ -230,27 +232,26 @@ qx.Class.define('cv.plugins.tr064.CallList', {
               break;
             
             case 'nameOrCaller':
-              if( cl.Name !== '' )
-              {
-                html += '<td>' + cl.Name   + '</td>';
+              if (cl.Name !== '') {
+                html += '<td>' + cl.Name + '</td>';
               } else {
                 html += '<td>' + cl.Caller + '</td>';
               }
               break;
             
             case 'tam':
-              html += '<td>' + audio + '</td>'
+              html += '<td>' + audio + '</td>';
               break;
-            
           }
         });
         html += '</tr>';
       });
       clLi.innerHTML = html;
-      var tamList = clLi.getElementsByClassName('tam');
-      for( var i = 0; i < tamList.length; i++ )
-      {
-        tamList[i].addEventListener("click", function(){ self.__playTAM(this); } );
+      const tamList = clLi.getElementsByClassName('tam');
+      for (let i = 0; i < tamList.length; i++) {
+        tamList[i].addEventListener('click', function () {
+          self.__playTAM(this);
+        });
       }
     },
     
@@ -260,26 +261,25 @@ qx.Class.define('cv.plugins.tr064.CallList', {
      *   GetCallList
      */
     _getCallListURI: function() {
-      var
-        self = this,
-        url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
-      
-      window.fetch( url )
-        .then( function( response ) {
-          if( response.ok )
-          {
+      const self = this;
+      const url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
+
+      window.fetch(url)
+        .then(function(response) {
+          if (response.ok) {
             return response.json(); 
           }
           // else:
-          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText );
+          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
           self.__calllistUri = '<fail>';
+          return null;
         })
-        .then( function( data ) {
-          if( typeof data === 'string' ) {
+        .then(function(data) {
+          if (typeof data === 'string') {
             self.__calllistUri = data;
             self.refreshCalllist('getCallListURI');
           } else {
-            console.error('Error: reading URL "' + url + ' failed with content:', data );
+            self.error('Error: reading URL "' + url + ' failed with content:', data);
             self.__calllistUri = '<fail>';
           }
         });
@@ -288,82 +288,77 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     refreshCalllist: function(source) {
       this.__refreshingCalllist = true;
       
-      if( this.__calllistUri === '<fail>' )
-      {
+      if (this.__calllistUri === '<fail>') {
         return; // this problem won't fix anymore during this instance
       }
       
-      if( this.__calllistUri === '' )
-      {
+      if (this.__calllistUri === '') {
         this._getCallListURI();
         return;
       }
-      
-      var
-        self = this,
-        url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
-        
-      window.fetch( url )
-        .then( function( response ) {
-          if( response.ok )
-          {
+
+      const self = this;
+      const url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
+
+      window.fetch(url)
+        .then(function(response) {
+          if (response.ok) {
             return response.text(); 
           }
           // else:
-          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText );
+          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
           return '<xml/>';
         })
-        .then( function( str ) {
-          return (new window.DOMParser()).parseFromString(str, "text/xml");
+        .then(function(str) {
+          return (new window.DOMParser()).parseFromString(str, 'text/xml');
         })
-        .then( function( data ) {
+        .then(function(data) {
           self.__calllistList = [];
-          var itemList = data.getElementsByTagName('Call');
-          for( var i = 0; i < itemList.length; i++ ) {
-            var
-              childrenList = itemList[i].children,
-              entry = {};
-            for( var ii = 0; ii < childrenList.length; ii++ ) {
+          const itemList = data.getElementsByTagName('Call');
+          for (let i = 0; i < itemList.length; i++) {
+            const childrenList = itemList[i].children;
+            const entry = {};
+            for (let ii = 0; ii < childrenList.length; ii++) {
               entry[childrenList[ii].nodeName] = childrenList[ii].textContent;
             }
-            self.__calllistList.push( entry );
+            self.__calllistList.push(entry);
           }
           self._displayCalllist();
           self.__refreshingCalllist = false;
           self.fireEvent('tr064ListRefreshed');
         })
-        .catch( function( error ) { 
-          console.error( 'TR-064 refreshCalllist() error:', error ); 
+        .catch(function(error) { 
+          self.error('TR-064 refreshCalllist() error:', error);
         });
     },
     
     /**
      * The EventListener for click on the TAM button.
+     * @param element
      */
-    __playTAM: function( element ) {
-      var
-        self = this,
-        audio = element.previousElementSibling;
-      
-      if( !this.__TAMeventAttached[audio] )
-      {
-        audio.addEventListener( 'ended', function(){self.__TAMstop(element)} );
+    __playTAM: function(element) {
+      const self = this;
+      const audio = element.previousElementSibling;
+
+      if (!this.__TAMeventAttached[audio]) {
+        audio.addEventListener('ended', function () {
+          self.__TAMstop(element);
+        });
         this.__TAMeventAttached[audio] = true;
       }
       
-      if( audio.readyState < 4 ) // not ready yet
-      {
+      if (audio.readyState < 4) { // not ready yet
         this.__TAMwait(element);
       }
       
-      if( audio.paused )
-      {
-        var playPromise = audio.play();
-        if( playPromise !== undefined )
-        {
+      if (audio.paused) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
           playPromise
-            .then(function(){self.__TAMplay(element)})
-            .catch(function(){/*NOP*/});
+            .then(function() {
+              self.__TAMplay(element);
+            })
+            .catch(function() { /*NOP*/ });
         }
       } else {
         audio.pause();
@@ -372,24 +367,24 @@ qx.Class.define('cv.plugins.tr064.CallList', {
       }
     },
     
-    __TAMwait: function( element ) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText( this.getTAMwait(), '*', '*', this.getTAMwaitColor() );
+    __TAMwait: function(element) {
+      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMwait(), '*', '*', this.getTAMwaitColor());
     },
     
-    __TAMplay: function( element ) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText( this.getTAMplay(), '*', '*', this.getTAMplayColor() );
+    __TAMplay: function(element) {
+      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMplay(), '*', '*', this.getTAMplayColor());
     },
     
-    __TAMstop: function( element ) {
-      element.innerHTML = cv.IconHandler.getInstance().getIconText( this.getTAMstop(), '*', '*', this.getTAMstopColor() );
+    __TAMstop: function(element) {
+      element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMstop(), '*', '*', this.getTAMstopColor());
     }
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/tr064/tr064.css');
-    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.CallList);
-    cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
+    cv.parser.WidgetParser.addHandler('calllist', cv.plugins.tr064.CallList);
+    cv.ui.structure.WidgetFactory.registerClass('calllist', statics);
   }
 
 });

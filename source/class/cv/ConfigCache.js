@@ -25,7 +25,7 @@
  * @since 0.10.0
  */
 qx.Class.define('cv.ConfigCache', {
-  type: "static",
+  type: 'static',
   
   /*
   ******************************************************
@@ -33,7 +33,7 @@ qx.Class.define('cv.ConfigCache', {
   ******************************************************
   */
   statics: {
-    _cacheKey : "data",
+    _cacheKey : 'data',
     _parseCacheData : null,
     _valid : null,
     replayCache: null,
@@ -44,24 +44,24 @@ qx.Class.define('cv.ConfigCache', {
       if (!this.__initPromise) {
         this.__initPromise = new Promise((resolve, reject) => {
           if (!cv.ConfigCache.DB) {
-            const request = indexedDB.open("cvCache", 1);
+            const request = indexedDB.open('cvCache', 1);
             request.onsuccess = function (ev) {
-              qx.log.Logger.debug(cv.ConfigCache, "Success creating/accessing IndexedDB database");
+              qx.log.Logger.debug(cv.ConfigCache, 'Success creating/accessing IndexedDB database');
               cv.ConfigCache.DB = request.result;
 
               cv.ConfigCache.DB.onerror = function (event) {
-                reject(new Error("Error creating/accessing IndexedDB database"))
+                reject(new Error('Error creating/accessing IndexedDB database'));
               };
               resolve(cv.ConfigCache.DB);
-            }
+            };
             request.onupgradeneeded = function (event) {
               const db = event.target.result;
 
               db.onerror = function (event) {
-                qx.log.Logger.error(cv.ConfigCache, "Error loading database.");
+                qx.log.Logger.error(cv.ConfigCache, 'Error loading database.');
               };
-              const objectStore = db.createObjectStore("data", {keyPath: "config"});
-              objectStore.createIndex("config", "config", {unique: true});
+              const objectStore = db.createObjectStore('data', {keyPath: 'config'});
+              objectStore.createIndex('config', 'config', {unique: true});
             };
           } else {
             resolve(cv.ConfigCache.DB);
@@ -86,7 +86,7 @@ qx.Class.define('cv.ConfigCache', {
     },
 
     restore: function() {
-      const body = document.querySelector("body");
+      const body = document.querySelector('body');
       const model = cv.data.Model.getInstance();
       this.getData().then(cache => {
         cv.Config.configSettings = cache.configSettings;
@@ -103,7 +103,7 @@ qx.Class.define('cv.ConfigCache', {
           document.querySelector('body').classList.add('mobile');
           const hasMobile = cv.Config.configSettings.stylesToLoad.some(style => style.endsWith('mobile.css'));
           if (!hasMobile) {
-            cv.Config.configSettings.stylesToLoad.push("designs/" + cv.Config.configSettings.clientDesign + "/mobile.css");
+            cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
           }
         } else {
           // do not load mobile css
@@ -119,23 +119,23 @@ qx.Class.define('cv.ConfigCache', {
             widgetsToInitialize.forEach(function (widgetId) {
               const widgetData = cache.data[widgetId];
               cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
-            })
+            });
           }, this);
         }
         body.innerHTML = cache.body;
-        qx.log.Logger.debug(this, "content restored from cache");
+        qx.log.Logger.debug(this, 'content restored from cache');
       });
     },
     
     save: function(data) {
-      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
       objectStore.put(data);
     },
     
     getData: async function(key) {
       return new Promise((resolve, reject) => {
         if (!this._parseCacheData) {
-          const objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore('data');
+          const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readonly').objectStore('data');
           const dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
           dataRequest.onsuccess = function(event) {
             if (!dataRequest.result) {
@@ -171,21 +171,21 @@ qx.Class.define('cv.ConfigCache', {
       }
       // compare versions
       const cacheVersion = data.VERSION + '|' + data.REV;
-      qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + '|' + cv.Version.REV);
+      qx.log.Logger.debug(this, 'Cached version: '+cacheVersion+', CV-Version: '+cv.Version.VERSION + '|' + cv.Version.REV);
       return (cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
     },
     
     isValid: async function(xml, hash) {
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
-        const cachedHash = await this.getData("hash");
+        const cachedHash = await this.getData('hash');
         if (!cachedHash) {
           this._valid = false;
         } else {
           if (!hash) {
             hash = this.toHash(xml);
           }
-          qx.log.Logger.debug(this, "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'");
+          qx.log.Logger.debug(this, 'Current hash: \'' + hash + '\', cached hash: \'' + cachedHash + '\'');
           this._valid = hash === cachedHash;
         }
       }
@@ -198,29 +198,33 @@ qx.Class.define('cv.ConfigCache', {
     
     clear: function(configSuffix) {
       configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-      const objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+      const objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
       const dataRequest = objectStore.delete(configSuffix);
       dataRequest.onsuccess = function () {
         qx.log.Logger.debug('cache for ' + configSuffix + 'cleared');
-      }
+      };
     },
     
     /**
+     * @param string
      * @see http://stackoverflow.com/q/7616461/940217
      * @return {number}
      */
-    hashCode: function(string){
-      if (Array.prototype.reduce){
-        return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
+    hashCode: function(string) {
+      if (Array.prototype.reduce) {
+        return string.split('').reduce(function(a, b) {
+         a=((a<<5)-a)+b.charCodeAt(0);
+         return a&a;
+        }, 0);
       }
       let hash = 0;
       if (string.length === 0) {
         return hash;
       }
       for (let i = 0, l = string.length; i < l; i++) {
-        let character  = string.charCodeAt(i);
-        hash  = ((hash<<5)-hash)+character;
-        hash = hash & hash; // Convert to 32bit integer
+        let character = string.charCodeAt(i);
+        hash = ((hash<<5)-hash)+character;
+        hash &= hash; // Convert to 32bit integer
       }
       return hash;
     }

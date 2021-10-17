@@ -24,7 +24,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
   ***********************************************
   */
   events: {
-    "action": "qx.event.type.Data"
+    'action': 'qx.event.type.Data'
   },
 
   /*
@@ -69,15 +69,15 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
 
     _applyElement: function(value, old) {
       if (old) {
-        old.removeRelatedBindings(this.getChildControl("delete-button"));
-        old.removeRelatedBindings(this.getChildControl("cut-button"));
+        old.removeRelatedBindings(this.getChildControl('delete-button'));
+        old.removeRelatedBindings(this.getChildControl('cut-button'));
       }
       if (value) {
         const editable = value.isEditable();
         this.getChildControl('copy-button').setEnabled(true);
         if (editable) {
-          value.bind('deletable', this.getChildControl("delete-button"), 'enabled');
-          value.bind('deletable', this.getChildControl("cut-button"), 'enabled');
+          value.bind('deletable', this.getChildControl('delete-button'), 'enabled');
+          value.bind('deletable', this.getChildControl('cut-button'), 'enabled');
           this.getChildControl('view-button').exclude();
           this.getChildControl('edit-button').show();
           this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
@@ -93,15 +93,15 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
           this.getChildControl('edit-button').exclude();
         }
       } else {
-        ['edit', 'delete', 'cut', 'copy', 'paste', 'create'].forEach(name =>this.getChildControl(name + "-button").setEnabled(false));
+        ['edit', 'delete', 'cut', 'copy', 'paste', 'create'].forEach(name => this.getChildControl(name + '-button').setEnabled(false));
       }
       this._maintainClipboardButtons();
     },
 
     _init: function () {
-      ['view', 'edit', 'delete'].forEach(name => this.add(this.getChildControl(name + "-button")));
+      ['view', 'edit', 'delete'].forEach(name => this.add(this.getChildControl(name + '-button')));
       this.addSeparator();
-      ['cut', 'copy', 'paste'].forEach(name => this.add(this.getChildControl(name + "-button")));
+      ['cut', 'copy', 'paste'].forEach(name => this.add(this.getChildControl(name + '-button')));
       this.addSeparator();
       this.add(this.getChildControl('create-button'));
     },
@@ -166,7 +166,7 @@ qx.Class.define('cv.ui.manager.contextmenu.ConfigElement', {
         this.fireDataEvent('action', {
           action: action,
           element: this.getElement()
-        })
+        });
       }, this);
       return button;
     }

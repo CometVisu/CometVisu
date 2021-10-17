@@ -25,7 +25,7 @@
  * @since 2021
  */
 qx.Class.define('cv.transforms.Mqtt', {
-  type: "static",
+  type: 'static',
 
   /**
    * This class defines the default transforms: encode: transform JavaScript to
@@ -34,7 +34,7 @@ qx.Class.define('cv.transforms.Mqtt', {
   defer: function() {
     cv.Transform.addTransform('MQTT', {
       'number': {
-        name: "MQTT_Number",
+        name: 'MQTT_Number',
         encode: function (phy) {
           return phy.toString();
         },
@@ -43,7 +43,7 @@ qx.Class.define('cv.transforms.Mqtt', {
         }
       },
       'string': {
-        name: "MQTT_String",
+        name: 'MQTT_String',
         encode: function (phy) {
           return phy.toString();
         },
@@ -52,30 +52,36 @@ qx.Class.define('cv.transforms.Mqtt', {
         }
       },
       'json': {
-        name: "MQTT_JSON",
+        name: 'MQTT_JSON',
         encode: function (phy, parameter) {
-          if( typeof parameter === 'string' ) {
+          if (typeof parameter === 'string') {
             let
-              ret_pre = '',
-              ret_post = '';
+              ret_pre = '';
+              let ret_post = '';
             // split on "." but not on "\." to allow the dot to be escaped
-            parameter.match(/(\\\.|[^.])+/g)?.forEach(
-              (e)=>{
+            const match = parameter.match(/(\\\.|[^.])+/g);
+            if (match) {
+              match.forEach(e => {
                 ret_pre += '{"' + e.replace('\\.', '.') + '":';
                 ret_post += '}';
-              }
-            );
+              });
+            }
             return ret_pre + (typeof phy === 'string' ? '"'+phy+'"' : phy) + ret_post;
           }
           return phy.toString();
         },
         decode: function (str, parameter) {
           let json = JSON.parse(str);
-          if( typeof parameter === 'string' ) {
+          if (typeof parameter === 'string') {
             // split on "." but not on "\." to allow the dot to be escaped
-            parameter.match(/(\\\.|[^.])+/g)?.forEach(
-              (e)=>{json = json[e.replace('\\.', '.')];}
-            );
+            const match = parameter.match(/(\\\.|[^.])+/g);
+            if (match) {
+              match.forEach(
+                e => {
+                  json = json[e.replace('\\.', '.')];
+                }
+              );
+            }
           }
           return json;
         }

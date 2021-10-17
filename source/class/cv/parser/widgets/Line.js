@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Line', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -50,6 +50,6 @@ qx.Class.define('cv.parser.widgets.Line', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("line", statics);
+    cv.parser.WidgetParser.addHandler('line', statics);
   }
 });

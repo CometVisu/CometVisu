@@ -42,13 +42,13 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   properties: {
-    width   : { check: "String", init: "100%" },
-    height  : { check: "String", nullable: true },
-    src     : { check: "String", init: "" },
-    widthFit: { check: "Boolean", init: false },
+    width   : { check: 'String', init: '100%' },
+    height  : { check: 'String', nullable: true },
+    src     : { check: 'String', init: '' },
+    widthFit: { check: 'Boolean', init: false },
     placeholder: {
-      check: ["none", "src", "hide", "exclude"],
-      init: "none"
+      check: ['none', 'src', 'hide', 'exclude'],
+      init: 'none'
     }
   },
 
@@ -63,7 +63,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var imgStyle = '';
+      let imgStyle = '';
       if (this.getWidth()) {
         imgStyle += 'width:' + this.getWidth() + ';';
       }
@@ -88,7 +88,6 @@ qx.Class.define('cv.ui.structure.pure.Image', {
             this.error('no src placeholder defined');
             break;
         }
-
       }
       return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     },
@@ -100,17 +99,17 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (!this.__src) {
         let src = this.getSrc();
         const parsedUri = qx.util.Uri.parseUri(this.getSrc());
-        if (!parsedUri.protocol && !src.startsWith("/")) {
+        if (!parsedUri.protocol && !src.startsWith('/')) {
           // is relative URI, use the ResourceManager
           src = qx.util.ResourceManager.getInstance().toUri(src);
         }
-        this.__src = src || "";
+        this.__src = src || '';
       }
       return this.__src;
     },
 
     handleUpdate: function(text, address) {
-      var valueElem = this.getValueElement();
+      const valueElem = this.getValueElement();
       if (!text) {
         switch (this.getPlaceholder()) {
           case 'src':
@@ -126,34 +125,33 @@ qx.Class.define('cv.ui.structure.pure.Image', {
           case 'exclude':
             valueElem.style.display = 'none';
             break;
-
         }
       } else {
         valueElem.style.display = 'inline';
       }
-      valueElem.setAttribute("src", text);
+      valueElem.setAttribute('src', text);
     },
 
     // overridden
     getValueElement: function() {
-      return this.getDomElement().querySelector("img");
+      return this.getDomElement().querySelector('img');
     },
 
     // overridden
     _applyVisible: function(value) {
-      var valueElem = this.getValueElement();
+      const valueElem = this.getValueElement();
       if (!valueElem || this.getRefresh() > 0) {
         return;
       }
       if (value === true) {
-        valueElem.setAttribute("src", this.__getSrc());
+        valueElem.setAttribute('src', this.__getSrc());
       } else {
-        valueElem.setAttribute("src", "");
+        valueElem.setAttribute('src', '');
       }
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("image", statics);
+    cv.ui.structure.WidgetFactory.registerClass('image', statics);
   }
 });

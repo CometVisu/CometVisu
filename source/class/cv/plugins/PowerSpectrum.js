@@ -40,13 +40,13 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
   */
   construct: function(props) {
     if (!props.name1) {
-      props.name1 = props.singlePhase === true ? "L" : "L1";
+      props.name1 = props.singlePhase === true ? 'L' : 'L1';
     }
     if (!props.name2) {
-      props.name2 = "L2";
+      props.name2 = 'L2';
     }
     if (!props.name3) {
-      props.name3 = "L3";
+      props.name3 = 'L3';
     }
     this.base(arguments, props);
 
@@ -77,13 +77,11 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     referenceSin: [[], [], []],
 
     // fix limits for better displaying
-    fixLimits: function( entry, index, array )
-    {
+    fixLimits: function(entry, index, array) {
       array[index][0] -= 0.5;
     },
-    lastShifted: function( array )
-    {
-      var last = array[ array.length-1 ];
+    lastShifted: function(array) {
+      const last = array[array.length - 1];
       return [ last[0]+1, last[1] ];
     },
 
@@ -98,7 +96,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
@@ -115,12 +113,12 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
         'singlephase': {
           target: 'singlePhase',
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         'limitname': {
           target: 'limitName',
-          "default": "limit"
+          'default': 'limit'
         },
         'name1': { },
         'name2': { },
@@ -134,27 +132,27 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
         'showlegend': {
           target: 'showLegend',
           transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }
         },
         'limitcolor': {
-          target: "limitColor",
-          "default": "#edc240" // default directly from flot code
+          target: 'limitColor',
+          'default': '#edc240' // default directly from flot code
         },
         'color1': {
-          "default": "#afd8f8"
+          'default': '#afd8f8'
         },
         'color2': {
-          "default": "#cb4b4b"
+          'default': '#cb4b4b'
         },
         'color3': {
-          "default": "#4da74d"
+          'default': '#4da74d'
         }
       };
     },
 
     makeAddressListFn: function(src, transform, mode, variant) {
-      if( !variant ) {
+      if (!variant) {
         variant = 'spectrum'; // the default
       }
       return [true, variant];
@@ -172,60 +170,60 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       init: 1
     },
     singlePhase: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     spectrum: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
     limitName: {
-      check: "String",
-      init: "limit"
+      check: 'String',
+      init: 'limit'
     },
     name1: {
-      check: "String",
-      init: "L1"
+      check: 'String',
+      init: 'L1'
     },
     name2: {
-      check: "String",
-      init: "L2"
+      check: 'String',
+      init: 'L2'
     },
     name3: {
-      check: "String",
-      init: "L3"
+      check: 'String',
+      init: 'L3'
     },
     curve: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
     showCurve: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     showLegend: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     current: {
-      check: "Array",
+      check: 'Array',
       init: []
     },
     limitColor: {
-      check: "Color",
-      init: "#edc240"
+      check: 'Color',
+      init: '#edc240'
     },
     color1: {
-      check: "Color",
-      init: "#afd8f8"
+      check: 'Color',
+      init: '#afd8f8'
     },
     color2: {
-      check: "Color",
-      init: "#cb4b4b"
+      check: 'Color',
+      init: '#cb4b4b'
     },
     color3: {
-      check: "Color",
-      init: "#4da74d"
+      check: 'Color',
+      init: '#4da74d'
     }
   },
 
@@ -240,8 +238,8 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     
     _getInnerDomString: function() {
       // create the actor
-      var actor = '<div class="actor clickable">';
-      if( this.isShowCurve() ) {
+      let actor = '<div class="actor clickable">';
+      if (this.isShowCurve()) {
         actor += '<div class="diagram_inline curve">loading...</div>';
       }
       actor += '<div class="diagram_inline spectrum">loading...</div></div>';
@@ -250,49 +248,48 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     
     _onDomReady: function() {
       this.base(arguments);
-      var colors = [ this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3() ];
-        
-      var
-        diagramCurve = this.isShowCurve() && $( '#' + this.getPath() + ' .actor div.curve' ).empty(),
-        optionsCurve = this.isShowCurve() && {
-            colors: colors,
-            legend: {
-              show: this.isShowLegend()
-            },
-            xaxis: {
-              show: false
-            },
-            yaxis: {
-              show: false
-            }
-          },
-        diagramSpectrum = $( '#' + this.getPath() + ' .actor div.spectrum' ).empty(),
-        optionsSpectrum = {
-          colors: colors,
-          series: {
-            bars: {
-              show: true,
-              fill: 1,
-              fillColor: null,
-              lineWidth: 0
-            }
-          },
-          bars: {
-            align: "center",
-            barWidth: this.isSinglePhase() ? 0.75 : 0.25
-          },
-          legend: {
-            show: this.isShowLegend()
-          },
-          xaxis: {
-            show: false
-          },
-          yaxis: {
-            show: false
-          }
-        };
+      const colors = [this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3()];
 
-      var init = function() {
+      const diagramCurve = this.isShowCurve() && $('#' + this.getPath() + ' .actor div.curve').empty();
+      const optionsCurve = this.isShowCurve() && {
+        colors: colors,
+        legend: {
+          show: this.isShowLegend()
+        },
+        xaxis: {
+          show: false
+        },
+        yaxis: {
+          show: false
+        }
+      };
+      const diagramSpectrum = $('#' + this.getPath() + ' .actor div.spectrum').empty();
+      const optionsSpectrum = {
+        colors: colors,
+        series: {
+          bars: {
+            show: true,
+            fill: 1,
+            fillColor: null,
+            lineWidth: 0
+          }
+        },
+        bars: {
+          align: 'center',
+          barWidth: this.isSinglePhase() ? 0.75 : 0.25
+        },
+        legend: {
+          show: this.isShowLegend()
+        },
+        xaxis: {
+          show: false
+        },
+        yaxis: {
+          show: false
+        }
+      };
+
+      const init = function () {
         this.__plotCurve = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
         this.__plot = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
       }.bind(this);
@@ -305,25 +302,24 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       }
     },
 
-    _update: function( ga, data ) {
-      if (ga === undefined) { return; }
-      var addressInfo = this.getAddress()[ ga ];
+    _update: function(ga, data) {
+      if (ga === undefined) {
+ return; 
+}
+      const addressInfo = this.getAddress()[ga];
 
-      var phase;
-      if( addressInfo.variantInfo[0] === 'I' )
-      {
+      let phase;
+      if (addressInfo.variantInfo[0] === 'I') {
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
-        var value = cv.Transform.encode( addressInfo.transform, data );
+        const value = cv.Transform.encode(addressInfo.transform, data);
         this.getCurrent()[phase-1] = value / 1000; // transform mA to A
-      } else if (addressInfo.variantInfo.substr(0,8) === 'spectrum' && data.length === 28 ) // sanity check for 14 bytes
-      {
+      } else if (addressInfo.variantInfo.substr(0, 8) === 'spectrum' && data.length === 28) { // sanity check for 14 bytes
         phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);
-        var
-          index = parseInt(data.substr(0, 2), 16),
-          factor = this.getCurrent()[phase - 1] || 1,
-          values = [];
+        const index = parseInt(data.substr(0, 2), 16);
+        const factor = this.getCurrent()[phase - 1] || 1;
+        const values = [];
 
-        for (var i = 0; i < 13; i++) {
+        for (let i = 0; i < 13; i++) {
           if (index + i < 2) {
             continue;
           }
@@ -344,23 +340,21 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     /**
      * Setup helper
      */
-    setupCurve: function()
-    {
-      return [[0,0],[0.4,0],[0.8,0],[1.2,0],[1.6,0],[2,0],[2.4,0],[2.8,0],[3.2,0],
-        [3.6,0],[4,0],[4.4,0],[4.8,0],[5.2,0],[5.6,0],[6,0],[6.4,0],[6.8,0],[7.2,0],
-        [7.6,0],[8,0],[8.4,0],[8.8,0],[9.2,0],[9.6,0],[10,0],[10.4,0],[10.8,0],
-        [11.2,0],[11.6,0],[12,0],[12.4,0],[12.8,0],[13.2,0],[13.6,0],[14,0],
-        [14.4,0],[14.8,0],[15.2,0],[15.6,0],[16,0],[16.4,0],[16.8,0],[17.2,0],
-        [17.6,0],[18,0],[18.4,0],[18.8,0],[19.2,0],[19.6,0]];
+    setupCurve: function() {
+      return [[0, 0], [0.4, 0], [0.8, 0], [1.2, 0], [1.6, 0], [2, 0], [2.4, 0], [2.8, 0], [3.2, 0],
+        [3.6, 0], [4, 0], [4.4, 0], [4.8, 0], [5.2, 0], [5.6, 0], [6, 0], [6.4, 0], [6.8, 0], [7.2, 0],
+        [7.6, 0], [8, 0], [8.4, 0], [8.8, 0], [9.2, 0], [9.6, 0], [10, 0], [10.4, 0], [10.8, 0],
+        [11.2, 0], [11.6, 0], [12, 0], [12.4, 0], [12.8, 0], [13.2, 0], [13.6, 0], [14, 0],
+        [14.4, 0], [14.8, 0], [15.2, 0], [15.6, 0], [16, 0], [16.4, 0], [16.8, 0], [17.2, 0],
+        [17.6, 0], [18, 0], [18.4, 0], [18.8, 0], [19.2, 0], [19.6, 0]];
     },
-    setupSpectrum: function( offset )
-    {
-      var ret_val = [];
+    setupSpectrum: function(offset) {
+      const ret_val = [];
 
-      if( undefined === offset ) {
+      if (undefined === offset) {
         offset = 0;
       }
-      for( var i = 2; i < 52; i++ ) {
+      for (let i = 2; i < 52; i++) {
         ret_val.push([i + offset, 0]);
       }
       return ret_val;
@@ -368,24 +362,22 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
 
     /**
      * Convert a spectrum to a curve
+     * @param input
+     * @param target
+     * @param phase
      */
-    updateCurve: function( input, target, phase )
-    {
-      var
-        inp = input[phase],
-        out = target[phase],
-        shift = (phase * 2 / 3 - 0.5) * Math.PI;
+    updateCurve: function(input, target, phase) {
+      const inp = input[phase];
+      const out = target[phase];
+      const shift = (phase * 2 / 3 - 0.5) * Math.PI;
 
-      for( var i = 0; i < 50; i++ )
-      {
-        var
-          phi  = i * Math.PI / 25,
-          value = Math.cos( phi + shift ); // the base with 50 Hz
+      for (let i = 0; i < 50; i++) {
+        const phi = i * Math.PI / 25;
+        let value = Math.cos(phi + shift); // the base with 50 Hz
 
         // the harmonics
-        for( var j = 2; j < 50; j++ )
-        {
-          value += Math.cos( (phi+shift) * j ) * inp[j][1];
+        for (let j = 2; j < 50; j++) {
+          value += Math.cos((phi+shift) * j) * inp[j][1];
         }
 
         out[i][1] = value;
@@ -395,14 +387,13 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     /**
      * Little helper to setup the Flot dataset structure.
      */
-    createDatasetCurve: function()
-    {
-      return this.isSinglePhase() ?
-        [
+    createDatasetCurve: function() {
+      return this.isSinglePhase()
+        ? [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 }, // trick flot to automatically make color darker
           { label: 'L', data: this.getCurve()[0], color:1 }
-        ] :
-        [
+        ]
+        : [
           { label: null, data: this.self(arguments).referenceSin[0], color:13 },
           { label: null, data: this.self(arguments).referenceSin[1], color:14 },
           { label: null, data: this.self(arguments).referenceSin[2], color:15 },
@@ -416,12 +407,12 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
      * Little helper to setup the Flot dataset structure.
      */
     createDatasetSpectrum: function() {
-      return this.isSinglePhase() ?
-        [
+      return this.isSinglePhase()
+        ? [
           { label: this.getLimitName(), data: this.getDisplayType()===this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-          { label: this.getName1(), data:this.getSpectrum()[0] , color:1}
-        ] :
-        [
+          { label: this.getName1(), data:this.getSpectrum()[0], color:1}
+        ]
+        : [
           { 
             label: this.getLimitName(), 
             data: this.getDisplayType() === this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
@@ -433,31 +424,29 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts([
       'plugins/diagram/dep/flot/jquery.flot.min.js',
       'plugins/diagram/dep/flot/jquery.flot.canvas.min.js',
       'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
-    cv.parser.WidgetParser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
-    cv.ui.structure.WidgetFactory.registerClass("powerspectrum", statics);
+    cv.parser.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
+    cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics);
     
     // init
-    statics.limitEN50160_1999.forEach( statics.fixLimits );
-    statics.limitEN50160_1999.push( statics.lastShifted( statics.limitEN50160_1999 ) );
-    statics.limitEN61000_3_2.forEach( statics.fixLimits );
-    statics.limitEN61000_3_2.push( statics.lastShifted( statics.limitEN61000_3_2 ) );
+    statics.limitEN50160_1999.forEach(statics.fixLimits);
+    statics.limitEN50160_1999.push(statics.lastShifted(statics.limitEN50160_1999));
+    statics.limitEN61000_3_2.forEach(statics.fixLimits);
+    statics.limitEN61000_3_2.push(statics.lastShifted(statics.limitEN61000_3_2));
 
     // fill reference
-    for( var phi = 0; phi < 50; phi++ )
-    {
-      var
-        time = phi * 20 / 50; // time in milliseconds
+    for (let phi = 0; phi < 50; phi++) {
+      const time = phi * 20 / 50; // time in milliseconds
 
-      statics.referenceSin[0].push( [ time, Math.sin( (phi      ) * Math.PI / 25 ) ] );
-      statics.referenceSin[1].push( [ time, Math.sin( (phi+ 50/3) * Math.PI / 25 ) ] );
-      statics.referenceSin[2].push( [ time, Math.sin( (phi+100/3) * Math.PI / 25 ) ] );
+      statics.referenceSin[0].push([ time, Math.sin((phi) * Math.PI / 25) ]);
+      statics.referenceSin[1].push([ time, Math.sin((phi+ 50/3) * Math.PI / 25) ]);
+      statics.referenceSin[2].push([ time, Math.sin((phi+100/3) * Math.PI / 25) ]);
     }
   }
 

@@ -18,19 +18,19 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
    */
   construct: function (file, content, errors, properties) {
     this._file = file;
-    this._content = content.split("\n");
+    this._content = content.split('\n');
     this._errors = errors;
     this.base(arguments, Object.assign(properties || {}, {
       useBlocker: true
     }));
 
-    this.addListener("appear", () => {
+    this.addListener('appear', () => {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this.highlight, this);
       } else {
         this.highlight();
       }
-    })
+    });
   },
 
   /*
@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
   ***********************************************
   */
   events: {
-   action: "qx.event.type.Data"
+   action: 'qx.event.type.Data'
   },
 
   /*
@@ -58,7 +58,7 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
     _file: null,
 
     highlight: function () {
-      Array.from(document.querySelectorAll('pre.highlight')).forEach (elem => {
+      Array.from(document.querySelectorAll('pre.highlight')).forEach(elem => {
         monaco.editor.colorizeElement(elem, {
           theme: 'vs-dark'
         });
@@ -89,7 +89,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         rich: true,
         width: Math.min(qx.bom.Viewport.getWidth() - 32, 750),
         allowGrowX: true
-      }
+      };
       const message = new qx.ui.basic.Label(prologue);
       message.set(labelOptions);
       vbox.add(message);
@@ -105,7 +105,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
       this._rootListenerId = qx.core.Init.getApplication().getRoot().addListener('resize', function () {
         errorScroll.setHeight(Math.min(300, qx.bom.Document.getHeight() - 340));
-      })
+      });
       vbox.add(errorScroll, {flex: 1});
       const errorLabels = new Map();
       this._errors.forEach(error => {
@@ -127,16 +127,16 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
           if (minIndent === Number.POSITIVE_INFINITY) {
             minIndent = 0;
           }
-          codeSnippet = codeSnippet.map(line => line[0] + ": " + qx.xml.String.escape(line[1].substr(minIndent)));
-          const headline = this.tr("Line %1", error.line);
-          label = new qx.ui.basic.Label(`<h4>${headline}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join("\n")}</pre>`);
+          codeSnippet = codeSnippet.map(line => line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent)));
+          const headline = this.tr('Line %1', error.line);
+          label = new qx.ui.basic.Label(`<h4>${headline}</h4><pre class="highlight" style="background-color: black; padding: 8px;" data-lang="text/xml">${codeSnippet.join('\n')}</pre>`);
           label.set(labelOptions);
           errorLabels.set(errorId, label);
           errorBox.add(label);
         } else {
           label = errorLabels.get(errorId);
         }
-        if (!error.message.startsWith("[facet")) {
+        if (!error.message.startsWith('[facet')) {
           label.setValue(label.getValue() + `<p>${error.message}</p>`);
         }
       }, this);
@@ -149,14 +149,14 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       let buttonPane = this._createButtonPane();
 
       // close button
-      let closeButton = new qx.ui.form.Button(this.tr("Cancel"));
-      closeButton.addListener("execute",  () => this.fireDataEvent('action', 'cancel'), this);
+      let closeButton = new qx.ui.form.Button(this.tr('Cancel'));
+      closeButton.addListener('execute', () => this.fireDataEvent('action', 'cancel'), this);
 
-      let proceedButton = new qx.ui.form.Button(this.tr("Proceed"));
-      proceedButton.addListener("execute", () => this.fireDataEvent('action', 'proceed'), this);
+      let proceedButton = new qx.ui.form.Button(this.tr('Proceed'));
+      proceedButton.addListener('execute', () => this.fireDataEvent('action', 'proceed'), this);
 
-      let openSourceButton = new qx.ui.form.Button(this.tr("Open in text editor"));
-      openSourceButton.addListener("execute", () => this.fireDataEvent('action', 'open-source'), this);
+      let openSourceButton = new qx.ui.form.Button(this.tr('Open in text editor'));
+      openSourceButton.addListener('execute', () => this.fireDataEvent('action', 'open-source'), this);
 
       buttonPane.add(closeButton);
       buttonPane.add(proceedButton);
@@ -164,9 +164,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
 
       container.add(buttonPane);
       this.add(container);
-
-
-    },
+    }
   },
   /*
   ***********************************************
