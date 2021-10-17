@@ -52,9 +52,7 @@ qx.Class.define('cv.util.String', {
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
       const div = document.createElement('div');
       div.innerHTML = str;
-      const elem = div.children[0];
-      document.body.appendChild(elem);
-      return elem;
+      return div.children[0];
     },
 
     /**
