@@ -20,10 +20,9 @@ describe('cometvisu demo config test:', function () {
     expect(cvDemo.getPageTitle()).toEqual('CometVisu Widget Demo');
   });
 
-  it('should navigate to a page', function() {
-    cvDemo.goToPage('Format Test');
+  it('should navigate to a page', async function() {
+    await cvDemo.goToPage('Format Test');
     browser.driver.sleep(500);
-
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 

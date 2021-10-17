@@ -126,37 +126,33 @@ class BasePage {
    */
   async goToPage(name, force) { // eslint-disable-line class-methods-use-this
     if (force) {
-      return browser.driver.executeAsyncScript(function (name, callback) {
+      await browser.driver.executeAsyncScript(function (name, callback) {
         cv.TemplateEngine.getInstance().scrollToPage(name, 0);
         callback();
       }, name);
     }
-    var done = false;
-    return element.all(by.css('.activePage div.pagelink')).then(function(links) {
-      links.some(function(link) {
-        var actor = link.element(by.css('.actor'));
-        return actor.element(by.tagName('a')).getText().then(function(linkName) {
+    let done = false;
+    const links = await element.all(by.css('.activePage div.pagelink'));
+    for (let i = 0; i < links.length; i++) {
+      const actor = links[i].element(by.css('.actor'));
+      const linkName = await actor.element(by.tagName('a')).getText();
+      if (linkName === name) {
+        done = true;
+        actor.click();
+        break;
+      }
+    }
+    if (!done) {
+      // not found - probably it was a parent page
+      element.all(by.css('.nav_path > a')).each(function (link) {
+        link.getText().then(function (linkName) {
           if (linkName === name) {
             done = true;
-            actor.click();
-            return true;
+            link.click();
           }
-          return false;
         });
       });
-    }).then(function() {
-      if (!done) {
-        // not found - probably it was a parent page
-        element.all(by.css('.nav_path > a')).each(function (link) {
-         link.getText().then(function(linkName) {
-           if (linkName === name) {
-             done = true;
-             link.click();
-           }
-          });
-        });
-      }
-    });
+    }
   }
 
   /**
