@@ -41,11 +41,11 @@ function parse_ini($filepath) {
     foreach ($ini as $line) {
         $line = trim($line);
         // Comments
-        if ($line == '' || $line{0} == ';') {
+        if ($line == '' || $line[0] == ';') {
             continue;
         }
         // Sections
-        if ($line{0} == '[') {
+        if ($line[0] == '[') {
             $sections[] = substr($line, 1, -1);
             $i++;
             continue;
