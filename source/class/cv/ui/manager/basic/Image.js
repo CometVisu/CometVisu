@@ -468,7 +468,7 @@ qx.Class.define('cv.ui.manager.basic.Image',
 
           const mode = this.__getMode();
 
-          if (this.__contentElements[mode] === null) {
+          if (!this.__contentElements[mode]) {
             this.__contentElements[mode] = this.__createSuitableContentElement(mode);
           }
 

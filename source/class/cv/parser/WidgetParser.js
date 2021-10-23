@@ -316,14 +316,14 @@ qx.Class.define('cv.parser.WidgetParser', {
         (style ? (' style="' + style + '"') : '') + '>';
 
       Array.prototype.forEach.call(label.childNodes, function(elem) {
-        if (elem.nodeName.toLowerCase() ==='icon') {
+        if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
           ret_val += cv.IconHandler.getInstance().getIconText(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
             elem.getAttribute('flavour') || flavour,
             elem.getAttribute('color'),
             elem.getAttribute('styling'));
-        } else {
+        } else if (elem.nodeType === Node.TEXT_NODE) {
           ret_val += elem.textContent;
         }
       });

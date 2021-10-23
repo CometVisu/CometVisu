@@ -259,7 +259,7 @@ qx.Class.define('cv.util.IconTools', {
         if (style) {
           style = ' style="'+style+'"';
         }
-        return '<svg ' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
+        return '<svg' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
       };
     }
   },
