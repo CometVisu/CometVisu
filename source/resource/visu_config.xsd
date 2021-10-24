@@ -1897,6 +1897,18 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="widthfit" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="crop-top" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the top crop of the image. Format must be absolute CSS (e.g. px, em).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Obere Beschneidung des Bildes. Angabe mit absolute Einheit im CSS-Format (z.B. px, em).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="crop-bottom" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the bottom crop of the image. Format must be absolute CSS (e.g. px, em).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Untere Beschneidung des Bildes. Angabe mit absolute Einheit im CSS-Format (z.B. px, em).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="refresh" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Sets the update rate for the picture in seconds</xsd:documentation>

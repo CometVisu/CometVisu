@@ -42,10 +42,12 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   properties: {
-    width   : { check: 'String', init: '100%' },
-    height  : { check: 'String', nullable: true },
-    src     : { check: 'String', init: '' },
-    widthFit: { check: 'Boolean', init: false },
+    width      : { check: 'String', init: '100%' },
+    height     : { check: 'String', nullable: true },
+    cropTop    : { check: 'String' },
+    cropBottom : { check: 'String' },
+    src        : { check: 'String', init: '' },
+    widthFit   : { check: 'Boolean', init: false },
     placeholder: {
       check: ['none', 'src', 'hide', 'exclude'],
       init: 'none'
@@ -73,6 +75,19 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (this.getHeight()) {
         imgStyle += 'height:' + this.getHeight() + ';';
       }
+      if (this.getCropTop() !== '' || this.getCropBottom() !== '') {
+        let top = '0%';
+        let bottom = '';
+        if (this.getCropTop() !== '') {
+          top = '-' + this.getCropTop();
+          bottom = 'margin-bottom:' + top;
+        }
+        if (this.getCropBottom() !== '') {
+          bottom = 'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
+        }
+        imgStyle += 'object-position:0% ' + top + ';' + bottom;
+      }
+
       let src = this.__getSrc();
       if (!src) {
         switch (this.getPlaceholder()) {
