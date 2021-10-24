@@ -112,8 +112,19 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   } else
   {
     preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
-    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
-    $start = $end . ' - ' . $startParts[ 1 ][ 0 ] . $map[ $startParts[ 2 ][ 0 ] ];
+    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w' );
+    switch ($startParts[2][0]) {
+      case 'month':
+        $start = $end . ' - ' . (30 * $startParts[1][0]) . 'd';
+        break;
+
+      case 'year':
+        $start = $end . ' - ' . (365 * $startParts[1][0]) . 'd';
+        break;
+
+      default:
+        $start = $end . ' - ' . $startParts[1][0] . $map[$startParts[2][0]];
+    }
   }
 
   if( $filter )
