@@ -50,6 +50,8 @@ qx.Class.define('cv.parser.widgets.Image', {
       return {
         'width'       :   { 'default': '100%' },
         'height'      :   {},
+        'crop-top'    :   { target: 'cropTop', 'default': '' },
+        'crop-bottom' :   { target: 'cropBottom', 'default': '' },
         'src'         :   {},
         'placeholder' :   { 'default': 'none' },
         'widthfit'    :   { target: 'widthFit', transform: function(value) {
