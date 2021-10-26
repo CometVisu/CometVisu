@@ -23,6 +23,18 @@
  *
  */
 describe('testing a pushbutton widget', function() {
+  var realClient;
+  beforeEach(function() {
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client;
+    spyOn(client, 'write');
+  });
+
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
+  });
+
   it('should test the pushbutton creator', function() {
     const [widget, element] = this.createTestWidgetString('pushbutton', {}, '<label>Test</label>');
 
@@ -72,7 +84,6 @@ describe('testing a pushbutton widget', function() {
 
     this.initWidget(button);
     const client = cv.TemplateEngine.getInstance().visu;
-    spyOn(client, 'write');
     var Reg = qx.event.Registration;
 
     Reg.fireEvent(actor, 'pointerdown');
