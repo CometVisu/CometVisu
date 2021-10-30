@@ -85,14 +85,14 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
     _onPointerUp: function () {
       const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === 'up');
+        return (!address.variantInfo || address.variantInfo === 'up');
       });
     },
 
     _onPointerDown: function () {
       const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
-        return (!address[2] || address[2] === 'down');
+        return (!address.variantInfo || address.variantInfo === 'down');
       });
     }
   },

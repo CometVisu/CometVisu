@@ -23,6 +23,18 @@
  *
  */
 describe('testing a pushbutton widget', function() {
+  var realClient;
+  beforeEach(function() {
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client;
+    spyOn(client, 'write');
+  });
+
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
+  });
+
   it('should test the pushbutton creator', function() {
     const [widget, element] = this.createTestWidgetString('pushbutton', {}, '<label>Test</label>');
 
@@ -53,5 +65,37 @@ describe('testing a pushbutton widget', function() {
     Reg.fireEvent(actor, 'pointerup');
 
     expect(button.sendToBackend).toHaveBeenCalledWith('0', jasmine.any(Function));
+  });
+
+  it('should send up/down to different addresses', function() {
+    var button = this.createTestElement('pushbutton', null, null, ['UpAddress', 'DownAddress'], [
+      {
+        transform: 'Switch',
+        variant: 'up',
+        mode: 'write'
+      },
+      {
+        transform: 'Switch',
+        variant: 'down',
+        mode: 'write'
+      }
+    ]);
+    var actor = button.getActor();
+
+    this.initWidget(button);
+    const client = cv.TemplateEngine.getInstance().visu;
+    var Reg = qx.event.Registration;
+
+    Reg.fireEvent(actor, 'pointerdown');
+
+    expect(client.write).toHaveBeenCalledWith('DownAddress', '1', jasmine.objectContaining({
+      transform: 'Switch', mode: 2, variantInfo: 'down', formatPos: 1
+    }));
+    expect(client.write.calls.count()).toBe(1);
+    Reg.fireEvent(actor, 'pointerup');
+    expect(client.write.calls.count()).toBe(2);
+    expect(client.write).toHaveBeenCalledWith('UpAddress', '0', jasmine.objectContaining({
+      transform: 'Switch', mode: 2, variantInfo: 'up', formatPos: 1
+    }));
   });
 });
