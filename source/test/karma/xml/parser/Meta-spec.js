@@ -13,7 +13,6 @@ describe('testing the meta parser', function() {
     let xml = qx.xml.Document.fromString(window.__html__['meta-config.xml']);
     let parser = new cv.parser.MetaParser();
     parser.parse(xml, function () {
-
       // check mappings
       expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
       expect(cv.Config.hasMapping('Sign')).toBeTruthy();
@@ -26,7 +25,7 @@ describe('testing the meta parser', function() {
       expect(cv.Config.hasStyling('Blue_Purple_Red')).toBeTruthy();
 
       // test plugins
-      var plugins = parser.parsePlugins(xml);
+      let plugins = parser.parsePlugins(xml);
       expect(plugins).toContain('plugin-clock');
       expect(plugins).toContain('plugin-diagram');
       expect(plugins).toContain('plugin-strftime');

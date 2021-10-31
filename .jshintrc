@@ -1,8 +1,7 @@
 {
-  "esversion": 7,
-  "laxbreak": true,
   "node": true,
   "browser": true,
+  "esnext": true,
   "bitwise": false,
   "curly": true,
   "eqeqeq": true,
