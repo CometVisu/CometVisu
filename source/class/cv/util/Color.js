@@ -152,7 +152,13 @@ qx.Class.define('cv.util.Color', {
       if( curve.length === 1 ) {
         return scale * component ** (1/curve[0]);
       }
-      // TODO add table conversion
+      // otherwise: table conversion
+      let spacing = 1 / (curve.length - 1); // the distance between two values
+      let position = component / spacing;
+      let lower  = Math.max( Math.floor(position), 0 );
+      let higher = Math.min( Math.ceil(position), curve.length - 1 );
+      let alpha = position - lower;
+      return scale * (curve[lower] * (1-alpha) + curve[higher] * alpha);
     },
 
     /**
@@ -172,7 +178,19 @@ qx.Class.define('cv.util.Color', {
       if( curve.length === 1 ) {
         return curve[0] > 0 ? (value/scale) ** curve[0] : 0;
       }
-      // TODO add table conversion
+      // otherwise: table conversion
+      let normalized = value/scale;
+      let higher = curve.findIndex((x) => (x>normalized));
+      if( higher < 0 ) {
+        // nothing found -> limit to highgest index
+        higher = curve.length - 1;
+      }
+      let lower = Math.max( higher-1, 0 );
+      if( lower === higher ) {
+        return lower / (curve.length-1);
+      }
+      let ratio = (normalized-curve[lower]) / (curve[higher]-curve[lower]);
+      return Math.min( (lower + ratio)/(curve.length-1), 1 );
     },
   },
   

@@ -595,6 +595,18 @@ describe('checking color class', function() {
     expect(cv.util.Color.curve(0.5, 'exp', 100)).toBeCloseTo( 3.1623, 4);
     expect(cv.util.Color.curve(0.5, [1]  , 255)).toBeCloseTo(127.5, 4);
     expect(cv.util.Color.curve(0.5, [2.2], 255)).toBeCloseTo(186.0837, 4);
+    let curve = [0, 0.2, 0.4, 0.7, 1];
+    expect(cv.util.Color.curve(0.0, curve, 100)).toBeCloseTo(0, 4);
+    expect(cv.util.Color.curve(0.1, curve, 100)).toBeCloseTo(8, 4);
+    expect(cv.util.Color.curve(0.2, curve, 100)).toBeCloseTo(16, 4);
+    expect(cv.util.Color.curve(0.3, curve, 100)).toBeCloseTo(24, 4);
+    expect(cv.util.Color.curve(0.4, curve, 100)).toBeCloseTo(32, 4);
+    expect(cv.util.Color.curve(0.5, curve, 100)).toBeCloseTo(40, 4);
+    expect(cv.util.Color.curve(0.6, curve, 100)).toBeCloseTo(52, 4);
+    expect(cv.util.Color.curve(0.7, curve, 100)).toBeCloseTo(64, 4);
+    expect(cv.util.Color.curve(0.8, curve, 100)).toBeCloseTo(76, 4);
+    expect(cv.util.Color.curve(0.9, curve, 100)).toBeCloseTo(88, 4);
+    expect(cv.util.Color.curve(1.0, curve, 100)).toBeCloseTo(100, 4);
   });
 
   it('should convert according to a inverted curve', function() {
@@ -606,6 +618,18 @@ describe('checking color class', function() {
     expect(cv.util.Color.invCurve( 3.1623, 'exp', 100)).toBeCloseTo(0.5, 4);
     expect(cv.util.Color.invCurve(127.5, [1]  , 255)).toBeCloseTo(0.5, 4);
     expect(cv.util.Color.invCurve(186.0837, [2.2], 255)).toBeCloseTo(0.5, 4);
+    let curve = [0, 0.2, 0.4, 0.7, 1];
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.0, curve, 100), curve, 100)).toBeCloseTo(0.0, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.1, curve, 100), curve, 100)).toBeCloseTo(0.1, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.2, curve, 100), curve, 100)).toBeCloseTo(0.2, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.3, curve, 100), curve, 100)).toBeCloseTo(0.3, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.4, curve, 100), curve, 100)).toBeCloseTo(0.4, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.5, curve, 100), curve, 100)).toBeCloseTo(0.5, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.6, curve, 100), curve, 100)).toBeCloseTo(0.6, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.7, curve, 100), curve, 100)).toBeCloseTo(0.7, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.8, curve, 100), curve, 100)).toBeCloseTo(0.8, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(0.9, curve, 100), curve, 100)).toBeCloseTo(0.9, 4);
+    expect(cv.util.Color.invCurve(cv.util.Color.curve(1.0, curve, 100), curve, 100)).toBeCloseTo(1.0, 4);
   });
 
   it('should solve 2D equations', function() {
