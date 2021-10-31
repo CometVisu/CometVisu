@@ -730,7 +730,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         // initial load, take parameters from configuration
         ret.start = 'end-' + this.getPeriod() + selectedSeries.start;
         ret.end = selectedSeries.end;
-        ret.res = selectedSeries.res;
+        ret.res = this.getSeriesResolution() ? this.getSeriesResolution() : selectedSeries.res;
       }
 
       if (xAxis.datamin && xAxis.datamax && isInteractive) {
