@@ -182,7 +182,7 @@ qx.Class.define('cv.util.Color', {
       let normalized = value/scale;
       let higher = curve.findIndex((x) => (x>normalized));
       if( higher < 0 ) {
-        // nothing found -> limit to highgest index
+        // nothing found -> limit to highest index
         higher = curve.length - 1;
       }
       let lower = Math.max( higher-1, 0 );
@@ -294,11 +294,14 @@ qx.Class.define('cv.util.Color', {
         ];
       }
       function valid(hsv) {
+        const precision = 1000;
         let
           h = hsv[0],
           s = hsv[1],
           v = hsv[2];
-        return 0 <= h && h <= 1 && 0 <= s && 0 <= v; // && v <= 1;
+        return 0 <= Math.ceil(h * precision) && Math.floor(h * precision) <= precision &&
+          0 <= Math.ceil(s * precision) &&
+          0 <= Math.ceil(v * precision); // && v <= precision;
       }
 
       if( this.__hsv === undefined || force ) {
@@ -307,7 +310,9 @@ qx.Class.define('cv.util.Color', {
           return;
         }
 
-        let Y = this.__Y, X = Y / this.__y * this.__x, Z = Y / this.__y * (1 - this.__x - this.__y);
+        let Y = this.__Y;
+        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
+        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
         let
           hsv0 = solve(this.__G.X, this.__G.Y, this.__G.Z, this.__R.X - this.__W.X, this.__R.Y - this.__W.Y, this.__R.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
           hsv1 = solve(this.__R.X, this.__R.Y, this.__R.Z, this.__G.X - this.__W.X, this.__G.Y - this.__W.Y, this.__G.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
@@ -342,45 +347,61 @@ qx.Class.define('cv.util.Color', {
     __validateRGB: function (force) {
       if( this.__rgb === undefined || force ) {
         this.__rgb = {};
-        let Y = this.__Y, X = Y / this.__y * this.__x, Z = Y / this.__y * (1 - this.__x - this.__y);
+        let Y = this.__Y;
+        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
+        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
         [this.__rgb.r, this.__rgb.g, this.__rgb.b] = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
           this.__B.X, this.__B.Y, this.__B.Z,
           X, Y, Z
         );
+        // scale and clamp:
+        let max = Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b);
+        if( max < 1 ) {
+          max = 1;
+        }
+        this.__rgb.r = Math.max( 0, this.__rgb.r / max );
+        this.__rgb.g = Math.max( 0, this.__rgb.g / max );
+        this.__rgb.b = Math.max( 0, this.__rgb.b / max );
       }
     },
 
     __validateRGBW: function (force) {
       if( this.__rgbw === undefined || force ) {
-      // quick fake:
-      /*this.__validateRGB();
-      let min = Math.min(this.__rgb.r, this.__rgb.g, this.__rgb.b);
-      this.__rgbw = {r: this.__rgb.r - min, g: this.__rgb.g - min, b: this.__rgb.b - min, w: min};
-      */
-      //-----
-      let Y = this.__Y, X = Y / this.__y * this.__x, Z = Y / this.__y * (1 - this.__x - this.__y);
-      let w2rgb = cv.util.Color.solve3d(
-        this.__R.X, this.__R.Y, this.__R.Z,
-        this.__G.X, this.__G.Y, this.__G.Z,
-        this.__B.X, this.__B.Y, this.__B.Z,
-        this.__W.X, this.__W.Y, this.__W.Z
-      );
-      this.__rgbw = {};//w: Math.min(X/this.__W.X, Y/this.__W.Y, Z/this.__W.Z)};
-      [this.__rgbw.r, this.__rgbw.g, this.__rgbw.b] = cv.util.Color.solve3d(
-        this.__R.X, this.__R.Y, this.__R.Z,
-        this.__G.X, this.__G.Y, this.__G.Z,
-        this.__B.X, this.__B.Y, this.__B.Z,
-        X, Y, Z
-        //X - this.__rgbw.w*this.__W.X, Y - this.__rgbw.w*this.__W.Y, Z - this.__rgbw.w*this.__W.Z
-      );
-      this.__rgbw.w = Math.min(this.__rgbw.r/w2rgb[0], this.__rgbw.g/w2rgb[1], this.__rgbw.b/w2rgb[2]);
-      this.__rgbw.r -= this.__rgbw.w * w2rgb[0];
-      this.__rgbw.g -= this.__rgbw.w * w2rgb[1];
-      this.__rgbw.b -= this.__rgbw.w * w2rgb[2];
-      // not finally developed yet, it's here to not get lost:
-      /*
+        let Y = this.__Y;
+        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
+        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
+        let w2rgb = cv.util.Color.solve3d(
+          this.__R.X, this.__R.Y, this.__R.Z,
+          this.__G.X, this.__G.Y, this.__G.Z,
+          this.__B.X, this.__B.Y, this.__B.Z,
+          this.__W.X, this.__W.Y, this.__W.Z
+        );
+        this.__rgbw = {};//w: Math.min(X/this.__W.X, Y/this.__W.Y, Z/this.__W.Z)};
+        [this.__rgbw.r, this.__rgbw.g, this.__rgbw.b] = cv.util.Color.solve3d(
+          this.__R.X, this.__R.Y, this.__R.Z,
+          this.__G.X, this.__G.Y, this.__G.Z,
+          this.__B.X, this.__B.Y, this.__B.Z,
+          X, Y, Z
+          //X - this.__rgbw.w*this.__W.X, Y - this.__rgbw.w*this.__W.Y, Z - this.__rgbw.w*this.__W.Z
+        );
+        this.__rgbw.w = Math.min(this.__rgbw.r/w2rgb[0], this.__rgbw.g/w2rgb[1], this.__rgbw.b/w2rgb[2]);
+        this.__rgbw.r -= this.__rgbw.w * w2rgb[0];
+        this.__rgbw.g -= this.__rgbw.w * w2rgb[1];
+        this.__rgbw.b -= this.__rgbw.w * w2rgb[2];
+
+        // scale and clamp:
+        let max = Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w);
+        if( max < 1 ) {
+          max = 1;
+        }
+        this.__rgbw.r = Math.max( 0, this.__rgbw.r / max );
+        this.__rgbw.g = Math.max( 0, this.__rgbw.g / max );
+        this.__rgbw.b = Math.max( 0, this.__rgbw.b / max );
+        this.__rgbw.w = Math.max( 0, this.__rgbw.w / max );
+        // not finally developed yet, it's here to not get lost:
+        /*
         let
           s = Math.max( color.s, 1e-5 ),
           RBx = base.r.x - base.b.x,
@@ -491,6 +512,12 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncRGB2xy: function () {
+      /*
+      // sanitize
+      this.__rgb.r = Math.min(Math.max(0, this.__rgb.r), 1);
+      this.__rgb.g = Math.min(Math.max(0, this.__rgb.g), 1);
+      this.__rgb.b = Math.min(Math.max(0, this.__rgb.b), 1);
+      */
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       if( this.__Y > 0 ) {
         let
