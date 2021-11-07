@@ -126,6 +126,9 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
         if (err) {
           cv.ui.manager.snackbar.Controller.error(err);
         } else {
+          if (res instanceof XMLDocument) {
+            res = new XMLSerializer().serializeToString(res);
+          }
           this.setContent(res);
         }
       }, this);

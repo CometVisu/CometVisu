@@ -193,7 +193,8 @@
       "Worker": "readonly",
       "Node": "readonly",
       "indexedDB": "readonly",
-      "URL": "readonly"
+      "URL": "readonly",
+      "sinon": "readonly"
     }
   }
 }

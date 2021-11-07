@@ -212,6 +212,7 @@
     "Worker",
     "Node",
     "indexedDB",
-    "URL"
+    "URL",
+    "sinon"
   ]
 }
