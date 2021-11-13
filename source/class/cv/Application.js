@@ -213,7 +213,7 @@ qx.Class.define('cv.Application',
       // add command to load and open the manager
       const manCommand = new qx.ui.command.Command('Ctrl+M');
       cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
-      manCommand.addListener('execute', this.showManager, this);
+      manCommand.addListener('execute', () => this.showManager(), this);
       if (cv.Config.request.queryKey.manager) {
         this.showManager();
       }
@@ -261,7 +261,7 @@ qx.Class.define('cv.Application',
         const engine = cv.TemplateEngine.getInstance();
         if (!engine.isLoggedIn() && !action) {
           // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-          engine.addListenerOnce('changeLoggedIn', this.showManager, this);
+          engine.addListenerOnce('changeLoggedIn', () => this.showManager());
           return;
         }
         const ManagerMain = cv.ui['manager']['Main'];
