@@ -134,8 +134,10 @@ qx.Class.define('cv.io.Mockup', {
         if (url.startsWith('https://sentry.io')) {
           return true;
         } else if (method === 'GET' && (
-          url.indexOf('resource/visu_config') > 0 ||
-          url.indexOf('resource/demo/visu_config') > 0
+          url.indexOf('resource/visu_config') >= 0 ||
+          url.indexOf('resource/demo/visu_config') >= 0 ||
+          url.indexOf('resource/hidden-schema.json') >= 0 ||
+          url.indexOf('resource/manager/') >= 0
         )) {
           return true;
         } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
