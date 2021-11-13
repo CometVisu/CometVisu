@@ -543,7 +543,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      * @returns {string}
      */
     getServerPath: function () {
-      return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
+      if (!this.isMounted()) {
+        return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
+      }
+      return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + this.getFullPath();
     },
 
     /**

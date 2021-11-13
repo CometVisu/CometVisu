@@ -168,6 +168,25 @@
           "protractor/no-by-xpath": "off",
           "jasmine/no-disabled-tests": "off"
         }
+      },
+      {
+        "files": [
+          "utils/compile/**/*.js"
+        ],
+        "env": {
+          "node": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off",
+          "protractor/no-describe-selectors": "off",
+          "protractor/no-repetitive-locators": "off",
+          "protractor/no-repetitive-selectors": "off",
+          "protractor/no-browser-sleep": "off",
+          "protractor/no-by-xpath": "off",
+          "jasmine/no-disabled-tests": "off"
+        }
       }
     ],
     "globals": {

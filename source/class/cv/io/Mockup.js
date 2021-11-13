@@ -143,6 +143,7 @@ qx.Class.define('cv.io.Mockup', {
         } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
           // change url to avoid API access and do a real request
           const path = url.split('=').pop();
+          console.log(path);
           const suffix = path.startsWith('demo/') ? '' : 'config/';
           args[1] = window.location.pathname + 'resource/' + suffix + path;
           return true;
