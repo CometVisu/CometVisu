@@ -50,17 +50,17 @@ class AbstractCompileHandler {
     data.libraryVersion = packageData.org_cometvisu.libraryVersion;
 
     const code = mustache.render(`
-qx.Class.define("cv.Version", {
-  type: "static",
+qx.Class.define('cv.Version', {
+  type: 'static',
 
   statics: {
-    REV: "{{ revision }}",
-    BRANCH: "{{ branch }}",
-    VERSION: "{{ version }}",
+    REV: '{{ revision }}',
+    BRANCH: '{{ branch }}',
+    VERSION: '{{ version }}',
     LIBRARY_VERSION: {{ libraryVersion }},
-    DATE: "{{ date }}",
+    DATE: '{{ date }}',
     TAGS: { {{#tags}}
-      {{ name }}: "{{value}}"{{^last}},{{/last}}{{/tags}}
+      {{ name }}: '{{value}}'{{^last}},{{/last}}{{/tags}}
     }
   }
 });    

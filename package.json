@@ -116,7 +116,9 @@
       "quotes": [
         "error",
         "single"
-      ]
+      ],
+      "protractor/no-shadowing": "off",
+      "protractor/no-promise-in-if": "off"
     },
     "plugins": [
       "jasmine",
@@ -166,7 +168,9 @@
           "protractor/no-repetitive-selectors": "off",
           "protractor/no-browser-sleep": "off",
           "protractor/no-by-xpath": "off",
-          "jasmine/no-disabled-tests": "off"
+          "jasmine/no-disabled-tests": "off",
+          "protractor/no-shadowing": "warn",
+          "protractor/no-promise-in-if": "warn"
         }
       },
       {
