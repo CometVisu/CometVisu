@@ -213,6 +213,7 @@
     "Node",
     "indexedDB",
     "URL",
-    "sinon"
+    "sinon",
+    "XMLDocument"
   ]
 }
