@@ -396,7 +396,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           //actor.range.style.width = length + 'px';
           actor.range.style.clipPath = 'inset(0 ' + (1-ratioComponent)*100 + '% 0 0)';
           //this.__actors[this.__mode].button.textContent = relCoordX;
-          actor.button.textContent =  ratioComponent;
+          actor.button.textContent = ratioComponent;
         }
       }
       

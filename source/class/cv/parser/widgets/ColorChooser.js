@@ -68,7 +68,6 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
         b: {x: 0.15, y: 0.06, Y: 0.0722},
         w: {x: 0.3127, y: 0.3290, Y: 1}
       };
-      console.log('parse', xml);
       let
         r_x          = xml.getAttribute('r_x'),
         r_y          = xml.getAttribute('r_y'),

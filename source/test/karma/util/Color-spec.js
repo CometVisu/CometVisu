@@ -523,7 +523,7 @@ describe('checking color class', function() {
     expect(c.getComponent('LCh-C')).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
     expect(c.getComponent('RGB-r')).toBeCloseTo( 4.686705/4.686705, 3); // linear RGB
-    expect(c.getComponent('RGB-g')).toBeCloseTo(-0.102746/4.686705, 3); // linear RGB
+    expect(c.getComponent('RGB-g')).toBeCloseTo( 0       /4.686705, 3); // linear RGB, clamp of -0.102746
     expect(c.getComponent('RGB-b')).toBeCloseTo( 1.063306/4.686705, 3); // linear RGB
 
     c.changeComponent('LCh-h', 0.25); // LCh-h = 0.25 === CIE LCh h = 90°
@@ -542,7 +542,7 @@ describe('checking color class', function() {
     expect(c.getComponent('LCh-h')).toBeCloseTo(0.25, 4);
     expect(c.getComponent('RGB-r')).toBeCloseTo( 1.534334/1.534334, 3); // linear RGB
     expect(c.getComponent('RGB-g')).toBeCloseTo( 0.955460/1.534334, 3); // linear RGB
-    expect(c.getComponent('RGB-b')).toBeCloseTo(-0.133152/1.534334, 3); // linear RGB
+    expect(c.getComponent('RGB-b')).toBeCloseTo( 0       /1.534334, 3); // linear RGB, clamp of -0.133152
   });
 
   it('should convert a wavelength to xy coordiantes', function() {

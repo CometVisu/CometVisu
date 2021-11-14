@@ -299,9 +299,13 @@ qx.Class.define('cv.util.Color', {
           h = hsv[0],
           s = hsv[1],
           v = hsv[2];
+        // test for sane input values:
+        // - none is allowed to be negative
+        // - be a bit more relaxed about s and v as that might happen with out
+        //   of gamut colors
         return 0 <= Math.ceil(h * precision) && Math.floor(h * precision) <= precision &&
-          0 <= Math.ceil(s * precision) &&
-          0 <= Math.ceil(v * precision); // && v <= precision;
+          0 <= Math.ceil(s * precision) && Math.floor(s * precision) <= 2*precision &&
+          0 <= Math.ceil(v * precision) && Math.floor(v * precision) <= 2*precision;
       }
 
       if( this.__hsv === undefined || force ) {
