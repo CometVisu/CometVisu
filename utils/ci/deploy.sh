@@ -112,17 +112,14 @@ echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
 echo "generating test mode build"
-CV_TAG_RUNTIME=demo CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx compile -t build -f=false
-grunt update-demo-config
-rm -rf out/de/$VERSION_PATH/demo
-mv compiled/build out/de/$VERSION_PATH/demo
+CV_TAG_RUNTIME=demo CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
+grunt update-demo-config --base-dir=out/de/$VERSION_PATH/demo
+# Copy demo-mode to default config
+cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "copying JSON schema for hidden configuration"
 mkdir -p out/schemas/$VERSION_PATH/
 cp source/resource/hidden-schema.json out/schemas/$VERSION_PATH/
-
-# Copy demo-mode to default config
-cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo

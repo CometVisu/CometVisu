@@ -25,7 +25,7 @@ qx.Class.define('cv.compile.cv.BuildTarget', {
       const plugins = [];
       compileInfo.parts.forEach((part, partId) => {
         if (part.name.startsWith('plugin-')) {
-          plugins.push({part: part, id: partId})
+          plugins.push({part: part, id: partId});
         }
       });
       for (const entry of plugins) {
@@ -62,10 +62,7 @@ qx.Class.define('cv.compile.cv.BuildTarget', {
         classInfo.dependsOn.hasOwnProperty('cv.util.ScriptLoader') &&
         classInfo.dependsOn['cv.util.ScriptLoader'].defer === 'runtime'
       ) {
-        return classInfo.assets.some(entry => {
-          return entry.split(',').some(name => name.endsWith('.js'));
-        });
-
+        return classInfo.assets.some(entry => entry.split(',').some(name => name.endsWith('.js')));
       }
       return false;
     },
@@ -88,8 +85,8 @@ qx.Class.define('cv.compile.cv.BuildTarget', {
           } else if (!assets.includes(path.join(targetDir, 'resource', name))) {
             assets.push(path.join(targetDir, 'resource', name));
           }
-        })
-      })
+        });
+      });
       return assets;
     },
 
@@ -109,13 +106,13 @@ qx.Class.define('cv.compile.cv.BuildTarget', {
         }
         // all done, now we copy the plugin code to the temporayy file too (to append it at the end)
         await this.__queuedWrite(entry.filename, w, true);
-        await new Promise((resolve) => {
+        await new Promise(resolve => {
           w.end('', null, () => {
             // now we copy the temporary part file over the real part file
             fs.renameSync(entry.filename + '.tmp', entry.filename);
             resolve();
-          })
-        })
+          });
+        });
       }
     },
 
@@ -134,15 +131,15 @@ qx.Class.define('cv.compile.cv.BuildTarget', {
             targetStream.write('cv.util.ScriptLoader.markAsLoaded("' + relativePath + '")}\n');
           }
           resolve();
-        })
-        reader.on('error', (err) => {
+        });
+        reader.on('error', err => {
           reject(err);
-        })
-      })
+        });
+      });
     }
   }
-})
+});
 
 module.exports = {
   CvBuildTarget: cv.compile.cv.BuildTarget
-}
+};
