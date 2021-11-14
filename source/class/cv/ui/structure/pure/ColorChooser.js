@@ -75,9 +75,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   construct: function(props) {
     this.base(arguments, props);
 
-    let
-      base= this.getBaseColors(),
-      f = (x) => ({x:x.x, y:x.y, Y:x.Y});
+    const base= this.getBaseColors();
+    const f = (x) => ({x:x.x, y:x.y, Y:x.Y});
     this.__color = new cv.util.Color( f(base.r), f(base.g), f(base.b), f(base.w) );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
@@ -137,20 +136,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
     // overridden
     _getInnerDomString: function () {
-      let placeholder = this.getFormat() === '' ? '' : '-';
-      //<div className="hue" style="position:absolute;width:100%;height:100%;border-radius:50%;background: conic-gradient(red, magenta, blue, aqua, lime, yellow, red)"></div>
-      //-webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 9px),#fff 0)
-      //<div className="saturation" style="position:absolute;width:100%;height:100%;border-radius:50%;background: radial-gradient(circle closest-side, rgb(255, 255, 255), transparent)"></div>
-      //<div className="sv_triangle"
-      //     style="position: absolute;padding:10px;top:0;right:0;bottom:0;left:0;transform:rotate(0deg);">
-      //  <div className="inner"
-      //       style="width:100%;height:75%;-webkit-mask:conic-gradient(at 50% 0%, transparent,transparent 150deg,#fff 150deg,#fff 210deg,transparent 210deg);background:linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),linear-gradient(45deg, #f00, #f00);Xtransform-origin: 50% 66.6667%;Xtransform: rotate(23deg)"></div>
-      //console.log('_getInnerDomString', this.getControls());
-      let
-        self = this,
-        retval = '',
-        historicWidth = this.getLayout().colspan === undefined ? ' style="width:195px"' : '',
-        controls = this.getControls().split(';');
+      const placeholder = this.getFormat() === '' ? '' : '-';
+      const self = this;
+      let retval = '';
+      const historicWidth = this.getLayout().colspan === undefined ? ' style="width:195px"' : '';
+      let controls = this.getControls().split(';');
       if(controls[0] === '') {
         controls[0] = 'box';
       }
@@ -298,11 +288,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
      * @private
      */
     __setSliderTo: function(value, variant, instant) {
-      ///////////////////////
-      //console.log('setSlider',value, variant, instant, relaxDisplay );
       this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
       this.__color.changeComponent( variant, value );
-      //this.__updateHandlePosition();
       instant = instant || this.__color.delta(this.__colorOld) < 0.005;
       if( !instant ) {
         this.__animator.setTo(this.__colorOld, true, false );
@@ -357,10 +344,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         this.__actors = actors;
       }
 
-      //console.log('__updateHandlePosition', ratio, this.__colorOld ? this.__colorOld.getComponent('rgb') :'-', this.__color?this.__color.getComponent('rgb'):'-');
-      //console.log('__updateHandlePosition', ratio.getComponent('hsv'), ratio.getComponent('rgb'), '##',this.__colorCurrent?this.__colorCurrent.delta(ratio):'-','##');
-      //console.trace();
-      this.__colorCurrent = ratio; //(ratio >= 1 || this.__colorOld === undefined) ? this.__color : cv.util.Color.blend( this.__colorOld, this.__color, ratio );
+      this.__colorCurrent = ratio;
       // move handles
       for( let type in this.__actors ) {
         let
@@ -393,22 +377,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           }
           let length = Math.max(0, Math.min( ratioComponent, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
-          //actor.range.style.width = length + 'px';
           actor.range.style.clipPath = 'inset(0 ' + (1-ratioComponent)*100 + '% 0 0)';
-          //this.__actors[this.__mode].button.textContent = relCoordX;
           actor.button.textContent = ratioComponent;
         }
       }
       
-      //////
-      let rgb = this.__colorCurrent.getComponent('rgb');
       let c = cv.util.Color.xy2sRGB(this.__colorCurrent.getComponent('xy'), this.__colorCurrent.getComponent('Y'));
-      //console.log(this.__colorCurrent.getComponent('T'),this.__colorCurrent.getComponent('xy'),rgb,c);
-      //console.log(this.__parentWidget__P_101_0, this.__parentWidget__P_101_0.getWidgetElement(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
-      //console.log(this.getPath(), this.getParentWidget(), this.getParentWidget().getWidgetElement());
-      //this.getParentWidget().getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
-      //this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+rgb.r*100+'% '+rgb.g*100+'% '+rgb.b*100+'%)';
-      //cv.util.Color.xy2sRGB
       this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+[Math.round(c.r*255),Math.round(c.g*255),Math.round(c.b*255)].join(',')+')';
     },
 
@@ -441,7 +415,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               this.__inDrag = true;
             } else {
               let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
-              //console.log(distSqrd,relCoordX,relCoordY,radius**2);
               if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
                 this.__mode = 'wheel_h';
                 this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
@@ -496,7 +469,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           this.__inDrag = false;
           document.removeEventListener('pointermove', this);
           document.removeEventListener('pointerup', this);
-          //console.log('pointermove -> removeEventListener', this);
           type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
           relCoordX = (event.clientX - this.__coordMinX)/this.__actors[type].width;
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[type].height;
@@ -529,12 +501,10 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             this.__color.changeComponent('LCh-C', Math.max(0, Math.min(relCoordX, 1)) * 150 );
             break;
           default:
-            //console.log('changeComponent',this.__mode, relCoordX, this.__actors[this.__mode].button);
             this.__actors[this.__mode].button.textContent = relCoordX;
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
-      //console.log('setTo', event.type);
       this.__animator.setTo(this.__color, true);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
         this.__throttled.call();
@@ -575,9 +545,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             ]);
             break;
         }
-        //let tmp__lastBusValue =  this.__lastBusValue[type];
         this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
-        //console.log('send', type, tmp__lastBusValue, '->',  this.__lastBusValue[type]);
       });
     }
   },

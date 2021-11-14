@@ -44,24 +44,6 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
-      /*
-    let datatype_min, datatype_max;
-    Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
-      var transform = elem.getAttribute('transform');
-      if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
-        if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
-          datatype_min = cv.Transform.registry[transform].range.min;
-        }
-        if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
-          datatype_max = cv.Transform.registry[transform].range.max;
-        }
-      }
-    });*/
-      //var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
-      //var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
-
-      //data.min = min;
-      //data.max = max;
       data.baseColors = { // default to sRGB color space with D65 white point
         r: {x: 0.64, y: 0.33, Y: 0.2126},
         g: {x: 0.30, y: 0.60, Y: 0.7152},
@@ -101,7 +83,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
       if( r_x ) { data.baseColors.r.x = parseFloat(r_x); }
       if( r_y ) { data.baseColors.r.y = parseFloat(r_y); }
       if( r_strength ) { data.baseColors.r.Y = parseFloat(r_strength); }
-      data.baseColors.r.scale    = r_scale ? parseFloat(r_scale) : 100;
+      data.baseColors.r.scale = r_scale ? parseFloat(r_scale) : 100;
       switch (r_curve) {
         case 'exponential':
           data.baseColors.r.curve = 'exp';

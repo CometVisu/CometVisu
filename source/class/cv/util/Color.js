@@ -382,13 +382,12 @@ qx.Class.define('cv.util.Color', {
           this.__B.X, this.__B.Y, this.__B.Z,
           this.__W.X, this.__W.Y, this.__W.Z
         );
-        this.__rgbw = {};//w: Math.min(X/this.__W.X, Y/this.__W.Y, Z/this.__W.Z)};
+        this.__rgbw = {};
         [this.__rgbw.r, this.__rgbw.g, this.__rgbw.b] = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
           this.__B.X, this.__B.Y, this.__B.Z,
           X, Y, Z
-          //X - this.__rgbw.w*this.__W.X, Y - this.__rgbw.w*this.__W.Y, Z - this.__rgbw.w*this.__W.Z
         );
         this.__rgbw.w = Math.min(this.__rgbw.r/w2rgb[0], this.__rgbw.g/w2rgb[1], this.__rgbw.b/w2rgb[2]);
         this.__rgbw.r -= this.__rgbw.w * w2rgb[0];
@@ -404,23 +403,6 @@ qx.Class.define('cv.util.Color', {
         this.__rgbw.g = Math.max( 0, this.__rgbw.g / max );
         this.__rgbw.b = Math.max( 0, this.__rgbw.b / max );
         this.__rgbw.w = Math.max( 0, this.__rgbw.w / max );
-        // not finally developed yet, it's here to not get lost:
-        /*
-        let
-          s = Math.max( color.s, 1e-5 ),
-          RBx = base.r.x - base.b.x,
-          RBy = base.r.y - base.b.y,
-          GBx = base.g.x - base.b.x,
-          GBy = base.g.y - base.b.y,
-          cBx = (color.x-(1-s)*base.w.x)/s - base.b.x,
-          cBy = (color.y-(1-s)*base.w.y)/s - base.b.y,
-          rg = cv.ui.structure.pure.ColorChooser.solve2d(RBx, RBy, GBx, GBy, cBx, cBy);
-        
-        let r =  rg[0], g = rg[1], b = 1-rg[0]-rg[1];
-        r = (r * s + (1-s)) * color.v;
-        g = (g * s + (1-s)) * color.v;
-        b = (b * s + (1-s)) * color.v;
-        */
       }
     },
 
@@ -495,8 +477,6 @@ qx.Class.define('cv.util.Color', {
       }
 
       // second step: blend with white to take saturation into account and scale with brightness
-      //this.__x = (r * this.__R.x + g * this.__G.x + b * this.__B.x) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
-      //this.__y = (r * this.__R.y + g * this.__G.y + b * this.__B.y) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
       let
         X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
         Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
@@ -516,12 +496,6 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncRGB2xy: function () {
-      /*
-      // sanitize
-      this.__rgb.r = Math.min(Math.max(0, this.__rgb.r), 1);
-      this.__rgb.g = Math.min(Math.max(0, this.__rgb.g), 1);
-      this.__rgb.b = Math.min(Math.max(0, this.__rgb.b), 1);
-      */
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       if( this.__Y > 0 ) {
         let
@@ -574,7 +548,6 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncLab2xy: function (keepLCh = false) {
-      //const Xn = 94.811, Yn = 100, Zn = 107.304; // D65, 10 degrees
       const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
       let
         fInv = function(t) {
@@ -689,11 +662,9 @@ qx.Class.define('cv.util.Color', {
           this.__validateLCh();
           switch(component.split('-')[1]) {
             case 'L':
-              //this.__LCh.L = 100 * clamp(value);
               this.__LCh.L = clamp(value, 0, 100);
               break;
             case 'C':
-              //this.__LCh.C = 150 * clamp(value);
               this.__LCh.C = clamp(value, 0, 150);
               break;
             case 'h':
