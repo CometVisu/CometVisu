@@ -1,6 +1,11 @@
 name: Update docs
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'all, demo or docs'
+        default: 'all'
+        required: false
   push:
     branches:
       - develop
@@ -71,3 +76,4 @@ jobs:
           COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          TARGET:  ${{ github.event.inputs.target }}
