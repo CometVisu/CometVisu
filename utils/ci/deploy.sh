@@ -7,8 +7,10 @@ REPO_SLUG="CometVisu/CometVisu"
 CV="./cv"
 DOCKER_RUN="./bin/docker-run"
 REMOTE_NAME="origin"
-GENERATE_DOCS=[[ "$TARGET" == "all" ]] || [[ "$TARGET" == "docs" ]]
-GENERATE_DEMO=[[ "$TARGET" == "all" ]] || [[ "$TARGET" == "demo" ]]
+GENERATE_DOCS=1
+GENERATE_DEMO=1
+if [[ "$TARGET" == "docs" ]]; then GENERATE_DEMO=0; fi
+if [[ "$TARGET" == "demo" ]]; then GENERATE_DOCS=0; fi
 
 echo "${TARGET}, docs: ${GENERATE_DOCS}, demo: ${GENERATE_DEMO}"
 
