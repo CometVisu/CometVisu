@@ -319,6 +319,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         // create new model
         if (qx.xml.Document.isXmlDocument(value)) {
           value = value.documentElement.outerHTML;
+        } else if (typeof value === 'object') {
+          value = JSON.stringify(value, null, 2);
         }
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
         newModel.onDidChangeDecorations(function (ev) {

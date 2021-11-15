@@ -79,18 +79,18 @@ class CvCompileHandler extends AbstractCompileHandler {
   async _onMade() {
     if (!(this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy)) {
       await this.copyFiles();
+      this.updateTestData();
     }
-
     if (this._config.targetType === 'build') {
       return this.afterBuild();
     }
-    this.updateTestData();
     return Promise.resolve(true);
   }
 
   async _onAfterDeploy(ev) {
     const data = ev.getData();
     await this.copyFiles(data.deployDir);
+    this.updateTestData();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -244,11 +244,10 @@ class CvCompileHandler extends AbstractCompileHandler {
   updateTestData() {
     if (this._config.environment['cv.testMode']) {
       const testDataFile = path.join(this._getTargetDir(), this._config.environment['cv.testMode']);
-
       if (fs.existsSync(testDataFile)) {
         // read on current content of resource/config and resource/demo directories and add them to the mockup responses
         // of the demo data
-        const demoData = JSON.parse(fs.readFileSync(testDataFile));
+        const demoData = JSON.parse(fs.readFileSync(testDataFile, 'utf8'));
         this.updateFsEntry(path.join(this._getTargetDir(), 'resource', 'config'), '', demoData, {
           readable: true,
           writeable: false,
@@ -262,7 +261,9 @@ class CvCompileHandler extends AbstractCompileHandler {
           parentFolder: '',
           hasChildren: true,
           readable: true,
-          writeable: false
+          writeable: false,
+          trash: false,
+          inTrash: false
         });
 
         this.updateFsEntry(path.join(this._getTargetDir(), 'resource', 'demo'), 'demo', demoData, {
@@ -272,7 +273,10 @@ class CvCompileHandler extends AbstractCompileHandler {
           inTrash: false,
           mounted: true
         });
-        fs.writeFileSync(testDataFile, JSON.stringify(demoData, null, 2));
+        const data = JSON.stringify(demoData, null, 2);
+        fs.writeFileSync(testDataFile, data, 'utf8');
+      } else {
+        console.error('test file not found:', testDataFile);
       }
     }
   }
@@ -298,31 +302,29 @@ class CvCompileHandler extends AbstractCompileHandler {
   updateFsEntry (sourceDir, targetDir, data, defaultSettings, addEntry) {
     const configContent = this.getFiles(sourceDir);
     const body = [];
-    Object.keys(configContent.directories).forEach(dir => {
-      const dirContent = configContent.directories[dir];
-      const dirEntry = Object.assign({}, defaultSettings, {
-        type: 'dir',
-        name: dir,
-        hasChildren: dirContent.files.length > 0 || dirContent.directories.length,
-        parentFolder: targetDir
-      });
-      body.push(dirEntry);
-      if (dirEntry.hasChildren) {
-        // add content for this path
-        this.updateFsEntry(path.join(sourceDir, dir), path.join(targetDir, dir), data, defaultSettings);
-      }
-    });
     configContent.files.forEach(file => {
-      body.push(Object.assign({}, defaultSettings, {
+      body.push(Object.assign({
         type: 'file',
         name: file,
         hasChildren: false,
         parentFolder: targetDir
-      }));
+      }, defaultSettings));
     });
     if (addEntry) {
       body.push(addEntry);
     }
+    let traverseSubdirs = [];
+    Object.keys(configContent.directories).forEach(dir => {
+      const dirContent = configContent.directories[dir];
+      const dirEntry = Object.assign({
+        type: 'dir',
+        name: dir,
+        hasChildren: dirContent.files.length > 0 || dirContent.directories.length > 0,
+        parentFolder: targetDir
+      }, defaultSettings);
+      body.push(dirEntry);
+      traverseSubdirs.push(dir);
+    });
     data.xhr['/rest/manager/index.php/fs?path='+ (targetDir || '.')] = [{
       status: 200,
       headers: {
@@ -330,6 +332,10 @@ class CvCompileHandler extends AbstractCompileHandler {
       },
       body: body
     }];
+
+    traverseSubdirs.forEach(dir => {
+      this.updateFsEntry(path.join(sourceDir, dir), path.join(targetDir, dir), data, defaultSettings);
+    });
   }
 }
 
