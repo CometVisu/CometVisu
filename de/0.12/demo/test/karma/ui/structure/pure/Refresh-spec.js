@@ -22,26 +22,24 @@
  * Unit tests for refresh widget
  *
  */
-describe("testing a refresh widget", function() {
+describe('testing a refresh widget', function() {
+  it('should test the refresh creator', function() {
+    const [widget, element] = this.createTestWidgetString('refresh', {}, '<label>Test</label>');
 
-  it("should test the refresh creator", function() {
-    var res = this.createTestWidgetString("refresh", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
 
-    expect(widget).toHaveClass('refresh');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('refresh');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the refresh actor", function() {
-    var res = this.createTestElement("refresh");
+  it('should test the refresh actor', function() {
+    var res = this.createTestElement('refresh');
     cv.TemplateEngine.getInstance().visu = jasmine.createSpyObj('visu', ['restart']);
 
-    spyOn(res, "defaultUpdate");
+    spyOn(res, 'defaultUpdate');
     this.initWidget(res);
-    qx.event.Registration.fireEvent(res.getActor(), "tap");
+    qx.event.Registration.fireEvent(res.getActor(), 'tap');
 
     expect(cv.TemplateEngine.getInstance().visu.restart).toHaveBeenCalled();
   });
-
 });

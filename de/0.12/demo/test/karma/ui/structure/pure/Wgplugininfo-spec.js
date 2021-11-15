@@ -22,22 +22,19 @@
  * Unit tests for wgplugin_info widget
  *
  */
-describe("testing a wgplugin_info widget", function() {
+describe('testing a wgplugin_info widget', function() {
+  it('should test the wgplugin_info creator', function() {
+    const [widget, element] = this.createTestWidgetString('wgplugin_info', {}, '<label>Test</label>');
 
-  it("should test the wgplugin_info creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("wgplugin_info", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('info');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('info');
+    expect(element).toHaveLabel('Test');
   });
 
-  it("should test the wgplugin_info update", function() {
-    var res = this.createTestElement("wgplugin_info", {variable: "Test"}, '', "Test", {transform: "raw"});
-    spyOn(res.getRequest(), "send");
-    res.update("Test", 1);
-
+  it('should test the wgplugin_info update', function() {
+    var res = this.createTestElement('wgplugin_info', {variable: 'Test'}, '', 'Test', {transform: 'raw'});
+    spyOn(res.getRequest(), 'send');
+    res.update('Test', 1);
   });
 });

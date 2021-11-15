@@ -24,18 +24,19 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a text widget", function() {
+describe('testing a text widget', function() {
+  it('should test the text creator', function() {
+    const [widget, element] = this.createTestWidgetString('text', {}, '<label>Test</label>');
 
-  it("should test the text creator", function() {
+    expect(widget.getPath()).toBe('id_0');
 
-    var res = this.createTestWidgetString("text", {}, '<label>Test</label>');
-    var text = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(text).toHaveClass('text');
+    expect(element).toHaveClass('text');
     // the text widget does not add the 'label' class to the label-div, so the toHaveLabel
     // helper does not work here and we have to check it manually
-    var label = Array.from(text.children).filter(function(m){return m.matches("div");})[0];
+    var label = Array.from(element.children).filter(function(m) {
+      return m.matches('div');
+    })[0];
+
     expect(label.innerText).toBe('Test');
   });
 });

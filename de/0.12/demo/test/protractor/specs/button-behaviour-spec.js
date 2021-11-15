@@ -29,7 +29,7 @@ describe('cometvisu demo config test:', function () {
       .perform();
 
     if (displayValue) {
-      expect(widget.element(by.css(".value")).getText()).toEqual(displayValue);
+      expect(widget.element(by.css('.value')).getText()).toEqual(displayValue);
     }
 
     cvDemo.getLastWrite().then(function(lastWrite) {
@@ -47,7 +47,7 @@ describe('cometvisu demo config test:', function () {
       browser.actions().mouseUp(widget).perform();
 
       if (displayValue) {
-        expect(widget.element(by.css(".value")).getText()).toEqual(displayValue);
+        expect(widget.element(by.css('.value')).getText()).toEqual(displayValue);
       }
 
       cvDemo.getLastWrite().then(function(lastWrite) {
@@ -60,16 +60,16 @@ describe('cometvisu demo config test:', function () {
     var labelPromise = null;
     var actorPromise = null;
     var widgetData = null;
-    var address = null;
     Object.getOwnPropertyNames(dataModel).some(function (path) {
       if (dataModel[path].bindClickToWidget === true && dataModel[path].$$type === 'trigger') {
         labelPromise = element(by.css('#' + path + ' .label'));
         actorPromise = element(by.css('#' + path + ' .actor'));
         widgetData = dataModel[path];
-        address = widgetData.address[Object.getOwnPropertyNames(widgetData.address).shift()];
         return true;
       }
+      return false;
     });
+
     expect(labelPromise).not.toBeNull();
     expect(actorPromise).not.toBeNull();
 
@@ -81,9 +81,11 @@ describe('cometvisu demo config test:', function () {
       expect(actor.getAttribute('class')).not.toContain('switchPressed');
       expect(actor.getAttribute('class')).toContain('switchUnpressed');
       browser.actions().mouseDown(actor).perform();
+
       expect(actor.getAttribute('class')).toContain('switchPressed');
       expect(actor.getAttribute('class')).not.toContain('switchUnpressed');
       browser.actions().mouseUp(actor).perform();
+
       expect(actor.getAttribute('class')).toContain('switchUnpressed');
       expect(actor.getAttribute('class')).not.toContain('switchPressed');
 
@@ -91,6 +93,7 @@ describe('cometvisu demo config test:', function () {
       cvDemo.getLastWrite().then(function (lastWrite) {
         expect(lastWrite.value).toEqual(widgetData.sendValue);
       });
+
       expect(labelPromise).not.toBeNull();
       expect(actorPromise).not.toBeNull();
 
@@ -98,41 +101,42 @@ describe('cometvisu demo config test:', function () {
       expect(actor.getAttribute('class')).not.toContain('switchPressed');
       expect(actor.getAttribute('class')).toContain('switchUnpressed');
       browser.actions().mouseDown(label).perform();
+
       expect(actor.getAttribute('class')).toContain('switchPressed');
       expect(actor.getAttribute('class')).not.toContain('switchUnpressed');
       browser.actions().mouseUp(label).perform();
+
       expect(actor.getAttribute('class')).toContain('switchUnpressed');
       expect(actor.getAttribute('class')).not.toContain('switchPressed');
     });
   });
   
   it('should trigger the button action after mouseDown->moveOut->moveIn->mouseUp', function() {
-    var widget = element.all(by.css(".activePage .switch .actor")).first();
+    var widget = element.all(by.css('.activePage .switch .actor')).first();
 
     // get widget data from parent
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function(data) {
         // mouseDown->moveOut->moveIn->mouseUp
-        testDownMoveUp(widget, "Aus", data.offValue);
+        testDownMoveUp(widget, 'Aus', data.offValue);
       });
     });
   });
 
   it('should trigger the button action after mouseDown->scrollDown->scrollUp->mouseUp', function() {
-    var widget = element.all(by.css(".activePage .switch .actor")).first();
-    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+    var widget = element.all(by.css('.activePage .switch .actor')).first();
+    widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function (data) {
-        testDownScrollUp(widget, "Aus", data.offValue);
+        testDownScrollUp(widget, 'Aus', data.offValue);
       });
     });
   });
 
   it('should animate the multitrigger buttons and show the current state as pressed button', function() {
-    var widget = element.all(by.css(".activePage .multitrigger")).first();
+    var widget = element.all(by.css('.activePage .multitrigger')).first();
 
-    widget.element(by.xpath("parent::div")).getAttribute("id").then(function(id) {
+    widget.element(by.xpath('parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function(data) {
-
         element.all(by.css('#'+data.path+' .actor')).each(function(actor, index) {
           var buttonPos = index+1;
           testDownMoveUp(actor, data['button'+buttonPos+'label'], data['button'+buttonPos+'value']);

@@ -241,6 +241,8 @@ input, textarea, select, button { font: inherit; }
   clear: both;
 }
 
+.image > .actor { overflow: hidden; }
+
 /* infoaction widget basic styling, just positioning no fancy stuff */
 .infoaction { position: relative; }
 .infoaction .widget_container.widgetinfo {

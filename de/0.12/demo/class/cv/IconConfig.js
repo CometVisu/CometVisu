@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.IconConfig', {
 
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************

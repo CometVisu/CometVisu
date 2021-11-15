@@ -22,36 +22,80 @@
  * Unit tests for pushbutton widget
  *
  */
-describe("testing a pushbutton widget", function() {
-
-  it("should test the pushbutton creator", function() {
-
-    var res = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    expect(res[0].getPath()).toBe("id_0");
-
-    expect(widget).toHaveClass('pushbutton');
-    expect(widget).toHaveLabel('Test');
+describe('testing a pushbutton widget', function() {
+  var realClient;
+  beforeEach(function() {
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client;
+    spyOn(client, 'write');
   });
 
-  it("should check if the up/down values are used corrent", function() {
-
-    var button = this.createTestElement("pushbutton");
-    expect(button.getActionValue({type: 'pointerup'})).toBe("0");
-    expect(button.getActionValue({type: 'pointerdown'})).toBe("1");
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
   });
 
-  it("should test the events", function() {
-    var button = this.createTestElement("pushbutton");
+  it('should test the pushbutton creator', function() {
+    const [widget, element] = this.createTestWidgetString('pushbutton', {}, '<label>Test</label>');
+
+    expect(widget.getPath()).toBe('id_0');
+
+    expect(element).toHaveClass('pushbutton');
+    expect(element).toHaveLabel('Test');
+  });
+
+  it('should check if the up/down values are used corrent', function() {
+    var button = this.createTestElement('pushbutton');
+
+    expect(button.getActionValue({type: 'pointerup'})).toBe('0');
+    expect(button.getActionValue({type: 'pointerdown'})).toBe('1');
+  });
+
+  it('should test the events', function() {
+    var button = this.createTestElement('pushbutton');
     var actor = button.getActor();
 
     this.initWidget(button);
-    spyOn(button, "sendToBackend");
+    spyOn(button, 'sendToBackend');
     var Reg = qx.event.Registration;
 
-    Reg.fireEvent(actor, "pointerdown");
-    expect(button.sendToBackend).toHaveBeenCalledWith("1", jasmine.any(Function));
-    Reg.fireEvent(actor, "pointerup");
-    expect(button.sendToBackend).toHaveBeenCalledWith("0", jasmine.any(Function));
+    Reg.fireEvent(actor, 'pointerdown');
+
+    expect(button.sendToBackend).toHaveBeenCalledWith('1', jasmine.any(Function));
+    Reg.fireEvent(actor, 'pointerup');
+
+    expect(button.sendToBackend).toHaveBeenCalledWith('0', jasmine.any(Function));
+  });
+
+  it('should send up/down to different addresses', function() {
+    var button = this.createTestElement('pushbutton', null, null, ['UpAddress', 'DownAddress'], [
+      {
+        transform: 'Switch',
+        variant: 'up',
+        mode: 'write'
+      },
+      {
+        transform: 'Switch',
+        variant: 'down',
+        mode: 'write'
+      }
+    ]);
+    var actor = button.getActor();
+
+    this.initWidget(button);
+    const client = cv.TemplateEngine.getInstance().visu;
+    var Reg = qx.event.Registration;
+
+    Reg.fireEvent(actor, 'pointerdown');
+
+    expect(client.write).toHaveBeenCalledWith('DownAddress', '1', jasmine.objectContaining({
+      transform: 'Switch', mode: 2, variantInfo: 'down', formatPos: 1
+    }));
+    expect(client.write.calls.count()).toBe(1);
+    Reg.fireEvent(actor, 'pointerup');
+    expect(client.write.calls.count()).toBe(2);
+    expect(client.write).toHaveBeenCalledWith('UpAddress', '0', jasmine.objectContaining({
+      transform: 'Switch', mode: 2, variantInfo: 'up', formatPos: 1
+    }));
   });
 });

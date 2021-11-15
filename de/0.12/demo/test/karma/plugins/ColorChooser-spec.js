@@ -24,12 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-describe("testing a colorchooser plugin", function() {
-
+describe('testing a colorchooser plugin', function() {
   beforeAll(function(done) {
     cv.util.ScriptLoader.getInstance().setAllQueued(false);
     qx.io.PartLoader.require(['plugin-colorchooser'], function () {
-      cv.util.ScriptLoader.getInstance().addListenerOnce("finished", function () {
+      cv.util.ScriptLoader.getInstance().addListenerOnce('finished', function () {
         done();
       }, this);
       qx.event.Timer.once(function() {
@@ -39,26 +38,24 @@ describe("testing a colorchooser plugin", function() {
     }, this);
   });
 
-  it("should test the colorchooser creator", function() {
-    var res = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
-    var widgetInstance = res[0];
+  it('should test the colorchooser creator', function() {
+    const [widget, element] = this.createTestWidgetString('colorchooser', {id: 'test'}, '<label>Test</label>');
 
-    expect(widget).toHaveClass('colorchooser');
-    expect(widget).toHaveLabel('Test');
+    expect(element).toHaveClass('colorchooser');
+    expect(element).toHaveLabel('Test');
 
-    expect(widgetInstance.getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
   // test bug reported here:
   // https://knx-user-forum.de/forum/supportforen/cometvisu/963486-problem-milight-colorchooser-mit-oh-als-backend
-  it("should test the colorchooser with incoming data in RGB mode", function() {
-    var widgetInstance = this.createTestElement("colorchooser", {}, "", "Rgb_Test", {
+  it('should test the colorchooser with incoming data in RGB mode', function() {
+    var widgetInstance = this.createTestElement('colorchooser', {}, '', 'Rgb_Test', {
       transform: 'OH:color',
       variant: 'rgb'
     });
-    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor", "linkTo"]);
-    spyOn(jQuery, "farbtastic").and.callFake(function () {
+    var farbtastic = jasmine.createSpyObj('farbtastic', ['setColor', 'linkTo']);
+    spyOn(jQuery, 'farbtastic').and.callFake(function () {
       return farbtastic;
     });
 
@@ -66,17 +63,17 @@ describe("testing a colorchooser plugin", function() {
 
     // simulate the initial incoming data
     widgetInstance.update('Rgb_Test', '94,0,8');
+
     expect(farbtastic.setColor).toHaveBeenCalledWith('#333333');
   });
 
-  it("should test the colorchooser with incoming data in RGB mode", function() {
-
-    var widgetInstance = this.createTestElement("colorchooser", {}, "", "Rgb_Test", {
+  it('should test the colorchooser with incoming data in R variant', function() {
+    var widgetInstance = this.createTestElement('colorchooser', {}, '', 'Rgb_Test', {
       transform: 'OH:number',
       variant: 'r'
     });
-    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor", "linkTo"]);
-    spyOn(jQuery, "farbtastic").and.callFake(function() {
+    var farbtastic = jasmine.createSpyObj('farbtastic', ['setColor', 'linkTo']);
+    spyOn(jQuery, 'farbtastic').and.callFake(function() {
       return farbtastic;
     });
 
@@ -84,6 +81,7 @@ describe("testing a colorchooser plugin", function() {
 
     // simulate the initial incoming data
     widgetInstance.update('Rgb_Test', '20');
+
     expect(farbtastic.setColor).toHaveBeenCalledWith('#330000');
   });
 });
