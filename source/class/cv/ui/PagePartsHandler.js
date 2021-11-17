@@ -65,7 +65,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       let id = 'id_'; //path[0];
       const pathNode = document.querySelector('.nav_path');
       pathNode.innerHTML = '';
-      let pageTitle = document.querySelector('#'+id+' h1').textContent;
+      let pageTitle = this.getPageTitle(id);
       let nav = document.createElement('a');
       // eslint-disable-next-line no-script-url
       nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
@@ -76,7 +76,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         id += path[i] + '_';
         let pageElem = document.querySelector('#'+id);
         if (pageElem && pageElem.classList.contains('page')) { // FIXME is this still needed?!?
-          pageTitle = document.querySelector('#'+id+' h1').textContent;
+          pageTitle = this.getPageTitle(id);
           let span = document.createElement('span');
           span.innerHTML = ' &#x25ba; ';
           pathNode.appendChild(span);
@@ -90,6 +90,20 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       }
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
+    },
+
+    getPageTitle: function (pageId) {
+      let pageTitle = '';
+      const pageData = cv.data.Model.getInstance().getWidgetData(pageId);
+      if (pageData) {
+        pageTitle = pageData.name;
+      } else {
+        const pageHeadline = document.querySelector('#' + pageId + ' h1');
+        if (pageHeadline) {
+          pageTitle = pageHeadline.textContent;
+        }
+      }
+      return pageTitle;
     },
 
     /**

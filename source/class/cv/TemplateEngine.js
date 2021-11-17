@@ -176,8 +176,8 @@ qx.Class.define('cv.TemplateEngine', {
       });
       if (loadLazyParts.length) {
         parts = parts.filter(function(p) {
- return !loadLazyParts.includes(p); 
-});
+          return !loadLazyParts.includes(p);
+        });
       }
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
@@ -186,6 +186,7 @@ qx.Class.define('cv.TemplateEngine', {
             this.__partQueue.remove(part);
             this.debug('successfully loaded part '+part);
             if (part.startsWith('structure-')) {
+              cv.Config.loadedStructure = part.substring(10);
               qx.core.Init.getApplication().setStructureLoaded(true);
             }
           } else {
@@ -676,8 +677,8 @@ qx.Class.define('cv.TemplateEngine', {
 
         // trigger DOM generation
         if (widget) {
- widget.getDomString(); 
-}
+         widget.getDomString();
+        }
       }
     },
 
@@ -689,8 +690,8 @@ qx.Class.define('cv.TemplateEngine', {
      */
     getPageIdByPath: function (page_name, path) {
       if (page_name === null) {
- return null; 
-}
+        return null;
+      }
       if (page_name.match(/^id_[0-9_]*$/) !== null) {
         // already a page_id
         return page_name;

@@ -163,8 +163,14 @@ qx.Class.define('cv.Config', {
      * Defines which structure is supported by which designs
      */
     designStructureMap: {
-      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
+      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure'],
+      'tile': ['tile']
     },
+
+    /**
+     * Currently loaded structure
+     */
+    loadedStructure: '',
 
     /**
      * Wether the error reporting with sentry is enabled or not

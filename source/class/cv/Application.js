@@ -611,16 +611,7 @@ qx.Class.define('cv.Application',
           // load part for structure
           const structure = cv.Config.getStructure();
           this.debug('loading structure '+structure);
-          engine.loadParts([structure], function(states) {
-            if (states === 'complete') {
-              this.debug(structure + ' has been loaded');
-              this.setStructureLoaded(true);
-            } else {
-              this.error(structure + ' could not be loaded');
-              this.setStructureLoaded(false);
-            }
-          }, this);
-
+          engine.loadParts([structure]);
           engine.addListenerOnce('changeReady', function() {
             // create the objects
             cv.Config.treePath = cv.Config.initialPage;

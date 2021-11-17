@@ -40,17 +40,16 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
-        if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
+        if (!cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)]) {
           const Clazz = this.__typeMapping[type];
           if (Clazz) {
-            this.registry[data.path] = new Clazz(data); // jshint ignore:line
+            this.registry[data.path] = new Clazz(data);
           } else {
             qx.log.Logger.error(this, 'No handler found for type \''+type+'\'');
             return null;
           }
         } else {
-          // console.log(data.path+" cv.ui.structure.pure."+type.charAt(0).toUpperCase() + type.substr(1));
-          this.registry[data.path] = new cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)](data);
+          this.registry[data.path] = new cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)](data);
         }
         this.c++;
       }
