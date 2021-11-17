@@ -70,6 +70,7 @@ qx.Class.define('cv.Application',
    ******************************************************
    */
   statics: {
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
     __commandManager: null,
     /**
@@ -571,6 +572,12 @@ qx.Class.define('cv.Application',
       loader.addListenerOnce('finished', function() {
         engine.setScriptsLoaded(true);
       }, this);
+      let isCached = false;
+      let xmlHash;
+      if (cv.Config.enableCache) {
+        isCached = await cv.ConfigCache.isCached();
+        xmlHash = cv.ConfigCache.toHash(xml);
+      }
 
       if (this._isCached) {
         // check if cache is still valid
