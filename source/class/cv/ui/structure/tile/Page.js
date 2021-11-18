@@ -118,7 +118,7 @@ qx.Class.define('cv.ui.structure.tile.Page', {
     // overridden
     getDomString: function() {
       const page = document.createElement('div');
-      page.classList.add('page', 'tile');
+      page.classList.add('page');
       page.setAttribute('id', this.getPath());
       const content = document.createElement('div');
       content.append(this.getChildrenDom());

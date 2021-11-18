@@ -183,12 +183,12 @@ qx.Class.define('cv.TemplateEngine', {
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
           if (states[idx] === 'complete') {
-            this.__partQueue.remove(part);
             this.debug('successfully loaded part '+part);
             if (part.startsWith('structure-')) {
               cv.Config.loadedStructure = part.substring(10);
               qx.core.Init.getApplication().setStructureLoaded(true);
             }
+            this.__partQueue.remove(part);
           } else {
             this.error('error loading part '+part);
           }

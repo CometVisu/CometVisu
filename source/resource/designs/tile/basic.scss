@@ -1,0 +1,90 @@
+$appBackground: #525151;
+$tileBackground: #2e2e2e;
+$buttonBackground: #1f1f1f;
+$primaryColor: #ff9900;
+
+$primaryText: #b6b6b6;
+$secondaryText: #7e7d7d;
+
+body {
+    background-color: $appBackground;
+    font-family: Roboto;
+
+    .tile-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .tile {
+        width: 192px;
+        height: 192px;
+        background-color: $tileBackground;
+        border-radius: 18px;
+        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        .row {
+            height: 64px;
+            width: 100%;
+        }
+
+        .round-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            background: $buttonBackground;
+            border: 1px solid $primaryColor;
+            box-sizing: border-box;
+            color: $primaryColor;
+            text-align: center;
+            position: relative;
+
+            span {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+    label.primary {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        /* identical to box height */
+        text-align: center;
+        color: $primaryText;
+        display: block;
+    }
+    label.secondary {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: center;
+        color: $secondaryText;
+        display: block;
+    }
+    .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .row.rowspan-3 {
+        grid-column: 1 / span 3;
+    }
+    .row.middle {
+        grid-row: 2;
+    }
+    .row.last {
+        grid-row: 3;
+        justify-content: flex-start;
+    }
+    .row.last > label:first-child {
+        margin-top: 4px;
+    }
+}

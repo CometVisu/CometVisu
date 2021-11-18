@@ -196,6 +196,9 @@
   "serve": {
     "listenPort": 8082
   },
+  "sass": {
+    "compiler": "latest"
+  },
   "ignores": [
     "$",
     "EVENT_RECORDER",
