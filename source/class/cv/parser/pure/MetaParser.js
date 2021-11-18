@@ -386,6 +386,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
     /**
      * Parses meta template definitions and add them to the WidgetParser
      * @param xml {HTMLElement}
+     * @param done
      */
     async parseTemplates (xml) {
       const __loadQueue = new qx.data.Array();
