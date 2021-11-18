@@ -73,7 +73,7 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
 
     // overridden
     action: function() {
-      cv.TemplateEngine.getInstance().scrollToPage(this.getPath() + '_');
+      cv.Application.structureController.scrollToPage(this.getPath() + '_');
     }
   },
 

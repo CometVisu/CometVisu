@@ -53,7 +53,7 @@ qx.Class.define('cv.ui.structure.tile.Page', {
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      document.querySelector('#pages').append(this.allPages);
+      document.body.append(this.allPages);
       qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }
 
@@ -118,7 +118,7 @@ qx.Class.define('cv.ui.structure.tile.Page', {
     // overridden
     getDomString: function() {
       const page = document.createElement('div');
-      page.classList.add('page');
+      page.classList.add('page', 'tile-list');
       page.setAttribute('id', this.getPath());
       const content = document.createElement('div');
       content.append(this.getChildrenDom());

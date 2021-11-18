@@ -48,7 +48,7 @@ qx.Class.define('cv.ui.layout.Manager', {
         this.currentPageNavbarVisibility.top === null ||
         this.currentPageNavbarVisibility.bottom === null
       ) {
-        this.currentPageNavbarVisibility = cv.TemplateEngine.getInstance().pagePartsHandler.getNavbarsVisibility(cv.TemplateEngine.getInstance().currentPage);
+        this.currentPageNavbarVisibility = cv.Application.structureController.pagePartsHandler.getNavbarsVisibility(cv.Application.structureController.getCurrentPage());
       }
       return this.currentPageNavbarVisibility;
     },

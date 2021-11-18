@@ -70,9 +70,13 @@ qx.Class.define('cv.Application',
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
     __commandManager: null,
+    /**
+     * Controller from the loaded structure injects itself here when loaded
+     */
+    structureController: null,
 
     /**
      * Client factory method -> create a client
@@ -130,7 +134,8 @@ qx.Class.define('cv.Application',
     structureLoaded: {
       check: 'Boolean',
       init: false,
-      event: 'changeStructureLoaded'
+      event: 'changeStructureLoaded',
+      apply: '_applyStructureLoaded'
     },
 
     commandManager: {
@@ -444,7 +449,7 @@ qx.Class.define('cv.Application',
         topic: 'cv.error',
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr('An error occured'),
-        message: '<pre>' + (exString || ex.stack) + '</pre>',
+        message: '<pre>' + (ex.stack || exString) + '</pre>',
         severity: 'urgent',
         deletable: false,
         actions: {
@@ -529,6 +534,12 @@ qx.Class.define('cv.Application',
       'false': null
     }),
 
+    _applyStructureLoaded () {
+      let body = document.querySelector('body');
+      // load empty HTML structure
+      body.innerHTML = cv.Application.structureController.getHtmlStructure();
+    },
+
     /**
      * Internal initialization method
      */
@@ -540,7 +551,7 @@ qx.Class.define('cv.Application',
       qx.bom.Lifecycle.onReady(async function () {
         // init notification router
         cv.core.notifications.Router.getInstance();
-        let body = document.querySelector('body');
+
         let isCached = false;
         if (cv.Config.enableCache) {
           isCached = await cv.ConfigCache.isCached();
@@ -553,8 +564,6 @@ qx.Class.define('cv.Application',
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
         } else {
-          // load empty HTML structure
-          body.innerHTML = cv.Application.HTML_STRUCT;
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
@@ -582,6 +591,7 @@ qx.Class.define('cv.Application',
       if (cv.Config.enableCache) {
         isCached = await cv.ConfigCache.isCached();
         xmlHash = cv.ConfigCache.toHash(xml);
+        engine.xmlHash = xmlHash;
       }
 
       if (isCached) {
@@ -592,11 +602,6 @@ qx.Class.define('cv.Application',
           // cache invalid
           cv.Config.cacheUsed = false;
           cv.ConfigCache.clear();
-
-          // load empty HTML structure
-          const body = document.querySelector('body');
-          body.innerHTML = cv.Application.HTML_STRUCT;
-
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();
           cv.data.Model.getInstance().resetAddressList();
@@ -606,7 +611,6 @@ qx.Class.define('cv.Application',
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
           engine.initBackendClient();
-          this.__detectInitialPage();
 
           // load part for structure
           const structure = cv.Config.getStructure();
@@ -642,8 +646,8 @@ qx.Class.define('cv.Application',
       }
       if (!cv.Config.cacheUsed) {
         this.debug('starting');
-        this.__detectInitialPage();
-        engine.parseXML(xml, function () {
+        const engine = cv.TemplateEngine.getInstance();
+        engine.parseXML(function () {
           this.loadPlugins();
           this.loadStyles();
           this.loadScripts();
@@ -651,8 +655,8 @@ qx.Class.define('cv.Application',
 
           if (cv.Config.enableCache) {
             // cache dom + data when everything is ready
-            qx.event.message.Bus.subscribe('setup.dom.finished', function() {
-              cv.ConfigCache.dump(xml, xmlHash);
+            qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+              cv.ConfigCache.dump(engine.xml, engine.xmlHash);
             }, this);
           }
         }.bind(this));
@@ -761,39 +765,6 @@ qx.Class.define('cv.Application',
       } else {
         this.debug('no plugins to load => all scripts queued');
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
-      }
-    },
-
-    __detectInitialPage: function() {
-      let startpage = 'id_';
-      if (cv.Config.startpage) {
-        startpage = cv.Config.startpage;
-        if (qx.core.Environment.get('html.storage.local') === true) {
-          if (startpage === 'remember') {
-            startpage = localStorage.getItem('lastpage');
-            cv.Config.rememberLastPage = true;
-            if (typeof (startpage) !== 'string' || startpage.substr(0, 3) !== 'id_') {
-              startpage = 'id_'; // fix obvious wrong data
-            }
-          } else if (startpage === 'noremember') {
-            localStorage.removeItem('lastpage');
-            startpage = 'id_';
-            cv.Config.rememberLastPage = false;
-          }
-        }
-      } else {
-        const req = qx.util.Uri.parseUri(window.location.href);
-        if (req.anchor && req.anchor.substring(0, 3) === 'id_') {
-          startpage = req.anchor;
-        }
-      }
-      if (startpage.match(/^id_[0-9_]*$/) !== null) {
-        cv.Config.initialPage = startpage;
-      } else {
-        // wait for DOM to be ready and detect the page id then
-        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
-          cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || 'id_';
-        });
       }
     },
 

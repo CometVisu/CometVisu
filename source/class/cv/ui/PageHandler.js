@@ -70,8 +70,8 @@ qx.Class.define('cv.ui.PageHandler', {
       }
       const currentPath = this.getCurrentPath();
       if (currentPath !== '') {
- qx.event.message.Bus.dispatchByName('path.'+currentPath+'.exitingPageChange', currentPath, target); 
-}
+        qx.event.message.Bus.dispatchByName('path.'+currentPath+'.exitingPageChange', currentPath, target);
+      }
 
       const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
@@ -80,14 +80,14 @@ qx.Class.define('cv.ui.PageHandler', {
       }
       qx.event.message.Bus.dispatchByName('path.'+target+'.beforePageChange', target);
 
-      const templateEngine = cv.TemplateEngine.getInstance();
+      const controller = cv.Application.structureController;
 
-      templateEngine.resetPageValues();
+      controller.resetPageValues();
 
-      templateEngine.setCurrentPage(pageWidget);
+      controller.setCurrentPage(pageWidget);
 
       // update visibility of navbars, top-navigation, footer
-      templateEngine.pagePartsHandler.updatePageParts(pageWidget, speed);
+      controller.pagePartsHandler.updatePageParts(pageWidget, speed);
 
       // now the animation
       let animationConfig = {};
@@ -113,8 +113,8 @@ qx.Class.define('cv.ui.PageHandler', {
           'display': 'block',
           'overflow': 'hidden'
         }).forEach(function(key_value) {
- pageWidget.getDomElement().style[key_value[0]]=key_value[1]; 
-});
+          pageWidget.getDomElement().style[key_value[0]]=key_value[1];
+        });
         // set it to visible
         pageWidget.setVisible(true);
       }
@@ -214,7 +214,7 @@ qx.Class.define('cv.ui.PageHandler', {
       }
       // final stuff
       this.setCurrentPath(target);
-      cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation(target);
+      cv.Application.structureController.pagePartsHandler.updateTopNavigation(target);
 
       qx.event.message.Bus.dispatchByName('page.' + target + '.appear', target);
       qx.event.message.Bus.dispatchByName('path.pageChanged', target);
@@ -224,8 +224,8 @@ qx.Class.define('cv.ui.PageHandler', {
         styles.position = oldPos;
       }
       Object.entries(styles).forEach(function(key_value) {
- page.style[key_value[0]]=key_value[1]; 
-});
+        page.style[key_value[0]]=key_value[1];
+      });
     }
   }
 });

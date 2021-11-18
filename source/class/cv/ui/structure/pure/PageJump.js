@@ -157,7 +157,7 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       if (this.getTargetPath() !== null) {
         target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
       }
-      cv.TemplateEngine.getInstance().scrollToPage(target);
+      cv.Application.structureController.scrollToPage(target);
     }
   },
 

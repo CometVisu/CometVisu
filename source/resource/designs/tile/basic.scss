@@ -1,3 +1,6 @@
+@use "sass:math";
+
+/* colors */
 $appBackground: #525151;
 $tileBackground: #2e2e2e;
 $buttonBackground: #1f1f1f;
@@ -5,6 +8,13 @@ $primaryColor: #ff9900;
 
 $primaryText: #b6b6b6;
 $secondaryText: #7e7d7d;
+
+/* dimensions */
+$defaultSpace: 8px;
+$tileCellSize: 64px;
+$borderRadius: 18px;
+$tileRows: 3;
+$tileColumns: 3;
 
 body {
     background-color: $appBackground;
@@ -17,14 +27,14 @@ body {
     }
 
     .tile {
-        width: 192px;
-        height: 192px;
+        width: $tileCellSize * $tileColumns;
+        height: $tileCellSize * $tileRows;
         background-color: $tileBackground;
-        border-radius: 18px;
+        border-radius: $borderRadius;
         box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: repeat($tileColumns, 1fr);
+        grid-template-rows: repeat($tileRows, 1fr);
 
         .row {
             height: 64px;
@@ -32,9 +42,9 @@ body {
         }
 
         .round-button {
-            width: 56px;
-            height: 56px;
-            border-radius: 28px;
+            width: $tileCellSize - $defaultSpace;
+            height: $tileCellSize - $defaultSpace;
+            border-radius: math.div($tileCellSize - $defaultSpace, 2);
             background: $buttonBackground;
             border: 1px solid $primaryColor;
             box-sizing: border-box;

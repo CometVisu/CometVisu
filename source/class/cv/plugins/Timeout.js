@@ -149,20 +149,20 @@ qx.Class.define('cv.plugins.Timeout', {
       this.__timeoutTargetPage = this.getTarget();
       if (this.__timeoutIdleCount >= 10) {
         this.__timeoutIdleCount = 0;
-        const templateEngine = cv.TemplateEngine.getInstance();
+        const pageNavigationHandler = cv.Application.structureController;
 
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
           if (this.isDebug()) {
             this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__timeoutTargetPage);
           }
-          templateEngine.scrollToPage(this.__timeoutTargetPage);
-          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
+          pageNavigationHandler.scrollToPage(this.__timeoutTargetPage);
+          pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           //templateEngine.updateTopNavigation();
         } else {
           if (this.isDebug()) {
             this.debug('TIMEOUT: Already on page ' + this.__timeoutTargetPage);
           }
-          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
+          pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
         }
       }
     }

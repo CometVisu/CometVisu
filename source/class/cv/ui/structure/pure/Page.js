@@ -309,7 +309,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       //   default:
       // TODO: data comparision has to be refactored to use DPT and a value
       if (parseInt(data) === 1) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
+        cv.Application.structureController.scrollToPage(this.getPath());
         this.sendToBackend('0');
       }
       // }

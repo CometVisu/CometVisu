@@ -274,7 +274,7 @@ qx.Class.define('cv.plugins.Gauge', {
     // overridden
     _action: function() {
       if (this.getPagejumpTarget()) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getPagejumpTarget());
+        cv.Application.structureController.scrollToPage(this.getPagejumpTarget());
       }
     }
   },

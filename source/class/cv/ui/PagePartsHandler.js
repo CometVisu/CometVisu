@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       let pageTitle = this.getPageTitle(id);
       let nav = document.createElement('a');
       // eslint-disable-next-line no-script-url
-      nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+      nav.setAttribute('href', 'javascript:cv.Application.structureController.scrollToPage(\'' + id + '\')');
       nav.setAttribute('id', 'breadcrump_pagejump_' + id);
       nav.appendChild(document.createTextNode(pageTitle));
       pathNode.appendChild(nav);
@@ -82,7 +82,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           pathNode.appendChild(span);
           nav = document.createElement('a');
           // eslint-disable-next-line no-script-url
-          nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+          nav.setAttribute('href', 'javascript:cv.Application.structureController.scrollToPage(\'' + id + '\')');
           nav.setAttribute('id', 'breadcrump_pagejump_' + id);
           nav.appendChild(document.createTextNode(pageTitle));
           pathNode.appendChild(nav);
@@ -141,7 +141,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     getNavbarsVisibility: function (page) {
       if (!page) {
-        page = cv.TemplateEngine.getInstance().getCurrentPage();
+        page = cv.Application.structureController.getCurrentPage();
       }
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
@@ -154,13 +154,13 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
       if (!page) {
         return {top: true, bottom: true, left: true, right: true};
-      } 
-        return {
-          top: page.getShowNavbarTop(),
-          bottom: page.getShowNavbarBottom(),
-          left: page.getShowNavbarLeft(),
-          right: page.getShowNavbarRight()
-        };
+      }
+      return {
+        top: page.getShowNavbarTop(),
+        bottom: page.getShowNavbarBottom(),
+        left: page.getShowNavbarLeft(),
+        right: page.getShowNavbarRight()
+      };
     },
 
     /**
@@ -196,18 +196,18 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           this.removeInactiveNavbars(page.getPath());
         }
       } else if (topDisplay !== 'none') {
-          document.querySelector('#top').style.display = 'none';
-          this.removeInactiveNavbars(page.getPath());
-        }
+        document.querySelector('#top').style.display = 'none';
+        this.removeInactiveNavbars(page.getPath());
+      }
       if (showfooter) {
         if (bottomDisplay === 'none') {
           document.querySelector('#bottom').style.display = 'block';
           this.removeInactiveNavbars(page.getPath());
         }
       } else if (bottomDisplay !== 'none') {
-          document.querySelector('#bottom').style.display = 'none';
-          this.removeInactiveNavbars(page.getPath());
-        }
+        document.querySelector('#bottom').style.display = 'none';
+        this.removeInactiveNavbars(page.getPath());
+      }
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
@@ -219,7 +219,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      * @param speed {Number} time in milliseconds
      */
     fadeNavbar: function (position, direction, speed) {
-      speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
+      speed = (speed !== undefined) ? speed : cv.Application.structureController.main_scroll.getSpeed();
       const initCss = {};
       const targetCss = {};
       const navbar = document.querySelector('#navbar' + position);
@@ -261,17 +261,17 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           break;
       }
       Object.entries(initCss).forEach(function(key_value) {
- navbar.style[key_value[0]]=key_value[1]; 
-});
+        navbar.style[key_value[0]]=key_value[1];
+      });
       if (speed === 0) {
         Object.entries(targetCss).forEach(function(key_value) {
- navbar.style[key_value[0]]=key_value[1]; 
-});
+          navbar.style[key_value[0]]=key_value[1];
+        });
         onAnimationEnd();
       } else {
         const spec = {
           duration: speed,
-          timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
+          timing: cv.Application.structureController.main_scroll.getEasing(),
           keep: 100,
           keyFrames: {
             0: initCss,
@@ -329,9 +329,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
             if (data.width !== null) {
               size[pos] = data.width;
             } else if (size[pos] === 0) {
-                // navbar with content but no size given so far => use default
-                size[pos] = 300;
-              }
+              // navbar with content but no size given so far => use default
+              size[pos] = 300;
+            }
           }
         });
         level++;

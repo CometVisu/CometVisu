@@ -107,7 +107,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       //   action is also reverted.
       document.addEventListener('touchstart', function (evt) {
         const touches = evt.touches[0];
-        const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+        const pPH = cv.Application.structureController.pagePartsHandler;
 
         if (pPH.navbars.left.dynamic === false ||
           (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         const horizontal = Math.abs(x) > Math.abs(y);
         const toRight = x > 0;
         if (horizontal && enoughDistance) {
-          const pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          const pPH = cv.Application.structureController.pagePartsHandler;
           if (toRight) {
             self._touchX = touches.clientX - necessaryDistance;
             self._touchY = touches.clientY;

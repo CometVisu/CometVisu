@@ -137,7 +137,7 @@ const resetApplication = function() {
 
   var body = document.querySelector('body');
   // load empty HTML structure
-  body.innerHTML = cv.Application.HTML_STRUCT;
+  body.innerHTML = '';
 
   cv.Config.cacheUsed = false;
   // reset templateEngine's init values
@@ -360,7 +360,7 @@ afterEach(function () {
 
   var body = document.querySelector('body');
   // load empty HTML structure
-  body.innerHTML = cv.Application.HTML_STRUCT;
+  body.innerHTML = '';
   cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();
 });

@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
      */
     action: function (event) {
       if (this.getTarget()) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getTarget());
+        cv.Application.structureController.scrollToPage(this.getTarget());
         if (event.getBubbles()) {
           event.stopPropagation();
         }

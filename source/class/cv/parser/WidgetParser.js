@@ -311,7 +311,7 @@ qx.Class.define('cv.parser.WidgetParser', {
     },
 
     parseLabel: function(label, flavour, labelClass, style) {
-      return cv.ui.structure[cv.Config.loadedStructure].Controller.parseLabel(label, flavour, labelClass, style);
+      return cv.Application.structureController.parseLabel(label, flavour, labelClass, style);
     },
 
     /**

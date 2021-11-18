@@ -100,17 +100,17 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     makeAllSizesValid : function() {
       if (this.states.isPageSizeInvalid()) {
- this.makePagesizeValid(); 
-} // must be first due to dependencies
+        this.makePagesizeValid();
+      } // must be first due to dependencies
       if (this.states.isNavbarInvalid()) {
- this.makeNavbarValid(); 
-}
+        this.makeNavbarValid();
+      }
       if (this.states.isRowspanInvalid()) {
- this.makeRowspanValid(); 
-}
+        this.makeRowspanValid();
+      }
       if (this.states.isBackdropInvalid()) {
- this.makeBackdropValid(); 
-}
+        this.makeBackdropValid();
+      }
     },
 
     makeBackdropValid: function () {
@@ -119,9 +119,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeBackdropValid: function () {
       qx.log.Logger.debug(this, 'makeBackdropValid');
-      // TODO: this is structure.pure specific and should be handled by the structure itself
-      const templateEngine = cv.TemplateEngine.getInstance();
-      const page = templateEngine.getCurrentPage();
+      const page = cv.Application.structureController.getCurrentPage();
       if (!page) {
         return;
       }
@@ -170,8 +168,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
               left: backdropLeft + 'px',
               top: backdropTop + 'px'
             }).forEach(function(key_value) {
- backdrop.style[key_value[0]]=key_value[1]; 
-});
+              backdrop.style[key_value[0]]=key_value[1];
+            });
           }
 
           page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
@@ -254,8 +252,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makePagesizeValid: function() {
       if (!cv.Config.currentPageId) {
- return; 
-}
+        return;
+      }
       qx.log.Logger.debug(this, 'makePagesizeValid');
       const page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
       if (page && !page.isInitialized()) {
@@ -299,8 +297,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         // not ready try again
         const self = this;
         qx.bom.AnimationFrame.request(function() {
- self.__updateRowHeight(elem); 
-}, this);
+          self.__updateRowHeight(elem);
+        }, this);
         return;
       }
       let styles = '';

@@ -134,7 +134,7 @@ class BasePage {
   async goToPage(name, force) { // eslint-disable-line class-methods-use-this
     if (force) {
       await browser.driver.executeAsyncScript(function (name, callback) {
-        cv.TemplateEngine.getInstance().scrollToPage(name, 0);
+        cv.Application.structureController.scrollToPage(name, 0);
         callback();
       }, name);
     }
