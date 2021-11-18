@@ -82,16 +82,44 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
    ******************************************************
    */
   members: {
+    __actorElement: null,
+    __valueElement: null,
 
     // overridden
     _getInnerDom: function () {
-      const element = document.createElement('div');
-      element.classList.add('actor', 'unpressed');
-      const valueElement = document.createElement('div');
+      const element = this._domElement = document.createElement('div');
+      element.classList.add('tile');
+
+      // control row
+      const middleRow = document.createElement('div');
+      middleRow.classList.add('row', 'middle', 'rowspan-3');
+      const actorElement = this.__actorElement = document.createElement('button');
+      actorElement.classList.add('round-button', 'unpressed');
+      const valueElement = this.__valueElement = document.createElement('span')
       valueElement.classList.add('value');
-      valueElement.textContent = '-';
-      element.appendChild(valueElement);
+      valueElement.textContent = 'I';
+      actorElement.appendChild(valueElement);
+      middleRow.appendChild(actorElement);
+
+      // bottom row
+      const bottomRow = document.createElement('div');
+      bottomRow.classList.add('row', 'last', 'rowspan-3');
+      const label = document.createElement('label');
+      label.classList.add('primary');
+      label.textContent = this.getLabel();
+      bottomRow.appendChild(label);
+
+      element.appendChild(middleRow);
+      element.appendChild(bottomRow);
       return element;
+    },
+
+    getActor() {
+      return this.__actorElement;
+    },
+
+    getValueElement() {
+      return this.__valueElement;
     },
 
     /**
@@ -100,7 +128,7 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function(value) {
-      const actor = this.getActor();
+      const actor = this.__actorElement;
       // compare against the unmapped value
       value = this.getBasicValue();
       const off = this.getOffValue();
@@ -120,5 +148,10 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
       // noinspection EqualityComparisonWithCoercionJS
       return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
     }
+  },
+
+  destruct: function () {
+    this.__actorElement = null;
+    this.__valueElement = null;
   }
 });

@@ -196,6 +196,7 @@ qx.Class.define('cv.TemplateEngine', {
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
           if (states[idx] === 'complete') {
+            this.__partQueue.remove(part);
             this.debug('successfully loaded part '+part);
             if (part.startsWith('structure-')) {
               if (!cv.Config.loadedStructure) {
@@ -631,7 +632,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (addressesToSubscribe.length !== 0) {
         client.subscribe(addressesToSubscribe);
       } else {
-        this.warn('no addresses to subscribe to found for backend "main"');
+        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
       }
     },
 

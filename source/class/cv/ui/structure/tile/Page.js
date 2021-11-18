@@ -25,6 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.Page', {
   extend: cv.ui.structure.tile.AbstractTileWidget,
+  implement: cv.ui.structure.IPage,
 
   include: [
     cv.ui.common.HasChildren
@@ -38,6 +39,25 @@ qx.Class.define('cv.ui.structure.tile.Page', {
   construct: function(props) {
     this.base(arguments, props);
   },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    allPages: document.createDocumentFragment(),
+
+    /**
+     * Append the complete generated HTML code to the DOM tree at the end of the generation process
+     */
+    createFinal: function() { // special function - only for pages!
+      document.querySelector('#pages').append(this.allPages);
+      qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
+    }
+
+  },
+
 
   /*
    ******************************************************
@@ -126,7 +146,3 @@ qx.Class.define('cv.ui.structure.tile.Page', {
     });
   }
 });
-
-
-
-
