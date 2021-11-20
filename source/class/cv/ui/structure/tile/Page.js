@@ -25,7 +25,6 @@
  */
 qx.Class.define('cv.ui.structure.tile.Page', {
   extend: cv.ui.structure.tile.AbstractTileWidget,
-  implement: cv.ui.structure.IPage,
 
   include: [
     cv.ui.common.HasChildren
