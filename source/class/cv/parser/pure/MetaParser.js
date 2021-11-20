@@ -28,7 +28,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
   */
   members: {
 
-    parse: function(xml, done) {
+    async parse (xml) {
       // parse external files
       this.parseFiles(xml);
 
@@ -46,7 +46,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
 
       this.parseStateNotifications(xml);
 
-      this.parseTemplates(xml, done);
+      await this.parseTemplates(xml);
     },
 
     parseFiles: function (xml) {
@@ -386,67 +386,69 @@ qx.Class.define('cv.parser.pure.MetaParser', {
     /**
      * Parses meta template definitions and add them to the WidgetParser
      * @param xml {HTMLElement}
-     * @param done
      */
-    parseTemplates: function (xml, done) {
+    async parseTemplates (xml) {
       const __loadQueue = new qx.data.Array();
 
-      const check = function () {
-        if (__loadQueue.length === 0 && done) {
+      return new Promise((done, reject) => {
+         const check = function () {
+          if (__loadQueue.length === 0 && done) {
+            done();
+          }
+        };
+        const templates = xml.querySelectorAll('meta > templates template');
+        if (templates.length === 0) {
           done();
-        }
-      };
-      const templates = xml.querySelectorAll('meta > templates template');
-      if (templates.length === 0) {
-        done();
-      } else {
-        templates.forEach(function (elem) {
-          const templateName = elem.getAttribute('name');
-          qx.log.Logger.debug(this, 'loading template:', templateName);
-          const ref = elem.getAttribute('ref');
-          if (ref) {
-            // load template fom external file
-            const areq = new qx.io.request.Xhr(ref);
-            __loadQueue.push(ref);
-            qx.log.Logger.debug(this, 'loading template from file:', ref);
-            areq.set({
-              accept: 'text/plain',
-              cache: !cv.Config.forceReload
-            });
+        } else {
+          templates.forEach(function (elem) {
+            const templateName = elem.getAttribute('name');
+            qx.log.Logger.debug(this, 'loading template:', templateName);
+            const ref = elem.getAttribute('ref');
+            if (ref) {
+              // load template fom external file
+              const areq = new qx.io.request.Xhr(ref);
+              __loadQueue.push(ref);
+              qx.log.Logger.debug(this, 'loading template from file:', ref);
+              areq.set({
+                accept: 'text/plain',
+                cache: !cv.Config.forceReload
+              });
 
-            areq.addListenerOnce('success', function (e) {
-              const req = e.getTarget();
+              areq.addListenerOnce('success', function (e) {
+                const req = e.getTarget();
+                cv.parser.pure.WidgetParser.addTemplate(
+                  templateName,
+                  // templates can only have one single root element, so we wrap it here
+                  '<root>' + req.getResponseText() + '</root>'
+                );
+                __loadQueue.remove(areq.getUrl());
+                qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
+                check();
+              }, this);
+              areq.addListener('statusError', function () {
+                const message = {
+                  topic: 'cv.config.error',
+                  title: qx.locale.Manager.tr('Template loading error'),
+                  severity: 'urgent',
+                  deletable: true,
+                  message: qx.locale.Manager.tr('Template \'%1\' could not be loaded from \'%2\'.', templateName, ref)
+                };
+                cv.core.notifications.Router.dispatchMessage(message.topic, message);
+                reject();
+              }, this);
+              areq.send();
+            } else {
+              const cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();
               cv.parser.pure.WidgetParser.addTemplate(
                 templateName,
                 // templates can only have one single root element, so we wrap it here
-                '<root>' + req.getResponseText() + '</root>'
+                '<root>' + cleaned + '</root>'
               );
-              __loadQueue.remove(areq.getUrl());
-              qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
-              check();
-            }, this);
-            areq.addListener('statusError', function () {
-              const message = {
-                topic: 'cv.config.error',
-                title: qx.locale.Manager.tr('Template loading error'),
-                severity: 'urgent',
-                deletable: true,
-                message: qx.locale.Manager.tr('Template \'%1\' could not be loaded from \'%2\'.', templateName, ref)
-              };
-              cv.core.notifications.Router.dispatchMessage(message.topic, message);
-            }, this);
-            areq.send();
-          } else {
-            const cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();
-            cv.parser.pure.WidgetParser.addTemplate(
-              templateName,
-              // templates can only have one single root element, so we wrap it here
-              '<root>' + cleaned + '</root>'
-            );
-          }
-        }, this);
-        check();
-      }
+            }
+          }, this);
+          check();
+        }
+      });
     }
   }
 });

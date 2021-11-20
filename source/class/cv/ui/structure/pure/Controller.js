@@ -21,6 +21,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       statusBar: true,
       plugins: true
     };
+    // load basic CSS rules shared by all designs that support this structure
+    qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
   },
 
   /*
@@ -53,6 +55,83 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return this.__HTML_STRUCT;
     },
 
+    parseSettings(xml, done) {
+      const settings = cv.Config.configSettings;
+      const pagesElement = xml.documentElement;
+      if (pagesElement.getAttribute('scroll_speed') === null) {
+        settings.scrollSpeed = 400;
+      } else {
+        settings.scrollSpeed = parseInt(pagesElement.getAttribute('scroll_speed'));
+      }
+
+      if (pagesElement.getAttribute('bind_click_to_widget') !== null) {
+        settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
+      }
+      if (pagesElement.getAttribute('default_columns') !== null) {
+        settings.defaultColumns = pagesElement.getAttribute('default_columns');
+      }
+      if (pagesElement.getAttribute('min_column_width') !== null) {
+        settings.minColumnWidth = pagesElement.getAttribute('min_column_width');
+      }
+    },
+
+    async preParse(xml) {
+      const settings = cv.Config.configSettings;
+      const metaParser = new cv.parser.pure.MetaParser();
+
+      // start with the plugins
+      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(xml));
+      // and then the rest
+      await metaParser.parse(xml);
+      this.debug('pre parsing done');
+    },
+
+    /**
+     * Generate the UI code from the config file
+     * @param xml {XMLDocument} loaded config file
+     */
+    createUI(xml) {
+      if (!cv.Config.cacheUsed) {
+        this.debug('creating pages');
+        const page = xml.querySelector('pages > page'); // only one page element allowed...
+
+        this._createPages(page, 'id');
+        this.debug('finalizing');
+        qx.event.message.Bus.dispatchByName('setup.dom.append');
+        this.debug('pages created');
+      }
+      this.debug('setup.dom.finished');
+      qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+      cv.TemplateEngine.getInstance().setDomFinished(true);
+
+      this.initLayout();
+    },
+
+    /**
+     * Start the parsing process
+     * @param page {Element} XML-configuration element
+     * @param path {String} internal poth
+     * @param flavour {String} inherited flavour
+     * @param type {String} page type (text, 2d, 3d)
+     */
+    _createPages: function (page, path, flavour, type) {
+      cv.parser.pure.WidgetParser.renderTemplates(page);
+      let parsedData = cv.parser.pure.WidgetParser.parse(page, path, flavour, type);
+      if (!Array.isArray(parsedData)) {
+        parsedData = [parsedData];
+      }
+      let i = 0;
+      const l = parsedData.length;
+      for (; i < l; i++) {
+        const data = parsedData[i];
+        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+
+        // trigger DOM generation
+        if (widget) {
+          widget.getDomString();
+        }
+      }
+    },
 
     parseLabel(label, flavour, labelClass, style) {
       if (!label) {
@@ -85,6 +164,20 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
         }
       }
       return false;
+    },
+
+    getInitialAddresses() {
+      const startPageAddresses = {};
+      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+      pageWidget.getChildWidgets().forEach(function(child) {
+        const address = child.getAddress ? child.getAddress() : {};
+        for (let addr in address) {
+          if (Object.prototype.hasOwnProperty.call(address, addr)) {
+            startPageAddresses[addr] = 1;
+          }
+        }
+      }, this);
+      return Object.keys(startPageAddresses);
     },
 
     initLayout() {
@@ -128,7 +221,11 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }, this);
     },
 
-    scrollToPage: function (target, speed, skipHistory) {
+    doScreenSave() {
+      this.scrollToPage();
+    },
+
+    scrollToPage (target, speed, skipHistory) {
       if (undefined === target) {
         target = cv.Config.configSettings.screensave_page;
       }

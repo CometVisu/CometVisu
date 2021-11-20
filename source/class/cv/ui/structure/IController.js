@@ -20,6 +20,41 @@ qx.Interface.define('cv.ui.structure.IController', {
     },
 
     /**
+     * Parses structure specific settings
+     * @param xml {XMLDocument} loaded config
+     */
+    parseSettings(xml) {
+    },
+
+    /**
+     * Pre parsing hook, do everything here that is needed before the real parsing process can start
+     * @param xml {XMLDocument}
+     */
+    async preParse(xml) {
+    },
+
+    /**
+     * Generate the UI code from the config file
+     * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
+     */
+    createUI(config) {
+    },
+
+
+    /**
+     * Handle fired event from screensaver
+     * @return {Array<string>} Array with addresses
+     */
+    doScreenSave() {
+    },
+
+    /**
+     * Return the addresses needed to update all states on the initially loaded page
+     */
+    getInitialAddresses() {
+    },
+
+    /**
      * Parse a label from the config file
      * @param label {Element} label xml element
      * @param flavour {String?} flavour name

@@ -200,7 +200,7 @@ qx.Class.define('cv.TemplateEngine', {
     // property apply
     _applyReady: function(value) {
       if (value === true) {
-        this.setupPage();
+        this.setupUI();
       }
     },
 
@@ -407,20 +407,21 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
-
     /**
      * Read basic settings and meta-section from config document
-     * @param done {Function} callback that is called when the parsing has finished
+     * @param done {Function} called when done
      */
-    parseXML: function (done) {
+    parse(done) {
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
       // read predefined design in config
       const settings = cv.Config.configSettings;
-      const pagesNode = this.xml.querySelector('pages');
+      // all config files must have a root with some attributes to be able to detect at least the design
+      // if not provides via URL, because the design is needed to detect the structure that can load the config
+      const rootNode = this.xml.documentElement;
 
-      const predefinedDesign = pagesNode.getAttribute('design');
+      const predefinedDesign = rootNode.getAttribute('design');
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {
@@ -432,53 +433,35 @@ qx.Class.define('cv.TemplateEngine', {
         }
       }
 
-      // load structure-part
-      this.loadParts([cv.Config.getStructure()]);
-
-      if (pagesNode.getAttribute('backend') !== null) {
-        settings.backend = pagesNode.getAttribute('backend');
+      if (rootNode.getAttribute('backend') !== null) {
+        settings.backend = rootNode.getAttribute('backend');
       }
-      if (pagesNode.getAttribute('backend-url') !== null) {
-        settings.backendUrl = pagesNode.getAttribute('backend-url');
+      if (rootNode.getAttribute('backend-url') !== null) {
+        settings.backendUrl = rootNode.getAttribute('backend-url');
       }
 
-      if (pagesNode.getAttribute('token') !== null) {
-        settings.credentials.token = pagesNode.getAttribute('token');
+      if (rootNode.getAttribute('token') !== null) {
+        settings.credentials.token = rootNode.getAttribute('token');
       }
-      if (pagesNode.getAttribute('username') !== null) {
-        settings.credentials.username = pagesNode.getAttribute('username');
+      if (rootNode.getAttribute('username') !== null) {
+        settings.credentials.username = rootNode.getAttribute('username');
       }
-      if (pagesNode.getAttribute('password') !== null) {
-        settings.credentials.password = pagesNode.getAttribute('password');
+      if (rootNode.getAttribute('password') !== null) {
+        settings.credentials.password = rootNode.getAttribute('password');
       }
       this.initBackendClient();
 
-      if (pagesNode.getAttribute('scroll_speed') === null) {
-        settings.scrollSpeed = 400;
-      } else {
-        settings.scrollSpeed = parseInt(pagesNode.getAttribute('scroll_speed'));
-      }
-
-      if (pagesNode.getAttribute('bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === 'true';
-      }
-      if (pagesNode.getAttribute('default_columns') !== null) {
-        settings.defaultColumns = pagesNode.getAttribute('default_columns');
-      }
-      if (pagesNode.getAttribute('min_column_width') !== null) {
-        settings.minColumnWidth = pagesNode.getAttribute('min_column_width');
-      }
-      settings.screensave_time = pagesNode.getAttribute('screensave_time');
+      settings.screensave_time = rootNode.getAttribute('screensave_time');
       if (settings.screensave_time) {
         settings.screensave_time = parseInt(settings.screensave_time, 10);
       }
-      settings.screensave_page = pagesNode.getAttribute('screensave_page');
+      settings.screensave_page = rootNode.getAttribute('screensave_page');
 
-      if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
+      if (rootNode.getAttribute('max_mobile_screen_width') !== null) {
+        settings.maxMobileScreenWidth = rootNode.getAttribute('max_mobile_screen_width');
       }
 
-      const globalClass = pagesNode.getAttribute('class');
+      const globalClass = rootNode.getAttribute('class');
       if (globalClass !== null) {
         document.querySelector('body').classList.add(globalClass);
       }
@@ -497,72 +480,51 @@ qx.Class.define('cv.TemplateEngine', {
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
-        cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function(ev) {
+        cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function (ev) {
           if (ev.getData() === design) {
-            this.error('Failed to load "'+design+'" design! Falling back to simplified "pure"');
+            this.error('Failed to load "' + design + '" design! Falling back to simplified "' + cv.Config.loadedStructure + '"');
 
-            baseUri = 'designs/pure';
+            baseUri = 'designs/' + cv.Config.loadedStructure;
             const alternativeStyles = [baseUri + '/basic.css'];
             if (cv.Config.mobileDevice) {
-              alternativeStyles.push(baseUri+'/mobile.css');
+              alternativeStyles.push(baseUri + '/mobile.css');
             }
-            alternativeStyles.push(baseUri+'/custom.css');
+            alternativeStyles.push(baseUri + '/custom.css');
             cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
-            cv.util.ScriptLoader.getInstance().addScripts(baseUri+'/design_setup.js');
+            cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
           }
         }, this);
       }
-      const metaParser = new cv.parser.pure.MetaParser();
+      // load structure-part
+      this.loadParts([cv.Config.getStructure()]);
 
-      // start with the plugins
-      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
-      // and then the rest (which needs to wait until the structure is loaded)
       const app = qx.core.Init.getApplication();
+
       if (app.isStructureLoaded()) {
-        metaParser.parse(this.xml, done);
-        this.debug('parsed');
+        cv.Application.structureController.parseSettings(this.xml);
+        cv.Application.structureController.preParse(this.xml).then(done);
       } else {
         app.addListenerOnce('changeStructureLoaded', () => {
-          metaParser.parse(this.xml, done);
-          this.debug('parsed');
+          cv.Application.structureController.parseSettings(this.xml);
+          cv.Application.structureController.preParse(this.xml).then(done);
         });
       }
     },
 
     /**
-     * Main setup to get everything running and show the initial page.
+     * Main setup to get everything running and show the initial UI page.
      */
-    setupPage: function () {
-      // and now setup the pages
+    setupUI: function () {
+      // and now setup the UI
       this.debug('setup');
 
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, cv.Config.configSettings.credentials, function () {
         this.debug('logged in');
         this.setLoggedIn(true);
-
-        // as we are sure that the default CSS were loaded now:
-        document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
-        });
-        if (!cv.Config.cacheUsed) {
-          this.debug('creating pages');
-          const page = this.xml.querySelector('pages > page'); // only one page element allowed...
-
-          this.createPages(page, 'id');
-          this.debug('finalizing');
-          qx.event.message.Bus.dispatchByName('setup.dom.append');
-          this.debug('pages created');
-        }
-        this.debug('setup.dom.finished');
-        qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
-        this.setDomFinished(true);
-
-        cv.Application.structureController.initLayout();
-
-        this.startInitialRequest();
-
+        cv.Application.structureController.createUI(this.xml);
         this.xml = null; // not needed anymore - free the space
-
+        this.startInitialRequest();
         this.startScreensaver();
         if (qx.core.Environment.get('qx.aspects')) {
           qx.dev.Profile.stop();
@@ -577,9 +539,7 @@ qx.Class.define('cv.TemplateEngine', {
     startScreensaver: function() {
       if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
-        this.screensave.addListener('interval', function () {
-          this.scrollToPage();
-        }, this);
+        this.screensave.addListener('interval', cv.Application.structureController.doScreenSave, cv.Application.structureController);
         this.screensave.start();
         qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
       }
@@ -594,47 +554,11 @@ qx.Class.define('cv.TemplateEngine', {
       }
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
-        const startPageAddresses = {};
-        const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
-        pageWidget.getChildWidgets().forEach(function(child) {
-          const address = child.getAddress ? child.getAddress() : {};
-          for (let addr in address) {
-            if (Object.prototype.hasOwnProperty.call(address, addr)) {
-              startPageAddresses[addr] = 1;
-            }
-          }
-        }, this);
-        this.visu.setInitialAddresses(Object.keys(startPageAddresses));
+        this.visu.setInitialAddresses(cv.Application.structureController.getInitialAddresses());
       }
       const addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
       if (addressesToSubscribe.length !== 0) {
         this.visu.subscribe(addressesToSubscribe);
-      }
-    },
-
-    /**
-     * Start the parsing process
-     * @param page {Element} XML-configuration element
-     * @param path {String} internal poth
-     * @param flavour {String} inherited flavour
-     * @param type {String} page type (text, 2d, 3d)
-     */
-    createPages: function (page, path, flavour, type) {
-      cv.parser.pure.WidgetParser.renderTemplates(page);
-      let parsedData = cv.parser.pure.WidgetParser.parse(page, path, flavour, type);
-      if (!Array.isArray(parsedData)) {
-        parsedData = [parsedData];
-      }
-      let i = 0;
-      const l = parsedData.length;
-      for (; i < l; i++) {
-        const data = parsedData[i];
-        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-
-        // trigger DOM generation
-        if (widget) {
-         widget.getDomString();
-        }
       }
     },
 
@@ -670,8 +594,8 @@ qx.Class.define('cv.TemplateEngine', {
         margin: 'auto',
         padding: '0.5em'
       }).forEach(function(key_value) {
- body.style[key_value[0]]=key_value[1]; 
-});
+        body.style[key_value[0]]=key_value[1];
+      });
       div.innerHTML = 'Loading ...';
 
       body.appendChild(div);
@@ -713,8 +637,8 @@ qx.Class.define('cv.TemplateEngine', {
             left: pos.left + 'px',
             top: pos.top + 'px'
           }).forEach(function(key_value) {
- tDiv.style[key_value[0]]=key_value[1]; 
-});
+	     tDiv.style[key_value[0]]=key_value[1]; 
+	  });
           myDiv.appendChild(tDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {

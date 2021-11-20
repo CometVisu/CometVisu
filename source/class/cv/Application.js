@@ -165,6 +165,7 @@ qx.Class.define('cv.Application',
   members :
   {
     _blocker: null,
+    _isCached: null,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
@@ -251,15 +252,6 @@ qx.Class.define('cv.Application',
         //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Console;
       }
-
-      /*
-       -------------------------------------------------------------------------
-       Below is your actual application code...
-       -------------------------------------------------------------------------
-       */
-      // in debug mode load the uncompressed unobfuscated scripts
-      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
-
       this.__init();
     },
 
@@ -543,7 +535,7 @@ qx.Class.define('cv.Application',
     /**
      * Internal initialization method
      */
-    __init: function() {
+    __init: async function() {
       qx.event.Registration.addListener(window, 'unload', function () {
         cv.io.Client.stopAll();
       }, this);
@@ -551,22 +543,18 @@ qx.Class.define('cv.Application',
         // init notification router
         cv.core.notifications.Router.getInstance();
 
-        let isCached = false;
+        this._isCached = false;
         if (cv.Config.enableCache) {
-          isCached = await cv.ConfigCache.isCached();
+          this._isCached = await cv.ConfigCache.isCached();
         }
-        if (isCached) {
+        if (this._isCached) {
           // load settings
           this.debug('using cache');
           cv.ConfigCache.restore();
-          // initialize NotificationCenter
-          cv.ui.NotificationCenter.getInstance();
-          cv.ui.ToastManager.getInstance();
-        } else {
-          // initialize NotificationCenter
-          cv.ui.NotificationCenter.getInstance();
-          cv.ui.ToastManager.getInstance();
         }
+        // initialize NotificationCenter
+        cv.ui.NotificationCenter.getInstance();
+        cv.ui.ToastManager.getInstance();
         let configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);
       }, this);
@@ -585,15 +573,13 @@ qx.Class.define('cv.Application',
       loader.addListenerOnce('finished', function() {
         engine.setScriptsLoaded(true);
       }, this);
-      let isCached = false;
       let xmlHash;
       if (cv.Config.enableCache) {
-        isCached = await cv.ConfigCache.isCached();
         xmlHash = cv.ConfigCache.toHash(xml);
         engine.xmlHash = xmlHash;
       }
 
-      if (isCached) {
+      if (this._isCached) {
         // check if cache is still valid
         const cacheValid = await cv.ConfigCache.isValid(null, xmlHash);
         if (!cacheValid) {
@@ -644,9 +630,9 @@ qx.Class.define('cv.Application',
         }
       }
       if (!cv.Config.cacheUsed) {
-        this.debug('starting');
+        this.debug('start parsing config file');
         const engine = cv.TemplateEngine.getInstance();
-        engine.parseXML(function () {
+        engine.parse(() => {
           this.loadPlugins();
           this.loadStyles();
           this.loadScripts();
@@ -658,7 +644,7 @@ qx.Class.define('cv.Application',
               cv.ConfigCache.dump(engine.xml, engine.xmlHash);
             }, this);
           }
-        }.bind(this));
+        });
       }
     },
 
@@ -742,7 +728,7 @@ qx.Class.define('cv.Application',
 
         if (standalonePlugins.length > 0) {
           // load standalone plugins after the structure parts has been loaded
-          // because they use need the classes provided by it
+          // because they need the classes provided by it
           if (this.getStructureLoaded()) {
             cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
           } else {
