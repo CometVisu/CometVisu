@@ -52,9 +52,9 @@ qx.Class.define('cv.util.Tree', {
     /**
      * Get the parent widget with optional type filter
      *
-     * @param widget {cv.ui.structure.AbstractWidget} start traversing up the with this widget
+     * @param widget {cv.ui.structure.pure.AbstractWidget} start traversing up the with this widget
      * @param type {String?} only return parent of this type
-     * @return {cv.ui.structure.AbstractWidget|null}
+     * @return {cv.ui.structure.pure.AbstractWidget|null}
      */
     getParentWidget: function(widget, type) {
       let parent = widget.getParentWidget();

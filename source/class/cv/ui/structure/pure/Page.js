@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.Page', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   implement: cv.ui.structure.IPage,
 
   include: [
@@ -193,11 +193,11 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      */
     _onChangeVisible: function(ev) {
       if (ev.getData()) {
-        if (this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
+        if (this.__colspanClass !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
           this.applyColumnWidths();
         }
         if (this.getBackdrop()) {
-          cv.ui.layout.ResizeHandler.invalidateBackdrop();
+          cv.ui.structure.pure.layout.ResizeHandler.invalidateBackdrop();
         }
       }
     },
@@ -206,8 +206,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Set childrens column widths
      */
     applyColumnWidths: function() {
-      cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
-      this.__colspanClass = cv.ui.layout.Manager.COLSPAN_CLASS;
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+      this.__colspanClass = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
     },
 
     // overridden

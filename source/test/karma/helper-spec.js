@@ -37,11 +37,11 @@ const createTestWidgetString = function (name, attributes, content) {
     // create surrounding root page
     var page = qx.dom.Element.create('page', {visible: 'false'});
     page.appendChild(elem);
-    data = cv.parser.WidgetParser.parse(page, 'id', null, 'text');
+    data = cv.parser.pure.WidgetParser.parse(page, 'id', null, 'text');
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
   } else {
-    data = cv.parser.WidgetParser.parse(elem, 'id_0', null, 'text');
+    data = cv.parser.pure.WidgetParser.parse(elem, 'id_0', null, 'text');
   }
   var res = [];
   let inst;
@@ -146,7 +146,7 @@ const resetApplication = function() {
   templateEngine.resetPartsLoaded();
   cv.util.ScriptLoader.getInstance().resetAllQueued();
 
-  cv.ui.layout.ResizeHandler.reset();
+  cv.ui.structure.pure.layout.ResizeHandler.reset();
 };
 
 // DOM Helpers
@@ -344,7 +344,7 @@ afterEach(function () {
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
-  cv.ui.layout.ResizeHandler.reset();
+  cv.ui.structure.pure.layout.ResizeHandler.reset();
 
   if (this.container) {
     try {

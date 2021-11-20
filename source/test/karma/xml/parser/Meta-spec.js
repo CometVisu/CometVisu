@@ -11,7 +11,7 @@ describe('testing the meta parser', function() {
 
     // this is loaded from fixtures/karma
     let xml = qx.xml.Document.fromString(window.__html__['meta-config.xml']);
-    let parser = new cv.parser.MetaParser();
+    let parser = new cv.parser.pure.MetaParser();
     parser.parse(xml, function () {
       // check mappings
       expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
@@ -46,8 +46,8 @@ describe('testing the meta parser', function() {
       });
 
       // template
-      expect(cv.parser.WidgetParser.getTemplates().hasOwnProperty('test')).toBeTruthy();
-      expect(cv.parser.WidgetParser.getTemplates().test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
+      expect(cv.parser.pure.WidgetParser.getTemplates().hasOwnProperty('test')).toBeTruthy();
+      expect(cv.parser.pure.WidgetParser.getTemplates().test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
 
       footer.parentNode.removeChild(footer);
     });

@@ -24,7 +24,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.Slide', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
   /*
@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   construct: function(props) {
     this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
-    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
       this.__invalidateScreensize();
     });
     this.__lastBusValue = {};
@@ -46,7 +46,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   ***********************************************
   */
   destruct: function () {
-    cv.ui.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
+    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
     this.__pageSizeListener = null;
     this.__button = null;
   },

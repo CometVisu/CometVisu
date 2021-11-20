@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.Operate,
     cv.ui.common.HasAnimatedButton,

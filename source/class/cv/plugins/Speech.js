@@ -84,7 +84,7 @@ qx.Class.define('cv.plugins.Speech', {
         return null;
       }
 
-      const address = cv.parser.WidgetParser.makeAddressList(element, path);
+      const address = cv.parser.pure.WidgetParser.makeAddressList(element, path);
 
       return cv.data.Model.getInstance().setWidgetData(path, {
         'path'    : path,
@@ -112,7 +112,7 @@ qx.Class.define('cv.plugins.Speech', {
     mapping           : { check: 'String', init: '' },
     repeatTimeout     : { check: 'Number', init: -1 },
     parentWidget: {
-      check: 'cv.ui.structure.AbstractBasicWidget',
+      check: 'cv.ui.structure.pure.AbstractBasicWidget',
       init: null
     }
   },
@@ -180,7 +180,7 @@ qx.Class.define('cv.plugins.Speech', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler('speech', cv.plugins.Speech);
+    cv.parser.pure.WidgetParser.addHandler('speech', cv.plugins.Speech);
     cv.ui.structure.WidgetFactory.registerClass('speech', statics);
   }
 });

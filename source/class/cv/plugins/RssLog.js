@@ -24,7 +24,7 @@
  * @asset(plugins/rsslog/*)
  */
 qx.Class.define('cv.plugins.RssLog', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Refresh, cv.ui.common.Update, cv.ui.common.Operate],
 
   /*
@@ -98,10 +98,10 @@ qx.Class.define('cv.plugins.RssLog', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
-      cv.parser.WidgetParser.parseRefresh(xml, path);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path);
+      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
@@ -494,7 +494,7 @@ qx.Class.define('cv.plugins.RssLog', {
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/rsslog/rsslog.css');
-    cv.parser.WidgetParser.addHandler('rsslog', cv.plugins.RssLog);
+    cv.parser.pure.WidgetParser.addHandler('rsslog', cv.plugins.RssLog);
     cv.ui.structure.WidgetFactory.registerClass('rsslog', statics);
   }
 });

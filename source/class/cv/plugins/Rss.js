@@ -35,7 +35,7 @@
  * @asset(plugins/rss/dep/zrssfeed/jquery.zrssfeed.js)
  */
 qx.Class.define('cv.plugins.Rss', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Refresh],
 
   /*
@@ -55,8 +55,8 @@ qx.Class.define('cv.plugins.Rss', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseRefresh(xml, path);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
@@ -135,7 +135,7 @@ qx.Class.define('cv.plugins.Rss', {
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
-    cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
+    cv.parser.pure.WidgetParser.addHandler('rss', cv.plugins.Rss);
     cv.ui.structure.WidgetFactory.registerClass('rss', statics);
   }
 });

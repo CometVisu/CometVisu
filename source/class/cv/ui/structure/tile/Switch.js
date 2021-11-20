@@ -92,10 +92,10 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
 
       // control row
       const middleRow = document.createElement('div');
-      middleRow.classList.add('row', 'middle', 'rowspan-3');
+      middleRow.classList.add('row', 'middle', 'colspan-3');
       const actorElement = this.__actorElement = document.createElement('button');
       actorElement.classList.add('round-button', 'unpressed');
-      const valueElement = this.__valueElement = document.createElement('span')
+      const valueElement = this.__valueElement = document.createElement('span');
       valueElement.classList.add('value');
       valueElement.textContent = 'I';
       actorElement.appendChild(valueElement);
@@ -103,7 +103,7 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
 
       // bottom row
       const bottomRow = document.createElement('div');
-      bottomRow.classList.add('row', 'last', 'rowspan-3');
+      bottomRow.classList.add('row', 'last', 'colspan-3');
       const label = document.createElement('label');
       label.classList.add('primary');
       label.textContent = this.getLabel();

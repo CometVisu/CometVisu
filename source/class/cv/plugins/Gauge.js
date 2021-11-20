@@ -30,7 +30,7 @@
  * @asset(plugins/gauge/dep/tween.js)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate ],
 
   /*
@@ -91,9 +91,9 @@ qx.Class.define('cv.plugins.Gauge', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
@@ -286,7 +286,7 @@ qx.Class.define('cv.plugins.Gauge', {
       'plugins/gauge/dep/tween.js',
       'plugins/gauge/dep/steelseries.js'
     ]);
-    cv.parser.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
+    cv.parser.pure.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass('gauge', statics);
   }
 });

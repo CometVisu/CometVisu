@@ -65,7 +65,7 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Refresh],
   type: 'abstract',
 
@@ -101,8 +101,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       } else {
         mappings = this.getAttributeToPropertyMappings();
       }
-      cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
-      cv.parser.WidgetParser.parseRefresh(xml, path);
+      cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
+      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
 
       const legend = xml.getAttribute('legend') || 'both';
       return cv.data.Model.getInstance().setWidgetData(path, {

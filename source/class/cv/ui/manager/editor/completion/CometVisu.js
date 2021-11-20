@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
           label: 'CometVisu-Widget',
           kind: window.monaco.languages.CompletionItemKind.Class,
           detail: 'A CometVisu class for a widget.',
-          insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.AbstractWidget,\n\n  \n});\n',
+          insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.pure.AbstractWidget,\n\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
           filterText: 'cvinterface',

@@ -21,7 +21,6 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       statusBar: true,
       plugins: true
     };
-    this.pagePartsHandler = new cv.ui.PagePartsHandler();
   },
 
   /*
@@ -89,16 +88,19 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     },
 
     initLayout() {
+      if (!this.pagePartsHandler) {
+        this.pagePartsHandler = new cv.ui.structure.pure.navigation.PagePartsHandler();
+      }
       this.__detectInitialPage();
       const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
       if (currentPage) {
         this.setCurrentPage(currentPage);
       }
 
-      cv.ui.layout.Manager.adjustColumns();
-      cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
+      cv.ui.structure.pure.layout.Manager.adjustColumns();
+      cv.ui.structure.pure.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 
-      this.main_scroll = new cv.ui.PageHandler();
+      this.main_scroll = new cv.ui.structure.pure.navigation.PageHandler();
       if (this.scrollSpeed !== undefined) {
         this.main_scroll.setSpeed(this.scrollSpeed);
       }
@@ -182,9 +184,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      */
     resetPageValues: function () {
       this.resetCurrentPage();
-      cv.ui.layout.Manager.currentPageUnavailableWidth = -1;
-      cv.ui.layout.Manager.currentPageUnavailableHeight = -1;
-      cv.ui.layout.Manager.currentPageNavbarVisibility = null;
+      cv.ui.structure.pure.layout.Manager.currentPageUnavailableWidth = -1;
+      cv.ui.structure.pure.layout.Manager.currentPageUnavailableHeight = -1;
+      cv.ui.structure.pure.layout.Manager.currentPageNavbarVisibility = null;
     },
 
     __detectInitialPage: function() {

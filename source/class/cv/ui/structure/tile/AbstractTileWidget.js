@@ -2,7 +2,7 @@
  *
  */
 qx.Class.define('cv.ui.structure.tile.AbstractTileWidget', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   type: 'abstract',
 
   /*

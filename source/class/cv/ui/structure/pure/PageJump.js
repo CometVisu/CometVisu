@@ -26,7 +26,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.PageJump', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [
     cv.ui.common.HasChildren,
     cv.ui.common.HasAnimatedButton

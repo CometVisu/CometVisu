@@ -25,7 +25,7 @@
  * @since 2014
  */
 qx.Class.define('cv.ui.structure.pure.Refresh', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
   /*

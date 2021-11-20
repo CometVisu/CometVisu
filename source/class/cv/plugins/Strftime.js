@@ -26,7 +26,7 @@
  * @asset(plugins/strftime/strftime.css)
  */
 qx.Class.define('cv.plugins.Strftime', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
   ******************************************************
@@ -64,7 +64,7 @@ qx.Class.define('cv.plugins.Strftime', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
     getAttributeToPropertyMappings: function() {
@@ -135,7 +135,7 @@ qx.Class.define('cv.plugins.Strftime', {
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.parser.WidgetParser.addHandler('strftime', statics);
+    cv.parser.pure.WidgetParser.addHandler('strftime', statics);
     cv.ui.structure.WidgetFactory.registerClass('strftime', statics);
 
     // extend locales by German and French

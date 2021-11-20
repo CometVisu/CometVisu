@@ -34,7 +34,7 @@
  * @since 0.11.0
  */
 qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
   ******************************************************

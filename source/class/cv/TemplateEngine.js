@@ -512,7 +512,7 @@ qx.Class.define('cv.TemplateEngine', {
           }
         }, this);
       }
-      const metaParser = new cv.parser.MetaParser();
+      const metaParser = new cv.parser.pure.MetaParser();
 
       // start with the plugins
       settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
@@ -620,8 +620,8 @@ qx.Class.define('cv.TemplateEngine', {
      * @param type {String} page type (text, 2d, 3d)
      */
     createPages: function (page, path, flavour, type) {
-      cv.parser.WidgetParser.renderTemplates(page);
-      let parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
+      cv.parser.pure.WidgetParser.renderTemplates(page);
+      let parsedData = cv.parser.pure.WidgetParser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
       }

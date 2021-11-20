@@ -6,14 +6,14 @@ describe('testing the widget parser', function() {
   it('should test the label parsing', function () {
     const label = qx.dom.Element.create('label');
     label.innerHTML = 'Test<!--comment-->';
-    const result = cv.parser.WidgetParser.parseLabel(label);
+    const result = cv.parser.pure.WidgetParser.parseLabel(label);
     expect(result).toBe('<div class="label">Test</div>');
   });
 
   it('should test the label parsing with icon', function () {
     const label = qx.dom.Element.create('label');
     label.innerHTML = 'Test<icon name="fts_door_open" color="red" flavour="custom"></icon>';
-    const result = cv.parser.WidgetParser.parseLabel(label);
+    const result = cv.parser.pure.WidgetParser.parseLabel(label);
     const element = cv.util.String.htmlStringToDomElement(result);
     expect(element.className).toBe('label');
     expect(element.childNodes.length).toBe(2);

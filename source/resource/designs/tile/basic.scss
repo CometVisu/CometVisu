@@ -21,9 +21,9 @@ body {
     font-family: Roboto;
 
     .tile-list {
+        margin: $defaultSpace*2;
         display: flex;
         align-items: center;
-        justify-content: space-around;
     }
 
     .tile {
@@ -84,14 +84,26 @@ body {
         justify-content: center;
         align-items: center;
     }
-    .row.rowspan-3 {
-        grid-column: 1 / span 3;
+
+    @for $i from 2 through $tileColumns {
+        .colspan-#{$i} {
+            grid-column: 1 / span #{$i};
+        }
+    }
+    @for $i from 2 through $tileRows {
+        .rowspan-#{$i} {
+            grid-row: 1 / span #{$i};
+        }
+    }
+    .row.first {
+        grid-row: 1;
+        justify-content: flex-end;
     }
     .row.middle {
-        grid-row: 2;
+        grid-row: math.ceil(math.div($tileRows, 2));
     }
     .row.last {
-        grid-row: 3;
+        grid-row: $tileRows;
         justify-content: flex-start;
     }
     .row.last > label:first-child {

@@ -24,7 +24,7 @@
  * @asset(plugins/mobilemenu/*.css)
  */
 qx.Class.define('cv.plugins.MobileMenu', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.HasChildren],
 
   /*
@@ -45,8 +45,8 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
+      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
@@ -143,7 +143,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
   defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.parser.WidgetParser.addHandler('mobilemenu', statics);
+    cv.parser.pure.WidgetParser.addHandler('mobilemenu', statics);
     cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
   }
 });
