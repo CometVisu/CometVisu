@@ -527,19 +527,21 @@ qx.Class.define('cv.Application',
     }),
 
     _applyStructureLoaded () {
-      let body = document.querySelector('body');
-      // load empty HTML structure
-      body.innerHTML = cv.Application.structureController.getHtmlStructure();
+      if (!cv.Config.cacheUsed) {
+        let body = document.querySelector('body');
+        // load empty HTML structure
+        body.innerHTML = cv.Application.structureController.getHtmlStructure();
+      }
     },
 
     /**
      * Internal initialization method
      */
-    __init: async function() {
+    async __init() {
       qx.event.Registration.addListener(window, 'unload', function () {
         cv.io.Client.stopAll();
       }, this);
-      qx.bom.Lifecycle.onReady(async function () {
+      qx.bom.Lifecycle.onReady(async () => {
         // init notification router
         cv.core.notifications.Router.getInstance();
 
@@ -557,31 +559,26 @@ qx.Class.define('cv.Application',
         cv.ui.ToastManager.getInstance();
         let configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);
-      }, this);
+      });
     },
 
     /**
      * Initialize the content
      * @param xml {Document} XML configuration retrieved from backend
      */
-    bootstrap: async function(xml) {
+    async bootstrap(xml) {
       this.debug('bootstrapping');
       const engine = cv.TemplateEngine.getInstance();
       const loader = cv.util.ScriptLoader.getInstance();
 
-      engine.xml = xml;
+      engine.setConfigSource(xml);
       loader.addListenerOnce('finished', function() {
         engine.setScriptsLoaded(true);
       }, this);
-      let xmlHash;
-      if (cv.Config.enableCache) {
-        xmlHash = cv.ConfigCache.toHash(xml);
-        engine.xmlHash = xmlHash;
-      }
 
       if (this._isCached) {
         // check if cache is still valid
-        const cacheValid = await cv.ConfigCache.isValid(null, xmlHash);
+        const cacheValid = await cv.ConfigCache.isValid(null, engine.getConfigHash());
         if (!cacheValid) {
           this.debug('cache is invalid re-parse xml');
           // cache invalid
@@ -600,15 +597,16 @@ qx.Class.define('cv.Application',
           // load part for structure
           const structure = cv.Config.getStructure();
           this.debug('loading structure '+structure);
-          engine.loadParts([structure]);
-          engine.addListenerOnce('changeReady', function() {
+          engine.loadParts([structure]).then(() => {
+            this.loadPlugins();
+          });
+          engine.addListenerOnce('changeReady', async () => {
             // create the objects
-            cv.Config.treePath = cv.Config.initialPage;
+            cv.Config.treePath = await cv.Application.structureController.getInitialPageId();
             const data = cv.data.Model.getInstance().getWidgetData('id_');
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-          }, this);
+          });
           // check if the current design settings overrides the cache one
-          this.loadPlugins();
           if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
             // we have to replace the cached design scripts styles to load
             const styles = [];
@@ -632,19 +630,18 @@ qx.Class.define('cv.Application',
       if (!cv.Config.cacheUsed) {
         this.debug('start parsing config file');
         const engine = cv.TemplateEngine.getInstance();
-        engine.parse(() => {
-          this.loadPlugins();
-          this.loadStyles();
-          this.loadScripts();
-          this.debug('done');
+        await engine.parse();
+        this.loadPlugins();
+        this.loadStyles();
+        this.loadScripts();
+        this.debug('done');
 
-          if (cv.Config.enableCache) {
-            // cache dom + data when everything is ready
-            qx.event.message.Bus.subscribe('setup.dom.finished', function () {
-              cv.ConfigCache.dump(engine.xml, engine.xmlHash);
-            }, this);
-          }
-        });
+        if (cv.Config.enableCache) {
+          // cache dom + data when everything is ready
+          qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+            cv.ConfigCache.dump(xml, engine.getConfigHash());
+          }, this);
+        }
       }
     },
 
@@ -695,21 +692,23 @@ qx.Class.define('cv.Application',
       });
       if (plugins.length > 0) {
         const standalonePlugins = [];
-        let partsLoaded = false;
+        const engine = cv.TemplateEngine.getInstance();
+        let partsLoaded = engine.getPartsLoaded();
         let allPluginsQueued = false;
         this.debug('loading plugins');
-        const engine = cv.TemplateEngine.getInstance();
-        engine.addListener('changePartsLoaded', function(ev) {
-          if (ev.getData() === true) {
-            this.debug('plugins loaded');
-            partsLoaded = true;
-            if (allPluginsQueued) {
-              qx.event.Timer.once(function () {
-                cv.util.ScriptLoader.getInstance().setAllQueued(true);
-              }, this, 0);
+        if (!partsLoaded) {
+          engine.addListener('changePartsLoaded', function (ev) {
+            if (ev.getData() === true) {
+              this.debug('plugins loaded');
+              partsLoaded = true;
+              if (allPluginsQueued) {
+                qx.event.Timer.once(function () {
+                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
+                }, this, 0);
+              }
             }
-          }
-        }, this);
+          }, this);
+        }
         const parts = qx.Part.getInstance().getParts();
         const partPlugins = [];
         const path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
@@ -746,6 +745,9 @@ qx.Class.define('cv.Application',
           }
         } else {
           allPluginsQueued = true;
+          qx.event.Timer.once(function () {
+            cv.util.ScriptLoader.getInstance().setAllQueued(true);
+          }, this, 0);
         }
       } else {
         this.debug('no plugins to load => all scripts queued');

@@ -210,7 +210,7 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
       }
       const label = (widgetType === 'text') ? this.parseLabel(element.querySelector('label'), flavour, '') : this.parseLabel(element.querySelector('label'), flavour);
 
-      let bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
+      let bindClickToWidget = cv.Config.configSettings.bindClickToWidget;
       if (element.getAttribute('bind_click_to_widget')) {
         bindClickToWidget = element.getAttribute('bind_click_to_widget') === 'true';
       }

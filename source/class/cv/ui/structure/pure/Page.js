@@ -26,7 +26,6 @@
  */
 qx.Class.define('cv.ui.structure.pure.Page', {
   extend: cv.ui.structure.pure.AbstractWidget,
-  implement: cv.ui.structure.IPage,
 
   include: [
     cv.ui.common.HasChildren,
@@ -94,7 +93,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      document.querySelector('#pages').innerHTML = this.allPages;
+      const target = cv.Application.structureController.getRenderTarget();
+      document.querySelector(target).innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }
 

@@ -79,7 +79,7 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
           shownavbar[pos] = value === 'true';
         }
       }, this);
-      let bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
+      let bindClickToWidget = cv.Config.configSettings.bindClickToWidget;
       if (page.getAttribute('bind_click_to_widget')) {
         bindClickToWidget = page.getAttribute('bind_click_to_widget')==='true';
       }

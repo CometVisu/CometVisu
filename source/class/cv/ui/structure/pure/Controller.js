@@ -32,11 +32,22 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
   */
   properties: {
     currentPage: {
-      check: 'cv.ui.structure.IPage',
+      check: 'cv.ui.structure.pure.Page',
       nullable: true,
       event: 'changeCurrentPage'
     },
+    renderTarget: {
+      check: 'String',
+      init: '#pages'
+    },
 
+    /**
+     * Namespace for path ids
+     */
+    namespace: {
+      check: 'String',
+      init: ''
+    }
   },
 
   /*
@@ -63,10 +74,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       } else {
         settings.scrollSpeed = parseInt(pagesElement.getAttribute('scroll_speed'));
       }
-
-      if (pagesElement.getAttribute('bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
-      }
+      settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
       if (pagesElement.getAttribute('default_columns') !== null) {
         settings.defaultColumns = pagesElement.getAttribute('default_columns');
       }
@@ -184,7 +192,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (!this.pagePartsHandler) {
         this.pagePartsHandler = new cv.ui.structure.pure.navigation.PagePartsHandler();
       }
-      this.__detectInitialPage();
+      if (!cv.Config.initialPage) {
+        this.__detectInitialPage();
+      }
       const currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
       if (currentPage) {
         this.setCurrentPage(currentPage);
@@ -275,7 +285,6 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
     },
 
-
     /**
      * Reset some values related to the current page
      */
@@ -286,7 +295,14 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       cv.ui.structure.pure.layout.Manager.currentPageNavbarVisibility = null;
     },
 
-    __detectInitialPage: function() {
+    async getInitialPageId() {
+      if (!cv.Config.initialPage) {
+        await this.__detectInitialPage();
+      }
+      return cv.Config.initialPage;
+    },
+
+    async __detectInitialPage() {
       let startpage = 'id_';
       if (cv.Config.startpage) {
         startpage = cv.Config.startpage;
@@ -311,14 +327,16 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
       if (startpage.match(/^id_[0-9_]*$/) !== null) {
         cv.Config.initialPage = startpage;
-      } else {
-        // wait for DOM to be ready and detect the page id then
-        qx.event.message.Bus.subscribe('setup.dom.finished.before', function() {
-          cv.Config.initialPage = this.getPageIdByPath(startpage) || 'id_';
-        });
+        return startpage;
       }
+      // wait for DOM to be ready and detect the page id then
+      return new Promise(resolve => {
+        qx.event.message.Bus.subscribe('setup.dom.finished.before', () => {
+          cv.Config.initialPage = this.getPageIdByPath(startpage) || 'id_';
+          resolve(cv.Config.initialPage);
+        });
+      });
     },
-
 
     /**
      * Returns the id of the page the given path is associated to
@@ -445,8 +463,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
       // not found
       return null;
-    },
-
+    }
   },
 
   defer: function (statics) {

@@ -7,6 +7,27 @@ qx.Interface.define('cv.ui.structure.IController', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    /**
+     * The target this structure should be inserted into as CSS selector string
+     */
+    renderTarget: {
+      check: 'String'
+    },
+
+    /**
+     * Namespace for path ids
+     */
+    namespace: {
+      check: 'String'
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -55,6 +76,13 @@ qx.Interface.define('cv.ui.structure.IController', {
     },
 
     /**
+     * Returns the widget id of the page item initially loaded
+     * @returns {String} widget path like 'id_'...
+     */
+    async getInitialPageId() {
+    },
+
+    /**
      * Parse a label from the config file
      * @param label {Element} label xml element
      * @param flavour {String?} flavour name
@@ -70,11 +98,6 @@ qx.Interface.define('cv.ui.structure.IController', {
      * @param subfeature {String?} optional name of a sub feature to check
      */
     supports(feature, subfeature) {
-    },
-
-    /**
-     * Called to allow the structure to initialize its layout manager
-     */
-    initLayout() {}
+    }
   }
 });

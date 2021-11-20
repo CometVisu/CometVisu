@@ -57,7 +57,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Shortcut access to client
      */
     getClient: function () {
-      return this.getInstance().visu;
+      return this.getInstance().getClient();
     }
   },
 
@@ -83,8 +83,8 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Shows the initialization state of the TemplateEngine. It gets until when all
-     * external stuff (pars, scripts, etc.) has been loaded.
+     * Shows the initialization state of the TemplateEngine. It gets true when all
+     * external stuff (parts, scripts, etc.) has been loaded.
      */
     ready: {
       check: 'Boolean',
@@ -117,6 +117,25 @@ qx.Class.define('cv.TemplateEngine', {
       check: 'String',
       nullable: true,
       apply: '_applyHighlightedWidget'
+    },
+
+    configSource: {
+      check: 'XMLDocument',
+      nullable: true,
+      apply: '_applyConfigSource'
+    },
+
+    configHash: {
+      check: 'Number',
+      nullable: true
+    },
+
+    /**
+     * Client for connaction to the backend
+     */
+    client: {
+      check: 'cv.io.IClient',
+      event: 'changeClient'
     }
   },
 
@@ -126,9 +145,6 @@ qx.Class.define('cv.TemplateEngine', {
    ******************************************************
    */
   members: {
-    // if true the whole widget reacts on click events
-    // if false only the actor in the widget reacts on click events
-    bindClickToWidget : false,
     /**
      * Structure where a design can set a default value that a widget or plugin
      * can use.
@@ -139,10 +155,12 @@ qx.Class.define('cv.TemplateEngine', {
      */
     defaults : null,
 
+    /**
+     * @deprecated use the 'client' property instead
+     */
     visu : null,
 
     pluginsToLoadCount : 0,
-    xml : null,
 
     __partQueue: null,
     _domFinishedQueue: null,
@@ -151,6 +169,14 @@ qx.Class.define('cv.TemplateEngine', {
     lazyPlugins: null,
     __activeChangedTimer: null,
     __hasBeenConnected: false,
+
+    _applyConfigSource(xml) {
+      if (cv.Config.enableCache && xml) {
+        this.setConfigHash(cv.ConfigCache.toHash(xml));
+      } else {
+        this.resetConfigHash();
+      }
+    },
 
     /**
      * Load parts (e.g. plugins, structure)
@@ -170,6 +196,7 @@ qx.Class.define('cv.TemplateEngine', {
         });
       }
       this.__partQueue.append(parts);
+      const waitingFor = new qx.data.Array(parts);
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
           if (states[idx] === 'complete') {
@@ -179,6 +206,7 @@ qx.Class.define('cv.TemplateEngine', {
               qx.core.Init.getApplication().setStructureLoaded(true);
             }
             this.__partQueue.remove(part);
+            waitingFor.remove(part);
           } else {
             this.error('error loading part '+part);
           }
@@ -189,12 +217,27 @@ qx.Class.define('cv.TemplateEngine', {
       qx.io.PartLoader.require(loadLazyParts, function(states) {
         loadLazyParts.forEach(function(part, idx) {
           if (states[idx] === 'complete') {
-            this.debug('successfully loaded part '+part);
+            this.debug('successfully loaded lazy part '+part);
+            waitingFor.remove(part);
           } else {
-            this.error('error loading part '+part);
+            this.error('error loading lazy part '+part);
           }
         }, this);
       }, this);
+      return new Promise((resolve, reject) => {
+        const timer = setTimeout(reject, 2000);
+        if (waitingFor.getLength() === 0) {
+          resolve();
+          clearTimeout(timer);
+        } else {
+          waitingFor.addListener('changeLength', ev => {
+            if (ev.getData() === 0) {
+              resolve();
+              clearTimeout(timer);
+            }
+          });
+        }
+      });
     },
 
     // property apply
@@ -215,6 +258,7 @@ qx.Class.define('cv.TemplateEngine', {
     // property apply
     _applyDomFinished: function(value) {
       if (value) {
+        document.body.style.display = 'block';
         qx.event.message.Bus.dispatchByName('setup.dom.finished');
         // flush the queue
         this._domFinishedQueue.forEach(function(entry) {
@@ -273,24 +317,27 @@ qx.Class.define('cv.TemplateEngine', {
       if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
         backendName = mapping[backendName];
       }
-      this.visu = cv.Application.createClient(backendName, backendUrl);
+      const client = cv.Application.createClient(backendName, backendUrl);
+      this.setClient(client);
+
+      // deprecated, just for compability
+      this.visu = client;
 
       const model = cv.data.Model.getInstance();
-      this.visu.update = model.update.bind(model); // override clients update function
+      client.update = model.update.bind(model); // override clients update function
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
-        this.visu.record = function(p, d) {
+        client.record = function(p, d) {
          recordInstance.record(cv.report.Record.BACKEND, p, d);
         };
       }
-      this.visu.showError = this._handleClientError.bind(this);
-      this.visu.user = 'demo_user'; // example for setting a user
-      const visu = this.visu;
+      client.showError = this._handleClientError.bind(this);
+      client.user = 'demo_user'; // example for setting a user
 
       if (cv.Config.sentryEnabled && window.Sentry) {
         Sentry.configureScope(function (scope) {
-          scope.setTag('backend', visu.backendName);
-          const webServer = visu.getServer();
+          scope.setTag('backend', client.backendName);
+          const webServer = client.getServer();
           if (webServer) {
             scope.setTag('server.backend', webServer);
           }
@@ -298,21 +345,22 @@ qx.Class.define('cv.TemplateEngine', {
             scope.setTag('server.web', cv.Config.configServer);
           }
         });
-        visu.addListener('changedServer', this._updateClientScope, this);
+        client.addListener('changedServer', this._updateClientScope, this);
       }
       const app = qx.core.Init.getApplication();
       app.addListener('changeActive', this._onActiveChanged, this);
 
       // show connection state in NotificationCenter
-      this.visu.addListener('changeConnected', this._checkBackendConnection, this);
+      client.addListener('changeConnected', this._checkBackendConnection, this);
     },
 
     _onActiveChanged: function () {
       const app = qx.core.Init.getApplication();
       if (app.isActive()) {
-        if (!this.visu.isConnected() && this.__hasBeenConnected) {
+        const client = this.getClient();
+        if (!client.isConnected() && this.__hasBeenConnected) {
           // reconnect
-          this.visu.restart(true);
+          client.restart(true);
         }
         // wait for 3 seconds before checking the backend connection
         if (!this.__activeChangedTimer) {
@@ -331,7 +379,8 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _checkBackendConnection: function () {
-      const connected = this.visu.isConnected();
+      const client = this.getClient();
+      const connected = client.isConnected();
       const message = {
         topic: 'cv.client.connection',
         title: qx.locale.Manager.tr('Connection error'),
@@ -340,7 +389,7 @@ qx.Class.define('cv.TemplateEngine', {
         deletable: false,
         condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
       };
-      const lastError = this.visu.getLastError();
+      const lastError = client.getLastError();
       if (!connected) {
         if (lastError && (Date.now() - lastError.time) < 100) {
           message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
@@ -354,9 +403,9 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _updateClientScope: function () {
-      const visu = this.visu;
+      const client = this.getClient();
       Sentry.configureScope(function (scope) {
-        const webServer = visu.getServer();
+        const webServer = client.getServer();
         if (webServer) {
           scope.setTag('server.backend', webServer);
         }
@@ -408,10 +457,9 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Read basic settings and meta-section from config document
-     * @param done {Function} called when done
+     * Read basic settings and detect and load the structure for this config to do the rest.
      */
-    parse(done) {
+    async parse() {
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
@@ -419,7 +467,9 @@ qx.Class.define('cv.TemplateEngine', {
       const settings = cv.Config.configSettings;
       // all config files must have a root with some attributes to be able to detect at least the design
       // if not provides via URL, because the design is needed to detect the structure that can load the config
-      const rootNode = this.xml.documentElement;
+      const rootNode = this.getConfigSource().documentElement;
+
+      const xml = this.getConfigSource();
 
       const predefinedDesign = rootNode.getAttribute('design');
       // design by url
@@ -496,19 +546,9 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
       }
       // load structure-part
-      this.loadParts([cv.Config.getStructure()]);
-
-      const app = qx.core.Init.getApplication();
-
-      if (app.isStructureLoaded()) {
-        cv.Application.structureController.parseSettings(this.xml);
-        cv.Application.structureController.preParse(this.xml).then(done);
-      } else {
-        app.addListenerOnce('changeStructureLoaded', () => {
-          cv.Application.structureController.parseSettings(this.xml);
-          cv.Application.structureController.preParse(this.xml).then(done);
-        });
-      }
+      await this.loadParts([cv.Config.getStructure()]);
+      cv.Application.structureController.parseSettings(xml);
+      await cv.Application.structureController.preParse(xml);
     },
 
     /**
@@ -519,11 +559,12 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug('setup');
 
       // login to backend as it might change some settings needed for further processing
-      this.visu.login(true, cv.Config.configSettings.credentials, function () {
+      const client = this.getClient();
+      client.login(true, cv.Config.configSettings.credentials, function () {
         this.debug('logged in');
         this.setLoggedIn(true);
-        cv.Application.structureController.createUI(this.xml);
-        this.xml = null; // not needed anymore - free the space
+        cv.Application.structureController.createUI(this.getConfigSource());
+        this.resetConfigSource(); // not needed anymore - free the space
         this.startInitialRequest();
         this.startScreensaver();
         if (qx.core.Environment.get('qx.aspects')) {
@@ -552,13 +593,14 @@ qx.Class.define('cv.TemplateEngine', {
       if (qx.core.Environment.get('qx.debug')) {
         cv.report.Replay.start();
       }
+      const client = this.getClient();
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
-        this.visu.setInitialAddresses(cv.Application.structureController.getInitialAddresses());
+        client.setInitialAddresses(cv.Application.structureController.getInitialAddresses());
       }
       const addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
       if (addressesToSubscribe.length !== 0) {
-        this.visu.subscribe(addressesToSubscribe);
+        client.subscribe(addressesToSubscribe);
       }
     },
 

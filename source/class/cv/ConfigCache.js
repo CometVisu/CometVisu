@@ -122,6 +122,8 @@ qx.Class.define('cv.ConfigCache', {
             });
           }, this);
         }
+        // hide body to prevent flickering
+        body.style.display = 'none';
         body.innerHTML = cache.body;
         qx.log.Logger.debug(this, 'content restored from cache');
       });
@@ -182,7 +184,7 @@ qx.Class.define('cv.ConfigCache', {
         if (!cachedHash) {
           this._valid = false;
         } else {
-          if (!hash) {
+          if (!hash && xml) {
             hash = this.toHash(xml);
           }
           qx.log.Logger.debug(this, 'Current hash: \'' + hash + '\', cached hash: \'' + cachedHash + '\'');

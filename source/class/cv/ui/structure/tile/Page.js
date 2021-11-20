@@ -26,7 +26,6 @@
  */
 qx.Class.define('cv.ui.structure.tile.Page', {
   extend: cv.ui.structure.tile.AbstractTileWidget,
-  implement: cv.ui.structure.IPage,
 
   include: [
     cv.ui.common.HasChildren
@@ -114,9 +113,10 @@ qx.Class.define('cv.ui.structure.tile.Page', {
    */
   members: {
     __normalizedDomId: null,
+    __element: null,
 
     // overridden
-    getDomString: function() {
+    _createDomElement: function() {
       const page = document.createElement('div');
       page.classList.add('page', 'tile-list');
       page.setAttribute('id', this.getPath());
@@ -124,7 +124,7 @@ qx.Class.define('cv.ui.structure.tile.Page', {
       content.append(this.getChildrenDom());
       page.appendChild(content);
       cv.ui.structure.tile.Page.allPages.appendChild(page);
-      return undefined;
+      return page;
     }
   },
 
