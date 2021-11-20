@@ -16,6 +16,20 @@ qx.Class.define('cv.ui.structure.tile.AbstractTileWidget', {
         this.set(prop, props[prop]);
       }
     }
+    if (cv.TemplateEngine.getInstance().isDomFinished()) {
+      this._onDomFinished();
+    } else {
+      qx.event.message.Bus.subscribe('setup.dom.finished', this._onDomFinished, this);
+    }
+  },
+
+  /*
+  ******************************************************
+    EVENTS
+  ******************************************************
+  */
+  events: {
+    'domReady': 'qx.event.type.Event'
   },
 
   /*
@@ -58,6 +72,14 @@ qx.Class.define('cv.ui.structure.tile.AbstractTileWidget', {
     bindClickToWidget : {
       check: 'Boolean',
       init: false
+    },
+    mapping: {
+      check: 'String',
+      nullable: true
+    },
+    align: {
+      check: 'String',
+      nullable: true
     }
   },
 
@@ -67,8 +89,12 @@ qx.Class.define('cv.ui.structure.tile.AbstractTileWidget', {
   ***********************************************
   */
   members: {
+    $$domReady: null,
     __parentWidget: null,
     __element: null,
+
+    // TODO: remove this once all Mixins have been ported
+    applyStyling() {},
 
     setParentWidget: function(value) {
       this.__parentWidget = value;
@@ -83,6 +109,24 @@ qx.Class.define('cv.ui.structure.tile.AbstractTileWidget', {
         this.setParentWidget(parent);
       }
       return this.__parentWidget;
+    },
+
+    /**
+     * Triggered by the <code>setup.dom.finished</code> bus event
+     */
+    _onDomFinished: function() {
+      this._onDomReady();
+    },
+
+    /**
+     * Called when all widgets are available in the DOM tree
+     */
+    _onDomReady: function() {
+      if (!this.$$domReady) {
+        //this.initListeners();
+        this.fireEvent('domReady');
+        this.$$domReady = true;
+      }
     },
 
     /**

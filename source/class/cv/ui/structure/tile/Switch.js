@@ -82,8 +82,7 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
    ******************************************************
    */
   members: {
-    __actorElement: null,
-    __valueElement: null,
+    __actor: null,
 
     // overridden
     _getInnerDom: function () {
@@ -93,13 +92,8 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
       // control row
       const middleRow = document.createElement('div');
       middleRow.classList.add('row', 'middle', 'colspan-3');
-      const actorElement = this.__actorElement = document.createElement('button');
-      actorElement.classList.add('round-button', 'unpressed');
-      const valueElement = this.__valueElement = document.createElement('span');
-      valueElement.classList.add('value');
-      valueElement.textContent = 'I';
-      actorElement.appendChild(valueElement);
-      middleRow.appendChild(actorElement);
+      const actor = this.__actor= new cv.ui.structure.tile.components.Switch();
+      middleRow.appendChild(actor.getDomElement());
 
       // bottom row
       const bottomRow = document.createElement('div');
@@ -115,33 +109,32 @@ qx.Class.define('cv.ui.structure.tile.Switch', {
     },
 
     getActor() {
-      return this.__actorElement;
-    },
-
-    getValueElement() {
-      return this.__valueElement;
+      return this.__actor;
     },
 
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @param value {any} incoming data (already transformed + mapped)
+     * @param address {String} address that got this value update
+     * @param data {variant}  incoming unprocessed data
      */
-    handleUpdate: function(value) {
-      const actor = this.__actorElement;
-      // compare against the unmapped value
-      value = this.getBasicValue();
-      const off = this.getOffValue();
+    _update: function(address, data) {
+      if (address) {
+        const addresses = this.getAddress();
+        if (Object.prototype.hasOwnProperty.call(addresses, address)) {
+          let transform = addresses[address].transform;
+          // transform the raw value to a JavaScript type
+          data = cv.Transform.decode(transform, data);
+        }
+      }
       // using == comparisons to make sure that e.g. 1 equals "1"
       // noinspection EqualityComparisonWithCoercionJS
-      actor.classList.remove(value == off ? 'pressed' : 'unpressed');
-      // noinspection EqualityComparisonWithCoercionJS
-      actor.classList.add(value == off ? 'unpressed' : 'pressed');
+      this.__actor.setOn(data == this.getOnValue());
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     * @return {var}
+     * @return {variant}
      */
     getActionValue: function () {
       // using == comparisons to make sure that e.g. 1 equals "1"
