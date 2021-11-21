@@ -98,8 +98,8 @@ qx.Class.define('cv.data.Model', {
      */
     update: function(data) {
       if (!data) {
- return; 
-}
+        return;
+      }
       const addressList = this.__addressList;
       Object.getOwnPropertyNames(data).forEach(function(address) {
         if (Object.prototype.hasOwnProperty.call(addressList, address)) {

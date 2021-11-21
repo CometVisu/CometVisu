@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Creates a new sub page and adds a corresponding link to the current page.
  *
@@ -39,25 +38,6 @@ qx.Class.define('cv.ui.structure.tile.Page', {
   construct: function(props) {
     this.base(arguments, props);
   },
-
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    allPages: document.createDocumentFragment(),
-
-    /**
-     * Append the complete generated HTML code to the DOM tree at the end of the generation process
-     */
-    createFinal: function() { // special function - only for pages!
-      document.body.append(this.allPages);
-      qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
-    }
-
-  },
-
 
   /*
    ******************************************************
@@ -129,6 +109,28 @@ qx.Class.define('cv.ui.structure.tile.Page', {
   },
 
   defer: function(statics) {
-    qx.event.message.Bus.subscribe('setup.dom.append', statics.createFinal, statics);
+    qx.log.Logger.info(statics, `registering ${cv.ui.structure.tile.Controller.PREFIX}page component`);
+
+    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'page', class extends HTMLElement {
+
+    });
+    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'tile', class extends HTMLElement {
+
+    });
+    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'row', class extends HTMLElement {
+      constructor() {
+        super();
+        if (this.hasAttribute('colspan')) {
+          this.classList.add('colspan-' + this.getAttribute('colspan'));
+        }
+        if (this.hasAttribute('rowspan')) {
+          this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+        }
+      }
+    });
   }
 });
+
+
+
+

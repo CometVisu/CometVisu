@@ -35,12 +35,18 @@
     "libraryVersion": 9
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
     "@babel/polyfill": "^7.8.7",
     "@qooxdoo/compiler": "^1.0.4",
+    "@qooxdoo/eslint-config-qx": "^2.0.1",
+    "@qooxdoo/eslint-plugin-qx": "^1.2.21",
     "chmodr": "^1.2.0",
     "coffeescript": "^2.6.1",
     "csso": "^4.2.0",
     "easyimage": "^3.1.1",
+    "eslint": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-custom-elements": "^0.0.4",
     "eslint-plugin-jasmine": "^4.1.2",
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.2.7",
@@ -94,12 +100,16 @@
   },
   "eslintConfig": {
     "extends": [
-      "@qooxdoo/qx/browser",
+      "@qooxdoo/eslint-config-qx/browser",
       "plugin:jasmine/recommended",
-      "plugin:protractor/recommended"
+      "plugin:protractor/recommended",
+      "plugin:custom-elements/minimal"
     ],
+    "env": {
+      "es2021": true
+    },
     "parserOptions": {
-      "ecmaVersion": 2017
+      "ecmaVersion": 2021
     },
     "rules": {
       "no-warning-comments": "off",
@@ -119,11 +129,14 @@
       ],
       "no-multi-spaces": "off",
       "protractor/no-shadowing": "off",
-      "protractor/no-promise-in-if": "off"
+      "protractor/no-promise-in-if": "off",
+      "custom-elements/valid-tag-name": "off",
+      "custom-elements/extends-correct-class": "off"
     },
     "plugins": [
       "jasmine",
-      "protractor"
+      "protractor",
+      "custom-elements"
     ],
     "overrides": [
       {
@@ -218,7 +231,10 @@
       "Node": "readonly",
       "indexedDB": "readonly",
       "URL": "readonly",
-      "sinon": "readonly"
+      "sinon": "readonly",
+      "customElements": "readonly",
+      "HTMLElement": "readonly",
+      "QxConnector": "readonly"
     }
   }
 }

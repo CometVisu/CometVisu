@@ -1,3 +1,6 @@
+/**
+ * @asset(structures/tile/*)
+ */
 qx.Class.define('cv.ui.structure.tile.Controller', {
   extend: qx.core.Object,
   type: 'singleton',
@@ -11,6 +14,34 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   construct: function () {
     this.base(arguments);
     this.__HTML_STRUCT = '';
+  },
+
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    // prefix for all custom components uses/provided by this structure
+    PREFIX: 'tl-',
+    __MAP: {},
+    __I: {},
+    register(webComponentName, qxClass) {
+      this.__MAP[webComponentName] = qxClass;
+    },
+
+    onComponentCreated(element) {
+      const name = element.tagName.toLowerCase();
+      if (Object.prototype.hasOwnProperty.call(this, name)) {
+        const QxClass = this.__MAP[name];
+        if (!Object.prototype.hasOwnProperty.call(this, name)) {
+          this.__I[name] = [];
+        }
+        this.__I[name].push(new QxClass(element));
+      } else {
+        qx.log.Logger.error('no QxClass registered for custom element ' + name);
+      }
+    }
   },
 
   /*
@@ -62,10 +93,37 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * Parses structure specific settings
      * @param xml {XMLDocument} loaded config
      */
-    parseSettings(xml) {
+    parseSettings(config) {
       const settings = cv.Config.configSettings;
-      const pagesElement = xml.documentElement;
-      settings.bindClickToWidget = pagesElement.getAttribute('bind_click_to_widget') === 'true';
+      const configElement = config.documentElement;
+      settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
+
+      if (!cv.Config.cacheUsed) {
+        const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
+        const ajaxRequest = new qx.io.request.Xhr(templates);
+        ajaxRequest.set({
+          accept: 'application/xml',
+          cache: !cv.Config.forceReload
+        });
+        ajaxRequest.addListenerOnce('success', e => {
+          const content = e.getTarget().getResponse();
+          const target = this.getRenderTarget();
+          this.debug('creating pages');
+          // for some reason this is the only way the the web components are initialized correctly
+          target.innerHTML = content.documentElement.innerHTML + configElement.innerHTML;
+          this.debug('finalizing');
+          qx.event.message.Bus.dispatchByName('setup.dom.append');
+          this.debug('pages created');
+        });
+        ajaxRequest.addListener('statusError', function (e) {
+          const status = e.getTarget().getTransport().status;
+          if (!qx.util.Request.isSuccessful(status)) {
+            this.error('filenotfound', templates);
+          }
+        }, this);
+
+        ajaxRequest.send();
+      }
     },
 
     /**
@@ -81,15 +139,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
     createUI(config) {
-      if (!cv.Config.cacheUsed) {
-        this.debug('creating pages');
-        const page = config.querySelector('pages > page'); // only one page element allowed...
-        const namespace = this.getNamespace();
-        this._createPages(page, (namespace ? namespace + ':' : '') + 'id');
-        this.debug('finalizing');
-        qx.event.message.Bus.dispatchByName('setup.dom.append');
-        this.debug('pages created');
-      }
       this.debug('setup.dom.finished');
       qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
       cv.TemplateEngine.getInstance().setDomFinished(true);
@@ -140,5 +189,35 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   },
   defer: function (statics) {
     cv.Application.structureController = statics.getInstance();
+    // register globally
+    window.CVComponentRegistry = statics;
+
+    customElements.define(statics.PREFIX + 'switch',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          let template = document.getElementById('switch');
+          if (template) {
+            const content = template.content.cloneNode(true);
+            // move slots into template
+            for (let slot of content.querySelectorAll('slot')) {
+              const slotName = slot.getAttribute('name');
+              const slotContent = this.querySelector(`[slot='${slotName}']`);
+              if (slotContent) {
+                slot.parentNode.replaceChild(slotContent, slot);
+              } else {
+                const parentNode = slot.parentNode;
+                slot.remove();
+                if (parentNode.children.length === 0) {
+                  // also remove slots parent when it hat no content
+                  parentNode.remove();
+                }
+              }
+            }
+            this.appendChild(content);
+          }
+        }
+      }
+    );
   }
 });

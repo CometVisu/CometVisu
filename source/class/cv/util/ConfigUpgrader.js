@@ -44,7 +44,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         source = qx.xml.Document.fromString(source);
       }
       // read version from config
-      const pagesNode = source.querySelector('pages');
+      const pagesNode = source.documentElement;
       let version = parseInt(pagesNode.getAttribute('lib_version'));
       if (version === cv.Version.LIBRARY_VERSION) {
         // nothing to do
@@ -140,7 +140,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
     },
 
     __setVersion (xml, version) {
-      xml.querySelector('pages').getAttributeNode('lib_version').value = version;
+      xml.documentElement.getAttributeNode('lib_version').value = version;
     }
   }
 });

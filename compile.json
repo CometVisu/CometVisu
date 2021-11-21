@@ -218,6 +218,9 @@
     "indexedDB",
     "URL",
     "sinon",
-    "XMLDocument"
+    "XMLDocument",
+    "HTMLElement",
+    "customElements",
+    "QxConnector"
   ]
 }

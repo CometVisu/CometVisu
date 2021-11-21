@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<templates structure="tile">
+    <template id="switch">
+        <tl-tile>
+            <tl-row colspan="3" class="middle">
+                <tl-switch-button>
+                    <slot name="address"/>
+                </tl-switch-button>
+            </tl-row>
+            <tl-row colspan="3" class="last">
+                <label class="primary"><slot name="primaryLabel"/></label>
+                <label class="secondary"><slot name="secondaryLabel"/></label>
+            </tl-row>
+        </tl-tile>
+    </template>
+</templates>

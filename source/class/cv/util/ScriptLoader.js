@@ -92,10 +92,10 @@ qx.Class.define('cv.util.ScriptLoader', {
         let resPath = qx.util.ResourceManager.getInstance().toUri(style);
         if (resPath === style) {
           // this file is unknown to the resource manager, might be an scss source
-          const scssStyle = style.replace(/\.css$/, ".scss");
+          const scssStyle = style.replace(/\.css$/, '.scss');
           const scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
           if (scssStyle !== scssPath) {
-            resPath = scssPath.replace(/\.scss$/, ".css");
+            resPath = scssPath.replace(/\.scss$/, '.css');
           }
         }
         qx.bom.Stylesheet.includeFile(resPath + suffix);

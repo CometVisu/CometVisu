@@ -72,7 +72,7 @@ qx.Class.define('cv.util.ConfigLoader', {
           this.configError('parsererror');
         } else {
           // check the library version
-          let xmlLibVersion = xml.querySelector('pages').getAttribute('lib_version');
+          let xmlLibVersion = xml.documentElement.getAttribute('lib_version');
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
           } else if (xmlLibVersion === '0') {

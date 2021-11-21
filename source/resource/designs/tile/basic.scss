@@ -5,6 +5,7 @@ $appBackground: #525151;
 $tileBackground: #2e2e2e;
 $buttonBackground: #1f1f1f;
 $primaryColor: #ff9900;
+$secondaryColor: #666666;
 
 $primaryText: #b6b6b6;
 $secondaryText: #7e7d7d;
@@ -20,13 +21,16 @@ body {
     background-color: $appBackground;
     font-family: Roboto;
 
-    .tile-list {
+    tl-page {
         margin: $defaultSpace*2;
         display: flex;
         align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: $defaultSpace * 2;
     }
 
-    .tile {
+    tl-tile {
         width: $tileCellSize * $tileColumns;
         height: $tileCellSize * $tileRows;
         background-color: $tileBackground;
@@ -46,13 +50,14 @@ body {
             height: $tileCellSize - $defaultSpace;
             border-radius: math.div($tileCellSize - $defaultSpace, 2);
             background: $buttonBackground;
-            border: 1px solid $primaryColor;
             box-sizing: border-box;
-            color: $primaryColor;
             text-align: center;
             position: relative;
+            color: $secondaryColor;
+            border: 1px solid $secondaryColor;
+            box-shadow: 0 0 1px 0 $secondaryColor inset, 0 0 1px 0 $secondaryColor;
 
-            span {
+            span.value {
                 margin: 0;
                 position: absolute;
                 top: 50%;
@@ -60,8 +65,13 @@ body {
                 transform: translate(-50%, -50%);
             }
         }
+        .round-button.active {
+            color: $primaryColor;
+            border: 1px solid $primaryColor;
+            box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+        }
     }
-    label.primary {
+    label, label.primary {
         font-style: normal;
         font-weight: normal;
         font-size: 18px;
@@ -78,7 +88,7 @@ body {
         color: $secondaryText;
         display: block;
     }
-    .row {
+    tl-row {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -95,18 +105,20 @@ body {
             grid-row: 1 / span #{$i};
         }
     }
-    .row.first {
+    tl-row.first {
         grid-row: 1;
         justify-content: flex-end;
     }
-    .row.middle {
+    tl-row.middle {
         grid-row: math.ceil(math.div($tileRows, 2));
     }
-    .row.last {
+    tl-row.last {
         grid-row: $tileRows;
         justify-content: flex-start;
     }
-    .row.last > label:first-child {
+    tl-row.last > label:first-child {
         margin-top: 4px;
     }
+
+    cv-address { display: none; }
 }
