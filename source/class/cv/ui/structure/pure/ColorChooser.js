@@ -362,8 +362,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let g = cv.util.Color.curve(LCh.h, [ 27, 224, 255, 136,  27],1);
             let b = cv.util.Color.curve(LCh.h, [136,  32, 224, 245, 136],1);
             angle = (LCh.h*360)+'deg';
-            actor.handle.style.top = (1-LCh.C/ 150) * 75 + '%';
-            actor.handle.style.left = (50+(LCh.L/ 100-0.5)*(1-LCh.C/ 150) * 85) + '%';
+            actor.handle.style.top = (1-LCh.C) * 75 + '%';
+            actor.handle.style.left = (50+(LCh.L-0.5)*(1-LCh.C) * 85) + '%';
             actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb('+[r,g,b].join(',')+')';
           } else {
             let hsv = this.__colorCurrent.getComponent('hsv');
@@ -381,8 +381,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let g = cv.util.Color.curve(LCh.h, [ 27, 224, 255, 136,  27],1);
             let b = cv.util.Color.curve(LCh.h, [136,  32, 224, 245, 136],1);
             angle = (LCh.h*360)+'deg';
-            actor.handle.style.top = (1-LCh.L/ 100) * 100 + '%';
-            actor.handle.style.left = (1-LCh.C/ 150) * 100 + '%';
+            actor.handle.style.top = (1-LCh.L) * 100 + '%';
+            actor.handle.style.left = (1-LCh.C) * 100 + '%';
             actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb('+[r,g,b].join(',')+'), #808080 100%)';
           } else {
             let hsv = this.__colorCurrent.getComponent('hsv');
@@ -397,12 +397,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           let ratioComponent = this.__colorCurrent.getComponent(type);
           if( 'T' === type ) {
             ratioComponent = (ratioComponent - this.__Tmin)/(this.__Tmax - this.__Tmin);
-          }
-          if( 'LCh-L' === type ) {
-            ratioComponent = ratioComponent / 100;
-          }
-          if( 'LCh-C' === type ) {
-            ratioComponent = ratioComponent / 150;
           }
           let length = Math.max(0, Math.min( ratioComponent, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
@@ -468,12 +462,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             if( 'T' === actorType ) {
               ratio = this.__Tmin + ratio * (this.__Tmax - this.__Tmin);
             }
-            if( 'LCh-L' === actorType ) {
-              ratio *= 100;
-            }
-            if( 'LCh-C' === actorType ) {
-              ratio *= 150;
-            }
             this.__mode = actorType;
             this.__color.changeComponent(actorType, ratio);
             this.__inDrag = true;
@@ -522,12 +510,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             break;
           case 'T':
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
-            break;
-          case 'LCh-L':
-            this.__color.changeComponent('LCh-L', Math.max(0, Math.min(relCoordX, 1)) * 100 );
-            break;
-          case 'LCh-C':
-            this.__color.changeComponent('LCh-C', Math.max(0, Math.min(relCoordX, 1)) * 150 );
             break;
           default:
             this.__actors[this.__mode].button.textContent = relCoordX;

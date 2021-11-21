@@ -275,7 +275,7 @@ qx.Class.define('cv.util.Color', {
     __rbgw: undefined,
     __T: undefined,
     __Lab: undefined, // L*a*b*
-    __LCh: undefined, // L*C*h°
+    __LCh: undefined, // L*C*h° - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
 
     // make derived color valid
     __validateHSV: function (force) {
@@ -445,8 +445,8 @@ qx.Class.define('cv.util.Color', {
       this.__validateLab();
       if (this.__LCh === undefined || force) {
         this.__LCh = {
-          L: this.__Lab.L,
-          C: Math.sqrt(this.__Lab.a**2 + this.__Lab.b**2),
+          L: this.__Lab.L / 100, // map to 0...1
+          C: Math.sqrt(this.__Lab.a**2 + this.__Lab.b**2) / 150, // map to 0...1
           h: (Math.atan2(this.__Lab.b, this.__Lab.a)/(2*Math.PI)+1)%1 // map angle to 0...1
         };
       }
@@ -578,9 +578,9 @@ qx.Class.define('cv.util.Color', {
 
     __syncLCh2xy: function () {
       this.__Lab = {
-        L: this.__LCh.L,
-        a: this.__LCh.C * Math.cos(this.__LCh.h*2*Math.PI),
-        b: this.__LCh.C * Math.sin(this.__LCh.h*2*Math.PI)
+        L: this.__LCh.L * 100,
+        a: this.__LCh.C * Math.cos(this.__LCh.h*2*Math.PI) * 150,
+        b: this.__LCh.C * Math.sin(this.__LCh.h*2*Math.PI) * 150
       };
       this.__syncLab2xy(true);
     },
@@ -660,24 +660,14 @@ qx.Class.define('cv.util.Color', {
         case 'LCh-C':
         case 'LCh-h':
           this.__validateLCh();
-          switch(component.split('-')[1]) {
-            case 'L':
-              this.__LCh.L = clamp(value, 0, 100);
-              break;
-            case 'C':
-              this.__LCh.C = clamp(value, 0, 150);
-              break;
-            case 'h':
-              this.__LCh.h = clamp(value);
-              break;
-          }
+          this.__LCh[component.split('-')[1]] = clamp(value);
           this.__syncLCh2xy();
           break;
 
         case 'LCh-CL':
           this.__validateLCh();
-          this.__LCh.C = clamp(value[0]*150, 0, 150);
-          this.__LCh.L = clamp(value[1]*100, 0, 100);
+          this.__LCh.C = clamp(value[0]);
+          this.__LCh.L = clamp(value[1]);
           this.__syncLCh2xy();
           break;
       }
@@ -749,11 +739,7 @@ qx.Class.define('cv.util.Color', {
           return this.__Lab;
 
         case 'LCh-L':
-          this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]]; // / 100;
         case 'LCh-C':
-          this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]]; // / 150;
         case 'LCh-h':
           this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]];
