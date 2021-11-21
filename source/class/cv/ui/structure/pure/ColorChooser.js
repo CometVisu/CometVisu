@@ -431,7 +431,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
           if( actorType === 'wheel' ) {
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent('hsv').h,radius);
+            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent(this.__actors.wheel.isLCh?'LCh':'hsv').h,radius);
             if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
               this.__mode = 'wheel_sv';
               this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', sv);
@@ -496,7 +496,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         switch (this.__mode) {
           case 'wheel_sv':
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
+            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(this.__actors.wheel.isLCh?'LCh':'hsv').h, radius);
             this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'box_sv':
