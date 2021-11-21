@@ -319,7 +319,14 @@ button.ui-slider-handle {
   height: 100%;
   top: 0;
   border-radius: 50%;
+}
+
+.colorchooser .hsv_hue {
   background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser .lch_hue {
+  background: conic-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
 }
 
 .colorchooser .cc_wheel .hue {

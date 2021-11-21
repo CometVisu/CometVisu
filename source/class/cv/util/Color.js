@@ -136,13 +136,13 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Convert a color component to a real world value by applying the dim curve
-     * @param component {Number} the color component (i.e. r, g or b value) to convert
-     * @param curve {Number} the curve type
-     * @param scale {Number} the maximal number of the real world value, usually 1, 100 or 255
+     * @param {number} component - the color component (i.e. r, g or b value) to convert
+     * @param {(string|number[])} curve - the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table
+     * @param {number} scale - the maximal number of the real world value, usually 1, 100 or 255
      */
     curve: function (component, curve, scale ) {
-      if( component <= 0 ) { return 0; }
-      if( component >= 1 ) { return scale; }
+      if( component <= 0 ) { return Array.isArray(curve) ? curve[0]*scale : 0; }
+      if( component >= 1 ) { return Array.isArray(curve) ? curve[curve.length-1]*scale : scale; }
       if( curve === 'log' ) {
         return scale * Math.max(0, Math.min(1-Math.log10(component)/(-3), 1));
       }
@@ -673,6 +673,13 @@ qx.Class.define('cv.util.Color', {
           }
           this.__syncLCh2xy();
           break;
+
+        case 'LCh-CL':
+          this.__validateLCh();
+          this.__LCh.C = clamp(value[0]*150, 0, 150);
+          this.__LCh.L = clamp(value[1]*100, 0, 100);
+          this.__syncLCh2xy();
+          break;
       }
     },
 
@@ -750,6 +757,10 @@ qx.Class.define('cv.util.Color', {
         case 'LCh-h':
           this.__validateLCh(force);
           return this.__LCh[component.split('-')[1]];
+
+        case 'LCh':
+          this.__validateLCh(force);
+          return this.__LCh;
       }
     },
 

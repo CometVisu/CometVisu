@@ -147,13 +147,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       controls.forEach(function(control){
         switch(control) {
           case 'box':
-            retval += `<div class="actor cc_box">
-            <div class="hue"></div><div class="handle_hue"></div><div class="sv_box"><div class="inner"></div><div class="handle"></div></div></div>`;
+          case 'LCh-box':
+            let hue_type = control === 'box' ? 'hsv_hue' : 'lch_hue';
+            retval += '<div class="actor cc_box"><div class="hue ' + hue_type;
+            retval += '"></div><div class="handle_hue"></div><div class="sv_box"><div class="inner"></div><div class="handle"></div></div></div>';
             break;
 
           case 'triangle':
-            retval += `<div class="actor cc_wheel">
-            <div class="hue"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>`;
+          case 'LCh-triangle':
+            hue_type = control === 'triangle' ? 'hsv_hue' : 'lch_hue';
+            retval += '<div class="actor cc_wheel"><div class="hue ' + hue_type;
+            retval += '"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>';
             break;
 
           case 'RGB-r':
@@ -315,6 +319,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               let handle_hue = actor.querySelector('.handle_hue');
               let hue = actor.querySelector('.hue');
               actors[type] = {
+                isLCh: hue.classList.contains('lch_hue'),
                 sv_element: sv_element,
                 inner: inner,
                 handle: handle,
@@ -350,20 +355,44 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         let
           actor = this.__actors[type];
         if( type === 'wheel' ) {
-          let hsv = this.__colorCurrent.getComponent('hsv');
-          let angle = (hsv.h*360)+'deg';
+          let angle;
+          if(actor.isLCh) {
+            let LCh = this.__colorCurrent.getComponent('LCh');
+            let r = cv.util.Color.curve(LCh.h, [246, 255,  46,   0, 246],1);
+            let g = cv.util.Color.curve(LCh.h, [ 27, 224, 255, 136,  27],1);
+            let b = cv.util.Color.curve(LCh.h, [136,  32, 224, 245, 136],1);
+            angle = (LCh.h*360)+'deg';
+            actor.handle.style.top = (1-LCh.C/ 150) * 75 + '%';
+            actor.handle.style.left = (50+(LCh.L/ 100-0.5)*(1-LCh.C/ 150) * 85) + '%';
+            actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb('+[r,g,b].join(',')+')';
+          } else {
+            let hsv = this.__colorCurrent.getComponent('hsv');
+            angle = (hsv.h*360)+'deg';
+            actor.handle.style.top = (1-hsv.s) * 75 + '%';
+            actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
+            actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
+          }
           actor.sv_element.style.transform = 'rotate('+angle+')';
-          actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
-          actor.handle.style.top = (1-hsv.s) * 75 + '%';
-          actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
         } else if( type === 'box' ) {
-          let hsv = this.__colorCurrent.getComponent('hsv');
-          let angle = (hsv.h*360)+'deg';
+          let angle;
+          if(actor.isLCh) {
+            let LCh = this.__colorCurrent.getComponent('LCh');
+            let r = cv.util.Color.curve(LCh.h, [246, 255,  46,   0, 246],1);
+            let g = cv.util.Color.curve(LCh.h, [ 27, 224, 255, 136,  27],1);
+            let b = cv.util.Color.curve(LCh.h, [136,  32, 224, 245, 136],1);
+            angle = (LCh.h*360)+'deg';
+            actor.handle.style.top = (1-LCh.L/ 100) * 100 + '%';
+            actor.handle.style.left = (1-LCh.C/ 150) * 100 + '%';
+            actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb('+[r,g,b].join(',')+'), #808080 100%)';
+          } else {
+            let hsv = this.__colorCurrent.getComponent('hsv');
+            angle = (hsv.h*360)+'deg';
+            actor.handle.style.top = (1-hsv.v) * 100 + '%';
+            actor.handle.style.left = (1-hsv.s) * 100 + '%';
+            actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,hsl('+angle+' 100% 50%), #808080 100%)';
+          }
           actor.handle_hue.style.transform = 'rotate('+angle+')';
           actor.handle_hue.style.transformOrigin = actor.handle_hueWidth/2 + 'px '+(actor.width/2 - actor.handle_hueTop)+'px'; //calc(195px / 2 - 3px)';
-          actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,hsl('+angle+' 100% 50%), #808080 100%)';
-          actor.handle.style.top = (1-hsv.v) * 100 + '%';
-          actor.handle.style.left = (1-hsv.s) * 100 + '%';
         } else {
           let ratioComponent = this.__colorCurrent.getComponent(type);
           if( 'T' === type ) {
@@ -411,13 +440,13 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent('hsv').h,radius);
             if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
               this.__mode = 'wheel_sv';
-              this.__color.changeComponent('sv', sv);
+              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', sv);
               this.__inDrag = true;
             } else {
               let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
               if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
                 this.__mode = 'wheel_h';
-                this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
+                this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
                 this.__inDrag = true;
               }
             }
@@ -427,11 +456,11 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let sv =  [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
             if( (Math.abs(x) < boxSize) && (Math.abs(y) < boxSize) ) {
               this.__mode = 'box_sv';
-              this.__color.changeComponent('sv', sv);
+              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', sv);
               this.__inDrag = true;
             } else {
               this.__mode = 'wheel_h';
-              this.__color.changeComponent('h', 0.5 + Math.atan2(-x, y) / 2/Math.PI );
+              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-x, y) / 2/Math.PI );
               this.__inDrag = true;
             }
           } else {
@@ -480,16 +509,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           case 'wheel_sv':
             let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
             let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent('hsv').h, radius);
-            this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
+            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'box_sv':
             let boxSize = this.__actors.box !== undefined ? (0.5 * this.__actors.box.innerRadius / this.__actors.box.outerRadius) : 1;
             let x = relCoordX-0.5, y = relCoordY-0.5;
             sv =  [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
-            this.__color.changeComponent('sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
+            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'wheel_h':
-            this.__color.changeComponent('h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
             break;
           case 'T':
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
