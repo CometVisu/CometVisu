@@ -141,6 +141,13 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
     },
 
+    /**
+     * Parse a label from the config file
+     * @param label {Element} label xml element
+     * @param flavour {String?} flavour name
+     * @param labelClass {String?} CSS class name
+     * @param style {String?} additional CSS style properties
+     */
     parseLabel(label, flavour, labelClass, style) {
       if (!label) {
         return '';

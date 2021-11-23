@@ -83,16 +83,6 @@ qx.Interface.define('cv.ui.structure.IController', {
     },
 
     /**
-     * Parse a label from the config file
-     * @param label {Element} label xml element
-     * @param flavour {String?} flavour name
-     * @param labelClass {Strag?} CSS class name
-     * @param style {String?} additional CSS style properties
-     */
-    parseLabel(label, flavour, labelClass, style) {
-    },
-
-    /**
      * Check this structure for feature support
      * @param feature {String} name of the feature ti check, e.g. 'navbar'
      * @param subfeature {String?} optional name of a sub feature to check

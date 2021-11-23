@@ -79,9 +79,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       return this.__HTML_STRUCT;
     },
 
-    parseLabel: function (label, flavour, labelClass, style) {
-      return label ? label.textContent : '';
-    },
     supports(feature, subfeature) {
       return false;
     },
@@ -91,7 +88,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     /**
      * Parses structure specific settings
-     * @param xml {XMLDocument} loaded config
+     * @param config {XMLDocument} loaded config
      */
     parseSettings(config) {
       const settings = cv.Config.configSettings;
@@ -109,6 +106,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           const content = e.getTarget().getResponse();
           const target = this.getRenderTarget();
           this.debug('creating pages');
+          // register custom elements for templates in this document
+          this.registerTemplates(content);
           // for some reason this is the only way the the web components are initialized correctly
           target.innerHTML = content.documentElement.innerHTML + configElement.innerHTML;
           this.debug('finalizing');
@@ -124,6 +123,20 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
         ajaxRequest.send();
       }
+    },
+
+    /**
+     * Reisters customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * @param xml {XMLDocument}
+     */
+    registerTemplates(xml) {
+      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
+        customElements.define(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'), class extends TemplatedElement {
+          constructor() {
+            super(template.getAttribute('id'));
+          }
+        });
+      });
     },
 
     /**
@@ -144,25 +157,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       cv.TemplateEngine.getInstance().setDomFinished(true);
 
       this.initLayout();
-    },
-
-    _createPages: function (page, path) {
-      cv.parser.pure.WidgetParser.renderTemplates(page);
-      let parsedData = cv.parser.pure.WidgetParser.parse(page, path);
-      if (!Array.isArray(parsedData)) {
-        parsedData = [parsedData];
-      }
-      let i = 0;
-      const l = parsedData.length;
-      for (; i < l; i++) {
-        const data = parsedData[i];
-        const widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-
-        // trigger DOM generation
-        if (widget) {
-          widget.getDomElement();
-        }
-      }
     },
 
     /**
@@ -191,33 +185,31 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     cv.Application.structureController = statics.getInstance();
     // register globally
     window.CVComponentRegistry = statics;
+  }
+});
 
-    customElements.define(statics.PREFIX + 'switch',
-      class extends HTMLElement {
-        constructor() {
-          super();
-          let template = document.getElementById('switch');
-          if (template) {
-            const content = template.content.cloneNode(true);
-            // move slots into template
-            for (let slot of content.querySelectorAll('slot')) {
-              const slotName = slot.getAttribute('name');
-              const slotContent = this.querySelector(`[slot='${slotName}']`);
-              if (slotContent) {
-                slot.parentNode.replaceChild(slotContent, slot);
-              } else {
-                const parentNode = slot.parentNode;
-                slot.remove();
-                if (parentNode.children.length === 0) {
-                  // also remove slots parent when it hat no content
-                  parentNode.remove();
-                }
-              }
-            }
-            this.appendChild(content);
+class TemplatedElement extends HTMLElement {
+  constructor(templateId) {
+    super();
+    let template = document.getElementById(templateId);
+    if (template) {
+      const content = template.content.cloneNode(true);
+      // move slots into template
+      for (let slot of content.querySelectorAll('slot')) {
+        const slotName = slot.getAttribute('name');
+        const slotContent = this.querySelector(`[slot='${slotName}']`);
+        if (slotContent) {
+          slot.parentNode.replaceChild(slotContent, slot);
+        } else {
+          const parentNode = slot.parentNode;
+          slot.remove();
+          if (parentNode.children.length === 0) {
+            // also remove slots parent when it hat no content
+            parentNode.remove();
           }
         }
       }
-    );
+      this.appendChild(content);
+    }
   }
-});
+}

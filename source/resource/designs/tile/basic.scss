@@ -17,6 +17,15 @@ $borderRadius: 18px;
 $tileRows: 3;
 $tileColumns: 3;
 
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../metal/fonts/Roboto-Regular.ttf");
+}
+
+@import url("fonts/remixicon.css");
+
 body {
     background-color: $appBackground;
     font-family: Roboto;
@@ -39,38 +48,61 @@ body {
         display: grid;
         grid-template-columns: repeat($tileColumns, 1fr);
         grid-template-rows: repeat($tileRows, 1fr);
+        justify-items: center;
 
         .row {
             height: 64px;
             width: 100%;
         }
 
-        .round-button {
-            width: $tileCellSize - $defaultSpace;
-            height: $tileCellSize - $defaultSpace;
-            border-radius: math.div($tileCellSize - $defaultSpace, 2);
-            background: $buttonBackground;
-            box-sizing: border-box;
-            text-align: center;
-            position: relative;
-            color: $secondaryColor;
-            border: 1px solid $secondaryColor;
-            box-shadow: 0 0 1px 0 $secondaryColor inset, 0 0 1px 0 $secondaryColor;
+        @for $i from 2 through $tileColumns {
+            .colspan-#{$i} {
+                grid-column: 1 / span #{$i};
+            }
 
-            span.value {
-                margin: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            > [column='#{$i}'] {
+                grid-column: #{$i};
             }
         }
-        .round-button.active {
-            color: $primaryColor;
-            border: 1px solid $primaryColor;
-            box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+        @for $i from 2 through $tileRows {
+            .rowspan-#{$i} {
+                grid-row: 1 / span #{$i};
+            }
+            > [row='#{$i}'] {
+                grid-row: #{$i};
+            }
+        }
+
+        tl-row {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        > [row='first'] {
+            grid-row: 1;
+            justify-content: flex-end;
+        }
+
+        > [row='middle'] {
+            grid-row: math.ceil(math.div($tileRows, 2));
+        }
+
+        > [row='last'] {
+            grid-row: $tileRows;
+            justify-content: flex-start;
+        }
+
+        > [row='last'] > label:first-child {
+            margin-top: 4px;
         }
     }
+
+    tl-tile.clickable {
+        cursor: pointer;
+    }
+
     label, label.primary {
         font-style: normal;
         font-weight: normal;
@@ -80,6 +112,7 @@ body {
         color: $primaryText;
         display: block;
     }
+
     label.secondary {
         font-style: normal;
         font-weight: normal;
@@ -88,37 +121,45 @@ body {
         color: $secondaryText;
         display: block;
     }
-    tl-row {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+
+    cv-address {
+        display: none;
     }
 
-    @for $i from 2 through $tileColumns {
-        .colspan-#{$i} {
-            grid-column: 1 / span #{$i};
+    tl-button {
+        width: $tileCellSize - $defaultSpace;
+        height: $tileCellSize - $defaultSpace;
+        border-radius: $defaultSpace;
+        background: $buttonBackground;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+        color: $secondaryColor;
+        border: 1px solid $secondaryColor;
+        box-shadow: 0 0 1px 0 $secondaryColor inset, 0 0 1px 0 $secondaryColor;
+        align-self: center;
+        cursor: pointer;
+
+        .value {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-    }
-    @for $i from 2 through $tileRows {
-        .rowspan-#{$i} {
-            grid-row: 1 / span #{$i};
+
+        cv-icon {
+            font-size: math.div($tileCellSize - $defaultSpace*2, 2);
         }
-    }
-    tl-row.first {
-        grid-row: 1;
-        justify-content: flex-end;
-    }
-    tl-row.middle {
-        grid-row: math.ceil(math.div($tileRows, 2));
-    }
-    tl-row.last {
-        grid-row: $tileRows;
-        justify-content: flex-start;
-    }
-    tl-row.last > label:first-child {
-        margin-top: 4px;
     }
 
-    cv-address { display: none; }
+    tl-button.round-button {
+        border-radius: math.div($tileCellSize - $defaultSpace, 2);
+    }
+
+    tl-button.active {
+        color: $primaryColor;
+        border: 1px solid $primaryColor;
+        box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+    }
 }

@@ -2,12 +2,33 @@
 <templates structure="tile">
     <template id="switch">
         <tl-tile>
-            <tl-row colspan="3" class="middle">
-                <tl-switch-button>
-                    <slot name="address"/>
-                </tl-switch-button>
+            <tl-row colspan="3" row="middle">
+                <tl-button class="round-button">
+                    <addresses><slot name="address"/></addresses>
+                    <cv-icon class="value" on="ri-lightbulb-fill" off="ri-lightbulb-line"/>
+                </tl-button>
             </tl-row>
-            <tl-row colspan="3" class="last">
+            <tl-row colspan="3" row="last">
+                <label class="primary"><slot name="primaryLabel"/></label>
+                <label class="secondary"><slot name="secondaryLabel"/></label>
+            </tl-row>
+        </tl-tile>
+    </template>
+    <template id="shutter">
+        <tl-tile>
+            <tl-button class="round-button" type="trigger" row="2" column="1">
+                <addresses><slot name="downAddress"/></addresses>
+                <cv-icon class="value ri-arrow-down-s-line"/>
+            </tl-button>
+            <tl-button class="round-button" type="trigger" row="2" column="2">
+                <addresses><slot name="stopAddress"/></addresses>
+                <cv-icon class="value ri-stop-fill"/>
+            </tl-button>
+            <tl-button class="round-button" type="trigger" row="2" column="3">
+                <addresses><slot name="upAddress"/></addresses>
+                <cv-icon class="value ri-arrow-up-s-line"/>
+            </tl-button>
+            <tl-row colspan="3" row="last">
                 <label class="primary"><slot name="primaryLabel"/></label>
                 <label class="secondary"><slot name="secondaryLabel"/></label>
             </tl-row>
