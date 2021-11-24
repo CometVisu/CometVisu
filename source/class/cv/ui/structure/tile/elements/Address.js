@@ -71,7 +71,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   },
 
   defer(Clazz) {
-    customElements.define('cv-address', class extends QxConnector {
+    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'address', class extends QxConnector {
       constructor() {
         super(Clazz);
       }

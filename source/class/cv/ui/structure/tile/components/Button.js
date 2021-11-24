@@ -42,7 +42,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
     offValue: {
       check: 'String',
-      init: 'O'
+      init: '0'
     }
   },
   /*
@@ -60,7 +60,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
       let hasReadAddress = false;
       let hasWriteAddress = false;
-      Array.prototype.some.call(element.querySelectorAll('addresses > cv-address'), address => {
+      Array.prototype.some.call(element.querySelectorAll(':scope > cv-address'), address => {
         const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'readwrite';
         switch (mode) {
           case 'readwrite':
@@ -93,25 +93,25 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     _applyConnected(value) {
       if (value) {
-        /*if (!this._element.querySelector('.value')) {
-          // when used in templates this has to be added manually here because of the address slots
-          const valueElem = document.createElement('span');
-          valueElem.classList.add('value');
-          valueElem.textContent = this._element.getAttribute('text');
-          this._element.appendChild(valueElem);
-        }*/
         if (this.getType() !== 'trigger') {
-          this._applyOn();
+          // delay this because we need the mappings to be ready
+          qx.event.Timer.once(this._applyOn, this, 1000);
         }
       }
     },
     _applyOn() {
       if (this.isConnected()) {
-        this._element.setAttribute('value', this.isOn() ? this.getOnValue() : this.getOffValue());
-        const icon = this._element.querySelector('cv-icon.value');
-        if (icon.hasAttribute('on') && icon.hasAttribute('off')) {
-          icon.classList.remove(this.isOn() ? icon.getAttribute('off') : icon.getAttribute('on'));
-          icon.classList.add(this.isOn() ? icon.getAttribute('on') : icon.getAttribute('off'));
+        const value = this.isOn() ? this.getOnValue() : this.getOffValue();
+        this._element.setAttribute('value', value);
+        const mapping = this._element.querySelector(':scope > cv-mapping');
+        if (mapping && mapping._instance) {
+          const mapResult = mapping._instance.mapValue(value);
+          const target = this._element.querySelector(mapResult.targetSelector);
+          if (target && target.tagName.toLowerCase() === 'cv-icon') {
+            target._instance.setId(mapResult.mappedValue);
+          } else {
+            this.warn('unhandled target', target);
+          }
         } else {
           this.updateValue(this.isOn() ? 'I' : '0');
         }
@@ -150,7 +150,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     onClicked() {
       if (!this.__writeAddresses) {
-        this.__writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'),
+        this.__writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll(':scope > cv-address'),
           address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read');
       }
       const ev = new CustomEvent('sendState', {

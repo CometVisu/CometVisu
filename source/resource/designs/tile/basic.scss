@@ -30,7 +30,7 @@ body {
     background-color: $appBackground;
     font-family: Roboto;
 
-    tl-page {
+    cv-page {
         margin: $defaultSpace*2;
         display: flex;
         align-items: center;
@@ -39,7 +39,7 @@ body {
         gap: $defaultSpace * 2;
     }
 
-    tl-tile {
+    cv-tile {
         width: $tileCellSize * $tileColumns;
         height: $tileCellSize * $tileRows;
         background-color: $tileBackground;
@@ -73,7 +73,7 @@ body {
             }
         }
 
-        tl-row {
+        cv-row {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -99,7 +99,7 @@ body {
         }
     }
 
-    tl-tile.clickable {
+    cv-tile.clickable {
         cursor: pointer;
     }
 
@@ -122,11 +122,11 @@ body {
         display: block;
     }
 
-    cv-address {
+    cv-address, cv-mapping, cv-styling {
         display: none;
     }
 
-    tl-button {
+    cv-button {
         width: $tileCellSize - $defaultSpace;
         height: $tileCellSize - $defaultSpace;
         border-radius: $defaultSpace;
@@ -153,11 +153,11 @@ body {
         }
     }
 
-    tl-button.round-button {
+    cv-button.round-button {
         border-radius: math.div($tileCellSize - $defaultSpace, 2);
     }
 
-    tl-button.active {
+    cv-button.active {
         color: $primaryColor;
         border: 1px solid $primaryColor;
         box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;

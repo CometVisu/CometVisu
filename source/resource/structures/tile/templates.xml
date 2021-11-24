@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <templates structure="tile">
     <template id="switch">
-        <tl-tile>
-            <tl-row colspan="3" row="middle">
-                <tl-button class="round-button">
-                    <addresses><slot name="address"/></addresses>
-                    <cv-icon class="value" on="ri-lightbulb-fill" off="ri-lightbulb-line"/>
-                </tl-button>
-            </tl-row>
-            <tl-row colspan="3" row="last">
+        <cv-tile>
+            <cv-row colspan="3" row="middle">
+                <cv-button class="round-button">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <slot name="mapping">OPTIONAL MAPPING</slot>
+                    <slot name="styling">OPTIONAL STYLING</slot>
+                    <cv-icon class="value ri-question-mark" />
+                </cv-button>
+            </cv-row>
+            <cv-row colspan="3" row="last">
                 <label class="primary"><slot name="primaryLabel"/></label>
                 <label class="secondary"><slot name="secondaryLabel"/></label>
-            </tl-row>
-        </tl-tile>
+            </cv-row>
+        </cv-tile>
     </template>
     <template id="shutter">
-        <tl-tile>
-            <tl-button class="round-button" type="trigger" row="2" column="1">
-                <addresses><slot name="downAddress"/></addresses>
+        <cv-tile>
+            <cv-button class="round-button" type="trigger" row="2" column="1">
+                <slot name="downAddress">NEEDS DOWNADDRESS</slot>
                 <cv-icon class="value ri-arrow-down-s-line"/>
-            </tl-button>
-            <tl-button class="round-button" type="trigger" row="2" column="2">
-                <addresses><slot name="stopAddress"/></addresses>
+            </cv-button>
+            <cv-button class="round-button" type="trigger" row="2" column="2">
+                <slot name="stopAddress">NEEDS STOPADDRESS</slot>
                 <cv-icon class="value ri-stop-fill"/>
-            </tl-button>
-            <tl-button class="round-button" type="trigger" row="2" column="3">
-                <addresses><slot name="upAddress"/></addresses>
+            </cv-button>
+            <cv-button class="round-button" type="trigger" row="2" column="3">
+                <slot name="upAddress">NEEDS UPADDRESS</slot>
                 <cv-icon class="value ri-arrow-up-s-line"/>
-            </tl-button>
-            <tl-row colspan="3" row="last">
-                <label class="primary"><slot name="primaryLabel"/></label>
-                <label class="secondary"><slot name="secondaryLabel"/></label>
-            </tl-row>
-        </tl-tile>
+            </cv-button>
+            <cv-row colspan="3" row="last">
+                <label class="primary"><slot name="primaryLabel">NEEDS LABEL</slot></label>
+                <label class="secondary"><slot name="secondaryLabel">OPTIONAL SUB LABEL</slot></label>
+            </cv-row>
+        </cv-tile>
     </template>
 </templates>

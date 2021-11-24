@@ -23,7 +23,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   */
   statics: {
     // prefix for all custom components uses/provided by this structure
-    PREFIX: 'tl-',
+    PREFIX: 'cv-',
     __MAP: {},
     __I: {},
     register(webComponentName, qxClass) {
@@ -201,6 +201,8 @@ class TemplatedElement extends HTMLElement {
         if (slotContent) {
           slot.parentNode.replaceChild(slotContent, slot);
         } else {
+          // eslint-disable-next-line no-console
+          console.log('['+templateId+']no content for slot', slotName, ' removing');
           const parentNode = slot.parentNode;
           slot.remove();
           if (parentNode.children.length === 0) {

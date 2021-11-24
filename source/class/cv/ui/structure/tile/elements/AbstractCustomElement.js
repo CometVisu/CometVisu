@@ -12,27 +12,27 @@ class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();
     if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
-      this.instance = new QxClass(this);
+      this._instance = new QxClass(this);
     } else {
       throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
     }
   }
 
   connectedCallback() {
-    if (this.instance) {
-      this.instance.setConnected(true);
+    if (this._instance) {
+      this._instance.setConnected(true);
     }
   }
 
   disconnectedCallback() {
-    if (this.instance) {
-      this.instance.setConnected(false);
+    if (this._instance) {
+      this._instance.setConnected(false);
     }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.instance && qx.Class.hasProperty(this.instance.constructor, name)) {
-      this.instance.set(name, newValue);
+    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
+      this._instance.set(name, newValue);
     }
   }
 }
