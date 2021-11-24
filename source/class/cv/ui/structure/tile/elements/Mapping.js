@@ -13,15 +13,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
     mapValue(val) {
       let exactValue = this._element.querySelector(`value[match='${val}']`);
       if (exactValue) {
-        return {
-          mappedValue: exactValue.textContent,
-          targetSelector: this._element.getAttribute('target')
-        };
+        return exactValue.textContent.trim();
       }
-      return {
-        mappedValue: val,
-        targetSelector: this._element.getAttribute('target')
-      };
+      return val;
     }
   },
 

@@ -101,19 +101,17 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
     _applyOn() {
       if (this.isConnected()) {
-        const value = this.isOn() ? this.getOnValue() : this.getOffValue();
+        let value = this.isOn() ? this.getOnValue() : this.getOffValue();
         this._element.setAttribute('value', value);
         const mapping = this._element.querySelector(':scope > cv-mapping');
         if (mapping && mapping._instance) {
-          const mapResult = mapping._instance.mapValue(value);
-          const target = this._element.querySelector(mapResult.targetSelector);
-          if (target && target.tagName.toLowerCase() === 'cv-icon') {
-            target._instance.setId(mapResult.mappedValue);
-          } else {
-            this.warn('unhandled target', target);
-          }
+          value = mapping._instance.mapValue(value);
+        }
+        const target = this._element.querySelector('.value');
+        if (target && target.tagName.toLowerCase() === 'cv-icon') {
+          target._instance.setId(value);
         } else {
-          this.updateValue(this.isOn() ? 'I' : '0');
+          this.updateValue(value);
         }
         const classes = this._element.classList;
         if (this.isOn()) {
