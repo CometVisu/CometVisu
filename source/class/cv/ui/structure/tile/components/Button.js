@@ -297,6 +297,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     onClicked() {
+      if (!this.__writeAddresses) {
+        this.__writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'),
+          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read');
+      }
       const ev = new CustomEvent('sendState', {
         detail: {
           value: this.isOn() ? this.getOffValue() : this.getOnValue(),
