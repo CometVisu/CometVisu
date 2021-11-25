@@ -1,5 +1,7 @@
 /**
- *
+ * Mapping maps a value to another value that can be used to show e.g. the current state.
+ * @author Tobias Bräutigam
+ * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,

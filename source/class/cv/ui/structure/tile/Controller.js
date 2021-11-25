@@ -75,6 +75,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   members: {
     __HTML_STRUCT: null,
     __mappings: null,
+    __stylings: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -203,6 +204,30 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     mapValue(mappingName, value) {
       if (Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
         return this.__mappings[mappingName].mapValue(value);
+      }
+      return value;
+    },
+
+    /**
+     * @param name {String} styling name
+     * @param styling {cv.ui.structure.tile.elements.Styling}
+     */
+    addStyling(name, styling) {
+      if (!this.__stylings) {
+        this.__stylings = {};
+      }
+      this.__stylings[name] = styling;
+    },
+
+    removeStyling(name) {
+      if (this.__stylings) {
+        delete this.__stylings[name];
+      }
+    },
+
+    styleValue(stylingName, value) {
+      if (Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
+        return this.__stylings[stylingName].mapValue(value);
       }
       return value;
     }
