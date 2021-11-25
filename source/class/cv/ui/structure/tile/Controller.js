@@ -74,6 +74,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   */
   members: {
     __HTML_STRUCT: null,
+    __mappings: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -179,6 +180,31 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      */
     async getInitialPageId() {
       return 'id_';
+    },
+
+    /**
+     *
+     * @param name {String} mapping name
+     * @param mapping {cv.ui.structure.tile.elements.Mapping}
+     */
+    addMapping(name, mapping) {
+      if (!this.__mappings) {
+        this.__mappings = {};
+      }
+      this.__mappings[name] = mapping;
+    },
+
+    removeMapping(name) {
+      if (this.__mappings) {
+        delete this.__mappings[name];
+      }
+    },
+
+    mapValue(mappingName, value) {
+      if (Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
+        return this.__mappings[mappingName].mapValue(value);
+      }
+      return value;
     }
   },
   defer: function (statics) {
@@ -211,6 +237,19 @@ class TemplatedElement extends HTMLElement {
           }
         }
       }
+      // transfer attribute slots
+      const attributes = this.getAttributeNames();
+      attributes.forEach(name => {
+        const value = this.getAttribute(name);
+        const targets = content.querySelectorAll('[slot-'+name+']');
+        targets.forEach(target => {
+          target.removeAttribute('slot-'+name);
+          target.setAttribute(name, value);
+        });
+        if (targets.length > 0) {
+          this.removeAttribute(name);
+        }
+      });
       this.appendChild(content);
     }
   }

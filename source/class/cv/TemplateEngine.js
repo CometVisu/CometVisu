@@ -471,7 +471,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       const xml = this.getConfigSource();
 
-      const predefinedDesign = rootNode.getAttribute('design');
+      const predefinedDesign = rootNode.getAttribute('design') || 'pure';
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {

@@ -43,6 +43,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     offValue: {
       check: 'String',
       init: '0'
+    },
+    styleClass: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyStyleClass'
     }
   },
   /*
@@ -103,9 +108,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (this.isConnected()) {
         let value = this.isOn() ? this.getOnValue() : this.getOffValue();
         this._element.setAttribute('value', value);
-        const mapping = this._element.querySelector(':scope > cv-mapping');
-        if (mapping && mapping._instance) {
-          value = mapping._instance.mapValue(value);
+        if (this._element.hasAttribute('mapping')) {
+          value = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'));
         }
         const target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'cv-icon') {
@@ -113,25 +117,30 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         } else {
           this.updateValue(value);
         }
-        const classes = this._element.classList;
-        if (this.isOn()) {
-          if (classes.contains(this.getOffClass())) {
-            classes.replace(this.getOffClass(), this.getOnClass());
-          } else {
-            classes.add(this.getOnClass());
-          }
-        } else if (classes.contains(this.getOnClass())) {
-          classes.replace(this.getOnClass(), this.getOffClass());
+        let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
+        // TODO: check is this button has a styling defined and use it
+        this.setStyleClass(styleClass);
+      }
+    },
+
+    _applyStyleClass(value, oldValue) {
+      const classes = this._element.classList;
+      if (oldValue) {
+        if (classes.contains(oldValue)) {
+          classes.replace(oldValue, value);
         } else {
-          classes.add(this.getOffClass());
+          classes.add(value);
+          classes.remove(oldValue);
         }
+      } else if (value) {
+        classes.add(value);
       }
     },
 
     updateValue(value) {
       const elem = this._element.querySelector('span.value');
       if (elem) {
-        elem.textContent = value;
+        elem.innerHTML = value;
       }
     },
 

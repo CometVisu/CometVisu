@@ -145,8 +145,14 @@ const resetApplication = function() {
   templateEngine.resetScriptsLoaded();
   templateEngine.resetPartsLoaded();
   cv.util.ScriptLoader.getInstance().resetAllQueued();
+  switch (cv.Config.getStructure()) {
+    case 'structure-tile':
+      break;
 
-  cv.ui.structure.pure.layout.ResizeHandler.reset();
+    default:
+      cv.ui.structure.pure.layout.ResizeHandler.reset();
+      break;
+  }
 };
 
 // DOM Helpers
@@ -297,8 +303,9 @@ beforeAll(function (done) {
       cv.Config.enableCache = false;
       // always test in 'en' locale
       qx.locale.Manager.getInstance().setLocale('en');
-      var templateEngine = cv.TemplateEngine.getInstance();
-      var startUp = function () {
+      const templateEngine = cv.TemplateEngine.getInstance();
+      templateEngine.loadParts(['structure-tile']);
+      const startUp = function () {
         resetApplication();
         setTimeout(done, 100);
       };
@@ -314,7 +321,8 @@ beforeAll(function (done) {
 });
 
 beforeEach(function () {
-  var templateEngine = cv.TemplateEngine.getInstance();
+  const templateEngine = cv.TemplateEngine.getInstance();
+  cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
@@ -330,7 +338,7 @@ beforeEach(function () {
     qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
   };
-  var model = cv.data.Model.getInstance();
+  const model = cv.data.Model.getInstance();
   templateEngine.visu.update = model.update.bind(model); // override clients update function
 });
 

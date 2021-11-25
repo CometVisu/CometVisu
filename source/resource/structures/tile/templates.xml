@@ -3,10 +3,8 @@
     <template id="switch">
         <cv-tile>
             <cv-row colspan="3" row="middle">
-                <cv-button class="round-button">
+                <cv-button class="round-button" slot-mapping="">
                     <slot name="address">NEEDS ADDRESS</slot>
-                    <slot name="mapping">OPTIONAL MAPPING</slot>
-                    <slot name="styling">OPTIONAL STYLING</slot>
                     <cv-icon class="value ri-question-mark" />
                 </cv-button>
             </cv-row>
