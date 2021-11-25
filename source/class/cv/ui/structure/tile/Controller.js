@@ -248,6 +248,30 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         return this.__stylings[stylingName].mapValue(value, store);
       }
       return value;
+    },
+
+    /**
+     * @param name {String} styling name
+     * @param styling {cv.ui.structure.tile.elements.Styling}
+     */
+    addStyling(name, styling) {
+      if (!this.__stylings) {
+        this.__stylings = {};
+      }
+      this.__stylings[name] = styling;
+    },
+
+    removeStyling(name) {
+      if (this.__stylings) {
+        delete this.__stylings[name];
+      }
+    },
+
+    styleValue(stylingName, value) {
+      if (Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
+        return this.__stylings[stylingName].mapValue(value);
+      }
+      return value;
     }
   },
   defer: function (statics) {
