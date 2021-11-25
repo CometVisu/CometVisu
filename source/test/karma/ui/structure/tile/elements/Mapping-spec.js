@@ -5,6 +5,17 @@
  * @since 2022
  */
 describe('testing the <cv-mapping> component', function() {
+  let oldController;
+
+  beforeEach(() => {
+    oldController = cv.Application.structureController;
+    cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
+  });
+
+  afterEach(() => {
+    cv.Application.structureController = oldController;
+  })
+
   it('should find the exact matches', function() {
     const mapping = document.createElement('cv-mapping');
     mapping.setAttribute('name', 'test');

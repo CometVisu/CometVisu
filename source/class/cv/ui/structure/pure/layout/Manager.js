@@ -90,22 +90,28 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       const navbarVisibility = this.getCurrentPageNavbarVisibility();
 
       const left = document.querySelector('#navbarLeft');
-      const leftRect = left.getBoundingClientRect();
-      let widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
-      if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
-        // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
-        // maybe there is a better solution to solve this problem
-        // OR: we have a mobile device where the nav bar is floating above the other content
-        widthNavbarLeft = 0;
+      let widthNavbarLeft = 0;
+      if (left) {
+        const leftRect = left.getBoundingClientRect();
+        let widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
+        if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
+          // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+          // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
+          widthNavbarLeft = 0;
+        }
       }
       const right = document.querySelector('#navbarRight');
-      const rightRect = right.getBoundingClientRect();
-      let widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
-      if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
-        // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
-        // maybe there is a better solution to solve this problem
-        // OR: we have a mobile device where the nav bar is floating above the other content
-        widthNavbarRight = 0;
+      let widthNavbarRight = 0;
+      if (right) {
+        const rightRect = right.getBoundingClientRect();
+        let widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
+        if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
+          // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+          // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
+          widthNavbarRight = 0;
+        }
       }
       this.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
       //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
@@ -202,8 +208,14 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
      */
     applyColumnWidths: function (selector, includeNavbars) {
       const width = this.getAvailableWidth();
-      const mainAreaColumns = document.querySelector('#main').dataset['columns'];
-      const mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
+      let mainAreaColspan = cv.Config.defaultColumns;
+      const main = document.querySelector('#main');
+      if (main) {
+        const mainAreaColumns = document.querySelector('#main').dataset['columns'];
+        if (mainAreaColumns) {
+          mainAreaColspan = parseInt(mainAreaColumns);
+        }
+      }
 
       const pageSelector = selector ? selector : '#main .activePage';
       let selectors = [];
@@ -217,8 +229,14 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       selectors.forEach(function (area) {
         const allContainer = document.querySelectorAll(area + ' .widget_container');
         if (allContainer.length > 0) {
-          const areaColumns = document.querySelector(area).dataset['columns'];
-          const areaColspan = areaColumns || cv.Config.defaultColumns;
+          let areaColspan = cv.Config.defaultColumns
+          const areaElement = document.querySelector(area);
+          if (areaElement) {
+            const areaColumns = areaElement.dataset['columns'];
+            if (areaColumns) {
+              areaColspan = parseInt(areaColumns);
+            }
+          }
           allContainer.forEach(function(child) {
             const widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);
             const ourColspan = this.getWidgetColspan(widget, width);

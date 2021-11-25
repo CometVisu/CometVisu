@@ -323,6 +323,7 @@ beforeAll(function (done) {
 beforeEach(function () {
   const templateEngine = cv.TemplateEngine.getInstance();
   cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
+  qx.core.Init.getApplication().setStructureLoaded(true);
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
@@ -339,7 +340,7 @@ beforeEach(function () {
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
   };
   const model = cv.data.Model.getInstance();
-  templateEngine.visu.update = model.update.bind(model); // override clients update function
+  templateEngine.getClient().update = model.update.bind(model); // override clients update function
 });
 
 afterEach(function () {
@@ -370,5 +371,6 @@ afterEach(function () {
   // load empty HTML structure
   body.innerHTML = '';
   cv.TemplateEngine.getInstance().resetDomFinished();
+  qx.core.Init.getApplication().resetStructureLoaded();
   // resetApplication();
 });

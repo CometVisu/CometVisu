@@ -74,8 +74,8 @@ describe('testing a pagejump widget', function() {
   });
 
   it('should trigger the pagejumps action', function() {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
 
     var widget = this.createTestElement('pagejump', {
       'target': 'test'
@@ -86,13 +86,13 @@ describe('testing a pagejump widget', function() {
 
     qx.event.Registration.fireEvent(widget.getInteractionElement(), 'tap', qx.event.type.Event, []);
 
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('test');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('test');
   });
 
   it('should trigger the pagejumps action with target path', function() {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
-    spyOn(templateEngine, 'getPageIdByPath').and.returnValue('id_1');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
+    spyOn(controller, 'getPageIdByPath').and.returnValue('id_1');
 
     var creator = this.createTestElement('pagejump', {
       'target': 'test',
@@ -104,7 +104,7 @@ describe('testing a pagejump widget', function() {
 
     qx.event.Registration.fireEvent(creator.getInteractionElement(), 'tap', qx.event.type.Event, []);
 
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_1');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('id_1');
   });
 
   it('should test the scrolltopage listener', function() {

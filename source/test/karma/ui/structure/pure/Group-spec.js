@@ -53,8 +53,8 @@ describe('testing a group widget', function() {
   });
 
   it('should trigger the group action', function() {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
     var res = this.createTestElement('group', { target: 'target' }, '', false);
 
     this.initWidget(res);
@@ -66,6 +66,6 @@ describe('testing a group widget', function() {
 
     Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
 
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('target');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('target');
   });
 });

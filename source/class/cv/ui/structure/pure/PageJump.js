@@ -121,8 +121,8 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
       while (parentPage && cv.util.Tree.getParentWidget(parentPage, 'page')) {
         pageJumps.forEach(function(elem) {
- markPageJumps(parentPage.getName(), elem); 
-});
+          markPageJumps(parentPage.getName(), elem);
+        });
         // recursively find pagejumps for parent pages
         parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
       }
@@ -155,7 +155,7 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
     action: function() {
       let target = this.getTarget();
       if (this.getTargetPath() !== null) {
-        target = cv.TemplateEngine.getInstance().getPageIdByPath(target, this.getTargetPath());
+        target = cv.Application.structureController.getPageIdByPath(target, this.getTargetPath());
       }
       cv.Application.structureController.scrollToPage(target);
     }

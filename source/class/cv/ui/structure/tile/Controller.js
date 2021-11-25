@@ -208,9 +208,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     }
   },
   defer: function (statics) {
-    cv.Application.structureController = statics.getInstance();
-    // register globally
-    window.CVComponentRegistry = statics;
+    if (!window.cvTestMode) {
+      // do not apply ourselves automatically in test mode
+      cv.Application.structureController = statics.getInstance();
+    }
   }
 });
 

@@ -119,8 +119,8 @@ describe('testing a page widget', function () {
   });
 
   it('should test the page update', function () {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
 
     const pageLink = this.createTestElement('page', {
       'type': 'text',
@@ -136,12 +136,12 @@ describe('testing a page widget', function () {
     page.update('1/0/0', 1);
 
     expect(page.sendToBackend).toHaveBeenCalledWith('0');
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 
   it('should trigger the page action', function () {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
 
     var pageLink = this.createTestElement('page', {
       'type': 'text',
@@ -151,6 +151,6 @@ describe('testing a page widget', function () {
     this.initWidget(pageLink);
     qx.event.Registration.fireEvent(pageLink.getActor(), 'tap', qx.event.type.Event, []);
 
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 });
