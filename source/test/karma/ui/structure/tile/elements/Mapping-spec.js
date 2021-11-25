@@ -14,7 +14,7 @@ describe('testing the <cv-mapping> component', function() {
 
   afterEach(() => {
     cv.Application.structureController = oldController;
-  })
+  });
 
   it('should find the exact matches', function() {
     const mapping = document.createElement('cv-mapping');
