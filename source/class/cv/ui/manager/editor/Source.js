@@ -89,20 +89,15 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             }
           }
         });
-        const noCacheSuffix = '?' + Math.random();
         window.require([
-          'xml!./resource/visu_config.xsd' + noCacheSuffix,
           'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'
-        ], function (schema, qxLib) {
-          this.__schema = schema;
+        ], function (qxLib) {
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-          const completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance('visu_config.xsd'));
           const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
-          window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
-        }.bind(this));
+        });
       }, this);
       loader.addListener('failed', function (ev) {
         qx.log.Logger.error(this, ev.getData());
@@ -117,7 +112,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   ***********************************************
   */
   members: {
-    __schema: null,
     _editor: null,
     _basePath: null,
     _workerWrapper: null,

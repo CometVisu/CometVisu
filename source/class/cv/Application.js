@@ -70,7 +70,6 @@ qx.Class.define('cv.Application',
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
     __commandManager: null,
     /**
@@ -89,8 +88,8 @@ qx.Class.define('cv.Application',
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        if (!cv.Config.pluginsToLoad.includes('plugin-openhab')) {
-          cv.Config.pluginsToLoad.push('plugin-openhab');
+        if (cv.Config.getStructure() === 'structure-pure' && !cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+          cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
         }
         if (args[1] && args[1].endsWith('/cv/l/')) {
           // we only need the rest path not the login resource
@@ -224,12 +223,8 @@ qx.Class.define('cv.Application',
       cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
       manCommand.addListener('execute', () => this.showManager(), this);
       if (cv.Config.request.queryKey.manager) {
-        const action = cv.Config.request.queryKey.open ? 'open' : '';
-        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-        this.showManager(action, data);
+        this.showManager();
       }
-
-      this.registerServiceWorker();
 
       if (qx.core.Environment.get('qx.aspects')) {
         qx.dev.Profile.stop();
@@ -684,12 +679,7 @@ qx.Class.define('cv.Application',
      * Load plugins
      */
     loadPlugins: function() {
-      const plugins = cv.Config.configSettings.pluginsToLoad.slice();
-      cv.Config.pluginsToLoad.forEach(name => {
-        if (!plugins.includes(name)) {
-          plugins.push(name);
-        }
-      });
+      const plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
         const standalonePlugins = [];
         const engine = cv.TemplateEngine.getInstance();
@@ -756,48 +746,7 @@ qx.Class.define('cv.Application',
     },
 
     close: function () {
-      const client = cv.TemplateEngine.getClient();
-      if (client) {
-        client.terminate();
-      }
-    },
-
-    /**
-     * Install the service-worker if possible
-     */
-    registerServiceWorker: function() {
-      if (cv.Config.useServiceWorker === true) {
-        const workerFile = 'ServiceWorker.js';
-        navigator.serviceWorker.register(workerFile).then(function(reg) {
-          this.debug('ServiceWorker successfully registered for scope '+reg.scope);
-
-          // configure service worker
-          var configMessage = {
-            'command': 'configure',
-            'message': {
-              forceReload: cv.Config.forceReload,
-              debug: qx.core.Environment.get('qx.debug')
-            }
-          };
-
-          if (reg.active) {
-            reg.active.postMessage(configMessage);
-          } else {
-            navigator.serviceWorker.ready.then(function(ev) {
-              ev.active.postMessage(configMessage);
-            });
-          }
-        }.bind(this)).catch(function(err) {
-          this.error('Error registering service-worker: ', err);
-        }.bind(this));
-      } else if (navigator.serviceWorker) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          this.debug('unregistering existing service workers');
-          registrations.forEach(function (registration) {
-            registration.unregister();
-          });
-        }.bind(this));
-      }
+      cv.TemplateEngine.getClient().terminate();
     }
   }
 });

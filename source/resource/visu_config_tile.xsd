@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+  <!-- root element -->
+  <xsd:element name="config">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
+        <xsd:element name="cv-page" type="cv-page"/>
+      </xsd:sequence>
+      <xsd:attribute name="design" type="xsd:string" use="required" >
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute ref="backend" />
+      <xsd:attribute name="backend-url" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die Backend-Verbindung. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="username" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="password" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erfolderlich). </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="lib_version" type="xsd:integer" use="required">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
+          <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
+          <xsd:appinfo>level:expert</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- meta area -->
+  <xsd:complexType name="cv-meta">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="cv-mapping" type="cv-mapping" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="cv-styling" type="cv-styling" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-mapping">
+    <xsd:sequence>
+      <xsd:element name="formula" type="xsd:string" minOccurs="0" />
+      <xsd:element name="entry" type="entry" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the mapping</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name des Mappings</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-styling">
+    <xsd:sequence>
+      <xsd:element name="formula" type="xsd:string" minOccurs="0" />
+      <xsd:element name="entry" type="entry" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the styling</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name des Stylings</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-icon">
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="set" type="xsd:string" />
+  </xsd:complexType>
+
+  <!-- define a page -->
+  <xsd:complexType name="cv-page">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-page" type="cv-page" />
+        <xsd:group ref="Widgets"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">title of this page</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel der Seite</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="id" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID of this page</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID der Seite</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <!-- if you add a new widget, you need to list it here -->
+  <xsd:group name="Widgets">
+    <xsd:choice>
+      <!-- visual effects -->
+      <xsd:element name="cv-switch" type="cv-switch" />
+      <xsd:element name="cv-shutter" type="cv-shutter" />
+    </xsd:choice>
+  </xsd:group>
+
+  <!-- template based type (of templates that the structure has build in) -->
+  <xsd:complexType name="cv-switch">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" type="label-span" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute name="on-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den An-Zustand. Default ist "1".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="off-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "off" state. Defaults to "0".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="bind_click_to_widget" />
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-shutter">
+    <xsd:sequence>
+      <xsd:element name="cv-address" minOccurs="3" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="downAddress" />
+                    <xsd:enumeration value="stopAddress" />
+                    <xsd:enumeration value="upAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" type="label-span" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute name="on-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den An-Zustand. Default ist "1".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="off-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "off" state. Defaults to "0".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="bind_click_to_widget" />
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
+
+  <!--
+  #####################################################################################################################
+  # START: simple types
+  #####################################################################################################################
+  # -->
+  <xsd:simpleType name="addr">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="dimension">
+    <xsd:restriction base="xsd:string" />
+  </xsd:simpleType>
+
+  <xsd:simpleType name="uri">
+    <xsd:restriction base="xsd:anyURI" />
+  </xsd:simpleType>
+
+  <xsd:complexType name="address">
+    <xsd:simpleContent>
+      <xsd:extension base="addr">
+        <xsd:attribute ref="transform" use="required" />
+        <xsd:attribute ref="mode" />
+        <xsd:attribute name="value" type="xsd:string"/>
+        <xsd:attribute name="variant" type="xsd:string"/>
+        <xsd:attribute name="format-pos" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="qos" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: QoS</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: QoS</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="retain" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="slot-span" mixed="true">
+    <xsd:attribute ref="slot"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="label-span" mixed="true">
+    <xsd:attribute name="slot">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="primaryLabel" />
+          <xsd:enumeration value="secondaryLabel" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="slot-address">
+    <xsd:simpleContent>
+      <xsd:extension base="address">
+        <xsd:attribute name="slot" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="entry" mixed="true">
+    <xsd:annotation>
+      <xsd:appinfo>descriptor:#text</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="icon" type="cv-icon" />
+    </xsd:choice>
+    <xsd:attribute ref="value" />
+    <xsd:attributeGroup ref="range" />
+    <xsd:attribute name="default" type="xsd:boolean" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Marks the entry as being the default entry in case of non-existing applicable entries.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Markiert den Entry als Standard-Entry für den Fall, dass kein anderer passender Entry gefunden werden kann.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <!--
+  #####################################################################################################################
+  # END: simple types
+  #####################################################################################################################
+  # -->
+
+  <!--
+  #####################################################################################################################
+  # START: attributes
+  #####################################################################################################################
+  # -->
+
+  <xsd:attribute name="min" type="xsd:decimal" />
+  <xsd:attribute name="max" type="xsd:decimal" />
+  <xsd:attribute name="step" type="xsd:decimal" />
+
+  <xsd:attribute name="slot" type="xsd:string"/>
+
+
+  <xsd:attribute name="transform" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Umwandlung des Bus-System Wertes um angezeigt werden zu können.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="format" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attributeGroup name="range">
+    <xsd:attribute name="range-min" type="xsd:float" />
+    <xsd:attribute name="range-max" type="xsd:float" />
+  </xsd:attributeGroup>
+
+  <xsd:attribute name="mapping" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="styling" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Change the color of the dispayed value depending on its value. See also :ref:`styling`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="value" type="xsd:string" />
+
+  <xsd:attribute name="mode">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="disable" />
+        <xsd:enumeration value="read" />
+        <xsd:enumeration value="write" />
+        <xsd:enumeration value="readwrite" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="class" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="align">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="left" />
+        <xsd:enumeration value="right" />
+        <xsd:enumeration value="center" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="variant" type="xsd:string" />
+
+  <xsd:attribute name="backend">
+    <xsd:annotation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="default" />
+        <xsd:enumeration value="openhab" />
+        <xsd:enumeration value="openhab2" />
+        <xsd:enumeration value="mqtt" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
+      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <!--
+  #####################################################################################################################
+  # END: attributes
+  #####################################################################################################################
+  # -->
+</xsd:schema>

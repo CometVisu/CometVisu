@@ -11,7 +11,7 @@ const { CvBuildTarget } = require('./BuildTarget');
 // because the qx compiler does not handle files in the root resoure folder well
 // we add them here
 const additionalResources = [
-  'visu_config.xsd',
+  'visu_config*.xsd',
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',

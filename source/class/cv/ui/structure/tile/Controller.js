@@ -202,7 +202,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     mapValue(mappingName, value) {
-      if (Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
+      if (this.__mappings && Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
         return this.__mappings[mappingName].mapValue(value);
       }
       return value;
@@ -226,7 +226,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     styleValue(stylingName, value) {
-      if (Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
+      if (this.__stylings && Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
         return this.__stylings[stylingName].mapValue(value);
       }
       return value;

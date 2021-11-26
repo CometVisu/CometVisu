@@ -107,10 +107,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     _applyOn() {
       if (this.isConnected()) {
         let value = this.isOn() ? this.getOnValue() : this.getOffValue();
-        this._element.setAttribute('value', value);
+        this._element.setAttribute('value', value || '');
         let mappedValue = value;
         if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'));
+          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
         }
         const target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'cv-icon') {
@@ -120,7 +120,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
         let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
         if (this._element.hasAttribute('styling')) {
-          styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'));
+          styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
         }
         this.setStyleClass(styleClass);
       }

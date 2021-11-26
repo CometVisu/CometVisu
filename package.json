@@ -205,6 +205,22 @@
           "protractor/no-by-xpath": "off",
           "jasmine/no-disabled-tests": "off"
         }
+      },
+      {
+        "files": [
+          "source/resource/manager/*.js"
+        ],
+        "env": {
+          "worker": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off"
+        },
+        "globals": {
+          "xmllint": "readonly",
+          "crc32": "readonly"
+        }
       }
     ],
     "globals": {
