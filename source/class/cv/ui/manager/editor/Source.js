@@ -95,8 +95,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         ], function (qxLib) {
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
+          const completionProvider = new cv.ui.manager.editor.completion.Config();
           const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
+          window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
         });
       }, this);
       loader.addListener('failed', function (ev) {
