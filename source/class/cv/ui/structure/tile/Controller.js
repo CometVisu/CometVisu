@@ -1,4 +1,21 @@
 /**
+ * Controller for the 'tile' structure.
+ *
+ * This structure is based on web-components and does not need a parser to work.
+ * The config file is directly attached to the document body.
+ * The widgets in this structure register a customElement and the browser automatically creates instances
+ * of this widgets once the customElement is added to the body.
+ *
+ * The basic structure is a set of pages that contain a list of tiles.
+ * Each tile contains a grid of 3 rows and 3 columns. The components can be added to a cell of that grid
+ * but also can spread over more then one cell by using row-/column spanning.
+ *
+ * This structure provides some tiles with a pre-defined content, e.g. a <cv-switch> which
+ * contains of a button in the middle of the tile and a primary- and secondary label in the third row.
+ *
+ * Those pre-defined tiles are provided by a <template> (@see https://developer.mozilla.org/de/docs/Web/HTML/Element/template}
+ * User are able to define own templates for re-usable tiles if they need one that this structure does not provide.
+ *
  * @asset(structures/tile/*)
  */
 qx.Class.define('cv.ui.structure.tile.Controller', {
