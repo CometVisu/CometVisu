@@ -92,9 +92,9 @@
         <xsd:group ref="Widgets"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="name" type="xsd:string" use="required">
+    <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">title of this page</xsd:documentation>
+        <xsd:documentation xml:lang="en">Title of this page</xsd:documentation>
         <xsd:documentation xml:lang="de">Titel der Seite</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>

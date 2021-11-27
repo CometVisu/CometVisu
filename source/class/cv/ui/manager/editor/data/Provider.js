@@ -161,28 +161,29 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * Returns the available design names as array of suggestions.
      * @param format
      * @param config
-     * @returns {Promise<Array>} suggestions
+     * @param structure {String} pure (default) or tile
+     * @returns {Array} suggestions
      */
-    getDesigns: function (format, config) {
-      if (!config) {
-        config = {cache: true};
+    getDesigns: function (format, config, structure) {
+      if (!structure) {
+        structure = 'pure';
       }
-      return this.__getData('designs', 'designsSync', null, [], format === 'dp' ? function (res) {
-        return res.map(function (designName) {
+      const designs = cv.Config.designStructureMap[structure] || [];
+      if (format === 'dp') {
+        return designs.map(function (designName) {
           return {
             label: designName,
             value: designName
           };
         });
-      } : function (res) {
-        return res.map(function (designName) {
-          return {
-            label: designName,
-            insertText: designName,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember
-          };
-        });
-      }, this, config.cache);
+      }
+      return designs.map(function (designName) {
+        return {
+          label: designName,
+          insertText: designName,
+          kind: window.monaco.languages.CompletionItemKind.EnumMember
+        };
+      });
     },
 
     /**

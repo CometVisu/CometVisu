@@ -279,7 +279,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
 
     detectSchema(completeText) {
       const match = /xsi:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
-      if (match && match[1].endsWith('visu_config_file.xsd')) {
+      if (match && match[1].endsWith('visu_config_tile.xsd')) {
         this.setStructure('tile');
       } else {
         this.setStructure('pure');
@@ -290,7 +290,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       return {
         triggerCharacters: ['<', '"'],
         provideCompletionItems: function (model, position) {
-          this.setCurrentPath(model.uri.fsPath);
+          this.setCurrentPath(model.uri.toString());
           const completeText = model.getValue();
           if (!this.__currentSchema) {
             this.detectSchema(completeText);
@@ -536,6 +536,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           attribute.getEnumeration().forEach(function(entry) {
             res.push({
               label: entry,
+              insertText: entry,
               kind: window.monaco.languages.CompletionItemKind.Value,
               detail: type,
               documentation: attribute.getDocumentation().join('\n')
@@ -551,6 +552,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
           res.push({
             label: lastOpenedTag.tagName,
+            insertText: lastOpenedTag.tagName,
             kind: window.monaco.languages.CompletionItemKind.Field
           });
         } else {
@@ -561,8 +563,225 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     },
 
     provideTileCompletionItems(model, position) {
-      // TODO: implement completion provider for tile configs
-      return {suggestions: []};
+      // get editor content before the pointer
+      const textUntilPosition = model.getValueInRange({
+        startLineNumber: 1,
+        startColumn: 1,
+        endLineNumber: position.lineNumber,
+        endColumn: position.column
+      });
+      // parse mappings
+      const completeText = model.getValue();
+      const metaEndPos = completeText.indexOf('</cv-meta>');
+      const textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+      const mappingNames = [];
+      const stylingNames = [];
+      const templates = {};
+      let map;
+      let vmap;
+      let regex = /<cv-mapping name="([^"]+)"/gm;
+      while ((map = regex.exec(textMeta)) !== null) {
+        mappingNames.push(map[1]);
+      }
+      regex = /<cv-styling name="([^"]+)"/gm;
+      while ((map = regex.exec(textMeta)) !== null) {
+        stylingNames.push(map[1]);
+      }
+      const templatesStart = textMeta.indexOf('<templates');
+      if (templatesStart >= 0) {
+        const templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
+        templatesString.split('</template>').forEach(function (rawTemplate) {
+          const nameMatch = /<template id="([^"]+)"/.exec(rawTemplate);
+          // search for variables
+          const variables = [];
+          const vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+          while ((vmap = vregex.exec(rawTemplate)) !== null) {
+            variables.push(vmap[1]);
+          }
+          templates[nameMatch[1]] = variables;
+        }, this);
+      }
+
+      // if we want suggestions, inside of which tag are we?
+      const lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
+      // console.log(lastOpenedTag);
+      // get opened tags to see what tag we should look for in the XSD schema
+      const openedTags = [];
+      // attrobutes of the ancestors
+      const openedAttributes = [];
+      // get the elements/attributes that are already mentioned in the element we're in
+      const usedItems = [];
+      const isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
+      const isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
+      const filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
+      // no need to calculate the position in the XSD schema if we are in the root element
+      let parts;
+      if (lastOpenedTag) {
+        // try to create a valid XML document
+        parts = lastOpenedTag.text.split(' ');
+        parts.shift();
+        let cleanedText = textUntilPosition;
+        if (parts.length) {
+          cleanedText = cleanedText.substring(0, cleanedText.length-parts.join(' ').length)+'>';
+        }
+        // parse the content (not cleared text) into an xml document
+        const xmlDoc = qx.xml.Document.fromString(cleanedText);
+        let lastChild = xmlDoc.lastElementChild;
+        let i;
+        let lastFound = false;
+        while (lastChild) {
+          openedTags.push(lastChild.tagName);
+          openedAttributes.push(lastChild.attributes);
+          // if we found our last opened tag
+          if (lastChild.tagName === lastOpenedTag.tagName) {
+            lastFound = true;
+            // if we are looking for attributes, then used items should
+            // be the attributes we already used
+            if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
+              const attrs = lastChild.attributes;
+              for (i = 0; i < attrs.length; i++) {
+                usedItems.push(attrs[i].nodeName);
+              }
+            } else {
+              // if we are looking for child elements, then used items
+              // should be the elements that were already used
+              const children = lastChild.children;
+              for (i = 0; i < children.length; i++) {
+                if (children[i].tagName.toLowerCase() !== 'parsererror') {
+                  usedItems.push(children[i].tagName);
+                }
+              }
+            }
+            break;
+          }
+          // we haven't found the last opened tag yet, so we move to
+          // the next element
+          lastChild = lastChild.lastElementChild;
+        }
+        if (!lastFound) {
+          // fallback -> parse string
+          if (isAttributeSearch || isContentSearch) {
+            parts = lastOpenedTag.text.split(' ');
+            // skip tag name
+            parts.shift();
+            parts.forEach(function(entry) {
+              usedItems.push(entry.split('=').shift());
+            });
+          }
+        }
+      }
+      let res = [];
+      let match;
+      // find the last opened tag in the schema to see what elements/attributes it can have
+      let searchedElement = openedTags[openedTags.length - 1];
+      if (isContentSearch) {
+        // handle data providers if the is one relevant
+        if (lastOpenedTag.tagName === 'config' && lastOpenedTag.currentAttribute === 'design') {
+          const suggestions = this._dataProvider.getDesigns(null, null, 'tile');
+          return {suggestions: suggestions};
+        } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === 'transform') {
+          return {suggestions: this._dataProvider.getTransforms()};
+        } else if (lastOpenedTag.tagName === 'cv-plugin' && lastOpenedTag.currentAttribute === 'name') {
+          return {suggestions: this._dataProvider.getPlugins()};
+        } else if (lastOpenedTag.tagName === 'cv-icon' && lastOpenedTag.currentAttribute === 'name') {
+          return {suggestions: this._dataProvider.getIcons()};
+        } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('cv-meta')) {
+          res = Object.keys(templates).map(function (name) {
+            return {
+              label: name,
+              insertText: name,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
+          }, this);
+          return {suggestions: res};
+        } else if (lastOpenedTag.tagName === 'value' &&
+          lastOpenedTag.currentAttribute === 'name' &&
+          !openedTags.includes('cv-meta') &&
+          openedTags.includes('template')) {
+          // TODO: find out template name
+          const templateNames = Object.keys(templates);
+          templateNames.forEach(function (name) {
+            templates[name].forEach(function (variableName) {
+              res.push({
+                label: variableName,
+                insertText: variableName,
+                detail: qx.locale.Manager.tr('Variable from template %1', name),
+                kind: window.monaco.languages.CompletionItemKind.Variable
+              });
+            }, this);
+          }, this);
+          return {suggestions: res};
+        } else if (lastOpenedTag.currentAttribute === 'mapping') {
+          res = mappingNames.map(function (mappingName) {
+            return {
+              label: mappingName,
+              insertText: mappingName,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
+          }, this);
+          return {suggestions: res};
+        } else if (lastOpenedTag.currentAttribute === 'styling') {
+          res = stylingNames.map(function (stylingName) {
+            return {
+              label: stylingName,
+              insertText: stylingName,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
+          }, this);
+          return {suggestions: res};
+        }
+        searchedElement = lastOpenedTag.tagName;
+      } else if (!isAttributeSearch && filteredElementSearch) {
+        searchedElement = openedTags[openedTags.length-2];
+      } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
+        return this._dataProvider.getAddresses('monaco').then(res => ({suggestions: res}));
+      }
+      if (searchedElement === 'rrd') {
+        return this._dataProvider.getRrds('monaco').then(res => ({suggestions: res}));
+      } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
+        match = /type="([^"]+)"/.exec(lastOpenedTag.text);
+        const typeFilter = match ? match[1] : null;
+        return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+          return {suggestions: suggestions};
+        });
+      }
+      const currentItem = this.findElements(this.__currentSchema.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta'));
+
+      // return available elements/attributes if the tag exists in the schema, or an empty
+      // array if it doesn't
+      if (isContentSearch) {
+        const currentAttribute = lastOpenedTag.currentAttribute;
+
+        if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
+          const attribute = currentItem.getAllowedAttributes()[currentAttribute];
+          const type = attribute.getTypeString();
+          attribute.getEnumeration().forEach(function(entry) {
+            res.push({
+              label: entry,
+              insertText: entry,
+              kind: window.monaco.languages.CompletionItemKind.Value,
+              detail: type,
+              documentation: attribute.getDocumentation().join('\n')
+            });
+          });
+        }
+      } else if (isAttributeSearch) {
+        // get attributes completions
+        res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
+      } else {
+        // get elements completions
+        // eslint-disable-next-line no-lonely-if
+        if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
+          res.push({
+            label: lastOpenedTag.tagName,
+            insertText: lastOpenedTag.tagName,
+            kind: window.monaco.languages.CompletionItemKind.Field
+          });
+        } else {
+          res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
+        }
+      }
+      return {suggestions: res};
     }
   },
 

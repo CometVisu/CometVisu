@@ -15,6 +15,13 @@ qx.Class.define('cv.ui.manager.model.Schema', {
       throw new Error('no, empty or invalid filename given, can not instantiate without one');
     }
     this.__filename = filename;
+    if (filename.endsWith('visu_config_tile.xsd')) {
+      this.__rootElementName = 'config';
+      this.__pageElementName = 'cv-page';
+    } else {
+      this.__rootElementName = 'pages';
+      this.__pageElementName = 'page';
+    }
     this.__allowedRootElements = {};
     this.__referencedNodeCache = {};
     this.__typeNodeCache = {};
@@ -97,6 +104,15 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      * @var {Array<String>}
      */
     _widgetNames: null,
+
+    /**
+     * @var {String}
+     */
+    __rootElementName: null,
+    /**
+     * @var {String}
+     */
+    __pageElementName: null,
 
     onLoaded: function (callback, context) {
       if (this.isLoaded()) {
@@ -261,8 +277,8 @@ qx.Class.define('cv.ui.manager.model.Schema', {
      */
     getWidgetNames: function () {
       if (!this._widgetNames) {
-        const pages = this.getElementNode('pages');
-        const page = pages.getSchemaElementForElementName('page');
+        const root = this.getElementNode(this.__rootElementName);
+        const page = root.getSchemaElementForElementName(this.__pageElementName);
         this._widgetNames = Object.keys(page.getAllowedElements()).filter(name => !name.startsWith('#') && name !== 'layout');
       }
       return this._widgetNames;
