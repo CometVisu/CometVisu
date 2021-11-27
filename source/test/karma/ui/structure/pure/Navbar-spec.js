@@ -28,6 +28,7 @@ describe('testing a navbar widget', function() {
    */
   function testNavbar(pos) {
     const controller = cv.ui.structure.pure.Controller.getInstance();
+    controller.initPagePartsHandler();
     // eslint-disable-next-line jasmine/no-unsafe-spy
     spyOn(controller.pagePartsHandler, 'navbarSetSize');
 

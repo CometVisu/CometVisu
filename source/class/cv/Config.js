@@ -144,7 +144,8 @@ qx.Class.define('cv.Config', {
       credentials: {
         username: null,
         password: null
-      }
+      },
+      bindClickToWidget: false
     },
 
     /**

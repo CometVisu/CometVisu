@@ -552,8 +552,10 @@ qx.Class.define('cv.Application',
         // initialize NotificationCenter
         cv.ui.NotificationCenter.getInstance();
         cv.ui.ToastManager.getInstance();
-        let configLoader = new cv.util.ConfigLoader();
-        configLoader.load(this.bootstrap, this);
+        if (!window.cvTestMode) {
+          let configLoader = new cv.util.ConfigLoader();
+          configLoader.load(this.bootstrap, this);
+        }
       });
     },
 

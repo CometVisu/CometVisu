@@ -195,10 +195,14 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return Object.keys(startPageAddresses);
     },
 
-    initLayout() {
+    initPagePartsHandler() {
       if (!this.pagePartsHandler) {
         this.pagePartsHandler = new cv.ui.structure.pure.navigation.PagePartsHandler();
       }
+    },
+
+    initLayout() {
+      this.initPagePartsHandler();
       if (!cv.Config.initialPage) {
         this.__detectInitialPage();
       }

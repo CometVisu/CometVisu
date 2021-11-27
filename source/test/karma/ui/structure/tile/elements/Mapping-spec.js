@@ -4,7 +4,7 @@
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-mapping> component', function() {
+describe('testing the <cv-mapping> component of the tile structure', () => {
   let oldController;
 
   beforeEach(() => {

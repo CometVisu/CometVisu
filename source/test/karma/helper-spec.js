@@ -147,10 +147,14 @@ const resetApplication = function() {
   cv.util.ScriptLoader.getInstance().resetAllQueued();
   switch (cv.Config.getStructure()) {
     case 'structure-tile':
+      cv.Config.loadedStructure = 'tile';
       break;
 
-    default:
-      cv.ui.structure.pure.layout.ResizeHandler.reset();
+    case 'structure-pure':
+      cv.Config.loadedStructure = 'pure';
+      if (cv.ui.structure.pure) {
+        cv.ui.structure.pure.layout.ResizeHandler.reset();
+      }
       break;
   }
 };
@@ -304,16 +308,12 @@ beforeAll(function (done) {
       // always test in 'en' locale
       qx.locale.Manager.getInstance().setLocale('en');
       const templateEngine = cv.TemplateEngine.getInstance();
-      templateEngine.loadParts(['structure-tile']);
-      const startUp = function () {
-        resetApplication();
-        setTimeout(done, 100);
-      };
-      if (templateEngine.isDomFinished()) {
-        startUp();
-      } else {
-        qx.event.message.Bus.subscribe('setup.dom.finished', startUp, this);
-      }
+      templateEngine.initBackendClient();
+      templateEngine.loadParts(['structure-tile', 'structure-pure']);
+      templateEngine.addListenerOnce('changePartsLoaded', done);
+      const model = cv.data.Model.getInstance();
+      templateEngine.getClient().update = model.update.bind(model); // override clients update function
+      resetApplication();
     } catch (e) {
       console.error(e);
     }
@@ -321,8 +321,8 @@ beforeAll(function (done) {
 });
 
 beforeEach(function () {
-  const templateEngine = cv.TemplateEngine.getInstance();
   cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
+  cv.Config.loadedStructure = 'pure';
   qx.core.Init.getApplication().setStructureLoaded(true);
 
   this.createTestElement = createTestElement;
@@ -330,17 +330,16 @@ beforeEach(function () {
   this.findChild = findChild;
   this.initWidget = function(widget) {
     if (widget.getVisibilityParent) {
-      var parent = widget.getVisibilityParent();
+      const parent = widget.getVisibilityParent();
       if (parent) {
         parent.setVisible(true);
       }
     }
     widget.setVisible && widget.setVisible(true);
     qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+    //cv.TemplateEngine.getInstance().setDomFinished(true);
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
   };
-  const model = cv.data.Model.getInstance();
-  templateEngine.getClient().update = model.update.bind(model); // override clients update function
 });
 
 afterEach(function () {
@@ -353,11 +352,13 @@ afterEach(function () {
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
-  cv.ui.structure.pure.layout.ResizeHandler.reset();
+  if (cv.ui.structure.pure) {
+    cv.ui.structure.pure.layout.ResizeHandler.reset();
+  }
 
   if (this.container) {
     try {
-      document.body.removeChild(this.container);
+      this.container.remove();
     } catch (e) {
       console.error(e);
     }
@@ -367,9 +368,8 @@ afterEach(function () {
     this.creator = null;
   }
 
-  var body = document.querySelector('body');
   // load empty HTML structure
-  body.innerHTML = '';
+  document.body.innerHTML = '';
   cv.TemplateEngine.getInstance().resetDomFinished();
   qx.core.Init.getApplication().resetStructureLoaded();
   // resetApplication();
