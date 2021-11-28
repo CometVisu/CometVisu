@@ -9,7 +9,6 @@ qx.Mixin.define('cv.ui.structure.tile.elements.MCustomElement', {
   */
   construct: function (element) {
     this._element = element;
-    this._init();
   },
   /*
    ***********************************************
@@ -45,7 +44,16 @@ qx.Mixin.define('cv.ui.structure.tile.elements.MCustomElement', {
      */
     _element: null,
 
-    _applyConnected() {},
+    _initialized: false,
+
+    _applyConnected(value) {
+      if (value && !this._initialized) {
+        this._init();
+        this._initialized = true;
+      } else {
+        this._initialized = false;
+      }
+    },
     _applyElement() {},
     _init() {}
   },

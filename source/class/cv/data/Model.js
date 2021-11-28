@@ -136,9 +136,11 @@ qx.Class.define('cv.data.Model', {
      * Get the current state of an address.
      *
      * @param address {String} KNX-GA or openHAB item name
+     * @param backendName {String} name of the backend
      * @return {variant}
      */
-    getState: function(address) {
+    getState: function(address, backendName) {
+      address = (backendName || this.getDefaultBackendName()) + ':' + address;
       return this.__states[address];
     },
 
@@ -218,7 +220,7 @@ qx.Class.define('cv.data.Model', {
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
-      return Object.prototype.hasOwnProperty.call(this.__addressList, backendName) ? Object.keys(this.__addressList[backendName]) : {};
+      return Object.prototype.hasOwnProperty.call(this.__addressList, backendName) ? Object.keys(this.__addressList[backendName]) : [];
     },
 
     /**

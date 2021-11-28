@@ -24,7 +24,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
   members: {
     __cache: null,
 
-    _applyConnected(value) {
+    _applyConnected(value, oldValue, name) {
+      this.base(arguments, value, oldValue, name);
       if (value) {
         cv.Application.structureController.addMapping(this._element.getAttribute('name'), this);
       } else {

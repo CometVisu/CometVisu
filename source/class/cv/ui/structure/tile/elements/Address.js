@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   members: {
     _init() {
       const element = this._element;
-      const address = element.textContent;
+      const address = element.textContent.trim();
       if (address) {
         const model = cv.data.Model.getInstance();
         const backendName = element.getAttribute('backend');
@@ -21,9 +21,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         if (mode !== 'write') {
           // subscribe
           // this is a read address register for updates
-          const state = model.getState(address);
+          const state = model.getState(address, backendName);
           if (state !== undefined) {
-            this.fireStateUpdate(state);
+            this.fireStateUpdate(address, state);
           }
           //add listener
           model.addUpdateListener(address, this.fireStateUpdate, this, backendName);
@@ -56,17 +56,23 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
       }
     },
 
+    /**
+     * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.
+     * @param address {String} address
+     * @param state {variant} state to send
+     */
     fireStateUpdate(address, state) {
       let transform = this._element.getAttribute('transform') || 'raw';
       const ev = new CustomEvent('stateUpdate', {
         bubbles: true,
         cancelable: true,
         detail: {
-          address: address,
+          address: this._element.textContent.trim(),
           state: cv.Transform.decode(transform, state),
           raw: state
         }
       });
+      console.log(ev.detail, state);
       this._element.dispatchEvent(ev);
     }
   },

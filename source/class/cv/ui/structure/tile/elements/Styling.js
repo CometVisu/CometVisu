@@ -12,7 +12,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Styling', {
   ***********************************************
   */
   members: {
-    _applyConnected(value) {
+    _applyConnected(value, oldValue, name) {
+      this.base(arguments, value, oldValue, name);
       if (value) {
         cv.Application.structureController.addStyling(this._element.getAttribute('name'), this);
       } else {
