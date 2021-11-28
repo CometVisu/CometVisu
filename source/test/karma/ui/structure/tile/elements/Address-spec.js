@@ -16,11 +16,10 @@ describe('testing the <cv-address> component of the tile structure', () => {
     cv.Application.structureController = oldController;
   });
 
-  it('should find the exact matches', function() {
+  it('should get updates for read addresses', function() {
     const address = document.createElement('cv-address');
     address.setAttribute('transform', 'OH:switch');
-
-    address.innerText= 'Test';
+    address.innerHTML = 'Test';
     document.body.appendChild(address);
     const addr = address._instance;
 

@@ -34,6 +34,7 @@ qx.Class.define('cv.TemplateEngine', {
     this.__partQueue.addListener('changeLength', function(ev) {
       this.setPartsLoaded(ev.getData() === 0);
     }, this);
+    this.__clients = {};
 
     this.defaults = {widget: {}, plugin: {}};
     const group = new qx.ui.command.Group();
@@ -55,9 +56,10 @@ qx.Class.define('cv.TemplateEngine', {
   statics: {
     /**
      * Shortcut access to client
+     * @param backendName {String?} optional backend name
      */
-    getClient: function () {
-      return this.getInstance().getClient();
+    getClient: function (backendName) {
+      return this.getInstance().getClient(backendName);
     }
   },
 
@@ -128,14 +130,6 @@ qx.Class.define('cv.TemplateEngine', {
     configHash: {
       check: 'Number',
       nullable: true
-    },
-
-    /**
-     * Client for connaction to the backend
-     */
-    client: {
-      check: 'cv.io.IClient',
-      event: 'changeClient'
     }
   },
 
@@ -156,9 +150,11 @@ qx.Class.define('cv.TemplateEngine', {
     defaults : null,
 
     /**
-     * @deprecated use the 'client' property instead
+     * @deprecated use 'getClient()' instead
      */
     visu : null,
+
+    __clients: null,
 
     pluginsToLoadCount : 0,
 
@@ -320,13 +316,13 @@ qx.Class.define('cv.TemplateEngine', {
         backendName = mapping[backendName];
       }
       const client = cv.Application.createClient(backendName, backendUrl);
-      this.setClient(client);
+      this.__clients.main = client;
 
-      // deprecated, just for compability
+      // deprecated, just for compatibility
       this.visu = client;
 
       const model = cv.data.Model.getInstance();
-      client.update = model.update.bind(model); // override clients update function
+      client.update = data => model.updateFrom('main', data); // override clients update function
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
         client.record = function(p, d) {
@@ -356,14 +352,44 @@ qx.Class.define('cv.TemplateEngine', {
       client.addListener('changeConnected', this._checkBackendConnection, this);
     },
 
+    addBackendClient(name, type, backendUrl) {
+      const client = cv.Application.createClient(type, backendUrl);
+      this.__clients[name] = client;
+      return client;
+    },
+
+    /**
+     * Checks if a backend by that name is already registered
+     * @param name {String} name of the backend
+     * @return {boolean}
+     */
+    hasBackend(name) {
+      return Object.prototype.hasOwnProperty.call(this.__clients, name);
+    },
+
+    /**
+     * Get the backend client by name, if the name is not set the default backend is used.
+     * Usually that is the backend client created by initBackendClient().
+     * @param backendName {String?} name of the backend
+     */
+    getClient(backendName) {
+      if (!backendName) {
+        backendName = cv.data.Model.getInstance().getDefaultBackendName();
+      }
+      return this.__clients[backendName];
+    },
+
     _onActiveChanged: function () {
       const app = qx.core.Init.getApplication();
       if (app.isActive()) {
-        const client = this.getClient();
-        if (!client.isConnected() && this.__hasBeenConnected) {
-          // reconnect
-          client.restart(true);
-        }
+        Object.getOwnPropertyNames(this.__clients).forEach(backendName => {
+          const client = this.__clients[backendName];
+          if (!client.isConnected() && this.__hasBeenConnected) {
+            // reconnect
+            client.restart(true);
+          }
+        });
+
         // wait for 3 seconds before checking the backend connection
         if (!this.__activeChangedTimer) {
           this.__activeChangedTimer = new qx.event.Timer(3000);
@@ -381,7 +407,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _checkBackendConnection: function () {
-      const client = this.getClient();
+      const client = this.getClient('main');
       const connected = client.isConnected();
       const message = {
         topic: 'cv.client.connection',
@@ -405,7 +431,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _updateClientScope: function () {
-      const client = this.getClient();
+      const client = this.getClient('main');
       Sentry.configureScope(function (scope) {
         const webServer = client.getServer();
         if (webServer) {
@@ -561,7 +587,7 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug('setup');
 
       // login to backend as it might change some settings needed for further processing
-      const client = this.getClient();
+      const client = this.getClient('main');
       client.login(true, cv.Config.configSettings.credentials, function () {
         this.debug('logged in');
         this.setLoggedIn(true);
@@ -595,7 +621,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (qx.core.Environment.get('qx.debug')) {
         cv.report.Replay.start();
       }
-      const client = this.getClient();
+      const client = this.getClient('main');
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
         client.setInitialAddresses(cv.Application.structureController.getInitialAddresses());

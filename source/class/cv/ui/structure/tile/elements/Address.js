@@ -15,7 +15,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
       const address = element.textContent;
       if (address) {
         const model = cv.data.Model.getInstance();
-        model.addAddress(address, element.getAttribute('id'));
+        const backendName = element.getAttribute('backend');
+        model.addAddress(address, element.getAttribute('id'), backendName);
         const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'readwrite';
         if (mode !== 'write') {
           // subscribe
@@ -25,7 +26,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             this.fireStateUpdate(state);
           }
           //add listener
-          model.addUpdateListener(address, this.fireStateUpdate, this);
+          model.addUpdateListener(address, this.fireStateUpdate, this, backendName);
         }
         if (mode !== 'read') {
           // listen for sendState events
@@ -44,7 +45,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
               // noinspection EqualityComparisonWithCoercionJS
               if (trigger || !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') || encodedValue.raw !== element.lastSentValue) {
-                cv.TemplateEngine.getClient().write(element.textContent, encodedValue.bus, element);
+                cv.TemplateEngine.getClient(backendName).write(element.textContent, encodedValue.bus, element);
                 if (!trigger) {
                   element.lastSentValue = encodedValue.raw;
                 }

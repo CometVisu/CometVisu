@@ -60,6 +60,18 @@ qx.Class.define('cv.data.Model', {
   },
 
   /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    defaultBackendName: {
+      check: 'String',
+      init: 'main'
+    }
+  },
+
+  /*
   ******************************************************
     MEMBERS
   ******************************************************
@@ -78,9 +90,12 @@ qx.Class.define('cv.data.Model', {
      * Updates the state of a single address
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @param state {var} new state
+     * @param state {variant} new state
+     * @param backendName {String} name of the backend
      */
-    onUpdate: function(address, state) {
+    onUpdate: function(address, state, backendName) {
+      // prepend backend name to address
+      address = (backendName || this.getDefaultBackendName()) + ':' + address;
       const initial = !Object.prototype.hasOwnProperty.call(this.__states, address);
       const changed = initial || this.__states[address] !== state;
       this.__states[address] = state;
@@ -97,13 +112,22 @@ qx.Class.define('cv.data.Model', {
      * @param data {Map} Key/value map of address/state
      */
     update: function(data) {
+      this.updateFrom(this.getDefaultBackendName(), data);
+    },
+
+    /**
+     * handles incomind data from a specitic backend.
+     * @param backendName {String} name of the backend
+     * @param data {Map} Key/value map of address/state
+     */
+    updateFrom (backendName, data) {
       if (!data) {
         return;
       }
-      const addressList = this.__addressList;
+      const addressList = this.__addressList[backendName];
       Object.getOwnPropertyNames(data).forEach(function(address) {
         if (Object.prototype.hasOwnProperty.call(addressList, address)) {
-          this.onUpdate(address, data[address]);
+          this.onUpdate(address, data[address], backendName);
         }
       }, this);
     },
@@ -112,7 +136,7 @@ qx.Class.define('cv.data.Model', {
      * Get the current state of an address.
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @return {var}
+     * @return {variant}
      */
     getState: function(address) {
       return this.__states[address];
@@ -124,8 +148,11 @@ qx.Class.define('cv.data.Model', {
      * @param address {String} KNX-GA or openHAB item name
      * @param callback {Function} called on updates
      * @param context {Object} context of the callback
+     * @param backendName {String} name of the backend
      */
-    addUpdateListener: function(address, callback, context) {
+    addUpdateListener: function(address, callback, context, backendName) {
+      // prepend backend name to address
+      address = (backendName || this.getDefaultBackendName()) + ':' + address;
       if (!this.__stateListeners[address]) {
         this.__stateListeners[address] = [];
       }
@@ -138,8 +165,11 @@ qx.Class.define('cv.data.Model', {
      * @param address {String} KNX-GA or openHAB item name
      * @param callback {Function} called on updates
      * @param context {Object} context of the callback
+     * @param backendName {String} name of the backend
      */
-    removeUpdateListener: function(address, callback, context) {
+    removeUpdateListener: function(address, callback, context, backendName) {
+      // prepend backend name to address
+      address = (backendName || this.getDefaultBackendName()) + ':' + address;
       if (this.__stateListeners[address]) {
         let removeIndex = -1;
         this.__stateListeners[address].some(function(entry, i) {
@@ -162,9 +192,16 @@ qx.Class.define('cv.data.Model', {
      * Add an Address -> Path mapping to the addressList
      * @param address {String} KNX-GA or openHAB item name
      * @param id {String} path to the widget
+     * @param backendName {String?} optional backend name for this address
      */
-    addAddress: function (address, id) {
-      const list = this.__addressList;
+    addAddress: function (address, id, backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__addressList, backendName)) {
+        this.__addressList[backendName] = {};
+      }
+      const list = this.__addressList[backendName];
       if (address in list) {
         list[address].push(id);
       } else {
@@ -174,34 +211,41 @@ qx.Class.define('cv.data.Model', {
 
     /**
      * Get the addresses as Array.
-     * @return {Map} Address -> path mapping
+     * @param backendName {String?} optional backend name for this address
+     * @return {Array<String>} list of addresses
      */
-    getAddresses: function () {
-      return Object.keys(this.__addressList);
+    getAddresses: function (backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__addressList, backendName) ? Object.keys(this.__addressList[backendName]) : {};
     },
 
     /**
      * Setter for address list.
      * @param value {Map} Address -> path mapping
+     * @param backendName {String?} optional backend name for this address
      */
-    setAddressList: function(value) {
-      this.__addressList = value;
+    setAddressList: function(value, backendName) {
+      this.__addressList[backendName || this.getDefaultBackendName()] = value;
     },
 
     /**
      * Getter for the address list.
+     * @param backendName {String?} optional backend name for this address
      * @return {Map} Address -> path mapping
      */
-    getAddressList: function() {
-      return this.__addressList;
+    getAddressList: function(backendName) {
+      return this.__addressList[backendName || this.getDefaultBackendName()];
     },
 
     /**
      * Clears the current address list.
+     * @param backendName {String?} optional backend name for this address
      * @internal
      */
-    resetAddressList: function() {
-      this.__addressList = {};
+    resetAddressList: function(backendName) {
+      this.__addressList[backendName || this.getDefaultBackendName()] = {};
     },
 
     /**

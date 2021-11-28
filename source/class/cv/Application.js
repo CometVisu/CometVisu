@@ -84,7 +84,7 @@ qx.Class.define('cv.Application',
      */
     createClient: function(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true || window.cvTestMode === true) {
+      if (cv.Config.testMode === true || window.cvTestMode === true || args[0] === 'simulated') {
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
@@ -98,8 +98,7 @@ qx.Class.define('cv.Application',
       } else if (args[0] === 'mqtt') {
         Client = cv.io.mqtt.Client;
       }
-      args.unshift(null);
-      return new (Function.prototype.bind.apply(Client, args))(); // jshint ignore:line
+      return new Client(...args);
     },
 
     /**

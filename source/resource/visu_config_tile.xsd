@@ -90,6 +90,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
+        <xsd:element name="details"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string">
