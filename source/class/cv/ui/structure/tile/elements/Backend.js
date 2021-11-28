@@ -12,20 +12,18 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
   members: {
     _init() {
       const element = this._element;
-      const uri = element.getAttribute('uri');
-      const match = /^(simulated|openhab|default|mqtt):\/\/([^@]+@)?(.+)$/.exec(uri);
-      if (match) {
-        const type = match[1];
-        let credentials;
-        if (match[2]) {
-          const cred = match[2].split(':');
+      const type = element.getAttribute('type');
+      const uri = element.hasAttribute('uri') ? new URL(element.getAttribute('uri')) : null;
+      if (type) {
+        let credentials = null;
+        if (uri && uri.username) {
           credentials = {
-            username: cred[0],
-            password: cred[1]
+            username: uri.username,
+            password: uri.password
           };
         }
         const model = cv.data.Model.getInstance();
-        const backendUrl = match[3];
+        let backendUrl = uri ? uri.toString() : null;
         const name = element.hasAttribute('name') ? element.getAttribute('name') : type;
         const client = cv.TemplateEngine.getInstance().addBackendClient(name, type, backendUrl);
         client.update = data => model.updateFrom(name, data); // override clients update function
@@ -34,9 +32,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
             model.setDefaultBackendName(name);
           }
+          const addressesToSubscribe = cv.data.Model.getInstance().getAddresses(name);
+          if (addressesToSubscribe.length !== 0) {
+            client.subscribe(addressesToSubscribe);
+          }
         });
       } else {
-        this.error('<cv-backend> must have an uri attribute with a valid value');
+        this.error('<cv-backend> must have a type attribute');
       }
     }
   },

@@ -97,6 +97,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     _applyConnected(value) {
+      this.base(arguments, value);
       if (value) {
         if (this.getType() !== 'trigger') {
           // delay this because we need the mappings to be ready

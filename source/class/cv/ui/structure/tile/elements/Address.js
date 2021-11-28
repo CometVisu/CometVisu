@@ -72,7 +72,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           raw: state
         }
       });
-      console.log(ev.detail, state);
       this._element.dispatchEvent(ev);
     }
   },

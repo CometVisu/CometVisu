@@ -184,7 +184,7 @@ qx.Class.define('cv.io.mqtt.Client', {
       }
 
       this._client.onConnectionLost = function (responseObject) {
-        self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
+        self.warn('Connection Lost: ' + responseObject.errorMessage, responseObject);
         self.setConnected(false);
       };
 
