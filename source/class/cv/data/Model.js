@@ -82,8 +82,15 @@ qx.Class.define('cv.data.Model', {
     __addressList : null,
     __widgetData: null,
 
-    getStateListener: function () {
-      return this.__stateListeners;
+    /**
+     * @param backendName {String?} name of the backend
+     * @return {Map}
+     */
+    getStateListener: function (backendName) {
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) ? this.__stateListeners : {};
     },
 
     /**
@@ -94,14 +101,18 @@ qx.Class.define('cv.data.Model', {
      * @param backendName {String} name of the backend
      */
     onUpdate: function(address, state, backendName) {
-      // prepend backend name to address
-      address = (backendName || this.getDefaultBackendName()) + ':' + address;
-      const initial = !Object.prototype.hasOwnProperty.call(this.__states, address);
-      const changed = initial || this.__states[address] !== state;
-      this.__states[address] = state;
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__states, backendName)) {
+        this.__states[backendName] = {};
+      }
+      const initial = !Object.prototype.hasOwnProperty.call(this.__states[backendName], address);
+      const changed = initial || this.__states[backendName][address] !== state;
+      this.__states[backendName][address] = state;
       // notify listeners
-      if (this.__stateListeners[address]) {
-        this.__stateListeners[address].forEach(function(listener) {
+      if (Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName) && this.__stateListeners[backendName][address]) {
+        this.__stateListeners[backendName][address].forEach(function(listener) {
           listener[0].call(listener[1], address, state, initial, changed);
         }, this);
       }
@@ -140,8 +151,10 @@ qx.Class.define('cv.data.Model', {
      * @return {variant}
      */
     getState: function(address, backendName) {
-      address = (backendName || this.getDefaultBackendName()) + ':' + address;
-      return this.__states[address];
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      return Object.prototype.hasOwnProperty.call(this.__states, backendName) ? this.__states[backendName][address] : undefined;
     },
 
     /**
@@ -153,12 +166,17 @@ qx.Class.define('cv.data.Model', {
      * @param backendName {String} name of the backend
      */
     addUpdateListener: function(address, callback, context, backendName) {
-      // prepend backend name to address
-      address = (backendName || this.getDefaultBackendName()) + ':' + address;
-      if (!this.__stateListeners[address]) {
-        this.__stateListeners[address] = [];
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
       }
-      this.__stateListeners[address].push([callback, context]);
+      if (!Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
+        this.__stateListeners[backendName] = {};
+      }
+
+      if (!this.__stateListeners[backendName][address]) {
+        this.__stateListeners[backendName][address] = [];
+      }
+      this.__stateListeners[backendName][address].push([callback, context]);
     },
 
     /**
@@ -170,21 +188,24 @@ qx.Class.define('cv.data.Model', {
      * @param backendName {String} name of the backend
      */
     removeUpdateListener: function(address, callback, context, backendName) {
-      // prepend backend name to address
-      address = (backendName || this.getDefaultBackendName()) + ':' + address;
-      if (this.__stateListeners[address]) {
-        let removeIndex = -1;
-        this.__stateListeners[address].some(function(entry, i) {
-          if (entry[0] === callback && entry[1] === context) {
-            removeIndex = i;
-            return true;
-          }
-          return false;
-        });
-        if (removeIndex >= 0) {
-          this.__stateListeners[address].splice(removeIndex, 1);
-          if (this.__stateListeners[address].length === 0) {
-            delete this.__stateListeners[address];
+      if (!backendName) {
+        backendName = this.getDefaultBackendName();
+      }
+      if (Object.prototype.hasOwnProperty.call(this.__stateListeners, backendName)) {
+        if (this.__stateListeners[backendName][address]) {
+          let removeIndex = -1;
+          this.__stateListeners[backendName][address].some(function (entry, i) {
+            if (entry[0] === callback && entry[1] === context) {
+              removeIndex = i;
+              return true;
+            }
+            return false;
+          });
+          if (removeIndex >= 0) {
+            this.__stateListeners[backendName][address].splice(removeIndex, 1);
+            if (this.__stateListeners[backendName][address].length === 0) {
+              delete this.__stateListeners[backendName][address];
+            }
           }
         }
       }
