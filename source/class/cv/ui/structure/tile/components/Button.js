@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       let hasReadAddress = false;
       let hasWriteAddress = false;
       Array.prototype.some.call(element.querySelectorAll(':scope > cv-address'), address => {
-        const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'readwrite';
+        const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
         switch (mode) {
           case 'readwrite':
             hasReadAddress = true;
@@ -93,6 +93,19 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           // cancel event here
           ev.preventDefault();
         });
+      } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
+        // apply the trigger state
+        const writeAddress = element.querySelector(':scope > cv-address[mode="write"]');
+        if (writeAddress.hasAttribute('value')) {
+          const value = writeAddress.getAttribute('value');
+          // a write only with a fixed value
+          this.setType('trigger');
+          qx.event.Timer.once(() => {
+            // using == comparisons to make sure that e.g. 1 equals "1"
+            // noinspection EqualityComparisonWithCoercionJS
+            this.setOn(value == this.getOnValue());
+          }, this, 1000);
+        }
       }
     },
 

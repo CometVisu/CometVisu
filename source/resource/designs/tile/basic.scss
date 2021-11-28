@@ -46,12 +46,25 @@ body {
             margin-top: $defaultSpace*2;
             summary {
                 padding: $defaultSpace 0;
+                float: none !important;
+                margin-left: 0 !important;
             }
         }
         details:first-child {
             border-top: none;
             margin-top: 0;
         }
+        details > * {
+            float: left;
+            margin-left: $defaultSpace * 2;
+        }
+        details > summary + * {
+            margin-left: 0;
+        }
+    }
+    cv-switch, cv-shutter {
+        width: $tileCellSize * $tileColumns;
+        height: $tileCellSize * $tileRows;
     }
 
     cv-tile {
