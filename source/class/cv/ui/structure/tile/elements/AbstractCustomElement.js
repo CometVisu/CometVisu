@@ -51,7 +51,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
     },
     _init() {}
   },
-  
+
   /*
   ***********************************************
     DESTRUCTOR
@@ -82,12 +82,6 @@ class QxConnector extends HTMLElement {
   disconnectedCallback() {
     if (this._instance) {
       this._instance.setConnected(false);
-    }
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
-      this._instance.set(name, newValue);
     }
   }
 }

@@ -35,6 +35,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
         this.setIconSet(element.getAttribute('set'));
       }
       if (element.textContent.trim()) {
+        this.__initialized = true;
         this.setId(element.textContent.trim());
       } else {
         const it = element.classList.values();
@@ -49,28 +50,33 @@ qx.Class.define('cv.ui.structure.tile.elements.Icon', {
     },
 
     _applyId(value, oldValue) {
+      const element = this._element;
       if (this.__initialized) {
         const set = this.getIconSet();
         if (oldValue && oldValue.startsWith('ri-') && set !== 'knx-uf') {
-          this._element.classList.remove(oldValue);
+          element.classList.remove(oldValue);
         }
         if (value) {
           if (set === 'knx-uf') {
             // TODO: external sprites are not loaded in custom elements, no fix available
             const iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
-            const svg = document.createElement('svg');
-            const use = document.createElement('use');
-            use.setAttribute('xlink:href', iconPath + '#kuf-' + value);
-            svg.appendChild(use);
-
-            const element = this._element;
             if (element.textContent) {
               element.textContent = '';
             }
-            element.appendChild(svg);
+            let use = element.querySelector(':scope > svg > use');
+            if (!use) {
+              const svg = document.createElement('svg');
+              use = document.createElement('use');
+              svg.appendChild(use);
+              element.appendChild(svg);
+            }
+            use.setAttribute('xlink:href', iconPath + '#kuf-' + value);
           } else {
             // default is an icon font that uses CSS classes
-            this._element.classList.add(value);
+            element.classList.add(value);
+            if (element.textContent) {
+              element.textContent = '';
+            }
           }
         }
       }
