@@ -32,7 +32,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
             model.setDefaultBackendName(name);
           }
-          const addressesToSubscribe = cv.data.Model.getInstance().getAddresses(name);
+          const addressesToSubscribe = model.getAddresses(name);
           if (addressesToSubscribe.length !== 0) {
             client.subscribe(addressesToSubscribe);
           }
