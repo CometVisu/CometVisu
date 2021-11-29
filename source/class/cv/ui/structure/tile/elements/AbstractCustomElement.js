@@ -3,8 +3,63 @@
  */
 qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   extend: qx.core.Object,
-  include: cv.ui.structure.tile.elements.MCustomElement,
-  type: 'abstract'
+  type: 'abstract',
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (element) {
+    this._element = element;
+  },
+
+  /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    connected: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyConnected',
+      event: 'changeConnected'
+    }
+  },
+
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    /**
+     * @var {HTMLElement}
+     */
+    _element: null,
+
+    _initialized: false,
+
+    _applyConnected(value) {
+      if (value && !this._initialized) {
+        this._init();
+        this._initialized = true;
+      } else {
+        this._initialized = false;
+      }
+    },
+    _init() {}
+  },
+  
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._element = null;
+  }
 });
 
 // eslint-disable-next-line no-unused-vars
