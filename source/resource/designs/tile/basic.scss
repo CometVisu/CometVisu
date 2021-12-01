@@ -84,20 +84,32 @@ body {
         }
 
         @for $i from 2 through $tileColumns {
-            .colspan-#{$i} {
+            > .colspan-#{$i} {
                 grid-column: 1 / span #{$i};
             }
 
             > [column='#{$i}'] {
                 grid-column: #{$i};
             }
+
+            @if 2*$i - 1 <= $tileColumns {
+                > .colspan-#{$i}[column='#{$i}'] {
+                    grid-column: #{$i} / span #{$i};
+                }
+            }
         }
         @for $i from 2 through $tileRows {
-            .rowspan-#{$i} {
+            > .rowspan-#{$i} {
                 grid-row: 1 / span #{$i};
             }
             > [row='#{$i}'] {
                 grid-row: #{$i};
+            }
+
+            @if 2*$i - 1 <= $tileRows {
+                > .rowspan-#{$i}[row='#{$i}'] {
+                    grid-row: #{$i} / span #{$i};
+                }
             }
         }
 
@@ -189,5 +201,18 @@ body {
         color: $primaryColor;
         border: 1px solid $primaryColor;
         box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
+    }
+
+    cv-info {
+        p {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        label.value {
+            font-size: xxx-large;
+        }
+        label.unit {
+            color: $primaryText;
+        }
     }
 }
