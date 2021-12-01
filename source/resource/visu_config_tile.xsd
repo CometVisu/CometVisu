@@ -126,11 +126,75 @@
 
   <xsd:complexType name="cv-tile">
     <xsd:sequence>
-      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:choice minOccurs="0" maxOccurs="9">
         <xsd:group ref="Components"/>
-        <xsd:element name="cv-row" maxOccurs="3"/>
+        <xsd:element name="cv-row" type="cv-row" maxOccurs="3"/>
       </xsd:choice>
     </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-row">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="3">
+        <xsd:group ref="Components"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="row" type="xsd:string" default="1">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Row number or position (first, middle, last)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeilennummer oder Position (first, middle, last)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1" />
+          <xsd:enumeration value="2" />
+          <xsd:enumeration value="3" />
+          <xsd:enumeration value="first" />
+          <xsd:enumeration value="middle" />
+          <xsd:enumeration value="last" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="column" type="xsd:string" default="1">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Column number or position (first, middle, last)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Spaltennummer oder Position (first, middle, last)</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1" />
+          <xsd:enumeration value="2" />
+          <xsd:enumeration value="3" />
+          <xsd:enumeration value="first" />
+          <xsd:enumeration value="middle" />
+          <xsd:enumeration value="last" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="rowspan" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of rows this row spans</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Zeilen die diese Zeile belegt</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1"/>
+          <xsd:maxInclusive value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="colspan" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of columns this row spans</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Spalten die diese Zeile belegt</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1"/>
+          <xsd:maxInclusive value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -138,16 +202,31 @@
     <xsd:choice>
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-shutter" type="cv-shutter" />
-      <xsd:element name="cv-tile" />
+      <xsd:element name="cv-tile" type="cv-tile"/>
     </xsd:choice>
   </xsd:group>
 
   <xsd:group name="Components">
     <xsd:choice>
       <xsd:element name="button" />
-      <xsd:element name="cv-info" />
+      <xsd:element name="cv-info" type="cv-info" />
+      <xsd:element name="label" type="label"/>
+      <xsd:element name="p" type="p"/>
     </xsd:choice>
   </xsd:group>
+
+  <xsd:complexType name="cv-info">
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
+        <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
   <xsd:complexType name="cv-switch">
@@ -249,6 +328,8 @@
   <xsd:simpleType name="uri">
     <xsd:restriction base="xsd:anyURI" />
   </xsd:simpleType>
+
+
 
   <xsd:complexType name="address">
     <xsd:simpleContent>
@@ -448,6 +529,18 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="open" type="xsd:boolean"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="label" mixed="true">
+    <xsd:attribute name="class" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType name="p" mixed="true">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="label" type="label"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="class" type="xsd:string"/>
   </xsd:complexType>
 
   <!--
