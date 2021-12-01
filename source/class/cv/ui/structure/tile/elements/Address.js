@@ -39,14 +39,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               // address has a fixed value that must be sent
               value = element.getAttribute('value');
             }
-            const trigger = ev.detail.source && ev.detail.source instanceof cv.ui.structure.tile.components.Button && ev.detail.source.getType() === 'trigger';
+            const allowDuplicates = ev.detail.source &&
+              ev.detail.source instanceof cv.ui.structure.tile.components.Button &&
+              (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
             if (value !== null) {
               const encoding = element.getAttribute('transform');
               const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
               // noinspection EqualityComparisonWithCoercionJS
-              if (trigger || !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') || encodedValue.raw !== element.lastSentValue) {
+              if (allowDuplicates || !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') || encodedValue.raw !== element.lastSentValue) {
                 cv.TemplateEngine.getClient(backendName).write(element.textContent, encodedValue.bus, element);
-                if (!trigger) {
+                if (!allowDuplicates) {
                   element.lastSentValue = encodedValue.raw;
                 }
               }

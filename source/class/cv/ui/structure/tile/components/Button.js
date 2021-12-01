@@ -20,7 +20,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   */
   properties: {
     type: {
-      check: ['button', 'trigger'],
+      check: ['button', 'trigger', 'push'],
       init: 'button'
     },
     on: {
@@ -64,28 +64,43 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this.setType(element.getAttribute('type'));
       }
       let hasReadAddress = false;
-      let hasWriteAddress = false;
-      Array.prototype.some.call(element.querySelectorAll(':scope > cv-address'), address => {
+      let writeAddresses = [];
+      Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
         const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
         switch (mode) {
           case 'readwrite':
             hasReadAddress = true;
-            hasWriteAddress = true;
+            writeAddresses.push(address);
             break;
           case 'read':
             hasReadAddress = true;
             break;
           case 'write':
-            hasWriteAddress = true;
+            writeAddresses.push(address);
             break;
         }
-        return hasWriteAddress && hasReadAddress;
       });
+      this.__writeAddresses = writeAddresses;
 
-      if (hasWriteAddress) {
-        element.addEventListener('click', () => {
-          this.onClicked();
+      if (writeAddresses.length > 0) {
+        const events = {};
+        writeAddresses.forEach(addr => {
+          let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
+          switch (event) {
+            case 'click':
+              events.click = this.onClicked.bind(this);
+              break;
+            case 'up':
+              events.pointerup = this.onPointerUp.bind(this);
+              break;
+            case 'down':
+              events.pointerdown = this.onPointerDown.bind(this);
+              break;
+          }
         });
+        Object.getOwnPropertyNames(events).forEach(eventName => element.addEventListener(eventName, ev => {
+          events[eventName](ev);
+        }));
       }
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
@@ -95,16 +110,38 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         });
       } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
         // apply the trigger state
-        const writeAddress = element.querySelector(':scope > cv-address[mode="write"]');
-        if (writeAddress.hasAttribute('value')) {
-          const value = writeAddress.getAttribute('value');
-          // a write only with a fixed value
-          this.setType('trigger');
+        const triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
+        if (triggerAddresses.length === 1) {
+          const value = triggerAddresses[0].getAttribute('value');
           qx.event.Timer.once(() => {
             // using == comparisons to make sure that e.g. 1 equals "1"
             // noinspection EqualityComparisonWithCoercionJS
             this.setOn(value == this.getOnValue());
           }, this, 1000);
+        }
+      }
+
+      // detect button type
+      if (!hasReadAddress && writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on')).length === 1) {
+        // only one write address with a fixed value and no special event => simple trigger
+        this.setType('trigger');
+      } else {
+        let hasDown = false;
+        let hasUp = false;
+        writeAddresses.some(addr => {
+          if (addr.hasAttribute('value') && addr.hasAttribute('on')) {
+            if (!hasDown) {
+              hasDown = addr.getAttribute('on') === 'down';
+            }
+            if (!hasUp) {
+              hasUp = addr.getAttribute('on') === 'up';
+            }
+          }
+          return hasUp && hasDown;
+        });
+        if (hasUp && hasDown) {
+          // has an address for up and one for down event with a fixed value -> pushbutton
+          this.setType('push');
         }
       }
     },
@@ -173,17 +210,35 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     onClicked() {
-      if (!this.__writeAddresses) {
-        this.__writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll(':scope > cv-address'),
-          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read');
-      }
       const ev = new CustomEvent('sendState', {
         detail: {
           value: this.isOn() ? this.getOffValue() : this.getOnValue(),
           source: this
         }
       });
-      this.__writeAddresses.forEach(address => address.dispatchEvent(ev));
+      this.__writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+    },
+
+    onPointerDown() {
+      this.__writeAddresses.filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value')).forEach(address => {
+        address.dispatchEvent(new CustomEvent('sendState', {
+          detail: {
+            value: address.getAttribute('value'),
+            source: this
+          }
+        }));
+      });
+    },
+
+    onPointerUp() {
+      this.__writeAddresses.filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value')).forEach(address => {
+        address.dispatchEvent(new CustomEvent('sendState', {
+          detail: {
+            value: address.getAttribute('value'),
+            source: this
+          }
+        }));
+      });
     }
   },
 

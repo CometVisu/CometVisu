@@ -266,9 +266,12 @@ class TemplatedElement extends HTMLElement {
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
-        const slotContent = this.querySelector(`[slot='${slotName}']`);
-        if (slotContent) {
-          slot.parentNode.replaceChild(slotContent, slot);
+        const slotContents = this.querySelectorAll(`[slot='${slotName}']`);
+        if (slotContents.length > 0) {
+          Array.from(slotContents).forEach(slotContent => {
+            slot.parentNode.insertBefore(slotContent, slot);
+          });
+          slot.remove();
         } else {
           // eslint-disable-next-line no-console
           console.log('['+templateId+']no content for slot', slotName, ' removing');

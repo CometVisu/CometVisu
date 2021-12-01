@@ -217,7 +217,7 @@
 
   <xsd:complexType name="cv-info">
     <xsd:sequence>
-      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
         <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
@@ -336,12 +336,29 @@
       <xsd:extension base="addr">
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" />
-        <xsd:attribute name="value" type="xsd:string"/>
-        <xsd:attribute name="variant" type="xsd:string"/>
+        <xsd:attribute name="value" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Fixed value sent to this address.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Fixer Wert welcher an diese Adresse gesendet wird.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="on" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Event on which a value should be sent to this address (only useful in mode: write or readwrite), also needs value.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit value und mode = read oder readwrite).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="click" />
+              <xsd:enumeration value="down" />
+              <xsd:enumeration value="up" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
         <xsd:attribute name="format-pos" type="xsd:decimal">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="qos" type="xsd:decimal">
