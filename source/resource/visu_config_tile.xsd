@@ -209,13 +209,13 @@
   <xsd:group name="Components">
     <xsd:choice>
       <xsd:element name="button" />
-      <xsd:element name="cv-info" type="cv-info" />
+      <xsd:element name="cv-value" type="cv-value" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
     </xsd:choice>
   </xsd:group>
 
-  <xsd:complexType name="cv-info">
+  <xsd:complexType name="cv-value">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>

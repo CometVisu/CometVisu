@@ -1,7 +1,7 @@
 /**
- *
+ * Shows a value from the backend, as label or image/icon
  */
-qx.Class.define('cv.ui.structure.tile.components.Info', {
+qx.Class.define('cv.ui.structure.tile.components.Value', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
 
   /*
@@ -93,7 +93,7 @@ qx.Class.define('cv.ui.structure.tile.components.Info', {
   },
 
   defer(QxClass) {
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'info', class extends QxConnector {
+    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'value', class extends QxConnector {
       constructor() {
         super(QxClass);
       }
