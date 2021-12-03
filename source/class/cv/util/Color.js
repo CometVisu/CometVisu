@@ -277,6 +277,45 @@ qx.Class.define('cv.util.Color', {
     __Lab: undefined, // L*a*b*
     __LCh: undefined, // L*C*h° - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
 
+    // move x and y to be inside the color range that the R, G and B span
+    __gamutMap: function( x = this.__x, y = this.__y ) {
+      // calculate the intersection point between lines 1-2 and 3-4 as well as
+      // points 3 and 4 are on different sides of the line 1-2
+      function intersect(p1, p2, p3, p4) {
+        function crossprod(xv, yv, xw, yw) {
+          return xv*yw - yv*xw;
+        }
+        const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y;
+        let u = crossprod(p3.x-p1.x, p3.y-p1.y, x12, y12) / crossprod(x12, y12, x34, y34);
+        return {x:p3.x+u*x34, y:p3.y+u*y34, opposite: u>=0 && u <= 1};
+      }
+      // is x-y on the same side of the R-G axis as the white point?
+      let iRG = intersect(this.__R, this.__G, this.__W, {x:x, y:y});
+      if( iRG.opposite ) {
+        // no -> move it to be on the line
+        console.log('move to R-G');
+        x = iRG.x;
+        y = iRG.y;
+      }
+      // is x-y on the same side of the G-B axis as the white point?
+      let iGB = intersect(this.__G, this.__B, this.__W, {x:x, y:y});
+      if( iGB.opposite ) {
+        // no -> move it to be on the line
+        console.log('move to G-B');
+        x = iGB.x;
+        y = iGB.y;
+      }
+      // is x-y on the same side of the B-R axis as the white point?
+      let iBR = intersect(this.__B, this.__R, this.__W, {x:x, y:y});
+      if( iBR.opposite ) {
+        // no -> move it to be on the line
+        console.log('move to B-R');
+        x = iBR.x;
+        y = iBR.y;
+      }
+      return {x: x, y: y};
+    },
+
     // make derived color valid
     __validateHSV: function (force) {
       /*
@@ -293,6 +332,18 @@ qx.Class.define('cv.util.Color', {
           (-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1)/(-A1*B2*C3 + A1*B3*C2 + A2*B1*C3 - A2*B3*C1 - A3*B1*C2 + A3*B2*C1)
         ];
       }
+      /*
+      A1 * x*y + B1 * y = D1
+      A2 * x*y + B2 * y = D2
+      // Solve[{B1 y + A1 x y == D1, B2 y + A2 x y == D2}, {x, y}]
+       */
+      function solve2(A1, A2, B1, B2, D1, D2) {
+        return [
+          (B2 * D1 - B1 * D2)/(A1 * D2 - A2 * D1),
+          (A2 * D1 - A1 * D2)/(A2 * B1 - A1 * B2)
+        ];
+      }
+
       function valid(hsv) {
         const precision = 1000;
         let
@@ -314,37 +365,57 @@ qx.Class.define('cv.util.Color', {
           return;
         }
 
-        let Y = this.__Y;
-        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
-        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
-        let
-          hsv0 = solve(this.__G.X, this.__G.Y, this.__G.Z, this.__R.X - this.__W.X, this.__R.Y - this.__W.Y, this.__R.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
-          hsv1 = solve(this.__R.X, this.__R.Y, this.__R.Z, this.__G.X - this.__W.X, this.__G.Y - this.__W.Y, this.__G.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
-          hsv2 = solve(this.__B.X, this.__B.Y, this.__B.Z, this.__G.X - this.__W.X, this.__G.Y - this.__W.Y, this.__G.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
-          hsv3 = solve(this.__G.X, this.__G.Y, this.__G.Z, this.__B.X - this.__W.X, this.__B.Y - this.__W.Y, this.__B.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
-          hsv4 = solve(this.__R.X, this.__R.Y, this.__R.Z, this.__B.X - this.__W.X, this.__B.Y - this.__W.Y, this.__B.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z),
-          hsv5 = solve(this.__B.X, this.__B.Y, this.__B.Z, this.__R.X - this.__W.X, this.__R.Y - this.__W.Y, this.__R.Z - this.__W.Z, this.__W.X, this.__W.Y, this.__W.Z, X, Y, Z);
-        if(valid(hsv0)) {
-          this.__hsv = { h: 0/6+hsv0[0]/6, s: hsv0[1], v: hsv0[2] };
-        } else if(valid(hsv1)) {
-          this.__hsv = { h: 2/6-hsv1[0]/6, s: hsv1[1], v: hsv1[2] };
-        } else if(valid(hsv2)) {
-          this.__hsv = { h: 2/6+hsv2[0]/6, s: hsv2[1], v: hsv2[2] };
-        } else if(valid(hsv3)) {
-          this.__hsv = { h: 4/6-hsv3[0]/6, s: hsv3[1], v: hsv3[2] };
-        } else if(valid(hsv4)) {
-          this.__hsv = { h: 4/6+hsv4[0]/6, s: hsv4[1], v: hsv4[2] };
-        } else if(valid(hsv5)) {
-          this.__hsv = { h: 6/6-hsv5[0]/6, s: hsv5[1], v: hsv5[2] };
-        } else if(hsv0[1] < 1e-4) {
-          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
-        } else {
-          console.log(hsv0,hsv1,hsv2,hsv3,hsv4,hsv5,this.__Y);
-          console.log('hsv error!');
-          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
+        function colorAdd(a, b) {
+          const X = a.X + b.X;
+          const Y = a.Y + b.Y;
+          const Z = a.Z + b.Z;
+          return {x: X/(X+Y+Z), y: Y/(X+Y+Z), X:a.X+b.X, Y:a.Y+b.Y, Z:a.Z+b.Z};
         }
+        // calculate the intersection point between lines 1-2 and 3-4 as well as
+        // points 3 and 4 are on different sides of the line 1-2
+        function intersect2(p1, p2, p3, p4) {
+          const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y, x31 = p1.x-p3.x, y31 = p1.y-p3.y;
+          const factors = cv.util.Color.solve2d(x34, y34, -x12, -y12, x31, y31);
+          return {x:p3.x+factors[0]*x34, y:p3.y+factors[0]*y34, factors:factors};
+        }
+        const hues = [this.__R, this.__G, this.__B, this.__R];
+        const thisXYZ = {X:this.__x*this.__Y/this.__y,Y:this.__Y,Z: (1-this.__x-this.__y)*this.__Y/this.__y};
 
+        if( (this.__x-this.__W.x)**2 + (this.__y-this.__W.y)**2 < 1e-6 ) {
+          // color is white
+          this.__hsv = { h: this.__h_last, s:0, v: this.__Y };
+          return;
+        }
+        for(let i = 0; i<3; i++) {
+          let inter1 =  intersect2(hues[i],colorAdd(hues[i],hues[i+1]),this.__W,{x:this.__x,y:this.__y});
+          let inter2 =  intersect2(colorAdd(hues[i],hues[i+1]),hues[i+1],this.__W,{x:this.__x,y:this.__y});
+          // R -> RG
+          const fac = solve(
+            hues[i+1].X, hues[i+1].Y, hues[i+1].Z,
+            hues[i].X - this.__W.X, hues[i].Y - this.__W.Y, hues[i].Z - this.__W.Z,
+            this.__W.X, this.__W.Y, this.__W.Z,
+            thisXYZ.X, thisXYZ.Y, thisXYZ.Z
+          );
+          if(inter1.factors[0]>=0 && 0<=inter1.factors[1] && inter1.factors[1]<=1) {
+            this.__hsv = { h: 2*i/6+fac[0]/6, s: fac[1], v: fac[2] };
+            this.__h_last = this.__hsv.h;
+            break;
+          }
+
+          const fac2 = solve(
+            -hues[i].X, -hues[i].Y, -hues[i].Z,
+            hues[i].X + hues[i+1].X - this.__W.X, hues[i].Y + hues[i+1].Y - this.__W.Y, hues[i].Z + hues[i+1].Z - this.__W.Z,
+            this.__W.X, this.__W.Y, this.__W.Z,
+            thisXYZ.X, thisXYZ.Y, thisXYZ.Z
+        );
+        if(inter2.factors[0]>=0 && 0<=inter2.factors[1] && inter2.factors[1]<=1) {
+          this.__hsv = { h: (2*i+1)/6+fac2[0]/6, s: fac2[1], v: fac2[2] };
+          this.__h_last = this.__hsv.h;
+          break;
+        }
+        this.__hsv = { h: 0, s: 0, v: this.__Y };
         this.__h_last = this.__hsv.h;
+        }
       }
     },
 
@@ -478,16 +549,42 @@ qx.Class.define('cv.util.Color', {
 
       // second step: blend with white to take saturation into account and scale with brightness
       let
+        x = ((this.__R.x * r + this.__G.x * g + this.__B.x * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x), // * this.__hsv.v,
+        y = ((this.__R.y * r + this.__G.y * g + this.__B.y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y), // * this.__hsv.v,
         X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
         Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
         Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z), // * this.__hsv.v,
+        Xh = (this.__R.X * r + this.__G.X * g + this.__B.X * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
+        Yh = (this.__R.Y * r + this.__G.Y * g + this.__B.Y * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
+        Zh = (this.__R.Z * r + this.__G.Z * g + this.__B.Z * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z), // * this.__hsv.v,
+        XYZh = Xh + Yh + Zh,
         XYZ = X + Y + Z;
 
+      //console.log('###: ',{r:r,g:g,b:b},{h:this.__hsv.h,s:this.__hsv.s,v:this.__hsv.v});
+      x = (Xh / XYZh) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
+      y = (Yh / XYZh) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
+      X*=this.__hsv.v;
+      Y*=this.__hsv.v;
+      Z*=this.__hsv.v;
+      XYZ*=this.__hsv.v;
       if( XYZ > 0 ) {
         this.__x = X / XYZ;
         this.__y = Y / XYZ;
       }
-      this.__Y = Y * this.__hsv.v;
+      //this.__x = x;
+      //this.__y = y;
+      this.__Y = Y;// * this.__hsv.v;
+
+      //////
+      //this.__x = (X / XYZ)* this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
+      //this.__y = (Y / XYZ)* this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
+      //this.__Y = this.__hsv.v;
+      /*
+      this.__x = x;
+      this.__y = y;
+      this.__Y = this.__hsv.v;
+
+       */
       this.__rgb = undefined;
       this.__rgbw = undefined;
       this.__Lab = undefined;
