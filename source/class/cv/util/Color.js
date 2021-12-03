@@ -277,6 +277,31 @@ qx.Class.define('cv.util.Color', {
     __Lab: undefined, // L*a*b*
     __LCh: undefined, // L*C*h° - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
 
+    /**
+     * Get X, Y, Z from this color
+     * @return {Array} Array with X, Y and Z
+     */
+    __getXYZ: function() {
+       return [
+         this.__x * (this.__Y / Math.max(0.001, this.__y)),
+         this.__Y,
+         (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y))
+       ];
+    },
+    /**
+     * Set internal __x, __y and __Y from XYZ color
+     * @param X {Number}
+     * @param Y {Number}
+     * @param Z {Number}
+     */
+    __setXYZ: function( X, Y, Z ) {
+      const XYZ = X + Y + Z;
+      // best guess for a total black: completely unsaturated, i.e. the white point
+      this.__x = XYZ > 0 ? X / XYZ : this.__W.x;
+      this.__y = XYZ > 0 ? Y / XYZ : this.__W.y;
+      this.__Y = Y;
+    },
+
     // move x and y to be inside the color range that the R, G and B span
     __gamutMap: function( x = this.__x, y = this.__y ) {
       // calculate the intersection point between lines 1-2 and 3-4 as well as
@@ -369,7 +394,7 @@ qx.Class.define('cv.util.Color', {
           const X = a.X + b.X;
           const Y = a.Y + b.Y;
           const Z = a.Z + b.Z;
-          return {x: X/(X+Y+Z), y: Y/(X+Y+Z), X:a.X+b.X, Y:a.Y+b.Y, Z:a.Z+b.Z};
+          return {x: X/(X+Y+Z), y: Y/(X+Y+Z), X:X, Y:Y, Z:Z};
         }
         // calculate the intersection point between lines 1-2 and 3-4 as well as
         // points 3 and 4 are on different sides of the line 1-2
@@ -422,9 +447,7 @@ qx.Class.define('cv.util.Color', {
     __validateRGB: function (force) {
       if( this.__rgb === undefined || force ) {
         this.__rgb = {};
-        let Y = this.__Y;
-        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
-        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
+        let [X, Y, Z] = this.__getXYZ();
         [this.__rgb.r, this.__rgb.g, this.__rgb.b] = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
@@ -444,9 +467,7 @@ qx.Class.define('cv.util.Color', {
 
     __validateRGBW: function (force) {
       if( this.__rgbw === undefined || force ) {
-        let Y = this.__Y;
-        let X = this.__y > 0 ? Y / this.__y * this.__x : 0;
-        let Z = this.__y > 0 ? Y / this.__y * (1 - this.__x - this.__y) : 0;
+        let [X, Y, Z] = this.__getXYZ();
         let w2rgb = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
@@ -493,10 +514,10 @@ qx.Class.define('cv.util.Color', {
 
     __validateLab: function (force) {
       if( this.__Lab === undefined || force ) {
-        const Xn = 94.811/100, Yn = 100/100, Zn = 107.304/100; // D65, 10 degrees
+        //const Xn = 94.811/100, Yn = 100/100, Zn = 107.304/100; // D65, 10 degrees
+        const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
+        const [X, Y, Z] = this.__getXYZ();
         let
-          X = this.__x * (this.__Y / Math.max(0.001, this.__y)),
-          Z = (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y)),
           f = function(t) {
                 if(t < 216/24389) {
                   return (24389/27*t+16)/116;
@@ -505,9 +526,9 @@ qx.Class.define('cv.util.Color', {
                 }
               };
         this.__Lab = {
-          L: 116 * f(this.__Y/Yn) - 16,
-          a: 500 * (f(X/Xn) - f(this.__Y/Yn)),
-          b: 200 * (f(this.__Y/Yn) - f(Z/Zn))
+          L: 116 * f(Y/Yn) - 16,
+          a: 500 * (f(X/Xn) - f(Y/Yn)),
+          b: 200 * (f(Y/Yn) - f(Z/Zn))
         };
       }
     },
@@ -566,6 +587,7 @@ qx.Class.define('cv.util.Color', {
       X*=this.__hsv.v;
       Y*=this.__hsv.v;
       Z*=this.__hsv.v;
+      /*
       XYZ*=this.__hsv.v;
       if( XYZ > 0 ) {
         this.__x = X / XYZ;
@@ -574,6 +596,8 @@ qx.Class.define('cv.util.Color', {
       //this.__x = x;
       //this.__y = y;
       this.__Y = Y;// * this.__hsv.v;
+       */
+      this.__setXYZ(X, Y, Z);
 
       //////
       //this.__x = (X / XYZ)* this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
@@ -599,12 +623,8 @@ qx.Class.define('cv.util.Color', {
           min = Math.min(this.__rgb.r, this.__rgb.g, this.__rgb.b),
           X = this.__R.X * (this.__rgb.r - min) + this.__G.X * (this.__rgb.g - min) + this.__B.X * (this.__rgb.b - min) + this.__W.X * min,
           Y = this.__R.Y * (this.__rgb.r - min) + this.__G.Y * (this.__rgb.g - min) + this.__B.Y * (this.__rgb.b - min) + this.__W.Y * min,
-          Z = this.__R.Z * (this.__rgb.r - min) + this.__G.Z * (this.__rgb.g - min) + this.__B.Z * (this.__rgb.b - min) + this.__W.Z * min,
-          XYZ = X + Y + Z;
-
-        this.__x = X / XYZ;
-        this.__y = Y / XYZ;
-        this.__Y = Y;
+          Z = this.__R.Z * (this.__rgb.r - min) + this.__G.Z * (this.__rgb.g - min) + this.__B.Z * (this.__rgb.b - min) + this.__W.Z * min;
+        this.__setXYZ( X, Y, Z );
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__rgbw = undefined;
       this.__hsv = undefined;
@@ -619,12 +639,8 @@ qx.Class.define('cv.util.Color', {
         let
           X = this.__R.X * this.__rgbw.r + this.__G.X * this.__rgbw.g + this.__B.X * this.__rgbw.b + this.__W.X * this.__rgbw.w,
           Y = this.__R.Y * this.__rgbw.r + this.__G.Y * this.__rgbw.g + this.__B.Y * this.__rgbw.b + this.__W.Y * this.__rgbw.w,
-          Z = this.__R.Z * this.__rgbw.r + this.__G.Z * this.__rgbw.g + this.__B.Z * this.__rgbw.b + this.__W.Z * this.__rgbw.w,
-          XYZ = X + Y + Z;
-
-        this.__x = X / XYZ;
-        this.__y = Y / XYZ;
-        this.__Y = Y;
+          Z = this.__R.Z * this.__rgbw.r + this.__G.Z * this.__rgbw.g + this.__B.Z * this.__rgbw.b + this.__W.Z * this.__rgbw.w;
+        this.__setXYZ( X, Y, Z );
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__rgb = undefined;
       this.__hsv = undefined;
@@ -646,7 +662,7 @@ qx.Class.define('cv.util.Color', {
 
     __syncLab2xy: function (keepLCh = false) {
       const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
-      let
+      const
         fInv = function(t) {
             if(t < 6/29) {
               return 3*(6/29)**2*(t-4/29);
@@ -658,11 +674,8 @@ qx.Class.define('cv.util.Color', {
         L16 = (Lab.L + 16)/116,
         X = Xn * fInv(L16 + Lab.a/500),
         Y = Yn * fInv(L16),
-        Z = Zn * fInv(L16 - Lab.b/200),
-        XYZ = X + Y + Z;
-      this.__x = XYZ > 0 ? X / XYZ : this.__W.x;
-      this.__y = XYZ > 0 ? Y / XYZ : this.__W.y;
-      this.__Y = Y;
+        Z = Zn * fInv(L16 - Lab.b/200);
+      this.__setXYZ( X, Y, Z );
 
       this.__T = undefined;
       this.__hsv = undefined;
