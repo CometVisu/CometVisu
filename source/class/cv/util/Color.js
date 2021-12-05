@@ -819,11 +819,15 @@ qx.Class.define('cv.util.Color', {
         case 'LCh-C':
         case 'LCh-h':
           this.__validateLCh(force);
-          return this.__LCh[component.split('-')[1]];
+          return clamp(0, this.__LCh[component.split('-')[1]], 1);
 
         case 'LCh':
           this.__validateLCh(force);
-          return this.__LCh;
+          return {
+            L: clamp(0, this.__LCh.L, 1),
+            C: clamp(0, this.__LCh.C, 1),
+            h: clamp(0, this.__LCh.h, 1),
+          };
       }
     },
 

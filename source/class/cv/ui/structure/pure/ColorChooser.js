@@ -43,7 +43,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
      */
     coord2sv: function( x, y, hue, radius ) {
       const hue2angle = 2 * Math.PI;
-      let
+      const
         // coordinates of the triangle corners
         Sx = 0.5 - Math.sin( hue2angle * (   -hue) ) * radius, // 100% saturation
         Sy = 0.5 - Math.cos( hue2angle * (   -hue) ) * radius,
@@ -75,14 +75,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   construct: function(props) {
     this.base(arguments, props);
 
-    const base= this.getBaseColors();
-    const f = (x) => ({x:x.x, y:x.y, Y:x.Y});
-    this.__color = new cv.util.Color( f(base.r), f(base.g), f(base.b), f(base.w) );
+    const base = this.getBaseColors();
+    this.__color = new cv.util.Color( base.r, base.g, base.b, base.w );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
     this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
     this.__lastBusValue = {};
   },
+
   /*
   ***********************************************
     DESTRUCTOR
@@ -287,9 +287,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
     /**
      * The the internal slider state and its handle and displayed value
-     * @param value {Number} The new value
-     * @param variant {String} The color component to change
-     * @param instant {Boolean} Animate or instant change
+     * @param {number} value The new value
+     * @param {string} variant The color component to change
+     * @param {boolean} instant Animate or instant change
      * @private
      */
     __setSliderTo: function(value, variant, instant) {
@@ -402,12 +402,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           let length = Math.max(0, Math.min( ratioComponent, 1 )) * actor.width;
           actor.button.style.transform = 'translate3d(' + (length-actor.buttonWidth/2) + 'px, 0px, 0px)';
           actor.range.style.clipPath = 'inset(0 ' + (1-ratioComponent)*100 + '% 0 0)';
-          actor.button.textContent = ratioComponent;
         }
       }
-      
-      let c = cv.util.Color.xy2sRGB(this.__colorCurrent.getComponent('xy'), this.__colorCurrent.getComponent('Y'));
-      this.getWidgetElement().querySelector('.label').style.backgroundColor = 'rgb('+[Math.round(c.r*255),Math.round(c.g*255),Math.round(c.b*255)].join(',')+')';
     },
 
     __invalidateScreensize: function () {
@@ -513,7 +509,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
             break;
           default:
-            this.__actors[this.__mode].button.textContent = relCoordX;
             this.__color.changeComponent(this.__mode, relCoordX);
         }
       }
@@ -563,6 +558,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
+    cv.ui.structure.WidgetFactory.registerClass('colorchooser', statics);
   }
 });
