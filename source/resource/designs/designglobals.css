@@ -441,7 +441,8 @@ button.ui-slider-handle {
 }
 
 .colorchooser .cc_v.ui-slider .ui-slider-range,
-.colorchooser .cc_LCh-L.ui-slider .ui-slider-range {
+.colorchooser .cc_LCh-L.ui-slider .ui-slider-range,
+.colorchooser .cc_Y.ui-slider .ui-slider-range {
   background: linear-gradient(90deg, #000, #fff);
 }
 

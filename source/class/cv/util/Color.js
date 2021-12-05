@@ -38,15 +38,16 @@ qx.Class.define('cv.util.Color', {
      * Solve the 2 dimensional linear equation
      * ( A00 A01 ) (x0) = (y0)
      * ( A10 A11 ) (x1)   (y1)
-     * @param A00
-     * @param A10
-     * @param A01
-     * @param A11
-     * @param y0
-     * @param y1
+     * @param {number} A00
+     * @param {number} A10
+     * @param {number} A01
+     * @param {number} A11
+     * @param {number} y0
+     * @param {number} y1
+     * @returns {[number, number]}
      */
     solve2d: function (A00, A10, A01, A11, y0, y1 ) {
-      let detInv = 1 / (A00 * A11 - A01 * A10);
+      const detInv = 1 / (A00 * A11 - A01 * A10);
       return [ (y0 * A11 - A01 * y1) * detInv, (A00 * y1 - y0 * A10) * detInv ];
     },
 
@@ -55,18 +56,19 @@ qx.Class.define('cv.util.Color', {
      * ( A00 A01 A02 ) (x0)   (y0)
      * ( A10 A11 A12 ) (x1) = (y1)
      * ( A20 A21 A22 ) (x2)   (y2)
-     * @param A00
-     * @param A10
-     * @param A01
-     * @param A11
-     * @param y0
-     * @param y1
+     * @param {number} A00
+     * @param {number} A10
+     * @param {number} A01
+     * @param {number} A11
+     * @param {number} y0
+     * @param {number} y1
+     * @returns {[number, number, number]}
      */
     solve3d: function (A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
       function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
         return A00*A11*A22 + A01*A12*A20 + A02*A10*A21 - A20*A11*A02 - A21*A12*A00 - A22*A10*A01;
       }
-      let detInv = 1/det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
+      const detInv = 1/det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
       return [
         det(y0 , y1 , y2 , A01, A11, A21, A02, A12, A22) * detInv,
         det(A00, A10, A20, y0 , y1 , y2 , A02, A12, A22) * detInv,
@@ -75,12 +77,28 @@ qx.Class.define('cv.util.Color', {
     },
 
     /**
+     * calculate the intersection point between lines 1-2 and 3-4 as well as
+     * points 3 and 4 are on different sides of the line 1-2
+     * @param {{x: number, y: number}} p1
+     * @param {{x: number, y: number}} p2
+     * @param {{x: number, y: number}} p3
+     * @param {{x: number, y: number}} p4
+     * @returns {{x: number, y: number, factors: [number, number]}}
+     */
+    intersect: function(p1, p2, p3, p4) {
+      const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y, x31 = p1.x-p3.x, y31 = p1.y-p3.y;
+      const factors = cv.util.Color.solve2d(x34, y34, -x12, -y12, x31, y31);
+      return {x:p3.x+factors[0]*x34, y:p3.y+factors[0]*y34, factors:factors};
+    },
+
+    /**
      * Get the CIE xy coordinates for a light wavelength.
      * Algorithm as of: http://jcgt.org/published/0002/02/01/
-     * @param wave wavelength in nanometers
+     * @param {number} wave wavelength in nanometers
+     * @returns {{x: number, y: number}}
      */
     wavelength2xy: function (wave) {
-      let
+      const
         x_t1 = (wave-442.0)*((wave<442.0)?0.0624:0.0374),
         x_t2 = (wave-599.8)*((wave<599.8)?0.0264:0.0323),
         x_t3 = (wave-501.1)*((wave<501.1)?0.0490:0.0382),
@@ -96,7 +114,8 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Get the CIE xy coordinates for a white given its temperature
-     * @param T temperature in Kelvin, 1667 K <= T <= 25000 K
+     * @param {number} T temperature in Kelvin, 1667 K <= T <= 25000 K
+     * @returns {{x: number, y: number}}
      */
     temperature2xy: function (T) {
       T = Math.max( 1667, Math.min( T, 25000 ));
@@ -115,17 +134,19 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Convert xy coordinates to sRGB (D65) for display on the screen, including
-     * gamma correction
-     * @param xy
+     * gamma correction and simple gamut mapping
+     * @param {{x: number, y: number}} xy The `x` and `y` values of the xyY color
+     * @param {number} Y The `Y` value of the xyY color
+     * @returns {{r: number, g: number, b: number}}
      */
     xy2sRGB: function (xy, Y = 1) {
-      let
+      const
         X = Y * xy.x / xy.y,
         Z = Y * (1-xy.x-xy.y) / xy.y,
         R =  3.2404542*X -1.5371385*Y -0.4985314*Z,
         G = -0.9692660*X +1.8760108*Y +0.0415560*Z,
         B =  0.0556434*X -0.2040259*Y +1.0572252*Z,
-      scale = 1 / Math.max(1, R, G, B), // gamut mapping
+        scale = 1 / Math.max(1, R, G, B), // very simple gamut mapping
         gamma = u => u<=0.0031308 ? (12.92*u) : (1.055*u**(1/2.4) - 0.055);
       return {
         r: gamma(Math.max(R * scale, 0)),
@@ -136,9 +157,10 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Convert a color component to a real world value by applying the dim curve
-     * @param {number} component - the color component (i.e. r, g or b value) to convert
-     * @param {(string|number[])} curve - the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table
-     * @param {number} scale - the maximal number of the real world value, usually 1, 100 or 255
+     * @param {number} component the color component (i.e. r, g or b value) to convert
+     * @param {(string|number[])} curve -the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table
+     * @param {number} scale the maximal number of the real world value, usually 1, 100 or 255
+     * @returns {number}
      */
     curve: function (component, curve, scale ) {
       if( component <= 0 ) { return Array.isArray(curve) ? curve[0]*scale : 0; }
@@ -153,18 +175,19 @@ qx.Class.define('cv.util.Color', {
         return scale * component ** (1/curve[0]);
       }
       // otherwise: table conversion
-      let spacing = 1 / (curve.length - 1); // the distance between two values
-      let position = component / spacing;
-      let lower  = Math.max( Math.floor(position), 0 );
-      let higher = Math.min( Math.ceil(position), curve.length - 1 );
-      let alpha = position - lower;
+      const spacing = 1 / (curve.length - 1); // the distance between two values
+      const position = component / spacing;
+      const lower  = Math.max( Math.floor(position), 0 );
+      const higher = Math.min( Math.ceil(position), curve.length - 1 );
+      const alpha = position - lower;
       return scale * (curve[lower] * (1-alpha) + curve[higher] * alpha);
     },
 
     /**
      * Convert a real world value to a color component by applying the inverse dim curve
-     * @param value {Number}
-     * @param scale {Number}
+     * @param value {number}
+     * @param scale {number}
+     * @returns {number}
      */
     invCurve: function (value, curve, scale ) {
       if( value <= 0 ) { return 0; }
@@ -204,10 +227,10 @@ qx.Class.define('cv.util.Color', {
    * Construct a color with given primary colors and an optional white
    * channel.
    * When no coordinates are give they default to the sRGB coordinates.
-   * @param Rxy
-   * @param Gxy
-   * @param Bxy
-   * @param Wxy
+   * @param {{x: number, y: number, Y: number}} [Rxy]
+   * @param {{x: number, y: number, Y: number}} [Gxy]
+   * @param {{x: number, y: number, Y: number}} [Bxy]
+   * @param {{x: number, y: number, Y: number}} [Wxy]
    */
   construct: function (Rxy = undefined, Gxy = undefined, Bxy = undefined, Wxy = undefined) {
     this.__R = Rxy === undefined ? { x: 0.64, y: 0.33, Y: 0.2126 } : Rxy; // default: sRGB
@@ -268,7 +291,7 @@ qx.Class.define('cv.util.Color', {
     __y: 1/3,
     __Y: 0,
 
-    // derived color representations
+    // derived color representations, cached to allow partial change
     __hsv: undefined,
     __h_last: 0, // remember last valid hue for times when there is no hue
     __rbg: undefined,
@@ -279,20 +302,22 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Get X, Y, Z from this color
-     * @return {Array} Array with X, Y and Z
+     * @private
+     * @returns {{X: number, Y: number, Z: number}}
      */
     __getXYZ: function() {
-       return [
-         this.__x * (this.__Y / Math.max(0.001, this.__y)),
-         this.__Y,
-         (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y))
-       ];
+       return {
+         X: this.__x * (this.__Y / Math.max(0.001, this.__y)),
+         Y: this.__Y,
+         Z: (1 - this.__x - this.__y) * (this.__Y / Math.max(0.001, this.__y))
+       };
     },
     /**
      * Set internal __x, __y and __Y from XYZ color
-     * @param X {Number}
-     * @param Y {Number}
-     * @param Z {Number}
+     * @private
+     * @param {number} X
+     * @param {number} Y
+     * @param {number} Z
      */
     __setXYZ: function( X, Y, Z ) {
       const XYZ = X + Y + Z;
@@ -302,39 +327,32 @@ qx.Class.define('cv.util.Color', {
       this.__Y = Y;
     },
 
-    // move x and y to be inside the color range that the R, G and B span
+    /**
+     * move x and y to be inside the color range that the R, G and B span
+     * @private
+     * @param {number} x
+     * @param {number} y
+     * @returns {{x: number, y: number}}
+     */
     __gamutMap: function( x = this.__x, y = this.__y ) {
-      // calculate the intersection point between lines 1-2 and 3-4 as well as
-      // points 3 and 4 are on different sides of the line 1-2
-      function intersect(p1, p2, p3, p4) {
-        function crossprod(xv, yv, xw, yw) {
-          return xv*yw - yv*xw;
-        }
-        const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y;
-        let u = crossprod(p3.x-p1.x, p3.y-p1.y, x12, y12) / crossprod(x12, y12, x34, y34);
-        return {x:p3.x+u*x34, y:p3.y+u*y34, opposite: u>=0 && u <= 1};
-      }
       // is x-y on the same side of the R-G axis as the white point?
-      let iRG = intersect(this.__R, this.__G, this.__W, {x:x, y:y});
-      if( iRG.opposite ) {
+      let iRG = cv.util.Color.intersect(this.__R, this.__G, this.__W, {x:x, y:y});
+      if( iRG.factors[0] >=0 && iRG.factors[0] <= 1 ) {
         // no -> move it to be on the line
-        console.log('move to R-G');
         x = iRG.x;
         y = iRG.y;
       }
       // is x-y on the same side of the G-B axis as the white point?
-      let iGB = intersect(this.__G, this.__B, this.__W, {x:x, y:y});
-      if( iGB.opposite ) {
+      let iGB = cv.util.Color.intersect(this.__G, this.__B, this.__W, {x:x, y:y});
+      if( iGB.factors[0] >=0 && iGB.factors[0] <= 1 ) {
         // no -> move it to be on the line
-        console.log('move to G-B');
         x = iGB.x;
         y = iGB.y;
       }
       // is x-y on the same side of the B-R axis as the white point?
-      let iBR = intersect(this.__B, this.__R, this.__W, {x:x, y:y});
-      if( iBR.opposite ) {
+      let iBR = cv.util.Color.intersect(this.__B, this.__R, this.__W, {x:x, y:y});
+      if( iBR.factors[0] >=0 && iBR.factors[0] <= 1 ) {
         // no -> move it to be on the line
-        console.log('move to B-R');
         x = iBR.x;
         y = iBR.y;
       }
@@ -357,32 +375,6 @@ qx.Class.define('cv.util.Color', {
           (-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1)/(-A1*B2*C3 + A1*B3*C2 + A2*B1*C3 - A2*B3*C1 - A3*B1*C2 + A3*B2*C1)
         ];
       }
-      /*
-      A1 * x*y + B1 * y = D1
-      A2 * x*y + B2 * y = D2
-      // Solve[{B1 y + A1 x y == D1, B2 y + A2 x y == D2}, {x, y}]
-       */
-      function solve2(A1, A2, B1, B2, D1, D2) {
-        return [
-          (B2 * D1 - B1 * D2)/(A1 * D2 - A2 * D1),
-          (A2 * D1 - A1 * D2)/(A2 * B1 - A1 * B2)
-        ];
-      }
-
-      function valid(hsv) {
-        const precision = 1000;
-        let
-          h = hsv[0],
-          s = hsv[1],
-          v = hsv[2];
-        // test for sane input values:
-        // - none is allowed to be negative
-        // - be a bit more relaxed about s and v as that might happen with out
-        //   of gamut colors
-        return 0 <= Math.ceil(h * precision) && Math.floor(h * precision) <= precision &&
-          0 <= Math.ceil(s * precision) && Math.floor(s * precision) <= 2*precision &&
-          0 <= Math.ceil(v * precision) && Math.floor(v * precision) <= 2*precision;
-      }
 
       if( this.__hsv === undefined || force ) {
         if( this.__Y < 1e-4 ) {
@@ -390,19 +382,12 @@ qx.Class.define('cv.util.Color', {
           return;
         }
 
-        function colorAdd(a, b) {
+        const colorAdd = function(a, b) {
           const X = a.X + b.X;
           const Y = a.Y + b.Y;
           const Z = a.Z + b.Z;
           return {x: X/(X+Y+Z), y: Y/(X+Y+Z), X:X, Y:Y, Z:Z};
-        }
-        // calculate the intersection point between lines 1-2 and 3-4 as well as
-        // points 3 and 4 are on different sides of the line 1-2
-        function intersect2(p1, p2, p3, p4) {
-          const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y, x31 = p1.x-p3.x, y31 = p1.y-p3.y;
-          const factors = cv.util.Color.solve2d(x34, y34, -x12, -y12, x31, y31);
-          return {x:p3.x+factors[0]*x34, y:p3.y+factors[0]*y34, factors:factors};
-        }
+        };
         const hues = [this.__R, this.__G, this.__B, this.__R];
         const thisXYZ = {X:this.__x*this.__Y/this.__y,Y:this.__Y,Z: (1-this.__x-this.__y)*this.__Y/this.__y};
 
@@ -412,9 +397,9 @@ qx.Class.define('cv.util.Color', {
           return;
         }
         for(let i = 0; i<3; i++) {
-          let inter1 =  intersect2(hues[i],colorAdd(hues[i],hues[i+1]),this.__W,{x:this.__x,y:this.__y});
-          let inter2 =  intersect2(colorAdd(hues[i],hues[i+1]),hues[i+1],this.__W,{x:this.__x,y:this.__y});
-          // R -> RG
+          let inter1 =  cv.util.Color.intersect(hues[i],colorAdd(hues[i],hues[i+1]),this.__W,{x:this.__x,y:this.__y});
+          let inter2 =  cv.util.Color.intersect(colorAdd(hues[i],hues[i+1]),hues[i+1],this.__W,{x:this.__x,y:this.__y});
+          // hues[i] -> (hues[i]+hues[i+1])
           const fac = solve(
             hues[i+1].X, hues[i+1].Y, hues[i+1].Z,
             hues[i].X - this.__W.X, hues[i].Y - this.__W.Y, hues[i].Z - this.__W.Z,
@@ -427,6 +412,7 @@ qx.Class.define('cv.util.Color', {
             break;
           }
 
+          // (hues[i]+hues[i+1]) -> hues[i+1]
           const fac2 = solve(
             -hues[i].X, -hues[i].Y, -hues[i].Z,
             hues[i].X + hues[i+1].X - this.__W.X, hues[i].Y + hues[i+1].Y - this.__W.Y, hues[i].Z + hues[i+1].Z - this.__W.Z,
@@ -447,7 +433,7 @@ qx.Class.define('cv.util.Color', {
     __validateRGB: function (force) {
       if( this.__rgb === undefined || force ) {
         this.__rgb = {};
-        let [X, Y, Z] = this.__getXYZ();
+        const {X, Y, Z} = this.__getXYZ();
         [this.__rgb.r, this.__rgb.g, this.__rgb.b] = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
@@ -467,7 +453,7 @@ qx.Class.define('cv.util.Color', {
 
     __validateRGBW: function (force) {
       if( this.__rgbw === undefined || force ) {
-        let [X, Y, Z] = this.__getXYZ();
+        const {X, Y, Z} = this.__getXYZ();
         let w2rgb = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
           this.__G.X, this.__G.Y, this.__G.Z,
@@ -514,9 +500,8 @@ qx.Class.define('cv.util.Color', {
 
     __validateLab: function (force) {
       if( this.__Lab === undefined || force ) {
-        //const Xn = 94.811/100, Yn = 100/100, Zn = 107.304/100; // D65, 10 degrees
         const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
-        const [X, Y, Z] = this.__getXYZ();
+        const {X, Y, Z} = this.__getXYZ();
         let
           f = function(t) {
                 if(t < 216/24389) {
@@ -544,6 +529,27 @@ qx.Class.define('cv.util.Color', {
       }
     },
 
+    /**
+     * Invalidate all cached values but the one to keep
+     * @private
+     * @param {string} keep
+     * @param {string} [keep2]
+     */
+    __invalidateBut( keep, keep2 = '' ) {
+      [
+        '__rgb',
+        '__rgbw',
+        '__hsv',
+        '__Lab',
+        '__LCh',
+        '__T'
+      ].forEach( cache => {
+        if( cache !== keep && cache !== keep2 ) {
+          this[cache] = undefined;
+        }
+      });
+    },
+
     // synchronise xyY
     __syncHSV2xy: function () {
       // first step: get maximum saturated RGB values
@@ -569,51 +575,12 @@ qx.Class.define('cv.util.Color', {
       }
 
       // second step: blend with white to take saturation into account and scale with brightness
-      let
-        x = ((this.__R.x * r + this.__G.x * g + this.__B.x * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x), // * this.__hsv.v,
-        y = ((this.__R.y * r + this.__G.y * g + this.__B.y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y), // * this.__hsv.v,
-        X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
-        Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
-        Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z), // * this.__hsv.v,
-        Xh = (this.__R.X * r + this.__G.X * g + this.__B.X * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.X), // * this.__hsv.v,
-        Yh = (this.__R.Y * r + this.__G.Y * g + this.__B.Y * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y), // * this.__hsv.v,
-        Zh = (this.__R.Z * r + this.__G.Z * g + this.__B.Z * b),// * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z), // * this.__hsv.v,
-        XYZh = Xh + Yh + Zh,
-        XYZ = X + Y + Z;
-
-      //console.log('###: ',{r:r,g:g,b:b},{h:this.__hsv.h,s:this.__hsv.s,v:this.__hsv.v});
-      x = (Xh / XYZh) * this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
-      y = (Yh / XYZh) * this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
-      X*=this.__hsv.v;
-      Y*=this.__hsv.v;
-      Z*=this.__hsv.v;
-      /*
-      XYZ*=this.__hsv.v;
-      if( XYZ > 0 ) {
-        this.__x = X / XYZ;
-        this.__y = Y / XYZ;
-      }
-      //this.__x = x;
-      //this.__y = y;
-      this.__Y = Y;// * this.__hsv.v;
-       */
+      const
+        X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X) * this.__hsv.v,
+        Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y) * this.__hsv.v,
+        Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z) * this.__hsv.v;
       this.__setXYZ(X, Y, Z);
-
-      //////
-      //this.__x = (X / XYZ)* this.__hsv.s + (1-this.__hsv.s) * this.__W.x;
-      //this.__y = (Y / XYZ)* this.__hsv.s + (1-this.__hsv.s) * this.__W.y;
-      //this.__Y = this.__hsv.v;
-      /*
-      this.__x = x;
-      this.__y = y;
-      this.__Y = this.__hsv.v;
-
-       */
-      this.__rgb = undefined;
-      this.__rgbw = undefined;
-      this.__Lab = undefined;
-      this.__LCh = undefined;
-      this.__T = undefined;
+      this.__invalidateBut('__hsv');
     },
 
     __syncRGB2xy: function () {
@@ -625,11 +592,7 @@ qx.Class.define('cv.util.Color', {
           Z = this.__R.Z * this.__rgb.r + this.__G.Z * this.__rgb.g + this.__B.Z * this.__rgb.b;
         this.__setXYZ( X, Y, Z );
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-      this.__rgbw = undefined;
-      this.__hsv = undefined;
-      this.__Lab = undefined;
-      this.__LCh = undefined;
-      this.__T = undefined;
+      this.__invalidateBut('__rgb');
     },
 
     __syncRGBW2xy: function () {
@@ -641,22 +604,18 @@ qx.Class.define('cv.util.Color', {
           Z = this.__R.Z * this.__rgbw.r + this.__G.Z * this.__rgbw.g + this.__B.Z * this.__rgbw.b + this.__W.Z * this.__rgbw.w;
         this.__setXYZ( X, Y, Z );
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-      this.__rgb = undefined;
-      this.__hsv = undefined;
-      this.__Lab = undefined;
-      this.__LCh = undefined;
-      this.__T = undefined;
+      this.__invalidateBut('__rgbw');
     },
 
     __syncT2xy: function () {
       let xy = cv.util.Color.temperature2xy( this.__T );
       this.__x = xy.x;
       this.__y = xy.y;
-      this.__hsv = undefined;
-      this.__rgb = undefined;
-      this.__rgbw = undefined;
-      this.__Lab = undefined;
-      this.__LCh = undefined;
+      this.__invalidateBut('__T');
+    },
+
+    __syncY2xy: function () {
+      this.__invalidateBut('__T');
     },
 
     __syncLab2xy: function (keepLCh = false) {
@@ -676,13 +635,7 @@ qx.Class.define('cv.util.Color', {
         Z = Zn * fInv(L16 - Lab.b/200);
       this.__setXYZ( X, Y, Z );
 
-      this.__T = undefined;
-      this.__hsv = undefined;
-      this.__rgb = undefined;
-      this.__rgbw = undefined;
-      if(!keepLCh) {
-        this.__LCh = undefined;
-      }
+      this.__invalidateBut('__Lab', keepLCh?'__LCh':'');
     },
 
     __syncLCh2xy: function () {
@@ -696,11 +649,13 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Change the color by changing one of it's components
-     * @param component
-     * @param value
+     * @param {string} component
+     * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{x:number, y:number})} value
      */
     changeComponent: function( component, value ) {
-      function clamp(x, min=0, max=1) { return Math.min(Math.max(min,x),max); }
+      function clamp(x, min=0, max=1) {
+        return Math.min(Math.max(min,x),max);
+      }
 
       switch( component ) {
         case 'h':
@@ -765,6 +720,11 @@ qx.Class.define('cv.util.Color', {
           this.__rgb = undefined;
           break;
 
+        case 'Y':
+          this.__Y = clamp(value);
+          this.__syncY2xy();
+          break;
+
         case 'LCh-L':
         case 'LCh-C':
         case 'LCh-h':
@@ -784,16 +744,24 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Set the internal value to the given HSV value without a check.
-     * THIS IS FOR INTERNAL USE ONLY!
-     * @param hsv
+     * THIS IS FOR INTERNAL USE ONLY! DO NOT USE!
+     * @private
+     * @param {{h: number, s: number, v: number}} hsv
      */
     _forceHSV: function (hsv) {
       this.__hsv = hsv;
       this.__syncHSV2xy();
     },
 
+    /**
+     * Get the value(s) of the specified component
+     * @param {string} component
+     * @param {boolean} gamutMap
+     * @param {boolean} force
+     * @returns {(number|{x: number, y: number}|{h: number, s: number, v: number}|{r: number, g: number, b: number}|{L: number, a: number, b: number}|{L: number, C: number, h: number})}
+     */
     getComponent: function (component, gamutMap = true, force = false) {
-      let clamp = (min, x, max) => gamutMap ? Math.max(min, Math.min(x, max)) : x;
+      const clamp = (min, x, max) => gamutMap ? Math.max(min, Math.min(x, max)) : x;
 
       switch(component) {
         case 'xy':
@@ -861,19 +829,22 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Return a copy from this color
+     * @returns {cv.util.Color}
      */
     copy: function () {
-      return qx.lang.Object.clone( this );
+      return Object.assign(new cv.util.Color(), this);
     },
 
     /**
-     * Calculate the distance (difference) between this color and the otherColor.
+     * Calculate the distance (difference) between this color and the otherColor
+     * in HSV color space.
      * The result will be a number between 0.0 and 1.0
-     * @param otherColor
+     * @param {cv.util.Color} otherColor
+     * @returns {number}
      */
     delta: function (otherColor) {
       this.__validateHSV();
-      let
+      const
         hsv = otherColor.getComponent('hsv'),
         dh = this.__hsv.h - hsv.h,
         ds = this.__hsv.s - hsv.s,
@@ -887,11 +858,12 @@ qx.Class.define('cv.util.Color', {
      * otherColor must have the same base colors xy coordinates, as this
      * is not checked or even enforced doing a blend between such different
      * colors will create an undesired result.
-     * @param {cv.ui.Color} otherColor
-     * @param {Number} ratio
+     * @param {cv.util.Color} otherColor
+     * @param {number} ratio
+     * @returns {cv.util.Color}
      */
     blend: function (otherColor, ratio) {
-      let
+      const
         b = (x,y) => ((1-ratio)*x + ratio*y),
         c = this.copy(),
         c1 = this.getComponent('hsv'),

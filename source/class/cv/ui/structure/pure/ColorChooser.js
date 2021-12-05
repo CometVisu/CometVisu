@@ -173,6 +173,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           case 'LCh-L':
           case 'LCh-C':
           case 'LCh-h':
+          case 'Y':
             retval += '<div class="actor cc_' + control + ` ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
               <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
               <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);"></div>
