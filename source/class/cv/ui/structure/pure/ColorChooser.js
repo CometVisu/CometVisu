@@ -42,8 +42,8 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
      * @param radius (outside) radius of the triangle
      */
     coord2sv: function( x, y, hue, radius ) {
-      const hue2angle = 2 * Math.PI;
       const
+        hue2angle = 2 * Math.PI,
         // coordinates of the triangle corners
         Sx = 0.5 - Math.sin( hue2angle * (   -hue) ) * radius, // 100% saturation
         Sy = 0.5 - Math.cos( hue2angle * (   -hue) ) * radius,
@@ -52,17 +52,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         Bx = 0.5 - Math.sin( hue2angle * (1/3-hue) ) * radius, // 100% black
         By = 0.5 - Math.cos( hue2angle * (1/3-hue) ) * radius,
         // differences to determine (u,v) coordinates of (x,y)
-        WSx = Wx - Sx,
-        WSy = Wy - Sy,
-        BSx = Bx - Sx,
-        BSy = By - Sy,
-        CSx = x - Sx,
-        CSy = y - Sy,
-        uv = cv.util.Color.solve2d(WSx, WSy, BSx, BSy, CSx, CSy),
-        u = uv[0], v = uv[1],
+        WBx = Wx - Bx,
+        WBy = Wy - By,
+        SBx = Sx - Bx,
+        SBy = Sy - By,
+        CBx = x - Bx,
+        CBy = y - By,
+        uv = cv.util.Color.solve2d(WBx, WBy, SBx, SBy, CBx, CBy),
+        u = Math.min(Math.max(0,uv[0]),1), v = Math.min(Math.max(0,uv[1]),1),
         // convert (u,v) to S and V
-        saturation = 1 - u - v,
-        value      = (Math.abs(1 - saturation) < 1e-3) ? 0.5 : u / (1 - saturation);
+        value = u + v,
+        saturation = Math.abs(value) < 1e-3 ? 0 : v/value;
       return [saturation, value];
     },
   },
@@ -353,9 +353,10 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       this.__colorCurrent = ratio;
       // move handles
       for( let type in this.__actors ) {
-        let
-          actor = this.__actors[type];
+        let actor = this.__actors[type];
         if( type === 'wheel' ) {
+          const Bt = 75, St = 0, Wt = 75;
+          const Bl = 50-85/2, Sl = 50, Wl = 50+85/2;
           let angle;
           if(actor.isLCh) {
             let LCh = this.__colorCurrent.getComponent('LCh');
@@ -363,14 +364,16 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             let g = cv.util.Color.curve(LCh.h, [ 27, 224, 255, 136,  27],1);
             let b = cv.util.Color.curve(LCh.h, [136,  32, 224, 245, 136],1);
             angle = (LCh.h*360)+'deg';
-            actor.handle.style.top = (1-LCh.C) * 75 + '%';
-            actor.handle.style.left = (50+(LCh.L-0.5)*(1-LCh.C) * 85) + '%';
+            const WSt = LCh.C*St + (1-LCh.C)*Wt, WSl = LCh.C*Sl + (1-LCh.C)*Wl;
+            actor.handle.style.top  = (LCh.L*WSt + (1-LCh.L)*Bt) + '%';
+            actor.handle.style.left = (LCh.L*WSl + (1-LCh.L)*Bl) + '%';
             actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb('+[r,g,b].join(',')+')';
           } else {
             let hsv = this.__colorCurrent.getComponent('hsv');
             angle = (hsv.h*360)+'deg';
-            actor.handle.style.top = (1-hsv.s) * 75 + '%';
-            actor.handle.style.left = (50+(hsv.v-0.5)*(1-hsv.s) * 85) + '%';
+            const WSt = hsv.s*St + (1-hsv.s)*Wt, WSl = hsv.s*Sl + (1-hsv.s)*Wl;
+            actor.handle.style.top  = (hsv.v*WSt + (1-hsv.v)*Bt) + '%';
+            actor.handle.style.left = (hsv.v*WSl + (1-hsv.v)*Bl) + '%';
             actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),hsl('+angle+' 100% 50%)';
           }
           actor.sv_element.style.transform = 'rotate('+angle+')';
@@ -414,44 +417,44 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     handleEvent: function (event) {
       let relCoordX = 0;
       let relCoordY = 0;
+      let actor;
 
       switch(event.type) {
         case 'pointerdown':
           document.addEventListener('pointermove', this);
           document.addEventListener('pointerup', this);
           let actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/,'$1');
+          actor = this.__actors[actorType];
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMinX = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-          this.__coordMinY = boundingRect.top;// + parseFloat(computedStyle.paddingTop);
-          relCoordX = (event.clientX - this.__coordMinX)/this.__actors[actorType].width;
-          relCoordY = (event.clientY - this.__coordMinY)/this.__actors[actorType].height;
+          this.__coordMinY = boundingRect.top;
+          relCoordX = (event.clientX - this.__coordMinX)/actor.width;
+          relCoordY = (event.clientY - this.__coordMinY)/actor.height;
           if( actorType === 'wheel' ) {
-            let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent(this.__actors.wheel.isLCh?'LCh':'hsv').h,radius);
-            if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
-              this.__mode = 'wheel_sv';
-              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', sv);
+            let radius = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
+            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX,relCoordY,this.__color.getComponent(actor.isLCh?'LCh':'hsv').h,radius);
+            let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
+            if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
+              this.__mode = 'wheel_h';
+              this.__color.changeComponent(actor.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
               this.__inDrag = true;
-            } else {
-              let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
-              if( radius**2 < distSqrd && distSqrd < 0.5**2 ) {
-                this.__mode = 'wheel_h';
-                this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI );
-                this.__inDrag = true;
-              }
+            } else if( 0<=sv[0] && sv[0]<=1 && 0<=sv[1] && sv[1]<=1 ) {
+              this.__mode = 'wheel_sv';
+              this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', sv);
+              this.__inDrag = true;
             }
           } else if( actorType === 'box' ) {
-            let boxSize = this.__actors.box !== undefined ? (0.5 * this.__actors.box.innerRadius / this.__actors.box.outerRadius) : 1;
+            let boxSize = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
             let x = relCoordX-0.5, y = relCoordY-0.5;
             let sv =  [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
             if( (Math.abs(x) < boxSize) && (Math.abs(y) < boxSize) ) {
               this.__mode = 'box_sv';
-              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', sv);
+              this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', sv);
               this.__inDrag = true;
             } else {
-              this.__mode = 'wheel_h';
-              this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-x, y) / 2/Math.PI );
+              this.__mode = 'box_h';
+              this.__color.changeComponent(actor.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-x, y) / 2/Math.PI );
               this.__inDrag = true;
             }
           } else {
@@ -475,8 +478,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             document.removeEventListener('pointerup', this);
           }
           let type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
-          relCoordX = (event.clientX - this.__coordMinX)/this.__actors[type].width;
-          relCoordY = (event.clientY - this.__coordMinY)/this.__actors[type].height;
+          actor = this.__actors[type];
+          relCoordX = (event.clientX - this.__coordMinX)/actor.width;
+          relCoordY = (event.clientY - this.__coordMinY)/actor.height;
           break;
 
         case 'pointerup':
@@ -484,26 +488,30 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           document.removeEventListener('pointermove', this);
           document.removeEventListener('pointerup', this);
           type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
-          relCoordX = (event.clientX - this.__coordMinX)/this.__actors[type].width;
-          relCoordY = (event.clientY - this.__coordMinY)/this.__actors[type].height;
+          actor = this.__actors[type];
+          relCoordX = (event.clientX - this.__coordMinX)/actor.width;
+          relCoordY = (event.clientY - this.__coordMinY)/actor.height;
           break;
       }
 
       if(event.type !== 'pointerdown') {
+        let type = this.__mode.split('_')[0]; // clamp "wheel_*" to "wheel"
+        let actor = this.__actors[type];
         switch (this.__mode) {
           case 'wheel_sv':
-            let radius = this.__actors.wheel !== undefined ? (0.5 * this.__actors.wheel.innerRadius / this.__actors.wheel.outerRadius) : 1;
-            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(this.__actors.wheel.isLCh?'LCh':'hsv').h, radius);
-            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
+            let radius = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
+            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(actor.isLCh?'LCh':'hsv').h, radius);
+            this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'box_sv':
-            let boxSize = this.__actors.box !== undefined ? (0.5 * this.__actors.box.innerRadius / this.__actors.box.outerRadius) : 1;
+            let boxSize = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
             let x = relCoordX-0.5, y = relCoordY-0.5;
-            sv =  [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
-            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
+            sv = [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
+            this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', [Math.min(Math.max(sv[0], 0), 1), Math.min(Math.max(sv[1], 0), 1)]);
             break;
           case 'wheel_h':
-            this.__color.changeComponent(this.__actors.wheel.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+          case 'box_h':
+            this.__color.changeComponent(actor.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
             break;
           case 'T':
             this.__color.changeComponent('T', this.__Tmin + Math.max(0, Math.min(relCoordX, 1)) * (this.__Tmax - this.__Tmin) );
