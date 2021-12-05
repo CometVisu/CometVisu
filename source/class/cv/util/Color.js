@@ -619,11 +619,10 @@ qx.Class.define('cv.util.Color', {
     __syncRGB2xy: function () {
       this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
       if( this.__Y > 0 ) {
-        let
-          min = Math.min(this.__rgb.r, this.__rgb.g, this.__rgb.b),
-          X = this.__R.X * (this.__rgb.r - min) + this.__G.X * (this.__rgb.g - min) + this.__B.X * (this.__rgb.b - min) + this.__W.X * min,
-          Y = this.__R.Y * (this.__rgb.r - min) + this.__G.Y * (this.__rgb.g - min) + this.__B.Y * (this.__rgb.b - min) + this.__W.Y * min,
-          Z = this.__R.Z * (this.__rgb.r - min) + this.__G.Z * (this.__rgb.g - min) + this.__B.Z * (this.__rgb.b - min) + this.__W.Z * min;
+        const
+          X = this.__R.X * this.__rgb.r + this.__G.X * this.__rgb.g + this.__B.X * this.__rgb.b,
+          Y = this.__R.Y * this.__rgb.r + this.__G.Y * this.__rgb.g + this.__B.Y * this.__rgb.b,
+          Z = this.__R.Z * this.__rgb.r + this.__G.Z * this.__rgb.g + this.__B.Z * this.__rgb.b;
         this.__setXYZ( X, Y, Z );
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__rgbw = undefined;
