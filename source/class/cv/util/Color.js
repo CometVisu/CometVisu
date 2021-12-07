@@ -708,21 +708,47 @@ qx.Class.define('cv.util.Color', {
           this.__syncRGBW2xy();
           break;
 
+        case 'rgbw':
+          this.__rgbw = {
+            r: clamp(value.r),
+            g: clamp(value.g),
+            b: clamp(value.b),
+            w: clamp(value.w)
+          };
+          this.__syncRGBW2xy();
+          break;
+
         case 'T':
           this.__T = Math.max( 1667, Math.min( value, 25000 ) );
           this.__syncT2xy();
           break;
 
+        case 'x':
+          this.__y = clamp(value);
+          this.__invalidateBut(''); // all precalculated colors are invalid now
+          break;
+
+        case 'y':
+          this.__y = clamp(value);
+          this.__invalidateBut(''); // all precalculated colors are invalid now
+          break;
+
         case 'xy':
           this.__x = clamp(value.x);
           this.__y = clamp(value.y);
-          this.__hsv = undefined;
-          this.__rgb = undefined;
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
         case 'Y':
           this.__Y = clamp(value);
           this.__syncY2xy();
+          break;
+
+        case 'xyY':
+          this.__x = clamp(value.x);
+          this.__y = clamp(value.y);
+          this.__Y = clamp(value.Y);
+          this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
         case 'LCh-L':
@@ -758,10 +784,10 @@ qx.Class.define('cv.util.Color', {
      * @param {string} component
      * @param {boolean} gamutMap
      * @param {boolean} force
-     * @returns {(number|{x: number, y: number}|{h: number, s: number, v: number}|{r: number, g: number, b: number}|{L: number, a: number, b: number}|{L: number, C: number, h: number})}
+     * @returns {(number|{x: number, y: number}|{h: number, s: number, v: number}|{r: number, g: number, b: number, w: number}|{L: number, a: number, b: number}|{L: number, C: number, h: number})}
      */
     getComponent: function (component, gamutMap = true, force = false) {
-      const clamp = (min, x, max) => gamutMap ? Math.max(min, Math.min(x, max)) : x;
+      const clamp = (min, x, max) => Number.isFinite(x) ? (gamutMap ? Math.max(min, Math.min(x, max)) : x) : 0;
 
       switch(component) {
         case 'xy':
@@ -796,7 +822,7 @@ qx.Class.define('cv.util.Color', {
           return {
             r: map * this.__rgb.r,
             g: map * this.__rgb.g,
-            b: map * this.__rgb.b,
+            b: map * this.__rgb.b
           };
 
         case 'RGBW-r':
@@ -806,6 +832,16 @@ qx.Class.define('cv.util.Color', {
           this.__validateRGBW(force);
           map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
           return map * this.__rgbw[component.split('-')[1]];
+
+        case 'rgbw':
+          this.__validateRGBW(force);
+          map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
+          return {
+            r: map * this.__rgbw.r,
+            g: map * this.__rgbw.g,
+            b: map * this.__rgbw.b,
+            w: map * this.__rgbw.w
+          };
 
         case 'T':
           this.__validateT(force);

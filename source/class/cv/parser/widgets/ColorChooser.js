@@ -181,7 +181,7 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
     },
     
     makeAddressListFn: function(src, transform, mode, variant) {
-      return [true, variant];
+      return [true, (new Set(['r', 'g', 'b'])).has(variant) ? 'RGB-'+variant : variant];
     },
 
     getAttributeToPropertyMappings: function () {

@@ -212,6 +212,19 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     _update: function (address, data) {
+      function deleteBut( keepArray ) {
+        return; ////////////////////////////////////////////////////
+        [
+          'rgb', 'RGB-r', 'RGB-g', 'RGB-b',
+          'rgbw', 'RGBW-r', 'RGBW-g', 'RGBW-b', 'RGBW-w',
+          'hsv', 'h', 's', 'v'
+        ].forEach( cache => {
+          if( !keepArray.includes(cache) ) {
+            this.__lastBusValue[cache] = undefined;
+          }
+        });
+      }
+
       let
         transform = this.getAddress()[address].transform,
         variant = this.getAddress()[ address ].variantInfo,
@@ -234,22 +247,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 's':
         case 'v':
           value /= 100;
-          delete this.__lastBusValue.hsv;
-          delete this.__lastBusValue.r;
-          delete this.__lastBusValue.g;
-          delete this.__lastBusValue.b;
-          delete this.__lastBusValue.rgb;
+          deleteBut(['h', 's', 'v']);
           break;
 
         case 'hsv':
-          value = { h: value.get('h')/100, s: value.get('s')/100, v: value.get('v')/100 };
-          delete this.__lastBusValue.h;
-          delete this.__lastBusValue.s;
-          delete this.__lastBusValue.v;
-          delete this.__lastBusValue.r;
-          delete this.__lastBusValue.g;
-          delete this.__lastBusValue.b;
-          delete this.__lastBusValue.rgb;
+          value = { h: value.get('h')/360, s: value.get('s')/100, v: value.get('v')/100 };
+          deleteBut(['hsv']);
           break;
 
         case 'RGB-r':
@@ -257,11 +260,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGB-b':
           base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
-          delete this.__lastBusValue.h;
-          delete this.__lastBusValue.s;
-          delete this.__lastBusValue.v;
-          delete this.__lastBusValue.hsv;
-          delete this.__lastBusValue.rgb;
+          deleteBut(['RGB-r', 'RGB-g', 'RGB-b']);
           break;
 
         case 'rgb':
@@ -271,13 +270,70 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
             b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale )
           };
-          delete this.__lastBusValue.h;
-          delete this.__lastBusValue.s;
-          delete this.__lastBusValue.v;
-          delete this.__lastBusValue.hsv;
-          delete this.__lastBusValue.r;
-          delete this.__lastBusValue.g;
-          delete this.__lastBusValue.b;
+          deleteBut(['rgb']);
+          break;
+
+        case 'RGBW-r':
+        case 'RGBW-g':
+        case 'RGBW-b':
+        case 'RGBW-w':
+          base = this.getBaseColors()[variant.split('-')[1]];
+          value = cv.util.Color.invCurve( value, base.curve, base.scale );
+          deleteBut(['RGBW-r', 'RGBW-g', 'RGBW-b', 'RGBW-w']);
+          break;
+
+        case 'rgbw':
+          base = this.getBaseColors();
+          value = {
+            r: cv.util.Color.invCurve( value.get('r'), base.r.curve, base.r.scale ),
+            g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
+            b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale ),
+            w: cv.util.Color.invCurve( value.get('w'), base.w.curve, base.w.scale )
+          };
+          deleteBut(['rgbw']);
+          break;
+
+        case 'x':
+        case 'y':
+          deleteBut(['x', 'y', 'Y']);
+          break;
+
+        case 'Y':
+          if( value instanceof Map && value.get('YValid') !== false ) {
+            value = value.get('Y');
+            deleteBut(['x', 'y', 'xy', 'Y']);
+          } else if (Number.isFinite(value) ) {
+            deleteBut(['x', 'y', 'xy', 'Y']);
+          } else {
+            return; // nothing that can be done with this data
+          }
+          break;
+
+        case 'xy':
+          if( value instanceof Map && value.get('cValid') !== false ) {
+            value = { x: value.get('x'), y: value.get('y') };
+            deleteBut(['xy', 'Y']);
+          } else if( value.hasOwnProperty('x') && value.hasOwnProperty('y') ) {
+            deleteBut(['xy', 'Y']);
+          } else {
+            return; // nothing that can be done with this data
+          }
+          break;
+
+        case 'xyY':
+          if( value instanceof Map ) {
+            variant = (value.get('cValid') !== false ? 'xy' : '') + (value.get('YValid') !== false ? 'Y' : '');
+            value = {
+              x: value.get('x'),
+              y: value.get('y'),
+              Y: value.get('Y')
+            };
+            if( variant === '' ) {
+              return; // no valid data in the value
+            }
+          } else {
+            return; // nothing that can be done with this data
+          }
           break;
       }
 
@@ -527,26 +583,32 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     __onChangeValue: function() {
-      this.__components.forEach((typeRaw) => {
+      this.__components.forEach((type) => {
         let
-          type = (new Set(['r', 'g', 'b'])).has(typeRaw) ? 'RGB-'+typeRaw : typeRaw,
-          value = this.__color.getComponent(type),
+          value = this.__color.getComponent(['xyY','x','y'].includes(type) ? 'xy' : type),
           base;
 
         switch (type) {
           case 'h':
+            value *= 360;
+            break;
+
           case 's':
           case 'v':
             value *= 100;
             break;
 
           case 'hsv':
-            value = new Map([['h', value.h*100], ['s', value.s*100], ['v', value.v*100]] );
+            value = new Map([['h', value.h*360], ['s', value.s*100], ['v', value.v*100]] );
             break;
 
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
+          case 'RGBW-r':
+          case 'RGBW-g':
+          case 'RGBW-b':
+          case 'RGBW-w':
             base = this.getBaseColors()[type.split('-')[1]];
             value = cv.util.Color.curve( value, base.curve, base.scale );
             break;
@@ -558,6 +620,41 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale )],
               ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale )]
             ]);
+            break;
+
+          case 'rgbw':
+            base = this.getBaseColors();
+            value = new Map([
+              ['r', cv.util.Color.curve(value.r, base.r.curve, base.r.scale )],
+              ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale )],
+              ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale )],
+              ['w', cv.util.Color.curve(value.w, base.w.curve, base.w.scale )]
+            ]);
+            break;
+
+          case 'xy':
+            value = new Map([
+              ['x', value.x],
+              ['y', value.y]
+            ]);
+            break;
+
+          case 'xyY':
+            let Y = this.__color.getComponent('Y');
+            value = new Map([
+              ['x', value.x],
+              ['y', value.y],
+              ['Y', Y*100]
+            ]);
+            break;
+
+          case 'Y':
+            value *= 100;
+            break;
+
+          case 'x':
+          case 'y':
+            value = value[type];
             break;
         }
         this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
