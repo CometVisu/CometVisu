@@ -386,6 +386,7 @@ qx.Class.define('cv.TemplateEngine', {
           const client = this.__clients[backendName];
           if (!client.isConnected() && this.__hasBeenConnected) {
             // reconnect
+            this.debug(`restarting ${backendName} backend connection`);
             client.restart(true);
           }
         });
@@ -626,9 +627,11 @@ qx.Class.define('cv.TemplateEngine', {
         // identify addresses on startpage
         client.setInitialAddresses(cv.Application.structureController.getInitialAddresses());
       }
-      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
+      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses('main');
       if (addressesToSubscribe.length !== 0) {
         client.subscribe(addressesToSubscribe);
+      } else {
+        this.warn('no addresses to subscribe to found for backend "main"');
       }
     },
 

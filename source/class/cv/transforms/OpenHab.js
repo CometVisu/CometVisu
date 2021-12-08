@@ -75,24 +75,28 @@ qx.Class.define('cv.transforms.OpenHab', {
         encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
           // noinspection EqualityComparisonWithCoercionJS
-          if (phy == 1) {
+          if (phy == -1) {
+            return 'STOP';
+          }
+          // noinspection EqualityComparisonWithCoercionJS
+          if (phy == 1 || phy == 100) {
             return 'DOWN';
-            // eslint-disable-next-line no-else-return
-          } else {
-            // noinspection EqualityComparisonWithCoercionJS
-            if (phy == 0) { // eslint-disable-line no-lonely-if
-              return 'UP';
-            }
+          }
+          // noinspection EqualityComparisonWithCoercionJS
+          if (phy == 0) { // eslint-disable-line no-lonely-if
+            return 'UP';
           }
           return phy;
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
+            return undefined;
+          } else if (str === 'UP' || str === '0') {
             return 0;
-          } else if (str === 'UP') {
-            return 0;
-          } else if (str === 'DOWN') {
-            return 1;
+          } else if (str === 'DOWN' || str === '100') {
+            return 100;
+          } else if (str === 'STOP') {
+            return -1;
           }
           return str;
         }

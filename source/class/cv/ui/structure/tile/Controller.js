@@ -31,6 +31,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   construct: function () {
     this.base(arguments);
     this.__HTML_STRUCT = '';
+    qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
   },
 
   /*
@@ -288,9 +289,16 @@ class TemplatedElement extends HTMLElement {
       attributes.forEach(name => {
         const value = this.getAttribute(name);
         const targets = content.querySelectorAll('[slot-'+name+']');
+        let targetName = name;
+        // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
+        if (name.endsWith('-mapping')) {
+          targetName = 'mapping';
+        } else if (name.endsWith('-styling')) {
+          targetName = 'styling';
+        }
         targets.forEach(target => {
           target.removeAttribute('slot-'+name);
-          target.setAttribute(name, value);
+          target.setAttribute(targetName, value);
         });
         if (targets.length > 0) {
           this.removeAttribute(name);

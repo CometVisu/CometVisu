@@ -16,21 +16,41 @@
     </template>
     <template id="shutter">
         <cv-tile>
-            <cv-button class="round-button" type="trigger" row="2" column="1">
+            <cv-row colspan="3" row="first">
+                <cv-value slot-position-mapping="">
+                    <slot name="positionAddress">NEEDS ADDRESS</slot>
+                    <label class="value"/>
+                </cv-value>
+            </cv-row>
+            <cv-button class="round-button" row="2" column="1" slot-styling="" size="small" text="Runter">
                 <slot name="downAddress">NEEDS DOWNADDRESS</slot>
-                <cv-icon class="value ri-arrow-down-s-line"/>
+                <cv-icon class="ri-arrow-down-s-line"/>
             </cv-button>
-            <cv-button class="round-button" type="trigger" row="2" column="2">
+            <cv-button class="round-button" row="2" column="2"  slot-styling="">
                 <slot name="stopAddress">NEEDS STOPADDRESS</slot>
-                <cv-icon class="value ri-stop-fill"/>
+                <cv-icon class="ri-stop-fill"/>
             </cv-button>
-            <cv-button class="round-button" type="trigger" row="2" column="3">
+            <cv-button class="round-button" row="2" column="3"  slot-styling="" size="small" text="Hoch">
                 <slot name="upAddress">NEEDS UPADDRESS</slot>
-                <cv-icon class="value ri-arrow-up-s-line"/>
+                <cv-icon class="ri-arrow-up-s-line"/>
             </cv-button>
             <cv-row colspan="3" row="last">
                 <label class="primary"><slot name="primaryLabel">NEEDS LABEL</slot></label>
                 <label class="secondary"><slot name="secondaryLabel">OPTIONAL SUB LABEL</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
+    <template id="info">
+        <cv-tile>
+            <cv-row colspan="3" row="first">
+                <label class="secondary"><slot name="label">LABEL</slot></label>
+            </cv-row>
+            <cv-row colspan="3" row="2">
+                <cv-value slot-mapping="">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <p><label class="value large"/></p>
+                    <p><label class="unit"><slot name="unit">UNIT</slot></label></p>
+                </cv-value>
             </cv-row>
         </cv-tile>
     </template>

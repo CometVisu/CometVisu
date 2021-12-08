@@ -278,6 +278,7 @@
                     <xsd:enumeration value="downAddress" />
                     <xsd:enumeration value="stopAddress" />
                     <xsd:enumeration value="upAddress" />
+                    <xsd:enumeration value="positionAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -289,6 +290,12 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
+    <xsd:attribute name="position-mapping" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Map the bus value of the positionAddress to a different value. See also :ref:`mapping`</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ordnet den Werten der "positionAddress" vom Bus andere Werte zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="on-value" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>

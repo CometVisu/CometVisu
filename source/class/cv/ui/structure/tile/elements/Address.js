@@ -71,9 +71,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         detail: {
           address: this._element.textContent.trim(),
           state: cv.Transform.decode(transform, state),
-          raw: state
+          raw: state,
+          source: this
         }
       });
+      console.log(ev.detail);
       this._element.dispatchEvent(ev);
     }
   },

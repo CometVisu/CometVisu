@@ -49,7 +49,11 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
         this._initialized = false;
       }
     },
-    _init() {}
+    _init() {},
+
+    getElement() {
+      return this._element;
+    }
   },
 
   /*

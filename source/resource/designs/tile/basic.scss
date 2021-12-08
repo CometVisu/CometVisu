@@ -180,7 +180,7 @@ body {
         align-self: center;
         cursor: pointer;
 
-        .value {
+        .value, cv-icon {
             margin: 0;
             position: absolute;
             top: 50%;
@@ -197,6 +197,16 @@ body {
         border-radius: math.div($tileCellSize - $defaultSpace, 2);
     }
 
+    cv-button[size="small"] {
+        width: $tileCellSize - $defaultSpace*3;
+        height: $tileCellSize - $defaultSpace*3;
+    }
+
+    cv-button[size="large"] {
+        width: $tileCellSize;
+        height: $tileCellSize;
+    }
+
     cv-button.active {
         color: $primaryColor;
         border: 1px solid $primaryColor;
@@ -209,6 +219,9 @@ body {
             margin-block-end: 0;
         }
         label.value {
+            font-size: x-large;
+        }
+        label.value.large {
             font-size: xxx-large;
         }
         label.unit {

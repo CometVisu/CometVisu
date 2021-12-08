@@ -48,6 +48,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       check: 'String',
       nullable: true,
       apply: '_applyStyleClass'
+    },
+    text: {
+      check: 'String',
+      init: '',
+      apply: '_applyText'
     }
   },
   /*
@@ -57,11 +62,15 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   */
   members: {
     __writeAddresses: null,
+    __textLabel: null,
 
     _init() {
       const element = this._element;
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
+      }
+      if (element.hasAttribute('text')) {
+        this.setText(element.getAttribute('text'));
       }
       let hasReadAddress = false;
       let writeAddresses = [];
@@ -191,6 +200,15 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
     },
 
+    _applyText(value) {
+      if (!this.__textLabel) {
+        this.__textLabel = document.createElement('label');
+        this.__textLabel.classList.add('button-label');
+        this._element.parentNode.insertBefore(this.__textLabel, this._element.nextElementSibling);
+      }
+      this.__textLabel.textContent = value;
+    },
+
     updateValue(value) {
       const elem = this._element.querySelector('span.value');
       if (elem) {
@@ -204,6 +222,14 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
      * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
      */
     onStateUpdate(ev) {
+      if (ev.detail.source instanceof cv.ui.structure.tile.elements.Address) {
+        const addressElement = ev.detail.source.getElement();
+        if (addressElement.hasAttribute('value')) {
+          // noinspection EqualityComparisonWithCoercionJS
+          this.setOn(ev.detail.state == addressElement.getAttribute('value'));
+          return;
+        }
+      }
       // using == comparisons to make sure that e.g. 1 equals "1"
       // noinspection EqualityComparisonWithCoercionJS
       this.setOn(ev.detail.state == this.getOnValue());
