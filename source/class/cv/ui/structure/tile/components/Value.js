@@ -49,8 +49,24 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
           mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
         }
         const target = this._element.querySelector('.value');
-        if (target && target.tagName.toLowerCase() === 'cv-icon') {
-          target._instance.setId(mappedValue);
+        if (target) {
+          const tagName = target.tagName.toLowerCase();
+          let roundProgress;
+          switch (tagName) {
+            case 'cv-icon':
+              target._instance.setId(mappedValue);
+              break;
+            case 'meter':
+            case 'progress':
+              target.setAttribute('value', mappedValue);
+              this.updateValue(''+mappedValue);
+              break;
+            case 'cv-round-progress':
+              roundProgress = target.getQxInstance();
+              roundProgress.setProgress(value);
+              roundProgress.setText(mappedValue);
+              break;
+          }
         } else {
           this.updateValue(mappedValue);
         }

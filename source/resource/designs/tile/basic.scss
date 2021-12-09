@@ -227,5 +227,54 @@ body {
         label.unit {
             color: $primaryText;
         }
+        meter, progress {
+            width: ($tileCellSize * $tileColumns) - $defaultSpace*2;
+            border: 0;
+        }
+        progress[value]::-webkit-progress-bar, meter[value]::-webkit-meter-bar {
+            background-color: $borderColor;
+            border: 0;
+            height: $defaultSpace;
+            border-radius: $defaultSpace;
+            overflow: hidden;
+        }
+        progress[value]::-webkit-progress-value, meter[value]::-webkit-meter-optimum-value {
+            background-color: $primaryColor;
+            //box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 );*/
+            //background-image: $primaryColor !important;
+            //background-image: linear-gradient(to right, #F0CB35, #C02425);
+        }
+    }
+
+    cv-round-progress {
+        position: relative;
+        display: block;
+
+        svg {
+            transform: rotate(-90deg);
+            overflow: initial;
+
+            circle {
+                fill: none;
+            }
+            circle.bg {
+                stroke: $borderColor;
+            }
+            circle.bar {
+                stroke: $primaryColor;
+                position: relative;
+                z-index: 1;
+                transition: stroke-dashoffset 0.35s;
+            }
+        }
+        label {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            color: $primaryText;
+        }
     }
 }

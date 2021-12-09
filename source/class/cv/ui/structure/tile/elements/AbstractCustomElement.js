@@ -88,6 +88,10 @@ class QxConnector extends HTMLElement {
       this._instance.setConnected(false);
     }
   }
+
+  getQxInstance() {
+    return this._instance;
+  }
 }
 
 window.QxConnector = QxConnector;
