@@ -53,6 +53,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       check: 'String',
       init: '',
       apply: '_applyText'
+    },
+    progress: {
+      check: 'Number',
+      init: -1,
+      apply: '_applyProgress',
+      transform: '_parseInt'
     }
   },
   /*
@@ -63,6 +69,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   members: {
     __writeAddresses: null,
     __textLabel: null,
+    __circumference: null,
+
+    _parseInt(val) {
+      const intVal = parseInt(val);
+      return Number.isNaN(intVal) ? 0 : intVal;
+    },
 
     _init() {
       const element = this._element;
@@ -71,6 +83,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
       if (element.hasAttribute('text')) {
         this.setText(element.getAttribute('text'));
+      }
+      if (element.hasAttribute('progress')) {
+        this.setProgress(element.getAttribute('progress'));
       }
       let hasReadAddress = false;
       let writeAddresses = [];
@@ -155,6 +170,24 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
     },
 
+    _initProgress() {
+      const element = this._element;
+      this.__circumference = 100 * Math.PI;
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('type', 'circle');
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.classList.add('bar');
+      circle.setAttribute('r', '50');
+      circle.setAttribute('cx', '50');
+      circle.setAttribute('cy', '50');
+      circle.setAttribute('stroke-width', '2');
+      circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
+      circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
+      svg.appendChild(circle);
+      element.appendChild(svg);
+    },
+
     _applyConnected(value) {
       this.base(arguments, value);
       if (value) {
@@ -183,6 +216,17 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
         }
         this.setStyleClass(styleClass);
+      }
+    },
+
+    _applyProgress(value) {
+      let valueElement = this._element.querySelector(':scope > svg > circle.bar');
+      if (!valueElement) {
+        this._initProgress();
+        valueElement = this._element.querySelector(':scope > svg > circle.bar');
+      }
+      if (valueElement) {
+        valueElement.setAttribute('stroke-dashoffset', '' + (this.__circumference - value / 100 * this.__circumference));
       }
     },
 
@@ -222,17 +266,22 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
      * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
      */
     onStateUpdate(ev) {
+      // using == comparisons to make sure that e.g. 1 equals "1"
+      // noinspection EqualityComparisonWithCoercionJS
+      let value = ev.detail.state == this.getOnValue();
+      let target = ev.detail.target || 'default';
       if (ev.detail.source instanceof cv.ui.structure.tile.elements.Address) {
         const addressElement = ev.detail.source.getElement();
         if (addressElement.hasAttribute('value')) {
           // noinspection EqualityComparisonWithCoercionJS
-          this.setOn(ev.detail.state == addressElement.getAttribute('value'));
-          return;
+          value = ev.detail.state == addressElement.getAttribute('value');
         }
       }
-      // using == comparisons to make sure that e.g. 1 equals "1"
-      // noinspection EqualityComparisonWithCoercionJS
-      this.setOn(ev.detail.state == this.getOnValue());
+      if (target === 'default') {
+        this.setOn(value);
+      } else if (target === 'progress') {
+        this.setProgress(ev.detail.state);
+      }
     },
 
     onClicked() {

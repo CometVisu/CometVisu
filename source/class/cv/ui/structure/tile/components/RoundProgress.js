@@ -98,7 +98,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
         switch (this.getType()) {
           case 'circle':
             valueElement = this._element.querySelector(':scope > svg > circle.bar');
-            valueElement.style.strokeDashoffset = this.__circumference - value / 100 * this.__circumference;
+            valueElement.setAttribute('stroke-dashoffset', ''+this.__circumference - value / 100 * this.__circumference);
             break;
 
           case 'semiCircle':
