@@ -57,6 +57,19 @@ qx.Class.define('cv.transforms.OpenHab', {
           return (string === 'ON' || parseInt(string) > 0) ? 1 : 0;
         }
       },
+      'playPause': {
+        name: 'OH_PlayPause',
+        encode: function (phy) {
+          // using == comparisons to make sure that e.g. 1 equals "1"
+          return phy == 1 ? 'PLAY' : 'PAUSE'; // jshint ignore:line
+        },
+        decode: function (string) {
+          if (cv.transforms.OpenHab.isUndefined(string)) {
+            return 0;
+          }
+          return (string === 'PLAY' || parseInt(string) > 0) ? 1 : 0;
+        }
+      },
       'contact': {
         name: 'OH_Contact',
         encode: function (phy) {

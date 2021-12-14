@@ -59,16 +59,17 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             case 'meter':
             case 'progress':
               target.setAttribute('value', mappedValue);
-              this.updateValue(''+mappedValue);
+              target.innerHTML = ''+mappedValue;
               break;
             case 'cv-round-progress':
               roundProgress = target.getQxInstance();
               roundProgress.setProgress(value);
               roundProgress.setText(mappedValue);
               break;
+            case 'label':
+              target.innerHTML = value;
+              break;
           }
-        } else {
-          this.updateValue(mappedValue);
         }
         if (this._element.hasAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
@@ -88,13 +89,6 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
         }
       } else if (value) {
         classes.add(value);
-      }
-    },
-
-    updateValue(value) {
-      const elem = this._element.querySelector('.value');
-      if (elem) {
-        elem.innerHTML = value;
       }
     },
 

@@ -112,10 +112,6 @@ qx.Class.define('cv.ui.structure.tile.Page', {
     qx.log.Logger.info(statics, `registering ${cv.ui.structure.tile.Controller.PREFIX}page component`);
 
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'page', class extends HTMLElement {
-
-    });
-    customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'tile', class extends HTMLElement {
-
     });
     customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'row', class extends HTMLElement {
       constructor() {

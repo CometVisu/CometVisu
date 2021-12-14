@@ -71,12 +71,16 @@ body {
         width: $tileCellSize * $tileColumns;
         height: $tileCellSize * $tileRows;
         background-color: $tileBackground;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
         border-radius: $borderRadius;
         box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
         display: grid;
         grid-template-columns: repeat($tileColumns, 1fr);
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
+        position: relative;
 
         .row {
             height: 64px;
@@ -141,6 +145,31 @@ body {
 
     cv-tile.clickable {
         cursor: pointer;
+    }
+    cv-tile.has-bg-image {
+        label {
+            mix-blend-mode: difference;
+            filter: drop-shadow(.05em .05em white);
+        }
+
+    }
+    cv-tile.has-bg-image {
+        > * {
+            z-index: 2;
+        }
+
+        > .overlay {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.6;
+            background-color: black;
+            border-radius: $borderRadius;
+        }
     }
 
     label, label.primary {
@@ -229,6 +258,8 @@ body {
 
     cv-button.active {
         color: $primaryColor;
+    }
+    cv-button.active:not(.progress) {
         border: 1px solid $primaryColor;
         box-shadow: 0 0 1px 0 $primaryColor inset, 0 0 1px 0 $primaryColor;
     }
@@ -237,6 +268,9 @@ body {
         p {
             margin-block-start: 0;
             margin-block-end: 0;
+        }
+        label.value.medium {
+            font-size: medium;
         }
         label.value {
             font-size: x-large;

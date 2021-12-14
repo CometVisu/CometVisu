@@ -11,6 +11,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   */
   construct: function (element) {
     this.base(arguments, element);
+    this.__store = new Map();
   },
 
   /*
@@ -70,6 +71,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     __writeAddresses: null,
     __textLabel: null,
     __circumference: null,
+    /**
+     * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
+     */
+    __store: null,
 
     _parseInt(val) {
       const intVal = parseInt(val);
@@ -186,6 +191,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
       svg.appendChild(circle);
       element.appendChild(svg);
+      // make sure that we do not override the progress bar by state appearance
+      element.classList.add('progress');
     },
 
     _applyConnected(value) {
@@ -203,7 +210,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
         if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
+          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__store);
         }
         const target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'cv-icon') {
@@ -213,7 +220,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
         let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
         if (this._element.hasAttribute('styling')) {
-          styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
+          styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__store);
         }
         this.setStyleClass(styleClass);
       }
@@ -226,6 +233,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         valueElement = this._element.querySelector(':scope > svg > circle.bar');
       }
       if (valueElement) {
+        if (this._element.hasAttribute('progress-mapping')) {
+          value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__store);
+        }
         valueElement.setAttribute('stroke-dashoffset', '' + (this.__circumference - value / 100 * this.__circumference));
       }
     },
@@ -281,6 +291,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this.setOn(value);
       } else if (target === 'progress') {
         this.setProgress(ev.detail.state);
+      } else if (target.startsWith('store:')) {
+        this.__store.set(target.substr(6), ev.detail.state);
       }
     },
 

@@ -33,7 +33,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
     },
 
-    mapValue(val) {
+    /**
+     *
+     * @param val {variant}
+     * @param store {Map<string, variant>?} optional stored values from other addresses
+     * @return {string|*|string}
+     */
+    mapValue(val, store) {
       if (Object.prototype.hasOwnProperty.call(this.__cache, val)) {
         return this.__cache[val];
       }
@@ -46,11 +52,15 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
       const formula = this._element.querySelector(':scope > formula');
       if (formula) {
+        let noCache = false;
         if (!formula._formula) {
-          formula._formula = new Function('x', 'let y;' + formula.textContent + '; return y;');
+          let content = formula.textContent;
+          formula._formula = new Function('x', 'store', 'let y;' + content + '; return y;');
         }
-        mappedValue = formula._formula(val);
-        this.__cache[val] = mappedValue;
+        mappedValue = formula._formula(val, store);
+        if (!noCache) {
+          this.__cache[val] = mappedValue;
+        }
         return mappedValue;
       }
       const entries = this._element.querySelectorAll(':scope > entry');
