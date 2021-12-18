@@ -15,7 +15,6 @@ qx.Class.define('cv.ui.structure.tile.components.Tile', {
       const hasReadAddress = Array.prototype.some.call(element.querySelectorAll(':scope > cv-address'),
           address => !element.hasAttribute('mode') || element.getAttribute('mode') !== 'write');
 
-      console.log(hasReadAddress);
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
           this.onStateUpdate(ev);

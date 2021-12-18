@@ -42,7 +42,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
 
     _init() {
       const element = this._element;
-      const radius = this.__radius = element.getAttribute('radius') || 64;
+      const radius = this.__radius = element.getAttribute('radius') || 48;
       const strokeWidth = element.getAttribute('stroke') || 8;
       const normalizedRadius = this.__normalizedRadius = radius - strokeWidth / 2;
       this.__circumference = normalizedRadius * 2 * Math.PI;

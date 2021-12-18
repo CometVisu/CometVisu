@@ -3,7 +3,7 @@
     <template id="switch">
         <cv-tile>
             <cv-row colspan="3" row="middle">
-                <cv-button class="round-button" slot-mapping="" slot-styling="">
+                <cv-button class="round-button" slot-mapping="" slot-styling="" size="large">
                     <slot name="address">NEEDS ADDRESS</slot>
                     <cv-icon class="value ri-question-mark" />
                 </cv-button>
@@ -22,7 +22,7 @@
                     <label class="value"/>
                 </cv-value>
             </cv-row>
-            <cv-button class="round-button" row="2" column="1" slot-styling="" size="small" text="Runter">
+            <cv-button class="round-button" row="2" column="1" slot-styling="" size="small">
                 <slot name="downAddress">NEEDS DOWNADDRESS</slot>
                 <cv-icon class="ri-arrow-down-s-line"/>
             </cv-button>
@@ -30,7 +30,7 @@
                 <slot name="stopAddress">NEEDS STOPADDRESS</slot>
                 <cv-icon class="ri-stop-fill"/>
             </cv-button>
-            <cv-button class="round-button" row="2" column="3"  slot-styling="" size="small" text="Hoch">
+            <cv-button class="round-button" row="2" column="3"  slot-styling="" size="small">
                 <slot name="upAddress">NEEDS UPADDRESS</slot>
                 <cv-icon class="ri-arrow-up-s-line"/>
             </cv-button>

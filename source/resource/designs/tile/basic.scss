@@ -14,9 +14,18 @@ $secondaryText: #7e7d7d;
 /* dimensions */
 $defaultSpace: 8px;
 $tileCellSize: 64px;
+$defaultButtonSize: 56px;
 $borderRadius: 18px;
 $tileRows: 3;
 $tileColumns: 3;
+
+
+:root {
+    --tileCellWidth: #{$tileCellSize};
+    --tileCellHeight: #{$tileCellSize};
+    --spacing: #{$defaultSpace};
+    --defaultButtonSize: calc(#{$defaultButtonSize} - #{$defaultSpace});
+}
 
 @font-face {
     font-family: "Roboto";
@@ -32,20 +41,28 @@ body {
     font-family: Roboto Arial sans-serif;
     color: $primaryText;
     margin: 0;
+    position: relative;
 
     cv-page {
-        padding: $defaultSpace*2;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        gap: $defaultSpace * 2;
+        align-content: flex-start;
+        gap: var(--spacing);
+        overflow-y: auto;
+        overflow-x: hidden;
 
         details {
             flex: 0 0 100%;
             border-top: 1px solid $borderColor;
-            margin-top: $defaultSpace*2;
+            margin-top:calc(var(--spacing)*2);
             summary {
-                padding: $defaultSpace 0;
+                padding: var(--spacing) 0;
                 float: none !important;
                 margin-left: 0 !important;
             }
@@ -56,20 +73,18 @@ body {
         }
         details > * {
             float: left;
-            margin-left: $defaultSpace * 2;
-        }
-        details > summary + * {
-            margin-left: 0;
+            margin-top: var(--spacing);
+            margin-left: var(--spacing);
         }
     }
     cv-switch, cv-shutter {
-        width: $tileCellSize * $tileColumns;
-        height: $tileCellSize * $tileRows;
+        width: calc(var(--tileCellWidth) * #{$tileColumns});
+        height: calc(var(--tileCellHeight) * #{$tileRows});
     }
 
     cv-tile {
-        width: $tileCellSize * $tileColumns;
-        height: $tileCellSize * $tileRows;
+        width: calc(var(--tileCellWidth) * #{$tileColumns});
+        height: calc(var(--tileCellHeight) * #{$tileRows});
         background-color: $tileBackground;
         background-size: cover;
         background-position: center center;
@@ -83,7 +98,7 @@ body {
         position: relative;
 
         .row {
-            height: 64px;
+            height: var(--tileCellHeight);
             width: 100%;
         }
 
@@ -126,7 +141,7 @@ body {
 
         > [row='first'] {
             grid-row: 1;
-            justify-content: flex-end;
+            justify-content: space-evenly;
         }
 
         > [row='middle'] {
@@ -196,9 +211,9 @@ body {
     }
 
     cv-button {
-        width: $tileCellSize - $defaultSpace;
-        height: $tileCellSize - $defaultSpace;
-        border-radius: $defaultSpace;
+        width: var(--defaultButtonSize);
+        height: var(--defaultButtonSize);
+        border-radius: var(--spacing);
         background: $buttonBackground;
         box-sizing: border-box;
         text-align: center;
@@ -219,7 +234,7 @@ body {
         }
 
         cv-icon {
-            font-size: math.div($tileCellSize - $defaultSpace*2, 2);
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
         }
 
         svg[type="circle"] {
@@ -243,17 +258,17 @@ body {
     }
 
     cv-button.round-button {
-        border-radius: math.div($tileCellSize - $defaultSpace, 2);
+        border-radius: calc(max(var(--tileCellWidth), var(--tileCellHeight)) / 2);
     }
 
     cv-button[size="small"] {
-        width: $tileCellSize - $defaultSpace*3;
-        height: $tileCellSize - $defaultSpace*3;
+        width: calc(var(--defaultButtonSize) - var(--spacing));
+        height: calc(var(--defaultButtonSize) - var(--spacing));
     }
 
     cv-button[size="large"] {
-        width: $tileCellSize;
-        height: $tileCellSize;
+        width: min(var(--tileCellWidth), var(--tileCellHeight));
+        height: min(var(--tileCellWidth), var(--tileCellHeight));
     }
 
     cv-button.active {
@@ -282,14 +297,14 @@ body {
             color: $primaryText;
         }
         meter, progress {
-            width: ($tileCellSize * $tileColumns) - $defaultSpace*2;
+            width: calc(var(--tileCellWidth) * #{$tileColumns} - var(--spacing)*2);
             border: 0;
         }
         progress[value]::-webkit-progress-bar, meter[value]::-webkit-meter-bar {
             background-color: $borderColor;
             border: 0;
-            height: $defaultSpace;
-            border-radius: $defaultSpace;
+            height: var(--spacing);
+            border-radius: var(--spacing);
             overflow: hidden;
         }
         progress[value]::-webkit-progress-value, meter[value]::-webkit-meter-optimum-value {
