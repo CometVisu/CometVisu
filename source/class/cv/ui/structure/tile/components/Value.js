@@ -67,7 +67,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
               roundProgress.setText(mappedValue);
               break;
             case 'label':
-              target.innerHTML = value;
+              target.innerHTML = mappedValue;
               break;
           }
         }

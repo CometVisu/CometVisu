@@ -42,7 +42,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
 
     _init() {
       const element = this._element;
-      const radius = this.__radius = element.getAttribute('radius') || 48;
+      const style = document.querySelector(':root').style;
+      const hasFixedRadius = element.hasAttribute('radius');
+      const radius = this.__radius = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
       const strokeWidth = element.getAttribute('stroke') || 8;
       const normalizedRadius = this.__normalizedRadius = radius - strokeWidth / 2;
       this.__circumference = normalizedRadius * 2 * Math.PI;
@@ -51,21 +53,21 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
         this.setType(element.getAttribute('type'));
       }
       const type = this.getType();
-      const height = type === 'semiCircle' ? radius : radius * 2;
+      let height = type === 'semiCircle' ? radius : radius * 2;
       let code = `<svg height="${height}" width="${radius * 2}" type="${type}">`;
       if (type === 'circle') {
         if (!element.hasAttribute('no-background')) {
           code += `<circle class="bg" 
                 r="${normalizedRadius}" 
-                cx="${radius}" 
-                cy="${radius}" 
+                cx="50%" 
+                cy="50%" 
                 fill="transparent" 
                 stroke-width="${strokeWidth}"/>`;
         }
         code += `<circle class="bar" 
               r="${normalizedRadius}" 
-              cx="${radius}" 
-              cy="${radius}" 
+              cx="50%" 
+              cy="50%" 
               stroke-width="${strokeWidth}" 
               stroke-dasharray="${this.__circumference} ${this.__circumference}" 
               stroke-dashoffset="${this.__circumference}"/>`;
@@ -81,6 +83,33 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       }
       code += '</svg><label></label>';
       element.innerHTML = code;
+      if (!hasFixedRadius) {
+        qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', ev => {
+          this.__radius = ev.getData();
+          this.__normalizedRadius = this.__radius - strokeWidth / 2;
+          this.__circumference = this.__normalizedRadius * 2 * Math.PI;
+          height = type === 'semiCircle' ? this.__radius : this.__radius * 2;
+          const svg = element.querySelector(':scope > svg');
+          svg.setAttribute('height', '' + height);
+          svg.setAttribute('width', '' + this.__radius * 2);
+          if (type === 'circle') {
+            this._element.querySelectorAll(':scope > svg > circle').forEach(circle => {
+              circle.setAttribute('r', '' + this.__normalizedRadius);
+              if (circle.classList.contains('bar')) {
+                circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
+                circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
+              }
+            });
+          } else if (type === 'semiCircle') {
+            this.__start.y = this.__radius;
+            const bg = this._element.querySelector(':scope > svg > path.bg');
+            if (bg) {
+              bg.setAttribute('d', `M ${strokeWidth / 2} ${this.__radius} A ${this.__normalizedRadius} ${this.__normalizedRadius} 0 0 1 ${this.__radius * 2 - strokeWidth / 2} ${this.__radius}`);
+            }
+          }
+          this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
+        });
+      }
     },
 
     __convert(angle) {
