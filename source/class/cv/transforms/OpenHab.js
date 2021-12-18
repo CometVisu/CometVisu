@@ -210,6 +210,21 @@ qx.Class.define('cv.transforms.OpenHab', {
           let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
           return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
         }
+      },
+      'thing': {
+        name: 'OH_Thing',
+        encode: function (val, param) {
+          if (param === 'status') {
+            return val ? 'ONLINE' : 'OFFLINE';
+          }
+          return '';
+        },
+        decode: function (val, param) {
+          if (param === 'status') {
+            return val === 'ONLINE';
+          }
+          return null;
+        }
       }
     });
   }

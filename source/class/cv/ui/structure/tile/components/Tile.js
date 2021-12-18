@@ -2,7 +2,7 @@
  * Shows a tile
  */
 qx.Class.define('cv.ui.structure.tile.components.Tile', {
-  extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+  extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*
   ***********************************************
@@ -10,19 +10,6 @@ qx.Class.define('cv.ui.structure.tile.components.Tile', {
   ***********************************************
   */
   members: {
-    _init() {
-      const element = this._element;
-      const hasReadAddress = Array.prototype.some.call(element.querySelectorAll(':scope > cv-address'),
-          address => !element.hasAttribute('mode') || element.getAttribute('mode') !== 'write');
-
-      if (hasReadAddress) {
-        element.addEventListener('stateUpdate', ev => {
-          this.onStateUpdate(ev);
-          // cancel event here
-          ev.preventDefault();
-        });
-      }
-    },
 
     /**
      * Handles the incoming data from the backend for this widget
@@ -43,6 +30,8 @@ qx.Class.define('cv.ui.structure.tile.components.Tile', {
         } else {
           this._element.classList.remove('has-bg-image');
         }
+      } else if (ev.detail.target === 'enabled') {
+        this.setEnabled(ev.detail.state);
       } else {
         this.debug('unhandled address target', ev.detail.target);
       }

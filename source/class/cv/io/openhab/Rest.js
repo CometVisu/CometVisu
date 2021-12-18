@@ -237,7 +237,26 @@ qx.Class.define('cv.io.openhab.Rest', {
       // create sse session
       this.running = true;
       if (!cv.report.Record.REPLAYING) {
-        this.eventSource = new EventSource(this._backendUrl + 'events?topics=openhab/items/*/statechanged');
+        const things = addresses.filter(addr => addr.split(':').length > 3);
+        let topic = 'openhab/items/*/statechanged';
+        if (things.length > 0) {
+          topic = 'openhab/*/*/*changed';
+          // request current states
+          const thingsReq = this.createAuthorizedRequest('things?summary=true');
+          thingsReq.addListener('success', e => {
+            const res = e.getTarget().getResponse();
+            const update = {};
+            res.forEach(entry => {
+              if (things.includes(entry.UID)) {
+                update[entry.UID] = entry.statusInfo.status;
+              }
+            });
+            this.update(update);
+          });
+          thingsReq.send();
+        }
+
+        this.eventSource = new EventSource(this._backendUrl + 'events?topics=' + topic);
 
         // add default listeners
         this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
@@ -289,6 +308,17 @@ qx.Class.define('cv.io.openhab.Rest', {
               update['number:' + groupName] = active;
             });
           }
+          this.update(update);
+        } else if (data.type === 'ThingStatusInfoChangedEvent') {
+          //extract item name from topic
+          const update = {};
+          const item = data.topic.split('/')[2];
+          let change = JSON.parse(data.payload);
+          if (Array.isArray(change)) {
+            // [newState, oldState]
+            change = change[0];
+          }
+          update[item] = change.status;
           this.update(update);
         }
       }

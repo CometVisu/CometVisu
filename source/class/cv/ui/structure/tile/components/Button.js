@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
   ***********************************************
   */
   members: {
-    __writeAddresses: null,
+    _writeAddresses: null,
     __textLabel: null,
     __circumference: null,
     /**
@@ -109,7 +109,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             break;
         }
       });
-      this.__writeAddresses = writeAddresses;
+      this._writeAddresses = writeAddresses;
 
       if (writeAddresses.length > 0) {
         const events = {};
@@ -303,11 +303,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           source: this
         }
       });
-      this.__writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
+      this._writeAddresses.filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click').forEach(address => address.dispatchEvent(ev));
     },
 
     onPointerDown() {
-      this.__writeAddresses.filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value')).forEach(address => {
+      this._writeAddresses.filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value')).forEach(address => {
         address.dispatchEvent(new CustomEvent('sendState', {
           detail: {
             value: address.getAttribute('value'),
@@ -318,7 +318,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     },
 
     onPointerUp() {
-      this.__writeAddresses.filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value')).forEach(address => {
+      this._writeAddresses.filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value')).forEach(address => {
         address.dispatchEvent(new CustomEvent('sendState', {
           detail: {
             value: address.getAttribute('value'),

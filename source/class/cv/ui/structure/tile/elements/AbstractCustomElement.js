@@ -75,6 +75,12 @@ class QxConnector extends HTMLElement {
     } else {
       throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
     }
+    if (this.hasAttribute('colspan')) {
+      this.classList.add('colspan-' + this.getAttribute('colspan'));
+    }
+    if (this.hasAttribute('rowspan')) {
+      this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+    }
   }
 
   connectedCallback() {

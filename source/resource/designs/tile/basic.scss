@@ -7,6 +7,7 @@ $buttonBackground: #1f1f1f;
 $primaryColor: #ff9900;
 $secondaryColor: #666666;
 $borderColor: #7a7a7a;
+$blockerColor: #000000;
 
 $primaryText: #b6b6b6;
 $secondaryText: #7e7d7d;
@@ -43,10 +44,23 @@ body {
     margin: 0;
     position: relative;
 
-    cv-page {
+    .blocker {
+        background-color: $blockerColor;
+        opacity: 0.5;
         position: absolute;
+        top: 0;
         left: 0;
         right: 0;
+        bottom: 0;
+        z-index: 10000;
+        cursor: default;
+        border-radius: inherit;
+    }
+
+    cv-page {
+        position: absolute;
+        left: var(--spacing);
+        right: var(--spacing);
         top: 0;
         bottom: 0;
         display: flex;
@@ -60,21 +74,42 @@ body {
         details {
             flex: 0 0 100%;
             border-top: 1px solid $borderColor;
-            margin-top:calc(var(--spacing)*2);
+            summary::-webkit-details-marker, summary::marker {
+                display: none;
+                content: "";
+            }
             summary {
-                padding: var(--spacing) 0;
+                padding: calc(var(--spacing) * 2) var(--spacing);
                 float: none !important;
                 margin-left: 0 !important;
+            }
+            > *:not(summary) {
+                float: left;
+                margin-bottom: var(--spacing);
+                margin-right: var(--spacing);
             }
         }
         details:first-child {
             border-top: none;
             margin-top: 0;
         }
-        details > * {
-            float: left;
-            margin-top: var(--spacing);
-            margin-left: var(--spacing);
+
+        details > summary:before {
+            font-family: 'remixicon' !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            content: "\EA6E";
+            vertical-align: text-bottom;
+            padding-right: $defaultSpace;
+        }
+        details[open] > summary:before {
+            content: "\EA4E";
+        }
+        details > summary:after {
+            content: "..."
+        }
+        details[open] > summary:after {
+            content: "";
         }
     }
     cv-switch, cv-shutter {
@@ -187,6 +222,9 @@ body {
         }
     }
 
+    cv-tile[disabled="true"] {
+        opacity: 0.5;
+    }
     label, label.primary {
         font-style: normal;
         font-weight: normal;
@@ -369,6 +407,46 @@ body {
         label {
             top: 100%;
             transform: translate(-50%, -100%);
+        }
+    }
+
+    cv-select {
+        position: relative;
+        width: 100%;
+        border-top: 1px solid $borderColor;
+        border-bottom: 1px solid $borderColor;
+
+        .value {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: $buttonBackground;
+            top: var(--tileCellHeight);
+            width: 100%;
+
+            cv-option {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        cv-icon:not(.dropdown) {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*3));
+        }
+        cv-icon.dropdown {
+            font-size: 24px;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: $defaultSpace * 2;
+            transform: translate(0, -50%);
         }
     }
 }
