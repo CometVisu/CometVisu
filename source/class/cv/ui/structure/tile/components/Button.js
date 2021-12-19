@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         element.addEventListener('stateUpdate', ev => {
           this.onStateUpdate(ev);
           // cancel event here
-          ev.preventDefault();
+          ev.stopPropagation();
         });
       } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
         // apply the trigger state

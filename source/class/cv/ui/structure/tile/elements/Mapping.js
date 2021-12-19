@@ -45,8 +45,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
       let mappedValue = '' + val;
       const exactMatch = this._element.querySelector(':scope > entry[value="'+val+'"]');
+      let type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
       if (exactMatch) {
-        mappedValue = exactMatch.innerHTML.trim();
+        mappedValue = this._convert(exactMatch.innerHTML.trim(), type);
         this.__cache[val] = mappedValue;
         return mappedValue;
       }
@@ -57,7 +58,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
           let content = formula.textContent;
           formula._formula = new Function('x', 'store', 'let y;' + content + '; return y;');
         }
-        mappedValue = formula._formula(val, store);
+        mappedValue = this._convert(formula._formula(val, store), type);
         if (!noCache) {
           this.__cache[val] = mappedValue;
         }
@@ -72,18 +73,18 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
         if (entry.hasAttribute('value')) {
           const value = entry.getAttribute('value');
           if (value === (val ? val : 'NULL') || value === '*') {
-            mappedValue = entry.innerHTML.trim();
+            mappedValue = this._convert(entry.innerHTML.trim(), type);
             matches = true;
           }
           if (isDefaultValue) {
-            defaultValue = value;
+            defaultValue = this._convert(value, type);
           }
         } else if (entry.hasAttribute('range_min') && entry.hasAttribute('range_max')) {
           const rangeMin = parseFloat(entry.getAttribute('range_min'));
           const rangeMax = parseFloat(entry.getAttribute('range_max'));
           const floatValue = parseFloat(val);
           if (rangeMin <= floatValue && floatValue <= rangeMax) {
-            mappedValue = entry.innerHTML.trim();
+            mappedValue = this._convert(entry.innerHTML.trim(), type);
             matches = true;
           }
           if (isDefaultValue) {
@@ -97,6 +98,19 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
       }
       this.__cache[val] = mappedValue;
       return mappedValue;
+    },
+
+    _convert(value, type) {
+      switch (type.toLowerCase()) {
+        case 'boolean':
+          return value === 'true';
+        case 'integer':
+          return parseInt(value);
+        case 'float':
+          return parseFloat(value);
+        default:
+          return value;
+      }
     }
   },
   /*

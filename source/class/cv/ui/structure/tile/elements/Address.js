@@ -10,6 +10,8 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   ***********************************************
   */
   members: {
+    __lastValue: null,
+
     _init() {
       const element = this._element;
       const address = element.textContent.trim();
@@ -64,20 +66,30 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
      * @param state {variant} state to send
      */
     fireStateUpdate(address, state) {
-      let transform = this._element.getAttribute('transform') || 'raw';
-      const ev = new CustomEvent('stateUpdate', {
-        bubbles: true,
-        cancelable: true,
-        detail: {
-          address: this._element.textContent.trim(),
-          state: cv.Transform.decode(transform, state),
-          target: this._element.getAttribute('target') || '',
-          raw: state,
-          source: this
+      if (this.__lastValue !== state) {
+        let transform = this._element.getAttribute('transform') || 'raw';
+        let transformedState = cv.Transform.decode(transform, state);
+        let mapping = '';
+        if (this._element.hasAttribute('mapping')) {
+          mapping = this._element.getAttribute('mapping');
+          transformedState = cv.Application.structureController.mapValue(mapping, transformedState);
         }
-      });
-      //this.debug(ev.detail);
-      this._element.dispatchEvent(ev);
+        const ev = new CustomEvent('stateUpdate', {
+          bubbles: true,
+          cancelable: true,
+          detail: {
+            address: this._element.textContent.trim(),
+            state: transformedState,
+            target: this._element.getAttribute('target') || '',
+            raw: state,
+            mapping: mapping,
+            source: this
+          }
+        });
+        //this.debug(ev.detail);
+        this._element.dispatchEvent(ev);
+        this.__lastValue = state;
+      }
     }
   },
 

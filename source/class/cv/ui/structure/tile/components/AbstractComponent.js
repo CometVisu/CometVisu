@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         element.addEventListener('stateUpdate', ev => {
           this.onStateUpdate(ev);
           // cancel event here
-          ev.preventDefault();
+          ev.stopPropagation();
         });
       }
     },
@@ -149,7 +149,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
         case 'excluded':
           this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
-          console.log(this._visibleDisplayMode);
           this._element.style.display = 'none';
           break;
       }
@@ -159,9 +158,28 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * Handles the incoming data from the backend for this widget
      *
      * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+     * @return {Boolean} true of the update has been handled
      */
     onStateUpdate(ev) {
-      this.setValue(ev.detail.state);
+      switch (ev.detail.target) {
+        case 'enabled':
+          this.setEnabled(ev.detail.state);
+          ev.stopPropagation();
+          return true;
+        case 'show-exclude':
+          this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
+          ev.stopPropagation();
+          return true;
+        case 'show-hide':
+          this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
+          ev.stopPropagation();
+          return true;
+        case '':
+          this.setValue(ev.detail.state);
+          ev.stopPropagation();
+          return true;
+      }
+      return false;
     }
   }
 });
