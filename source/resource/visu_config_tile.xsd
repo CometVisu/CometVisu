@@ -81,8 +81,9 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-icon">
-    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute name="set" type="xsd:string" />
+    <xsd:attribute ref="class"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
@@ -129,6 +130,7 @@
       <xsd:choice minOccurs="0" maxOccurs="9">
         <xsd:group ref="Components"/>
         <xsd:element name="cv-row" type="cv-row" maxOccurs="3"/>
+        <xsd:element name="cv-address" type="address" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -139,62 +141,10 @@
         <xsd:group ref="Components"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="row" type="xsd:string" default="1">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Row number or position (first, middle, last)</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeilennummer oder Position (first, middle, last)</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="1" />
-          <xsd:enumeration value="2" />
-          <xsd:enumeration value="3" />
-          <xsd:enumeration value="first" />
-          <xsd:enumeration value="middle" />
-          <xsd:enumeration value="last" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="column" type="xsd:string" default="1">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Column number or position (first, middle, last)</xsd:documentation>
-        <xsd:documentation xml:lang="de">Spaltennummer oder Position (first, middle, last)</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="1" />
-          <xsd:enumeration value="2" />
-          <xsd:enumeration value="3" />
-          <xsd:enumeration value="first" />
-          <xsd:enumeration value="middle" />
-          <xsd:enumeration value="last" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="rowspan" type="xsd:integer">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Number of rows this row spans</xsd:documentation>
-        <xsd:documentation xml:lang="de">Anzahl der Zeilen die diese Zeile belegt</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:integer">
-          <xsd:minInclusive value="1"/>
-          <xsd:maxInclusive value="3"/>
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="colspan" type="xsd:integer">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Number of columns this row spans</xsd:documentation>
-        <xsd:documentation xml:lang="de">Anzahl der Spalten die diese Zeile belegt</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:integer">
-          <xsd:minInclusive value="1"/>
-          <xsd:maxInclusive value="3"/>
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -203,13 +153,15 @@
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-shutter" type="cv-shutter" />
       <xsd:element name="cv-tile" type="cv-tile"/>
+      <xsd:element name="cv-info" type="cv-info"/>
     </xsd:choice>
   </xsd:group>
 
   <xsd:group name="Components">
     <xsd:choice>
-      <xsd:element name="button" />
+      <xsd:element name="cv-button" type="cv-button" />
       <xsd:element name="cv-value" type="cv-value" />
+      <xsd:element name="cv-select" type="cv-select" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
     </xsd:choice>
@@ -221,11 +173,68 @@
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
         <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
+        <xsd:element name="label" type="label" minOccurs="0" />
+        <xsd:element name="meter" type="meter" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-button">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-icon" type="cv-icon" minOccurs="0"/>
+        <xsd:element name="span" type="label-span" maxOccurs="3" minOccurs="0" />
+        <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
+        <xsd:element name="label" type="label" minOccurs="0" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute name="progress-mapping" type="mapping" />
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
+    <xsd:attribute name="size">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="small" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="large" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-select">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-option" maxOccurs="unbounded">
+          <xsd:complexType mixed="true">
+            <xsd:choice maxOccurs="unbounded">
+              <xsd:element name="cv-icon" type="cv-icon" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:attribute name="key" type="xsd:string"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute ref="row"/>
+    <xsd:attribute ref="column"/>
+    <xsd:attribute ref="rowspan"/>
+    <xsd:attribute ref="colspan"/>
   </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
@@ -312,6 +321,42 @@
     <xsd:attribute ref="class" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-info">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="label" />
+                    <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
 
   <!--
   #####################################################################################################################
@@ -336,8 +381,6 @@
     <xsd:restriction base="xsd:anyURI" />
   </xsd:simpleType>
 
-
-
   <xsd:complexType name="address">
     <xsd:simpleContent>
       <xsd:extension base="addr">
@@ -361,6 +404,12 @@
               <xsd:enumeration value="up" />
             </xsd:restriction>
           </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="target" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Target in the parent widget the value if this address should be use for. The possible values depend on the parent widget.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</xsd:documentation>
+          </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="format-pos" type="xsd:decimal">
           <xsd:annotation>
@@ -533,6 +582,63 @@
     </xsd:annotation>
   </xsd:attribute>
 
+  <xsd:attribute name="row" type="xsd:string" default="1">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Row number or position (first, middle, last)</xsd:documentation>
+      <xsd:documentation xml:lang="de">Zeilennummer oder Position (first, middle, last)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="1" />
+        <xsd:enumeration value="2" />
+        <xsd:enumeration value="3" />
+        <xsd:enumeration value="first" />
+        <xsd:enumeration value="middle" />
+        <xsd:enumeration value="last" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="column" type="xsd:string" default="1">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Column number or position (first, middle, last)</xsd:documentation>
+      <xsd:documentation xml:lang="de">Spaltennummer oder Position (first, middle, last)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="1" />
+        <xsd:enumeration value="2" />
+        <xsd:enumeration value="3" />
+        <xsd:enumeration value="first" />
+        <xsd:enumeration value="middle" />
+        <xsd:enumeration value="last" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="rowspan" type="xsd:integer">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Number of rows this row spans</xsd:documentation>
+      <xsd:documentation xml:lang="de">Anzahl der Zeilen die diese Zeile belegt</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:integer">
+        <xsd:minInclusive value="1"/>
+        <xsd:maxInclusive value="3"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="colspan" type="xsd:integer">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Number of columns this row spans</xsd:documentation>
+      <xsd:documentation xml:lang="de">Anzahl der Spalten die diese Zeile belegt</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:integer">
+        <xsd:minInclusive value="1"/>
+        <xsd:maxInclusive value="3"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
   <!--
   #####################################################################################################################
   # END: attributes
@@ -565,6 +671,13 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="class" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="meter">
+    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute name="min" type="xsd:integer"/>
+    <xsd:attribute name="max" type="xsd:integer"/>
+    <xsd:attribute name="value" type="xsd:integer"/>
   </xsd:complexType>
 
   <!--
