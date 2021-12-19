@@ -32,6 +32,10 @@ qx.Class.define('cv.ui.structure.tile.components.Tile', {
         }
       } else if (ev.detail.target === 'enabled') {
         this.setEnabled(ev.detail.state);
+      } else if (ev.detail.target === 'show-exclude') {
+        this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
+      } else if (ev.detail.target === 'show-hide') {
+        this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
       } else {
         this.debug('unhandled address target', ev.detail.target);
       }

@@ -23,6 +23,11 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       check: 'Boolean',
       init: true,
       apply: '_applyEnabled'
+    },
+    visibility: {
+      check: ['visible', 'excluded', 'hidden'],
+      init: 'visible',
+      apply: '_applyVisibility'
     }
   },
   /*
@@ -32,6 +37,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   members: {
     _writeAddresses: null,
+    _visibleDisplayMode: null,
 
     _init() {
       const element = this._element;
@@ -124,6 +130,29 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       }
       this._element.setAttribute('disabled', value === false ? 'true' : 'false');
       blocker.style.display = value === true ? 'none' : 'block';
+    },
+
+    _applyVisibility(value, oldValue) {
+      if (oldValue === 'hidden') {
+        this._element.style.opacity = '1.0';
+      }
+      switch (value) {
+        case 'visible':
+          if (this._visibleDisplayMode) {
+            this._element.style.display = this._visibleDisplayMode || 'initial';
+          }
+          break;
+
+        case 'hidden':
+          this._element.style.opacity = '0';
+          break;
+
+        case 'excluded':
+          this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
+          console.log(this._visibleDisplayMode);
+          this._element.style.display = 'none';
+          break;
+      }
     },
 
     /**
