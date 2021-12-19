@@ -470,4 +470,74 @@ body {
 
         }
     }
+
+    cv-slider {
+        width: calc(100% - var(--spacing)*2);
+        grid-column: 1 / span 3;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+        padding: 0 var(--spacing);
+
+        label.value {
+            position: absolute;
+            top: calc(50% - var(--spacing)*2);
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        cv-icon {
+            flex: 0 0 auto;
+            font-size: 24px;
+        }
+        .increase {
+            order: 3;
+        }
+        .decrease {
+            order: 1;
+        }
+
+        input[type="range"] {
+            order: 2;
+            -webkit-appearance: none;
+            appearance: none;
+            flex: 4 0 auto;
+            margin: 0;
+            padding: 0;
+            //color: $borderColor;
+
+            background: $borderColor;
+            border: 0;
+            height: var(--spacing);
+            border-radius: var(--spacing);
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: $defaultSpace * 2;
+            height: $defaultSpace * 2;
+            border-radius: 50%;
+            background: $primaryColor;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: $defaultSpace * 2;
+            height: $defaultSpace * 2;
+            border-radius: 50%;
+            background: $primaryColor;
+            cursor: pointer;
+        }
+    }
 }
