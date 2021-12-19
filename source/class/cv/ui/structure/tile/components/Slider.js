@@ -136,7 +136,6 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     },
 
     onInput() {
-      console.log(this.__input.value);
       this.__sendValue(this.__input.value);
     },
 
