@@ -57,6 +57,11 @@ body {
         border-radius: inherit;
     }
 
+    cv-page.screenshots {
+        /* white background for screenshots of widgets with border radius */
+        background-color: white;
+    }
+
     cv-page {
         position: absolute;
         left: var(--spacing);
@@ -466,8 +471,7 @@ body {
         }
 
         cv-icon {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*3));
-
+            font-size: 32px;
         }
     }
 

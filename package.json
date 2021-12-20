@@ -167,7 +167,8 @@
       {
         "files": [
           "source/test/protractor/**/*.js",
-          "source/test/protractor/*.js"
+          "source/test/protractor/*.js",
+          "utils/screenshots-spec.js"
         ],
         "env": {
           "jasmine": true,

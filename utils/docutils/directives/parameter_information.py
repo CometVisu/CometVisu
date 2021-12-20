@@ -24,20 +24,21 @@ class ParameterInformationDirective(BaseXsdDirective):
     reStructuredText directive for parameter information. Extracts information for the given element from
     the visu_config.xsd file and adds it to the document.
 
-    ..parameter_information:: <element-name>
+    ..parameter_information:: <element-name> <structure>
 
     @author Tobias Bräutigam
     @since 0.10.0
     """
     required_arguments = 1
-    optional_arguments = 0
+    optional_arguments = 1
     final_argument_whitespace = True
     option_spec = {}
     has_content = False
 
     def run(self):
         self.init_locale()
-        table_node = self.generate_table(self.arguments[0], include_name=True)
+        structure_name = self.arguments[1] if len(self.arguments) > 1 else "pure"
+        table_node = self.generate_table(self.arguments[0], structure_name=structure_name, include_name=True)
         if table_node is None:
             return []
 

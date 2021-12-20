@@ -65,7 +65,7 @@
         <xsd:documentation xml:lang="de">Name des Mappings</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="type" type="xsd:string" default="string">
+    <xsd:attribute name="type" default="string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Type of the value</xsd:documentation>
         <xsd:documentation xml:lang="de">Datentyp des Werts</xsd:documentation>
@@ -101,7 +101,7 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
-    <xsd:attribute name="type" type="xsd:string" use="required">
+    <xsd:attribute name="type" use="required">
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="default" />
@@ -137,6 +137,7 @@
         <xsd:documentation xml:lang="de">ID der Seite</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute ref="class" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -209,7 +210,12 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute name="progress-mapping" type="mapping" />
+    <xsd:attribute name="progress-mapping" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping`</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="row"/>
@@ -354,16 +360,14 @@
       </xsd:element>
       <xsd:element name="span" maxOccurs="unbounded">
         <xsd:complexType>
-          <xsd:simpleContent>
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="label" />
-                    <xsd:enumeration value="unit" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-          </xsd:simpleContent>
+          <xsd:attribute name="slot" use="required">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="label" />
+                <xsd:enumeration value="unit" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
@@ -406,7 +410,7 @@
             <xsd:documentation xml:lang="de">Fixer Wert welcher an diese Adresse gesendet wird.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute name="on" type="xsd:string">
+        <xsd:attribute name="on">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Event on which a value should be sent to this address (only useful in mode: write or readwrite), also needs value.</xsd:documentation>
             <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit value und mode = read oder readwrite).</xsd:documentation>
@@ -540,7 +544,7 @@
 
   <xsd:attribute name="styling" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Change the color of the dispayed value depending on its value. See also :ref:`styling`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling`</xsd:documentation>
       <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
@@ -597,7 +601,7 @@
     </xsd:annotation>
   </xsd:attribute>
 
-  <xsd:attribute name="row" type="xsd:string" default="1">
+  <xsd:attribute name="row" default="1">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Row number or position (first, middle, last)</xsd:documentation>
       <xsd:documentation xml:lang="de">Zeilennummer oder Position (first, middle, last)</xsd:documentation>
@@ -613,7 +617,7 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
-  <xsd:attribute name="column" type="xsd:string" default="1">
+  <xsd:attribute name="column" default="1">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Column number or position (first, middle, last)</xsd:documentation>
       <xsd:documentation xml:lang="de">Spaltennummer oder Position (first, middle, last)</xsd:documentation>
@@ -629,7 +633,7 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
-  <xsd:attribute name="rowspan" type="xsd:integer">
+  <xsd:attribute name="rowspan">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Number of rows this row spans</xsd:documentation>
       <xsd:documentation xml:lang="de">Anzahl der Zeilen die diese Zeile belegt</xsd:documentation>
@@ -641,7 +645,7 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
-  <xsd:attribute name="colspan" type="xsd:integer">
+  <xsd:attribute name="colspan">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Number of columns this row spans</xsd:documentation>
       <xsd:documentation xml:lang="de">Anzahl der Spalten die diese Zeile belegt</xsd:documentation>
@@ -677,7 +681,7 @@
   </xsd:complexType>
 
   <xsd:complexType name="label" mixed="true">
-    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute ref="class"/>
   </xsd:complexType>
   <xsd:complexType name="p" mixed="true">
     <xsd:sequence>
@@ -685,11 +689,11 @@
         <xsd:element name="label" type="label"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute ref="class"/>
   </xsd:complexType>
 
   <xsd:complexType name="meter">
-    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute ref="class"/>
     <xsd:attribute name="min" type="xsd:integer"/>
     <xsd:attribute name="max" type="xsd:integer"/>
     <xsd:attribute name="value" type="xsd:integer"/>

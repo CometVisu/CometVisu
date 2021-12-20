@@ -12,12 +12,21 @@ nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
 .. HINT::
 
     Bisherige Config-Dateien sind nicht mit der Tile-Struktur kompatibel! Dasselbe gilt für die bisher bekannten Plugins!
+    Ebenso benötigen die benutzen Features einen modernen Browser (Chrome, Firefox, Safari, Edge in einer aktuellen Version)
+    Der Internet Explorer wird in keiner Version unterstützt!
 
 Neue Features:
 
 * Multi-Backend fähig
 * Flexiblerer Einsatz von `Templates <https://wiki.selfhtml.org/wiki/HTML/Web_Components/template>`_
+    * Templates erklären
+    * Slots erklären
+    * Wie benutzt man eigene Templates in der Config (oder extern laden)
 * Alternativer Ansatz für die Implementierung von Plugins
+
+.. toctree::
+
+    widgets/switch
 
 
 TODO:

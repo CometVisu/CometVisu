@@ -4,9 +4,9 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-const fs = require('fs'),
-  path = require('path'),
-  easyimg = require('easyimage');
+const fs = require('fs');
+const path = require('path');
+const easyimg = require('easyimage');
 const CometVisuMockup = require('../source/test/protractor/pages/Mock');
 const cvMockup = new CometVisuMockup(browser.target || 'source');
 const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
@@ -18,9 +18,13 @@ const stats = {
   error: 0,
   skipped: 0
 };
-browser.executeAsyncScript(function (callback) { callback(window.devicePixelRatio); }).then(function(value) {
+
+browser.executeAsyncScript(function (callback) {
+  callback(window.devicePixelRatio);
+}).then(function(value) {
   devicePixelRatio = value;
-})
+});
+
 const errorHandler = function(err) {
   if (err) {
     console.error(err.toString());
@@ -48,26 +52,27 @@ const cropInFile = function(size, location, srcFile, width, height) {
       };
       return easyimg.resize(args);
     }
+    return null;
   }).catch(errorHandler);
 };
 
 const createDir = function(dir) {
-  if (dir.substring(dir.length-1) === "/") {
-    dir = dir.substring(0,dir.length-1);
+  if (dir.substring(dir.length-1) === '/') {
+    dir = dir.substring(0, dir.length-1);
   }
   try {
     fs.statSync(dir);
-  } catch(e) {
+  } catch (e) {
     var create = [dir];
     var parts = dir.split(path.sep);
     parts.pop();
     var parentDir = parts.join(path.sep);
     var exists = false;
-    while(!exists && parentDir) {
+    while (!exists && parentDir) {
       try {
         fs.statSync(parentDir);
         exists = true;
-      } catch(e) {
+      } catch (e) {
         create.unshift(parentDir);
         parts = parentDir.split(path.sep);
         parts.pop();
@@ -75,7 +80,7 @@ const createDir = function(dir) {
       }
     }
     create.forEach(function(newDir) {
-      fs.mkdirSync(newDir, "0755");
+      fs.mkdirSync(newDir, '0755');
     });
   }
 };
@@ -89,13 +94,13 @@ describe('generation screenshots from jsdoc examples', function () {
   let runResult = {};
   let shotIndex = {};
 
-  let examplesDir = browser.source ? browser.source : path.join("cache", "widget_examples");
+  let examplesDir = browser.source ? browser.source : path.join('cache', 'widget_examples');
   let subDirsMode = !browser.source;
-  let whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
+  let whiteList = browser.screenshots ? browser.screenshots.split(',') : [];
 
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
-    mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
+    mockup = (mockedConfigData.mode === 'cv') ? cvMockup : editorMockup;
     if (mockedConfigData.hasOwnProperty('fixtures')) {
       mockedFixtures = mockedConfigData.fixtures;
       mockedConfigData.fixtures.forEach(fix => mockup.mockupFixture(fix));
@@ -123,32 +128,34 @@ describe('generation screenshots from jsdoc examples', function () {
     } else if (runResult && runResult.success) {
       // save shotIndex
       fs.writeFile(runResult.shotIndexFile, JSON.stringify(shotIndex, null, 4), function (err) {
-        if (err) return console.log(err);
+        if (err) {
+          console.log(err);
+        }
       });
     }
     results.push(runResult);
   });
 
   afterAll(function () {
-    const color = stats.error > 0 ? "\x1b[31m" : "\x1b[32m";
-    const result = stats.success + "/" + stats.total + " screenshots created. " + stats.skipped + " skipped. " + stats.error + " failed";
-    const separator = "".padEnd(result.length + 8, "#");
+    const color = stats.error > 0 ? '\x1b[31m' : '\x1b[32m';
+    const result = stats.success + '/' + stats.total + ' screenshots created. ' + stats.skipped + ' skipped. ' + stats.error + ' failed';
+    const separator = ''.padEnd(result.length + 8, '#');
     console.log(color);
-    console.log("\n" + separator);
-    console.log("#  ", result, '  #');
+    console.log('\n' + separator);
+    console.log('#  ', result, '  #');
     console.log(separator);
     console.log('\x1b[0m');
 
     if (stats.error > 0) {
-      console.log("Failed screenshots:");
+      console.log('Failed screenshots:');
       results.filter(res => res.failed).forEach(res => {
-        console.log("\n\n###################################################");
-        console.log("File:        ", res.file);
-        console.log("Screenshot:  ", res.screenshot);
-        console.log("Stacktrace:  ", res.error);
+        console.log('\n\n###################################################');
+        console.log('File:        ', res.file);
+        console.log('Screenshot:  ', res.screenshot);
+        console.log('Stacktrace:  ', res.error);
       });
     }
-  })
+  });
 
   const files = [];
   fs.readdirSync(examplesDir).forEach(function(fileName) {
@@ -163,7 +170,7 @@ describe('generation screenshots from jsdoc examples', function () {
             // skip this one
             return;
           }
-          if (fileName.split(".").pop() !== "json") {
+          if (fileName.split('.').pop() !== 'json') {
             return;
           }
           let filePath = path.join(subDir, fileName);
@@ -175,7 +182,7 @@ describe('generation screenshots from jsdoc examples', function () {
         // skip this one
         return;
       }
-      if (fileName.split(".").pop() !== "json") {
+      if (fileName.split('.').pop() !== 'json') {
         return;
       }
       files.push(subDir);
@@ -186,12 +193,12 @@ describe('generation screenshots from jsdoc examples', function () {
     let stat = fs.statSync(filePath);
     if (stat.isFile()) {
       runResult.file = filePath;
-      const rawData = fs.readFileSync(filePath, "utf-8");
+      const rawData = fs.readFileSync(filePath, 'utf-8');
       let settings;
       try {
         settings = JSON.parse(rawData);
       } catch (e) {
-        console.error("\n>>> error parsing settings", rawData, filePath);
+        console.error('\n>>> error parsing settings', rawData, filePath);
         console.error(e.message);
         runResult.failed = true;
         runResult.error = e;
@@ -200,13 +207,13 @@ describe('generation screenshots from jsdoc examples', function () {
         return;
       }
       createDir(settings.screenshotDir);
-      const indexFile = path.join(settings.screenshotDir, "shot-index.json");
+      const indexFile = path.join(settings.screenshotDir, 'shot-index.json');
       if (fs.existsSync(indexFile)) {
-        const indexData = fs.readFileSync(indexFile, "utf-8");
+        const indexData = fs.readFileSync(indexFile, 'utf-8');
         try {
           shotIndex = JSON.parse(indexData);
         } catch (e) {
-          console.error("\n>>> error parsing screenshot index data", indexData, indexFile);
+          console.error('\n>>> error parsing screenshot index data', indexData, indexFile);
           console.error(e.message);
         }
       }
@@ -214,10 +221,10 @@ describe('generation screenshots from jsdoc examples', function () {
       // check if we have to renew any ob the screenshots
       const skippedScreenshots = [];
       let allSkipped = true;
-      settings.screenshots.forEach((setting) => {
-        if (setting.hasOwnProperty("hash") && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
+      settings.screenshots.forEach(setting => {
+        if (setting.hasOwnProperty('hash') && shotIndex.hasOwnProperty(setting.name) && setting.hash === shotIndex[setting.name] && !browser.forced) {
           // also check if the file really exists
-          if (fs.existsSync(path.join(settings.screenshotDir, setting.name + ".png"))) {
+          if (fs.existsSync(path.join(settings.screenshotDir, setting.name + '.png'))) {
             // skip this screenshot because is has not changed since last generation
             stats.skipped++;
             stats.total++;
@@ -232,23 +239,23 @@ describe('generation screenshots from jsdoc examples', function () {
         return;
       }
 
-      let selectorPrefix = ".activePage ";
+      let selectorPrefix = settings.structure === 'tile' ? '' : '.activePage ';
       let mockedConfigData = {
-        mode: "cv",
+        mode: 'cv',
         data: settings.config,
         fixtures: settings.fixtures
       };
 
       if (settings.mode) {
-        selectorPrefix = "";
+        selectorPrefix = '';
         mockedConfigData.mode = settings.mode;
       } else if (settings.editor) {
-        selectorPrefix = "";
-        mockedConfigData.mode = "editor";
+        selectorPrefix = '';
+        mockedConfigData.mode = 'editor';
       }
       let loadManager = mockedConfigData.mode === 'editor' || mockedConfigData.mode === 'manager';
-      if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
-        selectorPrefix = "";
+      if (settings.selector.includes('.activePage') || settings.selector.includes('#')) {
+        selectorPrefix = '';
       }
       mockupConfig.push(mockedConfigData);
 
@@ -274,7 +281,7 @@ describe('generation screenshots from jsdoc examples', function () {
               if (settings.complex) {
                 await editorMockup.enableExpertMode();
               }
-              await editorMockup.openWidgetElement(settings.widget, settings.editor === "attributes");
+              await editorMockup.openWidgetElement(settings.widget, settings.editor === 'attributes');
 
               if (settings.special) {
                 if (settings.special.contextMenu) {
@@ -306,7 +313,7 @@ describe('generation screenshots from jsdoc examples', function () {
           widget = element.all(by.css(selectorPrefix + settings.selector)).first();
           await browser.wait(function () {
             return widget.isDisplayed();
-          }, 2000);
+          }, 2000, 'widget did not appear');
 
           runResult.screenshots = [];
           for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
@@ -317,10 +324,10 @@ describe('generation screenshots from jsdoc examples', function () {
                 var value = data.value;
                 if (data.type) {
                   switch (data.type) {
-                    case "float":
+                    case 'float':
                       value = parseFloat(value);
                       break;
-                    case "int":
+                    case 'int':
                       value = parseInt(value);
                       break;
                   }
@@ -329,7 +336,6 @@ describe('generation screenshots from jsdoc examples', function () {
               });
             }
             if (setting.clickPath) {
-
               var actor = element.all(by.css(setting.clickPath)).first();
               if (actor) {
                 actor.click();
@@ -340,7 +346,8 @@ describe('generation screenshots from jsdoc examples', function () {
                 }, 1000);
               }
             }
-            let size, location;
+            let size;
+            let location;
             if (setting.size) {
               size = setting.size;
             } else {
@@ -371,7 +378,7 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.sleep(setting.sleep);
             }
             //console.log("  - creating screenshot '" + setting.name + "'");
-            const locales = setting.locales ? setting.locales : [""]
+            const locales = setting.locales ? setting.locales : [''];
             for (const locale of locales) {
               if (locale) {
                 if (mockedConfigData.mode === 'cv') {
@@ -381,8 +388,8 @@ describe('generation screenshots from jsdoc examples', function () {
                 }
               }
               const data = await browser.takeScreenshot();
-              let base64Data = data.replace(/^data:image\/png;base64,/, "");
-              const imgFile = path.join(...[settings.baseDir, locale, settings.screenshotDir, setting.name + ".png"].filter(name => !!name));
+              let base64Data = data.replace(/^data:image\/png;base64,/, '');
+              const imgFile = path.join(...[settings.baseDir, locale, settings.screenshotDir, setting.name + '.png'].filter(name => !!name));
               try {
                 fs.writeFileSync(imgFile, base64Data, 'base64');
                 if (settings.scale) {
@@ -408,8 +415,8 @@ describe('generation screenshots from jsdoc examples', function () {
             }
           }
         } catch (e) {
-          const name = currentScreenshot.name || settings.screenshots.map(e => e.name).join(",");
-          console.error(">>> error creating screenshot(s)", name, "from file", filePath);
+          const name = currentScreenshot.name || settings.screenshots.map(e => e.name).join(',');
+          console.error('>>> error creating screenshot(s)', name, 'from file', filePath);
           //console.error(e.message);
           stats.error++;
           stats.total++;
