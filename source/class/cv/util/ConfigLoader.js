@@ -64,13 +64,14 @@ qx.Class.define('cv.util.ConfigLoader', {
         if (xml && (typeof xml === 'string')) {
           xml = qx.xml.Document.fromString(xml);
         }
-        this.__xml = xml;
-        xml.querySelectorAll('include').forEach(this.loadInclude, this);
-        this.__loadQueue.remove(ajaxRequest.getUrl());
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName('parsererror').length) {
           this.configError('parsererror');
         } else {
+          this.__xml = xml;
+          xml.querySelectorAll('include').forEach(this.loadInclude, this);
+          this.__loadQueue.remove(ajaxRequest.getUrl());
+
           // check the library version
           let xmlLibVersion = xml.documentElement.getAttribute('lib_version');
           if (xmlLibVersion === undefined) {
