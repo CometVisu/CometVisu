@@ -95,9 +95,13 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-icon">
-    <xsd:attribute name="name" type="xsd:string" />
-    <xsd:attribute name="set" type="xsd:string" />
-    <xsd:attribute ref="class"/>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="name" type="xsd:string" />
+        <xsd:attribute name="set" type="xsd:string" />
+        <xsd:attribute ref="class"/>
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
@@ -360,14 +364,18 @@
       </xsd:element>
       <xsd:element name="span" maxOccurs="unbounded">
         <xsd:complexType>
-          <xsd:attribute name="slot" use="required">
-            <xsd:simpleType>
-              <xsd:restriction base="xsd:string">
-                <xsd:enumeration value="label" />
-                <xsd:enumeration value="unit" />
-              </xsd:restriction>
-            </xsd:simpleType>
-          </xsd:attribute>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="label" />
+                    <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
