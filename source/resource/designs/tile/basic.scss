@@ -198,6 +198,17 @@ body {
         }
     }
 
+    cv-tile[size="1x2"] {
+        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+    }
+
+    cv-tile[size="2x1"] {
+        height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+    }
+    cv-tile[size="4x2"] {
+        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+        height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
+    }
     .clickable {
         cursor: pointer;
     }
@@ -546,6 +557,20 @@ body {
             border-radius: 50%;
             background: $primaryColor;
             cursor: pointer;
+        }
+    }
+
+    cv-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
 }
