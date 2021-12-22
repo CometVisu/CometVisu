@@ -438,12 +438,16 @@ body {
 
             cv-option {
                 display: block;
-                text-align: center;
+                padding: calc(var(--spacing)/2) var(--spacing);
+                vertical-align: middle;
+                font-size: 18px;
             }
         }
 
         cv-icon:not(.dropdown) {
-            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*3));
+            font-size: 32px;
+            vertical-align: middle;
+            margin-right: var(--spacing);
         }
         cv-icon.dropdown {
             font-size: 24px;
