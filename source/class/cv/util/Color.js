@@ -36,8 +36,10 @@ qx.Class.define('cv.util.Color', {
   statics: {
     /**
      * Solve the 2 dimensional linear equation
-     * ( A00 A01 ) (x0) = (y0)
-     * ( A10 A11 ) (x1)   (y1)
+     * <pre>
+     *    ( A00 A01 ) (x0) = (y0)
+     *    ( A10 A11 ) (x1)   (y1)
+     * </pre>
      * @param {number} A00
      * @param {number} A10
      * @param {number} A01
@@ -53,15 +55,23 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Solve the 3 dimensional linear equation
-     * ( A00 A01 A02 ) (x0)   (y0)
-     * ( A10 A11 A12 ) (x1) = (y1)
-     * ( A20 A21 A22 ) (x2)   (y2)
+     * <pre>
+     *    ( A00 A01 A02 ) (x0)   (y0)
+     *    ( A10 A11 A12 ) (x1) = (y1)
+     *    ( A20 A21 A22 ) (x2)   (y2)
+     * </pre>
      * @param {number} A00
      * @param {number} A10
+     * @param {number} A20
      * @param {number} A01
      * @param {number} A11
+     * @param {number} A21
+     * @param {number} A02
+     * @param {number} A12
+     * @param {number} A22
      * @param {number} y0
      * @param {number} y1
+     * @param {number} y2
      * @returns {[number, number, number]}
      */
     solve3d: function (A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
@@ -287,18 +297,58 @@ qx.Class.define('cv.util.Color', {
     __W: { x: 1/3, y: 1/3, Y: 1   },
 
     // the color itself
+    /**
+     * CIE 1931 XYZ color space: x of xyY
+     * @type {number}
+     */
     __x: 1/3,
+    /**
+     * CIE 1931 XYZ color space: y of xyY
+     * @type {number}
+     */
     __y: 1/3,
+    /**
+     * CIE 1931 XYZ color space: Y of xyY or XYZ - normalized to be between 0...1
+     * @type {number}
+     */
     __Y: 0,
 
     // derived color representations, cached to allow partial change
+    /**
+     * HSV color space - h, s and v are normalized to the range 0...1
+     * @type {{h: number, s: number, v: number}}
+     */
     __hsv: undefined,
-    __h_last: 0, // remember last valid hue for times when there is no hue
+    /**
+     * HSV color space - last known value of h
+     * @type {number}
+     */
+    __h_last: 0,
+    /**
+     * RGB color space - r, g and b are normalized to the range 0...1
+     * @type {{r: number, g: number, b: number}}
+     */
     __rbg: undefined,
+    /**
+     * RGBW color space - r, g, b and w are normalized to the range 0...1
+     * @type {{r: number, g: number, b: number, w: number}}
+     */
     __rbgw: undefined,
+    /**
+     * Color temperature in Kelvin
+     * @type {number}
+     */
     __T: undefined,
-    __Lab: undefined, // L*a*b*
-    __LCh: undefined, // L*C*h° - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
+    /**
+     * L*a*b* color space - with L in 0...100, a* and b* in roughly -150...150
+     * @type {{L: number, a: number, b: number}}
+     */
+    __Lab: undefined,
+    /**
+     * L*C*h° color space - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
+     * @type {{L: number, C: number, h: number}}
+     */
+    __LCh: undefined,
 
     /**
      * Get X, Y, Z from this color
@@ -361,12 +411,14 @@ qx.Class.define('cv.util.Color', {
 
     // make derived color valid
     __validateHSV: function (force) {
-      /*
-        solve a special set of equations:
-        A1 * x*y*z + B1 * y*z + C1 * z = D1
-        A2 * x*y*z + B2 * y*z + C2 * z = D2
-        A3 * x*y*z + B3 * y*z + C3 * z = D3
-        Wolfram Language code: Solve[{C1 z + B1 y z + A1 x y z == D1, C2 z + B2 y z + A2 x y z == D2, C3 z + B3 y z + A3 x y z == D3}, {x, y, z}]
+      /**
+       * solve a special set of equations:
+       * <pre>
+       *    A1 * x*y*z + B1 * y*z + C1 * z = D1
+       *    A2 * x*y*z + B2 * y*z + C2 * z = D2
+       *    A3 * x*y*z + B3 * y*z + C3 * z = D3
+       * </pre>
+       * Wolfram Language code: Solve[{C1 z + B1 y z + A1 x y z == D1, C2 z + B2 y z + A2 x y z == D2, C3 z + B3 y z + A3 x y z == D3}, {x, y, z}]
        */
       function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
         return [
@@ -502,14 +554,13 @@ qx.Class.define('cv.util.Color', {
       if( this.__Lab === undefined || force ) {
         const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
         const {X, Y, Z} = this.__getXYZ();
-        let
-          f = function(t) {
-                if(t < 216/24389) {
-                  return (24389/27*t+16)/116;
-                } else {
-                  return t**(1/3);
-                }
-              };
+        const f = function(t) {
+          if(t < 216/24389) {
+            return (24389/27*t+16)/116;
+          } else {
+            return t**(1/3);
+          }
+        };
         this.__Lab = {
           L: 116 * f(Y/Yn) - 16,
           a: 500 * (f(X/Xn) - f(Y/Yn)),
@@ -620,14 +671,14 @@ qx.Class.define('cv.util.Color', {
 
     __syncLab2xy: function (keepLCh = false) {
       const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
+      const fInv = function(t) {
+        if(t < 6/29) {
+          return 3*(6/29)**2*(t-4/29);
+        } else {
+          return t**3;
+        }
+      };
       const
-        fInv = function(t) {
-            if(t < 6/29) {
-              return 3*(6/29)**2*(t-4/29);
-            } else {
-              return t**3;
-            }
-          },
         Lab = this.__Lab,
         L16 = (Lab.L + 16)/116,
         X = Xn * fInv(L16 + Lab.a/500),
@@ -648,7 +699,15 @@ qx.Class.define('cv.util.Color', {
     },
 
     /**
-     * Change the color by changing one of it's components
+     * Change the color by changing one of it's components.
+     *
+     * Expected values are:
+     * - h, s, v: 0...1
+     * - r, g, b, w: 0...1
+     * - T: 1667...25000 Kelvin
+     * - x, y, Y: 0...1
+     * - L, C, h: 0...1
+     *
      * @param {string} component
      * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{x:number, y:number})} value
      */
@@ -724,7 +783,7 @@ qx.Class.define('cv.util.Color', {
           break;
 
         case 'x':
-          this.__y = clamp(value);
+          this.__x = clamp(value);
           this.__invalidateBut(''); // all precalculated colors are invalid now
           break;
 
@@ -781,6 +840,15 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Get the value(s) of the specified component
+     *
+     * Value ranges are:
+     * - h, s, v: 0...1
+     * - r, g, b, w: 0...1
+     * - T: 1667...25000 Kelvin
+     * - x, y, Y: 0...1
+     * - L, a, b: 0...100 for `L` and roughly -150...150 for `a` and `b`
+     * - L, C, h: 0...1
+     *
      * @param {string} component
      * @param {boolean} gamutMap
      * @param {boolean} force
@@ -794,6 +862,8 @@ qx.Class.define('cv.util.Color', {
           return {x: clamp(0, this.__x, 1), y: clamp(0, this.__y, 1)};
         case 'Y':
           return clamp(0, this.__Y, 1);
+        case 'xyY':
+          return {x: clamp(0, this.__x, 1), y: clamp(0, this.__y, 1), Y: clamp(0, this.__Y, 1)};
 
         case 'h':
         case 's':
@@ -884,8 +954,9 @@ qx.Class.define('cv.util.Color', {
      */
     delta: function (otherColor) {
       this.__validateHSV();
+      otherColor.__validateHSV();
       const
-        hsv = otherColor.getComponent('hsv'),
+        hsv = otherColor.__hsv,
         dh = this.__hsv.h - hsv.h,
         ds = this.__hsv.s - hsv.s,
         dv = this.__hsv.v - hsv.v;
@@ -903,11 +974,13 @@ qx.Class.define('cv.util.Color', {
      * @returns {cv.util.Color}
      */
     blend: function (otherColor, ratio) {
+      this.__validateHSV();
+      otherColor.__validateHSV();
       const
         b = (x,y) => ((1-ratio)*x + ratio*y),
         c = this.copy(),
-        c1 = this.getComponent('hsv'),
-        c2 = otherColor.getComponent('hsv'),
+        c1 = this.__hsv,
+        c2 = otherColor.__hsv,
         s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
         e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
 
