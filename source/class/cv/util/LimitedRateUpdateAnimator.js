@@ -131,9 +131,9 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      */
     __animate: function (thistime, lasttime) {
       let isNumber = typeof this.__currentValue === 'number';
-      let dt = (thistime - lasttime) / 1000; // in seconds
+      let dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
       let maxLinearDelta = this.getLinearRateLimit() * dt;
-      let alpha = Math.exp(-dt / this.getExpDampTimeConstant());
+      let alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
       let nextValue = isNumber
           ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
           : this.__currentValue.blend( this.__targetValue, alpha );
