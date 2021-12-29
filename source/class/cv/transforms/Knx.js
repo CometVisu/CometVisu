@@ -248,8 +248,8 @@ qx.Class.define('cv.transforms.Knx', {
         name: 'DPT_Value_Temp',
         encode: function (phy) {
           if (undefined === phy || isNaN(phy)) {
- return '7fff'; 
-}
+            return '7fff';
+          }
           const sign = phy < 0 ? 0x8000 : 0;
           let mant = Math.round(phy * 100.0);
           let exp = 0;
@@ -265,8 +265,8 @@ qx.Class.define('cv.transforms.Knx', {
         },
         decode: function (hex) {
           if (parseInt(hex, 16) === 0x7fff) {
- return NaN; 
-}
+            return NaN;
+          }
           const bin1 = parseInt(hex.substr(0, 2), 16);
           const bin2 = parseInt(hex.substr(2, 2), 16);
           const sign = parseInt(bin1 & 0x80);
@@ -656,11 +656,10 @@ qx.Class.define('cv.transforms.Knx', {
             return { bus: '80000000', raw: '000000' };
           }
 
-          let
-            r = phy.get('r') || 0;
-            let g = phy.get('g') || 0;
-            let b = phy.get('b') || 0;
-            let val = [
+          const r = phy.get('r') || 0;
+          const g = phy.get('g') || 0;
+          const b = phy.get('b') || 0;
+          const val = [
             parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
             parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
             parseInt(b * 255 / 100).toString(16).padStart(2, '0')
@@ -675,6 +674,34 @@ qx.Class.define('cv.transforms.Knx', {
             ['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0],
             ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0],
             ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]
+          ]);
+        }
+      },
+      '232.600HSV' : {
+        name  : 'DPT_Colour_HSV_inofficial',
+        encode: function(phy) {
+          if (!(phy instanceof Map)) {
+            return { bus: '80000000', raw: '000000' };
+          }
+
+          const h = phy.get('h') || 0;
+          const s = phy.get('s') || 0;
+          const v = phy.get('v') || 0;
+          const val = [
+            parseInt(h * 255 / 360).toString(16).padStart(2, '0'),
+            parseInt(s * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(v * 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          return new Map([
+            ['h', parseInt(hex.substr(0, 2), 16) * 360 / 255.0],
+            ['s', parseInt(hex.substr(2, 2), 16) * 100 / 255.0],
+            ['v', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]
           ]);
         }
       },
