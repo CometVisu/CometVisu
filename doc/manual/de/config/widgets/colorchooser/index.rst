@@ -230,6 +230,22 @@ Ansteuerung über DALI:
       <address transform="DPT:242.600" mode="write" variant="xyY">1/2/61</address>
     </colorchooser>
 
+.. warning::
+
+    Grundsätzlich ist es möglich mehrere Address-Elemente mit unterschiedlichen
+    Farbraum-Arten gleichzeitig zu verwenden, z.B. `RGB` und `HSV`, aber auch
+    `RGB-R`, `RGB-G`, `RGB-B` und gleichzeitig `RGB` selbst. Auch wenn dies
+    vordergründig zu funktionieren scheint, so kann dies unbeabsichtigte
+    Seiteneffekte erzeugen die zur Anzeige einer falschen Farbe führen.
+
+.. note::
+
+    Es wird empfohlen nach Möglichkeit für die Übermittlung der Farbinformation
+    einen Datentyp zu verwenden, der alle Farbkomponenten in sich vereint (also
+    z.B. `rgb` statt `RGB-r`, `RGB-g` und `RGB-b`), da es bei der Verwendung von
+    Einzelkomponenten durch den zeitlichen Versatz sonst zu kurzfristigen
+    Artefakten in der Darstellung/Animation kommen kann.
+
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

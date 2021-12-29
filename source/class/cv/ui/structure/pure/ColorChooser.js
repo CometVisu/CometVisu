@@ -78,6 +78,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     const base = this.getBaseColors();
     this.__color = new cv.util.Color( base.r, base.g, base.b, base.w );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
+    this.__animator.setLinearRateLimit(9000);
+    this.__animator.setExpDampTimeConstant(0.02);
+    this.__animator.setEpsilon(0.5);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
     this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
     this.__lastBusValue = {};
@@ -225,20 +228,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         });
       }
 
-      let
-        transform = this.getAddress()[address].transform,
-        variant = this.getAddress()[ address ].variantInfo,
-        notKnown = this.__lastBusValue[variant] === undefined;
-      if (this.__inDrag || (this.__lastBusValue[variant] && this.__lastBusValue[variant][transform] === data)) {
-        // slider in use -> ignore value from bus
-        // internal state unchanged -> also do nothing
-        return;
-      }
-      
-      this.__lastBusValue[variant] = {}; // forget all other transforms as they might not be valid anymore
-      this.__lastBusValue[variant][transform] = data;
+      const transform = this.getAddress()[address].transform;
+      let variant = this.getAddress()[ address ].variantInfo;
 
-      let 
+      //this.__lastBusValue[variant] = {}; // forget all other transforms as they might not be valid anymore
+      //this.__lastBusValue[variant][transform] = data;
+
+      let
+        variantType,
         value = cv.Transform.decode(transform, data),
         base;
 
@@ -247,11 +244,13 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 's':
         case 'v':
           value /= 100;
+          variantType = 'hsv-single';
           deleteBut(['h', 's', 'v']);
           break;
 
         case 'hsv':
           value = { h: value.get('h')/360, s: value.get('s')/100, v: value.get('v')/100 };
+          variantType = 'hsv';
           deleteBut(['hsv']);
           break;
 
@@ -260,6 +259,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGB-b':
           base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
+          variantType = 'rgb-single';
           deleteBut(['RGB-r', 'RGB-g', 'RGB-b']);
           break;
 
@@ -270,6 +270,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
             b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale )
           };
+          variantType = 'rgb';
           deleteBut(['rgb']);
           break;
 
@@ -279,6 +280,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'RGBW-w':
           base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
+          variantType = 'rgbw-single';
           deleteBut(['RGBW-r', 'RGBW-g', 'RGBW-b', 'RGBW-w']);
           break;
 
@@ -290,12 +292,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale ),
             w: cv.util.Color.invCurve( value.get('w'), base.w.curve, base.w.scale )
           };
+          variantType = 'rgbw';
           deleteBut(['rgbw']);
           break;
 
         case 'x':
         case 'y':
           deleteBut(['x', 'y', 'Y']);
+          variantType = 'xyY';
           break;
 
         case 'Y':
@@ -307,6 +311,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           } else {
             return; // nothing that can be done with this data
           }
+          variantType = 'xyY';
           break;
 
         case 'xy':
@@ -318,6 +323,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           } else {
             return; // nothing that can be done with this data
           }
+          variantType = 'xyY';
           break;
 
         case 'xyY':
@@ -334,8 +340,23 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           } else {
             return; // nothing that can be done with this data
           }
+          variantType = 'xyY';
           break;
       }
+
+      if (this.__inDrag || (this.__lastBusValue[variantType] && this.__lastBusValue[variantType][variant] && this.__lastBusValue[variantType][variant][transform] === data)) {
+        // slider in use -> ignore value from bus
+        // internal state unchanged -> also do nothing
+        return;
+      }
+      const notKnown = this.__lastBusValue[variantType] === undefined;
+      if( notKnown ) {
+        this.__lastBusValue[variantType] = {};
+      }
+
+      // forget all other transforms as they might not be valid anymore
+      this.__lastBusValue = {[variantType]: this.__lastBusValue[variantType]};
+      this.__lastBusValue[variantType][variant] = {[transform]: data};
 
       // animate when visible, otherwise jump to the target value
       this.__setSliderTo(value, variant, !this.isVisible() || notKnown);
@@ -351,14 +372,14 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     __setSliderTo: function(value, variant, instant) {
       this.__colorOld = this.__colorCurrent === undefined ? this.__color.copy() : this.__colorCurrent.copy();
       this.__color.changeComponent( variant, value );
-      instant = instant || this.__color.delta(this.__colorOld) < 0.005;
+      instant = instant || this.__color.delta(this.__colorOld) < 0.5;
       if( !instant ) {
         this.__animator.setTo(this.__colorOld, true, false );
       }
       this.__animator.setTo(this.__color, instant);
     },
 
-    __updateHandlePosition: function (ratio) {
+    __updateHandlePosition: function (newColor) {
       // check cache
       if (this.__actors === undefined) {
         let
@@ -406,7 +427,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         this.__actors = actors;
       }
 
-      this.__colorCurrent = ratio;
+      this.__colorCurrent = newColor;
       // move handles
       for( let type in this.__actors ) {
         let actor = this.__actors[type];
@@ -586,31 +607,41 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       this.__components.forEach((type) => {
         let
           value = this.__color.getComponent(['xyY','x','y'].includes(type) ? 'xy' : type),
+          typeCategory,
           base;
 
         switch (type) {
           case 'h':
             value *= 360;
+            typeCategory = 'hsv-single';
             break;
 
           case 's':
           case 'v':
             value *= 100;
+            typeCategory = 'hsv-single';
             break;
 
           case 'hsv':
             value = new Map([['h', value.h*360], ['s', value.s*100], ['v', value.v*100]] );
+            typeCategory = 'hsv';
             break;
 
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
+            base = this.getBaseColors()[type.split('-')[1]];
+            value = cv.util.Color.curve( value, base.curve, base.scale );
+            typeCategory = 'rgb-single';
+            break;
+
           case 'RGBW-r':
           case 'RGBW-g':
           case 'RGBW-b':
           case 'RGBW-w':
             base = this.getBaseColors()[type.split('-')[1]];
             value = cv.util.Color.curve( value, base.curve, base.scale );
+            typeCategory = 'rgbw-single';
             break;
 
           case 'rgb':
@@ -620,6 +651,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               ['g', cv.util.Color.curve(value.g, base.g.curve, base.g.scale )],
               ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale )]
             ]);
+            typeCategory = 'rgb';
             break;
 
           case 'rgbw':
@@ -630,6 +662,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               ['b', cv.util.Color.curve(value.b, base.b.curve, base.b.scale )],
               ['w', cv.util.Color.curve(value.w, base.w.curve, base.w.scale )]
             ]);
+            typeCategory = 'rgbw';
             break;
 
           case 'xy':
@@ -637,6 +670,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               ['x', value.x],
               ['y', value.y]
             ]);
+            typeCategory = 'xyY';
             break;
 
           case 'xyY':
@@ -644,20 +678,25 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             value = new Map([
               ['x', value.x],
               ['y', value.y],
-              ['Y', Y*100]
+              ['Y', Y]
             ]);
+            typeCategory = 'xyY';
             break;
 
           case 'Y':
-            value *= 100;
+            typeCategory = 'xyY';
             break;
 
           case 'x':
           case 'y':
             value = value[type];
+            typeCategory = 'xyY';
             break;
         }
-        this.__lastBusValue[type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[type] );
+        if( this.__lastBusValue[typeCategory] === undefined ) {
+          this.__lastBusValue[typeCategory] = {};
+        }
+        this.__lastBusValue[typeCategory][type] = this.sendToBackend(value, (t) => t.variantInfo===type, this.__lastBusValue[typeCategory][type] );
       });
     }
   },
