@@ -837,6 +837,10 @@ qx.Class.define('cv.util.Color', {
       this.__hsv = hsv;
       this.__syncHSV2xy();
     },
+    _forceLCh: function (LCh) {
+      this.__LCh = LCh;
+      this.__syncLCh2xy();
+    },
 
     /**
      * Get the value(s) of the specified component
@@ -947,25 +951,24 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Calculate the distance (difference) between this color and the otherColor
-     * in HSV color space.
-     * The result will be a number between 0.0 and 1.0
+     * in Lab color space, i.e. calculate the Delta E.
      * @param {cv.util.Color} otherColor
      * @returns {number}
      */
     delta: function (otherColor) {
-      this.__validateHSV();
-      otherColor.__validateHSV();
+      this.__validateLab();
+      otherColor.__validateLab();
       const
-        hsv = otherColor.__hsv,
-        dh = this.__hsv.h - hsv.h,
-        ds = this.__hsv.s - hsv.s,
-        dv = this.__hsv.v - hsv.v;
-      return Math.sqrt(Math.min((dh-1)**2, dh*dh, (dh+1)**2) + ds*ds + dv*dv);
+        Lab = otherColor.__Lab,
+        dL = this.__Lab.L - Lab.L,
+        da = this.__Lab.a - Lab.a,
+        db = this.__Lab.b - Lab.b;
+      return Math.sqrt(dL*dL + da*da + db*db);
     },
 
     /**
      * Create a new color by calculating (1-ratio)*thisColor + ratio*otherColor.
-     * The blending is done by mixing the HSV coordinates.
+     * The blending is done by mixing the LCh coordinates.
      * otherColor must have the same base colors xy coordinates, as this
      * is not checked or even enforced doing a blend between such different
      * colors will create an undesired result.
@@ -974,20 +977,20 @@ qx.Class.define('cv.util.Color', {
      * @returns {cv.util.Color}
      */
     blend: function (otherColor, ratio) {
-      this.__validateHSV();
-      otherColor.__validateHSV();
+      this.__validateLCh();
+      otherColor.__validateLCh();
       const
         b = (x,y) => ((1-ratio)*x + ratio*y),
         c = this.copy(),
-        c1 = this.__hsv,
-        c2 = otherColor.__hsv,
+        c1 = this.__LCh,
+        c2 = otherColor.__LCh,
         s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
         e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
 
-      c._forceHSV( {
+      c._forceLCh( {
         h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
-        s: b(c1.s,c2.s),
-        v: b(c1.v,c2.v)
+        L: b(c1.L,c2.L),
+        C: b(c1.C,c2.C)
       });
       return c;
     }
