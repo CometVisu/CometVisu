@@ -8,22 +8,15 @@
 
 .. _colorchooser:
 
-X.. toctree::
-X
-X    Einfacher Modus
-X    Professioneller Modus
-
 Der ColorChooser
 ================
 
 .. api-doc:: ColorChooser
 
+.. _colorchooser-Beschreibung:
+
 Beschreibung
 ------------
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Mit dem ColorChooser lassen sich Farben auswählen und anzeigen, beispielsweise
 für eine Effektbeleuchtung. Sowohl eine RGB-Beleuchtung mit roten, grünen und
@@ -41,8 +34,8 @@ Widget-Komponenten
 """"""""""""""""""
 
 Der ColorChooser bietet verschiedene Möglichkeiten und Kombinationen um eine
-Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte, aber
-aber welche für eine der menschlischen Wahrnehmung besser entsprechenden
+Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte Auswahl, aber
+aber solche für eine der menschlischen Wahrnehmung besser entsprechenden
 Darstellung:
 
 ========== =====================================================================
@@ -57,6 +50,7 @@ Darstellung:
 ``s``      saturation - Sättigung des HSV-Farbraums, indirekte Ansteuerung
 ``v``      value - Helligkeit des HSV-Farbraums, indirekte Ansteuerung
 ``T``      Farbtemperatur für Weiß, indirekte Ansteuerung
+``Y``      Helligkeit im xyY-Farbraum, indirekte Ansteuerung
 ``LCh-L``  lightness - Helligkeit im L*C*h° CIE Farbraum, indirekte Ansteuerung
 ``LCh-C``  chroma - Buntheit im L*C*h° CIE Farbraum, indirekte Ansteuerung
 ``LCh-h``  hue - Farbtonwinkel im L*C*h° CIE Farbraum, indirekte Ansteuerung
@@ -64,7 +58,27 @@ Darstellung:
 
 Der Slider für die Farbtemperatur nimmt eine Sonderrolle ein, da dieser
 gleichzeitig den Farbton als auch die Sättigung so einstellt, dass diese
-Farbtemperatur mit der Beleuchtung erricht wird.
+Farbtemperatur mit der Beleuchtung erricht wird. Soll die Farbtemperatur noch
+um einen Slider für die Helligkeit ergänzt werden, so ist hierfür ``Y`` am
+besten geeignet.
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_slider">
+            <caption>colorchooser, alle vorhandenen Slider</caption>
+            <data address="1/2/59">50</data>
+            <data address="1/2/60">60</data>
+            <data address="1/2/61">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="RGB-r;RGB-g;RGB-b;RGBW-r;RGBW-g;RGBW-b;RGBW-w;h;s;v;T:2500-20000;Y;LCh-L;LCh-C;LCh-h">
+      <layout colspan="6" rowspan="14"/>
+      <label>ColorChooser Slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
 
 Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten:
 
@@ -74,6 +88,21 @@ Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten
 ``LCh-box``      Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
 ``LCh-triangle`` Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
 ================ ====================================================================================
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex">
+            <caption>colorchooser, kombinierte Wähler</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="box;triangle;LCh-box;LCh-triangle">
+      <layout colspan="6" rowspan="16"/>
+      <label>ColorChooser</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
 
 .. NOTE::
 
@@ -98,6 +127,13 @@ die Verwendeten Dim-Kurven einstellen um das Verhalten des Beleuchtungssystems
 zu kompensieren. Neben der für den professionen Modus gedachten Angabe einer
 Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
 ``linear``, ``exponential`` und ``logarithmic`` die wichtigsten Kurventypen einstellen.
+
+.. note::
+
+    Die Angabe ein Dim-Kurve wird nur benötigt, wenn die Kommunikation in
+    Farbkomponenten (r, g, b und ggf. w) erfolgt. Wird statt dessen eine
+    komplette Farbe als HSV, oder im optimalen Fall, als xyY-Farbe übertragen,
+    so ist die Angabe einer Dim-Kurve nicht notwendig.
 
 Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
 entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
@@ -160,20 +196,16 @@ erweitern.
     sRGB lässt sich durch den ColorChooser der komplette Farbraum, der durch die
     Leuchtmittel möglich ist, nutzen.
 
-.. image:: _static/rgb_100px.png
-
-.. image:: _static/rgb_200px.png
-
 Der professionelle Modus unterscheidet sich vom einfachen Modus dadurch, dass
 die Farborte des verwendeten Leuchtmittels mit angegeben werden, so wie deren
-Dim-Verhaltens.
+Dim-Verhalten.
 
-Die besten Ergebnisse werden erreicht, wenn für den roten, grünen blauen und, so
+Die besten Ergebnisse werden erreicht, wenn für den roten, grünen, blauen und, so
 vorhanden, weißen Kanal die Farborte und Helligkeiten mit einem Spektralfotometer
 gemessen werden und als ``x`` und ``y`` Koordinaten des CIE-Normfarbsystem übergeben
-werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle so wie die maximale
+werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle, so wie die maximale
 Helligkeit übernommen werden.
-Aufgrund der Alterung des Leuchtmittels müssen - genau so wie bei der
+Aufgrund der Alterung des Leuchtmittels sollten - genau so wie bei der
 Monitor-Kalibierung - die Dim-Kurven regelmäßig bestimmt werden und die
 Konfigurationsdatei entsprechend angepasst werden. Die Häufigkeit der Messung
 richtet sich dabei nach dem Anspruch an die zu erreichende Farbtreue.
@@ -193,7 +225,7 @@ oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur die
 relative Größe der Werte untereinander.
 
 Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
-zu erhalten, sollte ein Widget-Element nicht im HSV sondern im L*C*h°-Modus
+zu erhalten, sollte das Widget-Element nicht im HSV sondern im L*C*h°-Modus
 verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. xyY oder
 L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
 Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
@@ -223,9 +255,9 @@ Ansteuerung über DALI:
         g_wavelength="534" g_strength="196" g_curve="logarithmic"
         b_wavelength="468" b_strength="21" b_curve="logarithmic"
         w_x="0.4290" w_y="0.4010" w_strength="400" w_curve="logarithmic"
-        controls="triangle">
+        controls="LCh-triangle">
+      <layout rowspan="4" colspan="6"/>
       <label>LED Strip</label>
-      <layout rowspan="6" colspan="6"/>
       <address transform="DPT:242.600" mode="read" variant="xyY">1/2/60</address>
       <address transform="DPT:242.600" mode="write" variant="xyY">1/2/61</address>
     </colorchooser>
@@ -233,25 +265,31 @@ Ansteuerung über DALI:
 .. warning::
 
     Grundsätzlich ist es möglich mehrere Address-Elemente mit unterschiedlichen
-    Farbraum-Arten gleichzeitig zu verwenden, z.B. `RGB` und `HSV`, aber auch
-    `RGB-R`, `RGB-G`, `RGB-B` und gleichzeitig `RGB` selbst. Auch wenn dies
-    vordergründig zu funktionieren scheint, so kann dies unbeabsichtigte
+    Farbraum-Arten gleichzeitig zu verwenden, z.B. ``RGB`` und ``HSV``, aber auch
+    ``RGB-R``, ``RGB-G``, ``RGB-B`` und gleichzeitig ``RGB`` selbst. Auch wenn dies
+    vordergründig zu funktionieren scheint, so kann es unbeabsichtigte
     Seiteneffekte erzeugen die zur Anzeige einer falschen Farbe führen.
 
 .. note::
 
     Es wird empfohlen nach Möglichkeit für die Übermittlung der Farbinformation
     einen Datentyp zu verwenden, der alle Farbkomponenten in sich vereint (also
-    z.B. `rgb` statt `RGB-r`, `RGB-g` und `RGB-b`), da es bei der Verwendung von
+    z.B. ``rgb`` statt ``RGB-r``, ``RGB-g`` und ``RGB-b``), da es bei der Verwendung von
     Einzelkomponenten durch den zeitlichen Versatz sonst zu kurzfristigen
     Artefakten in der Darstellung/Animation kommen kann.
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+.. note::
 
-Der ColorChooser fügt der Visu einen Farbwahlkreis hinzu. Damit können RGB-Anwendungen realisiert werden.
+    Wenn mehere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
+    einer Konfiguration, oder bei zwei offnen Instanzen der CometVisu), so ist es
+    möglich, dass beide eine leicht unterschiedliche Anzeige haben. Dies passiert,
+    wenn eine Farbe ausgewählt wurde, die in dieser Form nicht über den Bus
+    übertragen werden kann, da sie mit den vorhandenen Farbkanälen nicht
+    darstellbar ist. Dies kann insbesondere bei einem Farbwähler im LCh-Modus
+    der Fall sein, wenn die Farbwerte selbst im RGB-Modus übertragen werden.
 
+    Dieses Verhalten kann durch eine Umstellung der Bus-Kommunikation auf den
+    xyY-Farbraum lösen.
 
 Einstellungen
 -------------
@@ -259,7 +297,7 @@ Einstellungen
 Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: :ref:`visu-config-details`.
 
-Das Verhalten und Aussehen des ColorChooser-Plugins kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Das Verhalten und Aussehen des ColorChoosers kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den :ref:`Editor <editor>` bearbeitet werden kann.
 
@@ -272,7 +310,17 @@ Erlaubte Attribute im ColorChooser-Element
 
 .. parameter-information:: colorchooser
 
-...Keine...
+.. widget-example::
+    :editor: attributes
+    :scale: 75
+    :align: center
+
+        <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
+        <colorchooser>
+          <label>RGB Flur</label>
+          <address transform="DPT:232.600" mode="readwrite" variant="rgb">1/2/59</address>
+        </colorchooser>
+
 
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -285,13 +333,8 @@ Erlaubte Kind-Elemente und deren Attribute
     :align: center
 
     <caption>Elemente im Editor</caption>
-    <meta>
-        <plugins>
-    	    <plugin name="colorchooser" />
-        </plugins>
-    </meta>
     <colorchooser>
-      <label>RGB Kueche</label>
+      <label>RGB Flur</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
@@ -299,8 +342,10 @@ Erlaubte Kind-Elemente und deren Attribute
 
 .. IMPORTANT::
 
-    Pro Farbe (Rot, Grün, Blau) muss eine Gruppenadresse angelegt werden.
-    Für OpenHAB Color Items gilt diese Einschränkung nicht, sie können mit
+    Wird am Bus jede Farbe (Rot, Grün, Blau) individuell angesprochen, so muss
+    jeweils eine Gruppenadresse mit entsprechendem ``variant`` angelegt werden.
+    Für OpenHAB Color Items oder entsprechen kombinierte KNX Datentypen gilt
+    diese Einschränkung nicht, sie können beispielsweise mit
     einer Adresse mit dem Zusatz ``variant="rgb"`` angesprochen werden.
 
 Dazu geht man wie folgt vor:
@@ -338,25 +383,13 @@ Hier der minimale Beispielcode der das ColorChooser Plugin aus dem folgenden Scr
             <caption>colorchooser, einfaches Beispiel</caption>
         </screenshot>
     </settings>
-    <meta>
-        <plugins>
-            <plugin name="colorchooser" />
-        </plugins>
-    </meta>
     <colorchooser>
       <layout colspan="6" rowspan="4"/>
-      <label>RGB Kueche</label>
+      <label>RGB Flur</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
     </colorchooser>
-
-ToDo für Doku
--------------
-
-Warum zeigen zwei ColorChooser eine komplett unterschiedliche Anzeige?
-- Wenn per RGB gekoppelt, aber ein HSV Chooser, dann ist aufgrund der nicht
-exakt möglichen umrechnung von RGB nach HSV eine unterschiedliche Anzeige möglich, obwohl die selbe Farbe repräsentiert wird
 
 .. rubric:: Fußnoten
 

@@ -66,7 +66,7 @@ kann innerhalb der Visu navigiert werden.
     audio/index
 
 .. toctree::
-    :maxdepth: 5
+    :maxdepth: 7
     :hidden:
 
     colorchooser/index
