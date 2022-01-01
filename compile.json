@@ -207,6 +207,8 @@
     "Worker",
     "Node",
     "indexedDB",
-    "URL"
+    "URL",
+    "sinon",
+    "XMLDocument"
   ]
 }

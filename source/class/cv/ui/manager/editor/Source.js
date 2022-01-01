@@ -319,13 +319,15 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         // create new model
         if (qx.xml.Document.isXmlDocument(value)) {
           value = value.documentElement.outerHTML;
+        } else if (typeof value === 'object') {
+          value = JSON.stringify(value, null, 2);
         }
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
         newModel.onDidChangeDecorations(function (ev) {
           let errors = false;
           let warnings = false;
           monaco.editor.getModelMarkers({
-            owner: newModel.getModeId(),
+            owner: newModel.getLanguageId(),
             resource: id
           }).some(function (marker) {
             if (marker.severity === monaco.MarkerSeverity.Warning) {
@@ -419,7 +421,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         });
       }
       if (this.getFile().getFullPath() === path) {
-        window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
+        window.monaco.editor.setModelMarkers(model, model.getLanguageId(), markers);
         const options = this.getHandlerOptions();
         if (options && options.jumpToError) {
           // jump too first error (only when we are at the beginning

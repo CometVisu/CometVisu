@@ -172,11 +172,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           this.getChildControl('left').setLayoutProperties({flex: 1});
         }
       }
-      if (value && this.getFile()) {
+      const file = this.getFile();
+      if (value && file) {
         const preview = this.getChildControl('preview');
-        if (!preview.getFile()) {
-          const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-          preview.setFile(previewConfig);
+        if (file.isWriteable()) {
+          if (!preview.getFile()) {
+            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+            preview.setFile(previewConfig);
+          }
+        } else {
+          // this file is not writable, we can use the real one for preview
+          preview.setFile(file);
         }
         this._updatePreview();
       }
@@ -1965,9 +1971,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (this.isShowPreview()) {
           const preview = this.getChildControl('preview');
-          if (!preview.getFile()) {
-            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-            preview.setFile(previewConfig);
+          if (file.isWriteable()) {
+            if (!preview.getFile()) {
+              const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
+              preview.setFile(previewConfig);
+            }
+          } else {
+            preview.setFile(file);
           }
           this._updatePreview(null, value);
           if (!preview.isVisible()) {

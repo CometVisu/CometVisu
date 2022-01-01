@@ -97,15 +97,67 @@ qx.Class.define('cv.io.Mockup', {
 
     __applyTestData: function () {
       this.__xhr = cv.Config.initialDemoData.xhr;
+
+      const that = this;
+
+      // override sinons filter handling to be able to manipulate the target URL from the filter
+      // eslint-disable-next-line consistent-return
+      sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
+        this.method = method;
+        this.url = url;
+        this.async = typeof async == 'boolean' ? async : true;
+        this.username = username;
+        this.password = password;
+        this.responseText = null;
+        this.responseXML = null;
+        this.requestHeaders = {};
+        this.sendFlag = false;
+        if (sinon.FakeXMLHttpRequest.useFilters === true) {
+          let xhrArgs = arguments;
+          let defake = sinon.FakeXMLHttpRequest.filters.some(function(filter) {
+            return filter.call(this, xhrArgs);
+          });
+          if (defake) {
+            const xhr = that.defake(this, xhrArgs);
+            xhr.open.apply(xhr, xhrArgs);
+            xhr.setRequestHeader('Accept', 'text/*, image/*');
+            return;
+          }
+        }
+        this.readyStateChange(sinon.FakeXMLHttpRequest.OPENED);
+      };
+
       // configure server
-      qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-        return url.startsWith('https://sentry.io');
+      qx.dev.FakeServer.getInstance().addFilter(function (args) {
+        const method = args[0];
+        const url = args[1];
+        if (url.startsWith('https://sentry.io')) {
+          return true;
+        } else if (method === 'GET' && (
+          url.indexOf('resource/visu_config') >= 0 ||
+          url.indexOf('resource/demo/visu_config') >= 0 ||
+          url.indexOf('resource/hidden-schema.json') >= 0 ||
+          url.indexOf('resource/manager/') >= 0
+        )) {
+          return true;
+        } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
+          // change url to avoid API access and do a real request
+          const path = url.split('=').pop();
+          const suffix = path.startsWith('demo/') ? '' : 'config/';
+          args[1] = window.location.pathname + 'resource/' + suffix + path;
+          return true;
+        }
+        return false;
       }, this);
       const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(function (request) {
-        let url = cv.report.Record.normalizeUrl(request.url);
-        if (url.indexOf('nocache=') >= 0) {
-          url = url.replace(/[\?|&]nocache=[0-9]+/, '');
+        const parsed = qx.util.Uri.parseUri(request.url);
+        let url = request.url;
+        if (!parsed.host || parsed.host === window.location.host) {
+          url = cv.report.Record.normalizeUrl(request.url);
+          if (url.startsWith(window.location.pathname)) {
+            url = url.substr(window.location.pathname.length-1);
+          }
         }
         if (!this.__xhr[url] || this.__xhr[url].length === 0) {
           qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
@@ -127,6 +179,59 @@ qx.Class.define('cv.io.Mockup', {
           request.respond(response.status, response.headers, JSON.stringify(response.body));
         }
       }.bind(this));
+    },
+
+    defake: function(fakeXhr, xhrArgs) {
+      // eslint-disable-next-line new-cap
+      const xhr = new sinon.xhr.workingXHR();
+      ['open', 'setRequestHeader', 'send', 'abort', 'getResponseHeader',
+          'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function(method) {
+          fakeXhr[method] = function() {
+            return xhr[method].apply(xhr, arguments);
+          };
+        });
+
+      const copyAttrs = function(args) {
+        args.forEach(function(attr) {
+          try {
+            fakeXhr[attr] = xhr[attr];
+          } catch (e) {
+            if (!/MSIE 6/.test(navigator.userAgent)) {
+             throw e;
+            }
+          }
+        });
+      };
+
+      const stateChange = function() {
+        fakeXhr.readyState = xhr.readyState;
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
+          copyAttrs(['status', 'statusText']);
+        }
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
+          copyAttrs(['responseText']);
+        }
+        if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+          copyAttrs(['responseXML']);
+        }
+        if (fakeXhr.onreadystatechange) {
+          fakeXhr.onreadystatechange({ target: fakeXhr });
+        }
+      };
+      if (xhr.addEventListener) {
+        for (let event in fakeXhr.eventListeners) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (fakeXhr.eventListeners.hasOwnProperty(event)) {
+            fakeXhr.eventListeners[event].forEach(function(handler) {
+              xhr.addEventListener(event, handler);
+            });
+          }
+        }
+        xhr.addEventListener('readystatechange', stateChange);
+      } else {
+        xhr.onreadystatechange = stateChange;
+      }
+      return xhr;
     },
 
     /**

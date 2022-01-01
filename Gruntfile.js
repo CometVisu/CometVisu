@@ -566,31 +566,17 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
+    const baseDir = grunt.option('base-dir') || 'compiled/build';
     [
-      'compiled/build/resource/demo/visu_config_demo.xml',
-      'compiled/build/resource/demo/visu_config_2d3d.xml',
-      'compiled/build/resource/demo/visu_config_demo_testmode.xml'
+      baseDir + '/resource/demo/visu_config_demo.xml',
+      baseDir + '/resource/demo/visu_config_2d3d.xml',
+      baseDir + '/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
-      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      const config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'compiled/build/index.html';
-    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
-  });
-
-  grunt.registerTask('update-demo-config-source', function() {
-    [
-      'compiled/source/resource/demo/visu_config_demo.xml',
-      'compiled/source/resource/demo/visu_config_2d3d.xml',
-      'compiled/source/resource/demo/visu_config_demo_testmode.xml'
-    ].forEach(function (filename) {
-      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    });
-
-    var filename = 'compiled/source/index.html';
+    const filename = baseDir + '/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });

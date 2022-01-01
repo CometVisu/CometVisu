@@ -88,7 +88,7 @@
   "dependencies": {
     "@sentry/browser": "^6.13.3",
     "crc-32": "^1.2.0",
-    "monaco-editor": "^0.29.1",
+    "monaco-editor": "^0.30.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
   },
@@ -116,7 +116,9 @@
       "quotes": [
         "error",
         "single"
-      ]
+      ],
+      "protractor/no-shadowing": "off",
+      "protractor/no-promise-in-if": "off"
     },
     "plugins": [
       "jasmine",
@@ -166,6 +168,27 @@
           "protractor/no-repetitive-selectors": "off",
           "protractor/no-browser-sleep": "off",
           "protractor/no-by-xpath": "off",
+          "jasmine/no-disabled-tests": "off",
+          "protractor/no-shadowing": "warn",
+          "protractor/no-promise-in-if": "warn"
+        }
+      },
+      {
+        "files": [
+          "utils/compile/**/*.js"
+        ],
+        "env": {
+          "node": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off",
+          "protractor/no-describe-selectors": "off",
+          "protractor/no-repetitive-locators": "off",
+          "protractor/no-repetitive-selectors": "off",
+          "protractor/no-browser-sleep": "off",
+          "protractor/no-by-xpath": "off",
           "jasmine/no-disabled-tests": "off"
         }
       }
@@ -193,7 +216,8 @@
       "Worker": "readonly",
       "Node": "readonly",
       "indexedDB": "readonly",
-      "URL": "readonly"
+      "URL": "readonly",
+      "sinon": "readonly"
     }
   }
 }

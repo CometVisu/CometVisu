@@ -134,15 +134,25 @@ qx.Class.define('cv.ui.manager.Main', {
           cv.ui.manager.snackbar.Controller.error(err);
         } else if (res) {
           res.forEach(function (env) {
+            let refreshActions = false;
             switch (env.entity) {
               case '.':
                 // config folder must be writeable
                 if ((env.state & 1) === 0) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder does not exists'));
                 } else if ((env.state & 2) === 0) {
+                  cv.ui.manager.model.FileItem.ROOT.setReadable(false);
+                  refreshActions = true;
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not readable'));
                 } else if ((env.state & 4) === 0) {
+                  cv.ui.manager.model.FileItem.ROOT.setWriteable(false);
+                  refreshActions = true;
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
+                }
+                if (refreshActions) {
+                  const widget = this.__actionDispatcher.getFocusedWidget();
+                  this.__actionDispatcher.resetFocusedWidget();
+                  this.__actionDispatcher.setFocusedWidget(widget);
                 }
                 break;
 
@@ -174,7 +184,19 @@ qx.Class.define('cv.ui.manager.Main', {
         // needs a writeable file
         return false;
       }
-      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone', 'about'].includes(actionName);
+      let actions = ['close', 'quit', 'about'];
+      const currentFolder = this.getCurrentFolder();
+      if (currentFolder.isWriteable()) {
+        actions.push('new-file');
+        actions.push('new-folder');
+        actions.push('delete');
+        actions.push('upload');
+        actions.push('clone');
+      }
+      if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+        actions.push('new-config-file');
+      }
+      return actions.includes(actionName);
     },
 
     handleAction: function (actionName, data) {
