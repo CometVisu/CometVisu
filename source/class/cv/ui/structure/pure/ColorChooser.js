@@ -18,7 +18,23 @@
  */
 
 /**
- * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
+ * The ColorChooser let you select and display a color, e.g. for lighting effects.
+ * It supports a RGB light source with red, green and blue light components as well
+ * as a RGBW light source that also has a white channel.
+ *
+ * @widgetexample
+ * <settings>
+ *      <screenshot name="colorchooser_example">
+ *          <caption>ColorChooser, simple example</caption>
+ *      </screenshot>
+ * </settings>
+ * <colorchooser>
+ *   <layout colspan="6" rowspan="4"/>
+ *   <label>RGB kitchen</label>
+ *   <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+ *   <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+ *   <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+ * </colorchooser>
  *
  * @author Christian Mayer
  * @since 2012
