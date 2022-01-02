@@ -421,6 +421,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
                 width: parseFloat(actorStyle.getPropertyValue('width')),
                 buttonWidth: parseFloat(window.getComputedStyle(button).getPropertyValue('width'))
               };
+              range.style.marginLeft = '-' + actorStyle.getPropertyValue('padding-left');
               range.style.borderRadius = actorStyle.getPropertyValue('border-radius');
           }
         });

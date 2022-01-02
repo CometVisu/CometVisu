@@ -64,7 +64,7 @@ besten geeignet.
 
 .. widget-example::
 
-    <settings>
+    <settings sleep="1500">
         <screenshot name="colorchooser_slider">
             <caption>colorchooser, alle vorhandenen Slider</caption>
             <data address="1/2/59">50</data>
