@@ -52,14 +52,14 @@ representing a part of a color in the way a human is experiencing it.
 
 The slider for the color temperature is special as it controls the hue als
 well as the saturation at the same time, so that a given color temperature of
-white will be set. When you also want to control the bightness it is recomended
+white will be set. When you also want to control the brightness it is recommended
 to use ``Y`` for that.
 
 .. widget-example::
 
     <settings sleep="1500">
         <screenshot name="colorchooser_slider">
-            <caption>colorchooser, alle vorhandenen Slider</caption>
+            <caption>colorchooser, all possible sliders</caption>
             <data address="1/2/59">50</data>
             <data address="1/2/60">60</data>
             <data address="1/2/61">100</data>
@@ -73,20 +73,20 @@ to use ``Y`` for that.
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
     </colorchooser>
 
-Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten:
+There are also combined, more complex interactions possible:
 
-================ ====================================================================================
-``box``          Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, HSV-Farbraum
-``triangle``     Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, HSV-Farbraum
-``LCh-box``      Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
-``LCh-triangle`` Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
-================ ====================================================================================
+================ ================================================================================================
+``box``          Color selection wheel with quadratic brightness and saturation selector, HSV color space
+``triangle``     Color selection wheel with triangular brightness and saturation selector, HSV color space
+``LCh-box``      Color selection wheel with quadratic brightness and saturation selector, L*C*h° CIE color space
+``LCh-triangle`` Color selection wheel with triangular brightness and saturation selector, L*C*h° CIE color space
+================ ================================================================================================
 
 .. widget-example::
 
     <settings>
         <screenshot name="colorchooser_complex">
-            <caption>colorchooser, kombinierte Wähler</caption>
+            <caption>colorchooser, combined selector</caption>
         </screenshot>
     </settings>
     <colorchooser controls="box;triangle;LCh-box;LCh-triangle">
@@ -99,49 +99,46 @@ Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten
 
 .. NOTE::
 
-    Im einfachen Modus sollten das Farbwahlrad im HSV-Farbraum benutzt
-    werden, im professionellen Modus, wenn die Farborte der einzelnen Farben
-    konfiguriert wurden, im L*C*h°-Farbraum.
+    In the simple mode it is recommended to use the color selection wheel in the
+    HSV color space. In the professional mode, when the chromaticity coordinates
+    are configured, the L*C*h° color space should be used for best color
+    alignment.
 
 Dim curves
 """"""""""
 
-Das menschliche Auge nimmt Helligkeit nicht linear sondern logarithmisch war,
-dadurch ist es möglich sowohl in dunkler Nacht als auch mittags bei gleißendem
-Sonnenschein sehen zu können. Verschiedene Beleuchtungssysteme, wie beispielsweise
-DALI, berücksichtigen diese Eigenschaft des Auges und verwenden eine nicht lineare
-Dim-Kurve um eine bessere Übereinstimmung zwischen der eingestellten und der
-wahrgenommenen Helligkeit zu erreichen. Dieses grundsätzlich sinnvolle Verhalten
-ist jedoch bei der Mischung von Farben nachteilig, da hier ein lineares Verhalten
-benötigt wird.
+The eye doesn't measure brightness in a linear fashion but in a logarithmic
+way to be able to see at a dark night as well as during high noon. Different
+lighting systems, like DALI, take that into account and thus use a non linear
+dim curve, so that the brightness of the light has a better match to the selected
+dim value. Although this is a desirable mechanism it prevents the mixing of
+different light colors as this requires a linear dim curve.
 
-Durch die Attribute ``r_curve``, ``g_curve``, ``b_curve`` und ``w_curve`` lassen sich
-die Verwendeten Dim-Kurven einstellen um das Verhalten des Beleuchtungssystems
-zu kompensieren. Neben der für den professionen Modus gedachten Angabe einer
-Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
-``linear``, ``exponential`` und ``logarithmic`` die wichtigsten Kurventypen einstellen.
+Using the attributes ``r_curve``, ``g_curve``, ``b_curve`` and ``w_curve`` it
+is possible to configure the dim curve used by the lighting system and
+compensate it for color mixing. Apart from defining a look up table (intended
+for the use at the professional mode) the keywords ``linear``, ``exponential``
+and ``logarithmic`` allow a simple use of the most common types of curve.
 
 .. note::
 
-    Die Angabe ein Dim-Kurve wird nur benötigt, wenn die Kommunikation in
-    Farbkomponenten (r, g, b und ggf. w) erfolgt. Wird statt dessen eine
-    komplette Farbe als HSV, oder im optimalen Fall, als xyY-Farbe übertragen,
-    so ist die Angabe einer Dim-Kurve nicht notwendig.
+    Configuring a dim curve is only required when the communication is
+    done in raw color components (``r``, ``g``, ``b`` and perhaps ``w``).
+    Using a complete color in ``HSV`` or - in the best case - as ``xyY`` color
+    a dim curve isn't necessary.
 
-Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
-entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
-zu berücksichtigen sind, da hier an jeder Stelle ein nicht lineares Verhalten
-möglich sein kann.
+The correct value is stated in the documentation of the lighting system, but
+it is important to consider the lights, the drivers and the bus gateways, as
+each component might use a non linear behavior.
 
-Ob die verwendete Kurve korrekt ist lässt sich grob auch ohne Messgerät leicht
-abschätzen. Hierzu muss der rote Kanal auf 100%, der grüne auf 50% und der blaue
-auf 0% eingestellt werden (der ggf. vorhandene weiße Kanal muss auch auf 0% stehen).
-Die Beleuchtungsfarbe sollte nun, wenn die Dim-Kurven richtig eingestellt sind,
-einem satten Orange entsprechen.
+It is possible to do a quick check whether the selected curve is right or way
+off. For that the red channel has to be set to 100%, the green to 50% and the
+blue to 0% (when you are also using a white channel is must also be 0%).
+When the dim curves are set correctly the light color should now be a saturated
+orange.
 
-Sollte die Farbe nicht passen, so ist real eingestellte Farbe (ohne dass eine
-Dim-Kurve konfiguriert wurde) mit dieser Tabelle zu vergleichen und der
-Wert aus der letzen Spalte als Dim-Kurve zu verwenden:
+When the light color is different and no curve has been configured this table
+shows the correct curve to use for compensation:
 
 .. raw:: html
 
@@ -156,91 +153,86 @@ Wert aus der letzen Spalte als Dim-Kurve zu verwenden:
 .. role:: logorange
 
 ====================== ====================== =========================================
-Soll-Farbe             reale Farbe            zur Kompensation zu verwendende Dim-Kurve
+target color           real color             dim curve to use for compensation
 ---------------------- ---------------------- -----------------------------------------
 :linearorange:`------` :logorange:`------`    `logarithmic`
 :linearorange:`------` :linearorange:`------` `linear`
 :linearorange:`------` :exporange:`------`    `exponential`
 ====================== ====================== =========================================
 
-Meist reicht die Einstellung der korrekten Dim-Kurve aus, um bereits eine gute
-Farbdarstellung zu bekommen. Sollte es jedoch auch nach einer Korrektur bei einer
-RGB-Beleuchtung, wenn die Helligkeit auf 100% und die Sättigung auf 0% steht,
-einen Farbstich geben und nicht neutral Weiß leuchten, so kann über die
-``r_strength``, ``g_strength`` und ``b_strength`` Werte eine Korrektur erfolgen.
-Dies ist auch bei einer RGBW-Beleuchtung möglich, jedoch wird das Abschätzen
-der Werte noch schwieriger als bei einer RGB-Beleuchtung, so dass hier am
-besten eine Messung der realen Werte durchgeführt werden sollte. Dies wird im
-Abschnitt für den professionellen Modus beschrieben.
+In most cases it is sufficient to select the correct dim curve for a good
+consistent color. But when you select a brightness of 100% and a saturation
+of 0% and have a color tint and not a neutral white you can use  ``r_strength``,
+``g_strength`` and ``b_strength`` to correct the color.
+This is also possible with a RGBW light source but the judgement by eye will
+be quite demanding. In this case it's better suited to use a measurement
+device as described in the professional mode.
 
 Professional mode
 ^^^^^^^^^^^^^^^^^
 
-Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder
-Yachten lässt sich der einfache Modus leicht auf eine farbverbindliche Nutzung
-erweitern.
+For professional applications like architecture, art galleries or yachting the
+simple mode can be easily upgraded to the professional mode where the color
+chooser can be used for true color selecting.
 
 .. note::
 
-    Beste Ergebnisse benötigen einen kalibrierten Bildschirm. Da für die
-    Darstellung bewusst nur der sRGB-Farbraum verwendet wird sollte aber auch auf
-    unkalibrierten Geräten (wie z.B. Smartphones und Tablets) eine akzeptable
-    Darstellung möglich sein. Trotz der Einschränkung der Bildschirmdarstellung auf
-    sRGB lässt sich durch den ColorChooser der komplette Farbraum, der durch die
-    Leuchtmittel möglich ist, nutzen.
+    Best results require a calibrated display. As, on purpose, only the sRGB
+    color space is used for showing the widget also uncalibrated devices
+    (like a smart phone or a tablet computer) should still have acceptable
+    performance in most cases. Although only the sRGB color space is used the
+    ColorChooser does allow the selection of all colors that the lighting
+    system does allow.
 
-Der professionelle Modus unterscheidet sich vom einfachen Modus dadurch, dass
-die Farborte des verwendeten Leuchtmittels mit angegeben werden, so wie deren
-Dim-Verhalten.
+The difference between the professional and the simple mode is that the
+colorimetric locus and the dim behaviour of the channels of the light source are
+configured.
 
-Die besten Ergebnisse werden erreicht, wenn für den roten, grünen, blauen und, so
-vorhanden, weißen Kanal die Farborte und Helligkeiten mit einem Spektralfotometer
-gemessen werden und als ``x`` und ``y`` Koordinaten des CIE-Normfarbsystem übergeben
-werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle, so wie die maximale
-Helligkeit übernommen werden.
-Aufgrund der Alterung des Leuchtmittels sollten - genau so wie bei der
-Monitor-Kalibierung - die Dim-Kurven regelmäßig bestimmt werden und die
-Konfigurationsdatei entsprechend angepasst werden. Die Häufigkeit der Messung
-richtet sich dabei nach dem Anspruch an die zu erreichende Farbtreue.
+Best results will be reached by measuring the colorimetric locus of the red,
+green, blue and (when available) white channel by using a spectral photometer
+and stating the measured ``x`` and ``y``coordinates of the CIE xyY color space
+as well as the maximal brightness in the config file. This measurement can also provide
+a look up table for the dim curve.
+Due to aging of the light source those values should be regularly remeasured,
+just like any display calibration. The frequency of this measurement depends
+on the required color accuracy.
 
-Ohne Messgerät, aber mit einem Datenblatt des verwendeten Leuchtmittels, lassen
-sich auch noch gute Ergebnisse erzielen. Wenn für die Farben keine ``x`` und ``y``
-Koordinaten angegeben werden, aber zumindest die Wellenlängen, so können diese
-alternativ verwendet werden. Dies führt nur bei einer monochromatischen Lichtquelle
-wie einem Laser zu einem korrektem Ergebnis, jedoch besitzen auch RGB-LEDs ein
-annähernd monochromatische Verhalten. Bei dem weißen Kanal kann statt der
-xy-Koordinaten auch die Farbtemperatur verwendet werden. Sollte eine Abweichung
-von der Black-Body-Kurve berücksichtig werden müssen, so muss dies jedoch über eine
-Angabe in xy-Koordinaten erfolgen.
+It is still possible to get good results without a measurement device when the
+data sheet of the used light source is available. When no values for the ``x``
+and ``y`` coordinates are given but instead the wave length of the color it
+can be used alternatively. Although this would work only for a monochromatic
+light source like a laser, the widely used RGB-LEDs can still be assumed to be
+nearly monochromatic. For the white channel it is possible to use the
+color temperature instead of the ``xy`` coordinates. A deviation from the
+black body curve can't be stated, in such a case the  ``x`` and ``y``
+coordinates must be used.
 
-Die Helligkeitsangabe muss keine spezifische physikalische Einheit (wie Lumen
-oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur die
-relative Größe der Werte untereinander.
+The configured brightness doesn't need to follow a specific physical unit (like
+lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
+values.
 
-Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
-zu erhalten, sollte das Widget-Element nicht im HSV sondern im L*C*h°-Modus
-verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. xyY oder
-L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
-Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
-ist. Eine Kommunikation im HSV-Farbraum würde auch noch eine gute Farbwiedergabe
-ermöglichen. Für eine direkte Ansteuerung über RGB bzw. RGBW Werte ist eine
-korrekt eingestellte Dim-Kurve unabdingbar.
+For a best match between the displayes color and that from the light the
+widget element should not be used in the HSV but in the L*C*h° mode. The
+bus communication should use the ``xy``, ``xyY`` or L*a*B* color space as then
+the conversation to control the light source is happening close to it
+reducing any errors in between. A communication in the HSV color space might
+still work. A direct control by RGB or RGBW values would require an accurate
+configured dim curve.
 
 .. note::
 
-    Der ColorChooser verwendet intern den CIE xyY Farbraum. Für die Umrechung
-    in den L*a*b* bzw. den L*C*h° Farbraum wird die Normlichtart D65 und ein
-    Beobachterwinkel von 10° verwendet.
+    The ColorChooser is using internally the CIE xyY color space. For the
+    conversion in the L*a*b* and the L*C*h° color space it is using the D65
+    light with a 10° standard observer.
 
-Beispiel für einen ColorChooser für den OSRAM LINEARlight FLEX Colormix RGBW
-LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und einer
-Ansteuerung über DALI:
+Example of a ColorChooser for the OSRAM LINEARlight FLEX Colormix RGBW
+LED stripe "LF700RGBW-G1-830-06" with the datasheet data and a control via DALI:
 
 .. widget-example::
 
     <settings>
         <screenshot name="colorchooser_professional">
-            <caption>Triangle-ColorChooser im professionellen Modus</caption>
+            <caption>Triangle ColorChooser, professional mode</caption>
         </screenshot>
     </settings>
     <colorchooser
@@ -257,32 +249,32 @@ Ansteuerung über DALI:
 
 .. warning::
 
-    Grundsätzlich ist es möglich mehrere Address-Elemente mit unterschiedlichen
-    Farbraum-Arten gleichzeitig zu verwenden, z.B. ``RGB`` und ``HSV``, aber auch
-    ``RGB-R``, ``RGB-G``, ``RGB-B`` und gleichzeitig ``RGB`` selbst. Auch wenn dies
-    vordergründig zu funktionieren scheint, so kann es unbeabsichtigte
-    Seiteneffekte erzeugen die zur Anzeige einer falschen Farbe führen.
+    It is technically possible to use multiple address elements with different
+    color space types like ``RGB`` and ``HSV``. It is also technically possible
+    to use ``RGB-R``, ``RGB-G``, ``RGB-B`` and at the same time ``RGB``.
+
+    Although it might seem to work it can have unwanted side effects leading
+    to the display of a wrong color, so it should be prevented and be considered
+    a misconfiguration.
 
 .. note::
 
-    Es wird empfohlen nach Möglichkeit für die Übermittlung der Farbinformation
-    einen Datentyp zu verwenden, der alle Farbkomponenten in sich vereint (also
-    z.B. ``rgb`` statt ``RGB-r``, ``RGB-g`` und ``RGB-b``), da es bei der Verwendung von
-    Einzelkomponenten durch den zeitlichen Versatz sonst zu kurzfristigen
-    Artefakten in der Darstellung/Animation kommen kann.
+    It is recommended to use a bus communication where all color components are
+    stated in the same data type (e.g. ``rgb`` instead of ``RGB-r``, ``RGB-g``
+    and ``RGB-b``). Otherwise it is possible that for short time periods
+    after an external change of the color artefacts in the displayed or
+    animated color are shown.
 
 .. note::
 
-    Wenn mehere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
-    einer Konfiguration, oder bei zwei offnen Instanzen der CometVisu), so ist es
-    möglich, dass beide eine leicht unterschiedliche Anzeige haben. Dies passiert,
-    wenn eine Farbe ausgewählt wurde, die in dieser Form nicht über den Bus
-    übertragen werden kann, da sie mit den vorhandenen Farbkanälen nicht
-    darstellbar ist. Dies kann insbesondere bei einem Farbwähler im LCh-Modus
-    der Fall sein, wenn die Farbwerte selbst im RGB-Modus übertragen werden.
+    When multiple ColorChooser are used for the same light (e.g. in one
+    configuration or by opening the CometVisu in two browsers) it is possible
+    that both will show a slightly different color. This happens when a color
+    is selected that isn't contained in the color space used on the bus
+    communication. This happens most likely with a ColorChooser in LCh mode
+    and RGB mode for communication.
 
-    Dieses Verhalten kann durch eine Umstellung der Bus-Kommunikation auf den
-    xyY-Farbraum lösen.
+    Changing the communication to xyY mode will solve this issue.
 
 Settings
 --------
@@ -333,27 +325,10 @@ Allowed child-elements und their attributes
 
 .. IMPORTANT::
 
-    Wird am Bus jede Farbe (Rot, Grün, Blau) individuell angesprochen, so muss
-    jeweils eine Gruppenadresse mit entsprechendem ``variant`` angelegt werden.
-    Für OpenHAB Color Items oder entsprechen kombinierte KNX Datentypen gilt
-    diese Einschränkung nicht, sie können beispielsweise mit
-    einer Adresse mit dem Zusatz ``variant="rgb"`` angesprochen werden.
-
-Dazu geht man wie folgt vor:
-
-* Auf das Pluszeichen über der Adressliste klicken.
-* In das eingefügte, aber noch leere Feld klicken.
-* Wenn die Gruppenadresse für die Farben im Wiregate importiert wurden, kann die entsprechende
-  Adresse aus dem Auswahlmenü ausgewählt werden. Anderenfalls muss der Haken hinter dem Adressfeld entfernt
-  und die Adresse manuell nach dem Format ``x/y/z`` also z.B. ``1/2/59`` eingetragen werden.
-* Beim Auswählen einer importierten Gruppenadresse erscheint ggf. der richtige Datenpunkttyp unter Transforms.
-  Anderenfalls muss dort von Hand der DPT 5.001 "Scaling" ausgewählt werden.
-* Unter Variant muss nun das Kürzel für die Farbe eingegeben werden. z.B. für Rot muss ``r``,
-  für Grün ein ``g`` und für Blau ``b`` eingegeben werden.
-* Danach einmal auf save klicken und die Schritte für die nächste Farbe wiederholen.
-
-Am Ende sollten drei Einträge in der Adressliste stehen. Mit einem Klick auf OK wird nun der
-Farbwahlkreis der aktuellen Visuseite hinzugefügt und kann an einer beliebigen Stelle platziert werden.
+    When you need to address each color (red, green and blue) individually you
+    need to add a group address with corresponding ``variant`` each. For
+    OpenHAB Color Items or one of the combined KNX data types this does not hold,
+    here it is e.g. possible to use a ``variant="rgb"`` instead.
 
 Examples
 --------
@@ -367,6 +342,17 @@ for the Info widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
+.. code-block:: xml
+
+    
+    <colorchooser>
+      <layout colspan="6" rowspan="4"/>
+      <label>RGB kitchen</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

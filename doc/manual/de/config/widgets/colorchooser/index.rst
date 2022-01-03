@@ -131,8 +131,8 @@ Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
 .. note::
 
     Die Angabe ein Dim-Kurve wird nur benötigt, wenn die Kommunikation in
-    Farbkomponenten (r, g, b und ggf. w) erfolgt. Wird statt dessen eine
-    komplette Farbe als HSV, oder im optimalen Fall, als xyY-Farbe übertragen,
+    Farbkomponenten (``r``, ``g``, ``b`` und ggf. ``w``) erfolgt. Wird statt dessen eine
+    komplette Farbe als ``HSV``, oder im optimalen Fall, als ``xyY``-Farbe übertragen,
     so ist die Angabe einer Dim-Kurve nicht notwendig.
 
 Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
@@ -280,7 +280,7 @@ Ansteuerung über DALI:
 
 .. note::
 
-    Wenn mehere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
+    Wenn mehrere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
     einer Konfiguration, oder bei zwei offnen Instanzen der CometVisu), so ist es
     möglich, dass beide eine leicht unterschiedliche Anzeige haben. Dies passiert,
     wenn eine Farbe ausgewählt wurde, die in dieser Form nicht über den Bus
