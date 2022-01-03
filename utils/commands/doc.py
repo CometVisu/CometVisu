@@ -18,6 +18,7 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 import os
+import io
 import logging
 import configparser
 import codecs
@@ -87,7 +88,7 @@ class DocParser:
 
     def parse(self):
         self.init()
-        with open(self.file) as f:
+        with io.open(self.file, mode="r", encoding="utf-8") as f:
             current_section = None
             # find sections
             for line in f.readlines():
@@ -125,7 +126,7 @@ class DocParser:
         return "".join(content)
 
     def write(self):
-        with open(self.file, "w") as f:
+        with io.open(self.file, "w", encoding="utf-8") as f:
             f.write(self.tostring())
 
 
@@ -268,13 +269,13 @@ class DocGenerator(Command):
                 if os.path.exists(parser_path):
                     source_files.append((parser, parser_path))
                 else:
-                    print("file not found %s" % parser_path)
+                    print("file not found %s - skipping it and continue the processing..." % parser_path)
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
             api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "resource", "apiviewer", "examples")
 
-            with open(file) as f:
+            with io.open(file, mode="r", encoding="utf-8") as f:
                 content = {
                     "WIDGET-DESCRIPTION": [],
                     "WIDGET-EXAMPLES": []
@@ -349,9 +350,9 @@ class DocGenerator(Command):
                                             content[section].append(".. code-block:: xml\n\n    ")
                                             for child in xml:
                                                 if child.tag == "meta":
-                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                                 elif child.tag != "settings":
-                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                         else:
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
