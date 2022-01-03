@@ -64,17 +64,7 @@ kann innerhalb der Visu navigiert werden.
     :hidden:
 
     audio/index
-
-.. toctree::
-    :maxdepth: 7
-    :hidden:
-
     colorchooser/index
-
-.. toctree::
-    :titlesonly:
-    :hidden:
-
     designtoggle/index
     imagetrigger/index
     infoaction/index
