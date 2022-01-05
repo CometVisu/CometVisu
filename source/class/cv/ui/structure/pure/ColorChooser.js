@@ -231,24 +231,17 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     },
 
     _update: function (address, data) {
-      function deleteBut( keepArray ) {
-        return; ////////////////////////////////////////////////////
-        [
-          'rgb', 'RGB-r', 'RGB-g', 'RGB-b',
-          'rgbw', 'RGBW-r', 'RGBW-g', 'RGBW-b', 'RGBW-w',
-          'hsv', 'h', 's', 'v'
-        ].forEach( cache => {
-          if( !keepArray.includes(cache) ) {
-            this.__lastBusValue[cache] = undefined;
-          }
+      function showInvalidDataErrorMessage(transform, variant) {
+        if (cv.Config.testMode === true) {
+          console.error('Updating ColorChooser with invalid data<br/>Address: '+address+', data: '+data+', transform: '+transform+', variant: '+variant);
+        }
+        cv.core.notifications.Router.dispatchMessage('cv.config.error',{
+          message: 'Updating ColorChooser with invalid data<br/>Address: '+address+', data: '+data+', transform: '+transform+', variant: '+variant
         });
       }
 
       const transform = this.getAddress()[address].transform;
       let variant = this.getAddress()[ address ].variantInfo;
-
-      //this.__lastBusValue[variant] = {}; // forget all other transforms as they might not be valid anymore
-      //this.__lastBusValue[variant][transform] = data;
 
       let
         variantType,
@@ -259,49 +252,68 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'h':
         case 's':
         case 'v':
+          if(!Number.isFinite(value)) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           value /= 100;
           variantType = 'hsv-single';
-          deleteBut(['h', 's', 'v']);
           break;
 
         case 'hsv':
+          if(value.get === undefined) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           value = { h: value.get('h')/360, s: value.get('s')/100, v: value.get('v')/100 };
           variantType = 'hsv';
-          deleteBut(['hsv']);
           break;
 
         case 'RGB-r':
         case 'RGB-g':
         case 'RGB-b':
+          if(!Number.isFinite(value)) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
           variantType = 'rgb-single';
-          deleteBut(['RGB-r', 'RGB-g', 'RGB-b']);
           break;
 
         case 'rgb':
           base = this.getBaseColors();
+          if(value.get === undefined) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           value = {
             r: cv.util.Color.invCurve( value.get('r'), base.r.curve, base.r.scale ),
             g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
             b: cv.util.Color.invCurve( value.get('b'), base.b.curve, base.b.scale )
           };
           variantType = 'rgb';
-          deleteBut(['rgb']);
           break;
 
         case 'RGBW-r':
         case 'RGBW-g':
         case 'RGBW-b':
         case 'RGBW-w':
+          if(!Number.isFinite(value)) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           base = this.getBaseColors()[variant.split('-')[1]];
           value = cv.util.Color.invCurve( value, base.curve, base.scale );
           variantType = 'rgbw-single';
-          deleteBut(['RGBW-r', 'RGBW-g', 'RGBW-b', 'RGBW-w']);
           break;
 
         case 'rgbw':
           base = this.getBaseColors();
+          if(value.get === undefined) {
+            showInvalidDataErrorMessage(transform, variant);
+            return;
+          }
           value = {
             r: cv.util.Color.invCurve( value.get('r'), base.r.curve, base.r.scale ),
             g: cv.util.Color.invCurve( value.get('g'), base.g.curve, base.g.scale ),
@@ -309,22 +321,19 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             w: cv.util.Color.invCurve( value.get('w'), base.w.curve, base.w.scale )
           };
           variantType = 'rgbw';
-          deleteBut(['rgbw']);
           break;
 
         case 'x':
         case 'y':
-          deleteBut(['x', 'y', 'Y']);
           variantType = 'xyY';
           break;
 
         case 'Y':
           if( value instanceof Map && value.get('YValid') !== false ) {
             value = value.get('Y');
-            deleteBut(['x', 'y', 'xy', 'Y']);
           } else if (Number.isFinite(value) ) {
-            deleteBut(['x', 'y', 'xy', 'Y']);
           } else {
+            showInvalidDataErrorMessage(transform, variant);
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';
@@ -333,10 +342,9 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'xy':
           if( value instanceof Map && value.get('cValid') !== false ) {
             value = { x: value.get('x'), y: value.get('y') };
-            deleteBut(['xy', 'Y']);
           } else if( value.hasOwnProperty('x') && value.hasOwnProperty('y') ) {
-            deleteBut(['xy', 'Y']);
           } else {
+            showInvalidDataErrorMessage(transform, variant);
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';
@@ -354,6 +362,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
               return; // no valid data in the value
             }
           } else {
+            showInvalidDataErrorMessage(transform, variant);
             return; // nothing that can be done with this data
           }
           variantType = 'xyY';
