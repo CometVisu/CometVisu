@@ -110,12 +110,14 @@ describe('generation screenshots from jsdoc examples', function () {
 
   afterEach(function () {
     mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
-    if (runResult && runResult.failed) {
+    if (runResult && (runResult.failed || runResult.success !== true)) {
+      runResult.failed = true;
       runResult.browserErrors = [];
       browser.manage().logs().get('browser').then(function (browserLogs) {
         // browserLogs is an array of objects with level and message fields
         browserLogs.forEach(function (log) {
           runResult.browserErrors.push(log.message);
+          console.log('Failed run log message:',log.message); // FIXME: This should be replaced by a working logging mechanism with runResult.browserErrors where the results are also shown on the console
         });
       });
     } else if (runResult && runResult.success) {
