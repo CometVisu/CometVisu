@@ -106,6 +106,25 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
     __currentValue: undefined,
     __targetValue: undefined,
     /**
+     * Set animation speed by defining the (typical) maximal range.
+     * An animation of the full ``range`` will require about 0.5 to 1 second
+     * and have a linear as well as an exponential damped part at the end.
+     * The ``epsilon`` can also be stated explicitly or it will be derived
+     * from the ``range``.
+     * @param {Number} range (typical) maximal range for the animation
+     * @param {Number} [epsilon] end the animation when the remaining delta is smaller
+     */
+    setAnimationSpeed: function (range, epsilon) {
+      if( epsilon !== undefined ) {
+        this.setEpsilon( range / 2000 );
+      }
+
+      this.setLinearRateLimit(2*range);
+      // Note: as the exponential dampening is working on a ratio it doesn't
+      // need to be changed here and the default of 0.01 is fine:
+      this.setLinearRateLimit(0.01);
+    },
+    /**
      * Set the value to a new value.
      * @param {Number} targetValue the new value.
      * @param {Boolean} instant skip animation when true
