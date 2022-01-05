@@ -49,19 +49,18 @@ qx.Class.define('cv.util.ConfigUpgrader', {
       if (version === cv.Version.LIBRARY_VERSION) {
         // nothing to do
         return [null, source, this.__log];
-      } else {
+      } 
         while (version < cv.Version.LIBRARY_VERSION) {
           // upgrade step by step
           const method = this['from' + version + 'to' + (version + 1)];
           if (method) {
             version = method.call(this, source);
           } else {
-            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__log]
+            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__log];
           }
         }
         this.info('  - ' + this.__log.join('\n  - '));
         return [null, source, this.__log];
-      }
     },
 
     from7to8 (source) {
@@ -91,11 +90,11 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         const indent = ''.padEnd(this.__indentation * level, ' ');
         const buttonConf = {};
         const attributesToDelete = [];
-        const nameRegex = /^button([\d]+)(label|value)$/
+        const nameRegex = /^button([\d]+)(label|value)$/;
         for (let i = 0, l = node.attributes.length; i < l; i++) {
           const match = nameRegex.exec(node.attributes[i].name);
           if (match) {
-            if (!buttonConf.hasOwnProperty(match[1])) {
+            if (!Object.prototype.hasOwnProperty.call(buttonConf, match[1])) {
               buttonConf[match[1]] = {};
             }
             buttonConf[match[1]][match[2]] = node.attributes[i].value;
@@ -112,14 +111,14 @@ qx.Class.define('cv.util.ConfigUpgrader', {
             if (buttonConf[bid].label) {
               button.setAttribute('label', buttonConf[bid].label);
             }
-            const ind = source.createTextNode("\n" + indent + singleIndent);
+            const ind = source.createTextNode('\n' + indent + singleIndent);
             buttons.appendChild(ind);
             buttons.appendChild(button);
           });
-          buttons.appendChild(source.createTextNode("\n" + indent));
+          buttons.appendChild(source.createTextNode('\n' + indent));
           node.appendChild(source.createTextNode(singleIndent));
           node.appendChild(buttons);
-          node.appendChild(source.createTextNode("\n" + ''.padEnd(this.__indentation * (level - 1), ' ')));
+          node.appendChild(source.createTextNode('\n' + ''.padEnd(this.__indentation * (level - 1), ' ')));
           c++;
         }
       });

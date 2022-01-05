@@ -62,14 +62,28 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
   ***********************************************
   */
   members: {
+    _skipSaving: false,
+
     _savePreferences: function () {
-      var store = qx.bom.Storage.getLocal();
-      store.setItem('preferences', qx.util.Serializer.toNativeObject(this));
+      if (!this._skipSaving) {
+        const store = qx.bom.Storage.getLocal();
+        const data = qx.util.Serializer.toNativeObject(this);
+        store.setItem('preferences', data);
+        cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', data);
+      }
     },
 
     _restorePreferences: function () {
-      var store = qx.bom.Storage.getLocal();
+      const store = qx.bom.Storage.getLocal();
       this.set(store.getItem('preferences'));
+    },
+
+    setPreferences: function (preferences, noSave) {
+      if (noSave) {
+        this._skipSaving = true;
+      }
+      this.set(preferences);
+      this._skipSaving = false;
     }
   }
 });

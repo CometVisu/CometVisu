@@ -112,8 +112,19 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   } else
   {
     preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
-    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
-    $start = $end . ' - ' . $startParts[ 1 ][ 0 ] . $map[ $startParts[ 2 ][ 0 ] ];
+    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w' );
+    switch ($startParts[2][0]) {
+      case 'month':
+        $start = $end . ' - ' . (30 * $startParts[1][0]) . 'd';
+        break;
+
+      case 'year':
+        $start = $end . ' - ' . (365 * $startParts[1][0]) . 'd';
+        break;
+
+      default:
+        $start = $end . ' - ' . $startParts[1][0] . $map[$startParts[2][0]];
+    }
   }
 
   if( $filter )
@@ -124,7 +135,7 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
       $filter = 'AND ' . str_replace( "\\'", "'", $filter );
   }
 
-  if( '' != $res && 'ELAPSED' !== $ds )
+  if( '' !== $res && '0' !== $res && 'ELAPSED' !== $ds )
   {
     if( !preg_match( '/^[0-9]+$/', $res ) )
       return 'Error: invalid res parameter [' . $res . ']';
@@ -231,8 +242,8 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   foreach( $series as $thisSeries )
   {
     $arrData[] = array(
-      strtotime( $thisSeries[0] ),// * 1000,
-      array( (string)$thisSeries[1] )
+      strtotime( array_shift($thisSeries) ),// * 1000,
+      array_map('strval', $thisSeries )
     );
   }
 

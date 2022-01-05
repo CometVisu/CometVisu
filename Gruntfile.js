@@ -6,11 +6,18 @@ var fs = require('fs');
 var mocks = [];
 function captureMock() {
   return function (req, res, next) {
-
     // match on POST requests starting with /mock
     if (req.url.indexOf('/mock') === 0) {
+      const startQS = req.url.indexOf('?');
       // everything after /mock is the path that we need to mock
-      var path = req.url.substring(5);
+      var path = decodeURIComponent(req.url.substring(5, startQS > 5 ? startQS : undefined));
+      const queryString = {};
+      if (startQS>=0) {
+        req.url.substr(startQS+1).split('&').map(part => {
+          const splitted = part.split('=');
+          queryString[splitted[0]] = decodeURIComponent(splitted[1]);
+        });
+      }
       if (req.method === 'POST') {
         var body = '';
         req.on('data', function (data) {
@@ -18,7 +25,7 @@ function captureMock() {
         });
         req.on('end', function () {
 
-          mocks[path] = body;
+          mocks[path] = Object.assign({content: body}, queryString);
 
           res.writeHead(200);
           res.end();
@@ -42,26 +49,33 @@ function mock() {
     if (found) {
       url = url.replace(found[1],"");
     }
-    var mockedResponse = mocks[url];
-    if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
-      // try to find mocked url without querystring
-      url = url.split('#')[0];
-      url = url.split('?')[0];
+    let mockedResponse;
+    if (req.method === 'GET') {
       mockedResponse = mocks[url];
+      if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
+        // try to find mocked url without querystring
+        url = url.split('#')[0];
+        url = url.split('?')[0];
+        mockedResponse = mocks[url];
+      }
     }
     if (mockedResponse) {
-      if (req.url.endsWith('.xml')) {
-        res.writeHead(200, {'Content-Type': 'application/xml'});
+      if (mockedResponse.hasOwnProperty('mimeType')) {
+        res.writeHead(200, {'Content-Type': mockedResponse.mimeType});
+      } else if (req.url.endsWith('.xml')) {
+        res.writeHead(200, {'Content-Type': 'text/xml;charset=UTF-8'});
       } else if (req.url.endsWith('.json')) {
         res.writeHead(200, {'Content-Type': 'application/json'});
+      } else if (req.url.endsWith('.svg')) {
+        res.writeHead(200, {'Content-Type': 'image/svg+xml'});
       }
-      res.write(mockedResponse);
+      res.write(mockedResponse.content);
       res.end();
     } else if (url === "/designs/get_designs.php") {
       // untested
       var dir = path.join("source", "resource", "designs");
       var designs = [];
-      fs.readdirSync(dir).forEach(function(designDir) {
+      fs.readdirSync(dir).forEach(function (designDir) {
         var filePath = path.join(dir, designDir);
         var stat = fs.statSync(filePath);
         if (stat.isDirectory()) {
@@ -70,10 +84,54 @@ function mock() {
       });
       res.write(JSON.stringify(designs));
       res.end();
+    } else if (url === "/cgi-bin/l") {
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify({
+        v:"0.0.1",
+        s:"0"
+      }));
+      res.end();
+    } else if (url.indexOf('/rest/manager/index.php/') >= 0) {
+      const relPath = req.url.substr(req.url.indexOf('/rest/manager/index.php/'));
+      if (req.method === 'GET') {
+        if (fs.existsSync(path.join("source", "test", "fixtures", relPath))) {
+          const data = fs.readFileSync(path.join("source", "test", "fixtures", relPath), 'utf8');
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.write(data);
+          res.end();
+        } else {
+          next();
+        }
+      } else if (req.method === 'PUT') {
+        if (relPath.startsWith('/rest/manager/index.php/fs?path=/visu_config_previewtemp.xml')) {
+          // we allow writing the previewtemp config to make the preview work correctly
+          let body = '';
+          req.on('data', function (data) {
+            body += data;
+          });
+          req.on('end', function () {
+            fs.writeFileSync(path.join("compiled", "source", "resource", "config", "visu_config_previewtemp.xml"), body);
+            res.writeHead(200);
+            res.end();
+          });
+        }
+      }
     } else {
       next();
     }
   };
+}
+
+function getBuildSuffix(packageVersion) {
+  let suffix = packageVersion;
+  if (process.env.DEPLOY_NIGHTLY) {
+    if (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith("refs/tags/")) {
+      suffix = process.env.GITHUB_REF.split("/").pop();
+    } else {
+      suffix += "-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "");
+    }
+    return suffix;
+  }
 }
 
 // grunt
@@ -184,7 +242,7 @@ module.exports = function(grunt) {
       },
       default : {
         files: {
-          'source/resource/icon/knx-uf-iconset.svg': [
+          'source/resource/icons/knx-uf-iconset.svg': [
             'cache/icons/*.svg'
           ]
         }
@@ -200,7 +258,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/qx-CometVisuClient/boot.js',
-          dest: "client/build/deploy/qxCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/qxCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       jqClient: {
@@ -210,7 +268,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/jQuery-CometVisuClient/boot.js',
-          dest: "client/build/deploy/jQueryCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+          dest: "client/build/deploy/jQueryCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
         }]
       },
       tar: {
@@ -218,13 +276,7 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".tar.gz";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".tar.gz";
           }
         },
         files: filesToCompress
@@ -234,49 +286,14 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            var name = "CometVisu-"+pkg.version;
-            if (process.env.DEPLOY_NIGHTLY) {
-              // nightly build with date
-              var now = new Date();
-              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
-            }
-            return name+".zip";
+            return "CometVisu-"+getBuildSuffix(pkg.version)+".zip";
           }
         },
         files: filesToCompress
       }
     },
 
-    'github-release': {
-      options: {
-        repository: 'cometvisu/cometvisu',
-        release: {
-          tag_name: 'v' + pkg.version,
-          name: pkg.version,
-          body: pkg.description
-        }
-      },
-      files: {
-        src: [ "CometVisu-"+pkg.version+".zip", "CometVisu-"+pkg.version+".tar.gz" ]
-      }
-    },
     prompt: {
-      target: {
-        options: {
-          questions: [
-            {
-              config: 'github-release.options.auth.user', // set the user to whatever is typed for this question
-              type: 'input',
-              message: 'GitHub username:'
-            },
-            {
-              config: 'github-release.options.auth.password', // set the password to whatever is typed for this question
-              type: 'password',
-              message: 'GitHub password:'
-            }
-          ]
-        }
-      },
       githubChanges: {
         options: {
           questions: [
@@ -362,15 +379,15 @@ module.exports = function(grunt) {
         configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
-      travis: {
+      ci: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
-        browsers: [grunt.option('browser') || 'Chrome_travis']
+        browsers: [grunt.option('browser') || 'Chrome_ci']
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
-        browsers: [grunt.option('browser') || 'Chrome_travis'],
+        browsers: [grunt.option('browser') || 'Chrome_ci'],
         reporters: ['spec']
       }
     },
@@ -401,11 +418,11 @@ module.exports = function(grunt) {
         }
       },
       all: {},
-      travis: {
+      ci: {
         options: {
           args: {
             capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work on travis
+              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
               browserName: 'firefox'
             }
           }
@@ -416,9 +433,12 @@ module.exports = function(grunt) {
           configFile: "utils/protractor.conf.js",
           args: {
             params: {
+              source: grunt.option('source'),
               subDir: grunt.option('subDir'),
               screenshots: grunt.option('files'),
-              target: grunt.option('target')
+              target: grunt.option('target'),
+              targetDir: grunt.option('targetDir'),
+              forced: grunt.option('forced')
             }
           }
         }
@@ -478,12 +498,6 @@ module.exports = function(grunt) {
       },
       buildClient: {
         command: 'npm run make-client'
-      },
-      buildToRelease: {
-        command: [
-          'rm -rf release',
-          'mv compiled/build release'
-        ].join('&&')
       },
       lint: {
         command: 'npm run lint'
@@ -552,31 +566,17 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
+    const baseDir = grunt.option('base-dir') || 'compiled/build';
     [
-      'compiled/build/resource/demo/visu_config_demo.xml',
-      'compiled/build/resource/demo/visu_config_2d3d.xml',
-      'compiled/build/resource/demo/visu_config_demo_testmode.xml'
+      baseDir + '/resource/demo/visu_config_demo.xml',
+      baseDir + '/resource/demo/visu_config_2d3d.xml',
+      baseDir + '/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
-      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      const config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'compiled/build/index.html';
-    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
-  });
-
-  grunt.registerTask('update-demo-config-source', function() {
-    [
-      'compiled/source/resource/demo/visu_config_demo.xml',
-      'compiled/source/resource/demo/visu_config_2d3d.xml',
-      'compiled/source/resource/demo/visu_config_demo_testmode.xml'
-    ].forEach(function (filename) {
-      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    });
-
-    var filename = 'compiled/source/index.html';
+    const filename = baseDir + '/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
@@ -585,7 +585,7 @@ module.exports = function(grunt) {
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
   grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'source/resource/icon/knx-uf-iconset.svg';
+    var filename   = 'source/resource/icons/knx-uf-iconset.svg';
     var iconconfig = 'source/class/cv/IconConfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
@@ -616,7 +616,6 @@ module.exports = function(grunt) {
   // Load the plugin tasks
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-github-releaser');
   grunt.loadNpmTasks('grunt-prompt');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-file-creator');
@@ -637,13 +636,12 @@ module.exports = function(grunt) {
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
-    'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
+    'updateicons', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
+    'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
-  grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
-  grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+  grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);

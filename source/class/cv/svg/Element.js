@@ -1,4 +1,4 @@
-qx.Class.define("cv.svg.Element", {
+qx.Class.define('cv.svg.Element', {
   extend: qx.html.Element,
   /*
   ***********************************************
@@ -7,7 +7,7 @@ qx.Class.define("cv.svg.Element", {
   */
   construct: function (tagName) {
     this.base(arguments);
-    this.__svgElement = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+    this.__svgElement = document.createElementNS('http://www.w3.org/2000/svg', tagName);
   },
 
   /*

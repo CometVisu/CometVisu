@@ -15,7 +15,8 @@
       "name": "cv",
       "theme": "cv.theme.Dark",
       "environment": {
-        "qx.promise": false
+        "qx.promise": false,
+        "qx.command.bindEnabled": true
       },
       "default": true,
       "include": [
@@ -145,8 +146,7 @@
         },
         "plugin-openhab": {
           "include": [
-            "cv.plugins.openhab.*",
-            "${QXTHEME}"
+            "cv.plugins.openhab.*"
           ]
         }
       }
@@ -158,13 +158,14 @@
       "title": "CometVisu API Viewer",
       "environment": {
         "qx.icontheme": "Tango",
-        "excludeFromAPIViewer": [
+        "qxl.apiviewer.applicationName": "cv",
+        "qxl.apiviewer.exclude": [
           "qxl.*",
           "iconfont.*",
           "osparc.*"
         ],
-        "versionLabel.name": "CometVisu",
-        "versionLabel.version": "dev"
+        "qxl.versionlabel.name": "CometVisu",
+        "qxl.versionlabel.version": "dev"
       },
       "include": [
         "qx.*"
@@ -185,10 +186,6 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
-      "bundle": {
-        "include": ["*.*"],
-        "exclude": ["cv.*"]
-      },
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
@@ -212,17 +209,23 @@
   },
   "ignores": [
     "$",
-    "jQuery",
-    "THREE",
-    "sprintf",
-    "replayLog",
-    "svg4everybody",
     "EVENT_RECORDER",
     "EventSource",
     "Favico",
-    "Sentry",
+    "jQuery",
     "localStorage",
     "monaco",
-    "Worker"
+    "Paho",
+    "replayLog",
+    "Sentry",
+    "sprintf",
+    "svg4everybody",
+    "THREE",
+    "Worker",
+    "Node",
+    "indexedDB",
+    "URL",
+    "sinon",
+    "XMLDocument"
   ]
 }

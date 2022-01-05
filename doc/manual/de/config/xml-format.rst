@@ -185,7 +185,7 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzei
         ...
         <statusbar>
             <status type="html"><![CDATA[
-                <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
                 - <a href=".?forceReload=true">Reload</a>
                 - <a href="?config=demo">Widget Demo</a>
                 ]]></status>
@@ -293,7 +293,9 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
 
     <pages>
         <meta>
-            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            <templates>
+                <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+            </templates>
         </meta>
         <page>
             <page name="Wohnzimmer">

@@ -34,19 +34,19 @@ qx.Class.define('cv.plugins.Link', {
   */
   properties: {
     cssClass: {
-      check: "String",
+      check: 'String',
       init: ''
     },
     text: {
-      check: "String",
+      check: 'String',
       init: ''
     },
     href: {
-      check: "String",
+      check: 'String',
       init: ''
     },
     newWindow: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -77,7 +77,7 @@ qx.Class.define('cv.plugins.Link', {
         'text': {'default': ''},
         'href': {'default': ''},
         'newWindow': {'default': false, transform: function(value) {
-            return value === "true";
+            return value === 'true';
           }}
       };
     }
@@ -90,12 +90,12 @@ qx.Class.define('cv.plugins.Link', {
   */
   members: {
     _getInnerDomString: function () {
-      var classes = "link";
+      let classes = 'link';
       if (this.getCssClass()) {
-        classes += " "+this.getCssClass();
+        classes += ' '+this.getCssClass();
       }
-      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      var attributes = '';
+      const href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
+      let attributes = '';
       if (this.isNewWindow()) {
         attributes += ' target="_blank"';
       }
@@ -104,7 +104,7 @@ qx.Class.define('cv.plugins.Link', {
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("link", cv.plugins.Link);
-    cv.ui.structure.WidgetFactory.registerClass("link", statics);
+    cv.parser.WidgetParser.addHandler('link', cv.plugins.Link);
+    cv.ui.structure.WidgetFactory.registerClass('link', statics);
   }
 });

@@ -68,13 +68,13 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     // overridden
     _applyContent: function(value) {
-      var model = this._listController.getModel();
+      const model = this._listController.getModel();
       model.removeAll();
 
       this.__initialSectionCount = Object.keys(value).length;
 
       Object.keys(value).forEach(function (sectionName) {
-        var section = new cv.ui.manager.model.config.Section(sectionName);
+        const section = new cv.ui.manager.model.config.Section(sectionName);
         Object.keys(value[sectionName]).forEach(function (optionKey) {
           section.addOption(optionKey, value[sectionName][optionKey]);
         }, this);
@@ -90,20 +90,20 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     _onDeleteSection: function (ev) {
-      var section = ev.getData();
-      var model = this._listController.getModel();
+      const section = ev.getData();
+      const model = this._listController.getModel();
       model.remove(section);
       this.__checkForModification();
     },
 
     // compare current controller model with the loaded config content
     __checkForModification: function () {
-      var file = this.getFile();
+      const file = this.getFile();
       if (this.__initialSectionCount !== this._listController.getModel().length) {
         file.setModified(true);
         return;
       }
-      var modified = this.getChildControl('list').getChildren().some(function (sectionListItem) {
+      const modified = this.getChildControl('list').getChildren().some(function (sectionListItem) {
         return sectionListItem.isModified();
       }, this);
       file.setModified(modified);
@@ -111,11 +111,11 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     save: function () {
       // check for duplicate section names of keys
-      var model = this._listController.getModel();
-      var keys = [];
-      var valid = true;
+      const model = this._listController.getModel();
+      const keys = [];
+      let valid = true;
       model.forEach(function (section) {
-        var key = section.getName();
+        const key = section.getName();
         if (!keys.includes(key)) {
           keys.push(key);
         } else {
@@ -123,9 +123,9 @@ qx.Class.define('cv.ui.manager.editor.Config', {
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Section name duplicate: "%1".', key));
         }
         // check for key duplicates in this sections options
-        var optionKeys = [];
+        const optionKeys = [];
         section.getOptions().forEach(function (option) {
-          var optionKey = option.getKey();
+          const optionKey = option.getKey();
           if (!optionKeys.includes(optionKey)) {
             optionKeys.push(optionKey);
           } else {
@@ -136,12 +136,12 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       }, this);
 
       if (valid) {
-        var data = {};
+        const data = {};
         this._listController.getModel().forEach(function (section) {
-          var options = {};
+          const options = {};
           section.getOptions().forEach(function (option) {
             options[option.getKey()] = option.getValue();
-          })
+          });
           data[section.getName()] = options;
         }, this);
         this._client.saveSync(null, data, function (err) {
@@ -159,9 +159,9 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'list':
            control = new qx.ui.form.List();
            control.setEnableInlineFind(false);

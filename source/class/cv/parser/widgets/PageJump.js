@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.PageJump', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,11 +40,11 @@ qx.Class.define('cv.parser.widgets.PageJump', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
 
-      var widgetInfo = xml.querySelector('widgetinfo > *');
+      const widgetInfo = xml.querySelector('widgetinfo > *');
       if (widgetInfo!==undefined) {
-        data.classes += " infoaction";
+        data.classes += ' infoaction';
       }
 
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
@@ -64,6 +64,6 @@ qx.Class.define('cv.parser.widgets.PageJump', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("pagejump", statics);
+    cv.parser.WidgetParser.addHandler('pagejump', statics);
   }
 });

@@ -7,9 +7,9 @@ Einfache Installation:
 -  :doc:`Allgemein <allgemein>`
 -  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
--  :doc:`auf einem Debian System mit openHAB <openhab2>`
+-  :doc:`auf einem Debian System mit openHAB <openhab>`
 -  :doc:`Über Docker <docker>`
--  :doc:`Über Docker mit openHAB <docker_openhab2>`
+-  :doc:`Über Docker mit openHAB <docker_openhab>`
 -  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
@@ -19,21 +19,10 @@ Einfache Installation:
     wiregate
     raspberry
     install-dev
-    openhab2
+    openhab
     docker
-    docker_openhab2
+    docker_openhab
     timberwolf
-
-Schwieriger, nur für **Fortgeschrittene**:
-
--  :doc:`auf beliebigen anderen Linux-Systemen <linux>`
--  :doc:`auf NAS-Systemen <nas>`
-
-.. toctree::
-    :hidden:
-
-    linux
-    nas
 
 Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
 jedoch **NIE** produktiv eingesetzt werden.

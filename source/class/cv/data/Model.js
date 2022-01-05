@@ -27,7 +27,7 @@
  */
 qx.Class.define('cv.data.Model', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
 
   /*
   ******************************************************
@@ -51,11 +51,11 @@ qx.Class.define('cv.data.Model', {
     WRITE: 2,
 
     isReadAddress: function(address) {
-      return !!(address[1] & cv.data.Model.READ);
+      return !!(address.mode & cv.data.Model.READ);
     },
 
     isWriteAddress: function(address) {
-      return !!(address[1] & cv.data.Model.WRITE);
+      return !!(address.mode & cv.data.Model.WRITE);
     }
   },
 
@@ -81,8 +81,8 @@ qx.Class.define('cv.data.Model', {
      * @param state {var} new state
      */
     onUpdate: function(address, state) {
-      var initial = !this.__states.hasOwnProperty(address);
-      var changed = initial || this.__states[address] !== state;
+      const initial = !Object.prototype.hasOwnProperty.call(this.__states, address);
+      const changed = initial || this.__states[address] !== state;
       this.__states[address] = state;
       // notify listeners
       if (this.__stateListeners[address]) {
@@ -97,10 +97,12 @@ qx.Class.define('cv.data.Model', {
      * @param data {Map} Key/value map of address/state
      */
     update: function(data) {
-      if (!data) { return; }
-      var addressList = this.__addressList;
+      if (!data) {
+ return; 
+}
+      const addressList = this.__addressList;
       Object.getOwnPropertyNames(data).forEach(function(address) {
-        if (addressList.hasOwnProperty(address)) {
+        if (Object.prototype.hasOwnProperty.call(addressList, address)) {
           this.onUpdate(address, data[address]);
         }
       }, this);
@@ -139,12 +141,13 @@ qx.Class.define('cv.data.Model', {
      */
     removeUpdateListener: function(address, callback, context) {
       if (this.__stateListeners[address]) {
-        var removeIndex = -1;
+        let removeIndex = -1;
         this.__stateListeners[address].some(function(entry, i) {
           if (entry[0] === callback && entry[1] === context) {
             removeIndex = i;
             return true;
           }
+          return false;
         });
         if (removeIndex >= 0) {
           this.__stateListeners[address].splice(removeIndex, 1);
@@ -161,11 +164,10 @@ qx.Class.define('cv.data.Model', {
      * @param id {String} path to the widget
      */
     addAddress: function (address, id) {
-      var list = this.__addressList;
+      const list = this.__addressList;
       if (address in list) {
         list[address].push(id);
-      }
-      else {
+      } else {
         list[address] = [id];
       }
     },
@@ -218,9 +220,8 @@ qx.Class.define('cv.data.Model', {
      * @return {Map} widget data Map
      */
     getWidgetDataByElement: function (element) {
-      var
-        parent = element.parentNode,
-        path = parent.getAttribute('id');
+      const parent = element.parentNode;
+      let path = parent.getAttribute('id');
 
       if (path === undefined) {
         path = parent.parentNode.getAttribute('id');
@@ -236,7 +237,7 @@ qx.Class.define('cv.data.Model', {
      * @return {Map} updated widget data map
      */
     setWidgetData: function (path, obj) {
-      var data = this.getWidgetData(path);
+      const data = this.getWidgetData(path);
 
       Object.getOwnPropertyNames(obj).forEach(function(attrname) {
         data[attrname] = obj[attrname];

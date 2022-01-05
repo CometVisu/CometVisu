@@ -18,6 +18,7 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 import os
+import io
 import logging
 import configparser
 import codecs
@@ -40,7 +41,7 @@ from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from utils.commands.scaffolding import Scaffolder
-from sphinx import main
+
 try:
     # Python 2.6-2.7
     from HTMLParser import HTMLParser
@@ -87,7 +88,7 @@ class DocParser:
 
     def parse(self):
         self.init()
-        with open(self.file) as f:
+        with io.open(self.file, mode="r", encoding="utf-8") as f:
             current_section = None
             # find sections
             for line in f.readlines():
@@ -125,7 +126,7 @@ class DocParser:
         return "".join(content)
 
     def write(self):
-        with open(self.file, "w") as f:
+        with io.open(self.file, "w", encoding="utf-8") as f:
             f.write(self.tostring())
 
 
@@ -140,10 +141,6 @@ class DocGenerator(Command):
 
     def _get_doc_version(self):
         if self._doc_version is None:
-            git = sh.Command("git")
-            branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-                else os.environ.get('TRAVIS_BRANCH')
-
             self._doc_version = self._get_source_version()
         return self._doc_version
 
@@ -215,8 +212,8 @@ class DocGenerator(Command):
         # create symlinks
         symlinkname = ''
         git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-            else os.environ.get('TRAVIS_BRANCH')
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('GITHUB_REF') is None \
+            else os.environ.get('GITHUB_REF').split("/")[:-1]
 
         if branch == "develop":
             # handle develop builds:
@@ -272,13 +269,13 @@ class DocGenerator(Command):
                 if os.path.exists(parser_path):
                     source_files.append((parser, parser_path))
                 else:
-                    print("file not found %s" % parser_path)
+                    print("file not found %s - skipping it and continue the processing..." % parser_path)
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
             api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "resource", "apiviewer", "examples")
 
-            with open(file) as f:
+            with io.open(file, mode="r", encoding="utf-8") as f:
                 content = {
                     "WIDGET-DESCRIPTION": [],
                     "WIDGET-EXAMPLES": []
@@ -353,9 +350,9 @@ class DocGenerator(Command):
                                             content[section].append(".. code-block:: xml\n\n    ")
                                             for child in xml:
                                                 if child.tag == "meta":
-                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                                 elif child.tag != "settings":
-                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode('utf-8').split("\n")))
                                         else:
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
@@ -576,6 +573,7 @@ class DocGenerator(Command):
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--move-apiviewer-screenshots", dest="move_apiviewer_screenshots", action="store_true", help="move the generated apiviewer screenshots to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
@@ -621,6 +619,14 @@ class DocGenerator(Command):
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
             target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
             shutil.move(self.config.get("api", "generator_target"), target_dir)
+
+        elif options.move_apiviewer_screenshots:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
+            screenshots_dir = self.config.get("api", "screenshots-path")
+            screenshots_parent_dir = "/".join(screenshots_dir.split("/")[0:-1])
+            shutil.move(os.path.join(self.config.get("api", "generator_target"), screenshots_dir), os.path.join(target_dir, screenshots_parent_dir))
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,

@@ -61,7 +61,7 @@ html_theme_options = {
 html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template', 'sphinx_rtd_theme-0.2.4')]
 html_title = "CometVisu"
 #html_short_title = None
-html_logo = os.path.join(root_dir, "source", "resource", "icon", "comet_webapp_icon_android_48.png")
+html_logo = os.path.join(root_dir, "source", "resource", "icons", "comet_webapp_icon_android_48.png")
 #html_favicon = None
 html_static_path = ['_static']
 html_domain_indices = False
@@ -196,7 +196,7 @@ code_add_python_path = ["../py"]
 
 
 def setup(app):
-    app.add_stylesheet('theme_override.css')
+    app.add_css_file('theme_override.css')
     app.add_config_value('releaselevel', '', 'env')
 
     from sphinx.util.texescape import tex_replacements

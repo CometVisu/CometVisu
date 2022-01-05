@@ -47,26 +47,33 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
      * @param data {var} incoming data
      */
     _update: function(address, data) {
-      if (data === undefined || address === undefined) { return; }
-      var valElem = this.getValueElement();
+      if (data === undefined || address === undefined) {
+        return;
+      }
+      const valElem = this.getValueElement();
 
-      var value = cv.Transform.decode( this.getAddress()[ address ][0], data );
+      const value = cv.Transform.decode(this.getAddress()[address].transform, data);
 
-      var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
-      if( 3 !== bg.length ) {
+      let bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
+      if (bg.length !== 3) {
         bg = [0, 0, 0];
       }
-      switch (this.getAddress()[ address ][2]) {
-        case 'r' :  bg[0] = value; break;
-        case 'g' :  bg[1] = value; break;
-        case 'b' :  bg[2] = value; break;
+      switch (this.getAddress()[address].variantInfo) {
+        case 'r':
+          bg[0] = value;
+          break;
+        case 'g':
+          bg[1] = value;
+          break;
+        case 'b':
+          bg[2] = value;
+          break;
       }
-      var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-      valElem.style['background-color'] = bgs;
+      valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("rgb", statics);
+    cv.ui.structure.WidgetFactory.registerClass('rgb', statics);
   }
 });

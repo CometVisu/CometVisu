@@ -30,20 +30,19 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
     /**
      * Updates the visibility of the icon
      */
-    _handleIcon : function()
-    {
-      if (!this.getChildControl('icon').getName() || this.getShow() === "label") {
-        this._excludeChildControl("icon");
+    _handleIcon : function() {
+      if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
+        this._excludeChildControl('icon');
       } else {
-        this._showChildControl("icon");
+        this._showChildControl('icon');
       }
     },
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'icon':
            control = new cv.ui.manager.viewer.SvgIcon();
            control.setAnonymous(true);

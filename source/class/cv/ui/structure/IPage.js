@@ -27,7 +27,7 @@
 /**
  * Interface that all structure page widgets must implement
  */
-qx.Interface.define("cv.ui.structure.IPage", {
+qx.Interface.define('cv.ui.structure.IPage', {
 
   /*
   ******************************************************

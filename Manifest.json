@@ -27,24 +27,25 @@
     "translation": "source/translation"
   },
   "requires": {
-    "@qooxdoo/framework": "^6.0.0-beta",
-    "@qooxdoo/compiler": "^1.0.0-beta.20200514-1056",
-    "ITISFoundation/qx-osparc-theme": "^0.4.13",
-    "johnspackman/UploadMgr": "^1.0.4",
-    "cboulanger/qx-contrib-Dialog": "^2.1.1",
-    "qooxdoo/qxl.versionlabel": "^1.0.0-beta.3",
-    "ITISFoundation/qx-iconfont-material": "^0.1.4",
-    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7"
+    "@qooxdoo/framework": "^6.0.2",
+    "@qooxdoo/compiler": "^1.0.3",
+    "johnspackman/UploadMgr": "^1.0.5",
+    "qooxdoo/qxl.versionlabel": "^1.0.4",
+    "qooxdoo/qxl.apiviewer": "^1.0.18",
+    "ITISFoundation/qx-osparc-theme": "^0.6.0",
+    "ITISFoundation/qx-iconfont-material": "^0.1.7",
+    "qooxdoo/qxl.dialog": "^3.2.0"
   },
   "externalResources": {
     "script": [
       "libs/EventRecorder.js",
-      "libs/sprintf.js",
-      "libs/jquery.js",
-      "libs/strftime.js",
-      "libs/svg4everybody.js",
       "libs/favico.js",
-      "libs/inobounce.min.js"
+      "libs/inobounce.min.js",
+      "libs/jquery.js",
+      "libs/paho-mqtt.min.js",
+      "libs/sprintf.js",
+      "libs/strftime.js",
+      "libs/svg4everybody.js"
     ]
   }
 }

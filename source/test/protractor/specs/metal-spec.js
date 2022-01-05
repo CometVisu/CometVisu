@@ -47,15 +47,18 @@ describe('cometvisu metal design config test:', function () {
   // see: https://github.com/CometVisu/CometVisu/issues/287
   it('should set slider flavours correct in a flavoured group', function() {
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(0);
+    var widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).first();
+
     expect(widget.getCssValue('background-color')).toBe('rgba(255, 0, 0, 1)');
 
     // test for boron flavour #00ff11
-    widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(1);
+    widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).get(1);
+
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 255, 17, 1)');
 
     // test for antimony flavour #00ddff
-    widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(2);
+    widget = element.all(by.css('.activePage .slide .actor .ui-slider-range')).get(2);
+
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 221, 255, 1)');
   });
 
@@ -78,7 +81,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show the info value correctly styled in the pagejump', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".navbar .pagejump .widgetinfo .info"));
+      var widget = element(by.css('.navbar .pagejump .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('11px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('11px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('11px');
@@ -87,8 +91,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10');
+      });
     });
 
     // infoaction widget
@@ -113,7 +118,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show the infoaction widget', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".infoaction .widgetinfo .info"));
+      var widget = element(by.css('.infoaction .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
@@ -122,13 +128,15 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10');
+      });
 
       // click the action part
-      var action = element(by.css(".infoaction .widgetaction .switch .actor"));
+      var action = element(by.css('.infoaction .widgetaction .switch .actor'));
       action.click();
-      expect(action.element(by.css(".value")).getText()).toEqual('0');
+
+      expect(action.element(by.css('.value')).getText()).toEqual('0');
       cvMockup.getLastWrite().then(function (lastWrite) {
         expect(lastWrite.value).toEqual(0);
       });
@@ -150,7 +158,8 @@ describe('cometvisu metal design config test:', function () {
 
     it('should show a pagejump with widgetinfo inside a page, styled like the infoaction->widgetinfo part', function () {
       // border radius 20px leads to computed radius of 11px in firefox (???)
-      var widget = element(by.css(".pagejump .widgetinfo .info"));
+      var widget = element(by.css('.pagejump .widgetinfo .info'));
+
       expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
       expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
       expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
@@ -159,9 +168,9 @@ describe('cometvisu metal design config test:', function () {
       expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
       // send value to widget
-      cvMockup.sendUpdate("1/0/1", 10.2);
-      expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
-
+      cvMockup.sendUpdate('1/0/1', 10.2).then(() => {
+        expect(widget.element(by.css('.actor .value')).getText()).toBe('10.2');
+      });
     });
   }
 });

@@ -1,0 +1,25 @@
+{
+  "selector": "#manager div[qxclass='cv.ui.manager.contextmenu.GlobalFileItem']",
+  "baseDir": "doc/manual",
+  "screenshots": [
+    {
+      "name": "manager_context",
+      "data": {},
+      "locales": ["de", "en"],
+      "margin": 100
+    }
+  ],
+  "screenshotDir": "config/_static",
+  "fixtures": [
+    {
+      "targetPath": "rest/manager/index.php/fs?path=.",
+      "data": [
+        {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false}
+      ],
+      "mimeType": "application/json"
+    }
+  ],
+  "mode": "manager",
+  "rightClickOn": "#manager div[qxclass='cv.ui.manager.form.FileListItem']",
+  "config": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"/>"
+}

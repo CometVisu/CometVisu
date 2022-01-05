@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Info', {
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -40,7 +40,7 @@ qx.Class.define('cv.parser.widgets.Info', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -49,7 +49,7 @@ qx.Class.define('cv.parser.widgets.Info', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("info", statics);
+    cv.parser.WidgetParser.addHandler('info', statics);
   }
 });
 

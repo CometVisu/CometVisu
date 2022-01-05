@@ -67,7 +67,7 @@
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Refresh],
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -94,6 +94,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param path {String} internal path of the widget
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
+     * @param mappings
      */
     parse: function (xml, path, flavour, pageType, mappings) {
       if (mappings) {
@@ -104,56 +105,56 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      var legend = xml.getAttribute("legend") || "both";
-      return cv.data.Model.getInstance().setWidgetData( path, {
+      const legend = xml.getAttribute('legend') || 'both';
+      return cv.data.Model.getInstance().setWidgetData(path, {
         content           : this.getDiagramElements(xml),
-        legendInline      : ["both", "inline"].indexOf(legend) >= 0,
-        legendPopup       : ["both", "popup"].indexOf(legend) >= 0
-      } );
+        legendInline      : ['both', 'inline'].indexOf(legend) >= 0,
+        legendPopup       : ['both', 'popup'].indexOf(legend) >= 0
+      });
     },
 
     getAttributeToPropertyMappings: function() {
       return {
-        series            : { "default": "day" },
-        seriesStart       : { "default": "end-month" },
-        seriesEnd         : { "default": "now" },
-        seriesResolution  : { "default": 300, transform: parseInt },
-        period            : { "default": 1, transform: parseInt },
-        legendposition    : { "default": "ne" },
+        series            : { 'default': 'day' },
+        seriesStart       : { 'default': 'end-month' },
+        seriesEnd         : { 'default': 'now' },
+        seriesResolution  : { 'default': 300, transform: parseInt },
+        period            : { 'default': 1, transform: parseInt },
+        legendposition    : { 'default': 'ne' },
         timeformat        : {},
-        timeformatTooltip : { "default": "%d.%m.%Y %H:%M" },
+        timeformatTooltip : { 'default': '%d.%m.%Y %H:%M' },
         zoomYAxis         : { transform: function(value) {
-          return value === "true";
+          return value === 'true';
         }},
-        title             : { target: "title" },
+        title             : { target: 'title' },
         refresh           : {},
-        gridcolor         : { "default": "#81664B" },
+        gridcolor         : { 'default': '#81664B' },
         previewlabels     : { transform: function(value) {
-          return value === "true";
+          return value === 'true';
         }},
         popup             : { transform: function(value) {
-          return value === "true";
+          return value === 'true';
         }},
         tooltip           : { transform: function(value) {
-          return value === "true";
+          return value === 'true';
         }}
       };
     },
 
     getDiagramElements: function(xmlElement) {
-      var retVal = {
-        axes    : [],
-        axesnum : 0,
-        ts      : [],
-        tsnum   : 0
+      const retVal = {
+        axes: [],
+        axesnum: 0,
+        ts: [],
+        tsnum: 0
       };
-      var axesNameIndex = [];
+      const axesNameIndex = [];
 
       xmlElement.querySelectorAll('axis').forEach(function(elem) {
-        var unit = elem.getAttribute('unit') || "";
+        const unit = elem.getAttribute('unit') || '';
         retVal.axes[retVal.axesnum] = {
           axisLabel     : elem.getAttribute('label') || null,
-          position      : elem.getAttribute('position') || "left",
+          position      : elem.getAttribute('position') || 'left',
           min           : elem.getAttribute('min') || null,
           max           : elem.getAttribute('max') || null,
           unit          : unit,
@@ -166,11 +167,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
-      xmlElement.querySelectorAll("influx,rrd").forEach(function(elem) {
-        var
-          src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement'),
-          steps = (elem.getAttribute("steps") || "false") === "true",
-          fillMissing = elem.getAttribute('fillMissing');
+      xmlElement.querySelectorAll('influx,rrd').forEach(function(elem) {
+        const src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement');
+        const steps = (elem.getAttribute('steps') || 'false') === 'true';
+        const fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
           tsType    : elem.tagName,
           src       : src,
@@ -179,23 +179,23 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           label     : elem.getAttribute('label') || src,
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
           steps     : steps,
-          fill      : (elem.getAttribute("fill") || "false") === "true",
+          fill      : (elem.getAttribute('fill') || 'false') === 'true',
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
           fillTs    : (fillMissing === null) ? (steps ? 'previous' : 'linear') : fillMissing,
           resol     : parseInt(elem.getAttribute('resolution')),
           offset    : parseInt(elem.getAttribute('offset')),
-          style     : elem.getAttribute('style') || "lines",
-          align     : elem.getAttribute('align') || "center",
+          style     : elem.getAttribute('style') || 'lines',
+          align     : elem.getAttribute('align') || 'center',
           barWidth  : elem.getAttribute('barWidth') || 1
         };
-        if( elem.tagName === 'influx' ) {
-          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter( elem, 'AND' );
+        if (elem.tagName === 'influx') {
+          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter(elem, 'AND');
           retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
           retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
         } else {
-          var dsIndex = elem.getAttribute('datasourceIndex') || 0;
-          if(dsIndex < 0) {
+          let dsIndex = elem.getAttribute('datasourceIndex') || 0;
+          if (dsIndex < 0) {
             dsIndex = 0;
           }
           retVal.ts[retVal.tsnum].dsIndex = dsIndex;
@@ -208,24 +208,22 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     /**
      * Recursively walk through the elem to build filter sting
      * @param elem
+     * @param type
      */
-    getInfluxFilter: function( elem, type )
-    {
-      var
-        children = elem.children,
-        length = children.length,
-        retval = '',
-        i = 0;
+    getInfluxFilter: function(elem, type) {
+      const children = elem.children;
+      const length = children.length;
+      let retval = '';
+      let i = 0;
 
-      for( ; i < length; i++ )
-      {
-        var child = children[i];
+      for (; i < length; i++) {
+        const child = children[i];
 
-        if( '' != retval )
+        if (retval != '') {
           retval += ' ' + type + ' ';
+        }
 
-        switch( child.tagName )
-        {
+        switch (child.tagName) {
           case 'and':
             retval += this.getInfluxFilter(child, 'AND');
             break;
@@ -235,87 +233,128 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             break;
 
           case 'tag':
-            retval += child.getAttribute('key') + ' ' + child.getAttribute('operator') + " '" + child.getAttribute('value') + "'";
+            retval += child.getAttribute('key') + ' ' + child.getAttribute('operator') + ' \'' + child.getAttribute('value') + '\'';
             break;
 
           default:
-            ; // ignore unknown
+             // ignore unknown
         }
       }
 
-      if( type )
+      if (type) {
         return '(' + retval + ')';
+      }
 
       return retval;
     },
 
     /**
      * Get the rrd or InfluxDB and put it's content in the cache.
+     * @param ts
+     * @param start
+     * @param end
+     * @param res
+     * @param forceNowDatapoint
      * @param refresh {Number} time is seconds to refresh the data
      * @param force {Boolean} Update even when the cache is still valid
      * @param callback {Function} call when the data has arrived
+     * @param callbackParameter
      */
-    lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
-      var
-        url = (( 'influx' === ts.tsType )
+    lookupTsCache: function(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
+      const client = cv.TemplateEngine.getInstance().visu;
+      let key;
+      let url;
+      const chartsResource = client.getResourcePath('charts', {
+        src: ts.src,
+        start: start,
+        end: end
+      });
+      if (ts.tsType !== 'influx' && chartsResource !== null) {
+        // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
+        url = chartsResource;
+        key = url;
+      } else {
+        url = ((ts.tsType === 'influx')
             ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
-            : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
-          + '&ds='    + encodeURIComponent(ts.cFunc)
-          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
-          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
-          + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
-          + '&end='   + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
-          + '&res='   + encodeURIComponent(res)
-          + (ts.fillTs ? '&fill='   + encodeURIComponent(ts.fillTs) : '')
-          + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
-          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : '')
-          + (ts.authentication  ? '&auth='  + encodeURIComponent(ts.authentication ) : ''),
-        key = url + ( 'rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
-        urlNotInCache = !(key in this.cache),
-        doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
+            : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') +
+            '&ds=' + encodeURIComponent(ts.cFunc) +
+            // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+            //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
+            '&start=' + (ts.tsType === 'rrd' ? start : encodeURIComponent(start)) +
+            '&end=' + (ts.tsType === 'rrd' ? end : encodeURIComponent(end)) +
+            '&res=' + encodeURIComponent(res) +
+            (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') +
+            (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') +
+            (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') +
+            (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : '');
+        key = url + (ts.tsType === 'rrd' ? '|' + ts.dsIndex : '');
+      }
+      let
+        urlNotInCache = !(key in this.cache);
+        let doLoad = force || urlNotInCache || !('data' in this.cache[key]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
 
-      if( doLoad )
-      {
-        if( urlNotInCache ) {
+      if (doLoad) {
+        if (urlNotInCache) {
           this.cache[key] = {waitingCallbacks: []};
         }
-        this.cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
+        this.cache[key].waitingCallbacks.push([ callback, callbackParameter ]);
 
-        if( this.cache[ key ].waitingCallbacks.length === 1 ) {
-          if (this.cache[ key ].xhr) {
-            this.cache[ key ].xhr.dispose();
+        if (this.cache[key].waitingCallbacks.length === 1) {
+          if (this.cache[key].xhr) {
+            this.cache[key].xhr.dispose();
           }
-          var xhr = new qx.io.request.Xhr(url);
-          var self = this;
+          const xhr = new qx.io.request.Xhr(url);
+          client.authorize(xhr);
           xhr.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
-          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev);}, this);
-          xhr.addListener("statusError", function(ev){self._onStatusError(ts, key, ev);}, this);
-          this.cache[ key ].xhr = xhr;
+          xhr.addListener('success', function(ev) {
+            this._onSuccess(ts, key, ev, forceNowDatapoint);
+          }, this);
+          xhr.addListener('statusError', function(ev) {
+            this._onStatusError(ts, key, ev);
+          }, this);
+          this.cache[key].xhr = xhr;
           xhr.send();
         }
       } else {
-        callback( this.cache[key].data, callbackParameter );
+        callback(this.cache[key].data, callbackParameter);
       }
     },
 
-    _onSuccess: function(ts, key, ev) {
-      var tsdata = ev.getTarget().getResponse();
+    _onSuccess: function(ts, key, ev, forceNowDatapoint) {
+      let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
-        // calculate timestamp offset and scaling
-        var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
-        var newRrd = new Array(tsdata.length);
-        for (var j = 0, l = tsdata.length; j < l; j++) {
-          if( ts.tsType === 'rrd' )
-            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
-          else
-            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
+        const client = cv.TemplateEngine.getInstance().visu;
+        if (client.hasCustomChartsDataProcessor(tsdata)) {
+          tsdata = client.processChartsData(tsdata);
+        } else {
+          // calculate timestamp offset and scaling
+          const millisOffset = (ts.offset ? ts.offset * 1000 : 0);
+          const newRrd = new Array(tsdata.length);
+          let j = 0;
+          const l = tsdata.length;
+          for (; j < l; j++) {
+            if (ts.tsType === 'rrd') {
+              newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
+            } else {
+              newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
+            }
+          }
+          tsdata = newRrd;
         }
-        tsdata = newRrd;
       }
+
+      let now = Date.now();
+
+      if (forceNowDatapoint) {
+        let last = Array.from(tsdata[tsdata.length - 1]); // force copy
+        last[0] = now;
+        tsdata.push(last);
+      }
+
       this.cache[key].data = tsdata;
-      this.cache[key].timestamp = Date.now();
+      this.cache[key].timestamp = now;
 
       this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
         waitingCallback[0](tsdata, waitingCallback[1]);
@@ -324,8 +363,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     _onStatusError: function(ts, key, ev) {
-      console.log('_onStatusError',ts, key, ev);
-      var tsdata = [];
+      qx.log.Logger.error(this, '_onStatusError', ts, key, ev);
+      const tsdata = [];
 
       this.cache[key].data = tsdata;
       this.cache[key].timestamp = Date.now();
@@ -344,80 +383,84 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   */
   properties: {
     content: {
-      check: "Object",
+      check: 'Object',
       init: {}
     },
     title: {
-      check: "String",
+      check: 'String',
       nullable: true,
-      apply: "_applyTitle"
+      apply: '_applyTitle'
     },
     series: {
-      check: ["hour", "day", "week", "month", "year", "fullday", "custom"],
-      init: "day"
+      check: ['hour', 'day', 'week', 'month', 'year', 'fullday', 'custom'],
+      init: 'day'
     },
     seriesStart: {
-      check: "String",
-      init: "end-month"
+      check: 'String',
+      init: 'end-month'
     },
     seriesEnd: {
-      check: "String",
-      init: "now"
+      check: 'String',
+      init: 'now'
     },
     seriesResolution: {
-      check: "Number",
+      check: 'Number',
       init: 300
     },
+    forceNowDatapoint: {
+      check: 'Boolean',
+      init: true
+    },
     period: {
-      check: "Number",
+      check: 'Number',
       init: 1
     },
     legendInline: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
     legendPopup: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
     legendposition: {
-      check: ["nw", "ne", "sw", "se"],
-      init: "ne"
+      check: ['nw', 'ne', 'sw', 'se'],
+      init: 'ne'
     },
     timeformat: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     timeformatTooltip: {
-      check: "String",
-      init: "%d.%m.%Y %H:%M"
+      check: 'String',
+      init: '%d.%m.%Y %H:%M'
     },
     zoomYAxis: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     showGrid: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
     gridcolor: {
-      check: "String",
-      init: "#81664B"
+      check: 'String',
+      init: '#81664B'
     },
     backgroundColor: {
-      check: "String",
-      init: "#000000"
+      check: 'String',
+      init: '#000000'
     },
     previewlabels: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     popup: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     tooltip: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     }
   },
@@ -448,14 +491,14 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       if (this.getRefresh()) {
         if (!this._timer) {
           this._timer = new qx.event.Timer(this.getRefresh());
-          this._timer.addListener("interval", function () {
+          this._timer.addListener('interval', function () {
             this.loadDiagramData(this.plot, false, true);
           }, this);
         }
 
         if (!this._timerPopup) {
           this._timerPopup = new qx.event.Timer(this.getRefresh());
-          this._timerPopup.addListener("interval", function () {
+          this._timerPopup.addListener('interval', function () {
             this.loadDiagramData(this.popupplot, false, true);
           }, this);
         }
@@ -493,13 +536,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     _action: function() {
-      var popupDiagram = qx.dom.Element.create("div", {
-        'class': "diagram",
+      const popupDiagram = qx.dom.Element.create('div', {
+        'class': 'diagram',
         id: this.getPath() + '_big',
         style: 'height: 90%'
       });
       this._init = true;
-      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram, page: this.getParentPage().getPath()});
+      const popup = cv.ui.PopupHandler.showPopup('diagram', {
+        title: this.getLabel(),
+        content: popupDiagram,
+        page: this.getParentPage().getPath()
+      });
 
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
@@ -513,81 +560,82 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
       }, this);
 
-      var parent = popupDiagram.parentNode;
-      Object.entries({height: "100%", width: "95%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];});// define parent as 100%!
+      const parent = popupDiagram.parentNode;
+      Object.entries({height: '100%', width: '95%', margin: 'auto'}).forEach(function(key_value) {
+ parent.style[key_value[0]]=key_value[1];
+});// define parent as 100%!
       popupDiagram.innerHTML = '';
-      qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
+      qx.event.Registration.addListener(popupDiagram, 'tap', function(event) {
         // don't let the popup know about the click, or it will close
         event.stopPropagation();
       }, this);
 
-      this.initDiagram( true );
+      this.initDiagram(true);
 
       this._startRefresh(this._timerPopup, true);
     },
 
-    initDiagram: function( isPopup ) {
+    initDiagram: function(isPopup) {
       if (!this._init) {
-
         return;
       }
       this._init = false;
       isPopup = isPopup || this.__isPopup;
 
-      var options = {
-        canvas  : true,
-        tooltip : this.getTooltip(),
-        tooltipOpts : {
-          content      : "<center>%x<br/>%y</center>",
-          xDateFormat  : this.getTimeformatTooltip(),
-          shifts       : {
-            x : 20,
-            y : 10
+      const options = {
+        canvas: true,
+        tooltip: this.getTooltip(),
+        tooltipOpts: {
+          content: '<center>%x<br/>%y</center>',
+          xDateFormat: this.getTimeformatTooltip(),
+          shifts: {
+            x: 20,
+            y: 10
           },
-          defaultTheme : false
+          defaultTheme: false
         },
-        zoom    : {
+        zoom: {
           interactive: isPopup,
-          trigger: "dblclick",
+          trigger: 'dblclick',
           amount: 1.5
         },
-        pan     : {
+        pan: {
           interactive: isPopup,
-          cursor: "move",
+          cursor: 'move',
           frameRate: 20,
-          triggerOnDrag : false
+          triggerOnDrag: false
         },
-        yaxes  : JSON.parse(JSON.stringify(this.getContent().axes)), // deep copy to prevent side effects
-        xaxes  : [{
-          mode       : "time",
-          timeformat : this.getTimeformat()
+        yaxes: JSON.parse(JSON.stringify(this.getContent().axes)), // deep copy to prevent side effects
+        xaxes: [{
+          mode: 'time',
+          timeformat: this.getTimeformat()
         }],
-        legend : {
-          show            : (isPopup && this.isLegendPopup()) || (!isPopup && this.isLegendInline()),
-          backgroundColor : "#101010",
-          position        : this.getLegendposition()
+        legend: {
+          show: (isPopup && this.isLegendPopup()) || (!isPopup && this.isLegendInline()),
+          backgroundColor: '#101010',
+          position: this.getLegendposition()
         },
-        grid : {
-          show            : this.getShowGrid(),
-          aboveData       : false,
-          color           : this.getGridcolor(),
-          backgroundColor : this.getBackgroundColor(),
-          tickColor       : this.getGridcolor(),
-          markingsColor   : this.getGridcolor(),
-          borderColor     : this.getGridcolor(),
-          hoverable       : true
+        grid: {
+          show: this.getShowGrid(),
+          aboveData: false,
+          color: this.getGridcolor(),
+          backgroundColor: this.getBackgroundColor(),
+          tickColor: this.getGridcolor(),
+          markingsColor: this.getGridcolor(),
+          borderColor: this.getGridcolor(),
+          hoverable: true
         },
         touch: {
-          pan: isPopup ? 'x' : 'none',              // what axis pan work
-          scale: isPopup ? 'x' : 'none',            // what axis zoom work
+          pan: isPopup ? 'x' : 'none', // what axis pan work
+          scale: isPopup ? 'x' : 'none', // what axis zoom work
           autoWidth: false,
           autoHeight: false,
-          delayTouchEnded: 500,   // delay in ms before touchended event is fired if no more touches
-          callback: null,         // other plot draw callback
-          simulClick: true,       // plugin will generate Mouse click event to brwoser on tap or double tap
-          tapThreshold:150,       // range of time where a tap event could be detected
-          dbltapThreshold:200,    // delay needed to detect a double tap
-          tapPrecision:60/2       // tap events boundaries ( 60px square by default )
+          delayTouchEnded: 500, // delay in ms before touchended event is fired if no more touches
+          callback: null, // other plot draw callback
+          simulClick: true, // plugin will generate Mouse click event to brwoser on tap or double tap
+          tapThreshold: 150, // range of time where a tap event could be detected
+          dbltapThreshold: 200, // delay needed to detect a double tap
+          tapPrecision: 60 / 2 // tap events boundaries ( 60px square by default )
         }
       };
       options.yaxes.forEach(function(val) {
@@ -615,7 +663,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       if (!isPopup && !this.getPreviewlabels()) {
         Object.assign(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
-        if( 0 === options.yaxes.length ) {
+        if (options.yaxes.length === 0) {
           options.yaxes[0] = {};
         }
         options.yaxes.forEach(function(val) {
@@ -624,33 +672,32 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       // plot diagram initially with empty values
-      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div.diagram' );
+      const diagram = isPopup ? $('#' + this.getPath() + '_big') : $('#' + this.getPath() + ' .actor div.diagram');
       diagram.empty();
-      var plot = $.plot(diagram, [], options);
-      if( isPopup ) {
-        this.debug("popup plot generated");
+      const plot = $.plot(diagram, [], options);
+      if (isPopup) {
+        this.debug('popup plot generated');
         this.popupplot = plot;
-      }
-      else {
-        this.debug("plot generated");
+      } else {
+        this.debug('plot generated');
         this.plot = plot;
       }
       this.plotted = true;
 
-      var that = this;
-      diagram.bind("plotpan", function(event, plot) {
-        that._debouncedLoadDiagramData( plot, isPopup, false );
-      }).bind("plotzoom", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("touchended", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("tap", function() {
-        var self = this;
-        var container = $(self).closest('.widget_container')[0];
-        if ( !isPopup && container !== undefined) {
-          var actor = $(self).closest('.actor')[0];
-          var path = container.id;
-          if( actor !== undefined && path.length > 0 ) {
+      const that = this;
+      diagram.bind('plotpan', function(event, plot) {
+        that._debouncedLoadDiagramData(plot, isPopup, false);
+      }).bind('plotzoom', function() {
+        that.loadDiagramData(plot, isPopup, false);
+      }).bind('touchended', function() {
+        that.loadDiagramData(plot, isPopup, false);
+      }).bind('tap', function() {
+        const self = this;
+        const container = $(self).closest('.widget_container')[0];
+        if (!isPopup && container !== undefined) {
+          const actor = $(self).closest('.actor')[0];
+          const path = container.id;
+          if (actor !== undefined && path.length > 0) {
             that.action();
           }
         }
@@ -661,40 +708,39 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         plot.getPlaceholder().unbind('touchstart').unbind('touchmove').unbind('touchend');
       }
 
-      this.loadDiagramData( plot, isPopup, false );
+      this.loadDiagramData(plot, isPopup, false);
     },
 
     getSeriesSettings: function(xAxis, isInteractive) {
-      var series = {
-        hour    : {res: "60",     start: "hour",  end: "now"},
-        day     : {res: "300",    start: "day",   end: "now"},
-        fullday : {res: "300",    start: "day",   end: "midnight+24hour"},
-        week    : {res: "1800",   start: "week",  end: "now"},
-        month   : {res: "21600",  start: "month", end: "now"},
-        year    : {res: "432000", start: "year",  end: "now"}
+      const series = {
+        hour: {res: '60', start: 'hour', end: 'now'},
+        day: {res: '300', start: 'day', end: 'now'},
+        fullday: {res: '300', start: 'day', end: 'midnight+24hour'},
+        week: {res: '1800', start: 'week', end: 'now'},
+        month: {res: '21600', start: 'month', end: 'now'},
+        year: {res: '432000', start: 'year', end: 'now'}
       };
 
-      var ret = {
-        start : null,
-        end   : null,
-        res   : null
+      const ret = {
+        start: null,
+        end: null,
+        res: null
       };
-      if (this.getSeries() === "custom") {
+      if (this.getSeries() === 'custom') {
         // initial load, take parameters from custom configuration
         ret.start = this.getSeriesStart();
         ret.end = this.getSeriesEnd();
         ret.res = this.getSeriesResolution();
-      }
-      else {
-        var selectedSeries = series[this.getSeries()];
+      } else {
+        const selectedSeries = series[this.getSeries()];
         if (!selectedSeries) {
-          return;
+          return null;
         }
 
         // initial load, take parameters from configuration
-        ret.start = "end-" + this.getPeriod() + selectedSeries.start;
+        ret.start = 'end-' + this.getPeriod() + selectedSeries.start;
         ret.end = selectedSeries.end;
-        ret.res = selectedSeries.res;
+        ret.res = this.getSeriesResolution() ? this.getSeriesResolution() : selectedSeries.res;
       }
 
       if (xAxis.datamin && xAxis.datamax && isInteractive) {
@@ -703,26 +749,26 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       return ret;
     },
 
-    loadDiagramData: function( plot, isInteractive, forceReload ) {
+    loadDiagramData: function(plot, isInteractive, forceReload) {
       if (!plot) {
         return;
       }
-      var series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
+      const series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return;
       }
 
       // init
-      var loadedData = [];
-      var tsloaded = 0;
-      var tsSuccessful = 0;
+      let loadedData = [];
+      let tsloaded = 0;
+      let tsSuccessful = 0;
       // get all time series data
       this.getContent().ts.forEach(function(ts, index) {
-        var
-          res = ts.resol ? ts.resol : series.res,
-          refresh = this.getRefresh() ? this.getRefresh() : res;
+        const res = isNaN(ts.resol) ? series.res : ts.resol;
+        const forceNowDatapoint = this.getForceNowDatapoint();
+        const refresh = this.getRefresh() ? this.getRefresh() : res;
 
-        cv.plugins.diagram.AbstractDiagram.lookupTsCache( ts, series.start, series.end, res, refresh, forceReload, function(tsdata ){
+        cv.plugins.diagram.AbstractDiagram.lookupTsCache(ts, series.start, series.end, res, forceNowDatapoint, refresh, forceReload, function(tsdata) {
           tsloaded++;
           if (tsdata !== null) {
             tsSuccessful++;
@@ -733,26 +779,25 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
               color: ts.color,
               data: tsdata,
               yaxis: parseInt(ts.axisIndex),
-              bars: { show: ts.style === "bars", fill: ts.fill, barWidth: parseInt(ts.barWidth), align: ts.align },
-              lines: { show: ts.style === "lines", steps: ts.steps, fill: ts.fill, zero: false },
-              points: { show: ts.style === "points", fill: ts.fill }
+              bars: { show: ts.style === 'bars', fill: ts.fill, barWidth: parseInt(ts.barWidth), align: ts.align },
+              lines: { show: ts.style === 'lines', steps: ts.steps, fill: ts.fill, zero: false },
+              points: { show: ts.style === 'points', fill: ts.fill }
             };
           }
 
           // if loading has finished, i.e. all time series have been retrieved,
           // go on and plot the diagram
           if (tsloaded === this.getContent().tsnum) {
-            var fulldata;
+            let fulldata;
             // If all time series were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
             if (tsSuccessful === tsloaded) {
               fulldata = loadedData;
-            }
-            else {
+            } else {
               fulldata = [];
-              var loadedIndex = -1;
-              for (var j = 0; j < tsSuccessful; j++) {
-                for (var k = loadedIndex + 1; k < loadedData.length; k++) {
+              let loadedIndex = -1;
+              for (let j = 0; j < tsSuccessful; j++) {
+                for (let k = loadedIndex + 1; k < loadedData.length; k++) {
                   if (loadedData[k] !== null) {
                     fulldata[j] = loadedData[k];
                     loadedIndex = k;
@@ -769,7 +814,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
             loadedData = [];
           }
-
         }.bind(this));
       }, this);
     }
@@ -782,12 +826,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   */
   destruct: function() {
     if (this._timerPopup) {
-      this._disposeObjects("_timerPopup");
+      this._disposeObjects('_timerPopup');
     }
   },
 
   defer: function() {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts([
       'plugins/diagram/dep/flot/jquery.flot.min.js',
       'plugins/diagram/dep/flot/jquery.flot.touch.min.js',

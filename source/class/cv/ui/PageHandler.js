@@ -37,7 +37,7 @@ qx.Class.define('cv.ui.PageHandler', {
   properties: {
     // time in milliseconds
     speed : {
-      check: "Number",
+      check: 'Number',
       init: 400
     },
     // name of the easing function
@@ -52,8 +52,8 @@ qx.Class.define('cv.ui.PageHandler', {
     },
 
     animationType: {
-      check: ["slide", "fade", "flip", "pop", "swap", "none"],
-      init: "slide"
+      check: ['slide', 'fade', 'flip', 'pop', 'swap', 'none'],
+      init: 'slide'
     }
   },
 
@@ -64,53 +64,57 @@ qx.Class.define('cv.ui.PageHandler', {
    */
   members: {
 
-    seekTo : function( target, speed ) {
+    seekTo : function(target, speed) {
       if (isNaN(speed)) {
         speed = 0;
       }
-      var currentPath = this.getCurrentPath();
-      if (currentPath !== '') { qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); }
+      const currentPath = this.getCurrentPath();
+      if (currentPath !== '') {
+ qx.event.message.Bus.dispatchByName('path.'+currentPath+'.exitingPageChange', currentPath, target); 
+}
 
-      var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
+      const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
-      if (!pageWidget || !pageWidget.getDomElement()) {// check if page does exist
+      if (!pageWidget || !pageWidget.getDomElement()) { // check if page does exist
         return;
       }
-      qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
+      qx.event.message.Bus.dispatchByName('path.'+target+'.beforePageChange', target);
 
-      var templateEngine = cv.TemplateEngine.getInstance();
+      const templateEngine = cv.TemplateEngine.getInstance();
 
       templateEngine.resetPageValues();
 
       templateEngine.setCurrentPage(pageWidget);
 
       // update visibility of navbars, top-navigation, footer
-      templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
+      templateEngine.pagePartsHandler.updatePageParts(pageWidget, speed);
 
       // now the animation
-      var animationConfig = {};
+      let animationConfig = {};
 
       // update reference, because the appearance might have changed
-      var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
+      const oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
-      var direction = null;
-      var animationEnabled = speed > 0 && this.getAnimationType() !== "none";
+      let direction = null;
+      let animationEnabled = speed > 0 && this.getAnimationType() !== 'none';
 
       // browser check
-      if (qx.core.Environment.get("browser.name") === "safari" && parseInt(qx.core.Environment.get("browser.version")) <= 5) {
+      if (qx.core.Environment.get('browser.name') === 'safari' && parseInt(qx.core.Environment.get('browser.version')) <= 5) {
         animationEnabled = false;
       }
       if (animationEnabled) {
-        var currentDepth = currentPath.split("_").length;
-        var targetDepth = target.split("_").length;
-        direction = currentDepth<=targetDepth ? "down" : "up";
+        const currentDepth = currentPath.split('_').length;
+        const targetDepth = target.split('_').length;
+        direction = currentDepth<=targetDepth ? 'down' : 'up';
         animationConfig = this.__getAnimationConfig(direction);
 
         // show the new page (because animations do not work on hidden elements) + hide scrollbar
         Object.entries({
-          "display": "block",
-          "overflow": "hidden"
-        }).forEach(function(key_value){pageWidget.getDomElement().style[key_value[0]]=key_value[1];});
+          'display': 'block',
+          'overflow': 'hidden'
+        }).forEach(function(key_value) {
+ pageWidget.getDomElement().style[key_value[0]]=key_value[1]; 
+});
         // set it to visible
         pageWidget.setVisible(true);
       }
@@ -122,17 +126,17 @@ qx.Class.define('cv.ui.PageHandler', {
         this.__onEnterPage(pageWidget, 0, true);
       } else {
         if (oldPageWidget) {
-          var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
-          oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
-          outAnim.addListenerOnce("end", function() {
+          const outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
+          oldPageWidget.getDomElement().style['overflow-y'] = 'hidden';
+          outAnim.addListenerOnce('end', function() {
             this.__onLeavePage(oldPageWidget);
           }, this);
         }
-        var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
-        pageWidget.getDomElement().style.position = "absolute";
+        const oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
+        pageWidget.getDomElement().style.position = 'absolute';
         qx.bom.AnimationFrame.request(function() {
-          var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
-          animation.addListenerOnce("end", function() {
+          const animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
+          animation.addListenerOnce('end', function() {
             this.__onEnterPage(pageWidget, oldPos);
           }, this);
         }, this);
@@ -144,23 +148,23 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param direction {String} "up" or "down"
      */
     __getAnimationConfig: function(direction) {
-      var inAnim, outAnim;
+      let inAnim;
+      let outAnim;
 
       // try to find existing animation configuration
-      var type = this.getAnimationType().toUpperCase();
-      if (direction === "up") {
-        inAnim = qx.util.Animation[type+"_RIGHT_IN"] || qx.util.Animation[type+"_IN"];
-        outAnim = qx.util.Animation[type+"_RIGHT_OUT"] || qx.util.Animation[type+"_OUT"];
-      } else if (direction === "down") {
-        inAnim = qx.util.Animation[type+"_LEFT_IN"] || qx.util.Animation[type+"_IN"];
-        outAnim = qx.util.Animation[type+"_LEFT_OUT"] || qx.util.Animation[type+"_OUT"];
+      const type = this.getAnimationType().toUpperCase();
+      if (direction === 'up') {
+        inAnim = qx.util.Animation[type+'_RIGHT_IN'] || qx.util.Animation[type+'_IN'];
+        outAnim = qx.util.Animation[type+'_RIGHT_OUT'] || qx.util.Animation[type+'_OUT'];
+      } else if (direction === 'down') {
+        inAnim = qx.util.Animation[type+'_LEFT_IN'] || qx.util.Animation[type+'_IN'];
+        outAnim = qx.util.Animation[type+'_LEFT_OUT'] || qx.util.Animation[type+'_OUT'];
       }
       if (!inAnim || !outAnim) {
         // fallback
         switch (this.getAnimationType()) {
-
-          case "slide":
-            if (direction === "up") {
+          case 'slide':
+            if (direction === 'up') {
               inAnim = qx.util.Animation.SLIDE_RIGHT_IN;
               outAnim = qx.util.Animation.SLIDE_RIGHT_OUT;
             } else {
@@ -189,8 +193,8 @@ qx.Class.define('cv.ui.PageHandler', {
     __onLeavePage: function(oldPageWidget) {
       oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
       oldPageWidget.getDomElement().style.overflow = null;
-      qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
-      qx.event.message.Bus.dispatchByName("path.pageLeft", oldPageWidget.getPath());
+      qx.event.message.Bus.dispatchByName('path.' + oldPageWidget.getPath() + '.afterPageChange', oldPageWidget.getPath());
+      qx.event.message.Bus.dispatchByName('path.pageLeft', oldPageWidget.getPath());
       oldPageWidget.setVisible(false);
     },
 
@@ -201,8 +205,8 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
      */
     __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
-      var page = pageWidget.getDomElement();
-      var target = pageWidget.getPath();
+      const page = pageWidget.getDomElement();
+      const target = pageWidget.getPath();
       page.classList.add('pageActive', 'activePage');// show new page
       if (updateVisibility === true) {
         // set it to visible
@@ -210,16 +214,18 @@ qx.Class.define('cv.ui.PageHandler', {
       }
       // final stuff
       this.setCurrentPath(target);
-      cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation( target );
+      cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation(target);
 
-      qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
-      qx.event.message.Bus.dispatchByName("path.pageChanged", target);
+      qx.event.message.Bus.dispatchByName('page.' + target + '.appear', target);
+      qx.event.message.Bus.dispatchByName('path.pageChanged', target);
       // show scrollbar after animation
-      var styles =  {"overflow": null, "display": null};
+      const styles = {'overflow': null, 'display': null};
       if (oldPos) {
         styles.position = oldPos;
       }
-      Object.entries(styles).forEach(function(key_value){page.style[key_value[0]]=key_value[1];});
+      Object.entries(styles).forEach(function(key_value) {
+ page.style[key_value[0]]=key_value[1]; 
+});
     }
   }
 });

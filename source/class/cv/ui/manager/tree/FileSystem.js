@@ -44,7 +44,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     isAccepted: function (mimetype) {
-      return this.MIMETYPES.hasOwnProperty(mimetype);
+      return Object.prototype.hasOwnProperty.call(this.MIMETYPES, mimetype);
     }
   },
 
@@ -92,18 +92,20 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     _replacementManager: null,
 
     reload: function () {
-      var tree = this.getChildControl('tree');
-      var openPaths = tree.getOpenNodes().map(function (node) { return node.getFullPath(); });
-      var root = tree.getModel();
+      const tree = this.getChildControl('tree');
+      const openPaths = tree.getOpenNodes().map(function (node) {
+        return node.getFullPath();
+      });
+      const root = tree.getModel();
       root.reload(function () {
         this.getChildControl('tree').refresh();
         root.setOpen(true);
-        openPaths.forEach(this.openPath, this)
+        openPaths.forEach(this.openPath, this);
       }, this);
     },
 
     openPath: function (path) {
-      var root = this.getChildControl('tree').getModel();
+      const root = this.getChildControl('tree').getModel();
       if (path === '.') {
         root.setOpen(true);
       } else {
@@ -118,7 +120,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     _applyRootFolder: function (value) {
       if (value) {
-        var tree = this.getChildControl('tree');
+        const tree = this.getChildControl('tree');
         tree.setModel(value);
         value.load(function () {
           tree.setHideRoot(true);
@@ -127,8 +129,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     _applySelectedNode: function (value) {
-      var tree = this.getChildControl('tree');
-      var contextMenu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
+      const tree = this.getChildControl('tree');
+      const contextMenu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       contextMenu.configure(value);
       if (value) {
         tree.setContextMenu(contextMenu);
@@ -140,7 +142,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     _onDblTapTreeSelection: function () {
-      var sel = this.getSelectedNode();
+      const sel = this.getSelectedNode();
       if (sel) {
         if (this.__selectionTimer) {
           this.__selectionTimer.stop();
@@ -162,10 +164,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       if (this.__ignoreSelectionChange === true) {
         return;
       }
-      var tree = this.getChildControl('tree');
-      var sel = tree.getSelection();
+      const tree = this.getChildControl('tree');
+      const sel = tree.getSelection();
       if (sel.length > 0) {
-        var node = sel.getItem(0);
+        const node = sel.getItem(0);
         this.setSelectedNode(node);
         // wait for double tap
         if (node.getType() === 'file') {
@@ -189,10 +191,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     _onFsItemRightClick: function (ev) {
-      var tree = this.getChildControl('tree');
-      var widget = ev.getTarget();
+      const tree = this.getChildControl('tree');
+      const widget = ev.getTarget();
       if (widget instanceof cv.ui.manager.tree.VirtualFsItem) {
-        var node = widget.getModel();
+        const node = widget.getModel();
         if (node) {
           this.__ignoreSelectionChange = true;
           tree.getSelection().replace([node]);
@@ -217,14 +219,15 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'tree':
            control = new qx.ui.tree.VirtualTree(null, 'name', 'children');
            control.set({
              selectionMode: 'single',
-             minWidth: 250
+             minWidth: 250,
+             showTopLevelOpenCloseIcons: true
            });
            cv.ui.manager.model.Preferences.getInstance().bind('quickPreview', control, 'openMode', {
              converter: function (value) {
@@ -233,7 +236,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            });
            control.setDelegate({
              createItem: function () {
-               var item = new cv.ui.manager.tree.VirtualFsItem();
+               const item = new cv.ui.manager.tree.VirtualFsItem();
                item.addListener('dbltap', this._onDblTapTreeSelection, this);
                item.addListener('contextmenu', this._onFsItemRightClick, this);
                return item;
@@ -241,15 +244,15 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
              // Bind properties from the item to the tree-widget and vice versa
              bindItem : function(controller, item, index) {
-               controller.bindProperty("", "model", null, item, index);
-               controller.bindPropertyReverse("open", "open", null, item, index);
-               controller.bindProperty("open", "open", null, item, index);
-               controller.bindProperty("readable", "enabled", null, item, index);
-               controller.bindProperty("icon", "icon", null, item, index);
-               controller.bindProperty("editing", "editing", null, item, index);
+               controller.bindProperty('', 'model', null, item, index);
+               controller.bindPropertyReverse('open', 'open', null, item, index);
+               controller.bindProperty('open', 'open', null, item, index);
+               controller.bindProperty('readable', 'enabled', null, item, index);
+               controller.bindProperty('icon', 'icon', null, item, index);
+               controller.bindProperty('editing', 'editing', null, item, index);
              }
            });
-           control.getSelection().addListener("change", this._onChangeTreeSelection, this);
+           control.getSelection().addListener('change', this._onChangeTreeSelection, this);
            this._add(control);
            break;
        }

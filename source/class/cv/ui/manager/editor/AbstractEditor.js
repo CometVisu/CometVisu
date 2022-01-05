@@ -7,7 +7,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     cv.ui.manager.editor.IEditor,
     cv.ui.manager.IActionHandler
   ],
-  type: "abstract",
+  type: 'abstract',
 
   /*
   ***********************************************
@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   construct: function () {
     this.base(arguments);
     this._initClient();
+    this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
@@ -28,7 +29,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     file: {
       check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
-      apply: '_loadFile'
+      apply: '_loadFile',
+      event: 'changeFile'
     },
 
     content: {
@@ -39,7 +41,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     handlerOptions: {
       check: 'Map',
-      nullable: true
+      nullable: true,
+      apply: '_applyHandlerOptions'
     },
 
     /**
@@ -48,7 +51,23 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     external: {
       check: 'Boolean',
       init: false
+    },
+
+    ready: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeReady'
     }
+  },
+
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    // fake clipboard data when native clipboard is not supported
+    CLIPBOARD: null
   },
 
   /*
@@ -58,6 +77,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   */
   members: {
     _handledActions: null,
+    _nativePasteSupported: false,
 
     canHandleAction: function (actionName) {
       if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
@@ -76,9 +96,14 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
     },
+
+    _applyHandlerOptions: function () {},
 
     _loadFile: function (file, old) {
       if (old) {
@@ -101,13 +126,16 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
         if (err) {
           cv.ui.manager.snackbar.Controller.error(err);
         } else {
+          if (res instanceof XMLDocument) {
+            res = new XMLSerializer().serializeToString(res);
+          }
           this.setContent(res);
         }
       }, this);
     },
 
     _onChange: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if (data.type === 'fsContentChanged' && data.source !== this) {
         this.setContent(data.data);
       }
@@ -123,8 +151,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
-        var file = this.getFile();
-        var message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved')
+        const file = this.getFile();
+        const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
         qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
@@ -137,7 +165,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     save: function (callback, overrideHash) {
-      var file = this.getFile();
+      const file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
           this._client.createSync({
@@ -155,10 +183,13 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     _onSaved: function () {
-      var file = this.getFile();
+      const file = this.getFile();
       file.resetModified();
       file.resetTemporary();
-    }
+    },
+
+    showErrors: function (path, errorList) {},
+    showDecorations: function (path, decorators) {}
   },
 
   /*

@@ -11,64 +11,68 @@ auseinander setzen muss.
 Aufbau
 ------
 
-Der Editor besteht aus drei Teilen:
+Der Editor besteht aus zwei Bereichen:
 
 .. figure:: _static/editor.png
 
-Oben ist eine Menü-Leiste, links wird die Struktur der Konfiguration dargestellt
-und rechts können die Attribute für ein Element angepasst werden.
+Links wird die Struktur der Konfiguration eingestellt, rechts wird eine Vorschau der Konfiguration angezeigt.
+Oberhalb der Struktur auf der Linken Seite befindet sich noch ein Suchfeld mit dem eine textuelle Suche nach
+einzelnen Widgets getätigt werden kann. Darüber ist eine Tab-Bar mit einigen Funktionen im Schnellzugriff:
 
 Die Optionen der Menüleiste sind:
 
-save
-  Speichert den aktuellen Stand der Konfiguration.
+Editieren
+  Öffnet den Bearbeiten-Dialog für die Attribute des gerade ausgewählten Elements in der Struktur. Sollte der Button
+  ausgegraut sein, ist entweder kein Element ausgewählt, oder dieses kann nicht bearbeitet werden.
 
-complex
+Löschen
+  Löscht das gerade ausgewählte Element. Sollte der Button ausgegraut sein, dann ist entweder gerade kein Element
+  ausgewählt, oder es darf nicht gelöscht werden.
+
+Expertenansicht
   Schaltet erweiterte Konfigurationsmöglichkeiten frei.
 
-preview
-  Zeigt eine Vorschau des aktuellen Stands der Konfiguration an ohne die
-  bestehende Version zu überschreiben.
-
-manager
-  Kehrt zum :ref:`Manager <manager>` zurück.
+Refresh
+  Aktualisiert die Vorschau (die Vorschau wird nicht automatisch nach jeder Änderung aktualisiert, dies muss manuell
+  über diesen Button geschehen)
 
 Bedienung
 ---------
 
-Wenn links ein Element angeklickt wird, so erscheint rechts eine Tabelle mit den
-dazugehörigen Attributen, wenn für diesen Element-Typen verfügbar.
-
-Um weitere Elemente hinzuzufügen, muss man das zukünftige Eltern-Element mit
-der rechten Maustaste anklicken.
+Man kann Elemente in der Struktur ausklappen indem man auf das kleine Dreieck-Icon ganz links klickt. Durch einen
+Doppelklick öffnet sich der Dialog mit dem die Attribute eines Elements bearbeitet werden können. Erweiterte Funktionen
+zu einem ausgewählten Element stehen per Kontextmenü, welches mit rechter Maustaste geöffnet werden kann.
+Auf Touchscreens wird ein extra Menu-Button ganz rechts angezeigt, mit dem das Kontextmenü geöffnet werden kann.
 
 .. figure:: _static/editor_node_right_click.png
 
-In dem dann erscheinenden Kontext-Menü gibt es Optionen für:
+Das Kontextmenü stellt folgenden Optionen zur Verfügung:
 
-add child
-  Ein Kind-Element hinzufügen.
+Bearbeiten
+  Öffnet den Bearbeiten Dialog für die Attribute dieses Elements (sofern es editierbare Attribute gibt).
 
-remove
-  Element löschen.
+Löschen
+  Löscht das Element
 
-cut
-  Element ausschneiden.
+Ausschneiden
+  Löscht das Element und kopiert es für die spätere Verwendung in die Zwischenablage.
 
-copy
-  Element kopieren.
+Kopieren
+  Kopiert das Element in die Zwischenablage
 
-paste
-  Ausgeschnittenes oder kopiertes Element einfügen.
+Einfügen
+  Fügt das Element aus der Zwischenablage als neues Kind-Element des aktuell ausgewählten Elements ein.
 
-sort
-  Elemente umsortieren (wenn an dieser Stelle möglich).
+Kind-Element einfügen
+  Fügt dem aktuell ausgewählten Element ein neues Kind-Element hinzu.
 
-.. figure:: _static/editor_sort.png
 
-Um Elemente zu sortieren wird bei einem im Kontext-Menü "sort" ausgewählt. In
-der dann erscheinenden Darstellung kann durch Klicken auf einen der gelben
-Platzhalter dieses Element dorthin verschoben werden.
+Elemente können ebenfalls per Drag&Drop verschoben werden. Das Icon mit dem 6 Punkten rechts neben
+einem jeweiligen Element zeigt an das dieses Icon via Drag&Drop verschoben werden kann. Fehlt dieses Icon, dann ist
+das Verschieben dieses Elements nicht erlaubt.
+Das Hinzufügen eines neuen Elements ist ebenfalls möglich indem man eine Drag&Drop Geste auf dem + Button
+am unteren Rand der linken Seite startet und an der Ziel-Position beendet.
+
 
 Erweitertes Setup
 -----------------

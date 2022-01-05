@@ -23,10 +23,9 @@
  * @since 2010
  */
 qx.Class.define('cv.transforms.Knx', {
-  type: "static",
+  type: 'static',
 
   defer: function () {
-
     cv.Transform.addTransform('DPT', {
       /**
        * This class defines the default transforms:
@@ -66,15 +65,46 @@ qx.Class.define('cv.transforms.Knx', {
         link: '1.001'
       },
 
+      '3.007': {
+        name: 'DPT_Control_Dimming',
+        encode: function (phy) {
+          phy = parseFloat(phy);
+          if (phy < -100 || (phy > -1 && phy <= 0)) {
+            return { bus: '80', raw: '00' }; // down: stop
+          }
+
+          if (phy > 100 || (phy > 0 && phy < 1)) {
+            return { bus: '88', raw: '08' }; // up: stop
+          }
+
+          let
+            up = phy > 0;
+            let stepCode = 7-Math.floor(Math.log2(Math.abs(phy)));
+            let val = (stepCode | (up * 0b1000)).toString(16);
+          return {
+            bus: '8' + val,
+            raw: '0' + val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          let
+            val = parseInt(hex, 16);
+            let up = (val & 0b1000) > 0;
+          return (up*2-1) * 100/(2**((val& 0b111)-1));
+        }
+      },
+      '3.008': {
+        name: 'DPT_Control_Blinds',
+        link: '3.007'
+      },
       '3': {
-        link: '1.001'
+        link: '3.007'
       },
 
       '4.001': {
         name: 'DPT_Char_ASCII',
         encode: function (phy) {
-          var val = phy.charCodeAt(0).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = phy.charCodeAt(0).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -96,8 +126,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 100.0
         },
         encode: function (phy) {
-          var val = parseInt(phy * 255 / 100).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = parseInt(phy * 255 / 100).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -115,8 +144,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 360.0
         },
         encode: function (phy) {
-          var val = parseInt(phy * 255 / 360).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = parseInt(phy * 255 / 360).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -134,8 +162,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 255.0
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -159,16 +186,15 @@ qx.Class.define('cv.transforms.Knx', {
         name: 'DPT_Percent_V8',
         encode: function (phy) {
           phy = parseInt(cv.Transform.clip(-128, phy, 127));
-          var val = phy < 0 ? phy + 256 : phy;
-          val = val.toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          let val = phy < 0 ? phy + 256 : phy;
+          val = val.toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
         decode: function (hex) {
-          var val = parseInt(hex, 16);
+          const val = parseInt(hex, 16);
           return val > 127 ? (val - 256) : val;
         }
       },
@@ -179,7 +205,7 @@ qx.Class.define('cv.transforms.Knx', {
       '7.001': {
         name: 'DPT_Value_2_Ucount',
         encode: function (phy) {
-          var val = parseInt(phy).toString(16).padStart(4,"0");
+          const val = parseInt(phy).toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -189,6 +215,11 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16);
         }
       },
+      '7.600': {
+        name: 'DPT_Absolute_Colour_Temperature',
+        unit: 'K',
+        link: '7.001'
+      },
       '7': {
         link: '7.001'
       },
@@ -196,16 +227,16 @@ qx.Class.define('cv.transforms.Knx', {
       '8.001': {
         name: 'DPT_Value_2_Count',
         encode: function (phy) {
-          var val = parseInt(phy);
+          let val = parseInt(phy);
           val = val < 0 ? val + 65536 : val;
-          val = val.toString(16).padStart(4,"0");
+          val = val.toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
         decode: function (hex) {
-          var val = parseInt(hex, 16);
+          const val = parseInt(hex, 16);
           return val > 32767 ? (val - 65536) : val;
         }
       },
@@ -216,27 +247,31 @@ qx.Class.define('cv.transforms.Knx', {
       '9.001': {
         name: 'DPT_Value_Temp',
         encode: function (phy) {
-          if (undefined === phy || isNaN(phy)) { return '7fff'; }
-          var sign = phy < 0 ? 0x8000 : 0;
-          var mant = Math.round(phy * 100.0);
-          var exp = 0;
+          if (undefined === phy || isNaN(phy)) {
+ return '7fff'; 
+}
+          const sign = phy < 0 ? 0x8000 : 0;
+          let mant = Math.round(phy * 100.0);
+          let exp = 0;
           while (Math.abs(mant) > 2047) {
             mant >>= 1;
             exp++;
           }
-          var val = ( sign | (exp << 11) | (mant & 0x07ff) ).toString(16).padStart(4,"0");
+          const val = (sign | (exp << 11) | (mant & 0x07ff)).toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
         decode: function (hex) {
-          if (0x7fff === parseInt(hex, 16)) { return NaN; }
-          var bin1 = parseInt(hex.substr(0, 2), 16);
-          var bin2 = parseInt(hex.substr(2, 2), 16);
-          var sign = parseInt(bin1 & 0x80);
-          var exp = parseInt(bin1 & 0x78) >> 3;
-          var mant = parseInt(((bin1 & 0x7) << 8) | bin2);
+          if (parseInt(hex, 16) === 0x7fff) {
+ return NaN; 
+}
+          const bin1 = parseInt(hex.substr(0, 2), 16);
+          const bin2 = parseInt(hex.substr(2, 2), 16);
+          const sign = parseInt(bin1 & 0x80);
+          const exp = parseInt(bin1 & 0x78) >> 3;
+          let mant = parseInt(((bin1 & 0x7) << 8) | bin2);
           if (sign !== 0) {
             mant = -(~(mant - 1) & 0x7ff);
           }
@@ -265,24 +300,24 @@ qx.Class.define('cv.transforms.Knx', {
       '10.001': {
         name: 'DPT_TimeOfDay',
         encode: function (phy) {
-          var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2,"0");
-          val += phy.getMinutes().toString(16).padStart(2,"0");
-          val += phy.getSeconds().toString(16).padStart(2,"0");
+          let val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, '0');
+          val += phy.getMinutes().toString(16).padStart(2, '0');
+          val += phy.getSeconds().toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
         decode: function (hex) {
-          var date = new Date(); // assume today
+          const date = new Date(); // assume today
           date.setHours(parseInt(hex.substr(0, 2), 16) & 0x1F);
           date.setMinutes(parseInt(hex.substr(2, 2), 16));
           date.setSeconds(parseInt(hex.substr(4, 2), 16));
           // as KNX thinks the day of the week belongs to the time, but JavaScript
           // doesn't, tweak the date till it fits...
-          var day = (parseInt(hex.substr(0, 2), 16) & 0xE0) >> 5;
+          const day = (parseInt(hex.substr(0, 2), 16) & 0xE0) >> 5;
           if (day > 0) {
-            var dayShift = (day - date.getDay()) % 7;
+            const dayShift = (day - date.getDay()) % 7;
             date.setDate(date.getDate() + dayShift);
           }
           return date;
@@ -295,7 +330,7 @@ qx.Class.define('cv.transforms.Knx', {
           // FIXME
         },
         decode: function (hex) {
-          var year = parseInt(hex.substr(4, 2), 16) & 0x7F;
+          const year = parseInt(hex.substr(4, 2), 16) & 0x7F;
           return new Date(year < 90 ? year + 2000 : year + 1900, //1990 - 2089
             (parseInt(hex.substr(2, 2), 16) & 0x0F) - 1,
             parseInt(hex.substr(0, 2), 16) & 0x1F);
@@ -305,7 +340,7 @@ qx.Class.define('cv.transforms.Knx', {
       '12.001': {
         name: 'DPT_Value_4_Ucount',
         encode: function (phy) {
-          var val = parseInt(phy).toString(16).padStart(8,"0");
+          const val = parseInt(phy).toString(16).padStart(8, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -322,16 +357,16 @@ qx.Class.define('cv.transforms.Knx', {
       '13.001': {
         name: 'DPT_Value_4_Count',
         encode: function (phy) {
-          var val = parseInt(phy);
+          let val = parseInt(phy);
           val = val < 0 ? val + 4294967296 : val;
-          val = val.toString(16).padStart(8,"0");
+          val = val.toString(16).padStart(8, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
         decode: function (hex) {
-          var val = parseInt(hex, 16);
+          const val = parseInt(hex, 16);
           return val > 2147483647 ? (val - 4294967296) : val;
         }
       },
@@ -345,11 +380,11 @@ qx.Class.define('cv.transforms.Knx', {
           //FIXME: unimplemented (jspack?)
         },
         decode: function (hex) {
-          var val = parseInt(hex, 16);
-          var sign = (val & 0x80000000) ? -1 : 1;
-          var exp = ((val & 0x7F800000) >> 23) - 127;
-          var mant = (val & 0x007FFFFF | 0x00800000);
-          return sign * Math.pow(2, exp) * ( mant / (1 << 23));
+          const val = parseInt(hex, 16);
+          const sign = (val & 0x80000000) ? -1 : 1;
+          const exp = ((val & 0x7F800000) >> 23) - 127;
+          const mant = (val & 0x007FFFFF | 0x00800000);
+          return sign * Math.pow(2, exp) * (mant / (1 << 23));
         }
       },
       '14': {
@@ -366,11 +401,11 @@ qx.Class.define('cv.transforms.Knx', {
           'de': '14 Byte Text ISO-8859-1'
         },
         encode: function (phy) {
-          var val = '';
+          let val = '';
           phy += ''; // force datatype String
-          for (var i = 0; i < 14; i++) {
-            var c = phy.charCodeAt(i);
-            val += c ? ( (c < 16 ? '0' : '') + c.toString(16) ) : '00';
+          for (let i = 0; i < 14; i++) {
+            const c = phy.charCodeAt(i);
+            val += c ? ((c < 16 ? '0' : '') + c.toString(16)) : '00';
           }
           return {
             bus: '80' + val,
@@ -378,9 +413,9 @@ qx.Class.define('cv.transforms.Knx', {
           };
         },
         decode: function (hex) {
-          var val = "";
-          var chars;
-          for (var i = 0; i < 28; i = i + 2) {
+          let val = '';
+          let chars;
+          for (let i = 0; i < 28; i += 2) {
             chars = parseInt(hex.substr(i, 2), 16);
             if (chars > 0) {
               val += String.fromCharCode(chars);
@@ -435,8 +470,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+128
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+128)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = parseInt(cv.Transform.clip(0, phy - 1, 63 + 128)).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -467,8 +501,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+64
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+64)).toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          const val = parseInt(cv.Transform.clip(0, phy - 1, 63 + 64)).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -497,7 +530,7 @@ qx.Class.define('cv.transforms.Knx', {
           'enum': ['auto', 'comfort', 'standby', 'economy', 'building_protection']
         },
         encode: function (phy) {
-          var val;
+          let val;
           switch (phy) {
             case 1:
             case 'comfort':
@@ -518,8 +551,7 @@ qx.Class.define('cv.transforms.Knx', {
             default: // actually "case 0:" / "auto"
               val = 0;
           }
-          val = val.toString(16);
-          val = val.length === 1 ? '0' + val : val;
+          val = val.toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -553,10 +585,10 @@ qx.Class.define('cv.transforms.Knx', {
           'de': 'variable String ISO-8859-1'
         },
         encode: function (phy) {
-          var val = '';
-          for (var i = 0; i < phy.length; i++) {
-            var c = phy.charCodeAt(i);
-            val += c ? ( (c < 16 ? '0' : '') + c.toString(16) ) : '00';
+          let val = '';
+          for (let i = 0; i < phy.length; i++) {
+            const c = phy.charCodeAt(i);
+            val += c ? ((c < 16 ? '0' : '') + c.toString(16)) : '00';
           }
           /* terminating \x00 */
           val += '00';
@@ -566,15 +598,185 @@ qx.Class.define('cv.transforms.Knx', {
           };
         },
         decode: function (hex) {
-          var val = "";
-          var chars;
-          for (var i = 0; i < hex.length; i = i + 2) {
+          let val = '';
+          let chars;
+          for (let i = 0; i < hex.length; i += 2) {
             chars = parseInt(hex.substr(i, 2), 16);
             if (chars > 0) {
               val += String.fromCharCode(chars);
             }
           }
           return val;
+        }
+      },
+      '225.001' : {
+        name  : 'DPT_ScalingSpeed',
+        encode: function(phy) {
+          let
+            period = phy.get('period') || 0;
+            let percent = phy.get('percent') || 0;
+            let val = [
+              parseInt(period).toString(16).padStart(4, '0'),
+              parseInt(percent * 255 / 100).toString(16).padStart(2, '0')
+            ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          return new Map([
+            ['period', parseInt(hex.substr(0, 4), 16)],
+            ['percent', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]
+          ]);
+        }
+      },
+      '225' : {
+        name: 'DPT_U24',
+        unit: '-',
+        range: {
+          min: 0x0,
+          max: 0xfff
+        },
+        encode: function (phy) {
+          const val = parseInt(cv.Transform.clip(0, phy, 0xffffff)).toString(16).padStart(6, '0');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16);
+        }
+      },
+      '232.600' : {
+        name  : 'DPT_Colour_RGB',
+        encode: function(phy) {
+          if (!(phy instanceof Map)) {
+            return { bus: '80000000', raw: '000000' };
+          }
+
+          let
+            r = phy.get('r') || 0;
+            let g = phy.get('g') || 0;
+            let b = phy.get('b') || 0;
+            let val = [
+            parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(b * 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          return new Map([
+            ['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0],
+            ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0],
+            ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]
+          ]);
+        }
+      },
+      '232' : {
+        name  : 'DPT_3U8',
+        encode: function(phy) {
+          let val = [
+            parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'),
+            parseInt(phy[2] * 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          return [
+            parseInt(hex.substr(0, 2), 16) * 100 / 255.0,
+            parseInt(hex.substr(2, 2), 16) * 100 / 255.0,
+            parseInt(hex.substr(4, 2), 16) * 100 / 255.0
+          ];
+        }
+      },
+      '242.600' : {
+        name  : 'DPT_Colour_xyY',
+        encode: function(phy) {
+          if (!(phy instanceof Map)) {
+            return { bus: '80000000000000', raw: '000000000000' };
+          }
+
+          let
+            cValid = phy.has('x') && phy.has('y') && (phy.get('cValid') || false);
+            let bValid = phy.has('b') && (phy.get('bValid') || false);
+            let x = phy.get('x') || 0;
+            let y = phy.get('y') || 0;
+            let b = phy.get('b') || 0;
+            let val = [
+              parseInt(x * 65535).toString(16).padStart(4, '0'),
+              parseInt(y * 65535).toString(16).padStart(4, '0'),
+              parseInt(b * 255 / 100).toString(16).padStart(2, '0'),
+              (cValid*2 + bValid*1).toString(16).padStart(2, '0')
+            ].join('');
+
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          let valid = parseInt(hex[11], 16);
+          return new Map([
+            ['x', parseInt(hex.substr(0, 4), 16) / 65535.0],
+            ['y', parseInt(hex.substr(4, 4), 16) / 65535.0],
+            ['b', parseInt(hex.substr(8, 2), 16) * 100 / 255.0],
+            ['cValid', (valid & 2) > 0],
+            ['bValid', (valid & 1) > 0]
+          ]);
+        }
+      },
+      '251.600' : {
+        name  : 'DPT_Colour_RGBW',
+        encode: function(phy) {
+          if (!(phy instanceof Map)) {
+            return { bus: '80000000000000', raw: '000000000000' };
+          }
+
+          let
+            rValid = phy.has('r') && (phy.get('rValid') || false);
+            let gValid = phy.has('g') && (phy.get('gValid') || false);
+            let bValid = phy.has('b') && (phy.get('bValid') || false);
+            let wValid = phy.has('w') && (phy.get('wValid') || false);
+            let r = phy.get('r') || 0;
+            let g = phy.get('g') || 0;
+            let b = phy.get('b') || 0;
+            let w = phy.get('w') || 0;
+            let val = [
+              parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(b * 255 / 100).toString(16).padStart(2, '0'),
+              parseInt(w * 255 / 100).toString(16).padStart(2, '0'),
+              '00',
+              (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
+            ].join('');
+
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function(hex) {
+          let valid = parseInt(hex[11], 16);
+          return new Map([
+            ['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0],
+            ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0],
+            ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0],
+            ['w', parseInt(hex.substr(6, 2), 16) * 100 / 255.0],
+            ['rValid', (valid & 8) > 0],
+            ['gValid', (valid & 4) > 0],
+            ['bValid', (valid & 2) > 0],
+            ['wValid', (valid & 1) > 0]
+          ]);
         }
       },
       /* 9 Zeilen:

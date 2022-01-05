@@ -37,11 +37,11 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
   */
   properties: {
     showstatus: {
-      check: "Boolean",
+      check: 'Boolean',
       init: false
     },
     elementsPerLine: {
-      check: "Number",
+      check: 'Number',
       init: 2
     },
     buttonConfiguration: {
@@ -59,18 +59,18 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var ret_val = '<div class="actor_container" style="float:left">';
-      var mapping = this.getMapping();
-      var elementsPerLine = this.getElementsPerLine();
+      let ret_val = '<div class="actor_container" style="float:left">';
+      const mapping = this.getMapping();
+      const elementsPerLine = this.getElementsPerLine();
 
-      var config = this.getButtonConfiguration();
-      var indices = Object.keys(config).sort();
+      const config = this.getButtonConfiguration();
+      const indices = Object.keys(config).sort();
 
       indices.forEach(function (i) {
-        var buttonConfig = config[i];
-        var label = buttonConfig.label;
+        const buttonConfig = config[i];
+        let label = buttonConfig.label;
         if (mapping) {
-          var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
+          const mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
           if (mappedValue !== buttonConfig.value || !label) {
             label = '';
             this.defaultValue2DOM(mappedValue, function (e) {
@@ -89,7 +89,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       return ret_val + '</div>';
     },
 
-    getActors: function(){
+    getActors: function() {
       return this.getDomElement().querySelectorAll('.actor_container .actor');
     },
 
@@ -102,12 +102,12 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      * Handles the incoming data from the backend for this widget
      */
     handleUpdate: function () {
-      var children = this.getActors();
-      var buttonConfiguration = this.getButtonConfiguration();
+      const children = this.getActors();
+      const buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
-        var index = Array.prototype.indexOf.call( children, actor )+1;
-        if (buttonConfiguration.hasOwnProperty(index)) {
-          var isPressed = ('' + this.getBasicValue()) === ('' + buttonConfiguration[index].value); // compare as string
+        const index = Array.prototype.indexOf.call(children, actor) + 1;
+        if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
+          const isPressed = ('' + this.getBasicValue()) === ('' + buttonConfiguration[index].value); // compare as string
 
           // delay this a little bit to give the HasAnimatedButton stuff time to finish
           // otherwise it might override the settings here
@@ -121,26 +121,27 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
+     * @param event
      */
     getActionValue: function (event) {
-      var index = Array.prototype.indexOf.call( this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget() )+1;
+      const index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget()) + 1;
       return this.getButtonConfiguration()[index].value;
     },
 
     // overridden
     initListeners: function() {
-      if (this.isAnonymous()) { return; }
+      if (this.isAnonymous()) {
+ return; 
+}
 
       this.getActors().forEach(function(actor) {
-        qx.event.Registration.addListener(actor, "tap", this.action, this);
-        qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
+        qx.event.Registration.addListener(actor, 'tap', this.action, this);
+        qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
       }, this);
-
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("multitrigger", statics);
+    cv.ui.structure.WidgetFactory.registerClass('multitrigger', statics);
   }
 });

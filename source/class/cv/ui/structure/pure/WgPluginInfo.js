@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
   ******************************************************
   */
   properties: {
-    variable   : { check: "String", nullable: true, apply: "_applyVariable" }
+    variable   : { check: 'String', nullable: true, apply: '_applyVariable' }
   },
 
   /*
@@ -57,9 +57,9 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
           // create the request
           this.__request = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
           this.__request.set({
-            accept: "application/json"
+            accept: 'application/json'
           });
-          this.__request.addListener("success", this._onSuccess, this);
+          this.__request.addListener('success', this._onSuccess, this);
         } else {
           this.__request.setUrl('/wg-plugindb.php?name=' + value);
         }
@@ -76,8 +76,8 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
      * @param ev {Event}
      */
     _onSuccess: function(ev) {
-      var req = ev.getTarget();
-      var data = req.getResponse();
+      const req = ev.getTarget();
+      const data = req.getResponse();
       this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
     },
 
@@ -102,10 +102,10 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
   ******************************************************
   */
   destruct: function() {
-    this._disposeObjects("__request");
+    this._disposeObjects('__request');
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("wgplugin_info", statics);
+    cv.ui.structure.WidgetFactory.registerClass('wgplugin_info', statics);
   }
 });

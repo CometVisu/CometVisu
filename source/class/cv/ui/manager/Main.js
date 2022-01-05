@@ -7,7 +7,7 @@
  */
 qx.Class.define('cv.ui.manager.Main', {
   extend: qx.core.Object,
-  type: "singleton",
+  type: 'singleton',
   include: [
     cv.ui.manager.control.MFileEventHandler
   ],
@@ -118,13 +118,13 @@ qx.Class.define('cv.ui.manager.Main', {
     __actionDispatcher: null,
 
     _applyVisible: function (value) {
-      var manager = qx.core.Init.getApplication().getCommandManager();
+      const manager = qx.core.Init.getApplication().getCommandManager();
       if (value) {
         manager.setActive(this._managerCommands);
-        qx.bom.element.Style.set(this.__getRoot(), "display", "block");
+        qx.bom.element.Style.set(this.__getRoot(), 'display', 'block');
       } else {
         manager.setActive(this._oldCommandGroup);
-        qx.bom.element.Style.set(this.__getRoot(), "display", "none");
+        qx.bom.element.Style.set(this.__getRoot(), 'display', 'none');
       }
     },
 
@@ -134,15 +134,25 @@ qx.Class.define('cv.ui.manager.Main', {
           cv.ui.manager.snackbar.Controller.error(err);
         } else if (res) {
           res.forEach(function (env) {
+            let refreshActions = false;
             switch (env.entity) {
               case '.':
                 // config folder must be writeable
                 if ((env.state & 1) === 0) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder does not exists'));
                 } else if ((env.state & 2) === 0) {
+                  cv.ui.manager.model.FileItem.ROOT.setReadable(false);
+                  refreshActions = true;
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not readable'));
                 } else if ((env.state & 4) === 0) {
+                  cv.ui.manager.model.FileItem.ROOT.setWriteable(false);
+                  refreshActions = true;
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
+                }
+                if (refreshActions) {
+                  const widget = this.__actionDispatcher.getFocusedWidget();
+                  this.__actionDispatcher.resetFocusedWidget();
+                  this.__actionDispatcher.setFocusedWidget(widget);
                 }
                 break;
 
@@ -174,7 +184,19 @@ qx.Class.define('cv.ui.manager.Main', {
         // needs a writeable file
         return false;
       }
-      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
+      let actions = ['close', 'quit', 'about'];
+      const currentFolder = this.getCurrentFolder();
+      if (currentFolder.isWriteable()) {
+        actions.push('new-file');
+        actions.push('new-folder');
+        actions.push('delete');
+        actions.push('upload');
+        actions.push('clone');
+      }
+      if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+        actions.push('new-config-file');
+      }
+      return actions.includes(actionName);
     },
 
     handleAction: function (actionName, data) {
@@ -209,14 +231,12 @@ qx.Class.define('cv.ui.manager.Main', {
           cv.io.rest.Client.getFsClient().readSync({path: data.file.getFullPath()}, function (err, res) {
             if (err) {
               cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
-            } else {
-              if (data.file.isConfigFile()) {
+            } else if (data.file.isConfigFile()) {
                 // config files need to be cloned in the root folder
                 this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
               } else {
                 this._onCreate('file', res);
               }
-            }
           }, this);
           break;
 
@@ -232,21 +252,29 @@ qx.Class.define('cv.ui.manager.Main', {
           // nothing to to, this is handled in another way
           break;
 
+        case 'about':
+          this._showAbout();
+          break;
+
         default:
           this.warn(actionName + ' handling is not implemented yet!');
           break;
       }
     },
 
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+
     _handleFileEvent: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if (data.action === 'deleted') {
         // check if file is currently opened and close it
-        var openFiles = this.getOpenFiles().copy();
+        const openFiles = this.getOpenFiles().copy();
         openFiles.some(function (openFile) {
           if (openFile.getFile().isRelated(data.path)) {
             this.closeFile(openFile);
           }
+          return false;
         }, this);
         if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
           this.resetCurrentFolder();
@@ -266,6 +294,7 @@ qx.Class.define('cv.ui.manager.Main', {
           file = child;
           return true;
         }
+        return false;
       });
       if (!file && demoFolder) {
         // check demo configs
@@ -274,13 +303,14 @@ qx.Class.define('cv.ui.manager.Main', {
             file = child;
             return true;
           }
-        })
+          return false;
+        });
       }
       return file;
     },
 
     _onManagerEvent: function (ev) {
-      var data = ev.getData();
+      let data = ev.getData();
       switch (ev.getName()) {
         case 'cv.manager.compareFiles':
           this.openFile(data, false);
@@ -306,14 +336,15 @@ qx.Class.define('cv.ui.manager.Main', {
 
     /**
      * open selected file in preview mode
+     * @param ev
      * @private
      */
     _onChangeTreeSelection: function (ev) {
-      var data = ev.getData();
+      const data = ev.getData();
       if ((cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap') || data.mode === 'dbltap') {
         this.__openSelectedFile(data.node, data.mode);
       }
-      var node = data.node;
+      const node = data.node;
       if (node) {
         if (data.node.getType() === 'file') {
           this.setCurrentFolder(data.node.getParent());
@@ -366,12 +397,12 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onChangeFileSelection: function () {
-      var sel = this._openFilesController.getSelection();
+      const sel = this._openFilesController.getSelection();
       if (sel.length > 0) {
-        var openFile = sel.getItem(0);
-        var file = openFile.getFile();
-        var editorConfig;
-        var handlerId = openFile.getHandlerId();
+        const openFile = sel.getItem(0);
+        const file = openFile.getFile();
+        let editorConfig;
+        const handlerId = openFile.getHandlerId();
         if (handlerId) {
           editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
         } else {
@@ -379,7 +410,11 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
-          editorConfig.instance.setFile(file);
+        }
+        if (!editorConfig.instance.isReady()) {
+          editorConfig.instance.addListenerOnce('changeReady', () => {
+            editorConfig.instance.setFile(file);
+          }, this);
         } else {
           editorConfig.instance.setFile(file);
         }
@@ -399,28 +434,28 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     /**
-     *
      * @param file {cv.ui.manager.model.FileItem} the file to open
      * @param preview {Boolean} open the file in preview mode
      * @param handlerId {String} use this handler to open the file (classname as string)
      * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer
+     * @param handlerOptions
      */
     openFile: function (file, preview, handlerId, handlerType, handlerOptions) {
-      var openFiles = this.getOpenFiles();
-      var openFile;
+      const openFiles = this.getOpenFiles();
+      let openFile;
+      let handlerConf;
       if (!handlerId) {
-        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
+        handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
 
         if (!handlerConf) {
           // no handler
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
           return;
-        } else {
+        } 
           handlerId = handlerConf.Clazz.classname;
-        }
       } else {
         // check if this handler opens the file in a external frame that is not connected to the manager
-        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+        handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
         if (!handlerConf.instance) {
           handlerConf.instance = new handlerConf.Clazz();
         }
@@ -429,11 +464,12 @@ qx.Class.define('cv.ui.manager.Main', {
           return;
         }
       }
-      var isOpen = openFiles.some(function (of) {
+      const isOpen = openFiles.some(function (of) {
         if (of.getFile() === file && handlerId === of.getHandlerId()) {
           openFile = of;
           return true;
         }
+        return false;
       });
       if (!openFile) {
         openFile = new cv.ui.manager.model.OpenFile(file, handlerId);
@@ -467,11 +503,12 @@ qx.Class.define('cv.ui.manager.Main', {
     closeFile: function (openFile, force) {
       if (openFile instanceof cv.ui.manager.model.FileItem) {
         // find the opened file
-        var found = this.getOpenFiles().some(function (f) {
+        const found = this.getOpenFiles().some(function (f) {
           if (f.getFile().getFullPath() === openFile.getFullPath()) {
             openFile = f;
             return true;
           }
+          return false;
         });
         if (!found) {
           return;
@@ -480,17 +517,18 @@ qx.Class.define('cv.ui.manager.Main', {
       if (!openFile.isCloseable()) {
         return;
       }
-      var file = openFile.getFile();
+      const file = openFile.getFile();
 
       // check if this file is modified
       if (file.isModified() && !force) {
         // check if temporary
-        var message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it. Do you really want to close the file?');
+        let message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it. Do you really want to close the file?');
         if (file.isTemporary()) {
           message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
         }
-        dialog.Dialog.confirm(message, function (confirmed) {
+        qxl.dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
+            file.resetModified();
             this.closeFile(openFile, true);
             if (file.isTemporary()) {
               qx.event.message.Bus.dispatchByName('cv.manager.file', {
@@ -505,15 +543,15 @@ qx.Class.define('cv.ui.manager.Main', {
       if (openFile instanceof cv.ui.manager.model.OpenFile) {
         openFile.resetPermanent();
       }
-      var currentSelection = this._openFilesController.getSelection();
-      var selectionIndex = -1;
-      var openFiles = this.getOpenFiles();
+      const currentSelection = this._openFilesController.getSelection();
+      let selectionIndex = -1;
+      const openFiles = this.getOpenFiles();
       if (currentSelection.length > 0 && currentSelection.getItem(0) === openFile) {
         // we need to select another file after this one got closed
         selectionIndex = openFiles.indexOf(openFile);
       }
       openFiles.remove(openFile);
-      var currentHandler = this._stack.getSelection()[0];
+      const currentHandler = this._stack.getSelection()[0];
       if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor)) {
         // reset the handlers file
         currentHandler.resetFile();
@@ -530,7 +568,7 @@ qx.Class.define('cv.ui.manager.Main', {
       }
 
       if (file instanceof cv.ui.manager.model.CompareFiles) {
-        var fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+        const fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         fileHandlerConf.instance.clear();
         if (openFiles.filter(function (openFile) {
           return openFile.getFile() instanceof cv.ui.manager.model.CompareFiles;
@@ -540,7 +578,7 @@ qx.Class.define('cv.ui.manager.Main', {
         }
       } else if (window.monaco && openFile.getHandlerId() === 'cv.ui.manager.editor.Source') {
         // close textmodel in monaco editor if exists
-        var oldModel = window.monaco.editor.getModel(file.getUri());
+        const oldModel = window.monaco.editor.getModel(file.getUri());
         if (oldModel) {
           oldModel.dispose();
         }
@@ -548,7 +586,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     closeCurrentFile: function () {
-      var selected = this._openFilesController.getSelection().length > 0 ? this._openFilesController.getSelection().getItem(0) : null;
+      const selected = this._openFilesController.getSelection().length > 0 ? this._openFilesController.getSelection().getItem(0) : null;
       if (selected) {
         this.closeFile(selected);
       }
@@ -571,7 +609,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __initCommands: function () {
-      var group = this._managerCommands = new qx.ui.command.Group();
+      const group = this._managerCommands = new qx.ui.command.Group();
       group.add('save', new qx.ui.command.Command('Ctrl+S'));
       group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
       // this command will close the browser window, thats not what we want
@@ -581,36 +619,40 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
       // group.add('delete', new qx.ui.command.Command('Ctrl+Del'));
 
-      var renameCommand = new qx.ui.command.Command('F2');
+      const renameCommand = new qx.ui.command.Command('F2');
       group.add('rename', renameCommand);
       this.bind('renameableSelection', renameCommand, 'enabled');
 
+      group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
+      group.add('redo', new qx.ui.command.Command('Ctrl+Y'));
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
-      // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
-      // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
-      // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
+      group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+      group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+      group.add('paste', new qx.ui.command.Command('Ctrl+V'));
 
-      var manager = qx.core.Init.getApplication().getCommandManager();
+      group.add('help', new qx.ui.command.Command('F1'));
+
+      const manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();
       manager.add(group);
       manager.setActive(group);
     },
 
     _onDelete: function (file) {
-      var item = file || this.getCurrentSelection();
+      const item = file || this.getCurrentSelection();
       if (item) {
         cv.ui.manager.control.FileController.getInstance().delete(item);
       }
     },
 
     _onChangeStackSelection: function (ev) {
-      var selection = ev.getData();
-      var openFiles = [];
+      const selection = ev.getData();
+      const openFiles = [];
       // sync tab selection with currently visible page
       selection.forEach(function(page) {
-        var openFile = this.getOpenFiles().toArray().find(function (openFile) {
+        const openFile = this.getOpenFiles().toArray().find(function (openFile) {
           return openFile.getFile() === page.getFile() && openFile.getHandlerId() === page.classname;
         });
         if (openFile) {
@@ -622,24 +664,25 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __getFileNamePrompt: function (message, callback, context, value, caption) {
-      var prompt = new dialog.Prompt({
+      const prompt = new cv.ui.manager.dialog.Prompt({
         message: message,
         callback: callback || null,
         context: context || null,
         value: value || null,
-        caption: caption || "",
+        caption: caption || '',
         filter: /[\w\d_\-\.\s]/
-      })
+      });
       prompt.show();
       return prompt;
     },
 
     _onCreate: function (type, content, folder) {
-      var currentFolder = folder || this.getCurrentFolder();
+      const currentFolder = folder || this.getCurrentFolder();
       if (!currentFolder) {
         return;
       }
-      var message, existsMessage;
+      let message;
+      let existsMessage;
       if (type === 'config') {
         message = qx.locale.Manager.tr('Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)');
         existsMessage = qx.locale.Manager.tr('A configuration with this name already exists.');
@@ -650,32 +693,30 @@ qx.Class.define('cv.ui.manager.Main', {
         message = qx.locale.Manager.tr('Please enter the folder name.');
         existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
       }
-      var handlePrompt = function (name) {
+      const handlePrompt = function (name) {
         if (!name) {
           // canceled
           return;
         }
-        var filename = name;
+        let filename = name;
         // add visu_config_..-xml
         if (type === 'config') {
-          var match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(name);
+          const match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(name);
           if (match) {
             name = match[1];
           }
           filename = 'visu_config_' + name + '.xml';
         }
         // check if name does not exist
-        var exists = currentFolder.getChildren().some(function (child) {
-          if (child.getName() === filename && child.getType() === type) {
-            return true;
-          }
+        const exists = currentFolder.getChildren().some(function (child) {
+          return (child.getName() === filename && child.getType() === type);
         }, this);
 
         if (exists) {
           cv.ui.manager.snackbar.Controller.error(existsMessage);
           this.__getFileNamePrompt(message, handlePrompt, this, name);
         } else {
-          var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
+          const item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
           item.set({
             type: type === 'config' ? 'file' : type,
             readable: true,
@@ -734,7 +775,7 @@ qx.Class.define('cv.ui.manager.Main', {
      */
     __findDroppable : function (elem) {
       while (elem && elem.nodeType === 1) {
-        if (elem.getAttribute("qxDroppable") === "on") {
+        if (elem.getAttribute('qxDroppable') === 'on') {
           return elem;
         }
 
@@ -746,8 +787,8 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // overridden
     _draw: function () {
-      var domRoot = this.__getRoot();
-      var root = new qx.ui.root.Inline(domRoot, true, true);
+      const domRoot = this.__getRoot();
+      const root = new qx.ui.root.Inline(domRoot, true, true);
       this.bind('visible', root, 'visibility', {
         converter: function (visible) {
           return visible ? 'visible' : 'excluded';
@@ -755,15 +796,15 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       root.addListenerOnce('appear', function () {
         // disable file drop
-        var element = root.getContentElement().getDomElement();
+        const element = root.getContentElement().getDomElement();
         element.addEventListener('drop', function (ev) {
-          var target = this.__findDroppable(ev.target);
+          const target = this.__findDroppable(ev.target);
           if (!target) {
             ev.preventDefault();
           }
         }.bind(this));
         element.addEventListener('dragover', function (ev) {
-          var target = this.__findDroppable(ev.target);
+          const target = this.__findDroppable(ev.target);
           if (!target) {
             ev.preventDefault();
           }
@@ -772,14 +813,17 @@ qx.Class.define('cv.ui.manager.Main', {
       qx.core.Init.getApplication().setRoot(root);
       root.setLayout(new qx.ui.layout.Canvas());
 
-      var snackbar = cv.ui.manager.snackbar.Controller.getInstance();
+      const snackbar = cv.ui.manager.snackbar.Controller.getInstance();
       root.add(snackbar, {
         bottom: 10,
         left: 200
       });
 
+      /**
+       *
+       */
       function resize() {
-        var bounds = root.getBounds();
+        const bounds = root.getBounds();
         snackbar.setLayoutProperties({
           bottom: 10,
           left: Math.round(bounds.width / 2) - 150
@@ -793,21 +837,21 @@ qx.Class.define('cv.ui.manager.Main', {
         domRoot.style.height = window.innerHeight + 'px';
       });
 
-      var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
+      const main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
       root.add(main, {edge: 0});
       // menu on top
-      var menuBar = cv.ui.manager.MenuBar.getInstance();
+      const menuBar = cv.ui.manager.MenuBar.getInstance();
       main.add(menuBar, {edge: 'north'});
 
-      var uploadButton = menuBar.getButton('upload');
-      var uploadManager = new cv.ui.manager.upload.UploadMgr(uploadButton);
+      const uploadButton = menuBar.getButton('upload');
+      const uploadManager = new cv.ui.manager.upload.UploadMgr(uploadButton);
       this.bind('currentFolder', uploadManager, 'folder');
 
       this._pane = new qx.ui.splitpane.Pane();
       main.add(this._pane, {edge: 'center'});
 
-      var rootFolder = cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.');
-      var fakeIconFile = cv.ui.manager.model.FileItem.getIconFile();
+      const rootFolder = cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.');
+      const fakeIconFile = cv.ui.manager.model.FileItem.getIconFile();
       // TODO: needs to be verified by the backend
       rootFolder.set({
         overrideIcon: true,
@@ -819,19 +863,19 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       this.setCurrentFolder(rootFolder);
       this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
-      this._tree.addListener("changeSelection", this._onChangeTreeSelection, this);
+      this._tree.addListener('changeSelection', this._onChangeTreeSelection, this);
 
       // left container
-      var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+      const leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       // left toolbar
-      var leftBar = new cv.ui.manager.ToolBar(uploadManager);
+      const leftBar = new cv.ui.manager.ToolBar(uploadManager);
       this.bind('currentFolder', leftBar, 'folder');
       this.bind('currentSelection', leftBar, 'file');
       leftBar.addListener('reload', this._tree.reload, this._tree);
 
       // globally bind writeable folder to command for new files
-      var buttonConfig = menuBar.getButtonConfiguration();
+      const buttonConfig = menuBar.getButtonConfiguration();
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
       // this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
@@ -848,12 +892,12 @@ qx.Class.define('cv.ui.manager.Main', {
       this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       // tab list
-      var list = new qx.ui.form.List(true);
+      const list = new qx.ui.form.List(true);
       list.setAppearance('open-files-tabs');
-      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "file.name");
+      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, 'file.name');
       this._openFilesController.setDelegate({
         createItem: function () {
-          var item = new cv.ui.manager.form.FileTabItem();
+          const item = new cv.ui.manager.form.FileTabItem();
           item.addListener('close', this._onCloseFile, this);
           return item;
         }.bind(this),
@@ -874,10 +918,29 @@ qx.Class.define('cv.ui.manager.Main', {
       this._mainContent.add(this._stack, {flex: 1});
       this._pane.add(this._mainContent, 1);
 
-      var startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
+      const startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
       startOpenFile.setCloseable(false);
       this.getOpenFiles().push(startOpenFile);
       list.setModelSelection([startOpenFile]);
+    },
+
+    _showAbout: function () {
+      const dialogConf = {
+        caption: qx.locale.Manager.tr('About'),
+        modal: true,
+        minWidth: Math.min(500, qx.bom.Viewport.getWidth()),
+        maxHeight: qx.bom.Viewport.getHeight(),
+        message: `
+<div class="about-cv">
+ <img src="resource/icons/comet_icon_128x128_ff8000.png" width="128" height="128"/>
+ <h2>CometVisu ${cv.Version.VERSION}</h2>
+ <div class="info">
+   <label for="date">${qx.locale.Manager.tr('Build date')}: </label><span id="date">${cv.Version.DATE}</span><br/>
+   <label for="build">${qx.locale.Manager.tr('Build revision')}: </label><span id="build">${cv.Version.REV}</span><br/>
+   <label for="lib-version">${qx.locale.Manager.tr('Library version')}: </label><span id="lib-version">${cv.Version.LIBRARY_VERSION}</span>
+ </div>
+</div>`};
+      new cv.ui.manager.dialog.BigAlert(dialogConf).show();
     }
   },
 
@@ -891,8 +954,8 @@ qx.Class.define('cv.ui.manager.Main', {
       '_pane', '_tree', '_stack', '_mainContent', '_openFilesController'
     );
     // restore former command group
-    var application = qx.core.Init.getApplication();
-    var manager = application.getCommandManager();
+    const application = qx.core.Init.getApplication();
+    const manager = application.getCommandManager();
     manager.setActive(this._oldCommandGroup);
     this._oldCommandGroup = null;
 

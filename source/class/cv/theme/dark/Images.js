@@ -22,6 +22,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'redo': '@MaterialIcons/redo',
       'hidden-config': '@MaterialIcons/settings',
       'reload': '@MaterialIcons/sync',
+      'out-of-sync': '@MaterialIcons/sync_problem',
       'add': '@MaterialIcons/add',
       'mounted-folder': '@MaterialIcons/folder_special',
       'folder': '@MaterialIcons/folder',
@@ -49,11 +50,21 @@ qx.Class.define('cv.theme.dark.Images', {
       'drop-up': '@MaterialIcons/arrow_drop_up',
       'clone-file': '@MaterialIcons/file_copy',
       'listViewMode': '@MaterialIcons/view_headline',
-      'previewMode': '@MaterialIcons/view_module'
+      'previewMode': '@MaterialIcons/view_module',
+      'drag-handle': '@MaterialIcons/drag_indicator',
+      'expert': '@MaterialIcons/explicit',
+      'text-fields': '@MaterialIcons/text_fields',
+      'comment-fields': '@MaterialIcons/settings_ethernet',
+      'view': '@MaterialIcons/visibility',
+      'cut': '@MaterialIcons/content_cut',
+      'copy': '@MaterialIcons/content_copy',
+      'paste': '@MaterialIcons/content_paste',
+      'help': '@MaterialIcons/help',
+      'code': '@MaterialIcons/code'
     },
 
     getIcon: function (name, size) {
-      return this.ICONS.hasOwnProperty(name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
+      return Object.prototype.hasOwnProperty.call(this.ICONS, name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
     }
   }
 });

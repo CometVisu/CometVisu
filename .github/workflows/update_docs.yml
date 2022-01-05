@@ -1,0 +1,79 @@
+name: Update docs
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'all, demo or docs'
+        default: 'all'
+        required: false
+  push:
+    branches:
+      - develop
+      - master
+      - release-*
+    paths:
+      - 'doc/**'
+    tags-ignore:
+      - '*'
+env:
+  NODE_VERSION: '14.15'
+jobs:
+  cancel:
+    name: 'Cancel Previous Runs'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+
+  deploy-docs:
+    name: "Generate and publish manual and API-viewer"
+    if: github.repository == 'CometVisu/CometVisu'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Pull docker helper
+        run: docker pull cometvisu/dev-helper
+      - name: Install python dependencies
+        run: |
+          python -m pip install -r utils/requirements.txt
+          sudo apt-get install python3-lxml
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Build CometVisu
+        uses: ./.github/actions/build-cv
+        with:
+          target: build
+      - name: Install grunt
+        run: npm install -g grunt-cli
+      - name: Install browser
+        run: ./utils/ci/browser-setup.sh
+        env:
+          CV_VERSION: "stable"
+          CV_BROWSER: "Chrome_ci"
+      - name: Prepare screenshots
+        uses: ./.github/actions/update-webdriver
+      - name: Run deploy script
+        run: ./utils/ci/deploy.sh
+        env:
+          CHROME_BIN: ./chrome/google-chrome
+          COMMIT_AUTHOR_NAME: CometVisu-CI
+          COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          TARGET:  ${{ github.event.inputs.target }}

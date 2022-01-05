@@ -38,7 +38,7 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
       refine: true,
       init: true
     },
-    childObjects: {check: "Array", init: []}
+    childObjects: {check: 'Array', init: []}
   },
 
   /*
@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("widgetinfo", statics);
-    cv.ui.structure.WidgetFactory.registerClass("widgetaction", statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetinfo', statics);
+    cv.ui.structure.WidgetFactory.registerClass('widgetaction', statics);
   }
 });

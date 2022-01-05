@@ -37,8 +37,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
       this._createChildControl('title');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
+      this._createChildControl('help');
 
-      var editorGroup = new qx.ui.form.RadioGroup();
+      const editorGroup = new qx.ui.form.RadioGroup();
 
       this.__defaultButtonConfiguration = {
         'new-file': {
@@ -89,28 +90,28 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         // edit menu basics
         'undo': {
           menu: 'edit-menu',
-          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this.tr('Ctrl+Z')],
+          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this._commandGroup.get('undo')],
           enabled: true
         },
         'redo': {
           menu: 'edit-menu',
-          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this.tr('Ctrl+Y')],
+          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this._commandGroup.get('redo')],
           enabled: true
         },
         'cut': {
           menu: 'edit-menu',
-          args: [this.tr('Cut'), null, this.tr('Ctrl+X')],
+          args: [this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18), this._commandGroup.get('cut')],
           enabled: false,
           separator: 'before'
         },
         'copy': {
           menu: 'edit-menu',
-          args: [this.tr('Copy'), null, this.tr('Ctrl+C')],
+          args: [this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18), this._commandGroup.get('copy')],
           enabled: false
         },
         'paste': {
           menu: 'edit-menu',
-          args: [this.tr('Paste'), null, this.tr('Ctrl+V')],
+          args: [this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18), this._commandGroup.get('paste')],
           enabled: false
         },
         // preferences
@@ -150,11 +151,21 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           args: [this.tr('Expert mode')],
           general: true,
           enabled: true
+        },
+        'help': {
+          menu: 'help-menu',
+          args: [this.tr('Help'), cv.theme.dark.Images.getIcon('help', 18), this._commandGroup.get('help')],
+          enabled: false
+        },
+        'about': {
+          menu: 'help-menu',
+          args: [this.tr('About')],
+          enabled: false
         }
       };
       this.maintainButtons();
 
-      var prefs = cv.ui.manager.model.Preferences.getInstance();
+      const prefs = cv.ui.manager.model.Preferences.getInstance();
 
       prefs.bind('defaultConfigEditor', editorGroup, 'modelSelection', {
         converter: function (value) {
@@ -170,8 +181,8 @@ qx.Class.define('cv.ui.manager.MenuBar', {
     },
 
     __bindToPreference: function (buttonName, preferenceName) {
-      var button = this.getButton(buttonName);
-      var prefs = cv.ui.manager.model.Preferences.getInstance()
+      const button = this.getButton(buttonName);
+      const prefs = cv.ui.manager.model.Preferences.getInstance();
       prefs.bind(preferenceName, button, 'value');
       button.bind('value', prefs, preferenceName);
     },
@@ -184,14 +195,14 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         this.__buttonConfiguration = config;
       }
       Object.keys(config).forEach(function (id) {
-        var button;
-        var buttonConf = config[id];
-        if (!this.__buttons.hasOwnProperty(id)) {
+        let button;
+        const buttonConf = config[id];
+        if (!Object.prototype.hasOwnProperty.call(this.__buttons, id)) {
           // create button
-          var label = buttonConf.args[0];
-          var icon = buttonConf.args[1];
-          var command = buttonConf.args[2];
-          var ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
+          const label = buttonConf.args[0];
+          const icon = buttonConf.args[1];
+          const command = buttonConf.args[2];
+          const ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
           if (qx.lang.Type.isString(command) || !command) {
             // no command connected
             button = new ButtonClass(label, icon);
@@ -201,12 +212,15 @@ qx.Class.define('cv.ui.manager.MenuBar', {
             }
           } else {
             button = new ButtonClass(label, icon, command);
+            if (qx.core.Environment.get('qx.command.bindEnabled')) {
+              button.bind('enabled', command, 'enabled');
+            }
           }
           button.addListener('execute', function () {
             qx.event.message.Bus.dispatchByName('cv.manager.action.' + id);
           }, this);
           if (!buttonConf.hidden) {
-            var menu = this.getChildControl(buttonConf.menu);
+            const menu = this.getChildControl(buttonConf.menu);
             if (!menu) {
               throw new Error('no menu named ' + buttonConf.menu + ' found!');
             }
@@ -220,7 +234,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           }
           this.__buttons[id] = button;
 
-          if (buttonConf.hasOwnProperty('onAfterCreate')) {
+          if (Object.prototype.hasOwnProperty.call(buttonConf, 'onAfterCreate')) {
             buttonConf.onAfterCreate(button);
           }
         } else {
@@ -230,7 +244,6 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         if (buttonConf.properties) {
           button.set(buttonConf.properties);
         }
-
       }, this);
     },
 
@@ -244,29 +257,39 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
     // overridden
     _createChildControlImpl : function(id) {
-       var control;
+      let control;
 
-       switch (id) {
+      switch (id) {
          case 'title':
            control = new qx.ui.basic.Label(this.tr('CometVisu Manager'));
            this.add(control);
            break;
 
-         case "file":
+         case 'file':
            control = new qx.ui.menubar.Button(this.tr('File'), null, this.getChildControl('file-menu'));
            this.add(control);
            break;
 
-         case "edit":
+         case 'edit':
            control = new qx.ui.menubar.Button(this.tr('Edit'), null, this.getChildControl('edit-menu'));
            this.add(control);
            break;
 
-         case "new":
+         case 'help':
+           control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
+           this.add(control);
+           break;
+
+         case 'about':
+           control = new qx.ui.menubar.Button(this.tr('About'), null, this.getChildControl('help-menu'));
+           this.add(control);
+           break;
+
+         case 'new':
            control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
            break;
 
-         case "preferences":
+         case 'preferences':
            control = new qx.ui.menubar.Button(this.tr('Preferences'), null, this.getChildControl('preferences-menu'));
            this.add(control);
            break;
@@ -288,6 +311,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            control = new qx.ui.menu.Menu();
            break;
 
+         case 'help-menu':
+           control = new qx.ui.menu.Menu();
+           break;
        }
 
        return control || this.base(arguments, id);

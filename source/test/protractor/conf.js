@@ -30,7 +30,7 @@ exports.config = {
     showColors: true // Use colors in the command line report.
   },
 
-  onPrepare: function(){
+  onPrepare: function() {
     browser.waitForAngularEnabled(false);
 
     // set implicit wait times in ms...

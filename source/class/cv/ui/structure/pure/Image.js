@@ -23,17 +23,18 @@
  * a camera picture.
  *
  * @widgetexample
- * <image src="resource/icon/CometVisu_orange.png" width="45px" height="32px">
+ * <image src="resource/icons/CometVisu_orange.png" width="45px" height="32px">
  *   <layout colspan="2" />
  * </image>
  *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
+ * @asset(qx/static/blank.gif)
  */
 qx.Class.define('cv.ui.structure.pure.Image', {
   extend: cv.ui.structure.AbstractWidget,
 
-  include: cv.ui.common.Refresh,
+  include: [cv.ui.common.Refresh, cv.ui.common.Update ],
 
   /*
   ******************************************************
@@ -41,10 +42,16 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   properties: {
-    width   : { check: "String", init: "100%" },
-    height  : { check: "String", nullable: true },
-    src     : { check: "String", init: "" },
-    widthFit: { check: "Boolean", init: false }
+    width      : { check: 'String', init: '100%' },
+    height     : { check: 'String', nullable: true },
+    cropTop    : { check: 'String' },
+    cropBottom : { check: 'String' },
+    src        : { check: 'String', init: '' },
+    widthFit   : { check: 'Boolean', init: false },
+    placeholder: {
+      check: ['none', 'src', 'hide', 'exclude'],
+      init: 'none'
+    }
   },
 
   /*
@@ -58,7 +65,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     // overridden
     _getInnerDomString: function () {
       // create the actor
-      var imgStyle = '';
+      let imgStyle = '';
       if (this.getWidth()) {
         imgStyle += 'width:' + this.getWidth() + ';';
       }
@@ -68,7 +75,36 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (this.getHeight()) {
         imgStyle += 'height:' + this.getHeight() + ';';
       }
-      return '<div class="actor"><img src="' + this.__getSrc() + '" style="' + imgStyle + '" /></div>';
+      if (this.getCropTop() !== '' || this.getCropBottom() !== '') {
+        let top = '0%';
+        let bottom = '';
+        if (this.getCropTop() !== '') {
+          top = '-' + this.getCropTop();
+          bottom = 'margin-bottom:' + top;
+        }
+        if (this.getCropBottom() !== '') {
+          bottom = 'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
+        }
+        imgStyle += 'object-position:0% ' + top + ';' + bottom;
+      }
+
+      let src = this.__getSrc();
+      if (!src) {
+        switch (this.getPlaceholder()) {
+          case 'hide':
+            src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
+            break;
+
+          case 'exclude':
+            imgStyle += 'display:none;';
+            break;
+
+          case 'src':
+            this.error('no src placeholder defined');
+            break;
+        }
+      }
+      return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     },
 
     /**
@@ -76,37 +112,61 @@ qx.Class.define('cv.ui.structure.pure.Image', {
      */
     __getSrc: function() {
       if (!this.__src) {
-        var src = this.getSrc();
-        var parsedUri = qx.util.Uri.parseUri(this.getSrc());
-        if (!parsedUri.protocol && !this.getSrc().startsWith("/")) {
+        let src = this.getSrc();
+        const parsedUri = qx.util.Uri.parseUri(this.getSrc());
+        if (!parsedUri.protocol && !src.startsWith('/')) {
           // is relative URI, use the ResourceManager
-          src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
+          src = qx.util.ResourceManager.getInstance().toUri(src);
         }
-        this.__src = src;
+        this.__src = src || '';
       }
       return this.__src;
     },
 
+    handleUpdate: function(text, address) {
+      const valueElem = this.getValueElement();
+      if (!text) {
+        switch (this.getPlaceholder()) {
+          case 'src':
+            text = this.__getSrc();
+            valueElem.style.display = 'inline';
+            break;
+
+          case 'hide':
+            text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
+            valueElem.style.display = 'inline';
+            break;
+
+          case 'exclude':
+            valueElem.style.display = 'none';
+            break;
+        }
+      } else {
+        valueElem.style.display = 'inline';
+      }
+      valueElem.setAttribute('src', text);
+    },
+
     // overridden
     getValueElement: function() {
-      return this.getDomElement().querySelector("img");
+      return this.getDomElement().querySelector('img');
     },
 
     // overridden
     _applyVisible: function(value) {
-      var valueElem = this.getValueElement();
+      const valueElem = this.getValueElement();
       if (!valueElem || this.getRefresh() > 0) {
         return;
       }
       if (value === true) {
-        valueElem.setAttribute("src", this.__getSrc());
+        valueElem.setAttribute('src', this.__getSrc());
       } else {
-        valueElem.setAttribute("src", "");
+        valueElem.setAttribute('src', '');
       }
     }
   },
 
   defer: function(statics) {
-    cv.ui.structure.WidgetFactory.registerClass("image", statics);
+    cv.ui.structure.WidgetFactory.registerClass('image', statics);
   }
 });

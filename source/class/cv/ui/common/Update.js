@@ -22,7 +22,7 @@
  * This role provides the update method for incoming data
  *
  */
-qx.Mixin.define("cv.ui.common.Update", {
+qx.Mixin.define('cv.ui.common.Update', {
   include: cv.ui.common.BasicUpdate,
 
   /*
@@ -34,9 +34,8 @@ qx.Mixin.define("cv.ui.common.Update", {
     if (this.getAddress) {
       if (this._initOnCreate === true) {
         this.__initUpdater();
-      }
-      else if (qx.Class.getEventType(this.constructor, "domReady")) {
-        this.addListenerOnce("domReady", this.__initUpdater, this);
+      } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
+        this.addListenerOnce('domReady', this.__initUpdater, this);
       }
     }
   },
@@ -50,14 +49,13 @@ qx.Mixin.define("cv.ui.common.Update", {
     _initOnCreate: false,
 
     __initUpdater : function() {
-      var model = cv.data.Model.getInstance();
+      const model = cv.data.Model.getInstance();
       Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
-
         if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
           // no read address
           return;
         }
-        var state = model.getState(address);
+        const state = model.getState(address);
         if (state !== undefined) {
           this.update(address, state);
         }
@@ -76,14 +74,16 @@ qx.Mixin.define("cv.ui.common.Update", {
       if (this._update) {
         this._update(address, data);
       } else {
-        var value = this.processIncomingValue(address, data);
-        if (this.handleUpdate) { this.handleUpdate(value, address); }
+        const value = this.processIncomingValue(address, data);
+        if (this.handleUpdate) {
+ this.handleUpdate(value, address); 
+}
       }
     },
 
     processIncomingValue: function (address, data) {
       if (this._processIncomingValue) {
-        var value = this._processIncomingValue(address, data);
+        const value = this._processIncomingValue(address, data);
         // store it to be able to suppress sending of unchanged data
         if (value !== undefined) {
           this.setBasicValue(value);
@@ -100,13 +100,15 @@ qx.Mixin.define("cv.ui.common.Update", {
      * @param data {var}
      */
     update3d: function (ev, data) {
-      var l = ev.data.layout;
-      var pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
+      const l = ev.data.layout;
+      const pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
       ev.data.element.css('left', pos.x + 'px');
       ev.data.element.css('top', pos.y + 'px');
 
-      var floorFilter = true;
-      if (l.floorFilter) { floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter]; }
+      let floorFilter = true;
+      if (l.floorFilter) {
+ floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter]; 
+}
       ev.data.element.css('display', floorFilter ? '' : 'none');
     }
   }

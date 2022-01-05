@@ -78,14 +78,14 @@ qx.Class.define('cv.ui.manager.ToolBar', {
         this._uploadManager = new cv.ui.manager.upload.UploadMgr();
       }
 
-      var fileController = cv.ui.manager.control.FileController.getInstance();
+      const fileController = cv.ui.manager.control.FileController.getInstance();
 
-      var createPart = new qx.ui.toolbar.Part();
+      const createPart = new qx.ui.toolbar.Part();
       createPart.set({
         marginLeft: 0
       });
       this.add(createPart);
-      var newButton;
+      let newButton;
 
       if (this.__show('new-menu')) {
         newButton = new qx.ui.toolbar.MenuButton(null,
@@ -126,14 +126,14 @@ qx.Class.define('cv.ui.manager.ToolBar', {
       }
 
       if (this.__show('upload')) {
-        var upload = this._createButton('upload');
+        const upload = this._createButton('upload');
         this._uploadManager.addWidget(upload);
         this.bind('folder.writeable', upload, 'enabled');
         createPart.add(upload);
       }
 
       if (this.__show('delete')) {
-        var deleteSelection = this._createButton('delete');
+        const deleteSelection = this._createButton('delete');
         deleteSelection.addListener('execute', function () {
           fileController.delete(this.getFile());
         }, this);
@@ -146,7 +146,7 @@ qx.Class.define('cv.ui.manager.ToolBar', {
       }
 
       if (this.__show('download')) {
-        var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
+        const download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
         download.setAppearance('cv-toolbar-button');
         download.setToolTipText(qx.locale.Manager.tr('Download'));
         download.addListener('execute', function () {
@@ -163,7 +163,7 @@ qx.Class.define('cv.ui.manager.ToolBar', {
 
       if (this.__show('validate')) {
         // config check
-        var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
+        const checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
         checkConfig.setAppearance('cv-toolbar-button');
         checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
         checkConfig.addListener('execute', function () {
@@ -180,7 +180,7 @@ qx.Class.define('cv.ui.manager.ToolBar', {
       }
 
       if (this.__show('reload')) {
-        var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
+        const reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
         reload.setAppearance('cv-toolbar-button');
         reload.setToolTipText(qx.locale.Manager.tr('Reload'));
         reload.addListener('execute', function () {
@@ -192,8 +192,8 @@ qx.Class.define('cv.ui.manager.ToolBar', {
     },
 
     _createButton: function (name, icon, doNotUseCommand) {
-      var args = this._menuButtonConfig[name].args;
-      var button = new qx.ui.toolbar.Button(null, icon || args[1].replace(/\/[0-9]+$/, '/15'), !doNotUseCommand ? args[2] : null);
+      const args = this._menuButtonConfig[name].args;
+      const button = new qx.ui.toolbar.Button(null, icon || args[1].replace(/\/[0-9]+$/, '/15'), !doNotUseCommand ? args[2] : null);
       button.setAppearance('cv-toolbar-button');
       button.setToolTipText(args[0]);
       return button;
@@ -206,9 +206,9 @@ qx.Class.define('cv.ui.manager.ToolBar', {
     _applyFolder: function (value) {
       if (this._uploadManager) {
         if (value) {
-          this._uploadManager.setFolder(value)
+          this._uploadManager.setFolder(value);
         } else {
-          this._uploadManager.resetFolder()
+          this._uploadManager.resetFolder();
         }
       }
     }

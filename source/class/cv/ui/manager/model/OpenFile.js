@@ -92,9 +92,9 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
 
     _maintainIcon: function () {
       // use the handlers icon is there is one, otherwise the file items icon
-      var file = this.getFile();
+      const file = this.getFile();
       if (this.getHandlerId() && file) {
-        var handlerClass = qx.Class.getByName(this.getHandlerId());
+        const handlerClass = qx.Class.getByName(this.getHandlerId());
         if (handlerClass && handlerClass.ICON) {
           this.setIcon(handlerClass.ICON);
           if (this.__ibid) {

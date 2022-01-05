@@ -22,7 +22,7 @@
  * Main settings that an be accessed from anywhere inside the Application
  */
 qx.Class.define('cv.Config', {
-  type:"static",
+  type:'static',
 
   statics: {
     /**
@@ -38,7 +38,7 @@ qx.Class.define('cv.Config', {
      * The current path tree
      * @type {String}
      */
-    treePath: "",
+    treePath: '',
 
     /**
      * Path to the current page
@@ -107,7 +107,7 @@ qx.Class.define('cv.Config', {
      * The design currently used
      * @type {String}
      */
-    clientDesign : "",
+    clientDesign : '',
     /**
      * Maturity level
      * @type {var}
@@ -132,7 +132,14 @@ qx.Class.define('cv.Config', {
        * Array with alls icons defined in the current config file
        * @type {Array}
        */
-      iconsFromConfig: []
+      iconsFromConfig: [],
+      /**
+       * Credentials for Backend authentication, username/token and optional password
+       */
+      credentials: {
+        username: null,
+        password: null
+      }
     },
 
     /**
@@ -151,7 +158,7 @@ qx.Class.define('cv.Config', {
      * Defines which structure is supported by which designs
      */
     designStructureMap: {
-      "pure": ["alaska", "alaska_slim", "discreet", "discreet_sand", "discreet_slim", "metal", "pitchblack", "planet", "pure"]
+      'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
     },
 
     /**
@@ -188,15 +195,15 @@ qx.Class.define('cv.Config', {
       if (!design) {
         design = this.getDesign();
       }
-      for (var structure in this.designStructureMap) {
-        if (this.designStructureMap.hasOwnProperty(structure)) {
+      for (let structure in this.designStructureMap) {
+        if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
-            return "structure-"+structure;
+            return 'structure-'+structure;
           }
         }
       }
       // fallback to pure
-      return "structure-pure";
+      return 'structure-pure';
     },
 
     /**
@@ -206,7 +213,7 @@ qx.Class.define('cv.Config', {
      */
     guessIfProxied: function() {
       if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
-        throw new Error("not ready yet");
+        throw new Error('not ready yet');
       }
       return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
     },
@@ -220,7 +227,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasMapping: function(name) {
-      return this.configSettings.mappings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
     },
 
     clearMappings: function() {
@@ -236,7 +243,7 @@ qx.Class.define('cv.Config', {
     },
 
     hasStyling: function(name) {
-      return this.configSettings.stylings.hasOwnProperty(name);
+      return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
     },
 
     getDesign: function() {
@@ -245,7 +252,7 @@ qx.Class.define('cv.Config', {
   },
 
   defer: function(statics) {
-    var req = qx.util.Uri.parseUri(window.location.href);
+    const req = qx.util.Uri.parseUri(window.location.href);
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
@@ -274,8 +281,8 @@ qx.Class.define('cv.Config', {
           scope.setTag('build.branch', cv.Version.BRANCH);
           Object.keys(cv.Version.TAGS).forEach(function (tag) {
             scope.setTag(tag, cv.Version.TAGS[tag]);
-          })
-        })
+          });
+        });
       }
     }
 
@@ -285,7 +292,7 @@ qx.Class.define('cv.Config', {
     if (qx.core.Environment.get('cv.testMode') !== false) {
       cv.Config.testMode = true;
     } else if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
+      cv.Config.testMode = req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
     }
 
     // propagate to the client
@@ -304,22 +311,20 @@ qx.Class.define('cv.Config', {
     }
 
     // caching is only possible when localStorage is available
-    if (qx.core.Environment.get("html.storage.local") === false) {
+    if (qx.core.Environment.get('html.storage.local') === false) {
       cv.Config.enableCache = false;
-      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
-    } else {
-      if (req.queryKey.enableCache === "invalid") {
+      qx.log.Logger.warn(statics, 'localStorage is not available in your browser. Some advanced features, like caching will not work!');
+    } else if (req.queryKey.enableCache === 'invalid') {
         cv.ConfigCache.clear(cv.Config.configSuffix);
         cv.Config.enableCache = true;
       } else {
-        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === 'true' : !qx.core.Environment.get('qx.debug');
       }
-    }
 
-    cv.Config.enableLogging = qx.core.Environment.get("html.console");
-    if (req.queryKey.log === "false") {
+    cv.Config.enableLogging = qx.core.Environment.get('html.console');
+    if (req.queryKey.log === 'false') {
       cv.Config.enableLogging = false;
-    } else if (req.queryKey.log === "true") {
+    } else if (req.queryKey.log === 'true') {
       cv.Config.enableLogging = true;
     }
 
@@ -330,14 +335,13 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    var uagent = navigator.userAgent.toLowerCase();
+    const uagent = navigator.userAgent.toLowerCase();
     cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) {
-      cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+      cv.Config.mobileDevice = false; // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
     }
     if (req.queryKey.forceDevice) { // overwrite detection when set by URL
-      switch( req.queryKey.forceDevice )
-      {
+      switch (req.queryKey.forceDevice) {
         case 'mobile':
           cv.Config.mobileDevice = true;
           break;

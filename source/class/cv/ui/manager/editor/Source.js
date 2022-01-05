@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   construct: function () {
     this.base(arguments);
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
-    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
+    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/';
     this.getContentElement().setAttribute('contentEditable', 'true');
     this.set({
       droppable: false,
@@ -20,8 +20,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     });
     this.addListener('dragover', function (ev) {
       ev.preventDefault();
-      ev.dataTransfer.effectAllowed = "none";
-      ev.dataTransfer.dropEffect = "none";
+      ev.dataTransfer.effectAllowed = 'none';
+      ev.dataTransfer.dropEffect = 'none';
     });
     this.addListener('drop', function (ev) {
       ev.preventDefault();
@@ -47,37 +47,32 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
     SUPPORTED_FILES: function (file) {
+      let filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
       if (window.monaco && window.monaco.languages) {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
-          var extensions = []
+          const extensions = [];
           monaco.languages.getLanguages().forEach(function (lang) {
             lang.extensions.forEach(function (ext) {
-              ext = ext.replace(/\./g, '\\.')
+              ext = ext.replace(/\./g, '\\.');
               if (extensions.indexOf(ext) ===-1) {
                 extensions.push(ext);
               }
-            })
+            });
           });
           cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
         }
-        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(file.getFullPath().toLowerCase())
-      } else {
-        return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
-      }
+        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
+      } 
+        return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
     },
-    DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
+    DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
-      var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      window.documentationMappingPrefix = "editor/"; // jshint ignore:line
-      var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..');
-      var loader = new qx.util.DynamicScriptLoader([
-        sourcePath + 'editor/dependencies/jquery.min.js',
-        sourcePath + 'editor/dependencies/jquery.xpath.min.js',
-        sourcePath + 'editor/lib/Messages.js',
-        sourcePath + 'editor/lib/Schema.js',
+      const version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
+      const sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
+      const loader = new qx.util.DynamicScriptLoader([
         sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
         'manager/xml.js'
       ]);
@@ -94,7 +89,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             }
           }
         });
-        var noCacheSuffix = '?' + Math.random();
+        const noCacheSuffix = '?' + Math.random();
         window.require([
           'xml!./resource/visu_config.xsd' + noCacheSuffix,
           'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
@@ -103,12 +98,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           this.__schema = schema;
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-          var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
-          var completionProvider = new cv.ui.manager.editor.completion.Config(parsedSchema);
-          var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
+          const completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance('visu_config.xsd'));
+          const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
-
         }.bind(this));
       }, this);
       loader.addListener('failed', function (ev) {
@@ -149,7 +142,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this._draw, this);
       } else {
-        var domElement = this.getContentElement().getDomElement();
+        const domElement = this.getContentElement().getDomElement();
         if (!domElement) {
           this.addListenerOnce('appear', this._draw, this);
         } else {
@@ -167,24 +160,24 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             },
             theme: 'vs-dark'
           });
-          var baseVersion = cv.Version.VERSION.split('-')[0];
-          var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("hidden-schema.json"));
+          const baseVersion = cv.Version.VERSION.split('-')[0];
+          const xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('hidden-schema.json'));
           xhr.set({
-            method: "GET",
-            accept: "application/json"
+            method: 'GET',
+            accept: 'application/json'
           });
-          xhr.addListenerOnce("success", function (e) {
-            var req = e.getTarget();
-            var schema = req.getResponse();
+          xhr.addListenerOnce('success', function (e) {
+            const req = e.getTarget();
+            const schema = req.getResponse();
             window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
               validate: true,
               allowComments: true,
               schemas: [{
-                uri: "https://www.cometvisu.org/CometVisu/schemas/" + baseVersion + "/hidden-schema.json",
-                fileMatch: ["hidden.php"],
+                uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
+                fileMatch: ['hidden.php'],
                 schema: schema
               }]
-            })
+            });
           }, this);
           xhr.send();
 
@@ -198,22 +191,58 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
-        var monacoAction;
         switch (actionName) {
           case 'cut':
-            monacoAction = this._editor.getAction('editor.action.clipboardCutAction');
+            this._editor.trigger('external', 'editor.action.clipboardCutAction');
+            if (!this._nativePasteSupported) {
+              // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+              // and implement the pasting manually
+              cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+            }
             break;
           case 'copy':
-            monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
+            this._editor.trigger('external', 'editor.action.clipboardCopyAction');
+            if (!this._nativePasteSupported) {
+              // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+              // and implement the pasting manually
+              cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+            }
+            break;
+          case 'paste':
+            if (this._nativePasteSupported) {
+              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+            } else {
+              this._paste();
+            }
+            break;
+          case 'undo':
+          case 'redo':
+            this._editor.trigger('external', actionName);
             break;
 
           default:
             this.base(arguments, actionName);
             break;
         }
-        if (monacoAction) {
-          monacoAction.run();
-        }
+      }
+    },
+
+    /**
+     * Manual paste into source editor is used when the native paste is not supported by the browser.
+     * This is the case when the cometvisu is not running is a safe environment (no https / localhost)
+     * @private
+     */
+    _paste: function () {
+      if (cv.ui.manager.editor.AbstractEditor.CLIPBOARD) {
+        const selection = this._editor.getSelection();
+        const id = {major: 1, minor: 1};
+        const op = {
+          identifier: id,
+          range: selection,
+          text: cv.ui.manager.editor.AbstractEditor.CLIPBOARD,
+          forceMoveMarkers: true
+        };
+        this._editor.executeEdits('clipboard', [op]);
       }
     },
 
@@ -251,7 +280,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
         } else if (this.getFile().getHasWarnings()) {
           // ask user if he really want to save a file with warnings
-          dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+          qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
             if (confirmed) {
               this.__saveHiddenConfig();
             }
@@ -276,27 +305,30 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _applyContent: function(value) {
-      var file = this.getFile();
+      const file = this.getFile();
       if (!file) {
         return;
       }
-      var model = this._editor.getModel();
+      const model = this._editor.getModel();
       if (this._workerWrapper) {
         this._workerWrapper.open(file, value);
       }
-      var newModel = window.monaco.editor.getModel(file.getUri());
+      const id = monaco.Uri.parse(file.getUri());
+      let newModel = window.monaco.editor.getModel(id);
       if (!newModel) {
         // create new model
         if (qx.xml.Document.isXmlDocument(value)) {
           value = value.documentElement.outerHTML;
+        } else if (typeof value === 'object') {
+          value = JSON.stringify(value, null, 2);
         }
-        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
         newModel.onDidChangeDecorations(function (ev) {
-          var errors = false;
-          var warnings = false;
+          let errors = false;
+          let warnings = false;
           monaco.editor.getModelMarkers({
-            owner: newModel.getModeId(),
-            resource: file.getUri()
+            owner: newModel.getLanguageId(),
+            resource: id
           }).some(function (marker) {
             if (marker.severity === monaco.MarkerSeverity.Warning) {
               warnings = true;
@@ -307,7 +339,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           }, this);
           file.setValid(!errors);
           file.setHasWarnings(warnings);
-        })
+        });
       }
 
       if (model !== newModel) {
@@ -321,8 +353,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _processHandlerOptions: function (content) {
-      var handlerOptions = this.getHandlerOptions() || {};
-      if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
+      const handlerOptions = this.getHandlerOptions() || {};
+      if (Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
         const [err, res] = this._upgradeConfig(content);
         if (err) {
           this.error(err);
@@ -352,83 +384,44 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     isSupported: function (file) {
-      var parts = file.getName().split('.')
-      var fileType = parts.length > 1 ? parts.pop() : 'txt';
-      var typeExt = '.' + fileType;
+      const parts = file.getName().split('.');
+      const fileType = parts.length > 1 ? parts.pop() : 'txt';
+      const typeExt = '.' + fileType;
       return monaco.languages.getLanguages().some(function (lang) {
         return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
       });
     },
 
     showErrors: function (path, errorList) {
-      var markers = [];
-      var model = this._editor.getModel();
+      const markers = [];
+      const model = this._editor.getModel();
       if (!model) {
         return;
       }
       let firstErrorLine = -1;
+      /**
+       * @param line
+       */
       function check(line) {
         if (firstErrorLine < 0 || firstErrorLine > line) {
           firstErrorLine = line;
         }
       }
-      // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
       if (errorList) {
-//            console.error(errorList);
-        var currentMessage = null;
-        // collect complete error messages
         errorList.forEach(function (error) {
-          if (/.*\.xml:[\d]+:.+/.test(error)) {
-            if (currentMessage !== null) {
-              markers.push({
-                severity: window.monaco.MarkerSeverity.Error,
-                startLineNumber: currentMessage.line,
-                startColumn: 1,
-                endLineNumber: currentMessage.line,
-                endColumn: model.getLineContent(currentMessage.line).length,
-                message: currentMessage.message
-              });
-              check(currentMessage.line);
-            }
-            // add marker for completed message
-            var parts = error.split(":");
-            var file = parts.shift();
-            var line = parseInt(parts.shift());
-
-            // in the last part there might be a more precise line number for the error
-            var match = /.+line ([\d]+) -+/.exec(parts[parts.length-1]);
-            if (match) {
-              line = parseInt(match[1]);
-            }
-            if (isNaN(line)) {
-              return;
-            }
-            // new error line
-            currentMessage = {
-              line: line,
-              message: parts.slice(-2).join(":"),
-              file: file
-            };
-            check(currentMessage.line);
-          } else {
-            currentMessage.message += "\n"+error;
-          }
-        });
-        if (currentMessage !== null) {
-          // show last error too
+          check(error.line);
           markers.push({
             severity: window.monaco.MarkerSeverity.Error,
-            startLineNumber: currentMessage.line,
-            startColumn: 1,
-            endLineNumber: currentMessage.line,
-            endColumn: model.getLineContent(currentMessage.line).length,
-            message: currentMessage.message
+            startLineNumber: error.line,
+            endLineNumber: error.line,
+            message: error.message,
+            startColumn: error.startColumn,
+            endColumn: error.endColumn
           });
-          check(currentMessage.line);
-        }
+        });
       }
       if (this.getFile().getFullPath() === path) {
-        window.monaco.editor.setModelMarkers(model, '', markers);
+        window.monaco.editor.setModelMarkers(model, model.getLanguageId(), markers);
         const options = this.getHandlerOptions();
         if (options && options.jumpToError) {
           // jump too first error (only when we are at the beginning
@@ -453,7 +446,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         // override this setting as we are loading the hidden config from its REST endpoint as JSON
         return 'json';
       }
-      var type = file.getName().split('.').pop();
+      let type = file.getName().split('.').pop();
       switch (type) {
         case 'svg':
           return 'xml';
@@ -461,19 +454,20 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           return 'javascript';
         case 'md':
           return 'markdown';
-        default:
+        default: {
           if (!type) {
             return 'txt';
           }
           // check if monaco knows this ending, otherwise fallback to plaintext
-          var typeExt = '.' + type;
-          var found = monaco.languages.getLanguages().some(function (lang) {
+          const typeExt = '.' + type;
+          const found = monaco.languages.getLanguages().some(function (lang) {
             return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
           });
           if (!found) {
             type = 'txt';
           }
-          return type
+          return type;
+        }
       }
     }
   },

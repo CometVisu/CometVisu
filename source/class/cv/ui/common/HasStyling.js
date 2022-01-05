@@ -18,7 +18,7 @@
  */
 
 
-qx.Mixin.define("cv.ui.common.HasStyling", {
+qx.Mixin.define('cv.ui.common.HasStyling', {
 
   /*
   ******************************************************
@@ -27,7 +27,7 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
   */
   properties: {
     styling: {
-      check: "String",
+      check: 'String',
       init: null,
       nullable: true
     }
@@ -41,17 +41,19 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
   members: {
 
     applyStyling: function (value) {
-      var sty = cv.Config.getStyling(this.getStyling());
+      const sty = cv.Config.getStyling(this.getStyling());
       if (sty) {
-        var e;
-        this.getDomElement().querySelectorAll('.actor').forEach( function(element){
-          if( element.querySelector('.value') && e === undefined ) {
+        let e;
+        this.getDomElement().querySelectorAll('.actor').forEach(function(element) {
+          if (element.querySelector('.value') && e === undefined) {
             e = element;
           }
         });
-        e.classList.remove.apply( e.classList, sty.classnames.split(" ")); // remove only styling classes
-        if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
-          this._findValue(sty.defaultValue, true, e, sty);
+        if (e) {
+          e.classList.remove.apply(e.classList, sty.classnames.split(' ')); // remove only styling classes
+          if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
+            this._findValue(sty.defaultValue, true, e, sty);
+          }
         }
       }
     },
@@ -61,23 +63,27 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         return false;
       }
       if (styling[value]) { // fixed value
-        element.classList.add.apply( element.classList, styling[value].split(' ') );
+        element.classList.add.apply(element.classList, styling[value].split(' '));
         return true;
       }
-      else {
-        var range = styling.range;
-        if (findExact && range[value]) {
-          element.classList.add.apply( element.classList, range[value][1].split(' '));
+
+      const range = styling.range;
+      if (findExact && range[value]) {
+          element.classList.add.apply(element.classList, range[value][1].split(' '));
           return true;
         }
-        var valueFloat = parseFloat(value);
-        for (var min in range) {
-          if (min > valueFloat) { continue; }
-          if (range[min][0] < valueFloat) { continue; }// check max
-          element.classList.add.apply( element.classList, range[min][1].split(' '));
+      const valueFloat = parseFloat(value);
+      for (let min in range) {
+          if (min > valueFloat) {
+ continue; 
+}
+          if (range[min][0] < valueFloat) {
+ continue; 
+}// check max
+          element.classList.add.apply(element.classList, range[min][1].split(' '));
           return true;
         }
-      }
+      
       return false;
     }
   }

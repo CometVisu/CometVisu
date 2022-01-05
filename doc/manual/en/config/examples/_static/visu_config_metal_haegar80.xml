@@ -529,7 +529,7 @@
       </styling>
     </stylings>
     <statusbar>
-      <status type="html"><![CDATA[<img src="icon/comet_64_ffffff.png" alt="CometVisu"></a>
+      <status type="html"><![CDATA[<img src="icons/comet_64_ffffff.png" alt="CometVisu"></a>
 			<a href=".?forceReload=true">Aktualisieren</a>
 			- <a href="?config=demo">Demo</a>
 			]]></status>

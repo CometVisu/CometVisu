@@ -32,6 +32,10 @@ a, img {
   height: 2em;
   width: 2em;
 }
+.tree-icon {
+  height: 20px;
+  width: 20px;
+}
 
 /*
  * create a three column layout in the middle of the page to allow navbars
@@ -148,6 +152,11 @@ input, textarea, select, button { font: inherit; }
 .pageActive, html[xmlns] .navbar.clearfix.navbarActive {
   display: block;
 }
+
+.highlightedWidget, .navbar > .highlightedWidget > .widget {
+  box-shadow: inset 0px 0px 8px 2px #cb4606;
+  border-radius: 4px;
+}
 /*
  * global color declarations for stylings in all designs
  * may be overloaded by designs
@@ -232,6 +241,8 @@ input, textarea, select, button { font: inherit; }
   clear: both;
 }
 
+.image > .actor { overflow: hidden; }
+
 /* infoaction widget basic styling, just positioning no fancy stuff */
 .infoaction { position: relative; }
 .infoaction .widget_container.widgetinfo {
@@ -261,8 +272,8 @@ input, textarea, select, button { font: inherit; }
 /* special class to be able to temporarily disable any transition effects */
 .notransition *
 {
-  -webkit-transition: none !important; 
-  transition: none !important; 
+  -webkit-transition: none !important;
+  transition: none !important;
 }
 
 button.ui-slider-handle {
@@ -451,9 +462,6 @@ button.ui-slider-handle {
 .popup_background.notification {
   position: absolute;
   padding: 30px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
@@ -498,7 +506,7 @@ button.ui-slider-handle {
   overflow-y: auto;
 }
 
-.popup .main .icon:not(.spinner):not(.rsslogRow) {
+.popup .main > div > .icon:not(.spinner) {
   float: left;
   margin: 0 1em 0 0;
   vertical-align: top;
@@ -589,4 +597,31 @@ pre.inline { display: inline-block; }
   width: 200px;
   font-size: 14px;
   text-align: center;
+}
+
+#manager div.touch-tree-open-icon {
+  line-height: 32px !important;
+  text-align: right !important;
+}
+
+#manager a {
+  color: #CCC;
+}
+
+.about-cv {
+  text-align: center;
+}
+
+.about-cv h2 {
+  margin-left: 0;
+}
+
+.about-cv .info {
+  text-align: left;
+}
+
+.about-cv label {
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
 }

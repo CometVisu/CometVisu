@@ -21,7 +21,7 @@
 /**
  * @author Michael Markstaller
  * @since 2011
- * @asset(plugins/rsslog/rsslog.css)
+ * @asset(plugins/rsslog/*)
  */
 qx.Class.define('cv.plugins.RssLog', {
   extend: cv.ui.structure.AbstractWidget,
@@ -34,58 +34,50 @@ qx.Class.define('cv.plugins.RssLog', {
   */
   properties: {
     src: {
-      check: "String",
+      check: 'String',
       nullable:true,
-      transform: "normalizeUrl",
-      apply: "_applySrc"
+      transform: 'normalizeUrl',
+      apply: '_applySrc'
     },
     filter: {
-      check: "String",
+      check: 'String',
       nullable:true
     },
     datetime: {
-      check: "Boolean",
+      check: 'Boolean',
       init: true
     },
     mode: {
-      check: "String",
-      init: "last"
+      check: 'String',
+      init: 'last'
     },
     limit: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     timeformat: {
-      check: "String",
+      check: 'String',
       nullable:true
     },
     itemoffset: {
-      check: "Number",
+      check: 'Number',
       init: 0
     },
     itemack: {
-      check: ["modify", "display", "disable"],
-      init: "modify"
+      check: ['modify', 'display', 'disable'],
+      init: 'modify'
     },
     future:     {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     width: {
-      check: "String",
+      check: 'String',
       nullable: true
     },
     height: {
-      check: "String",
+      check: 'String',
       nullable: true
-    },
-    /**
-     * Internal model for YQL data
-     */
-    model: {
-      check : "qx.data.Array",
-      nullable: true,
-      apply: "_applyModel"
     }
   },
 
@@ -106,7 +98,7 @@ qx.Class.define('cv.plugins.RssLog', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       cv.parser.WidgetParser.parseRefresh(xml, path);
@@ -120,18 +112,18 @@ qx.Class.define('cv.plugins.RssLog', {
         height: {},
         filter: {},
         datetime:   {
-          "default": true,
+          'default': true,
           transform: function(value) {
             if (typeof value === 'boolean') {
               return value;
             }
-            return value === "true";
+            return value === 'true';
           }
         },
-        mode:       { "default": "last" },
-        limit:      { "default": 0, transform: parseFloat },
+        mode:       { 'default': 'last' },
+        limit:      { 'default': 0, transform: parseFloat },
         timeformat: {},
-        itemack:    { "default": "modify"}, // allowed: modify, display, disable
+        itemack:    { 'default': 'modify'}, // allowed: modify, display, disable
         future:     {},
         query:      {}
       };
@@ -162,9 +154,9 @@ qx.Class.define('cv.plugins.RssLog', {
      */
     normalizeUrl: function(value) {
       this.__fixedRequestData = {};
-      if (value && value.indexOf("?") > 0) {
-        var parts = qx.util.Uri.parseUri(value);
-        value = value.substring(0, value.indexOf("?"));
+      if (value && value.indexOf('?') > 0) {
+        const parts = qx.util.Uri.parseUri(value);
+        value = value.substring(0, value.indexOf('?'));
         this.__fixedRequestData = parts.queryKey;
       }
       return value;
@@ -176,12 +168,12 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _getInnerDomString: function () {
-      var style = '';
+      let style = '';
       if (this.getWidth()) {
-        style += "width:" + this.getWidth() + ';';
+        style += 'width:' + this.getWidth() + ';';
       }
       if (this.getHeight()) {
-        style += "height:" + this.getHeight();
+        style += 'height:' + this.getHeight();
       }
 
       return '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' + this.getPath() + '" style="' + style + '"></div></div>';
@@ -189,7 +181,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
-      this._timer.addListener("interval", function () {
+      this._timer.addListener('interval', function () {
         this.refreshRSSlog();
       }, this);
       this._timer.start();
@@ -198,7 +190,7 @@ qx.Class.define('cv.plugins.RssLog', {
     _onDomReady: function () {
       if (!this.$$domReady) {
         this.base(arguments);
-        qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
+        qx.event.message.Bus.subscribe('path.' + this.getParentPage().getPath() + '.beforePageChange', this.refreshRSSlog, this);
         this.__html = '<span class="mappedValue"></span><span>{text}</span>';
         if (this.getDatetime()) {
           this.__html = '{date}: ' + this.__html;
@@ -216,19 +208,22 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _action: function () {
-      var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
-      var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
-      var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
-      var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
-      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];}); // define parent as 100%!
+      const brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
+      const label = document.querySelector('#' + this.getPath() + ' .label');
+      const title = label ? (label.innerText || '') : '';
+      const popup = cv.ui.PopupHandler.showPopup('rsslog', {title: title, content: brss});
+      const parent = cv.util.Tree.getParent(brss, 'div', null, 1)[0];
+      Object.entries({height: '90%', width: '90%', margin: 'auto'}).forEach(function(key_value) {
+ parent.style[key_value[0]]=key_value[1]; 
+}); // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
-      qx.event.Registration.addListener(brss, "tap", function(event) {
+      qx.event.Registration.addListener(brss, 'tap', function(event) {
         // don't let the popup know about the click, or it will close on touch-displays
         event.stopPropagation();
       }, this);
-      qx.event.Registration.addListener(popup, "close", function () {
+      qx.event.Registration.addListener(popup, 'close', function () {
         // reload main data - but only once (popup and popup_background are caught
         // here).
         // But delay it so that any change done to the data has a chance to
@@ -238,39 +233,38 @@ qx.Class.define('cv.plugins.RssLog', {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
-          for (var addr in this.getAddress()) {
-            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) { continue; }// skip when write flag not set
-            cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr][0], 0));
+          for (let addr in this.getAddress()) {
+            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
+ continue; 
+}// skip when write flag not set
+            cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr].transform, 0));
           }
         }
       }, this);
-      popup.getCurrentDomElement().querySelector('.main').style.overflow = "auto";
+      popup.getCurrentDomElement().querySelector('.main').style.overflow = 'auto';
       this.refreshRSSlog(true);
     },
 
     refreshRSSlog: function (isBig) {
-      var src = this.getSrc();
+      const src = this.getSrc();
       if (!src) {
-        this.error("no src given, aborting RSS-Log refresh");
+        this.error('no src given, aborting RSS-Log refresh');
         return;
       }
       if (!this.__request) {
         if (!this.__external) {
           this.__refreshRss();
-        }
-        else {
-          this.__refreshYql();
+        } else {
+          this.error('external sources are no longer supported');
         }
       }
-      this.__request.setUserData("big", isBig);
+      this.__request.setUserData('big', isBig);
       if (this.__request instanceof qx.io.request.Xhr) {
         this.__request.send();
-      } else if (this.__request instanceof qx.data.store.Yql) {
-        this.__request.reload();
       }
 
-      var refresh = this.getRefresh();
-      if (typeof (refresh) !== "undefined" && refresh) {
+      const refresh = this.getRefresh();
+      if (typeof (refresh) !== 'undefined' && refresh) {
         // reload regularly
         if (this._timer && this._timer.isEnabled()) {
           this._timer.start();
@@ -282,8 +276,8 @@ qx.Class.define('cv.plugins.RssLog', {
      * Fetch data from builtin PHP script
      */
     __refreshRss: function() {
-      var src = this.getSrc();
-      var requestData = Object.assign({}, this.__fixedRequestData);
+      const src = this.getSrc();
+      const requestData = Object.assign({}, this.__fixedRequestData);
       if (this.getFilter()) {
         requestData.f = this.getFilter();
       }
@@ -296,43 +290,14 @@ qx.Class.define('cv.plugins.RssLog', {
       requestData.j = 1;
       this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
       this.__request.set({
-        accept: "application/json",
+        accept: 'application/json',
         requestData: requestData,
-        method: "GET"
+        method: 'GET'
       });
-      this.__request.addListener("success", this.__updateRssContent, this);
-      this.__request.addListener("error", function(ev) {
+      this.__request.addListener('success', this.__updateRssContent, this);
+      this.__request.addListener('error', function(ev) {
         this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
       }, this);
-    },
-
-    /**
-     * Fetch data from YQL Service
-     */
-    __refreshYql: function() {
-      if (!this.__request) {
-        this.__request = new qx.data.store.Yql("SELECT * FROM rss WHERE url='"+this.getSrc()+"'", {
-          manipulateData: function (data) {
-            if (data.query.results) {
-              return data.query.results.item || data.query.results.entry;
-            } else {
-              return [];
-            }
-          }
-        });
-
-        this.__request.bind("model", this, "model");
-      }
-    },
-
-    _applyModel: function(value, old) {
-      if (old) {
-        old.removeListener("change", this.__updateYqlContent, this);
-      }
-      if (value) {
-        this.__updateYqlContent();
-        value.addListener("change", this.__updateYqlContent, this);
-      }
     },
 
     __prepareContentElement: function(ul, c) {
@@ -341,30 +306,30 @@ qx.Class.define('cv.plugins.RssLog', {
       c.appendChild(ul);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
+      let displayrows = parseInt(c.dataset['last_rowcount'], 10) || 0;
       ul.innerHTML = '<li class="rsslogRow odd" id="dummydiv">.</li>';
-      var dummyDiv = c.querySelector('#dummydiv'),
-        rect = dummyDiv.getBoundingClientRect(),
-        itemheight = Math.round(rect.bottom - rect.top);
+      const dummyDiv = c.querySelector('#dummydiv');
+      const rect = dummyDiv.getBoundingClientRect();
+      const itemheight = Math.round(rect.bottom - rect.top);
       dummyDiv.parentNode.removeChild(dummyDiv);
       if (itemheight !== 0) {
-        var widget = c.parentNode.parentNode, // get the parent widget
-          widgetRect = widget.getBoundingClientRect(),
-          displayheight = Math.round(widgetRect.bottom - widgetRect.top),
-          labelElem = widget.querySelector('.label');
+        const widget = c.parentNode.parentNode; // get the parent widget
+        const widgetRect = widget.getBoundingClientRect();
+        let displayheight = Math.round(widgetRect.bottom - widgetRect.top);
+        const labelElem = widget.querySelector('.label');
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
-          var labelElemRect = labelElem.getBoundingClientRect();
+          const labelElemRect = labelElem.getBoundingClientRect();
           displayheight -= Math.round(labelElemRect.bottom - labelElemRect.top);
         }
         displayrows = Math.floor(displayheight / itemheight);
       }
-      c.dataset["last_rowcount"] = displayrows;
+      c.dataset['last_rowcount'] = displayrows;
       return displayrows;
     },
 
     __updateRssContent: function(ev) {
-      var result = ev.getTarget().getResponse();
+      const result = ev.getTarget().getResponse();
       if (typeof result === 'string') {
         // no json -> error
         this.error(result);
@@ -373,42 +338,37 @@ qx.Class.define('cv.plugins.RssLog', {
       this.__updateContent(result.responseData.feed.entries);
     },
 
-    __updateYqlContent: function() {
-      this.__updateContent(this.getModel().toArray());
-    },
-
     __updateContent: function(items) {
+      const isBig = this.__request.getUserData('big');
+      const selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
+      const c = document.querySelector(selector);
+      const itemack = isBig === true ? this.getItemack() : (this.getItemack() === 'modify' ? 'display' : this.getItemack());
 
-      var isBig = this.__request.getUserData("big");
-      var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
-      var c = document.querySelector(selector);
-      var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
+      this.debug('ID: '+c.getAttribute('id')+', Feed: '+this.getSrc());
 
-      this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
+      const ul = document.createElement('ul');
+      const displayrows = this.__prepareContentElement(ul, c);
 
-      var ul = document.createElement("ul");
-      var displayrows = this.__prepareContentElement(ul, c);
-
-      var itemnum = items.length;
+      const itemnum = items.length;
       this.debug('C: #'+this.getPath()+', '+itemnum+' element(s) found, '+displayrows+' displayrow(s) available');
 
-      var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
+      let itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
 
       if (itemnum > displayrows) { // no need to check mode if items are less than rows
         if (this.getMode() === 'first') {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = parseInt(c.dataset["itemoffset"], 10) || 0;
+          itemoffset = parseInt(c.dataset['itemoffset'], 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
-          c.dataset["itemoffset"] = itemoffset + 1;
+          c.dataset['itemoffset'] = itemoffset + 1;
         }
       }
 
-      var row = 'rsslogodd';
-      var last = itemoffset + displayrows;
+      let row = 'rsslogodd';
+      let last = itemoffset + displayrows;
       last = (last > itemnum) ? itemnum : last;
 
       this.__separatordate = new Date().strftime('%d');
@@ -416,28 +376,29 @@ qx.Class.define('cv.plugins.RssLog', {
       this.__separatorprevday = false;
       this.__isFuture = false;
 
-      for (var i = itemoffset; i < last; i++) {
+      for (let i = itemoffset; i < last; i++) {
         this.debug('C: #'+this.getPath()+', processing item: '+i+' of '+itemnum);
-        var idx = i;
-        idx = (i >= itemnum) ? (idx = idx - itemnum) : idx;
+        let idx = i;
+        idx = (i >= itemnum) ? (idx -= itemnum) : idx;
 
-        var item = items[idx];
-        var itemHtml = this.__getItemHtml(item, isBig);
+        const item = items[idx];
+        const itemHtml = this.__getItemHtml(item, isBig);
 
-        var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
+        const rowElem = qx.dom.Element.create('li', {'class': 'rsslogRow ' + row});
         rowElem.innerHTML = itemHtml;
 
         if (item.mapping && item.mapping !== '') {
-          var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
-          var span = rowElem.querySelector('.mappedValue');
-          var self = this;
-          this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
+          const mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
+          const span = rowElem.querySelector('.mappedValue');
+          const self = this;
+          this.defaultValue2DOM(mappedValue, function(e) {
+ self._applyValueToDom(span, e); 
+});
         }
         if (this.__separatoradd && idx !== 0) {
           rowElem.classList.add('rsslog_separator');
           this.__separatorprevday = true;
-        }
-        else {
+        } else {
           this.__separatorprevday = false;
         }
 
@@ -452,19 +413,19 @@ qx.Class.define('cv.plugins.RssLog', {
         rowElem.dataset['id'] = item.id;
         rowElem.dataset['mapping'] = item.mapping;
         if (item.tags) {
-          var tmp = rowElem.querySelector('span');
+          const tmp = rowElem.querySelector('span');
           if (Array.isArray(item.tags)) {
-            tmp.classList.add.apply( tmp.classList, item.tags );
+            tmp.classList.add.apply(tmp.classList, item.tags);
           } else {
             tmp.classList.add(item.tags);
           }
         }
-        if (item.state === "1" && itemack !== 'disable') {
-          rowElem.classList.add("rsslog_ack");
+        if (item.state === '1' && itemack !== 'disable') {
+          rowElem.classList.add('rsslog_ack');
         }
 
         if (itemack === 'modify') {
-          qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
+          qx.event.Registration.addListener(rowElem, 'tap', this._onTap, this);
         }
         ul.appendChild(rowElem);
 
@@ -474,66 +435,66 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     __getItemHtml: function(item, isBig) {
-      var itemHtml = "";
+      let itemHtml = '';
       if (!this.__external) {
         itemHtml = this.__html;
 
         itemHtml = itemHtml.replace(/\{text\}/, item.content);
-        var entryDate = new Date(item.publishedDate);
+        const entryDate = new Date(item.publishedDate);
         if (entryDate) {
-          itemHtml = (this.getTimeformat()) ?
-            (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;')) :
-            (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
-          var thisday = entryDate.strftime('%d');
+          itemHtml = (this.getTimeformat())
+            ? (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;'))
+            : (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
+          const thisday = entryDate.strftime('%d');
           this.__separatoradd = ((this.__separatordate > 0) && (this.__separatordate !== thisday));
           this.__separatordate = thisday;
-          this.__isFuture = (entryDate > new Date() );
-        }
-        else {
+          this.__isFuture = (entryDate > new Date());
+        } else {
           itemHtml = itemHtml.replace(/\{date\}/, '');
         }
       } else {
         if (isBig) {
           return '<b><a href="' + item.getLink() + '">' + item.getTitle() + '</a></b><br/>' + item.getDescription();
-        } else {
+        } 
           return '<b>' + item.getTitle() + '</b><br/>' + item.getDescription();
-        }
       }
 
       return itemHtml;
     },
 
     _onTap: function(ev) {
-      var item = ev.getCurrentTarget();
+      const item = ev.getCurrentTarget();
 
-      var id = item.dataset['id'];
-      var mapping = item.dataset['mapping'];
-      item.classList.toggle("rsslog_ack");
-      var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
+      const id = item.dataset['id'];
+      const mapping = item.dataset['mapping'];
+      item.classList.toggle('rsslog_ack');
+      const state = +item.classList.contains('rsslog_ack'); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
-        var mappedValue = this.applyMapping(state, mapping);
-        var span = item.querySelector('.mappedValue');
+        const mappedValue = this.applyMapping(state, mapping);
+        const span = item.querySelector('.mappedValue');
         span.innerHTML = '';
-        var self = this;
-        this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
+        const self = this;
+        this.defaultValue2DOM(mappedValue, function(e) {
+ self._applyValueToDom(span, e); 
+});
       }
-      var req = new qx.io.request.Xhr(this.__request.getUrl());
+      const req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
-        method: "GET",
+        method: 'GET',
         requestData: Object.assign({}, this.__fixedRequestData, {
           'u': id,
           'state': state
         }),
-        accept: "application/json"
+        accept: 'application/json'
       });
       req.send();
     }
   },
 
   defer: function(statics) {
-    var loader = cv.util.ScriptLoader.getInstance();
+    const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/rsslog/rsslog.css');
-    cv.parser.WidgetParser.addHandler("rsslog", cv.plugins.RssLog);
-    cv.ui.structure.WidgetFactory.registerClass("rsslog", statics);
+    cv.parser.WidgetParser.addHandler('rsslog', cv.plugins.RssLog);
+    cv.ui.structure.WidgetFactory.registerClass('rsslog', statics);
   }
 });

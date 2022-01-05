@@ -9,6 +9,10 @@ This is where the productively used Visu from merlin123 is presented.
 | **Config**: :download:`visu_config_metal_merlin123.xml <_static/visu_config_metal_merlin123.xml>`
 |
 
+.. hint ::
+
+    In version 0.12 the metal design has been revised. These screenshots show the old version before those changes.
+
 Screenshots
 -----------
 

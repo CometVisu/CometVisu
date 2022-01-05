@@ -4,53 +4,57 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-var basePage = require("../pages/BasePage.js");
-var request = require('request');
-var fs = require('fs');
-var path = require('path');
-var rootDir = path.join(__dirname, '..', '..', '..', '..');
+const BasePage = require('../pages/BasePage.js');
+const request = require('request');
+const fs = require('fs');
+const path = require('path');
+const rootDir = path.join(__dirname, '..', '..', '..', '..');
 
-var CometVisuMockup = function (target) {
-  'use strict';
-  target = target || "source";
+class CometVisuMockup extends BasePage {
+  constructor(target) {
+    super();
+    this.target = target || 'source';
+    this.url = 'http://localhost:8000/' + this.target + '/index.html?config=mockup&testMode=true&enableCache=false';
+    this.mockupReady = false;
 
-  this.url = 'http://localhost:8000/'+target+'/index.html?config=mockup&testMode=true&enableCache=false';
+    this.pageLoaded = this.and(
+      this.isVisible($('#id_')), this.mockupReady
+    );
+  }
 
-  var mockupReady = false;
-
-  this.mockupConfig = function(config) {
+  mockupConfig(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/'+target+'/resource/config/visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock'+encodeURIComponent('/' + this.target + '/resource/config/visu_config_mockup.xml'),
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        mockupReady = true;
+        this.mockupReady = true;
       } else {
         console.log(error);
         console.log(response);
         console.log(body);
       }
     });
-  };
+  }
 
-  this.mockupFixture = function (fixture) {
-    mockupReady = false;
-    var sourceFile = path.join(rootDir, fixture.sourceFile);
-    var targetPath = fixture.targetPath;
+  mockupFixture(fixture) {
+    this.mockupReady = false;
+    let sourceFile = path.join(rootDir, fixture.sourceFile);
+    let targetPath = fixture.targetPath;
     if (!targetPath.startsWith('/')) {
       // adding target only to relative paths
-      targetPath = '/' + target + '/' + targetPath;
+      targetPath = '/' + this.target + '/' + targetPath;
     }
     if (fs.existsSync(sourceFile)) {
-      var content = fs.readFileSync(sourceFile);
+      let content = fs.readFileSync(sourceFile);
       request({
         method: 'POST',
-        uri: 'http://localhost:8000/mock' + targetPath,
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath),
         body: content
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-          mockupReady = true;
+          this.mockupReady = true;
         } else {
           console.log(error);
           console.log(response);
@@ -58,24 +62,20 @@ var CometVisuMockup = function (target) {
         }
       });
     } else {
-      console.error("fixture file", sourceFile, 'not found');
+      console.error('fixture file', sourceFile, 'not found');
     }
-  };
+  }
 
-  this.resetMockupFixture = function (fixture) {
-    var targetPath = fixture.targetPath;
+  resetMockupFixture(fixture) {
+    let targetPath = fixture.targetPath;
     if (!targetPath.startsWith('/')) {
-      targetPath = '/' + target + '/' + targetPath;
+      targetPath = '/' + this.target + '/' + targetPath;
     }
     request({
       method: 'DELETE',
-      uri: 'http://localhost:8000/mock' + targetPath,
+      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
     });
-  };
+  }
+}
 
-  this.pageLoaded = this.and(
-    this.isVisible($('#id_')), mockupReady
-  );
-};
-CometVisuMockup.prototype = basePage;
 module.exports = CometVisuMockup;

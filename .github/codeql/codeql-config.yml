@@ -1,0 +1,6 @@
+name: "CometVisu CodeQL config"
+
+paths:
+  - source/class/cv
+  - client/source/class/cv
+  - source/rest/src

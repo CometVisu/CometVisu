@@ -22,20 +22,17 @@
  * Unit tests for designtoggle widget
  *
  */
-describe("testing a designtoggle widget", function() {
+describe('testing a designtoggle widget', function() {
+  it('should test the designtoggle creator', function() {
+    const [widget, element] = this.createTestWidgetString('designtoggle', {}, '<label>Test</label>');
 
-  it("should test the designtoggle creator", function() {
-    var res = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
-    var widget = cv.util.String.htmlStringToDomElement(res[1]);
+    expect(element).toHaveClass('toggle');
+    expect(element).toHaveLabel('Test');
 
-    expect(widget).toHaveClass('toggle');
-    expect(widget).toHaveLabel('Test');
-
-    expect(res[0].getPath()).toBe("id_0");
+    expect(widget.getPath()).toBe('id_0');
   });
 
   it('should trigger the designtoggle action', function() {
-
     var spiedStore;
     var OriginalConstructor = qx.data.store.Json;
     spyOn(qx.data.store, 'Json').and.callFake(function() {
@@ -43,27 +40,31 @@ describe("testing a designtoggle widget", function() {
       return spiedStore;
     });
 
-    var parts = window.location.href.split("#");
+    var parts = window.location.href.split('#');
     var loc = parts[0];
-    var anchor = parts[1] ? "#"+parts[1] : "";
+    var anchor = parts[1] ? '#'+parts[1] : '';
     var creator = this.createTestElement('designtoggle');
     spyOn(cv.util.Location, 'setHref');
-    spiedStore.fireDataEvent("loaded", new qx.data.Array(['metal','pure']));
+    spiedStore.fireDataEvent('loaded', new qx.data.Array(['metal', 'pure']));
     var actor = creator.getActor();
+
     expect(actor).not.toBe(null);
 
     var Reg = qx.event.Registration;
     this.initWidget(creator);
 
-    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?design=metal"+anchor);
+    Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
 
-    spyOn(cv.util.Location,'getHref').and.returnValue(loc+"?design=pure"+anchor);
-    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?design=metal"+anchor);
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+'?design=metal'+anchor);
 
-    cv.util.Location.getHref.and.returnValue(loc+"?other=parameter"+anchor);
-    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?other=parameter&design=metal"+anchor);
+    spyOn(cv.util.Location, 'getHref').and.returnValue(loc+'?design=pure'+anchor);
+    Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
+
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+'?design=metal'+anchor);
+
+    cv.util.Location.getHref.and.returnValue(loc+'?other=parameter'+anchor);
+    Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
+
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+'?other=parameter&design=metal'+anchor);
   });
 });

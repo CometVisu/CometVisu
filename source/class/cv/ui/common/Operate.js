@@ -22,7 +22,7 @@
  * Provides methods for widgets that can be controlled by the user.
  * Usually this operation includes sending values to the backend.
  */
-qx.Mixin.define("cv.ui.common.Operate", {
+qx.Mixin.define('cv.ui.common.Operate', {
 
   /*
   ******************************************************
@@ -43,11 +43,9 @@ qx.Mixin.define("cv.ui.common.Operate", {
       }
       if (this._action) {
         this._action(event);
-      } else {
-        if (this.getActionValue) {
+      } else if (this.getActionValue) {
           this.sendToBackend(this.getActionValue(event));
         }
-      }
       if (event && event.getBubbles()) {
         event.stopPropagation();
       }
@@ -79,18 +77,17 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @return the object/hash of encoded values that were sent last time
      */
     sendToBackend: function (value, filter, currentBusValues) {
-      var encodedValues = {};
+      const encodedValues = {};
       if (this.getAddress) {
-        var list = this.getAddress();
-        for (var id in list) {
-          if (list.hasOwnProperty(id)) {
-            var address = list[id];
+        const list = this.getAddress();
+        for (let id in list) {
+          if (Object.prototype.hasOwnProperty.call(list, id)) {
+            const address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              var
-                encoding = address[0],
-                encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
-              if( !currentBusValues || encodedValue.raw !== currentBusValues[encoding] ) {
-                cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus);
+              const encoding = address.transform;
+              const encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
+              if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
+                cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
               }
               encodedValues[encoding] = encodedValue.raw;
             }

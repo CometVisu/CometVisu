@@ -5,8 +5,8 @@
  * @since 2016
  */
 
-var CometVisuMockup = require('../../pages/Mock');
-var cvMockup = new CometVisuMockup();
+const CometVisuMockup = require('../../pages/Mock');
+const cvMockup = new CometVisuMockup();
 
 describe('switch widget testing', function () {
   'use strict';
@@ -32,30 +32,33 @@ describe('switch widget testing', function () {
     '</page>'+configParts.end);
   
   it('should trigger a simple switch', function() {
-
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .widget.switch")).first();
-    var actor = widget.all(by.css(".actor")).first();
+    var widget = element.all(by.css('.activePage .widget.switch')).first();
+    var actor = widget.all(by.css('.actor')).first();
 
     actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('0');
     });
     actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual('1');
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 0);
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+    cvMockup.sendUpdate('12/7/37', 0).then(() => {
+      expect(actor.element(by.css('.value')).getText()).toEqual('0');
+    });
 
     // test that clicking on widgets does nothing
     // we have to move the mouse somewhere where the actor is not, before clicking it
     browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('0');
   });
 
   mockupConfig.push(configParts.start +
@@ -68,32 +71,34 @@ describe('switch widget testing', function () {
     '</page>'+configParts.end);
 
   it('should trigger a switch with bind_click_to_widget = true', function() {
-
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .switch")).first();
-    var actor = element.all(by.css(".activePage .switch .actor")).first();
+    var widget = element.all(by.css('.activePage .switch')).first();
+    var actor = element.all(by.css('.activePage .switch .actor')).first();
 
     // we have to move the mouse somewhere where the actor is not, before clicking it
     browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('0');
     });
 
     // we have to move the mouse somewhere where the actor is not, before clicking it
     browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
-    expect(actor.element(by.css(".value")).getText()).toEqual('1');
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 0);
-    expect(actor.element(by.css(".value")).getText()).toEqual('0');
+    cvMockup.sendUpdate('12/7/37', 0).then(() => {
+      expect(actor.element(by.css('.value')).getText()).toEqual('0');
+      // test that clicking on actor also works
+      actor.click();
 
-    // test that clicking on actor also works
-    actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual('1');
+      expect(actor.element(by.css('.value')).getText()).toEqual('1');
+    });
   });
 
   mockupConfig.push(configParts.start +
@@ -106,24 +111,26 @@ describe('switch widget testing', function () {
     '</page>'+configParts.end);
 
   it('should trigger a switch with specified on / off values', function() {
-
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .switch .actor")).first();
+    var widget = element.all(by.css('.activePage .switch .actor')).first();
 
     widget.click();
-    expect(widget.element(by.css(".value")).getText()).toEqual('turn_off');
+
+    expect(widget.element(by.css('.value')).getText()).toEqual('turn_off');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('turn_off');
     });
     widget.click();
-    expect(widget.element(by.css(".value")).getText()).toEqual('turn_on');
+
+    expect(widget.element(by.css('.value')).getText()).toEqual('turn_on');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('turn_on');
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", 'turn_off');
-    expect(widget.element(by.css(".value")).getText()).toEqual('turn_off');
+    cvMockup.sendUpdate('12/7/37', 'turn_off').then(() => {
+      expect(widget.element(by.css('.value')).getText()).toEqual('turn_off');
+    });
   });
 
   mockupConfig.push(configParts.start +
@@ -149,28 +156,30 @@ describe('switch widget testing', function () {
     '</page>'+configParts.end);
 
   it('should test the mapping and styling on switches', function() {
-
     // test for lithium flavour #ff0000
-    var actor = element.all(by.css(".activePage .switch .actor")).first();
+    var actor = element.all(by.css('.activePage .switch .actor')).first();
 
     actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual("Off");
-    expect(actor.getAttribute('class')).toMatch("red");
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('Off');
+    expect(actor.getAttribute('class')).toMatch('red');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('0');
     });
 
     actor.click();
-    expect(actor.element(by.css(".value")).getText()).toEqual('On');
-    expect(actor.getAttribute('class')).toMatch("green");
+
+    expect(actor.element(by.css('.value')).getText()).toEqual('On');
+    expect(actor.getAttribute('class')).toMatch('green');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
-    cvMockup.sendUpdate("12/7/37", '0');
-    expect(actor.element(by.css(".value")).getText()).toEqual('Off');
-    expect(actor.getAttribute('class')).toMatch("red");
+    cvMockup.sendUpdate('12/7/37', '0').then(() => {
+      expect(actor.element(by.css('.value')).getText()).toEqual('Off');
+      expect(actor.getAttribute('class')).toMatch('red');
+    });
   });
 
   mockupConfig.push(configParts.start +
@@ -183,10 +192,9 @@ describe('switch widget testing', function () {
     '</page>'+configParts.end);
 
   it('should test align and flavour settings are used', function() {
+    var widget = element.all(by.css('.activePage .switch')).first();
 
-    var widget = element.all(by.css(".activePage .switch")).first();
-
-    expect(widget.getAttribute('class')).toMatch("flavour_potassium");
-    expect(widget.getAttribute('class')).toMatch("center");
+    expect(widget.getAttribute('class')).toMatch('flavour_potassium');
+    expect(widget.getAttribute('class')).toMatch('center');
   });
 });

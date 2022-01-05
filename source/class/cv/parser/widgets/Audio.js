@@ -22,7 +22,7 @@
  * Parse &lt;audio;gt; config elements
  */
   qx.Class.define('cv.parser.widgets.Audio', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -42,7 +42,7 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function (xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
         return data;
@@ -68,20 +68,20 @@
           height: {},
           autoplay: {
             transform: function (value) {
-              return value === "autoplay" || value === "true";
+              return value === 'autoplay' || value === 'true';
             }
           },
           loop: {
             transform: function (value) {
-              return value === "loop" || value === "true";
+              return value === 'loop' || value === 'true';
             }
           },
-          thresholdValue: {"default": 1}
+          thresholdValue: {'default': 1}
         };
       }
     },
     defer: function(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("audio", statics);
+      cv.parser.WidgetParser.addHandler('audio', statics);
     }
   });

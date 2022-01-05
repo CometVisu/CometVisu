@@ -41,11 +41,13 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
   */
   members: {
     addOption: function(key, value) {
-      var options = this.getOptions();
-      var found = options.some(function (option) {
+      const options = this.getOptions();
+      const found = options.some(function (option) {
         if (option.getKey() === key) {
           option.setValue(value);
+          return true;
         }
+        return false;
       }, this);
       if (!found) {
         options.push(new cv.ui.manager.model.config.Option(key, value));

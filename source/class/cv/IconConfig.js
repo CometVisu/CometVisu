@@ -18,26 +18,12 @@
  */
 
 
-/* iconconfig.js (c) 2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 3 of the License, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+/**
+ * Static access to internal icon database.
  */
-
 qx.Class.define('cv.IconConfig', {
 
-  type: "static",
+  type: 'static',
 
   /*
   ******************************************************
@@ -63,13 +49,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_16_000000.png'},
-            'ffffff': {'uri': 'icon/comet_16_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_16_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_16_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_16_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_16_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_16_ff8000.png'}
+            '000000': {'uri': 'icons/comet_16_000000.png'},
+            'ffffff': {'uri': 'icons/comet_16_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_16_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_16_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_16_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_16_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_16_ff8000.png'}
           }
         },
         '32': {
@@ -82,13 +68,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_32_000000.png'},
-            'ffffff': {'uri': 'icon/comet_32_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_32_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_32_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_32_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_32_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_32_ff8000.png'}
+            '000000': {'uri': 'icons/comet_32_000000.png'},
+            'ffffff': {'uri': 'icons/comet_32_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_32_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_32_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_32_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_32_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_32_ff8000.png'}
           }
         },
         '64': {
@@ -101,13 +87,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_64_000000.png'},
-            'ffffff': {'uri': 'icon/comet_64_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_64_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_64_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_64_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_64_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_64_ff8000.png'}
+            '000000': {'uri': 'icons/comet_64_000000.png'},
+            'ffffff': {'uri': 'icons/comet_64_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_64_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_64_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_64_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_64_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_64_ff8000.png'}
           }
         },
         '128': {
@@ -120,13 +106,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_128_000000.png'},
-            'ffffff': {'uri': 'icon/comet_128_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_128_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_128_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_128_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_128_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_128_ff8000.png'}
+            '000000': {'uri': 'icons/comet_128_000000.png'},
+            'ffffff': {'uri': 'icons/comet_128_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_128_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_128_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_128_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_128_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_128_ff8000.png'}
           }
         }
       },
@@ -346,6 +332,7 @@ qx.Class.define('cv.IconConfig', {
       'edit_settings': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('edit_settings') } } },
       'edit_sort': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('edit_sort') } } },
       'fts_awning': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_awning') } } },
+      'fts_balcony': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_balcony') } } },
       'fts_blade_arc_-10': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_blade_arc_-10') } } },
       'fts_blade_arc_-20': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_blade_arc_-20') } } },
       'fts_blade_arc_-30': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_blade_arc_-30') } } },
@@ -425,6 +412,7 @@ qx.Class.define('cv.IconConfig', {
       'fts_garage_door_70': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_garage_door_70') } } },
       'fts_garage_door_80': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_garage_door_80') } } },
       'fts_garage_door_90': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_garage_door_90') } } },
+      'fts_garage_motorbike': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_garage_motorbike') } } },
       'fts_garage': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_garage') } } },
       'fts_light_dome_open': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_light_dome_open') } } },
       'fts_light_dome': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('fts_light_dome') } } },
@@ -552,6 +540,7 @@ qx.Class.define('cv.IconConfig', {
       'it_ups_on_battery': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_ups_on_battery') } } },
       'it_ups_standby': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_ups_standby') } } },
       'it_ups': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_ups') } } },
+      'it_wifi_2': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_wifi_2') } } },
       'it_wifi': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_wifi') } } },
       'it_wireless_dcf77': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('it_wireless_dcf77') } } },
       'light_ball': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_ball') } } },
@@ -568,9 +557,12 @@ qx.Class.define('cv.IconConfig', {
       'light_cube': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_cube') } } },
       'light_diffused': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_diffused') } } },
       'light_dinner_table': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_dinner_table') } } },
+      'light_disco_ball_on': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_disco_ball_on') } } },
+      'light_disco_ball': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_disco_ball') } } },
       'light_downlight': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_downlight') } } },
       'light_dressing_room': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_dressing_room') } } },
       'light_fairy_lights': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_fairy_lights') } } },
+      'light_floor_lamp_2': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_floor_lamp_2') } } },
       'light_floor_lamp': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_floor_lamp') } } },
       'light_fountain_indoor': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_fountain_indoor') } } },
       'light_garage': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_garage') } } },
@@ -621,6 +613,7 @@ qx.Class.define('cv.IconConfig', {
       'light_wall_1': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_wall_1') } } },
       'light_wall_2': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_wall_2') } } },
       'light_wall_3': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_wall_3') } } },
+      'light_wall_4': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_wall_4') } } },
       'light_waterfall': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_waterfall') } } },
       'light_window': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_window') } } },
       'light_wire_system_1': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('light_wire_system_1') } } },
@@ -666,6 +659,7 @@ qx.Class.define('cv.IconConfig', {
       'measure_power_meter': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_power_meter') } } },
       'measure_power': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_power') } } },
       'measure_pressure_bar': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_pressure_bar') } } },
+      'measure_radioactivity': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_radioactivity') } } },
       'measure_voltage': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_voltage') } } },
       'measure_water_meter': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('measure_water_meter') } } },
       'message_achtung': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('message_achtung') } } },
@@ -751,6 +745,7 @@ qx.Class.define('cv.IconConfig', {
       'sani_irrigation_manual': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_irrigation_manual') } } },
       'sani_irrigation_pop_up_off': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_irrigation_pop_up_off') } } },
       'sani_irrigation_pop_up_on': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_irrigation_pop_up_on') } } },
+      'sani_irrigation_water_plug': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_irrigation_water_plug') } } },
       'sani_irrigation': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_irrigation') } } },
       'sani_leakage': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_leakage') } } },
       'sani_pool_filter_pump': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_pool_filter_pump') } } },
@@ -777,6 +772,7 @@ qx.Class.define('cv.IconConfig', {
       'sani_water_softening_unit': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_water_softening_unit') } } },
       'sani_water_tap': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_water_tap') } } },
       'sani_well_pump': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('sani_well_pump') } } },
+      'scene_3d_printer': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_3d_printer') } } },
       'scene_aquarium': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_aquarium') } } },
       'scene_baby': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_baby') } } },
       'scene_baking_oven': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_baking_oven') } } },
@@ -809,6 +805,7 @@ qx.Class.define('cv.IconConfig', {
       'scene_dump_truck': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_dump_truck') } } },
       'scene_fitness_2': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_fitness_2') } } },
       'scene_fitness': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_fitness') } } },
+      'scene_flash': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_flash') } } },
       'scene_football': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_football') } } },
       'scene_fountain_indoor': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_fountain_indoor') } } },
       'scene_fountain': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_fountain') } } },
@@ -835,6 +832,7 @@ qx.Class.define('cv.IconConfig', {
       'scene_massage_jet': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_massage_jet') } } },
       'scene_microwave_oven': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_microwave_oven') } } },
       'scene_minion': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_minion') } } },
+      'scene_multicooker': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_multicooker') } } },
       'scene_night': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_night') } } },
       'scene_office': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_office') } } },
       'scene_party': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_party') } } },
@@ -853,6 +851,10 @@ qx.Class.define('cv.IconConfig', {
       'scene_robo_lawnmower_charging': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_lawnmower_charging') } } },
       'scene_robo_lawnmower_paused': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_lawnmower_paused') } } },
       'scene_robo_lawnmower': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_lawnmower') } } },
+      'scene_robo_vac_cleaner_active': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_active') } } },
+      'scene_robo_vac_cleaner_attention': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_attention') } } },
+      'scene_robo_vac_cleaner_charging': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_charging') } } },
+      'scene_robo_vac_cleaner_paused': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_vac_cleaner_paused') } } },
       'scene_robo_vac_cleaner': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_robo_vac_cleaner') } } },
       'scene_sauna': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_sauna') } } },
       'scene_scene_teach_in': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_scene_teach_in') } } },
@@ -864,9 +866,11 @@ qx.Class.define('cv.IconConfig', {
       'scene_sleeping_twin_1_0': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_sleeping_twin_1_0') } } },
       'scene_sleeping_twin_1_1': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_sleeping_twin_1_1') } } },
       'scene_sleeping': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_sleeping') } } },
+      'scene_solar_panel': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_solar_panel') } } },
       'scene_stairs': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_stairs') } } },
       'scene_storeroom': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_storeroom') } } },
       'scene_stove': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_stove') } } },
+      'scene_stream_course': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_stream_course') } } },
       'scene_summerhouse': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_summerhouse') } } },
       'scene_swimming': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_swimming') } } },
       'scene_teens_room': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('scene_teens_room') } } },

@@ -67,8 +67,31 @@ def store_references(app):
     # only update references when we build from develop branch and for the correct language
     if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping") and \
        app.config.language == config.get("references", "language"):
-        with open(references_file, "w") as f:
-            f.write(dumps(references, indent=2, sort_keys=True))
+        if references_file[-5:] == ".json":
+            with open(references_file, "w") as f:
+                f.write(dumps(references, indent=2, sort_keys=True))
+        else:
+            content_before = []
+            content_after = []
+            mode = "before"
+            with open(references_file, "r") as f:
+                for l in f:
+                    if re.match("^    MAP:\\s{\\s*$", l):
+                        mode = "inside"
+                        content_before.append(l)
+                    elif re.match("^    }$", l):
+                        mode = "after"
+                    if mode == "before":
+                        content_before.append(l)
+                    elif mode == "after":
+                        content_after.append(l)
+            content = "%s    %s\n%s" % (
+                     "".join(content_before),
+                     "\n    ".join(dumps(references, indent=2, sort_keys=True).split("\n")[1:-1]),
+                     "".join(content_after)
+                 )
+            with open(references_file, "w") as f:
+                f.write(content)
 
 
 def store_redirect_map():
