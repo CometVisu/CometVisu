@@ -116,6 +116,8 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      */
     setAnimationSpeed: function (range, epsilon) {
       if( epsilon !== undefined ) {
+        this.setEpsilon( epsilon );
+      } else {
         this.setEpsilon( range / 1000 );
       }
 
