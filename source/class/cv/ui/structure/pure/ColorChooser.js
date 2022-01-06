@@ -200,7 +200,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           default:
             let parts = control.split(':');
             if(parts[0] === 'T') {
-              let temperatures = parts[1].split('-');
+              let temperatures = (parts[1] || '-').split('-');
               self.__Tmin = Math.max( 1667, Math.min( temperatures[0] || 2500, 25000 ));
               self.__Tmax = Math.max( 1667, Math.min( temperatures[1] || 9000, 25000 ));
               let

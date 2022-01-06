@@ -22,18 +22,17 @@ blauen Lichtern, aber auch eine RGBW-Beleuchtung mit zusätzlichem weißen
 Kanal ist möglich.
 
 .. widget-example::
-    :hide-source: true
 
-    <settings sleep="500" sleepAfterData="1000">
-        <screenshot name="colorchooser_example">
+    <settings sleep="500">
+        <screenshot name="colorchooser_example" sleep="1000">
             <caption>Der ColorChooser</caption>
             <data address="1/2/59" type="float">50</data>
             <data address="1/2/60" type="float">60</data>
             <data address="1/2/61" type="float">100</data>
         </screenshot>
     </settings>
-    <colorchooser controls="LCh-box">
-      <layout colspan="6" rowspan="4"/>
+    <colorchooser controls="LCh-box;T:2500-15000;Y">
+      <layout colspan="6" rowspan="6"/>
       <label>ColorChooser</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
@@ -47,8 +46,8 @@ Für die meisten Anwendungsfälle wird der einfache Modus ausreichen, da hier
 zugunsten einer einfachen Konfiguration auf die Details einer farbverbindlichen
 Wiedergabe verzichtet wird.
 
-Widget-Komponenten
-""""""""""""""""""
+Widget-Komponenten: Slider
+""""""""""""""""""""""""""
 
 Der ColorChooser bietet verschiedene Möglichkeiten und Kombinationen um eine
 Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte Auswahl, aber
@@ -79,23 +78,119 @@ Farbtemperatur mit der Beleuchtung erricht wird. Soll die Farbtemperatur noch
 um einen Slider für die Helligkeit ergänzt werden, so ist hierfür ``Y`` am
 besten geeignet.
 
+Bei dem Farbtemperatur-Slider kann durch einen Doppelpunkt getrennt der
+Bereich für die Farbtemperaturen festgelegt werden. So zeigt ``T:2000-10000``
+einen Slider der von 2000 Kelvin bis 10000 Kelvin reicht.
+
+Beispiel: RGB-Slider
+....................
+
 .. widget-example::
 
-    <settings sleep="500" sleepAfterData="1000">
-        <screenshot name="colorchooser_slider">
-            <caption>colorchooser, alle vorhandenen Slider</caption>
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_rgb" sleep="1000">
+            <caption>ColorChooser, RGB-Slider</caption>
+            <data address="1/2/59" type="float">90</data>
+            <data address="1/2/60" type="float">80</data>
             <data address="1/2/61" type="float">100</data>
-            <data address="1/2/59" type="float">50</data>
-            <data address="1/2/60" type="float">60</data>
         </screenshot>
     </settings>
-    <colorchooser controls="RGB-r;RGB-g;RGB-b;RGBW-r;RGBW-g;RGBW-b;RGBW-w;h;s;v;T:2500-20000;Y;LCh-L;LCh-C;LCh-h">
-      <layout colspan="6" rowspan="14"/>
-      <label>ColorChooser Slider</label>
+    <colorchooser controls="RGB-r;RGB-g;RGB-b">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser RGB-Slider</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
     </colorchooser>
+
+Beispiel: RGBW-Slider
+.....................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_rgbw" sleep="1000">
+            <caption>ColorChooser, RGBW-Slider</caption>
+            <data address="1/2/59" type="float">90</data>
+            <data address="1/2/60" type="float">100</data>
+            <data address="1/2/61" type="float">0</data>
+            <data address="1/2/62" type="float">80</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="RGBW-r;RGBW-g;RGBW-b;RGBW-w">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser RGBW-Slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-b">1/2/61</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-w">1/2/62</address>
+    </colorchooser>
+
+Beispiel: HSV-Slider
+....................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_hsv" sleep="1000">
+            <caption>ColorChooser, HSV-Slider</caption>
+            <data address="1/2/59" type="float">99</data>
+            <data address="1/2/60" type="float">80</data>
+            <data address="1/2/61" type="float">90</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="h;s;v">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser HSV-Slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="h">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="s">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="v">1/2/61</address>
+    </colorchooser>
+
+Beispiel: Farbtemperatur- und Helligkeits-Slider
+................................................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_TY" sleep="1000">
+            <caption>ColorChooser, Farbtemperatur- und Helligkeits-Slider</caption>
+            <data address="1/2/59" type="float">45.1</data>
+            <data address="1/2/60" type="float">68.6</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="T:2000-10000;Y">
+      <layout colspan="6" rowspan="3"/>
+      <label>ColorChooser T- und Y-Slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Beispiel: LCh-Slider
+....................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_LCh" sleep="1000">
+            <caption>ColorChooser, LCh-Slider</caption>
+            <data address="1/2/59" type="float">42.7</data>
+            <data address="1/2/60" type="float">0</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-L;LCh-C;LCh-h">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh-Slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Widget-Komponenten: Farbwahlrad
+"""""""""""""""""""""""""""""""
 
 Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten:
 
@@ -106,16 +201,73 @@ Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten
 ``LCh-triangle`` Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum
 ================ ====================================================================================
 
+Beispiel: kombinierter Wähler ``box``
+.....................................
+
 .. widget-example::
 
     <settings>
-        <screenshot name="colorchooser_complex">
-            <caption>colorchooser, kombinierte Wähler</caption>
+        <screenshot name="colorchooser_complex_box">
+            <caption>ColorChooser, kombinierte Wähler: box</caption>
         </screenshot>
     </settings>
-    <colorchooser controls="box;triangle;LCh-box;LCh-triangle">
-      <layout colspan="6" rowspan="16"/>
-      <label>ColorChooser</label>
+    <colorchooser controls="box">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser box</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Beispiel: kombinierter Wähler ``triangle``
+..........................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_triangle">
+            <caption>ColorChooser, kombinierte Wähler: triangle</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="triangle">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser triangle</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Beispiel: kombinierter Wähler ``LCh-box``
+.........................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_LCh_box">
+            <caption>ColorChooser, kombinierte Wähler: LCh-box</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-box">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh-box</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Beispiel: kombinierter Wähler ``LCh-triangle``
+..............................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_LCh_triangle">
+            <caption>ColorChooser, kombinierte Wähler: LCh-triangle</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-triangle">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh-triangle</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
@@ -260,13 +412,8 @@ Beispiel für einen ColorChooser für den OSRAM LINEARlight FLEX Colormix RGBW
 LED-Strip "LF700RGBW-G1-830-06" mit Farborten aus dem Datenblatt und einer
 Ansteuerung über DALI:
 
-.. widget-example::
+.. code-block:: xml
 
-    <settings>
-        <screenshot name="colorchooser_professional">
-            <caption>Triangle-ColorChooser im professionellen Modus</caption>
-        </screenshot>
-    </settings>
     <colorchooser
         r_wavelength="622" r_strength="80" r_curve="logarithmic"
         g_wavelength="534" g_strength="196" g_curve="logarithmic"
@@ -365,21 +512,38 @@ Erlaubte Kind-Elemente und deren Attribute
     diese Einschränkung nicht, sie können beispielsweise mit
     einer Adresse mit dem Zusatz ``variant="rgb"`` angesprochen werden.
 
-Dazu geht man wie folgt vor:
+Als Werte für ``variant`` sind zulässig:
 
-* Auf das Pluszeichen über der Adressliste klicken.
-* In das eingefügte, aber noch leere Feld klicken.
-* Wenn die Gruppenadresse für die Farben im Wiregate importiert wurden, kann die entsprechende
-  Adresse aus dem Auswahlmenü ausgewählt werden. Anderenfalls muss der Haken hinter dem Adressfeld entfernt
-  und die Adresse manuell nach dem Format ``x/y/z`` also z.B. ``1/2/59`` eingetragen werden.
-* Beim Auswählen einer importierten Gruppenadresse erscheint ggf. der richtige Datenpunkttyp unter Transforms.
-  Anderenfalls muss dort von Hand der DPT 5.001 "Scaling" ausgewählt werden.
-* Unter Variant muss nun das Kürzel für die Farbe eingegeben werden. z.B. für Rot muss ``r``,
-  für Grün ein ``g`` und für Blau ``b`` eingegeben werden.
-* Danach einmal auf save klicken und die Schritte für die nächste Farbe wiederholen.
+========== =====================================================================
+``RGB-r``  Roter Kanal einer RGB-Beleuchtung
+``RGB-g``  Grüner Kanal einer RGB-Beleuchtung
+``RGB-b``  Blauer Kanal einer RGB-Beleuchtung
+``r``      Abkürzung für ``RGB-r``
+``g``      Abkürzung für ``RGB-g``
+``b``      Abkürzung für ``RGB-b``
+``rgb``    Kombinierter Datentyp für RGB-Beleuchtung
+``RGBW-r`` Roter Kanal einer RGBW-Beleuchtung
+``RGBW-g`` Grüner Kanal einer RGBW-Beleuchtung
+``RGBW-b`` Blauer Kanal einer RGBW-Beleuchtung
+``RGBW-w`` Weißer Kanal einer RGBW-Beleuchtung
+``rgbw``   Kombinierter Datentyp für RGBW-Beleuchtung
+``h``      Hue-Kanal einer mit HSV angesteuerten Beleuchtung
+``s``      Saturation-Kanal einer mit HSV angesteuerten Beleuchtung
+``v``      Value-Kanal einer mit HSV angesteuerten Beleuchtung
+``hsv``    Kombinierter Datentyp für mit HSV angesteuerten Beleuchtung
+``x``      x-Kanal einer mit xyY angesteuerten Beleuchtung
+``y``      y-Kanal einer mit xyY angesteuerten Beleuchtung
+``Y``      Y-Kanal einer mit xyY angesteuerten Beleuchtung
+``xy``     Kombinierter Datentyp für mit xyY angesteuerten Beleuchtung
+``xyY``    Kombinierter Datentyp für mit xyY angesteuerten Beleuchtung
+========== =====================================================================
 
-Am Ende sollten drei Einträge in der Adressliste stehen. Mit einem Klick auf OK wird nun der
-Farbwahlkreis der aktuellen Visuseite hinzugefügt und kann an einer beliebigen Stelle platziert werden.
+.. note::
+
+    Die für die Kommunikation verwendeten ``variant`` müssen nicht den für
+    die Anzeige unter Interaktion verwendeten Widget-Elementen im ``controls``
+    Attribut entsprechen. So wäre ein ColorChooser mit HSV-Anzeige aber
+    RGB-Buskommunikation zulässig.
 
 XML Syntax
 ----------
@@ -391,15 +555,8 @@ der :ref:`visu_config.xml <xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das ColorChooser Plugin aus dem folgenden Screenshot erzeugt:
+.. code-block:: xml
 
-.. widget-example::
-
-    <settings>
-        <screenshot name="colorchooser_simple">
-            <caption>colorchooser, einfaches Beispiel</caption>
-        </screenshot>
-    </settings>
     <colorchooser>
       <layout colspan="6" rowspan="4"/>
       <label>RGB Flur</label>

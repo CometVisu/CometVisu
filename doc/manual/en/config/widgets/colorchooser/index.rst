@@ -17,6 +17,24 @@ as a RGBW light source that also has a white channel.
 
 .. ###END-WIDGET-DESCRIPTION###
 
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_example" sleep="1000">
+            <caption>The ColorChooser</caption>
+            <data address="1/2/59" type="float">50</data>
+            <data address="1/2/60" type="float">60</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-box;T:2500-15000;Y">
+      <layout colspan="6" rowspan="6"/>
+      <label>ColorChooser</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
 Simple mode
 ^^^^^^^^^^^
 
@@ -24,8 +42,8 @@ For most use cases the simple mode will be sufficient. It is optimized for
 a simple configuration by ignoring a perfect color consistency between lighting
 and display.
 
-Widget components
-"""""""""""""""""
+Widget components: slider
+"""""""""""""""""""""""""
 
 The ColorChooser offers different possibilities and combinations for selecting
 and displaying of a color. There are sliders for a direct control of a
@@ -55,23 +73,119 @@ well as the saturation at the same time, so that a given color temperature of
 white will be set. When you also want to control the brightness it is recommended
 to use ``Y`` for that.
 
+It is possible to configure the color temperature range that is used for the
+``T`` slider by stating it separated by a colon. E.g. ``T:2000-10000`` would
+create a slider going from 2000 Kelvin to 10000 Kelvin.
+
+Example: RGB slider
+...................
+
 .. widget-example::
 
-    <settings sleep="500" sleepAfterData="1000">
-        <screenshot name="colorchooser_slider">
-            <caption>colorchooser, all possible sliders</caption>
-            <data address="1/2/59">50</data>
-            <data address="1/2/60">60</data>
-            <data address="1/2/61">100</data>
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_rgb" sleep="1000">
+            <caption>ColorChooser, RGB slider</caption>
+            <data address="1/2/59" type="float">90</data>
+            <data address="1/2/60" type="float">80</data>
+            <data address="1/2/61" type="float">100</data>
         </screenshot>
     </settings>
-    <colorchooser controls="RGB-r;RGB-g;RGB-b;RGBW-r;RGBW-g;RGBW-b;RGBW-w;h;s;v;T:2500-20000;Y;LCh-L;LCh-C;LCh-h">
-      <layout colspan="6" rowspan="14"/>
-      <label>ColorChooser Slider</label>
+    <colorchooser controls="RGB-r;RGB-g;RGB-b">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser RGB slider</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
     </colorchooser>
+
+Example: RGBW slider
+....................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_rgbw" sleep="1000">
+            <caption>ColorChooser, RGBW slider</caption>
+            <data address="1/2/59" type="float">90</data>
+            <data address="1/2/60" type="float">100</data>
+            <data address="1/2/61" type="float">0</data>
+            <data address="1/2/62" type="float">80</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="RGBW-r;RGBW-g;RGBW-b;RGBW-w">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser RGBW slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-b">1/2/61</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="RGBW-w">1/2/62</address>
+    </colorchooser>
+
+Example: HSV slider
+...................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_hsv" sleep="1000">
+            <caption>ColorChooser, HSV slider</caption>
+            <data address="1/2/59" type="float">99</data>
+            <data address="1/2/60" type="float">80</data>
+            <data address="1/2/61" type="float">90</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="h;s;v">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser HSV slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="h">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="s">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="v">1/2/61</address>
+    </colorchooser>
+
+Example: color temperature and brightness slider
+................................................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_TY" sleep="1000">
+            <caption>ColorChooser, color temperature and brightness slider</caption>
+            <data address="1/2/59" type="float">45.1</data>
+            <data address="1/2/60" type="float">68.6</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="T:2000-10000;Y">
+      <layout colspan="6" rowspan="3"/>
+      <label>ColorChooser T and Y slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Example: LCh slider
+....................
+
+.. widget-example::
+
+    <settings sleep="500">
+        <screenshot name="colorchooser_slider_LCh" sleep="1000">
+            <caption>ColorChooser, LCh slider</caption>
+            <data address="1/2/59" type="float">42.7</data>
+            <data address="1/2/60" type="float">0</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-L;LCh-C;LCh-h">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh slider</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Widget components: color selection wheel
+""""""""""""""""""""""""""""""""""""""""
 
 There are also combined, more complex interactions possible:
 
@@ -82,16 +196,73 @@ There are also combined, more complex interactions possible:
 ``LCh-triangle`` Color selection wheel with triangular brightness and saturation selector, L*C*h° CIE color space
 ================ ================================================================================================
 
+Example: combined chooser ``box``
+.................................
+
 .. widget-example::
 
     <settings>
-        <screenshot name="colorchooser_complex">
-            <caption>colorchooser, combined selector</caption>
+        <screenshot name="colorchooser_complex_box">
+            <caption>ColorChooser, combined chooser: box</caption>
         </screenshot>
     </settings>
-    <colorchooser controls="box;triangle;LCh-box;LCh-triangle">
-      <layout colspan="6" rowspan="16"/>
-      <label>ColorChooser</label>
+    <colorchooser controls="box">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser box</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Example: combined chooser ``triangle``
+......................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_triangle">
+            <caption>ColorChooser, combined chooser: triangle</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="triangle">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser triangle</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Example: combined chooser ``LCh-box``
+.....................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_LCh_box">
+            <caption>ColorChooser, combined chooser: LCh-box</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-box">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh-box</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
+
+Example: combined chooser ``LCh-triangle``
+..........................................
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="colorchooser_complex_LCh_triangle">
+            <caption>ColorChooser, combined chooser: LCh-triangle</caption>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-triangle">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser LCh-triangle</label>
       <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
       <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
       <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
@@ -190,7 +361,7 @@ configured.
 
 Best results will be reached by measuring the colorimetric locus of the red,
 green, blue and (when available) white channel by using a spectral photometer
-and stating the measured ``x`` and ``y``coordinates of the CIE xyY color space
+and stating the measured ``x`` and ``y`` coordinates of the CIE xyY color space
 as well as the maximal brightness in the config file. This measurement can also provide
 a look up table for the dim curve.
 Due to aging of the light source those values should be regularly remeasured,
@@ -228,13 +399,8 @@ configured dim curve.
 Example of a ColorChooser for the OSRAM LINEARlight FLEX Colormix RGBW
 LED stripe "LF700RGBW-G1-830-06" with the datasheet data and a control via DALI:
 
-.. widget-example::
+.. code-block:: xml
 
-    <settings>
-        <screenshot name="colorchooser_professional">
-            <caption>Triangle ColorChooser, professional mode</caption>
-        </screenshot>
-    </settings>
     <colorchooser
         r_wavelength="622" r_strength="80" r_curve="logarithmic"
         g_wavelength="534" g_strength="196" g_curve="logarithmic"
@@ -329,6 +495,38 @@ Allowed child-elements und their attributes
     need to add a group address with corresponding ``variant`` each. For
     OpenHAB Color Items or one of the combined KNX data types this does not hold,
     here it is e.g. possible to use a ``variant="rgb"`` instead.
+
+Valid values for ``variant`` are:
+
+========== =====================================================================
+``RGB-r``  Red channel of RGB lighting
+``RGB-g``  Green channel of RGB lighting
+``RGB-b``  Blue channel of RGB lighting
+``r``      Shortcut for ``RGB-r``
+``g``      Shortcut for ``RGB-g``
+``b``      Shortcut for ``RGB-b``
+``rgb``    Combined data type of RGB lighting
+``RGBW-r`` Red channel of RGBW lighting
+``RGBW-g`` Green channel of RGBW lighting
+``RGBW-b`` Blue channel of RGBW lighting
+``RGBW-w`` White channel of RGBW lighting
+``rgbw``   Combined data type of RGBW lighting
+``h``      Hue channel of HSV controlled lighting
+``s``      Saturation channel of HSV controlled lighting
+``v``      Value channel of HSV controlled lighting
+``hsv``    Combined data type of HSV controlled lighting
+``x``      x channel of xyY controlled lighting
+``y``      y channel of xyY controlled lighting
+``Y``      Y channel of xyY controlled lighting
+``xy``     Combined data type of xyY controlled lighting
+``xyY``    Combined data type of xyY controlled lighting
+========== =====================================================================
+
+.. note::
+
+    The ``variant`` used for communication doesn't necessarily be similar to
+    the used widget elements as defined by ``controls``. It is valid to use
+    a ColorChooser with a HSV control and RGB bus communication.
 
 Examples
 --------
