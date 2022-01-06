@@ -57,7 +57,7 @@ to use ``Y`` for that.
 
 .. widget-example::
 
-    <settings sleep="1500">
+    <settings sleep="500" sleepAfterData="1000">
         <screenshot name="colorchooser_slider">
             <caption>colorchooser, all possible sliders</caption>
             <data address="1/2/59">50</data>

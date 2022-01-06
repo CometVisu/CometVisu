@@ -13,8 +13,6 @@ Der ColorChooser
 
 .. api-doc:: ColorChooser
 
-.. _colorchooser-Beschreibung:
-
 Beschreibung
 ------------
 
@@ -22,6 +20,25 @@ Mit dem ColorChooser lassen sich Farben auswählen und anzeigen, beispielsweise
 für eine Effektbeleuchtung. Sowohl eine RGB-Beleuchtung mit roten, grünen und
 blauen Lichtern, aber auch eine RGBW-Beleuchtung mit zusätzlichem weißen
 Kanal ist möglich.
+
+.. widget-example::
+    :hide-source: true
+
+    <settings sleep="500" sleepAfterData="1000">
+        <screenshot name="colorchooser_example">
+            <caption>Der ColorChooser</caption>
+            <data address="1/2/59" type="float">50</data>
+            <data address="1/2/60" type="float">60</data>
+            <data address="1/2/61" type="float">100</data>
+        </screenshot>
+    </settings>
+    <colorchooser controls="LCh-box">
+      <layout colspan="6" rowspan="4"/>
+      <label>ColorChooser</label>
+      <address transform="DPT:5.001" mode="readwrite" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" mode="readwrite" variant="b">1/2/61</address>
+    </colorchooser>
 
 Einfacher Modus
 ^^^^^^^^^^^^^^^
@@ -64,12 +81,12 @@ besten geeignet.
 
 .. widget-example::
 
-    <settings sleep="1500">
+    <settings sleep="500" sleepAfterData="1000">
         <screenshot name="colorchooser_slider">
             <caption>colorchooser, alle vorhandenen Slider</caption>
-            <data address="1/2/59">50</data>
-            <data address="1/2/60">60</data>
-            <data address="1/2/61">100</data>
+            <data address="1/2/61" type="float">100</data>
+            <data address="1/2/59" type="float">50</data>
+            <data address="1/2/60" type="float">60</data>
         </screenshot>
     </settings>
     <colorchooser controls="RGB-r;RGB-g;RGB-b;RGBW-r;RGBW-g;RGBW-b;RGBW-w;h;s;v;T:2500-20000;Y;LCh-L;LCh-C;LCh-h">

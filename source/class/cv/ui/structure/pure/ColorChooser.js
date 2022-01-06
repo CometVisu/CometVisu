@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     const base = this.getBaseColors();
     this.__color = new cv.util.Color( base.r, base.g, base.b, base.w );
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
-    this.__animator.setAnimationSpeed(100);
+    this.__animator.setAnimationSpeed(100, 0.5);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
     this.__components = new Set(Object.entries(this.getAddress()).map(v=>v[1].variantInfo));
     this.__lastBusValue = {};

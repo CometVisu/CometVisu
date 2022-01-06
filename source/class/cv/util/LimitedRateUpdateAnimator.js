@@ -116,13 +116,13 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      */
     setAnimationSpeed: function (range, epsilon) {
       if( epsilon !== undefined ) {
-        this.setEpsilon( range / 2000 );
+        this.setEpsilon( range / 1000 );
       }
 
       this.setLinearRateLimit(2*range);
       // Note: as the exponential dampening is working on a ratio it doesn't
       // need to be changed here and the default of 0.01 is fine:
-      this.setLinearRateLimit(0.01);
+      this.setExpDampTimeConstant(0.01);
     },
     /**
      * Set the value to a new value.
