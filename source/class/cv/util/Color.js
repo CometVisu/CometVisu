@@ -268,9 +268,6 @@ qx.Class.define('cv.util.Color', {
     if (this.__B.Y === undefined) {
       this.__B.Y = 1;
     }
-    if (this.__W.Y === undefined) {
-      this.__W.Y = 1;
-    }
 
     // normalize luminances
     let normFac = 1 / (this.__R.Y + this.__G.Y + this.__B.Y);
@@ -288,6 +285,9 @@ qx.Class.define('cv.util.Color', {
 
     if (undefined !== Wxy) {
       this.__W = Wxy;
+      if (this.__W.Y === undefined) {
+        this.__W.Y = 1;
+      }
       this.__W.X = this.__W.x * this.__W.Y / this.__W.y;
       this.__W.Z = (1 - this.__W.x - this.__W.y) * this.__W.Y / this.__W.y;
     } else {
@@ -343,7 +343,12 @@ qx.Class.define('cv.util.Color', {
      * HSV color space - last known value of h
      * @type {number}
      */
-    __h_last: 0,
+    __HSV_h_last: 0,
+    /**
+     * LCh color space - last known value of h
+     * @type {number}
+     */
+    __LCh_h_last: 0,
     /**
      * RGB color space - r, g and b are normalized to the range 0...1
      * @type {{r: number, g: number, b: number}}
@@ -464,7 +469,7 @@ qx.Class.define('cv.util.Color', {
 
       if (this.__hsv === undefined || force) {
         if (this.__Y < 1e-4) {
-          this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
+          this.__hsv = { h: this.__HSV_h_last, s: 0, v: this.__Y };
           return;
         }
 
@@ -479,7 +484,7 @@ qx.Class.define('cv.util.Color', {
 
         if ((this.__x-this.__W.x)**2 + (this.__y-this.__W.y)**2 < 1e-6) {
           // color is white
-          this.__hsv = { h: this.__h_last, s:0, v: this.__Y };
+          this.__hsv = { h: this.__HSV_h_last, s:0, v: this.__Y };
           return;
         }
         for (let i = 0; i<3; i++) {
@@ -494,7 +499,7 @@ qx.Class.define('cv.util.Color', {
           );
           if (inter1.factors[0]>=0 && inter1.factors[1]>=0 && inter1.factors[1]<=1) {
             this.__hsv = { h: 2*i/6+fac[0]/6, s: fac[1], v: fac[2] };
-            this.__h_last = this.__hsv.h;
+            this.__HSV_h_last = this.__hsv.h;
             break;
           }
 
@@ -507,11 +512,11 @@ qx.Class.define('cv.util.Color', {
         );
         if (inter2.factors[0]>=0 && inter2.factors[1]>=0 && inter2.factors[1]<=1) {
           this.__hsv = { h: (2*i+1)/6+fac2[0]/6, s: fac2[1], v: fac2[2] };
-          this.__h_last = this.__hsv.h;
+          this.__HSV_h_last = this.__hsv.h;
           break;
         }
         this.__hsv = { h: 0, s: 0, v: this.__Y };
-        this.__h_last = this.__hsv.h;
+        this.__HSV_h_last = this.__hsv.h;
         }
       }
     },
@@ -611,6 +616,11 @@ qx.Class.define('cv.util.Color', {
           C: Math.sqrt(this.__Lab.a**2 + this.__Lab.b**2) / 150, // map to 0...1
           h: (Math.atan2(this.__Lab.b, this.__Lab.a)/(2*Math.PI)+1)%1 // map angle to 0...1
         };
+        if (this.__LCh.C < 1e-5) {
+          this.__LCh.h = this.__LCh_h_last;
+        } else {
+          this.__LCh_h_last = this.__LCh.h;
+        }
       }
     },
 
@@ -850,9 +860,15 @@ qx.Class.define('cv.util.Color', {
 
         case 'LCh-L':
         case 'LCh-C':
+          this.__validateLCh();
+          this.__LCh[component.split('-')[1]] = clamp(value);
+          this.__syncLCh2xy();
+          break;
+
         case 'LCh-h':
           this.__validateLCh();
           this.__LCh[component.split('-')[1]] = clamp(value);
+          this.__LCh_h_last = this.__LCh.h;
           this.__syncLCh2xy();
           break;
 

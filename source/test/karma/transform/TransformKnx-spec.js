@@ -320,25 +320,44 @@ var testcases = [
   { transform: 'DPT:232.600', type: 'decode', source: 'ffffff', target: new Map(
       [['r', 100], ['g', 100], ['b', 100]]
     ), noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'encode', source: new Map(
+      [['h', 0], ['s', 0], ['v', 0]]
+    ), target: '80000000', noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'encode', source: new Map(
+      [['h', 72], ['s', 40], ['v', 60]]
+    ), target: '80336699', noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'encode', source: new Map(
+      [['h', 360], ['s', 100], ['v', 100]]
+    ), target: '80ffffff', noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'decode', source: '000000', target: new Map(
+      [['h', 0], ['s', 0], ['v', 0]]
+    ), noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'decode', source: '336699', target: new Map(
+      [['h', 72], ['s', 40], ['v', 60]]
+    ), noNumber: true },
+  { transform: 'DPT:232.600HSV', type: 'decode', source: 'ffffff', target: new Map(
+      [['h', 360], ['s', 100], ['v', 100]]
+    ), noNumber: true },
 
-  { transform: 'DPT:242.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
+  { transform: 'DPT:242.600', type: 'encode', source: 'foo', target: '80000000000000', noNumber: true }, // test misuse robustness
+  { transform: 'DPT:242.600', type: 'encode', source: 0, target: '80000000000001' }, // test misuse robustness
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
-      [['x', 0], ['y', 0], ['b', 0], ['cValid', false], ['bValid', false]]
+      [['x', 0], ['y', 0], ['Y', 0], ['cValid', false], ['YValid', false]]
     ), target: '80000000000000', noNumber: true },
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
-      [['x', 0.5], ['y', 0.25], ['b', 12.5], ['cValid', true ], ['bValid', false]]
+      [['x', 0.5], ['y', 0.25], ['Y', 12.5], ['cValid', true ], ['YValid', false]]
     ), target: '807fff3fff1f02', noNumber: true },
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
-      [['x', 1], ['y', 1], ['b', 100], ['cValid', true ], ['bValid', true ]]
+      [['x', 1], ['y', 1], ['Y', 100], ['cValid', true ], ['YValid', true ]]
     ), target: '80ffffffffff03', noNumber: true },
   { transform: 'DPT:242.600', type: 'decode', source: '000000000000', target: new Map(
-      [['x', 0], ['y', 0], ['b', 0], ['cValid', false], ['bValid', false]]
+      [['x', 0], ['y', 0], ['Y', 0], ['cValid', false], ['YValid', false]]
     ), noNumber: true },
   { transform: 'DPT:242.600', type: 'decode', source: '7fff3fff1f02', target: new Map(
-      [['x', 0x7fff/0xffff], ['y', 0x3fff/0xffff], ['b', 100*0x1f/0xff], ['cValid', true ], ['bValid', false]]
+      [['x', 0x7fff/0xffff], ['y', 0x3fff/0xffff], ['Y', 100*0x1f/0xff], ['cValid', true ], ['YValid', false]]
     ), noNumber: true },
   { transform: 'DPT:242.600', type: 'decode', source: 'ffffffffff03', target: new Map(
-      [['x', 1], ['y', 1], ['b', 100], ['cValid', true ], ['bValid', true ]]
+      [['x', 1], ['y', 1], ['Y', 100], ['cValid', true ], ['YValid', true ]]
     ), noNumber: true },
 
   { transform: 'DPT:251.600', type: 'encode', source: 0, target: '80000000000000' }, // test misuse robustness
@@ -365,7 +384,8 @@ var testcases = [
 describe('checking knx transforms', function() {
   // run testcases
   testcases.forEach(function(testcase, index) {
-    it('should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '" (test #' + index + ')', function() {
+    const source = testcase.source instanceof Map ? JSON.stringify(Object.fromEntries([...testcase.source])) : testcase.source;
+    it('should transform ' + testcase.transform + ' ' + testcase.type + ' "' + source + '" (test #' + index + ')', function() {
       switch (testcase.type) {
         case 'encode':
           // test direct
@@ -373,8 +393,8 @@ describe('checking knx transforms', function() {
           if (!testcase.noNumber) {
             // test integer
             if (!testcase.noInt) {
- expect(cv.Transform.encode(testcase.transform, testcase.source|0)).toEqual(testcase.target); 
-}
+              expect(cv.Transform.encode(testcase.transform, testcase.source|0)).toEqual(testcase.target);
+            }
             // test float
             expect(cv.Transform.encode(testcase.transform, +testcase.source)).toEqual(testcase.target);
             // test string
@@ -384,10 +404,10 @@ describe('checking knx transforms', function() {
 
         case 'decode':
           if (testcase.isDate) {
- expect(cv.Transform.decode(testcase.transform, testcase.source)+'').toEqual(testcase.target+''); 
-} else {
- expect(cv.Transform.decode(testcase.transform, testcase.source)).toEqual(testcase.target); 
-}
+            expect(cv.Transform.decode(testcase.transform, testcase.source)+'').toEqual(testcase.target+'');
+          } else {
+            expect(cv.Transform.decode(testcase.transform, testcase.source)).toEqual(testcase.target);
+          }
           break;
       }
     });

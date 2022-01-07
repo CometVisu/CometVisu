@@ -348,14 +348,14 @@ describe('checking color class', function() {
     expect(c.getComponent('RGBW-w')).toBeCloseTo(0.0, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
     c.changeComponent('RGBW-w', 0.2);
-    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.5, 4);
-    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.5, 4);
-    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.1, 4);
+    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.408, 2); // will be smaller than 0.5 as now some of it is in the white
+    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.408, 2); // will be smaller than 0.5 as now some of it is in the white
+    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.0, 4); // will be about 0 as now some of it is in the white
     expect(c.getComponent('RGBW-w')).toBeCloseTo(0.2, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.5, 4);
-    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.5, 4);
-    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.1, 4);
+    expect(c.getComponent('RGBW-r')).toBeCloseTo(0.408, 2); // will be smaller than 0.5 as now some of it is in the white
+    expect(c.getComponent('RGBW-g')).toBeCloseTo(0.408, 2); // will be smaller than 0.5 as now some of it is in the white
+    expect(c.getComponent('RGBW-b')).toBeCloseTo(0.0, 4); // will be about 0 as now some of it is in the white
     expect(c.getComponent('RGBW-w')).toBeCloseTo(0.2, 4);
 
     c.changeComponent('rgb', {r:0.1, g:0.2, b:0.3});
@@ -502,37 +502,43 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').x).toBeCloseTo(0.565045, 3);
     expect(c.getComponent('xy').y).toBeCloseTo(0.402741, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(1667, 4);
+    expect(c.getComponent('T')).toBeCloseTo(2000, 4); // colors can only be converted to temperatures in the range 2000...12500
 
     c.changeComponent('T', 2500);
     expect(c.getComponent('xy').x).toBeCloseTo(0.476996, 3);
     expect(c.getComponent('xy').y).toBeCloseTo(0.413676, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(2500, 4);
+    expect(c.getComponent('T')).toBeCloseTo(2500, -2);
 
     c.changeComponent('T', 4000);
     expect(c.getComponent('xy').x).toBeCloseTo(0.380440, 3);
     expect(c.getComponent('xy').y).toBeCloseTo(0.376747, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(4000, 4);
+    expect(c.getComponent('T')).toBeCloseTo(4000, -2);
+
+    c.changeComponent('T', 12500);
+    expect(c.getComponent('xy').x).toBeCloseTo(0.27010, 3);
+    expect(c.getComponent('xy').y).toBeCloseTo(0.27546, 3);
+    c.changeComponent('xy', c.getComponent('xy')); // force validation of color
+    expect(c.getComponent('T')).toBeCloseTo(12500, -3);
 
     c.changeComponent('T', 25000);
     expect(c.getComponent('xy').x).toBeCloseTo(0.252520, 3);
     expect(c.getComponent('xy').y).toBeCloseTo(0.252218, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(25000, 4);
+    expect(c.getComponent('T')).toBeCloseTo(12500, 4); // colors can only be converted to temperatures in the range 2000...12500
 
-    c.changeComponent('T', 1);
-    expect(c.getComponent('xy').x).toBeCloseTo(0.565045, 3);
+    c.changeComponent('T', 1);                         // way too low
+    expect(c.getComponent('xy').x).toBeCloseTo(0.565045, 3); // => limit at coordinates of 1667 K
     expect(c.getComponent('xy').y).toBeCloseTo(0.402741, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(1667, 4);
+    expect(c.getComponent('T')).toBeCloseTo(2000, 4); // colors can only be converted to temperatures in the range 2000...12500
 
-    c.changeComponent('T', 100000);
-    expect(c.getComponent('xy').x).toBeCloseTo(0.252520, 3);
+    c.changeComponent('T', 100000);                    // way too high
+    expect(c.getComponent('xy').x).toBeCloseTo(0.252520, 3); // => limit at coordinates of 25000 K
     expect(c.getComponent('xy').y).toBeCloseTo(0.252218, 3);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
-    expect(c.getComponent('T')).toBeCloseTo(25000, 4);
+    expect(c.getComponent('T')).toBeCloseTo(12500, 4); // colors can only be converted to temperatures in the range 2000...12500
 
     c.changeComponent('RGB-r', 1.00);
     c.changeComponent('RGB-g', 0.85);
@@ -574,6 +580,9 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(D65_xyY.y, 4);
     expect(c.getComponent('Y')).toBeCloseTo(0, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
+    expect(c.getComponent('Lab').L).toBeCloseTo(0, 3);
+    expect(c.getComponent('Lab').a).toBeCloseTo(0, 3);
+    expect(c.getComponent('Lab').b).toBeCloseTo(0, 3);
     expect(c.getComponent('LCh-L')).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
@@ -592,6 +601,9 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(D65_xyY.y, 4);
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
+    expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
+    expect(c.getComponent('Lab').a).toBeCloseTo(0, 4);
+    expect(c.getComponent('Lab').b).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
@@ -611,12 +623,15 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(0.239406, 4); // sRGB white point D65
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
+    expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
+    expect(c.getComponent('Lab').a).toBeCloseTo(150, 4);
+    expect(c.getComponent('Lab').b).toBeCloseTo(0, 4);
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0, 4);
-    expect(c.getComponent('RGB-r')).toBeCloseTo( 3.322491/3.322491, 3); // linear RGB
-    expect(c.getComponent('RGB-g')).toBeCloseTo( 0       /3.322491, 3); // linear RGB, clamp of -0.102746
-    expect(c.getComponent('RGB-b')).toBeCloseTo( 1.015299/3.322491, 3); // linear RGB
+    expect(c.getComponent('RGB-r')).toBeCloseTo(3.322491/3.322491, 3); // linear RGB
+    expect(c.getComponent('RGB-g')).toBeCloseTo(0       /3.322491, 3); // linear RGB, clamp of -0.102746
+    expect(c.getComponent('RGB-b')).toBeCloseTo(1.015299/3.322491, 3); // linear RGB
 
     c.changeComponent('LCh-h', 0.25); // LCh-h = 0.25 === CIE LCh h = 90°
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
@@ -629,6 +644,9 @@ describe('checking color class', function() {
     expect(c.getComponent('xy').y).toBeCloseTo(0.508264, 4); // sRGB white point D65
     expect(c.getComponent('Y')).toBeCloseTo(1, 4);
     c.changeComponent('xy', c.getComponent('xy')); // force validation of color
+    expect(c.getComponent('Lab').L).toBeCloseTo(100, 4);
+    expect(c.getComponent('Lab').a).toBeCloseTo(0, 4);
+    expect(c.getComponent('Lab').b).toBeCloseTo(150, 4);
     expect(c.getComponent('LCh-L')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-C')).toBeCloseTo(1, 4);
     expect(c.getComponent('LCh-h')).toBeCloseTo(0.25, 4);
