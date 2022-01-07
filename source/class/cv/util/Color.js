@@ -75,7 +75,7 @@ qx.Class.define('cv.util.Color', {
      * @returns {number[]}
      */
     solve3d: function (A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
-      function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
+      function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) { // eslint-disable-line
         return A00*A11*A22 + A01*A12*A20 + A02*A10*A21 - A20*A11*A02 - A21*A12*A00 - A22*A10*A01;
       }
       const detInv = 1/det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
@@ -439,6 +439,20 @@ qx.Class.define('cv.util.Color', {
        *    A3 * x*y*z + B3 * y*z + C3 * z = D3
        * </pre>
        * Wolfram Language code: Solve[{C1 z + B1 y z + A1 x y z == D1, C2 z + B2 y z + A2 x y z == D2, C3 z + B3 y z + A3 x y z == D3}, {x, y, z}]
+       *
+       * @param {number} A1
+       * @param {number} A2
+       * @param {number} A3
+       * @param {number} B1
+       * @param {number} B2
+       * @param {number} B3
+       * @param {number} C1
+       * @param {number} C2
+       * @param {number} C3
+       * @param {number} D1
+       * @param {number} D2
+       * @param {number} D3
+       * @returns {number[]}
        */
       function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
         return [
@@ -729,8 +743,15 @@ qx.Class.define('cv.util.Color', {
      * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value
      */
     changeComponent: function(component, value) {
-      function clamp(x, min=0, max=1) {
-        return Math.min(Math.max(min, x), max);
+      /**
+       * Clamp the value to the given range
+       * @param {number} value
+       * @param {number} [min]
+       * @param {number} [max]
+       * @returns {number}
+       */
+      function clamp(value, min=0, max=1) {
+        return Math.min(Math.max(min, value), max);
       }
 
       switch (component) {

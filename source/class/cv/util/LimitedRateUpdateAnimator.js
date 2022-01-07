@@ -115,10 +115,10 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      * @param {Number} [epsilon] end the animation when the remaining delta is smaller
      */
     setAnimationSpeed: function (range, epsilon) {
-      if( epsilon !== undefined ) {
-        this.setEpsilon( epsilon );
+      if (epsilon !== undefined) {
+        this.setEpsilon(epsilon);
       } else {
-        this.setEpsilon( range / 1000 );
+        this.setEpsilon(range / 1000);
       }
 
       this.setLinearRateLimit(2*range);
@@ -157,7 +157,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       let alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
       let nextValue = isNumber
           ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
-          : this.__currentValue.blend( this.__targetValue, alpha );
+          : this.__currentValue.blend(this.__targetValue, alpha);
       let delta = isNumber
           ? nextValue - this.__currentValue
           : this.__currentValue.delta(nextValue);
@@ -165,7 +165,7 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       if (Math.abs(delta) > maxLinearDelta) {
         nextValue = isNumber
           ? this.__currentValue + Math.sign(delta) * maxLinearDelta
-          : this.__currentValue.blend( this.__targetValue, alpha * maxLinearDelta / delta );
+          : this.__currentValue.blend(this.__targetValue, alpha * maxLinearDelta / delta);
       }
       if ((isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
           (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())) {
@@ -177,7 +177,9 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       this.getDisplayFn().call(this.__displayFnContext, this.__currentValue, this.__displayFnParameters);
 
       if (notFinished) {
-        this.__animationFrame = window.requestAnimationFrame((time)=>{this.__animate(time, thistime);});
+        this.__animationFrame = window.requestAnimationFrame(time => {
+          this.__animate(time, thistime);
+        });
       } else {
         this.__animationFrame = undefined;
       }
