@@ -46,7 +46,7 @@ qx.Class.define('cv.util.Color', {
      * @param {number} A11
      * @param {number} y0
      * @param {number} y1
-     * @returns {[number, number]}
+     * @returns {number[]}
      */
     solve2d: function (A00, A10, A01, A11, y0, y1) {
       const detInv = 1 / (A00 * A11 - A01 * A10);
@@ -72,7 +72,7 @@ qx.Class.define('cv.util.Color', {
      * @param {number} y0
      * @param {number} y1
      * @param {number} y2
-     * @returns {[number, number, number]}
+     * @returns {number[]}
      */
     solve3d: function (A00, A10, A20, A01, A11, A21, A02, A12, A22, y0, y1, y2) {
       function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
@@ -80,9 +80,9 @@ qx.Class.define('cv.util.Color', {
       }
       const detInv = 1/det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
       return [
-        det(y0 , y1 , y2 , A01, A11, A21, A02, A12, A22) * detInv,
-        det(A00, A10, A20, y0 , y1 , y2 , A02, A12, A22) * detInv,
-        det(A00, A10, A20, A01, A11, A21, y0 , y1 , y2 ) * detInv
+        det(y0 , y1 , y2 , A01, A11, A21, A02, A12, A22) * detInv, // eslint-disable-line
+        det(A00, A10, A20, y0 , y1 , y2 , A02, A12, A22) * detInv, // eslint-disable-line
+        det(A00, A10, A20, A01, A11, A21, y0 , y1 , y2 ) * detInv  // eslint-disable-line
       ];
     },
 
@@ -93,10 +93,15 @@ qx.Class.define('cv.util.Color', {
      * @param {{x: number, y: number}} p2
      * @param {{x: number, y: number}} p3
      * @param {{x: number, y: number}} p4
-     * @returns {{x: number, y: number, factors: [number, number]}}
+     * @returns {{x: number, y: number, factors: number[]}}
      */
     intersect: function(p1, p2, p3, p4) {
-      const x12 = p2.x-p1.x, y12 = p2.y-p1.y, x34 = p4.x-p3.x, y34 = p4.y-p3.y, x31 = p1.x-p3.x, y31 = p1.y-p3.y;
+      const x12 = p2.x-p1.x;
+      const y12 = p2.y-p1.y;
+      const x34 = p4.x-p3.x;
+      const y34 = p4.y-p3.y;
+      const x31 = p1.x-p3.x;
+      const y31 = p1.y-p3.y;
       const factors = cv.util.Color.solve2d(x34, y34, -x12, -y12, x31, y31);
       return {x:p3.x+factors[0]*x34, y:p3.y+factors[0]*y34, factors:factors};
     },
@@ -108,17 +113,16 @@ qx.Class.define('cv.util.Color', {
      * @returns {{x: number, y: number}}
      */
     wavelength2xy: function (wave) {
-      const
-        x_t1 = (wave-442.0)*((wave<442.0)?0.0624:0.0374),
-        x_t2 = (wave-599.8)*((wave<599.8)?0.0264:0.0323),
-        x_t3 = (wave-501.1)*((wave<501.1)?0.0490:0.0382),
-        X= 0.362*Math.exp(-0.5*x_t1*x_t1) + 1.056*Math.exp(-0.5*x_t2*x_t2) - 0.065*Math.exp(-0.5*x_t3*x_t3),
-        y_t1 = (wave-568.8)*((wave<568.8)?0.0213:0.0247),
-        y_t2 = (wave-530.9)*((wave<530.9)?0.0613:0.0322),
-        Y= 0.821*Math.exp(-0.5*y_t1*y_t1) + 0.286*Math.exp(-0.5*y_t2*y_t2),
-        z_t1 = (wave-437.0)*((wave<437.0)?0.0845:0.0278),
-        z_t2 = (wave-459.0)*((wave<459.0)?0.0385:0.0725),
-        Z= 1.217*Math.exp(-0.5*z_t1*z_t1) + 0.681*Math.exp(-0.5*z_t2*z_t2);
+      const x_t1 = (wave-442.0)*((wave<442.0)?0.0624:0.0374);
+      const x_t2 = (wave-599.8)*((wave<599.8)?0.0264:0.0323);
+      const x_t3 = (wave-501.1)*((wave<501.1)?0.0490:0.0382);
+      const X = 0.362*Math.exp(-0.5*x_t1*x_t1) + 1.056*Math.exp(-0.5*x_t2*x_t2) - 0.065*Math.exp(-0.5*x_t3*x_t3);
+      const y_t1 = (wave-568.8)*((wave<568.8)?0.0213:0.0247);
+      const y_t2 = (wave-530.9)*((wave<530.9)?0.0613:0.0322);
+      const Y = 0.821*Math.exp(-0.5*y_t1*y_t1) + 0.286*Math.exp(-0.5*y_t2*y_t2);
+      const z_t1 = (wave-437.0)*((wave<437.0)?0.0845:0.0278);
+      const z_t2 = (wave-459.0)*((wave<459.0)?0.0385:0.0725);
+      const Z= 1.217*Math.exp(-0.5*z_t1*z_t1) + 0.681*Math.exp(-0.5*z_t2*z_t2);
       return { x: X/(X+Y+Z), y: Y/(X+Y+Z) };
     },
 
@@ -128,7 +132,7 @@ qx.Class.define('cv.util.Color', {
      * @returns {{x: number, y: number}}
      */
     temperature2xy: function (T) {
-      T = Math.max( 1667, Math.min( T, 25000 ));
+      T = Math.max(1667, Math.min(T, 25000));
       let x = T <= 4000
         ? ((-0.2661239e9 / T - 0.2343589e6) / T + 0.8776956e3) / T + 0.179910
         : ((-3.0258469e9 / T + 2.1070379e6) / T + 0.2226347e3) / T + 0.240390;
@@ -138,7 +142,7 @@ qx.Class.define('cv.util.Color', {
           ? ((-1.1063814 * x - 1.34811020) * x + 2.18555832) * x - 0.20219683
           : T <= 4000
           ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
-          : (( 3.0817580 * x - 5.87338670) * x + 3.75112997) * x - 0.37001483
+          : (( 3.0817580 * x - 5.87338670) * x + 3.75112997) * x - 0.37001483 // eslint-disable-line space-in-parens
       };
     },
 
@@ -150,14 +154,13 @@ qx.Class.define('cv.util.Color', {
      * @returns {{r: number, g: number, b: number}}
      */
     xy2sRGB: function (xy, Y = 1) {
-      const
-        X = Y * xy.x / xy.y,
-        Z = Y * (1-xy.x-xy.y) / xy.y,
-        R =  3.2404542*X -1.5371385*Y -0.4985314*Z,
-        G = -0.9692660*X +1.8760108*Y +0.0415560*Z,
-        B =  0.0556434*X -0.2040259*Y +1.0572252*Z,
-        scale = 1 / Math.max(1, R, G, B), // very simple gamut mapping
-        gamma = u => u<=0.0031308 ? (12.92*u) : (1.055*u**(1/2.4) - 0.055);
+      const X = Y * xy.x / xy.y;
+      const Z = Y * (1-xy.x-xy.y) / xy.y;
+      const R =  3.2404542*X -1.5371385*Y -0.4985314*Z;
+      const G = -0.9692660*X +1.8760108*Y +0.0415560*Z;
+      const B =  0.0556434*X -0.2040259*Y +1.0572252*Z;
+      const scale = 1 / Math.max(1, R, G, B); // very simple gamut mapping
+      const gamma = u => u<=0.0031308 ? (12.92*u) : (1.055*u**(1/2.4) - 0.055);
       return {
         r: gamma(Math.max(R * scale, 0)),
         g: gamma(Math.max(G * scale, 0)),
@@ -172,23 +175,27 @@ qx.Class.define('cv.util.Color', {
      * @param {number} scale the maximal number of the real world value, usually 1, 100 or 255
      * @returns {number}
      */
-    curve: function (component, curve, scale ) {
-      if( component <= 0 ) { return Array.isArray(curve) ? curve[0]*scale : 0; }
-      if( component >= 1 ) { return Array.isArray(curve) ? curve[curve.length-1]*scale : scale; }
-      if( curve === 'log' ) {
+    curve: function (component, curve, scale) {
+      if (component <= 0) {
+        return Array.isArray(curve) ? curve[0]*scale : 0;
+      }
+      if (component >= 1) {
+        return Array.isArray(curve) ? curve[curve.length-1]*scale : scale;
+      }
+      if (curve === 'log') {
         return scale * Math.max(0, Math.min(1-Math.log10(component)/(-3), 1));
       }
-      if( curve === 'exp' ) {
+      if (curve === 'exp') {
         return scale * Math.max(0, Math.min(10 ** (-3 * (1-component)), 1));
       }
-      if( curve.length === 1 ) {
+      if (curve.length === 1) {
         return scale * component ** (1/curve[0]);
       }
       // otherwise: table conversion
       const spacing = 1 / (curve.length - 1); // the distance between two values
       const position = component / spacing;
-      const lower  = Math.max( Math.floor(position), 0 );
-      const higher = Math.min( Math.ceil(position), curve.length - 1 );
+      const lower  = Math.max(Math.floor(position), 0);
+      const higher = Math.min(Math.ceil(position), curve.length - 1);
       const alpha = position - lower;
       return scale * (curve[lower] * (1-alpha) + curve[higher] * alpha);
     },
@@ -200,32 +207,36 @@ qx.Class.define('cv.util.Color', {
      * @param {number} scale
      * @returns {number}
      */
-    invCurve: function (value, curve, scale ) {
-      if( value <= 0 ) { return 0; }
-      if( value >= scale ) { return 1; }
-      if( curve === 'log' ) {
+    invCurve: function (value, curve, scale) {
+      if (value <= 0) {
+        return 0;
+      }
+      if (value >= scale) {
+        return 1;
+      }
+      if (curve === 'log') {
         return Math.max(0, Math.min(10 ** (-3 * (1-value/scale)), 1));
       }
-      if( curve === 'exp' ) {
+      if (curve === 'exp') {
         return Math.max(0, Math.min(1-Math.log10(value/scale)/(-3), 1));
       }
-      if( curve.length === 1 ) {
+      if (curve.length === 1) {
         return curve[0] > 0 ? (value/scale) ** curve[0] : 0;
       }
       // otherwise: table conversion
       let normalized = value/scale;
-      let higher = curve.findIndex((x) => (x>normalized));
-      if( higher < 0 ) {
+      let higher = curve.findIndex(x => (x>normalized));
+      if (higher < 0) {
         // nothing found -> limit to highest index
         higher = curve.length - 1;
       }
-      let lower = Math.max( higher-1, 0 );
-      if( lower === higher ) {
+      let lower = Math.max(higher-1, 0);
+      if (lower === higher) {
         return lower / (curve.length-1);
       }
       let ratio = (normalized-curve[lower]) / (curve[higher]-curve[lower]);
-      return Math.min( (lower + ratio)/(curve.length-1), 1 );
-    },
+      return Math.min((lower + ratio)/(curve.length-1), 1);
+    }
   },
 
   /*
@@ -248,10 +259,18 @@ qx.Class.define('cv.util.Color', {
     this.__G = Gxy === undefined ? { x: 0.30, y: 0.60, Y: 0.7152 } : Gxy;
     this.__B = Bxy === undefined ? { x: 0.15, y: 0.06, Y: 0.0722 } : Bxy;
 
-    if( this.__R.Y === undefined ) { this.__R.Y = 1; }
-    if( this.__G.Y === undefined ) { this.__G.Y = 1; }
-    if( this.__B.Y === undefined ) { this.__B.Y = 1; }
-    if( this.__W.Y === undefined ) { this.__W.Y = 1; }
+    if (this.__R.Y === undefined) {
+      this.__R.Y = 1;
+    }
+    if (this.__G.Y === undefined) {
+      this.__G.Y = 1;
+    }
+    if (this.__B.Y === undefined) {
+      this.__B.Y = 1;
+    }
+    if (this.__W.Y === undefined) {
+      this.__W.Y = 1;
+    }
 
     // normalize luminances
     let normFac = 1 / (this.__R.Y + this.__G.Y + this.__B.Y);
@@ -267,7 +286,7 @@ qx.Class.define('cv.util.Color', {
     this.__B.X = this.__B.x * this.__B.Y / this.__B.y;
     this.__B.Z = (1 - this.__B.x - this.__B.y) * this.__B.Y / this.__B.y;
 
-    if( undefined !== Wxy ) {
+    if (undefined !== Wxy) {
       this.__W = Wxy;
       this.__W.X = this.__W.x * this.__W.Y / this.__W.y;
       this.__W.Z = (1 - this.__W.x - this.__W.y) * this.__W.Y / this.__W.y;
@@ -292,10 +311,10 @@ qx.Class.define('cv.util.Color', {
   */
   members: {
     // the base colors defining the color space of this color
-    __R: { x: 1.0, y: 0.0, Y: 1/3 },
-    __G: { x: 0.0, y: 1.0, Y: 1/3 },
-    __B: { x: 0.0, y: 0.0, Y: 1/3 },
-    __W: { x: 1/3, y: 1/3, Y: 1   },
+    __R: undefined,
+    __G: undefined,
+    __B: undefined,
+    __W: undefined,
 
     // the color itself
     /**
@@ -370,7 +389,7 @@ qx.Class.define('cv.util.Color', {
      * @param {number} Y
      * @param {number} Z
      */
-    __setXYZ: function( X, Y, Z ) {
+    __setXYZ: function(X, Y, Z) {
       const XYZ = X + Y + Z;
       // best guess for a total black: completely unsaturated, i.e. the white point
       this.__x = XYZ > 0 ? X / XYZ : this.__W.x;
@@ -385,24 +404,24 @@ qx.Class.define('cv.util.Color', {
      * @param {number} y
      * @returns {{x: number, y: number}}
      */
-    __gamutMap: function( x = this.__x, y = this.__y ) {
+    __gamutMap: function(x = this.__x, y = this.__y) {
       // is x-y on the same side of the R-G axis as the white point?
       let iRG = cv.util.Color.intersect(this.__R, this.__G, this.__W, {x:x, y:y});
-      if( iRG.factors[0] >=0 && iRG.factors[0] <= 1 ) {
+      if (iRG.factors[0] >=0 && iRG.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iRG.x;
         y = iRG.y;
       }
       // is x-y on the same side of the G-B axis as the white point?
       let iGB = cv.util.Color.intersect(this.__G, this.__B, this.__W, {x:x, y:y});
-      if( iGB.factors[0] >=0 && iGB.factors[0] <= 1 ) {
+      if (iGB.factors[0] >=0 && iGB.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iGB.x;
         y = iGB.y;
       }
       // is x-y on the same side of the B-R axis as the white point?
       let iBR = cv.util.Color.intersect(this.__B, this.__R, this.__W, {x:x, y:y});
-      if( iBR.factors[0] >=0 && iBR.factors[0] <= 1 ) {
+      if (iBR.factors[0] >=0 && iBR.factors[0] <= 1) {
         // no -> move it to be on the line
         x = iBR.x;
         y = iBR.y;
@@ -423,14 +442,14 @@ qx.Class.define('cv.util.Color', {
        */
       function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
         return [
-          ( B1*C2*D3 - B1*C3*D2 - B2*C1*D3 + B2*C3*D1 + B3*C1*D2 - B3*C2*D1)/(-A1*C2*D3 + A1*C3*D2 + A2*C1*D3 - A2*C3*D1 - A3*C1*D2 + A3*C2*D1),
-          ( A1*C2*D3 - A1*C3*D2 - A2*C1*D3 + A2*C3*D1 + A3*C1*D2 - A3*C2*D1)/(-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1),
-          (-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1)/(-A1*B2*C3 + A1*B3*C2 + A2*B1*C3 - A2*B3*C1 - A3*B1*C2 + A3*B2*C1)
+          ( B1*C2*D3 - B1*C3*D2 - B2*C1*D3 + B2*C3*D1 + B3*C1*D2 - B3*C2*D1)/(-A1*C2*D3 + A1*C3*D2 + A2*C1*D3 - A2*C3*D1 - A3*C1*D2 + A3*C2*D1), // eslint-disable-line
+          ( A1*C2*D3 - A1*C3*D2 - A2*C1*D3 + A2*C3*D1 + A3*C1*D2 - A3*C2*D1)/(-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1), // eslint-disable-line
+          (-A1*B2*D3 + A1*B3*D2 + A2*B1*D3 - A2*B3*D1 - A3*B1*D2 + A3*B2*D1)/(-A1*B2*C3 + A1*B3*C2 + A2*B1*C3 - A2*B3*C1 - A3*B1*C2 + A3*B2*C1)  // eslint-disable-line
         ];
       }
 
-      if( this.__hsv === undefined || force ) {
-        if( this.__Y < 1e-4 ) {
+      if (this.__hsv === undefined || force) {
+        if (this.__Y < 1e-4) {
           this.__hsv = { h: this.__h_last, s: 0, v: this.__Y };
           return;
         }
@@ -442,16 +461,16 @@ qx.Class.define('cv.util.Color', {
           return {x: X/(X+Y+Z), y: Y/(X+Y+Z), X:X, Y:Y, Z:Z};
         };
         const hues = [this.__R, this.__G, this.__B, this.__R];
-        const thisXYZ = {X:this.__x*this.__Y/this.__y,Y:this.__Y,Z: (1-this.__x-this.__y)*this.__Y/this.__y};
+        const thisXYZ = {X:this.__x*this.__Y/this.__y, Y:this.__Y, Z: (1-this.__x-this.__y)*this.__Y/this.__y};
 
-        if( (this.__x-this.__W.x)**2 + (this.__y-this.__W.y)**2 < 1e-6 ) {
+        if ((this.__x-this.__W.x)**2 + (this.__y-this.__W.y)**2 < 1e-6) {
           // color is white
           this.__hsv = { h: this.__h_last, s:0, v: this.__Y };
           return;
         }
-        for(let i = 0; i<3; i++) {
-          let inter1 =  cv.util.Color.intersect(hues[i],colorAdd(hues[i],hues[i+1]),this.__W,{x:this.__x,y:this.__y});
-          let inter2 =  cv.util.Color.intersect(colorAdd(hues[i],hues[i+1]),hues[i+1],this.__W,{x:this.__x,y:this.__y});
+        for (let i = 0; i<3; i++) {
+          const inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i+1]), this.__W, {x:this.__x, y:this.__y});
+          const inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i+1]), hues[i+1], this.__W, {x:this.__x, y:this.__y});
           // hues[i] -> (hues[i]+hues[i+1])
           const fac = solve(
             hues[i+1].X, hues[i+1].Y, hues[i+1].Z,
@@ -459,7 +478,7 @@ qx.Class.define('cv.util.Color', {
             this.__W.X, this.__W.Y, this.__W.Z,
             thisXYZ.X, thisXYZ.Y, thisXYZ.Z
           );
-          if(inter1.factors[0]>=0 && 0<=inter1.factors[1] && inter1.factors[1]<=1) {
+          if (inter1.factors[0]>=0 && inter1.factors[1]>=0 && inter1.factors[1]<=1) {
             this.__hsv = { h: 2*i/6+fac[0]/6, s: fac[1], v: fac[2] };
             this.__h_last = this.__hsv.h;
             break;
@@ -472,7 +491,7 @@ qx.Class.define('cv.util.Color', {
             this.__W.X, this.__W.Y, this.__W.Z,
             thisXYZ.X, thisXYZ.Y, thisXYZ.Z
         );
-        if(inter2.factors[0]>=0 && 0<=inter2.factors[1] && inter2.factors[1]<=1) {
+        if (inter2.factors[0]>=0 && inter2.factors[1]>=0 && inter2.factors[1]<=1) {
           this.__hsv = { h: (2*i+1)/6+fac2[0]/6, s: fac2[1], v: fac2[2] };
           this.__h_last = this.__hsv.h;
           break;
@@ -484,7 +503,7 @@ qx.Class.define('cv.util.Color', {
     },
 
     __validateRGB: function (force) {
-      if( this.__rgb === undefined || force ) {
+      if (this.__rgb === undefined || force) {
         this.__rgb = {};
         const {X, Y, Z} = this.__getXYZ();
         [this.__rgb.r, this.__rgb.g, this.__rgb.b] = cv.util.Color.solve3d(
@@ -495,17 +514,17 @@ qx.Class.define('cv.util.Color', {
         );
         // scale and clamp:
         let max = Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b);
-        if( max < 1 ) {
+        if (max < 1) {
           max = 1;
         }
-        this.__rgb.r = Math.max( 0, this.__rgb.r / max );
-        this.__rgb.g = Math.max( 0, this.__rgb.g / max );
-        this.__rgb.b = Math.max( 0, this.__rgb.b / max );
+        this.__rgb.r = Math.max(0, this.__rgb.r / max);
+        this.__rgb.g = Math.max(0, this.__rgb.g / max);
+        this.__rgb.b = Math.max(0, this.__rgb.b / max);
       }
     },
 
     __validateRGBW: function (force) {
-      if( this.__rgbw === undefined || force ) {
+      if (this.__rgbw === undefined || force) {
         const {X, Y, Z} = this.__getXYZ();
         let w2rgb = cv.util.Color.solve3d(
           this.__R.X, this.__R.Y, this.__R.Z,
@@ -527,13 +546,13 @@ qx.Class.define('cv.util.Color', {
 
         // scale and clamp:
         let max = Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w);
-        if( max < 1 ) {
+        if (max < 1) {
           max = 1;
         }
-        this.__rgbw.r = Math.max( 0, this.__rgbw.r / max );
-        this.__rgbw.g = Math.max( 0, this.__rgbw.g / max );
-        this.__rgbw.b = Math.max( 0, this.__rgbw.b / max );
-        this.__rgbw.w = Math.max( 0, this.__rgbw.w / max );
+        this.__rgbw.r = Math.max(0, this.__rgbw.r / max);
+        this.__rgbw.g = Math.max(0, this.__rgbw.g / max);
+        this.__rgbw.b = Math.max(0, this.__rgbw.b / max);
+        this.__rgbw.w = Math.max(0, this.__rgbw.w / max);
       }
     },
 
@@ -543,24 +562,24 @@ qx.Class.define('cv.util.Color', {
       // perceived color most closely resembles that of a given stimulus at the
       // same brightness and under specified viewing conditions
       // This formula works for CCT between 2000 K and 12500 K.
-      if( this.__T === undefined || force ) {
-        let
-          n = (this.__x - 0.3320) / (this.__y - 0.1858),
-          T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
-        this.__T = Math.max( 2000, Math.min( T, 12500 ));
+      if (this.__T === undefined || force) {
+        const n = (this.__x - 0.3320) / (this.__y - 0.1858);
+        const T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
+        this.__T = Math.max(2000, Math.min(T, 12500));
       }
     },
 
     __validateLab: function (force) {
-      if( this.__Lab === undefined || force ) {
-        const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
+      if (this.__Lab === undefined || force) {
+        const Xn = this.__W.X;
+        const Yn = this.__W.Y;
+        const Zn = this.__W.Z;
         const {X, Y, Z} = this.__getXYZ();
         const f = function(t) {
-          if(t < 216/24389) {
+          if (t < 216/24389) {
             return (24389/27*t+16)/116;
-          } else {
-            return t**(1/3);
           }
+          return t**(1/3);
         };
         this.__Lab = {
           L: 116 * f(Y/Yn) - 16,
@@ -587,7 +606,7 @@ qx.Class.define('cv.util.Color', {
      * @param {string} keep
      * @param {string} [keep2]
      */
-    __invalidateBut( keep, keep2 = '' ) {
+    __invalidateBut(keep, keep2 = '') {
       [
         '__rgb',
         '__rgbw',
@@ -595,8 +614,8 @@ qx.Class.define('cv.util.Color', {
         '__Lab',
         '__LCh',
         '__T'
-      ].forEach( cache => {
-        if( cache !== keep && cache !== keep2 ) {
+      ].forEach(cache => {
+        if (cache !== keep && cache !== keep2) {
           this[cache] = undefined;
         }
       });
@@ -605,62 +624,59 @@ qx.Class.define('cv.util.Color', {
     // synchronise xyY
     __syncHSV2xy: function () {
       // first step: get maximum saturated RGB values
-      let r, g, b;
-      if(this.__hsv.h < 1/6) {
+      let r; let g; let b; let u; let d;         // eslint-disable-line max-statements-per-line
+      if (this.__hsv.h < 1/6) {
         let u = (this.__hsv.h - 0/6) * 6;
-        r = 1; g = u; b = 0;
-      } else if(this.__hsv.h < 2/6) {
-        let u = (this.__hsv.h - 1/6) * 6, d = 1-u;
-        r = d; g = 1; b = 0;
-      } else if(this.__hsv.h < 3/6) {
+        r = 1; g = u; b = 0;                     // eslint-disable-line max-statements-per-line
+      } else if (this.__hsv.h < 2/6) {
+        u = (this.__hsv.h - 1/6) * 6; d = 1-u;   // eslint-disable-line max-statements-per-line
+        r = d; g = 1; b = 0;                     // eslint-disable-line max-statements-per-line
+      } else if (this.__hsv.h < 3/6) {
         let u = (this.__hsv.h - 2/6) * 6;
-        r = 0; g = 1; b = u;
-      } else if(this.__hsv.h < 4/6) {
-        let u = (this.__hsv.h - 3/6) * 6, d = 1-u;
-        r = 0; g = d; b = 1;
-      } else if(this.__hsv.h < 5/6) {
-        let u = (this.__hsv.h - 4/6) * 6;
-        r = u; g = 0; b = 1;
+        r = 0; g = 1; b = u;                     // eslint-disable-line max-statements-per-line
+      } else if (this.__hsv.h < 4/6) {
+        u = (this.__hsv.h - 3/6) * 6; d = 1-u;   // eslint-disable-line max-statements-per-line
+        r = 0; g = d; b = 1;                     // eslint-disable-line max-statements-per-line
+      } else if (this.__hsv.h < 5/6) {
+        u = (this.__hsv.h - 4/6) * 6;
+        r = u; g = 0; b = 1;                     // eslint-disable-line max-statements-per-line
       } else {
-        let u = (this.__hsv.h - 5/6) * 6, d = 1-u;
-        r = 1; g = 0; b = d;
+        u = (this.__hsv.h - 5/6) * 6; d = 1-u;   // eslint-disable-line max-statements-per-line
+        r = 1; g = 0; b = d;                     // eslint-disable-line max-statements-per-line
       }
 
       // second step: blend with white to take saturation into account and scale with brightness
-      const
-        X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X) * this.__hsv.v,
-        Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y) * this.__hsv.v,
-        Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z) * this.__hsv.v;
+      const X = ((this.__R.X * r + this.__G.X * g + this.__B.X * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.X) * this.__hsv.v;
+      const Y = ((this.__R.Y * r + this.__G.Y * g + this.__B.Y * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Y) * this.__hsv.v;
+      const Z = ((this.__R.Z * r + this.__G.Z * g + this.__B.Z * b) * this.__hsv.s + (1-this.__hsv.s) * this.__W.Z) * this.__hsv.v;
       this.__setXYZ(X, Y, Z);
       this.__invalidateBut('__hsv');
     },
 
     __syncRGB2xy: function () {
-      this.__Y = Math.max( this.__rgb.r, this.__rgb.g, this.__rgb.b );
-      if( this.__Y > 0 ) {
-        const
-          X = this.__R.X * this.__rgb.r + this.__G.X * this.__rgb.g + this.__B.X * this.__rgb.b,
-          Y = this.__R.Y * this.__rgb.r + this.__G.Y * this.__rgb.g + this.__B.Y * this.__rgb.b,
-          Z = this.__R.Z * this.__rgb.r + this.__G.Z * this.__rgb.g + this.__B.Z * this.__rgb.b;
-        this.__setXYZ( X, Y, Z );
+      this.__Y = Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b);
+      if (this.__Y > 0) {
+        const X = this.__R.X * this.__rgb.r + this.__G.X * this.__rgb.g + this.__B.X * this.__rgb.b;
+        const Y = this.__R.Y * this.__rgb.r + this.__G.Y * this.__rgb.g + this.__B.Y * this.__rgb.b;
+        const Z = this.__R.Z * this.__rgb.r + this.__G.Z * this.__rgb.g + this.__B.Z * this.__rgb.b;
+        this.__setXYZ(X, Y, Z);
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__invalidateBut('__rgb');
     },
 
     __syncRGBW2xy: function () {
-      this.__Y = Math.max( this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w );
-      if( this.__Y > 0 ) {
-        let
-          X = this.__R.X * this.__rgbw.r + this.__G.X * this.__rgbw.g + this.__B.X * this.__rgbw.b + this.__W.X * this.__rgbw.w,
-          Y = this.__R.Y * this.__rgbw.r + this.__G.Y * this.__rgbw.g + this.__B.Y * this.__rgbw.b + this.__W.Y * this.__rgbw.w,
-          Z = this.__R.Z * this.__rgbw.r + this.__G.Z * this.__rgbw.g + this.__B.Z * this.__rgbw.b + this.__W.Z * this.__rgbw.w;
-        this.__setXYZ( X, Y, Z );
+      this.__Y = Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w);
+      if (this.__Y > 0) {
+        const X = this.__R.X * this.__rgbw.r + this.__G.X * this.__rgbw.g + this.__B.X * this.__rgbw.b + this.__W.X * this.__rgbw.w;
+        const Y = this.__R.Y * this.__rgbw.r + this.__G.Y * this.__rgbw.g + this.__B.Y * this.__rgbw.b + this.__W.Y * this.__rgbw.w;
+        const Z = this.__R.Z * this.__rgbw.r + this.__G.Z * this.__rgbw.g + this.__B.Z * this.__rgbw.b + this.__W.Z * this.__rgbw.w;
+        this.__setXYZ(X, Y, Z);
       } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
       this.__invalidateBut('__rgbw');
     },
 
     __syncT2xy: function () {
-      let xy = cv.util.Color.temperature2xy( this.__T );
+      let xy = cv.util.Color.temperature2xy(this.__T);
       this.__x = xy.x;
       this.__y = xy.y;
       this.__invalidateBut('__T');
@@ -671,21 +687,21 @@ qx.Class.define('cv.util.Color', {
     },
 
     __syncLab2xy: function (keepLCh = false) {
-      const Xn = this.__W.X, Yn = this.__W.Y, Zn = this.__W.Z;
+      const Xn = this.__W.X;
+      const Yn = this.__W.Y;
+      const Zn = this.__W.Z;
       const fInv = function(t) {
-        if(t < 6/29) {
+        if (t < 6/29) {
           return 3*(6/29)**2*(t-4/29);
-        } else {
-          return t**3;
         }
+        return t**3;
       };
-      const
-        Lab = this.__Lab,
-        L16 = (Lab.L + 16)/116,
-        X = Xn * fInv(L16 + Lab.a/500),
-        Y = Yn * fInv(L16),
-        Z = Zn * fInv(L16 - Lab.b/200);
-      this.__setXYZ( X, Y, Z );
+      const Lab = this.__Lab;
+      const L16 = (Lab.L + 16)/116;
+      const X = Xn * fInv(L16 + Lab.a/500);
+      const Y = Yn * fInv(L16);
+      const Z = Zn * fInv(L16 - Lab.b/200);
+      this.__setXYZ(X, Y, Z);
 
       this.__invalidateBut('__Lab', keepLCh?'__LCh':'');
     },
@@ -712,12 +728,12 @@ qx.Class.define('cv.util.Color', {
      * @param {string} component
      * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value
      */
-    changeComponent: function( component, value ) {
+    changeComponent: function(component, value) {
       function clamp(x, min=0, max=1) {
-        return Math.min(Math.max(min,x),max);
+        return Math.min(Math.max(min, x), max);
       }
 
-      switch( component ) {
+      switch (component) {
         case 'h':
         case 's':
         case 'v':
@@ -779,7 +795,7 @@ qx.Class.define('cv.util.Color', {
           break;
 
         case 'T':
-          this.__T = Math.max( 1667, Math.min( value, 25000 ) );
+          this.__T = Math.max(1667, Math.min(value, 25000));
           this.__syncT2xy();
           break;
 
@@ -862,7 +878,7 @@ qx.Class.define('cv.util.Color', {
     getComponent: function (component, gamutMap = true, force = false) {
       const clamp = (min, x, max) => Number.isFinite(x) ? (gamutMap ? Math.max(min, Math.min(x, max)) : x) : 0;
 
-      switch(component) {
+      switch (component) {
         case 'xy':
           return {x: clamp(0, this.__x, 1), y: clamp(0, this.__y, 1)};
         case 'Y':
@@ -881,7 +897,7 @@ qx.Class.define('cv.util.Color', {
           return {
             h: clamp(0, this.__hsv.h, 1),
             s: clamp(0, this.__hsv.s, 1),
-            v: clamp(0, this.__hsv.v, 1),
+            v: clamp(0, this.__hsv.v, 1)
           };
 
         case 'RGB-r':
@@ -924,7 +940,7 @@ qx.Class.define('cv.util.Color', {
 
         case 'T':
           this.__validateT(force);
-          return clamp( 1667, this.__T, 25000);
+          return clamp(1667, this.__T, 25000);
 
         case 'Lab':
           this.__validateLab(force);
@@ -941,9 +957,11 @@ qx.Class.define('cv.util.Color', {
           return {
             L: clamp(0, this.__LCh.L, 1),
             C: clamp(0, this.__LCh.C, 1),
-            h: clamp(0, this.__LCh.h, 1),
+            h: clamp(0, this.__LCh.h, 1)
           };
       }
+
+      return undefined; // unknown component
     },
 
     /**
@@ -963,11 +981,10 @@ qx.Class.define('cv.util.Color', {
     delta: function (otherColor) {
       this.__validateLab();
       otherColor.__validateLab();
-      const
-        Lab = otherColor.__Lab,
-        dL = this.__Lab.L - Lab.L,
-        da = this.__Lab.a - Lab.a,
-        db = this.__Lab.b - Lab.b;
+      const Lab = otherColor.__Lab;
+      const dL = this.__Lab.L - Lab.L;
+      const da = this.__Lab.a - Lab.a;
+      const db = this.__Lab.b - Lab.b;
       return Math.sqrt(dL*dL + da*da + db*db);
     },
 
@@ -984,18 +1001,17 @@ qx.Class.define('cv.util.Color', {
     blend: function (otherColor, ratio) {
       this.__validateLCh();
       otherColor.__validateLCh();
-      const
-        b = (x,y) => ((1-ratio)*x + ratio*y),
-        c = this.copy(),
-        c1 = this.__LCh,
-        c2 = otherColor.__LCh,
-        s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h),
-        e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
+      const b = (x, y) => ((1-ratio)*x + ratio*y);
+      const c = this.copy();
+      const c1 = this.__LCh;
+      const c2 = otherColor.__LCh;
+      const s = Math.abs(c2.h-c1.h+1) > Math.abs(c2.h-c1.h);
+      const e = Math.abs(c2.h-c1.h-1) > Math.abs(c2.h-c1.h);
 
-      c._forceLCh( {
-        h: b(c1.h+s,c2.h+e)%1, // handle 360° === 0° to always take shortest distance
-        L: b(c1.L,c2.L),
-        C: b(c1.C,c2.C)
+      c._forceLCh({
+        h: b(c1.h+s, c2.h+e)%1, // handle 360° === 0° to always take shortest distance
+        L: b(c1.L, c2.L),
+        C: b(c1.C, c2.C)
       });
       return c;
     }

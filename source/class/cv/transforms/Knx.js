@@ -730,24 +730,23 @@ qx.Class.define('cv.transforms.Knx', {
         name  : 'DPT_Colour_xyY',
         encode: function(phy) {
           if (!(phy instanceof Map)) {
-            if( !Number.isFinite(phy)) {
+            if (!Number.isFinite(phy)) {
               return {bus: '80000000000000', raw: '000000000000'};
             }
             phy = new Map([['Y', phy]]);
           }
 
-          const
-            cValid = phy.has('x') && phy.has('y') && (phy.get('cValid') || (Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y')))),
-            YValid = phy.has('Y') && (phy.get('YValid') || Number.isFinite(phy.get('Y'))),
-            x = phy.get('x') || 0,
-            y = phy.get('y') || 0,
-            Y = phy.get('Y') || 0,
-            val = [
-              Math.floor(x * 65535).toString(16).padStart(4, '0'),
-              Math.floor(y * 65535).toString(16).padStart(4, '0'),
-              Math.floor(Y * 255).toString(16).padStart(2, '0'),
-              (cValid*2 + YValid*1).toString(16).padStart(2, '0')
-            ].join('');
+          const cValid = phy.has('x') && phy.has('y') && (phy.get('cValid') || (Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y'))));
+          const YValid = phy.has('Y') && (phy.get('YValid') || Number.isFinite(phy.get('Y')));
+          const x = phy.get('x') || 0;
+          const y = phy.get('y') || 0;
+          const Y = phy.get('Y') || 0;
+          const val = [
+            Math.floor(x * 65535).toString(16).padStart(4, '0'),
+            Math.floor(y * 65535).toString(16).padStart(4, '0'),
+            Math.floor(Y * 255).toString(16).padStart(2, '0'),
+            (cValid*2 + YValid*1).toString(16).padStart(2, '0')
+          ].join('');
 
           return {
             bus: '80' + val,
@@ -772,23 +771,22 @@ qx.Class.define('cv.transforms.Knx', {
             return { bus: '80000000000000', raw: '000000000000' };
           }
 
-          const
-            rValid = phy.has('r') && (phy.get('rValid') || Number.isFinite(phy.get('r'))),
-            gValid = phy.has('g') && (phy.get('gValid') || Number.isFinite(phy.get('g'))),
-            bValid = phy.has('b') && (phy.get('bValid') || Number.isFinite(phy.get('b'))),
-            wValid = phy.has('w') && (phy.get('wValid') || Number.isFinite(phy.get('w'))),
-            r = phy.get('r') || 0,
-            g = phy.get('g') || 0,
-            b = phy.get('b') || 0,
-            w = phy.get('w') || 0,
-            val = [
-              Math.floor(r * 255 / 100).toString(16).padStart(2, '0'),
-              Math.floor(g * 255 / 100).toString(16).padStart(2, '0'),
-              Math.floor(b * 255 / 100).toString(16).padStart(2, '0'),
-              Math.floor(w * 255 / 100).toString(16).padStart(2, '0'),
-              '00',
-              (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
-            ].join('');
+          const rValid = phy.has('r') && (phy.get('rValid') || Number.isFinite(phy.get('r')));
+          const gValid = phy.has('g') && (phy.get('gValid') || Number.isFinite(phy.get('g')));
+          const bValid = phy.has('b') && (phy.get('bValid') || Number.isFinite(phy.get('b')));
+          const wValid = phy.has('w') && (phy.get('wValid') || Number.isFinite(phy.get('w')));
+          const r = phy.get('r') || 0;
+          const g = phy.get('g') || 0;
+          const b = phy.get('b') || 0;
+          const w = phy.get('w') || 0;
+          const val = [
+            Math.floor(r * 255 / 100).toString(16).padStart(2, '0'),
+            Math.floor(g * 255 / 100).toString(16).padStart(2, '0'),
+            Math.floor(b * 255 / 100).toString(16).padStart(2, '0'),
+            Math.floor(w * 255 / 100).toString(16).padStart(2, '0'),
+            '00',
+            (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
+          ].join('');
 
           return {
             bus: '80' + val,

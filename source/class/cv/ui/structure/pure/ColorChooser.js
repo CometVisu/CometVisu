@@ -164,21 +164,22 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         controls[0] = 'box';
       }
       controls.forEach(function(control) {
-        let hue_type, parts;
         switch (control) {
           case 'box':
-          case 'LCh-box':
-            hue_type = control === 'box' ? 'hsv_hue' : 'lch_hue';
+          case 'LCh-box': {
+            let hue_type = control === 'box' ? 'hsv_hue' : 'lch_hue';
             retval += '<div class="actor cc_box"><div class="hue ' + hue_type;
             retval += '"></div><div class="handle_hue"></div><div class="sv_box"><div class="inner"></div><div class="handle"></div></div></div>';
             break;
+          }
 
           case 'triangle':
-          case 'LCh-triangle':
-            hue_type = control === 'triangle' ? 'hsv_hue' : 'lch_hue';
+          case 'LCh-triangle': {
+            let hue_type = control === 'triangle' ? 'hsv_hue' : 'lch_hue';
             retval += '<div class="actor cc_wheel"><div class="hue ' + hue_type;
             retval += '"></div><div class="sv_triangle"><div class="inner"></div><div class="handle_hue"></div><div class="handle"></div></div></div>';
             break;
+          }
 
           case 'RGB-r':
           case 'RGB-g':
@@ -200,22 +201,23 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             </div>`;
             break;
 
-          default:
-            parts = control.split(':');
+          default: {
+            let parts = control.split(':');
             if (parts[0] === 'T') {
               const temperatures = (parts[1] || '-').split('-');
               self.__Tmin = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
               self.__Tmax = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
               const rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmin));
               const rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__Tmax));
-              const disp = c => [Math.round(255*c.r), Math.round(255*c.g), Math.round(255*c.b)].join(',');
+              const disp = c => [Math.round(255 * c.r), Math.round(255 * c.g), Math.round(255 * c.b)].join(',');
               const colors = 'rgb(' + disp(rgbTmin) + '), rgb(' + disp(rgbTmax) + ')';
 
               retval += `<div class="actor cc_T ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
-                <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
-                <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);background: linear-gradient(90deg, `+colors+`);"></div>
+                <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">` + placeholder + `</button>
+                <div class="ui-slider-range" style="margin-left: 0px; clip-path: inset(0 100% 0 0);background: linear-gradient(90deg, ` + colors + `);"></div>
               </div>`;
             }
+          }
         }
       });
       return '<div class="actors"'+historicWidth+'>' + retval + '</div>';
@@ -335,8 +337,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
         case 'Y':
           if (value instanceof Map && value.get('YValid') !== false) {
             value = value.get('Y');
-          } else if (Number.isFinite(value)) {
-          } else {
+          } else if (!Number.isFinite(value)) {
             showInvalidDataErrorMessage(transform, variant);
             return; // nothing that can be done with this data
           }
@@ -533,7 +534,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
       let actor;
 
       switch (event.type) {
-        case 'pointerdown':
+        case 'pointerdown': {
           document.addEventListener('pointermove', this);
           document.addEventListener('pointerup', this);
           let actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/, '$1');
@@ -542,33 +543,33 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMinX = boundingRect.left + parseFloat(computedStyle.paddingLeft);
           this.__coordMinY = boundingRect.top;
-          relCoordX = (event.clientX - this.__coordMinX)/actor.width;
-          relCoordY = (event.clientY - this.__coordMinY)/actor.height;
+          relCoordX = (event.clientX - this.__coordMinX) / actor.width;
+          relCoordY = (event.clientY - this.__coordMinY) / actor.height;
           if (actorType === 'wheel') {
             let radius = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
-            let sv=cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(actor.isLCh?'LCh':'hsv').h, radius);
-            let distSqrd = (relCoordX-0.5)**2 + (relCoordY-0.5)**2;
-            if (radius**2 < distSqrd && distSqrd < 0.5**2) {
+            let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
+            let distSqrd = (relCoordX - 0.5) ** 2 + (relCoordY - 0.5) ** 2;
+            if (radius ** 2 < distSqrd && distSqrd < 0.5 ** 2) {
               this.__mode = 'wheel_h';
-              this.__color.changeComponent(actor.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2/Math.PI);
+              this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
               this.__inDrag = true;
-            } else if (sv[0]>=0 && sv[0]<=1 && sv[1]>=0 && sv[1]<=1) {
+            } else if (sv[0] >= 0 && sv[0] <= 1 && sv[1] >= 0 && sv[1] <= 1) {
               this.__mode = 'wheel_sv';
-              this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', sv);
+              this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
               this.__inDrag = true;
             }
           } else if (actorType === 'box') {
             let boxSize = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
-            let x = relCoordX-0.5;
-            let y = relCoordY-0.5;
-            let sv =  [-x/boxSize/2+0.5, -y/boxSize/2+0.5];
+            let x = relCoordX - 0.5;
+            let y = relCoordY - 0.5;
+            let sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
             if ((Math.abs(x) < boxSize) && (Math.abs(y) < boxSize)) {
               this.__mode = 'box_sv';
-              this.__color.changeComponent(actor.isLCh?'LCh-CL':'sv', sv);
+              this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
               this.__inDrag = true;
             } else {
               this.__mode = 'box_h';
-              this.__color.changeComponent(actor.isLCh?'LCh-h':'h', 0.5 + Math.atan2(-x, y) / 2/Math.PI);
+              this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
               this.__inDrag = true;
             }
           } else {
@@ -581,6 +582,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             this.__inDrag = true;
           }
           break;
+        }
 
         case 'pointermove': {
           if (!this.__inDrag) {
