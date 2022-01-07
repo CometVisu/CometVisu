@@ -117,6 +117,7 @@
         "error",
         "single"
       ],
+      "no-multi-spaces": "off",
       "protractor/no-shadowing": "off",
       "protractor/no-promise-in-if": "off"
     },

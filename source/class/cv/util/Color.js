@@ -48,7 +48,7 @@ qx.Class.define('cv.util.Color', {
      * @param {number} y1
      * @returns {[number, number]}
      */
-    solve2d: function (A00, A10, A01, A11, y0, y1 ) {
+    solve2d: function (A00, A10, A01, A11, y0, y1) {
       const detInv = 1 / (A00 * A11 - A01 * A10);
       return [ (y0 * A11 - A01 * y1) * detInv, (A00 * y1 - y0 * A10) * detInv ];
     },
@@ -195,8 +195,9 @@ qx.Class.define('cv.util.Color', {
 
     /**
      * Convert a real world value to a color component by applying the inverse dim curve
-     * @param value {number}
-     * @param scale {number}
+     * @param {number} value
+     * @param {(string|number[])} curve -the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table
+     * @param {number} scale
      * @returns {number}
      */
     invCurve: function (value, curve, scale ) {
@@ -226,7 +227,7 @@ qx.Class.define('cv.util.Color', {
       return Math.min( (lower + ratio)/(curve.length-1), 1 );
     },
   },
-  
+
   /*
   ******************************************************
     CONSTRUCTOR
@@ -543,7 +544,7 @@ qx.Class.define('cv.util.Color', {
       // same brightness and under specified viewing conditions
       // This formula works for CCT between 2000 K and 12500 K.
       if( this.__T === undefined || force ) {
-        let 
+        let
           n = (this.__x - 0.3320) / (this.__y - 0.1858),
           T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
         this.__T = Math.max( 2000, Math.min( T, 12500 ));
@@ -709,7 +710,7 @@ qx.Class.define('cv.util.Color', {
      * - L, C, h: 0...1
      *
      * @param {string} component
-     * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{x:number, y:number})} value
+     * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value
      */
     changeComponent: function( component, value ) {
       function clamp(x, min=0, max=1) {
@@ -731,7 +732,7 @@ qx.Class.define('cv.util.Color', {
           this.__hsv.v = clamp(value[1]);
           this.__syncHSV2xy();
           break;
-          
+
         case 'hsv':
           this.__hsv = {
             h: clamp(value.h),
@@ -856,7 +857,7 @@ qx.Class.define('cv.util.Color', {
      * @param {string} component
      * @param {boolean} gamutMap
      * @param {boolean} force
-     * @returns {(number|{x: number, y: number}|{h: number, s: number, v: number}|{r: number, g: number, b: number, w: number}|{L: number, a: number, b: number}|{L: number, C: number, h: number})}
+     * @returns {(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}
      */
     getComponent: function (component, gamutMap = true, force = false) {
       const clamp = (min, x, max) => Number.isFinite(x) ? (gamutMap ? Math.max(min, Math.min(x, max)) : x) : 0;
@@ -885,37 +886,41 @@ qx.Class.define('cv.util.Color', {
 
         case 'RGB-r':
         case 'RGB-g':
-        case 'RGB-b':
+        case 'RGB-b': {
           this.__validateRGB(force);
-          let map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
           return map * this.__rgb[component.split('-')[1]];
+        }
 
-        case 'rgb':
+        case 'rgb': {
           this.__validateRGB(force);
-          map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgb.r, this.__rgb.g, this.__rgb.b, 1) : 1;
           return {
             r: map * this.__rgb.r,
             g: map * this.__rgb.g,
             b: map * this.__rgb.b
           };
+        }
 
         case 'RGBW-r':
         case 'RGBW-g':
         case 'RGBW-b':
-        case 'RGBW-w':
+        case 'RGBW-w': {
           this.__validateRGBW(force);
-          map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
           return map * this.__rgbw[component.split('-')[1]];
+        }
 
-        case 'rgbw':
+        case 'rgbw': {
           this.__validateRGBW(force);
-          map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
+          const map = gamutMap ? 1 / Math.max(this.__rgbw.r, this.__rgbw.g, this.__rgbw.b, this.__rgbw.w, 1) : 1;
           return {
             r: map * this.__rgbw.r,
             g: map * this.__rgbw.g,
             b: map * this.__rgbw.b,
             w: map * this.__rgbw.w
           };
+        }
 
         case 'T':
           this.__validateT(force);
