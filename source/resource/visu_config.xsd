@@ -273,6 +273,10 @@
   </xsd:attribute>
 
   <xsd:attribute name="mode">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">"disable" deactivates the communication, "read" will only fetch data from the backend, "write" will only write to it and an address with "readwrite" will be both, read from and written to.</xsd:documentation>
+      <xsd:documentation xml:lang="de">"disable" daktiviert die Kommunikation, bei "read" wird nur vom Backend gelesen, bei "write" wird nur geschrieben und "readwrite" wird die Addresse zum Lesen und zum Schreiben verwendet.</xsd:documentation>
+    </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="disable" />
