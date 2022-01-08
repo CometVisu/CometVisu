@@ -245,6 +245,32 @@ this purpose can be used:
 -  :doc:`Flavour <flavour>` allow additional options for some
    widgets in some designs.
 
+Addresses - the communication with the backend
+----------------------------------------------
+
+Most widgets require one or more ``address`` elements for the communication
+with the backend to get the information from the KNX bus, OpenHAB or MQTT.
+The content of the element is the address itself, the attributes control
+the behavior:
+
+========= ======================================================================
+transform set the datatype at the backend, e.g. ``DPT:1.001`` for the KNX
+          datapoint type 1.001
+mode      defines whether the address will only be listened at (``read``),
+          written to (``write``) or both (``readwrite``)
+variant   optional and only relevant for some widgets where multiple
+          addresses are required at the same time, e.g. to define the red,
+          green and blue channel for a color
+========= ======================================================================
+
+.. note::
+
+    In the KNX context it is common to have ``write`` for only one address
+    and one or more (different) addresses with ``read``.
+
+    This principle is exactly the same that the KNX components are using to
+    set a value and give back the status.
+
 Widgets in the CometVisu
 ------------------------
 
