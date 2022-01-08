@@ -181,6 +181,9 @@ qx.Class.define('cv.io.openhab.Rest', {
         case 'Dimmer':
           return parseInt(state) > 0;
 
+        case 'Color':
+          return state !== '0,0,0';
+
         case 'Rollershutter':
           return state === '0';
 
@@ -297,10 +300,10 @@ qx.Class.define('cv.io.openhab.Rest', {
             groupNames.forEach(groupName => {
               const group = this.__groups[groupName];
               let active = 0;
-              group.members[item].value = change.value;
+              group.members[item].state = change.value;
               Object.keys(group.members).forEach(memberName => {
                 const member = group.members[memberName];
-                if (this.__isActive(member.type, member.value)) {
+                if (this.__isActive(member.type, member.state)) {
                   active++;
                 }
               });

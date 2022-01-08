@@ -44,6 +44,12 @@ body {
     margin: 0;
     position: relative;
 
+    svg.defs-only {
+        display:block; position: absolute;
+        height:0; width:0; margin: 0; padding: 0;
+        border: none; overflow: hidden;
+    }
+
     .blocker {
         background-color: $blockerColor;
         opacity: 0.5;
@@ -196,8 +202,24 @@ body {
         > [row='last'] > label:first-child {
             margin-top: 4px;
         }
-    }
 
+        cv-icon {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 2);
+            position: relative;
+
+            svg {
+                color: $primaryText;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    cv-tile[size="0.5x1"] {
+        height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
+    }
     cv-tile[size="1x2"] {
         width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
     }
