@@ -104,14 +104,29 @@ qx.Class.define('cv.Transform', {
     /**
      * Enforce that value stays within range
      * When value is not a valid number, the min value is returned
-     * @param min {Number} lower threshold
-     * @param value {var} value to clip
-     * @param max {Number} upper threshold
-     * @return {Number} the clipped value
+     * @param {number} min lower threshold
+     * @param {any} value value to clip
+     * @param {number} max upper threshold
+     * @param [scaling] {Number} scale the clipping result by that amount
+     * @return {number} the clipped value
      */
-    clip: function (min, value, max) {
-      value = +value; // enforce number
-      return value > min ? (value > max ? max : value) : min;
+    clip: function (min, value, max, scaling = 1) {
+      const _value = +value; // enforce number
+      return (_value > min ? (_value > max ? max : _value) : min) * scaling;
+    },
+
+    /**
+     * Enforce that value stays within range and is an integer
+     * When value is not a valid number, the min value is returned
+     * @param {number} min lower threshold
+     * @param {any} value value to clip
+     * @param {number} max upper threshold
+     * @param [scaling] {Number} scale the clipping result by that amount
+     * @return {number} the clipped value
+     */
+    clipInt: function (min, value, max, scaling = 1) {
+      const _value = +value; // enforce number
+      return Math.round((_value > min ? (_value > max ? max : _value) : min) * scaling);
     },
 
     /**

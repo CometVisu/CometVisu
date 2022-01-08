@@ -177,10 +177,10 @@ qx.Class.define('cv.util.Color', {
      */
     curve: function (component, curve, scale) {
       if (component <= 0) {
-        return Array.isArray(curve) ? curve[0]*scale : 0;
+        return (Array.isArray(curve) && curve.length > 1) ? curve[0]*scale : 0;
       }
       if (component >= 1) {
-        return Array.isArray(curve) ? curve[curve.length-1]*scale : scale;
+        return (Array.isArray(curve) && curve.length > 1) ? curve[curve.length-1]*scale : scale;
       }
       if (curve === 'log') {
         return scale * Math.max(0, Math.min(1-Math.log10(component)/(-3), 1));

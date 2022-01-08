@@ -535,8 +535,6 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
 
       switch (event.type) {
         case 'pointerdown': {
-          document.addEventListener('pointermove', this);
-          document.addEventListener('pointerup', this);
           let actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/, '$1');
           actor = this.__actors[actorType];
           let boundingRect = event.currentTarget.getBoundingClientRect();
@@ -548,15 +546,20 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
           if (actorType === 'wheel') {
             let radius = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
             let sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__color.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
-            let distSqrd = (relCoordX - 0.5) ** 2 + (relCoordY - 0.5) ** 2;
-            if (radius ** 2 < distSqrd && distSqrd < 0.5 ** 2) {
-              this.__mode = 'wheel_h';
-              this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
-              this.__inDrag = true;
-            } else if (sv[0] >= 0 && sv[0] <= 1 && sv[1] >= 0 && sv[1] <= 1) {
-              this.__mode = 'wheel_sv';
-              this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
-              this.__inDrag = true;
+            let distSqrd = (relCoordX - 0.5)**2 + (relCoordY - 0.5)**2;
+            if (distSqrd < (0.5*1.07)**2) { // ignore clicks outside of the wheel, with 7% safety margin on the outside
+              const clearlyOnWheel = (radius * 1.10)**2 < distSqrd; // with 10% safety margin to the interior triangle
+              const closeToInerior = radius**2 < distSqrd && !clearlyOnWheel;
+              const closeToTriangleCorners = (sv[1] < 0.01) || (sv[0] < 0.01 && sv[1] > 0.99) || (sv[0] > 0.99 && sv[1] > 0.99);
+              if (clearlyOnWheel || (closeToInerior && !closeToTriangleCorners)) {
+                this.__mode = 'wheel_h';
+                this.__color.changeComponent(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+                this.__inDrag = true;
+              } else {
+                this.__mode = 'wheel_sv';
+                this.__color.changeComponent(actor.isLCh ? 'LCh-CL' : 'sv', sv);
+                this.__inDrag = true;
+              }
             }
           } else if (actorType === 'box') {
             let boxSize = actor !== undefined ? (0.5 * actor.innerRadius / actor.outerRadius) : 1;
@@ -580,6 +583,12 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
             this.__mode = actorType;
             this.__color.changeComponent(actorType, ratio);
             this.__inDrag = true;
+          }
+          if (this.__inDrag) {
+            document.addEventListener('pointermove', this);
+            document.addEventListener('pointerup', this);
+          } else {
+            this.__mode = undefined;
           }
           break;
         }

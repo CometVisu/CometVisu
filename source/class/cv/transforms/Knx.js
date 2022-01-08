@@ -68,7 +68,7 @@ qx.Class.define('cv.transforms.Knx', {
       '3.007': {
         name: 'DPT_Control_Dimming',
         encode: function (phy) {
-          phy = parseFloat(phy);
+          phy = +phy; // enforce number
           if (phy < -100 || (phy > -1 && phy <= 0)) {
             return { bus: '80', raw: '00' }; // down: stop
           }
@@ -104,7 +104,7 @@ qx.Class.define('cv.transforms.Knx', {
       '4.001': {
         name: 'DPT_Char_ASCII',
         encode: function (phy) {
-          const val = phy.charCodeAt(0).toString(16).padStart(2, '0');
+          const val = (''+phy).charCodeAt(0).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -126,7 +126,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 100.0
         },
         encode: function (phy) {
-          const val = parseInt(phy * 255 / 100).toString(16).padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy, 100, 255 / 100).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -144,7 +144,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 360.0
         },
         encode: function (phy) {
-          const val = parseInt(phy * 255 / 360).toString(16).padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy, 360, 255 / 360).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -162,7 +162,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 255.0
         },
         encode: function (phy) {
-          const val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16).padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -185,7 +185,7 @@ qx.Class.define('cv.transforms.Knx', {
       '6.001': {
         name: 'DPT_Percent_V8',
         encode: function (phy) {
-          phy = parseInt(cv.Transform.clip(-128, phy, 127));
+          phy = cv.Transform.clipInt(-128, phy, 127);
           let val = phy < 0 ? phy + 256 : phy;
           val = val.toString(16).padStart(2, '0');
           return {
@@ -204,8 +204,12 @@ qx.Class.define('cv.transforms.Knx', {
 
       '7.001': {
         name: 'DPT_Value_2_Ucount',
+        range: {
+          min: 0,
+          max: 0xffff
+        },
         encode: function (phy) {
-          const val = parseInt(phy).toString(16).padStart(4, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffff).toString(16).padStart(4, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -226,8 +230,12 @@ qx.Class.define('cv.transforms.Knx', {
 
       '8.001': {
         name: 'DPT_Value_2_Count',
+        range: {
+          min: -0x8000,
+          max: 0x7fff
+        },
         encode: function (phy) {
-          let val = parseInt(phy);
+          let val = cv.Transform.clipInt(-0x8000, phy, 0x7fff);
           val = val < 0 ? val + 65536 : val;
           val = val.toString(16).padStart(4, '0');
           return {
@@ -250,8 +258,8 @@ qx.Class.define('cv.transforms.Knx', {
           if (undefined === phy || isNaN(phy)) {
             return '7fff';
           }
-          const sign = phy < 0 ? 0x8000 : 0;
-          let mant = Math.round(phy * 100.0);
+          const sign = (+phy) < 0 ? 0x8000 : 0;
+          let mant = Math.round((+phy) * 100.0);
           let exp = 0;
           while (Math.abs(mant) > 2047) {
             mant >>= 1;
@@ -339,8 +347,12 @@ qx.Class.define('cv.transforms.Knx', {
 
       '12.001': {
         name: 'DPT_Value_4_Ucount',
+        range: {
+          min: 0,
+          max: 0xffffffff
+        },
         encode: function (phy) {
-          const val = parseInt(phy).toString(16).padStart(8, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffffffff).toString(16).padStart(8, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -356,10 +368,14 @@ qx.Class.define('cv.transforms.Knx', {
 
       '13.001': {
         name: 'DPT_Value_4_Count',
+        range: {
+          min: -0x80000000,
+          max: 0x7fffffff
+        },
         encode: function (phy) {
-          let val = parseInt(phy);
+          let val = cv.Transform.clipInt(-0x80000000, phy, 0x7fffffff);
           val = val < 0 ? val + 4294967296 : val;
-          val = val.toString(16).padStart(8, '0');
+          val = Math.round(val).toString(16).padStart(8, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -470,7 +486,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+128
         },
         encode: function (phy) {
-          const val = parseInt(cv.Transform.clip(0, phy - 1, 63 + 128)).toString(16).padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy - 1, 63 + 128).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -501,7 +517,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 64.0+64
         },
         encode: function (phy) {
-          const val = parseInt(cv.Transform.clip(0, phy - 1, 63 + 64)).toString(16).padStart(2, '0');
+          const val = cv.Transform.clipInt(0, phy - 1, 63 + 64).toString(16).padStart(2, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -612,13 +628,12 @@ qx.Class.define('cv.transforms.Knx', {
       '225.001' : {
         name  : 'DPT_ScalingSpeed',
         encode: function(phy) {
-          let
-            period = phy.get('period') || 0;
-            let percent = phy.get('percent') || 0;
-            let val = [
-              parseInt(period).toString(16).padStart(4, '0'),
-              parseInt(percent * 255 / 100).toString(16).padStart(2, '0')
-            ].join('');
+          const period = phy.get('period') || 0;
+          const percent = phy.get('percent') || 0;
+          const val = [
+            cv.Transform.clipInt(0, period, 0xffff).toString(16).padStart(4, '0'),
+            cv.Transform.clipInt(0, percent, 100, 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -636,10 +651,10 @@ qx.Class.define('cv.transforms.Knx', {
         unit: '-',
         range: {
           min: 0x0,
-          max: 0xfff
+          max: 0xffffff
         },
         encode: function (phy) {
-          const val = parseInt(cv.Transform.clip(0, phy, 0xffffff)).toString(16).padStart(6, '0');
+          const val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
@@ -660,9 +675,9 @@ qx.Class.define('cv.transforms.Knx', {
           const g = phy.get('g') || 0;
           const b = phy.get('b') || 0;
           const val = [
-            parseInt(r * 255 / 100).toString(16).padStart(2, '0'),
-            parseInt(g * 255 / 100).toString(16).padStart(2, '0'),
-            parseInt(b * 255 / 100).toString(16).padStart(2, '0')
+            cv.Transform.clipInt(0, r, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, g, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, b, 100, 255 / 100).toString(16).padStart(2, '0')
           ].join('');
           return {
             bus: '80' + val,
@@ -688,9 +703,9 @@ qx.Class.define('cv.transforms.Knx', {
           const s = phy.get('s') || 0;
           const v = phy.get('v') || 0;
           const val = [
-            parseInt(h * 255 / 360).toString(16).padStart(2, '0'),
-            parseInt(s * 255 / 100).toString(16).padStart(2, '0'),
-            parseInt(v * 255 / 100).toString(16).padStart(2, '0')
+            cv.Transform.clipInt(0, h, 360, 255 / 360).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, s, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, v, 100, 255 / 100).toString(16).padStart(2, '0')
           ].join('');
           return {
             bus: '80' + val,
@@ -709,9 +724,9 @@ qx.Class.define('cv.transforms.Knx', {
         name  : 'DPT_3U8',
         encode: function(phy) {
           let val = [
-            parseInt(phy[0] * 255 / 100).toString(16).padStart(2, '0'),
-            parseInt(phy[1] * 255 / 100).toString(16).padStart(2, '0'),
-            parseInt(phy[2] * 255 / 100).toString(16).padStart(2, '0')
+            cv.Transform.clipInt(0, phy[0], 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, phy[1], 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, phy[2], 100, 255 / 100).toString(16).padStart(2, '0')
           ].join('');
           return {
             bus: '80' + val,
@@ -742,9 +757,9 @@ qx.Class.define('cv.transforms.Knx', {
           const y = phy.get('y') || 0;
           const Y = phy.get('Y') || 0;
           const val = [
-            Math.floor(x * 65535).toString(16).padStart(4, '0'),
-            Math.floor(y * 65535).toString(16).padStart(4, '0'),
-            Math.floor(Y * 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, x, 1, 65535).toString(16).padStart(4, '0'),
+            cv.Transform.clipInt(0, y, 1, 65535).toString(16).padStart(4, '0'),
+            cv.Transform.clipInt(0, Y, 100, 255 / 100).toString(16).padStart(2, '0'),
             (cValid*2 + YValid*1).toString(16).padStart(2, '0')
           ].join('');
 
@@ -780,10 +795,10 @@ qx.Class.define('cv.transforms.Knx', {
           const b = phy.get('b') || 0;
           const w = phy.get('w') || 0;
           const val = [
-            Math.floor(r * 255 / 100).toString(16).padStart(2, '0'),
-            Math.floor(g * 255 / 100).toString(16).padStart(2, '0'),
-            Math.floor(b * 255 / 100).toString(16).padStart(2, '0'),
-            Math.floor(w * 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, r, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, g, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, b, 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, w, 100, 255 / 100).toString(16).padStart(2, '0'),
             '00',
             (rValid*8 + gValid*4 + bValid*2 + wValid*1).toString(16).padStart(2, '0')
           ].join('');
