@@ -100,7 +100,7 @@ var testcases = [
   { transform: 'DPT:5.001', type: 'decode', source: '00', target: 0 },
   { transform: 'DPT:5.001', type: 'decode', source: 'ff', target: 100 },
   { transform: 'DPT:5.003', type: 'encode', source: 0, target: '8000' },
-  { transform: 'DPT:5.003', type: 'encode', source: 100, target: '8046' },
+  { transform: 'DPT:5.003', type: 'encode', source: 100, target: '8047' },
   { transform: 'DPT:5.003', type: 'encode', source: 360, target: '80ff' },
   { transform: 'DPT:5.003', type: 'decode', source: '00', target: 0 },
   { transform: 'DPT:5.003', type: 'decode', source: 'ff', target: 360 },
@@ -346,7 +346,7 @@ var testcases = [
     ), target: '80000000000000', noNumber: true },
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
       [['x', 0.5], ['y', 0.25], ['Y', 12.5], ['cValid', true ], ['YValid', false]]
-    ), target: '807fff3fff1f02', noNumber: true },
+    ), target: '80800040002002', noNumber: true },
   { transform: 'DPT:242.600', type: 'encode', source: new Map(
       [['x', 1], ['y', 1], ['Y', 100], ['cValid', true ], ['YValid', true ]]
     ), target: '80ffffffffff03', noNumber: true },
