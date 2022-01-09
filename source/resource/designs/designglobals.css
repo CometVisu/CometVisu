@@ -302,6 +302,10 @@ button.ui-slider-handle {
   float: left;
 }
 
+.colorchooser .actor {
+  touch-action: none;
+}
+
 .colorchooser .actor.ui-slider {
   width: 100%;
   margin-top: 1.5em;
