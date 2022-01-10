@@ -32,8 +32,7 @@ qx.Class.define('cv.transforms.Knx', {
        *   encode: transform JavaScript to bus value
        *   decode: transform bus to JavaScript value
        */
-      '1.001': {
-        name: 'DPT_Switch',
+      '1': {
         encode: function (phy) {
           phy = +phy; // cast to number
           return {
@@ -45,28 +44,28 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16);
         }
       },
-      '1': {
-        link: '1.001'
+      '1.001': {
+        name: 'DPT_Switch',
+        link: '1'
       },
       '1.002': {
-        link: '1.001'
+        link: '1'
       },
       '1.003': {
-        link: '1.001'
+        link: '1'
       },
       '1.008': {
-        link: '1.001'
+        link: '1'
       },
       '1.009': {
-        link: '1.001'
+        link: '1'
       },
 
       '2': {
-        link: '1.001'
+        link: '1'
       },
 
-      '3.007': {
-        name: 'DPT_Control_Dimming',
+      '3': {
         encode: function (phy) {
           phy = +phy; // enforce number
           if (phy < -100 || (phy > -1 && phy <= 0)) {
@@ -93,16 +92,16 @@ qx.Class.define('cv.transforms.Knx', {
           return (up*2-1) * 100/(2**((val& 0b111)-1));
         }
       },
+      '3.007': {
+        name: 'DPT_Control_Dimming',
+        link: '3'
+      },
       '3.008': {
         name: 'DPT_Control_Blinds',
-        link: '3.007'
-      },
-      '3': {
-        link: '3.007'
+        link: '3'
       },
 
-      '4.001': {
-        name: 'DPT_Char_ASCII',
+      '4': {
         encode: function (phy) {
           const val = (''+phy).charCodeAt(0).toString(16).padStart(2, '0');
           return {
@@ -114,10 +113,28 @@ qx.Class.define('cv.transforms.Knx', {
           return String.fromCharCode(parseInt(hex, 16));
         }
       },
-      '4': {
-        link: '4.001'
+      '4.001': {
+        name: 'DPT_Char_ASCII',
+        link: '4'
       },
 
+      '5': {
+        name: '8-Bit Unsigned Value',
+        range: {
+          min: 0.0,
+          max: 255.0
+        },
+        encode: function (phy) {
+          const val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16);
+        }
+      },
       '5.001': {
         name: 'DPT_Scaling',
         unit: '%',
@@ -155,35 +172,17 @@ qx.Class.define('cv.transforms.Knx', {
         }
       },
       '5.004': {
+        link: '5',
         name: 'DPT_Percent_U8',
-        unit: '%',
-        range: {
-          min: 0.0,
-          max: 255.0
-        },
-        encode: function (phy) {
-          const val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
-          return {
-            bus: '80' + val,
-            raw: val.toUpperCase()
-          };
-        },
-        decode: function (hex) {
-          return parseInt(hex, 16);
-        }
+        unit: '%'
       },
       '5.010': {
-        link: '5.004',
+        link: '5',
         name: 'DPT_Value_1_Ucount',
         unit: '-'
       },
-      '5': {
-        link: '5.004',
-        name: '8-Bit Unsigned Value'
-      },
 
-      '6.001': {
-        name: 'DPT_Percent_V8',
+      '6': {
         encode: function (phy) {
           phy = cv.Transform.clipInt(-128, phy, 127);
           let val = phy < 0 ? phy + 256 : phy;
@@ -198,12 +197,12 @@ qx.Class.define('cv.transforms.Knx', {
           return val > 127 ? (val - 256) : val;
         }
       },
-      '6': {
-        link: '6.001'
+      '6.001': {
+        link: '6',
+        name: 'DPT_Percent_V8'
       },
 
-      '7.001': {
-        name: 'DPT_Value_2_Ucount',
+      '7': {
         range: {
           min: 0,
           max: 0xffff
@@ -219,17 +218,18 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16);
         }
       },
-      '7.600': {
+      '7.001':
+      {
+        link: '7',
+        name: 'DPT_Value_2_Ucount'
+      },
+        '7.600': {
         name: 'DPT_Absolute_Colour_Temperature',
         unit: 'K',
-        link: '7.001'
-      },
-      '7': {
-        link: '7.001'
+        link: '7'
       },
 
-      '8.001': {
-        name: 'DPT_Value_2_Count',
+      '8': {
         range: {
           min: -0x8000,
           max: 0x7fff
@@ -248,12 +248,12 @@ qx.Class.define('cv.transforms.Knx', {
           return val > 32767 ? (val - 65536) : val;
         }
       },
-      '8': {
-        link: '8.001'
+      '8.001': {
+        link: '8',
+        name: 'DPT_Value_2_Count'
       },
 
-      '9.001': {
-        name: 'DPT_Value_Temp',
+      '9': {
         encode: function (phy) {
           if (undefined === phy || isNaN(phy)) {
             return '7fff';
@@ -286,23 +286,24 @@ qx.Class.define('cv.transforms.Knx', {
           return (1 << exp) * 0.01 * mant;
         }
       },
+      '9.001': {
+        link: '9',
+        name: 'DPT_Value_Temp',
+      },
       '9.004': {
-        link: '9.001'
+        link: '9'
       },
       '9.007': {
-        link: '9.001'
+        link: '9'
       },
       '9.008': {
-        link: '9.001'
+        link: '9'
       },
       '9.020': {
-        link: '9.001'
+        link: '9'
       },
       '9.021': {
-        link: '9.001'
-      },
-      '9': {
-        link: '9.001'
+        link: '9'
       },
 
       '10.001': {
@@ -345,8 +346,7 @@ qx.Class.define('cv.transforms.Knx', {
         }
       },
 
-      '12.001': {
-        name: 'DPT_Value_4_Ucount',
+      '12': {
         range: {
           min: 0,
           max: 0xffffffff
@@ -362,12 +362,12 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16);
         }
       },
-      '12': {
-        link: '12.001'
+      '12.001': {
+        link: '12',
+        name: 'DPT_Value_4_Ucount'
       },
 
-      '13.001': {
-        name: 'DPT_Value_4_Count',
+      '13': {
         range: {
           min: -0x80000000,
           max: 0x7fffffff
@@ -386,12 +386,18 @@ qx.Class.define('cv.transforms.Knx', {
           return val > 2147483647 ? (val - 4294967296) : val;
         }
       },
-      '13': {
-        link: '13.001'
+      '13.001': {
+        link: '13',
+        name: 'DPT_Value_4_Count'
       },
 
-      '14.001': {
-        name: 'DPT_Value_Acceleration_Angular',
+      '14': {
+        name: '4 byte float',
+        lname: {
+          'de': '4 Byte Gleitkommazahl (nur Dekodieren)',
+          'en': '4 byte float (only decode)'
+        },
+        unit: '-'
         encode: function () {
           //FIXME: unimplemented (jspack?)
         },
@@ -403,19 +409,18 @@ qx.Class.define('cv.transforms.Knx', {
           return sign * Math.pow(2, exp) * (mant / (1 << 23));
         }
       },
-      '14': {
-        link: '14.001',
-        name: '4 byte float',
-        lname: {
-          'de': '4 Byte Gleitkommazahl'
-        },
-        unit: '-'
+      '14.001': {
+        link: '14',
+        name: 'DPT_Value_Acceleration_Angular'
       },
-      '16.001': {
-        name: 'DPT_String_8859_1',
+
+      '16': {
+        name: 'DPT_String_ASCII',
         lname: {
-          'de': '14 Byte Text ISO-8859-1'
+          'de': '14 Byte Text ASCII',
+          'en': '14 byte text ASCII',
         },
+        unit: '-',
         encode: function (phy) {
           let val = '';
           phy += ''; // force datatype String
@@ -441,30 +446,17 @@ qx.Class.define('cv.transforms.Knx', {
         }
       },
       '16.000': {
-        link: '16.001',
-        name: 'DPT_String_ASCII',
-        lname: {
-          'de': '14 Byte Text ASCII'
-        },
-        unit: '-'
+        link: '16'
       },
-      '16': {
-        link: '16.001',
-        name: 'DPT_String_ASCII',
+      '16.001': {
+        link: '16',
+        name: 'DPT_String_8859_1',
         lname: {
-          'de': '14 Byte Text ASCII'
+          'de': '14 Byte Text ISO-8859-1',
+          'en': '14 byte text ISO-8859-1'
         },
-        unit: '-'
       },
-      '17.001': {
-        link: '5.004',
-        name: 'DPT_SceneNumber',
-        lname: {
-          'en': 'Scene Number',
-          'de': 'Szenen Nummer'
-        },
-        unit: '-'
-      },
+
       '17': {
         link: '5.004',
         name: 'DPT_SceneNumber',
@@ -474,7 +466,11 @@ qx.Class.define('cv.transforms.Knx', {
         },
         unit: '-'
       },
-      '18.001': {
+      '17.001': {
+        link: '17'
+      },
+
+      '18': {
         name: 'DPT_SceneControl',
         lname: {
           'en': 'Scene Number',
@@ -496,47 +492,11 @@ qx.Class.define('cv.transforms.Knx', {
           return parseInt(hex, 16) + 1;
         }
       },
-      '18': {
-        link: '18.001',
-        name: 'DPT_SceneControl',
-        lname: {
-          'en': 'Scene Number',
-          'de': 'Szenen Nummer'
-        },
-        unit: '-'
+      '18.001': {
+        link: '18'
       },
-      '26.001': {
-        name: 'DPT_SceneInfo',
-        lname: {
-          'en': 'Scene Number',
-          'de': 'Szenen Nummer'
-        },
-        unit: '-',
-        range: {
-          min: 1.0,
-          max: 64.0+64
-        },
-        encode: function (phy) {
-          const val = cv.Transform.clipInt(0, phy - 1, 63 + 64).toString(16).padStart(2, '0');
-          return {
-            bus: '80' + val,
-            raw: val.toUpperCase()
-          };
-        },
-        decode: function (hex) {
-          return parseInt(hex, 16) + 1;
-        }
-      },
-      '26': {
-        link: '26.001',
-        name: 'DPT_SceneInfo',
-        lname: {
-          'en': 'Scene Number',
-          'de': 'Szenen Nummer'
-        },
-        unit: '-'
-      },
-       '20.102': {
+
+      '20.102': {
         name: 'DPT_HVACMode',
         lname: {
           'de': 'KONNEX Betriebsart'
@@ -588,6 +548,7 @@ qx.Class.define('cv.transforms.Knx', {
           }
         }
       },
+
       /* DPT24.001 is probably not fully correct as it can also hold
        multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07
        but there is no other reference, even not in ETS4
@@ -598,7 +559,8 @@ qx.Class.define('cv.transforms.Knx', {
       '24.001': {
         name: 'DPT_VarString_8859_1',
         lname: {
-          'de': 'variable String ISO-8859-1'
+          'de': 'Variabler String ISO-8859-1',
+          'en': 'variable String ISO-8859-1'
         },
         encode: function (phy) {
           let val = '';
@@ -625,6 +587,51 @@ qx.Class.define('cv.transforms.Knx', {
           return val;
         }
       },
+
+      '26': {
+        name: 'DPT_SceneInfo',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-',
+        range: {
+          min: 1.0,
+          max: 64.0+64
+        },
+        encode: function (phy) {
+          const val = cv.Transform.clipInt(0, phy - 1, 63 + 64).toString(16).padStart(2, '0');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16) + 1;
+        }
+      },
+      '26.001': {
+        link: '26'
+      },
+
+      '225' : {
+        name: 'DPT_U24',
+        unit: '-',
+        range: {
+          min: 0x0,
+          max: 0xffffff
+        },
+        encode: function (phy) {
+          const val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
+          return {
+            bus: '80' + val,
+            raw: val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16);
+        }
+      },
       '225.001' : {
         name  : 'DPT_ScalingSpeed',
         encode: function(phy) {
@@ -646,22 +653,26 @@ qx.Class.define('cv.transforms.Knx', {
           ]);
         }
       },
-      '225' : {
-        name: 'DPT_U24',
-        unit: '-',
-        range: {
-          min: 0x0,
-          max: 0xffffff
-        },
-        encode: function (phy) {
-          const val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
+
+      '232' : {
+        name  : 'DPT_3U8',
+        encode: function(phy) {
+          let val = [
+            cv.Transform.clipInt(0, phy[0], 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, phy[1], 100, 255 / 100).toString(16).padStart(2, '0'),
+            cv.Transform.clipInt(0, phy[2], 100, 255 / 100).toString(16).padStart(2, '0')
+          ].join('');
           return {
             bus: '80' + val,
             raw: val.toUpperCase()
           };
         },
-        decode: function (hex) {
-          return parseInt(hex, 16);
+        decode: function(hex) {
+          return [
+            parseInt(hex.substr(0, 2), 16) * 100 / 255.0,
+            parseInt(hex.substr(2, 2), 16) * 100 / 255.0,
+            parseInt(hex.substr(4, 2), 16) * 100 / 255.0
+          ];
         }
       },
       '232.600' : {
@@ -720,27 +731,7 @@ qx.Class.define('cv.transforms.Knx', {
           ]);
         }
       },
-      '232' : {
-        name  : 'DPT_3U8',
-        encode: function(phy) {
-          let val = [
-            cv.Transform.clipInt(0, phy[0], 100, 255 / 100).toString(16).padStart(2, '0'),
-            cv.Transform.clipInt(0, phy[1], 100, 255 / 100).toString(16).padStart(2, '0'),
-            cv.Transform.clipInt(0, phy[2], 100, 255 / 100).toString(16).padStart(2, '0')
-          ].join('');
-          return {
-            bus: '80' + val,
-            raw: val.toUpperCase()
-          };
-        },
-        decode: function(hex) {
-          return [
-            parseInt(hex.substr(0, 2), 16) * 100 / 255.0,
-            parseInt(hex.substr(2, 2), 16) * 100 / 255.0,
-            parseInt(hex.substr(4, 2), 16) * 100 / 255.0
-          ];
-        }
-      },
+
       '242.600' : {
         name  : 'DPT_Colour_xyY',
         encode: function(phy) {
@@ -779,6 +770,7 @@ qx.Class.define('cv.transforms.Knx', {
           ]);
         }
       },
+
       '251.600' : {
         name  : 'DPT_Colour_RGBW',
         encode: function(phy) {
@@ -821,26 +813,7 @@ qx.Class.define('cv.transforms.Knx', {
             ['wValid', (valid & 1) > 0]
           ]);
         }
-      },
-      /* 9 Zeilen:
-      },
-      '.001' : {
-      name  : '',
-      encode: function( phy ){
-      return phy;
-      },
-      decode: function( hex ){
-      return hex;
       }
-      }
-      /*/ /////////////////////////////////////////////////
-      /* 3 Zeilen:
-      }
-      '': {
-      link  : '.001'
-      },
-      */
-      'temp dummy': {link: '1.001'}
     });
   }
 });

@@ -36,7 +36,7 @@ function convertData( dataParsed ) {
   // step 2: replace links by data
   Object.keys(dataParsed[1]).forEach( key => {
     if ('link' in dataParsed[1][key]) {
-      dataParsed[1][key] = Object.assign({}, dataParsed[1][key], dataParsed[1][dataParsed[1][key].link]);
+      dataParsed[1][key] = Object.assign({}, dataParsed[1][dataParsed[1][key].link], dataParsed[1][key]);
       delete dataParsed[1][key].link;
     }
   });

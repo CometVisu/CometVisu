@@ -88,8 +88,9 @@ class BackendTransformDirective(BaseDirective):
             unit = t_content.get("unit", "")
             if unit == "-":
                 unit = "\\-"
+            range = t_content.get("range", {})
             rst.append("   \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"" % (
-                transform, t_content.get("name", ""), unit, t_content.get("min", ""), t_content.get("max", ""), t_content.get("lname", "")
+                transform, t_content.get("name", ""), unit, range.get("min", ""), range.get("max", ""), t_content.get("lname", "")
             ), "fakefile4transform.rst", self.lineno)
 
         paragraph_node = nodes.paragraph()
