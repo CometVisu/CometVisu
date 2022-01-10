@@ -28,6 +28,12 @@
 /**
  * Helper function to allow widgets animate a displayed property with a
  * limited speed of change to look smoother for the user.
+ *
+ * This class can either animate a number (e.g. used as a ratio) or a class
+ * when it has these methods:
+ * * value1.delta(value2)       - return a number that is proportional to the difference
+ * * value1.blend(value2,ratio) - return a new value that is the ratio dependent blend
+ * * value.copy()               - return a copy of the value
  */
 qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   extend: qx.core.Object,
@@ -41,15 +47,15 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
    * Create a new animated display where an object will be smoothly transitioned
    * from its current position to a new target position.
    *
-   * @param displayRatioFn {Function} Callback function that does the displaying
+   * @param displayFn {Function} Callback function that does the displaying
    * @param context The context `this` of the callback function
-   * @param displayRatioFnParameters Optional additional parameter that will be passed to the callback function
+   * @param displayFnParameters Optional additional parameter that will be passed to the callback function
    */
-  construct: function (displayRatioFn, context = window, displayRatioFnParameters = undefined) {
+  construct: function (displayFn, context = window, displayFnParameters = undefined) {
     this.base(arguments);
-    this.setDisplayRatioFn(displayRatioFn);
-    this.__displayRatioFnContext = context;
-    this.__displayRatioFnParameters = displayRatioFnParameters;
+    this.setDisplayFn(displayFn);
+    this.__displayFnContext = context;
+    this.__displayFnParameters = displayFnParameters;
   },
   /*
   ******************************************************
@@ -79,12 +85,12 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
       init: 0.01
     },
     epsilon: {
-      // a difference between current and target ratio smaller than the epsilon
+      // a difference between current and target value smaller than the epsilon
       // will be immediately closed
       check: 'Number',
       init: 0.001
     },
-    displayRatioFn: {
+    displayFn: {
       check: 'Function'
     }
   },
@@ -95,23 +101,45 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
   */
   members: {
     __animationFrame: undefined,
-    __displayRatioFnContext: undefined,
-    __displayRatioFnParameters: undefined,
-    __currentRatio: 0.0,
-    __targetRatio: 0.0,
+    __displayFnContext: undefined,
+    __displayFnParameters: undefined,
+    __currentValue: undefined,
+    __targetValue: undefined,
+    /**
+     * Set animation speed by defining the (typical) maximal range.
+     * An animation of the full ``range`` will require about 0.5 to 1 second
+     * and have a linear as well as an exponential damped part at the end.
+     * The ``epsilon`` can also be stated explicitly or it will be derived
+     * from the ``range``.
+     * @param {Number} range (typical) maximal range for the animation
+     * @param {Number} [epsilon] end the animation when the remaining delta is smaller
+     */
+    setAnimationSpeed: function (range, epsilon) {
+      if (epsilon !== undefined) {
+        this.setEpsilon(epsilon);
+      } else {
+        this.setEpsilon(range / 1000);
+      }
+
+      this.setLinearRateLimit(2*range);
+      // Note: as the exponential dampening is working on a ratio it doesn't
+      // need to be changed here and the default of 0.01 is fine:
+      this.setExpDampTimeConstant(0.01);
+    },
     /**
      * Set the value to a new value.
-     * @param {Number} targetRatio the new value.
+     * @param {Number} targetValue the new value.
      * @param {Boolean} instant skip animation when true
+     * @param {Boolean} show skip display update when false
      */
-    setTo: function (targetRatio, instant= false) {
+    setTo: function (targetValue, instant = false, show = true) {
       let now = performance.now();
 
-      this.__targetRatio = targetRatio;
-      if (instant) {
-        this.__currentRatio = targetRatio;
+      this.__targetValue = targetValue;
+      if (instant || this.__currentValue === undefined) {
+        this.__currentValue = targetValue;
       }
-      if (this.__animationFrame === undefined) {
+      if (this.__animationFrame === undefined && show) {
         this.__animate(now, now - 10);
       }
     },
@@ -123,25 +151,35 @@ qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
      * @private
      */
     __animate: function (thistime, lasttime) {
-      let dt = (thistime - lasttime) / 1000; // in seconds
+      let isNumber = typeof this.__currentValue === 'number';
+      let dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
       let maxLinearDelta = this.getLinearRateLimit() * dt;
-      let alpha = Math.exp(-dt / this.getExpDampTimeConstant());
-      let nextRatio = this.__targetRatio * alpha + this.__currentRatio * (1 - alpha);
-      let delta = nextRatio - this.__currentRatio;
+      let alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
+      let nextValue = isNumber
+          ? this.__targetValue * alpha + this.__currentValue * (1 - alpha)
+          : this.__currentValue.blend(this.__targetValue, alpha);
+      let delta = isNumber
+          ? nextValue - this.__currentValue
+          : this.__currentValue.delta(nextValue);
+      let notFinished = true;
       if (Math.abs(delta) > maxLinearDelta) {
-        nextRatio = this.__currentRatio + Math.sign(delta) * maxLinearDelta;
+        nextValue = isNumber
+          ? this.__currentValue + Math.sign(delta) * maxLinearDelta
+          : this.__currentValue.blend(this.__targetValue, alpha * maxLinearDelta / delta);
       }
-      if (Math.abs(nextRatio - this.__targetRatio) < this.getEpsilon()) {
-        nextRatio = this.__targetRatio;
+      if ((isNumber && Math.abs(nextValue - this.__targetValue) < this.getEpsilon()) ||
+          (!isNumber && nextValue.delta(this.__targetValue) < this.getEpsilon())) {
+        nextValue = this.__targetValue;
+        notFinished = false;
       }
-      this.__currentRatio = nextRatio;
+      this.__currentValue = isNumber ? nextValue : nextValue.copy();
 
-      this.getDisplayRatioFn().call(this.__displayRatioFnContext, this.__currentRatio, this.__displayRatioFnParameters);
+      this.getDisplayFn().call(this.__displayFnContext, this.__currentValue, this.__displayFnParameters);
 
-      if (this.__currentRatio !== this.__targetRatio) {
+      if (notFinished) {
         this.__animationFrame = window.requestAnimationFrame(time => {
- this.__animate(time, thistime); 
-});
+          this.__animate(time, thistime);
+        });
       } else {
         this.__animationFrame = undefined;
       }

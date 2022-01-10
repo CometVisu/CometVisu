@@ -2,7 +2,6 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" min_column_width="70">
 	<meta>
 		<plugins>
-			<plugin name="colorchooser"/>
 			<plugin name="diagram"/>						
 		</plugins>
 		<mappings>

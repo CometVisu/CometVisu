@@ -6,7 +6,6 @@
       <file type="js">resource/demo/media/testmode.js</file>
     </files>
     <plugins>
-      <plugin name="colorchooser"/>
       <plugin name="diagram"/>
       <plugin name="rsslog"/>
       <plugin name="gauge"/>

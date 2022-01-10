@@ -26,8 +26,7 @@ describe('testing the meta parser', function() {
 
       // test plugins
       let plugins = parser.parsePlugins(xml);
-
-      expect(plugins).toContain('plugin-colorchooser');
+      expect(plugins).toContain('plugin-clock');
       expect(plugins).toContain('plugin-diagram');
       expect(plugins).toContain('plugin-strftime');
 

@@ -2,7 +2,6 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
     <plugins>
-      <plugin name="colorchooser"/>
       <plugin name="diagram"/>
       <plugin name="strftime"/>
     </plugins>

@@ -57,11 +57,6 @@
             "cv.plugins.diagram.*"
           ]
         },
-        "plugin-colorchooser": {
-          "include": [
-            "cv.plugins.ColorChooser"
-          ]
-        },
         "plugin-clock": {
           "include": [
             "cv.plugins.Clock"

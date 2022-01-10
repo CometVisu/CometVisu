@@ -251,7 +251,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       if (undefined === defaultValues) {
         defaultValues = {};
       }
-      ['x', 'y', 'width', 'height', 'scale'].forEach(function (prop) {
+      ['x', 'y', 'width', 'height', 'scale', 'rowspan', 'colspan'].forEach(function (prop) {
         this.__extractLayoutAttribute(ret_val, prop, layout, defaultValues);
         this.__extractLayoutAttribute(ret_val, prop + '-m', layout, defaultValues);
         this.__extractLayoutAttribute(ret_val, prop + '-s', layout, defaultValues);

@@ -6,7 +6,7 @@ CometVisu von merlin123 (Metal)
 Hier wird die produktiv im Einsatz befindliche Visu von merlin123 vorgestellt.
 
 | **Design**: Metal
-| **Plugins**: colorchooser, diagram
+| **Plugins**: diagram
 | **Config**: :download:`visu_config_metal_merlin123.xml <_static/visu_config_metal_merlin123.xml>`
 |
 

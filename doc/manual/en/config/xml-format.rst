@@ -72,14 +72,14 @@ Plugins
 +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+------------+
 | Option                   | Description                                                                                                                          | Values                         | Necessary  |
 +==========================+======================================================================================================================================+================================+============+
-| ``<plugin name=" "/>``   | With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.    | z.B. colorchooser or diagram   | NO         |
+| ``<plugin name=" "/>``   | With this option the plugins are included. Here the name of the plugin is entered. For each plugin such an entry must be created.    | z.B. clock or diagram          | NO         |
 +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+------------+
 
 .. code-block:: xml
 
     <meta>
         <plugins>
-            <plugin name="colorchooser"/>
+            <plugin name="clock"/>
         </plugins>
         ...
     </meta>
@@ -374,7 +374,7 @@ This looks like this:
     </settings>
     <meta>
         <plugins>
-         <plugin name="colorchooser"/>
+         <plugin name="clock"/>
         </plugins>
     </meta>
     <page name="Mainpage">
