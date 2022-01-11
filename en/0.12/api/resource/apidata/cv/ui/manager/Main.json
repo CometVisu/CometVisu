@@ -18,7 +18,7 @@
         "column": 0
       },
       "end": {
-        "line": 948,
+        "line": 976,
         "column": 3
       }
     },
@@ -429,7 +429,7 @@
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 180,
           "column": 5
         }
       },
@@ -439,11 +439,11 @@
     "canHandleAction": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 182,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 200,
           "column": 5
         }
       },
@@ -468,11 +468,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 263,
           "column": 5
         }
       },
@@ -504,11 +504,11 @@
     "configureButton": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 265,
           "column": 4
         },
         "end": {
-          "line": 245,
+          "line": 265,
           "column": 41
         }
       },
@@ -540,11 +540,11 @@
     "unConfigureButton": {
       "location": {
         "start": {
-          "line": 246,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 246,
+          "line": 266,
           "column": 43
         }
       },
@@ -573,11 +573,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 268,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 285,
           "column": 5
         }
       },
@@ -591,11 +591,11 @@
     "__findConfigFile": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 287,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 310,
           "column": 5
         }
       },
@@ -605,11 +605,11 @@
     "_onManagerEvent": {
       "location": {
         "start": {
-          "line": 289,
+          "line": 312,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 335,
           "column": 5
         }
       },
@@ -619,11 +619,11 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 318,
+          "line": 342,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 359,
           "column": 5
         }
       },
@@ -632,6 +632,14 @@
           {
             "name": "@description",
             "body": "<p>open selected file in preview mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev",
+            "paramName": "ev",
+            "type": ""
           }
         ],
         "@private": [
@@ -647,11 +655,11 @@
     "__openSelectedFile": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 361,
           "column": 4
         },
         "end": {
-          "line": 346,
+          "line": 370,
           "column": 5
         }
       },
@@ -661,11 +669,11 @@
     "_applyCurrentFolder": {
       "location": {
         "start": {
-          "line": 348,
+          "line": 372,
           "column": 4
         },
         "end": {
-          "line": 357,
+          "line": 381,
           "column": 5
         }
       },
@@ -678,11 +686,11 @@
     "_applyCurrentSelection": {
       "location": {
         "start": {
-          "line": 359,
+          "line": 383,
           "column": 4
         },
         "end": {
-          "line": 373,
+          "line": 397,
           "column": 5
         }
       },
@@ -695,11 +703,11 @@
     "_onChangeFileSelection": {
       "location": {
         "start": {
-          "line": 375,
+          "line": 399,
           "column": 4
         },
         "end": {
-          "line": 410,
+          "line": 434,
           "column": 5
         }
       },
@@ -709,11 +717,11 @@
     "openFile": {
       "location": {
         "start": {
-          "line": 419,
+          "line": 443,
           "column": 4
         },
         "end": {
-          "line": 476,
+          "line": 501,
           "column": 5
         }
       },
@@ -752,6 +760,12 @@
             "paramName": "handlerType",
             "description": " use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "handlerOptions",
+            "paramName": "handlerOptions",
+            "type": ""
           }
         ]
       },
@@ -761,11 +775,11 @@
     "closeFile": {
       "location": {
         "start": {
-          "line": 478,
+          "line": 503,
           "column": 4
         },
         "end": {
-          "line": 560,
+          "line": 586,
           "column": 5
         }
       },
@@ -775,11 +789,11 @@
     "closeCurrentFile": {
       "location": {
         "start": {
-          "line": 562,
+          "line": 588,
           "column": 4
         },
         "end": {
-          "line": 567,
+          "line": 593,
           "column": 5
         }
       },
@@ -789,11 +803,11 @@
     "_onCloseFile": {
       "location": {
         "start": {
-          "line": 569,
+          "line": 595,
           "column": 4
         },
         "end": {
-          "line": 571,
+          "line": 597,
           "column": 5
         }
       },
@@ -803,11 +817,11 @@
     "__getRoot": {
       "location": {
         "start": {
-          "line": 573,
+          "line": 599,
           "column": 4
         },
         "end": {
-          "line": 583,
+          "line": 609,
           "column": 5
         }
       },
@@ -817,11 +831,11 @@
     "__initCommands": {
       "location": {
         "start": {
-          "line": 585,
+          "line": 611,
           "column": 4
         },
         "end": {
-          "line": 615,
+          "line": 641,
           "column": 5
         }
       },
@@ -831,11 +845,11 @@
     "_onDelete": {
       "location": {
         "start": {
-          "line": 617,
+          "line": 643,
           "column": 4
         },
         "end": {
-          "line": 622,
+          "line": 648,
           "column": 5
         }
       },
@@ -845,11 +859,11 @@
     "_onChangeStackSelection": {
       "location": {
         "start": {
-          "line": 624,
+          "line": 650,
           "column": 4
         },
         "end": {
-          "line": 638,
+          "line": 664,
           "column": 5
         }
       },
@@ -859,11 +873,11 @@
     "__getFileNamePrompt": {
       "location": {
         "start": {
-          "line": 640,
+          "line": 666,
           "column": 4
         },
         "end": {
-          "line": 651,
+          "line": 677,
           "column": 5
         }
       },
@@ -873,11 +887,11 @@
     "_onCreate": {
       "location": {
         "start": {
-          "line": 653,
+          "line": 679,
           "column": 4
         },
         "end": {
-          "line": 741,
+          "line": 766,
           "column": 5
         }
       },
@@ -887,11 +901,11 @@
     "__findDroppable": {
       "location": {
         "start": {
-          "line": 751,
+          "line": 776,
           "column": 4
         },
         "end": {
-          "line": 761,
+          "line": 786,
           "column": 5
         }
       },
@@ -926,11 +940,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 764,
+          "line": 789,
           "column": 4
         },
         "end": {
-          "line": 897,
+          "line": 925,
           "column": 5
         }
       },
@@ -941,11 +955,11 @@
     "_showAbout": {
       "location": {
         "start": {
-          "line": 899,
+          "line": 927,
           "column": 4
         },
         "end": {
-          "line": 916,
+          "line": 944,
           "column": 5
         }
       },
@@ -1928,7 +1942,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -4723,11 +4737,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 924,
+        "line": 952,
         "column": 12
       },
       "end": {
-        "line": 947,
+        "line": 975,
         "column": 3
       }
     },

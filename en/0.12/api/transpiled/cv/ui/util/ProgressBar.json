@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 82,
+        "line": 80,
         "column": 3
       }
     },
@@ -140,7 +140,7 @@
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 66,
           "column": 5
         }
       },
@@ -153,11 +153,11 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 70,
           "column": 5
         }
       },
@@ -167,11 +167,11 @@
     "_createDomElement": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 78,
           "column": 5
         }
       },

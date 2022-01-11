@@ -30,7 +30,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Theme.define("cv.theme.dark.Color", {
+  qx.Theme.define('cv.theme.dark.Color', {
     extend: osparc.theme.osparcdark.Color,
     colors: {
       'valid-color': '#22822d',
@@ -41,4 +41,4 @@
   cv.theme.dark.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1625667807788
+//# sourceMappingURL=Color.js.map?dt=1641882237961

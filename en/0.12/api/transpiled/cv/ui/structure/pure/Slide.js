@@ -72,6 +72,7 @@
       this.__P_61_2 = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
         _this.__P_61_3();
       });
+      this.__P_61_4 = {};
     },
 
     /*
@@ -82,7 +83,7 @@
     destruct: function destruct() {
       cv.ui.layout.ResizeHandler.states.removeListenerById(this.__P_61_2);
       this.__P_61_2 = null;
-      this.__P_61_4 = null;
+      this.__P_61_5 = null;
     },
 
     /*
@@ -92,23 +93,23 @@
     */
     properties: {
       min: {
-        check: "Number",
+        check: 'Number',
         init: 0
       },
       max: {
-        check: "Number",
+        check: 'Number',
         init: 100
       },
       step: {
-        check: "Number",
+        check: 'Number',
         init: 0.5
       },
       showInvalidValues: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       sendOnFinish: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -119,9 +120,9 @@
     ******************************************************
     */
     members: {
-      __P_61_5: {},
+      __P_61_4: null,
       __P_61_0: null,
-      __P_61_4: undefined,
+      __P_61_5: undefined,
       // cache for DOM element
       __P_61_6: undefined,
       // cache for DOM element
@@ -149,15 +150,15 @@
       _update: function _update(address, data) {
         var transform = this.getAddress()[address].transform;
 
-        if (this.__P_61_9 || this.__P_61_5[transform] === data) {
+        if (this.__P_61_9 || this.__P_61_4[transform] === data) {
           // slider in use -> ignore value from bus
           // internal state unchanged -> also do nothing
           return;
         }
 
-        this.__P_61_5 = {}; // forget all other transforms as they might not be valid anymore
+        this.__P_61_4 = {}; // forget all other transforms as they might not be valid anymore
 
-        this.__P_61_5[transform] = data;
+        this.__P_61_4[transform] = data;
         var value = cv.Transform.decode(transform, data); // animate when visible, otherwise jump to the target value
 
         this.__P_61_13(value, !this.isVisible());
@@ -224,13 +225,13 @@
         this.__P_61_0.setTo(ratio, instant);
       },
       __P_61_1: function __P_61_1(ratio) {
-        if (this.__P_61_4 === undefined) {
+        if (this.__P_61_5 === undefined) {
           var element = this.getDomElement();
-          this.__P_61_4 = element.querySelector('button');
+          this.__P_61_5 = element.querySelector('button');
           this.__P_61_6 = element.querySelector('.ui-slider-range');
         }
 
-        if (this.__P_61_4 === null) {
+        if (this.__P_61_5 === null) {
           // most likely reason: the widget / DOM tree was deleted (e.g. due to
           // browsing to a new page or during unit tests)
           this._disposeObjects("__P_61_0");
@@ -239,16 +240,16 @@
         }
 
         if (this.__P_61_7 === undefined || this.__P_61_8 === undefined) {
-          var actor = this.getDomElement().querySelector('.actor'),
-              actorStyles = window.getComputedStyle(actor);
+          var actor = this.getDomElement().querySelector('.actor');
+          var actorStyles = window.getComputedStyle(actor);
           this.__P_61_7 = parseFloat(actorStyles.getPropertyValue('width'));
-          this.__P_61_8 = parseFloat(window.getComputedStyle(this.__P_61_4).getPropertyValue('width'));
+          this.__P_61_8 = parseFloat(window.getComputedStyle(this.__P_61_5).getPropertyValue('width'));
           this.__P_61_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
           this.__P_61_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
         }
 
         var length = ratio * this.__P_61_7;
-        this.__P_61_4.style.transform = 'translate3d(' + (length - this.__P_61_8 / 2) + 'px, 0px, 0px)';
+        this.__P_61_5.style.transform = 'translate3d(' + (length - this.__P_61_8 / 2) + 'px, 0px, 0px)';
         this.__P_61_6.style.width = length + 'px';
       },
       __P_61_3: function __P_61_3() {
@@ -263,14 +264,16 @@
 
         switch (event.type) {
           case 'pointerdown':
-            this.__P_61_9 = true;
-            document.addEventListener('pointermove', this);
-            document.addEventListener('pointerup', this);
-            var boundingRect = event.currentTarget.getBoundingClientRect();
-            var computedStyle = window.getComputedStyle(event.currentTarget);
-            this.__P_61_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
-            break;
+            {
+              this.__P_61_9 = true;
+              document.addEventListener('pointermove', this);
+              document.addEventListener('pointerup', this);
+              var boundingRect = event.currentTarget.getBoundingClientRect();
+              var computedStyle = window.getComputedStyle(event.currentTarget);
+              this.__P_61_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+              newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+              break;
+            }
 
           case 'pointermove':
             if (!this.__P_61_9) {
@@ -299,14 +302,14 @@
         }
       },
       __P_61_12: function __P_61_12(value) {
-        this.__P_61_5 = this.sendToBackend(value, false, this.__P_61_5);
+        this.__P_61_4 = this.sendToBackend(value, false, this.__P_61_4);
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("slide", statics);
+      cv.ui.structure.WidgetFactory.registerClass('slide', statics);
     }
   });
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1625667771066
+//# sourceMappingURL=Slide.js.map?dt=1641882203744

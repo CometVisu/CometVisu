@@ -16,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 190,
+        "line": 205,
         "column": 3
       }
     },
@@ -40,7 +40,7 @@
         "column": 13
       },
       "end": {
-        "line": 20,
+        "line": 21,
         "column": 3
       }
     },
@@ -50,11 +50,11 @@
     "file": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 29,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 34,
           "column": 5
         }
       },
@@ -69,11 +69,11 @@
     "content": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 36,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 40,
           "column": 5
         }
       },
@@ -87,11 +87,11 @@
     "handlerOptions": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 45,
+          "line": 46,
           "column": 5
         }
       },
@@ -105,11 +105,11 @@
     "external": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 54,
           "column": 5
         }
       },
@@ -130,11 +130,11 @@
     "ready": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 60,
           "column": 5
         }
       },
@@ -178,16 +178,47 @@
       }
     }
   },
+  "statics": {
+    "CLIPBOARD": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 19
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    }
+  },
   "members": {
     "_handledActions": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 79,
           "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_nativePasteSupported": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 32
         }
       },
       "type": "variable",
@@ -196,11 +227,11 @@
     "canHandleAction": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 87,
           "column": 5
         }
       },
@@ -225,11 +256,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 97,
           "column": 5
         }
       },
@@ -261,11 +292,11 @@
     "configureButton": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 99,
           "column": 41
         }
       },
@@ -297,11 +328,11 @@
     "unConfigureButton": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 100,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 100,
           "column": 43
         }
       },
@@ -330,11 +361,11 @@
     "_initClient": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 104,
           "column": 5
         }
       },
@@ -344,11 +375,11 @@
     "_applyHandlerOptions": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 106,
           "column": 40
         }
       },
@@ -361,11 +392,11 @@
     "_loadFile": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 122,
           "column": 5
         }
       },
@@ -378,11 +409,11 @@
     "_loadFromFs": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 135,
           "column": 5
         }
       },
@@ -392,11 +423,11 @@
     "_onChange": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 142,
           "column": 5
         }
       },
@@ -406,11 +437,11 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 145,
           "column": 32
         }
       },
@@ -424,11 +455,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 148,
           "column": 37
         }
       },
@@ -443,11 +474,11 @@
     "_handleSaveResponse": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 165,
           "column": 5
         }
       },
@@ -457,11 +488,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 168,
+          "line": 183,
           "column": 5
         }
       },
@@ -475,11 +506,11 @@
     "_onSaved": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 189,
           "column": 5
         }
       },
@@ -489,11 +520,11 @@
     "showErrors": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 191,
           "column": 45
         }
       },
@@ -503,11 +534,11 @@
     "showDecorations": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 192,
           "column": 51
         }
       },
@@ -1980,7 +2011,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -7847,11 +7878,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 185,
+        "line": 200,
         "column": 12
       },
       "end": {
-        "line": 189,
+        "line": 204,
         "column": 3
       }
     },

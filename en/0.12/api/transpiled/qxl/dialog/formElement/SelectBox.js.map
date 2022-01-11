@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_1_2/source/class/qxl/dialog/formElement/SelectBox.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/formElement/SelectBox.js"
   ],
   "names": [
     "qx",

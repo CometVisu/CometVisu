@@ -116,7 +116,6 @@
     </stylings>
     <plugins>
       <plugin name="diagram"/>
-      <plugin name="colorchooser"/>
       <plugin name="strftime"/>
       <plugin name="rsslog"/>
     </plugins>

@@ -95,7 +95,7 @@
       this._initOnCreate = true;
       qx.core.Object.constructor.call(this);
       this.set(props);
-      this.__P_15_0 = {};
+      this.__P_14_0 = {};
     },
 
     /*
@@ -106,8 +106,8 @@
     statics: {
       parse: function parse(element, path) {
         if (!window.speechSynthesis) {
-          qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-          return;
+          qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
+          return null;
         }
 
         var address = cv.parser.WidgetParser.makeAddressList(element, path);
@@ -131,27 +131,27 @@
      */
     properties: {
       path: {
-        check: "String"
+        check: 'String'
       },
       $$type: {
-        check: "String"
+        check: 'String'
       },
       $$initOnCacheLoad: {
-        check: "Boolean"
+        check: 'Boolean'
       },
       language: {
-        check: "String"
+        check: 'String'
       },
       mapping: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       repeatTimeout: {
-        check: "Number",
+        check: 'Number',
         init: -1
       },
       parentWidget: {
-        check: "cv.ui.structure.AbstractBasicWidget",
+        check: 'cv.ui.structure.AbstractBasicWidget',
         init: null
       }
     },
@@ -162,7 +162,7 @@
      ******************************************************
      */
     members: {
-      __P_15_0: null,
+      __P_14_0: null,
       getDomString: function getDomString() {
         return undefined;
       },
@@ -175,36 +175,36 @@
       handleUpdate: function handleUpdate(text, address) {
         if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
           // first call -> skipping
-          this.__P_15_0[address] = {
+          this.__P_14_0[address] = {
             text: text,
             time: Date.now()
           };
-          this.debug("skipping initial TTS for " + text);
+          this.debug('skipping initial TTS for ' + text);
           return;
         }
 
         if (!text || text.length === 0) {
           // nothing to say
-          this.debug("no text to speech given");
+          this.debug('no text to speech given');
           return;
         }
 
-        if (typeof text === "string" && text.substring(0, 1) === "!") {
+        if (typeof text === 'string' && text.substring(0, 1) === '!') {
           // override repeatTimeout, force saying this
           text = text.substring(1);
         } else if (this.getRepeatTimeout() >= 0) {
           // do not repeat (within timeout when this.repeatTimeout > 0)
-          if (this.__P_15_0[address] && this.__P_15_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_15_0[address].time) / 1000))) {
+          if (this.__P_14_0[address] && this.__P_14_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_14_0[address].time) / 1000))) {
             // update time
-            this.__P_15_0[address].time = Date.now(); // do not repeat
+            this.__P_14_0[address].time = Date.now(); // do not repeat
 
-            this.debug("skipping TTS because of repetition " + text);
+            this.debug('skipping TTS because of repetition ' + text);
             return;
           }
         }
 
-        this.debug("changing lastSpeech from '%s' to '%s'", this.__P_15_0[address] ? this.__P_15_0[address].text : "", text);
-        this.__P_15_0[address] = {
+        this.debug('changing lastSpeech from \'%s\' to \'%s\'', this.__P_14_0[address] ? this.__P_14_0[address].text : '', text);
+        this.__P_14_0[address] = {
           text: text,
           time: Date.now()
         };
@@ -213,11 +213,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("speech", cv.plugins.Speech);
-      cv.ui.structure.WidgetFactory.registerClass("speech", statics);
+      cv.parser.WidgetParser.addHandler('speech', cv.plugins.Speech);
+      cv.ui.structure.WidgetFactory.registerClass('speech', statics);
     }
   });
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1625667765488
+//# sourceMappingURL=Speech.js.map?dt=1641882198376

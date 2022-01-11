@@ -94,6 +94,7 @@
 
       /**
        * Check if there is an existing handler for the given actionName.
+       * @param actionName
        * @return {Boolean}
        */
       hasHandler: function hasHandler(actionName) {
@@ -108,6 +109,8 @@
         } else if (main && main.canHandleAction(actionName)) {
           return main;
         }
+
+        return null;
       },
       _onAction: function _onAction(ev) {
         var topic = ev.getName();
@@ -135,4 +138,4 @@
   cv.ui.manager.control.ActionDispatcher.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionDispatcher.js.map?dt=1625667766984
+//# sourceMappingURL=ActionDispatcher.js.map?dt=1641882199806

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 280,
+        "line": 283,
         "column": 3
       }
     },
@@ -221,7 +221,7 @@
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 258,
           "column": 5
         }
       },
@@ -251,11 +251,11 @@
     "getEnumeration": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 265,
           "column": 4
         },
         "end": {
-          "line": 269,
+          "line": 272,
           "column": 5
         }
       },
@@ -942,11 +942,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 277,
+        "line": 280,
         "column": 12
       },
       "end": {
-        "line": 279,
+        "line": 282,
         "column": 3
       }
     },

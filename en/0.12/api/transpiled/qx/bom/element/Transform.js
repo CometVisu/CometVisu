@@ -329,8 +329,8 @@
               value += this._compute3dProperty(property, params);
             } // use axis related properties
             else {
-                value += this._computeAxisProperties(property, params);
-              } // case for single values given
+              value += this._computeAxisProperties(property, params);
+            } // case for single values given
 
           } else {
             // single value case
@@ -392,4 +392,4 @@
   qx.bom.element.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1625667776530
+//# sourceMappingURL=Transform.js.map?dt=1641882208573

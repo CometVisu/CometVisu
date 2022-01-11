@@ -158,14 +158,14 @@
         first >= 0xD800 && first <= 0xDBFF && // high surrogate
         size > index + 1 // there is a next code unit
         ) {
-            second = string.charCodeAt(index + 1);
+          second = string.charCodeAt(index + 1);
 
-            if (second >= 0xDC00 && second <= 0xDFFF) {
-              // low surrogate
-              // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
-              return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
-            }
+          if (second >= 0xDC00 && second <= 0xDFFF) {
+            // low surrogate
+            // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+            return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
           }
+        }
 
         return first;
       },
@@ -244,4 +244,4 @@
   qx.lang.normalize.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1625667784985
+//# sourceMappingURL=String.js.map?dt=1641882216399

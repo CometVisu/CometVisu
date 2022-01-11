@@ -27,16 +27,16 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Theme.define("cv.theme.dark.Icon", {
+  qx.Theme.define('cv.theme.dark.Icon', {
     aliases: {
-      "qxl.dialog.icon.cancel": "@MaterialIcons/cancel/18",
-      "qxl.dialog.icon.ok": "@MaterialIcons/check/18",
-      "qxl.dialog.icon.info": "@MaterialIcons/info/18",
-      "qxl.dialog.icon.error": "@MaterialIcons/error/18",
-      "qxl.dialog.icon.warning": "@MaterialIcons/warning/18"
+      'qxl.dialog.icon.cancel': '@MaterialIcons/cancel/18',
+      'qxl.dialog.icon.ok': '@MaterialIcons/check/18',
+      'qxl.dialog.icon.info': '@MaterialIcons/info/18',
+      'qxl.dialog.icon.error': '@MaterialIcons/error/18',
+      'qxl.dialog.icon.warning': '@MaterialIcons/warning/18'
     }
   });
   cv.theme.dark.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1625667807826
+//# sourceMappingURL=Icon.js.map?dt=1641882238003

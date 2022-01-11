@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 281,
+        "line": 296,
         "column": 3
       }
     },
@@ -148,8 +148,8 @@
           "column": 4
         },
         "end": {
-          "line": 75,
-          "column": 41
+          "line": 77,
+          "column": 1
         }
       },
       "jsdoc": {
@@ -178,12 +178,12 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 82,
-          "column": 50
+          "line": 86,
+          "column": 1
         }
       },
       "jsdoc": {
@@ -218,12 +218,12 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 89,
-          "column": 52
+          "line": 95,
+          "column": 1
         }
       },
       "jsdoc": {
@@ -260,12 +260,12 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 101,
           "column": 4
         },
         "end": {
-          "line": 95,
-          "column": 65
+          "line": 103,
+          "column": 1
         }
       },
       "jsdoc": {
@@ -292,11 +292,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 111,
           "column": 4
         },
         "end": {
-          "line": 104,
+          "line": 112,
           "column": 5
         }
       },
@@ -324,11 +324,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 124,
           "column": 5
         }
       },
@@ -368,11 +368,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 198,
           "column": 5
         }
       },
@@ -424,11 +424,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 204,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 204,
           "column": 32
         }
       },
@@ -456,11 +456,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 213,
           "column": 48
         }
       },
@@ -507,11 +507,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 219,
           "column": 49
         }
       },
@@ -541,11 +541,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 211,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 211,
+          "line": 225,
           "column": 42
         }
       },
@@ -573,11 +573,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 220,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 242,
           "column": 5
         }
       },
@@ -622,11 +622,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 249,
           "column": 31
         }
       },
@@ -656,11 +656,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 255,
           "column": 30
         }
       },
@@ -669,6 +669,14 @@
           {
             "name": "@description",
             "body": "<p>Restart the connection</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
           }
         ]
       },
@@ -682,11 +690,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 247,
+          "line": 262,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 262,
           "column": 29
         }
       },
@@ -716,11 +724,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 269,
           "column": 4
         },
         "end": {
-          "line": 254,
+          "line": 269,
           "column": 35
         }
       },
@@ -758,11 +766,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 262,
+          "line": 277,
           "column": 47
         }
       },
@@ -806,11 +814,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 264,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 268,
+          "line": 283,
           "column": 5
         }
       },
@@ -824,11 +832,11 @@
     "destruct": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 288,
           "column": 4
         },
         "end": {
-          "line": 278,
+          "line": 293,
           "column": 5
         }
       },

@@ -16,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 268,
+        "line": 274,
         "column": 3
       }
     },
@@ -49,7 +49,7 @@
         "column": 13
       },
       "end": {
-        "line": 39,
+        "line": 42,
         "column": 3
       }
     },
@@ -58,11 +58,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 45,
+        "line": 48,
         "column": 12
       },
       "end": {
-        "line": 49,
+        "line": 52,
         "column": 3
       }
     },
@@ -72,11 +72,11 @@
     "min": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 63,
           "column": 5
         }
       },
@@ -89,11 +89,11 @@
     "max": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 67,
           "column": 5
         }
       },
@@ -106,11 +106,11 @@
     "step": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 71,
           "column": 5
         }
       },
@@ -123,11 +123,11 @@
     "showInvalidValues": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 75,
           "column": 5
         }
       },
@@ -140,11 +140,11 @@
     "sendOnFinish": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5
         }
       },
@@ -276,12 +276,12 @@
     "__lastBusValue": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 85,
-          "column": 22
+          "line": 88,
+          "column": 24
         }
       },
       "type": "variable",
@@ -290,11 +290,11 @@
     "__animator": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 89,
           "column": 20
         }
       },
@@ -304,11 +304,11 @@
     "__button": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 90,
           "column": 23
         }
       },
@@ -318,11 +318,11 @@
     "__range": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 91,
           "column": 22
         }
       },
@@ -333,11 +333,11 @@
     "__actorWidth": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 92,
           "column": 27
         }
       },
@@ -348,11 +348,11 @@
     "__buttonWidth": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 93,
           "column": 28
         }
       },
@@ -362,11 +362,11 @@
     "__pageSizeListener": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 94,
           "column": 33
         }
       },
@@ -376,11 +376,11 @@
     "__inDrag": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 95,
           "column": 19
         }
       },
@@ -390,11 +390,11 @@
     "__coordMin": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 96,
           "column": 25
         }
       },
@@ -405,11 +405,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 104,
+          "line": 107,
           "column": 5
         }
       },
@@ -424,11 +424,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 116,
           "column": 5
         }
       },
@@ -443,11 +443,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 132,
           "column": 5
         }
       },
@@ -457,11 +457,11 @@
     "__setSliderTo": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 193,
           "column": 5
         }
       },
@@ -508,11 +508,11 @@
     "__updateHandlePosition": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 219,
           "column": 5
         }
       },
@@ -522,11 +522,11 @@
     "__invalidateScreensize": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 226,
           "column": 5
         }
       },
@@ -536,11 +536,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 258,
+          "line": 264,
           "column": 5
         }
       },
@@ -550,11 +550,11 @@
     "__onChangeValue": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 262,
+          "line": 268,
           "column": 5
         }
       },
@@ -2376,7 +2376,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6341,11 +6341,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 265,
+        "line": 271,
         "column": 9
       },
       "end": {
-        "line": 267,
+        "line": 273,
         "column": 3
       }
     },

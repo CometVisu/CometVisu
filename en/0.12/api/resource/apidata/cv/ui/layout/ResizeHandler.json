@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 338,
+        "line": 350,
         "column": 3
       }
     },
@@ -262,7 +262,7 @@
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 114,
           "column": 5
         }
       },
@@ -272,11 +272,11 @@
     "makeBackdropValid": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 118,
           "column": 5
         }
       },
@@ -286,11 +286,11 @@
     "__makeBackdropValid": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 230,
           "column": 5
         }
       },
@@ -300,11 +300,11 @@
     "makeNavbarValid": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 234,
           "column": 5
         }
       },
@@ -314,11 +314,11 @@
     "__makeNavbarValid": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 236,
           "column": 4
         },
         "end": {
-          "line": 234,
+          "line": 243,
           "column": 5
         }
       },
@@ -328,11 +328,11 @@
     "makePagesizeValid": {
       "location": {
         "start": {
-          "line": 236,
+          "line": 245,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 253,
           "column": 5
         }
       },
@@ -342,11 +342,11 @@
     "__makePagesizeValid": {
       "location": {
         "start": {
-          "line": 246,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 274,
           "column": 5
         }
       },
@@ -356,11 +356,11 @@
     "makeRowspanValid": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 276,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 278,
           "column": 5
         }
       },
@@ -370,11 +370,11 @@
     "__makeRowspanValid": {
       "location": {
         "start": {
-          "line": 269,
+          "line": 280,
           "column": 4
         },
         "end": {
-          "line": 282,
+          "line": 293,
           "column": 5
         }
       },
@@ -384,11 +384,11 @@
     "__updateRowHeight": {
       "location": {
         "start": {
-          "line": 284,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 310,
+          "line": 322,
           "column": 5
         }
       },
@@ -398,11 +398,11 @@
     "invalidateBackdrop": {
       "location": {
         "start": {
-          "line": 312,
+          "line": 324,
           "column": 4
         },
         "end": {
-          "line": 316,
+          "line": 328,
           "column": 5
         }
       },
@@ -412,11 +412,11 @@
     "invalidateNavbar": {
       "location": {
         "start": {
-          "line": 317,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 334,
           "column": 5
         }
       },
@@ -426,11 +426,11 @@
     "invalidateRowspan": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 338,
           "column": 5
         }
       },
@@ -440,11 +440,11 @@
     "invalidateScreensize": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 348,
           "column": 5
         }
       },

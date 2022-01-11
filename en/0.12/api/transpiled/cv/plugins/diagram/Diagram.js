@@ -59,11 +59,11 @@
      */
     properties: {
       width: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -90,12 +90,12 @@
         return {
           width: {
             transform: function transform(value) {
-              return value ? parseInt(value) + "px" : null;
+              return value ? parseInt(value) + 'px' : null;
             }
           },
           height: {
             transform: function transform(value) {
-              return value ? parseInt(value) + "px" : null;
+              return value ? parseInt(value) + 'px' : null;
             }
           }
         };
@@ -108,19 +108,19 @@
      ******************************************************
      */
     members: {
-      __P_20_0: null,
+      __P_19_0: null,
       _onDomReady: function _onDomReady() {
         if (!this.$$domReady) {
           var pageId = this.getParentPage().getPath();
           var broker = qx.event.message.Bus; // let the refresh only be active when this widget is visible
 
           this.setRestartOnVisible(true);
-          broker.subscribe("path." + pageId + ".beforePageChange", function () {
+          broker.subscribe('path.' + pageId + '.beforePageChange', function () {
             if (!this._init) {
               this.loadDiagramData(this.plot, false, false);
             }
           }, this);
-          broker.subscribe("page." + pageId + ".appear", function () {
+          broker.subscribe('page.' + pageId + '.appear', function () {
             // create diagram when it's not already existing
             if (this._init) {
               this.initDiagram(false);
@@ -137,7 +137,7 @@
               }
             }, this).schedule();
           } else {
-            this.__P_20_0 = this.addListener("changeVisible", function (ev) {
+            this.__P_19_0 = this.addListener('changeVisible', function (ev) {
               if (ev.getData()) {
                 if (!this._init) {
                   this.loadDiagramData(this.plot, false, false);
@@ -145,8 +145,8 @@
                   this.initDiagram(false);
                 }
 
-                this.removeListenerById(this.__P_20_0);
-                this.__P_20_0 = null;
+                this.removeListenerById(this.__P_19_0);
+                this.__P_19_0 = null;
               }
             }, this);
           }
@@ -156,18 +156,18 @@
         }
       },
       _getInnerDomString: function _getInnerDomString() {
-        var classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
-            styleStr = 'min-height: 40px' + (this.getWidth() ? ';width:' + this.getWidth() : '') + (this.getHeight() ? ';height:' + this.getHeight() : ';height: 100%');
+        var classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview';
+        var styleStr = 'min-height: 40px' + (this.getWidth() ? ';width:' + this.getWidth() : '') + (this.getHeight() ? ';height:' + this.getHeight() : ';height: 100%');
         return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
       }
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("diagram", statics);
-      cv.ui.structure.WidgetFactory.registerClass("diagram", statics);
+      cv.parser.WidgetParser.addHandler('diagram', statics);
+      cv.ui.structure.WidgetFactory.registerClass('diagram', statics);
     }
   });
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1625667765817
+//# sourceMappingURL=Diagram.js.map?dt=1641882198703

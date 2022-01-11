@@ -42,8 +42,8 @@
     statics: {
       /**
        * Get the name of a schema-node
-       *
-       * @param   e object  element to find the name of
+       * @param e object  element to find the name of
+       * @param schema
        * @return  string          name of the element
        * @throws  if the name can not be found
        */
@@ -58,7 +58,7 @@
           var ref = schema.getReferencedNode('attribute', refName);
 
           if (!ref) {
-            throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+            throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
           }
 
           return ref.getAttribute('name');
@@ -169,11 +169,11 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_46_0 = null;
-      this.__P_46_1 = null;
+      this.__P_45_0 = null;
+      this.__P_45_1 = null;
     }
   });
   cv.ui.manager.model.schema.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1625667769472
+//# sourceMappingURL=Attribute.js.map?dt=1641882202125

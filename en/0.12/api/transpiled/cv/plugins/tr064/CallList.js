@@ -6,6 +6,7 @@
         "require": true
       },
       "cv.ui.structure.AbstractWidget": {
+        "construct": true,
         "require": true
       },
       "cv.ui.common.Refresh": {
@@ -63,10 +64,14 @@
     include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
     /*
-    ******************************************************
+    ***********************************************
       CONSTRUCTOR
-    ******************************************************
+    ***********************************************
     */
+    construct: function construct(props) {
+      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      this.__P_22_0 = {};
+    },
 
     /*
     ******************************************************
@@ -273,16 +278,16 @@
     ******************************************************
     */
     members: {
-      __P_23_0: '',
-      __P_23_1: undefined,
-      __P_23_2: false,
+      __P_22_1: '',
+      __P_22_2: undefined,
+      __P_22_3: false,
 
       /**
        * Prevent warning "Reference values are shared across all instances"
        * as the keys are unique a share doesn't matter:
        * @lint ignoreReferenceField(__TAMeventAttached)
        */
-      __P_23_3: {},
+      __P_22_0: null,
       _getInnerDomString: function _getInnerDomString() {
         this.refreshCalllist('initial');
         return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
@@ -291,7 +296,7 @@
         this._timer = new qx.event.Timer(this.getRefresh());
 
         this._timer.addListener('interval', function () {
-          if (!this.__P_23_2) {
+          if (!this.__P_22_3) {
             this.refreshCalllist('timer');
           }
         }, this);
@@ -299,16 +304,16 @@
         this._timer.start();
       },
       _update: function _update(address, value) {
-        if (!this.__P_23_2) {
+        if (!this.__P_22_3) {
           this.refreshCalllist('update');
         }
       },
       _displayCalllist: function _displayCalllist() {
-        var self = this,
-            clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0],
-            sid = this.__P_23_0 ? this.__P_23_0.replace(/.*sid=/, '') : '',
-            html = '',
-            types = {
+        var self = this;
+        var clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0];
+        var sid = this.__P_22_1 ? this.__P_22_1.replace(/.*sid=/, '') : '';
+        var html = '';
+        var types = {
           0: {
             name: this.getTypeUnknown(),
             color: this.getTypeUnknownColor()
@@ -339,9 +344,9 @@
           }
         };
 
-        this.__P_23_1.forEach(function (cl) {
-          var audio = '',
-              type = cl.Type in types ? types[cl.Type] : types[0];
+        this.__P_22_2.forEach(function (cl) {
+          var audio = '';
+          var type = cl.Type in types ? types[cl.Type] : types[0];
 
           if (cl.Path) {
             audio = "<audio preload=\"none\"><source src=\"resource/plugins/tr064/proxy.php?device=" + self.getDevice() + '&uri=' + cl.Path + '%26sid=' + sid + '">' + '</audio>' + '<div class="tam clickable">' + cv.IconHandler.getInstance().getIconText(self.getTAM(), '*', '*', self.getTAMColor()) + '</div>';
@@ -387,8 +392,8 @@
         var tamList = clLi.getElementsByClassName('tam');
 
         for (var i = 0; i < tamList.length; i++) {
-          tamList[i].addEventListener("click", function () {
-            self.__P_23_4(this);
+          tamList[i].addEventListener('click', function () {
+            self.__P_22_4(this);
           });
         }
       },
@@ -399,100 +404,102 @@
        *   GetCallList
        */
       _getCallListURI: function _getCallListURI() {
-        var self = this,
-            url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
+        var self = this;
+        var url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
         window.fetch(url).then(function (response) {
           if (response.ok) {
             return response.json();
           } // else:
 
 
-          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
-          self.__P_23_0 = '<fail>';
+          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          self.__P_22_1 = '<fail>';
+          return null;
         }).then(function (data) {
           if (typeof data === 'string') {
-            self.__P_23_0 = data;
+            self.__P_22_1 = data;
             self.refreshCalllist('getCallListURI');
           } else {
-            console.error('Error: reading URL "' + url + ' failed with content:', data);
-            self.__P_23_0 = '<fail>';
+            self.error('Error: reading URL "' + url + ' failed with content:', data);
+            self.__P_22_1 = '<fail>';
           }
         });
       },
       refreshCalllist: function refreshCalllist(source) {
-        this.__P_23_2 = true;
+        this.__P_22_3 = true;
 
-        if (this.__P_23_0 === '<fail>') {
+        if (this.__P_22_1 === '<fail>') {
           return; // this problem won't fix anymore during this instance
         }
 
-        if (this.__P_23_0 === '') {
+        if (this.__P_22_1 === '') {
           this._getCallListURI();
 
           return;
         }
 
-        var self = this,
-            url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__P_23_0 + '%26max=' + this.getMax();
+        var self = this;
+        var url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__P_22_1 + '%26max=' + this.getMax();
         window.fetch(url).then(function (response) {
           if (response.ok) {
             return response.text();
           } // else:
 
 
-          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
           return '<xml/>';
         }).then(function (str) {
-          return new window.DOMParser().parseFromString(str, "text/xml");
+          return new window.DOMParser().parseFromString(str, 'text/xml');
         }).then(function (data) {
-          self.__P_23_1 = [];
+          self.__P_22_2 = [];
           var itemList = data.getElementsByTagName('Call');
 
           for (var i = 0; i < itemList.length; i++) {
-            var childrenList = itemList[i].children,
-                entry = {};
+            var childrenList = itemList[i].children;
+            var entry = {};
 
             for (var ii = 0; ii < childrenList.length; ii++) {
               entry[childrenList[ii].nodeName] = childrenList[ii].textContent;
             }
 
-            self.__P_23_1.push(entry);
+            self.__P_22_2.push(entry);
           }
 
           self._displayCalllist();
 
-          self.__P_23_2 = false;
+          self.__P_22_3 = false;
           self.fireEvent('tr064ListRefreshed');
         })["catch"](function (error) {
-          console.error('TR-064 refreshCalllist() error:', error);
+          self.error('TR-064 refreshCalllist() error:', error);
         });
       },
 
       /**
        * The EventListener for click on the TAM button.
+       * @param element
        */
-      __P_23_4: function __P_23_4(element) {
-        var self = this,
-            audio = element.previousElementSibling;
+      __P_22_4: function __P_22_4(element) {
+        var self = this;
+        var audio = element.previousElementSibling;
 
-        if (!this.__P_23_3[audio]) {
+        if (!this.__P_22_0[audio]) {
           audio.addEventListener('ended', function () {
-            self.__P_23_5(element);
+            self.__P_22_5(element);
           });
-          this.__P_23_3[audio] = true;
+          this.__P_22_0[audio] = true;
         }
 
-        if (audio.readyState < 4) // not ready yet
-          {
-            this.__P_23_6(element);
-          }
+        if (audio.readyState < 4) {
+          // not ready yet
+          this.__P_22_6(element);
+        }
 
         if (audio.paused) {
           var playPromise = audio.play();
 
           if (playPromise !== undefined) {
             playPromise.then(function () {
-              self.__P_23_7(element);
+              self.__P_22_7(element);
             })["catch"](function () {
               /*NOP*/
             });
@@ -501,27 +508,27 @@
           audio.pause();
           audio.currentTime = 0;
 
-          this.__P_23_5(element);
+          this.__P_22_5(element);
         }
       },
-      __P_23_6: function __P_23_6(element) {
+      __P_22_6: function __P_22_6(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMwait(), '*', '*', this.getTAMwaitColor());
       },
-      __P_23_7: function __P_23_7(element) {
+      __P_22_7: function __P_22_7(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMplay(), '*', '*', this.getTAMplayColor());
       },
-      __P_23_5: function __P_23_5(element) {
+      __P_22_5: function __P_22_5(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconText(this.getTAMstop(), '*', '*', this.getTAMstopColor());
       }
     },
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/tr064/tr064.css');
-      cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.CallList);
-      cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
+      cv.parser.WidgetParser.addHandler('calllist', cv.plugins.tr064.CallList);
+      cv.ui.structure.WidgetFactory.registerClass('calllist', statics);
     }
   });
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1625667766040
+//# sourceMappingURL=CallList.js.map?dt=1641882198920

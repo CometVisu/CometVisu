@@ -622,7 +622,6 @@
     <xsd:choice>
       <xsd:element name="calendarlist" type="calendarlist" />
       <xsd:element name="clock" type="clock" />
-      <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="diagram" type="diagram" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="gauge" type="gauge" />
@@ -1187,6 +1186,7 @@
       <xsd:element name="line" type="line" />
       <xsd:element name="break" type="break" />
       <!-- list all possbile widgets here -->
+      <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="text" type="text" />
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="toggle" />
@@ -2174,6 +2174,156 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
+    <xsd:attribute name="controls" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Liste the darzugstellenden Kontrollelemente (durch Strichpunkte getrennt)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_x" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the red channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_y" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the red channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_wavelength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_strength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_curve" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_scale" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_x" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the green channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_y" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the green channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_wavelength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_strength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_curve" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_scale" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_x" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_y" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_wavelength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_strength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_curve" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_scale" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_x" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the white channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_y" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the white channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordniate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_strength" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_curve" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_scale" type="xsd:decimal" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Send only when the slider is released.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Sende nur beim Loslassen des Sliders.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="diagram">

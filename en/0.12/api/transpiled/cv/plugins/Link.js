@@ -53,19 +53,19 @@
     */
     properties: {
       cssClass: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       text: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       href: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       newWindow: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -104,7 +104,7 @@
           'newWindow': {
             'default': false,
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -118,10 +118,10 @@
     */
     members: {
       _getInnerDomString: function _getInnerDomString() {
-        var classes = "link";
+        var classes = 'link';
 
         if (this.getCssClass()) {
-          classes += " " + this.getCssClass();
+          classes += ' ' + this.getCssClass();
         }
 
         var href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
@@ -135,11 +135,11 @@
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("link", cv.plugins.Link);
-      cv.ui.structure.WidgetFactory.registerClass("link", statics);
+      cv.parser.WidgetParser.addHandler('link', cv.plugins.Link);
+      cv.ui.structure.WidgetFactory.registerClass('link', statics);
     }
   });
   cv.plugins.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1625667765167
+//# sourceMappingURL=Link.js.map?dt=1641882198041

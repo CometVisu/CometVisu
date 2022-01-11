@@ -47,8 +47,8 @@
     statics: {
       /**
        * Get the name of a schema-element
-       *
-       * @param   e object  element to find the name of
+       * @param e object  element to find the name of
+       * @param schema
        * @return  string          name of the element
        * @throws  if the name can not be found
        */
@@ -63,7 +63,7 @@
           var ref = schema.getReferencedNode('element', refName);
 
           if (ref.length !== 1) {
-            throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+            throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
           }
 
           return ref.getAttribute('name');
@@ -74,7 +74,8 @@
 
       /**
        * find the type-node for this element
-       *
+       * @param node
+       * @param schema
        * @return  object  object of the type-Node
        */
       getTypeNode: function getTypeNode(node, schema) {
@@ -94,7 +95,7 @@
           // be ref'ed
         } else {
           // the element is it's own type
-          type = node.querySelector(":scope > complexType");
+          type = node.querySelector(':scope > complexType');
         }
 
         return type;
@@ -184,10 +185,10 @@
     ***********************************************
     */
     members: {
-      __P_47_0: false,
-      __P_47_1: null,
-      __P_47_2: null,
-      __P_47_3: null,
+      __P_46_0: false,
+      __P_46_1: null,
+      __P_46_2: null,
+      __P_46_3: null,
 
       /**
        * get and set the type-node for the element
@@ -201,11 +202,11 @@
         this._type = cv.ui.manager.model.schema.Element.getTypeNode(node, schema);
         this.setName(cv.ui.manager.model.schema.Element.getElementName(node, schema));
 
-        if (node.hasAttribute("default")) {
-          this.setDefaultValue(node.getAttribute("default"));
+        if (node.hasAttribute('default')) {
+          this.setDefaultValue(node.getAttribute('default'));
         }
 
-        this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute("mixed") === "true");
+        this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute('mixed') === 'true');
       },
 
       /**
@@ -214,9 +215,9 @@
        * @return  object  object of SchemaElement-elements, key is the name
        */
       getAllowedContent: function getAllowedContent() {
-        if (this.__P_47_1 !== null) {
+        if (this.__P_46_1 !== null) {
           // if we have parsed this already, we can simply return the 'cache'
-          return this.__P_47_1;
+          return this.__P_46_1;
         }
 
         var schema = this.getSchema();
@@ -263,7 +264,7 @@
           allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
         } else {
           // no type, no children, no choice - this is an element with NO allowed content/children
-          this.__P_47_1 = allowedContent;
+          this.__P_46_1 = allowedContent;
           return allowedContent;
         }
 
@@ -273,7 +274,7 @@
           allowedContent[subElement.getName()] = subElement;
         }); // fill the cache
 
-        this.__P_47_1 = allowedContent;
+        this.__P_46_1 = allowedContent;
         return allowedContent;
       },
 
@@ -284,7 +285,7 @@
       getAllowedAttributes: function getAllowedAttributes() {
         var _this = this;
 
-        if (this.__P_47_2 === null) {
+        if (this.__P_46_2 === null) {
           var allowedAttributes = {}; // allowed attributes
 
           var attributes = Array.from(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute')); // now add any attribute that comes from an attribute-group
@@ -311,10 +312,10 @@
             var attribute = new cv.ui.manager.model.schema.Attribute(attr, _this.getSchema());
             allowedAttributes[attribute.getName()] = attribute;
           });
-          this.__P_47_2 = allowedAttributes;
+          this.__P_46_2 = allowedAttributes;
         }
 
-        return this.__P_47_2;
+        return this.__P_46_2;
       },
 
       /**
@@ -353,7 +354,7 @@
 
       /**
        * get a list of all allowed elements for this element
-       *
+       * @param excludeComment
        * @return  object  list of SchemaElement-elements, key is the name
        */
       getAllowedElements: function getAllowedElements(excludeComment) {
@@ -429,7 +430,7 @@
           return undefined;
         }
 
-        if (true === allowedContent._grouping.hasMultiLevelBounds()) {
+        if (allowedContent._grouping.hasMultiLevelBounds() === true) {
           // if our choice has sub-choices, then we have not fucking clue about bounds (or we can not process them)
           return undefined;
         }
@@ -473,7 +474,7 @@
       },
       isTextContentRequired: function isTextContentRequired() {
         if (this.isTextContentAllowed()) {
-          return !this.isMixed() && !this.getAllowedContent()._text.isValueValid("");
+          return !this.isMixed() && !this.getAllowedContent()._text.isValueValid('');
         }
 
         return false;
@@ -500,10 +501,10 @@
         if (allowedContent._grouping === undefined) {
           // when there is no choice, then there is no allowed element
           return false;
-        } else {
-          // see, if this child is allowed with our choice
-          return allowedContent._grouping.isElementAllowed(child);
-        }
+        } // see, if this child is allowed with our choice
+
+
+        return allowedContent._grouping.isElementAllowed(child);
       },
 
       /**
@@ -520,24 +521,24 @@
         if (elementName === '#text' || elementName === '#cdata-section') {
           // no special handling for mixed nodes, they do have a #text-SchemaElement already!
           // text-nodes may be allowed. we will see ...
-          if (false === this.isTextContentAllowed()) {
+          if (this.isTextContentAllowed() === false) {
             return undefined;
           }
 
-          if (!this.__P_47_3) {
+          if (!this.__P_46_3) {
             var tmpXML = this.getSchema().getSchemaDOM().createElement('element');
             tmpXML.setAttribute('name', '#text');
             tmpXML.setAttribute('type', 'xsd:string');
-            this.__P_47_3 = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
+            this.__P_46_3 = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
 
             if (allowedContent._text) {
-              this.__P_47_3.getAllowedContent()._text = allowedContent._text;
+              this.__P_46_3.getAllowedContent()._text = allowedContent._text;
             } else if (this.isMixed()) {
-              this.__P_47_3.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
+              this.__P_46_3.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
             }
           }
 
-          return this.__P_47_3;
+          return this.__P_46_3;
         } else if (elementName === '#comment') {
           // comments are always allowed
           return this.getSchema().getCommentNodeSchemaElement();
@@ -573,7 +574,7 @@
        * @return  boolean         is it valid?
        */
       isValueValid: function isValueValid(value) {
-        if (false === this.isTextContentAllowed()) {
+        if (this.isTextContentAllowed() === false) {
           // if no text-content is allowed, then it can not be valid
           return false;
         }
@@ -634,8 +635,8 @@
 
       /**
        * create a full-blown regular expression that describes this elements immediate children
-       *
-       * @param   separator   string  the string used to separate different elements, e.g. ';'
+       * @param separator   string  the string used to separate different elements, e.g. ';'
+       * @param nocapture
        * @return  string              the regular expression
        */
       getChildrenRegex: function getChildrenRegex(separator, nocapture) {
@@ -661,14 +662,14 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__P_47_2");
+      this._disposeMap("__P_46_2");
 
-      this._disposeMap("__P_47_1");
+      this._disposeMap("__P_46_1");
 
-      this._disposeObjects("__P_47_3");
+      this._disposeObjects("__P_46_3");
     }
   });
   cv.ui.manager.model.schema.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1625667769667
+//# sourceMappingURL=Element.js.map?dt=1641882202299

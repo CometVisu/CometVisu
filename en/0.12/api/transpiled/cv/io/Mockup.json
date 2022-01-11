@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 351,
+        "line": 457,
         "column": 3
       }
     },
@@ -246,21 +246,35 @@
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 182,
           "column": 5
         }
       },
       "type": "function",
       "access": "private"
     },
-    "receive": {
+    "defake": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 235,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "receive": {
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4
+        },
+        "end": {
+          "line": 247,
           "column": 5
         }
       },
@@ -270,6 +284,14 @@
             "name": "@description",
             "body": "<p>This function gets called once the communication is established and session information is available</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "json",
+            "paramName": "json",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -278,11 +300,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 270,
           "column": 5
         }
       },
@@ -328,11 +350,11 @@
     "_registerSimulations": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 272,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 283,
           "column": 5
         }
       },
@@ -342,11 +364,11 @@
     "_startSequence": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 298,
           "column": 5
         }
       },
@@ -356,11 +378,11 @@
     "_processSimulation": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 300,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 370,
           "column": 5
         }
       },
@@ -370,11 +392,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 271,
+          "line": 376,
           "column": 4
         },
         "end": {
-          "line": 273,
+          "line": 378,
           "column": 5
         }
       },
@@ -383,6 +405,14 @@
           {
             "name": "@description",
             "body": "<p>Subscribe to the addresses in the parameter</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "addresses",
+            "paramName": "addresses",
+            "type": ""
           }
         ]
       },
@@ -396,11 +426,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 279,
+          "line": 385,
           "column": 4
         },
         "end": {
-          "line": 304,
+          "line": 410,
           "column": 5
         }
       },
@@ -409,6 +439,20 @@
           {
             "name": "@description",
             "body": "<p>This function sends a value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address",
+            "paramName": "address",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
           }
         ]
       },
@@ -422,11 +466,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 412,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 412,
           "column": 26
         }
       },
@@ -435,16 +479,26 @@
       "overriddenFrom": "cv.io.IClient",
       "appearsIn": [
         "cv.io.IClient"
-      ]
+      ],
+      "jsdoc": {
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
+          }
+        ]
+      }
     },
     "stop": {
       "location": {
         "start": {
-          "line": 308,
+          "line": 414,
           "column": 4
         },
         "end": {
-          "line": 308,
+          "line": 414,
           "column": 24
         }
       },
@@ -454,11 +508,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 416,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 418,
           "column": 5
         }
       },
@@ -499,11 +553,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 420,
           "column": 4
         },
         "end": {
-          "line": 316,
+          "line": 422,
           "column": 5
         }
       },
@@ -527,11 +581,11 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 318,
+          "line": 424,
           "column": 4
         },
         "end": {
-          "line": 320,
+          "line": 426,
           "column": 5
         }
       },
@@ -555,11 +609,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 428,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 429,
           "column": 5
         }
       },
@@ -581,11 +635,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 431,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 431,
           "column": 29
         }
       },
@@ -599,11 +653,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 433,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 433,
           "column": 29
         }
       },
@@ -627,11 +681,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 328,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 328,
+          "line": 434,
           "column": 35
         }
       },
@@ -663,11 +717,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 435,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 435,
           "column": 47
         }
       },
@@ -705,11 +759,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 332,
+          "line": 438,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 439,
           "column": 5
         }
       },
@@ -724,11 +778,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 441,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 443,
           "column": 5
         }
       },
@@ -752,11 +806,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 444,
           "column": 4
         },
         "end": {
-          "line": 340,
+          "line": 446,
           "column": 5
         }
       },
@@ -778,11 +832,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 447,
           "column": 4
         },
         "end": {
-          "line": 343,
+          "line": 449,
           "column": 5
         }
       },
@@ -812,11 +866,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 450,
           "column": 4
         },
         "end": {
-          "line": 346,
+          "line": 452,
           "column": 5
         }
       },
@@ -848,11 +902,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 347,
+          "line": 453,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 455,
           "column": 5
         }
       },

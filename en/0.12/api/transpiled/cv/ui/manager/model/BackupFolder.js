@@ -67,7 +67,7 @@
           var suffix = parts.pop();
           var filename = parts.join('.');
           var fileRegex = new RegExp(path + filename + '-([\\d]{14})\\.' + suffix);
-          this.getChildren().filter(function (backupFile) {
+          this.getChildren().forEach(function (backupFile) {
             var match = fileRegex.exec(backupFile.getFullPath().replace('backup/', ''));
 
             if (match) {
@@ -95,4 +95,4 @@
   cv.ui.manager.model.BackupFolder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackupFolder.js.map?dt=1625667768863
+//# sourceMappingURL=BackupFolder.js.map?dt=1641882201568

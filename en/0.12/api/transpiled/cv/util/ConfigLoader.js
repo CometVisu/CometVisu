@@ -4,7 +4,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
@@ -71,6 +71,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       /**
        * Load a config file
+       * @param callback
+       * @param context
        */
       load: function load(callback, context) {
         this.__P_495_1 = callback;
@@ -81,25 +83,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (cv.Config.testMode) {
           // workaround for e2e-tests
           uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
-        } else if (uri.indexOf("resource/") === -1) {
+        } else if (uri.indexOf('resource/') === -1) {
           // unknown config, try to add the resource part manually
-          uri = uri.replace("config/", "resource/config/");
+          uri = uri.replace('config/', 'resource/config/');
         }
 
-        this.debug("Requesting " + uri);
+        this.debug('Requesting ' + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
         this.__P_495_0.push(uri);
 
         ajaxRequest.set({
-          accept: "application/xml",
+          accept: 'application/xml',
           cache: !cv.Config.forceReload
         });
-        ajaxRequest.setUserData("noDemo", true);
-        ajaxRequest.addListenerOnce("success", function (e) {
+        ajaxRequest.setUserData('noDemo', true);
+        ajaxRequest.addListenerOnce('success', function (e) {
           qx.core.Init.getApplication().block(false);
           var req = e.getTarget();
-          cv.Config.configServer = req.getResponseHeader("Server"); // Response parsed according to the server's response content type
+          cv.Config.configServer = req.getResponseHeader('Server'); // Response parsed according to the server's response content type
 
           var xml = req.getResponse();
 
@@ -112,11 +114,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           this.__P_495_0.remove(ajaxRequest.getUrl());
 
-          if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
-            this.configError("parsererror");
+          if (!xml || !xml.documentElement || xml.getElementsByTagName('parsererror').length) {
+            this.configError('parsererror');
           } else {
             // check the library version
-            var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
+            var xmlLibVersion = xml.querySelector('pages').getAttribute('lib_version');
 
             if (xmlLibVersion === undefined) {
               xmlLibVersion = -1;
@@ -128,23 +130,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
 
             if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
-              this.configError("libraryerror");
+              this.configError('libraryerror');
             } else {
-              var backendName = "";
+              var backendName = '';
 
-              if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
-                backendName = req.getResponseHeader("X-CometVisu-Backend-Name");
+              if (req.getResponseHeader('X-CometVisu-Backend-Name')) {
+                backendName = req.getResponseHeader('X-CometVisu-Backend-Name');
               }
 
-              if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-                cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+              if (req.getResponseHeader('X-CometVisu-Backend-LoginUrl')) {
+                cv.Config.backendUrl = req.getResponseHeader('X-CometVisu-Backend-LoginUrl');
 
                 if (!cv.Config.backendUrl.endsWith('/')) {
                   cv.Config.backendUrl += '/';
                 }
 
-                if (!backendName && cv.Config.backendUrl.startsWith("/rest/")) {
-                  backendName = "openhab";
+                if (!backendName && cv.Config.backendUrl.startsWith('/rest/')) {
+                  backendName = 'openhab';
                 }
               }
 
@@ -156,12 +158,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         }, this);
-        ajaxRequest.addListener("statusError", function (e) {
+        ajaxRequest.addListener('statusError', function (e) {
           var status = e.getTarget().getTransport().status;
 
-          if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData("noDemo")) {
-            ajaxRequest.setUserData("noDemo", false);
-            ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
+          if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData('noDemo')) {
+            ajaxRequest.setUserData('noDemo', false);
+            ajaxRequest.setUserData('origUrl', ajaxRequest.getUrl());
 
             this.__P_495_0.remove(ajaxRequest.getUrl());
 
@@ -172,7 +174,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
-            this.configError("filenotfound", [ajaxRequest.getUserData("origUrl"), ajaxRequest.getUrl()]);
+            this.configError('filenotfound', [ajaxRequest.getUserData('origUrl'), ajaxRequest.getUrl()]);
           } else {
             this.configError(status, null);
           }
@@ -195,10 +197,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
-          accept: "text/plain",
+          accept: 'text/plain',
           async: false
         });
-        xhr.addListenerOnce("success", function (e) {
+        xhr.addListenerOnce('success', function (e) {
           var req = e.getTarget();
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
           includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
@@ -207,11 +209,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           this._checkQueue();
         }, this);
-        xhr.addListener("statusError", function (e) {
+        xhr.addListener('statusError', function (e) {
           var status = e.getTarget().getTransport().status;
 
           if (!qx.util.Request.isSuccessful(status)) {
-            this.configError("filenotfound", [xhr.getUrl(), '']);
+            this.configError('filenotfound', [xhr.getUrl(), '']);
           } else {
             this.configError(status, null);
           }
@@ -243,19 +245,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         switch (textStatus) {
           case 'parsererror':
-            message = qx.locale.Manager.tr("Invalid config file!") + '<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">' + qx.locale.Manager.tr("Please check!") + '</a>';
+            message = qx.locale.Manager.tr('Invalid config file!') + '<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">' + qx.locale.Manager.tr('Please check!') + '</a>';
             break;
 
           case 'libraryerror':
-            var link = window.location.href.split('#')[0];
+            {
+              var link = window.location.href.split('#')[0];
 
-            if (link.indexOf('?') <= 0) {
-              link = link + '?';
+              if (link.indexOf('?') <= 0) {
+                link += '?';
+              }
+
+              link += '&libraryCheck=false';
+              message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr('You can run the %1Configuration Upgrader%2.', '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
+              break;
             }
-
-            link = link + '&libraryCheck=false';
-            message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
-            break;
 
           case 'filenotfound':
             message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]).translate().toString();
@@ -273,10 +277,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
 
         var notification = {
-          topic: "cv.config.error",
+          topic: 'cv.config.error',
           title: title,
           message: message,
-          severity: "urgent",
+          severity: 'urgent',
           unique: true,
           deletable: false
         };
@@ -301,4 +305,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1625667805762
+//# sourceMappingURL=ConfigLoader.js.map?dt=1641882235824

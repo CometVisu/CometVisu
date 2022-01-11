@@ -16,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 159,
+        "line": 172,
         "column": 3
       }
     },
@@ -63,7 +63,7 @@
         },
         "end": {
           "line": 45,
-          "column": 47
+          "column": 50
         }
       },
       "name": "width",
@@ -80,7 +80,7 @@
         },
         "end": {
           "line": 46,
-          "column": 49
+          "column": 52
         }
       },
       "name": "height",
@@ -89,7 +89,7 @@
       "allowNull": true,
       "check": "String"
     },
-    "src": {
+    "cropTop": {
       "location": {
         "start": {
           "line": 47,
@@ -97,7 +97,37 @@
         },
         "end": {
           "line": 47,
-          "column": 43
+          "column": 36
+        }
+      },
+      "name": "cropTop",
+      "propertyType": "new",
+      "check": "String"
+    },
+    "cropBottom": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 36
+        }
+      },
+      "name": "cropBottom",
+      "propertyType": "new",
+      "check": "String"
+    },
+    "src": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 46
         }
       },
       "name": "src",
@@ -109,12 +139,12 @@
     "widthFit": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 48,
-          "column": 47
+          "line": 50,
+          "column": 50
         }
       },
       "name": "widthFit",
@@ -126,11 +156,11 @@
     "placeholder": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 54,
           "column": 5
         }
       },
@@ -291,11 +321,11 @@
     "__src": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 63,
           "column": 15
         }
       },
@@ -305,11 +335,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 108,
           "column": 5
         }
       },
@@ -324,11 +354,11 @@
     "__getSrc": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 124,
           "column": 5
         }
       },
@@ -346,11 +376,11 @@
     "handleUpdate": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 126,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 148,
           "column": 5
         }
       },
@@ -360,11 +390,11 @@
     "getValueElement": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 153,
           "column": 5
         }
       },
@@ -379,11 +409,11 @@
     "_applyVisible": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 166,
           "column": 5
         }
       },
@@ -2378,7 +2408,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6093,6 +6123,138 @@
         ]
       }
     },
+    "getCropTop": {
+      "type": "function",
+      "name": "getCropTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>cropTop</code>.\n\nFor further details take a look at the property definition: {@link #cropTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for cropTop"
+          }
+        ]
+      }
+    },
+    "setCropTop": {
+      "type": "function",
+      "name": "setCropTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>cropTop</code>.\n\nFor further details take a look at the property definition: {@link #cropTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for cropTop"
+          }
+        ]
+      }
+    },
+    "resetCropTop": {
+      "type": "function",
+      "name": "resetCropTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cropTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cropTop}."
+          }
+        ]
+      }
+    },
+    "getCropBottom": {
+      "type": "function",
+      "name": "getCropBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>cropBottom</code>.\n\nFor further details take a look at the property definition: {@link #cropBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for cropBottom"
+          }
+        ]
+      }
+    },
+    "setCropBottom": {
+      "type": "function",
+      "name": "setCropBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>cropBottom</code>.\n\nFor further details take a look at the property definition: {@link #cropBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for cropBottom"
+          }
+        ]
+      }
+    },
+    "resetCropBottom": {
+      "type": "function",
+      "name": "resetCropBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cropBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cropBottom}."
+          }
+        ]
+      }
+    },
     "getSrc": {
       "type": "function",
       "name": "getSrc",
@@ -6319,11 +6481,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 156,
+        "line": 169,
         "column": 9
       },
       "end": {
-        "line": 158,
+        "line": 171,
         "column": 3
       }
     },

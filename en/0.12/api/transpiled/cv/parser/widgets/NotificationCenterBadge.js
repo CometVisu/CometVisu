@@ -38,7 +38,7 @@
    * @since 0.11.0
    */
   qx.Class.define('cv.parser.widgets.NotificationCenterBadge', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -63,7 +63,7 @@
           'hide-when-empty': {
             target: 'hideWhenEmpty',
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -71,10 +71,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("notificationcenterbadge", statics);
+      cv.parser.WidgetParser.addHandler('notificationcenterbadge', statics);
     }
   });
   cv.parser.widgets.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1625667764481
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1641882197461

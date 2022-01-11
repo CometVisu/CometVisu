@@ -67,31 +67,31 @@
     */
     properties: {
       src: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       id: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       width: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       autoplay: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       loop: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       thresholdValue: {
-        check: "Number",
+        check: 'Number',
         init: 1
       }
     },
@@ -126,7 +126,7 @@
       },
       // overridden
       getActor: function getActor() {
-        return this.getDomElement().querySelector(".actor audio");
+        return this.getDomElement().querySelector('.actor audio');
       },
 
       /**
@@ -148,10 +148,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("audio", statics);
+      cv.ui.structure.WidgetFactory.registerClass('audio', statics);
     }
   });
   cv.ui.structure.pure.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1625667770364
+//# sourceMappingURL=Audio.js.map?dt=1641882202954

@@ -35,7 +35,7 @@
   /**
    */
   qx.Class.define('cv.ui.layout.Manager', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -71,9 +71,9 @@
         return 'L';
       },
       adjustColumns: function adjustColumns() {
-        var width = this.getAvailableWidth(),
-            oldClass = this.getColspanClass(this.oldWidth),
-            newClass = this.getColspanClass(width);
+        var width = this.getAvailableWidth();
+        var oldClass = this.getColspanClass(this.oldWidth);
+        var newClass = this.getColspanClass(width);
         this.oldWidth = width;
         this.COLSPAN_CLASS = newClass;
         return oldClass !== newClass;
@@ -89,38 +89,34 @@
         // currently this calculation is done once after every page scroll (where cv.TemplateEngine.getInstance()currentPageUnavailableWidth is reseted)
         // if the screen width falls below the threshold which activates/deactivates the mobile.css
         // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
-        var bodyWidth = document.documentElement.clientWidth;
-        var mobileUseChanged = this.lastBodyWidth < cv.Config.maxMobileScreenWidth !== bodyWidth < cv.Config.maxMobileScreenWidth;
+        var bodyWidth = document.documentElement.clientWidth; //      console.log("Mobile.css use changed "+mobileUseChanged);
 
-        if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
-          //      console.log("Mobile.css use changed "+mobileUseChanged);
-          this.currentPageUnavailableWidth = 0;
-          var navbarVisibility = this.getCurrentPageNavbarVisibility();
-          var left = document.querySelector('#navbarLeft'),
-              leftRect = left.getBoundingClientRect(),
-              widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== "none" ? Math.round(leftRect.right - leftRect.left) : 0;
+        this.currentPageUnavailableWidth = 0;
+        var navbarVisibility = this.getCurrentPageNavbarVisibility();
+        var left = document.querySelector('#navbarLeft');
+        var leftRect = left.getBoundingClientRect();
+        var widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== 'none' ? Math.round(leftRect.right - leftRect.left) : 0;
 
-          if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
-            // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
-            // maybe there is a better solution to solve this problem
-            // OR: we have a mobile device where the nav bar is floating above the other content
-            widthNavbarLeft = 0;
-          }
-
-          var right = document.querySelector('#navbarRight'),
-              rightRect = right.getBoundingClientRect(),
-              widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== "none" ? Math.round(rightRect.right - rightRect.left) : 0;
-
-          if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
-            // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
-            // maybe there is a better solution to solve this problem
-            // OR: we have a mobile device where the nav bar is floating above the other content
-            widthNavbarRight = 0;
-          }
-
-          this.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
-          //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
+        if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice) {
+          // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+          // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
+          widthNavbarLeft = 0;
         }
+
+        var right = document.querySelector('#navbarRight');
+        var rightRect = right.getBoundingClientRect();
+        var widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== 'none' ? Math.round(rightRect.right - rightRect.left) : 0;
+
+        if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
+          // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+          // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
+          widthNavbarRight = 0;
+        }
+
+        this.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
+        //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
 
         this.lastBodyWidth = bodyWidth;
         return bodyWidth - this.currentPageUnavailableWidth;
@@ -254,8 +250,8 @@
 
           var adjustableElements = document.querySelectorAll(area + ' .group .widget_container');
           adjustableElements.forEach(function (e) {
-            var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e),
-                ourColspan = this.getWidgetColspan(widget, width);
+            var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e);
+            var ourColspan = this.getWidgetColspan(widget, width);
 
             if (ourColspan === null) {
               // workaround for nowidget groups
@@ -310,4 +306,4 @@
   cv.ui.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1625667806022
+//# sourceMappingURL=Manager.js.map?dt=1641882236089

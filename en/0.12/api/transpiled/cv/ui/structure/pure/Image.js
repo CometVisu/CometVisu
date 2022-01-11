@@ -66,24 +66,30 @@
     */
     properties: {
       width: {
-        check: "String",
-        init: "100%"
+        check: 'String',
+        init: '100%'
       },
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
+      cropTop: {
+        check: 'String'
+      },
+      cropBottom: {
+        check: 'String'
+      },
       src: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       widthFit: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       placeholder: {
-        check: ["none", "src", "hide", "exclude"],
-        init: "none"
+        check: ['none', 'src', 'hide', 'exclude'],
+        init: 'none'
       }
     },
 
@@ -109,6 +115,22 @@
 
         if (this.getHeight()) {
           imgStyle += 'height:' + this.getHeight() + ';';
+        }
+
+        if (this.getCropTop() !== '' || this.getCropBottom() !== '') {
+          var top = '0%';
+          var bottom = '';
+
+          if (this.getCropTop() !== '') {
+            top = '-' + this.getCropTop();
+            bottom = 'margin-bottom:' + top;
+          }
+
+          if (this.getCropBottom() !== '') {
+            bottom = 'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
+          }
+
+          imgStyle += 'object-position:0% ' + top + ';' + bottom;
         }
 
         var src = this.__P_55_1();
@@ -140,12 +162,12 @@
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
 
-          if (!parsedUri.protocol && !src.startsWith("/")) {
+          if (!parsedUri.protocol && !src.startsWith('/')) {
             // is relative URI, use the ResourceManager
             src = qx.util.ResourceManager.getInstance().toUri(src);
           }
 
-          this.__P_55_0 = src || "";
+          this.__P_55_0 = src || '';
         }
 
         return this.__P_55_0;
@@ -173,11 +195,11 @@
           valueElem.style.display = 'inline';
         }
 
-        valueElem.setAttribute("src", text);
+        valueElem.setAttribute('src', text);
       },
       // overridden
       getValueElement: function getValueElement() {
-        return this.getDomElement().querySelector("img");
+        return this.getDomElement().querySelector('img');
       },
       // overridden
       _applyVisible: function _applyVisible(value) {
@@ -188,17 +210,17 @@
         }
 
         if (value === true) {
-          valueElem.setAttribute("src", this.__P_55_1());
+          valueElem.setAttribute('src', this.__P_55_1());
         } else {
-          valueElem.setAttribute("src", "");
+          valueElem.setAttribute('src', '');
         }
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("image", statics);
+      cv.ui.structure.WidgetFactory.registerClass('image', statics);
     }
   });
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1625667770466
+//# sourceMappingURL=Image.js.map?dt=1641882203201

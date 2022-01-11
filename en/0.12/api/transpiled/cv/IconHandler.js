@@ -47,7 +47,7 @@
    */
   qx.Class.define('cv.IconHandler', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
 
     /*
      ******************************************************
@@ -179,6 +179,8 @@
         if (i) {
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
         }
+
+        return '';
       },
 
       /**
@@ -214,6 +216,8 @@
 
           return i.icon;
         }
+
+        return null;
       },
 
       /**
@@ -246,10 +250,12 @@
 
           if (typeof i === 'function') {
             return i(color, styling, classes, true);
-          } else {
-            return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
           }
+
+          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
         }
+
+        return '';
       },
 
       /**
@@ -263,19 +269,22 @@
 
         if (i) {
           if (!classes) {
-            classes = "icon";
+            classes = 'icon';
           }
 
           if (typeof i === 'function') {
             return i(undefined, undefined, classes, true);
-          } else {
-            return qx.util.ResourceManager.getInstance().toUri(i.uri);
           }
+
+          return qx.util.ResourceManager.getInstance().toUri(i.uri);
         }
+
+        return '';
       },
 
       /**
        * Fill the icons in the array.
+       * @param array
        */
       fillIcons: function fillIcons(array) {
         array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
@@ -307,4 +316,4 @@
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1625667805894
+//# sourceMappingURL=IconHandler.js.map?dt=1641882235965

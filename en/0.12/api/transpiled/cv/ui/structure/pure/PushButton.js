@@ -58,12 +58,12 @@
     */
     properties: {
       'downValue': {
-        check: "String",
-        init: "1"
+        check: 'String',
+        init: '1'
       },
       'upValue': {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       }
     },
 
@@ -79,8 +79,8 @@
       },
       // overridden
       initListeners: function initListeners() {
-        this.addElementListener("pointerdown", this._onPointerDown, this);
-        this.addElementListener("pointerup", this._onPointerUp, this);
+        this.addElementListener('pointerdown', this._onPointerDown, this);
+        this.addElementListener('pointerup', this._onPointerUp, this);
       },
 
       /**
@@ -92,7 +92,7 @@
       handleUpdate: function handleUpdate(value) {
         var actor = this.getActor(); // compare against the unmapped value
 
-        value = "" + this.getBasicValue();
+        value = '' + this.getBasicValue();
         var off = this.getUpValue();
         actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
         actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
@@ -100,34 +100,33 @@
 
       /**
        * Get the value that should be send to backend after the action has been triggered
-       *
-       *
+       * @param event
        */
       getActionValue: function getActionValue(event) {
-        if (event.type === "pointerup") {
+        if (event.type === 'pointerup') {
           return this.getUpValue();
-        } else {
-          return this.getDownValue();
         }
+
+        return this.getDownValue();
       },
       _onPointerUp: function _onPointerUp() {
         var sendValue = this.getUpValue();
         this.sendToBackend(sendValue, function (address) {
-          return !address[2] || address[2] === "up";
+          return !address.variantInfo || address.variantInfo === 'up';
         });
       },
       _onPointerDown: function _onPointerDown() {
         var sendValue = this.getDownValue();
         this.sendToBackend(sendValue, function (address) {
-          return !address[2] || address[2] === "down";
+          return !address.variantInfo || address.variantInfo === 'down';
         });
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("pushbutton", statics);
+      cv.ui.structure.WidgetFactory.registerClass('pushbutton', statics);
     }
   });
   cv.ui.structure.pure.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1625667770817
+//# sourceMappingURL=PushButton.js.map?dt=1641882203529

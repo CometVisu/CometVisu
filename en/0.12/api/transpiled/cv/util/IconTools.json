@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 264,
+        "line": 272,
         "column": 3
       }
     },
@@ -167,7 +167,7 @@
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 76,
           "column": 5
         }
       },
@@ -177,11 +177,11 @@
     "createCanvas": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 85,
           "column": 5
         }
       },
@@ -191,6 +191,26 @@
             "name": "@description",
             "body": "<p>Create the HTML for the canvas element and return it.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iconId",
+            "paramName": "iconId",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "styling",
+            "paramName": "styling",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "classes",
+            "paramName": "classes",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -199,11 +219,11 @@
     "fillCanvas": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 96,
           "column": 5
         }
       },
@@ -213,6 +233,20 @@
             "name": "@description",
             "body": "<p>Fill the canvas with the ImageData. Also resize the\n canvas at the same time.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "canvas",
+            "paramName": "canvas",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "imageData",
+            "paramName": "imageData",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -221,11 +255,11 @@
     "innerRecolorLoop": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 132,
           "column": 7
         }
       },
@@ -235,6 +269,38 @@
             "name": "@description",
             "body": "<p>Two versions of a recoloring funtion to work around an Android bug:\n http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph\n https://code.google.com/p/android/issues/detail?id=17565</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "r",
+            "paramName": "r",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "g",
+            "paramName": "g",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "b",
+            "paramName": "b",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "data",
+            "paramName": "data",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "length",
+            "paramName": "length",
+            "type": ""
+          }
         ]
       },
       "type": "variable",
@@ -243,11 +309,11 @@
     "doRecolorNonTransparent": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 159,
           "column": 5
         }
       },
@@ -257,6 +323,26 @@
             "name": "@description",
             "body": "<p>Do the recoloring based on @param thisIcon and store it in the\n hash @param thisIconColors.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color",
+            "paramName": "color",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "thisIcon",
+            "paramName": "thisIcon",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "thisIconColors",
+            "paramName": "thisIconColors",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -265,11 +351,11 @@
     "recolorNonTransparent": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 229,
           "column": 5
         }
       },
@@ -279,6 +365,14 @@
             "name": "@description",
             "body": "<p>Funtion to call for each icon that should be dynamically recolored.\n This will be called for each known URL, so only remember the string but\n don't load the image yet as it might not be needed.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url",
+            "paramName": "url",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -287,11 +381,11 @@
     "fillRecoloredIcon": {
       "location": {
         "start": {
-          "line": 224,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 247,
           "column": 5
         }
       },
@@ -301,6 +395,14 @@
             "name": "@description",
             "body": "<p>This function must be called to fill a specific icon that was created</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "icon",
+            "paramName": "icon",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -309,11 +411,11 @@
     "svgKUF": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 256,
+          "line": 264,
           "column": 5
         }
       },
@@ -324,11 +426,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 259,
+        "line": 267,
         "column": 9
       },
       "end": {
-        "line": 263,
+        "line": 271,
         "column": 3
       }
     },

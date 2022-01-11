@@ -101,15 +101,15 @@
           coll = qxWeb(arg);
         } // HTML string
         else {
-            var arr = qx.bom.Html.clean([arg]);
+          var arr = qx.bom.Html.clean([arg]);
 
-            if (arr.length > 0 && qx.dom.Node.isElement(arr[0])) {
-              coll = qxWeb(arr);
-            } // Selector or single element
-            else {
-                coll = qxWeb(arg);
-              }
+          if (arr.length > 0 && qx.dom.Node.isElement(arr[0])) {
+            coll = qxWeb(arr);
+          } // Selector or single element
+          else {
+            coll = qxWeb(arg);
           }
+        }
 
         return coll;
       },
@@ -594,4 +594,4 @@
   qx.module.Manipulating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manipulating.js.map?dt=1625667785900
+//# sourceMappingURL=Manipulating.js.map?dt=1641882217266

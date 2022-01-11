@@ -59,7 +59,7 @@
           path += '/';
         }
 
-        this.__P_42_0 = path;
+        this.__P_41_0 = path;
       }
 
       if (name) {
@@ -71,7 +71,7 @@
       }
 
       {
-        qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
       }
     },
 
@@ -126,7 +126,7 @@
             writeable: true,
             overrideIcon: true,
             icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
-            type: "file",
+            type: 'file',
             fake: true,
             displayName: qx.locale.Manager.tr('Hidden configuration')
           });
@@ -146,38 +146,38 @@
     */
     properties: {
       open: {
-        check: "Boolean",
-        event: "changeOpen",
-        apply: "_onOpen",
+        check: 'Boolean',
+        event: 'changeOpen',
+        apply: '_onOpen',
         init: false
       },
       loaded: {
-        check: "Boolean",
-        event: "changeLoaded",
+        check: 'Boolean',
+        event: 'changeLoaded',
         init: false
       },
       loading: {
-        check: "Boolean",
-        event: "changeLoading",
+        check: 'Boolean',
+        event: 'changeLoading',
         init: false
       },
       parent: {
-        event: "changeParent",
+        event: 'changeParent',
         init: null
       },
       children: {
-        check: "qx.data.Array",
-        event: "changeChildren",
-        apply: "_applyEventPropagation",
+        check: 'qx.data.Array',
+        event: 'changeChildren',
+        apply: '_applyEventPropagation',
         deferredInit: true
       },
       fakeChildren: {
-        check: "Array",
+        check: 'Array',
         nullable: true
       },
       displayName: {
         check: 'String',
-        init: "",
+        init: '',
         event: 'changeDisplayName'
       },
 
@@ -260,20 +260,20 @@
       },
       // Backend properties
       hasChildren: {
-        check: "Boolean",
-        event: "changeHasChildren",
-        apply: "_applyHasChildren",
+        check: 'Boolean',
+        event: 'changeHasChildren',
+        apply: '_applyHasChildren',
         init: false
       },
       name: {
-        check: "String",
-        event: "changeName",
-        init: "",
+        check: 'String',
+        event: 'changeName',
+        init: '',
         apply: '_applyName'
       },
       type: {
         check: ['dir', 'file'],
-        transform: "_toLowerCase",
+        transform: '_toLowerCase',
         nullable: true,
         apply: '_maintainIcon'
       },
@@ -314,9 +314,9 @@
     ***********************************************
     */
     members: {
-      __P_42_0: null,
-      __P_42_1: null,
-      __P_42_2: null,
+      __P_41_0: null,
+      __P_41_1: null,
+      __P_41_2: null,
       _toLowerCase: function _toLowerCase(name) {
         return name.toLowerCase();
       },
@@ -355,6 +355,8 @@
                   this.removeRelatedBindings(child);
                   return true;
                 }
+
+                return false;
               }, this);
             }
 
@@ -362,7 +364,7 @@
         }
       },
       _applyName: function _applyName(value, old) {
-        this.__P_42_1 = null;
+        this.__P_41_1 = null;
 
         if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
           // use name as default display name
@@ -370,7 +372,7 @@
         }
       },
       getPath: function getPath() {
-        if (!this.__P_42_0) {
+        if (!this.__P_41_0) {
           var parentFolder = this.getParentFolder();
 
           if (!parentFolder) {
@@ -379,10 +381,10 @@
             parentFolder += '/';
           }
 
-          this.__P_42_0 = parentFolder;
+          this.__P_41_0 = parentFolder;
         }
 
-        return this.__P_42_0;
+        return this.__P_41_0;
       },
       _onOpen: function _onOpen(value) {
         if (!this.isLoaded() && value) {
@@ -436,7 +438,7 @@
 
         child.setParent(this);
 
-        if (child.getType() !== "dir" || !child.isMounted()) {
+        if (child.getType() !== 'dir' || !child.isMounted()) {
           // inherit the mounted state from the parent folder
           this.bind('mounted', child, 'mounted');
         }
@@ -453,7 +455,7 @@
           data.forEach(function (node) {
             var child = new cv.ui.manager.model.FileItem(null, null, this);
 
-            if (node.hasOwnProperty('children')) {
+            if (Object.prototype.hasOwnProperty.call(node, 'children')) {
               var nodeChildren = node.children;
               delete node.children;
 
@@ -475,22 +477,22 @@
         this.sortElements();
         this.setLoaded(true);
 
-        if (this.__P_42_2) {
-          this.__P_42_2();
+        if (this.__P_41_2) {
+          this.__P_41_2();
         }
 
         this.setLoading(false);
       },
       _onError: function _onError(err) {
-        console.error(err);
+        this.error(err);
         cv.ui.manager.snackbar.Controller.error(err);
         this.getChildren().removeAll().forEach(function (child) {
           this.removeRelatedBindings(child);
         }, this);
         this.setLoaded(true);
 
-        if (this.__P_42_2) {
-          this.__P_42_2();
+        if (this.__P_41_2) {
+          this.__P_41_2();
         }
 
         this.setLoading(false);
@@ -513,30 +515,30 @@
 
         if (this.isLoading()) {
           if (callback) {
-            this.addListenerOnce("changeLoading", callback, context);
+            this.addListenerOnce('changeLoading', callback, context);
           }
-        } // If not done yet, resolve the child elements of this container
-        else if (this.isLoaded()) {
-            if (callback) {
-              callback.apply(context);
-            }
-          } else {
-            this.setLoading(true);
-
-            if (callback) {
-              this.__P_42_2 = callback.bind(context || this);
-            }
-
-            cv.io.rest.Client.getFsClient().readSync({
-              path: this.getFullPath()
-            }, function (err, res) {
-              if (err) {
-                this._onError(err);
-              } else {
-                this._onGet(res);
-              }
-            }, this);
+        } else if (this.isLoaded()) {
+          // If not done yet, resolve the child elements of this container
+          if (callback) {
+            callback.apply(context);
           }
+        } else {
+          this.setLoading(true);
+
+          if (callback) {
+            this.__P_41_2 = callback.bind(context || this);
+          }
+
+          cv.io.rest.Client.getFsClient().readSync({
+            path: this.getFullPath()
+          }, function (err, res) {
+            if (err) {
+              this._onError(err);
+            } else {
+              this._onGet(res);
+            }
+          }, this);
+        }
       },
 
       /**
@@ -544,11 +546,11 @@
        * @returns {null}
        */
       getFullPath: function getFullPath() {
-        if (!this.__P_42_1) {
-          this.__P_42_1 = this.getPath() + this.getName();
+        if (!this.__P_41_1) {
+          this.__P_41_1 = this.getPath() + this.getName();
         }
 
-        return this.__P_42_1;
+        return this.__P_41_1;
       },
       getBusTopic: function getBusTopic() {
         return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
@@ -573,7 +575,11 @@
        * @returns {string}
        */
       getServerPath: function getServerPath() {
-        return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
+        if (!this.isMounted()) {
+          return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
+        }
+
+        return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + this.getFullPath();
       },
 
       /**
@@ -590,14 +596,14 @@
               }
 
               return a.getName().localeCompare(b.getName());
-            } else {
-              return -1;
             }
+
+            return -1;
           } else if (b.getType() === 'dir') {
             return 1;
-          } else {
-            return a.getName().localeCompare(b.getName());
           }
+
+          return a.getName().localeCompare(b.getName());
         };
 
         this.getChildren().sort(sortF);
@@ -616,6 +622,8 @@
             }, this);
             return true;
           }
+
+          return false;
         }, this);
       },
       _onChangeLocale: function _onChangeLocale() {
@@ -633,10 +641,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_42_1 = null;
+      this.__P_41_1 = null;
     }
   });
   cv.ui.manager.model.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1625667769002
+//# sourceMappingURL=FileItem.js.map?dt=1641882201701

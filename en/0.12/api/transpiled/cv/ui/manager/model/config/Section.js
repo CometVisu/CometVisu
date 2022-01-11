@@ -63,7 +63,10 @@
         var found = options.some(function (option) {
           if (option.getKey() === key) {
             option.setValue(value);
+            return true;
           }
+
+          return false;
         }, this);
 
         if (!found) {
@@ -75,4 +78,4 @@
   cv.ui.manager.model.config.Section.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Section.js.map?dt=1625667769418
+//# sourceMappingURL=Section.js.map?dt=1641882202069

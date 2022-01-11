@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Toggle', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -61,10 +61,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("toggle", statics);
+      cv.parser.WidgetParser.addHandler('toggle', statics);
     }
   });
   cv.parser.widgets.Toggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Toggle.js.map?dt=1625667764776
+//# sourceMappingURL=Toggle.js.map?dt=1641882197732

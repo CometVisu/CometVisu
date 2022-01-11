@@ -51,7 +51,7 @@
    */
   qx.Class.define('cv.report.Record', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -76,21 +76,21 @@
     ******************************************************
     */
     statics: {
-      CONFIG: "config",
-      BACKEND: "backend",
-      USER: "user",
-      CACHE: "cache",
-      XHR: "xhr",
-      SCREEN: "screen",
-      RUNTIME: "runtime",
-      STORAGE: "storage",
+      CONFIG: 'config',
+      BACKEND: 'backend',
+      USER: 'user',
+      CACHE: 'cache',
+      XHR: 'xhr',
+      SCREEN: 'screen',
+      RUNTIME: 'runtime',
+      STORAGE: 'storage',
       REPLAYING: false,
       data: null,
       // Events that should be recorded
       USER_EVENTS: /(.+(down|up|cancel|move)|.*click|contextmenu|touch.*|.*wheel)/i,
       prepare: function prepare() {
         if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-          cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file."); // apply event recorder
+          cv.Application.registerConsoleCommand('downloadLog', cv.report.Record.download, 'Download recorded log file.'); // apply event recorder
 
           var record = cv.report.Record.getInstance();
           EVENT_RECORDER = record.recordNativeEvent.bind(record); // patch XHR
@@ -98,22 +98,22 @@
           qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
           var Reg = qx.event.Registration; // add resize listener
 
-          Reg.addListener(window, "resize", function () {
-            this.record(this.SCREEN, "resize", {
+          Reg.addListener(window, 'resize', function () {
+            this.record(this.SCREEN, 'resize', {
               w: document.documentElement.clientWidth,
               h: document.documentElement.clientHeight
             });
           }, this); // add scroll listeners to all pages
 
-          qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+          qx.event.message.Bus.subscribe('setup.dom.finished', function () {
             var throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
-            document.querySelectorAll("#pages > .page").forEach(function (page) {
-              Reg.addListener(page, "scroll", throttled, record);
+            document.querySelectorAll('#pages > .page').forEach(function (page) {
+              Reg.addListener(page, 'scroll', throttled, record);
             }, this);
           }, this);
-          this.record(this.RUNTIME, "config", this.getClientData()); // save initial size
+          this.record(this.RUNTIME, 'config', this.getClientData()); // save initial size
 
-          this.record(this.SCREEN, "resize", {
+          this.record(this.SCREEN, 'resize', {
             w: document.documentElement.clientWidth,
             h: document.documentElement.clientHeight
           });
@@ -126,15 +126,15 @@
         delete req.queryKey.reporting;
         var Env = qx.core.Environment;
         var runtime = {
-          browserName: Env.get("browser.name"),
-          browserVersion: Env.get("browser.version"),
-          deviceName: Env.get("device.name"),
-          deviceType: Env.get("device.type"),
-          pixelRatio: Env.get("device.pixelRatio"),
-          touch: Env.get("device.touch"),
-          osName: Env.get("os.name"),
-          osVersion: Env.get("os.version"),
-          build: Env.get("cv.build"),
+          browserName: Env.get('browser.name'),
+          browserVersion: Env.get('browser.version'),
+          deviceName: Env.get('device.name'),
+          deviceType: Env.get('device.type'),
+          pixelRatio: Env.get('device.pixelRatio'),
+          touch: Env.get('device.touch'),
+          osName: Env.get('os.name'),
+          osVersion: Env.get('os.version'),
+          build: Env.get('cv.build'),
           locale: qx.bom.client.Locale.getLocale(),
           cv: {},
           width: document.documentElement.clientWidth,
@@ -180,12 +180,12 @@
             });
           }
         } catch (e) {
-          if (url.indexOf("nocache=") >= 0) {
-            url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+          if (url.indexOf('nocache=') >= 0) {
+            url = url.replace(/[\?|&]nocache=[0-9]+/, '');
           }
 
-          if (url.indexOf("ts=") >= 0) {
-            url = url.replace(/[\?|&]ts=[0-9]+/, "");
+          if (url.indexOf('ts=') >= 0) {
+            url = url.replace(/[\?|&]ts=[0-9]+/, '');
           }
         }
 
@@ -252,7 +252,7 @@
       __P_490_10: function __P_490_10(nativeEvent) {
         var data = {
           eventClass: nativeEvent.constructor.name,
-          "native": {
+          'native': {
             bubbles: nativeEvent.bubbles,
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
@@ -283,7 +283,7 @@
           }
         };
 
-        if (data.eventClass === "PointerEvent") {
+        if (data.eventClass === 'PointerEvent') {
           Object.assign(data["native"], {
             pointerId: nativeEvent.pointerId,
             width: nativeEvent.width,
@@ -294,14 +294,14 @@
             pointerType: nativeEvent.pointerType,
             isPrimary: nativeEvent.isPrimary
           });
-        } else if (data.eventClass === "WheelEvent") {
+        } else if (data.eventClass === 'WheelEvent') {
           Object.assign(data["native"], {
             deltaX: nativeEvent.deltaX,
             deltaY: nativeEvent.deltaY,
             deltaZ: nativeEvent.deltaZ,
             deltaMode: nativeEvent.deltaMode
           });
-        } else if (data.eventClass === "KeyboardEvent") {
+        } else if (data.eventClass === 'KeyboardEvent') {
           Object.assign(data["native"], {
             code: nativeEvent.code,
             composed: nativeEvent.composed,
@@ -328,9 +328,9 @@
 
         ev.$$RID = this.__P_490_9;
 
-        if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
+        if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
           this.__P_490_6 = this.__P_490_7;
-        } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
+        } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
           this.__P_490_6 = this.__P_490_8;
         }
 
@@ -362,7 +362,7 @@
           return;
         }
 
-        this.debug("recording " + ev.type + " on " + path);
+        this.debug('recording ' + ev.type + ' on ' + path);
 
         var data = this.__P_490_10(ev);
 
@@ -370,20 +370,20 @@
       },
       recordScroll: function recordScroll(ev) {
         var page = ev.getTarget();
-        var path = undefined !== page && 'getAttribute' in page ? page.getAttribute("id") : undefined;
+        var path = undefined !== page && 'getAttribute' in page ? page.getAttribute('id') : undefined;
         var data = {
           type: ev.getType(),
           page: path,
           x: page.scrollLeft,
           y: page.scrollTop
         };
-        this.record(cv.report.Record.USER, "scroll", data);
+        this.record(cv.report.Record.USER, 'scroll', data);
       },
       __P_490_11: function __P_490_11(el) {
         if (el === window) {
-          return "Window";
+          return 'Window';
         } else if (el === document) {
-          return "document";
+          return 'document';
         }
 
         var stack = [];
@@ -406,7 +406,7 @@
 
           if (el.hasAttribute('id') && el.id !== '') {
             stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
-            return stack.join(">");
+            return stack.join('>');
           } else if (sibCount > 1) {
             stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')');
           } else {
@@ -416,7 +416,7 @@
           el = el.parentNode;
         }
 
-        return stack.slice(1).join(">"); // removes the html element
+        return stack.slice(1).join('>'); // removes the html element
       },
 
       /**
@@ -431,10 +431,11 @@
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         }; // show the user what he gets
+        // eslint-disable-next-line no-console
 
         console.log(data);
         var d = new Date();
-        var ts = d.getFullYear() + ("" + (d.getMonth() + 1)).padStart(2, "0") + ("" + d.getDate()).padStart(2, "0") + "-" + ("" + d.getHours()).padStart(2, "0") + ("" + d.getMinutes()).padStart(2, "0") + ("" + d.getSeconds()).padStart(2, "0");
+        var ts = d.getFullYear() + ('' + (d.getMonth() + 1)).padStart(2, '0') + ('' + d.getDate()).padStart(2, '0') + '-' + ('' + d.getHours()).padStart(2, '0') + ('' + d.getMinutes()).padStart(2, '0') + ('' + d.getSeconds()).padStart(2, '0');
         var a = window.document.createElement('a');
         a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {
           type: 'application/json'
@@ -452,4 +453,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1625667805325
+//# sourceMappingURL=Record.js.map?dt=1641882235398

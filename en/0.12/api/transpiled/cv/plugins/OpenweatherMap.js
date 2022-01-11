@@ -74,19 +74,19 @@
     ******************************************************
     */
     construct: function construct(props) {
-      props.refresh = props.refresh * 60;
+      props.refresh *= 60;
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      this.__P_12_0 = {};
+      this.__P_11_0 = {};
       Object.keys(props).forEach(function (key) {
         if (props[key]) {
-          this.__P_12_0[key] = props[key];
+          this.__P_11_0[key] = props[key];
         }
       }, this);
 
       if (cv.TemplateEngine.getInstance().isDomFinished()) {
         this._refreshAction();
       } else {
-        qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+        qx.event.message.Bus.subscribe('setup.dom.finished', function () {
           // init once
           this._refreshAction();
         }, this);
@@ -143,59 +143,59 @@
     */
     properties: {
       cssClass: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       lang: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       owID: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       q: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       lat: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       lon: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       units: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       type: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       forecast24hItems: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       forecastDailyhItems: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       showSunrise: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       detailItems: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       appid: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       description: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -206,12 +206,12 @@
     ******************************************************
     */
     members: {
-      __P_12_0: null,
+      __P_11_0: null,
       _getInnerDomString: function _getInnerDomString() {
-        var classes = "widget clearfix text openweathermap";
+        var classes = 'widget clearfix text openweathermap';
 
         if (this.getCssClass()) {
-          classes += " " + this.getCssClass();
+          classes += ' ' + this.getCssClass();
         }
 
         return '<div class="' + classes + '"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
@@ -228,7 +228,7 @@
       },
       _refreshAction: function _refreshAction() {
         var elem = $(this.getDomElement());
-        elem.openweathermap(this.__P_12_0);
+        elem.openweathermap(this.__P_11_0);
       }
     },
     defer: function defer(statics) {
@@ -237,11 +237,11 @@
       loader.addStyles('plugins/openweathermap/owm_weathericon.css');
       loader.addScripts('plugins/openweathermap/owm_core.js'); // register the parser
 
-      cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
-      cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
+      cv.parser.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
+      cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
     }
   });
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1625667765238
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1641882198105

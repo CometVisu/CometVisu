@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/ITISFoundation_qx-osparc-theme_v0_5_6/source/class/osparc/theme/common/Decoration.js"
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/ITISFoundation_qx-osparc-theme_v0_6_0/source/class/osparc/theme/common/Decoration.js"
   ],
   "names": [
     "qx",

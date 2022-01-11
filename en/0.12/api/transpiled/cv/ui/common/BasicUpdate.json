@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 335,
+        "line": 336,
         "column": 3
       }
     },
@@ -143,7 +143,7 @@
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 115,
           "column": 5
         }
       },
@@ -187,11 +187,11 @@
     "formatValueCache": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 125,
           "column": 27
         }
       },
@@ -201,11 +201,11 @@
     "applyTransform": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 140,
           "column": 5
         }
       },
@@ -247,11 +247,11 @@
     "applyMapping": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 154,
           "column": 5
         }
       },
@@ -294,11 +294,11 @@
     "getNextMappedValue": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 166,
+          "line": 170,
           "column": 5
         }
       },
@@ -340,11 +340,11 @@
     "applyFormat": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 193,
           "column": 5
         }
       },
@@ -386,11 +386,11 @@
     "defaultValueHandling": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 241,
           "column": 5
         }
       },
@@ -432,7 +432,7 @@
     "defaultValue2DOM": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 252,
           "column": 4
         },
         "end": {
@@ -468,7 +468,7 @@
           "column": 4
         },
         "end": {
-          "line": 320,
+          "line": 321,
           "column": 5
         }
       },
@@ -518,11 +518,11 @@
     "_applyValueToDom": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 334,
           "column": 5
         }
       },

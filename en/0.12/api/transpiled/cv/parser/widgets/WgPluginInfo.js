@@ -38,7 +38,7 @@
    * @since 2012
    */
   qx.Class.define('cv.parser.widgets.WgPluginInfo', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -73,10 +73,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("wgplugin_info", statics);
+      cv.parser.WidgetParser.addHandler('wgplugin_info', statics);
     }
   });
   cv.parser.widgets.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1625667764911
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1641882197861

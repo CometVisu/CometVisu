@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 398,
+        "line": 441,
         "column": 3
       }
     },
@@ -78,7 +78,7 @@
       "type": "variable",
       "access": "private"
     },
-    "__stringsMap": {
+    "__camelCaseMap": {
       "location": {
         "start": {
           "line": 77,
@@ -86,7 +86,7 @@
         },
         "end": {
           "line": 77,
-          "column": 21
+          "column": 23
         }
       },
       "jsdoc": {
@@ -106,14 +106,64 @@
       "type": "variable",
       "access": "private"
     },
-    "camelCase": {
+    "__hyphenationMap": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 83,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Map} Cache for often used hyphenation operations\n e.g. marginTop =&gt; margin-top</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__characterTypes": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map<char, String} character types, key is the character and the vaklue is <code>upper</code>, <code>lower</code>, or <code>digit</code>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "camelCase": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
           "column": 5
         }
       },
@@ -148,11 +198,11 @@
     "hyphenate": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 129,
           "column": 5
         }
       },
@@ -187,11 +237,11 @@
     "capitalize": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 149,
           "column": 5
         }
       },
@@ -223,14 +273,122 @@
       "type": "function",
       "access": "public"
     },
+    "isUpperCase": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 5
+        },
+        "end": {
+          "line": 159,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the string is all upper case</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} str"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isLowerCase": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 5
+        },
+        "end": {
+          "line": 169,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the string is all lower case</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} str"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isDigits": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 5
+        },
+        "end": {
+          "line": 179,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the string is all digits</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} str"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "clean": {
       "location": {
         "start": {
-          "line": 161,
+          "line": 196,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 198,
           "column": 5
         }
       },
@@ -265,11 +423,11 @@
     "trimLeft": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 209,
           "column": 5
         }
       },
@@ -304,11 +462,11 @@
     "trimRight": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 218,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 220,
           "column": 5
         }
       },
@@ -343,11 +501,11 @@
     "startsWith": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 234,
           "column": 5
         }
       },
@@ -395,11 +553,11 @@
     "endsWith": {
       "location": {
         "start": {
-          "line": 211,
+          "line": 246,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 248,
           "column": 5
         }
       },
@@ -447,11 +605,11 @@
     "repeat": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 258,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 260,
           "column": 5
         }
       },
@@ -493,11 +651,11 @@
     "pad": {
       "location": {
         "start": {
-          "line": 236,
+          "line": 271,
           "column": 4
         },
         "end": {
-          "line": 250,
+          "line": 285,
           "column": 5
         }
       },
@@ -546,11 +704,11 @@
     "firstUp": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 260,
+          "line": 295,
           "column": 34
         }
       },
@@ -591,11 +749,11 @@
     "firstLow": {
       "location": {
         "start": {
-          "line": 270,
+          "line": 305,
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 305,
           "column": 36
         }
       },
@@ -636,11 +794,11 @@
     "contains": {
       "location": {
         "start": {
-          "line": 280,
+          "line": 315,
           "column": 4
         },
         "end": {
-          "line": 282,
+          "line": 317,
           "column": 5
         }
       },
@@ -682,11 +840,11 @@
     "format": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 361,
           "column": 5
         }
       },
@@ -728,11 +886,11 @@
     "escapeRegexpChars": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 372,
           "column": 5
         }
       },
@@ -767,11 +925,11 @@
     "toArray": {
       "location": {
         "start": {
-          "line": 347,
+          "line": 382,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 384,
           "column": 5
         }
       },
@@ -806,11 +964,11 @@
     "stripTags": {
       "location": {
         "start": {
-          "line": 360,
+          "line": 395,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 397,
           "column": 5
         }
       },
@@ -845,11 +1003,11 @@
     "stripScripts": {
       "location": {
         "start": {
-          "line": 372,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 386,
+          "line": 421,
           "column": 5
         }
       },
@@ -893,11 +1051,11 @@
     "quote": {
       "location": {
         "start": {
-          "line": 394,
+          "line": 429,
           "column": 4
         },
         "end": {
-          "line": 396,
+          "line": 431,
           "column": 5
         }
       },
@@ -928,6 +1086,18 @@
       },
       "type": "function",
       "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 434,
+        "column": 2
+      },
+      "end": {
+        "line": 440,
+        "column": 3
+      }
     }
   },
   "descendants": []

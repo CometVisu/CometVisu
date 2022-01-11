@@ -4,7 +4,7 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
@@ -35,8 +35,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     construct: function construct() {
-      this.__P_48_0 = new RegExp(":ref:[`'](.+?)[`']", 'g');
-      this.__P_48_1 = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
+      this.__P_47_0 = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
+      this.__P_47_1 = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
     },
 
     /*
@@ -49,16 +49,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * cache for getAppinfo
        * @var array
        */
-      __P_48_2: null,
-      __P_48_0: null,
-      __P_48_1: null,
+      __P_47_2: null,
+      __P_47_0: null,
+      __P_47_1: null,
 
       /**
        * cache for getDocumentation
        * @var array
        */
-      __P_48_3: null,
-      __P_48_4: function __P_48_4(node, xpath) {
+      __P_47_3: null,
+      __P_47_4: function __P_47_4(node, xpath) {
         var texts = [];
         var doc = node.ownerDocument;
         var nsResolver = doc.createNSResolver(doc.documentElement);
@@ -84,32 +84,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @return  array   list of texts, or empty list if none
        */
       getAppinfo: function getAppinfo() {
-        if (this.__P_48_2 !== null) {
-          return this.__P_48_2;
+        if (this.__P_47_2 !== null) {
+          return this.__P_47_2;
         }
 
         var node = this.getNode();
 
-        var appInfo = this.__P_48_4(node, 'xsd:annotation/xsd:appinfo');
+        var appInfo = this.__P_47_4(node, 'xsd:annotation/xsd:appinfo');
 
         var type = this.getType();
 
         if (type === 'element') {
           // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
           if (node.querySelectorAll(':scope > complexType').length === 0) {
-            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_48_4(this._type, 'xsd:annotation/xsd:appinfo')));
+            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_47_4(this._type, 'xsd:annotation/xsd:appinfo')));
           }
         } else if (type === 'attribute') {
           if (node.hasAttribute('ref')) {
             // the attribute is a reference, so take appinfo from there, too
             var refName = node.getAttribute('ref');
             var ref = this.getSchema().getReferencedNode('attribute', refName);
-            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_48_4(ref, 'xsd:annotation/xsd:appinfo')));
+            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_47_4(ref, 'xsd:annotation/xsd:appinfo')));
           }
         } // fill the cache
 
 
-        this.__P_48_2 = appInfo;
+        this.__P_47_2 = appInfo;
         return appInfo;
       },
 
@@ -121,15 +121,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getDocumentation: function getDocumentation() {
         var _this = this;
 
-        if (this.__P_48_3 !== null) {
-          return this.__P_48_3;
+        if (this.__P_47_3 !== null) {
+          return this.__P_47_3;
         }
 
         var node = this.getNode();
         var lang = qx.locale.Manager.getInstance().getLanguage();
         var selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']'; // any appinfo this element itself might carry
 
-        var documentation = this.__P_48_4(node, selector);
+        var documentation = this.__P_47_4(node, selector);
 
         var type = this.getType();
 
@@ -138,7 +138,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (node.querySelectorAll(':scope > complexType').length === 0) {
             var _documentation;
 
-            (_documentation = documentation).push.apply(_documentation, _toConsumableArray(this.__P_48_4(this._type, selector)));
+            (_documentation = documentation).push.apply(_documentation, _toConsumableArray(this.__P_47_4(this._type, selector)));
           }
         } else if (type === 'attribute') {
           if (node.hasAttribute('ref')) {
@@ -148,7 +148,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var refName = node.getAttribute('ref');
             var ref = this.getSchema().getReferencedNode('attribute', refName);
 
-            (_documentation2 = documentation).push.apply(_documentation2, _toConsumableArray(this.__P_48_4(ref, selector)));
+            (_documentation2 = documentation).push.apply(_documentation2, _toConsumableArray(this.__P_47_4(ref, selector)));
 
             documentation = documentation.map(function (entry) {
               return _this.createDocumentationWebLinks(entry);
@@ -156,22 +156,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
 
-        this.__P_48_3 = documentation;
+        this.__P_47_3 = documentation;
         return documentation;
       },
 
       /**
        * Transform documentation text to link to the online documentation when it
        * contains a reference.
-       *
+       * @param text
        * @return string The transformed input string.
        */
       createDocumentationWebLinks: function createDocumentationWebLinks(text) {
-        var language = this.__P_48_1;
-        return text.replace(this.__P_48_0, function (match, contents) {
-          var reference = contents.match(/^(.*?) *<([^<]*)>$/),
-              label = reference ? reference[1] : contents,
-              key = reference ? reference[2] : contents;
+        var language = this.__P_47_1;
+        return text.replace(this.__P_47_0, function (match, contents) {
+          var reference = contents.match(/^(.*?) *<([^<]*)>$/);
+          var label = reference ? reference[1] : contents;
+          var key = reference ? reference[2] : contents;
           return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
         });
       }
@@ -183,12 +183,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_48_2 = null;
-      this.__P_48_3 = null;
-      this.__P_48_0 = null;
+      this.__P_47_2 = null;
+      this.__P_47_3 = null;
+      this.__P_47_0 = null;
     }
   });
   cv.ui.manager.model.schema.MAnnotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAnnotation.js.map?dt=1625667769745
+//# sourceMappingURL=MAnnotation.js.map?dt=1641882202374

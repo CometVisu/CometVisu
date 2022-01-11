@@ -28,10 +28,10 @@
     */
     construct: function construct(node, schema) {
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
-      this.__P_49_0 = [];
-      this.__P_49_1 = [];
-      this.__P_49_2 = {};
-      this.__P_49_3 = [];
+      this.__P_48_0 = [];
+      this.__P_48_1 = [];
+      this.__P_48_2 = {};
+      this.__P_48_3 = [];
       this.parse();
     },
 
@@ -66,15 +66,15 @@
     ***********************************************
     */
     members: {
-      __P_49_1: null,
-      __P_49_0: null,
-      __P_49_3: null,
-      __P_49_2: null,
+      __P_48_1: null,
+      __P_48_0: null,
+      __P_48_3: null,
+      __P_48_2: null,
       parse: function parse() {
         var node = this.getNode();
         this.setOptional(node.getAttribute('use') === 'required');
 
-        this.__P_49_4(node);
+        this.__P_48_4(node);
       },
 
       /**
@@ -82,7 +82,7 @@
        *
        * @param   node    DOMNode the node to parse
        */
-      __P_49_4: function __P_49_4(node) {
+      __P_48_4: function __P_48_4(node) {
         var _this = this;
 
         var schema = this.getSchema();
@@ -93,7 +93,7 @@
           node = schema.getReferencedNode('attribute', refName);
 
           if (!node) {
-            throw 'schema/xsd appears to be invalid, can not find element ' + refName;
+            throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
           }
         }
 
@@ -105,7 +105,7 @@
             // if it's not an xsd-default-basetype, we need to find out what it is
             var subnode = schema.getReferencedNode('simpleType', baseType);
 
-            this.__P_49_4(subnode);
+            this.__P_48_4(subnode);
           } else {
             this.setBaseType(baseType);
           } // is this attribute optional?
@@ -123,16 +123,16 @@
             // don't dive in for default-types, they simply can not be found
             var _subnode = schema.getReferencedNode('simpleType', baseType);
 
-            _this.__P_49_4(_subnode);
+            _this.__P_48_4(_subnode);
           } else {
             _this.setBaseType(baseType);
           }
 
           Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(function (patternNode) {
-            _this.__P_49_1.push(patternNode.getAttribute('value'));
+            _this.__P_48_1.push(patternNode.getAttribute('value'));
           });
           Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(function (enumerationNode) {
-            _this.__P_49_0.push(enumerationNode.getAttribute('value'));
+            _this.__P_48_0.push(enumerationNode.getAttribute('value'));
           });
         });
 
@@ -140,7 +140,7 @@
           this.setBaseType('xsd:anyType');
         }
 
-        this.__P_49_3.push(this.getBaseType());
+        this.__P_48_3.push(this.getBaseType());
       },
 
       /**
@@ -156,7 +156,7 @@
         var schema = this.getSchema();
 
         if (!baseType) {
-          throw 'something is wrong, do not have a baseType for type';
+          throw new Error('something is wrong, do not have a baseType for type');
         }
 
         if (value === '') {
@@ -164,85 +164,85 @@
           return this.isOptional();
         }
 
-        if (-1 === baseType.search(/^xsd:/)) {
+        if (baseType.search(/^xsd:/) === -1) {
           // created our own type, will need to find and use it.
           var typeNode = schema.getTypeNode('simple', baseType);
           var subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
           return subType.isValueValid(value);
-        } else {
-          // xsd:-namespaces types, those are the originals
-          switch (baseType) {
-            case 'xsd:string':
-            case 'xsd:anyURI':
-            case 'xsd:anyType':
-              if (!(typeof value == 'string')) {
-                // it's not a string, but it should be.
-                // pretty much any input a user gives us is string, so this is pretty much moot.
-                return false;
-              }
+        } // xsd:-namespaces types, those are the originals
 
-              break;
 
-            case 'xsd:decimal':
-              if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
-                return false;
-              }
+        switch (baseType) {
+          case 'xsd:string':
+          case 'xsd:anyURI':
+          case 'xsd:anyType':
+            if (!(typeof value == 'string')) {
+              // it's not a string, but it should be.
+              // pretty much any input a user gives us is string, so this is pretty much moot.
+              return false;
+            }
 
-              break;
+            break;
 
-            case 'xsd:unsignedByte':
-            case 'xsd:nonNegativeInteger':
-              if (!value.match(/^[+]?[0-9]+$/)) {
-                return false;
-              }
+          case 'xsd:decimal':
+            if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
+              return false;
+            }
 
-              break;
+            break;
 
-            case 'xsd:integer':
-              if (!value.match(/^[-+]?[0-9]+$/)) {
-                return false;
-              }
+          case 'xsd:unsignedByte':
+          case 'xsd:nonNegativeInteger':
+            if (!value.match(/^[+]?[0-9]+$/)) {
+              return false;
+            }
 
-              break;
+            break;
 
-            case 'xsd:float':
-              if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
-                return false;
-              }
+          case 'xsd:integer':
+            if (!value.match(/^[-+]?[0-9]+$/)) {
+              return false;
+            }
 
-              break;
+            break;
 
-            case 'xsd:boolean':
-              if (!value.match(/^(true|false|0|1)$/)) {
-                return false;
-              }
+          case 'xsd:float':
+            if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
+              return false;
+            }
 
-              break;
+            break;
 
-            default:
-              throw 'not implemented baseType ' + baseType;
-          }
+          case 'xsd:boolean':
+            if (!value.match(/^(true|false|0|1)$/)) {
+              return false;
+            }
+
+            break;
+
+          default:
+            throw new Error('not implemented baseType ' + baseType);
         } // check if the value is in our list of valid values, if there is such a list
 
 
-        if (this.__P_49_0.length > 0) {
-          if (!this.__P_49_0.includes(value)) {
+        if (this.__P_48_0.length > 0) {
+          if (!this.__P_48_0.includes(value)) {
             return false;
           }
         } // check if the value matches any given pattern
 
 
-        if (this.__P_49_1.length > 0) {
+        if (this.__P_48_1.length > 0) {
           // start with assuming it's valid
           var boolValid = true;
 
-          this.__P_49_1.forEach(function (item) {
-            if (!_this2.__P_49_2.hasOwnProperty(item)) {
+          this.__P_48_1.forEach(function (item) {
+            if (!Object.prototype.hasOwnProperty.call(_this2.__P_48_2, item)) {
               // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
               // so for our purpose, we need to add them for every branch (that is not inside [])
               var branchIndices = [];
               var start = 0;
-              var i = item.indexOf("|", start);
+              var i = item.indexOf('|', start);
 
               while (i < item.length) {
                 if (i < 0) {
@@ -266,7 +266,12 @@
 
                 start = i + 1;
                 i = item.indexOf('|', start);
-                if (branchIndices.length > 100) debugger;
+
+                if (branchIndices.length > 100) {
+                  _this2.error('too many branchIndices');
+
+                  break;
+                }
               }
 
               if (item.length > start) {
@@ -277,10 +282,10 @@
               var branches = branchIndices.map(function (entry) {
                 return "^".concat(item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2'), "$");
               });
-              _this2.__P_49_2[item] = _this2.regexFromString(branches.join("|"));
+              _this2.__P_48_2[item] = _this2.regexFromString(branches.join('|'));
             }
 
-            if (false === _this2.__P_49_2[item].test(value)) {
+            if (_this2.__P_48_2[item].test(value) === false) {
               // regular expression did not match
               // bad bad value!
               boolValid = false;
@@ -288,7 +293,7 @@
           }, this); // if the value has been marked invalid by a regex, return invalid.
 
 
-          if (false === boolValid) {
+          if (boolValid === false) {
             return false;
           }
         } // if no check said the value is invalid, then it is not invalid
@@ -308,7 +313,7 @@
           return ['true', 'false'];
         }
 
-        return this.__P_49_0;
+        return this.__P_48_0;
       }
     },
 
@@ -318,10 +323,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_49_2 = null;
+      this.__P_48_2 = null;
     }
   });
   cv.ui.manager.model.schema.SimpleType.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleType.js.map?dt=1625667769841
+//# sourceMappingURL=SimpleType.js.map?dt=1641882202457

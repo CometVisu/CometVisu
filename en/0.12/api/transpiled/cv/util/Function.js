@@ -12,24 +12,25 @@
   /**
    * Utility module to give some support to work with functions.
    */
-  qx.Class.define("cv.util.Function", {
+  qx.Class.define('cv.util.Function', {
     statics: {
       /**
        * Like qx.util.Function.throttle with additional support to abort the throttling.
-       *
-       * @param callback {Function} the callback which should be executed in the given interval
-       * @param interval {Number} Interval in milliseconds
-       * @param options {Map} the keys are <code>leading</code> and <code>trailing</code> to control the
+       * @param callback {function} the callback which should be executed in the given interval
+       * @param interval {number} Interval in milliseconds
+       * @param options {object} the keys are <code>leading</code> and <code>trailing</code> to control the
        * executing of the callback precisely. Default values are <code>true</code> for both options.
-       * @return {Map} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function
-       *                <code>abort</code> abort throttling and skip the trailing value
+       * @param context
+       * @return {object} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function
+       * <code>abort</code> abort throttling and skip the trailing value
        */
       throttle: function throttle(callback, interval, options, context) {
-        if (typeof options === "undefined") {
+        if (typeof options === 'undefined') {
           options = {};
         }
 
-        var args, result;
+        var args;
+        var result;
         var timeout = null;
         var previous = 0;
 
@@ -74,4 +75,4 @@
   cv.util.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1625667806120
+//# sourceMappingURL=Function.js.map?dt=1641882236395

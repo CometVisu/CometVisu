@@ -45,10 +45,10 @@
    *
    * @ignore(SpeechSynthesisUtterance)
    */
-  qx.Class.define("cv.core.notifications.SpeechHandler", {
+  qx.Class.define('cv.core.notifications.SpeechHandler', {
     extend: qx.core.Object,
     implement: cv.core.notifications.IHandler,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -81,11 +81,11 @@
         if (cv.core.notifications.Router.evaluateCondition(message)) {
           if (!text || text.length === 0) {
             // nothing to say
-            this.debug("no text to speech given");
+            this.debug('no text to speech given');
             return;
           }
 
-          if (text.substring(0, 1) === "!") {
+          if (text.substring(0, 1) === '!') {
             // override repeatTimeout, force saying this
             text = text.substring(1);
           } else if (config.repeatTimeout >= 0) {
@@ -94,7 +94,7 @@
               // update time
               this.__P_5_0[message.topic].time = Date.now(); // do not repeat
 
-              this.debug("skipping TTS because of repetition " + text);
+              this.debug('skipping TTS because of repetition ' + text);
               return;
             }
           }
@@ -110,7 +110,7 @@
       /* istanbul ignore next [no need to text the browsers TTS capability] */
       function say(text, language) {
         if (!window.speechSynthesis) {
-          this.warn(this, "this browser does not support the Web Speech API");
+          this.warn(this, 'this browser does not support the Web Speech API');
           return;
         }
 
@@ -122,7 +122,8 @@
 
 
         var utterThis = new SpeechSynthesisUtterance(text);
-        var selectedVoice, defaultVoice;
+        var selectedVoice;
+        var defaultVoice;
         var voices = synth.getVoices();
 
         if (voices.length === 0) {
@@ -131,16 +132,18 @@
           }.bind(this);
 
           return;
-        } else {
-          synth.onvoiceschanged = null;
         }
 
-        for (var i = 0, l = voices.length; i < l; i++) {
+        synth.onvoiceschanged = null;
+        var i = 0;
+        var l = voices.length;
+
+        for (; i < l; i++) {
           if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
             selectedVoice = voices[i];
           }
 
-          if (voices[i]["default"]) {
+          if (voices[i]['default']) {
             defaultVoice = voices[i];
           }
         }
@@ -150,7 +153,7 @@
         }
 
         utterThis.voice = selectedVoice;
-        this.debug("saying '" + text + "' in voice " + selectedVoice.name);
+        this.debug('saying \'' + text + '\' in voice ' + selectedVoice.name);
         synth.speak(utterThis);
       }
     }
@@ -158,4 +161,4 @@
   cv.core.notifications.SpeechHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SpeechHandler.js.map?dt=1625667763710
+//# sourceMappingURL=SpeechHandler.js.map?dt=1641882196667

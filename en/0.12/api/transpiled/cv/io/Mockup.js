@@ -21,6 +21,7 @@
       "qx.io.request.Xhr": {},
       "cv.Config": {},
       "qx.dev.FakeServer": {},
+      "qx.util.Uri": {},
       "cv.report.Record": {},
       "qx.log.Logger": {},
       "qx.event.Timer": {}
@@ -75,7 +76,7 @@
       window.writeHistory = [];
       var testMode = false;
 
-      if (typeof testMode === "string" && testMode !== "true") {
+      if (typeof testMode === 'string' && testMode !== 'true') {
         this.__P_486_0();
       }
 
@@ -89,17 +90,17 @@
     */
     properties: {
       dataReceived: {
-        check: "Boolean",
+        check: 'Boolean',
         init: true
       },
       server: {
-        check: "String",
-        init: "Mockup"
+        check: 'String',
+        init: 'Mockup'
       },
       connected: {
-        check: "Boolean",
+        check: 'Boolean',
         init: true,
-        event: "changeConnected"
+        event: 'changeConnected'
       }
     },
 
@@ -126,24 +127,75 @@
         r.send();
       },
       __P_486_5: function __P_486_5() {
-        this.__P_486_1 = cv.Config.initialDemoData.xhr; // configure server
+        this.__P_486_1 = cv.Config.initialDemoData.xhr;
+        var that = this; // override sinons filter handling to be able to manipulate the target URL from the filter
+        // eslint-disable-next-line consistent-return
 
-        qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-          return url.startsWith('https://sentry.io');
+        sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
+          this.method = method;
+          this.url = url;
+          this.async = typeof async == 'boolean' ? async : true;
+          this.username = username;
+          this.password = password;
+          this.responseText = null;
+          this.responseXML = null;
+          this.requestHeaders = {};
+          this.sendFlag = false;
+
+          if (sinon.FakeXMLHttpRequest.useFilters === true) {
+            var xhrArgs = arguments;
+            var defake = sinon.FakeXMLHttpRequest.filters.some(function (filter) {
+              return filter.call(this, xhrArgs);
+            });
+
+            if (defake) {
+              var xhr = that.defake(this, xhrArgs);
+              xhr.open.apply(xhr, xhrArgs);
+              xhr.setRequestHeader('Accept', 'text/*, image/*');
+              return;
+            }
+          }
+
+          this.readyStateChange(sinon.FakeXMLHttpRequest.OPENED);
+        }; // configure server
+
+
+        qx.dev.FakeServer.getInstance().addFilter(function (args) {
+          var method = args[0];
+          var url = args[1];
+
+          if (url.startsWith('https://sentry.io')) {
+            return true;
+          } else if (method === 'GET' && (url.indexOf('resource/visu_config') >= 0 || url.indexOf('resource/demo/visu_config') >= 0 || url.indexOf('resource/hidden-schema.json') >= 0 || url.indexOf('resource/manager/') >= 0)) {
+            return true;
+          } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
+            // change url to avoid API access and do a real request
+            var path = url.split('=').pop();
+            var suffix = path.startsWith('demo/') ? '' : 'config/';
+            args[1] = window.location.pathname + 'resource/' + suffix + path;
+            return true;
+          }
+
+          return false;
         }, this);
         var server = qx.dev.FakeServer.getInstance().getFakeServer();
         server.respondWith(function (request) {
-          var url = cv.report.Record.normalizeUrl(request.url);
+          var parsed = qx.util.Uri.parseUri(request.url);
+          var url = request.url;
 
-          if (url.indexOf("nocache=") >= 0) {
-            url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+          if (!parsed.host || parsed.host === window.location.host) {
+            url = cv.report.Record.normalizeUrl(request.url);
+
+            if (url.startsWith(window.location.pathname)) {
+              url = url.substr(window.location.pathname.length - 1);
+            }
           }
 
           if (!this.__P_486_1[url] || this.__P_486_1[url].length === 0) {
-            qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
+            qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
           } else {
-            qx.log.Logger.debug(this, "faking response for " + url);
-            var response = "";
+            qx.log.Logger.debug(this, 'faking response for ' + url);
+            var response = '';
 
             if (this.__P_486_1[url].length === 1) {
               response = this.__P_486_1[url][0];
@@ -162,10 +214,74 @@
           }
         }.bind(this));
       },
+      defake: function defake(fakeXhr, xhrArgs) {
+        // eslint-disable-next-line new-cap
+        var xhr = new sinon.xhr.workingXHR();
+        ['open', 'setRequestHeader', 'send', 'abort', 'getResponseHeader', 'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function (method) {
+          fakeXhr[method] = function () {
+            return xhr[method].apply(xhr, arguments);
+          };
+        });
+
+        var copyAttrs = function copyAttrs(args) {
+          args.forEach(function (attr) {
+            try {
+              fakeXhr[attr] = xhr[attr];
+            } catch (e) {
+              if (!/MSIE 6/.test(navigator.userAgent)) {
+                throw e;
+              }
+            }
+          });
+        };
+
+        var stateChange = function stateChange() {
+          fakeXhr.readyState = xhr.readyState;
+
+          if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
+            copyAttrs(['status', 'statusText']);
+          }
+
+          if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
+            copyAttrs(['responseText']);
+          }
+
+          if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+            copyAttrs(['responseXML']);
+          }
+
+          if (fakeXhr.onreadystatechange) {
+            fakeXhr.onreadystatechange({
+              target: fakeXhr
+            });
+          }
+        };
+
+        if (xhr.addEventListener) {
+          var _loop = function _loop(event) {
+            // eslint-disable-next-line no-prototype-builtins
+            if (fakeXhr.eventListeners.hasOwnProperty(event)) {
+              fakeXhr.eventListeners[event].forEach(function (handler) {
+                xhr.addEventListener(event, handler);
+              });
+            }
+          };
+
+          for (var event in fakeXhr.eventListeners) {
+            _loop(event);
+          }
+
+          xhr.addEventListener('readystatechange', stateChange);
+        } else {
+          xhr.onreadystatechange = stateChange;
+        }
+
+        return xhr;
+      },
 
       /**
        * This function gets called once the communication is established and session information is available
-       *
+       * @param json
        */
       receive: function receive(json) {
         if (json) {
@@ -185,7 +301,7 @@
           var simulation = simulations[mainAddress];
           this.__P_486_4[mainAddress] = simulation;
 
-          if (simulation.hasOwnProperty("additionalAddresses")) {
+          if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
             simulation.additionalAddresses.forEach(function (addr) {
               this.__P_486_4[addr] = simulation;
             }, this);
@@ -218,12 +334,12 @@
         var start = false;
         var stop = false;
 
-        if (simulation.hasOwnProperty('startValues')) {
+        if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
           // try the more specific matches with address included
-          start = simulation.startValues.indexOf(address + "|" + value) >= 0;
+          start = simulation.startValues.indexOf(address + '|' + value) >= 0;
 
-          if (simulation.hasOwnProperty('stopValues')) {
-            stop = simulation.stopValues.indexOf(address + "|" + value) >= 0;
+          if (Object.prototype.hasOwnProperty.call(simulation, 'stopValues')) {
+            stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
           }
 
           if (!stop) {
@@ -235,8 +351,8 @@
 
         if (start) {
           // start simulation
-          if (simulation.type === "shutter") {
-            simulation.direction = value === "0" ? "up" : "down";
+          if (simulation.type === 'shutter') {
+            simulation.direction = value === '0' ? 'up' : 'down';
             var initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
 
             if (initValue === undefined) {
@@ -250,10 +366,10 @@
             } else {
               simulation.timer = new qx.event.Timer(simulation.interval || 100);
               var stepSize = simulation.stepSize || 10;
-              simulation.timer.addListener("interval", function () {
+              simulation.timer.addListener('interval', function () {
                 var newValue = simulation.value;
 
-                if (simulation.direction === "up") {
+                if (simulation.direction === 'up') {
                   // drive up
                   newValue = simulation.value + stepSize;
 
@@ -296,7 +412,7 @@
 
       /**
        * Subscribe to the addresses in the parameter
-       *
+       * @param addresses
        */
       subscribe: function subscribe(addresses) {
         this.addresses = addresses ? addresses : [];
@@ -304,7 +420,8 @@
 
       /**
        * This function sends a value
-       *
+       * @param address
+       * @param value
        */
       write: function write(address, value) {
         if (cv.report.Record.REPLAYING === true) {
@@ -320,7 +437,7 @@
           ts: ts
         });
 
-        if (this.__P_486_4 && this.__P_486_4.hasOwnProperty(address)) {
+        if (this.__P_486_4 && Object.prototype.hasOwnProperty.call(this.__P_486_4, address)) {
           this._processSimulation(address, value);
         } else {
           // send update
@@ -371,4 +488,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1625667805065
+//# sourceMappingURL=Mockup.js.map?dt=1641882235154

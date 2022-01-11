@@ -31,7 +31,7 @@
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
   qx.Class.define('cv.ui.structure.WidgetFactory', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -52,12 +52,12 @@
       createInstance: function createInstance(type, data) {
         if (!this.registry[data.path]) {
           if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
-            var clazz = this.__P_498_0[type];
+            var Clazz = this.__P_498_0[type];
 
-            if (clazz) {
-              this.registry[data.path] = new clazz(data); // jshint ignore:line
+            if (Clazz) {
+              this.registry[data.path] = new Clazz(data); // jshint ignore:line
             } else {
-              qx.log.Logger.error(this, "No handler found for type '" + type + "'");
+              qx.log.Logger.error(this, 'No handler found for type \'' + type + '\'');
               return null;
             }
           } else {
@@ -101,4 +101,4 @@
   cv.ui.structure.WidgetFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetFactory.js.map?dt=1625667805853
+//# sourceMappingURL=WidgetFactory.js.map?dt=1641882235923

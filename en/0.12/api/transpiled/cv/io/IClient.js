@@ -20,16 +20,16 @@
     */
     properties: {
       connected: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeConnected"
+        event: 'changeConnected'
       },
 
       /**
        * The server the client is currently speaking to
        */
       server: {
-        check: "String",
+        check: 'String',
         nullable: true,
         event: 'changedServer'
       }
@@ -144,6 +144,7 @@
 
       /**
        * Restart the connection
+       * @param full
        */
       restart: function restart(full) {},
 
@@ -178,4 +179,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1625667808163
+//# sourceMappingURL=IClient.js.map?dt=1641882238541

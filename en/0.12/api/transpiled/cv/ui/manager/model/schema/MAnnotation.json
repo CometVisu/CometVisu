@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 159,
+        "line": 158,
         "column": 3
       }
     },
@@ -132,7 +132,7 @@
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 52,
           "column": 5
         }
       },
@@ -142,11 +142,11 @@
     "getAppinfo": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 86,
           "column": 5
         }
       },
@@ -170,11 +170,11 @@
     "getDocumentation": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 126,
           "column": 5
         }
       },
@@ -198,11 +198,11 @@
     "createDocumentationWebLinks": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 145,
           "column": 5
         }
       },
@@ -211,6 +211,14 @@
           {
             "name": "@description",
             "body": "<p>Transform documentation text to link to the online documentation when it\n contains a reference.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text",
+            "paramName": "text",
+            "type": ""
           }
         ],
         "@return": [
@@ -227,11 +235,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 154,
+        "line": 153,
         "column": 12
       },
       "end": {
-        "line": 158,
+        "line": 157,
         "column": 3
       }
     },

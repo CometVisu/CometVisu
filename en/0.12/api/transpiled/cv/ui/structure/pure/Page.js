@@ -72,7 +72,7 @@
     construct: function construct(props) {
       this.__P_59_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      this.addListener("changeVisible", this._onChangeVisible, this); // break out of the constructor
+      this.addListener('changeVisible', this._onChangeVisible, this); // break out of the constructor
 
       new qx.util.DeferredCall(function () {
         var parentPage = this.getParentPage();
@@ -80,7 +80,7 @@
         if (!parentPage) {
           this.__P_59_0 = [];
         } else {
-          this.debug("binding navbar visibility from " + parentPage.getPath() + " to " + this.getPath());
+          this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
         }
 
         [['showTopNavigation', true], ['showFooter', true], ['showNavbarTop', false], ['showNavbarBottom', false], ['showNavbarLeft', false], ['showNavbarRight', false]].forEach(function (tuple) {
@@ -121,8 +121,8 @@
        */
       createFinal: function createFinal() {
         // special function - only for pages!
-        document.querySelector("#pages").innerHTML = this.allPages;
-        qx.event.message.Bus.unsubscribe("setup.dom.append", this.createFinal, this);
+        document.querySelector('#pages').innerHTML = this.allPages;
+        qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
       }
     },
 
@@ -133,72 +133,72 @@
      */
     properties: {
       initialized: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeInitialized"
+        event: 'changeInitialized'
       },
       anonymous: {
         refine: true,
         init: true
       },
       name: {
-        check: "String",
-        init: "",
+        check: 'String',
+        init: '',
         nullable: true
       },
       showTopNavigation: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowTopNavigation"
+        event: 'changeShowTopNavigation'
       },
       showFooter: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowFooter"
+        event: 'changeShowFooter'
       },
       showNavbarTop: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowNavbarTop",
-        apply: "_applyNavbarVisibility"
+        event: 'changeShowNavbarTop',
+        apply: '_applyNavbarVisibility'
       },
       showNavbarBottom: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowNavbarBottom",
-        apply: "_applyNavbarVisibility"
+        event: 'changeShowNavbarBottom',
+        apply: '_applyNavbarVisibility'
       },
       showNavbarLeft: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowNavbarLeft",
-        apply: "_applyNavbarVisibility"
+        event: 'changeShowNavbarLeft',
+        apply: '_applyNavbarVisibility'
       },
       showNavbarRight: {
-        check: "Boolean",
+        check: 'Boolean',
         nullable: true,
-        event: "changeShowNavbarRight",
-        apply: "_applyNavbarVisibility"
+        event: 'changeShowNavbarRight',
+        apply: '_applyNavbarVisibility'
       },
       backdropAlign: {
         init: '50% 50%',
         nullable: true
       },
       backdropType: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       linkVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: true,
         nullable: true
       },
       size: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       backdrop: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -256,7 +256,7 @@
         var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
         var container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
 
-        if ('2d' === pageType) {
+        if (pageType === '2d') {
           var size = 'width:100%;height:100%;';
 
           switch (this.getSize()) {
@@ -282,46 +282,46 @@
           if (backdrop) {
             container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
           }
-        } else if ('3d' === pageType && false) //---Disable 3D for 0.8---
-          {
-            /*
-             var floorplan = JSFloorPlan3D( container, backdrop );
-             floorplan.moveToRoom( 'Underground', false, true, false );
-             container.data( 'JSFloorPlan3D', floorplan );
-             container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
-             subpage.click( {JSFloorPlan3D:floorplan,callback:function(event){
-             var j = this.JSFloorPlan3D;
-             j.moveToRoom( j.getState('showFloor'), event.room.room, true, true, function(){
-             container.trigger( 'update3d', j );
-             });
-             }}, floorplan.translateMouseEvent );
-             $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
-             if (page.getAttribute('azimut')) {
-             cv.TemplateEngine.getInstance().addAddress( page.getAttribute('azimut'), path + '_' );
-             address[ page.getAttribute('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
-             }
-             if (page.getAttribute('elevation')) {
-             cv.TemplateEngine.getInstance().addAddress( page.getAttribute('elevation'), path + '_' );
-             address[ page.getAttribute('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
-             };
-             if (page.getAttribute('floor')) {
-             cv.TemplateEngine.getInstance().addAddress( page.getAttribute('floor'), path + '_' );
-             address[ page.getAttribute('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
-             };
-              $( childs ).each( function(i,a){
-             if( this.tagName === 'filter' )
-             {
-             var floorFilter = $(this).attr('floor');
-             var roomFilter  = $(this).attr('room');
-             childs.splice( i, 1 );                 // remove filter element
-             $(this).children().each( function(j){  // and add it's children
-             $(this).find('layout').attr({floorFilter:floorFilter,roomFilter:roomFilter});
-             childs.splice( i+j, 0, this );
-             });
-             }
-             });
-             */
-          }
+        }
+        /* ---Disable 3D for 0.8---
+        else if (pageType === "3d" && false) {
+         var floorplan = JSFloorPlan3D( container, backdrop );
+         floorplan.moveToRoom( 'Underground', false, true, false );
+         container.data( 'JSFloorPlan3D', floorplan );
+         container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
+         subpage.click( {JSFloorPlan3D:floorplan,callback:function(event){
+         var j = this.JSFloorPlan3D;
+         j.moveToRoom( j.getState('showFloor'), event.room.room, true, true, function(){
+         container.trigger( 'update3d', j );
+         });
+         }}, floorplan.translateMouseEvent );
+         $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
+         if (page.getAttribute('azimut')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('azimut'), path + '_' );
+         address[ page.getAttribute('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
+         }
+         if (page.getAttribute('elevation')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('elevation'), path + '_' );
+         address[ page.getAttribute('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
+         };
+         if (page.getAttribute('floor')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('floor'), path + '_' );
+         address[ page.getAttribute('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
+         };
+          $( childs ).each( function(i,a){
+         if( this.tagName === 'filter' )
+         {
+         var floorFilter = $(this).attr('floor');
+         var roomFilter  = $(this).attr('room');
+         childs.splice( i, 1 );                 // remove filter element
+         $(this).children().each( function(j){  // and add it's children
+         $(this).find('layout').attr({floorFilter:floorFilter,roomFilter:roomFilter});
+         childs.splice( i+j, 0, this );
+         });
+         }
+         });
+        } */
+
 
         container += this.getChildrenDomString();
         subpage += container + '</div></div>';
@@ -354,7 +354,7 @@
         // TODO: data comparision has to be refactored to use DPT and a value
         if (parseInt(data) === 1) {
           cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
-          this.sendToBackend("0");
+          this.sendToBackend('0');
         } // }
 
       },
@@ -363,7 +363,7 @@
           var list = this.getAddress();
 
           for (var id in list) {
-            if (list.hasOwnProperty(id)) {
+            if (Object.prototype.hasOwnProperty.call(list, id)) {
               var address = list[id];
 
               if (cv.data.Model.isWriteAddress(address)) {
@@ -375,10 +375,10 @@
       }
     },
     defer: function defer(statics) {
-      qx.event.message.Bus.subscribe("setup.dom.append", statics.createFinal, statics);
+      qx.event.message.Bus.subscribe('setup.dom.append', statics.createFinal, statics);
     }
   });
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1625667770734
+//# sourceMappingURL=Page.js.map?dt=1641882203450

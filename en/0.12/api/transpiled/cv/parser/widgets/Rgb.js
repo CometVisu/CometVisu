@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Rgb', {
-    type: "static",
+    type: 'static',
 
     /*
      ******************************************************
@@ -64,10 +64,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("rgb", statics);
+      cv.parser.WidgetParser.addHandler('rgb', statics);
     }
   });
   cv.parser.widgets.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1625667764620
+//# sourceMappingURL=Rgb.js.map?dt=1641882197602

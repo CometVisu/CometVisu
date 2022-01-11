@@ -15,7 +15,7 @@
         "column": 2
       },
       "end": {
-        "line": 105,
+        "line": 111,
         "column": 5
       }
     },
@@ -293,7 +293,7 @@
           "column": 6
         },
         "end": {
-          "line": 78,
+          "line": 84,
           "column": 7
         }
       },
@@ -308,11 +308,11 @@
     "getActor": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 87,
           "column": 6
         },
         "end": {
-          "line": 83,
+          "line": 89,
           "column": 7
         }
       },
@@ -327,11 +327,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 97,
           "column": 6
         },
         "end": {
-          "line": 99,
+          "line": 105,
           "column": 7
         }
       },
@@ -2079,7 +2079,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6176,11 +6176,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 102,
+        "line": 108,
         "column": 11
       },
       "end": {
-        "line": 104,
+        "line": 110,
         "column": 5
       }
     },

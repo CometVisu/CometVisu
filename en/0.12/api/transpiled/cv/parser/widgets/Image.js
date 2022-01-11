@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Image', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -61,17 +61,25 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           'width': {
-            "default": "100%"
+            'default': '100%'
           },
           'height': {},
+          'crop-top': {
+            target: 'cropTop',
+            'default': ''
+          },
+          'crop-bottom': {
+            target: 'cropBottom',
+            'default': ''
+          },
           'src': {},
           'placeholder': {
-            "default": "none"
+            'default': 'none'
           },
           'widthfit': {
             target: 'widthFit',
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -79,10 +87,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("image", statics);
+      cv.parser.WidgetParser.addHandler('image', statics);
     }
   });
   cv.parser.widgets.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1625667764282
+//# sourceMappingURL=Image.js.map?dt=1641882197255

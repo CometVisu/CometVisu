@@ -70,7 +70,7 @@
 
         var subNodes = Array.from(this.getNode().children);
         subNodes.forEach(function (subNode) {
-          var subObject = undefined;
+          var subObject;
 
           switch (subNode.nodeName) {
             case 'xsd:element':
@@ -175,30 +175,30 @@
           // (an element may appear as often as the number of sequences times the number of elements
           // in each sequence - roughly)
 
-          if (elementBounds.hasOwnProperty("min")) {
+          if (Object.prototype.hasOwnProperty.call(elementBounds, 'min')) {
             resultBounds.min = elementBounds.min;
           }
 
-          if (sequenceBounds.hasOwnProperty("min") && !isNaN(sequenceBounds.min)) {
-            resultBounds.min = resultBounds.min * sequenceBounds.min;
+          if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') && !isNaN(sequenceBounds.min)) {
+            resultBounds.min *= sequenceBounds.min;
           }
 
           if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
             resultBounds.max = Number.POSITIVE_INFINITY;
           } else {
-            if (elementBounds.hasOwnProperty("max")) {
+            if (Object.prototype.hasOwnProperty.call(elementBounds, 'max')) {
               resultBounds.max = elementBounds.max;
             }
 
-            if (sequenceBounds.hasOwnProperty("max") && !isNaN(sequenceBounds.max)) {
-              resultBounds.max = resultBounds.max * sequenceBounds.max;
+            if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') && !isNaN(sequenceBounds.max)) {
+              resultBounds.max *= sequenceBounds.max;
             }
           }
 
           return resultBounds;
         }
 
-        var childBounds = undefined;
+        var childBounds;
         var tmpBounds;
 
         for (var i = 0; i < this._subGroupings.length; ++i) {
@@ -218,9 +218,8 @@
        * get the sorting of the allowed elements
        *
        * Warning: this only works if any element can have only ONE position in the parent.
-       *
-       * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
-       * @return  object              list of allowed elements, with their sort-number as value
+       * @param sortNumber  integer the sortNumber of a parent (only used when recursive)
+       * @return object     list of allowed elements, with their sort-number as value
        */
       getAllowedElementsSorting: function getAllowedElementsSorting(sortNumber) {
         var namesWithSorting = {};
@@ -248,4 +247,4 @@
   cv.ui.manager.model.schema.Sequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sequence.js.map?dt=1625667769795
+//# sourceMappingURL=Sequence.js.map?dt=1641882202417

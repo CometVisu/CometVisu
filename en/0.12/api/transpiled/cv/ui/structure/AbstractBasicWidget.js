@@ -42,7 +42,7 @@
    */
   qx.Class.define('cv.ui.structure.AbstractBasicWidget', {
     extend: qx.core.Object,
-    type: "abstract",
+    type: 'abstract',
 
     /*
     ******************************************************
@@ -51,7 +51,7 @@
     */
     construct: function construct(props) {
       for (var prop in props) {
-        if (this["set" + qx.Bootstrap.firstUp(prop)] !== undefined) {
+        if (this['set' + qx.Bootstrap.firstUp(prop)] !== undefined) {
           this.set(prop, props[prop]);
         }
       }
@@ -67,22 +67,22 @@
        * Internal path to the widget
        */
       path: {
-        check: "String"
+        check: 'String'
       },
 
       /**
        * The widget type
        */
       $$type: {
-        check: "String"
+        check: 'String'
       },
 
       /**
        * The parents page type
        */
       pageType: {
-        check: ["text", "2d", "3d"],
-        init: "text"
+        check: ['text', '2d', '3d'],
+        init: 'text'
       }
     },
 
@@ -92,12 +92,21 @@
     ******************************************************
     */
     members: {
-      __P_505_0: null,
+      __P_506_0: null,
+      _domElement: null,
+
+      /**
+       * Override DomElement
+       * @param node {Node}
+       */
+      setDomElement: function setDomElement(node) {
+        this._domElement = node;
+      },
       setParentWidget: function setParentWidget(value) {
-        this.__P_505_0 = value;
+        this.__P_506_0 = value;
       },
       getParentWidget: function getParentWidget() {
-        if (cv.Config.lazyLoading === true && this.__P_505_0 === null && this.getPath() !== "id_") {
+        if (cv.Config.lazyLoading === true && this.__P_506_0 === null && this.getPath() !== 'id_') {
           // creating parent widget on demand
           var parentData = cv.util.Tree.getParentData(this.getPath()); // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
 
@@ -105,7 +114,7 @@
           this.setParentWidget(parent);
         }
 
-        return this.__P_505_0;
+        return this.__P_506_0;
       },
 
       /**
@@ -113,18 +122,11 @@
        * @return {Element}
        */
       getDomElement: function getDomElement() {
-        var element = document.querySelector('#' + this.getPath());
-
-        if (null === element) {
-          // TODO and FIXME: no code should rely on a return of `document` here.
-          // But currently it is required as this is the behaviour that Qx had
-          // when it called getAttribute().
-          // This is only an issue for the Karma tests.
-          console.warn('Compatability mode used - everything should be set up, so that getDomElement() can return the element and not `document` instead.', this.get$$type(), this.getPath());
-          return document;
+        if (!this._domElement) {
+          this._domElement = document.querySelector('#' + this.getPath());
         }
 
-        return element;
+        return this._domElement;
       },
 
       /**
@@ -143,7 +145,7 @@
         var parent = this.getParentWidget();
 
         while (parent) {
-          if (parent.get$$type() === "page") {
+          if (parent.get$$type() === 'page') {
             return parent;
           }
 
@@ -161,7 +163,7 @@
         var parent = this.getParentWidget();
 
         while (parent) {
-          if (parent.get$$type() === "page" || parent.get$$type() === "navbar") {
+          if (parent.get$$type() === 'page' || parent.get$$type() === 'navbar') {
             return parent;
           }
 
@@ -175,4 +177,4 @@
   cv.ui.structure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1625667806283
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1641882236568

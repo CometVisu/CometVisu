@@ -9,7 +9,7 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 5,
         "column": 0
       },
       "end": {
@@ -31,11 +31,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 13,
+          "line": 14,
           "column": 4
         },
         "end": {
-          "line": 16,
+          "line": 17,
           "column": 5
         }
       },
@@ -54,11 +54,11 @@
     "SUPPORTED_FILES": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 26,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 26,
           "column": 57
         }
       },
@@ -68,11 +68,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 27,
           "column": 4
         },
         "end": {
-          "line": 26,
+          "line": 27,
           "column": 45
         }
       },
@@ -82,11 +82,11 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 28,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 28,
           "column": 51
         }
       },
@@ -96,11 +96,11 @@
     "getImageData": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 5
         }
       },
@@ -123,9 +123,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{{width: *, aspectRatio: number, height: *}|any | ({aspectRatio: number} & Map)}",
+            "body": "{{width: *, aspectRatio: number, height: *}}",
             "type": "{width: *, aspectRatio: number, height: *",
-            "description": "|any | ({aspectRatio: number} & Map)}"
+            "description": "}"
           }
         ]
       },
@@ -137,11 +137,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 77,
           "column": 5
         }
       },
@@ -155,7 +155,7 @@
     "_scaleImage": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 79,
           "column": 4
         },
         "end": {

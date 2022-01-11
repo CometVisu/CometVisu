@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.InfoAction', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -60,10 +60,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("infoaction", statics);
+      cv.parser.WidgetParser.addHandler('infoaction', statics);
     }
   });
   cv.parser.widgets.InfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoAction.js.map?dt=1625667764348
+//# sourceMappingURL=InfoAction.js.map?dt=1641882197318

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 103,
+        "line": 100,
         "column": 3
       }
     },
@@ -35,7 +35,7 @@
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 52,
           "column": 5
         }
       },
@@ -62,11 +62,11 @@
     "downaction": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 65,
           "column": 5
         }
       },
@@ -93,11 +93,11 @@
     "sendToBackend": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 98,
           "column": 5
         }
       },

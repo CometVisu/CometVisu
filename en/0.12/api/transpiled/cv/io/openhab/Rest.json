@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 403,
+        "line": 394,
         "column": 3
       }
     },
@@ -518,7 +518,7 @@
           "column": 4
         },
         "end": {
-          "line": 296,
+          "line": 295,
           "column": 5
         }
       },
@@ -528,11 +528,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 303,
+          "line": 302,
           "column": 5
         }
       },
@@ -571,11 +571,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 305,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 306,
           "column": 5
         }
       },
@@ -585,11 +585,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 324,
           "column": 5
         }
       },
@@ -635,11 +635,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 328,
           "column": 5
         }
       },
@@ -663,11 +663,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 331,
           "column": 5
         }
       },
@@ -676,16 +676,26 @@
       "overriddenFrom": "cv.io.IClient",
       "appearsIn": [
         "cv.io.IClient"
-      ]
+      ],
+      "jsdoc": {
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
+          }
+        ]
+      }
     },
     "update": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 333,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 333,
           "column": 29
         }
       },
@@ -709,11 +719,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 334,
           "column": 35
         }
       },
@@ -728,11 +738,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 335,
           "column": 47
         }
       },
@@ -770,11 +780,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 337,
           "column": 4
         },
         "end": {
-          "line": 340,
+          "line": 339,
           "column": 5
         }
       },
@@ -804,11 +814,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 340,
           "column": 4
         },
         "end": {
-          "line": 350,
+          "line": 349,
           "column": 5
         }
       },
@@ -840,11 +850,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 351,
+          "line": 350,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 392,
           "column": 5
         }
       },

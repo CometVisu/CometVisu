@@ -90,40 +90,40 @@
         return {
           'src': {},
           'width': {
-            "default": ""
+            'default': ''
           },
           'height': {
-            "default": ""
+            'default': ''
           },
           'limit': {
-            "default": 10
+            'default': 10
           },
           'header': {
-            "default": true
+            'default': true
           },
           'date': {
-            "default": true
+            'default': true
           },
           'content': {
-            "default": true
+            'default': true
           },
           'snippet': {
-            "default": true
+            'default': true
           },
           'showerror': {
-            "default": true
+            'default': true
           },
           'ssl': {
-            "default": false
+            'default': false
           },
           'linktarget': {
-            "default": "_new"
+            'default': '_new'
           },
           'link': {
-            "default": true
+            'default': true
           },
           'title': {
-            "default": true
+            'default': true
           }
         };
       }
@@ -136,14 +136,14 @@
     */
     properties: {
       src: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       'width': {
-        init: ""
+        init: ''
       },
       'height': {
-        init: ""
+        init: ''
       },
       'limit': {
         init: 10
@@ -167,7 +167,7 @@
         init: false
       },
       'linktarget': {
-        init: "_new"
+        init: '_new'
       },
       'link': {
         init: true
@@ -195,7 +195,7 @@
       _setupRefreshAction: function _setupRefreshAction() {
         this._timer = new qx.event.Timer(this.getRefresh());
 
-        this._timer.addListener("interval", function () {
+        this._timer.addListener('interval', function () {
           this.refreshRSS();
         }, this);
 
@@ -209,11 +209,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
-      cv.parser.WidgetParser.addHandler("rss", cv.plugins.Rss);
-      cv.ui.structure.WidgetFactory.registerClass("rss", statics);
+      cv.parser.WidgetParser.addHandler('rss', cv.plugins.Rss);
+      cv.ui.structure.WidgetFactory.registerClass('rss', statics);
     }
   });
   cv.plugins.Rss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rss.js.map?dt=1625667765354
+//# sourceMappingURL=Rss.js.map?dt=1641882198221

@@ -48,7 +48,7 @@
     ***********************************************
     */
     events: {
-      "action": "qx.event.type.Data"
+      'action': 'qx.event.type.Data'
     },
 
     /*
@@ -92,8 +92,8 @@
         var _this = this;
 
         if (old) {
-          old.removeRelatedBindings(this.getChildControl("delete-button"));
-          old.removeRelatedBindings(this.getChildControl("cut-button"));
+          old.removeRelatedBindings(this.getChildControl('delete-button'));
+          old.removeRelatedBindings(this.getChildControl('cut-button'));
         }
 
         if (value) {
@@ -101,8 +101,8 @@
           this.getChildControl('copy-button').setEnabled(true);
 
           if (editable) {
-            value.bind('deletable', this.getChildControl("delete-button"), 'enabled');
-            value.bind('deletable', this.getChildControl("cut-button"), 'enabled');
+            value.bind('deletable', this.getChildControl('delete-button'), 'enabled');
+            value.bind('deletable', this.getChildControl('cut-button'), 'enabled');
             this.getChildControl('view-button').exclude();
             this.getChildControl('edit-button').show();
             this.getChildControl('edit-button').setEnabled(value.getShowEditButton());
@@ -119,7 +119,7 @@
           }
         } else {
           ['edit', 'delete', 'cut', 'copy', 'paste', 'create'].forEach(function (name) {
-            return _this.getChildControl(name + "-button").setEnabled(false);
+            return _this.getChildControl(name + '-button').setEnabled(false);
           });
         }
 
@@ -129,11 +129,11 @@
         var _this2 = this;
 
         ['view', 'edit', 'delete'].forEach(function (name) {
-          return _this2.add(_this2.getChildControl(name + "-button"));
+          return _this2.add(_this2.getChildControl(name + '-button'));
         });
         this.addSeparator();
         ['cut', 'copy', 'paste'].forEach(function (name) {
-          return _this2.add(_this2.getChildControl(name + "-button"));
+          return _this2.add(_this2.getChildControl(name + '-button'));
         });
         this.addSeparator();
         this.add(this.getChildControl('create-button'));
@@ -157,28 +157,28 @@
 
         switch (id) {
           case 'view-button':
-            control = this.__P_29_0('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
+            control = this.__P_28_0('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
             control.exclude();
             break;
 
           case 'edit-button':
-            control = this.__P_29_0('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
+            control = this.__P_28_0('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
             break;
 
           case 'delete-button':
-            control = this.__P_29_0('delete', this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
+            control = this.__P_28_0('delete', this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
             break;
 
           case 'cut-button':
-            control = this.__P_29_0('cut', this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18));
+            control = this.__P_28_0('cut', this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18));
             break;
 
           case 'copy-button':
-            control = this.__P_29_0('copy', this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18));
+            control = this.__P_28_0('copy', this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18));
             break;
 
           case 'paste-button':
-            control = this.__P_29_0('paste', this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18));
+            control = this.__P_28_0('paste', this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18));
             break;
 
           case 'create-menu':
@@ -186,13 +186,13 @@
             break;
 
           case 'create-button':
-            control = this.__P_29_0('create', this.tr('Add child'), cv.theme.dark.Images.getIcon('add', 18));
+            control = this.__P_28_0('create', this.tr('Add child'), cv.theme.dark.Images.getIcon('add', 18));
             break;
         }
 
         return control || cv.ui.manager.contextmenu.ConfigElement.prototype._createChildControlImpl.base.call(this, id);
       },
-      __P_29_0: function __P_29_0(action, title, icon, command, menu) {
+      __P_28_0: function __P_28_0(action, title, icon, command, menu) {
         var button = new qx.ui.menu.Button(title, icon, command, menu);
         button.addListener('execute', function () {
           this.fireDataEvent('action', {
@@ -216,4 +216,4 @@
   cv.ui.manager.contextmenu.ConfigElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigElement.js.map?dt=1625667766847
+//# sourceMappingURL=ConfigElement.js.map?dt=1641882199679

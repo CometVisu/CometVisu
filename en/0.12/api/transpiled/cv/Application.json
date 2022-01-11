@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 810,
+        "line": 801,
         "column": 3
       }
     },
@@ -114,11 +114,11 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 97,
           "column": 5
         }
       },
@@ -127,6 +127,12 @@
           {
             "name": "@description",
             "body": "<p>Client factory method -&gt; create a client</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{...any} args"
           }
         ],
         "@return": [
@@ -144,11 +150,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 111,
           "column": 5
         }
       },
@@ -191,11 +197,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 122,
           "column": 5
         }
       },
@@ -207,11 +213,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 131,
           "column": 5
         }
       },
@@ -233,11 +239,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5
         }
       },
@@ -248,11 +254,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 142,
           "column": 5
         }
       },
@@ -266,11 +272,11 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 147,
           "column": 5
         }
       },
@@ -317,11 +323,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 159,
           "column": 18
         }
       },
@@ -331,11 +337,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 176,
           "column": 5
         }
       },
@@ -359,11 +365,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 182,
           "column": 4
         },
         "end": {
-          "line": 250,
+          "line": 252,
           "column": 5
         }
       },
@@ -386,11 +392,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 256,
+          "line": 258,
           "column": 4
         },
         "end": {
-          "line": 282,
+          "line": 284,
           "column": 5
         }
       },
@@ -427,11 +433,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 284,
+          "line": 286,
           "column": 4
         },
         "end": {
-          "line": 304,
+          "line": 306,
           "column": 5
         }
       },
@@ -441,11 +447,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 369,
+          "line": 371,
           "column": 5
         }
       },
@@ -455,11 +461,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 371,
+          "line": 373,
           "column": 4
         },
         "end": {
-          "line": 524,
+          "line": 516,
           "column": 5
         }
       },
@@ -469,11 +475,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 526,
+          "line": 518,
           "column": 4
         },
         "end": {
-          "line": 531,
+          "line": 523,
           "column": 6
         }
       },
@@ -483,11 +489,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 536,
+          "line": 528,
           "column": 4
         },
         "end": {
-          "line": 566,
+          "line": 558,
           "column": 5
         }
       },
@@ -505,11 +511,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 572,
+          "line": 564,
           "column": 4
         },
         "end": {
-          "line": 671,
+          "line": 662,
           "column": 5
         }
       },
@@ -536,11 +542,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 676,
+          "line": 667,
           "column": 4
         },
         "end": {
-          "line": 680,
+          "line": 671,
           "column": 5
         }
       },
@@ -558,11 +564,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 686,
+          "line": 677,
           "column": 4
         },
         "end": {
-          "line": 693,
+          "line": 684,
           "column": 5
         }
       },
@@ -586,11 +592,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 699,
+          "line": 690,
           "column": 4
         },
         "end": {
-          "line": 706,
+          "line": 697,
           "column": 5
         }
       },
@@ -614,11 +620,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 711,
+          "line": 702,
           "column": 4
         },
         "end": {
-          "line": 771,
+          "line": 762,
           "column": 5
         }
       },
@@ -636,11 +642,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 773,
+          "line": 764,
           "column": 4
         },
         "end": {
-          "line": 804,
+          "line": 795,
           "column": 5
         }
       },
@@ -650,11 +656,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 806,
+          "line": 797,
           "column": 4
         },
         "end": {
-          "line": 808,
+          "line": 799,
           "column": 5
         }
       },
@@ -1642,7 +1648,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [

@@ -64,7 +64,7 @@
   qx.Class.define('cv.ui.structure.AbstractWidget', {
     extend: cv.ui.structure.AbstractBasicWidget,
     include: cv.ui.common.HasStyling,
-    type: "abstract",
+    type: 'abstract',
 
     /*
     ******************************************************
@@ -73,14 +73,14 @@
     */
     construct: function construct(props) {
       cv.ui.structure.AbstractBasicWidget.constructor.call(this, props);
-      var parts = this.getPath().split("_");
+      var parts = this.getPath().split('_');
       parts.shift(); // var prio = parseInt(parts.join(""))*-1;
       // var broker = cv.MessageBroker.getInstance();
 
       if (cv.TemplateEngine.getInstance().isDomFinished()) {
         this._onDomFinished();
       } else {
-        qx.event.message.Bus.subscribe("setup.dom.finished", this._onDomFinished, this);
+        qx.event.message.Bus.subscribe('setup.dom.finished', this._onDomFinished, this);
       } // this.debug(props.$$type+" INIT ["+props.path+"]");
       // bind visibility to parent page
 
@@ -97,10 +97,10 @@
           }
         }
 
-        var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getVisibilityParent();
+        var parentPage = this.get$$type() === 'page' || this.get$$type() === 'navbar' ? null : this.getVisibilityParent();
 
         if (parentPage) {
-          parentPage.bind("visible", this, "visible");
+          parentPage.bind('visible', this, 'visible');
         }
       }, this).schedule();
     },
@@ -115,75 +115,75 @@
        * If true this widget does not automatically apply any listeners
        */
       anonymous: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       flavour: {
-        check: "String",
+        check: 'String',
         init: '',
         nullable: true
       },
       layout: {
-        check: "Object",
+        check: 'Object',
         nullable: true
       },
       label: {
-        check: "String",
+        check: 'String',
         init: '',
         nullable: true
       },
       bindClickToWidget: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       mapping: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       align: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       classes: {
-        check: "String",
+        check: 'String',
         init: '',
         nullable: true
       },
       style: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       colspan: {
-        check: "Number",
+        check: 'Number',
         init: 6,
-        transform: "string2number"
+        transform: 'string2number'
       },
       colspanM: {
-        check: "Number",
+        check: 'Number',
         init: 6,
-        transform: "string2number"
+        transform: 'string2number'
       },
       colspanS: {
-        check: "Number",
+        check: 'Number',
         init: 6,
-        transform: "string2number"
+        transform: 'string2number'
       },
       rowspanClass: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       containerClass: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       visible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeVisible",
-        apply: "_applyVisible"
+        event: 'changeVisible',
+        apply: '_applyVisible'
       },
       responsive: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -194,7 +194,7 @@
     ******************************************************
     */
     events: {
-      "domReady": "qx.event.type.Event"
+      'domReady': 'qx.event.type.Event'
     },
 
     /*
@@ -204,11 +204,11 @@
     */
     members: {
       $$domReady: null,
-      __P_501_0: null,
-      __P_501_1: null,
+      __P_502_0: null,
+      __P_502_1: null,
       _skipNextEvent: null,
-      __P_501_2: null,
-      __P_501_3: null,
+      __P_502_2: null,
+      __P_502_3: null,
       // property apply
       _applyVisible: function _applyVisible(value, old) {},
       getResponsiveLayout: function getResponsiveLayout(width) {
@@ -272,7 +272,7 @@
        */
       _onDomFinished: function _onDomFinished() {
         if (!this.isVisible()) {
-          this.addListenerOnce("changeVisible", this._onDomFinished, this);
+          this.addListenerOnce('changeVisible', this._onDomFinished, this);
           return;
         }
 
@@ -285,7 +285,7 @@
       _onDomReady: function _onDomReady() {
         if (!this.$$domReady) {
           this.initListeners();
-          this.fireEvent("domReady");
+          this.fireEvent('domReady');
           this.$$domReady = true;
         }
       },
@@ -295,7 +295,14 @@
        * @return {Element}
        */
       getActor: function getActor() {
-        return this.getDomElement().querySelector('.actor');
+        var elem = this.getDomElement();
+
+        if (elem) {
+          return elem.querySelector('.actor');
+        }
+
+        this.error('no dom element found for', this.get$$type(), this.getPath());
+        return null;
       },
 
       /**
@@ -303,7 +310,13 @@
        * @return {Element}
        */
       getValueElement: function getValueElement() {
-        return this.getDomElement().querySelector(".value");
+        var elem = this.getDomElement();
+
+        if (elem) {
+          return elem.querySelector('.value');
+        }
+
+        return null;
       },
 
       /**
@@ -311,7 +324,13 @@
        * @return {Element}
        */
       getWidgetElement: function getWidgetElement() {
-        return this.getDomElement().querySelector('.widget');
+        var elem = this.getDomElement();
+
+        if (elem) {
+          return elem.querySelector('.widget');
+        }
+
+        return null;
       },
 
       /**
@@ -328,11 +347,11 @@
        * Initialize the widgets listeners
        */
       initListeners: function initListeners() {
-        this.addElementListener("tap", this.action, this); // we need to listen to pointerdown to detect taps with
+        this.addElementListener('tap', this.action, this); // we need to listen to pointerdown to detect taps with
 
         if (this.buttonPressed) {
-          this.addElementListener("pointerdown", this._onPointerDown, this);
-          this.addElementListener("contextmenu", this._cancelEvent, this);
+          this.addElementListener('pointerdown', this._onPointerDown, this);
+          this.addElementListener('contextmenu', this._cancelEvent, this);
         }
       },
       _cancelEvent: function _cancelEvent(ev) {
@@ -341,53 +360,53 @@
       },
       _onPointerDown: function _onPointerDown(ev) {
         // listen to pointerup globally
-        this.__P_501_0 = ev.getCurrentTarget();
-        this.__P_501_1 = Date.now();
+        this.__P_502_0 = ev.getCurrentTarget();
+        this.__P_502_1 = Date.now();
 
-        if (this.__P_501_2) {
-          this.__P_501_2.stop();
+        if (this.__P_502_2) {
+          this.__P_502_2.stop();
 
-          this.__P_501_2 = null;
+          this.__P_502_2 = null;
         }
 
-        qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
+        qx.event.Registration.addListener(document, 'pointerup', this._onPointerUp, this);
 
         if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && !this.isSendLongOnRelease() && this.getShortThreshold() > 0) {
           var clonedEv = ev.clone();
-          this.__P_501_2 = qx.event.Timer.once(function () {
+          this.__P_502_2 = qx.event.Timer.once(function () {
             this._onLongTap(clonedEv);
 
-            this._skipNextEvent = "tap";
+            this._skipNextEvent = 'tap';
 
-            this.__P_501_4();
+            this.__P_502_4();
           }, this, this.getShortThreshold());
-          this.__P_501_3 = {
+          this.__P_502_3 = {
             x: ev.getDocumentLeft(),
             y: ev.getDocumentTop()
           }; // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
 
-          qx.event.Registration.addListener(document, "pointermove", this._onPointerMove, this);
+          qx.event.Registration.addListener(document, 'pointermove', this._onPointerMove, this);
         }
       },
-      __P_501_4: function __P_501_4() {
-        qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
-        qx.event.Registration.removeListener(document, "pointermove", this._onPointerMove, this);
-        this.__P_501_1 = null;
-        this.__P_501_3 = null;
+      __P_502_4: function __P_502_4() {
+        qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
+        qx.event.Registration.removeListener(document, 'pointermove', this._onPointerMove, this);
+        this.__P_502_1 = null;
+        this.__P_502_3 = null;
 
-        if (this.__P_501_2) {
-          this.__P_501_2.stop();
+        if (this.__P_502_2) {
+          this.__P_502_2.stop();
 
-          this.__P_501_2 = null;
+          this.__P_502_2 = null;
         }
       },
       _onPointerMove: function _onPointerMove(ev) {
         var upElement = ev.getTarget();
-        var distance = Math.max(Math.abs(this.__P_501_3.x - ev.getDocumentLeft()), Math.abs(this.__P_501_3.y - ev.getDocumentTop()));
+        var distance = Math.max(Math.abs(this.__P_502_3.x - ev.getDocumentLeft()), Math.abs(this.__P_502_3.y - ev.getDocumentTop()));
         var abort = distance > 5;
 
         if (!abort) {
-          while (upElement && upElement !== this.__P_501_0) {
+          while (upElement && upElement !== this.__P_502_0) {
             upElement = upElement.parentNode;
 
             if (upElement === this.getDomElement()) {
@@ -395,22 +414,22 @@
             }
           }
 
-          abort = !upElement || upElement !== this.__P_501_0;
+          abort = !upElement || upElement !== this.__P_502_0;
         }
 
         if (abort) {
-          this.__P_501_4();
+          this.__P_502_4();
         }
       },
       _onPointerUp: function _onPointerUp(ev) {
-        if (this.__P_501_1 === null) {
+        if (this.__P_502_1 === null) {
           // ignore pointer ups when the pointerdown has not set a start time
           return;
         }
 
         var upElement = ev.getTarget();
 
-        while (upElement && upElement !== this.__P_501_0) {
+        while (upElement && upElement !== this.__P_502_0) {
           upElement = upElement.parentNode;
 
           if (upElement === this.getDomElement()) {
@@ -418,12 +437,12 @@
           }
         }
 
-        if (upElement && upElement === this.__P_501_0) {
-          this._skipNextEvent = "tap"; // both events happened on the same element
+        if (upElement && upElement === this.__P_502_0) {
+          this._skipNextEvent = 'tap'; // both events happened on the same element
 
           ev.setCurrentTarget(upElement);
 
-          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_501_1 >= this.getShortThreshold()) {
+          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_502_1 >= this.getShortThreshold()) {
             // this is a longpress
             this._onLongTap(ev);
           } else {
@@ -431,7 +450,7 @@
           }
         }
 
-        this.__P_501_4();
+        this.__P_502_4();
       },
 
       /**
@@ -443,13 +462,13 @@
        */
       addElementListener: function addElementListener(type, callback, context) {
         if (this.isAnonymous()) {
-          return;
+          return null;
         }
 
         var widget = this.getInteractionElement();
 
         if (widget) {
-          widget.dataset["longtapable"] = type !== "longtap";
+          widget.dataset['longtapable'] = type !== 'longtap';
           return qx.event.Registration.addListener(widget, type, callback, context);
         }
 
@@ -465,7 +484,7 @@
        */
       removeElementListener: function removeElementListener(type, callback, context) {
         if (this.isAnonymous()) {
-          return;
+          return false;
         }
 
         var widget = this.getInteractionElement();
@@ -491,7 +510,7 @@
        * @return {String} HTML code as string
        */
       _getInnerDomString: function _getInnerDomString() {
-        return "";
+        return '';
       }
     },
 
@@ -501,10 +520,10 @@
     ******************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
+      qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
     }
   });
   cv.ui.structure.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1625667806082
+//# sourceMappingURL=AbstractWidget.js.map?dt=1641882236356

@@ -113,10 +113,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("infoaction", statics);
+      cv.ui.structure.WidgetFactory.registerClass('infoaction', statics);
     }
   });
   cv.ui.structure.pure.InfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoAction.js.map?dt=1625667770544
+//# sourceMappingURL=InfoAction.js.map?dt=1641882203267

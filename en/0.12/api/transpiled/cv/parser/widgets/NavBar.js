@@ -36,7 +36,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.NavBar', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -59,15 +59,15 @@
         return data;
       },
       createDefaultWidget: function createDefaultWidget(widgetType, n, path) {
-        var classes = "navbar clearfix";
+        var classes = 'navbar clearfix';
 
         if (n.getAttribute('flavour')) {
-          classes += " flavour_" + n.getAttribute('flavour');
+          classes += ' flavour_' + n.getAttribute('flavour');
         } // sub design choice
         // store scope globally
 
 
-        var id = path.split("_");
+        var id = path.split('_');
         id.pop();
         var pos = n.getAttribute('position') || 'left';
         cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
@@ -97,14 +97,14 @@
 
         if (value >= 0) {
           return value;
-        } else {
-          return -1;
         }
+
+        return -1;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           'scope': {
-            "default": -1,
+            'default': -1,
             transform: cv.parser.widgets.NavBar._transformScope
           },
           'name': {},
@@ -112,19 +112,19 @@
             transform: cv.parser.widgets.NavBar._transformDynamic
           },
           'width': {
-            "default": "300"
+            'default': '300'
           },
           'position': {
-            "default": 'left'
+            'default': 'left'
           }
         };
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("navbar", statics);
+      cv.parser.WidgetParser.addHandler('navbar', statics);
     }
   });
   cv.parser.widgets.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1625667764457
+//# sourceMappingURL=NavBar.js.map?dt=1641882197441

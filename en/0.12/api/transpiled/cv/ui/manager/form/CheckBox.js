@@ -42,9 +42,9 @@
         cv.ui.manager.form.CheckBox.prototype._applyValue.base.call(this, value, old);
 
         if (value === null) {
-          this.setLabel(" - " + this.tr("not set") + " - ");
+          this.setLabel(' - ' + this.tr('not set') + ' - ');
         } else {
-          this.setLabel("");
+          this.setLabel('');
         }
       }
     }
@@ -52,4 +52,4 @@
   cv.ui.manager.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1625667768294
+//# sourceMappingURL=CheckBox.js.map?dt=1641882200989

@@ -28,14 +28,14 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
+  qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
     /*
      ******************************************************
      CONSTRUCTOR
      ******************************************************
      */
     construct: function construct() {
-      this.addListenerOnce("domReady", this.__P_512_0, this);
+      this.addListenerOnce('domReady', this.__P_514_0, this);
     },
 
     /*
@@ -44,21 +44,21 @@
     ******************************************************
     */
     members: {
-      __P_512_1: null,
-      __P_512_2: null,
-      __P_512_3: null,
-      __P_512_0: function __P_512_0() {
-        var actors = this.__P_512_4();
+      __P_514_1: null,
+      __P_514_2: null,
+      __P_514_3: null,
+      __P_514_0: function __P_514_0() {
+        var actors = this.__P_514_4();
 
         if (this.isBindClickToWidget()) {
           actors = [this.getInteractionElement()];
         }
 
         actors.forEach(function (actor) {
-          qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
+          qx.event.Registration.addListener(actor, 'pointerdown', this.buttonPressed, this);
         }, this);
       },
-      __P_512_4: function __P_512_4() {
+      __P_514_4: function __P_514_4() {
         var actors = [this.getActor()];
 
         if (this.getActors) {
@@ -81,20 +81,20 @@
        */
       buttonPressed: function buttonPressed(event) {
         var actor = event.getCurrentTarget();
-        this.__P_512_3 = actor;
-        qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
-        var buttons = this.isBindClickToWidget() ? this.__P_512_4() : [actor];
+        this.__P_514_3 = actor;
+        qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
+        var buttons = this.isBindClickToWidget() ? this.__P_514_4() : [actor];
 
-        this.__P_512_5(buttons, true);
+        this.__P_514_5(buttons, true);
 
-        this.__P_512_1 = qx.event.Registration.addListener(actor, "pointerout", function () {
-          this.__P_512_5(buttons, false);
+        this.__P_514_1 = qx.event.Registration.addListener(actor, 'pointerout', function () {
+          this.__P_514_5(buttons, false);
         }, this);
-        this.__P_512_2 = qx.event.Registration.addListener(actor, "pointerover", function () {
-          this.__P_512_5(buttons, true);
+        this.__P_514_2 = qx.event.Registration.addListener(actor, 'pointerover', function () {
+          this.__P_514_5(buttons, true);
         }, this);
       },
-      __P_512_5: function __P_512_5(buttons, pressed) {
+      __P_514_5: function __P_514_5(buttons, pressed) {
         if (pressed) {
           buttons.forEach(function (button) {
             if (button) {
@@ -120,23 +120,23 @@
        * @param event {Event} pointerup event
        */
       buttonReleased: function buttonReleased(event) {
-        qx.event.Registration.removeListener(document, "pointerup", this.buttonReleased, this);
-        var actor = this.__P_512_3;
-        var buttons = this.isBindClickToWidget() ? this.__P_512_4() : [actor];
+        qx.event.Registration.removeListener(document, 'pointerup', this.buttonReleased, this);
+        var actor = this.__P_514_3;
+        var buttons = this.isBindClickToWidget() ? this.__P_514_4() : [actor];
 
-        this.__P_512_5(buttons, false);
+        this.__P_514_5(buttons, false);
 
-        if (this.__P_512_1) {
-          qx.event.Registration.removeListenerById(actor, this.__P_512_1);
+        if (this.__P_514_1) {
+          qx.event.Registration.removeListenerById(actor, this.__P_514_1);
         }
 
-        if (this.__P_512_2) {
-          qx.event.Registration.removeListenerById(actor, this.__P_512_2);
+        if (this.__P_514_2) {
+          qx.event.Registration.removeListenerById(actor, this.__P_514_2);
         }
 
-        this.__P_512_1 = null;
-        this.__P_512_2 = null;
-        this.__P_512_3 = null;
+        this.__P_514_1 = null;
+        this.__P_514_2 = null;
+        this.__P_514_3 = null;
       }
     },
 
@@ -146,10 +146,10 @@
     ******************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
+      qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
     }
   });
   cv.ui.common.HasAnimatedButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAnimatedButton.js.map?dt=1625667807720
+//# sourceMappingURL=HasAnimatedButton.js.map?dt=1641882237916

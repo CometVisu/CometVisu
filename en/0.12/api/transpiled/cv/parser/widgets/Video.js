@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Video', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -63,7 +63,7 @@
           'autoplay': {
             target: 'autoplay',
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -71,10 +71,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("video", statics);
+      cv.parser.WidgetParser.addHandler('video', statics);
     }
   });
   cv.parser.widgets.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1625667764866
+//# sourceMappingURL=Video.js.map?dt=1641882197815

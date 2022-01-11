@@ -376,16 +376,18 @@
 
         if (removed || added) {
           var addedItems = qx.lang.Array.fromArguments(arguments, 2);
+          var type;
+          var end;
 
           if (returnArray.length == 0) {
-            var type = "add";
-            var end = startIndex + addedItems.length;
+            type = "add";
+            end = startIndex + addedItems.length;
           } else if (addedItems.length == 0) {
-            var type = "remove";
-            var end = this.length - 1;
+            type = "remove";
+            end = this.length - 1;
           } else {
-            var type = "add/remove";
-            var end = startIndex + Math.max(addedItems.length, returnArray.length) - 1;
+            type = "add/remove";
+            end = startIndex + Math.max(addedItems.length, returnArray.length) - 1;
           }
 
           this.fireDataEvent("change", {
@@ -930,9 +932,11 @@
        * @param context {var?} The context in which the callback will be invoked.
        */
       forEach: function forEach(callback, context) {
-        for (var i = 0; i < this.__P_148_0.length; i++) {
-          callback.call(context, this.__P_148_0[i], i, this);
-        }
+        var _this = this;
+
+        this.__P_148_0.forEach(function (element, index) {
+          return callback.call(context, element, index, _this);
+        });
       },
 
       /*
@@ -972,6 +976,21 @@
        */
       map: function map(callback, self) {
         return new qx.data.Array(this.__P_148_0.map(callback, self));
+      },
+
+      /**
+       * Finds the first matching element in the array which passes the test implemented by the
+       * provided function.
+       * @param callback {Function} The test function, which will be executed for every
+       *   item in the array. The function will have three arguments.
+       *   <li><code>item</code>: the current item in the array</li>
+       *   <li><code>index</code>: the index of the current item</li>
+       *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>
+       * @param self {var?undefined} The context of the callback.
+       * @return {Boolean} <code>true</code>, if any element passed the test function.
+       */
+      find: function find(callback, self) {
+        return this.__P_148_0.find(callback, self);
       },
 
       /**
@@ -1064,8 +1083,6 @@
         for (var i = from; i < to; i++) {
           this._registerEventChaining(this.__P_148_0[i], this.__P_148_0[i], i);
         }
-
-        ;
       }
     },
 
@@ -1092,4 +1109,4 @@
   qx.data.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1625667778165
+//# sourceMappingURL=Array.js.map?dt=1641882209942

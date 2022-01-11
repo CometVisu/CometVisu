@@ -174,68 +174,68 @@
         } // horizontal
         // in this way it also supports shrinking of the first label
         else {
-            var remainingWidth = availWidth;
-            var shrinkTarget = null;
-            var count = 0;
+          var remainingWidth = availWidth;
+          var shrinkTarget = null;
+          var count = 0;
 
-            for (var i = start; i != end; i += increment) {
-              child = children[i];
-              width = child.getSizeHint().width;
+          for (var i = start; i != end; i += increment) {
+            child = children[i];
+            width = child.getSizeHint().width;
 
-              if (width > 0) {
-                if (!shrinkTarget && child instanceof qx.ui.basic.Label) {
-                  shrinkTarget = child;
-                } else {
-                  remainingWidth -= width;
-                }
-
-                count++;
-              }
-            }
-
-            if (count > 1) {
-              var gapSum = (count - 1) * gap;
-              remainingWidth -= gapSum;
-            }
-
-            if (shrinkTarget) {
-              var hint = shrinkTarget.getSizeHint();
-              var shrinkTargetWidth = Math.max(hint.minWidth, Math.min(remainingWidth, hint.maxWidth));
-              remainingWidth -= shrinkTargetWidth;
-            }
-
-            if (center && remainingWidth > 0) {
-              left += Math.round(remainingWidth / 2);
-            }
-
-            for (var i = start; i != end; i += increment) {
-              child = children[i];
-              hint = child.getSizeHint();
-              height = Math.min(hint.maxHeight, Math.max(availHeight, hint.minHeight));
-
-              if (child === shrinkTarget) {
-                width = shrinkTargetWidth;
+            if (width > 0) {
+              if (!shrinkTarget && child instanceof qx.ui.basic.Label) {
+                shrinkTarget = child;
               } else {
-                width = hint.width;
+                remainingWidth -= width;
               }
 
-              var align = "middle";
-
-              if (iconPosition == "top-left" || iconPosition == "top-right") {
-                align = "top";
-              } else if (iconPosition == "bottom-left" || iconPosition == "bottom-right") {
-                align = "bottom";
-              }
-
-              var childTop = top + Util.computeVerticalAlignOffset(align, hint.height, availHeight);
-              child.renderLayout(left, childTop, width, height); // Ignore pseudo invisible childs for gap e.g.
-              // empty text or unavailable images
-
-              if (width > 0) {
-                left += width + gap;
-              }
+              count++;
             }
           }
+
+          if (count > 1) {
+            var gapSum = (count - 1) * gap;
+            remainingWidth -= gapSum;
+          }
+
+          if (shrinkTarget) {
+            var hint = shrinkTarget.getSizeHint();
+            var shrinkTargetWidth = Math.max(hint.minWidth, Math.min(remainingWidth, hint.maxWidth));
+            remainingWidth -= shrinkTargetWidth;
+          }
+
+          if (center && remainingWidth > 0) {
+            left += Math.round(remainingWidth / 2);
+          }
+
+          for (var i = start; i != end; i += increment) {
+            child = children[i];
+            hint = child.getSizeHint();
+            height = Math.min(hint.maxHeight, Math.max(availHeight, hint.minHeight));
+
+            if (child === shrinkTarget) {
+              width = shrinkTargetWidth;
+            } else {
+              width = hint.width;
+            }
+
+            var align = "middle";
+
+            if (iconPosition == "top-left" || iconPosition == "top-right") {
+              align = "top";
+            } else if (iconPosition == "bottom-left" || iconPosition == "bottom-right") {
+              align = "bottom";
+            }
+
+            var childTop = top + Util.computeVerticalAlignOffset(align, hint.height, availHeight);
+            child.renderLayout(left, childTop, width, height); // Ignore pseudo invisible childs for gap e.g.
+            // empty text or unavailable images
+
+            if (width > 0) {
+              left += width + gap;
+            }
+          }
+        }
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
@@ -323,4 +323,4 @@
   qx.ui.layout.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1625667793530
+//# sourceMappingURL=Atom.js.map?dt=1641882224385

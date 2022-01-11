@@ -78,14 +78,14 @@ Plugins
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
 | Option                   | Beschreibung                                                                                                                                         | Werte                            | Zwingend   |
 +==========================+======================================================================================================================================================+==================================+============+
-| ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. colorchooser oder diagram   | NEIN       |
+| ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. clock oder diagram          | NEIN       |
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
 
 .. code-block:: xml
 
     <meta>
         <plugins>
-            <plugin name="colorchooser"/>
+            <plugin name="clock"/>
         </plugins>
         ...
     </meta>
@@ -375,7 +375,7 @@ wird von oben nach unten verarbeitet. Das sieht schematisch so aus:
     </settings>
     <meta>
         <plugins>
-         <plugin name="colorchooser"/>
+         <plugin name="clock"/>
         </plugins>
     </meta>
     <page name="Startseite">

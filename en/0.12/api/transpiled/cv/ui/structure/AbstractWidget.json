@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 398,
+        "line": 416,
         "column": 3
       }
     },
@@ -39,7 +39,7 @@
         "column": 13
       },
       "end": {
-        "line": 63,
+        "line": 64,
         "column": 3
       }
     },
@@ -49,11 +49,11 @@
     "anonymous": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 79,
           "column": 5
         }
       },
@@ -74,11 +74,11 @@
     "flavour": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 80,
           "column": 69
         }
       },
@@ -93,11 +93,11 @@
     "layout": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 81,
           "column": 58
         }
       },
@@ -110,11 +110,11 @@
     "label": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 82,
           "column": 69
         }
       },
@@ -129,11 +129,11 @@
     "bindClickToWidget": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 83,
           "column": 57
         }
       },
@@ -146,11 +146,11 @@
     "mapping": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 84,
           "column": 59
         }
       },
@@ -163,11 +163,11 @@
     "align": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 85,
           "column": 59
         }
       },
@@ -180,11 +180,11 @@
     "classes": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 86,
           "column": 69
         }
       },
@@ -199,11 +199,11 @@
     "style": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 87,
           "column": 52
         }
       },
@@ -216,11 +216,11 @@
     "colspan": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 88,
           "column": 80
         }
       },
@@ -234,11 +234,11 @@
     "colspanM": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 89,
           "column": 80
         }
       },
@@ -252,11 +252,11 @@
     "colspanS": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 90,
           "column": 80
         }
       },
@@ -270,11 +270,11 @@
     "rowspanClass": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 91,
           "column": 53
         }
       },
@@ -287,11 +287,11 @@
     "containerClass": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 92,
           "column": 59
         }
       },
@@ -304,11 +304,11 @@
     "visible": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 98,
           "column": 5
         }
       },
@@ -323,11 +323,11 @@
     "responsive": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 99,
           "column": 57
         }
       },
@@ -382,11 +382,11 @@
     "domReady": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 108,
           "column": 37
         }
       },
@@ -398,11 +398,11 @@
     "$$domReady": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 117,
           "column": 20
         }
       },
@@ -412,11 +412,11 @@
     "__pointerDownElement": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 118,
           "column": 30
         }
       },
@@ -426,11 +426,11 @@
     "__pointerDownTime": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 119,
           "column": 27
         }
       },
@@ -440,11 +440,11 @@
     "_skipNextEvent": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 120,
           "column": 24
         }
       },
@@ -454,11 +454,11 @@
     "__longPressTimer": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 121,
           "column": 26
         }
       },
@@ -468,11 +468,11 @@
     "__pointerDownPoint": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 122,
           "column": 28
         }
       },
@@ -482,11 +482,11 @@
     "_applyVisible": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 126,
           "column": 5
         }
       },
@@ -500,11 +500,11 @@
     "getResponsiveLayout": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 152,
           "column": 5
         }
       },
@@ -514,11 +514,11 @@
     "string2number": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 161,
           "column": 5
         }
       },
@@ -550,11 +550,11 @@
     "downaction": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 168,
           "column": 31
         }
       },
@@ -581,11 +581,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 175,
           "column": 27
         }
       },
@@ -612,11 +612,11 @@
     "_onDomFinished": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 186,
           "column": 5
         }
       },
@@ -634,11 +634,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 197,
           "column": 5
         }
       },
@@ -656,11 +656,11 @@
     "getActor": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 210,
           "column": 5
         }
       },
@@ -686,11 +686,11 @@
     "getValueElement": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 222,
           "column": 5
         }
       },
@@ -716,11 +716,11 @@
     "getWidgetElement": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 234,
           "column": 5
         }
       },
@@ -746,11 +746,11 @@
     "getInteractionElement": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 242,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 244,
           "column": 5
         }
       },
@@ -776,11 +776,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 257,
           "column": 5
         }
       },
@@ -798,11 +798,11 @@
     "_cancelEvent": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 259,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 262,
           "column": 5
         }
       },
@@ -812,11 +812,11 @@
     "_onPointerDown": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 264,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 291,
           "column": 5
         }
       },
@@ -826,11 +826,11 @@
     "__abort": {
       "location": {
         "start": {
-          "line": 279,
+          "line": 293,
           "column": 4
         },
         "end": {
-          "line": 288,
+          "line": 302,
           "column": 5
         }
       },
@@ -840,11 +840,11 @@
     "_onPointerMove": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 307,
+          "line": 321,
           "column": 5
         }
       },
@@ -854,11 +854,11 @@
     "_onPointerUp": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 350,
           "column": 5
         }
       },
@@ -868,11 +868,11 @@
     "addElementListener": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 359,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 369,
           "column": 5
         }
       },
@@ -921,11 +921,11 @@
     "removeElementListener": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 378,
           "column": 4
         },
         "end": {
-          "line": 369,
+          "line": 387,
           "column": 5
         }
       },
@@ -971,11 +971,11 @@
     "getDomString": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 394,
           "column": 4
         },
         "end": {
-          "line": 379,
+          "line": 397,
           "column": 5
         }
       },
@@ -1005,11 +1005,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 385,
+          "line": 403,
           "column": 4
         },
         "end": {
-          "line": 387,
+          "line": 405,
           "column": 5
         }
       },
@@ -2606,11 +2606,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 395,
+        "line": 413,
         "column": 12
       },
       "end": {
-        "line": 397,
+        "line": 415,
         "column": 3
       }
     },
@@ -2618,7 +2618,6 @@
   },
   "descendants": [
     "cv.plugins.Clock",
-    "cv.plugins.ColorChooser",
     "cv.plugins.Gauge",
     "cv.plugins.Link",
     "cv.plugins.MobileMenu",
@@ -2632,6 +2631,7 @@
     "cv.plugins.diagram.AbstractDiagram",
     "cv.plugins.tr064.CallList",
     "cv.ui.structure.pure.Audio",
+    "cv.ui.structure.pure.ColorChooser",
     "cv.ui.structure.pure.DesignToggle",
     "cv.ui.structure.pure.Group",
     "cv.ui.structure.pure.Image",

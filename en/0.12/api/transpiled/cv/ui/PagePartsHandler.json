@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 330,
+        "line": 344,
         "column": 3
       }
     },
@@ -74,7 +74,7 @@
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 93,
           "column": 5
         }
       },
@@ -84,11 +84,11 @@
     "navbarSetSize": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 126,
           "column": 5
         }
       },
@@ -98,6 +98,20 @@
             "name": "@description",
             "body": "<p>Change the size of the selected navbar\n currently only \"left\" and \"right\" are implemented</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position",
+            "paramName": "position",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "size",
+            "paramName": "size",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -106,11 +120,11 @@
     "getNavbarsVisibility": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 150,
           "column": 5
         }
       },
@@ -120,11 +134,11 @@
     "updatePageParts": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 198,
           "column": 5
         }
       },
@@ -158,11 +172,11 @@
     "fadeNavbar": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 254,
+          "line": 270,
           "column": 5
         }
       },
@@ -203,11 +217,11 @@
     "initializeNavbars": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 329,
           "column": 5
         }
       },
@@ -231,11 +245,11 @@
     "removeInactiveNavbars": {
       "location": {
         "start": {
-          "line": 317,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 328,
+          "line": 342,
           "column": 5
         }
       },

@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 113,
+        "line": 115,
         "column": 3
       }
     },
@@ -36,7 +36,7 @@
         "column": 13
       },
       "end": {
-        "line": 42,
+        "line": 41,
         "column": 3
       }
     },
@@ -46,11 +46,11 @@
     "_initOnCreate": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 49,
           "column": 24
         }
       },
@@ -60,11 +60,11 @@
     "__initUpdater": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 65,
           "column": 5
         }
       },
@@ -74,7 +74,7 @@
     "update": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 73,
           "column": 4
         },
         "end": {
@@ -130,7 +130,7 @@
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 113,
           "column": 5
         }
       },

@@ -34,7 +34,7 @@
   //noinspection JSUnusedGlobalSymbols
   qx.Class.define('cv.ui.BodyBlocker', {
     extend: qx.bom.Blocker,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -43,9 +43,10 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__P_523_0 = {};
+      this.__P_524_0 = {};
+      this.__P_524_1 = [];
       this.setBlockerOpacity(0.5);
-      this.setBlockerColor("#000000");
+      this.setBlockerColor('#000000');
     },
 
     /*
@@ -54,62 +55,62 @@
     ******************************************************
     */
     members: {
-      __P_523_1: null,
-      __P_523_0: null,
-      __P_523_2: [],
+      __P_524_2: null,
+      __P_524_0: null,
+      __P_524_1: null,
 
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__P_523_3());
+        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__P_524_3());
 
-        if (!this.__P_523_0.hasOwnProperty(topic)) {
-          this.__P_523_0[topic] = 1;
+        if (!Object.prototype.hasOwnProperty.call(this.__P_524_0, topic)) {
+          this.__P_524_0[topic] = 1;
         } else if (!unique) {
-          this.__P_523_0[topic]++;
+          this.__P_524_0[topic]++;
         }
 
-        document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-          elem.classList.add("blurred");
+        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+          elem.classList.add('blurred');
         });
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (this.__P_523_0.hasOwnProperty(topic)) {
-            this.__P_523_0[topic]--;
+          if (Object.prototype.hasOwnProperty.call(this.__P_524_0, topic)) {
+            this.__P_524_0[topic]--;
 
-            if (this.__P_523_0[topic] === 0) {
-              delete this.__P_523_0[topic];
+            if (this.__P_524_0[topic] === 0) {
+              delete this.__P_524_0[topic];
 
-              if (Object.keys(this.__P_523_0).length === 0) {
+              if (Object.keys(this.__P_524_0).length === 0) {
                 cv.ui.BodyBlocker.prototype.unblock.base.call(this);
-                document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-                  elem.classList.remove("blurred");
+                document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+                  elem.classList.remove('blurred');
                 });
               }
             }
           }
         } else {
           // not topic given unblock all
-          this.__P_523_0 = {};
+          this.__P_524_0 = {};
           cv.ui.BodyBlocker.prototype.unblock.base.call(this);
-          document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-            elem.classList.remove("blurred");
+          document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+            elem.classList.remove('blurred');
           });
         }
       },
-      __P_523_3: function __P_523_3() {
-        if (!this.__P_523_1) {
-          this.__P_523_1 = document.querySelector("body");
+      __P_524_3: function __P_524_3() {
+        if (!this.__P_524_2) {
+          this.__P_524_2 = document.querySelector('body');
         }
 
-        return this.__P_523_1;
+        return this.__P_524_2;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1625667808561
+//# sourceMappingURL=BodyBlocker.js.map?dt=1641882238936

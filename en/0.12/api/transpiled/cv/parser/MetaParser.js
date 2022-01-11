@@ -40,7 +40,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Class.define("cv.parser.MetaParser", {
+  qx.Class.define('cv.parser.MetaParser', {
     extend: qx.core.Object,
 
     /*
@@ -125,7 +125,7 @@
             if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
               var icon = this.__P_6_0(v);
 
-              value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
+              value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon['class']));
             } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
               value.push(v.textContent.trim());
             }
@@ -135,7 +135,7 @@
           var isDefaultValue = subElem.getAttribute('default');
 
           if (isDefaultValue !== undefined) {
-            isDefaultValue = isDefaultValue === "true";
+            isDefaultValue = isDefaultValue === 'true';
           } else {
             isDefaultValue = false;
           } // now set the mapped values
@@ -147,7 +147,7 @@
             if (isDefaultValue) {
               mapping.defaultValue = subElem.getAttribute('value');
             }
-          } else if (subElem.hasAttribute("range_min")) {
+          } else if (subElem.hasAttribute('range_min')) {
             if (!mapping.range) {
               mapping.range = {};
             }
@@ -159,7 +159,7 @@
             }
           } else if (subElements.length === 1) {
             // use as catchall mapping
-            mapping["*"] = value.length === 1 ? value[0] : value;
+            mapping['*'] = value.length === 1 ? value[0] : value;
           }
         }, this);
         cv.Config.addMapping(name, mapping);
@@ -174,7 +174,7 @@
           var isDefaultValue = subElem.getAttribute('default');
 
           if (isDefaultValue !== undefined) {
-            isDefaultValue = isDefaultValue === "true";
+            isDefaultValue = isDefaultValue === 'true';
           } else {
             isDefaultValue = false;
           } // now set the styling values
@@ -210,41 +210,48 @@
           var sPath = window.location.pathname;
           var sPage = sPath.substring(sPath.lastIndexOf('/') + 1); // @TODO: make this match once the new editor is finished-ish.
 
-          var editMode = 'edit_config.html' === sPage; // skip this element if it's edit-only and we are non-edit, or the other
+          var editMode = sPage === 'edit_config.html'; // skip this element if it's edit-only and we are non-edit, or the other
           // way
           // round
 
-          if (editMode && '!edit' === condition) {
+          if (editMode && condition === '!edit') {
             return;
           }
 
-          if (!editMode && 'edit' === condition) {
+          if (!editMode && condition === 'edit') {
             return;
           }
 
-          if (cv.Config.testMode && '!testMode' === condition) {
+          if (cv.Config.testMode && condition === '!testMode') {
             return;
           }
 
-          if (!cv.Config.testMode && 'testMode' === condition) {
+          if (!cv.Config.testMode && condition === 'testMode') {
             return;
           }
 
           var text = elem.textContent;
-          var search; // compability change to make existing customer configurations work with the new manager links
+          var search = ''; // compability change to make existing customer configurations work with the new manager links
           // this replaces all document links to old manager tools with the new ones
 
           var linkMatch;
           var linkRegex = /href="([^"]+)"/gm;
-          var matches = [];
+          var matches = []; // eslint-disable-next-line no-cond-assign
 
           while (linkMatch = linkRegex.exec(text)) {
             matches.push(linkMatch);
           }
 
           var handled = false;
-          search = window.location.search.replace(/\$/g, '$$$$');
-          search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+          var url = new URL(window.location.href);
+
+          if (url.searchParams.has('config')) {
+            search = url.searchParams.get('config');
+            search = encodeURIComponent(search).replace(/[!'()*]/g, function (c) {
+              return '%' + c.charCodeAt(0).toString(16);
+            });
+          }
+
           matches.forEach(function (match) {
             switch (match[1]) {
               case 'manager.php':
@@ -259,10 +266,12 @@
 
               case 'editor/':
               case 'editor':
-                var suffix = search ? '_' + search : '';
-                text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
-                handled = true;
-                break;
+                {
+                  var suffix = search ? '_' + search : '';
+                  text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+                  handled = true;
+                  break;
+                }
             }
           });
 
@@ -279,48 +288,54 @@
               break;
 
             case 'config':
-              // append config file info
-              search = window.location.search.replace(/\$/g, '$$$$');
-              search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
-              var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
+              {
+                // append config file info
+                search = window.location.search.replace(/\$/g, '$$$$');
+                search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
+                var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
 
-              if (0 < middle.indexOf('?')) {
-                search = '&' + search;
-              } else {
-                search = '?' + search;
-              }
-
-              text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
-              break;
-
-            case 'action':
-              search = window.location.search.replace(/\$/g, '$$$$');
-              search = search.replace(/.*config=([^&]*).*|.*/, '$1');
-              var match = /cv-action="([\w]+)"/.exec(text);
-
-              if (match) {
-                var replacement = 'href="#" ';
-
-                switch (match[1]) {
-                  case 'validate':
-                    replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
-                    break;
-
-                  case 'edit':
-                    var configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                    replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
-                    break;
+                if (middle.indexOf('?') > 0) {
+                  search = '&' + search;
+                } else {
+                  search = '?' + search;
                 }
 
-                text = text.replace(match[0], replacement);
+                text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+                break;
               }
 
-              break;
+            case 'action':
+              {
+                search = window.location.search.replace(/\$/g, '$$$$');
+                search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+                var match = /cv-action="([\w]+)"/.exec(text);
+
+                if (match) {
+                  var replacement = 'href="#" ';
+
+                  switch (match[1]) {
+                    case 'validate':
+                      replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
+                      break;
+
+                    case 'edit':
+                      {
+                        var configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
+                        replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                        break;
+                      }
+                  }
+
+                  text = text.replace(match[0], replacement);
+                }
+
+                break;
+              }
           }
 
           code += text;
         }, this);
-        var footerElement = document.querySelector(".footer");
+        var footerElement = document.querySelector('.footer');
         footerElement.innerHTML += code;
       },
       parsePlugins: function parsePlugins(xml) {
@@ -329,7 +344,7 @@
           var name = elem.getAttribute('name');
 
           if (name) {
-            pluginsToLoad.push("plugin-" + name);
+            pluginsToLoad.push('plugin-' + name);
           }
         });
         return pluginsToLoad;
@@ -354,16 +369,16 @@
           var config = {
             target: target,
             severity: elem.getAttribute('severity'),
-            skipInitial: elem.getAttribute('skip-initial') !== "false",
-            deletable: elem.getAttribute('deletable') !== "false",
-            unique: elem.getAttribute('unique') === "true",
+            skipInitial: elem.getAttribute('skip-initial') !== 'false',
+            deletable: elem.getAttribute('deletable') !== 'false',
+            unique: elem.getAttribute('unique') === 'true',
             valueMapping: addressContainer.getAttribute('value-mapping'),
             addressMapping: addressContainer.getAttribute('address-mapping')
           };
           var name = elem.getAttribute('name');
 
           if (name) {
-            config.topic = "cv.state." + name;
+            config.topic = 'cv.state.' + name;
           }
 
           var icon = elem.getAttribute('icon');
@@ -394,9 +409,9 @@
           var conditionElem = elem.querySelector('condition');
           var condition = conditionElem.textContent;
 
-          if (condition === "true") {
+          if (condition === 'true') {
             condition = true;
-          } else if (condition === "false") {
+          } else if (condition === 'false') {
             condition = false;
           }
 
@@ -404,7 +419,7 @@
           var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer); // addresses
 
           Object.getOwnPropertyNames(addresses).forEach(function (address) {
-            if (!stateConfig.hasOwnProperty(address)) {
+            if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
               stateConfig[address] = [];
             }
 
@@ -419,6 +434,7 @@
       /**
        * Parses meta template definitions and add them to the WidgetParser
        * @param xml {HTMLElement}
+       * @param done
        */
       parseTemplates: function parseTemplates(xml, done) {
         var __P_6_1 = new qx.data.Array();
@@ -447,10 +463,10 @@
 
               qx.log.Logger.debug(this, 'loading template from file:', ref);
               areq.set({
-                accept: "text/plain",
+                accept: 'text/plain',
                 cache: !cv.Config.forceReload
               });
-              areq.addListenerOnce("success", function (e) {
+              areq.addListenerOnce('success', function (e) {
                 var req = e.getTarget();
                 cv.parser.WidgetParser.addTemplate(templateName, // templates can only have one single root element, so we wrap it here
                 '<root>' + req.getResponseText() + '</root>');
@@ -460,13 +476,13 @@
                 qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
                 check();
               }, this);
-              areq.addListener("statusError", function () {
+              areq.addListener('statusError', function () {
                 var message = {
-                  topic: "cv.config.error",
-                  title: qx.locale.Manager.tr("Template loading error"),
-                  severity: "urgent",
+                  topic: 'cv.config.error',
+                  title: qx.locale.Manager.tr('Template loading error'),
+                  severity: 'urgent',
                   deletable: true,
-                  message: qx.locale.Manager.tr("Template '%1' could not be loaded from '%2'.", templateName, ref)
+                  message: qx.locale.Manager.tr('Template \'%1\' could not be loaded from \'%2\'.', templateName, ref)
                 };
                 cv.core.notifications.Router.dispatchMessage(message.topic, message);
               }, this);
@@ -485,4 +501,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1625667763963
+//# sourceMappingURL=MetaParser.js.map?dt=1641882196937

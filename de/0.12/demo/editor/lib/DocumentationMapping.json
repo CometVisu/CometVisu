@@ -2,7 +2,7 @@
   "_base": "http://www.cometvisu.org/CometVisu/", 
   "audio": "/latest/manual/config/widgets/audio/index.html#audio", 
   "break": "/latest/manual/config/widgets/break/index.html#break", 
-  "colorchooser": "/latest/manual/config/widgets/plugins/colorchooser/index.html#colorchooser", 
+  "colorchooser": "/latest/manual/config/widgets/colorchooser/index.html#colorchooser", 
   "designtoggle": "/latest/manual/config/widgets/designtoggle/index.html#designtoggle", 
   "diagram": "/latest/manual/config/widgets/plugins/diagram/index.html#diagram", 
   "flavour": "/latest/manual/config/flavour.html#flavour", 

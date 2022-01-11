@@ -204,7 +204,7 @@ by an online translation service.</p>
 <p>This is where swiss’ visually productive Visu is presented.</p>
 <div class="line-block">
 <div class="line"><strong>Design</strong>: Metal</div>
-<div class="line"><strong>Plugins</strong>: colorchooser, rsslog, strftime, diagram</div>
+<div class="line"><strong>Plugins</strong>: rsslog, strftime, diagram</div>
 <div class="line"><strong>Config</strong>: <a class="reference download internal" download="" href="../../_downloads/ba8d3973fd12e18caa1883d900e11971/visu_config_metal_swiss.xml"><code class="xref download docutils literal notranslate"><span class="pre">visu_config_metal_swiss.xml</span></code></a></div>
 <div class="line"><strong>Live-Demo</strong>: <a class="reference external" href="http://demo.wiregate.de/visu-svn_neu/?config=metal_swiss">Live-Demo</a></div>
 <div class="line"><br /></div>
@@ -277,15 +277,15 @@ Then, from top to bottom, a <strong>strftime</strong>, a <strong>break</strong> 
 by another <strong>strftime</strong> widget were inserted.</p>
 <p>The upper <strong>strftime</strong> widget which displays the time has
 the following parameters:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">lang</span><span class="o">=</span><span class="s">&quot;de&quot;</span>
-<span class="na">format</span><span class="o">=</span><span class="s">&quot;%H:%M&quot;</span>
-<span class="na">class</span><span class="o">=</span><span class="s">&quot;timebig&quot;</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">lang</span><span class="o">=</span><span class="s">&quot;de&quot;</span><span class="w"></span>
+<span class="na">format</span><span class="o">=</span><span class="s">&quot;%H:%M&quot;</span><span class="w"></span>
+<span class="na">class</span><span class="o">=</span><span class="s">&quot;timebig&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The lower <strong>strftime</strong> indicating the date has the following parameters:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">lang</span><span class="o">=</span><span class="s">&quot;de&quot;</span>
-<span class="na">format</span><span class="o">=</span><span class="s">&quot;%A, %d. %B %Y&quot;</span>
-<span class="na">class</span><span class="o">=</span><span class="s">&quot;timedate&quot;</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">lang</span><span class="o">=</span><span class="s">&quot;de&quot;</span><span class="w"></span>
+<span class="na">format</span><span class="o">=</span><span class="s">&quot;%A, %d. %B %Y&quot;</span><span class="w"></span>
+<span class="na">class</span><span class="o">=</span><span class="s">&quot;timedate&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In config.xml, this section looks like this:</p>
@@ -304,31 +304,31 @@ the following parameters:</p>
 </pre></div>
 </div>
 <p>For formatting (color, font size and font) the following css rules must be added to the visu:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">color</span><span class="p">:</span> <span class="mh">#75d5ff</span><span class="p">;</span>
-    <span class="k">min-height</span><span class="p">:</span> <span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">font</span><span class="p">:</span> <span class="kc">bold</span> <span class="mi">12</span><span class="kt">mm</span> <span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span> <span class="n">Lucida</span><span class="p">,</span> <span class="n">Verdana</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#75d5ff</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">12</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timebig</span> <span class="o">&gt;</span> <span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span> <span class="p">{</span>
-    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">14</span><span class="kt">mm</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">min-height</span><span class="p">:</span> <span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">font</span><span class="p">:</span> <span class="kc">bold</span> <span class="mi">3</span><span class="kt">mm</span> <span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span> <span class="n">Lucida</span><span class="p">,</span> <span class="n">Verdana</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">3</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span> <span class="o">&gt;</span> <span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span> <span class="p">{</span>
-        <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Howto include custom css rules is described in chapter <a class="reference internal" href="../customizing.html#custom-cssrules"><span class="std std-ref">Customize Cometvisu</span></a>.</p>
@@ -358,7 +358,7 @@ the following parameters:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 

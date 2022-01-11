@@ -39,7 +39,7 @@
    * This role provides the update method for incoming data
    *
    */
-  qx.Mixin.define("cv.ui.common.Update", {
+  qx.Mixin.define('cv.ui.common.Update', {
     include: cv.ui.common.BasicUpdate,
 
     /*
@@ -50,9 +50,9 @@
     construct: function construct() {
       if (this.getAddress) {
         if (this._initOnCreate === true) {
-          this.__P_502_0();
-        } else if (qx.Class.getEventType(this.constructor, "domReady")) {
-          this.addListenerOnce("domReady", this.__P_502_0, this);
+          this.__P_503_0();
+        } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
+          this.addListenerOnce('domReady', this.__P_503_0, this);
         }
       }
     },
@@ -64,7 +64,7 @@
     */
     members: {
       _initOnCreate: false,
-      __P_502_0: function __P_502_0() {
+      __P_503_0: function __P_503_0() {
         var model = cv.data.Model.getInstance();
         Object.getOwnPropertyNames(this.getAddress()).forEach(function (address) {
           if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
@@ -139,4 +139,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1625667806103
+//# sourceMappingURL=Update.js.map?dt=1641882236378

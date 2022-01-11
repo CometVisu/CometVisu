@@ -38,7 +38,7 @@
         "column": 13
       },
       "end": {
-        "line": 30,
+        "line": 29,
         "column": 3
       }
     },
@@ -48,11 +48,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 38,
           "column": 36
         }
       },
@@ -88,11 +88,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 50,
           "column": 5
         }
       },
@@ -109,11 +109,11 @@
     "model": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 58,
           "column": 5
         }
       },
@@ -128,11 +128,11 @@
     "showFileActions": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 67,
           "column": 5
         }
       },
@@ -154,11 +154,11 @@
     "label": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 74,
           "column": 5
         }
       },
@@ -180,11 +180,11 @@
     "icon": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 82,
           "column": 5
         }
       },
@@ -207,11 +207,11 @@
     "gap": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 93,
           "column": 5
         }
       },
@@ -236,11 +236,11 @@
     "show": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 100,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 106,
           "column": 5
         }
       },
@@ -268,11 +268,11 @@
     "iconPosition": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 118,
           "column": 5
         }
       },
@@ -304,11 +304,11 @@
     "center": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 135,
           "column": 5
         }
       },
@@ -331,11 +331,11 @@
     "acceptUpload": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 144,
           "column": 5
         }
       },
@@ -356,11 +356,11 @@
     "viewMode": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 150,
           "column": 5
         }
       },
@@ -427,25 +427,26 @@
     "_uploadManager": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 159,
           "column": 24
         }
       },
+      "jsdoc": {},
       "type": "variable",
       "access": "protected"
     },
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 170,
           "column": 5
         }
       },
@@ -469,11 +470,11 @@
     "_applyViewMode": {
       "location": {
         "start": {
-          "line": 173,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 186,
           "column": 5
         }
       },
@@ -486,11 +487,11 @@
     "_onPointerOver": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 193,
           "column": 5
         }
       },
@@ -508,11 +509,11 @@
     "_onPointerOut": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 202,
+          "line": 201,
           "column": 5
         }
       },
@@ -530,11 +531,11 @@
     "_isDroppable": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 212,
           "column": 5
         }
       },
@@ -544,11 +545,11 @@
     "_onDrop": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 227,
           "column": 5
         }
       },
@@ -558,11 +559,11 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 278,
+          "line": 277,
           "column": 5
         }
       },
@@ -575,11 +576,11 @@
     "_onOpenWith": {
       "location": {
         "start": {
-          "line": 280,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 286,
+          "line": 285,
           "column": 5
         }
       },
@@ -589,11 +590,11 @@
     "_applyIcon": {
       "location": {
         "start": {
-          "line": 288,
+          "line": 287,
           "column": 4
         },
         "end": {
-          "line": 299,
+          "line": 298,
           "column": 5
         }
       },
@@ -603,11 +604,11 @@
     "_maintainFileActions": {
       "location": {
         "start": {
-          "line": 301,
+          "line": 300,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 336,
           "column": 5
         }
       },
@@ -620,11 +621,11 @@
     "__scaleWithAspect": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 355,
           "column": 5
         }
       },
@@ -634,11 +635,11 @@
     "_maintainFileTypePosition": {
       "location": {
         "start": {
-          "line": 358,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 367,
+          "line": 366,
           "column": 5
         }
       },
@@ -648,7 +649,7 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 370,
+          "line": 369,
           "column": 4
         },
         "end": {
@@ -2216,7 +2217,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [

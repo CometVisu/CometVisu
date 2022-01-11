@@ -38,7 +38,7 @@
   /**
    * Interface that all structure page widgets must implement
    */
-  qx.Interface.define("cv.ui.structure.IPage", {
+  qx.Interface.define('cv.ui.structure.IPage', {
     /*
     ******************************************************
       PROPERTIES
@@ -76,4 +76,4 @@
   cv.ui.structure.IPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IPage.js.map?dt=1625667807746
+//# sourceMappingURL=IPage.js.map?dt=1641882237943

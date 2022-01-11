@@ -37,7 +37,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Web', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -59,12 +59,12 @@
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
         cv.parser.WidgetParser.parseRefresh(xml, path);
-        var ga = xml.getAttribute("ga");
+        var ga = xml.getAttribute('ga');
 
         if (ga) {
           cv.data.Model.getInstance().addAddress(ga);
 
-          if (cv.Config.backend.substr(0, 2) === "oh") {
+          if (cv.Config.backend.substr(0, 2) === 'oh') {
             data.address['_' + ga] = {
               transform: 'OH:switch',
               mode: 'OFF'
@@ -91,7 +91,7 @@
           height: {},
           frameborder: {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           background: {},
@@ -102,10 +102,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("web", statics);
+      cv.parser.WidgetParser.addHandler('web', statics);
     }
   });
   cv.parser.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1625667764888
+//# sourceMappingURL=Web.js.map?dt=1641882197840

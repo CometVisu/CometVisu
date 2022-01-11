@@ -6,6 +6,7 @@
         "require": true
       },
       "cv.ui.structure.AbstractWidget": {
+        "construct": true,
         "require": true
       },
       "cv.ui.common.Update": {
@@ -58,6 +59,16 @@
     include: cv.ui.common.Update,
 
     /*
+    ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct(props) {
+      this.__P_60_0 = [];
+      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+    },
+
+    /*
     ******************************************************
       STATICS
     ******************************************************
@@ -81,8 +92,8 @@
        */
       createBarPath: function createBarPath(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width) {
         var getBBox = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
-        var startArrowPointAngle = startAngle + startArrowPoint,
-            endArrowPointAngle = endAngle + endArrowPoint; // The path to generate is using those positions:
+        var startArrowPointAngle = startAngle + startArrowPoint;
+        var endArrowPointAngle = endAngle + endArrowPoint; // The path to generate is using those positions:
         // rO             -- outer --
         // rMO        /// outermiddle \\\
         // rM      //       middle        \\
@@ -92,64 +103,72 @@
         //     |_______|               |_______|
         //       start      center        end
 
-        var clockwise = startAngle > endAngle ? 1 : 0,
-            rI = radius,
-            rIM = radius + width * 1 / 4,
-            rM = radius + width * 2 / 4,
-            rMO = radius + width * 3 / 4,
-            rO = radius + width,
-            startInner = {
+        var clockwise = startAngle > endAngle ? 1 : 0;
+        var rI = radius;
+        var rIM = radius + width * 1 / 4;
+        var rM = radius + width * 2 / 4;
+        var rMO = radius + width * 3 / 4;
+        var rO = radius + width;
+        var startInner = {
           x: Math.cos(startAngle) * rI,
           y: -Math.sin(startAngle) * rI
-        },
-            startMiddle = {
+        };
+        var startMiddle = {
           x: Math.cos(startArrowPointAngle) * rM,
           y: -Math.sin(startArrowPointAngle) * rM
-        },
-            startOuter = {
+        };
+        var startOuter = {
           x: Math.cos(startAngle) * rO,
           y: -Math.sin(startAngle) * rO
-        },
-            centerInner = {
+        };
+        var centerInner = {
           x: Math.cos((startAngle + endAngle) / 2) * rI,
           y: -Math.sin((startAngle + endAngle) / 2) * rI
-        },
-            centerOuter = {
+        };
+        var centerOuter = {
           x: Math.cos((startAngle + endAngle) / 2) * rO,
           y: -Math.sin((startAngle + endAngle) / 2) * rO
-        },
-            endInner = {
+        };
+        var endInner = {
           x: Math.cos(endAngle) * rI,
           y: -Math.sin(endAngle) * rI
-        },
-            endMiddle = {
+        };
+        var endMiddle = {
           x: Math.cos(endArrowPointAngle) * rM,
           y: -Math.sin(endArrowPointAngle) * rM
-        },
-            endOuter = {
+        };
+        var endOuter = {
           x: Math.cos(endAngle) * rO,
           y: -Math.sin(endAngle) * rO
-        },
-            startMiddleFlag = Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0,
-            startEndFlag = Math.abs(startAngle - endAngle) / 2 > Math.PI ? 1 : 0,
-            endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0,
-            startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0,
-            endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
+        };
+        var startMiddleFlag = Math.abs(startAngle - startArrowPointAngle) > Math.PI ? 1 : 0;
+        var startEndFlag = Math.abs(startAngle - endAngle) / 2 > Math.PI ? 1 : 0;
+        var endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0;
+        var startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0;
+        var endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
+        /**
+         * @param start
+         * @param end
+         * @param r
+         * @param flag
+         * @param cw
+         */
 
         function arc(start, end, r, flag, cw) {
           return start.x === end.x && start.y === end.y ? '' : Math.abs(start.x - end.x) + Math.abs(start.y - end.y) < 2 ? 'L' + cv.ui.structure.pure.Roundbar.coord(end) : ['A', r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(' ');
         }
 
         if (getBBox) {
-          var rMax = Math.max(rI, rO),
-              isInside = function isInside(a) {
-            return startAngle < a && a < endAngle || startAngle > a && a > endAngle;
-          },
-              rMiddle = isInside(-Math.PI * 4 / 2) || isInside(Math.PI * 0 / 2) ? rMax : startInner.x,
-              uMiddle = isInside(-Math.PI * 3 / 2) || isInside(Math.PI * 1 / 2) ? -rMax : startInner.y,
-              lMiddle = isInside(-Math.PI * 2 / 2) || isInside(Math.PI * 2 / 2) ? -rMax : startInner.x,
-              dMiddle = isInside(-Math.PI * 1 / 2) || isInside(Math.PI * 3 / 2) ? rMax : startInner.y;
+          var rMax = Math.max(rI, rO);
 
+          var isInside = function isInside(a) {
+            return startAngle < a && a < endAngle || startAngle > a && a > endAngle;
+          };
+
+          var rMiddle = isInside(-Math.PI * 4 / 2) || isInside(Math.PI * 0 / 2) ? rMax : startInner.x;
+          var uMiddle = isInside(-Math.PI * 3 / 2) || isInside(Math.PI * 1 / 2) ? -rMax : startInner.y;
+          var lMiddle = isInside(-Math.PI * 2 / 2) || isInside(Math.PI * 2 / 2) ? -rMax : startInner.x;
+          var dMiddle = isInside(-Math.PI * 1 / 2) || isInside(Math.PI * 3 / 2) ? rMax : startInner.y;
           return {
             u: Math.min(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, uMiddle),
             d: Math.max(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, dMiddle),
@@ -172,14 +191,14 @@
        * @param p {Object} Indicator object
        */
       createPointerPath: function createPointerPath(angle, p) {
-        var s = Math.sin(angle),
-            c = Math.cos(angle),
-            wx = c * p.width,
-            wy = s * p.width;
+        var s = Math.sin(angle);
+        var c = Math.cos(angle);
+        var wx = c * p.width;
+        var wy = s * p.width;
 
         if (p.thickness > 0) {
-          var tx = -s * p.thickness / 2,
-              ty = c * p.thickness / 2;
+          var tx = -s * p.thickness / 2;
+          var ty = c * p.thickness / 2;
           return ['M', this.coord({
             x: c * p.radius + wx - tx,
             y: -(s * p.radius + wy - ty)
@@ -190,15 +209,15 @@
             x: c * p.radius + wx + tx,
             y: -(s * p.radius + wy + ty)
           })].join('');
-        } else {
-          return ['M', this.coord({
-            x: c * p.radius,
-            y: -(s * p.radius)
-          }), 'L', this.coord({
-            x: c * p.radius + wx,
-            y: -(s * p.radius + wy)
-          })].join('');
         }
+
+        return ['M', this.coord({
+          x: c * p.radius,
+          y: -(s * p.radius)
+        }), 'L', this.coord({
+          x: c * p.radius + wx,
+          y: -(s * p.radius + wy)
+        })].join('');
       }
     },
 
@@ -209,104 +228,104 @@
      */
     properties: {
       type: {
-        check: "Array"
+        check: 'Array'
       },
       indicators: {
-        check: "Array"
+        check: 'Array'
       },
       min: {
-        check: "Number"
+        check: 'Number'
       },
       max: {
-        check: "Number"
+        check: 'Number'
       },
       axisradius: {
-        check: "Number"
+        check: 'Number'
       },
       axiswidth: {
-        check: "Number"
+        check: 'Number'
       },
       axiscolor: {
-        check: "String"
+        check: 'String'
       },
       ranges: {
-        check: "Array"
+        check: 'Array'
       },
       minorradius: {
-        check: "Number"
+        check: 'Number'
       },
       minorwidth: {
-        check: "Number"
+        check: 'Number'
       },
       minorspacing: {
-        check: "String"
+        check: 'String'
       },
       minorcolor: {
-        check: "String"
+        check: 'String'
       },
       majorradius: {
-        check: "Number"
+        check: 'Number'
       },
       majorwidth: {
-        check: "Number"
+        check: 'Number'
       },
       majorposition: {
-        check: "String"
+        check: 'String'
       },
       majorcolor: {
-        check: "String"
+        check: 'String'
       },
       labels: {
-        check: "Array"
+        check: 'Array'
       },
       labelstyle: {
-        check: "String"
+        check: 'String'
       },
       start: {
-        check: "Number"
+        check: 'Number'
       },
       end: {
-        check: "Number"
+        check: 'Number'
       },
       arrowtype: {
-        check: "Number"
+        check: 'Number'
       },
       spacing: {
-        check: "Number"
+        check: 'Number'
       },
       overflowarrow: {
-        check: "Boolean"
+        check: 'Boolean'
       },
       fontsize: {
-        check: "Number"
+        check: 'Number'
       },
       textx: {
-        check: "Number"
+        check: 'Number'
       },
       texty: {
-        check: "Number"
+        check: 'Number'
       },
       textlength: {
-        check: "Number"
+        check: 'Number'
       },
       textanchor: {
-        check: "String"
+        check: 'String'
       },
       linespace: {
-        check: "Number"
+        check: 'Number'
       },
       bboxgrow: {
-        check: "Object"
+        check: 'Object'
       },
       debug: {
-        check: "Boolean"
+        check: 'Boolean'
       },
       currentRatioValue: {
-        check: "Array",
+        check: 'Array',
         init: []
       },
       targetRatioValue: {
-        check: "Array",
+        check: 'Array',
         init: []
       }
     },
@@ -317,8 +336,8 @@
     ******************************************************
     */
     members: {
-      __P_60_0: undefined,
-      __P_60_1: [],
+      __P_60_1: undefined,
+      __P_60_0: null,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         /**
@@ -350,23 +369,23 @@
 
         this.setCurrentRatioValue(Array(this.getIndicators().length).fill(0));
         this.setTargetRatioValue(Array(this.getIndicators().length).fill([0, false, false]));
-        var self = this,
-            s = this.getStart(),
-            e = this.getEnd(),
-            min = this.getMin(),
-            max = this.getMax(),
-            cntValues = 0,
-            svgMajor = '',
-            svgMinor = '',
-            svgLabels = '',
-            svgRanges = '',
-            svgIndicators = '',
-            svgText = '',
-            createBarPath = cv.ui.structure.pure.Roundbar.createBarPath; // Determine the bounding box, first get the biggest radius that must fit
+        var self = this;
+        var s = this.getStart();
+        var e = this.getEnd();
+        var min = this.getMin();
+        var max = this.getMax();
+        var cntValues = 0;
+        var svgMajor = '';
+        var svgMinor = '';
+        var svgLabels = '';
+        var svgRanges = '';
+        var svgIndicators = '';
+        var svgText = '';
+        var createBarPath = cv.ui.structure.pure.Roundbar.createBarPath; // Determine the bounding box, first get the biggest radius that must fit
 
-        var rMax = this.getAxisradius() + this.getAxiswidth(),
-            sMax = 0,
-            eMax = 0;
+        var rMax = this.getAxisradius() + this.getAxiswidth();
+        var sMax = 0;
+        var eMax = 0;
         this.getIndicators().forEach(function (indicator) {
           rMax = Math.max(rMax, indicator.radius, indicator.radius + indicator.width);
           sMax = Math.max(sMax, indicator.startarrow);
@@ -375,9 +394,9 @@
         var BBox = createBarPath(s, sMax, e, eMax, rMax, 0, true);
 
         if (this.getMinorwidth() > 0) {
-          var spacing = parseFloat(this.getMinorspacing()),
-              rIn = this.getMinorradius(),
-              rOut = this.getMinorwidth() + rIn;
+          var spacing = parseFloat(this.getMinorspacing());
+          var rIn = this.getMinorradius();
+          var rOut = this.getMinorwidth() + rIn;
 
           if (/^[0-9]+%/.test(this.getMinorspacing())) {
             // special case: percentage
@@ -387,8 +406,8 @@
           svgMinor += '<path class="minor" d="';
 
           for (var angle = s, delta = (e - s) * spacing / (max - min), cnt = (max - min) / spacing; cnt >= 0; angle += delta, cnt--) {
-            var sin = Math.sin(angle),
-                cos = Math.cos(angle);
+            var sin = Math.sin(angle);
+            var cos = Math.cos(angle);
             svgMinor += ['M', cv.ui.structure.pure.Roundbar.coord({
               x: cos * rIn,
               y: -sin * rIn
@@ -400,13 +419,17 @@
             BBox = bboxAdd(BBox, cos * rOut, -sin * rOut);
           }
 
-          if (this.getMinorcolor() !== '') svgMinor += '" style="stroke:' + this.getMinorcolor();
+          if (this.getMinorcolor() !== '') {
+            svgMinor += '" style="stroke:' + this.getMinorcolor();
+          }
+
           svgMinor += '" />';
         }
 
         if (this.getMajorwidth() > 0) {
-          var _rIn = this.getMajorradius(),
-              _rOut = this.getMajorwidth() + _rIn;
+          var _rIn = this.getMajorradius();
+
+          var _rOut = this.getMajorwidth() + _rIn;
 
           svgMajor += '<path class="major" d="';
           this.getMajorposition().split(';').forEach(function (position) {
@@ -420,9 +443,9 @@
                 break;
             }
 
-            var angle = s + (e - s) * (position - min) / (max - min),
-                sin = Math.sin(angle),
-                cos = Math.cos(angle);
+            var angle = s + (e - s) * (position - min) / (max - min);
+            var sin = Math.sin(angle);
+            var cos = Math.cos(angle);
             svgMajor += ['M', cv.ui.structure.pure.Roundbar.coord({
               x: cos * _rIn,
               y: -sin * _rIn
@@ -443,11 +466,12 @@
 
         var labelstyle = this.getLabelstyle();
         this.getLabels().forEach(function (label, labelnumber) {
-          var angle = s + (e - s) * (label.value - min) / (max - min),
-              x = label.radius * Math.cos(angle),
-              y = label.radius * -Math.sin(angle),
-              alignmentBaseline = '',
-              textAnchor = '';
+          var angle = s + (e - s) * (label.value - min) / (max - min);
+          var x = label.radius * Math.cos(angle);
+          var y = label.radius * -Math.sin(angle);
+          var alignmentBaseline = '';
+          var textAnchor = '';
+          var textAngle = 0;
 
           if (label.orientation < 3) {
             svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
@@ -479,19 +503,21 @@
                 break;
 
               case 1:
-                // parallel
-                var textAngle = -angle * 180 / Math.PI + 90;
+                {
+                  // parallel
+                  var _textAngle = -angle * 180 / Math.PI + 90;
 
-                if (y < 0) {
-                  alignmentBaseline = ['baseline', 'middle', 'hanging'][label.position];
-                } else {
-                  alignmentBaseline = ['hanging', 'middle', 'baseline'][label.position];
-                  textAngle += 180;
+                  if (y < 0) {
+                    alignmentBaseline = ['baseline', 'middle', 'hanging'][label.position];
+                  } else {
+                    alignmentBaseline = ['hanging', 'middle', 'baseline'][label.position];
+                    _textAngle += 180;
+                  }
+
+                  textAnchor = 'middle';
+                  svgLabels += ' transform="rotate(' + _textAngle + ',' + x + ',' + y + ')"';
+                  break;
                 }
-
-                textAnchor = 'middle';
-                svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
-                break;
 
               case 2:
                 // perpendicular
@@ -519,10 +545,10 @@
             svgLabels += '>' + label.name + '</text>';
           } else {
             // label.orientation >= 3 -> round
-            var labelid = self.$$user_path + '_label' + labelnumber,
-                cw = s < e ? 0 : 1,
-                path = '',
-                align = '';
+            var labelid = self.$$user_path + '_label' + labelnumber;
+            var cw = s < e ? 0 : 1;
+            var path = '';
+            var align = '';
 
             switch (label.orientation) {
               case 3:
@@ -554,11 +580,11 @@
           }
         });
         this.getRanges().forEach(function (range) {
-          var sRange = (e - s) * (range.start - min) / (max - min) + s,
-              eRange = (e - s) * (range.end - min) / (max - min) + s,
-              rRange = range.radius || self.getAxisradius(),
-              wRange = range.width || self.getAxiswidth(),
-              thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
+          var sRange = (e - s) * (range.start - min) / (max - min) + s;
+          var eRange = (e - s) * (range.end - min) / (max - min) + s;
+          var rRange = range.radius || self.getAxisradius();
+          var wRange = range.width || self.getAxiswidth();
+          var thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
           svgRanges += '<path class="range" d="';
           svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
 
@@ -570,9 +596,9 @@
           BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
           BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
         });
-        this.__P_60_0 = [];
+        this.__P_60_1 = [];
         this.getIndicators().forEach(function (indicator, number) {
-          self.__P_60_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_60_2, self, number));
+          self.__P_60_1.push(new cv.util.LimitedRateUpdateAnimator(self.__P_60_2, self, number));
 
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
 
@@ -587,9 +613,9 @@
             start: [0, 1],
             middle: [0.5, 0.5],
             end: [1, 0]
-          }[this.getTextanchor()] || [0, 1],
-              textU = Math.min(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0)),
-              textD = Math.max(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
+          }[this.getTextanchor()] || [0, 1];
+          var textU = Math.min(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
+          var textD = Math.max(0, -this.getFontsize(), this.getLinespace() * (cntValues - 1) - (this.getLinespace() < 0 ? this.getFontsize() : 0));
           BBox = bboxAdd(BBox, this.getTextx() - textDistribution[0] * this.getTextlength(), this.getTexty() + textU);
           BBox = bboxAdd(BBox, this.getTextx() + textDistribution[1] * this.getTextlength(), this.getTexty() + textD);
         }
@@ -601,10 +627,10 @@
         }
 
         if (this.getAxisradius() > 0) {
-          var sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0),
-              axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth()),
-              stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor(),
-              fill = this.getAxiswidth() < 1 ? 'none' : stroke;
+          var sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
+          var axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
+          var stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor();
+          var fill = this.getAxiswidth() < 1 ? 'none' : stroke;
           html += '<path class="sector" d="' + sectorPath + ' L0 0Z"/>' + '<path class="axis" d="' + axisPath + '" style="' + (stroke ? 'stroke:' + stroke : '') + (fill ? ';fill:' + fill : '') + '"/>';
         }
 
@@ -624,11 +650,11 @@
           return;
         }
 
-        var self = this,
-            value = cv.Transform.decode(this.getAddress()[address].transform, data),
-            target = this.getTargetRatioValue(),
-            tspan = Array.from(this.getDomElement().getElementsByTagName('tspan')),
-            valueFormat = this.applyFormat(address, value);
+        var self = this;
+        var value = cv.Transform.decode(this.getAddress()[address].transform, data);
+        var target = this.getTargetRatioValue();
+        var tspan = Array.from(this.getDomElement().getElementsByTagName('tspan'));
+        var valueFormat = this.applyFormat(address, value);
         this.getIndicators().forEach(function (indicator, i) {
           if (address === indicator.address) {
             target[i] = [(Math.min(Math.max(value, indicator.min), indicator.max) - indicator.min) / (indicator.max - indicator.min), value < indicator.min, value > indicator.max];
@@ -637,7 +663,7 @@
               tspan[i].textContent = valueFormat;
             }
 
-            self.__P_60_0[i].setTo(target[i][0], !self.isVisible());
+            self.__P_60_1[i].setTo(target[i][0], !self.isVisible());
           }
         });
         this.setTargetRatioValue(target);
@@ -650,28 +676,30 @@
        * performance wise. But as it's assumed that a typical visu config is only containing one roundbar per address
        * a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.
        * Even with a few roundbars using the same address the performance impact is negligible.
+       * @param ratio
+       * @param indicatorNumber
        */
       __P_60_2: function __P_60_2(ratio, indicatorNumber) {
-        if (this.__P_60_1.length === 0) {
+        if (this.__P_60_0.length === 0) {
           // cache
-          this.__P_60_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
+          this.__P_60_0 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         }
 
-        var indicator = this.getIndicators()[indicatorNumber],
-            target = this.getTargetRatioValue()[indicatorNumber],
-            startAngle = this.getStart(),
-            endAngle = this.getEnd(),
-            targetAngle = startAngle + ratio * (endAngle - startAngle),
-            overflowarrow = this.getOverflowarrow();
+        var indicator = this.getIndicators()[indicatorNumber];
+        var target = this.getTargetRatioValue()[indicatorNumber];
+        var startAngle = this.getStart();
+        var endAngle = this.getEnd();
+        var targetAngle = startAngle + ratio * (endAngle - startAngle);
+        var overflowarrow = this.getOverflowarrow();
 
         if (!overflowarrow) {
           targetAngle = endAngle > startAngle ? Math.max(startAngle, targetAngle - indicator.endarrow) : Math.min(startAngle, targetAngle - indicator.endarrow);
         }
 
         if (indicator.isBar) {
-          this.__P_60_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
+          this.__P_60_0[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
         } else {
-          this.__P_60_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
+          this.__P_60_0[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
         }
       }
     }
@@ -679,4 +707,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1625667771008
+//# sourceMappingURL=Roundbar.js.map?dt=1641882203701

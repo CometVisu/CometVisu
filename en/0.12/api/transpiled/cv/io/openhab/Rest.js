@@ -54,7 +54,7 @@
       qx.core.Object.constructor.call(this);
       this.initialAddresses = [];
       this._backendName = backendName;
-      this._backendUrl = backendUrl || "/rest";
+      this._backendUrl = backendUrl || '/rest';
       this.__P_487_0 = {};
       this.__P_487_1 = {};
     },
@@ -66,12 +66,12 @@
     */
     properties: {
       connected: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeConnected"
+        event: 'changeConnected'
       },
       server: {
-        check: "String",
+        check: 'String',
         nullable: true,
         event: 'changedServer'
       }
@@ -96,7 +96,7 @@
       setInitialAddresses: function setInitialAddresses(addresses) {},
       getResourcePath: function getResourcePath(name, map) {
         if (name === 'charts' && map && map.src) {
-          var url = this._backendUrl + "persistence/items/" + map.src;
+          var url = this._backendUrl + 'persistence/items/' + map.src;
           var params = [];
 
           if (map.start) {
@@ -140,25 +140,26 @@
               d.setTime(parseInt(map.start) * 1000);
             }
 
-            params.push("starttime=" + startTime.toISOString());
-            params.push("endtime=" + endTime.toISOString());
+            params.push('starttime=' + startTime.toISOString());
+            params.push('endtime=' + endTime.toISOString());
           }
 
-          url += "?" + params.join("&");
+          url += '?' + params.join('&');
           return url;
         }
 
         return null;
       },
       __P_487_4: function __P_487_4(time) {
-        if (time === "now") {
+        if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
           var d = new Date();
           d.setTime(parseInt(time) * 1000);
-        } else {
-          return null;
+          return d;
         }
+
+        return null;
       },
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {
         return true;
@@ -181,7 +182,7 @@
        */
       authorize: function authorize(req) {
         if (this.__P_487_3) {
-          req.setRequestHeader("Authorization", this.__P_487_3);
+          req.setRequestHeader('Authorization', this.__P_487_3);
         }
       },
 
@@ -192,27 +193,27 @@
        * @return A XHR request {qx.io.request.Xhr}
        */
       createAuthorizedRequest: function createAuthorizedRequest(url, method) {
-        var req = new qx.io.request.Xhr(this._backendUrl + (url || ""), method);
+        var req = new qx.io.request.Xhr(this._backendUrl + (url || ''), method);
         this.authorize(req);
         return req;
       },
       __P_487_5: function __P_487_5(type, state) {
         switch (type) {
-          case "Decimal":
-          case "Percent":
-          case "Number":
-          case "Dimmer":
+          case 'Decimal':
+          case 'Percent':
+          case 'Number':
+          case 'Dimmer':
             return parseInt(state) > 0;
 
-          case "Rollershutter":
-            return state === "0";
+          case 'Rollershutter':
+            return state === '0';
 
-          case "Contact":
-            return state === "OPENED";
+          case 'Contact':
+            return state === 'OPENED';
 
-          case "OnOff":
-          case "Switch":
-            return state === "ON";
+          case 'OnOff':
+          case 'Switch':
+            return state === 'ON';
 
           default:
             return null;
@@ -220,8 +221,8 @@
       },
       subscribe: function subscribe(addresses, filters) {
         // send first request to get all states once
-        var req = this.createAuthorizedRequest("items?fields=name,state,members,type&recursive=true");
-        req.addListener("success", function (e) {
+        var req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+        req.addListener('success', function (e) {
           var req = e.getTarget();
           var res = req.getResponse();
           var update = {};
@@ -242,7 +243,7 @@
                   active++;
                 }
 
-                if (!_this.__P_487_1.hasOwnProperty(obj.name)) {
+                if (!Object.prototype.hasOwnProperty.call(_this.__P_487_1, obj.name)) {
                   _this.__P_487_1[obj.name] = [entry.name];
                 } else {
                   _this.__P_487_1[obj.name].push(entry.name);
@@ -254,7 +255,7 @@
                 members: map,
                 active: active
               };
-              update["number:" + entry.name] = active;
+              update['number:' + entry.name] = active;
             }
 
             update[entry.name] = entry.state;
@@ -267,25 +268,25 @@
         this.running = true;
 
         if (!cv.report.Record.REPLAYING) {
-          this.eventSource = new EventSource(this._backendUrl + "events?topics=openhab/items/*/statechanged"); // add default listeners
+          this.eventSource = new EventSource(this._backendUrl + 'events?topics=openhab/items/*/statechanged'); // add default listeners
 
           this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
           this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
           //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
 
           this.eventSource.onerror = function () {
-            this.error("connection lost");
+            this.error('connection lost');
             this.setConnected(false);
           }.bind(this);
 
           this.eventSource.onopen = function () {
-            this.debug("connection established");
+            this.debug('connection established');
             this.setConnected(true);
           }.bind(this);
         }
       },
       terminate: function terminate() {
-        this.debug("terminating connection");
+        this.debug('terminating connection');
 
         if (this.eventSource) {
           this.eventSource.close();
@@ -294,21 +295,21 @@
       handleMessage: function handleMessage(payload) {
         var _this2 = this;
 
-        if (payload.type === "message") {
-          this.record("read", {
+        if (payload.type === 'message') {
+          this.record('read', {
             type: payload.type,
             data: payload.data
           });
           var data = JSON.parse(payload.data);
 
-          if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
+          if (data.type === 'ItemStateChangedEvent' || data.type === 'GroupItemStateChangedEvent') {
             //extract item name from topic
             var update = {};
-            var item = data.topic.split("/")[2];
+            var item = data.topic.split('/')[2];
             var change = JSON.parse(data.payload);
             update[item] = change.value; // check if this Item is part of any group
 
-            if (this.__P_487_1.hasOwnProperty(item)) {
+            if (Object.prototype.hasOwnProperty.call(this.__P_487_1, item)) {
               var groupNames = this.__P_487_1[item];
               groupNames.forEach(function (groupName) {
                 var group = _this2.__P_487_0[groupName];
@@ -322,7 +323,7 @@
                   }
                 });
                 group.active = active;
-                update["number:" + groupName] = active;
+                update['number:' + groupName] = active;
               });
             }
 
@@ -331,9 +332,9 @@
         }
       },
       write: function write(address, value) {
-        var req = this.createAuthorizedRequest("items/" + address, "POST");
-        req.setRequestHeader("Content-Type", "text/plain");
-        req.setRequestData("" + value);
+        var req = this.createAuthorizedRequest('items/' + address, 'POST');
+        req.setRequestHeader('Content-Type', 'text/plain');
+        req.setRequestData('' + value);
         req.send();
       },
       handleError: function handleError(error) {
@@ -342,14 +343,14 @@
       login: function login(loginOnly, credentials, callback, context) {
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_487_3 = "Basic " + btoa(credentials.username + ":" + (credentials.password || ""));
+          this.__P_487_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
         } // no login needed we just do a request to the if the backend is reachable
 
 
         var req = this.createAuthorizedRequest();
-        req.addListener("success", function (e) {
+        req.addListener('success', function (e) {
           var req = e.getTarget();
-          this.setServer(req.getResponseHeader("Server"));
+          this.setServer(req.getResponseHeader('Server'));
 
           if (callback) {
             callback.call(context);
@@ -362,22 +363,22 @@
         return this.__P_487_2;
       },
       restart: function restart(full) {
-        console.log("Not implemented");
+        this.error('Not implemented');
       },
       update: function update(json) {},
       // jshint ignore:line
       record: function record(type, data) {},
       showError: function showError(type, message, args) {},
       hasProvider: function hasProvider(name) {
-        return ["addresses", "rrd"].includes(name);
+        return ['addresses', 'rrd'].includes(name);
       },
       getProviderUrl: function getProviderUrl(name) {
         switch (name) {
-          case "addresses":
-            return this._backendUrl + "items?fields=name,type,label";
+          case 'addresses':
+            return this._backendUrl + 'items?fields=name,type,label';
 
-          case "rrd":
-            return this._backendUrl + "persistence/items";
+          case 'rrd':
+            return this._backendUrl + 'persistence/items';
 
           default:
             return null;
@@ -385,7 +386,7 @@
       },
       getProviderConvertFunction: function getProviderConvertFunction(name, format) {
         switch (name) {
-          case "addresses":
+          case 'addresses':
             return function (result) {
               var data;
 
@@ -398,33 +399,33 @@
                     kind: window.monaco.languages.CompletionItemKind.Value
                   };
                 });
-              } else {
-                data = {};
-                result.forEach(function (element) {
-                  var type = element.type ? element.type.split(":")[0] : "";
-
-                  if (!data.hasOwnProperty(type)) {
-                    data[type] = [];
-                  }
-
-                  var entry = {
-                    value: element.name,
-                    label: element.label || ''
-                  };
-
-                  if (type) {
-                    entry.hints = {
-                      transform: "OH:" + type.toLowerCase()
-                    };
-                  }
-
-                  data[type].push(entry);
-                });
-                return data;
               }
+
+              data = {};
+              result.forEach(function (element) {
+                var type = element.type ? element.type.split(':')[0] : '';
+
+                if (!Object.prototype.hasOwnProperty.call(data, type)) {
+                  data[type] = [];
+                }
+
+                var entry = {
+                  value: element.name,
+                  label: element.label || ''
+                };
+
+                if (type) {
+                  entry.hints = {
+                    transform: 'OH:' + type.toLowerCase()
+                  };
+                }
+
+                data[type].push(entry);
+              });
+              return data;
             };
 
-          case "rrd":
+          case 'rrd':
             return function (result) {
               if (format === 'monaco') {
                 return result.map(function (element) {
@@ -434,14 +435,14 @@
                     kind: window.monaco.languages.CompletionItemKind.EnumMember
                   };
                 });
-              } else {
-                return result.map(function (element) {
-                  return {
-                    value: element,
-                    label: element
-                  };
-                });
               }
+
+              return result.map(function (element) {
+                return {
+                  value: element,
+                  label: element
+                };
+              });
             };
 
           default:
@@ -453,4 +454,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1625667805136
+//# sourceMappingURL=Rest.js.map?dt=1641882235214

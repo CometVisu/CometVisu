@@ -63,12 +63,12 @@
     */
     properties: {
       sendValue: {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       },
       shortValue: {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       }
     },
 
@@ -113,4 +113,4 @@
   cv.ui.structure.pure.Trigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Trigger.js.map?dt=1625667771139
+//# sourceMappingURL=Trigger.js.map?dt=1641882203812

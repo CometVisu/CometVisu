@@ -302,11 +302,11 @@
         } // When the menu is not visible and not scheduled already
         // then schedule it for opening
         else if (this.__P_342_3 != menu) {
-            // menu.debug("Schedule open");
-            this.__P_342_3 = menu;
+          // menu.debug("Schedule open");
+          this.__P_342_3 = menu;
 
-            this.__P_342_1.restartWith(menu.getOpenInterval());
-          }
+          this.__P_342_1.restartWith(menu.getOpenInterval());
+        }
       },
 
       /**
@@ -328,11 +328,11 @@
         } // When the menu is visible and not scheduled already
         // then schedule it for closing
         else if (this.__P_342_4 != menu) {
-            // menu.debug("Schedule close");
-            this.__P_342_4 = menu;
+          // menu.debug("Schedule close");
+          this.__P_342_4 = menu;
 
-            this.__P_342_2.restartWith(menu.getCloseInterval());
-          }
+          this.__P_342_2.restartWith(menu.getCloseInterval());
+        }
       },
 
       /**
@@ -658,30 +658,30 @@
           parentMenu.setSelectedButton(menuOpener);
         } // Goto the previous toolbar button
         else if (menuOpener instanceof qx.ui.menubar.Button) {
-            var buttons = menuOpener.getMenuBar().getMenuButtons();
-            var index = buttons.indexOf(menuOpener); // This should not happen, definitely!
+          var buttons = menuOpener.getMenuBar().getMenuButtons();
+          var index = buttons.indexOf(menuOpener); // This should not happen, definitely!
 
-            if (index === -1) {
-              return;
-            } // Get previous button, fallback to end if first arrived
+          if (index === -1) {
+            return;
+          } // Get previous button, fallback to end if first arrived
 
 
-            var prevButton = null;
-            var length = buttons.length;
+          var prevButton = null;
+          var length = buttons.length;
 
-            for (var i = 1; i <= length; i++) {
-              var button = buttons[(index - i + length) % length];
+          for (var i = 1; i <= length; i++) {
+            var button = buttons[(index - i + length) % length];
 
-              if (button.isEnabled() && button.isVisible()) {
-                prevButton = button;
-                break;
-              }
-            }
-
-            if (prevButton && prevButton != menuOpener) {
-              prevButton.open(true);
+            if (button.isEnabled() && button.isVisible()) {
+              prevButton = button;
+              break;
             }
           }
+
+          if (prevButton && prevButton != menuOpener) {
+            prevButton.open(true);
+          }
+        }
       },
 
       /**
@@ -710,18 +710,18 @@
         } // No hover and no open item
         // When first button has a menu, open it, otherwise only hover it
         else if (!menu.getOpenedButton()) {
-            var first = this._getChild(menu, 0, 1);
+          var first = this._getChild(menu, 0, 1);
 
-            if (first) {
-              menu.setSelectedButton(first);
+          if (first) {
+            menu.setSelectedButton(first);
 
-              if (first.getMenu()) {
-                menu.setOpenedButton(first);
-              }
-
-              return;
+            if (first.getMenu()) {
+              menu.setOpenedButton(first);
             }
-          } // Jump to the next toolbar button
+
+            return;
+          }
+        } // Jump to the next toolbar button
 
 
         var menuOpener = menu.getOpener(); // Look up opener hierarchy for menu button
@@ -855,4 +855,4 @@
   qx.ui.menu.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1625667794480
+//# sourceMappingURL=Manager.js.map?dt=1641882225252

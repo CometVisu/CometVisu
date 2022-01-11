@@ -42,6 +42,12 @@
   /**
    * Helper function to allow widgets animate a displayed property with a
    * limited speed of change to look smoother for the user.
+   *
+   * This class can either animate a number (e.g. used as a ratio) or a class
+   * when it has these methods:
+   * * value1.delta(value2)       - return a number that is proportional to the difference
+   * * value1.blend(value2,ratio) - return a new value that is the ratio dependent blend
+   * * value.copy()               - return a copy of the value
    */
   qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
     extend: qx.core.Object,
@@ -56,17 +62,17 @@
      * Create a new animated display where an object will be smoothly transitioned
      * from its current position to a new target position.
      *
-     * @param displayRatioFn {Function} Callback function that does the displaying
+     * @param displayFn {Function} Callback function that does the displaying
      * @param context The context `this` of the callback function
-     * @param displayRatioFnParameters Optional additional parameter that will be passed to the callback function
+     * @param displayFnParameters Optional additional parameter that will be passed to the callback function
      */
-    construct: function construct(displayRatioFn) {
+    construct: function construct(displayFn) {
       var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window;
-      var displayRatioFnParameters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+      var displayFnParameters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
       qx.core.Object.constructor.call(this);
-      this.setDisplayRatioFn(displayRatioFn);
+      this.setDisplayFn(displayFn);
       this.__P_513_0 = context;
-      this.__P_513_1 = displayRatioFnParameters;
+      this.__P_513_1 = displayFnParameters;
     },
 
     /*
@@ -89,22 +95,22 @@
     properties: {
       linearRateLimit: {
         // in ratio/second
-        check: "Number",
+        check: 'Number',
         init: 2
       },
       expDampTimeConstant: {
         // time constant for exponential dampening
-        check: "Number",
+        check: 'Number',
         init: 0.01
       },
       epsilon: {
-        // a difference between current and target ratio smaller than the epsilon
+        // a difference between current and target value smaller than the epsilon
         // will be immediately closed
-        check: "Number",
+        check: 'Number',
         init: 0.001
       },
-      displayRatioFn: {
-        check: "Function"
+      displayFn: {
+        check: 'Function'
       }
     },
 
@@ -117,24 +123,48 @@
       __P_513_2: undefined,
       __P_513_0: undefined,
       __P_513_1: undefined,
-      __P_513_3: 0.0,
-      __P_513_4: 0.0,
+      __P_513_3: undefined,
+      __P_513_4: undefined,
+
+      /**
+       * Set animation speed by defining the (typical) maximal range.
+       * An animation of the full ``range`` will require about 0.5 to 1 second
+       * and have a linear as well as an exponential damped part at the end.
+       * The ``epsilon`` can also be stated explicitly or it will be derived
+       * from the ``range``.
+       * @param {Number} range (typical) maximal range for the animation
+       * @param {Number} [epsilon] end the animation when the remaining delta is smaller
+       */
+      setAnimationSpeed: function setAnimationSpeed(range, epsilon) {
+        if (epsilon !== undefined) {
+          this.setEpsilon(epsilon);
+        } else {
+          this.setEpsilon(range / 1000);
+        }
+
+        this.setLinearRateLimit(2 * range); // Note: as the exponential dampening is working on a ratio it doesn't
+        // need to be changed here and the default of 0.01 is fine:
+
+        this.setExpDampTimeConstant(0.01);
+      },
 
       /**
        * Set the value to a new value.
-       * @param {Number} targetRatio the new value.
+       * @param {Number} targetValue the new value.
        * @param {Boolean} instant skip animation when true
+       * @param {Boolean} show skip display update when false
        */
-      setTo: function setTo(targetRatio) {
+      setTo: function setTo(targetValue) {
         var instant = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var show = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
         var now = performance.now();
-        this.__P_513_4 = targetRatio;
+        this.__P_513_4 = targetValue;
 
-        if (instant) {
-          this.__P_513_3 = targetRatio;
+        if (instant || this.__P_513_3 === undefined) {
+          this.__P_513_3 = targetValue;
         }
 
-        if (this.__P_513_2 === undefined) {
+        if (this.__P_513_2 === undefined && show) {
           this.__P_513_5(now, now - 10);
         }
       },
@@ -148,25 +178,28 @@
       __P_513_5: function __P_513_5(thistime, lasttime) {
         var _this = this;
 
-        var dt = (thistime - lasttime) / 1000; // in seconds
+        var isNumber = typeof this.__P_513_3 === 'number';
+        var dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
 
         var maxLinearDelta = this.getLinearRateLimit() * dt;
-        var alpha = Math.exp(-dt / this.getExpDampTimeConstant());
-        var nextRatio = this.__P_513_4 * alpha + this.__P_513_3 * (1 - alpha);
-        var delta = nextRatio - this.__P_513_3;
+        var alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
+        var nextValue = isNumber ? this.__P_513_4 * alpha + this.__P_513_3 * (1 - alpha) : this.__P_513_3.blend(this.__P_513_4, alpha);
+        var delta = isNumber ? nextValue - this.__P_513_3 : this.__P_513_3.delta(nextValue);
+        var notFinished = true;
 
         if (Math.abs(delta) > maxLinearDelta) {
-          nextRatio = this.__P_513_3 + Math.sign(delta) * maxLinearDelta;
+          nextValue = isNumber ? this.__P_513_3 + Math.sign(delta) * maxLinearDelta : this.__P_513_3.blend(this.__P_513_4, alpha * maxLinearDelta / delta);
         }
 
-        if (Math.abs(nextRatio - this.__P_513_4) < this.getEpsilon()) {
-          nextRatio = this.__P_513_4;
+        if (isNumber && Math.abs(nextValue - this.__P_513_4) < this.getEpsilon() || !isNumber && nextValue.delta(this.__P_513_4) < this.getEpsilon()) {
+          nextValue = this.__P_513_4;
+          notFinished = false;
         }
 
-        this.__P_513_3 = nextRatio;
-        this.getDisplayRatioFn().call(this.__P_513_0, this.__P_513_3, this.__P_513_1);
+        this.__P_513_3 = isNumber ? nextValue : nextValue.copy();
+        this.getDisplayFn().call(this.__P_513_0, this.__P_513_3, this.__P_513_1);
 
-        if (this.__P_513_3 !== this.__P_513_4) {
+        if (notFinished) {
           this.__P_513_2 = window.requestAnimationFrame(function (time) {
             _this.__P_513_5(time, thistime);
           });
@@ -179,4 +212,4 @@
   cv.util.LimitedRateUpdateAnimator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1625667807776
+//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1641882237893

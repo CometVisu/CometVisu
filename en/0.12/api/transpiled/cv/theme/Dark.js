@@ -47,7 +47,7 @@
    * Basic theme for QX-UI relevant parts (should be seen as equilavent to designglobals.css, not design specific
    * but something like the common sense of all designs)
    */
-  qx.Theme.define("cv.theme.Dark", {
+  qx.Theme.define('cv.theme.Dark', {
     meta: {
       color: cv.theme.dark.Color,
       decoration: cv.theme.dark.Decoration,
@@ -59,4 +59,4 @@
   cv.theme.Dark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dark.js.map?dt=1625667771288
+//# sourceMappingURL=Dark.js.map?dt=1641882203944

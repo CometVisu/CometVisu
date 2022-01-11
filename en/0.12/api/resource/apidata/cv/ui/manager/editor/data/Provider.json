@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 539,
+        "line": 536,
         "column": 3
       }
     },
@@ -133,11 +133,11 @@
     "getDesigns": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 186,
           "column": 5
         }
       },
@@ -146,6 +146,20 @@
           {
             "name": "@description",
             "body": "<p>Returns the available design names as array of suggestions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
           }
         ],
         "@return": [
@@ -163,11 +177,11 @@
     "__getData": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 231,
           "column": 5
         }
       },
@@ -220,6 +234,12 @@
             "paramName": "converterContext",
             "description": " context fot the converter function",
             "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "cache",
+            "paramName": "cache",
+            "type": ""
           }
         ],
         "@return": [
@@ -243,7 +263,7 @@
     "__getFromUrl": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 233,
           "column": 4
         },
         "end": {
@@ -261,7 +281,7 @@
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 271,
           "column": 5
         }
       },
@@ -271,11 +291,11 @@
     "getRrds": {
       "location": {
         "start": {
-          "line": 274,
+          "line": 273,
           "column": 4
         },
         "end": {
-          "line": 284,
+          "line": 282,
           "column": 5
         }
       },
@@ -285,11 +305,11 @@
     "getInfluxDBs": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 284,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 287,
           "column": 5
         }
       },
@@ -299,11 +319,11 @@
     "__getInfluxArgs": {
       "location": {
         "start": {
-          "line": 291,
+          "line": 289,
           "column": 4
         },
         "end": {
-          "line": 309,
+          "line": 307,
           "column": 5
         }
       },
@@ -313,11 +333,11 @@
     "getInfluxDBFields": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 318,
+          "line": 316,
           "column": 5
         }
       },
@@ -327,11 +347,11 @@
     "__getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 318,
           "column": 4
         },
         "end": {
-          "line": 327,
+          "line": 325,
           "column": 5
         }
       },
@@ -341,11 +361,11 @@
     "getInfluxDBTags": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 345,
+          "line": 342,
           "column": 5
         }
       },
@@ -355,7 +375,21 @@
     "getInfluxDBValues": {
       "location": {
         "start": {
-          "line": 347,
+          "line": 344,
+          "column": 4
+        },
+        "end": {
+          "line": 365,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_parseDpResponseForMonaco": {
+      "location": {
+        "start": {
+          "line": 367,
           "column": 4
         },
         "end": {
@@ -364,9 +398,9 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "access": "protected"
     },
-    "_parseDpResponseForMonaco": {
+    "_parseDpResponseForEditor": {
       "location": {
         "start": {
           "line": 371,
@@ -380,28 +414,14 @@
       "type": "function",
       "access": "protected"
     },
-    "_parseDpResponseForEditor": {
+    "__parseDpResponse": {
       "location": {
         "start": {
           "line": 375,
           "column": 4
         },
         "end": {
-          "line": 377,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "__parseDpResponse": {
-      "location": {
-        "start": {
-          "line": 379,
-          "column": 4
-        },
-        "end": {
-          "line": 393,
+          "line": 389,
           "column": 5
         }
       },
@@ -411,11 +431,11 @@
     "getMediaFiles": {
       "location": {
         "start": {
-          "line": 395,
+          "line": 391,
           "column": 4
         },
         "end": {
-          "line": 409,
+          "line": 405,
           "column": 5
         }
       },
@@ -425,11 +445,11 @@
     "getTransforms": {
       "location": {
         "start": {
-          "line": 415,
+          "line": 413,
           "column": 4
         },
         "end": {
-          "line": 451,
+          "line": 448,
           "column": 5
         }
       },
@@ -438,6 +458,20 @@
           {
             "name": "@description",
             "body": "<p>Returns the list of available transformations as suggestion entry array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
           }
         ],
         "@return": [
@@ -455,11 +489,11 @@
     "getPlugins": {
       "location": {
         "start": {
-          "line": 457,
+          "line": 456,
           "column": 4
         },
         "end": {
-          "line": 491,
+          "line": 489,
           "column": 5
         }
       },
@@ -468,6 +502,20 @@
           {
             "name": "@description",
             "body": "<p>Returns the plugin names (all defined parts staring with 'plugin-')</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
           }
         ],
         "@return": [
@@ -485,11 +533,11 @@
     "getIcons": {
       "location": {
         "start": {
-          "line": 493,
+          "line": 491,
           "column": 4
         },
         "end": {
-          "line": 528,
+          "line": 525,
           "column": 5
         }
       },
@@ -1472,7 +1520,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -3709,11 +3757,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 536,
+        "line": 533,
         "column": 12
       },
       "end": {
-        "line": 538,
+        "line": 535,
         "column": 3
       }
     },

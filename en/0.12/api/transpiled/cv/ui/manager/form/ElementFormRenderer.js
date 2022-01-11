@@ -39,12 +39,12 @@
         }
 
         for (var i = 0; i < items.length; i++) {
-          var item = items[i],
-              widget = void 0,
-              label = void 0;
+          var item = items[i];
+          var widget = void 0;
+          var label = void 0;
 
           if (item instanceof qx.ui.form.RadioGroup) {
-            if (item.getUserData("orientation") === "horizontal") {
+            if (item.getUserData('orientation') === 'horizontal') {
               widget = this._createHBoxForRadioGroup(item);
             } else {
               widget = this._createWidgetForRadioGroup(item);
@@ -53,7 +53,7 @@
             widget = item;
           }
 
-          if (names[i] && item.getUserData("excluded")) {
+          if (names[i] && item.getUserData('excluded')) {
             label = new qx.ui.basic.Label(names[i]);
             label.setRich(true);
 
@@ -85,10 +85,10 @@
 
           this._row++;
 
-          if (item.getUserData("help")) {
-            label = new qx.ui.basic.Label(item.getUserData("help"));
+          if (item.getUserData('help')) {
+            label = new qx.ui.basic.Label(item.getUserData('help'));
             label.setRich(true);
-            label.setAppearance("helptext");
+            label.setAppearance('helptext');
 
             this._add(label, {
               row: this._row,
@@ -116,4 +116,4 @@
   cv.ui.manager.form.ElementFormRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementFormRenderer.js.map?dt=1625667768539
+//# sourceMappingURL=ElementFormRenderer.js.map?dt=1641882201285

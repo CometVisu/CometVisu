@@ -47,10 +47,10 @@
        * Updates the visibility of the icon
        */
       _handleIcon: function _handleIcon() {
-        if (!this.getChildControl('icon').getName() || this.getShow() === "label") {
-          this._excludeChildControl("icon");
+        if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
+          this._excludeChildControl('icon');
         } else {
-          this._showChildControl("icon");
+          this._showChildControl('icon');
         }
       },
       // overridden
@@ -74,4 +74,4 @@
   cv.ui.manager.core.IconAtom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconAtom.js.map?dt=1625667767167
+//# sourceMappingURL=IconAtom.js.map?dt=1641882199987

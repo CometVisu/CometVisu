@@ -115,14 +115,14 @@
         this._draw();
       }, this);
 
-      this.__P_34_0 = [];
-      this.__P_34_1 = new qx.data.Array();
+      this.__P_33_0 = [];
+      this.__P_33_1 = new qx.data.Array();
 
-      this.__P_34_1.addListener('changeLength', function (ev) {
+      this.__P_33_1.addListener('changeLength', function (ev) {
         if (ev.getData() === 0) {
           _this.setPreviewState('synced');
         } else {
-          var structureChanges = _this.__P_34_1.some(function (element) {
+          var structureChanges = _this.__P_33_1.some(function (element) {
             return element.hasChildrenModified();
           });
 
@@ -132,8 +132,8 @@
 
       this.initUnDos(new qx.data.Array());
       this.initReDos(new qx.data.Array());
-      this.__P_34_2 = {};
-      qx.core.Init.getApplication().getRoot().addListener("keyup", this._onElementKeyUp, this);
+      this.__P_33_2 = {};
+      qx.core.Init.getApplication().getRoot().addListener('keyup', this._onElementKeyUp, this);
       this.addListener('resize', this._maintainPreviewVisibility, this);
     },
 
@@ -233,13 +233,13 @@
     */
     members: {
       _schema: null,
-      __P_34_0: null,
-      __P_34_1: null,
+      __P_33_0: null,
+      __P_33_1: null,
       _workerWrapper: null,
-      __P_34_3: false,
-      __P_34_2: null,
-      __P_34_4: null,
-      __P_34_5: 0,
+      __P_33_3: false,
+      __P_33_2: null,
+      __P_33_4: null,
+      __P_33_5: 0,
       isPreviewSynced: function isPreviewSynced() {
         return this.getPreviewState() === 'synced';
       },
@@ -266,12 +266,19 @@
           }
         }
 
-        if (value && this.getFile()) {
+        var file = this.getFile();
+
+        if (value && file) {
           var preview = this.getChildControl('preview');
 
-          if (!preview.getFile()) {
-            var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-            preview.setFile(previewConfig);
+          if (file.isWriteable()) {
+            if (!preview.getFile()) {
+              var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+              preview.setFile(previewConfig);
+            }
+          } else {
+            // this file is not writable, we can use the real one for preview
+            preview.setFile(file);
           }
 
           this._updatePreview();
@@ -281,14 +288,14 @@
         if (this.canHandleAction(actionName)) {
           switch (actionName) {
             case 'undo':
-              if (!this.__P_34_3) {
+              if (!this.__P_33_3) {
                 this.undo();
               }
 
               break;
 
             case 'redo':
-              if (!this.__P_34_3) {
+              if (!this.__P_33_3) {
                 this.redo();
               }
 
@@ -310,7 +317,7 @@
               break;
 
             case 'help':
-              if (!this.__P_34_3) {
+              if (!this.__P_33_3) {
                 this._showHelp();
               }
 
@@ -327,12 +334,12 @@
 
         switch (actionId) {
           case 'undo':
-            this.__P_34_2[actionId] = this.getUnDos().addListener('changeLength', function () {
+            this.__P_33_2[actionId] = this.getUnDos().addListener('changeLength', function () {
               var length = _this2.getUnDos().length;
 
               if (length > 0) {
                 button.setEnabled(true);
-                button.setToolTipText(_this2.tr("Undo: %1", _this2.getUnDos().getItem(length - 1).getTitle()));
+                button.setToolTipText(_this2.tr('Undo: %1', _this2.getUnDos().getItem(length - 1).getTitle()));
               } else {
                 button.setEnabled(false);
                 button.resetToolTipText();
@@ -342,12 +349,12 @@
             break;
 
           case 'redo':
-            this.__P_34_2[actionId] = this.getReDos().addListener('changeLength', function () {
+            this.__P_33_2[actionId] = this.getReDos().addListener('changeLength', function () {
               var length = _this2.getReDos().length;
 
               if (length > 0) {
                 button.setEnabled(true);
-                button.setToolTipText(_this2.tr("Undo: %1", _this2.getReDos().getItem(length - 1).getTitle()));
+                button.setToolTipText(_this2.tr('Undo: %1', _this2.getReDos().getItem(length - 1).getTitle()));
               } else {
                 button.setEnabled(false);
                 button.resetToolTipText();
@@ -384,18 +391,18 @@
       unConfigureButton: function unConfigureButton(actionId, button) {
         switch (actionId) {
           case 'undo':
-            if (this.__P_34_2[actionId]) {
-              this.getUnDos().removeListenerById(this.__P_34_2[actionId]);
-              delete this.__P_34_2[actionId];
+            if (this.__P_33_2[actionId]) {
+              this.getUnDos().removeListenerById(this.__P_33_2[actionId]);
+              delete this.__P_33_2[actionId];
             }
 
             button.setEnabled(false);
             break;
 
           case 'redo':
-            if (this.__P_34_2[actionId]) {
-              this.getReDos().removeListenerById(this.__P_34_2[actionId]);
-              delete this.__P_34_2[actionId];
+            if (this.__P_33_2[actionId]) {
+              this.getReDos().removeListenerById(this.__P_33_2[actionId]);
+              delete this.__P_33_2[actionId];
             }
 
             button.setEnabled(false);
@@ -422,7 +429,7 @@
           if (elementChange.undo()) {
             this.getReDos().push(elementChange);
           } else {
-            this.error("could not undo " + elementChange.getTitle());
+            this.error('could not undo ' + elementChange.getTitle());
             unDos.push(elementChange);
           }
         }
@@ -436,7 +443,7 @@
           if (elementChange.redo()) {
             this.getUnDos().push(elementChange);
           } else {
-            this.error("could not redo " + elementChange.getTitle());
+            this.error('could not redo ' + elementChange.getTitle());
             reDos.push(elementChange);
           }
         }
@@ -459,9 +466,9 @@
           } else {
             navigator.clipboard.writeText('');
           }
-        } catch (e) {// clipboard api is only available in secure environment, copying to clipboards only use case
-          // here is that it can be pasted in the source editor. And because that also only works when the clipboard
-          // api is available we fail silently here.
+        } catch (e) {
+          // clipboard api is only available in secure environment, otherwise we have to do it ourself
+          cv.ui.manager.editor.AbstractEditor.CLIPBOARD = value ? value.getNode().outerHTML : '';
         }
       },
       _initWorker: function _initWorker() {
@@ -529,55 +536,57 @@
             break;
 
           case 'preview-sync-hint':
-            var ok = this.tr("Preview shows the current state of the edited configuration.");
-            var noSync = this.tr("Preview is out of sync. Click here to refresh.");
-            var notOk = this.tr("Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.");
-            control = new qx.ui.basic.Atom(ok, cv.theme.dark.Images.getIcon('valid', 16));
-            control.setRich(true);
-            control.getChildControl('label').setWrap(true);
-            control.addListener("tap", function () {
-              if (!_this3.isPreviewSynced() && _this3.isShowPreview()) {
-                _this3._updatePreview();
-              }
-            }, this);
-            this.getChildControl('right').addAt(control, 0);
-            this.addListener('previewStateChanged', function (ev) {
-              switch (ev.getData()) {
-                case 'synced':
-                  control.set({
-                    label: ok,
-                    icon: cv.theme.dark.Images.getIcon('valid', 16)
-                  });
-                  control.getChildControl("icon").removeState('error');
-                  control.getChildControl("icon").removeState('warning');
-                  break;
+            {
+              var ok = this.tr('Preview shows the current state of the edited configuration.');
+              var noSync = this.tr('Preview is out of sync. Click here to refresh.');
+              var notOk = this.tr('Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.');
+              control = new qx.ui.basic.Atom(ok, cv.theme.dark.Images.getIcon('valid', 16));
+              control.setRich(true);
+              control.getChildControl('label').setWrap(true);
+              control.addListener('tap', function () {
+                if (!_this3.isPreviewSynced() && _this3.isShowPreview()) {
+                  _this3._updatePreview();
+                }
+              }, this);
+              this.getChildControl('right').addAt(control, 0);
+              this.addListener('previewStateChanged', function (ev) {
+                switch (ev.getData()) {
+                  case 'synced':
+                    control.set({
+                      label: ok,
+                      icon: cv.theme.dark.Images.getIcon('valid', 16)
+                    });
+                    control.getChildControl('icon').removeState('error');
+                    control.getChildControl('icon').removeState('warning');
+                    break;
 
-                case 'changed':
-                  control.set({
-                    label: noSync,
-                    icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
-                  });
-                  control.getChildControl("icon").removeState('error');
-                  control.getChildControl("icon").addState('warning');
-                  break;
+                  case 'changed':
+                    control.set({
+                      label: noSync,
+                      icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
+                    });
+                    control.getChildControl('icon').removeState('error');
+                    control.getChildControl('icon').addState('warning');
+                    break;
 
-                case 'structureChanged':
-                  control.set({
-                    label: notOk,
-                    icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
-                  });
-                  control.getChildControl("icon").addState('error');
-                  control.getChildControl("icon").removeState('warning');
-                  break;
-              }
-            }, this);
-            break;
+                  case 'structureChanged':
+                    control.set({
+                      label: notOk,
+                      icon: cv.theme.dark.Images.getIcon('out-of-sync', 16)
+                    });
+                    control.getChildControl('icon').addState('error');
+                    control.getChildControl('icon').removeState('warning');
+                    break;
+                }
+              }, this);
+              break;
+            }
 
           case 'edit-button':
             control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('edit', 24));
             control.setEnabled(false);
             control.addListener('execute', this._onEdit, this);
-            this.bind("file.writeable", control, 'icon', {
+            this.bind('file.writeable', control, 'icon', {
               converter: function converter(value) {
                 return value ? cv.theme.dark.Images.getIcon('edit', 16) : cv.theme.dark.Images.getIcon('view', 16);
               }
@@ -593,7 +602,7 @@
             break;
 
           case 'toggle-expert':
-            control = new qx.ui.toolbar.CheckBox(this.tr("Expertview"), cv.theme.dark.Images.getIcon('expert', 16));
+            control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'), cv.theme.dark.Images.getIcon('expert', 16));
             control.addListener('execute', function () {
               this.toggleExpert();
             }, this);
@@ -602,7 +611,7 @@
 
           case 'refresh-preview':
             control = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 16));
-            control.setToolTipText(this.tr("Reload preview"));
+            control.setToolTipText(this.tr('Reload preview'));
             control.addListener('execute', this._updatePreview, this);
             this.bind('showPreview', control, 'visibility', {
               converter: function converter(value) {
@@ -639,11 +648,11 @@
             control = new qx.ui.form.TextField();
             control.set({
               liveUpdate: true,
-              placeholder: this.tr("Search..."),
+              placeholder: this.tr('Search...'),
               margin: 8
             });
-            control.addListener("changeValue", qx.util.Function.debounce(this._onSearch, 250), this);
-            control.addListener("keyup", function (ev) {
+            control.addListener('changeValue', qx.util.Function.debounce(this._onSearch, 250), this);
+            control.addListener('keyup', function (ev) {
               switch (ev.getKeyIdentifier()) {
                 case 'Enter':
                 case 'Down':
@@ -670,10 +679,10 @@
               selectionMode: 'single',
               width: 350,
               openMode: 'none',
-              itemHeight: qx.core.Environment.get("device.touch") ? 40 : 20
+              itemHeight: qx.core.Environment.get('device.touch') ? 40 : 20
             });
-            this.bind("file.writeable", control, "droppable");
-            this.bind("file.writeable", control, "draggable");
+            this.bind('file.writeable', control, 'droppable');
+            this.bind('file.writeable', control, 'draggable');
 
             this._initDragDrop(control);
 
@@ -681,7 +690,7 @@
               createItem: function () {
                 var item = new cv.ui.manager.tree.VirtualElementItem();
 
-                if (!qx.core.Environment.get("device.touch")) {
+                if (!qx.core.Environment.get('device.touch')) {
                   item.addListener('contextmenu', this._onContextMenu, this);
                 } else {
                   item.addListener('action', this._onContextMenuAction, this);
@@ -692,20 +701,20 @@
               }.bind(this),
               // Bind properties from the item to the tree-widget and vice versa
               bindItem: function bindItem(controller, item, index) {
-                controller.bindProperty("", "model", null, item, index);
-                controller.bindProperty("displayName", "label", null, item, index);
-                controller.bindProperty("name", "name", null, item, index);
-                controller.bindPropertyReverse("open", "open", null, item, index);
-                controller.bindProperty("open", "open", null, item, index);
-                controller.bindProperty("showEditButton", "editable", null, item, index);
-                controller.bindProperty("sortable", "sortable", null, item, index);
-                controller.bindProperty("icon", "icon", null, item, index);
-                controller.bindProperty("status", 'status', null, item, index);
-                controller.bindProperty("invalidMessage", "toolTipText", null, item, index);
-                controller.bindProperty("dragging", "dragging", null, item, index);
+                controller.bindProperty('', 'model', null, item, index);
+                controller.bindProperty('displayName', 'label', null, item, index);
+                controller.bindProperty('name', 'name', null, item, index);
+                controller.bindPropertyReverse('open', 'open', null, item, index);
+                controller.bindProperty('open', 'open', null, item, index);
+                controller.bindProperty('showEditButton', 'editable', null, item, index);
+                controller.bindProperty('sortable', 'sortable', null, item, index);
+                controller.bindProperty('icon', 'icon', null, item, index);
+                controller.bindProperty('status', 'status', null, item, index);
+                controller.bindProperty('invalidMessage', 'toolTipText', null, item, index);
+                controller.bindProperty('dragging', 'dragging', null, item, index);
               }
             });
-            control.getSelection().addListener("change", this._onChangeTreeSelection, this);
+            control.getSelection().addListener('change', this._onChangeTreeSelection, this);
             this.getChildControl('left').add(control, {
               top: 72,
               left: 0,
@@ -722,26 +731,26 @@
             this.addListener('changeDragging', function (ev) {
               control.setLayoutProperties({
                 bottom: 16,
-                left: ev.getData() ? -1000 : "50%"
+                left: ev.getData() ? -1000 : '50%'
               });
             }, this);
-            control.setAppearance("round-button");
-            control.addListener("pointerover", function () {
-              return control.addState("hovered");
+            control.setAppearance('round-button');
+            control.addListener('pointerover', function () {
+              return control.addState('hovered');
             });
-            control.addListener("pointerout", function () {
-              return control.removeState("hovered");
+            control.addListener('pointerout', function () {
+              return control.removeState('hovered');
             });
-            control.addListener("tap", function () {
+            control.addListener('tap', function () {
               if (_this3.getSelected()) {
                 _this3._onCreate(_this3.getSelected(), 'inside');
               } else {
-                qxl.dialog.Dialog.alert(_this3.tr("Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element."));
+                qxl.dialog.Dialog.alert(_this3.tr('Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element.'));
               }
             }, this);
-            this.getChildControl("left").add(control, {
+            this.getChildControl('left').add(control, {
               bottom: 16,
-              left: "50%"
+              left: '50%'
             });
             break;
 
@@ -750,8 +759,8 @@
             control = new qx.ui.core.Widget();
             control.setDecorator(new qx.ui.decoration.Decorator().set({
               widthTop: 1,
-              styleTop: "solid",
-              colorTop: "white"
+              styleTop: 'solid',
+              colorTop: 'white'
             }));
             control.setHeight(0);
             control.setOpacity(0.5);
@@ -810,12 +819,12 @@
 
             case 'create':
               // add a new child
-              this._onCreate(data.element, "inside");
+              this._onCreate(data.element, 'inside');
 
               break;
 
             default:
-              this.error("unhandled context menu action", data.action);
+              this.error('unhandled context menu action', data.action);
               break;
           }
         }
@@ -839,10 +848,10 @@
           var result = rootNode.querySelector(selector);
 
           if (result) {
-            _this4.__P_34_4 = [result];
-            _this4.__P_34_5 = 0;
+            _this4.__P_33_4 = [result];
+            _this4.__P_33_5 = 0;
 
-            _this4.__P_34_6();
+            _this4.__P_33_6();
 
             if (edit) {
               _this4._onEdit();
@@ -856,37 +865,37 @@
       },
       _onSearch: function _onSearch(ev) {
         var value = ev.getData();
-        this.__P_34_4 = [];
-        this.__P_34_5 = 0;
+        this.__P_33_4 = [];
+        this.__P_33_5 = 0;
 
         if (value.length > 2) {
           var tree = this.getChildControl('tree');
           var rootNode = tree.getModel().getNode();
-          this.__P_34_4 = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
-            return el.tagName.startsWith(value) || el.hasAttribute("name") && el.getAttribute("name").startsWith(value);
+          this.__P_33_4 = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
+            return el.tagName.startsWith(value) || el.hasAttribute('name') && el.getAttribute('name').startsWith(value);
           });
 
-          this.__P_34_6();
+          this.__P_33_6();
         }
       },
       _showNextResult: function _showNextResult() {
-        if (this.__P_34_4 && this.__P_34_4.length > this.__P_34_5 + 1) {
-          this.__P_34_5++;
+        if (this.__P_33_4 && this.__P_33_4.length > this.__P_33_5 + 1) {
+          this.__P_33_5++;
 
-          this.__P_34_6();
+          this.__P_33_6();
         }
       },
       _showPreviousResult: function _showPreviousResult() {
-        if (this.__P_34_4 && this.__P_34_5 > 0) {
-          this.__P_34_5--;
+        if (this.__P_33_4 && this.__P_33_5 > 0) {
+          this.__P_33_5--;
 
-          this.__P_34_6();
+          this.__P_33_6();
         }
       },
-      __P_34_6: function __P_34_6() {
-        if (this.__P_34_4.length > this.__P_34_5) {
+      __P_33_6: function __P_33_6() {
+        if (this.__P_33_4.length > this.__P_33_5) {
           // find and open the first result and save the rest for traversal (with keyboard arrows
-          var firstMatch = this.__P_34_4[this.__P_34_5];
+          var firstMatch = this.__P_33_4[this.__P_33_5];
           var tree = this.getChildControl('tree');
 
           if (firstMatch.$$widget) {
@@ -925,7 +934,7 @@
       },
       _initDragDrop: function _initDragDrop(control) {
         var draggedXmlElement;
-        control.addListener("dragstart", function (ev) {
+        control.addListener('dragstart', function (ev) {
           var dragTarget = ev.getDragTarget();
           var element;
 
@@ -939,23 +948,23 @@
               return;
             }
 
-            ev.addAction("copy");
+            ev.addAction('copy');
 
             if (element.isDeletable()) {
-              ev.addAction("move");
+              ev.addAction('move');
             }
 
-            ev.addType("cv/tree-element");
-            ev.addData("cv/tree-element", element);
+            ev.addType('cv/tree-element');
+            ev.addData('cv/tree-element', element);
             draggedXmlElement = element;
           }
 
           this.setDragging(true);
         }, this);
-        var addButton = this.getChildControl("add-button");
-        addButton.addListener("dragstart", function (ev) {
-          ev.addAction("copy");
-          ev.addType("cv/new-tree-element");
+        var addButton = this.getChildControl('add-button');
+        addButton.addListener('dragstart', function (ev) {
+          ev.addAction('copy');
+          ev.addType('cv/new-tree-element');
           this.setDragging(true);
         }, this);
         var Allowed = cv.ui.manager.editor.Tree.Allowed;
@@ -963,36 +972,36 @@
           mode: 0,
           target: null
         };
-        control.addListener("dragover", function (ev) {
+        control.addListener('dragover', function (ev) {
           var _this5 = this;
 
           // add ist a custom action that cannot be detected, so we only check if its supported
           var action = ev.getCurrentAction();
           var element;
 
-          if (ev.supportsType("cv/tree-element")) {
-            element = ev.getData("cv/tree-element");
+          if (ev.supportsType('cv/tree-element')) {
+            element = ev.getData('cv/tree-element');
           }
 
-          var addNew = action === "copy" && !element && ev.supportsType("cv/new-tree-element");
+          var addNew = action === 'copy' && !element && ev.supportsType('cv/new-tree-element');
           var target = ev.getTarget();
 
           if (target === indicator) {
             // no change when we are dragging over the indicator
-            this.debug("dragging over indicator");
+            this.debug('dragging over indicator');
             return;
           }
 
           if (action !== 'copy' && target && target instanceof cv.ui.manager.tree.VirtualElementItem) {
             if (target.getModel() === element) {
               // cannot drop on myself
-              this.debug("dropping on same element forbidden");
+              this.debug('dropping on same element forbidden');
               accepted.mode = Allowed.NONE;
               ev.preventDefault();
               return;
             } else if (element && element.isAncestor(target.getModel())) {
               // cannot move into myself
-              this.debug("moving inside own subtree forbidden");
+              this.debug('moving inside own subtree forbidden');
               accepted.mode = Allowed.NONE;
               ev.preventDefault();
               return;
@@ -1019,14 +1028,14 @@
             if (!target || target === control) {
               accepted.mode = Allowed.NONE;
               ev.preventDefault();
-              this.debug("drop target not found");
+              this.debug('drop target not found');
               return;
             }
           }
 
           if (!addNew && !element) {
             // not for us
-            this.debug("drop not allowed here, no drag element");
+            this.debug('drop not allowed here, no drag element');
             accepted.mode = Allowed.NONE;
             ev.preventDefault();
             return;
@@ -1056,12 +1065,14 @@
                     var acc = Allowed.NONE;
                     var allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                     addable.some(function (elementName) {
-                      acc |= _this5.__P_34_7(allowedSorting, elementName, model.getName());
+                      acc |= _this5.__P_33_7(allowedSorting, elementName, model.getName());
 
                       if (acc & Allowed.BEFORE && acc & Allowed.AFTER) {
                         // we cannot find more
                         return true;
                       }
+
+                      return false;
                     });
                     accepted.mode = acc;
                   }
@@ -1070,21 +1081,19 @@
                 ev.preventDefault(); // not children allowed here
 
                 accepted.mode = Allowed.NONE;
-                this.debug("no children allowed here");
+                this.debug('no children allowed here');
               }
+            } else if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
+              // not allowed on this level
+              accepted.mode = Allowed.NONE;
+              this.debug('not allowed as child element of', parent.getName());
+            } else if (parentSchemaElement.areChildrenSortable()) {
+              // children can be put anywhere
+              // so this is allowed anywhere
+              accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
-              if (!parentSchemaElement.isChildElementAllowed(element.getName())) {
-                // not allowed on this level
-                accepted.mode = Allowed.NONE;
-                this.debug("not allowed as child element of", parent.getName());
-              } else if (parentSchemaElement.areChildrenSortable()) {
-                // children can be put anywhere
-                // so this is allowed anywhere
-                accepted.mode = Allowed.BEFORE | Allowed.AFTER;
-              } else {
-                // check position
-                accepted.mode = this.__P_34_7(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
-              }
+              // check position
+              accepted.mode = this.__P_33_7(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
             }
           } else {
             accepted.mode = Allowed.NONE;
@@ -1144,12 +1153,12 @@
 
           if (accepted.mode === Allowed.NONE) {
             ev.preventDefault();
-            this.debug("dropping not accepted here");
+            this.debug('dropping not accepted here');
           }
         }, this);
-        var indicator = this.getChildControl("drag-indicator");
+        var indicator = this.getChildControl('drag-indicator');
         var expandTimer;
-        control.addListener("dragleave", function (ev) {
+        control.addListener('dragleave', function (ev) {
           if (expandTimer) {
             expandTimer.stop();
             expandTimer = null;
@@ -1161,7 +1170,7 @@
         var onDrag = function onDrag(ev) {
           var left = -1000;
           var top = -1000;
-          var position = "";
+          var position = '';
           var cursor = ev.getManager().getCursor();
 
           if (!cursor) {
@@ -1211,7 +1220,7 @@
 
                   left = _spacer.getWidth() + lastTreeItem.getPaddingLeft();
                   top = lastCoords.bottom;
-                  position = "after";
+                  position = 'after';
                 }
 
                 skipDetection = true;
@@ -1235,11 +1244,11 @@
                 if (accepted.mode & Allowed.BEFORE) {
                   left = leftPos;
                   top = origCoords.top;
-                  position = "before";
+                  position = 'before';
                 } else if (accepted.mode & Allowed.INSIDE) {
                   left = -1000;
                   top = -1000;
-                  position = "inside";
+                  position = 'inside';
                 }
               } else if (origCoords.bottom - ev.getDocumentTop() <= 5) {
                 // below
@@ -1247,21 +1256,22 @@
                   if (accepted.mode & Allowed.AFTER) {
                     left = leftPos;
                     top = origCoords.bottom;
-                    position = "after";
+                    position = 'after';
                   } else if (accepted.mode & Allowed.INSIDE) {
                     left = -1000;
                     top = -1000;
-                    position = "inside";
+                    position = 'inside';
                   }
                 } else {
                   // when an element is opened this position is not after this element. but before its first child
+                  // eslint-disable-next-line no-lonely-if
                   if (accepted.mode & Allowed.FIRST_CHILD) {
                     left = leftPos + 19;
                     indicator.setWidth(indicator.getWidth() - 19);
                     top = origCoords.bottom;
-                    position = "first-child";
+                    position = 'first-child';
                   } else {
-                    this.debug("not allowed as first child");
+                    this.debug('not allowed as first child');
                   }
                 }
 
@@ -1271,22 +1281,23 @@
                 }
               } else {
                 // inside
+                // eslint-disable-next-line no-lonely-if
                 if (accepted.target && accepted.target.isOpen()) {
                   // treat dropping on an opened node as "first-child" position
                   if (accepted.mode & Allowed.FIRST_CHILD) {
-                    if (indicator.getUserData("position") !== "first-child") {
+                    if (indicator.getUserData('position') !== 'first-child') {
                       left = leftPos + 19;
                       indicator.setWidth(indicator.getWidth() - 19);
                     }
 
                     top = origCoords.bottom;
-                    position = "first-child";
+                    position = 'first-child';
                   }
                 } else {
                   indicator.setDomPosition(-1000, -1000);
 
                   if (accepted.mode & Allowed.INSIDE) {
-                    position = "inside";
+                    position = 'inside';
                   }
 
                   if (!expandTimer) {
@@ -1302,35 +1313,37 @@
           }
 
           indicator.setDomPosition(left, top);
-          indicator.setUserData("position", position);
+          indicator.setUserData('position', position);
 
           if (!position && cursor.getAction()) {
-            indicator.setUserData("action", ev.getCurrentAction());
-            cursor.resetAction();
-            console.assert(left < 0);
+            indicator.setUserData('action', ev.getCurrentAction());
+            cursor.resetAction(); // eslint-disable-next-line no-console
+
+            console.assert(left < 0); // eslint-disable-next-line no-console
+
             console.assert(top < 0);
-          } else if (position && !cursor.getAction() && cursor.getAction() !== indicator.getUserData("action")) {
-            cursor.setAction(indicator.getUserData("action"));
-            indicator.setUserData("action", null);
+          } else if (position && !cursor.getAction() && cursor.getAction() !== indicator.getUserData('action')) {
+            cursor.setAction(indicator.getUserData('action'));
+            indicator.setUserData('action', null);
           }
         };
 
-        control.addListener("drag", onDrag, this);
-        addButton.addListener("drag", onDrag, this);
+        control.addListener('drag', onDrag, this);
+        addButton.addListener('drag', onDrag, this);
 
         var onDrop = function (ev) {
           var action = ev.getCurrentAction();
-          var element = ev.supportsType("cv/tree-element") ? ev.getData("cv/tree-element") : null;
+          var element = ev.supportsType('cv/tree-element') ? ev.getData('cv/tree-element') : null;
 
-          if (action === "copy") {
+          if (action === 'copy') {
             if (element) {
               element = element.clone();
             } else {
-              action = "add";
+              action = 'add';
             }
           }
 
-          var elementName = element ? element.getDisplayName() : "new";
+          var elementName = element ? element.getDisplayName() : 'new';
           var target = accepted.target;
 
           if (action === 'move' && element === target) {
@@ -1338,10 +1351,10 @@
             return;
           }
 
-          switch (indicator.getUserData("position")) {
+          switch (indicator.getUserData('position')) {
             case 'after':
               if (accepted.mode & Allowed.AFTER) {
-                this.debug(action, elementName, "after", target.getDisplayName());
+                this.debug(action, elementName, 'after', target.getDisplayName());
 
                 switch (action) {
                   case 'move':
@@ -1359,19 +1372,19 @@
                     break;
 
                   case 'add':
-                    this._onCreate(target, indicator.getUserData("position"));
+                    this._onCreate(target, indicator.getUserData('position'));
 
                     break;
                 }
               } else {
-                this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
+                this.debug('NOT ALLOWED', action, elementName, 'after', target.getDisplayName());
               }
 
               break;
 
             case 'before':
               if (accepted.mode & Allowed.BEFORE) {
-                this.debug(action, elementName, "before", target.getDisplayName());
+                this.debug(action, elementName, 'before', target.getDisplayName());
 
                 switch (action) {
                   case 'move':
@@ -1389,19 +1402,19 @@
                     break;
 
                   case 'add':
-                    this._onCreate(target, indicator.getUserData("position"));
+                    this._onCreate(target, indicator.getUserData('position'));
 
                     break;
                 }
               } else {
-                this.debug("NOT ALLOWED", action, elementName, "after", target.getDisplayName());
+                this.debug('NOT ALLOWED', action, elementName, 'after', target.getDisplayName());
               }
 
               break;
 
             case 'first-child':
               if (accepted.mode & Allowed.FIRST_CHILD) {
-                this.debug(action, elementName, "into", target.getDisplayName(), "as first child");
+                this.debug(action, elementName, 'into', target.getDisplayName(), 'as first child');
 
                 switch (action) {
                   case 'move':
@@ -1419,19 +1432,19 @@
                     break;
 
                   case 'add':
-                    this._onCreate(target, indicator.getUserData("position"));
+                    this._onCreate(target, indicator.getUserData('position'));
 
                     break;
                 }
               } else {
-                this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName() + " as first child");
+                this.debug('NOT ALLOWED', elementName, 'into', target.getDisplayName() + ' as first child');
               }
 
               break;
 
             case 'inside':
               if (accepted.mode & Allowed.INSIDE) {
-                this.debug(action, elementName, "into", target.getDisplayName(), "as child");
+                this.debug(action, elementName, 'into', target.getDisplayName(), 'as child');
 
                 switch (action) {
                   case 'move':
@@ -1449,20 +1462,20 @@
                     break;
 
                   case 'add':
-                    this._onCreate(target, indicator.getUserData("position"));
+                    this._onCreate(target, indicator.getUserData('position'));
 
                     break;
                 }
               } else {
-                this.debug("NOT ALLOWED", elementName, "into", target.getDisplayName(), "as child");
+                this.debug('NOT ALLOWED', elementName, 'into', target.getDisplayName(), 'as child');
               }
 
               break;
           }
         }.bind(this);
 
-        control.addListener("drop", onDrop, this);
-        indicator.addListener("drop", onDrop, this);
+        control.addListener('drop', onDrop, this);
+        indicator.addListener('drop', onDrop, this);
 
         var onDragEnd = function onDragEnd(ev) {
           // Move indicator away
@@ -1494,8 +1507,8 @@
           this.setDragging(false);
         };
 
-        control.addListener("dragend", onDragEnd, this);
-        addButton.addListener("dragend", onDragEnd, this);
+        control.addListener('dragend', onDragEnd, this);
+        addButton.addListener('dragend', onDragEnd, this);
       },
 
       /**
@@ -1579,13 +1592,13 @@
             }
 
             addable = addable.filter(function (name) {
-              return sorting.hasOwnProperty(name) && sorting[name] <= maxPosition && sorting[name] >= minPosition;
+              return Object.prototype.hasOwnProperty.call(sorting, name) && sorting[name] <= maxPosition && sorting[name] >= minPosition;
             });
           }
         }
 
         if (addable.length > 0) {
-          this.__P_34_3 = true;
+          this.__P_33_3 = true;
           var typeChooserForm;
 
           if (addable.length > 1) {
@@ -1593,12 +1606,12 @@
             typeChooserForm = new cv.ui.manager.form.ElementForm({
               allowCancel: true,
               context: this,
-              message: this.tr("<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>"),
+              message: this.tr('<p style=\'font-weight:bold\'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>'),
               formData: {
                 type: {
-                  type: "SelectBox",
-                  label: this.tr("Choose element"),
-                  help: this.tr("Please choose the element you want to add here."),
+                  type: 'SelectBox',
+                  label: this.tr('Choose element'),
+                  help: this.tr('Please choose the element you want to add here.'),
                   options: addable.sort(function (a, b) {
                     if (a.startsWith('#') && !b.startsWith('#')) {
                       return 1;
@@ -1635,15 +1648,15 @@
 
               switch (type) {
                 case '#comment':
-                  element = _document.createComment("");
+                  element = _document.createComment('');
                   break;
 
                 case '#text':
-                  element = _document.createTextNode("");
+                  element = _document.createTextNode('');
                   break;
 
                 case '#cdata-section':
-                  element = _document.createCDATASection("");
+                  element = _document.createCDATASection('');
                   break;
 
                 default:
@@ -1674,7 +1687,7 @@
                 });
 
                 if (schemaElement.isTextContentRequired()) {
-                  var child = _document.createTextNode("-");
+                  var child = _document.createTextNode('-');
 
                   element.appendChild(child);
                 }
@@ -1726,12 +1739,12 @@
           });
         }
       },
-      __P_34_7: function __P_34_7(allowedSorting, elementName, targetName, depth) {
+      __P_33_7: function __P_33_7(allowedSorting, elementName, targetName, depth) {
         if (allowedSorting) {
           var currentPosition = allowedSorting[elementName];
 
-          if (typeof currentPosition === "string") {
-            currentPosition = currentPosition.split(".").map(function (i) {
+          if (typeof currentPosition === 'string') {
+            currentPosition = currentPosition.split('.').map(function (i) {
               return /^\d+$/.test(i) ? parseInt(i) : i;
             });
           } else {
@@ -1740,8 +1753,8 @@
 
           var targetPosition = allowedSorting[targetName];
 
-          if (typeof targetPosition === "string") {
-            targetPosition = targetPosition.split(".").map(function (i) {
+          if (typeof targetPosition === 'string') {
+            targetPosition = targetPosition.split('.').map(function (i) {
               return /^\d+$/.test(i) ? parseInt(i) : i;
             });
           } else {
@@ -1760,11 +1773,11 @@
               return cv.ui.manager.editor.Tree.Allowed.BEFORE;
             }
           }
-
-          return cv.ui.manager.editor.Tree.Allowed.NONE;
         }
+
+        return cv.ui.manager.editor.Tree.Allowed.NONE;
       },
-      __P_34_8: function __P_34_8(id, formData, element) {
+      __P_33_8: function __P_33_8(id, formData, element) {
         var _this7 = this;
 
         var provider = cv.ui.manager.editor.data.Provider.get(id);
@@ -1775,19 +1788,19 @@
           } else if (provider.data) {
             formData.options = provider.data;
           } else {
-            this.error("misconfigured provider found for " + id);
+            this.error('misconfigured provider found for ' + id);
           }
 
-          formData.type = provider.userInputAllowed ? "VirtualComboBox" : "VirtualSelectBox";
-        } else if (["mapping", "styling"].includes(id.split("@").pop())) {
-          var type = id.split("@").pop(); // these are directly filled from data inside the currently used config
+          formData.type = provider.userInputAllowed ? 'VirtualComboBox' : 'VirtualSelectBox';
+        } else if (['mapping', 'styling'].includes(id.split('@').pop())) {
+          var type = id.split('@').pop(); // these are directly filled from data inside the currently used config
 
           var tree = this.getChildControl('tree');
           var rootNode = tree.getModel().getNode();
-          formData.type = "SelectBox";
+          formData.type = 'SelectBox';
           formData.options = [];
-          rootNode.querySelectorAll("meta > " + type + "s > " + type).forEach(function (element) {
-            var name = element.getAttribute("name");
+          rootNode.querySelectorAll('meta > ' + type + 's > ' + type).forEach(function (element) {
+            var name = element.getAttribute('name');
             formData.options.push({
               label: name,
               value: name
@@ -1804,27 +1817,27 @@
               formData.options.then(function (res) {
                 if (Array.isArray(res)) {
                   res.unshift({
-                    label: " - " + _this7.tr("not set") + " - ",
-                    value: ""
+                    label: ' - ' + _this7.tr('not set') + ' - ',
+                    value: ''
                   });
                 }
               })["catch"](function () {}); // ignore error here, will be handled somewhere else
             } else {
               formData.options.unshift({
-                label: " - " + this.tr("not set") + " - ",
-                value: ""
+                label: ' - ' + this.tr('not set') + ' - ',
+                value: ''
               });
             }
           }
         }
       },
-      __P_34_9: function __P_34_9(element, attribute) {
+      __P_33_9: function __P_33_9(element, attribute) {
         var docs = attribute.getDocumentation();
         var def = {
-          type: "TextField",
+          type: 'TextField',
           label: attribute.getName(),
-          placeholder: " - " + this.tr("not set") + " - ",
-          help: docs.join("<br/>"),
+          placeholder: ' - ' + this.tr('not set') + ' - ',
+          help: docs.join('<br/>'),
           enabled: element.isEditable(),
           value: element.getAttribute(attribute.getName()) || attribute.getDefaultValue(),
           validation: {
@@ -1835,7 +1848,7 @@
               }
 
               if (!attribute.isValueValid(value)) {
-                throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
               }
             }
           }
@@ -1843,38 +1856,40 @@
 
         switch (attribute.getTypeString()) {
           case 'boolean':
-            def.type = "CheckBox";
+            def.type = 'CheckBox';
             def.value = def.value === '' || def.value === null || def.value === undefined ? null : def.value === 'true';
             delete def.placeholder;
             break;
 
           case 'string':
-            var enums = attribute.getEnumeration();
+            {
+              var enums = attribute.getEnumeration();
 
-            if (enums.length > 0) {
-              def.type = "SelectBox";
-              delete def.placeholder;
-              def.options = [];
-              enums.forEach(function (name) {
-                def.options.push({
-                  label: name,
-                  value: name
+              if (enums.length > 0) {
+                def.type = 'SelectBox';
+                delete def.placeholder;
+                def.options = [];
+                enums.forEach(function (name) {
+                  def.options.push({
+                    label: name,
+                    value: name
+                  });
                 });
-              });
 
-              if (attribute.isOptional()) {
-                // allow empty value
-                def.options.unshift({
-                  label: " - " + this.tr("not set") + " - ",
-                  value: ""
-                });
+                if (attribute.isOptional()) {
+                  // allow empty value
+                  def.options.unshift({
+                    label: ' - ' + this.tr('not set') + ' - ',
+                    value: ''
+                  });
+                }
+              } else {
+                // check if we have a dataprovider for this
+                this.__P_33_8(element.getName() + '@' + attribute.getName(), def, element.getNode());
               }
-            } else {
-              // check if we have a dataprovider for this
-              this.__P_34_8(element.getName() + "@" + attribute.getName(), def, element.getNode());
-            }
 
-            break;
+              break;
+            }
         }
 
         return def;
@@ -1883,21 +1898,22 @@
         var _this8 = this;
 
         if (!this.getFile() || !this.getFile().isWriteable()) {
-          return;
+          return null;
         }
 
-        var title, caption;
+        var title;
+        var caption;
 
         if (!element) {
           if (this.getSelected()) {
             element = this.getSelected();
           } else {
-            return;
+            return null;
           }
         }
 
         if (!element.getShowEditButton()) {
-          return;
+          return null;
         }
 
         element.load();
@@ -1905,11 +1921,11 @@
         var typeElement = element.getSchemaElement();
 
         if (isNew) {
-          title = this.tr("Create new %1 element", element.getName());
-          caption = this.tr("Please edit the attributes of the new %1 element, that will be added to the chosen position.", element.getName());
+          title = this.tr('Create new %1 element', element.getName());
+          caption = this.tr('Please edit the attributes of the new %1 element, that will be added to the chosen position.', element.getName());
         } else {
-          title = this.tr("Edit element attributes");
-          caption = element.isEditable() ? this.tr("Edit %1", element.getName()) : this.tr("Show %1", element.getName());
+          title = this.tr('Edit element attributes');
+          caption = element.isEditable() ? this.tr('Edit %1', element.getName()) : this.tr('Show %1', element.getName());
         }
 
         if (element.getNode().nodeType === Node.ELEMENT_NODE) {
@@ -1926,7 +1942,7 @@
               }
             }
 
-            formData[name] = _this8.__P_34_9(element, attribute);
+            formData[name] = _this8.__P_33_9(element, attribute);
           });
 
           if (typeElement.isChildElementAllowed('*')) {
@@ -1934,15 +1950,15 @@
             var attrName = element.getNode().nodeName === 'custom' ? '#innerHTML' : '#outerHTML';
 
             if (isNew) {
-              title = this.tr("Create new %1 element", element.getName());
-              caption = this.tr("Please edit the content of the new %1 element, that will be added to the chosen position.", element.getName());
+              title = this.tr('Create new %1 element', element.getName());
+              caption = this.tr('Please edit the content of the new %1 element, that will be added to the chosen position.', element.getName());
             } else {
-              title = attrName === '#outerHTML' ? this.tr("Edit element and content") : this.tr("Edit element content");
+              title = attrName === '#outerHTML' ? this.tr('Edit element and content') : this.tr('Edit element content');
             }
 
             formData[attrName] = {
-              type: "TextArea",
-              label: "",
+              type: 'TextArea',
+              label: '',
               lines: 5,
               autoSize: true,
               width: Math.min(qx.bom.Viewport.getWidth(), 500),
@@ -1951,10 +1967,10 @@
               validation: {
                 validator: function validator(value) {
                   if (value) {
-                    var dom = parser.parseFromString(value, "text/xml");
+                    var dom = parser.parseFromString(value, 'text/xml');
 
                     if (dom.getElementsByTagName('parsererror').length > 0) {
-                      throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                      throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
                     }
                   }
                 }
@@ -1962,19 +1978,19 @@
             };
           }
         } else if (element.getNode().nodeType === Node.TEXT_NODE || element.getNode().nodeType === Node.COMMENT_NODE || element.getNode().nodeType === Node.CDATA_SECTION_NODE) {
-          title = this.tr("Edit text content", element.getName());
-          caption = "";
+          title = this.tr('Edit text content', element.getName());
+          caption = '';
           var nodeName = element.getNode().nodeName; // only in text-only mode we can add text editing to the form
 
           var docs = typeElement.getDocumentation();
           formData[nodeName] = {
-            type: "TextArea",
-            label: "",
+            type: 'TextArea',
+            label: '',
             lines: 1,
             autoSize: true,
             width: Math.min(qx.bom.Viewport.getWidth(), 500),
-            placeholder: this.tr("not set"),
-            help: docs.join("<br/>"),
+            placeholder: this.tr('not set'),
+            help: docs.join('<br/>'),
             enabled: element.isEditable(),
             value: element.getTextContent(),
             validation: {
@@ -1984,14 +2000,14 @@
                 }
 
                 if (!typeElement.isValueValid(value)) {
-                  throw new qx.core.ValidationError(qx.locale.Manager.tr("This is not a valid value."));
+                  throw new qx.core.ValidationError(qx.locale.Manager.tr('This is not a valid value.'));
                 }
               }
             }
           };
 
           if (element.isTextNode() && element.getParent().getName() === 'status') {
-            var type = element.getParent().getAttribute("type");
+            var type = element.getParent().getAttribute('type');
 
             if ((type === 'html' || type === 'xml') && element.getNode().nodeType === Node.TEXT_NODE) {
               element.convertTextNodeType(Node.CDATA_SECTION_NODE);
@@ -2011,10 +2027,10 @@
 
           }
 
-          this.__P_34_8(element.getParent().getName() + "@" + element.getName(), formData[nodeName], element.getNode());
+          this.__P_33_8(element.getParent().getName() + '@' + element.getName(), formData[nodeName], element.getNode());
         }
 
-        this.__P_34_3 = true;
+        this.__P_33_3 = true;
         var formDialog = new cv.ui.manager.form.ElementForm({
           allowCancel: true,
           context: this,
@@ -2031,12 +2047,12 @@
 
             _this8.clearReDos();
 
-            if (!data.hasOwnProperty('#outerHTML') && !data.hasOwnProperty('#innerHTML')) {
+            if (!Object.prototype.hasOwnProperty.call(data, '#outerHTML') && !Object.prototype.hasOwnProperty.call(data, '#innerHTML')) {
               element.validate();
             }
           }
 
-          _this8.__P_34_3 = false;
+          _this8.__P_33_3 = false;
           formDialog.destroy();
           return data;
         });
@@ -2051,10 +2067,12 @@
           this.clearReDos();
           return element;
         }
+
+        return null;
       },
       _onCut: function _onCut() {
-        if (this.__P_34_3) {
-          document.execCommand("cut");
+        if (this.__P_33_3) {
+          document.execCommand('cut');
         } else {
           var element = this._onDelete();
 
@@ -2064,8 +2082,8 @@
         }
       },
       _onCopy: function _onCopy() {
-        if (this.__P_34_3) {
-          document.execCommand("copy");
+        if (this.__P_33_3) {
+          document.execCommand('copy');
         } else {
           var element = this.getSelected();
 
@@ -2093,40 +2111,38 @@
        * @param element {cv.ui.manager.model.XmlElement}
        */
       updateModified: function updateModified(element) {
-        var index = this.__P_34_0.indexOf(element);
+        var index = this.__P_33_0.indexOf(element);
 
-        var previewIndex = this.__P_34_1.indexOf(element);
+        var previewIndex = this.__P_33_1.indexOf(element);
 
         if (element.$$removed) {
           // we dont care about elements that have been removed (its the parent that has changed then by loosing a child)
           if (index >= 0) {
-            this.__P_34_0.splice(index, 1);
+            this.__P_33_0.splice(index, 1);
           }
 
           if (previewIndex >= 0) {
-            this.__P_34_1.splice(index, 1);
+            this.__P_33_1.splice(index, 1);
+          }
+        } else if (element.isModified()) {
+          if (index === -1) {
+            this.__P_33_0.push(element);
+          }
+
+          if (previewIndex === -1) {
+            this.__P_33_1.push(element);
           }
         } else {
-          if (element.isModified()) {
-            if (index === -1) {
-              this.__P_34_0.push(element);
-            }
+          if (index >= 0) {
+            this.__P_33_0.splice(index, 1);
+          }
 
-            if (previewIndex === -1) {
-              this.__P_34_1.push(element);
-            }
-          } else {
-            if (index >= 0) {
-              this.__P_34_0.splice(index, 1);
-            }
-
-            if (previewIndex >= 0) {
-              this.__P_34_1.splice(index, 1);
-            }
+          if (previewIndex >= 0) {
+            this.__P_33_1.splice(index, 1);
           }
         }
 
-        this.getFile().setModified(this.__P_34_0.length > 0);
+        this.getFile().setModified(this.__P_33_0.length > 0);
 
         this._onContentChanged();
       },
@@ -2200,14 +2216,14 @@
 
             while (node && node.nodeName !== 'pages') {
               if (node.nodeName === 'page') {
-                path.unshift(node.getAttribute("name"));
+                path.unshift(node.getAttribute('name'));
               }
 
               node = node.parentNode;
             }
 
             if (path.length > 0) {
-              preview.openPage(path.pop(), path.join("/"));
+              preview.openPage(path.pop(), path.join('/'));
             }
 
             preview.setHighlightWidget(selected.getWidgetPath());
@@ -2218,8 +2234,8 @@
       },
       _onElementKeyUp: function _onElementKeyUp(ev) {
         if (this.getSelected() && this.isVisible()) {
-          if (ev.getKeyIdentifier() === "Enter") {
-            if (!this.__P_34_3) {
+          if (ev.getKeyIdentifier() === 'Enter') {
+            if (!this.__P_33_3) {
               this._onEdit();
             }
           }
@@ -2243,30 +2259,32 @@
 
             this._workerWrapper.validateXmlConfig(value).then(function (res) {
               if (res === true) {
-                _this9.info(file.getPath() + " is a valid config file");
+                _this9.info(file.getPath() + ' is a valid config file');
 
-                _this9.__P_34_10(value);
+                _this9.__P_33_10(value);
               } else {
                 var dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
                 dialog.addListener('action', function (ev) {
                   switch (ev.getData()) {
                     case 'proceed':
-                      _this9.__P_34_10(value, res);
+                      _this9.__P_33_10(value, res);
 
                       break;
 
                     case 'open-source':
-                      var _file = _this9.getFile();
+                      {
+                        var _file = _this9.getFile();
 
-                      cv.ui.manager.Main.getInstance().closeFile(_file);
-                      qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
-                        file: _file.getFullPath(),
-                        handler: "cv.ui.manager.editor.Source",
-                        handlerOptions: {
-                          jumpToError: true
-                        }
-                      });
-                      break;
+                        cv.ui.manager.Main.getInstance().closeFile(_file);
+                        qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                          file: _file.getFullPath(),
+                          handler: 'cv.ui.manager.editor.Source',
+                          handlerOptions: {
+                            jumpToError: true
+                          }
+                        });
+                        break;
+                      }
 
                     case 'cancel':
                       // close this editor
@@ -2289,7 +2307,7 @@
           }
         }
       },
-      __P_34_10: function __P_34_10(value, errors) {
+      __P_33_10: function __P_33_10(value, errors) {
         var _this10 = this;
 
         var tree = this.getChildControl('tree');
@@ -2314,9 +2332,13 @@
           if (this.isShowPreview()) {
             var preview = this.getChildControl('preview');
 
-            if (!preview.getFile()) {
-              var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-              preview.setFile(previewConfig);
+            if (file.isWriteable()) {
+              if (!preview.getFile()) {
+                var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
+                preview.setFile(previewConfig);
+              }
+            } else {
+              preview.setFile(file);
             }
 
             this._updatePreview(null, value);
@@ -2334,7 +2356,7 @@
             errors.forEach(function (error) {
               if (error.path && error.path.startsWith('/pages')) {
                 var current = rootNode;
-                var parts = error.path.substr(1).split("/");
+                var parts = error.path.substr(1).split('/');
 
                 while (parts.length > 0) {
                   var part = parts.shift();
@@ -2348,7 +2370,7 @@
                         // this can always lead to a loading error, because the element is invalid
                         current.load();
                       } catch (e) {
-                        _this10.error("Error loading " + current.getName() + ": " + e.toString());
+                        _this10.error('Error loading ' + current.getName() + ': ' + e.toString());
 
                         current = null;
                         break;
@@ -2357,7 +2379,7 @@
                       break;
                     }
                   } else {
-                    _this10.error("patch segment format error: " + part);
+                    _this10.error('patch segment format error: ' + part);
 
                     current = null;
                     break;
@@ -2411,7 +2433,7 @@
               source: _this11
             });
 
-            _this11.__P_34_1.removeAll();
+            _this11.__P_33_1.removeAll();
 
             _this11.resetPreviewState();
           }, this);
@@ -2425,13 +2447,13 @@
 
           if (fast) {
             return new XMLSerializer().serializeToString(rootNode.ownerDocument);
-          } else {
-            // prettify content
-            return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + this._prettify(rootNode, 0);
-          }
-        } else {
-          return null;
+          } // prettify content
+
+
+          return '<?xml version="1.0" encoding="UTF-8"?>\n' + this._prettify(rootNode, 0);
         }
+
+        return null;
       },
       _prettify: function _prettify(node, level, singleton) {
         var tabs = Array(level + 1).fill('').join('\t');
@@ -2440,9 +2462,9 @@
         if (node.nodeType === Node.TEXT_NODE) {
           if (node.textContent.trim()) {
             return (singleton ? '' : tabs) + qx.xml.String.escape(node.textContent.trim()) + (singleton ? '' : newLine);
-          } else {
-            return '';
           }
+
+          return '';
         }
 
         if (node.nodeType === Node.COMMENT_NODE) {
@@ -2463,10 +2485,9 @@
 
         if (node.childNodes.length === 0) {
           return output + ' />' + newLine;
-        } else {
-          output += '>';
         }
 
+        output += '>';
         var onlyOneTextChild = node.childNodes.length === 1 && node.childNodes[0].nodeType === 3;
 
         if (!onlyOneTextChild) {
@@ -2482,11 +2503,11 @@
       _onSaved: function _onSaved() {
         cv.ui.manager.editor.Tree.prototype._onSaved.base.call(this);
 
-        this.__P_34_0.forEach(function (elem) {
+        this.__P_33_0.forEach(function (elem) {
           return elem.onSaved();
         });
 
-        this.__P_34_0 = [];
+        this.__P_33_0 = [];
         this.clearUnDosReDos();
       },
       isSupported: function isSupported(file) {
@@ -2495,44 +2516,44 @@
       _showHelp: function _showHelp() {
         var focusedWidget = qx.ui.core.FocusHandler.getInstance().getFocusedWidget();
         var dialogConf = {
-          caption: this.tr("Help"),
+          caption: this.tr('Help'),
           modal: true,
-          image: "qxl.dialog.icon.info",
+          image: 'qxl.dialog.icon.info',
           minWidth: Math.min(600, qx.bom.Viewport.getWidth()),
           maxHeight: qx.bom.Viewport.getHeight(),
-          message: ""
+          message: ''
         };
 
         if (focusedWidget === this.getChildControl('searchbar')) {
-          dialogConf.message = this.tr("<h3>Search for elements</h3>\
+          dialogConf.message = this.tr('<h3>Search for elements</h3>\
 <p>You can search for element names (tag names or content of name attribute) by typing a search value here. \
 All elements whose tag name or name-attribute start with the search term will be found</p>\
 <p>Search will start automatically when the search term is at least 2 characters long.</p>\
 <p>The first found element will be opened and selected in the element tree. You can jump to the next \
-found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element \
-with the 'Up' key.</p>");
+found element with \'Enter\' or the \'Down\' key. Accordingly you can jump the the previous found element \
+with the \'Up\' key.</p>');
         } else {
           // show general help
-          dialogConf.message = this.tr("<h3>CometVisu XML-Editor - a brief introduction</h3>\
+          dialogConf.message = this.tr('<h3>CometVisu XML-Editor - a brief introduction</h3>\
 <p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. \
 You can traverse through the tree by opening/closing elements with a click on the expand icon.</p>\
 <p>The Xml-Editor will make sure that you do not create an invalid configuration file. \
 If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p>\
 <h4>Editing attributes</h4>\
-<p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar \
-above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p>\
+<p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the \'edit\'-button in the toolbar \
+above the tree of by right-clicking on the element and the \'edit\'-button in the context menu</p>\
 <h4>Editing elements</h4>\
 <p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. \
 You can add new elements by starting a drag in the round + button on the bottom of the tree, or \
-by right clicking on an element and choosing the 'add child'-button.</p>\
+by right clicking on an element and choosing the \'add child\'-button.</p>\
 <p>You can delete elements by the delete buttons in the toolbar</p>\
 <h4>Expert view</h4>\
 <p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually \
-are not needed that often. You can access these attributes by toggling to the 'Expertview'-button \
+are not needed that often. You can access these attributes by toggling to the \'Expertview\'-button \
 in the toolbar directly above the tree.</p>\
 <h4>Config preview</h4>\
 <p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically \
-refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>");
+refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>');
         }
 
         new cv.ui.manager.dialog.BigAlert(dialogConf).show();
@@ -2548,12 +2569,12 @@ refresh after you have changed something. You can refresh is manually by clickin
       this._schema = null;
       this._workerWrapper = null;
 
-      this._disposeArray("__P_34_0", "__P_34_1");
+      this._disposeArray("__P_33_0", "__P_33_1");
 
-      qx.core.Init.getApplication().getRoot().removeListener("keyup", this._onElementKeyUp, this);
+      qx.core.Init.getApplication().getRoot().removeListener('keyup', this._onElementKeyUp, this);
     }
   });
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1625667768020
+//# sourceMappingURL=Tree.js.map?dt=1641882200738

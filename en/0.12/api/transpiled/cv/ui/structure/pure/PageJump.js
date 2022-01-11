@@ -80,19 +80,19 @@
     */
     properties: {
       target: {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       },
       activeScope: {
         check: ['target', 'path'],
         init: 'target'
       },
       name: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       targetPath: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -130,24 +130,24 @@
           }
         }, this); // now set the active ancestors
 
-        var parentPage = cv.util.Tree.getParentWidget(page, "page"); // set for all parent pages apart from the root page
+        var parentPage = cv.util.Tree.getParentWidget(page, 'page'); // set for all parent pages apart from the root page
 
         var pageJumps = document.querySelectorAll('.pagejump');
 
         var markPageJumps = function markPageJumps(parentName, elem) {
           var data = model.getWidgetDataByElement(elem);
 
-          if (parentName === data.target || data.activeScope === "path" && (typeof data.path === 'string' && data.path.match(parentName + "$") || typeof data.targetPath === 'string' && data.targetPath.match(parentName + "$"))) {
+          if (parentName === data.target || data.activeScope === 'path' && (typeof data.path === 'string' && data.path.match(parentName + '$') || typeof data.targetPath === 'string' && data.targetPath.match(parentName + '$'))) {
             elem.classList.add('active_ancestor');
           }
         };
 
-        while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
+        while (parentPage && cv.util.Tree.getParentWidget(parentPage, 'page')) {
           pageJumps.forEach(function (elem) {
             markPageJumps(parentPage.getName(), elem);
           }); // recursively find pagejumps for parent pages
 
-          parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
+          parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
         }
       }
     },
@@ -187,11 +187,11 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("pagejump", statics);
-      qx.event.message.Bus.subscribe("path.pageChanged", statics._onScrollToPage, statics);
+      cv.ui.structure.WidgetFactory.registerClass('pagejump', statics);
+      qx.event.message.Bus.subscribe('path.pageChanged', statics._onScrollToPage, statics);
     }
   });
   cv.ui.structure.pure.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1625667770763
+//# sourceMappingURL=PageJump.js.map?dt=1641882203481

@@ -40,7 +40,7 @@
    * @since 0.8.0 (2012)
    */
   qx.Class.define('cv.parser.widgets.Unknown', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -52,17 +52,17 @@
         return cv.data.Model.getInstance().setWidgetData(path, {
           'path': path,
           'unknownType': xml.nodeName.toLowerCase(),
-          '$$type': "unknown",
+          '$$type': 'unknown',
           'pageType': pageType
         });
       }
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("unknown", statics);
+      cv.parser.WidgetParser.addHandler('unknown', statics);
     }
   });
   cv.parser.widgets.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1625667764818
+//# sourceMappingURL=Unknown.js.map?dt=1641882197773

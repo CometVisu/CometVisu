@@ -28,7 +28,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Mixin.define("cv.ui.common.HasStyling", {
+  qx.Mixin.define('cv.ui.common.HasStyling', {
     /*
     ******************************************************
       PROPERTIES
@@ -36,7 +36,7 @@
     */
     properties: {
       styling: {
-        check: "String",
+        check: 'String',
         init: null,
         nullable: true
       }
@@ -60,7 +60,7 @@
           });
 
           if (e) {
-            e.classList.remove.apply(e.classList, sty.classnames.split(" ")); // remove only styling classes
+            e.classList.remove.apply(e.classList, sty.classnames.split(' ')); // remove only styling classes
 
             if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
               this._findValue(sty.defaultValue, true, e, sty);
@@ -77,29 +77,29 @@
           // fixed value
           element.classList.add.apply(element.classList, styling[value].split(' '));
           return true;
-        } else {
-          var range = styling.range;
+        }
 
-          if (findExact && range[value]) {
-            element.classList.add.apply(element.classList, range[value][1].split(' '));
-            return true;
+        var range = styling.range;
+
+        if (findExact && range[value]) {
+          element.classList.add.apply(element.classList, range[value][1].split(' '));
+          return true;
+        }
+
+        var valueFloat = parseFloat(value);
+
+        for (var min in range) {
+          if (min > valueFloat) {
+            continue;
           }
 
-          var valueFloat = parseFloat(value);
-
-          for (var min in range) {
-            if (min > valueFloat) {
-              continue;
-            }
-
-            if (range[min][0] < valueFloat) {
-              continue;
-            } // check max
+          if (range[min][0] < valueFloat) {
+            continue;
+          } // check max
 
 
-            element.classList.add.apply(element.classList, range[min][1].split(' '));
-            return true;
-          }
+          element.classList.add.apply(element.classList, range[min][1].split(' '));
+          return true;
         }
 
         return false;
@@ -109,4 +109,4 @@
   cv.ui.common.HasStyling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasStyling.js.map?dt=1625667808592
+//# sourceMappingURL=HasStyling.js.map?dt=1641882238972

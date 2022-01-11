@@ -17,7 +17,7 @@
         "column": 0
       },
       "end": {
-        "line": 1134,
+        "line": 1150,
         "column": 3
       }
     },
@@ -454,7 +454,7 @@
           "column": 4
         },
         "end": {
-          "line": 428,
+          "line": 430,
           "column": 5
         }
       },
@@ -507,11 +507,11 @@
     "replace": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 440,
           "column": 4
         },
         "end": {
-          "line": 448,
+          "line": 450,
           "column": 5
         }
       },
@@ -541,11 +541,11 @@
     "sort": {
       "location": {
         "start": {
-          "line": 459,
+          "line": 461,
           "column": 4
         },
         "end": {
-          "line": 486,
+          "line": 488,
           "column": 5
         }
       },
@@ -572,11 +572,11 @@
     "unshift": {
       "location": {
         "start": {
-          "line": 496,
+          "line": 498,
           "column": 4
         },
         "end": {
-          "line": 523,
+          "line": 525,
           "column": 5
         }
       },
@@ -611,11 +611,11 @@
     "toArray": {
       "location": {
         "start": {
-          "line": 534,
+          "line": 536,
           "column": 4
         },
         "end": {
-          "line": 536,
+          "line": 538,
           "column": 5
         }
       },
@@ -645,11 +645,11 @@
     "getItem": {
       "location": {
         "start": {
-          "line": 547,
+          "line": 549,
           "column": 4
         },
         "end": {
-          "line": 549,
+          "line": 551,
           "column": 5
         }
       },
@@ -688,11 +688,11 @@
     "setItem": {
       "location": {
         "start": {
-          "line": 561,
+          "line": 563,
           "column": 4
         },
         "end": {
-          "line": 593,
+          "line": 595,
           "column": 5
         }
       },
@@ -730,11 +730,11 @@
     "getLength": {
       "location": {
         "start": {
-          "line": 602,
+          "line": 604,
           "column": 4
         },
         "end": {
-          "line": 604,
+          "line": 606,
           "column": 5
         }
       },
@@ -764,11 +764,11 @@
     "indexOf": {
       "location": {
         "start": {
-          "line": 614,
+          "line": 616,
           "column": 4
         },
         "end": {
-          "line": 616,
+          "line": 618,
           "column": 5
         }
       },
@@ -803,11 +803,11 @@
     "lastIndexOf": {
       "location": {
         "start": {
-          "line": 625,
+          "line": 627,
           "column": 4
         },
         "end": {
-          "line": 627,
+          "line": 629,
           "column": 5
         }
       },
@@ -842,11 +842,11 @@
     "contains": {
       "location": {
         "start": {
-          "line": 655,
+          "line": 657,
           "column": 4
         },
         "end": {
-          "line": 657,
+          "line": 659,
           "column": 5
         }
       },
@@ -891,11 +891,11 @@
     "includes": {
       "location": {
         "start": {
-          "line": 665,
+          "line": 667,
           "column": 4
         },
         "end": {
-          "line": 667,
+          "line": 669,
           "column": 5
         }
       },
@@ -930,11 +930,11 @@
     "copy": {
       "location": {
         "start": {
-          "line": 675,
+          "line": 677,
           "column": 4
         },
         "end": {
-          "line": 677,
+          "line": 679,
           "column": 5
         }
       },
@@ -960,11 +960,11 @@
     "insertAt": {
       "location": {
         "start": {
-          "line": 686,
+          "line": 688,
           "column": 4
         },
         "end": {
-          "line": 689,
+          "line": 691,
           "column": 5
         }
       },
@@ -998,11 +998,11 @@
     "insertBefore": {
       "location": {
         "start": {
-          "line": 698,
+          "line": 700,
           "column": 4
         },
         "end": {
-          "line": 707,
+          "line": 709,
           "column": 5
         }
       },
@@ -1036,11 +1036,11 @@
     "insertAfter": {
       "location": {
         "start": {
-          "line": 716,
+          "line": 718,
           "column": 4
         },
         "end": {
-          "line": 725,
+          "line": 727,
           "column": 5
         }
       },
@@ -1074,11 +1074,11 @@
     "removeAt": {
       "location": {
         "start": {
-          "line": 734,
+          "line": 736,
           "column": 4
         },
         "end": {
-          "line": 739,
+          "line": 741,
           "column": 5
         }
       },
@@ -1113,11 +1113,11 @@
     "removeAll": {
       "location": {
         "start": {
-          "line": 747,
+          "line": 749,
           "column": 4
         },
         "end": {
-          "line": 785,
+          "line": 787,
           "column": 5
         }
       },
@@ -1143,11 +1143,11 @@
     "append": {
       "location": {
         "start": {
-          "line": 795,
+          "line": 797,
           "column": 4
         },
         "end": {
-          "line": 839,
+          "line": 841,
           "column": 5
         }
       },
@@ -1185,11 +1185,11 @@
     "exclude": {
       "location": {
         "start": {
-          "line": 847,
+          "line": 849,
           "column": 4
         },
         "end": {
-          "line": 853,
+          "line": 855,
           "column": 5
         }
       },
@@ -1216,11 +1216,11 @@
     "remove": {
       "location": {
         "start": {
-          "line": 862,
+          "line": 864,
           "column": 4
         },
         "end": {
-          "line": 871,
+          "line": 873,
           "column": 5
         }
       },
@@ -1255,11 +1255,11 @@
     "equals": {
       "location": {
         "start": {
-          "line": 881,
+          "line": 883,
           "column": 4
         },
         "end": {
-          "line": 896,
+          "line": 898,
           "column": 5
         }
       },
@@ -1294,11 +1294,11 @@
     "sum": {
       "location": {
         "start": {
-          "line": 905,
+          "line": 907,
           "column": 4
         },
         "end": {
-          "line": 913,
+          "line": 915,
           "column": 5
         }
       },
@@ -1324,11 +1324,11 @@
     "max": {
       "location": {
         "start": {
-          "line": 923,
+          "line": 925,
           "column": 4
         },
         "end": {
-          "line": 935,
+          "line": 937,
           "column": 5
         }
       },
@@ -1354,11 +1354,11 @@
     "min": {
       "location": {
         "start": {
-          "line": 945,
+          "line": 947,
           "column": 4
         },
         "end": {
-          "line": 957,
+          "line": 959,
           "column": 5
         }
       },
@@ -1384,7 +1384,7 @@
     "forEach": {
       "location": {
         "start": {
-          "line": 968,
+          "line": 970,
           "column": 4
         },
         "end": {
@@ -1516,7 +1516,7 @@
       "type": "function",
       "access": "public"
     },
-    "some": {
+    "find": {
       "location": {
         "start": {
           "line": 1027,
@@ -1524,6 +1524,54 @@
         },
         "end": {
           "line": 1029,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the first matching element in the array which passes the test implemented by the\n provided function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+            "paramName": "callback",
+            "description": " The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {var?undefined} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "defaultValue": "undefined",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if any element passed the test function.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if any element passed the test function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "some": {
+      "location": {
+        "start": {
+          "line": 1043,
+          "column": 4
+        },
+        "end": {
+          "line": 1045,
           "column": 5
         }
       },
@@ -1567,11 +1615,11 @@
     "every": {
       "location": {
         "start": {
-          "line": 1043,
+          "line": 1059,
           "column": 4
         },
         "end": {
-          "line": 1045,
+          "line": 1061,
           "column": 5
         }
       },
@@ -1615,11 +1663,11 @@
     "reduce": {
       "location": {
         "start": {
-          "line": 1061,
+          "line": 1077,
           "column": 4
         },
         "end": {
-          "line": 1063,
+          "line": 1079,
           "column": 5
         }
       },
@@ -1663,11 +1711,11 @@
     "reduceRight": {
       "location": {
         "start": {
-          "line": 1079,
+          "line": 1095,
           "column": 4
         },
         "end": {
-          "line": 1081,
+          "line": 1097,
           "column": 5
         }
       },
@@ -1711,11 +1759,11 @@
     "__updateLength": {
       "location": {
         "start": {
-          "line": 1094,
+          "line": 1110,
           "column": 4
         },
         "end": {
-          "line": 1098,
+          "line": 1114,
           "column": 5
         }
       },
@@ -1733,11 +1781,11 @@
     "__updateEventPropagation": {
       "location": {
         "start": {
-          "line": 1106,
+          "line": 1122,
           "column": 4
         },
         "end": {
-          "line": 1110,
+          "line": 1126,
           "column": 5
         }
       },
@@ -2111,11 +2159,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1121,
+        "line": 1137,
         "column": 13
       },
       "end": {
-        "line": 1133,
+        "line": 1149,
         "column": 3
       }
     },

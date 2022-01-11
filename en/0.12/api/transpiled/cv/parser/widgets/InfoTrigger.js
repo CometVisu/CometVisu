@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.InfoTrigger', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -63,12 +63,12 @@
           'downvalue': {
             target: 'downValue',
             transform: parseFloat,
-            "default": 0
+            'default': 0
           },
           'shortdownvalue': {
             target: 'shortDownValue',
             transform: function transform(value) {
-              return !!value ? parseFloat(value) : null;
+              return value ? parseFloat(value) : null;
             }
           },
           'downlabel': {
@@ -77,12 +77,12 @@
           'upvalue': {
             target: 'upValue',
             transform: parseFloat,
-            "default": 0
+            'default': 0
           },
           'shortupvalue': {
             target: 'shortUpValue',
             transform: function transform(value) {
-              return !!value ? parseFloat(value) : null;
+              return value ? parseFloat(value) : null;
             }
           },
           'uplabel': {
@@ -91,31 +91,31 @@
           'shorttime': {
             target: 'shortThreshold',
             transform: parseFloat,
-            "default": -1
+            'default': -1
           },
           'send-long-on-release': {
             target: 'sendLongOnRelease',
             transform: function transform(value) {
-              return value ? value === "true" : true;
+              return value ? value === 'true' : true;
             }
           },
           'change': {
             target: 'isAbsolute',
             transform: function transform(value) {
-              return (value || 'relative') === "absolute";
+              return (value || 'relative') === 'absolute';
             }
           },
           'min': {
             transform: parseFloat,
-            "default": 0
+            'default': 0
           },
           'max': {
             transform: parseFloat,
-            "default": 255
+            'default': 255
           },
           'infoposition': {
             target: 'infoPosition',
-            "default": 'left',
+            'default': 'left',
             transform: function transform(value) {
               return ['middle', 'right'].includes(value) ? value : 'left';
             }
@@ -129,10 +129,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("infotrigger", statics);
+      cv.parser.WidgetParser.addHandler('infotrigger', statics);
     }
   });
   cv.parser.widgets.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1625667764377
+//# sourceMappingURL=InfoTrigger.js.map?dt=1641882197363

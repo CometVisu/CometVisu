@@ -40,7 +40,7 @@
    */
   //noinspection JSUnusedGlobalSymbols
   qx.Class.define('cv.parser.WidgetParser', {
-    type: "static",
+    type: 'static',
 
     /*
      ******************************************************
@@ -78,7 +78,7 @@
             variables[variable.getAttribute('name')] = variable.innerHTML;
           });
 
-          if (this.__P_7_1.hasOwnProperty(templateName)) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_7_1, templateName)) {
             var renderedString = qx.bom.Template.render(this.__P_7_1[templateName], variables).replace('\n', '').trim();
             var helperNode = elem.ownerDocument.createElement('template');
             helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim(); // replace existing element with the rendered templates child
@@ -121,7 +121,7 @@
         if (parser) {
           result = parser.parse(xml, path, flavour, pageType);
         } else {
-          qx.log.Logger.debug(this, "no parse handler registered for type: " + tag.toLowerCase());
+          qx.log.Logger.debug(this, 'no parse handler registered for type: ' + tag.toLowerCase());
         }
 
         return result;
@@ -137,12 +137,12 @@
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
-       *
        * @param handler {Class} Handler class that parses this element
        * @param element {Element} XML-Element
        * @param path {String} internal path of the widget
        * @param flavour {String} Flavour of the widget
        * @param pageType {String} Page type (2d, 3d, ...)
+       * @param mappings
        * @return {Map} HTML code
        */
       parseElement: function parseElement(handler, element, path, flavour, pageType, mappings) {
@@ -151,7 +151,7 @@
 
         if (mappings) {
           for (var key in mappings) {
-            if (mappings.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(mappings, key)) {
               var map = mappings[key];
               var value = element.getAttribute(key);
 
@@ -184,9 +184,9 @@
       getElementType: function getElementType(element) {
         var type = element.nodeName.toLowerCase();
 
-        if (type === "img") {
+        if (type === 'img') {
           // workaround for unittests (<image> gets replaced by <img>
-          type = "image";
+          type = 'image';
         }
 
         return type;
@@ -218,8 +218,8 @@
         var style = Object.keys(layout).length === 0 ? '' : 'style="' + this.extractLayout(layout, pageType) + '"';
         var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType); // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
 
-        if (element.getAttribute('align') && widgetType !== "group") {
-          classes += " " + element.getAttribute('align');
+        if (element.getAttribute('align') && widgetType !== 'group') {
+          classes += ' ' + element.getAttribute('align');
         }
 
         classes += ' ' + this.setWidgetLayout(element, path);
@@ -237,11 +237,11 @@
           classes += ' custom_' + element.getAttribute('class');
         }
 
-        var label = widgetType === 'text' ? this.parseLabel(element.querySelector("label"), flavour, '') : this.parseLabel(element.querySelector("label"), flavour);
+        var label = widgetType === 'text' ? this.parseLabel(element.querySelector('label'), flavour, '') : this.parseLabel(element.querySelector('label'), flavour);
         var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
 
-        if (element.getAttribute("bind_click_to_widget")) {
-          bindClickToWidget = element.getAttribute("bind_click_to_widget") === "true";
+        if (element.getAttribute('bind_click_to_widget')) {
+          bindClickToWidget = element.getAttribute('bind_click_to_widget') === 'true';
         }
 
         var data = {
@@ -281,7 +281,7 @@
           defaultValues = {};
         }
 
-        ['x', 'y', 'width', 'height', 'scale'].forEach(function (prop) {
+        ['x', 'y', 'width', 'height', 'scale', 'rowspan', 'colspan'].forEach(function (prop) {
           this.__P_7_3(ret_val, prop, layout, defaultValues);
 
           this.__P_7_3(ret_val, prop + '-m', layout, defaultValues);
@@ -354,9 +354,9 @@
 
         var ret_val = '<div class="' + (labelClass !== undefined ? labelClass : 'label') + '"' + (style ? ' style="' + style + '"' : '') + '>';
         Array.prototype.forEach.call(label.childNodes, function (elem) {
-          if (elem.nodeName.toLowerCase() === 'icon') {
+          if (elem.nodeType === Node.ELEMENT_NODE && elem.nodeName.toLowerCase() === 'icon') {
             ret_val += cv.IconHandler.getInstance().getIconText(elem.getAttribute('name'), elem.getAttribute('type'), elem.getAttribute('flavour') || flavour, elem.getAttribute('color'), elem.getAttribute('styling'));
-          } else {
+          } else if (elem.nodeType === Node.TEXT_NODE) {
             ret_val += elem.textContent;
           }
         });
@@ -372,12 +372,12 @@
        * @return {String} rowspan class or empty string
        */
       setWidgetLayout: function setWidgetLayout(element, path) {
-        var elementData = this.model.getWidgetData(path),
-            layout = Array.from(element.children).filter(function (m) {
+        var elementData = this.model.getWidgetData(path);
+        var layout = Array.from(element.children).filter(function (m) {
           return m.matches('layout');
-        })[0],
-            ret_val = '',
-            rowspan = null;
+        })[0];
+        var ret_val = '';
+        var rowspan = null;
 
         if (layout) {
           elementData.colspan = qx.xml.Element.getAttributeNS(layout, '', 'colspan');
@@ -419,7 +419,7 @@
        * @param makeAddressListFn {Function?} callback for parsing address variants
        */
       parseAddress: function parseAddress(xml, path, makeAddressListFn) {
-        if (xml.nodeName.toLowerCase() !== "page") {
+        if (xml.nodeName.toLowerCase() !== 'page') {
           var data = this.model.getWidgetData(path);
           data.address = cv.parser.WidgetParser.makeAddressList(xml, path, makeAddressListFn);
         }
@@ -440,14 +440,14 @@
       makeAddressList: function makeAddressList(element, id, makeAddressListFn, skipAdding) {
         var address = {};
         element.querySelectorAll('address').forEach(function (elem) {
-          var src = elem.textContent,
-              transform = elem.getAttribute('transform'),
-              addressInfo = {},
-              formatPos = +(elem.getAttribute('format-pos') || 1) | 0,
-              // force integer
-          mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+          var src = elem.textContent;
+          var transform = elem.getAttribute('transform');
+          var addressInfo = {};
+          var formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
 
-          if ('mqtt' === cv.Config.backend) {
+          var mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+
+          if (cv.Config.backend === 'mqtt') {
             addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
 
             addressInfo.retain = elem.getAttribute('retain') === 'true';
@@ -455,7 +455,7 @@
 
           if (!src || !transform) {
             // fix broken address-entries in config
-            qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
+            qx.log.Logger.error(this, 'Either address or transform is missing in address element %1', element.outerHTML);
             return;
           }
 
@@ -489,7 +489,7 @@
             if (address[src].transform === transform && address[src].variantInfo === variantInfo[1] && address[src].formatPos === formatPos) {
               mode |= address[src].mode;
             } else {
-              console.error('multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
+              qx.log.Logger.error(this, 'multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
             }
           }
 
@@ -544,7 +544,10 @@
 
           if (childData) {
             if (Array.isArray(childData)) {
-              for (var i = 0, l = childData.length; i < l; i++) {
+              var i = 0;
+              var l = childData.length;
+
+              for (; i < l; i++) {
                 data.children.push(childData[i].path);
               }
             } else if (childData.path) {
@@ -568,8 +571,8 @@
         }
 
         switch (xml.nodeName.toLowerCase()) {
-          case "page":
-            return path + "_";
+          case 'page':
+            return path + '_';
 
           default:
             return path;
@@ -580,4 +583,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1625667764166
+//# sourceMappingURL=WidgetParser.js.map?dt=1641882197062

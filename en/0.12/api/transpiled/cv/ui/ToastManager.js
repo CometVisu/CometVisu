@@ -53,11 +53,11 @@
   /**
    * Handles toast positioning in the gui.
    */
-  qx.Class.define("cv.ui.ToastManager", {
+  qx.Class.define('cv.ui.ToastManager', {
     extend: qx.core.Object,
     implement: cv.core.notifications.IHandler,
     include: cv.ui.MHandleMessage,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -67,18 +67,18 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       this.set({
-        rootElementId: "toast-list",
-        messageElementId: "toast_"
+        rootElementId: 'toast-list',
+        messageElementId: 'toast_'
       });
       this.setDelegate({
         prepareMessage: function (message) {
           // all toast messages need a duration
-          if (!message.hasOwnProperty("duration")) {
+          if (!Object.prototype.hasOwnProperty.call(message, 'duration')) {
             message.duration = this.getMessageDuration();
           }
         }.bind(this),
         postHandleMessage: function (message, config, payload) {
-          if (payload.action === "added" || payload.action === "replaced") {
+          if (payload.action === 'added' || payload.action === 'replaced') {
             // add removal listener
             qx.event.Timer.once(function () {
               this.getMessages().remove(message);
@@ -103,7 +103,7 @@
        * Default time in MS a toast message is visible
        */
       messageDuration: {
-        check: "Number",
+        check: 'Number',
         init: 5000
       }
     },
@@ -127,8 +127,8 @@
           this.__P_494_0 = document.querySelector(this.getRootElementId());
 
           if (!this.__P_494_0) {
-            this.__P_494_0 = qx.dom.Element.create("div", {
-              "id": this.getRootElementId()
+            this.__P_494_0 = qx.dom.Element.create('div', {
+              'id': this.getRootElementId()
             });
           }
         }
@@ -137,17 +137,17 @@
           document.body.appendChild(this.__P_494_0);
         }
 
-        if (document.querySelectorAll("#ToastTemplate").length === 0) {
-          var template = qx.dom.Element.create("script", {
-            id: "ToastTemplate",
-            type: "text/template",
+        if (document.querySelectorAll('#ToastTemplate').length === 0) {
+          var template = qx.dom.Element.create('script', {
+            id: 'ToastTemplate',
+            type: 'text/template',
             html: '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="' + this.getMessageElementId() + '{{ id }}"><div class="content">{{&message}}</div></div>'
           });
           document.body.appendChild(template);
         }
 
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_494_0, "ToastTemplate");
-        qx.event.Registration.addListener(this.__P_494_0, "tap", this._onListTap, this);
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_494_0, 'ToastTemplate');
+        qx.event.Registration.addListener(this.__P_494_0, 'tap', this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
@@ -155,7 +155,7 @@
         } // default is to delete the toast
 
 
-        this.deleteMessage(message.id);
+        return this.deleteMessage(message.id);
       }
     },
 
@@ -181,4 +181,4 @@
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1625667805706
+//# sourceMappingURL=ToastManager.js.map?dt=1641882235772

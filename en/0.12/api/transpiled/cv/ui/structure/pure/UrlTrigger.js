@@ -62,17 +62,17 @@
     */
     properties: {
       sendValue: {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       },
       params: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       url: {
-        check: "String",
+        check: 'String',
         nullable: true,
-        apply: "_applyUrl"
+        apply: '_applyUrl'
       }
     },
 
@@ -92,8 +92,8 @@
           if (!this.__P_62_0) {
             var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
             xhr.set({
-              method: "GET",
-              accept: "application/html",
+              method: 'GET',
+              accept: 'application/html',
               requestData: this.getParams()
             });
             this.__P_62_0 = xhr;
@@ -136,10 +136,10 @@
       this._disposeObjects("__P_62_0");
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("urltrigger", statics);
+      cv.ui.structure.WidgetFactory.registerClass('urltrigger', statics);
     }
   });
   cv.ui.structure.pure.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1625667771187
+//# sourceMappingURL=UrlTrigger.js.map?dt=1641882203855

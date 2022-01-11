@@ -30,10 +30,10 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Theme.define("cv.theme.dark.Decoration", {
+  qx.Theme.define('cv.theme.dark.Decoration', {
     extend: osparc.theme.common.Decoration,
     decorations: {
-      "window-caption-active": {},
+      'window-caption-active': {},
       'cv-editor-config-section': {
         style: {
           width: 1,
@@ -89,7 +89,7 @@
           width: 2,
           radius: 32,
           color: 'button-border',
-          backgroundColor: "button",
+          backgroundColor: 'button',
           shadowSpreadRadius: 0,
           shadowBlurRadius: 4,
           shadowHorizontalLength: 1,
@@ -109,4 +109,4 @@
   cv.theme.dark.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1625667807801
+//# sourceMappingURL=Decoration.js.map?dt=1641882237977

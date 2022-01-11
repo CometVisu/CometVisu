@@ -45,7 +45,7 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.core.notifications.actions.OptionGroup", {
+  qx.Class.define('cv.core.notifications.actions.OptionGroup', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
 
@@ -66,11 +66,11 @@
     */
     properties: {
       title: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       options: {
-        check: "Array",
+        check: 'Array',
         nullable: true
       }
     },
@@ -104,10 +104,10 @@
       }
     },
     defer: function defer() {
-      cv.core.notifications.ActionRegistry.registerActionHandler("optionGroup", cv.core.notifications.actions.OptionGroup);
+      cv.core.notifications.ActionRegistry.registerActionHandler('optionGroup', cv.core.notifications.actions.OptionGroup);
     }
   });
   cv.core.notifications.actions.OptionGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionGroup.js.map?dt=1625667763857
+//# sourceMappingURL=OptionGroup.js.map?dt=1641882196836

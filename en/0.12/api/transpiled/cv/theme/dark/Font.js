@@ -34,44 +34,44 @@
   /**
    * Font definitions
    */
-  qx.Theme.define("cv.theme.dark.Font", {
+  qx.Theme.define('cv.theme.dark.Font', {
     extend: osparc.theme.common.Font,
     fonts: {
-      "italic": {
+      'italic': {
         size: 13,
-        family: ["sans-serif"],
-        color: "text",
+        family: ['sans-serif'],
+        color: 'text',
         italic: true,
         sources: [{
-          family: "Roboto",
-          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
+          family: 'Roboto',
+          source: ['osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf']
         }]
       },
-      "title": {
+      'title': {
         size: 18,
-        family: ["sans-serif"],
-        color: "text",
+        family: ['sans-serif'],
+        color: 'text',
         sources: [{
-          family: "Roboto",
-          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
+          family: 'Roboto',
+          source: ['osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf']
         }]
       },
-      "small": {
+      'small': {
         size: 12,
-        family: ["sans-serif"],
-        color: "text",
+        family: ['sans-serif'],
+        color: 'text',
         sources: [{
-          family: "Roboto",
-          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
+          family: 'Roboto',
+          source: ['osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf']
         }]
       },
-      "subtitle": {
+      'subtitle': {
         size: 16,
-        family: ["sans-serif"],
-        color: "text",
+        family: ['sans-serif'],
+        color: 'text',
         sources: [{
-          family: "Roboto",
-          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
+          family: 'Roboto',
+          source: ['osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff', 'osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf']
         }]
       } //,
       // "MaterialIcons": {
@@ -98,4 +98,4 @@
   cv.theme.dark.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1625667807815
+//# sourceMappingURL=Font.js.map?dt=1641882237991

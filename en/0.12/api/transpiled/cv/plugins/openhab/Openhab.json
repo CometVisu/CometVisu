@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 132,
+        "line": 131,
         "column": 3
       }
     },
@@ -55,7 +55,7 @@
         "column": 13
       },
       "end": {
-        "line": 57,
+        "line": 56,
         "column": 3
       }
     },
@@ -65,11 +65,11 @@
     "__notificationRouter": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 64,
           "column": 30
         }
       },
@@ -79,11 +79,11 @@
     "__settings": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 65,
           "column": 20
         }
       },
@@ -93,11 +93,11 @@
     "_openSettings": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 66,
           "column": 23
         }
       },
@@ -107,11 +107,11 @@
     "_createSettings": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 101,
           "column": 5
         }
       },
@@ -121,11 +121,11 @@
     "_onNotification": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 114,
           "column": 5
         }
       },
@@ -1128,7 +1128,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -3365,11 +3365,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 123,
+        "line": 122,
         "column": 12
       },
       "end": {
-        "line": 126,
+        "line": 125,
         "column": 3
       }
     },
@@ -3378,11 +3378,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 128,
+        "line": 127,
         "column": 9
       },
       "end": {
-        "line": 131,
+        "line": 130,
         "column": 3
       }
     },

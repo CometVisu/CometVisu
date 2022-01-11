@@ -35,7 +35,7 @@
    * The Watchdog observes the backend communication and restarts the connection, if
    * the client received to data from the backend within a defined timeout.
    */
-  qx.Class.define("cv.io.Watchdog", {
+  qx.Class.define('cv.io.Watchdog', {
     extend: qx.core.Object,
 
     /*
@@ -54,7 +54,7 @@
     */
     properties: {
       client: {
-        check: "cv.io.Client",
+        check: 'cv.io.Client',
         nullable: true,
         init: null
       }
@@ -68,7 +68,7 @@
     members: {
       last: null,
       hardLast: null,
-      __P_536_0: null,
+      __P_537_0: null,
       aliveCheckFunction: function aliveCheckFunction() {
         var now = new Date();
 
@@ -80,20 +80,20 @@
         this.last = now;
       },
       start: function start(watchdogTimer) {
-        if (this.__P_536_0) {
+        if (this.__P_537_0) {
           this.stop();
         }
 
-        this.__P_536_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+        this.__P_537_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       stop: function stop() {
-        if (this.__P_536_0) {
-          clearInterval(this.__P_536_0);
-          this.__P_536_0 = null;
+        if (this.__P_537_0) {
+          clearInterval(this.__P_537_0);
+          this.__P_537_0 = null;
         }
       },
       isActive: function isActive() {
-        return !!this.__P_536_0;
+        return !!this.__P_537_0;
       },
       ping: function ping(fullReload) {
         this.last = new Date();
@@ -107,4 +107,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1625667809780
+//# sourceMappingURL=Watchdog.js.map?dt=1641882239954

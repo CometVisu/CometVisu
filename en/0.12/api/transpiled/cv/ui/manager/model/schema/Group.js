@@ -139,7 +139,11 @@
 
         this._subGroupings.forEach(function (grouping) {
           regexString = '(';
-          if (nocapture) regexString += '?:';
+
+          if (nocapture) {
+            regexString += '?:';
+          }
+
           regexString += grouping.getRegex(separator, nocapture) + ')';
         }); // append bounds to regex
 
@@ -169,4 +173,4 @@
   cv.ui.manager.model.schema.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1625667769701
+//# sourceMappingURL=Group.js.map?dt=1641882202332

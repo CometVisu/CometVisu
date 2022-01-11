@@ -60,7 +60,7 @@
       _worker: null,
       _files: null,
       open: function open(file, code, schema, features) {
-        this._worker.postMessage(["openFile", {
+        this._worker.postMessage(['openFile', {
           path: file.getFullPath(),
           code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
           schema: schema
@@ -69,14 +69,14 @@
         this._files[file.getFullPath()] = file;
       },
       close: function close(file) {
-        this._worker.postMessage(["closeFile", {
+        this._worker.postMessage(['closeFile', {
           path: file.getFullPath()
         }]);
 
         delete this._files[file.getFullPath()];
       },
       contentChanged: function contentChanged(file, content) {
-        this._worker.postMessage(["contentChange", {
+        this._worker.postMessage(['contentChange', {
           path: file.getFullPath(),
           code: content
         }]);
@@ -84,9 +84,10 @@
       validateConfig: function validateConfig(file) {
         if (file.isConfigFile()) {
           return this._worker.validateConfig(file.getServerPath());
-        } else {
-          qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
         }
+
+        qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
+        return true;
       },
       validateXmlConfig: function validateXmlConfig(content) {
         return this._worker.validateXmlConfig(content);
@@ -105,7 +106,7 @@
         var editor = this.getEditor();
 
         switch (topic) {
-          case "modified":
+          case 'modified':
             // new files are always modified, to not override that state
             if (!file.isTemporary()) {
               file.setModified(data.modified);
@@ -114,11 +115,11 @@
             file.setHash(data.currentHash);
             break;
 
-          case "hash":
+          case 'hash':
             file.setHash(data);
             break;
 
-          case "errors":
+          case 'errors':
             file.setValid(!data || data.length === 0);
 
             if (editor) {
@@ -127,7 +128,7 @@
 
             break;
 
-          case "decorations":
+          case 'decorations':
             if (editor) {
               editor.showDecorations(path, data);
             }
@@ -151,4 +152,4 @@
   cv.ui.manager.editor.Worker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Worker.js.map?dt=1625667768047
+//# sourceMappingURL=Worker.js.map?dt=1641882200764

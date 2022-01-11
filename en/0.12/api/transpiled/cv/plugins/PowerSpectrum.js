@@ -68,15 +68,15 @@
     */
     construct: function construct(props) {
       if (!props.name1) {
-        props.name1 = props.singlePhase === true ? "L" : "L1";
+        props.name1 = props.singlePhase === true ? 'L' : 'L1';
       }
 
       if (!props.name2) {
-        props.name2 = "L2";
+        props.name2 = 'L2';
       }
 
       if (!props.name3) {
-        props.name3 = "L3";
+        props.name3 = 'L3';
       }
 
       cv.ui.structure.AbstractWidget.constructor.call(this, props); // some initializations
@@ -135,12 +135,12 @@
           'singlephase': {
             target: 'singlePhase',
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'limitname': {
             target: 'limitName',
-            "default": "limit"
+            'default': 'limit'
           },
           'name1': {},
           'name2': {},
@@ -154,22 +154,22 @@
           'showlegend': {
             target: 'showLegend',
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'limitcolor': {
-            target: "limitColor",
-            "default": "#edc240" // default directly from flot code
+            target: 'limitColor',
+            'default': '#edc240' // default directly from flot code
 
           },
           'color1': {
-            "default": "#afd8f8"
+            'default': '#afd8f8'
           },
           'color2': {
-            "default": "#cb4b4b"
+            'default': '#cb4b4b'
           },
           'color3': {
-            "default": "#4da74d"
+            'default': '#4da74d'
           }
         };
       },
@@ -193,60 +193,60 @@
         init: 1
       },
       singlePhase: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       spectrum: {
-        check: "Array",
+        check: 'Array',
         init: []
       },
       limitName: {
-        check: "String",
-        init: "limit"
+        check: 'String',
+        init: 'limit'
       },
       name1: {
-        check: "String",
-        init: "L1"
+        check: 'String',
+        init: 'L1'
       },
       name2: {
-        check: "String",
-        init: "L2"
+        check: 'String',
+        init: 'L2'
       },
       name3: {
-        check: "String",
-        init: "L3"
+        check: 'String',
+        init: 'L3'
       },
       curve: {
-        check: "Array",
+        check: 'Array',
         init: []
       },
       showCurve: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       showLegend: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       current: {
-        check: "Array",
+        check: 'Array',
         init: []
       },
       limitColor: {
-        check: "Color",
-        init: "#edc240"
+        check: 'Color',
+        init: '#edc240'
       },
       color1: {
-        check: "Color",
-        init: "#afd8f8"
+        check: 'Color',
+        init: '#afd8f8'
       },
       color2: {
-        check: "Color",
-        init: "#cb4b4b"
+        check: 'Color',
+        init: '#cb4b4b'
       },
       color3: {
-        check: "Color",
-        init: "#4da74d"
+        check: 'Color',
+        init: '#4da74d'
       }
     },
 
@@ -256,8 +256,8 @@
     ******************************************************
     */
     members: {
-      __P_13_0: null,
-      __P_13_1: null,
+      __P_12_0: null,
+      __P_12_1: null,
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var actor = '<div class="actor clickable">';
@@ -273,8 +273,8 @@
         cv.plugins.PowerSpectrum.prototype._onDomReady.base.call(this);
 
         var colors = [this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3()];
-        var diagramCurve = this.isShowCurve() && $('#' + this.getPath() + ' .actor div.curve').empty(),
-            optionsCurve = this.isShowCurve() && {
+        var diagramCurve = this.isShowCurve() && $('#' + this.getPath() + ' .actor div.curve').empty();
+        var optionsCurve = this.isShowCurve() && {
           colors: colors,
           legend: {
             show: this.isShowLegend()
@@ -285,9 +285,9 @@
           yaxis: {
             show: false
           }
-        },
-            diagramSpectrum = $('#' + this.getPath() + ' .actor div.spectrum').empty(),
-            optionsSpectrum = {
+        };
+        var diagramSpectrum = $('#' + this.getPath() + ' .actor div.spectrum').empty();
+        var optionsSpectrum = {
           colors: colors,
           series: {
             bars: {
@@ -298,7 +298,7 @@
             }
           },
           bars: {
-            align: "center",
+            align: 'center',
             barWidth: this.isSinglePhase() ? 0.75 : 0.25
           },
           legend: {
@@ -313,8 +313,8 @@
         };
 
         var init = function () {
-          this.__P_13_1 = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
-          this.__P_13_0 = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
+          this.__P_12_1 = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
+          this.__P_12_0 = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
         }.bind(this); // check if sizes are set yet, otherwise wait some time
 
 
@@ -336,34 +336,34 @@
           phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
           var value = cv.Transform.encode(addressInfo.transform, data);
           this.getCurrent()[phase - 1] = value / 1000; // transform mA to A
-        } else if (addressInfo.variantInfo.substr(0, 8) === 'spectrum' && data.length === 28) // sanity check for 14 bytes
-          {
-            phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);
-            var index = parseInt(data.substr(0, 2), 16),
-                factor = this.getCurrent()[phase - 1] || 1,
-                values = [];
+        } else if (addressInfo.variantInfo.substr(0, 8) === 'spectrum' && data.length === 28) {
+          // sanity check for 14 bytes
+          phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[8] || 1);
+          var index = parseInt(data.substr(0, 2), 16);
+          var factor = this.getCurrent()[phase - 1] || 1;
+          var values = [];
 
-            for (var i = 0; i < 13; i++) {
-              if (index + i < 2) {
-                continue;
-              }
-
-              values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
-              this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
+          for (var i = 0; i < 13; i++) {
+            if (index + i < 2) {
+              continue;
             }
 
-            this.__P_13_0.setData(this.createDatasetSpectrum());
-
-            this.__P_13_0.draw();
-
-            if (this.__P_13_1) {
-              this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
-
-              this.__P_13_1.setData(this.createDatasetCurve());
-
-              this.__P_13_1.draw();
-            }
+            values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
+            this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
           }
+
+          this.__P_12_0.setData(this.createDatasetSpectrum());
+
+          this.__P_12_0.draw();
+
+          if (this.__P_12_1) {
+            this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
+
+            this.__P_12_1.setData(this.createDatasetCurve());
+
+            this.__P_12_1.draw();
+          }
+        }
       },
 
       /**
@@ -388,15 +388,18 @@
 
       /**
        * Convert a spectrum to a curve
+       * @param input
+       * @param target
+       * @param phase
        */
       updateCurve: function updateCurve(input, target, phase) {
-        var inp = input[phase],
-            out = target[phase],
-            shift = (phase * 2 / 3 - 0.5) * Math.PI;
+        var inp = input[phase];
+        var out = target[phase];
+        var shift = (phase * 2 / 3 - 0.5) * Math.PI;
 
         for (var i = 0; i < 50; i++) {
-          var phi = i * Math.PI / 25,
-              value = Math.cos(phi + shift); // the base with 50 Hz
+          var phi = i * Math.PI / 25;
+          var value = Math.cos(phi + shift); // the base with 50 Hz
           // the harmonics
 
           for (var j = 2; j < 50; j++) {
@@ -493,8 +496,8 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addScripts(['plugins/diagram/dep/flot/jquery.flot.min.js', 'plugins/diagram/dep/flot/jquery.flot.canvas.min.js', 'plugins/diagram/dep/flot/jquery.flot.resize.min.js', 'plugins/diagram/dep/flot/jquery.flot.navigate.min.js']);
-      cv.parser.WidgetParser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
-      cv.ui.structure.WidgetFactory.registerClass("powerspectrum", statics); // init
+      cv.parser.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
+      cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics); // init
 
       statics.limitEN50160_1999.forEach(statics.fixLimits);
       statics.limitEN50160_1999.push(statics.lastShifted(statics.limitEN50160_1999));
@@ -513,4 +516,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1625667765323
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1641882198184

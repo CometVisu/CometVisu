@@ -35,7 +35,7 @@
    * Parse &lt;break;gt; config elements
    */
   qx.Class.define('cv.parser.widgets.Break', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -58,10 +58,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("break", statics);
+      cv.parser.WidgetParser.addHandler('break', statics);
     }
   });
   cv.parser.widgets.Break.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Break.js.map?dt=1625667764212
+//# sourceMappingURL=Break.js.map?dt=1641882197109

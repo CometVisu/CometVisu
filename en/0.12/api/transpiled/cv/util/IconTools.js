@@ -35,7 +35,7 @@
    * @since 2015
    */
   qx.Class.define('cv.util.IconTools', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -82,16 +82,19 @@
               }
             }
 
-            if (0 === cv.util.IconTools.iconDelay.length) {
+            if (cv.util.IconTools.iconDelay.length === 0) {
               clearInterval(cv.util.IconTools.iconDelayFn);
               cv.util.IconTools.iconDelayFn = 0;
             }
-          }.bind(this), 10);
+          }, 10);
         }
       },
 
       /**
        * Create the HTML for the canvas element and return it.
+       * @param iconId
+       * @param styling
+       * @param classes
        */
       createCanvas: function createCanvas(iconId, styling, classes) {
         return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
@@ -100,6 +103,8 @@
       /**
        * Fill the canvas with the ImageData. Also resize the
        * canvas at the same time.
+       * @param canvas
+       * @param imageData
        */
       fillCanvas: function fillCanvas(canvas, imageData) {
         canvas.width = imageData.width;
@@ -108,13 +113,17 @@
       },
 
       /**
-       * Two versions of a recoloring funtion to work around an Android bug:
-       * http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph
-       * https://code.google.com/p/android/issues/detail?id=17565
-       *
-       */
-      innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android') + 8)) < 4.4 ? function (r, g, b, data, length) // for Android version < 4.4
-      {
+         * Two versions of a recoloring funtion to work around an Android bug:
+         * http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph
+         * https://code.google.com/p/android/issues/detail?id=17565
+         * @param r
+         * @param g
+         * @param b
+         * @param data
+         * @param length
+         */
+      innerRecolorLoop: navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android') + 8)) < 4.4 ? function (r, g, b, data, length) {
+        // for Android version < 4.4
         for (var i = 0; i < length; i += 4) {
           var a = data[i + 3];
 
@@ -131,10 +140,10 @@
             data[i + 3] = 0;
           }
         }
-      } : function (r, g, b, data, length) // the normal version
-      {
+      } : function (r, g, b, data, length) {
+        // the normal version
         for (var i = 0; i < length; i += 4) {
-          if (0 !== data[i + 3]) {
+          if (data[i + 3] !== 0) {
             data[i] = r;
             data[i + 1] = g;
             data[i + 2] = b;
@@ -145,14 +154,17 @@
       /**
        * Do the recoloring based on @param thisIcon and store it in the
        * hash @param thisIconColors.
+       * @param color
+       * @param thisIcon
+       * @param thisIconColors
        */
       doRecolorNonTransparent: function doRecolorNonTransparent(color, thisIcon, thisIconColors) {
         if (thisIconColors[color]) {
           return; // done, already recolored
         }
 
-        var width = cv.util.IconTools.tmpCanvas.width = thisIcon.width,
-            height = cv.util.IconTools.tmpCanvas.height = thisIcon.height;
+        var width = cv.util.IconTools.tmpCanvas.width = thisIcon.width;
+        var height = cv.util.IconTools.tmpCanvas.height = thisIcon.height;
         cv.util.IconTools.tmpCtx.drawImage(thisIcon, 0, 0);
         var imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
 
@@ -161,9 +173,9 @@
             qx.log.Logger.error(this, 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
           }
 
-          var r = parseInt(color.substr(1, 2), 16),
-              g = parseInt(color.substr(3, 2), 16),
-              b = parseInt(color.substr(5, 2), 16);
+          var r = parseInt(color.substr(1, 2), 16);
+          var g = parseInt(color.substr(3, 2), 16);
+          var b = parseInt(color.substr(5, 2), 16);
           cv.util.IconTools.innerRecolorLoop(r, g, b, imageData.data, width * height * 4);
         }
 
@@ -174,16 +186,17 @@
        * Funtion to call for each icon that should be dynamically recolored.
        * This will be called for each known URL, so only remember the string but
        * don't load the image yet as it might not be needed.
+       * @param url
        */
       recolorNonTransparent: function recolorNonTransparent(url) {
         var loadHandler = function loadHandler() {
-          var toFill = cv.util.IconTools.iconCache[url].toFill,
-              thisIcon = cv.util.IconTools.iconCache[url].icon,
-              thisIconColors = cv.util.IconTools.iconCache[url].colors,
-              thisFillColor;
+          var toFill = cv.util.IconTools.iconCache[url].toFill;
+          var thisIcon = cv.util.IconTools.iconCache[url].icon;
+          var thisIconColors = cv.util.IconTools.iconCache[url].colors;
+          var thisFillColor;
 
           while (thisFillColor = toFill.pop()) {
-            // jshint ignore:line
+            // eslint-disable-line no-cond-assign
             cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
           }
         };
@@ -191,8 +204,12 @@
          * will be called for each color that is actually used
          * => load image for all colors
          * => transform image
+         * @param color
+         * @param styling
+         * @param classes
+         * @param asText
          * @return {Function} a function that will append the recolored image to
-         *         the jQuery element passed to that function
+         * the jQuery element passed to that function
          */
 
 
@@ -249,13 +266,14 @@
 
       /**
        * This function must be called to fill a specific icon that was created
+       * @param icon
        */
       fillRecoloredIcon: function fillRecoloredIcon(icon) {
         var parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
 
-        if (2 === parameters.length) {
-          var cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]],
-              coloredIcon = cacheEntry.colors['#' + parameters[1]];
+        if (parameters.length === 2) {
+          var cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
+          var coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
           if (undefined === coloredIcon) {
             cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
@@ -271,7 +289,7 @@
           }
 
           var iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
-          var style = styling || "";
+          var style = styling || '';
 
           if (color) {
             style += 'color:' + color + ';';
@@ -281,7 +299,7 @@
             style = ' style="' + style + '"';
           }
 
-          return '<svg ' + style + ' class="' + classes + '"><use xlink:href="' + iconPath + '#kuf-' + iconID + '"></use></svg>';
+          return '<svg' + style + ' class="' + classes + '"><use xlink:href="' + iconPath + '#kuf-' + iconID + '"></use></svg>';
         };
       }
     },
@@ -294,4 +312,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1625667806326
+//# sourceMappingURL=IconTools.js.map?dt=1641882236617

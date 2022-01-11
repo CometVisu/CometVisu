@@ -6,9 +6,11 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 (function () {
   var $$dbClassInfo = {
@@ -67,7 +69,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     construct: function construct() {
       cv.ui.manager.editor.AbstractEditor.constructor.call(this);
       this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
-      this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
+      this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/';
       this.getContentElement().setAttribute('contentEditable', 'true');
       this.set({
         droppable: false,
@@ -75,8 +77,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
       this.addListener('dragover', function (ev) {
         ev.preventDefault();
-        ev.dataTransfer.effectAllowed = "none";
-        ev.dataTransfer.dropEffect = "none";
+        ev.dataTransfer.effectAllowed = 'none';
+        ev.dataTransfer.dropEffect = 'none';
       });
       this.addListener('drop', function (ev) {
         ev.preventDefault();
@@ -124,9 +126,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           }
 
           return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
-        } else {
-          return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
         }
+
+        return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
       },
       DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
@@ -153,10 +155,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__P_33_0 = schema;
+            this.__P_32_0 = schema;
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-            var completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance("visu_config.xsd"));
+            var completionProvider = new cv.ui.manager.editor.completion.Config(cv.ui.manager.model.Schema.getInstance('visu_config.xsd'));
             var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
             window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
@@ -175,7 +177,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     members: {
-      __P_33_0: null,
+      __P_32_0: null,
       _editor: null,
       _basePath: null,
       _workerWrapper: null,
@@ -218,20 +220,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               theme: 'vs-dark'
             });
             var baseVersion = cv.Version.VERSION.split('-')[0];
-            var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("hidden-schema.json"));
+            var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('hidden-schema.json'));
             xhr.set({
-              method: "GET",
-              accept: "application/json"
+              method: 'GET',
+              accept: 'application/json'
             });
-            xhr.addListenerOnce("success", function (e) {
+            xhr.addListenerOnce('success', function (e) {
               var req = e.getTarget();
               var schema = req.getResponse();
               window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
                 validate: true,
                 allowComments: true,
                 schemas: [{
-                  uri: "https://www.cometvisu.org/CometVisu/schemas/" + baseVersion + "/hidden-schema.json",
-                  fileMatch: ["hidden.php"],
+                  uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
+                  fileMatch: ['hidden.php'],
                   schema: schema
                 }]
               });
@@ -252,15 +254,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             case 'cut':
               this._editor.trigger('external', 'editor.action.clipboardCutAction');
 
+              if (!this._nativePasteSupported) {
+                // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+                // and implement the pasting manually
+                cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+              }
+
               break;
 
             case 'copy':
               this._editor.trigger('external', 'editor.action.clipboardCopyAction');
 
+              if (!this._nativePasteSupported) {
+                // we have no access to the native clipboard for pasting, so we need to save the value to copy somewhere else
+                // and implement the pasting manually
+                cv.ui.manager.editor.AbstractEditor.CLIPBOARD = this._editor.getModel().getValueInRange(this._editor.getSelection());
+              }
+
               break;
 
             case 'paste':
-              this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+              if (this._nativePasteSupported) {
+                this._editor.trigger('external', 'editor.action.clipboardPasteAction');
+              } else {
+                this._paste();
+              }
 
               break;
 
@@ -274,6 +292,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               cv.ui.manager.editor.Source.prototype.handleAction.base.call(this, actionName);
               break;
           }
+        }
+      },
+
+      /**
+       * Manual paste into source editor is used when the native paste is not supported by the browser.
+       * This is the case when the cometvisu is not running is a safe environment (no https / localhost)
+       * @private
+       */
+      _paste: function _paste() {
+        if (cv.ui.manager.editor.AbstractEditor.CLIPBOARD) {
+          var selection = this._editor.getSelection();
+
+          var id = {
+            major: 1,
+            minor: 1
+          };
+          var op = {
+            identifier: id,
+            range: selection,
+            text: cv.ui.manager.editor.AbstractEditor.CLIPBOARD,
+            forceMoveMarkers: true
+          };
+
+          this._editor.executeEdits('clipboard', [op]);
         }
       },
       _loadFile: function _loadFile(file, old) {
@@ -315,19 +357,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
           } else if (this.getFile().getHasWarnings()) {
             // ask user if he really want to save a file with warnings
-            qxl.dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+            qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
               if (confirmed) {
-                this.__P_33_1();
+                this.__P_32_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_33_1();
+            this.__P_32_1();
           }
         } else {
           cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
         }
       },
-      __P_33_1: function __P_33_1() {
+      __P_32_1: function __P_32_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -358,6 +400,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           // create new model
           if (qx.xml.Document.isXmlDocument(value)) {
             value = value.documentElement.outerHTML;
+          } else if (_typeof(value) === 'object') {
+            value = JSON.stringify(value, null, 2);
           }
 
           newModel = window.monaco.editor.createModel(value, this._getLanguage(file), id);
@@ -365,7 +409,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             var errors = false;
             var warnings = false;
             monaco.editor.getModelMarkers({
-              owner: newModel.getModeId(),
+              owner: newModel.getLanguageId(),
               resource: id
             }).some(function (marker) {
               if (marker.severity === monaco.MarkerSeverity.Warning) {
@@ -398,7 +442,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _processHandlerOptions: function _processHandlerOptions(content) {
         var handlerOptions = this.getHandlerOptions() || {};
 
-        if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
+        if (Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
           var _this$_upgradeConfig = this._upgradeConfig(content),
               _this$_upgradeConfig2 = _slicedToArray(_this$_upgradeConfig, 2),
               err = _this$_upgradeConfig2[0],
@@ -444,6 +488,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
 
         var firstErrorLine = -1;
+        /**
+         * @param line
+         */
 
         function check(line) {
           if (firstErrorLine < 0 || firstErrorLine > line) {
@@ -466,7 +513,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
 
         if (this.getFile().getFullPath() === path) {
-          window.monaco.editor.setModelMarkers(model, model.getModeId(), markers);
+          window.monaco.editor.setModelMarkers(model, model.getLanguageId(), markers);
           var options = this.getHandlerOptions();
 
           if (options && options.jumpToError) {
@@ -504,21 +551,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             return 'markdown';
 
           default:
-            if (!type) {
-              return 'txt';
-            } // check if monaco knows this ending, otherwise fallback to plaintext
+            {
+              if (!type) {
+                return 'txt';
+              } // check if monaco knows this ending, otherwise fallback to plaintext
 
 
-            var typeExt = '.' + type;
-            var found = monaco.languages.getLanguages().some(function (lang) {
-              return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
-            });
+              var typeExt = '.' + type;
+              var found = monaco.languages.getLanguages().some(function (lang) {
+                return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
+              });
 
-            if (!found) {
-              type = 'txt';
+              if (!found) {
+                type = 'txt';
+              }
+
+              return type;
             }
-
-            return type;
         }
       }
     },
@@ -544,4 +593,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1625667767555
+//# sourceMappingURL=Source.js.map?dt=1641882200351

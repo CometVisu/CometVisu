@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  // noinspection JSClosureCompilerSyntax
 
   /**
    * Show images.
@@ -52,7 +53,7 @@
       /**
        * Returns size information for images
        * @param source {String} path to image
-       * @returns {{width: *, aspectRatio: number, height: *}|any | ({aspectRatio: number} & Map)}
+       * @returns {{width: *, aspectRatio: number, height: *}}
        */
       getImageData: function getImageData(source) {
         var data = qx.util.ResourceManager.getInstance().getData(source);
@@ -63,14 +64,14 @@
             height: data[1],
             aspectRatio: data[0] / data[1]
           };
-        } else {
-          data = qx.io.ImageLoader.getSize(source);
+        }
 
-          if (data && data.width && data.height) {
-            return Object.assign({
-              aspectRatio: data.width / data.height
-            }, data);
-          }
+        data = qx.io.ImageLoader.getSize(source);
+
+        if (data && data.width && data.height) {
+          return Object.assign({
+            aspectRatio: data.width / data.height
+          }, data);
         }
 
         return null;
@@ -122,8 +123,7 @@
         var paddingX = 10;
         var paddingY = 20;
         var availableHeight = bounds.height - paddingY * 2;
-        var availableWidth = bounds.width - paddingX * 2;
-        var width = availableWidth;
+        var width = bounds.width - paddingX * 2;
         var height = Math.round(1 / data.aspectRatio * width);
 
         if (height > availableHeight) {
@@ -142,4 +142,4 @@
   cv.ui.manager.viewer.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1625667770324
+//# sourceMappingURL=Image.js.map?dt=1641882202911

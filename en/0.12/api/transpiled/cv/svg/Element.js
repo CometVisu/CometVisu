@@ -12,7 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-  qx.Class.define("cv.svg.Element", {
+  qx.Class.define('cv.svg.Element', {
     extend: qx.html.Element,
 
     /*
@@ -22,7 +22,7 @@
     */
     construct: function construct(tagName) {
       qx.html.Element.constructor.call(this);
-      this.__P_511_0 = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+      this.__P_512_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
     },
 
     /*
@@ -32,18 +32,18 @@
     */
     members: {
       _createDomElement: function _createDomElement() {
-        return this.__P_511_0;
+        return this.__P_512_0;
       },
       getDomElement: function getDomElement() {
-        return this.__P_511_0;
+        return this.__P_512_0;
       }
     },
     destruct: function destruct() {
-      this.__P_511_0.$$widget = null;
-      this.__P_511_0 = null;
+      this.__P_512_0.$$widget = null;
+      this.__P_512_0 = null;
     }
   });
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1625667807691
+//# sourceMappingURL=Element.js.map?dt=1641882237857

@@ -50,7 +50,7 @@
      */
     construct: function construct(client) {
       this.client = client;
-      this.__P_519_0 = {};
+      this.__P_520_0 = {};
     },
 
     /*
@@ -63,7 +63,7 @@
       sessionId: null,
       client: null,
       eventSource: null,
-      __P_519_0: null,
+      __P_520_0: null,
 
       /**
        * This function gets called once the communication is established
@@ -77,7 +77,7 @@
         this.sessionId = json.s;
         this.version = json.v.split('.', 3);
 
-        if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+        if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
           this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
         }
 
@@ -93,29 +93,30 @@
         // send first request
         this.running = true;
         this.client.setDataReceived(false);
-        this.eventSource = new EventSource(qx.util.Uri.appendParamsToUrl(this.client.getResourcePath("read"), this.client.buildRequest(null, true))); // add default listeners
+        this.eventSource = new EventSource(qx.util.Uri.appendParamsToUrl(this.client.getResourcePath('read'), this.client.buildRequest(null, true))); // add default listeners
 
         this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
         this.eventSource.addEventListener('error', this.handleError.bind(this), false); // add additional listeners
 
-        Object.getOwnPropertyNames(this.__P_519_0).forEach(this.__P_519_1, this);
+        Object.getOwnPropertyNames(this.__P_520_0).forEach(this.__P_520_1, this);
 
         this.eventSource.onerror = function () {
-          this.error("connection lost");
+          this.error('connection lost');
           this.client.setConnected(false);
         }.bind(this);
 
         this.eventSource.onopen = function () {
-          this.debug("connection established");
+          this.debug('connection established');
           this.client.setConnected(true);
         }.bind(this);
       },
 
       /**
        * Handle messages send from server as Server-Sent-Event
+       * @param e
        */
       handleMessage: function handleMessage(e) {
-        this.client.record("read", e.data);
+        this.client.record('read', e.data);
         var json = JSON.parse(e.data);
         var data = json.d;
         this.client.update(data);
@@ -124,8 +125,8 @@
       dispatchTopicMessage: function dispatchTopicMessage(topic, message) {
         this.client.record(topic, message);
 
-        if (this.__P_519_0[topic]) {
-          this.__P_519_0[topic].forEach(function (entry) {
+        if (this.__P_520_0[topic]) {
+          this.__P_520_0[topic].forEach(function (entry) {
             entry[0].call(entry[1], message);
           });
         }
@@ -138,18 +139,18 @@
        * @param context {Object}
        */
       subscribe: function subscribe(topic, callback, context) {
-        if (!this.__P_519_0[topic]) {
-          this.__P_519_0[topic] = [];
+        if (!this.__P_520_0[topic]) {
+          this.__P_520_0[topic] = [];
         }
 
-        this.__P_519_0[topic].push([callback, context]);
+        this.__P_520_0[topic].push([callback, context]);
 
         if (this.isConnectionRunning()) {
-          this.__P_519_1(topic);
+          this.__P_520_1(topic);
         }
       },
-      __P_519_1: function __P_519_1(topic) {
-        this.debug("subscribing to topic " + topic);
+      __P_520_1: function __P_520_1(topic) {
+        this.debug('subscribing to topic ' + topic);
         this.eventSource.addEventListener(topic, function (e) {
           this.dispatchTopicMessage(topic, e);
         }.bind(this), false);
@@ -157,6 +158,7 @@
 
       /**
        * Handle errors
+       * @param e
        */
       handleError: function handleError(e) {
         if (e.readyState === EventSource.CLOSED) {
@@ -178,6 +180,7 @@
 
       /**
        * Restart the read request
+       * @param doFullReload
        */
       restart: function restart(doFullReload) {
         if (doFullReload || this.eventSource.readyState === EventSource.CLOSED) {
@@ -201,4 +204,4 @@
   cv.io.transport.Sse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sse.js.map?dt=1625667808239
+//# sourceMappingURL=Sse.js.map?dt=1641882238622

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 106,
+        "line": 104,
         "column": 3
       }
     },
@@ -90,7 +90,7 @@
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 69,
           "column": 5
         }
       },
@@ -100,11 +100,11 @@
     "_transformDynamic": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 80,
           "column": 5
         }
       },
@@ -114,11 +114,11 @@
     "_transformScope": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 88,
           "column": 5
         }
       },
@@ -128,11 +128,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 98,
           "column": 5
         }
       },
@@ -143,11 +143,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 103,
+        "line": 101,
         "column": 9
       },
       "end": {
-        "line": 105,
+        "line": 103,
         "column": 3
       }
     },

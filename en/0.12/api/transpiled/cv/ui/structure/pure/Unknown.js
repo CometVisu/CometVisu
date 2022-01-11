@@ -61,23 +61,23 @@
     */
     properties: {
       path: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       $$type: {
-        check: "String",
-        init: "Unknown"
+        check: 'String',
+        init: 'Unknown'
       },
       unknownType: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       pageType: {
-        check: ["text", "2d", "3d"],
-        init: "text"
+        check: ['text', '2d', '3d'],
+        init: 'text'
       },
       parentWidget: {
-        check: "cv.ui.structure.AbstractBasicWidget",
+        check: 'cv.ui.structure.AbstractBasicWidget',
         init: null
       }
     },
@@ -101,14 +101,14 @@
        * @return {String} HTML code
        */
       getDomString: function getDomString() {
-        return '<div class="widget clearfix"><pre>' + qx.locale.Manager.tr("unknown: %1", this.getUnknownType()) + '</pre></div>';
+        return '<div class="widget clearfix"><pre>' + qx.locale.Manager.tr('unknown: %1', this.getUnknownType()) + '</pre></div>';
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("unknown", statics);
+      cv.ui.structure.WidgetFactory.registerClass('unknown', statics);
     }
   });
   cv.ui.structure.pure.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1625667771164
+//# sourceMappingURL=Unknown.js.map?dt=1641882203835

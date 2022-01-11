@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.ImageTrigger', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -62,19 +62,19 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           'height': {
-            "default": "0"
+            'default': '0'
           },
           'width': {
-            "default": "0"
+            'default': '0'
           },
           'type': {
             target: 'updateType',
-            "default": ''
+            'default': ''
           },
           'src': {},
           'suffix': {},
           'sendValue': {
-            "default": ''
+            'default': ''
           }
         };
       },
@@ -85,10 +85,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("imagetrigger", statics);
+      cv.parser.WidgetParser.addHandler('imagetrigger', statics);
     }
   });
   cv.parser.widgets.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1625667764303
+//# sourceMappingURL=ImageTrigger.js.map?dt=1641882197279

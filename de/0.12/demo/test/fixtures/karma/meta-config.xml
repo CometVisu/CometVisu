@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <meta>
     <plugins>
-        <plugin name="colorchooser"/>
+        <plugin name="clock"/>
         <plugin name="diagram"/>
         <plugin name="strftime"/>
     </plugins>

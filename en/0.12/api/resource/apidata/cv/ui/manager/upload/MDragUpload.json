@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 293,
+        "line": 295,
         "column": 3
       }
     },
@@ -54,7 +54,7 @@
       },
       "name": "uploadMode",
       "propertyType": "new",
-      "apply": "__P_53_1",
+      "apply": "__P_52_1",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -163,7 +163,7 @@
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 132,
           "column": 5
         }
       },
@@ -195,11 +195,11 @@
     "__hasEmptyInfo": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 141,
           "column": 24
         }
       },
@@ -209,11 +209,11 @@
     "_boundOnStop": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 142,
           "column": 22
         }
       },
@@ -223,11 +223,11 @@
     "__syncBounds": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 148,
           "column": 5
         }
       },
@@ -237,11 +237,11 @@
     "_createMDragUploadChildControlImpl": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 195,
           "column": 5
         }
       },
@@ -252,11 +252,11 @@
     "_onStopDragging": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 197,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 201,
           "column": 5
         }
       },
@@ -266,11 +266,11 @@
     "_applyStartDragListeners": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 227,
           "column": 5
         }
       },
@@ -288,11 +288,11 @@
     "_applyDragListeners": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 273,
+          "line": 275,
           "column": 5
         }
       },
@@ -310,11 +310,11 @@
     "__applyUploadMode": {
       "location": {
         "start": {
-          "line": 276,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 291,
+          "line": 293,
           "column": 5
         }
       },

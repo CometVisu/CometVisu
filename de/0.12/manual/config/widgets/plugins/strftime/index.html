@@ -117,7 +117,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../index.html#sonstige-widgets">Sonstige Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../clock/index.html">Das Clock Plugin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../colorchooser/index.html">Das ColorChooser Plugin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../diagram/index.html">Das Diagram Plugin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../diagram_info/index.html">Das Diagramm_Info Plugin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../gauge/index.html">Das Gauge Plugin</a></li>
@@ -454,31 +453,31 @@ class=&quot;timedate&quot;
 </div>
 <p>Für die Formatierung (Farbe, Schriftgrösse und Schriftart) muss im Visu Verzeichniss unter
 <code class="docutils literal notranslate"><span class="pre">/designs/metal/custom.css</span></code> noch folgender Abschnitt eingefügt werden:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">color</span><span class="p">:</span> <span class="mh">#75d5ff</span><span class="p">;</span>
-    <span class="k">min-height</span><span class="p">:</span> <span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">font</span><span class="p">:</span> <span class="kc">bold</span> <span class="mi">12</span><span class="kt">mm</span> <span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span> <span class="n">Lucida</span><span class="p">,</span> <span class="n">Verdana</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#75d5ff</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">12</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timebig</span> <span class="o">&gt;</span> <span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span> <span class="p">{</span>
-    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">14</span><span class="kt">mm</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">min-height</span><span class="p">:</span> <span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">line-height</span><span class="p">:</span> <span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
-    <span class="k">font</span><span class="p">:</span> <span class="kc">bold</span> <span class="mi">3</span><span class="kt">mm</span> <span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span> <span class="n">Lucida</span><span class="p">,</span> <span class="n">Verdana</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">3</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span> <span class="o">&gt;</span> <span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span> <span class="p">{</span>
-        <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
@@ -514,7 +513,7 @@ class=&quot;timedate&quot;
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 

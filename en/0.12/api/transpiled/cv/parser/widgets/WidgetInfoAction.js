@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.WidgetInfoAction', {
-    type: "static",
+    type: 'static',
 
     /*
      ******************************************************
@@ -60,11 +60,11 @@
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("widgetinfo", statics);
-      cv.parser.WidgetParser.addHandler("widgetaction", statics);
+      cv.parser.WidgetParser.addHandler('widgetinfo', statics);
+      cv.parser.WidgetParser.addHandler('widgetaction', statics);
     }
   });
   cv.parser.widgets.WidgetInfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetInfoAction.js.map?dt=1625667764933
+//# sourceMappingURL=WidgetInfoAction.js.map?dt=1641882197878

@@ -48,6 +48,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.event.message.Bus": {},
       "cv.core.notifications.Router": {},
       "cv.data.FileWorker": {},
+      "qx.log.Logger": {},
       "qx.core.Init": {},
       "qx.core.WindowError": {},
       "qx.dev.StackTrace": {},
@@ -111,7 +112,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
    */
-  qx.Class.define("cv.Application", {
+  qx.Class.define('cv.Application', {
     extend: qx.application.Native,
 
     /*
@@ -129,7 +130,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       qx.bom.PageVisibility.getInstance().addListener('change', function () {
-        this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
+        this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === 'visible');
       }, this); // install global shortcut for opening the manager
 
       if (window.parent && typeof window.parent.showManager === 'function') {
@@ -157,6 +158,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       /**
        * Client factory method -> create a client
+       * @param {...any} args
        * @return {cv.io.Client|cv.io.Mockup}
        */
       createClient: function createClient() {
@@ -168,15 +170,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         if (cv.Config.testMode === true || window.cvTestMode === true) {
           Client = cv.io.Mockup;
-        } else if (args[0] === "openhab") {
+        } else if (args[0] === 'openhab') {
           Client = cv.io.openhab.Rest;
-          cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+          cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
 
-          if (args[1] && args[1].endsWith("/cv/l/")) {
+          if (args[1] && args[1].endsWith('/cv/l/')) {
             // we only need the rest path not the login resource
-            args[1] = args[1].substring(0, args[1].indexOf("cv/"));
+            args[1] = args[1].substring(0, args[1].indexOf('cv/'));
           }
-        } else if (args[0] === "mqtt") {
+        } else if (args[0] === 'mqtt') {
           Client = cv.io.mqtt.Client;
         }
 
@@ -194,7 +196,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // install command
         if (!(shortcutName in window)) {
           window[shortcutName] = command;
-          this.consoleCommands.push(shortcutName + "() - " + help);
+          this.consoleCommands.push(shortcutName + '() - ' + help);
         }
       }
     },
@@ -222,12 +224,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         deferredInit: true
       },
       active: {
-        check: "Boolean",
+        check: 'Boolean',
         init: true,
-        event: "changeActive"
+        event: 'changeActive'
       },
       inManager: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -249,9 +251,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (!this._blocker) {
             this._blocker = new qx.bom.Blocker();
 
-            this._blocker.setBlockerColor("#000000");
+            this._blocker.setBlockerColor('#000000');
 
-            this._blocker.setBlockerOpacity("0.2");
+            this._blocker.setBlockerOpacity('0.2');
           }
 
           this._blocker.block();
@@ -265,21 +267,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * during startup of the application
        */
       main: function main() {
+        var _this = this;
+
         cv.ConfigCache.init();
         qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
         cv.report.Record.prepare();
-        var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + " Christian Mayer and the CometVisu contributers.\n" + " Version: " + cv.Version.VERSION + "\n";
+        var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
 
         if (cv.Application.consoleCommands.length) {
-          info += "\n Available commands:\n    " + cv.Application.consoleCommands.join("\n    ") + "\n";
+          info += "\n Available commands:\n    " + cv.Application.consoleCommands.join('\n    ') + '\n';
         }
 
-        info += "-----------------------------------------------------------\n\n";
+        info += '-----------------------------------------------------------\n\n'; // eslint-disable-next-line no-console
+
         console.log(info); // add command to load and open the manager
 
         var manCommand = new qx.ui.command.Command('Ctrl+M');
-        cv.TemplateEngine.getInstance().getCommands().add("open-manager", manCommand);
-        manCommand.addListener('execute', this.showManager, this);
+        cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
+        manCommand.addListener('execute', function () {
+          return _this.showManager();
+        }, this);
 
         if (cv.Config.request.queryKey.manager) {
           this.showManager();
@@ -311,12 +318,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       showManager: function showManager(action, data) {
         qx.io.PartLoader.require(['manager'], function (states) {
+          var _this2 = this;
+
           // break dependency
           var engine = cv.TemplateEngine.getInstance();
 
           if (!engine.isLoggedIn() && !action) {
             // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-            engine.addListenerOnce('changeLoggedIn', this.showManager, this);
+            engine.addListenerOnce('changeLoggedIn', function () {
+              return _this2.showManager();
+            });
             return;
           }
 
@@ -363,7 +374,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       },
       validateConfig: function validateConfig(configName) {
-        var _this = this;
+        var _this3 = this;
 
         var worker = cv.data.FileWorker.getInstance();
         var displayConfigName = configName;
@@ -377,7 +388,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         var notification = {
           topic: 'cv.config.validation',
-          severity: "normal",
+          severity: 'normal',
           deletable: true,
           unique: true
         };
@@ -413,13 +424,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           } else {
             // show result message as dialog
-            console.error(res);
+            qx.log.Logger.error(_this3, res);
             cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
               target: 'popup',
               message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
               actions: {
                 link: [{
-                  title: qx.locale.Manager.tr("Show errors"),
+                  title: qx.locale.Manager.tr('Show errors'),
                   action: function action() {
                     qx.core.Init.getApplication().showConfigErrors(configName);
                   }
@@ -430,35 +441,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           }
         })["catch"](function (err) {
-          _this.error(err);
+          _this3.error(err);
         });
       },
       __P_2_1: function __P_2_1(ex) {
         // connect client data for Bug-Report
-        var bugData = cv.report.Record.getClientData();
-        var body = "**" + qx.locale.Manager.tr("Please describe what you have done until the error occured?") + "**\n \n\n";
-        var exString = "";
+        var exString = '';
         var maxTraceLength = 2000;
 
         if (ex.getSourceException && ex.getSourceException()) {
           ex = ex.getSourceException();
         } else if (ex instanceof qx.core.WindowError) {
-          exString = ex.toString() + "\nin " + ex.getUri() + " line " + ex.getLineNumber();
+          exString = ex.toString() + '\nin ' + ex.getUri() + ' line ' + ex.getLineNumber();
         }
 
         if (!exString) {
-          exString = ex.name + ": " + ex.message;
+          exString = ex.name + ': ' + ex.message;
 
           if (ex.fileName) {
-            exString += "\n in file " + ex.fileName;
+            exString += '\n in file ' + ex.fileName;
           }
 
           if (ex.lineNumber) {
-            exString += "\n line " + ex.lineNumber;
+            exString += '\n line ' + ex.lineNumber;
           }
 
           if (ex.description) {
-            exString += "\n Description: " + ex.description;
+            exString += '\n Description: ' + ex.description;
           }
 
           try {
@@ -488,7 +497,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
 
             if (nStack) {
-              exString += "\nNormalized Stack: " + nStack.substring(0, maxTraceLength) + "\n";
+              exString += '\nNormalized Stack: ' + nStack.substring(0, maxTraceLength) + '\n';
 
               if (nStack.length > maxTraceLength) {
                 exString += 'Stacktrace has been cut off\n';
@@ -496,11 +505,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
 
             if (exString.length + ex.stack.length < maxTraceLength) {
-              exString += "\nOriginal Stack: " + ex.stack + "\n";
+              exString += '\nOriginal Stack: ' + ex.stack + '\n';
             }
           } catch (exc) {
             if (ex.stack) {
-              exString += "\nStack: " + ex.stack.substring(0, maxTraceLength) + "\n";
+              exString += '\nStack: ' + ex.stack.substring(0, maxTraceLength) + '\n';
 
               if (ex.stack.length > maxTraceLength) {
                 exString += 'Stacktrace has been cut off\n';
@@ -509,45 +518,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }
 
-        body += "```\n" + exString + "\n```\n\n**Client-Data:**\n```\n" + JSON.stringify(bugData, null, 2) + "\n```";
         var notification = {
-          topic: "cv.error",
+          topic: 'cv.error',
           target: cv.ui.PopupHandler,
-          title: qx.locale.Manager.tr("An error occured"),
-          message: "<pre>" + (ex.stack || exString) + "</pre>",
-          severity: "urgent",
+          title: qx.locale.Manager.tr('An error occured'),
+          message: '<pre>' + (ex.stack || exString) + '</pre>',
+          severity: 'urgent',
           deletable: false,
           actions: {
             optionGroup: {
-              title: qx.locale.Manager.tr("Enable on reload:"),
+              title: qx.locale.Manager.tr('Enable on reload:'),
               options: []
             },
             link: [{
-              title: qx.locale.Manager.tr("Reload"),
+              title: qx.locale.Manager.tr('Reload'),
               action: function action(ev) {
                 var parent = ev.getTarget().parentNode;
 
                 while (parent) {
-                  if (parent.id === "notification-center" || parent.classList.contains("popup")) {
+                  if (parent.id === 'notification-center' || parent.classList.contains('popup')) {
                     break;
                   }
 
                   parent = parent.parentNode;
                 }
 
-                var box = parent.querySelector("#enableReporting");
-                var url = window.location.href.split("#").shift();
+                var box = parent.querySelector('#enableReporting');
+                var url = window.location.href.split('#').shift();
 
                 if (box && box.checked) {
                   // reload with reporting enabled
-                  url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
+                  url = qx.util.Uri.appendParamsToUrl(url, 'reporting=true');
                 }
 
-                box = parent.querySelector("#reportErrors");
+                box = parent.querySelector('#reportErrors');
 
                 if (box && box.checked) {
                   // reload with automatic error reporting enabled
-                  url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
+                  url = qx.util.Uri.appendParamsToUrl(url, 'reportErrors=true');
                 }
 
                 cv.util.Location.setHref(url);
@@ -557,29 +565,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }; // reload with reporting checkbox
 
-        var reportAction = null;
-        var link = "";
+        var link = '';
 
-        if (cv.Config.reporting) {
-          // reporting is enabled -> download log and show hint how to append it to the ticket
-          body = '<!--\n' + qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.") + '\n-->\n\n' + body;
-          reportAction = cv.report.Record.download;
-        } else {
-          if (qx.locale.Manager.getInstance().getLanguage() === "de") {
-            link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+        if (!cv.Config.reporting) {
+          if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
+            link = ' <a href=\https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
           }
 
           notification.actions.optionGroup.options.push({
-            title: qx.locale.Manager.tr("Action recording") + link,
-            name: "enableReporting"
-          }); // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
+            title: qx.locale.Manager.tr('Action recording') + link,
+            name: 'enableReporting'
+          });
         }
 
         {
           if (window.Sentry) {
             // Sentry has been loaded -> add option to send the error
             notification.actions.link.push({
-              title: qx.locale.Manager.tr("Send error to sentry.io"),
+              title: qx.locale.Manager.tr('Send error to sentry.io'),
               action: function action() {
                 Sentry.captureException(ex);
               },
@@ -587,16 +590,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               deleteMessageAfterExecution: true
             });
           } else {
-            link = "";
+            link = '';
 
-            if (qx.locale.Manager.getInstance().getLanguage() === "de") {
-              link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+            if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
+              link = ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
             }
 
             notification.actions.optionGroup.options.push({
-              title: qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
-              name: "reportErrors",
-              style: "margin-left: 18px"
+              title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
+              name: 'reportErrors',
+              style: 'margin-left: 18px'
             }); // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
           }
         }
@@ -622,7 +625,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 0:
                   // init notification router
                   cv.core.notifications.Router.getInstance();
-                  body = document.querySelector("body");
+                  body = document.querySelector('body');
                   isCached = false;
 
                   if (!cv.Config.enableCache) {
@@ -639,7 +642,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 7:
                   if (isCached) {
                     // load settings
-                    this.debug("using cache");
+                    this.debug('using cache');
                     cv.ConfigCache.restore(); // initialize NotificationCenter
 
                     cv.ui.NotificationCenter.getInstance();
@@ -675,11 +678,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
-                  this.debug("bootstrapping");
+                  this.debug('bootstrapping');
                   engine = cv.TemplateEngine.getInstance();
                   loader = cv.util.ScriptLoader.getInstance();
                   engine.xml = xml;
-                  loader.addListenerOnce("finished", function () {
+                  loader.addListenerOnce('finished', function () {
                     engine.setScriptsLoaded(true);
                   }, this);
                   isCached = false;
@@ -709,12 +712,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   cacheValid = _context2.sent;
 
                   if (!cacheValid) {
-                    this.debug("cache is invalid re-parse xml"); // cache invalid
+                    this.debug('cache is invalid re-parse xml'); // cache invalid
 
                     cv.Config.cacheUsed = false;
                     cv.ConfigCache.clear(); // load empty HTML structure
 
-                    body = document.querySelector("body");
+                    body = document.querySelector('body');
                     body.innerHTML = cv.Application.HTML_STRUCT; //empty model
 
                     cv.data.Model.getInstance().resetWidgetDataModel();
@@ -730,20 +733,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                     structure = cv.Config.getStructure();
-                    this.debug("loading structure " + structure);
+                    this.debug('loading structure ' + structure);
                     engine.loadParts([structure], function (states) {
-                      if (states === "complete") {
-                        this.debug(structure + " has been loaded");
+                      if (states === 'complete') {
+                        this.debug(structure + ' has been loaded');
                         this.setStructureLoaded(true);
                       } else {
-                        this.error(structure + " could not be loaded");
+                        this.error(structure + ' could not be loaded');
                         this.setStructureLoaded(false);
                       }
                     }, this);
-                    engine.addListenerOnce("changeReady", function () {
+                    engine.addListenerOnce('changeReady', function () {
                       // create the objects
                       cv.Config.treePath = cv.Config.initialPage;
-                      var data = cv.data.Model.getInstance().getWidgetData("id_");
+                      var data = cv.data.Model.getInstance().getWidgetData('id_');
                       cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
                     }, this); // check if the current design settings overrides the cache one
 
@@ -753,12 +756,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       // we have to replace the cached design scripts styles to load
                       styles = [];
                       cv.Config.configSettings.stylesToLoad.forEach(function (style) {
-                        styles.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
+                        styles.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
                       }, this);
                       this.loadStyles(styles);
                       scripts = [];
                       cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
-                        scripts.push(style.replace("designs/" + cv.Config.configSettings.clientDesign, "designs/" + cv.Config.clientDesign));
+                        scripts.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
                       }, this);
                       this.loadScripts(scripts);
                     } else {
@@ -771,7 +774,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 16:
                   if (!cv.Config.cacheUsed) {
-                    this.debug("starting");
+                    this.debug('starting');
 
                     this.__P_2_3();
 
@@ -779,11 +782,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       this.loadPlugins();
                       this.loadStyles();
                       this.loadScripts();
-                      this.debug("done");
+                      this.debug('done');
 
                       if (cv.Config.enableCache) {
                         // cache dom + data when everything is ready
-                        qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+                        qx.event.message.Bus.subscribe('setup.dom.finished', function () {
                           cv.ConfigCache.dump(xml, xmlHash);
                         }, this);
                       }
@@ -852,11 +855,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var standalonePlugins = [];
           var partsLoaded = false;
           var allPluginsQueued = false;
-          this.debug("loading plugins");
+          this.debug('loading plugins');
           var engine = cv.TemplateEngine.getInstance();
-          engine.addListener("changePartsLoaded", function (ev) {
+          engine.addListener('changePartsLoaded', function (ev) {
             if (ev.getData() === true) {
-              this.debug("plugins loaded");
+              this.debug('plugins loaded');
               partsLoaded = true;
 
               if (allPluginsQueued) {
@@ -870,13 +873,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var partPlugins = [];
           var path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
           plugins.forEach(function (plugin) {
-            if (parts.hasOwnProperty(plugin)) {
+            if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
               partPlugins.push(plugin);
             } else if (!plugin.startsWith('plugin-')) {
               // a real path
               standalonePlugins.push(plugin);
             } else {
-              standalonePlugins.push(path + "/plugins/" + plugin.replace("plugin-", "") + "/index.js");
+              standalonePlugins.push(path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js');
             }
           }); // load part plugins
 
@@ -906,7 +909,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             allPluginsQueued = true;
           }
         } else {
-          this.debug("no plugins to load => all scripts queued");
+          this.debug('no plugins to load => all scripts queued');
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
@@ -916,15 +919,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (cv.Config.startpage) {
           startpage = cv.Config.startpage;
 
-          if (qx.core.Environment.get("html.storage.local") === true) {
-            if ('remember' === startpage) {
+          if (qx.core.Environment.get('html.storage.local') === true) {
+            if (startpage === 'remember') {
               startpage = localStorage.getItem('lastpage');
               cv.Config.rememberLastPage = true;
 
-              if ('string' !== typeof startpage || 'id_' !== startpage.substr(0, 3)) {
+              if (typeof startpage !== 'string' || startpage.substr(0, 3) !== 'id_') {
                 startpage = 'id_'; // fix obvious wrong data
               }
-            } else if ('noremember' === startpage) {
+            } else if (startpage === 'noremember') {
               localStorage.removeItem('lastpage');
               startpage = 'id_';
               cv.Config.rememberLastPage = false;
@@ -933,7 +936,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         } else {
           var req = qx.util.Uri.parseUri(window.location.href);
 
-          if (req.anchor && req.anchor.substring(0, 3) === "id_") {
+          if (req.anchor && req.anchor.substring(0, 3) === 'id_') {
             startpage = req.anchor;
           }
         }
@@ -942,8 +945,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           cv.Config.initialPage = startpage;
         } else {
           // wait for DOM to be ready and detect the page id then
-          qx.event.message.Bus.subscribe("setup.dom.finished.before", function () {
-            cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
+          qx.event.message.Bus.subscribe('setup.dom.finished.before', function () {
+            cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || 'id_';
           });
         }
       },
@@ -955,4 +958,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1625667763169
+//# sourceMappingURL=Application.js.map?dt=1641882196164

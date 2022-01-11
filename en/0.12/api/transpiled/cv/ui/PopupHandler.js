@@ -36,7 +36,7 @@
    * Handles all popups
    */
   qx.Class.define('cv.ui.PopupHandler', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -47,27 +47,27 @@
       popups: {},
       configs: {},
       init: function init() {
-        this.addPopup(new cv.ui.Popup("unknown"));
-        this.addPopup(new cv.ui.Popup("info"));
-        this.addPopup(new cv.ui.Popup("warning"));
-        this.addPopup(new cv.ui.Popup("error")); // register to topics
+        this.addPopup(new cv.ui.Popup('unknown'));
+        this.addPopup(new cv.ui.Popup('info'));
+        this.addPopup(new cv.ui.Popup('warning'));
+        this.addPopup(new cv.ui.Popup('error')); // register to topics
 
         cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
           'cv.config.error': {
-            type: "error",
-            icon: "message_attention"
+            type: 'error',
+            icon: 'message_attention'
           },
           'cv.error': {
-            type: "error",
-            icon: "message_attention"
+            type: 'error',
+            icon: 'message_attention'
           },
           'cv.client.connection': {
-            type: "error",
-            icon: "message_attention",
+            type: 'error',
+            icon: 'message_attention',
             deletable: true
           }
         });
-        qx.event.message.Bus.subscribe("path.pageLeft", this._onPageChanged, this);
+        qx.event.message.Bus.subscribe('path.pageLeft', this._onPageChanged, this);
       },
 
       /**
@@ -75,7 +75,7 @@
        * @param ev {Event}
        */
       _onPageChanged: function _onPageChanged(ev) {
-        Object.keys(this.popups).filter(function (type) {
+        Object.keys(this.popups).forEach(function (type) {
           if (type !== 'error') {
             var popup = this.popups[type];
             var domElement = popup.getCurrentDomElement();
@@ -95,7 +95,7 @@
           iconClasses: message.iconClasses,
           actions: message.actions,
           progress: message.progress,
-          type: "notification"
+          type: 'notification'
         }; // popups are always unique
 
         if (cv.core.notifications.Router.evaluateCondition(message)) {
@@ -257,4 +257,4 @@
   cv.ui.PopupHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PopupHandler.js.map?dt=1625667805549
+//# sourceMappingURL=PopupHandler.js.map?dt=1641882235615

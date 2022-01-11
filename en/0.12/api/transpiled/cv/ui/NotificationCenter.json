@@ -17,7 +17,7 @@
         "column": 0
       },
       "end": {
-        "line": 386,
+        "line": 383,
         "column": 3
       }
     },
@@ -361,7 +361,7 @@
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 211,
           "column": 5
         }
       },
@@ -371,11 +371,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 271,
+          "line": 270,
           "column": 5
         }
       },
@@ -399,11 +399,11 @@
     "__updateBadge": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 272,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 303,
           "column": 5
         }
       },
@@ -413,11 +413,11 @@
     "_onSeverityChange": {
       "location": {
         "start": {
-          "line": 308,
+          "line": 305,
           "column": 4
         },
         "end": {
-          "line": 321,
+          "line": 318,
           "column": 5
         }
       },
@@ -427,11 +427,11 @@
     "show": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 338,
           "column": 5
         }
       },
@@ -449,11 +449,11 @@
     "toggleVisibility": {
       "location": {
         "start": {
-          "line": 346,
+          "line": 343,
           "column": 4
         },
         "end": {
-          "line": 352,
+          "line": 349,
           "column": 5
         }
       },
@@ -471,11 +471,11 @@
     "hide": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 354,
           "column": 4
         },
         "end": {
-          "line": 372,
+          "line": 369,
           "column": 5
         }
       },
@@ -678,11 +678,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {Event}"
+            "body": "index {Number}"
           },
           {
             "name": "@param",
-            "body": "index {Number}"
+            "body": "ev {Event}"
           }
         ]
       }
@@ -1232,11 +1232,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 380,
+        "line": 377,
         "column": 77
       },
       "end": {
-        "line": 385,
+        "line": 382,
         "column": 3
       }
     },

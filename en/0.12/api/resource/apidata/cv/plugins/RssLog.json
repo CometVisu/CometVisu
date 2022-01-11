@@ -17,7 +17,7 @@
         "column": 0
       },
       "end": {
-        "line": 497,
+        "line": 500,
         "column": 3
       }
     },
@@ -726,7 +726,7 @@
           "column": 4
         },
         "end": {
-          "line": 242,
+          "line": 246,
           "column": 5
         }
       },
@@ -736,11 +736,11 @@
     "refreshRSSlog": {
       "location": {
         "start": {
-          "line": 244,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 273,
           "column": 5
         }
       },
@@ -750,11 +750,11 @@
     "__refreshRss": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 301,
           "column": 5
         }
       },
@@ -772,11 +772,11 @@
     "__prepareContentElement": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 303,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 329,
           "column": 5
         }
       },
@@ -786,11 +786,11 @@
     "__updateRssContent": {
       "location": {
         "start": {
-          "line": 328,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 339,
           "column": 5
         }
       },
@@ -800,11 +800,11 @@
     "__updateContent": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 341,
           "column": 4
         },
         "end": {
-          "line": 432,
+          "line": 435,
           "column": 5
         }
       },
@@ -814,11 +814,11 @@
     "__getItemHtml": {
       "location": {
         "start": {
-          "line": 434,
+          "line": 437,
           "column": 4
         },
         "end": {
-          "line": 462,
+          "line": 463,
           "column": 5
         }
       },
@@ -828,11 +828,11 @@
     "_onTap": {
       "location": {
         "start": {
-          "line": 464,
+          "line": 465,
           "column": 4
         },
         "end": {
-          "line": 488,
+          "line": 491,
           "column": 5
         }
       },
@@ -2920,7 +2920,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -7257,11 +7257,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 491,
+        "line": 494,
         "column": 9
       },
       "end": {
-        "line": 496,
+        "line": 499,
         "column": 3
       }
     },

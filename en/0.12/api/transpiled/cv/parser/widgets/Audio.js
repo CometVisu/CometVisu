@@ -35,7 +35,7 @@
    * Parse &lt;audio;gt; config elements
    */
   qx.Class.define('cv.parser.widgets.Audio', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -80,26 +80,26 @@
           height: {},
           autoplay: {
             transform: function transform(value) {
-              return value === "autoplay" || value === "true";
+              return value === 'autoplay' || value === 'true';
             }
           },
           loop: {
             transform: function transform(value) {
-              return value === "loop" || value === "true";
+              return value === 'loop' || value === 'true';
             }
           },
           thresholdValue: {
-            "default": 1
+            'default': 1
           }
         };
       }
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("audio", statics);
+      cv.parser.WidgetParser.addHandler('audio', statics);
     }
   });
   cv.parser.widgets.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1625667764194
+//# sourceMappingURL=Audio.js.map?dt=1641882197088

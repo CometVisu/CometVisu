@@ -36,7 +36,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Slide', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -57,9 +57,10 @@
         var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
-        var datatype_min, datatype_max;
+        var datatype_min;
+        var datatype_max;
         Array.from(xml.children).filter(function (m) {
-          return m.matches("address");
+          return m.matches('address');
         }).forEach(function (elem) {
           var transform = elem.getAttribute('transform');
 
@@ -84,14 +85,14 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           'step': {
-            "default": 0.5,
+            'default': 0.5,
             transform: parseFloat
           },
           'send_on_finish': {
             target: 'sendOnFinish',
-            "default": false,
+            'default': false,
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -99,10 +100,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("slide", statics);
+      cv.parser.WidgetParser.addHandler('slide', statics);
     }
   });
   cv.parser.widgets.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1625667764722
+//# sourceMappingURL=Slide.js.map?dt=1641882197678

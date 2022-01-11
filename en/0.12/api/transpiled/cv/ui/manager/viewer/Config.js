@@ -175,16 +175,16 @@
 
             var url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
 
-            if (url && url !== "about:blank") {
+            if (url && url !== 'about:blank') {
               this._reloading = true;
               this.getChildControl('loading').show();
-              iframe.addListenerOnce("load", function () {
+              iframe.addListenerOnce('load', function () {
                 _this._reloading = false;
                 iframe.setSource(url);
               }, this);
             }
 
-            iframe.setSource("about:blank");
+            iframe.setSource('about:blank');
           } else if (this._windowRef) {
             this._windowRef.reload();
           }
@@ -229,7 +229,7 @@
           case 'iframe':
             control = new qx.ui.embed.Iframe();
             control.exclude();
-            control.addListener("load", function () {
+            control.addListener('load', function () {
               if (_this2.hasChildControl('loading') && !_this2._reloading) {
                 _this2.getChildControl('loading').exclude();
               }
@@ -252,14 +252,14 @@
             break;
 
           case 'loading':
-            control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon("reload", 64));
+            control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon('reload', 64));
             control.set({
               center: true,
               font: 'title',
-              iconPosition: "top",
-              backgroundColor: "rgba(0,0,0,0.2)"
+              iconPosition: 'top',
+              backgroundColor: 'rgba(0,0,0,0.2)'
             });
-            control.addListener("appear", function () {
+            control.addListener('appear', function () {
               qx.event.Timer.once(function () {
                 control.exclude();
               }, _this2, 5000);
@@ -287,4 +287,4 @@
   cv.ui.manager.viewer.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1625667770200
+//# sourceMappingURL=Config.js.map?dt=1641882202791

@@ -6,7 +6,8 @@
         "require": true
       },
       "qxl.dialog.Dialog": {},
-      "qx.ui.form.RadioGroup": {},
+      "qx.ui.layout.HBox": {},
+      "qx.ui.form.RadioButtonGroup": {},
       "qx.ui.form.RadioButton": {}
     }
   };
@@ -37,15 +38,28 @@
       },
       _registration: {
         initElement: function initElement(fieldType, fieldData, key) {
-          var formElement = new qx.ui.form.RadioGroup();
+          var layout; // default uses VBox
+
+          if (fieldData.orientation == "horizontal") {
+            layout = new qx.ui.layout.HBox(4);
+          } else if (fieldData.layout) {
+            layout = fieldData.layout;
+          }
+
+          var formElement = new qx.ui.form.RadioButtonGroup(layout);
 
           if (fieldData.orientation) {
             formElement.setUserData("orientation", fieldData.orientation);
           }
 
-          fieldData.options.forEach(function (item) {
+          fieldData.options.forEach(function (item, index) {
             var radioButton = new qx.ui.form.RadioButton(item.label);
             radioButton.setUserData("value", item.value !== undefined ? item.value : item.label);
+
+            if (index === 0 && "tabIndex" in item) {
+              radioButton.setTabIndex(item.tabIndex);
+            }
+
             formElement.add(radioButton);
           }, this);
           return formElement;
@@ -81,4 +95,4 @@
   qxl.dialog.formElement.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1625667809936
+//# sourceMappingURL=RadioGroup.js.map?dt=1641882240103

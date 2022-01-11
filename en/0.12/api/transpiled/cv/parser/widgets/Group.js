@@ -35,7 +35,7 @@
    * Parse group config elements
    */
   qx.Class.define('cv.parser.widgets.Group', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -61,7 +61,7 @@
         }
 
         if (data.noWidget === true) {
-          data.classes = data.classes.replace("widget ", "");
+          data.classes = data.classes.replace('widget ', '');
         }
 
         cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
@@ -71,25 +71,25 @@
         return {
           'nowidget': {
             target: 'noWidget',
-            "default": false,
+            'default': false,
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'name': {
-            "default": ""
+            'default': ''
           },
           'target': {
-            "default": ""
+            'default': ''
           }
         };
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("group", statics);
+      cv.parser.WidgetParser.addHandler('group', statics);
     }
   });
   cv.parser.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1625667764258
+//# sourceMappingURL=Group.js.map?dt=1641882197226

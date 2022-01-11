@@ -36,7 +36,7 @@
    * Static access to internal icon database.
    */
   qx.Class.define('cv.IconConfig', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -13184,4 +13184,4 @@
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1625667807535
+//# sourceMappingURL=IconConfig.js.map?dt=1641882237708

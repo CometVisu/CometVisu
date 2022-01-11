@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Info', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -61,10 +61,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("info", statics);
+      cv.parser.WidgetParser.addHandler('info', statics);
     }
   });
   cv.parser.widgets.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1625667764331
+//# sourceMappingURL=Info.js.map?dt=1641882197298

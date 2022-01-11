@@ -86,13 +86,13 @@
         var json = this.client.getResponse(args);
         this.sessionId = json.s;
 
-        if (!json.hasOwnProperty('v')) {
+        if (!Object.prototype.hasOwnProperty.call(json, 'v')) {
           this.error('CometVisu protocol error: missing protocol version');
           this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION, json);
         } else {
           this.version = json.v.split('.', 3);
 
-          if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+          if (parseInt(this.version[0]) > 0 || parseInt(this.version[1]) > 1) {
             this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
           }
 
@@ -116,11 +116,11 @@
           successCallback = this.handleRead;
         }
 
-        this.__P_518_0(data, successCallback);
+        this.__P_519_0(data, successCallback);
 
         this.watchdog.start(5);
       },
-      __P_518_0: function __P_518_0(data, callback) {
+      __P_519_0: function __P_519_0(data, callback) {
         data = data || this.client.buildRequest();
         callback = callback || this.handleRead;
         data.t = 0;
@@ -130,7 +130,7 @@
             error: this.handleError
           }
         };
-        this.xhr = this.client.doRequest(this.client.getResourcePath("read"), data, callback, this, options);
+        this.xhr = this.client.doRequest(this.client.getResourcePath('read'), data, callback, this, options);
       },
 
       /**
@@ -140,7 +140,7 @@
       handleRead: function handleRead() {
         var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
 
-        if (this.doRestart || !json && -1 === this.lastIndex) {
+        if (this.doRestart || !json && this.lastIndex === -1) {
           this.client.setDataReceived(false);
 
           if (this.running) {
@@ -150,9 +150,9 @@
 
             if (this.doRestart) {
               // planned restart, only inform user
-              this.info("restarting XHR read requests in " + delay + " ms");
+              this.info('restarting XHR read requests in ' + delay + ' ms');
             } else {
-              this.error("restarting XHR read requests in " + delay + " ms");
+              this.error('restarting XHR read requests in ' + delay + ' ms');
             }
 
             if (!this.watchdog.isActive()) {
@@ -161,7 +161,7 @@
             }
 
             qx.event.Timer.once(function () {
-              this.__P_518_0();
+              this.__P_519_0();
 
               this.watchdog.ping(true);
             }, this, delay);
@@ -173,7 +173,7 @@
         var data;
 
         if (json && !this.doRestart) {
-          if (!json.hasOwnProperty('i')) {
+          if (!Object.prototype.hasOwnProperty.call(json, 'i')) {
             this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
             this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
             return;
@@ -195,7 +195,7 @@
           this.retryCounter++;
           data = this.client.buildRequest();
           data.i = this.lastIndex;
-          var url = this.xhr.getUrl().split("?").shift() + "?" + this.client.getQueryString(data);
+          var url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
           this.xhr.setUrl(url);
           this.xhr.send();
           this.watchdog.ping();
@@ -204,7 +204,7 @@
       handleReadStart: function handleReadStart() {
         var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
 
-        if (!json && -1 === this.lastIndex) {
+        if (!json && this.lastIndex === -1) {
           this.client.setDataReceived(false);
 
           if (this.running) {
@@ -239,10 +239,10 @@
 
           var data = this.client.buildRequest(diffAddresses);
           data.t = 0;
-          var url = this.xhr.getUrl().split("?").shift() + "?" + this.client.getQueryString(data);
+          var url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
           this.xhr.setUrl(url);
-          this.xhr.removeListener("success", this.handleReadStart, this);
-          this.xhr.addListener("success", this.handleRead, this);
+          this.xhr.removeListener('success', this.handleReadStart, this);
+          this.xhr.addListener('success', this.handleRead, this);
           this.xhr.send();
           this.watchdog.ping();
         }
@@ -348,4 +348,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1625667808211
+//# sourceMappingURL=LongPolling.js.map?dt=1641882238590

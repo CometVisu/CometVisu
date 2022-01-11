@@ -44,8 +44,8 @@
 
       this._createChildControl('close');
 
-      this.addListener("pointerover", this._onPointerOver, this);
-      this.addListener("pointerout", this._onPointerOut, this);
+      this.addListener('pointerover', this._onPointerOver, this);
+      this.addListener('pointerout', this._onPointerOut, this);
     },
 
     /*
@@ -57,7 +57,7 @@
       'close': 'qx.event.type.Data',
 
       /** (Fired by {@link qx.ui.form.List}) */
-      "action": "qx.event.type.Event"
+      'action': 'qx.event.type.Event'
     },
 
     /*
@@ -116,6 +116,7 @@
     ***********************************************
     */
     members: {
+      // eslint-disable-line @qooxdoo/qx/no-refs-in-members
       // overridden
 
       /**
@@ -132,7 +133,7 @@
        * Event handler for the pointer over event.
        */
       _onPointerOver: function _onPointerOver() {
-        this.addState("hovered");
+        this.addState('hovered');
       },
       _transformFilename: function _transformFilename(name) {
         if (name === '.') {
@@ -146,7 +147,7 @@
        * Event handler for the pointer out event.
        */
       _onPointerOut: function _onPointerOut() {
-        this.removeState("hovered");
+        this.removeState('hovered');
       },
       _applyPermanent: function _applyPermanent(value) {
         this.setFont(value ? 'default' : 'italic');
@@ -174,7 +175,7 @@
         }
       },
       _applyLabel: function _applyLabel() {
-        var label = this.getChildControl("label");
+        var label = this.getChildControl('label');
         var value = this.getLabel();
 
         if (value) {
@@ -252,11 +253,11 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.removeListener("pointerover", this._onPointerOver, this);
-      this.removeListener("pointerout", this._onPointerOut, this);
+      this.removeListener('pointerover', this._onPointerOver, this);
+      this.removeListener('pointerout', this._onPointerOut, this);
     }
   });
   cv.ui.manager.form.FileTabItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileTabItem.js.map?dt=1625667768659
+//# sourceMappingURL=FileTabItem.js.map?dt=1641882201389

@@ -226,8 +226,8 @@
               later.push(obj);
             } // Flush invisible elements first
             else {
-                obj.__P_210_12();
-              } // Cleanup modification list
+              obj.__P_210_12();
+            } // Cleanup modification list
 
 
             delete modified[hc];
@@ -2563,4 +2563,4 @@
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1625667783315
+//# sourceMappingURL=Element.js.map?dt=1641882214435

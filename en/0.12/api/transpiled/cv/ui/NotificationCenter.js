@@ -93,11 +93,11 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.ui.NotificationCenter", {
+  qx.Class.define('cv.ui.NotificationCenter', {
     extend: qx.core.Object,
     implement: cv.core.notifications.IHandler,
     include: cv.ui.MHandleMessage,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     *****************************************************************************
@@ -107,30 +107,30 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       this.set({
-        rootElementId: "notification-center",
-        messageElementId: "notification_"
+        rootElementId: 'notification-center',
+        messageElementId: 'notification_'
       }); // register to topics
 
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
         'cv.*': {}
       });
-      this._openCommand = new qx.ui.command.Command("Ctrl+N");
+      this._openCommand = new qx.ui.command.Command('Ctrl+N');
 
-      this._openCommand.addListener("execute", this.toggleVisibility, this);
+      this._openCommand.addListener('execute', this.toggleVisibility, this);
 
-      cv.TemplateEngine.getInstance().getCommands().add("open-notificationcenter", this._openCommand);
-      qx.event.Registration.addListener(window, "resize", this._onResize, this);
-      this.debouncedHide = new qx.util.Function.debounce(this.hide.bind(this), 5000, false);
+      cv.TemplateEngine.getInstance().getCommands().add('open-notificationcenter', this._openCommand);
+      qx.event.Registration.addListener(window, 'resize', this._onResize, this);
+      this.debouncedHide = qx.util.Function.debounce(this.hide.bind(this), 5000, false);
       cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
-      this.addListener("changedGlobalSeverity", this._onSeverityChange, this);
+      this.addListener('changedGlobalSeverity', this._onSeverityChange, this);
       this.setDelegate({
-        prepareMessage: function (message) {
+        prepareMessage: function prepareMessage(message) {
           // resolve icon if there is one
           if (message.icon) {
-            var iconClasses = message.iconClasses ? " " + message.iconClasses : "";
-            message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, "icon" + iconClasses);
+            var iconClasses = message.iconClasses ? ' ' + message.iconClasses : '';
+            message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, 'icon' + iconClasses);
           }
-        }.bind(this)
+        }
       });
     },
 
@@ -142,30 +142,30 @@
     statics: {
       SLIDE: {
         duration: 350,
-        timing: "linear",
-        origin: "bottom center",
+        timing: 'linear',
+        origin: 'bottom center',
         keyFrames: {
           0: {
-            translate: ["0px"]
+            translate: ['0px']
           },
           100: {
-            translate: ["-300px"]
+            translate: ['-300px']
           }
         }
       },
       BLINK: {
         duration: 1000,
-        timing: "ease-in-out",
-        origin: "bottom center",
+        timing: 'ease-in-out',
+        origin: 'bottom center',
         keyFrames: {
           0: {
-            backgroundColor: ["rgba(61, 61, 61, 0.9)"]
+            backgroundColor: ['rgba(61, 61, 61, 0.9)']
           },
           50: {
-            backgroundColor: ["rgba(255, 121, 0, 0.9)"]
+            backgroundColor: ['rgba(255, 121, 0, 0.9)']
           },
           100: {
-            backgroundColor: ["rgba(61, 61, 61, 0.9)"]
+            backgroundColor: ['rgba(61, 61, 61, 0.9)']
           }
         }
       },
@@ -224,26 +224,27 @@
       _openCommand: null,
       disableBadge: function disableBadge(value) {
         if (value) {
-          this.__P_493_4.classList.add("hidden");
+          this.__P_493_4.classList.add('hidden');
         } else {
-          this.__P_493_4.classList.remove("hidden");
+          this.__P_493_4.classList.remove('hidden');
         }
       },
       _onResize: function _onResize() {
         var height = document.documentElement.clientHeight;
 
         if (this.__P_493_0) {
-          this.__P_493_0.style.left = document.documentElement.clientWidth + "px";
-          this.__P_493_0.style.height = height + "px";
+          this.__P_493_0.style.left = document.documentElement.clientWidth + 'px';
+          this.__P_493_0.style.height = height + 'px';
         }
 
         if (this.__P_493_1) {
           // get header+footer heights
-          var headerRect = this.__P_493_0.querySelector(":scope > header").getBoundingClientRect(),
-              footerRect = this.__P_493_0.querySelector(":scope > footer").getBoundingClientRect(),
-              messageBoxHeight = height - Math.round(headerRect.bottom - headerRect.top) - Math.round(footerRect.bottom - footerRect.top);
+          var headerRect = this.__P_493_0.querySelector(':scope > header').getBoundingClientRect();
 
-          this.__P_493_1.style.height = messageBoxHeight + "px";
+          var footerRect = this.__P_493_0.querySelector(':scope > footer').getBoundingClientRect();
+
+          var messageBoxHeight = height - Math.round(headerRect.bottom - headerRect.top) - Math.round(footerRect.bottom - footerRect.top);
+          this.__P_493_1.style.height = messageBoxHeight + 'px';
         }
       },
 
@@ -252,21 +253,21 @@
        * @private
        */
       _init: function _init() {
-        var body = document.querySelector("body");
+        var body = document.querySelector('body');
         this.__P_493_3 = cv.ui.BodyBlocker.getInstance();
         this.__P_493_5 = new Favico({
           animation: 'fade',
-          bgColor: "#1C391C"
+          bgColor: '#1C391C'
         }); // check if the element is already there (might have been cached)
 
         var elem = this.__P_493_0 = document.querySelector(this.getRootElementId());
 
         if (!elem) {
           // create new element
-          elem = this.__P_493_0 = qx.dom.Element.create("div", {
+          elem = this.__P_493_0 = qx.dom.Element.create('div', {
             id: this.getRootElementId(),
-            style: "visibility: hidden;",
-            html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
+            style: 'visibility: hidden;',
+            html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr('Message center') + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr('Delete all') + '<div></div></footer>'
           });
           body.appendChild(elem); // create the template
 
@@ -275,22 +276,22 @@
           templateCode += '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
           templateCode += '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
           templateCode += '<div class="content">{{&message}}</div></div>';
-          var template = qx.dom.Element.create("script", {
-            id: "MessageTemplate",
-            type: "text/template",
+          var template = qx.dom.Element.create('script', {
+            id: 'MessageTemplate',
+            type: 'text/template',
             html: templateCode
           });
           body.appendChild(template);
         }
 
-        this.__P_493_1 = elem.querySelector("section.messages");
-        this.__P_493_4 = elem.querySelector(".badge");
-        qx.event.Registration.addListener(this.__P_493_4, "tap", this.toggleVisibility, this); // add HTML template for messages to header
+        this.__P_493_1 = elem.querySelector('section.messages');
+        this.__P_493_4 = elem.querySelector('.badge');
+        qx.event.Registration.addListener(this.__P_493_4, 'tap', this.toggleVisibility, this); // add HTML template for messages to header
 
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_493_1, "MessageTemplate");
-        qx.event.Registration.addListener(this.__P_493_1, "tap", this._onListTap, this); // connect badge content
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_493_1, 'MessageTemplate');
+        qx.event.Registration.addListener(this.__P_493_1, 'tap', this._onListTap, this); // connect badge content
 
-        this._messages.addListener("changeLength", this.__P_493_6, this);
+        this._messages.addListener('changeLength', this.__P_493_6, this);
 
         this.__P_493_6(); // update dimensions
 
@@ -298,7 +299,7 @@
         new qx.util.DeferredCall(this._onResize, this).schedule();
       },
       __P_493_6: function __P_493_6() {
-        var currentContent = parseInt(this.__P_493_4.getAttribute("html"));
+        var currentContent = parseInt(this.__P_493_4.getAttribute('html'));
 
         if (isNaN(currentContent)) {
           currentContent = 0;
@@ -330,9 +331,9 @@
         }
 
         if (messages) {
-          this.__P_493_4.innerHTML = "" + messages;
+          this.__P_493_4.innerHTML = '' + messages;
         } else {
-          this.__P_493_4.innerHTML = "";
+          this.__P_493_4.innerHTML = '';
         }
       },
       _onSeverityChange: function _onSeverityChange() {
@@ -362,11 +363,11 @@
           this.__P_493_3.block();
 
           this.__P_493_0.style.visibility = '';
-          qx.event.Registration.addListener(this.__P_493_3.getBlockerElement(), "tap", this.hide, this);
+          qx.event.Registration.addListener(this.__P_493_3.getBlockerElement(), 'tap', this.hide, this);
 
           if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
             var anim = qx.bom.element.Animation.animate(this.__P_493_0, cv.ui.NotificationCenter.SLIDE);
-            anim.on("end", function () {
+            anim.on('end', function () {
               this.__P_493_0.style.transform = 'translate(-300px)';
             }, this);
           } else {
@@ -392,11 +393,11 @@
       hide: function hide() {
         if (this.__P_493_2) {
           this.__P_493_2 = false;
-          qx.event.Registration.removeListener(this.__P_493_3.getBlockerElement(), "tap", this.hide, this);
+          qx.event.Registration.removeListener(this.__P_493_3.getBlockerElement(), 'tap', this.hide, this);
 
           if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
             var anim = qx.bom.element.Animation.animateReverse(this.__P_493_0, cv.ui.NotificationCenter.SLIDE);
-            anim.on("end", function () {
+            anim.on('end', function () {
               this.__P_493_0.style.transform = 'translate(-0px)';
 
               this.__P_493_3.unblock();
@@ -418,14 +419,14 @@
     destruct:
     /* istanbul ignore next [destructor not called in singleton] */
     function destruct() {
-      qx.event.Registration.removeListener(window, "resize", this._onResize, this);
-      qx.event.Registration.removeListener(this.__P_493_3.getBlockerElement(), "tap", this.hide, this);
-      qx.event.Registration.removeListener(this.__P_493_1, "tap", this._onListTap, this);
+      qx.event.Registration.removeListener(window, 'resize', this._onResize, this);
+      qx.event.Registration.removeListener(this.__P_493_3.getBlockerElement(), 'tap', this.hide, this);
+      qx.event.Registration.removeListener(this.__P_493_1, 'tap', this._onListTap, this);
 
-      this._disposeObjects("__P_493_3", "__P_493_1", "_openCommand");
+      this._disposeObjects("__P_493_3", "__P_493_1", '_openCommand');
     }
   });
   cv.ui.NotificationCenter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenter.js.map?dt=1625667805679
+//# sourceMappingURL=NotificationCenter.js.map?dt=1641882235740

@@ -7,13 +7,6 @@
     "en": "/en/develop/manual/config/widgets/plugins/clock/index.html"
   "name": "Clock"
 - "description":
-    "de": "Farb-Auswahl-Rad für RGB-Beleuchtung"
-  "manual":
-    "de": "/de/develop/manual/config/widgets/plugins/colorchooser/index.html"
-  "name": "ColorChooser"
-  "screenshot":
-    "de": "/de/develop/manual/_images/colorchooser_simple.png"
-- "description":
     "de": "RRD-basierte Diagramme"
     "en": "RRD based graphs."
   "manual":
@@ -121,6 +114,16 @@
     "de": "/de/develop/manual/config/widgets/break/index.html"
     "en": "/en/develop/manual/config/widgets/break/index.html"
   "name": "Break"
+- "description":
+    "de": "Farb-Auswahl-Rad für RGB-Beleuchtung"
+    "en": "Color selection for RGB illumination."
+  "manual":
+    "de": "/de/develop/manual/config/widgets/colorchooser/index.html"
+    "en": "/en/develop/manual/config/widgets/colorchooser/index.html"
+  "name": "ColorChooser"
+  "screenshot":
+    "de": "/de/develop/manual/_images/colorchooser_complex_box.png"
+    "en": "/en/develop/manual/_images/colorchooser_complex_box.png"
 - "description":
     "de": "Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann."
     "en": "Adds a button to the visu that allows you to change the design."

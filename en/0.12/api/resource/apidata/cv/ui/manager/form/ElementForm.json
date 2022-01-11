@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 646,
+        "line": 654,
         "column": 3
       }
     },
@@ -663,7 +663,7 @@
           "column": 4
         },
         "end": {
-          "line": 610,
+          "line": 618,
           "column": 5
         }
       },
@@ -698,11 +698,11 @@
     "_handleOk": {
       "location": {
         "start": {
-          "line": 612,
+          "line": 620,
           "column": 4
         },
         "end": {
-          "line": 632,
+          "line": 640,
           "column": 5
         }
       },
@@ -5463,7 +5463,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -12878,11 +12878,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 640,
+        "line": 648,
         "column": 12
       },
       "end": {
-        "line": 645,
+        "line": 653,
         "column": 3
       }
     },

@@ -35,7 +35,7 @@
    * Provides methods for widgets that can be controlled by the user.
    * Usually this operation includes sending values to the backend.
    */
-  qx.Mixin.define("cv.ui.common.Operate", {
+  qx.Mixin.define('cv.ui.common.Operate', {
     /*
     ******************************************************
       MEMBERS
@@ -55,10 +55,8 @@
 
         if (this._action) {
           this._action(event);
-        } else {
-          if (this.getActionValue) {
-            this.sendToBackend(this.getActionValue(event));
-          }
+        } else if (this.getActionValue) {
+          this.sendToBackend(this.getActionValue(event));
         }
 
         if (event && event.getBubbles()) {
@@ -99,12 +97,12 @@
           var list = this.getAddress();
 
           for (var id in list) {
-            if (list.hasOwnProperty(id)) {
+            if (Object.prototype.hasOwnProperty.call(list, id)) {
               var address = list[id];
 
               if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-                var encoding = address.transform,
-                    encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
+                var encoding = address.transform;
+                var encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
 
                 if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
                   cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus, address);
@@ -123,4 +121,4 @@
   cv.ui.common.Operate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Operate.js.map?dt=1625667806142
+//# sourceMappingURL=Operate.js.map?dt=1641882236424

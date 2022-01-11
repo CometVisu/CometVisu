@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 680,
+        "line": 705,
         "column": 3
       }
     },
@@ -1049,6 +1049,52 @@
             "body": "src {qx.data.Array|Array} the object to return as an array",
             "paramName": "src",
             "description": " the object to return as an array",
+            "type": [
+              "qx.data.Array",
+              "Array"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "clone{Boolean?} whether to make the returned array a clone, ie editable by the calling code"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "qx.lang.Array",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toDataArray": {
+      "location": {
+        "start": {
+          "line": 689,
+          "column": 4
+        },
+        "end": {
+          "line": 703,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a <code>qx.data.Array</code> array from src where possible; if <code>clone</code> is true then the result will\n always be a new instance of <code>qx.data.Array</code> even if it is already a <code>qx.data.Array</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "src {qx.data.Array|Array} the object to return as <code>qx.data.Array</code>",
+            "paramName": "src",
+            "description": " the object to return as <code>qx.data.Array</code>",
             "type": [
               "qx.data.Array",
               "Array"

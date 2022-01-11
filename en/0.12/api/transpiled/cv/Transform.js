@@ -6,7 +6,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -66,7 +66,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    * @since 2010
    */
   qx.Class.define('cv.Transform', {
-    type: "static",
+    type: 'static',
 
     /*
      ******************************************************
@@ -131,15 +131,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       /**
        * Enforce that value stays within range
        * When value is not a valid number, the min value is returned
-       * @param min {Number} lower threshold
-       * @param value {var} value to clip
-       * @param max {Number} upper threshold
-       * @return {Number} the clipped value
+       * @param {number} min lower threshold
+       * @param {any} value value to clip
+       * @param {number} max upper threshold
+       * @param [scaling] {Number} scale the clipping result by that amount
+       * @return {number} the clipped value
        */
       clip: function clip(min, value, max) {
-        value = +value; // enforce number
+        var scaling = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
 
-        return value > min ? value > max ? max : value : min;
+        var _value = +value; // enforce number
+
+
+        return (_value > min ? _value > max ? max : _value : min) * scaling;
+      },
+
+      /**
+       * Enforce that value stays within range and is an integer
+       * When value is not a valid number, the min value is returned
+       * @param {number} min lower threshold
+       * @param {any} value value to clip
+       * @param {number} max upper threshold
+       * @param [scaling] {Number} scale the clipping result by that amount
+       * @return {number} the clipped value
+       */
+      clipInt: function clipInt(min, value, max) {
+        var scaling = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+
+        var _value = +value; // enforce number
+
+
+        return Math.round((_value > min ? _value > max ? max : _value : min) * scaling);
       },
 
       /**
@@ -157,10 +179,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           };
         }
 
-        var transformParts = transformation.split(':'),
-            transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
-            parameter = transformParts[2],
-            basetrans = transform.split('.')[0];
+        var transformParts = transformation.split(':');
+        var transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
+        var parameter = transformParts[2];
+        var basetrans = transform.split('.')[0];
         var encoding = transform in cv.Transform.registry ? cv.Transform.registry[transform].encode(value, parameter) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value, parameter) : value;
         return encoding.constructor === Object ? encoding : {
           bus: encoding,
@@ -190,10 +212,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return value;
         }
 
-        var transformParts = transformation.split(':'),
-            transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation,
-            parameter = transformParts[2],
-            basetrans = transform.split('.')[0];
+        var transformParts = transformation.split(':');
+        var transform = transformParts.length > 1 ? transformParts[0] + ':' + transformParts[1] : transformation;
+        var parameter = transformParts[2];
+        var basetrans = transform.split('.')[0];
         return transform in cv.Transform.registry ? cv.Transform.registry[transform].decode(value, parameter) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].decode(value, parameter) : value;
       }
     }
@@ -201,4 +223,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1625667805935
+//# sourceMappingURL=Transform.js.map?dt=1641882235999

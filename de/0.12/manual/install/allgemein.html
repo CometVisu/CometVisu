@@ -263,65 +263,65 @@ Bedürfnis ändern.</p>
 </pre></div>
 </div>
 <p>/etc/lighttpd/lighttpd.conf</p>
-<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;mod_access&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;mod_redirect&quot;</span><span class="p">,</span>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_access&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_redirect&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="c1">#       &quot;mod_rewrite&quot;,</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="k">server.document-root</span>        <span class="o">=</span> <span class="s2">&quot;/var/www&quot;</span>
-<span class="k">server.upload-dirs</span>          <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;/var/cache/lighttpd/uploads&quot;</span> <span class="p">)</span>
-<span class="k">server.errorlog</span>             <span class="o">=</span> <span class="s2">&quot;/var/log/lighttpd/error.log&quot;</span>
-<span class="k">server.pid-file</span>             <span class="o">=</span> <span class="s2">&quot;/var/run/lighttpd.pid&quot;</span>
-<span class="k">server.username</span>             <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
-<span class="k">server.groupname</span>            <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
+<span class="k">server.document-root</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/www&quot;</span><span class="w"></span>
+<span class="k">server.upload-dirs</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;/var/cache/lighttpd/uploads&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">server.errorlog</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/log/lighttpd/error.log&quot;</span><span class="w"></span>
+<span class="k">server.pid-file</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/run/lighttpd.pid&quot;</span><span class="w"></span>
+<span class="k">server.username</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;www-data&quot;</span><span class="w"></span>
+<span class="k">server.groupname</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;www-data&quot;</span><span class="w"></span>
 
-<span class="k">index-file.names</span>            <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;index.php&quot;</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span>
-                                <span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;default.htm&quot;</span><span class="p">,</span>
-                               <span class="s2">&quot; index.lighttpd.html&quot;</span> <span class="p">)</span>
+<span class="k">index-file.names</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;index.php&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;index.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s2">&quot;index.htm&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;default.htm&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="s2">&quot; index.lighttpd.html&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
-<span class="k">url.access-deny</span>             <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;.inc&quot;</span> <span class="p">)</span>
+<span class="k">url.access-deny</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;~&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.inc&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
-<span class="k">static-file.exclude-extensions</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;.php&quot;</span><span class="p">,</span> <span class="s2">&quot;.pl&quot;</span><span class="p">,</span> <span class="s2">&quot;.fcgi&quot;</span> <span class="p">)</span>
+<span class="k">static-file.exclude-extensions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;.php&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.pl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.fcgi&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
 <span class="c1">## Use ipv6 if available</span>
 <span class="c1">#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;</span>
 
-<span class="k">dir-listing.encoding</span>        <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span>
-<span class="k">server.dir-listing</span>          <span class="o">=</span> <span class="s2">&quot;enable&quot;</span>
+<span class="k">dir-listing.encoding</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;utf-8&quot;</span><span class="w"></span>
+<span class="k">server.dir-listing</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;enable&quot;</span><span class="w"></span>
 
-<span class="k">compress.cache-dir</span>          <span class="o">=</span> <span class="s2">&quot;/var/cache/lighttpd/compress/&quot;</span>
-<span class="k">compress.filetype</span>           <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;application/x-javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;text/css&quot;</span><span class="p">,</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span> <span class="p">)</span>
+<span class="k">compress.cache-dir</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/cache/lighttpd/compress/&quot;</span><span class="w"></span>
+<span class="k">compress.filetype</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;application/x-javascript&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/css&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/plain&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
-<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span>
-<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span>
+<span class="k">include_shell</span><span class="w"> </span><span class="s2">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span><span class="w"></span>
+<span class="k">include_shell</span><span class="w"> </span><span class="s2">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/10-cgi.conf</p>
 <div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
 
-<span class="k">server.modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;mod_cgi&quot;</span> <span class="p">)</span>
+<span class="k">server.modules</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;mod_cgi&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
-<span class="nb">$HTTP</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">&quot;^/cgi-bin/&quot;</span> <span class="p">{</span>
-        <span class="k">cgi.assign</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;&quot;</span> <span class="p">)</span>
-<span class="p">}</span>
+<span class="nb">$HTTP</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;^/cgi-bin/&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">cgi.assign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">## Warning this represents a security risk, as it allow to execute any file</span>
 <span class="c1">## with a .pl/.py even outside of /usr/lib/cgi-bin.</span>
 <span class="c1">#</span>
-<span class="k">cgi.assign</span>      <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;.pl&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/perl&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;.php&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;.py&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/python&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="k">cgi.assign</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.pl&quot;</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/perl&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.php&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.py&quot;</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/11-cgi-cometvisu.conf</p>
 <div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
-<span class="k">alias.url</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;/cgi-bin/&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span> <span class="p">)</span>
-<span class="k">compress.filetype</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span> <span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span>
+<span class="k">alias.url</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;/cgi-bin/&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">compress.filetype</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -365,7 +365,7 @@ beschrieben.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 

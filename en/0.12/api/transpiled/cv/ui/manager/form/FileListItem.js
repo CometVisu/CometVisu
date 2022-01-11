@@ -177,7 +177,7 @@
       acceptUpload: {
         init: null,
         nullable: true,
-        check: "String"
+        check: 'String'
       },
       viewMode: {
         check: ['list', 'preview'],
@@ -192,6 +192,7 @@
     ***********************************************
     */
     members: {
+      // eslint-disable-line @qooxdoo/qx/no-refs-in-members
       _uploadManager: null,
       // overridden
 
@@ -259,7 +260,7 @@
             return true;
           }
 
-          var myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(this.getModel().getName().split(".").pop());
+          var myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(this.getModel().getName().split('.').pop());
           return myMime === files[0].type;
         }
 
@@ -302,6 +303,7 @@
                 case 'js':
                   type = qx.lang.String.firstUp(type);
                 // jshint ignore:line
+                // eslint-disable-next-line no-fallthrough
 
                 case 'css':
                 case 'conf':
@@ -349,9 +351,9 @@
 
           if (!cv.ui.manager.viewer.Image.getImageData(value)) {
             // wait for image to be loaded
-            control.addListenerOnce('loaded', this.__P_38_0, this);
+            control.addListenerOnce('loaded', this.__P_37_0, this);
           } else {
-            this.__P_38_0();
+            this.__P_37_0();
           }
         }
       },
@@ -371,7 +373,7 @@
             editButton.set({
               icon: editorConf.Clazz.ICON || cv.theme.dark.Images.getIcon('edit', 18),
               enabled: true,
-              toolTipText: editorConf.Clazz.TITLE ? editorConf.Clazz.TITLE.translate().toString() : ""
+              toolTipText: editorConf.Clazz.TITLE ? editorConf.Clazz.TITLE.translate().toString() : ''
             });
             editButton.show();
           } else {
@@ -383,7 +385,7 @@
             openButton.set({
               icon: viewerConf.Clazz.ICON || cv.theme.dark.Images.getIcon('preview', 18),
               enabled: true,
-              toolTipText: viewerConf.Clazz.TITLE ? viewerConf.Clazz.TITLE.translate().toString() : ""
+              toolTipText: viewerConf.Clazz.TITLE ? viewerConf.Clazz.TITLE.translate().toString() : ''
             });
             openButton.show();
           } else {
@@ -396,7 +398,7 @@
           this.getChildControl('bottom-bar').exclude();
         }
       },
-      __P_38_0: function __P_38_0() {
+      __P_37_0: function __P_37_0() {
         var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
         var control = this.getChildControl('atom').getChildControl('icon');
         var sizeHint = control.getSizeHint();
@@ -448,24 +450,26 @@
             break;
 
           case 'file-type':
-            control = new qx.ui.basic.Label();
-            control.set({
-              zIndex: 100,
-              anonymous: true,
-              font: 'title',
-              textAlign: 'center',
-              textColor: 'background-main',
-              minWidth: 70
-            });
-            var icon = this.getChildControl('atom').getChildControl('icon');
-            icon.bind('visibility', control, 'visibility');
-            icon.addListener('resize', this._maintainFileTypePosition, this);
+            {
+              control = new qx.ui.basic.Label();
+              control.set({
+                zIndex: 100,
+                anonymous: true,
+                font: 'title',
+                textAlign: 'center',
+                textColor: 'background-main',
+                minWidth: 70
+              });
+              var icon = this.getChildControl('atom').getChildControl('icon');
+              icon.bind('visibility', control, 'visibility');
+              icon.addListener('resize', this._maintainFileTypePosition, this);
 
-            this._add(control, {
-              width: '100%'
-            });
+              this._add(control, {
+                width: '100%'
+              });
 
-            break;
+              break;
+            }
 
           case 'bottom-bar':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox(4, 'center'));
@@ -559,4 +563,4 @@
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1625667768625
+//# sourceMappingURL=FileListItem.js.map?dt=1641882201359

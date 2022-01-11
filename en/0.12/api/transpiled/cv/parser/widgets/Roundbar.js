@@ -57,9 +57,9 @@
        * @param pageType {String} Page type (2d, 3d, ...)
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var self = this,
-            data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings(xml.getAttribute('preset'))),
-            indicatorValueCnt = 0;
+        var self = this;
+        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings(xml.getAttribute('preset')));
+        var indicatorValueCnt = 0;
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
         data.indicators = [];
@@ -119,9 +119,9 @@
 
               var retval = [];
               value.split(';').forEach(function (range) {
-                var components = range.split(','),
-                    startEnd = components.shift().split('...'),
-                    thisRange = {
+                var components = range.split(',');
+                var startEnd = components.shift().split('...');
+                var thisRange = {
                   start: parseFloat(startEnd[0]),
                   end: parseFloat(startEnd[1])
                 };
@@ -183,10 +183,10 @@
                 return [];
               }
 
-              var retval = [],
-                  radius = 50,
-                  position = 'outside',
-                  orientation = 'horizontal';
+              var retval = [];
+              var radius = 50;
+              var position = 'outside';
+              var orientation = 'horizontal';
               value.split(';').forEach(function (label) {
                 var components = label.split(':');
 
@@ -339,8 +339,8 @@
               return v === 'true';
             }
           }
-        },
-            thisPreset = {
+        };
+        var thisPreset = {
           'A': {
             start: 225,
             fontsize: 40,
@@ -382,4 +382,4 @@
   cv.parser.widgets.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1625667764684
+//# sourceMappingURL=Roundbar.js.map?dt=1641882197648

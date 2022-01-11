@@ -60,9 +60,9 @@
     */
     properties: {
       variable: {
-        check: "String",
+        check: 'String',
         nullable: true,
-        apply: "_applyVariable"
+        apply: '_applyVariable'
       }
     },
 
@@ -81,10 +81,10 @@
             this.__P_63_0 = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
 
             this.__P_63_0.set({
-              accept: "application/json"
+              accept: 'application/json'
             });
 
-            this.__P_63_0.addListener("success", this._onSuccess, this);
+            this.__P_63_0.addListener('success', this._onSuccess, this);
           } else {
             this.__P_63_0.setUrl('/wg-plugindb.php?name=' + value);
           }
@@ -129,10 +129,10 @@
       this._disposeObjects("__P_63_0");
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("wgplugin_info", statics);
+      cv.ui.structure.WidgetFactory.registerClass('wgplugin_info', statics);
     }
   });
   cv.ui.structure.pure.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1625667771253
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1641882203916

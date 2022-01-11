@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 183,
+        "line": 186,
         "column": 3
       }
     },
@@ -193,11 +193,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 108,
           "column": 5
         }
       },
@@ -207,6 +207,14 @@
             "name": "@description",
             "body": "<p>Handle messages send from server as Server-Sent-Event</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e",
+            "paramName": "e",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -215,11 +223,11 @@
     "dispatchTopicMessage": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 117,
           "column": 5
         }
       },
@@ -229,11 +237,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 133,
           "column": 5
         }
       },
@@ -265,11 +273,11 @@
     "__addRecordedEventListener": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 140,
           "column": 5
         }
       },
@@ -279,11 +287,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 153,
           "column": 5
         }
       },
@@ -293,6 +301,14 @@
             "name": "@description",
             "body": "<p>Handle errors</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e",
+            "paramName": "e",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -301,11 +317,11 @@
     "isConnectionRunning": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 162,
           "column": 5
         }
       },
@@ -331,11 +347,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 173,
           "column": 5
         }
       },
@@ -345,6 +361,14 @@
             "name": "@description",
             "body": "<p>Restart the read request</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "doFullReload",
+            "paramName": "doFullReload",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -353,11 +377,11 @@
     "abort": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 184,
           "column": 5
         }
       },

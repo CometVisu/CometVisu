@@ -276,12 +276,12 @@
           e.stopPropagation();
         } // hide the list always on escape
         else if (!listPopup.isHidden() && identifier == "Escape") {
-            this.close();
-            e.stop();
-          } // forward the rest of the events to the list
-          else {
-              this.getChildControl("list").handleKeyPress(e);
-            }
+          this.close();
+          e.stop();
+        } // forward the rest of the events to the list
+        else {
+          this.getChildControl("list").handleKeyPress(e);
+        }
       },
 
       /**
@@ -324,4 +324,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1625667791638
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1641882222567

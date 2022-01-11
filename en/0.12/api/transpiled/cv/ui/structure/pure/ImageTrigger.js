@@ -110,27 +110,27 @@
     */
     properties: {
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       updateType: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       width: {
-        check: "String",
+        check: 'String',
         init: '100%'
       },
       src: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       suffix: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       sendValue: {
-        check: "String",
+        check: 'String',
         init: ''
       }
     },
@@ -143,7 +143,7 @@
     members: {
       // overridden
       _getInnerDomString: function _getInnerDomString() {
-        var style = "";
+        var style = '';
 
         if (Object.keys(this.getLayout()).length === 0) {
           style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
@@ -169,21 +169,21 @@
         return actor;
       },
       _update: function _update(address, value) {
-        var imageChild = this.getDomElement().querySelector("img");
+        var imageChild = this.getDomElement().querySelector('img');
 
-        if (this.getUpdateType() === "show") {
+        if (this.getUpdateType() === 'show') {
           if (value === 0) {
-            imageChild.style.display = "none";
+            imageChild.style.display = 'none';
           } else {
-            imageChild.setAttribute("src", this.__P_56_0(this.getSrc() + '.' + this.getSuffix()));
-            imageChild.style.display = "block";
+            imageChild.setAttribute('src', this.__P_56_0(this.getSrc() + '.' + this.getSuffix()));
+            imageChild.style.display = 'block';
           }
-        } else if (this.getUpdateType() === "select") {
+        } else if (this.getUpdateType() === 'select') {
           if (value === 0) {
-            imageChild.style.display = "none";
+            imageChild.style.display = 'none';
           } else {
-            imageChild.setAttribute("src", this.__P_56_0(this.getSrc() + value + '.' + this.getSuffix()));
-            imageChild.style.display = "block";
+            imageChild.setAttribute('src', this.__P_56_0(this.getSrc() + value + '.' + this.getSuffix()));
+            imageChild.style.display = 'block';
           }
         } //TODO: add value if mapping exists
         //TODO: get image name from mapping
@@ -194,7 +194,7 @@
       __P_56_0: function __P_56_0(url) {
         var parsedUri = qx.util.Uri.parseUri(url);
 
-        if (!parsedUri.protocol && !url.startsWith("/")) {
+        if (!parsedUri.protocol && !url.startsWith('/')) {
           // is relative URI, use the ResourceManager
           url = qx.util.ResourceManager.getInstance().toUri(url);
         }
@@ -202,7 +202,7 @@
         return url;
       },
       _action: function _action() {
-        if (this.getSendValue() === "") {
+        if (this.getSendValue() === '') {
           return;
         }
 
@@ -210,10 +210,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("imagetrigger", statics);
+      cv.ui.structure.WidgetFactory.registerClass('imagetrigger', statics);
     }
   });
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1625667770501
+//# sourceMappingURL=ImageTrigger.js.map?dt=1641882203233

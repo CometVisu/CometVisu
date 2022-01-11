@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 276,
+        "line": 278,
         "column": 3
       }
     },
@@ -251,7 +251,7 @@
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 105,
           "column": 5
         }
       },
@@ -261,11 +261,11 @@
     "openPath": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 115,
           "column": 5
         }
       },
@@ -275,11 +275,11 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 119,
           "column": 5
         }
       },
@@ -289,11 +289,11 @@
     "_applyRootFolder": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 129,
           "column": 5
         }
       },
@@ -306,11 +306,11 @@
     "_applySelectedNode": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 138,
           "column": 5
         }
       },
@@ -323,11 +323,11 @@
     "setSelection": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 142,
           "column": 5
         }
       },
@@ -337,11 +337,11 @@
     "_onDblTapTreeSelection": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 156,
+          "line": 158,
           "column": 5
         }
       },
@@ -351,11 +351,11 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 191,
           "column": 5
         }
       },
@@ -365,11 +365,11 @@
     "_onFsItemRightClick": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 209,
           "column": 5
         }
       },
@@ -379,11 +379,11 @@
     "_onEnableTree": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 218,
           "column": 5
         }
       },
@@ -413,11 +413,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 265,
           "column": 5
         }
       },
@@ -1877,7 +1877,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -7744,11 +7744,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 271,
+        "line": 273,
         "column": 12
       },
       "end": {
-        "line": 275,
+        "line": 277,
         "column": 3
       }
     },

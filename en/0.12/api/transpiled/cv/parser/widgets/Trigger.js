@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Trigger', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -62,21 +62,21 @@
         return {
           'value': {
             target: 'sendValue',
-            "default": "0"
+            'default': '0'
           },
           'shorttime': {
             target: 'shortThreshold',
-            "default": -1,
+            'default': -1,
             transform: parseFloat
           },
           'shortvalue': {
             target: 'shortValue',
-            "default": "0"
+            'default': '0'
           },
           'send-long-on-release': {
             target: 'sendLongOnRelease',
             transform: function transform(value) {
-              return value ? value === "true" : true;
+              return value ? value === 'true' : true;
             }
           }
         };
@@ -88,10 +88,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("trigger", statics);
+      cv.parser.WidgetParser.addHandler('trigger', statics);
     }
   });
   cv.parser.widgets.Trigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Trigger.js.map?dt=1625667764797
+//# sourceMappingURL=Trigger.js.map?dt=1641882197756

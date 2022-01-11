@@ -46,7 +46,7 @@
    * @require(qx.log.appender.Util)
    * @require(qx.bom.client.Html)
    */
-  qx.Bootstrap.define("cv.log.appender.Native", {
+  qx.Bootstrap.define('cv.log.appender.Native', {
     /*
      *****************************************************************************
      STATICS
@@ -61,10 +61,12 @@
       process: function process(entry) {
         if (cv.Config.enableLogging) {
           // Firefox 4's Web Console doesn't support "debug"
-          var level = console[entry.level] ? entry.level : "log";
+          // eslint-disable-next-line no-console
+          var level = console[entry.level] ? entry.level : 'log'; // eslint-disable-next-line no-console
 
           if (console[level]) {
-            var args = qx.log.appender.Util.toText(entry);
+            var args = qx.log.appender.Util.toText(entry); // eslint-disable-next-line no-console
+
             console[level](args);
           }
         }
@@ -83,4 +85,4 @@
   cv.log.appender.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1625667805491
+//# sourceMappingURL=Native.js.map?dt=1641882235559

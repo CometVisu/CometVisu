@@ -6,7 +6,7 @@ CometVisu von haegar80 (Metal)
 Hier wird die produktiv im Einsatz befindliche Visu von haegar80 vorgestellt.
 
 | **Design**: Metal
-| **Plugins**: colorchooser, diagram
+| **Plugins**: diagram
 | **Config**: :download:`visu_config_metal_haegar80.xml <_static/visu_config_metal_haegar80.xml>`
 |
 

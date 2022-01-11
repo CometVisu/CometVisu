@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 329,
+        "line": 331,
         "column": 3
       }
     },
@@ -95,11 +95,11 @@
     "dispatchMessage": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 78,
           "column": 5
         }
       },
@@ -109,6 +109,26 @@
             "name": "@description",
             "body": "<p>Shortcut to {@link cv.core.notifications.Router#dispatchMessage}</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic",
+            "paramName": "topic",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "message",
+            "paramName": "message",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "target",
+            "paramName": "target",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -117,11 +137,11 @@
     "getTarget": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 103,
           "column": 5
         }
       },
@@ -158,11 +178,11 @@
     "__routes": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 113,
           "column": 18
         }
       },
@@ -172,11 +192,11 @@
     "__stateMessageConfig": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 114,
           "column": 30
         }
       },
@@ -186,11 +206,11 @@
     "__dateFormat": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 115,
           "column": 22
         }
       },
@@ -200,11 +220,11 @@
     "__timeFormat": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 116,
           "column": 22
         }
       },
@@ -214,11 +234,11 @@
     "getStateMessageConfig": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 120,
           "column": 5
         }
       },
@@ -228,11 +248,11 @@
     "registerStateUpdateHandler": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 151,
           "column": 5
         }
       },
@@ -256,11 +276,11 @@
     "unregisterStateUpdatehandler": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 157,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 164,
           "column": 5
         }
       },
@@ -284,11 +304,11 @@
     "registerMessageHandler": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 171,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 192,
           "column": 5
         }
       },
@@ -319,11 +339,11 @@
     "_onIncomingData": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 257,
           "column": 5
         }
       },
@@ -377,11 +397,11 @@
     "__collectHandlers": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 259,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 289,
           "column": 5
         }
       },
@@ -391,11 +411,11 @@
     "__collectAllFromSegment": {
       "location": {
         "start": {
-          "line": 289,
+          "line": 291,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 299,
           "column": 5
         }
       },
@@ -405,11 +425,11 @@
     "dispatchMessage": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 301,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 314,
           "column": 5
         }
       },
@@ -419,11 +439,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 316,
           "column": 4
         },
         "end": {
-          "line": 317,
+          "line": 319,
           "column": 5
         }
       },
@@ -1406,7 +1426,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -3643,11 +3663,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 325,
+        "line": 327,
         "column": 12
       },
       "end": {
-        "line": 328,
+        "line": 330,
         "column": 3
       }
     },

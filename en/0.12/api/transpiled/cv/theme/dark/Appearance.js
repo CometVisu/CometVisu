@@ -31,7 +31,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Theme.define("cv.theme.dark.Appearance", {
+  qx.Theme.define('cv.theme.dark.Appearance', {
     extend: osparc.theme.common.Appearance,
     appearances: {
       'cv-start': 'widget',
@@ -143,7 +143,7 @@
         }
       },
       'open-file-item': {
-        alias: "atom",
+        alias: 'atom',
         style: function style(states) {
           var padding = [2, 5, 2, 5];
 
@@ -158,17 +158,17 @@
           var backgroundColor;
 
           if (states.selected) {
-            backgroundColor = "background-selected";
+            backgroundColor = 'background-selected';
 
             if (states.disabled) {
-              backgroundColor += "-disabled";
+              backgroundColor += '-disabled';
             }
           }
 
           return {
             backgroundColor: backgroundColor,
-            textColor: states.selected ? "text-selected" : undefined,
-            decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
+            textColor: states.selected ? 'text-selected' : undefined,
+            decorator: states.lead ? 'lead-item' : states.dragover ? 'dragover' : undefined,
             opacity: states.drag ? 0.5 : undefined,
             height: 26,
             padding: padding,
@@ -369,7 +369,7 @@
         alias: 'virtual-tree-folder/icon',
         style: function style(states) {
           return {
-            textColor: states.comment ? "text-disabled" : states.error ? 'invalid-color' : null
+            textColor: states.comment ? 'text-disabled' : states.error ? 'invalid-color' : null
           };
         }
       },
@@ -386,7 +386,7 @@
         include: 'fs-tree-item/label',
         style: function style(states) {
           return {
-            textColor: states.comment ? "text-disabled" : null,
+            textColor: states.comment ? 'text-disabled' : null,
             allowGrowX: true,
             maxWidth: 250
           };
@@ -419,61 +419,61 @@
       'helptext': {
         style: function style() {
           return {
-            font: "small",
-            textColor: "text-disabled"
+            font: 'small',
+            textColor: 'text-disabled'
           };
         }
       },
-      "checkbox/label": {
+      'checkbox/label': {
         style: function style(states) {
           return {
-            textColor: states.undetermined ? "text-disabled" : "text"
+            textColor: states.undetermined ? 'text-disabled' : 'text'
           };
         }
       },
-      "toolbar-separator": {
+      'toolbar-separator': {
         style: function style() {
           return {
-            backgroundColor: "border-separator",
+            backgroundColor: 'border-separator',
             margin: [7, 0],
             width: 1
           };
         }
       },
-      "iframe": {
+      'iframe': {
         style: function style() {
           return {
             backgroundColor: null,
-            decorator: "main-dark"
+            decorator: 'main-dark'
           };
         }
       },
-      "state-option": {
+      'state-option': {
         style: function style(states) {
           return {
-            textColor: states.error ? "warning-color" : "text-disabled",
+            textColor: states.error ? 'warning-color' : 'text-disabled',
             font: 'italic',
             height: 25
           };
         }
       },
-      "error-option": {
+      'error-option': {
         style: function style() {
           return {
-            textColor: "warning-color",
+            textColor: 'warning-color',
             font: 'italic',
             height: 25
           };
         }
       },
-      "selectbox/atom": {
+      'selectbox/atom': {
         style: function style(states) {
           var font = 'default';
           var textColor = 'text';
 
           if (states.error || states.loading) {
             font = 'italic';
-            textColor = states.error ? "warning-color" : "text-disabled";
+            textColor = states.error ? 'warning-color' : 'text-disabled';
           }
 
           return {
@@ -482,23 +482,23 @@
           };
         }
       },
-      "optiongroup": {
+      'optiongroup': {
         style: function style() {
           return {
-            textColor: "text-disabled",
+            textColor: 'text-disabled',
             height: 25
           };
         }
       },
-      "optiongroup/label": {
+      'optiongroup/label': {
         style: function style() {
           return {
             allowGrowX: true,
-            textAlign: "center"
+            textAlign: 'center'
           };
         }
       },
-      "round-button": {
+      'round-button': {
         include: 'atom',
         alias: 'atom',
         style: function style(states) {
@@ -506,13 +506,13 @@
             decorator: states.hovered ? 'round-button-hovered' : 'round-button',
             width: 48,
             height: 48,
-            textColor: "text",
-            show: "icon",
+            textColor: 'text',
+            show: 'icon',
             center: true
           };
         }
       },
-      "round-button/icon": {
+      'round-button/icon': {
         include: 'atom/icon',
         alias: 'atom/icon',
         style: function style(states) {
@@ -522,16 +522,16 @@
           };
         }
       },
-      "dragdrop-cursor": {
+      'dragdrop-cursor': {
         style: function style(states) {
-          var icon = "nodrop";
+          var icon = 'nodrop';
 
           if (states.copy) {
-            icon = "copy";
+            icon = 'copy';
           } else if (states.move) {
-            icon = "move";
+            icon = 'move';
           } else if (states.alias) {
-            icon = "alias";
+            icon = 'alias';
           }
 
           var leftOffset = 8;
@@ -541,27 +541,27 @@
           }
 
           return {
-            source: osparc.theme.common.Image.URLS["cursor-" + icon],
-            position: "left-middle",
+            source: osparc.theme.common.Image.URLS['cursor-' + icon],
+            position: 'left-middle',
             offset: [2, leftOffset, 2, 6]
           };
         }
       },
-      "element-tree-item/menu-button": {
-        include: "button",
-        alias: "button",
+      'element-tree-item/menu-button': {
+        include: 'button',
+        alias: 'button',
         style: function style() {
           return {
             padding: [2, 4],
-            icon: osparc.theme.common.Image.URLS["arrow-down"],
-            show: "icon"
+            icon: osparc.theme.common.Image.URLS['arrow-down'],
+            show: 'icon'
           };
         }
       },
-      "tree-editor": "widget",
-      "tree-editor/preview-sync-hint": {
-        include: "atom",
-        alias: "atom",
+      'tree-editor': 'widget',
+      'tree-editor/preview-sync-hint': {
+        include: 'atom',
+        alias: 'atom',
         style: function style() {
           return {
             padding: [4, 8],
@@ -571,15 +571,15 @@
           };
         }
       },
-      "tree-editor/preview-sync-hint/icon": {
-        include: "atom/icon",
+      'tree-editor/preview-sync-hint/icon': {
+        include: 'atom/icon',
         style: function style(states) {
           var color = 'valid-color';
 
           if (states.error) {
-            color = "invalid-color";
+            color = 'invalid-color';
           } else if (states.warning) {
-            color = "warning-color";
+            color = 'warning-color';
           }
 
           return {
@@ -592,4 +592,4 @@
   cv.theme.dark.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1625667807877
+//# sourceMappingURL=Appearance.js.map?dt=1641882238051

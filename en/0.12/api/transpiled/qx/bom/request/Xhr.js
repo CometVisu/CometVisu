@@ -1150,8 +1150,8 @@
           !this.__P_125_12 && // Not aborted
           this.status === 0 // But status 0!
           ) {
-              this.status = 304;
-            }
+            this.status = 304;
+          }
         }
       },
 
@@ -1212,4 +1212,4 @@
   qx.bom.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1625667776916
+//# sourceMappingURL=Xhr.js.map?dt=1641882208901

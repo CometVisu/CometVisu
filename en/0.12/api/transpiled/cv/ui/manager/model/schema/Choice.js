@@ -140,7 +140,7 @@
       },
       getBoundsForElementName: function getBoundsForElementName(childName) {
         // as we are a choice, we can define the number of occurences for children of ANY level
-        if (true === this.isElementAllowed(childName)) {
+        if (this.isElementAllowed(childName) === true) {
           return this.getBounds();
         }
 
@@ -200,4 +200,4 @@
   cv.ui.manager.model.schema.Choice.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Choice.js.map?dt=1625667769569
+//# sourceMappingURL=Choice.js.map?dt=1641882202208

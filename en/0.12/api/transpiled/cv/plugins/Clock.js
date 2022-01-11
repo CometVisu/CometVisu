@@ -267,6 +267,7 @@
         var _this = this;
 
         var args = arguments;
+        var self = this;
         this.__P_8_3 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
         }, this);
@@ -274,7 +275,7 @@
         var uriPopup = this.getSrcPopup();
         var promises = [window.fetch(uri)];
 
-        if ('' !== uriPopup) {
+        if (uriPopup !== '') {
           uriPopup = qx.util.ResourceManager.getInstance().toUri(uriPopup);
           promises.push(window.fetch(uriPopup));
         }
@@ -288,7 +289,7 @@
             result.push(responses[0].text());
           }
 
-          if ('' !== uriPopup) {
+          if (uriPopup !== '') {
             if (!responses[1].ok) {
               throw new Error('Not 2xx response for popup URI "' + uriPopup + '"');
             } else {
@@ -368,7 +369,7 @@
 
           cv.plugins.Clock.prototype._onDomReady.base.call(_this);
         })["catch"](function (error) {
-          console.error('There has been a problem with the reading of the clock SVG:', error);
+          self.error('There has been a problem with the reading of the clock SVG:', error);
         });
       },
       // overridden
@@ -430,6 +431,7 @@
 
           // jshint ignore:line
           // pass through to end drag when no buttons are pressed anymore
+          // eslint-disable-next-line no-fallthrough
 
           case 'pointerup':
           case 'pointercancel':
@@ -463,62 +465,68 @@
 
         switch (this.__P_8_2) {
           case dragMode.hour:
-            var oldHours = time.getHours();
-            var pm = oldHours >= 12;
-            var hours = Math.floor(angle / 30);
-            minutes = angle % 30 * 2;
+            {
+              var oldHours = time.getHours();
+              var pm = oldHours >= 12;
+              var hours = Math.floor(angle / 30);
+              minutes = angle % 30 * 2;
 
-            if (oldHours % 12 > 9 && hours < 3) {
-              if (pm) {
-                pm = false;
-                time.setDate(time.getDate() + 1);
-              } else {
-                pm = true;
+              if (oldHours % 12 > 9 && hours < 3) {
+                if (pm) {
+                  pm = false;
+                  time.setDate(time.getDate() + 1);
+                } else {
+                  pm = true;
+                }
+              } else if (hours > 9 && oldHours % 12 < 3) {
+                if (pm) {
+                  pm = false;
+                } else {
+                  pm = true;
+                  time.setDate(time.getDate() - 1);
+                }
               }
-            } else if (hours > 9 && oldHours % 12 < 3) {
-              if (pm) {
-                pm = false;
-              } else {
-                pm = true;
-                time.setDate(time.getDate() - 1);
-              }
+
+              time.setHours(hours + pm * 12);
+              time.setMinutes(minutes);
+              break;
             }
-
-            time.setHours(hours + pm * 12);
-            time.setMinutes(minutes);
-            break;
 
           case dragMode.minute:
-            if (this.getHideSeconds()) {
-              minutes = Math.round(angle / 6);
-            } else {
-              minutes = Math.floor(angle / 6);
+            {
+              if (this.getHideSeconds()) {
+                minutes = Math.round(angle / 6);
+              } else {
+                minutes = Math.floor(angle / 6);
+              }
+
+              var oldMinutes = time.getMinutes();
+
+              if (oldMinutes > 45 && minutes < 15) {
+                time.setHours(time.getHours() + 1);
+              } else if (minutes > 45 && oldMinutes < 15) {
+                time.setHours(time.getHours() - 1);
+              }
+
+              time.setMinutes(minutes);
+              time.setSeconds(angle % 6 * 10);
+              break;
             }
-
-            var oldMinutes = time.getMinutes();
-
-            if (oldMinutes > 45 && minutes < 15) {
-              time.setHours(time.getHours() + 1);
-            } else if (minutes > 45 && oldMinutes < 15) {
-              time.setHours(time.getHours() - 1);
-            }
-
-            time.setMinutes(minutes);
-            time.setSeconds(angle % 6 * 10);
-            break;
 
           case dragMode.second:
-            var seconds = Math.round(angle / 6) % 60;
-            var oldSeconds = time.getSeconds();
+            {
+              var seconds = Math.round(angle / 6) % 60;
+              var oldSeconds = time.getSeconds();
 
-            if (oldSeconds > 45 && seconds < 15) {
-              time.setMinutes(time.getMinutes() + 1);
-            } else if (seconds > 45 && oldSeconds < 15) {
-              time.setMinutes(time.getMinutes() - 1);
+              if (oldSeconds > 45 && seconds < 15) {
+                time.setMinutes(time.getMinutes() + 1);
+              } else if (seconds > 45 && oldSeconds < 15) {
+                time.setMinutes(time.getMinutes() - 1);
+              }
+
+              time.setSeconds(seconds);
+              break;
             }
-
-            time.setSeconds(seconds);
-            break;
         }
 
         if (this.getHideSeconds()) {
@@ -547,26 +555,26 @@
 
           if (e.hour !== null) {
             if (showSeconds) {
-              e.hour.setAttribute("transform", 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
+              e.hour.setAttribute('transform', 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
             } else {
-              e.hour.setAttribute("transform", 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60) + ',0,0)');
+              e.hour.setAttribute('transform', 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60) + ',0,0)');
             }
           }
 
           if (e.minute !== null) {
             if (showSeconds) {
-              e.minute.setAttribute("transform", 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
+              e.minute.setAttribute('transform', 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
             } else {
-              e.minute.setAttribute("transform", 'rotate(' + minute * 6 + ',0,0)');
+              e.minute.setAttribute('transform', 'rotate(' + minute * 6 + ',0,0)');
             }
           }
 
           if (e.second !== null) {
-            e.second.setAttribute("transform", 'rotate(' + second * 6 + ',0,0)');
+            e.second.setAttribute('transform', 'rotate(' + second * 6 + ',0,0)');
           }
 
           if (e.hour24 !== null) {
-            e.hour24.setAttribute("transform", 'rotate(' + (hour % 24 * 360 / 24 + minute * 15 / 60) + ',0,0)');
+            e.hour24.setAttribute('transform', 'rotate(' + (hour % 24 * 360 / 24 + minute * 15 / 60) + ',0,0)');
           }
 
           if (e.am !== null) {
@@ -588,11 +596,11 @@
       }
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("clock", cv.plugins.Clock);
-      cv.ui.structure.WidgetFactory.registerClass("clock", statics);
+      cv.parser.WidgetParser.addHandler('clock', cv.plugins.Clock);
+      cv.ui.structure.WidgetFactory.registerClass('clock', statics);
     }
   });
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1625667765025
+//# sourceMappingURL=Clock.js.map?dt=1641882197964

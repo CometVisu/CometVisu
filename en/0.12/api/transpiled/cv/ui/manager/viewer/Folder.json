@@ -21,7 +21,7 @@
         "column": 0
       },
       "end": {
-        "line": 414,
+        "line": 417,
         "column": 3
       }
     },
@@ -435,7 +435,7 @@
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 186,
           "column": 5
         }
       },
@@ -445,11 +445,11 @@
     "_onFsItemRightClick": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 207,
           "column": 5
         }
       },
@@ -459,11 +459,11 @@
     "_onDblTap": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 218,
+          "line": 217,
           "column": 5
         }
       },
@@ -473,11 +473,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 220,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 248,
           "column": 5
         }
       },
@@ -491,11 +491,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 250,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 297,
           "column": 5
         }
       },
@@ -505,11 +505,11 @@
     "_applyShowTextFilter": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 301,
           "column": 5
         }
       },
@@ -522,11 +522,11 @@
     "_onFilter": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 303,
           "column": 4
         },
         "end": {
-          "line": 309,
+          "line": 312,
           "column": 5
         }
       },
@@ -539,11 +539,11 @@
     "getChildrenContainer": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 313,
+          "line": 316,
           "column": 5
         }
       },
@@ -567,11 +567,11 @@
     "_onAddChild": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 325,
           "column": 5
         }
       },
@@ -598,11 +598,11 @@
     "_onRemoveChild": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 331,
+          "line": 334,
           "column": 5
         }
       },
@@ -629,11 +629,11 @@
     "_onFileEvent": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 336,
           "column": 4
         },
         "end": {
-          "line": 339,
+          "line": 342,
           "column": 5
         }
       },
@@ -643,11 +643,11 @@
     "_applyDisableScrolling": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 344,
           "column": 4
         },
         "end": {
-          "line": 351,
+          "line": 354,
           "column": 5
         }
       },
@@ -660,11 +660,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 404,
           "column": 5
         }
       },
@@ -6459,11 +6459,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 409,
+        "line": 412,
         "column": 12
       },
       "end": {
-        "line": 413,
+        "line": 416,
         "column": 3
       }
     },

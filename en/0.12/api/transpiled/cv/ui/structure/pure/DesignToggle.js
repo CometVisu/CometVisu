@@ -74,8 +74,8 @@
      */
     construct: function construct(props) {
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + "/data/designs");
-      store.addListener("loaded", function (ev) {
+      var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
+      store.addListener('loaded', function (ev) {
         this.setAvailableDesigns(ev.getData());
       }, this);
     },
@@ -87,7 +87,7 @@
      */
     properties: {
       availableDesigns: {
-        check: "Array",
+        check: 'Array',
         init: []
       }
     },
@@ -120,19 +120,19 @@
         var oldDesign = this.getDomElement().querySelector('.value').textContent;
         var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
         var URL = cv.util.Location.getHref();
-        var regexp = new RegExp("design=" + oldDesign);
+        var regexp = new RegExp('design=' + oldDesign);
 
         if (URL.search(regexp) !== -1) {
           // has URL-parameter design
-          cv.util.Location.setHref(URL.replace(regexp, "design=" + newDesign));
+          cv.util.Location.setHref(URL.replace(regexp, 'design=' + newDesign));
         } else {
-          var parts = cv.util.Location.getHref().split("#");
+          var parts = cv.util.Location.getHref().split('#');
           var req = qx.util.Uri.appendParamsToUrl(parts[0], {
             design: newDesign
           });
 
           if (parts.length > 1) {
-            req += "#" + parts[1];
+            req += '#' + parts[1];
           }
 
           cv.util.Location.setHref(req);
@@ -140,10 +140,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("designtoggle", statics);
+      cv.ui.structure.WidgetFactory.registerClass('designtoggle', statics);
     }
   });
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1625667770413
+//# sourceMappingURL=DesignToggle.js.map?dt=1641882203152

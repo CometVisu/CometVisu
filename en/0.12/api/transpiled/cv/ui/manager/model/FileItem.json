@@ -818,7 +818,7 @@
           "column": 4
         },
         "end": {
-          "line": 345,
+          "line": 346,
           "column": 5
         }
       },
@@ -832,11 +832,11 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 347,
+          "line": 348,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 354,
           "column": 5
         }
       },
@@ -849,11 +849,11 @@
     "getPath": {
       "location": {
         "start": {
-          "line": 355,
+          "line": 356,
           "column": 4
         },
         "end": {
-          "line": 366,
+          "line": 367,
           "column": 5
         }
       },
@@ -863,7 +863,7 @@
     "_onOpen": {
       "location": {
         "start": {
-          "line": 368,
+          "line": 369,
           "column": 4
         },
         "end": {
@@ -1002,7 +1002,7 @@
           "column": 4
         },
         "end": {
-          "line": 512,
+          "line": 510,
           "column": 5
         }
       },
@@ -1012,11 +1012,11 @@
     "getFullPath": {
       "location": {
         "start": {
-          "line": 518,
+          "line": 516,
           "column": 4
         },
         "end": {
-          "line": 523,
+          "line": 521,
           "column": 5
         }
       },
@@ -1042,11 +1042,11 @@
     "getBusTopic": {
       "location": {
         "start": {
-          "line": 525,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 527,
+          "line": 525,
           "column": 5
         }
       },
@@ -1056,11 +1056,11 @@
     "getUri": {
       "location": {
         "start": {
-          "line": 534,
+          "line": 532,
           "column": 4
         },
         "end": {
-          "line": 536,
+          "line": 534,
           "column": 5
         }
       },
@@ -1086,11 +1086,11 @@
     "getServerPath": {
       "location": {
         "start": {
-          "line": 547,
+          "line": 545,
           "column": 4
         },
         "end": {
-          "line": 549,
+          "line": 550,
           "column": 5
         }
       },
@@ -1116,11 +1116,11 @@
     "sortElements": {
       "location": {
         "start": {
-          "line": 554,
+          "line": 555,
           "column": 4
         },
         "end": {
-          "line": 574,
+          "line": 573,
           "column": 5
         }
       },
@@ -1138,7 +1138,7 @@
     "openPath": {
       "location": {
         "start": {
-          "line": 576,
+          "line": 575,
           "column": 4
         },
         "end": {
@@ -2252,7 +2252,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [

@@ -60,14 +60,14 @@
     ******************************************************
     */
     construct: function construct(props) {
-      var classes = props.classes.trim().split(" "),
-          i_right = classes.indexOf("right");
+      var classes = props.classes.trim().split(' ');
+      var i_right = classes.indexOf('right');
 
       if (i_right !== -1) {
         // do not align, but float the container instead
-        this.setContainerClass("float-right");
+        this.setContainerClass('float-right');
         classes.splice(i_right, 1);
-        props.classes = classes.join(" ");
+        props.classes = classes.join(' ');
       }
 
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
@@ -80,12 +80,12 @@
     */
     properties: {
       counter: {
-        check: "Number",
+        check: 'Number',
         init: 0,
-        apply: "_applyCounter"
+        apply: '_applyCounter'
       },
       hideWhenEmpty: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -101,11 +101,11 @@
         cv.ui.structure.pure.NotificationCenterBadge.prototype._onDomReady.base.call(this);
 
         var center = cv.ui.NotificationCenter.getInstance();
-        center.getMessages().addListener("changeLength", this._onChangeCounter, this);
+        center.getMessages().addListener('changeLength', this._onChangeCounter, this);
 
         this._onChangeCounter();
 
-        center.addListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
+        center.addListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
       },
       // property apply
       _applyVisible: function _applyVisible(value) {
@@ -122,7 +122,7 @@
       },
       __P_58_1: function __P_58_1() {
         if (!this.__P_58_0) {
-          this.__P_58_0 = this.getDomElement().querySelector(".badge");
+          this.__P_58_0 = this.getDomElement().querySelector('.badge');
         }
 
         return this.__P_58_0;
@@ -138,15 +138,15 @@
       },
       _onChangeCounter: function _onChangeCounter() {
         var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
-        this.__P_58_1().innerHTML = "" + messages;
+        this.__P_58_1().innerHTML = '' + messages;
 
         if (this.isHideWhenEmpty()) {
-          this.__P_58_1().style.display = messages === 0 ? "none" : "block";
+          this.__P_58_1().style.display = messages === 0 ? 'none' : 'block';
         }
       },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
-        var style = "";
+        var style = '';
 
         if (this.isHideWhenEmpty() && this.getCounter() === 0) {
           style = ' style="display: none;"';
@@ -163,14 +163,14 @@
     */
     destruct: function destruct() {
       var center = cv.ui.NotificationCenter.getInstance();
-      center.getMessages().removeListener("changeLength", this._onChangeCounter, this);
-      center.removeListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
+      center.getMessages().removeListener('changeLength', this._onChangeCounter, this);
+      center.removeListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("notificationcenterbadge", statics);
+      cv.ui.structure.WidgetFactory.registerClass('notificationcenterbadge', statics);
     }
   });
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1625667770687
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1641882203407

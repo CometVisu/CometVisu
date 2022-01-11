@@ -56,27 +56,27 @@
     */
     properties: {
       width: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       frameborder: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       background: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       scrolling: {
-        check: ["auto", "yes", "no"],
+        check: ['auto', 'yes', 'no'],
         nullable: true
       },
       src: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -89,7 +89,7 @@
     members: {
       // overridden
       _getInnerDomString: function _getInnerDomString() {
-        var webStyle = '';
+        var webStyle = this.getStyle();
 
         if (this.getWidth()) {
           webStyle += 'width:' + this.getWidth() + ';';
@@ -98,14 +98,12 @@
           webStyle += 'width: 100%;';
         }
 
-        var style = this.getStyle();
-
         if (this.getHeight()) {
           webStyle += 'height:' + this.getHeight() + ';';
         }
 
         if (this.getFrameborder() === false) {
-          style += 'border: 0px ;';
+          webStyle += 'border: 0px ;';
         }
 
         if (this.getBackground()) {
@@ -151,4 +149,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1625667771232
+//# sourceMappingURL=Web.js.map?dt=1641882203895

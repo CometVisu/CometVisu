@@ -23,7 +23,7 @@
    * A dialog that alerts the user to something.
    *
    */
-  qx.Class.define("cv.ui.manager.dialog.BigAlert", {
+  qx.Class.define('cv.ui.manager.dialog.BigAlert', {
     extend: qxl.dialog.Alert,
     members: {
       _hbox: null,
@@ -40,7 +40,7 @@
 
         this._image.setSource(value);
 
-        this._image.setVisibility(value ? "visible" : "excluded");
+        this._image.setVisibility(value ? 'visible' : 'excluded');
       },
 
       /**
@@ -97,10 +97,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("_hbox");
+      this._disposeObjects('_hbox');
     }
   });
   cv.ui.manager.dialog.BigAlert.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BigAlert.js.map?dt=1625667767194
+//# sourceMappingURL=BigAlert.js.map?dt=1641882200009

@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 150,
+        "line": 149,
         "column": 3
       }
     },
@@ -159,7 +159,7 @@
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 89,
           "column": 5
         }
       },
@@ -175,11 +175,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 95,
           "column": 5
         }
       },
@@ -193,11 +193,11 @@
     "_action": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 105,
           "column": 5
         }
       },
@@ -207,11 +207,11 @@
     "touchScroll": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 120,
           "column": 5
         }
       },
@@ -221,11 +221,11 @@
     "isTouchDevice": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 132,
           "column": 5
         }
       },
@@ -1458,7 +1458,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -5045,11 +5045,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 144,
+        "line": 143,
         "column": 9
       },
       "end": {
-        "line": 149,
+        "line": 148,
         "column": 3
       }
     },

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 315,
+        "line": 299,
         "column": 3
       }
     },
@@ -196,7 +196,7 @@
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 115,
           "column": 5
         }
       },
@@ -214,11 +214,11 @@
     "setupRefreshAction": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 150,
           "column": 5
         }
       },
@@ -228,11 +228,11 @@
     "refreshAction": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 195,
           "column": 5
         }
       },
@@ -465,11 +465,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 205,
+        "line": 203,
         "column": 12
       },
       "end": {
-        "line": 210,
+        "line": 208,
         "column": 3
       }
     },
@@ -479,11 +479,11 @@
     "__forceImgReload": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 313,
+          "line": 297,
           "column": 5
         }
       },

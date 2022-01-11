@@ -65,43 +65,43 @@
     */
     properties: {
       'downValue': {
-        check: "Number",
+        check: 'Number',
         init: 0
       },
       'shortDownValue': {
-        check: "Number",
+        check: 'Number',
         nullable: true
       },
       'downLabel': {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       'upValue': {
-        check: "Number",
+        check: 'Number',
         init: 0
       },
       'shortUpValue': {
-        check: "Number",
+        check: 'Number',
         nullable: true
       },
       'upLabel': {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       'isAbsolute': {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       'min': {
-        check: "Number",
+        check: 'Number',
         init: 0
       },
       'max': {
-        check: "Number",
+        check: 'Number',
         init: 255
       },
       'infoPosition': {
-        check: ["left", "middle", "right"],
+        check: ['left', 'middle', 'right'],
         init: 'middle'
       }
     },
@@ -165,12 +165,12 @@
         return ret_val + '</div>';
       },
       getActors: function getActors() {
-        return this.getDomElement().querySelectorAll(".actor.uplabel, .actor.downlabel");
+        return this.getDomElement().querySelectorAll('.actor.uplabel, .actor.downlabel');
       },
       // overridden
       initListeners: function initListeners() {
         this.getActors().forEach(function (actor) {
-          qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
+          qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
         }, this);
       },
       __P_57_0: function __P_57_0(element) {
@@ -219,20 +219,20 @@
         });
       },
       getDownActor: function getDownActor() {
-        return this.getDomElement().querySelector(".actor.downlabel");
+        return this.getDomElement().querySelector('.actor.downlabel');
       },
       getUpActor: function getUpActor() {
-        return this.getDomElement().querySelector(".actor.uplabel");
+        return this.getDomElement().querySelector('.actor.uplabel');
       },
       getInfoActor: function getInfoActor() {
-        return this.getDomElement().querySelector(".actor.switchInvisible");
+        return this.getDomElement().querySelector('.actor.switchInvisible');
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("infotrigger", statics);
+      cv.ui.structure.WidgetFactory.registerClass('infotrigger', statics);
     }
   });
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1625667770582
+//# sourceMappingURL=InfoTrigger.js.map?dt=1641882203305

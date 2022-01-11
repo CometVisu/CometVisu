@@ -55,16 +55,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      */
     properties: {
       name: {
-        check: "String",
-        init: "",
+        check: 'String',
+        init: '',
         nullable: true
       },
       wstyle: {
-        check: "String",
+        check: 'String',
         init: ''
       },
       address: {
-        check: "Object",
+        check: 'Object',
         init: {}
       },
       bindClickToWidget: {
@@ -94,10 +94,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("pagelink", statics);
+      cv.ui.structure.WidgetFactory.registerClass('pagelink', statics);
     }
   });
   cv.ui.structure.pure.PageLink.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageLink.js.map?dt=1625667770790
+//# sourceMappingURL=PageLink.js.map?dt=1641882203502

@@ -86,12 +86,12 @@
      */
     properties: {
       onValue: {
-        check: "String",
-        init: "1"
+        check: 'String',
+        init: '1'
       },
       offValue: {
-        check: "String",
-        init: "0"
+        check: 'String',
+        init: '0'
       }
     },
 
@@ -135,4 +135,4 @@
   cv.ui.structure.pure.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1625667771085
+//# sourceMappingURL=Switch.js.map?dt=1641882203765

@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 1255,
+        "line": 1248,
         "column": 3
       }
     },
@@ -578,33 +578,14 @@
       "type": "variable",
       "access": "private"
     },
-    "clone": {
-      "location": {
-        "start": {
-          "line": 1239,
-          "column": 4
-        },
-        "end": {
-          "line": 1241,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public",
-      "jsdoc": {},
-      "overriddenFrom": "qx.core.Object",
-      "appearsIn": [
-        "qx.core.Object"
-      ]
-    },
     "_maintainStatus": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 203,
           "column": 5
         }
       },
@@ -614,11 +595,11 @@
     "_applyValid": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 210,
           "column": 5
         }
       },
@@ -631,11 +612,11 @@
     "convertTextNodeType": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 224,
           "column": 5
         }
       },
@@ -645,11 +626,11 @@
     "_maintainIcon": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 248,
           "column": 5
         }
       },
@@ -659,11 +640,11 @@
     "_applyEditable": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 250,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 253,
           "column": 5
         }
       },
@@ -676,11 +657,11 @@
     "_updateShowEditButton": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 266,
+          "line": 262,
           "column": 5
         }
       },
@@ -690,7 +671,21 @@
     "updateDeletable": {
       "location": {
         "start": {
-          "line": 268,
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 299,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNode": {
+      "location": {
+        "start": {
+          "line": 301,
           "column": 4
         },
         "end": {
@@ -701,28 +696,14 @@
       "type": "function",
       "access": "public"
     },
-    "getNode": {
+    "remove": {
       "location": {
         "start": {
           "line": 305,
           "column": 4
         },
         "end": {
-          "line": 307,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
-      "location": {
-        "start": {
-          "line": 309,
-          "column": 4
-        },
-        "end": {
-          "line": 333,
+          "line": 329,
           "column": 5
         }
       },
@@ -732,11 +713,11 @@
     "isAncestor": {
       "location": {
         "start": {
-          "line": 340,
+          "line": 336,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 345,
           "column": 5
         }
       },
@@ -771,11 +752,11 @@
     "_move": {
       "location": {
         "start": {
-          "line": 358,
+          "line": 354,
           "column": 4
         },
         "end": {
-          "line": 396,
+          "line": 392,
           "column": 5
         }
       },
@@ -822,7 +803,21 @@
     "moveTo": {
       "location": {
         "start": {
-          "line": 398,
+          "line": 394,
+          "column": 4
+        },
+        "end": {
+          "line": 429,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "moveAfter": {
+      "location": {
+        "start": {
+          "line": 431,
           "column": 4
         },
         "end": {
@@ -833,7 +828,7 @@
       "type": "function",
       "access": "public"
     },
-    "moveAfter": {
+    "moveBefore": {
       "location": {
         "start": {
           "line": 435,
@@ -847,7 +842,7 @@
       "type": "function",
       "access": "public"
     },
-    "moveBefore": {
+    "moveInside": {
       "location": {
         "start": {
           "line": 439,
@@ -861,28 +856,14 @@
       "type": "function",
       "access": "public"
     },
-    "moveInside": {
+    "insertAfter": {
       "location": {
         "start": {
           "line": 443,
           "column": 4
         },
         "end": {
-          "line": 445,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAfter": {
-      "location": {
-        "start": {
           "line": 447,
-          "column": 4
-        },
-        "end": {
-          "line": 451,
           "column": 5
         }
       },
@@ -892,11 +873,11 @@
     "insertBefore": {
       "location": {
         "start": {
-          "line": 453,
+          "line": 449,
           "column": 4
         },
         "end": {
-          "line": 457,
+          "line": 453,
           "column": 5
         }
       },
@@ -906,11 +887,11 @@
     "getAddableChildren": {
       "location": {
         "start": {
-          "line": 465,
+          "line": 461,
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 517,
           "column": 5
         }
       },
@@ -937,11 +918,11 @@
     "isChildAllowedAtPosition": {
       "location": {
         "start": {
-          "line": 529,
+          "line": 525,
           "column": 4
         },
         "end": {
-          "line": 582,
+          "line": 578,
           "column": 5
         }
       },
@@ -986,11 +967,11 @@
     "findPositionForChild": {
       "location": {
         "start": {
-          "line": 584,
+          "line": 580,
           "column": 4
         },
         "end": {
-          "line": 615,
+          "line": 611,
           "column": 5
         }
       },
@@ -1000,11 +981,11 @@
     "insertChild": {
       "location": {
         "start": {
-          "line": 624,
+          "line": 621,
           "column": 4
         },
         "end": {
-          "line": 691,
+          "line": 685,
           "column": 5
         }
       },
@@ -1036,6 +1017,12 @@
             "paramName": "skipUndo",
             "description": " do not add an undo operation for this change",
             "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "internalOperation",
+            "paramName": "internalOperation",
+            "type": ""
           }
         ],
         "@return": [
@@ -1053,11 +1040,11 @@
     "_validateTextContent": {
       "location": {
         "start": {
-          "line": 693,
+          "line": 687,
           "column": 4
         },
         "end": {
-          "line": 704,
+          "line": 698,
           "column": 5
         }
       },
@@ -1067,11 +1054,11 @@
     "validate": {
       "location": {
         "start": {
-          "line": 710,
+          "line": 704,
           "column": 4
         },
         "end": {
-          "line": 770,
+          "line": 762,
           "column": 5
         }
       },
@@ -1098,11 +1085,11 @@
     "isTextNode": {
       "location": {
         "start": {
-          "line": 772,
+          "line": 764,
           "column": 4
         },
         "end": {
-          "line": 774,
+          "line": 766,
           "column": 5
         }
       },
@@ -1112,11 +1099,11 @@
     "_applyTextContent": {
       "location": {
         "start": {
-          "line": 776,
+          "line": 768,
           "column": 4
         },
         "end": {
-          "line": 787,
+          "line": 779,
           "column": 5
         }
       },
@@ -1129,11 +1116,11 @@
     "getText": {
       "location": {
         "start": {
-          "line": 789,
+          "line": 781,
           "column": 4
         },
         "end": {
-          "line": 791,
+          "line": 783,
           "column": 5
         }
       },
@@ -1143,11 +1130,11 @@
     "setText": {
       "location": {
         "start": {
-          "line": 793,
+          "line": 785,
           "column": 4
         },
         "end": {
-          "line": 816,
+          "line": 808,
           "column": 5
         }
       },
@@ -1157,11 +1144,11 @@
     "getAttribute": {
       "location": {
         "start": {
-          "line": 818,
+          "line": 810,
           "column": 4
         },
         "end": {
-          "line": 820,
+          "line": 812,
           "column": 5
         }
       },
@@ -1171,11 +1158,11 @@
     "setAttribute": {
       "location": {
         "start": {
-          "line": 822,
+          "line": 814,
           "column": 4
         },
         "end": {
-          "line": 876,
+          "line": 869,
           "column": 5
         }
       },
@@ -1185,11 +1172,11 @@
     "isRequired": {
       "location": {
         "start": {
-          "line": 881,
+          "line": 874,
           "column": 4
         },
         "end": {
-          "line": 889,
+          "line": 882,
           "column": 5
         }
       },
@@ -1215,11 +1202,11 @@
     "setAttributes": {
       "location": {
         "start": {
-          "line": 891,
+          "line": 884,
           "column": 4
         },
         "end": {
-          "line": 955,
+          "line": 948,
           "column": 5
         }
       },
@@ -1229,11 +1216,11 @@
     "_applySchemaElement": {
       "location": {
         "start": {
-          "line": 957,
+          "line": 950,
           "column": 4
         },
         "end": {
-          "line": 964,
+          "line": 957,
           "column": 5
         }
       },
@@ -1246,11 +1233,11 @@
     "_onOpen": {
       "location": {
         "start": {
-          "line": 966,
+          "line": 959,
           "column": 4
         },
         "end": {
-          "line": 971,
+          "line": 964,
           "column": 5
         }
       },
@@ -1263,11 +1250,11 @@
     "_applyModified": {
       "location": {
         "start": {
-          "line": 973,
+          "line": 966,
           "column": 4
         },
         "end": {
-          "line": 975,
+          "line": 968,
           "column": 5
         }
       },
@@ -1280,11 +1267,11 @@
     "_updateDisplayName": {
       "location": {
         "start": {
-          "line": 977,
+          "line": 970,
           "column": 4
         },
         "end": {
-          "line": 1000,
+          "line": 993,
           "column": 5
         }
       },
@@ -1297,11 +1284,11 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 1001,
+          "line": 994,
           "column": 4
         },
         "end": {
-          "line": 1014,
+          "line": 1007,
           "column": 5
         }
       },
@@ -1311,7 +1298,21 @@
     "load": {
       "location": {
         "start": {
-          "line": 1016,
+          "line": 1009,
+          "column": 4
+        },
+        "end": {
+          "line": 1094,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "appendInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 1096,
           "column": 4
         },
         "end": {
@@ -1322,28 +1323,14 @@
       "type": "function",
       "access": "public"
     },
-    "appendInvalidMessage": {
+    "updateModified": {
       "location": {
         "start": {
           "line": 1103,
           "column": 4
         },
         "end": {
-          "line": 1108,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "updateModified": {
-      "location": {
-        "start": {
-          "line": 1110,
-          "column": 4
-        },
-        "end": {
-          "line": 1136,
+          "line": 1129,
           "column": 5
         }
       },
@@ -1353,11 +1340,11 @@
     "hasChildrenModified": {
       "location": {
         "start": {
-          "line": 1143,
+          "line": 1136,
           "column": 4
         },
         "end": {
-          "line": 1149,
+          "line": 1142,
           "column": 5
         }
       },
@@ -1383,11 +1370,11 @@
     "onSaved": {
       "location": {
         "start": {
-          "line": 1151,
+          "line": 1144,
           "column": 4
         },
         "end": {
-          "line": 1167,
+          "line": 1160,
           "column": 5
         }
       },
@@ -1397,11 +1384,11 @@
     "isElement": {
       "location": {
         "start": {
-          "line": 1169,
+          "line": 1162,
           "column": 4
         },
         "end": {
-          "line": 1171,
+          "line": 1164,
           "column": 5
         }
       },
@@ -1411,7 +1398,21 @@
     "_currentChildNames": {
       "location": {
         "start": {
-          "line": 1173,
+          "line": 1166,
+          "column": 4
+        },
+        "end": {
+          "line": 1177,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_syncChildNodes": {
+      "location": {
+        "start": {
+          "line": 1179,
           "column": 4
         },
         "end": {
@@ -1422,28 +1423,14 @@
       "type": "function",
       "access": "protected"
     },
-    "_syncChildNodes": {
+    "_updateChildrenDeletableFlags": {
       "location": {
         "start": {
           "line": 1186,
           "column": 4
         },
         "end": {
-          "line": 1191,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_updateChildrenDeletableFlags": {
-      "location": {
-        "start": {
-          "line": 1193,
-          "column": 4
-        },
-        "end": {
-          "line": 1201,
+          "line": 1194,
           "column": 5
         }
       },
@@ -1453,16 +1440,35 @@
     "getWidgetPath": {
       "location": {
         "start": {
-          "line": 1203,
+          "line": 1196,
           "column": 4
         },
         "end": {
-          "line": 1236,
+          "line": 1229,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
+    },
+    "clone": {
+      "location": {
+        "start": {
+          "line": 1232,
+          "column": 4
+        },
+        "end": {
+          "line": 1234,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object"
+      ]
     },
     "_applyEventPropagation": {
       "type": "function",
@@ -2553,7 +2559,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6350,11 +6356,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1248,
+        "line": 1241,
         "column": 12
       },
       "end": {
-        "line": 1254,
+        "line": 1247,
         "column": 3
       }
     },

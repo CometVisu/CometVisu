@@ -60,10 +60,10 @@
       validateConfig: function validateConfig(url) {
         return new Promise(function (resolve, reject) {
           // check if there is already one validation request ongoing
-          if (!this._validationCallbacks.hasOwnProperty(url)) {
+          if (!Object.prototype.hasOwnProperty.call(this._validationCallbacks, url)) {
             this._validationCallbacks[url] = [resolve];
 
-            this._worker.postMessage(["validateConfig", {
+            this._worker.postMessage(['validateConfig', {
               path: url
             }]);
           } else {
@@ -76,7 +76,7 @@
           var id = this._counter++;
           this._validationCallbacks[id] = [resolve];
 
-          this._worker.postMessage(["validateXmlConfig", id, code, true]);
+          this._worker.postMessage(['validateXmlConfig', id, code, true]);
         }.bind(this));
       },
       _onMessage: function _onMessage(e) {
@@ -86,7 +86,7 @@
 
         switch (topic) {
           case 'validationResult':
-            if (this._validationCallbacks.hasOwnProperty(path)) {
+            if (Object.prototype.hasOwnProperty.call(this._validationCallbacks, path)) {
               var callbacks = this._validationCallbacks[path];
               delete this._validationCallbacks[path];
               callbacks.forEach(function (cb) {
@@ -117,4 +117,4 @@
   cv.data.FileWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileWorker.js.map?dt=1625667805515
+//# sourceMappingURL=FileWorker.js.map?dt=1641882235584

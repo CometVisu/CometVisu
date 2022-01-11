@@ -48,7 +48,7 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.core.notifications.actions.Link", {
+  qx.Class.define('cv.core.notifications.actions.Link', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
 
@@ -69,20 +69,20 @@
     */
     properties: {
       title: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       url: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       action: {
-        check: "Function",
+        check: 'Function',
         nullable: true,
-        transform: "_transformAction"
+        transform: '_transformAction'
       },
       hidden: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -99,13 +99,13 @@
         }
 
         switch (value) {
-          case "reload":
-          case "restart":
+          case 'reload':
+          case 'restart':
             return cv.util.Location.reload;
         }
 
         if (value) {
-          this.error("Unknown action: " + value);
+          this.error('Unknown action: ' + value);
         }
 
         return null;
@@ -135,21 +135,21 @@
         }
       },
       getDomElement: function getDomElement() {
-        var actionButton = qx.dom.Element.create("button", {
-          "class": "action",
-          "text": this.getTitle(),
-          "style": this.getStyle()
+        var actionButton = qx.dom.Element.create('button', {
+          'class': 'action',
+          'text': this.getTitle(),
+          'style': this.getStyle()
         });
         actionButton.$$handler = this;
-        qx.event.Registration.addListener(actionButton, "tap", this.handleAction, this);
+        qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
         return actionButton;
       }
     },
     defer: function defer() {
-      cv.core.notifications.ActionRegistry.registerActionHandler("link", cv.core.notifications.actions.Link);
+      cv.core.notifications.ActionRegistry.registerActionHandler('link', cv.core.notifications.actions.Link);
     }
   });
   cv.core.notifications.actions.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1625667763791
+//# sourceMappingURL=Link.js.map?dt=1641882196740

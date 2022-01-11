@@ -16,7 +16,7 @@
    * @ignore($)
    */
   qx.Class.define('cv.io.parser.Json', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -30,9 +30,9 @@
         try {
           result = JSON.parse(data);
         } catch (e) {
-          data.split("}{").forEach(function (subData, i) {
+          data.split('}{').forEach(function (subData, i) {
             try {
-              var jsonString = i === 0 ? subData + "}" : "{" + subData;
+              var jsonString = i === 0 ? subData + '}' : '{' + subData;
               result = Object.assign(result, JSON.parse(jsonString));
             } catch (se) {
               qx.log.Logger.error(se, data);
@@ -48,4 +48,4 @@
   cv.io.parser.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1625667808255
+//# sourceMappingURL=Json.js.map?dt=1641882238638

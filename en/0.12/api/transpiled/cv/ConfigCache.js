@@ -45,7 +45,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    * @since 0.10.0
    */
   qx.Class.define('cv.ConfigCache', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -53,7 +53,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ******************************************************
     */
     statics: {
-      _cacheKey: "data",
+      _cacheKey: 'data',
       _parseCacheData: null,
       _valid: null,
       replayCache: null,
@@ -63,14 +63,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (!this.__P_489_0) {
           this.__P_489_0 = new Promise(function (resolve, reject) {
             if (!cv.ConfigCache.DB) {
-              var request = indexedDB.open("cvCache", 1);
+              var request = indexedDB.open('cvCache', 1);
 
               request.onsuccess = function (ev) {
-                qx.log.Logger.debug(cv.ConfigCache, "Success creating/accessing IndexedDB database");
+                qx.log.Logger.debug(cv.ConfigCache, 'Success creating/accessing IndexedDB database');
                 cv.ConfigCache.DB = request.result;
 
                 cv.ConfigCache.DB.onerror = function (event) {
-                  reject(new Error("Error creating/accessing IndexedDB database"));
+                  reject(new Error('Error creating/accessing IndexedDB database'));
                 };
 
                 resolve(cv.ConfigCache.DB);
@@ -80,13 +80,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 var db = event.target.result;
 
                 db.onerror = function (event) {
-                  qx.log.Logger.error(cv.ConfigCache, "Error loading database.");
+                  qx.log.Logger.error(cv.ConfigCache, 'Error loading database.');
                 };
 
-                var objectStore = db.createObjectStore("data", {
-                  keyPath: "config"
+                var objectStore = db.createObjectStore('data', {
+                  keyPath: 'config'
                 });
-                objectStore.createIndex("config", "config", {
+                objectStore.createIndex('config', 'config', {
                   unique: true
                 });
               };
@@ -114,7 +114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       restore: function restore() {
         var _this = this;
 
-        var body = document.querySelector("body");
+        var body = document.querySelector('body');
         var model = cv.data.Model.getInstance();
         this.getData().then(function (cache) {
           cv.Config.configSettings = cache.configSettings; // restore formulas
@@ -136,7 +136,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             });
 
             if (!hasMobile) {
-              cv.Config.configSettings.stylesToLoad.push("designs/" + cv.Config.configSettings.clientDesign + "/mobile.css");
+              cv.Config.configSettings.stylesToLoad.push('designs/' + cv.Config.configSettings.clientDesign + '/mobile.css');
             }
           } else {
             // do not load mobile css
@@ -161,11 +161,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
 
           body.innerHTML = cache.body;
-          qx.log.Logger.debug(_this, "content restored from cache");
+          qx.log.Logger.debug(_this, 'content restored from cache');
         });
       },
       save: function save(data) {
-        var objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+        var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
         objectStore.put(data);
       },
       getData: function () {
@@ -178,7 +178,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 0:
                   return _context.abrupt("return", new Promise(function (resolve, reject) {
                     if (!_this2._parseCacheData) {
-                      var objectStore = cv.ConfigCache.DB.transaction(["data"], "readonly").objectStore('data');
+                      var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readonly').objectStore('data');
                       var dataRequest = objectStore.get(cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
 
                       dataRequest.onsuccess = function (event) {
@@ -187,6 +187,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         } else {
                           this._parseCacheData = dataRequest.result; // parse stringified data
 
+                          // parse stringified data
                           this._parseCacheData.data = JSON.parse(this._parseCacheData.data);
                           this._parseCacheData.configSettings = JSON.parse(this._parseCacheData.configSettings);
 
@@ -249,7 +250,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 7:
                   // compare versions
                   cacheVersion = data.VERSION + '|' + data.REV;
-                  qx.log.Logger.debug(this, "Cached version: " + cacheVersion + ", CV-Version: " + cv.Version.VERSION + '|' + cv.Version.REV);
+                  qx.log.Logger.debug(this, 'Cached version: ' + cacheVersion + ', CV-Version: ' + cv.Version.VERSION + '|' + cv.Version.REV);
                   return _context2.abrupt("return", cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
 
                 case 10:
@@ -279,7 +280,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
 
                   _context3.next = 3;
-                  return this.getData("hash");
+                  return this.getData('hash');
 
                 case 3:
                   cachedHash = _context3.sent;
@@ -291,7 +292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       hash = this.toHash(xml);
                     }
 
-                    qx.log.Logger.debug(this, "Current hash: '" + hash + "', cached hash: '" + cachedHash + "'");
+                    qx.log.Logger.debug(this, 'Current hash: \'' + hash + '\', cached hash: \'' + cachedHash + '\'');
                     this._valid = hash === cachedHash;
                   }
 
@@ -317,7 +318,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       clear: function clear(configSuffix) {
         configSuffix = configSuffix || (cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix);
-        var objectStore = cv.ConfigCache.DB.transaction(["data"], "readwrite").objectStore('data');
+        var objectStore = cv.ConfigCache.DB.transaction(['data'], 'readwrite').objectStore('data');
         var dataRequest = objectStore["delete"](configSuffix);
 
         dataRequest.onsuccess = function () {
@@ -326,12 +327,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
 
       /**
+       * @param string
        * @see http://stackoverflow.com/q/7616461/940217
        * @return {number}
        */
       hashCode: function hashCode(string) {
         if (Array.prototype.reduce) {
-          return string.split("").reduce(function (a, b) {
+          return string.split('').reduce(function (a, b) {
             a = (a << 5) - a + b.charCodeAt(0);
             return a & a;
           }, 0);
@@ -346,7 +348,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         for (var i = 0, l = string.length; i < l; i++) {
           var character = string.charCodeAt(i);
           hash = (hash << 5) - hash + character;
-          hash = hash & hash; // Convert to 32bit integer
+          hash &= hash; // Convert to 32bit integer
         }
 
         return hash;
@@ -356,4 +358,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1625667805257
+//# sourceMappingURL=ConfigCache.js.map?dt=1641882235324

@@ -35,7 +35,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-  qx.Mixin.define("cv.ui.common.Refresh", {
+  qx.Mixin.define('cv.ui.common.Refresh', {
     /*
      ******************************************************
      CONSTRUCTOR
@@ -45,12 +45,12 @@
       if (cv.TemplateEngine.getInstance().isDomFinished()) {
         this.setupRefreshAction();
       } else {
-        qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+        qx.event.message.Bus.subscribe('setup.dom.finished', function () {
           this.setupRefreshAction();
         }, this);
       }
 
-      this.addListener("changeVisible", this._maintainTimerState, this);
+      this.addListener('changeVisible', this._maintainTimerState, this);
     },
 
     /*
@@ -81,11 +81,11 @@
      */
     members: {
       _timer: null,
-      __P_503_0: null,
-      __P_503_1: false,
-      __P_503_2: null,
-      __P_503_3: null,
-      __P_503_4: false,
+      __P_504_0: null,
+      __P_504_1: false,
+      __P_504_2: null,
+      __P_504_3: null,
+      __P_504_4: false,
       _applyRestartOnVisible: function _applyRestartOnVisible(value) {
         if (value) {
           this._maintainTimerState();
@@ -96,14 +96,14 @@
        * Stop the while invisible
        */
       _maintainTimerState: function _maintainTimerState() {
-        if (this.__P_503_3) {
+        if (this.__P_504_3) {
           this.debug('aborting restart timer ' + this.getPath());
 
-          this.__P_503_3.stop();
+          this.__P_504_3.stop();
 
-          this.__P_503_3.dispose();
+          this.__P_504_3.dispose();
 
-          this.__P_503_3 = null;
+          this.__P_504_3 = null;
         }
 
         if (!this.isRestartOnVisible()) {
@@ -112,7 +112,7 @@
 
         if (this._timer) {
           if (this.isVisible()) {
-            var delta = this.getRefresh() - (Date.now() - this.__P_503_2);
+            var delta = this.getRefresh() - (Date.now() - this.__P_504_2);
 
             if (delta <= 0) {
               // run immediately
@@ -124,12 +124,12 @@
             } else {
               this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms'); // start when interval is finished
 
-              this.__P_503_3 = qx.event.Timer.once(function () {
+              this.__P_504_3 = qx.event.Timer.once(function () {
                 this._timer.start();
 
                 this._timer.fireEvent('interval');
 
-                this.__P_503_3 = null;
+                this.__P_504_3 = null;
               }, this, delta);
             }
           } else if (this._timer.isEnabled()) {
@@ -141,11 +141,11 @@
       },
       setupRefreshAction: function setupRefreshAction() {
         if (this.getRefresh() && this.getRefresh() > 0) {
-          if (this.__P_503_1 === true) {
+          if (this.__P_504_1 === true) {
             return;
           }
 
-          this.__P_503_1 = true;
+          this.__P_504_1 = true;
 
           if (this._setupRefreshAction) {
             // overridden by inheriting class
@@ -154,13 +154,13 @@
             if (this._timer) {
               // listen to foreign timer to get the last execution time;
               this._timer.addListener('interval', function () {
-                this.__P_503_2 = Date.now();
+                this.__P_504_2 = Date.now();
               }, this);
             }
           } else if (!this._timer || !this._timer.isEnabled()) {
             var element = this.getDomElement();
             var target = element.querySelector('img') || element.querySelector('iframe');
-            var src = target.getAttribute("src");
+            var src = target.getAttribute('src');
 
             if (src.indexOf('?') < 0 && (target.nodeName === 'IMG' && this.getCachecontrol() === 'full' || target.nodeName !== 'IMG')) {
               src += '?';
@@ -168,7 +168,7 @@
 
             this._timer = new qx.event.Timer(this.getRefresh());
 
-            this._timer.addListener("interval", function () {
+            this._timer.addListener('interval', function () {
               this.refreshAction(target, src);
             }, this);
 
@@ -176,13 +176,13 @@
           }
 
           if (this._timer && this._timer.isEnabled()) {
-            this.__P_503_2 = Date.now();
+            this.__P_504_2 = Date.now();
             this.setRestartOnVisible(true);
           }
         }
       },
       refreshAction: function refreshAction(target, src) {
-        this.__P_503_2 = Date.now();
+        this.__P_504_2 = Date.now();
 
         if (this._refreshAction) {
           this._refreshAction();
@@ -193,12 +193,12 @@
            * src = src doesnt work anyway on external This creates though some
            * "flickering" so we avoid to use it on images, internal iframes and others
            */
-          var parenthost = window.location.protocol + "//" + window.location.host;
+          var parenthost = window.location.protocol + '//' + window.location.host;
 
-          if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
-            target.setAttribute("src", "");
+          if (target.nodeName === 'IFRAME' && src.indexOf(parenthost) !== 0) {
+            target.setAttribute('src', '');
             qx.event.Timer.once(function () {
-              target.setAttribute("src", src);
+              target.setAttribute('src', src);
             }, this, 0);
           } else {
             var cachecontrol = this.getCachecontrol(); // force is only implied for images
@@ -209,15 +209,15 @@
 
             switch (cachecontrol) {
               case 'full':
-                target.setAttribute("src", qx.util.Uri.appendParamsToUrl(src, "" + new Date().getTime()));
+                target.setAttribute('src', qx.util.Uri.appendParamsToUrl(src, '' + new Date().getTime()));
                 break;
 
               case 'weak':
-                target.setAttribute("src", src + '#' + new Date().getTime());
+                target.setAttribute('src', src + '#' + new Date().getTime());
                 break;
 
               case 'force':
-                cv.ui.common.Refresh.__P_503_5(src);
+                cv.ui.common.Refresh.__P_504_5(src);
 
               // not needed as those are NOP:
               // case 'none':
@@ -237,7 +237,7 @@
       if (this._timer) {
         this._timer.stop();
 
-        this._disposeObjects("_timer");
+        this._disposeObjects('_timer');
       }
     },
 
@@ -248,14 +248,15 @@
      */
     statics: {
       // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
-      __P_503_5: function __P_503_5(src, twostage) {
-        var step = 0,
-            // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
-        elements = document.querySelectorAll('img[src="' + src + '"]'),
-            canvases = [],
-            imgReloadBlank = function imgReloadBlank() {
+      __P_504_5: function __P_504_5(src, twostage) {
+        var step = 0; // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
+
+        var elements = document.querySelectorAll('img[src="' + src + '"]');
+        var canvases = [];
+
+        var imgReloadBlank = function imgReloadBlank() {
           elements.forEach(function (elem) {
-            // place a canvas above the image to prevent a flicker on the 
+            // place a canvas above the image to prevent a flicker on the
             // screen when the image src is reset
             var canvas = window.document.createElement('canvas');
             canvas.width = elem.width;
@@ -263,46 +264,47 @@
             canvas.style = 'position:fixed';
             canvas.getContext('2d').drawImage(elem, 0, 0);
             canvases.push(canvas);
-            elem.width = elem.width;
-            elem.height = elem.height;
             elem.parentNode.insertBefore(canvas, elem);
-            elem.removeAttribute("src");
+            elem.removeAttribute('src');
           });
-        },
-            imgReloadRestore = function imgReloadRestore() {
+        };
+
+        var imgReloadRestore = function imgReloadRestore() {
           elements.forEach(function (elem) {
-            elem.setAttribute("src", src);
+            elem.setAttribute('src', src);
             elem.removeAttribute('width');
             elem.removeAttribute('height');
           });
           canvases.forEach(function (elem) {
             elem.parentNode.removeChild(elem);
           });
-        },
-            iframe = window.document.createElement('iframe'),
-            // Hidden iframe, in which to perform the load+reload.
-        doc,
-            loadCallback = function loadCallback(e) // Callback function, called after iframe load+reload completes (or fails).
-        {
+        };
+
+        var iframe = window.document.createElement('iframe'); // Hidden iframe, in which to perform the load+reload.
+
+        var doc;
+
+        var loadCallback = function loadCallback(e) {
+          // Callback function, called after iframe load+reload completes (or fails).
           // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
-          if (!step) // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
-            {
-              if (twostage) {
-                step = 1; // wait for twostage-mode proceed or cancel; don't do anything else just yet
-              } else {
-                step = 2; // initiate forced-reload
+          if (!step) {
+            // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
+            if (twostage) {
+              step = 1; // wait for twostage-mode proceed or cancel; don't do anything else just yet
+            } else {
+              step = 2; // initiate forced-reload
 
-                imgReloadBlank();
-                iframe.contentWindow.location.reload(true);
-              }
-            } else if (step === 2) // forced re-load is done
-            {
-              imgReloadRestore((e || window.event).type === "error"); // last parameter checks whether loadCallback was called from the "load" or the "error" event.
-
-              if (iframe.parentNode) {
-                iframe.parentNode.removeChild(iframe);
-              }
+              imgReloadBlank();
+              iframe.contentWindow.location.reload(true);
             }
+          } else if (step === 2) {
+            // forced re-load is done
+            imgReloadRestore((e || window.event).type === 'error'); // last parameter checks whether loadCallback was called from the "load" or the "error" event.
+
+            if (iframe.parentNode) {
+              iframe.parentNode.removeChild(iframe);
+            }
+          }
         };
 
         iframe.style.display = 'none';
@@ -349,4 +351,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1625667806208
+//# sourceMappingURL=Refresh.js.map?dt=1641882236489

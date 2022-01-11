@@ -406,34 +406,34 @@
             } // If the resourceUri begins with a single slash, include the current
             // hostname
             else if (resourceUri.match(/^\//) != null) {
-                if (href) {
-                  statics.__P_472_1[lib] = href;
-                } else {
-                  statics.__P_472_1[lib] = window.location.protocol + "//" + window.location.host;
-                }
-              } // If the resolved URL begins with "./" the final URL has to be
-              // put together using the document.URL property.
-              // IMPORTANT: this is only applicable for the source version
-              else if (resourceUri.match(/^\.\//) != null) {
-                  var url = document.URL;
-                  statics.__P_472_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
-                } else if (resourceUri.match(/^http/) != null) {
-                  // Let absolute URLs pass through
-                  statics.__P_472_1[lib] = "";
-                } else {
-                  if (!href) {
-                    // check for parameters with URLs as value
-                    var index = window.location.href.indexOf("?");
+              if (href) {
+                statics.__P_472_1[lib] = href;
+              } else {
+                statics.__P_472_1[lib] = window.location.protocol + "//" + window.location.host;
+              }
+            } // If the resolved URL begins with "./" the final URL has to be
+            // put together using the document.URL property.
+            // IMPORTANT: this is only applicable for the source version
+            else if (resourceUri.match(/^\.\//) != null) {
+              var url = document.URL;
+              statics.__P_472_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
+            } else if (resourceUri.match(/^http/) != null) {
+              // Let absolute URLs pass through
+              statics.__P_472_1[lib] = "";
+            } else {
+              if (!href) {
+                // check for parameters with URLs as value
+                var index = window.location.href.indexOf("?");
 
-                    if (index == -1) {
-                      href = window.location.href;
-                    } else {
-                      href = window.location.href.substring(0, index);
-                    }
-                  }
-
-                  statics.__P_472_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
+                if (index == -1) {
+                  href = window.location.href;
+                } else {
+                  href = window.location.href.substring(0, index);
                 }
+              }
+
+              statics.__P_472_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
+            }
           }
         }
       }
@@ -442,4 +442,4 @@
   qx.util.ResourceManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceManager.js.map?dt=1625667803916
+//# sourceMappingURL=ResourceManager.js.map?dt=1641882234033

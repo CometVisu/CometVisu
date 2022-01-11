@@ -21,6 +21,6 @@
   ],
   "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EAA4C;AAC1CC,IAAAA,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC;AADuB,GAA5C;AAHAC,EAAAA,EAAE,CAACH,EAAH,CAAMI,OAAN,CAAcC,KAAd,CAAoBC,IAApB,CAAyBV,aAAzB,GAAyCA,aAAzC",
   "sourcesContent": [
-    "/**\n * Wrapper for cometvisu icons to make the usable as Qx-Widget.\n */\nqx.Class.define('cv.ui.manager.basic.Icon', {\n  extend: qx.ui.core.Widget,\n\n});\n"
+    "/**\n * Wrapper for cometvisu icons to make the usable as Qx-Widget.\n */\nqx.Class.define('cv.ui.manager.basic.Icon', {\n  extend: qx.ui.core.Widget\n\n});\n"
   ]
 }

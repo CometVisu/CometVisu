@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 85,
+        "line": 88,
         "column": 3
       }
     },
@@ -38,7 +38,7 @@
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 68,
           "column": 5
         }
       },
@@ -86,11 +86,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 81,
           "column": 5
         }
       },
@@ -101,11 +101,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 81,
+        "line": 84,
         "column": 9
       },
       "end": {
-        "line": 84,
+        "line": 87,
         "column": 3
       }
     },

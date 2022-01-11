@@ -41,7 +41,7 @@
       qx.ui.toolbar.ToolBar.constructor.call(this);
 
       if (showOnly) {
-        this.__P_27_0 = showOnly;
+        this.__P_26_0 = showOnly;
       }
 
       this._menuBar = cv.ui.manager.MenuBar.getInstance();
@@ -93,9 +93,9 @@
       _menuButtonConfig: null,
       _uploadManager: null,
       _menuBar: null,
-      __P_27_0: null,
-      __P_27_1: function __P_27_1(name) {
-        return this.__P_27_0 === null || this.__P_27_0.includes(name);
+      __P_26_0: null,
+      __P_26_1: function __P_26_1(name) {
+        return this.__P_26_0 === null || this.__P_26_0.includes(name);
       },
       _init: function _init() {
         if (!this._uploadManager) {
@@ -110,12 +110,12 @@
         this.add(createPart);
         var newButton;
 
-        if (this.__P_27_1('new-menu')) {
+        if (this.__P_26_1('new-menu')) {
           newButton = new qx.ui.toolbar.MenuButton(null, cv.theme.dark.Images.getIcon('new-file', 15), this._menuBar.getChildControl('new-menu'));
           this.bind('folder.writeable', newButton, 'enabled');
           createPart.add(newButton);
         } else {
-          if (this.__P_27_1('new-config-file')) {
+          if (this.__P_26_1('new-config-file')) {
             newButton = this._createButton('new-config-file', cv.theme.dark.Images.getIcon('new-file', 15));
             this.bind('folder.writeable', newButton, 'enabled');
             this.bind('folder', newButton, 'visibility', {
@@ -127,7 +127,7 @@
               qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this.getFolder());
             }, this);
             createPart.add(newButton);
-          } else if (this.__P_27_1('new-file')) {
+          } else if (this.__P_26_1('new-file')) {
             newButton = this._createButton('new-file', null, true);
             this.bind('folder.writeable', newButton, 'enabled');
             newButton.addListener('execute', function () {
@@ -136,7 +136,7 @@
             createPart.add(newButton);
           }
 
-          if (this.__P_27_1('new-folder')) {
+          if (this.__P_26_1('new-folder')) {
             newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
             this.bind('folder.writeable', newButton, 'enabled');
             newButton.addListener('execute', function () {
@@ -146,7 +146,7 @@
           }
         }
 
-        if (this.__P_27_1('upload')) {
+        if (this.__P_26_1('upload')) {
           var upload = this._createButton('upload');
 
           this._uploadManager.addWidget(upload);
@@ -155,7 +155,7 @@
           createPart.add(upload);
         }
 
-        if (this.__P_27_1('delete')) {
+        if (this.__P_26_1('delete')) {
           var deleteSelection = this._createButton('delete');
 
           deleteSelection.addListener('execute', function () {
@@ -169,7 +169,7 @@
           this.add(deleteSelection);
         }
 
-        if (this.__P_27_1('download')) {
+        if (this.__P_26_1('download')) {
           var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
           download.setAppearance('cv-toolbar-button');
           download.setToolTipText(qx.locale.Manager.tr('Download'));
@@ -185,7 +185,7 @@
           createPart.add(download);
         }
 
-        if (this.__P_27_1('validate')) {
+        if (this.__P_26_1('validate')) {
           // config check
           var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
           checkConfig.setAppearance('cv-toolbar-button');
@@ -202,7 +202,7 @@
           this.add(checkConfig);
         }
 
-        if (this.__P_27_1('reload')) {
+        if (this.__P_26_1('reload')) {
           var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
           reload.setAppearance('cv-toolbar-button');
           reload.setToolTipText(qx.locale.Manager.tr('Reload'));
@@ -242,10 +242,10 @@
     destruct: function destruct() {
       this._menuButtonConfig = null;
       this._uploadManager = null;
-      this.__P_27_2 = null;
+      this.__P_26_2 = null;
     }
   });
   cv.ui.manager.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1625667766632
+//# sourceMappingURL=ToolBar.js.map?dt=1641882199472

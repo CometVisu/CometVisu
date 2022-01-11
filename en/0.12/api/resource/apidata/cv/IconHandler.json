@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 266,
+        "line": 267,
         "column": 3
       }
     },
@@ -85,7 +85,7 @@
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 88,
           "column": 5
         }
       },
@@ -103,11 +103,11 @@
     "get": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 141,
           "column": 5
         }
       },
@@ -171,7 +171,7 @@
     "getURI": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 143,
           "column": 4
         },
         "end": {
@@ -189,7 +189,7 @@
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 181,
           "column": 5
         }
       },
@@ -207,7 +207,7 @@
     "getIconText": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 195,
           "column": 4
         },
         "end": {
@@ -325,11 +325,11 @@
     "fillIcons": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 242,
+          "line": 243,
           "column": 5
         }
       },
@@ -339,6 +339,14 @@
             "name": "@description",
             "body": "<p>Fill the icons in the array.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "array",
+            "paramName": "array",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -347,11 +355,11 @@
     "list": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 253,
           "column": 5
         }
       },
@@ -377,11 +385,11 @@
     "debug": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 265,
           "column": 5
         }
       },

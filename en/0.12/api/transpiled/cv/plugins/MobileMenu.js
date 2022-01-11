@@ -80,8 +80,8 @@
         return data;
       },
       getWidgetElements: function getWidgetElements(xmlElement, path) {
-        cv.data.Model.getInstance().setWidgetData(path + "_0", {
-          containerClass: "actor"
+        cv.data.Model.getInstance().setWidgetData(path + '_0', {
+          containerClass: 'actor'
         });
       }
     },
@@ -92,41 +92,41 @@
     ******************************************************
     */
     members: {
-      __P_11_0: null,
-      __P_11_1: null,
+      __P_10_0: null,
+      __P_10_1: null,
       // overridden
       getDomString: function getDomString() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-          var navLeft = this.__P_11_0 = document.querySelector('#navbarLeft');
+          var navLeft = this.__P_10_0 = document.querySelector('#navbarLeft');
 
           if (!navLeft.classList.contains('mobilemenu')) {
             navLeft.classList.add('mobilemenu');
           }
 
-          navLeft.style.display = "none";
-          qx.event.message.Bus.subscribe("path.pageChanged", function () {
+          navLeft.style.display = 'none';
+          qx.event.message.Bus.subscribe('path.pageChanged', function () {
             var navbar = navLeft.querySelector('.navbar');
             var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
-            animation.addListenerOnce("end", function () {
-              navLeft.style.display = "none";
+            animation.addListenerOnce('end', function () {
+              navLeft.style.display = 'none';
             }, this);
           });
           return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
-        } else {
-          return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
         }
+
+        return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
       },
       _onDomReady: function _onDomReady() {
         if (this.isTouchDevice()) {
-          this.touchScroll("navbarLeft");
+          this.touchScroll('navbarLeft');
         }
       },
       _action: function _action() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           if (this.isTouchDevice()) {
-            this.__P_11_0.style.display = "block";
+            this.__P_10_0.style.display = 'block';
 
-            var navbar = this.__P_11_0.querySelector('.navbar.navbarActive');
+            var navbar = this.__P_10_0.querySelector('.navbar.navbarActive');
 
             qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
           }
@@ -135,26 +135,26 @@
       touchScroll: function touchScroll(id) {
         var scrollStartPos = 0;
         var elem = document.querySelector('#' + id);
-        qx.event.Registration.addListener(elem, "touchstart", function (event) {
+        qx.event.Registration.addListener(elem, 'touchstart', function (event) {
           scrollStartPos = this.scrollTop + event.touches[0].pageY;
           event.preventDefault();
         }, false);
-        qx.event.Registration.addListener(elem, "touchmove", function (event) {
+        qx.event.Registration.addListener(elem, 'touchmove', function (event) {
           this.scrollTop = scrollStartPos - event.touches[0].pageY;
           event.preventDefault();
         }, false);
       },
       isTouchDevice: function isTouchDevice() {
-        if (this.__P_11_1 === null) {
+        if (this.__P_10_1 === null) {
           try {
-            document.createEvent("TouchEvent");
-            this.__P_11_1 = true;
+            document.createEvent('TouchEvent');
+            this.__P_10_1 = true;
           } catch (e) {
-            this.__P_11_1 = false;
+            this.__P_10_1 = false;
           }
         }
 
-        return this.__P_11_1;
+        return this.__P_10_1;
       }
     },
     // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
@@ -167,11 +167,11 @@
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-      cv.parser.WidgetParser.addHandler("mobilemenu", statics);
-      cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
+      cv.parser.WidgetParser.addHandler('mobilemenu', statics);
+      cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
     }
   });
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1625667765202
+//# sourceMappingURL=MobileMenu.js.map?dt=1641882198075

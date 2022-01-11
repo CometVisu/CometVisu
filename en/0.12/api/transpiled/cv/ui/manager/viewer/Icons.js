@@ -99,10 +99,8 @@
           } else {
             this._controller.setModel(model);
           }
-        } else {
-          if (this._controller) {
-            this._controller.resetModel();
-          }
+        } else if (this._controller) {
+          this._controller.resetModel();
         }
       }
     }
@@ -110,4 +108,4 @@
   cv.ui.manager.viewer.Icons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icons.js.map?dt=1625667770295
+//# sourceMappingURL=Icons.js.map?dt=1641882202885

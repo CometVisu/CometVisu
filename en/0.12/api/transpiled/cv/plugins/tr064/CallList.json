@@ -16,7 +16,7 @@
         "column": 0
       },
       "end": {
-        "line": 395,
+        "line": 390,
         "column": 3
       }
     },
@@ -48,15 +48,28 @@
     }
   },
   "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 13
+      },
+      "end": {
+        "line": 43,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
   "statics": {
     "parse": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 67,
           "column": 5
         }
       },
@@ -112,11 +125,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 101,
           "column": 5
         }
       },
@@ -128,11 +141,11 @@
     "tr064ListRefreshed": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 110,
           "column": 47
         }
       },
@@ -144,11 +157,11 @@
     "device": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 122,
           "column": 5
         }
       },
@@ -161,11 +174,11 @@
     "max": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 126,
           "column": 5
         }
       },
@@ -178,11 +191,11 @@
     "columns": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 127,
           "column": 37
         }
       },
@@ -193,11 +206,11 @@
     "TAM": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 128,
           "column": 37
         }
       },
@@ -208,11 +221,11 @@
     "TAMColor": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 129,
           "column": 37
         }
       },
@@ -223,11 +236,11 @@
     "TAMwait": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 122,
+          "line": 130,
           "column": 37
         }
       },
@@ -238,11 +251,11 @@
     "TAMwaitColor": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 131,
           "column": 37
         }
       },
@@ -253,11 +266,11 @@
     "TAMplay": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 132,
           "column": 37
         }
       },
@@ -268,11 +281,11 @@
     "TAMplayColor": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 133,
           "column": 37
         }
       },
@@ -283,11 +296,11 @@
     "TAMstop": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 134,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 134,
           "column": 37
         }
       },
@@ -298,11 +311,11 @@
     "TAMstopColor": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 135,
           "column": 37
         }
       },
@@ -313,11 +326,11 @@
     "typeIncoming": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 136,
           "column": 51
         }
       },
@@ -328,11 +341,11 @@
     "typeIncomingColor": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 137,
           "column": 51
         }
       },
@@ -343,11 +356,11 @@
     "typeMissed": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 138,
           "column": 51
         }
       },
@@ -358,11 +371,11 @@
     "typeMissedColor": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 139,
           "column": 51
         }
       },
@@ -373,11 +386,11 @@
     "typeOutgoing": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 140,
           "column": 51
         }
       },
@@ -388,11 +401,11 @@
     "typeOutgoingColor": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 141,
           "column": 51
         }
       },
@@ -403,11 +416,11 @@
     "typeActiveIncoming": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 134,
+          "line": 142,
           "column": 51
         }
       },
@@ -418,11 +431,11 @@
     "typeActiveIncomingColor": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 143,
           "column": 51
         }
       },
@@ -433,11 +446,11 @@
     "typeRejectedIncoming": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 144,
           "column": 51
         }
       },
@@ -448,11 +461,11 @@
     "typeRejectedIncomingColor": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 145,
           "column": 51
         }
       },
@@ -463,11 +476,11 @@
     "typeActiveOutgoing": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 138,
+          "line": 146,
           "column": 51
         }
       },
@@ -478,11 +491,11 @@
     "typeActiveOutgoingColor": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 147,
           "column": 51
         }
       },
@@ -493,11 +506,11 @@
     "typeUnknown": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 148,
           "column": 51
         }
       },
@@ -508,11 +521,11 @@
     "typeUnknownColor": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 149,
           "column": 51
         }
       },
@@ -666,11 +679,11 @@
     "__calllistUri": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 158,
           "column": 21
         }
       },
@@ -680,11 +693,11 @@
     "__calllistList": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 159,
           "column": 29
         }
       },
@@ -694,11 +707,11 @@
     "__refreshingCalllist": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 160,
           "column": 31
         }
       },
@@ -708,12 +721,12 @@
     "__TAMeventAttached": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 158,
-          "column": 26
+          "line": 166,
+          "column": 28
         }
       },
       "jsdoc": {
@@ -736,11 +749,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 171,
           "column": 5
         }
       },
@@ -764,11 +777,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 173,
+          "line": 180,
           "column": 5
         }
       },
@@ -778,11 +791,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 181,
           "column": 4
         },
         "end": {
-          "line": 179,
+          "line": 185,
           "column": 5
         }
       },
@@ -792,11 +805,11 @@
     "_displayCalllist": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 256,
           "column": 5
         }
       },
@@ -806,7 +819,7 @@
     "_getCallListURI": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 263,
           "column": 4
         },
         "end": {
@@ -832,7 +845,7 @@
           "column": 4
         },
         "end": {
-          "line": 338,
+          "line": 333,
           "column": 5
         }
       },
@@ -842,11 +855,11 @@
     "__playTAM": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 373,
+          "line": 368,
           "column": 5
         }
       },
@@ -856,6 +869,14 @@
             "name": "@description",
             "body": "<p>The EventListener for click on the TAM button.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element",
+            "paramName": "element",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -864,11 +885,11 @@
     "__TAMwait": {
       "location": {
         "start": {
-          "line": 375,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 377,
+          "line": 372,
           "column": 5
         }
       },
@@ -878,11 +899,11 @@
     "__TAMplay": {
       "location": {
         "start": {
-          "line": 379,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 381,
+          "line": 376,
           "column": 5
         }
       },
@@ -892,11 +913,11 @@
     "__TAMstop": {
       "location": {
         "start": {
-          "line": 383,
+          "line": 378,
           "column": 4
         },
         "end": {
-          "line": 385,
+          "line": 380,
           "column": 5
         }
       },
@@ -2886,7 +2907,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -8123,11 +8144,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 388,
+        "line": 383,
         "column": 9
       },
       "end": {
-        "line": 393,
+        "line": 388,
         "column": 3
       }
     },

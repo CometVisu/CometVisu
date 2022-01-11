@@ -63,7 +63,7 @@
        * @return {Boolean} whether the constant has details.
        */
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
-        return node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node) || this.__P_543_0(node);
+        return node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node) || this.__P_544_0(node);
       },
       getItemTypeHtml: function getItemTypeHtml(node) {
         return qxl.apiviewer.ui.panels.InfoPanel.createTypeHtml(node, "var");
@@ -84,7 +84,7 @@
         var textHtml = qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node.getClass(), showDetails);
 
         if (showDetails) {
-          textHtml += this.__P_543_1(node);
+          textHtml += this.__P_544_1(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createErrorHtml(node, currentClassDocNode);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createDeprecationHtml(node, "constant");
@@ -99,7 +99,7 @@
        * @param node {Map} the doc node of the item.
        * @return {Boolean} whether the constant provides a value
        */
-      __P_543_0: function __P_543_0(node) {
+      __P_544_0: function __P_544_0(node) {
         return Boolean(node.getValue());
       },
 
@@ -109,8 +109,8 @@
        * @param node {Map} the doc node of the item.
        * @return {String} the HTML showing the value of the constant
        */
-      __P_543_1: function __P_543_1(node) {
-        if (this.__P_543_0(node)) {
+      __P_544_1: function __P_544_1(node) {
+        if (this.__P_544_0(node)) {
           var value = node.getValue();
 
           if (typeof value !== "string") {
@@ -129,4 +129,4 @@
   qxl.apiviewer.ui.panels.ConstantPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConstantPanel.js.map?dt=1625667810814
+//# sourceMappingURL=ConstantPanel.js.map?dt=1641882240918

@@ -2155,9 +2155,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           onThirdCall: function onThirdCall() {
             return this.stub.onThirdCall();
           },
-          withArgs: function withArgs()
-          /* arguments */
-          {
+          withArgs: function withArgs() {
             throw new Error("Defining a stub by invoking \"stub.onCall(...).withArgs(...)\" is not supported. Use \"stub.withArgs(...).onCall(...)\" to define sequential behavior for calls with certain arguments.");
           },
           callsArg: function callsArg(pos) {
@@ -4936,4 +4934,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1625667780236
+//# sourceMappingURL=Sinon.js.map?dt=1641882211703

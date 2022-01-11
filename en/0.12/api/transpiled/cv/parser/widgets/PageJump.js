@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.PageJump', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -57,7 +57,7 @@
         var widgetInfo = xml.querySelector('widgetinfo > *');
 
         if (widgetInfo !== undefined) {
-          data.classes += " infoaction";
+          data.classes += ' infoaction';
         }
 
         cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
@@ -82,10 +82,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("pagejump", statics);
+      cv.parser.WidgetParser.addHandler('pagejump', statics);
     }
   });
   cv.parser.widgets.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1625667764536
+//# sourceMappingURL=PageJump.js.map?dt=1641882197520

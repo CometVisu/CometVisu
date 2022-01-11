@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 175,
+        "line": 190,
         "column": 3
       }
     },
@@ -98,11 +98,11 @@
     "clip": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 116,
           "column": 5
         }
       },
@@ -116,31 +116,98 @@
         "@param": [
           {
             "name": "@param",
-            "body": "min {Number} lower threshold",
+            "body": "{number} min lower threshold",
             "paramName": "min",
-            "description": " lower threshold",
-            "type": "Number"
+            "description": "lower threshold",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "value {var} value to clip",
+            "body": "{any} value value to clip",
             "paramName": "value",
-            "description": " value to clip",
-            "type": "var"
+            "description": "value to clip",
+            "type": "any"
           },
           {
             "name": "@param",
-            "body": "max {Number} upper threshold",
+            "body": "{number} max upper threshold",
             "paramName": "max",
-            "description": " upper threshold",
+            "description": "upper threshold",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "[scaling] {Number} scale the clipping result by that amount",
+            "paramName": "[scaling]",
+            "description": " scale the clipping result by that amount",
             "type": "Number"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Number} the clipped value",
-            "type": "Number",
+            "body": "{number} the clipped value",
+            "type": "number",
+            "description": " the clipped value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clipInt": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enforce that value stays within range and is an integer\n When value is not a valid number, the min value is returned</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{number} min lower threshold",
+            "paramName": "min",
+            "description": "lower threshold",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{any} value value to clip",
+            "paramName": "value",
+            "description": "value to clip",
+            "type": "any"
+          },
+          {
+            "name": "@param",
+            "body": "{number} max upper threshold",
+            "paramName": "max",
+            "description": "upper threshold",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "[scaling] {Number} scale the clipping result by that amount",
+            "paramName": "[scaling]",
+            "description": " scale the clipping result by that amount",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number} the clipped value",
+            "type": "number",
             "description": " the clipped value"
           }
         ]
@@ -151,11 +218,11 @@
     "encodeBusAndRaw": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 155,
           "column": 5
         }
       },
@@ -197,11 +264,11 @@
     "encode": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 166,
           "column": 5
         }
       },
@@ -243,11 +310,11 @@
     "decode": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 173,
+          "line": 188,
           "column": 5
         }
       },

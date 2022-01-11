@@ -64,11 +64,11 @@
     */
     properties: {
       showstatus: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       elementsPerLine: {
-        check: "Number",
+        check: 'Number',
         init: 2
       },
       buttonConfiguration: {
@@ -133,7 +133,7 @@
         children.forEach(function (actor) {
           var index = Array.prototype.indexOf.call(children, actor) + 1;
 
-          if (buttonConfiguration.hasOwnProperty(index)) {
+          if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
             var isPressed = '' + this.getBasicValue() === '' + buttonConfiguration[index].value; // compare as string
             // delay this a little bit to give the HasAnimatedButton stuff time to finish
             // otherwise it might override the settings here
@@ -148,7 +148,7 @@
 
       /**
        * Get the value that should be send to backend after the action has been triggered
-       *
+       * @param event
        */
       getActionValue: function getActionValue(event) {
         var index = Array.prototype.indexOf.call(this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget()) + 1;
@@ -161,16 +161,16 @@
         }
 
         this.getActors().forEach(function (actor) {
-          qx.event.Registration.addListener(actor, "tap", this.action, this);
-          qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
+          qx.event.Registration.addListener(actor, 'tap', this.action, this);
+          qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
         }, this);
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("multitrigger", statics);
+      cv.ui.structure.WidgetFactory.registerClass('multitrigger', statics);
     }
   });
   cv.ui.structure.pure.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1625667770623
+//# sourceMappingURL=MultiTrigger.js.map?dt=1641882203345

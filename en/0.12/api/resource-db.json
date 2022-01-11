@@ -58,12 +58,6 @@
       "demo/visu_config_responsive.xml": {
         "resourcePath": "resourcePath"
       },
-      "designs/design_preview.html": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/designglobals.css": {
-        "resourcePath": "resourcePath"
-      },
       "icons/COPYING": {
         "resourcePath": "resourcePath"
       },
@@ -434,6 +428,12 @@
         "resourcePath": "resourcePath"
       },
       "icons/knx-uf-iconset.svg": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/design_preview.html": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/designglobals.css": {
         "resourcePath": "resourcePath"
       },
       "libs/COPYING": {
@@ -1150,44 +1150,17 @@
         "width": 400,
         "height": 400
       },
-      "plugins/colorchooser/farbtastic/CHANGELOG.html": {
+      "qxl/apiviewer/css/sunlight.default.css": {
         "resourcePath": "resourcePath"
       },
-      "plugins/colorchooser/farbtastic/LICENSE.txt": {
+      "qxl/apiviewer/lib/sunlight-min.js": {
         "resourcePath": "resourcePath"
       },
-      "plugins/colorchooser/farbtastic/README.html": {
+      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
         "resourcePath": "resourcePath"
       },
-      "plugins/colorchooser/farbtastic/README.md": {
+      "qxl/apiviewer/lib/sunlight.xml-min.js": {
         "resourcePath": "resourcePath"
-      },
-      "plugins/colorchooser/farbtastic/demo1.html": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/colorchooser/farbtastic/demo2.html": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/colorchooser/farbtastic/farbtastic.css": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/colorchooser/farbtastic/farbtastic.js": {
-        "resourcePath": "resourcePath"
-      },
-      "plugins/colorchooser/farbtastic/marker.png": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 17
-      },
-      "plugins/colorchooser/farbtastic/mask.png": {
-        "resourcePath": "resourcePath",
-        "width": 101,
-        "height": 101
-      },
-      "plugins/colorchooser/farbtastic/wheel.png": {
-        "resourcePath": "resourcePath",
-        "width": 195,
-        "height": 195
       },
       "plugins/gauge/dep/ChangeLog.txt": {
         "resourcePath": "resourcePath"
@@ -1226,18 +1199,6 @@
         "resourcePath": "resourcePath"
       },
       "plugins/openweathermap/font/weathericons-regular-webfont.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/css/sunlight.default.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.xml-min.js": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/fonts/OSP/OSP-DIN.ttf": {
@@ -1405,11 +1366,6 @@
     },
     "cv.io": {
       "lib/jquery.js": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "qxl.versionlabel": {
-      "dummy.txt": {
         "resourcePath": "resourcePath"
       }
     },
@@ -1958,6 +1914,171 @@
         }
       }
     },
+    "iconfont.fontawesome5": {
+      "iconfont/fontawesome5/CHANGELOG.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-brands.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-map-convert.js": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular-400.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid-900.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/fa-solid.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/icons.yml": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/fontawesome5/update.sh": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.dialog": {
+      "qxl/dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      }
+    },
+    "qxl.versionlabel": {
+      "dummy.txt": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "com.zenesis.qx.upload": {
+      "FileSaver.js": {
+        "resourcePath": "resourcePath"
+      },
+      "jszip.js": {
+        "resourcePath": "resourcePath"
+      },
+      "com/zenesis/qx/upload/banner-bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 2,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/banner.png": {
+        "resourcePath": "resourcePath",
+        "width": 241,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "com/zenesis/qx/upload/test.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      }
+    },
+    "iconfont.material": {
+      "iconfont/material/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.json": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.map": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.md": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/MaterialIcons-Regular.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "iconfont/material/fetch-urls.sh": {
+        "resourcePath": "resourcePath"
+      }
+    },
     "osparc.theme": {
       "widgetbrowser/blank.html": {
         "resourcePath": "resourcePath"
@@ -2109,166 +2230,6 @@
       },
       "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
         "resourcePath": "resourcePath"
-      }
-    },
-    "com.zenesis.qx.upload": {
-      "FileSaver.js": {
-        "resourcePath": "resourcePath"
-      },
-      "jszip.js": {
-        "resourcePath": "resourcePath"
-      },
-      "com/zenesis/qx/upload/banner-bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 2,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/banner.png": {
-        "resourcePath": "resourcePath",
-        "width": 241,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "com/zenesis/qx/upload/test.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      }
-    },
-    "iconfont.material": {
-      "iconfont/material/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/MaterialIcons-Regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/material/fetch-urls.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "iconfont.fontawesome5": {
-      "iconfont/fontawesome5/CHANGELOG.md": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-brands.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-map-convert.js": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular-400.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-regular.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid-900.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.json": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/fa-solid.map": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/icons.yml": {
-        "resourcePath": "resourcePath"
-      },
-      "iconfont/fontawesome5/update.sh": {
-        "resourcePath": "resourcePath"
-      }
-    },
-    "qxl.dialog": {
-      "qxl/dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
       }
     },
     "qx": {
@@ -10082,16 +10043,6 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/appointment-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/check-spelling.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10103,6 +10054,16 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/dialog-apply.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/bookmark-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10187,17 +10148,17 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/edit-delete.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/edit-find.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/edit-paste.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/edit-delete.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10247,11 +10208,6 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/actions/format-text-bold.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10268,6 +10224,11 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/format-text-italic.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/actions/format-justify-right.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10312,12 +10273,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-previous.png": {
+      "qx/icon/Oxygen/128/actions/go-top.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-top.png": {
+      "qx/icon/Oxygen/128/actions/go-previous.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10397,12 +10358,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
+      "qx/icon/Oxygen/128/actions/mail-receive.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/mail-receive.png": {
+      "qx/icon/Oxygen/128/actions/mail-reply-all.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10427,12 +10388,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
+      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/media-playback-stop.png": {
+      "qx/icon/Oxygen/128/actions/media-playback-start.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10507,12 +10468,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/view-refresh.png": {
+      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/view-fullscreen.png": {
+      "qx/icon/Oxygen/128/actions/view-refresh.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10762,12 +10723,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/utilities-help.png": {
+      "qx/icon/Oxygen/128/apps/utilities-graphics-viewer.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/utilities-graphics-viewer.png": {
+      "qx/icon/Oxygen/128/apps/utilities-help.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10857,12 +10818,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/categories/utilities.png": {
+      "qx/icon/Oxygen/128/categories/system.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/categories/system.png": {
+      "qx/icon/Oxygen/128/categories/utilities.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11282,17 +11243,17 @@
         "width": 16,
         "height": 16
       },
+      "qx/icon/Oxygen/16/actions/document-save-as.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
       "qx/icon/Oxygen/16/actions/document-save.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
       "qx/icon/Oxygen/16/actions/document-send.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/icon/Oxygen/16/actions/document-save-as.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11332,12 +11293,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/edit-select-all.png": {
+      "qx/icon/Oxygen/16/actions/edit-undo.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/edit-undo.png": {
+      "qx/icon/Oxygen/16/actions/edit-select-all.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11347,12 +11308,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/format-indent-more.png": {
+      "qx/icon/Oxygen/16/actions/format-indent-less.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/format-indent-less.png": {
+      "qx/icon/Oxygen/16/actions/format-indent-more.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11362,12 +11323,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/format-justify-fill.png": {
+      "qx/icon/Oxygen/16/actions/format-justify-left.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/format-justify-left.png": {
+      "qx/icon/Oxygen/16/actions/format-justify-fill.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11532,17 +11493,17 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/mail-reply-sender.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
       "qx/icon/Oxygen/16/actions/mail-send.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
       "qx/icon/Oxygen/16/actions/media-eject.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/actions/mail-reply-sender.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11657,7 +11618,7 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/window-new.png": {
+      "qx/icon/Oxygen/16/actions/window-close.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11667,7 +11628,7 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/actions/window-close.png": {
+      "qx/icon/Oxygen/16/actions/window-new.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11727,12 +11688,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/media-photo-album.png": {
+      "qx/icon/Oxygen/16/apps/media-audio-player.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/media-audio-player.png": {
+      "qx/icon/Oxygen/16/apps/media-photo-album.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11802,12 +11763,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/preferences-accessibility.png": {
+      "qx/icon/Oxygen/16/apps/preferences-clock.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/preferences-clock.png": {
+      "qx/icon/Oxygen/16/apps/preferences-accessibility.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -11817,12 +11778,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/preferences-font.png": {
+      "qx/icon/Oxygen/16/apps/preferences-keyboard.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/apps/preferences-keyboard.png": {
+      "qx/icon/Oxygen/16/apps/preferences-font.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12062,12 +12023,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/network-wireless.png": {
+      "qx/icon/Oxygen/16/devices/network-wired.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/network-wired.png": {
+      "qx/icon/Oxygen/16/devices/network-wireless.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12177,12 +12138,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/mimetypes/office-contact.png": {
+      "qx/icon/Oxygen/16/mimetypes/office-calendar.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/mimetypes/office-calendar.png": {
+      "qx/icon/Oxygen/16/mimetypes/office-contact.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12197,17 +12158,17 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/mimetypes/office-presentation.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
       "qx/icon/Oxygen/16/mimetypes/office-spreadsheet.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
       "qx/icon/Oxygen/16/mimetypes/text-html.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/mimetypes/office-presentation.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12262,12 +12223,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/status/dialog-error.png": {
+      "qx/icon/Oxygen/16/status/dialog-information.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/status/dialog-information.png": {
+      "qx/icon/Oxygen/16/status/dialog-error.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12322,12 +12283,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/22/actions/address-book-new.png": {
+      "qx/icon/Oxygen/22/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/application-exit.png": {
+      "qx/icon/Oxygen/22/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12377,12 +12338,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/document-open-recent.png": {
+      "qx/icon/Oxygen/22/actions/document-open.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/document-open.png": {
+      "qx/icon/Oxygen/22/actions/document-open-recent.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12507,12 +12468,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/format-text-direction-ltr.png": {
+      "qx/icon/Oxygen/22/actions/format-text-direction-rtl.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/format-text-direction-rtl.png": {
+      "qx/icon/Oxygen/22/actions/format-text-direction-ltr.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -14257,17 +14218,17 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/devices/camera-photo.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
       "qx/icon/Oxygen/32/devices/camera-web.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
       "qx/icon/Oxygen/32/devices/computer.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Oxygen/32/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14342,12 +14303,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emblems/emblem-favorite.png": {
+      "qx/icon/Oxygen/32/emblems/emblem-important.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emblems/emblem-important.png": {
+      "qx/icon/Oxygen/32/emblems/emblem-favorite.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -14522,12 +14483,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/status/dialog-password.png": {
+      "qx/icon/Oxygen/32/status/dialog-warning.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/status/dialog-warning.png": {
+      "qx/icon/Oxygen/32/status/dialog-password.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -18322,11 +18283,6 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/actions/media-seek-forward.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
       "qx/icon/Tango/16/actions/media-skip-backward.png": {
         "resourcePath": "resourcePath",
         "width": 16,
@@ -18338,6 +18294,11 @@
         "height": 16
       },
       "qx/icon/Tango/16/actions/object-flip-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Tango/16/actions/media-seek-forward.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -18552,17 +18513,17 @@
         "width": 16,
         "height": 16
       },
+      "qx/icon/Tango/16/apps/preferences-accessibility.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
       "qx/icon/Tango/16/apps/preferences-clock.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
       "qx/icon/Tango/16/apps/preferences-display.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/icon/Tango/16/apps/preferences-accessibility.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -18652,17 +18613,17 @@
         "width": 16,
         "height": 16
       },
+      "qx/icon/Tango/16/apps/utilities-log-viewer.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
       "qx/icon/Tango/16/apps/utilities-network-manager.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
       "qx/icon/Tango/16/apps/utilities-notes.png": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/icon/Tango/16/apps/utilities-log-viewer.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -20172,6 +20133,11 @@
         "width": 22,
         "height": 22
       },
+      "qx/icon/Tango/22/status/mail-unread.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
       "qx/icon/Tango/22/status/security-high.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -20183,11 +20149,6 @@
         "height": 22
       },
       "qx/icon/Tango/22/status/security-medium.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/status/mail-unread.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -20747,12 +20708,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/office-chart.png": {
+      "qx/icon/Tango/32/apps/office-database.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/office-database.png": {
+      "qx/icon/Tango/32/apps/office-chart.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -20847,12 +20808,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/preferences-users.png": {
+      "qx/icon/Tango/32/apps/preferences-wallpaper.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/preferences-wallpaper.png": {
+      "qx/icon/Tango/32/apps/preferences-users.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -21337,11 +21298,6 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
       "qx/icon/Tango/48/actions/contact-new.png": {
         "resourcePath": "resourcePath",
         "width": 48,
@@ -21353,6 +21309,11 @@
         "height": 48
       },
       "qx/icon/Tango/48/actions/dialog-cancel.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Tango/48/actions/check-spelling.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22092,12 +22053,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/categories/science.png": {
+      "qx/icon/Tango/48/categories/office.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/categories/office.png": {
+      "qx/icon/Tango/48/categories/science.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48

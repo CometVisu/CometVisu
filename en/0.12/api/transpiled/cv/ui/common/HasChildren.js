@@ -41,7 +41,7 @@
    * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
    * and the methods for the widget instance.
    */
-  qx.Mixin.define("cv.ui.common.HasChildren", {
+  qx.Mixin.define('cv.ui.common.HasChildren', {
     /*
     ******************************************************
       CONSTRUCTOR
@@ -77,7 +77,7 @@
        * Array with child paths
        */
       children: {
-        check: "Array",
+        check: 'Array',
         init: []
       },
 
@@ -85,7 +85,7 @@
        * Array with child widget objects
        */
       childWidgets: {
-        check: "Array",
+        check: 'Array',
         init: []
       }
     },
@@ -114,7 +114,7 @@
           if (noWidgetContainer === true) {
             container += subelement;
           } else {
-            container += '<div class="widget_container' + (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') + (widget.getContainerClass && widget.getContainerClass() ? ' ' + widget.getContainerClass() : '') + ('break' === widget.get$$type() ? ' break_container' : '') + // special case for break widget
+            container += '<div class="widget_container' + (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') + (widget.getContainerClass && widget.getContainerClass() ? ' ' + widget.getContainerClass() : '') + (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
             '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
           }
         }, this);
@@ -125,4 +125,4 @@
   cv.ui.common.HasChildren.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasChildren.js.map?dt=1625667806162
+//# sourceMappingURL=HasChildren.js.map?dt=1641882236444

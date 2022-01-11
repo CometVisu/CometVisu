@@ -58,9 +58,9 @@
     */
     construct: function construct(props) {
       cv.ui.structure.AbstractBasicWidget.constructor.call(this, props);
-      this.__P_17_0 = 0;
+      this.__P_16_0 = 0;
 
-      this.__P_17_1();
+      this.__P_16_1();
     },
 
     /*
@@ -85,16 +85,16 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           'target': {
-            "default": "id_"
+            'default': 'id_'
           },
           'time': {
-            "default": 600,
+            'default': 600,
             transform: parseFloat
           },
           'debug': {
-            "default": false,
+            'default': false,
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -108,15 +108,15 @@
      */
     properties: {
       target: {
-        check: "String",
-        init: "id_"
+        check: 'String',
+        init: 'id_'
       },
       time: {
-        check: "Number",
+        check: 'Number',
         init: 600
       },
       debug: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -127,32 +127,32 @@
     ******************************************************
     */
     members: {
-      __P_17_0: null,
-      __P_17_2: null,
-      __P_17_3: null,
-      __P_17_4: null,
-      __P_17_5: null,
-      __P_17_1: function __P_17_1() {
+      __P_16_0: null,
+      __P_16_2: null,
+      __P_16_3: null,
+      __P_16_4: null,
+      __P_16_5: null,
+      __P_16_1: function __P_16_1() {
         if (this.isDebug()) {
-          this.debug("Timeout Set to : " + this.getTime());
-          this.debug("Target Page: " + this.getTarget());
+          this.debug('Timeout Set to : ' + this.getTime());
+          this.debug('Target Page: ' + this.getTarget());
         }
 
         var deltaT = this.getTime() * 100;
-        this.__P_17_5 = new qx.event.Timer(deltaT);
+        this.__P_16_5 = new qx.event.Timer(deltaT);
 
-        this.__P_17_5.addListener("interval", this.timeoutTrigger, this);
+        this.__P_16_5.addListener('interval', this.timeoutTrigger, this);
 
-        this.__P_17_5.start(); // Reset Counter on every interaction
+        this.__P_16_5.start(); // Reset Counter on every interaction
 
 
-        qx.event.Registration.addListener(window, "useraction", this._onUserAction, this); // Keep track of current page
+        qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this); // Keep track of current page
 
-        qx.event.message.Bus.subscribe("path.pageChanged", function (ev) {
+        qx.event.message.Bus.subscribe('path.pageChanged', function (ev) {
           var path = ev.getData();
-          this.__P_17_2 = path;
-          this.__P_17_3 = document.querySelector("#" + path + " div > h1").innerText;
-          this.__P_17_0 = 0;
+          this.__P_16_2 = path;
+          this.__P_16_3 = document.querySelector('#' + path + ' div > h1').innerText;
+          this.__P_16_0 = 0;
           /* We could trun on and off the above binds if we are already on the right page
             if (timeoutCurrentPage === timeoutTargetPage) {
            console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
@@ -163,30 +163,30 @@
         }, this);
       },
       _onUserAction: function _onUserAction() {
-        this.__P_17_0 = 0;
+        this.__P_16_0 = 0;
       },
       timeoutTrigger: function timeoutTrigger() {
         if (this.isDebug()) {
-          this.debug("TIMEOUT: Got Trigger (" + this.__P_17_0 + ")");
+          this.debug('TIMEOUT: Got Trigger (' + this.__P_16_0 + ')');
         }
 
-        this.__P_17_0++;
-        this.__P_17_4 = this.getTarget();
+        this.__P_16_0++;
+        this.__P_16_4 = this.getTarget();
 
-        if (this.__P_17_0 >= 10) {
-          this.__P_17_0 = 0;
+        if (this.__P_16_0 >= 10) {
+          this.__P_16_0 = 0;
           var templateEngine = cv.TemplateEngine.getInstance();
 
-          if (this.__P_17_2 !== this.__P_17_4 && this.__P_17_3 !== this.__P_17_4) {
+          if (this.__P_16_2 !== this.__P_16_4 && this.__P_16_3 !== this.__P_16_4) {
             if (this.isDebug()) {
-              this.debug("TIMEOUT: Got Timeout - Now Goto Page " + this.__P_17_4);
+              this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__P_16_4);
             }
 
-            templateEngine.scrollToPage(this.__P_17_4);
+            templateEngine.scrollToPage(this.__P_16_4);
             templateEngine.getCurrentPage().getDomElement().scrollTop = 0; //templateEngine.updateTopNavigation();
           } else {
             if (this.isDebug()) {
-              this.debug("TIMEOUT: Already on page " + this.__P_17_4);
+              this.debug('TIMEOUT: Already on page ' + this.__P_16_4);
             }
 
             templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
@@ -201,14 +201,14 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_17_5");
+      this._disposeObjects("__P_16_5");
     },
     defer: function defer(statics) {
-      cv.parser.WidgetParser.addHandler("timeout", cv.plugins.Timeout);
-      cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
+      cv.parser.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
+      cv.ui.structure.WidgetFactory.registerClass('timeout', statics);
     }
   });
   cv.plugins.Timeout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timeout.js.map?dt=1625667765577
+//# sourceMappingURL=Timeout.js.map?dt=1641882198473

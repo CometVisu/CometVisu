@@ -35,7 +35,7 @@
    * @since 2010
    */
   qx.Class.define('cv.ui.TrickOMatic', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -52,7 +52,7 @@
         } // Pipe-O-Matic:
 
 
-        var pipes = svg.querySelectorAll(".pipe_group");
+        var pipes = svg.querySelectorAll('.pipe_group');
         pipes.forEach(function (pipe_group) {
           pipe_group.querySelectorAll('path').forEach(function (path) {
             var halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
@@ -72,7 +72,7 @@
         var model = cv.data.Model.getInstance(); // Flow-O-Matic: add Paths
 
         var segmentLength = 40;
-        pipes = svg.querySelectorAll(".show_flow");
+        pipes = svg.querySelectorAll('.show_flow');
         pipes.forEach(function (pipe_group) {
           var length = 0.0;
           pipe_group.querySelectorAll('path').forEach(function (path) {
@@ -81,7 +81,9 @@
             }
 
             var stroke = path.style.stroke;
-            var r, g, b;
+            var r;
+            var g;
+            var b;
 
             if (stroke[0] === '#') {
               r = parseInt(path.style.stroke.substring(1, 3), 16);
@@ -98,6 +100,9 @@
 
             var gTarget = 0;
             var bTarget = 0;
+            /**
+             * @param v
+             */
 
             function toHex(v) {
               var ret = parseInt(v).toString(16);
@@ -128,7 +133,7 @@
 
             if (activeValues) {
               activeValues.split(' ').forEach(function (address) {
-                var id = "flow_" + cv.ui.TrickOMatic.id++;
+                var id = 'flow_' + cv.ui.TrickOMatic.id++;
                 model.addAddress(address, id);
                 model.addUpdateListener(address, function (address, data) {
                   cv.ui.TrickOMatic.updateActive(pipe_group, data);
@@ -141,17 +146,26 @@
         }); // Flow-O-Matic: add CSS
         // helper for multiple bowser support
 
+        /**
+         * @param name
+         * @param content
+         */
+
         function createKeyframe(name, content) {
-          return '@keyframes ' + name + " {\n" + content + "}\n" + '@-moz-keyframes ' + name + " {\n" + content + "}\n" + '@-webkit-keyframes ' + name + " {\n" + content + "}\n";
+          return '@keyframes ' + name + ' {\n' + content + '}\n' + '@-moz-keyframes ' + name + ' {\n' + content + '}\n' + '@-webkit-keyframes ' + name + ' {\n' + content + '}\n';
         }
 
-        var keyframes = createKeyframe('move', "from {  stroke-dashoffset: " + segmentLength + ";  }\n" + "to   {  stroke-dashoffset: 0;  }\n");
+        var keyframes = createKeyframe('move', 'from {  stroke-dashoffset: ' + segmentLength + ';  }\n' + 'to   {  stroke-dashoffset: 0;  }\n');
+        /**
+         * @param style
+         * @param value
+         */
 
         function createCSSRules(style, value) {
-          return style + ': ' + value + ";\n" + '-moz-' + style + ': ' + value + ";\n" + '-webkit-' + style + ': ' + value + ";\n";
+          return "".concat(style, ": ").concat(value, ";\n-moz-").concat(style, ": ").concat(value, ";\n-webkit-").concat(style, ": ").concat(value, ";\n");
         }
 
-        keyframes += ".flow_active path {\n" + createCSSRules('animation-duration', '3s') + createCSSRules('animation-name', 'move') + createCSSRules('animation-timing-function', 'linear') + createCSSRules('animation-iteration-count', 'infinite') + "}\n";
+        keyframes += '.flow_active path {\n' + createCSSRules('animation-duration', '3s') + createCSSRules('animation-name', 'move') + createCSSRules('animation-timing-function', 'linear') + createCSSRules('animation-iteration-count', 'infinite') + '}\n';
         var s = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
         s.setAttribute('type', 'text/css');
         s.textContent = keyframes;
@@ -159,9 +173,9 @@
       },
       updateActive: function updateActive(pipe_group, data) {
         if (parseInt(data) === 1 || data === 'ON') {
-          pipe_group.classList.toggle("flow_active", true);
+          pipe_group.classList.toggle('flow_active', true);
         } else {
-          pipe_group.classList.toggle("flow_active", false);
+          pipe_group.classList.toggle('flow_active', false);
         }
       }
     }
@@ -169,4 +183,4 @@
   cv.ui.TrickOMatic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TrickOMatic.js.map?dt=1625667808421
+//# sourceMappingURL=TrickOMatic.js.map?dt=1641882238796

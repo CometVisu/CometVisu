@@ -192,17 +192,17 @@
               scrollDiff = leftOffset;
             } // be sure that element is on right edge
             else if (alignRight) {
-                scrollDiff = rightOffset + parentScrollBarWidth;
-              } // element must go down
-              // * when current left offset is smaller than 0
-              // * when width is bigger than the inner width of the parent
-              else if (leftOffset < 0 || elementWidth > parentClientWidth) {
-                  scrollDiff = leftOffset;
-                } // element must go up
-                // * when current right offset is bigger than 0
-                else if (rightOffset > 0) {
-                    scrollDiff = rightOffset + parentScrollBarWidth;
-                  }
+              scrollDiff = rightOffset + parentScrollBarWidth;
+            } // element must go down
+            // * when current left offset is smaller than 0
+            // * when width is bigger than the inner width of the parent
+            else if (leftOffset < 0 || elementWidth > parentClientWidth) {
+              scrollDiff = leftOffset;
+            } // element must go up
+            // * when current right offset is bigger than 0
+            else if (rightOffset > 0) {
+              scrollDiff = rightOffset + parentScrollBarWidth;
+            }
 
             parent.scrollLeft += scrollDiff; // Browsers that follow the CSSOM View Spec fire the "scroll"
             // event asynchronously. See #intoViewY for more details.
@@ -284,17 +284,17 @@
               scrollDiff = topOffset;
             } // be sure that element is on bottom edge
             else if (alignBottom) {
-                scrollDiff = bottomOffset + parentScrollBarHeight;
-              } // element must go down
-              // * when current top offset is smaller than 0
-              // * when height is bigger than the inner height of the parent
-              else if (topOffset < 0 || elementHeight > parentClientHeight) {
-                  scrollDiff = topOffset;
-                } // element must go up
-                // * when current bottom offset is bigger than 0
-                else if (bottomOffset > 0) {
-                    scrollDiff = bottomOffset + parentScrollBarHeight;
-                  }
+              scrollDiff = bottomOffset + parentScrollBarHeight;
+            } // element must go down
+            // * when current top offset is smaller than 0
+            // * when height is bigger than the inner height of the parent
+            else if (topOffset < 0 || elementHeight > parentClientHeight) {
+              scrollDiff = topOffset;
+            } // element must go up
+            // * when current bottom offset is bigger than 0
+            else if (bottomOffset > 0) {
+              scrollDiff = bottomOffset + parentScrollBarHeight;
+            }
 
             parent.scrollTop += scrollDiff; // Browsers that follow the CSSOM View Spec fire the "scroll"
             // event asynchronously.
@@ -340,4 +340,4 @@
   qx.bom.element.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1625667776435
+//# sourceMappingURL=Scroll.js.map?dt=1641882208473

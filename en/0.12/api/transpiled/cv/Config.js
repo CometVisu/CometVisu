@@ -23,6 +23,9 @@
         "defer": "load",
         "require": true
       },
+      "qx.log.Logger": {
+        "defer": "runtime"
+      },
       "cv.ConfigCache": {
         "defer": "runtime"
       }
@@ -66,7 +69,7 @@
    * Main settings that an be accessed from anywhere inside the Application
    */
   qx.Class.define('cv.Config', {
-    type: "static",
+    type: 'static',
     statics: {
       /**
        * Define ENUM of maturity levels for features, so that e.g. the editor can
@@ -81,7 +84,7 @@
        * The current path tree
        * @type {String}
        */
-      treePath: "",
+      treePath: '',
 
       /**
        * Path to the current page
@@ -158,7 +161,7 @@
        * The design currently used
        * @type {String}
        */
-      clientDesign: "",
+      clientDesign: '',
 
       /**
        * Maturity level
@@ -212,7 +215,7 @@
        * Defines which structure is supported by which designs
        */
       designStructureMap: {
-        "pure": ["alaska", "alaska_slim", "discreet", "discreet_sand", "discreet_slim", "metal", "pitchblack", "planet", "pure"]
+        'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
       },
 
       /**
@@ -251,15 +254,15 @@
         }
 
         for (var structure in this.designStructureMap) {
-          if (this.designStructureMap.hasOwnProperty(structure)) {
+          if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
             if (this.designStructureMap[structure].indexOf(design) >= 0) {
-              return "structure-" + structure;
+              return 'structure-' + structure;
             }
           }
         } // fallback to pure
 
 
-        return "structure-pure";
+        return 'structure-pure';
       },
 
       /**
@@ -269,7 +272,7 @@
        */
       guessIfProxied: function guessIfProxied() {
         if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
-          throw new Error("not ready yet");
+          throw new Error('not ready yet');
         }
 
         return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
@@ -281,7 +284,7 @@
         return this.configSettings.mappings[name];
       },
       hasMapping: function hasMapping(name) {
-        return this.configSettings.mappings.hasOwnProperty(name);
+        return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
       },
       clearMappings: function clearMappings() {
         this.configSettings.mappings = {};
@@ -293,7 +296,7 @@
         return this.configSettings.stylings[name];
       },
       hasStyling: function hasStyling(name) {
-        return this.configSettings.stylings.hasOwnProperty(name);
+        return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
       },
       getDesign: function getDesign() {
         return this.clientDesign || this.configSettings.clientDesign;
@@ -339,7 +342,7 @@
       cv.Config.request = req;
 
       if (req.queryKey.testMode) {
-        cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
+        cv.Config.testMode = req.queryKey.testMode === 'true' || req.queryKey.testMode === '1';
       } // propagate to the client
 
 
@@ -358,23 +361,21 @@
       } // caching is only possible when localStorage is available
 
 
-      if (qx.core.Environment.get("html.storage.local") === false) {
+      if (qx.core.Environment.get('html.storage.local') === false) {
         cv.Config.enableCache = false;
-        console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
+        qx.log.Logger.warn(statics, 'localStorage is not available in your browser. Some advanced features, like caching will not work!');
+      } else if (req.queryKey.enableCache === 'invalid') {
+        cv.ConfigCache.clear(cv.Config.configSuffix);
+        cv.Config.enableCache = true;
       } else {
-        if (req.queryKey.enableCache === "invalid") {
-          cv.ConfigCache.clear(cv.Config.configSuffix);
-          cv.Config.enableCache = true;
-        } else {
-          cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : true;
-        }
+        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === 'true' : true;
       }
 
-      cv.Config.enableLogging = qx.core.Environment.get("html.console");
+      cv.Config.enableLogging = qx.core.Environment.get('html.console');
 
-      if (req.queryKey.log === "false") {
+      if (req.queryKey.log === 'false') {
         cv.Config.enableLogging = false;
-      } else if (req.queryKey.log === "true") {
+      } else if (req.queryKey.log === 'true') {
         cv.Config.enableLogging = true;
       } // "Bug"-Fix for ID: 3204682 "Caching on web server"
       // Config isn't a real fix for the problem as that's part of the web browser,
@@ -424,4 +425,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1625667805014
+//# sourceMappingURL=Config.js.map?dt=1641882235082

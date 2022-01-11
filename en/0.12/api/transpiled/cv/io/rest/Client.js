@@ -32,13 +32,13 @@
     */
     statics: {
       BASE_URL: null,
-      __P_506_0: null,
-      __P_506_1: null,
-      __P_506_2: null,
-      __P_506_3: {},
+      __P_507_0: null,
+      __P_507_1: null,
+      __P_507_2: null,
+      __P_507_3: {},
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
-          var path = "";
+          var path = '';
           var engine = cv.TemplateEngine.getInstance();
           var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
 
@@ -54,7 +54,7 @@
         return this.BASE_URL;
       },
       getConfigClient: function getConfigClient() {
-        if (!this.__P_506_0) {
+        if (!this.__P_507_0) {
           var config = {
             get: {
               method: 'GET',
@@ -68,7 +68,7 @@
               method: 'POST',
               url: '/config/hidden/{section}/{key}'
             },
-            "delete": {
+            'delete': {
               method: 'DELETE',
               url: '/config/hidden/{section}/{key}'
             },
@@ -77,11 +77,11 @@
               url: '/config/hidden'
             }
           };
-          this.__P_506_0 = new qx.io.rest.Resource(config);
+          this.__P_507_0 = new qx.io.rest.Resource(config);
 
-          this.__P_506_0.setBaseUrl(this.getBaseUrl());
+          this.__P_507_0.setBaseUrl(this.getBaseUrl());
 
-          this.__P_506_0.configureRequest(function (req, action) {
+          this.__P_507_0.configureRequest(function (req, action) {
             if (action === 'save') {
               req.setRequestHeader('Content-Type', 'application/json');
             }
@@ -89,13 +89,13 @@
             req.setAccept('application/json');
           });
 
-          this._enableSync(this.__P_506_0, config);
+          this._enableSync(this.__P_507_0, config);
         }
 
-        return this.__P_506_0;
+        return this.__P_507_0;
       },
       getFsClient: function getFsClient() {
-        if (!this.__P_506_1) {
+        if (!this.__P_507_1) {
           var config = {
             read: {
               method: 'GET',
@@ -109,7 +109,7 @@
               method: 'POST',
               url: '/fs?path={path}&type={type}'
             },
-            "delete": {
+            'delete': {
               method: 'DELETE',
               url: '/fs?path={path}&force={force}'
             },
@@ -122,11 +122,11 @@
               url: '/fs/check'
             }
           };
-          this.__P_506_1 = new qx.io.rest.Resource(config);
+          this.__P_507_1 = new qx.io.rest.Resource(config);
 
-          this.__P_506_1.setBaseUrl(this.getBaseUrl());
+          this.__P_507_1.setBaseUrl(this.getBaseUrl());
 
-          this.__P_506_1.configureRequest(function (req, action, params) {
+          this.__P_507_1.configureRequest(function (req, action, params) {
             if (params.hash) {
               req.setUrl(req.getUrl() + '&hash=' + params.hash);
             }
@@ -150,22 +150,22 @@
             }
           });
 
-          this._enableSync(this.__P_506_1, config); // general listeners
+          this._enableSync(this.__P_507_1, config); // general listeners
 
 
-          this.__P_506_1.addListener('updateSuccess', this._onSaveSuccess, this);
+          this.__P_507_1.addListener('updateSuccess', this._onSaveSuccess, this);
 
-          this.__P_506_1.addListener('createSuccess', this._onSaveSuccess, this);
+          this.__P_507_1.addListener('createSuccess', this._onSaveSuccess, this);
 
-          this.__P_506_1.addListener('updateError', this._onSaveError, this);
+          this.__P_507_1.addListener('updateError', this._onSaveError, this);
 
-          this.__P_506_1.addListener('createError', this._onSaveError, this);
+          this.__P_507_1.addListener('createError', this._onSaveError, this);
         }
 
-        return this.__P_506_1;
+        return this.__P_507_1;
       },
       getDataProviderClient: function getDataProviderClient() {
-        if (!this.__P_506_2) {
+        if (!this.__P_507_2) {
           var config = {
             designs: {
               method: 'GET',
@@ -192,14 +192,14 @@
               url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
             }
           };
-          this.__P_506_2 = new qx.io.rest.Resource(config);
+          this.__P_507_2 = new qx.io.rest.Resource(config);
 
-          this.__P_506_2.setBaseUrl(this.getBaseUrl());
+          this.__P_507_2.setBaseUrl(this.getBaseUrl());
 
-          this._enableSync(this.__P_506_2, config);
+          this._enableSync(this.__P_507_2, config);
         }
 
-        return this.__P_506_2;
+        return this.__P_507_2;
       },
       _enableSync: function _enableSync(client, config) {
         // install the callback calls
@@ -216,7 +216,7 @@
               callback = args.pop();
             }
 
-            this.__P_506_3[client[callName].apply(client, args)] = callback.bind(context);
+            this.__P_507_3[client[callName].apply(client, args)] = callback.bind(context);
           }.bind(this);
         }, this); // add the general listeners
 
@@ -224,17 +224,17 @@
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
 
-          if (this.__P_506_3.hasOwnProperty(id)) {
-            this.__P_506_3[id](null, ev.getData());
+          if (Object.prototype.hasOwnProperty.call(this.__P_507_3, id)) {
+            this.__P_507_3[id](null, ev.getData());
 
-            delete this.__P_506_3[id];
+            delete this.__P_507_3[id];
           }
         }, this);
         client.addListener('error', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
 
-          if (this.__P_506_3.hasOwnProperty(id)) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_507_3, id)) {
             var data = ev.getData();
             var error;
 
@@ -249,9 +249,9 @@
 
             qx.log.Logger.error(this, error);
 
-            this.__P_506_3[id](error, null);
+            this.__P_507_3[id](error, null);
 
-            delete this.__P_506_3[id];
+            delete this.__P_507_3[id];
           }
 
           if (req.getPhase() === 'load') {
@@ -264,7 +264,7 @@
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
 
-        if (!this.__P_506_3.hasOwnProperty(id)) {
+        if (!Object.prototype.hasOwnProperty.call(this.__P_507_3, id)) {
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
         }
       },
@@ -272,7 +272,7 @@
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
 
-        if (!this.__P_506_3.hasOwnProperty(id)) {
+        if (!Object.prototype.hasOwnProperty.call(this.__P_507_3, id)) {
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
         }
       }
@@ -281,4 +281,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1625667806383
+//# sourceMappingURL=Client.js.map?dt=1641882236671

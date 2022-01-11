@@ -31,7 +31,7 @@
   /**
    * Add the address property to widgets
    */
-  qx.Mixin.define("cv.ui.common.HasAddress", {
+  qx.Mixin.define('cv.ui.common.HasAddress', {
     /*
      ******************************************************
      PROPERTIES
@@ -50,4 +50,4 @@
   cv.ui.common.HasAddress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAddress.js.map?dt=1625667808574
+//# sourceMappingURL=HasAddress.js.map?dt=1641882238955

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 60,
+        "line": 61,
         "column": 3
       }
     },
@@ -35,7 +35,7 @@
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 59,
           "column": 5
         }
       },
@@ -49,32 +49,38 @@
         "@param": [
           {
             "name": "@param",
-            "body": "callback {Function} the callback which should be executed in the given interval",
+            "body": "callback {function} the callback which should be executed in the given interval",
             "paramName": "callback",
             "description": " the callback which should be executed in the given interval",
-            "type": "cv.util.Function"
+            "type": "function"
           },
           {
             "name": "@param",
-            "body": "interval {Number} Interval in milliseconds",
+            "body": "interval {number} Interval in milliseconds",
             "paramName": "interval",
             "description": " Interval in milliseconds",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "options {Map} the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
+            "body": "options {object} the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
             "paramName": "options",
             "description": " the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
-            "type": "Map"
+            "type": "object"
+          },
+          {
+            "name": "@param",
+            "body": "context",
+            "paramName": "context",
+            "type": ""
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n                <code>abort</code> abort throttling and skip the trailing value",
-            "type": "Map",
-            "description": " with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n                <code>abort</code> abort throttling and skip the trailing value"
+            "body": "{object} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n <code>abort</code> abort throttling and skip the trailing value",
+            "type": "object",
+            "description": " with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n <code>abort</code> abort throttling and skip the trailing value"
           }
         ]
       },

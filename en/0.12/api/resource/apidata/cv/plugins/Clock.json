@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 524,
+        "line": 530,
         "column": 3
       }
     },
@@ -526,7 +526,7 @@
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 324,
           "column": 5
         }
       },
@@ -540,11 +540,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 327,
           "column": 33
         }
       },
@@ -559,11 +559,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 330,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 334,
           "column": 5
         }
       },
@@ -574,11 +574,11 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 336,
           "column": 4
         },
         "end": {
-          "line": 388,
+          "line": 394,
           "column": 5
         }
       },
@@ -588,11 +588,11 @@
     "dragHelper": {
       "location": {
         "start": {
-          "line": 390,
+          "line": 396,
           "column": 4
         },
         "end": {
-          "line": 470,
+          "line": 474,
           "column": 5
         }
       },
@@ -602,11 +602,11 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 476,
           "column": 4
         },
         "end": {
-          "line": 478,
+          "line": 484,
           "column": 5
         }
       },
@@ -616,11 +616,11 @@
     "_updateHands": {
       "location": {
         "start": {
-          "line": 480,
+          "line": 486,
           "column": 4
         },
         "end": {
-          "line": 517,
+          "line": 523,
           "column": 5
         }
       },
@@ -2344,7 +2344,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6939,11 +6939,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 520,
+        "line": 526,
         "column": 9
       },
       "end": {
-        "line": 523,
+        "line": 529,
         "column": 3
       }
     },

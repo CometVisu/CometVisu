@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 224,
+        "line": 223,
         "column": 3
       }
     },
@@ -188,11 +188,11 @@
     "getAllowedElementsSorting": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 222,
+          "line": 221,
           "column": 5
         }
       },
@@ -206,13 +206,13 @@
         "@param": [
           {
             "name": "@param",
-            "body": "sortnumber  integer the sortnumber of a parent (only used when recursive)"
+            "body": "sortNumber  integer the sortNumber of a parent (only used when recursive)"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "object              list of allowed elements, with their sort-number as value"
+            "body": "object     list of allowed elements, with their sort-number as value"
           }
         ]
       },

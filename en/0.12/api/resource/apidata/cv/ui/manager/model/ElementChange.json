@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 138,
+        "line": 137,
         "column": 3
       }
     },
@@ -153,7 +153,7 @@
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 90,
           "column": 5
         }
       },
@@ -179,11 +179,11 @@
     "redo": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 135,
           "column": 5
         }
       },
@@ -1182,7 +1182,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [

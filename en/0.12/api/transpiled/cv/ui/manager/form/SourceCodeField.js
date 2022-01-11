@@ -59,7 +59,7 @@
     */
     events: {
       /** Fired when the value was modified */
-      "changeValue": "qx.event.type.Data"
+      'changeValue': 'qx.event.type.Data'
     },
 
     /*
@@ -69,9 +69,9 @@
     */
     properties: {
       type: {
-        check: "String",
-        init: "xml",
-        apply: "_applyType"
+        check: 'String',
+        init: 'xml',
+        apply: '_applyType'
       },
       // overridden
       focusable: {
@@ -92,13 +92,13 @@
     */
     members: {
       _editor: null,
-      __P_41_0: null,
-      __P_41_1: null,
+      __P_40_0: null,
+      __P_40_1: null,
       _hasBeenEdited: false,
       _applyType: function _applyType(value) {
-        if (value && this.__P_41_0) {
-          this.setValue(this.__P_41_0);
-          this.__P_41_0 = null;
+        if (value && this.__P_40_0) {
+          this.setValue(this.__P_40_0);
+          this.__P_40_0 = null;
         }
       },
       _autoSize: function _autoSize() {
@@ -119,7 +119,7 @@
           if (this._editor && this.getType()) {
             this._editor.setValue(value);
           } else {
-            this.__P_41_0 = value;
+            this.__P_40_0 = value;
           }
         }
 
@@ -131,7 +131,7 @@
        */
       resetValue: function resetValue() {
         if (this._editor) {
-          this._editor.setValue("");
+          this._editor.setValue('');
         }
       },
 
@@ -143,11 +143,11 @@
       getValue: function getValue() {
         if (this._editor) {
           return this._editor.getValue();
-        } else if (this.__P_41_0) {
-          return this.__P_41_0;
-        } else {
-          return '';
+        } else if (this.__P_40_0) {
+          return this.__P_40_0;
         }
+
+        return '';
       },
       _init: function _init() {
         var _this = this;
@@ -180,13 +180,13 @@
             if (this.getType()) {
               var model = this._editor.getModel();
 
-              var uri = monaco.Uri.parse("cv://SourceCode." + this.getType());
+              var uri = monaco.Uri.parse('cv://SourceCode.' + this.getType());
               var newModel = window.monaco.editor.getModel(uri);
 
               if (!newModel) {
-                newModel = window.monaco.editor.createModel(this.__P_41_0, this.getType(), uri);
+                newModel = window.monaco.editor.createModel(this.__P_40_0, this.getType(), uri);
               } else {
-                newModel.setValue(this.__P_41_0);
+                newModel.setValue(this.__P_40_0);
               }
 
               if (model !== newModel) {
@@ -200,8 +200,8 @@
               }
             }
 
-            if (this.__P_41_0) {
-              this.__P_41_0 = null;
+            if (this.__P_40_0) {
+              this.__P_40_0 = null;
             }
 
             this._editor.onDidChangeModelContent(this._onContentChange.bind(this));
@@ -221,10 +221,12 @@
         if (el) {
           return el;
         }
+
+        return null;
       },
       _setAreaHeight: function _setAreaHeight(height) {
-        if (this.__P_41_1 !== height) {
-          this.__P_41_1 = height;
+        if (this.__P_40_1 !== height) {
+          this.__P_40_1 = height;
           qx.ui.core.queue.Layout.add(this);
           qx.ui.core.queue.Manager.flush();
 
@@ -238,7 +240,7 @@
         var hint = cv.ui.manager.form.SourceCodeField.prototype._getContentHint.base.call(this);
 
         if (this.isAutoSize()) {
-          hint.height = this.__P_41_1 || hint.height;
+          hint.height = this.__P_40_1 || hint.height;
         }
 
         return hint;
@@ -263,4 +265,4 @@
   cv.ui.manager.form.SourceCodeField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SourceCodeField.js.map?dt=1625667768820
+//# sourceMappingURL=SourceCodeField.js.map?dt=1641882201526

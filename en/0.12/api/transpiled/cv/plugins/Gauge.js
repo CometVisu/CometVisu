@@ -70,120 +70,120 @@
     */
     properties: {
       pagejumpTarget: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       gaugeType: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       subtype: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       gType: {
-        check: "String",
-        init: "Radial"
+        check: 'String',
+        init: 'Radial'
       },
       titleString: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       unitString: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       unitStringVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       size: {
-        check: "Number",
+        check: 'Number',
         init: 150
       },
       width: {
-        check: "Number",
+        check: 'Number',
         init: 320
       },
       height: {
-        check: "Number",
+        check: 'Number',
         init: 140
       },
       minValue: {
-        check: "Number",
+        check: 'Number',
         init: 0
       },
       maxValue: {
-        check: "Number",
+        check: 'Number',
         init: 100
       },
       frameDesign: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       backgroundColor: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       foregroundType: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       pointerType: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       pointerColor: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       lcdColor: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       lcdVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       lcdDecimals: {
-        check: "Number",
+        check: 'Number',
         nullable: true
       },
       ledVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       ledColor: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       valueColor: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       trendVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       thresholdRising: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       threshold: {
-        check: "Number",
+        check: 'Number',
         init: 0,
-        apply: "_applyThreshold"
+        apply: '_applyThreshold'
       },
       thresholdVisible: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       autoScroll: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       valuesNumeric: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -216,35 +216,35 @@
             target: 'pagejumpTarget'
           },
           'type': {
-            target: "gType",
-            "default": "Radial"
+            target: 'gType',
+            'default': 'Radial'
           },
           'subtype': {},
           'titleString': {},
           'unitString': {},
           'unitStringVisible': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'size': {
-            "default": 150,
+            'default': 150,
             transform: parseFloat
           },
           'width': {
-            "default": 320,
+            'default': 320,
             transform: parseFloat
           },
           'height': {
-            "default": 140,
+            'default': 140,
             transform: parseFloat
           },
           'minValue': {
-            "default": 0,
+            'default': 0,
             transform: parseFloat
           },
           'maxValue': {
-            "default": 100,
+            'default': 100,
             transform: parseFloat
           },
           'framedesign': {
@@ -255,41 +255,41 @@
           },
           'lcdVisible': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'lcdDecimals': {
-            "default": 0,
+            'default': 0,
             transform: parseInt
           },
           'ledVisible': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'valueColor': {},
           'trendVisible': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'thresholdRising': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'threshold': {
-            "default": 0,
+            'default': 0,
             transform: parseFloat
           },
           'autoScroll': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           },
           'valuesNumeric': {
             transform: function transform(value) {
-              return value === "true";
+              return value === 'true';
             }
           }
         };
@@ -305,8 +305,8 @@
     ******************************************************
     */
     members: {
-      __P_10_0: null,
-      __P_10_1: null,
+      __P_9_0: null,
+      __P_9_1: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor' + (this.getPagejumpTarget() ? 'clickable' : '') + '"><canvas id="gauge_' + this.getPath() + '"></canvas></div>';
       },
@@ -324,7 +324,7 @@
           ledColor: steelseries.LedColor.RED_LED
         };
         var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
-        this.__P_10_0 = new steelseries[this.getGType()]("gauge_" + this.getPath(), params);
+        this.__P_9_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
 
         cv.plugins.Gauge.prototype._onDomReady.base.call(this);
       },
@@ -358,7 +358,7 @@
         }
 
         var variant = this.getAddress()[address].variantInfo;
-        var gaugeElement = this.__P_10_0;
+        var gaugeElement = this.__P_9_0;
 
         if (gaugeElement) {
           switch (variant) {
@@ -437,11 +437,11 @@
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/gauge/gauge.css');
       loader.addScripts(['plugins/gauge/dep/tween.js', 'plugins/gauge/dep/steelseries.js']);
-      cv.parser.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
-      cv.ui.structure.WidgetFactory.registerClass("gauge", statics);
+      cv.parser.WidgetParser.addHandler('gauge', cv.plugins.Gauge);
+      cv.ui.structure.WidgetFactory.registerClass('gauge', statics);
     }
   });
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1625667765136
+//# sourceMappingURL=Gauge.js.map?dt=1641882198018

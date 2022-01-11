@@ -811,16 +811,16 @@
                 });
               } // only previous drop target
               else if (!droppable && self.__P_185_3) {
-                  var innerTracker = {};
-                  qx.event.Utils.then(innerTracker, function () {
-                    return self.__P_185_17("dragleave", self.__P_185_3, self.__P_185_4, false, e);
-                  });
-                  return qx.event.Utils.then(innerTracker, function () {
-                    self.__P_185_3 = null;
-                    self.__P_185_12 = false;
-                    return self.__P_185_16();
-                  });
-                }
+                var innerTracker = {};
+                qx.event.Utils.then(innerTracker, function () {
+                  return self.__P_185_17("dragleave", self.__P_185_3, self.__P_185_4, false, e);
+                });
+                return qx.event.Utils.then(innerTracker, function () {
+                  self.__P_185_3 = null;
+                  self.__P_185_12 = false;
+                  return self.__P_185_16();
+                });
+              }
             }
           });
           return qx.event.Utils.then(tracker, function () {
@@ -981,4 +981,4 @@
   qx.event.handler.DragDrop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDrop.js.map?dt=1625667781321
+//# sourceMappingURL=DragDrop.js.map?dt=1641882212702

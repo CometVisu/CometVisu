@@ -90,10 +90,10 @@
 
         var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
         ajaxRequest.set({
-          accept: "text/plain",
+          accept: 'text/plain',
           cache: !cv.Config.forceReload
         });
-        ajaxRequest.addListenerOnce("success", function (e) {
+        ajaxRequest.addListenerOnce('success', function (e) {
           var req = e.getTarget();
           var actor = this.getActor();
           actor.innerHTML = req.getResponseText();
@@ -107,7 +107,9 @@
         var space = 1;
         var total = linewidth + space;
         var line_qty = 48 / total;
-        var line, i, l;
+        var line;
+        var i;
+        var l;
 
         for (i = 0, l = Math.floor(value / line_qty); i <= l; i++) {
           line = element.querySelector('#line' + (i + 1));
@@ -124,11 +126,11 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("svg", cv.plugins.Svg);
-      cv.ui.structure.WidgetFactory.registerClass("svg", statics);
+      cv.parser.WidgetParser.addHandler('svg', cv.plugins.Svg);
+      cv.ui.structure.WidgetFactory.registerClass('svg', statics);
     }
   });
   cv.plugins.Svg.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Svg.js.map?dt=1625667765543
+//# sourceMappingURL=Svg.js.map?dt=1641882198433

@@ -1116,8 +1116,8 @@
               // caused by some hidden error situation.
               // At least an error message should be displayed
               else {
-                  sourceObject.error("Could not remove deep bindings. Binding id for " + id.sources[i].classname + " could not be found!");
-                }
+                sourceObject.error("Could not remove deep bindings. Binding id for " + id.sources[i].classname + " could not be found!");
+              }
             }
           } // go through all added listeners (target)
 
@@ -1131,8 +1131,8 @@
               // caused by some hidden error situation.
               // At least an error message should be displayed
               else {
-                  sourceObject.error("Could not remove target listener. Listener id for target " + id.targets[i].classname + " could not be found!");
-                }
+                sourceObject.error("Could not remove target listener. Listener id for target " + id.targets[i].classname + " could not be found!");
+              }
             }
           }
         } else {
@@ -1189,6 +1189,10 @@
             this.removeBindingFromObject(object, bindings[i][0]);
           }
         }
+
+        var hash = object.toHashCode();
+        delete this.__P_149_0[hash];
+        delete this.__P_149_1[hash];
       },
 
       /**
@@ -1232,16 +1236,24 @@
        *   sourceEvent, targetObject and targetProperty in that order.
        */
       getAllBindingsForObject: function getAllBindingsForObject(object) {
-        var hash = object.toHashCode(); // create an empty array if no binding exists
-
-        if (this.__P_149_0[hash] === undefined) {
-          this.__P_149_0[hash] = [];
-        } // get all bindings of object as source
-
+        var hash = object.toHashCode(); // get all bindings of object as source
 
         var sourceBindings = this.__P_149_0[hash]; // get all bindings of object as target
 
-        var targetBindings = this.__P_149_1[hash] ? this.__P_149_1[hash] : [];
+        var targetBindings = this.__P_149_1[hash];
+
+        if (!sourceBindings && !targetBindings) {
+          return [];
+        }
+
+        if (!sourceBindings) {
+          return qx.lang.Array.clone(targetBindings);
+        }
+
+        if (!targetBindings) {
+          return qx.lang.Array.clone(sourceBindings);
+        }
+
         return qx.lang.Array.unique(sourceBindings.concat(targetBindings));
       },
 
@@ -1329,4 +1341,4 @@
   qx.data.SingleValueBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleValueBinding.js.map?dt=1625667778379
+//# sourceMappingURL=SingleValueBinding.js.map?dt=1641882210110

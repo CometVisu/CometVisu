@@ -40,7 +40,7 @@
    */
   qx.Class.define('cv.data.Model', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -91,7 +91,7 @@
        * @param state {var} new state
        */
       onUpdate: function onUpdate(address, state) {
-        var initial = !this.__P_497_0.hasOwnProperty(address);
+        var initial = !Object.prototype.hasOwnProperty.call(this.__P_497_0, address);
         var changed = initial || this.__P_497_0[address] !== state;
         this.__P_497_0[address] = state; // notify listeners
 
@@ -113,7 +113,7 @@
 
         var addressList = this.__P_497_2;
         Object.getOwnPropertyNames(data).forEach(function (address) {
-          if (addressList.hasOwnProperty(address)) {
+          if (Object.prototype.hasOwnProperty.call(addressList, address)) {
             this.onUpdate(address, data[address]);
           }
         }, this);
@@ -160,6 +160,8 @@
               removeIndex = i;
               return true;
             }
+
+            return false;
           });
 
           if (removeIndex >= 0) {
@@ -234,8 +236,8 @@
        * @return {Map} widget data Map
        */
       getWidgetDataByElement: function getWidgetDataByElement(element) {
-        var parent = element.parentNode,
-            path = parent.getAttribute('id');
+        var parent = element.parentNode;
+        var path = parent.getAttribute('id');
 
         if (path === undefined) {
           path = parent.parentNode.getAttribute('id');
@@ -298,4 +300,4 @@
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1625667805833
+//# sourceMappingURL=Model.js.map?dt=1641882235904

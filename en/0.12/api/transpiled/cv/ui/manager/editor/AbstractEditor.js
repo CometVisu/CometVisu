@@ -29,7 +29,7 @@
   qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     extend: qx.ui.core.Widget,
     implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
-    type: "abstract",
+    type: 'abstract',
 
     /*
     ***********************************************
@@ -40,6 +40,8 @@
       qx.ui.core.Widget.constructor.call(this);
 
       this._initClient();
+
+      this._nativePasteSupported = document.queryCommandSupported('paste');
     },
 
     /*
@@ -81,11 +83,22 @@
 
     /*
     ***********************************************
+      STATICS
+    ***********************************************
+    */
+    statics: {
+      // fake clipboard data when native clipboard is not supported
+      CLIPBOARD: null
+    },
+
+    /*
+    ***********************************************
       MEMBERS
     ***********************************************
     */
     members: {
       _handledActions: null,
+      _nativePasteSupported: false,
       canHandleAction: function canHandleAction(actionName) {
         if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
           return false;
@@ -132,6 +145,10 @@
           if (err) {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
+            if (res instanceof XMLDocument) {
+              res = new XMLSerializer().serializeToString(res);
+            }
+
             this.setContent(res);
           }
         }, this);
@@ -206,4 +223,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1625667767292
+//# sourceMappingURL=AbstractEditor.js.map?dt=1641882200103

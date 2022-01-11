@@ -85,7 +85,7 @@
     construct: function construct(noToolbar) {
       cv.ui.manager.viewer.AbstractViewer.constructor.call(this);
       cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
-      this._isImageRegex = new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
+      this._isImageRegex = new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
       this.initModel(new qx.data.Array());
 
       this._setLayout(new qx.ui.layout.VBox(8));
@@ -132,14 +132,14 @@
        * {@link qx.event.type.Data#getData} method of the event returns the
        * added item.
        */
-      addItem: "qx.event.type.Data",
+      addItem: 'qx.event.type.Data',
 
       /**
        * This event is fired after a list item has been removed from the list.
        * The {@link qx.event.type.Data#getData} method of the event returns the
        * removed item.
        */
-      removeItem: "qx.event.type.Data"
+      removeItem: 'qx.event.type.Data'
     },
 
     /*
@@ -228,20 +228,20 @@
                 if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {
                   // use the image as icon
                   return file.getServerPath();
-                } else {
-                  if (!source) {
-                    return null;
-                  } // remove size from icon source
-
-
-                  var parts = source.split('/');
-
-                  if (parts.length === 3) {
-                    parts.pop();
-                  }
-
-                  return parts.join('/');
                 }
+
+                if (!source) {
+                  return null;
+                } // remove size from icon source
+
+
+                var parts = source.split('/');
+
+                if (parts.length === 3) {
+                  parts.pop();
+                }
+
+                return parts.join('/');
               }.bind(this)
             }, item, index);
           }.bind(this)
@@ -336,32 +336,40 @@
             break;
 
           case 'deleted':
-            if (folder) {
-              if (data.path === folder.getFullPath()) {
-                // this item has been deleted
-                this.dispose();
-              } else if (data.path.startsWith(folder.getFullPath())) {
-                // delete child
-                var children = folder.getChildren();
-                children.some(function (child) {
-                  if (child.getFullPath() === data.path) {
-                    children.remove(child);
-                    this.removeRelatedBindings(child);
-                    return true;
-                  }
-                }, this);
-              }
-            }
+            {
+              var children;
 
-            var children = this.getModel();
-            children.some(function (child) {
-              if (child.getFullPath() === data.path) {
-                children.remove(child);
-                this.removeRelatedBindings(child);
-                return true;
+              if (folder) {
+                if (data.path === folder.getFullPath()) {
+                  // this item has been deleted
+                  this.dispose();
+                } else if (data.path.startsWith(folder.getFullPath())) {
+                  // delete child
+                  children = folder.getChildren();
+                  children.some(function (child) {
+                    if (child.getFullPath() === data.path) {
+                      children.remove(child);
+                      this.removeRelatedBindings(child);
+                      return true;
+                    }
+
+                    return false;
+                  }, this);
+                }
               }
-            }, this);
-            break;
+
+              children = this.getModel();
+              children.some(function (child) {
+                if (child.getFullPath() === data.path) {
+                  children.remove(child);
+                  this.removeRelatedBindings(child);
+                  return true;
+                }
+
+                return false;
+              }, this);
+              break;
+            }
         }
       },
       _applyShowTextFilter: function _applyShowTextFilter(value) {
@@ -388,7 +396,7 @@
        * @param e {qx.event.type.Data} the event instance
        */
       _onAddChild: function _onAddChild(e) {
-        this.fireDataEvent("addItem", e.getData());
+        this.fireDataEvent('addItem', e.getData());
       },
 
       /**
@@ -397,7 +405,7 @@
        * @param e {qx.event.type.Data} the event instance
        */
       _onRemoveChild: function _onRemoveChild(e) {
-        this.fireDataEvent("removeItem", e.getData());
+        this.fireDataEvent('removeItem', e.getData());
       },
       _onFileEvent: function _onFileEvent(ev) {
         var data = ev.getData();
@@ -470,8 +478,8 @@
           case 'list':
             control = new qx.ui.container.Composite(new qx.ui.layout.Flow(8, 8)); // Used to fire item add/remove events
 
-            control.addListener("addChildWidget", this._onAddChild, this);
-            control.addListener("removeChildWidget", this._onRemoveChild, this);
+            control.addListener('addChildWidget', this._onAddChild, this);
+            control.addListener('removeChildWidget', this._onRemoveChild, this);
 
             if (this.isDisableScrolling()) {
               this._addAt(control, 1, {
@@ -503,4 +511,4 @@
   cv.ui.manager.viewer.Folder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Folder.js.map?dt=1625667770272
+//# sourceMappingURL=Folder.js.map?dt=1641882202857

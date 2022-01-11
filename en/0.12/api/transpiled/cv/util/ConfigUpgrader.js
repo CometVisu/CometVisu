@@ -48,15 +48,15 @@
     ***********************************************
     */
     members: {
-      __P_508_0: 2,
-      __P_508_1: null,
+      __P_509_0: 2,
+      __P_509_1: null,
 
       /**
        * Upgrade config source
        * @param source {String|Document} content of a config file
        */
       upgrade: function upgrade(source) {
-        this.__P_508_1 = [];
+        this.__P_509_1 = [];
 
         if (typeof source === 'string') {
           source = qx.xml.Document.fromString(source);
@@ -68,22 +68,22 @@
 
         if (version === cv.Version.LIBRARY_VERSION) {
           // nothing to do
-          return [null, source, this.__P_508_1];
-        } else {
-          while (version < cv.Version.LIBRARY_VERSION) {
-            // upgrade step by step
-            var method = this['from' + version + 'to' + (version + 1)];
-
-            if (method) {
-              version = method.call(this, source);
-            } else {
-              return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__P_508_1];
-            }
-          }
-
-          this.info('  - ' + this.__P_508_1.join('\n  - '));
-          return [null, source, this.__P_508_1];
+          return [null, source, this.__P_509_1];
         }
+
+        while (version < cv.Version.LIBRARY_VERSION) {
+          // upgrade step by step
+          var method = this['from' + version + 'to' + (version + 1)];
+
+          if (method) {
+            version = method.call(this, source);
+          } else {
+            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__P_509_1];
+          }
+        }
+
+        this.info('  - ' + this.__P_509_1.join('\n  - '));
+        return [null, source, this.__P_509_1];
       },
       from7to8: function from7to8(source) {
         var c = 0;
@@ -99,10 +99,10 @@
           c++;
         });
 
-        this.__P_508_2(source, 8);
+        this.__P_509_2(source, 8);
 
         if (c > 0) {
-          this.__P_508_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
+          this.__P_509_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
         }
 
         return 8;
@@ -111,12 +111,12 @@
         var _this = this;
 
         var c = 0;
-        var singleIndent = ''.padEnd(this.__P_508_0, ' ');
+        var singleIndent = ''.padEnd(this.__P_509_0, ' ');
         source.querySelectorAll('multitrigger').forEach(function (node) {
-          var level = _this.__P_508_3(node);
+          var level = _this.__P_509_3(node);
 
           level++;
-          var indent = ''.padEnd(_this.__P_508_0 * level, ' ');
+          var indent = ''.padEnd(_this.__P_509_0 * level, ' ');
           var buttonConf = {};
           var attributesToDelete = [];
           var nameRegex = /^button([\d]+)(label|value)$/;
@@ -125,7 +125,7 @@
             var match = nameRegex.exec(node.attributes[i].name);
 
             if (match) {
-              if (!buttonConf.hasOwnProperty(match[1])) {
+              if (!Object.prototype.hasOwnProperty.call(buttonConf, match[1])) {
                 buttonConf[match[1]] = {};
               }
 
@@ -149,27 +149,27 @@
                 button.setAttribute('label', buttonConf[bid].label);
               }
 
-              var ind = source.createTextNode("\n" + indent + singleIndent);
+              var ind = source.createTextNode('\n' + indent + singleIndent);
               buttons.appendChild(ind);
               buttons.appendChild(button);
             });
-            buttons.appendChild(source.createTextNode("\n" + indent));
+            buttons.appendChild(source.createTextNode('\n' + indent));
             node.appendChild(source.createTextNode(singleIndent));
             node.appendChild(buttons);
-            node.appendChild(source.createTextNode("\n" + ''.padEnd(_this.__P_508_0 * (level - 1), ' ')));
+            node.appendChild(source.createTextNode('\n' + ''.padEnd(_this.__P_509_0 * (level - 1), ' ')));
             c++;
           }
         });
 
-        this.__P_508_2(source, 9);
+        this.__P_509_2(source, 9);
 
         if (c > 0) {
-          this.__P_508_1.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
+          this.__P_509_1.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
         }
 
         return 9;
       },
-      __P_508_3: function __P_508_3(node) {
+      __P_509_3: function __P_509_3(node) {
         var level = 1;
         var parent = node.parentNode;
 
@@ -180,7 +180,7 @@
 
         return level;
       },
-      __P_508_2: function __P_508_2(xml, version) {
+      __P_509_2: function __P_509_2(xml, version) {
         xml.querySelector('pages').getAttributeNode('lib_version').value = version;
       }
     }
@@ -188,4 +188,4 @@
   cv.util.ConfigUpgrader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigUpgrader.js.map?dt=1625667806574
+//# sourceMappingURL=ConfigUpgrader.js.map?dt=1641882236847

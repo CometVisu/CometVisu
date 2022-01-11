@@ -18,7 +18,7 @@
         "column": 0
       },
       "end": {
-        "line": 210,
+        "line": 209,
         "column": 3
       }
     },
@@ -410,7 +410,7 @@
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 148,
           "column": 5
         }
       },
@@ -425,11 +425,11 @@
     "__findActor": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 159,
           "column": 5
         }
       },
@@ -439,11 +439,11 @@
     "_onLongTap": {
       "location": {
         "start": {
-          "line": 162,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 163,
           "column": 5
         }
       },
@@ -453,11 +453,11 @@
     "_action": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 168,
+          "line": 167,
           "column": 5
         }
       },
@@ -467,11 +467,11 @@
     "__action": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 169,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 191,
           "column": 5
         }
       },
@@ -481,11 +481,11 @@
     "getDownActor": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 195,
           "column": 5
         }
       },
@@ -495,11 +495,11 @@
     "getUpActor": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 197,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 199,
           "column": 5
         }
       },
@@ -509,11 +509,11 @@
     "getInfoActor": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 203,
           "column": 5
         }
       },
@@ -2660,7 +2660,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [
@@ -6931,11 +6931,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 207,
+        "line": 206,
         "column": 9
       },
       "end": {
-        "line": 209,
+        "line": 208,
         "column": 3
       }
     },

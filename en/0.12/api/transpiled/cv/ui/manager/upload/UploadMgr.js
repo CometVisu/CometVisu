@@ -24,7 +24,7 @@
   /**
    * Extend {com.zenesis.qx.upload.UploadMgr} to allow files to e uploaded via HTML5 drop
    */
-  qx.Class.define("cv.ui.manager.upload.UploadMgr", {
+  qx.Class.define('cv.ui.manager.upload.UploadMgr', {
     extend: com.zenesis.qx.upload.UploadMgr,
 
     /*
@@ -79,7 +79,7 @@
         this.setUploadUrl(url);
       },
       _init: function _init() {
-        this.addListener("addFile", function (evt) {
+        this.addListener('addFile', function (evt) {
           var file = evt.getData();
           var filename = this.getFilename();
 
@@ -91,19 +91,19 @@
             file.setParam('force', true);
           }
 
-          var progressListenerId = file.addListener("changeProgress", function (evt) {
+          var progressListenerId = file.addListener('changeProgress', function (evt) {
             var file = evt.getTarget();
             var uploadedSize = evt.getData();
-            this.debug("Upload " + file.getFilename() + ": " + uploadedSize + " / " + file.getSize() + " - " + Math.round(uploadedSize / file.getSize() * 100) + "%");
+            this.debug('Upload ' + file.getFilename() + ': ' + uploadedSize + ' / ' + file.getSize() + ' - ' + Math.round(uploadedSize / file.getSize() * 100) + '%');
           }, this);
-          var stateListenerId = file.addListener("changeState", function (evt) {
+          var stateListenerId = file.addListener('changeState', function (evt) {
             var state = evt.getData();
             var file = evt.getTarget();
 
-            if (state === "uploading") {
-              this.debug(file.getFilename() + " (Uploading...)");
-            } else if (state === "uploaded") {
-              this.debug(file.getFilename() + " (Complete)");
+            if (state === 'uploading') {
+              this.debug(file.getFilename() + ' (Uploading...)');
+            } else if (state === 'uploaded') {
+              this.debug(file.getFilename() + ' (Complete)');
 
               if (file.getStatus() !== 200) {
                 // something went wrong
@@ -126,15 +126,17 @@
                     break;
 
                   default:
-                    var err = file.getResponse();
+                    {
+                      var err = file.getResponse();
 
-                    try {
-                      err = qx.lang.Json.parse(err).message;
-                    } catch (e) {}
+                      try {
+                        err = qx.lang.Json.parse(err).message;
+                      } catch (e) {}
 
-                    this.error(err);
-                    cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('File upload stopped with an error: %1', err));
-                    break;
+                      this.error(err);
+                      cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('File upload stopped with an error: %1', err));
+                      break;
+                    }
                 }
               } else {
                 cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been uploaded'));
@@ -143,12 +145,12 @@
                   path: this.getFolder().getFullPath() + '/' + file.getFilename()
                 });
               }
-            } else if (state === "cancelled") {
-              this.debug(file.getFilename() + " (Cancelled)");
+            } else if (state === 'cancelled') {
+              this.debug(file.getFilename() + ' (Cancelled)');
             } // Remove the listeners
 
 
-            if (state === "uploaded" || state === "cancelled") {
+            if (state === 'uploaded' || state === 'cancelled') {
               file.removeListenerById(progressListenerId);
               file.removeListenerById(stateListenerId);
             }
@@ -191,11 +193,11 @@
        * @param bomFile {File}
        */
       uploadFile: function uploadFile(bomFile) {
-        var id = "upload-" + this._getUniqueFileId();
+        var id = 'upload-' + this._getUniqueFileId();
 
-        var filename = typeof bomFile.name !== "undefined" ? bomFile.name : bomFile.fileName;
+        var filename = typeof bomFile.name !== 'undefined' ? bomFile.name : bomFile.fileName;
         var file = new com.zenesis.qx.upload.File(bomFile, filename, id);
-        var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
+        var fileSize = typeof bomFile.size !== 'undefined' ? bomFile.size : bomFile.fileSize;
         file.setSize(fileSize);
 
         if (this.isForce()) {
@@ -219,13 +221,13 @@
       replaceFile: function replaceFile(bomFile, replacedFile) {
         this.setFolder(replacedFile.getParent());
 
-        var id = "upload-" + this._getUniqueFileId();
+        var id = 'upload-' + this._getUniqueFileId();
 
         var filename = replacedFile.getName();
         var file = new com.zenesis.qx.upload.File(bomFile, filename, id);
         file.setParam('force', true);
         file.setParam('filename', filename);
-        var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
+        var fileSize = typeof bomFile.size !== 'undefined' ? bomFile.size : bomFile.fileSize;
         file.setSize(fileSize);
         file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
 
@@ -240,4 +242,4 @@
   cv.ui.manager.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1625667770127
+//# sourceMappingURL=UploadMgr.js.map?dt=1641882202723

@@ -222,24 +222,24 @@ Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zu Komm
 <p>Den Inhalt der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-enabled/000-default.conf</span></code> durch folgenden ersetzen (<code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> bitte mit
 der IP-Adresse oder dem Hostnamen des openHAB Servers ersetzen, wenn alles auf einem Server läuft, kann <code class="docutils literal notranslate"><span class="pre">localhost</span></code>
 eingetragen werden).</p>
-<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
-    <span class="nb">ServerAdmin</span> webmaster@localhost
-    <span class="nb">DocumentRoot</span> <span class="sx">/var/www/html</span>
+<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost<span class="w"></span>
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span><span class="w"></span>
 
-    <span class="nb">ErrorLog</span> ${APACHE_LOG_DIR}/error.log
-    <span class="nb">CustomLog</span> ${APACHE_LOG_DIR}/access.log combined
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
 
-    <span class="nb">Header</span> set X-CometVisu-Backend-LoginUrl <span class="s2">&quot;/rest/cv/l&quot;</span>
-    <span class="nb">Header</span> set X-CometVisu-Backend-Name <span class="s2">&quot;openhab&quot;</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-LoginUrl<span class="w"> </span><span class="s2">&quot;/rest/cv/l&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
 
-    <span class="nb">ProxyPass</span> <span class="sx">/rest</span> http://&lt;openhab&gt;:8080/rest
-    <span class="nb">ProxyPassReverse</span> http://&lt;openhab&gt;:8080/rest <span class="sx">/rest</span>
+<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>
+<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
 
-    <span class="nt">&lt;Directory</span> <span class="s">/var/www/html</span><span class="nt">&gt;</span>
-        <span class="nb">Require</span> <span class="k">all</span> granted
-        <span class="nb">AllowOverride</span> <span class="k">all</span>
-    <span class="nt">&lt;/Directory&gt;</span>
-<span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
+<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -294,7 +294,7 @@ wobei sich <code class="docutils literal notranslate"><span class="pre">&lt;name
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 

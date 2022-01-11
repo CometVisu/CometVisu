@@ -307,8 +307,8 @@
             this.__P_427_4(value);
           } // .. only "opened" icon was user-defined
           else if (!this.__P_427_5() && this.__P_427_3()) {
-              this.__P_427_4(value);
-            }
+            this.__P_427_4(value);
+          }
         }
       },
       // property apply
@@ -337,8 +337,8 @@
           source = this.__P_427_3() ? this.getIconOpened() : null;
         } // Closed
         else {
-            source = this.getIcon();
-          }
+          source = this.getIcon();
+        }
 
         if (source) {
           this.__P_427_4(source);
@@ -468,4 +468,4 @@
   qx.ui.tree.core.AbstractItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractItem.js.map?dt=1625667800612
+//# sourceMappingURL=AbstractItem.js.map?dt=1641882230914

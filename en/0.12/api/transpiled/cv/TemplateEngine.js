@@ -89,14 +89,15 @@
    */
   qx.Class.define('cv.TemplateEngine', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
     construct: function construct() {
       // this.base(arguments);
       this.pagePartsHandler = new cv.ui.PagePartsHandler();
+      this.lazyPlugins = ['plugin-openhab'];
       this.__P_491_0 = new qx.data.Array();
       this._domFinishedQueue = [];
 
-      this.__P_491_0.addListener("changeLength", function (ev) {
+      this.__P_491_0.addListener('changeLength', function (ev) {
         this.setPartsLoaded(ev.getData() === 0);
       }, this);
 
@@ -134,19 +135,19 @@
        * Shows the loading state of the parts
        */
       partsLoaded: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        apply: "_applyLoaded",
-        event: "changePartsLoaded"
+        apply: '_applyLoaded',
+        event: 'changePartsLoaded'
       },
 
       /**
        * Shows the loading state of the scripts
        */
       scriptsLoaded: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        apply: "_applyLoaded"
+        apply: '_applyLoaded'
       },
 
       /**
@@ -154,31 +155,31 @@
        * external stuff (pars, scripts, etc.) has been loaded.
        */
       ready: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeReady",
-        apply: "_applyReady"
+        event: 'changeReady',
+        apply: '_applyReady'
       },
       currentPage: {
-        check: "cv.ui.structure.IPage",
+        check: 'cv.ui.structure.IPage',
         nullable: true,
-        event: "changeCurrentPage"
+        event: 'changeCurrentPage'
       },
       domFinished: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        apply: "_applyDomFinished",
-        event: "changeDomFinished"
+        apply: '_applyDomFinished',
+        event: 'changeDomFinished'
       },
       commands: {
-        check: "qx.ui.command.Group",
+        check: 'qx.ui.command.Group',
         nullable: true
       },
       // sent after the client is logged in to the backend
       loggedIn: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeLoggedIn"
+        event: 'changeLoggedIn'
       },
       // highlight a widget
       highlightedWidget: {
@@ -216,7 +217,7 @@
       __P_491_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
-      lazyPlugins: ["plugin-openhab"],
+      lazyPlugins: null,
       __P_491_1: null,
       __P_491_2: false,
 
@@ -244,16 +245,16 @@
 
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
-            if (states[idx] === "complete") {
+            if (states[idx] === 'complete') {
               this.__P_491_0.remove(part);
 
-              this.debug("successfully loaded part " + part);
+              this.debug('successfully loaded part ' + part);
 
               if (part.startsWith('structure-')) {
                 qx.core.Init.getApplication().setStructureLoaded(true);
               }
             } else {
-              this.error("error loading part " + part);
+              this.error('error loading part ' + part);
             }
           }, this);
         }, this); // load the lazy plugins no one needs to wait for
@@ -261,10 +262,10 @@
 
         qx.io.PartLoader.require(loadLazyParts, function (states) {
           loadLazyParts.forEach(function (part, idx) {
-            if (states[idx] === "complete") {
-              this.debug("successfully loaded part " + part);
+            if (states[idx] === 'complete') {
+              this.debug('successfully loaded part ' + part);
             } else {
-              this.error("error loading part " + part);
+              this.error('error loading part ' + part);
             }
           }, this);
         }, this);
@@ -277,7 +278,7 @@
       },
       // property apply
       _applyLoaded: function _applyLoaded(value, old, name) {
-        this.debug(name + " is " + value + " now");
+        this.debug(name + ' is ' + value + ' now');
 
         if (this.isPartsLoaded() && this.isScriptsLoaded()) {
           this.setReady(true);
@@ -286,7 +287,7 @@
       // property apply
       _applyDomFinished: function _applyDomFinished(value) {
         if (value) {
-          qx.event.message.Bus.dispatchByName("setup.dom.finished"); // flush the queue
+          qx.event.message.Bus.dispatchByName('setup.dom.finished'); // flush the queue
 
           this._domFinishedQueue.forEach(function (entry) {
             var callback = entry.shift();
@@ -314,19 +315,21 @@
 
       /**
        * Please use {cv.data.Model.getInstance().addAddress()} instead
-       * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().addAddress()} instead
+       * @param address
+       * @param id
+       * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().addAddress()} instead
        */
       addAddress: function addAddress(address, id) {
-        this.warn("addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead");
+        this.warn('addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead');
         cv.data.Model.getInstance().addAddress(address, id);
       },
 
       /**
        * Please use {cv.data.Model.getInstance().getAddresses()} instead
-       * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
+       * @deprecated since version 0.11.0 Please use {cv.data.Model.getInstance().getAddresses()} instead
        */
       getAddresses: function getAddresses() {
-        this.warn("getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead");
+        this.warn('getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead');
         return cv.data.Model.getInstance().getAddresses();
       },
 
@@ -337,11 +340,11 @@
         var backendName = cv.Config.configSettings.backend || cv.Config.backend;
         var backendUrl = cv.Config.configSettings.backendUrl || cv.Config.backendUrl;
         var mapping = {
-          oh: "openhab",
-          oh2: "openhab2"
+          oh: 'openhab',
+          oh2: 'openhab2'
         };
 
-        if (mapping.hasOwnProperty(backendName)) {
+        if (Object.prototype.hasOwnProperty.call(mapping, backendName)) {
           backendName = mapping[backendName];
         }
 
@@ -353,7 +356,7 @@
           var recordInstance = cv.report.Record.getInstance();
 
           this.visu.record = function (p, d) {
-            recordInstance.record.apply(recordInstance, [cv.report.Record.BACKEND, p, d]);
+            recordInstance.record(cv.report.Record.BACKEND, p, d);
           };
         }
 
@@ -381,7 +384,7 @@
         var app = qx.core.Init.getApplication();
         app.addListener('changeActive', this._onActiveChanged, this); // show connection state in NotificationCenter
 
-        this.visu.addListener("changeConnected", this._checkBackendConnection, this);
+        this.visu.addListener('changeConnected', this._checkBackendConnection, this);
       },
       _onActiveChanged: function _onActiveChanged() {
         var app = qx.core.Init.getApplication();
@@ -413,9 +416,9 @@
       _checkBackendConnection: function _checkBackendConnection() {
         var connected = this.visu.isConnected();
         var message = {
-          topic: "cv.client.connection",
-          title: qx.locale.Manager.tr("Connection error"),
-          severity: "urgent",
+          topic: 'cv.client.connection',
+          title: qx.locale.Manager.tr('Connection error'),
+          severity: 'urgent',
           unique: true,
           deletable: false,
           condition: !connected && this.__P_491_2 && qx.core.Init.getApplication().isActive()
@@ -424,9 +427,9 @@
 
         if (!connected) {
           if (lastError && Date.now() - lastError.time < 100) {
-            message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+            message.message = qx.locale.Manager.tr('Error requesting %1: %2 - %3.', lastError.url, lastError.code, lastError.text);
           } else {
-            message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+            message.message = qx.locale.Manager.tr('Connection to backend is lost.');
           }
         } else {
           this.__P_491_2 = true;
@@ -456,10 +459,10 @@
         switch (errorCode) {
           case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
             notification = {
-              topic: "cv.error",
+              topic: 'cv.error',
               title: qx.locale.Manager.tr('CometVisu protocol error'),
               message: qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
-              severity: "urgent",
+              severity: 'urgent',
               unique: true,
               deletable: false
             };
@@ -467,10 +470,10 @@
 
           case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
             notification = {
-              topic: "cv.error",
+              topic: 'cv.error',
               title: qx.locale.Manager.tr('CometVisu protocol error'),
               message: qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
-              severity: "urgent",
+              severity: 'urgent',
               unique: true,
               deletable: false
             };
@@ -503,40 +506,40 @@
          */
         // read predefined design in config
         var settings = cv.Config.configSettings;
-        var pagesNode = loaded_xml.querySelector("pages");
-        var predefinedDesign = pagesNode.getAttribute("design"); // design by url
+        var pagesNode = loaded_xml.querySelector('pages');
+        var predefinedDesign = pagesNode.getAttribute('design'); // design by url
         // design by config file
 
         if (!cv.Config.clientDesign && !settings.clientDesign) {
           if (predefinedDesign) {
             settings.clientDesign = predefinedDesign;
-          } // selection dialog
-          else {
-              this.selectDesign();
-            }
+          } else {
+            // selection dialog
+            this.selectDesign();
+          }
         } // load structure-part
 
 
         this.loadParts([cv.Config.getStructure()]);
 
-        if (pagesNode.getAttribute("backend") !== null) {
-          settings.backend = pagesNode.getAttribute("backend");
+        if (pagesNode.getAttribute('backend') !== null) {
+          settings.backend = pagesNode.getAttribute('backend');
         }
 
-        if (pagesNode.getAttribute("backend-url") !== null) {
-          settings.backendUrl = pagesNode.getAttribute("backend-url");
+        if (pagesNode.getAttribute('backend-url') !== null) {
+          settings.backendUrl = pagesNode.getAttribute('backend-url');
         }
 
-        if (pagesNode.getAttribute("token") !== null) {
-          settings.credentials.token = pagesNode.getAttribute("token");
+        if (pagesNode.getAttribute('token') !== null) {
+          settings.credentials.token = pagesNode.getAttribute('token');
         }
 
-        if (pagesNode.getAttribute("username") !== null) {
-          settings.credentials.username = pagesNode.getAttribute("username");
+        if (pagesNode.getAttribute('username') !== null) {
+          settings.credentials.username = pagesNode.getAttribute('username');
         }
 
-        if (pagesNode.getAttribute("password") !== null) {
-          settings.credentials.password = pagesNode.getAttribute("password");
+        if (pagesNode.getAttribute('password') !== null) {
+          settings.credentials.password = pagesNode.getAttribute('password');
         }
 
         this.initBackendClient();
@@ -548,7 +551,7 @@
         }
 
         if (pagesNode.getAttribute('bind_click_to_widget') !== null) {
-          settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === "true";
+          settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === 'true';
         }
 
         if (pagesNode.getAttribute('default_columns') !== null) {
@@ -593,7 +596,7 @@
 
           settings.stylesToLoad.push(baseUri + '/custom.css');
           settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
-          cv.util.ScriptLoader.getInstance().addListenerOnce("designError", function (ev) {
+          cv.util.ScriptLoader.getInstance().addListenerOnce('designError', function (ev) {
             if (ev.getData() === design) {
               this.error('Failed to load "' + design + '" design! Falling back to simplified "pure"');
               baseUri = 'designs/pure';
@@ -605,7 +608,7 @@
 
               alternativeStyles.push(baseUri + '/custom.css');
               cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
-              cv.util.ScriptLoader.getInstance().addScripts(baseUri + "/design_setup.js");
+              cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
             }
           }, this);
         }
@@ -615,7 +618,7 @@
         settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml)); // and then the rest
 
         metaParser.parse(loaded_xml, done);
-        this.debug("parsed");
+        this.debug('parsed');
       },
 
       /**
@@ -623,26 +626,26 @@
        */
       setupPage: function setupPage() {
         // and now setup the pages
-        this.debug("setup"); // login to backend as it might change some settings needed for further processing
+        this.debug('setup'); // login to backend as it might change some settings needed for further processing
 
         this.visu.login(true, cv.Config.configSettings.credentials, function () {
-          this.debug("logged in");
+          this.debug('logged in');
           this.setLoggedIn(true); // as we are sure that the default CSS were loaded now:
 
           document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {});
 
           if (!cv.Config.cacheUsed) {
-            this.debug("creating pages");
+            this.debug('creating pages');
             var page = this.xml.querySelector('pages > page'); // only one page element allowed...
 
             this.createPages(page, 'id');
-            this.debug("finalizing");
-            qx.event.message.Bus.dispatchByName("setup.dom.append");
-            this.debug("pages created");
+            this.debug('finalizing');
+            qx.event.message.Bus.dispatchByName('setup.dom.append');
+            this.debug('pages created');
           }
 
-          this.debug("setup.dom.finished");
-          qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
+          this.debug('setup.dom.finished');
+          qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           this.setDomFinished(true);
           var currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
 
@@ -662,7 +665,7 @@
             this.scrollToPage(cv.Config.initialPage, 0);
           }, this).schedule(); // reaction on browser back button
 
-          qx.bom.History.getInstance().addListener("request", function (e) {
+          qx.bom.History.getInstance().addListener('request', function (e) {
             var lastPage = e.getData();
 
             if (lastPage) {
@@ -690,11 +693,11 @@
       startScreensaver: function startScreensaver() {
         if (typeof cv.Config.configSettings.screensave_time === 'number') {
           this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
-          this.screensave.addListener("interval", function () {
+          this.screensave.addListener('interval', function () {
             this.scrollToPage();
           }, this);
           this.screensave.start();
-          qx.event.Registration.addListener(window, "useraction", this.screensave.restart, this.screensave);
+          qx.event.Registration.addListener(window, 'useraction', this.screensave.restart, this.screensave);
         }
       },
 
@@ -710,7 +713,7 @@
             var address = child.getAddress ? child.getAddress() : {};
 
             for (var addr in address) {
-              if (address.hasOwnProperty(addr)) {
+              if (Object.prototype.hasOwnProperty.call(address, addr)) {
                 startPageAddresses[addr] = 1;
               }
             }
@@ -720,7 +723,7 @@
 
         var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
 
-        if (0 !== addressesToSubscribe.length) {
+        if (addressesToSubscribe.length !== 0) {
           this.visu.subscribe(addressesToSubscribe);
         }
       },
@@ -740,7 +743,10 @@
           parsedData = [parsedData];
         }
 
-        for (var i = 0, l = parsedData.length; i < l; i++) {
+        var i = 0;
+        var l = parsedData.length;
+
+        for (; i < l; i++) {
           var data = parsedData[i];
           var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data); // trigger DOM generation
 
@@ -764,30 +770,30 @@
         if (page_name.match(/^id_[0-9_]*$/) !== null) {
           // already a page_id
           return page_name;
-        } else {
-          if (path !== undefined) {
-            var scope = this.traversePath(path);
-
-            if (scope === null) {
-              // path is wrong
-              this.error("path '" + path + "' could not be traversed, no page found");
-              return null;
-            }
-
-            return this.getPageIdByName(page_name, scope);
-          } else {
-            return this.getPageIdByName(page_name);
-          }
         }
+
+        if (path !== undefined) {
+          var scope = this.traversePath(path);
+
+          if (scope === null) {
+            // path is wrong
+            this.error('path \'' + path + '\' could not be traversed, no page found');
+            return null;
+          }
+
+          return this.getPageIdByName(page_name, scope);
+        }
+
+        return this.getPageIdByName(page_name);
       },
       traversePath: function traversePath(path, root_page_id) {
         var path_scope = null;
-        var index = path.indexOf("/");
+        var index = path.indexOf('/');
 
         if (index >= 1) {
           // skip escaped slashes like \/
-          while (path.substr(index - 1, 1) === "\\") {
-            var next = path.indexOf("/", index + 1);
+          while (path.substr(index - 1, 1) === '\\') {
+            var next = path.indexOf('/', index + 1);
 
             if (next >= 0) {
               index = next;
@@ -804,11 +810,11 @@
           path_scope = this.traversePath(path, path_scope); //      console.log(path_page_name+"=>"+path_scope);
 
           return path_scope;
-        } else {
-          // bottom path level reached
-          path_scope = this.getPageIdByName(path, root_page_id);
-          return path_scope;
-        }
+        } // bottom path level reached
+
+
+        path_scope = this.getPageIdByName(path, root_page_id);
+        return path_scope;
       },
       getPageIdByName: function getPageIdByName(page_name, scope) {
         var page_id = null;
@@ -816,77 +822,81 @@
         if (page_name.match(/^id_[0-9_]*$/) !== null) {
           // already a page_id
           return page_name;
-        } else {
-          // find Page-ID by name
-          // decode html code (e.g. like &apos; => ')
-          page_name = cv.util.String.decodeHtmlEntities(page_name); // remove escaped slashes
+        } // find Page-ID by name
+        // decode html code (e.g. like &apos; => ')
 
-          page_name = decodeURI(page_name.replace("\\\/", "/")); //      console.log("Page: "+page_name+", Scope: "+scope);
 
-          var selector = scope !== undefined && scope !== null ? '.page[id^="' + scope + '"] h1' : '.page h1';
-          var pages = document.querySelectorAll(selector);
-          pages = Array.from(pages).filter(function (h) {
-            return h.textContent === page_name;
-          });
+        page_name = cv.util.String.decodeHtmlEntities(page_name); // remove escaped slashes
 
-          if (pages.length > 1 && this.getCurrentPage() !== null) {
-            var currentPageId = this.getCurrentPage().getPath(); // More than one Page found -> search in the current pages descendants first
+        page_name = decodeURI(page_name.replace('\\\/', '/')); //      console.log("Page: "+page_name+", Scope: "+scope);
 
-            var fallback = true;
-            pages.forEach(function (page) {
-              var p = cv.util.Tree.getClosest(page, ".page");
+        var selector = scope !== undefined && scope !== null ? '.page[id^="' + scope + '"] h1' : '.page h1';
+        var pages = document.querySelectorAll(selector);
+        pages = Array.from(pages).filter(function (h) {
+          return h.textContent === page_name;
+        });
 
-              if (page.innerText === page_name) {
-                var pid = p.getAttribute('id');
+        if (pages.length > 1 && this.getCurrentPage() !== null) {
+          var currentPageId = this.getCurrentPage().getPath(); // More than one Page found -> search in the current pages descendants first
 
-                if (pid.length < currentPageId.length) {
-                  // found pages path is shorter the the current pages -> must be an ancestor
-                  if (currentPageId.indexOf(pid) === 0) {
-                    // found page is an ancestor of the current page -> we take this one
-                    page_id = pid;
-                    fallback = false; //break loop
+          var fallback = true;
+          pages.some(function (page) {
+            var p = cv.util.Tree.getClosest(page, '.page');
 
-                    return false;
-                  }
-                } else {
-                  if (pid.indexOf(currentPageId) === 0) {
-                    // found page is an descendant of the current page -> we take this one
-                    page_id = pid;
-                    fallback = false; //break loop
+            if (page.innerText === page_name) {
+              var pid = p.getAttribute('id');
 
-                    return false;
-                  }
+              if (pid.length < currentPageId.length) {
+                // found pages path is shorter the the current pages -> must be an ancestor
+                if (currentPageId.indexOf(pid) === 0) {
+                  // found page is an ancestor of the current page -> we take this one
+                  page_id = pid;
+                  fallback = false; //break loop
+
+                  return true;
                 }
+              } else if (pid.indexOf(currentPageId) === 0) {
+                // found page is an descendant of the current page -> we take this one
+                page_id = pid;
+                fallback = false; //break loop
+
+                return true;
               }
-            }, this);
-
-            if (fallback) {
-              // take the first page that fits (old behaviour)
-              pages.forEach(function (page) {
-                if (page.innerText === page_name) {
-                  page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id"); // break loop
-
-                  return false;
-                }
-              });
             }
-          } else {
-            pages.forEach(function (page) {
-              if (page.innerText === page_name) {
-                page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id"); // break loop
 
-                return false;
+            return false;
+          }, this);
+
+          if (fallback) {
+            // take the first page that fits (old behaviour)
+            pages.some(function (page) {
+              if (page.innerText === page_name) {
+                page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id'); // break loop
+
+                return true;
               }
+
+              return false;
             });
           }
+        } else {
+          pages.some(function (page) {
+            if (page.innerText === page_name) {
+              page_id = cv.util.Tree.getClosest(page, '.page').getAttribute('id'); // break loop
+
+              return true;
+            }
+
+            return false;
+          });
         }
 
         if (page_id !== null && page_id.match(/^id_[0-9_]*$/) !== null) {
           return page_id;
-        } else {
-          // not found
-          return null;
-        }
+        } // not found
+
+
+        return null;
       },
       scrollToPage: function scrollToPage(target, speed, skipHistory) {
         if (undefined === target) {
@@ -910,17 +920,17 @@
           speed = cv.Config.configSettings.scrollSpeed;
         }
 
-        if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
+        if (cv.Config.rememberLastPage && qx.core.Environment.get('html.storage.local')) {
           localStorage.lastpage = page_id;
         } // push new state to history
 
 
         if (skipHistory === undefined) {
-          var headline = document.querySelectorAll("#" + page_id + " h1");
-          var pageTitle = "CometVisu";
+          var headline = document.querySelectorAll('#' + page_id + ' h1');
+          var pageTitle = 'CometVisu';
 
           if (headline.length) {
-            pageTitle = headline[0].textContent + " - " + pageTitle;
+            pageTitle = headline[0].textContent + ' - ' + pageTitle;
           }
 
           qx.bom.History.getInstance().addToHistory(page_id, pageTitle);
@@ -949,7 +959,7 @@
           var oldElement = document.getElementById(old);
 
           if (oldElement) {
-            oldElement.classList.remove("highlightedWidget");
+            oldElement.classList.remove('highlightedWidget');
           }
         }
 
@@ -957,68 +967,68 @@
           var element = document.getElementById(value);
 
           if (element) {
-            element.classList.add("highlightedWidget");
+            element.classList.add('highlightedWidget');
           }
         }
       },
       selectDesign: function selectDesign() {
-        var body = document.querySelector("body");
+        var body = document.querySelector('body');
         document.querySelectorAll('body > *').forEach(function (elem) {
           elem.style.display = 'none';
         }, this);
-        body.style['background-color'] = "black";
-        var div = qx.dom.Element.create("div", {
-          id: "designSelector"
+        body.style['background-color'] = 'black';
+        var div = qx.dom.Element.create('div', {
+          id: 'designSelector'
         });
         Object.entries({
-          background: "#808080",
-          width: "400px",
-          color: "white",
-          margin: "auto",
-          padding: "0.5em"
+          background: '#808080',
+          width: '400px',
+          color: 'white',
+          margin: 'auto',
+          padding: '0.5em'
         }).forEach(function (key_value) {
           body.style[key_value[0]] = key_value[1];
         });
-        div.innerHTML = "Loading ...";
+        div.innerHTML = 'Loading ...';
         body.appendChild(div);
-        var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
-        store.addListener("loaded", function () {
-          var html = "<h1>Please select design</h1>";
-          html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
+        var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri('designs/get_designs.php'));
+        store.addListener('loaded', function () {
+          var html = '<h1>Please select design</h1>';
+          html += '<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>';
           div.innerHTML = html;
           store.getModel().forEach(function (element) {
-            var myDiv = qx.dom.Element.create("div", {
-              cursor: "pointer",
-              padding: "0.5em 1em",
-              borderBottom: "1px solid black",
-              margin: "auto",
-              width: "262px",
-              position: "relative"
+            var myDiv = qx.dom.Element.create('div', {
+              cursor: 'pointer',
+              padding: '0.5em 1em',
+              borderBottom: '1px solid black',
+              margin: 'auto',
+              width: '262px',
+              position: 'relative'
             });
-            myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-            myDiv.innerHTML += "<iframe src=\"" + qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html") + "?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-            myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\"" + qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png") + "\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+            myDiv.innerHTML = '<div style="font-weight: bold; margin: 1em 0 .5em;">Design: ' + element + '</div>';
+            myDiv.innerHTML += '<iframe src="' + qx.util.ResourceManager.getInstance().toUri('designs/design_preview.html') + '?design=' + element + '" width="160" height="90" border="0" scrolling="auto" frameborder="0" style="z-index: 1;"></iframe>';
+            myDiv.innerHTML += '<img width="60" height="30" src="' + qx.util.ResourceManager.getInstance().toUri('demo/media/arrow.png') + '" alt="select" border="0" style="margin: 60px 10px 10px 30px;"/>';
             div.appendChild(myDiv);
-            var tDiv = qx.dom.Element.create("div", {
-              background: "transparent",
-              position: "absolute",
-              height: "90px",
-              width: "160px",
+            var tDiv = qx.dom.Element.create('div', {
+              background: 'transparent',
+              position: 'absolute',
+              height: '90px',
+              width: '160px',
               zIndex: 2
             });
-            var pos = document.querySelector("iframe").getBoundingClientRect();
+            var pos = document.querySelector('iframe').getBoundingClientRect();
             Object.entries({
-              left: pos.left + "px",
-              top: pos.top + "px"
+              left: pos.left + 'px',
+              top: pos.top + 'px'
             }).forEach(function (key_value) {
               tDiv.style[key_value[0]] = key_value[1];
             });
             myDiv.appendChild(tDiv);
             qx.event.Registration.addListener(myDiv, 'pointerover', function () {
-              myDiv.style.background = "#bbbbbb";
+              myDiv.style.background = '#bbbbbb';
             }, this);
             qx.event.Registration.addListener(myDiv, 'pointerout', function () {
-              myDiv.style.background = "transparent";
+              myDiv.style.background = 'transparent';
             }, this);
             qx.event.Registration.addListener(myDiv, 'tap', function () {
               var href = document.location.href;
@@ -1027,10 +1037,10 @@
                 href = href.split('#')[0];
               }
 
-              if (document.location.search === "") {
-                document.location.href = href + "?design=" + element;
+              if (document.location.search === '') {
+                document.location.href = href + '?design=' + element;
               } else {
-                document.location.href = href + "&design=" + element;
+                document.location.href = href + '&design=' + element;
               }
             });
           });
@@ -1050,4 +1060,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1625667805473
+//# sourceMappingURL=TemplateEngine.js.map?dt=1641882235541

@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.MultiTrigger', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -64,7 +64,7 @@
           var match = buttonRegex.exec(attrib.name);
 
           if (match) {
-            if (!buttonConfig.hasOwnProperty(match[1])) {
+            if (!Object.prototype.hasOwnProperty.call(buttonConfig, match[1])) {
               buttonConfig[match[1]] = {};
             }
 
@@ -97,7 +97,7 @@
           },
           elementsPerLine: {
             transform: parseInt,
-            "default": 2
+            'default': 2
           }
         };
       },
@@ -107,10 +107,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("multitrigger", statics);
+      cv.parser.WidgetParser.addHandler('multitrigger', statics);
     }
   });
   cv.parser.widgets.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1625667764423
+//# sourceMappingURL=MultiTrigger.js.map?dt=1641882197409

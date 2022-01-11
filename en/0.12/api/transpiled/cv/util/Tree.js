@@ -40,7 +40,7 @@
    * Helper methods for the widget tree
    */
   qx.Class.define('cv.util.Tree', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -76,6 +76,8 @@
 
           parent = parent.getParentWidget();
         }
+
+        return null;
       },
 
       /*
@@ -85,7 +87,7 @@
        */
       getParentPageData: function getParentPageData(path) {
         var data = {};
-        var isPage = path.substr(-1, 1) === "_"; // path ends with _
+        var isPage = path.substr(-1, 1) === '_'; // path ends with _
 
         if (!isPage) {
           path = path.substr(0, path.length - 1);
@@ -93,7 +95,7 @@
 
         var parentPath = path;
 
-        if (parentPath === "id_") {
+        if (parentPath === 'id_') {
           return null;
         }
 
@@ -102,13 +104,13 @@
         while (Object.keys(data).length === 0 && parentPath.length > 2) {
           data = model.getWidgetData(parentPath);
 
-          if (parentPath === "id_") {
+          if (parentPath === 'id_') {
             break;
           }
 
-          var parts = parentPath.substr(0, parentPath.length - 1).split("_");
+          var parts = parentPath.substr(0, parentPath.length - 1).split('_');
           parts.pop();
-          parentPath = parts.join("_") + "_";
+          parentPath = parts.join('_') + '_';
         }
 
         return data;
@@ -121,22 +123,25 @@
        */
       getParentData: function getParentData(path) {
         var data = {};
+        /**
+         * @param path
+         */
 
         function traverseUp(path) {
-          var parts = path.split("_");
+          var parts = path.split('_');
 
-          if (parts[parts.length - 1] === "") {
+          if (parts[parts.length - 1] === '') {
             parts.pop();
           } else {
-            parts[parts.length - 1] = "";
+            parts[parts.length - 1] = '';
           }
 
-          return parts.join("_");
+          return parts.join('_');
         }
 
         var parentPath = traverseUp(path);
 
-        if (parentPath === "id") {
+        if (parentPath === 'id') {
           // no parent
           return null;
         }
@@ -146,7 +151,7 @@
         while (parentPath.length >= 2) {
           data = model.getWidgetData(parentPath);
 
-          if (parentPath === "id_" || data.children && data.children.indexOf(path) >= 0) {
+          if (parentPath === 'id_' || data.children && data.children.indexOf(path) >= 0) {
             return data;
           }
 
@@ -167,22 +172,22 @@
             return Array.prototype.filter.call(child, function (m) {
               return m.matches(selector);
             });
-          } else {
-            return true;
           }
+
+          return true;
         }, this);
       },
       getParentPage: function getParentPage(element) {
-        return this.getParent(element, "#pages", ".page", 1)[0];
+        return this.getParent(element, '#pages', '.page', 1)[0];
       },
       getParentGroup: function getParentGroup(element) {
-        return this.getParent(element, "#pages", ".group", 1)[0];
+        return this.getParent(element, '#pages', '.group', 1)[0];
       },
       getParent: function getParent(element, until, selector, limit) {
         var parents = [];
         var parent = element.parentNode;
 
-        while (parent && parent.getAttribute('id') !== "pages") {
+        while (parent && parent.getAttribute('id') !== 'pages') {
           var found = [parent];
 
           if (selector) {
@@ -216,13 +221,15 @@
 
           if (found.length) {
             return found[0];
-          } else {
-            current = current.parentNode; // One up
-
-            if (current && current.parentNode) {
-              return findClosest(current);
-            }
           }
+
+          current = current.parentNode; // One up
+
+          if (current && current.parentNode) {
+            return findClosest(current);
+          }
+
+          return null;
         };
 
         return findClosest(elem);
@@ -232,4 +239,4 @@
   cv.util.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1625667806257
+//# sourceMappingURL=Tree.js.map?dt=1641882236540

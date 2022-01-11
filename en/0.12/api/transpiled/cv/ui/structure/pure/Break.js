@@ -60,10 +60,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("break", statics);
+      cv.ui.structure.WidgetFactory.registerClass('break', statics);
     }
   });
   cv.ui.structure.pure.Break.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Break.js.map?dt=1625667770385
+//# sourceMappingURL=Break.js.map?dt=1641882202973

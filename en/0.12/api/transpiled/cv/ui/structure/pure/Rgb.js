@@ -74,7 +74,7 @@
         var value = cv.Transform.decode(this.getAddress()[address].transform, data);
         var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
 
-        if (3 !== bg.length) {
+        if (bg.length !== 3) {
           bg = [0, 0, 0];
         }
 
@@ -92,15 +92,14 @@
             break;
         }
 
-        var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-        valElem.style['background-color'] = bgs;
+        valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("rgb", statics);
+      cv.ui.structure.WidgetFactory.registerClass('rgb', statics);
     }
   });
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1625667770873
+//# sourceMappingURL=Rgb.js.map?dt=1641882203583

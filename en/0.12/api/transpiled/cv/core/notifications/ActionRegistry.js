@@ -36,8 +36,8 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.core.notifications.ActionRegistry", {
-    type: "static",
+  qx.Class.define('cv.core.notifications.ActionRegistry', {
+    type: 'static',
 
     /*
     ******************************************************
@@ -58,7 +58,7 @@
        */
       registerActionHandler: function registerActionHandler(type, handler) {
         if (this.__P_3_0[type]) {
-          qx.log.Logger.warn(this, "there is already an action handler registered for '" + type + "' action. replacing now");
+          qx.log.Logger.warn(this, 'there is already an action handler registered for \'' + type + '\' action. replacing now');
         }
 
         this.__P_3_0[type] = handler;
@@ -84,9 +84,9 @@
       getActionHandler: function getActionHandler(type, config) {
         if (this.__P_3_0[type]) {
           return new this.__P_3_0[type](config);
-        } else {
-          return null;
         }
+
+        return null;
       },
 
       /**
@@ -99,16 +99,16 @@
        */
       createActionElement: function createActionElement(type, config) {
         if (!this.__P_3_0[type]) {
-          qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);
+          qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
           return null;
-        } else {
-          var actionHandler = new this.__P_3_0[type](config);
-          return actionHandler.getDomElement();
         }
+
+        var actionHandler = new this.__P_3_0[type](config);
+        return actionHandler.getDomElement();
       }
     }
   });
   cv.core.notifications.ActionRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionRegistry.js.map?dt=1625667763286
+//# sourceMappingURL=ActionRegistry.js.map?dt=1641882196274

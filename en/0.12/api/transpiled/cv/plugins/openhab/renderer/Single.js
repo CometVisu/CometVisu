@@ -45,7 +45,7 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.plugins.openhab.renderer.Single", {
+  qx.Class.define('cv.plugins.openhab.renderer.Single', {
     extend: qx.ui.form.renderer.AbstractRenderer,
 
     /*
@@ -68,9 +68,9 @@
     */
     properties: {
       bottomText: {
-        check: "String",
+        check: 'String',
         nullable: true,
-        apply: "_applyBottomText"
+        apply: '_applyBottomText'
       }
     },
 
@@ -82,7 +82,7 @@
     members: {
       // property apply
       _applyBottomText: function _applyBottomText(value) {
-        var control = this.getChildControl("bottom-text");
+        var control = this.getChildControl('bottom-text');
 
         if (value) {
           control.setValue(value);
@@ -96,14 +96,14 @@
         var control;
 
         switch (id) {
-          case "content":
+          case 'content':
             control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
 
             this._addAt(control, 1);
 
             break;
 
-          case "bottom-text":
+          case 'bottom-text':
             control = new qx.ui.basic.Label(this.getBottomText());
             control.set({
               rich: true,
@@ -120,15 +120,17 @@
 
             break;
 
-          case "button-container":
-            var hbox = new qx.ui.layout.HBox();
-            hbox.setAlignX("right");
-            hbox.setSpacing(5);
-            control = new qx.ui.container.Composite(hbox);
+          case 'button-container':
+            {
+              var hbox = new qx.ui.layout.HBox();
+              hbox.setAlignX('right');
+              hbox.setSpacing(5);
+              control = new qx.ui.container.Composite(hbox);
 
-            this._addAt(control, 3);
+              this._addAt(control, 3);
 
-            break;
+              break;
+            }
         }
 
         return control || cv.plugins.openhab.renderer.Single.prototype._createChildControlImpl.base.call(this, id, hash);
@@ -147,10 +149,10 @@
       addItems: function addItems(items, names, title) {
         // add the header
         if (title !== null) {
-          this.getChildControl("content").add(this._createHeader(title));
+          this.getChildControl('content').add(this._createHeader(title));
         }
 
-        var container = this.getChildControl("content"); // add the items
+        var container = this.getChildControl('content'); // add the items
 
         for (var i = 0; i < items.length; i++) {
           var label = this._createLabel(names[i], items[i]);
@@ -162,10 +164,10 @@
             // label + checkbox in one line
             var box = new qx.ui.container.Composite(new qx.ui.layout.HBox());
             box.add(label, {
-              width: "50%"
+              width: '50%'
             });
             box.add(item, {
-              width: "50%"
+              width: '50%'
             });
             container.add(box);
           } else {
@@ -194,7 +196,7 @@
        */
       addButton: function addButton(button) {
         // add the button
-        this.getChildControl("button-container").add(button);
+        this.getChildControl('button-container').add(button);
       },
 
       /**
@@ -220,7 +222,7 @@
         this._labels.push(label);
 
         label.setRich(true);
-        label.setAppearance("form-renderer-label");
+        label.setAppearance('form-renderer-label');
         return label;
       },
 
@@ -235,13 +237,13 @@
 
         this._labels.push(header);
 
-        header.setFont("bold");
+        header.setFont('bold');
 
         if (this._row != 0) {
           header.setMarginTop(10);
         }
 
-        header.setAlignX("left");
+        header.setAlignX('left');
         return header;
       }
     }
@@ -249,4 +251,4 @@
   cv.plugins.openhab.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1625667765970
+//# sourceMappingURL=Single.js.map?dt=1641882198849

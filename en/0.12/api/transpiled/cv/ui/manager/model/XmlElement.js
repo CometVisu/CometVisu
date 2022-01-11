@@ -1,14 +1,12 @@
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -118,20 +116,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: 'changeDisplayName'
       },
       open: {
-        check: "Boolean",
-        event: "changeOpen",
+        check: 'Boolean',
+        event: 'changeOpen',
         init: false,
-        apply: "_onOpen"
+        apply: '_onOpen'
       },
       loaded: {
-        check: "Boolean",
-        event: "changeLoaded",
+        check: 'Boolean',
+        event: 'changeLoaded',
         init: false
       },
       children: {
-        check: "qx.data.Array",
-        event: "changeChildren",
-        apply: "_applyEventPropagation",
+        check: 'qx.data.Array',
+        event: 'changeChildren',
+        apply: '_applyEventPropagation',
         deferredInit: true
       },
       textContent: {
@@ -222,18 +220,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       MEMBERS
     ***********************************************
     */
-    members: _defineProperty({
+    members: {
       _node: null,
       _schema: null,
       _schemaElement: null,
       _initialAttributes: null,
       _initialChildNames: null,
       _initialTextContent: null,
-      __P_45_0: false,
-      __P_45_1: null,
-      clone: function clone() {
-        return new cv.ui.manager.model.XmlElement(this.getNode(), this.getSchemaElement(), this.getEditor(), this.getParent());
-      },
+      __P_44_0: false,
+      __P_44_1: null,
       _maintainStatus: function _maintainStatus() {
         if (this._node.nodeType === Node.COMMENT_NODE) {
           this.setStatus('comment');
@@ -273,9 +268,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else if (this._node.nodeType === Node.COMMENT_NODE) {
             this.setIcon(cv.theme.dark.Images.getIcon('comment-fields', 18));
             return;
-          } else if (this.getName() === "icon" && this.getAttribute("name") && this.getAttribute("name").indexOf("{{") === -1) {
+          } else if (this.getName() === 'icon' && this.getAttribute('name') && this.getAttribute('name').indexOf('{{') === -1) {
             // try to use the configured icon (if its not set by a template variable)
-            var source = cv.IconHandler.getInstance().getIconSource(this.getAttribute("name"), 'tree-icon');
+            var source = cv.IconHandler.getInstance().getIconSource(this.getAttribute('name'), 'tree-icon');
 
             if (source) {
               this.setIcon(source);
@@ -375,7 +370,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           if (!skipUndo) {
             if (editor) {
-              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Remove %1", this.getDisplayName()), this, changes, 'deleted');
+              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Remove %1', this.getDisplayName()), this, changes, 'deleted');
               editor.addUndo(change);
             }
           }
@@ -446,7 +441,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var editor = this.getEditor();
 
             if (editor) {
-              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Move %1', this.getDisplayName()), this, changes, 'moved');
               editor.addUndo(change);
             }
           }
@@ -489,7 +484,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var editor = this.getEditor();
 
             if (editor) {
-              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Move %1", this.getDisplayName()), this, changes, 'moved');
+              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Move %1', this.getDisplayName()), this, changes, 'moved');
               editor.addUndo(change);
             }
           }
@@ -526,9 +521,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param excludeComment {Boolean} exclude #comment child when set to true
        */
       getAddableChildren: function getAddableChildren(excludeComment) {
-        if (!this.__P_45_1) {
+        if (!this.__P_44_1) {
           if (this.getName().startsWith('#')) {
-            this.__P_45_1 = [];
+            this.__P_44_1 = [];
           } else {
             var schemaElement = this.getSchemaElement();
             var allowed = schemaElement.getAllowedElements();
@@ -540,18 +535,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
 
             this.getChildren().forEach(function (child) {
-              if (!countExisting.hasOwnProperty(child.getName())) {
+              if (!Object.prototype.hasOwnProperty.call(countExisting, child.getName())) {
                 countExisting[child.getName()] = 0;
               }
 
               countExisting[child.getName()]++;
             });
             Object.keys(allowed).forEach(function (elementName) {
-              if (excludeComment === true && elementName === "#comment") {
+              if (excludeComment === true && elementName === '#comment') {
                 return;
               }
 
-              if (elementName === "#text" || elementName === "#cdata-section") {
+              if (elementName === '#text' || elementName === '#cdata-section') {
                 if (schemaElement.isTextContentAllowed()) {
                   if (schemaElement.isMixed()) {
                     // is a mixed content has only one text child and no other childs, we do not allow another text child -> avoid direct text siblings
@@ -569,7 +564,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       // we do not allow more text nodes than other nodes (e.g. a sequence of #text, elem would allow another #text node after elem)
                       stillAllowed.push(elementName);
                     }
-                  } else if (!countExisting.hasOwnProperty('#text') && !countExisting.hasOwnProperty('#cdata-section')) {
+                  } else if (!Object.prototype.hasOwnProperty.call(countExisting, '#text') && !Object.prototype.hasOwnProperty.call(countExisting, '#cdata-section')) {
                     stillAllowed.push(elementName);
                   }
                 }
@@ -578,17 +573,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
 
               var childBounds = schemaElement.getBoundsForElementName(elementName);
-              var existing = countExisting.hasOwnProperty(elementName) ? countExisting[elementName] : 0;
+              var existing = Object.prototype.hasOwnProperty.call(countExisting, elementName) ? countExisting[elementName] : 0;
 
               if (childBounds && childBounds.max > existing) {
                 stillAllowed.push(elementName);
               }
             });
-            this.__P_45_1 = stillAllowed;
+            this.__P_44_1 = stillAllowed;
           }
         }
 
-        return this.__P_45_1;
+        return this.__P_44_1;
       },
 
       /**
@@ -602,7 +597,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var nodeName = xmlElement instanceof cv.ui.manager.model.XmlElement ? xmlElement.getName() : xmlElement;
 
         if (!schemaElement.isChildElementAllowed(nodeName)) {
-          this.debug(nodeName, "is not allowed as child of", this.getName());
+          this.debug(nodeName, 'is not allowed as child of', this.getName());
           return false;
         }
 
@@ -638,30 +633,30 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (currentPosition === targetPosition || targetPosition >= children.length) {
           // no special position
           return true;
-        } else {
-          // find the first previous sibling of a different type
-          var previousSibling;
+        } // find the first previous sibling of a different type
 
-          if (index > 0) {
-            for (var i = Math.min(index, children.length) - 1; i >= 0; i--) {
-              if (children.getItem(i).getName() !== nodeName) {
-                previousSibling = children.getItem(i).getName();
-                break;
-              }
+
+        var previousSibling;
+
+        if (index > 0) {
+          for (var i = Math.min(index, children.length) - 1; i >= 0; i--) {
+            if (children.getItem(i).getName() !== nodeName) {
+              previousSibling = children.getItem(i).getName();
+              break;
             }
           }
+        }
 
-          if (previousSibling) {
-            currentPosition = allowedSorting[previousSibling];
-          } // only allow if it can be inserted before
+        if (previousSibling) {
+          currentPosition = allowedSorting[previousSibling];
+        } // only allow if it can be inserted before
 
 
-          var allowed = currentPosition + 1 >= targetPosition;
+        var allowed = currentPosition + 1 >= targetPosition;
 
-          if (!allowed) {
-            this.debug(nodeName, "is not allowed as child of", this.getName());
-            return false;
-          }
+        if (!allowed) {
+          this.debug(nodeName, 'is not allowed as child of', this.getName());
+          return false;
         }
 
         return true;
@@ -677,29 +672,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (schemaElement.areChildrenSortable()) {
             // any position is fine, just append it to the end
             return this.getChildren().length;
-          } else {
-            var allowedSorting = schemaElement.getFirstLevelElementSorting();
+          }
 
-            if (allowedSorting && allowedSorting.hasOwnProperty(newChild.getName())) {
-              var position = allowedSorting[newChild.getName()]; // search for the first sibling with a position > than the newChilds and insert it there
+          var allowedSorting = schemaElement.getFirstLevelElementSorting();
 
-              var targetIndex = position;
-              var found = this.getChildren().some(function (child, index) {
-                var childPos = allowedSorting[child.getName()];
+          if (allowedSorting && Object.prototype.hasOwnProperty.call(allowedSorting, newChild.getName())) {
+            var position = allowedSorting[newChild.getName()]; // search for the first sibling with a position > than the newChilds and insert it there
 
-                if (childPos > position) {
-                  targetIndex = index;
-                  return true;
-                }
-              });
+            var targetIndex = position;
+            var found = this.getChildren().some(function (child, index) {
+              var childPos = allowedSorting[child.getName()];
 
-              if (!found) {
-                // append to the end
-                targetIndex = this.getChildren().length;
+              if (childPos > position) {
+                targetIndex = index;
+                return true;
               }
 
-              return targetIndex;
+              return false;
+            });
+
+            if (!found) {
+              // append to the end
+              targetIndex = this.getChildren().length;
             }
+
+            return targetIndex;
           }
         }
 
@@ -711,6 +708,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param xmlElement {cv.ui.manager.model.XmlElement} new child
        * @param index {Number} index to insert the child, if set to -1 insert it at any allowed position
        * @param skipUndo {Boolean} do not add an undo operation for this change
+       * @param internalOperation
        * @return {Boolean} true if the child has been added
        */
       insertChild: function insertChild(xmlElement, index, skipUndo, internalOperation) {
@@ -766,11 +764,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
 
             xmlElement.updateModified();
-          } else {
-            if (!internalOperation || internalOperation === 'added') {
-              xmlElement.$$added = true;
-              xmlElement.updateModified();
-            }
+          } else if (!internalOperation || internalOperation === 'added') {
+            xmlElement.$$added = true;
+            xmlElement.updateModified();
           }
 
           this.updateModified();
@@ -787,7 +783,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 parent: this,
                 child: xmlElement
               }];
-              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Add %1", this.getDisplayName()), this, changes, 'created');
+              var change = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Add %1', this.getDisplayName()), this, changes, 'created');
               editor.addUndo(change);
             }
           }
@@ -797,13 +793,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       _validateTextContent: function _validateTextContent(value) {
         // do not validate content that is loaded from the actual node
-        if (!this.__P_45_0) {
+        if (!this.__P_44_0) {
           if (this._node) {
             if (!this.getSchemaElement().isValueValid(value)) {
-              throw new qx.core.ValidationError(qx.locale.Manager.tr("Invalid text content: '%1'", value));
+              throw new qx.core.ValidationError(qx.locale.Manager.tr('Invalid text content: \'%1\'', value));
             }
           } else {
-            throw new qx.core.ValidationError(qx.locale.Manager.tr("Text content not allowed here"));
+            throw new qx.core.ValidationError(qx.locale.Manager.tr('Text content not allowed here'));
           }
         }
       },
@@ -827,17 +823,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (var i = 0; i < this._node.attributes.length; i++) {
             var attr = this._node.attributes.item(i);
 
-            if (allowedAttributes.hasOwnProperty(attr.name)) {
+            if (Object.prototype.hasOwnProperty.call(allowedAttributes, attr.name)) {
               if (!allowedAttributes[attr.name].isValueValid(attr.value)) {
                 errors.push({
                   attribute: attr.name,
-                  error: qx.locale.Manager.tr("Invalid value")
+                  error: qx.locale.Manager.tr('Invalid value')
                 });
               }
             } else {
               errors.push({
                 attribute: attr.name,
-                error: qx.locale.Manager.tr("Attribute '%1' not allowed", attr.name)
+                error: qx.locale.Manager.tr('Attribute \'%1\' not allowed', attr.name)
               });
             }
           } // check for missing required attributes
@@ -849,7 +845,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             if (!_this2._node.hasAttribute(name)) {
               errors.push({
                 attribute: name,
-                error: qx.locale.Manager.tr("Attribute '%1' is required but missing", name)
+                error: qx.locale.Manager.tr('Attribute \'%1\' is required but missing', name)
               });
             }
           });
@@ -857,13 +853,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (schemaElement.isTextContentRequired()) {
             // check if we have at least one non empty #text child
             var found = this.getChildren().some(function (child) {
-              return child.isTextNode() && child.getNode().nodeValue.trim() !== "";
+              return child.isTextNode() && child.getNode().nodeValue.trim() !== '';
             });
 
             if (!found) {
               errors.push({
                 attribute: '#text',
-                error: qx.locale.Manager.tr("Text content is missing")
+                error: qx.locale.Manager.tr('Text content is missing')
               });
             }
           }
@@ -875,7 +871,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 child.setValid(schemaElement.isValueValid(child.getText()));
 
                 if (!child.isValid()) {
-                  child.setInvalidMessage(qx.locale.Manager.tr("Text content is invalid"));
+                  child.setInvalidMessage(qx.locale.Manager.tr('Text content is invalid'));
                 }
               }
             });
@@ -883,7 +879,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           this.setInvalidMessage(errors.map(function (err) {
             return err.error;
-          }).join("<br/>"));
+          }).join('<br/>'));
           this.setValid(errors.length === 0);
         }
       },
@@ -891,7 +887,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return this.getName() === '#text' || this.getName() === '#cdata-section';
       },
       _applyTextContent: function _applyTextContent(value) {
-        if (!this.__P_45_0) {
+        if (!this.__P_44_0) {
           if (this._node) {
             if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
               this._node.nodeValue = value;
@@ -920,10 +916,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               changed = true;
             }
           } else {
-            this.error("'" + text + "' is no valid text content for a '" + this.getName() + "' element");
+            this.error('\'' + text + '\' is no valid text content for a \'' + this.getName() + '\' element');
           }
         } else {
-          this.error("text content is not allowed for a '" + this.getName() + "' element");
+          this.error('text content is not allowed for a \'' + this.getName() + '\' element');
         }
 
         return {
@@ -962,10 +958,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   this._node.setAttribute(name, value);
                 }
 
-                if (name === "name") {
+                if (name === 'name') {
                   this._updateDisplayName();
 
-                  if (this.getName() === "icon") {
+                  if (this.getName() === 'icon') {
                     this._maintainIcon();
                   }
                 }
@@ -973,10 +969,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 changed = true;
               }
             } else {
-              this.error("'" + value + "' is not allowed for attribute '" + name + "'");
+              this.error('\'' + value + '\' is not allowed for attribute \'' + name + '\'');
             }
           } else {
-            this.error("'" + name + "' is no allowed attribute for a '" + this.getName() + "' element");
+            this.error('\'' + name + '\' is no allowed attribute for a \'' + this.getName() + '\' element');
           }
 
           return {
@@ -1000,6 +996,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             old: _oldValue
           };
         }
+
+        return null;
       },
 
       /**
@@ -1032,7 +1030,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             if (change.changed) {
               parentChanges.push(change);
             }
-          } else if (attrName === '#outerHTML' || attrName === "#innerHTML") {
+          } else if (attrName === '#outerHTML' || attrName === '#innerHTML') {
             if (_this3.getSchemaElement().isChildElementAllowed('*')) {
               var dom = new DOMParser().parseFromString(data[attrName], 'text/xml');
 
@@ -1059,7 +1057,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
                 _this3.load(true);
               }
-            } else if (attrName === "#innerHTML" && !data[attrName]) {
+            } else if (attrName === '#innerHTML' && !data[attrName]) {
               // allow empty values
               var _oldValue2 = _this3._node.innerHTML;
               _this3._node.innerHTML = data[attrName];
@@ -1084,12 +1082,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         if (editor && changes.length > 0) {
           if (parentChanges.length > 0) {
-            var parentChange = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", parent.getDisplayName()), parent, parentChanges);
+            var parentChange = new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Change %1', parent.getDisplayName()), parent, parentChanges);
             changes.push(parentChange);
             parent.updateModified();
           }
 
-          editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr("Change %1", this.getDisplayName()), this, changes));
+          editor.addUndo(new cv.ui.manager.model.ElementChange(qx.locale.Manager.tr('Change %1', this.getDisplayName()), this, changes));
         }
 
         this.updateModified();
@@ -1122,7 +1120,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               var nameAttr = this._node.getAttribute('name');
 
               displayName += ' "' + nameAttr + '"';
-            } else if (this.getName() === "pages" && this._node.hasAttribute('design')) {
+            } else if (this.getName() === 'pages' && this._node.hasAttribute('design')) {
               var designAttr = this._node.getAttribute('design');
 
               displayName += ' "' + designAttr + '"';
@@ -1131,7 +1129,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var textContent = this._node.nodeValue.trim();
 
             if (textContent.length > 26) {
-              textContent = textContent.substring(0, 26) + "...";
+              textContent = textContent.substring(0, 26) + '...';
             }
 
             displayName = textContent;
@@ -1139,7 +1137,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
 
         if (this.isModified()) {
-          displayName += " *";
+          displayName += ' *';
         }
 
         this.setDisplayName(displayName);
@@ -1150,7 +1148,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             for (var i = 0; i < this._node.childNodes.length; i++) {
               var childNode = this._node.childNodes.item(i);
 
-              if (childNode.nodeType === Node.ELEMENT_NODE || (childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim() !== "") {
+              if (childNode.nodeType === Node.ELEMENT_NODE || (childNode.nodeType === Node.TEXT_NODE || childNode.nodeType === Node.CDATA_SECTION_NODE) && childNode.nodeValue.trim() !== '') {
                 return true;
               }
             }
@@ -1161,7 +1159,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       load: function load(force) {
         if (!this.isLoaded() || force) {
-          this.__P_45_0 = true;
+          this.__P_44_0 = true;
           var children = this.getChildren();
           children.removeListener('change', this._syncChildNodes, this);
           children.removeAll();
@@ -1231,7 +1229,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     // only complain for real childs (no comments, textNodes)
                     this.setValid(false);
                     var msg = this.getInvalidMessage();
-                    msg = (msg ? msg + "<br/>" : "") + qx.locale.Manager.tr("Child element '%1' not allowed.", childNode.nodeName);
+                    msg = (msg ? msg + '<br/>' : '') + qx.locale.Manager.tr('Child element \'%1\' not allowed.', childNode.nodeName);
                     this.setInvalidMessage(msg);
                     this.setValid(false);
                   }
@@ -1262,13 +1260,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           this._updateChildrenDeletableFlags();
 
-          this.__P_45_0 = false;
+          this.__P_44_0 = false;
         }
       },
       appendInvalidMessage: function appendInvalidMessage(errorMsg) {
         if (errorMsg) {
           var existing = this.getInvalidMessage();
-          this.setInvalidMessage(existing ? existing + "<br/>" + errorMsg : errorMsg);
+          this.setInvalidMessage(existing ? existing + '<br/>' + errorMsg : errorMsg);
         }
       },
       updateModified: function updateModified() {
@@ -1281,7 +1279,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           if (this._node.attributes.length !== initial.size) {
             this.setModified(true);
-          } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join("")) {
+          } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join('')) {
             this.setModified(true);
           } else {
             var _iterator = _createForOfIteratorHelper(initial),
@@ -1326,7 +1324,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (this._node.nodeType === Node.ELEMENT_NODE && this.isLoaded()) {
           var currentChildNames = this._currentChildNames();
 
-          return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join("") !== this._initialChildNames.join(""));
+          return this.isModified() && (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join(''));
         }
 
         return false;
@@ -1373,7 +1371,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       _syncChildNodes: function _syncChildNodes(ev) {
         // children have changed clear cache
-        this.__P_45_1 = null; // we have to update all deletable flags for this elements children, when their siblings changed
+        this.__P_44_1 = null; // we have to update all deletable flags for this elements children, when their siblings changed
 
         this._updateChildrenDeletableFlags();
       },
@@ -1412,7 +1410,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         while (c) {
           var parent = c.getParent();
 
-          if (parent.getName() === "pages") {
+          if (parent.getName() === 'pages') {
             ids.unshift('id');
             break;
           }
@@ -1424,16 +1422,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           c = parent;
         }
 
-        if (current.getName() === "page") {
+        if (current.getName() === 'page') {
           // make sure that the join ends with '_'
           ids.push('');
         }
 
         return ids.join('_');
+      },
+      // overridden
+      clone: function clone() {
+        return new cv.ui.manager.model.XmlElement(this._node.cloneNode(true), this.getSchemaElement(), this.getEditor());
       }
-    }, "clone", function clone() {
-      return new cv.ui.manager.model.XmlElement(this._node.cloneNode(true), this.getSchemaElement(), this.getEditor());
-    }),
+    },
 
     /*
     ***********************************************
@@ -1444,7 +1444,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this._node = null;
       this._schema = null;
       this._initialAttributes = null;
-      this.__P_45_1 = null;
+      this.__P_44_1 = null;
 
       this._disposeObjects('_schemaElement');
     }
@@ -1452,4 +1452,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1625667769381
+//# sourceMappingURL=XmlElement.js.map?dt=1641882202034

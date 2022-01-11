@@ -74,11 +74,11 @@
         'code': '@MaterialIcons/code'
       },
       getIcon: function getIcon(name, size) {
-        return this.ICONS.hasOwnProperty(name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
+        return Object.prototype.hasOwnProperty.call(this.ICONS, name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;
       }
     }
   });
   cv.theme.dark.Images.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Images.js.map?dt=1625667806469
+//# sourceMappingURL=Images.js.map?dt=1641882236753

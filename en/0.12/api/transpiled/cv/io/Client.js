@@ -176,24 +176,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           hooks: {
             onClose: function onClose() {
               // send an close request to the openHAB server
-              var oldValue = this.headers["X-Atmosphere-Transport"];
-              this.headers["X-Atmosphere-Transport"] = "close";
+              var oldValue = this.headers['X-Atmosphere-Transport'];
+              this.headers['X-Atmosphere-Transport'] = 'close';
               this.doRequest(this.getResourcePath('read'), null, null, null, {
                 beforeSend: this.beforeSend
               });
 
               if (oldValue !== undefined) {
-                this.headers["X-Atmosphere-Transport"] = oldValue;
+                this.headers['X-Atmosphere-Transport'] = oldValue;
               } else {
-                delete this.headers["X-Atmosphere-Transport"];
+                delete this.headers['X-Atmosphere-Transport'];
               }
             }
           }
         },
-        "openhab2": {
-          name: "openHAB2",
-          baseURL: "/rest/cv/",
-          transport: "sse"
+        'openhab2': {
+          name: 'openHAB2',
+          baseURL: '/rest/cv/',
+          transport: 'sse'
         }
       }
     },
@@ -208,26 +208,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Is the communication running at the moment?
        */
       running: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeRunning"
+        event: 'changeRunning'
       },
 
       /**
        * Is the client connected to a backend at the moment?
        */
       connected: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeConnected",
-        apply: "_applyConnected"
+        event: 'changeConnected',
+        apply: '_applyConnected'
       },
 
       /**
        * needed to be able to check if the incoming update is the initial answer or a successing update
        */
       dataReceived: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
 
@@ -242,7 +242,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * The server we are currently speaking to (read from the login response)
        */
       server: {
-        check: "String",
+        check: 'String',
         nullable: true,
         event: 'changedServer'
       }
@@ -297,14 +297,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // add trailing slash to baseURL if not set
 
 
-        if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
-          backend.baseURL += "/";
+        if (backend.baseURL && backend.baseURL.substr(-1) !== '/') {
+          backend.baseURL += '/';
         }
 
         var currentTransport = this.getCurrentTransport();
 
         switch (backend.transport) {
-          case "long-polling":
+          case 'long-polling':
             if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
               // replace old transport
               if (currentTransport) {
@@ -316,7 +316,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             break;
 
-          case "sse":
+          case 'sse':
             if (!(currentTransport instanceof cv.io.transport.Sse)) {
               // replace old transport
               if (currentTransport) {
@@ -329,7 +329,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             break;
         }
 
-        if (this.backend.name === "openHAB") {
+        if (this.backend.name === 'openHAB') {
           // use the fallback parser
           qx.util.ResponseParser.PARSER.json = cv.io.parser.Json.parse;
         }
@@ -340,6 +340,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       /**
        * manipulates the header of the current ajax query before it is been send to the server
+       * @param xhr
        */
       beforeSend: function beforeSend(xhr) {
         for (var headerName in this.resendHeaders) {
@@ -355,7 +356,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       },
       getResourcePath: function getResourcePath(name, map) {
-        return this.backend.resources.hasOwnProperty(name) ? this.backend.baseURL + this.backend.resources[name] : null;
+        return Object.prototype.hasOwnProperty.call(this.backend.resources, name) ? this.backend.baseURL + this.backend.resources[name] : null;
       },
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {
         return false;
@@ -411,19 +412,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.loginSettings.context = context;
           var request = {};
 
-          if ('' !== this.user) {
+          if (this.user !== '') {
             request.u = this.user;
           }
 
-          if ('' !== this.pass) {
+          if (this.pass !== '') {
             request.p = this.pass;
           }
 
-          if ('' !== this.device) {
+          if (this.device !== '') {
             request.d = this.device;
           }
 
-          this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"), request, this.handleLogin, this);
+          this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath('login'), request, this.handleLogin, this);
         } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           // call callback immediately
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -462,17 +463,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         return args[0].getTarget().getResponseHeader(name);
       },
       getQueryString: function getQueryString(data) {
-        var prefix = "";
-        var suffix = "";
+        var prefix = '';
+        var suffix = '';
 
         if (data) {
           Object.getOwnPropertyNames(data).forEach(function (key) {
-            if (key === "i" || key === "t") {
-              prefix += key + "=" + data[key] + "&";
+            if (key === 'i' || key === 't') {
+              prefix += key + '=' + data[key] + '&';
             } else if (Array.isArray(data[key])) {
-              suffix += key + "=" + data[key].join("&" + key + "=") + "&";
+              suffix += key + '=' + data[key].join('&' + key + '=') + '&';
             } else {
-              suffix += key + "=" + data[key] + "&";
+              suffix += key + '=' + data[key] + '&';
             }
           });
 
@@ -497,7 +498,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       doRequest: function doRequest(url, data, callback, context, options) {
         // append data to URL
-        var qs = "";
+        var qs = '';
 
         if (data) {
           qs = this.getQueryString(data);
@@ -514,7 +515,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (options.listeners) {
             Object.getOwnPropertyNames(options.listeners).forEach(function (eventName) {
-              var qxEventName = 'error' !== eventName ? eventName : 'statusError';
+              var qxEventName = eventName !== 'error' ? eventName : 'statusError';
               ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
@@ -522,14 +523,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         ajaxRequest.set(Object.assign({
-          accept: "application/json"
+          accept: 'application/json'
         }, options || {}));
 
         if (callback) {
-          ajaxRequest.addListener("success", callback, context);
+          ajaxRequest.addListener('success', callback, context);
         }
 
-        ajaxRequest.addListener("statusError", this._onError, this);
+        ajaxRequest.addListener('statusError', this._onError, this);
         ajaxRequest.send();
         return ajaxRequest;
       },
@@ -553,7 +554,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           time: Date.now()
         };
         this.setConnected(false);
-        this.fireDataEvent("changeConnected", false);
+        this.fireDataEvent('changeConnected', false);
       },
 
       /**
@@ -587,8 +588,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.setBackend(Object.assign(this.getBackend(), json.c));
         }
 
-        this.session = json.s || "SESSION";
-        this.setServer(this.getResponseHeader(args, "Server"));
+        this.session = json.s || 'SESSION';
+        this.setServer(this.getResponseHeader(args, 'Server'));
         this.setDataReceived(false);
 
         if (this.loginSettings.loginOnly) {
@@ -622,38 +623,38 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       /**
        * Build the URL part that contains the addresses and filters
-       *
        * @param addresses {Array}
+       * @param asString
        * @return {Map}
        */
       buildRequest: function buildRequest(addresses, asString) {
         if (asString === true) {
           // return as query string
-          var qs = "s=" + this.session;
+          var qs = 's=' + this.session;
           addresses = addresses ? addresses : this.addresses;
-          qs += "&a=" + addresses.join("&a=");
+          qs += '&a=' + addresses.join('&a=');
 
           if (this.filters.length) {
-            qs += "&f=" + this.filters.join("&f=");
+            qs += '&f=' + this.filters.join('&f=');
           }
 
           return qs;
-        } else {
-          var data = {
-            s: this.session
-          };
-          addresses = addresses || this.addresses;
-
-          if (addresses && addresses.length) {
-            data.a = addresses;
-          }
-
-          if (this.filters.length) {
-            data.f = this.filters;
-          }
-
-          return data;
         }
+
+        var data = {
+          s: this.session
+        };
+        addresses = addresses || this.addresses;
+
+        if (addresses && addresses.length) {
+          data.a = addresses;
+        }
+
+        if (this.filters.length) {
+          data.f = this.filters;
+        }
+
+        return data;
       },
 
       /**
@@ -668,13 +669,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
          * could maybe selective based on UserAgent but isn't that costly on writes
          */
         var ts = new Date().getTime();
-        this.doRequest(this.getResourcePath("write"), {
+        this.doRequest(this.getResourcePath('write'), {
           s: this.session,
           a: address,
           v: value,
           ts: ts
         }, null, null, {
-          accept: "application/json, text/javascript, */*; q=0.01"
+          accept: 'application/json, text/javascript, */*; q=0.01'
         });
       },
       // this client does not implement an authorization
@@ -682,6 +683,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       /**
        * Restart the connection
+       * @param full
        */
       restart: function restart(full) {
         this.getCurrentTransport().restart(full);
@@ -731,4 +733,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1625667804970
+//# sourceMappingURL=Client.js.map?dt=1641882235033

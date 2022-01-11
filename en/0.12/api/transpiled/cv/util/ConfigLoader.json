@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 234,
+        "line": 233,
         "column": 3
       }
     },
@@ -112,11 +112,11 @@
     "load": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 126,
           "column": 5
         }
       },
@@ -126,6 +126,20 @@
             "name": "@description",
             "body": "<p>Load a config file</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback",
+            "paramName": "callback",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "context",
+            "paramName": "context",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -134,11 +148,11 @@
     "loadInclude": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 159,
           "column": 5
         }
       },
@@ -162,11 +176,11 @@
     "_checkQueue": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 170,
           "column": 5
         }
       },
@@ -190,11 +204,11 @@
     "configError": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 219,
           "column": 5
         }
       },
@@ -365,11 +379,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 228,
+        "line": 227,
         "column": 12
       },
       "end": {
-        "line": 233,
+        "line": 232,
         "column": 3
       }
     },

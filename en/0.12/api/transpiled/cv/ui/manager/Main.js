@@ -89,7 +89,7 @@
    */
   qx.Class.define('cv.ui.manager.Main', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
     include: [cv.ui.manager.control.MFileEventHandler],
     implement: [cv.ui.manager.IActionHandler, cv.ui.manager.control.IFileEventHandler],
 
@@ -106,11 +106,11 @@
       this._checkEnvironment();
 
       this.initOpenFiles(new qx.data.Array());
-      this.__P_24_0 = cv.ui.manager.control.ActionDispatcher.getInstance();
+      this.__P_23_0 = cv.ui.manager.control.ActionDispatcher.getInstance();
 
-      this.__P_24_0.setMain(this);
+      this.__P_23_0.setMain(this);
 
-      this.__P_24_1();
+      this.__P_23_1();
 
       this._draw();
 
@@ -183,8 +183,8 @@
     ***********************************************
     */
     members: {
-      __P_24_2: null,
-      __P_24_3: null,
+      __P_23_2: null,
+      __P_23_3: null,
       _pane: null,
       _tree: null,
       _stack: null,
@@ -193,16 +193,16 @@
       _mainContent: null,
       _openFilesController: null,
       _hiddenConfigFakeFile: null,
-      __P_24_0: null,
+      __P_23_0: null,
       _applyVisible: function _applyVisible(value) {
         var manager = qx.core.Init.getApplication().getCommandManager();
 
         if (value) {
           manager.setActive(this._managerCommands);
-          qx.bom.element.Style.set(this.__P_24_4(), "display", "block");
+          qx.bom.element.Style.set(this.__P_23_4(), 'display', 'block');
         } else {
           manager.setActive(this._oldCommandGroup);
-          qx.bom.element.Style.set(this.__P_24_4(), "display", "none");
+          qx.bom.element.Style.set(this.__P_23_4(), 'display', 'none');
         }
       },
       _checkEnvironment: function _checkEnvironment() {
@@ -211,15 +211,29 @@
             cv.ui.manager.snackbar.Controller.error(err);
           } else if (res) {
             res.forEach(function (env) {
+              var refreshActions = false;
+
               switch (env.entity) {
                 case '.':
                   // config folder must be writeable
                   if ((env.state & 1) === 0) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder does not exists'));
                   } else if ((env.state & 2) === 0) {
+                    cv.ui.manager.model.FileItem.ROOT.setReadable(false);
+                    refreshActions = true;
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not readable'));
                   } else if ((env.state & 4) === 0) {
+                    cv.ui.manager.model.FileItem.ROOT.setWriteable(false);
+                    refreshActions = true;
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
+                  }
+
+                  if (refreshActions) {
+                    var widget = this.__P_23_0.getFocusedWidget();
+
+                    this.__P_23_0.resetFocusedWidget();
+
+                    this.__P_23_0.setFocusedWidget(widget);
                   }
 
                   break;
@@ -255,7 +269,22 @@
           return false;
         }
 
-        return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone', 'about'].includes(actionName);
+        var actions = ['close', 'quit', 'about'];
+        var currentFolder = this.getCurrentFolder();
+
+        if (currentFolder.isWriteable()) {
+          actions.push('new-file');
+          actions.push('new-folder');
+          actions.push('delete');
+          actions.push('upload');
+          actions.push('clone');
+        }
+
+        if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+          actions.push('new-config-file');
+        }
+
+        return actions.includes(actionName);
       },
       handleAction: function handleAction(actionName, data) {
         switch (actionName) {
@@ -295,13 +324,11 @@
             }, function (err, res) {
               if (err) {
                 cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
+              } else if (data.file.isConfigFile()) {
+                // config files need to be cloned in the root folder
+                this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
               } else {
-                if (data.file.isConfigFile()) {
-                  // config files need to be cloned in the root folder
-                  this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
-                } else {
-                  this._onCreate('file', res);
-                }
+                this._onCreate('file', res);
               }
             }, this);
             break;
@@ -342,6 +369,8 @@
             if (openFile.getFile().isRelated(data.path)) {
               this.closeFile(openFile);
             }
+
+            return false;
           }, this);
 
           if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
@@ -351,7 +380,7 @@
           this.warn('unhandled file event', data.action);
         }
       },
-      __P_24_5: function __P_24_5(name) {
+      __P_23_5: function __P_23_5(name) {
         var file = null;
         var demoFolder = null;
         cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (child) {
@@ -361,6 +390,8 @@
             file = child;
             return true;
           }
+
+          return false;
         });
 
         if (!file && demoFolder) {
@@ -370,6 +401,8 @@
               file = child;
               return true;
             }
+
+            return false;
           });
         }
 
@@ -386,7 +419,7 @@
           case 'cv.manager.openWith':
             if (typeof data.file === 'string') {
               // this can only by a file in the root dir (a config)
-              data.file = this.__P_24_5(data.file);
+              data.file = this.__P_23_5(data.file);
             }
 
             this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
@@ -395,7 +428,7 @@
           case 'cv.manager.open':
             if (typeof data === 'string') {
               // this can only by a file in the root dir (a config)
-              data = this.__P_24_5(data);
+              data = this.__P_23_5(data);
             }
 
             this.openFile(data || this.getCurrentSelection(), false);
@@ -405,13 +438,14 @@
 
       /**
        * open selected file in preview mode
+       * @param ev
        * @private
        */
       _onChangeTreeSelection: function _onChangeTreeSelection(ev) {
         var data = ev.getData();
 
         if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap' || data.mode === 'dbltap') {
-          this.__P_24_6(data.node, data.mode);
+          this.__P_23_6(data.node, data.mode);
         }
 
         var node = data.node;
@@ -429,7 +463,7 @@
           this.resetCurrentSelection();
         }
       },
-      __P_24_6: function __P_24_6(node, mode) {
+      __P_23_6: function __P_23_6(node, mode) {
         if (node) {
           if (node.getType() === 'file') {
             this.openFile(node, mode === 'tap');
@@ -503,7 +537,7 @@
 
           this._stack.setSelection([editorConfig.instance]);
 
-          this.__P_24_0.setFocusedWidget(editorConfig.instance);
+          this.__P_23_0.setFocusedWidget(editorConfig.instance);
 
           cv.ui.manager.core.GlobalState.getInstance().setOpenedFocusedFile(file);
         } else {
@@ -512,29 +546,30 @@
       },
 
       /**
-       *
        * @param file {cv.ui.manager.model.FileItem} the file to open
        * @param preview {Boolean} open the file in preview mode
        * @param handlerId {String} use this handler to open the file (classname as string)
        * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer
+       * @param handlerOptions
        */
       openFile: function openFile(file, preview, handlerId, handlerType, handlerOptions) {
         var openFiles = this.getOpenFiles();
         var openFile;
+        var handlerConf;
 
         if (!handlerId) {
-          var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
+          handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
 
           if (!handlerConf) {
             // no handler
             cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
             return;
-          } else {
-            handlerId = handlerConf.Clazz.classname;
           }
+
+          handlerId = handlerConf.Clazz.classname;
         } else {
           // check if this handler opens the file in a external frame that is not connected to the manager
-          var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+          handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
 
           if (!handlerConf.instance) {
             handlerConf.instance = new handlerConf.Clazz();
@@ -551,6 +586,8 @@
             openFile = of;
             return true;
           }
+
+          return false;
         });
 
         if (!openFile) {
@@ -565,10 +602,10 @@
 
         if (preview === true) {
           if (!openFile.isPermanent()) {
-            if (this.__P_24_2 !== null && openFiles.getItem(this.__P_24_2) && !openFiles.getItem(this.__P_24_2).isPermanent()) {
-              openFiles.setItem(this.__P_24_2, openFile);
+            if (this.__P_23_2 !== null && openFiles.getItem(this.__P_23_2) && !openFiles.getItem(this.__P_23_2).isPermanent()) {
+              openFiles.setItem(this.__P_23_2, openFile);
             } else {
-              this.__P_24_2 = openFiles.length;
+              this.__P_23_2 = openFiles.length;
               openFiles.push(openFile);
             } // do not 'downgrade' the permanent state
 
@@ -576,12 +613,12 @@
             openFile.setPermanent(false);
           }
         } else {
-          if (!isOpen && (this.__P_24_2 === null || openFiles.indexOf(openFile) !== this.__P_24_2)) {
+          if (!isOpen && (this.__P_23_2 === null || openFiles.indexOf(openFile) !== this.__P_23_2)) {
             openFiles.push(openFile);
           }
 
           openFile.setPermanent(true);
-          this.__P_24_2 = null;
+          this.__P_23_2 = null;
         }
 
         this._openFilesController.getTarget().setModelSelection([openFile]);
@@ -594,6 +631,8 @@
               openFile = f;
               return true;
             }
+
+            return false;
           });
 
           if (!found) {
@@ -657,9 +696,9 @@
         if (this.getOpenFiles().length === 0) {
           this._stack.resetSelection();
 
-          this.__P_24_0.resetFocusedWidget();
+          this.__P_23_0.resetFocusedWidget();
 
-          this.__P_24_2 = null;
+          this.__P_23_2 = null;
         }
 
         if (selectionIndex > 0) {
@@ -697,19 +736,19 @@
       _onCloseFile: function _onCloseFile(ev) {
         this.closeFile(ev.getData());
       },
-      __P_24_4: function __P_24_4() {
-        if (!this.__P_24_3) {
-          this.__P_24_3 = qx.dom.Element.create('div', {
+      __P_23_4: function __P_23_4() {
+        if (!this.__P_23_3) {
+          this.__P_23_3 = qx.dom.Element.create('div', {
             id: 'manager',
             style: 'position: absolute; top: 0; left: 0; right: 0; bottom: 0;'
           });
-          qx.dom.Element.insertEnd(this.__P_24_3, document.body);
+          qx.dom.Element.insertEnd(this.__P_23_3, document.body);
           qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
         }
 
-        return this.__P_24_3;
+        return this.__P_23_3;
       },
-      __P_24_1: function __P_24_1() {
+      __P_23_1: function __P_23_1() {
         var group = this._managerCommands = new qx.ui.command.Group();
         group.add('save', new qx.ui.command.Command('Ctrl+S'));
         group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S')); // this command will close the browser window, thats not what we want
@@ -758,13 +797,13 @@
 
         this._openFilesController.getSelection().replace(openFiles);
       },
-      __P_24_7: function __P_24_7(message, callback, context, value, caption) {
+      __P_23_7: function __P_23_7(message, callback, context, value, caption) {
         var prompt = new cv.ui.manager.dialog.Prompt({
           message: message,
           callback: callback || null,
           context: context || null,
           value: value || null,
-          caption: caption || "",
+          caption: caption || '',
           filter: /[\w\d_\-\.\s]/
         });
         prompt.show();
@@ -777,7 +816,8 @@
           return;
         }
 
-        var message, existsMessage;
+        var message;
+        var existsMessage;
 
         if (type === 'config') {
           message = qx.locale.Manager.tr('Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)');
@@ -810,15 +850,13 @@
 
 
           var exists = currentFolder.getChildren().some(function (child) {
-            if (child.getName() === filename && child.getType() === type) {
-              return true;
-            }
+            return child.getName() === filename && child.getType() === type;
           }, this);
 
           if (exists) {
             cv.ui.manager.snackbar.Controller.error(existsMessage);
 
-            this.__P_24_7(message, handlePrompt, this, name);
+            this.__P_23_7(message, handlePrompt, this, name);
           } else {
             var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
             item.set({
@@ -871,7 +909,7 @@
           }
         };
 
-        this.__P_24_7(message, handlePrompt, this);
+        this.__P_23_7(message, handlePrompt, this);
       },
 
       /**
@@ -882,9 +920,9 @@
        * @param elem {Element} The element to query
        * @return {Element} The next parent element which is droppable. May also be <code>null</code>
        */
-      __P_24_8: function __P_24_8(elem) {
+      __P_23_8: function __P_23_8(elem) {
         while (elem && elem.nodeType === 1) {
-          if (elem.getAttribute("qxDroppable") === "on") {
+          if (elem.getAttribute('qxDroppable') === 'on') {
             return elem;
           }
 
@@ -895,7 +933,7 @@
       },
       // overridden
       _draw: function _draw() {
-        var domRoot = this.__P_24_4();
+        var domRoot = this.__P_23_4();
 
         var root = new qx.ui.root.Inline(domRoot, true, true);
         this.bind('visible', root, 'visibility', {
@@ -907,14 +945,14 @@
           // disable file drop
           var element = root.getContentElement().getDomElement();
           element.addEventListener('drop', function (ev) {
-            var target = this.__P_24_8(ev.target);
+            var target = this.__P_23_8(ev.target);
 
             if (!target) {
               ev.preventDefault();
             }
           }.bind(this));
           element.addEventListener('dragover', function (ev) {
-            var target = this.__P_24_8(ev.target);
+            var target = this.__P_23_8(ev.target);
 
             if (!target) {
               ev.preventDefault();
@@ -928,6 +966,9 @@
           bottom: 10,
           left: 200
         });
+        /**
+         *
+         */
 
         function resize() {
           var bounds = root.getBounds();
@@ -974,7 +1015,7 @@
         this.setCurrentFolder(rootFolder);
         this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
 
-        this._tree.addListener("changeSelection", this._onChangeTreeSelection, this); // left container
+        this._tree.addListener('changeSelection', this._onChangeTreeSelection, this); // left container
 
 
         var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox()); // left toolbar
@@ -1004,7 +1045,7 @@
 
         var list = new qx.ui.form.List(true);
         list.setAppearance('open-files-tabs');
-        this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "file.name");
+        this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, 'file.name');
 
         this._openFilesController.setDelegate({
           createItem: function () {
@@ -1042,11 +1083,11 @@
       },
       _showAbout: function _showAbout() {
         var dialogConf = {
-          caption: qx.locale.Manager.tr("About"),
+          caption: qx.locale.Manager.tr('About'),
           modal: true,
           minWidth: Math.min(500, qx.bom.Viewport.getWidth()),
           maxHeight: qx.bom.Viewport.getHeight(),
-          message: "\n<div class=\"about-cv\">\n <img src=\"resource/icons/comet_icon_128x128_ff8000.png\" width=\"128\" height=\"128\"/>\n <h2>CometVisu ".concat(cv.Version.VERSION, "</h2>\n <div class=\"info\">\n   <label for=\"date\">").concat(qx.locale.Manager.tr("Build date"), ": </label><span id=\"date\">").concat(cv.Version.DATE, "</span><br/>\n   <label for=\"build\">").concat(qx.locale.Manager.tr("Build revision"), ": </label><span id=\"build\">").concat(cv.Version.REV, "</span><br/>\n   <label for=\"lib-version\">").concat(qx.locale.Manager.tr("Library version"), ": </label><span id=\"lib-version\">").concat(cv.Version.LIBRARY_VERSION, "</span>\n </div>\n</div>")
+          message: "\n<div class=\"about-cv\">\n <img src=\"resource/icons/comet_icon_128x128_ff8000.png\" width=\"128\" height=\"128\"/>\n <h2>CometVisu ".concat(cv.Version.VERSION, "</h2>\n <div class=\"info\">\n   <label for=\"date\">").concat(qx.locale.Manager.tr('Build date'), ": </label><span id=\"date\">").concat(cv.Version.DATE, "</span><br/>\n   <label for=\"build\">").concat(qx.locale.Manager.tr('Build revision'), ": </label><span id=\"build\">").concat(cv.Version.REV, "</span><br/>\n   <label for=\"lib-version\">").concat(qx.locale.Manager.tr('Library version'), ": </label><span id=\"lib-version\">").concat(cv.Version.LIBRARY_VERSION, "</span>\n </div>\n</div>")
         };
         new cv.ui.manager.dialog.BigAlert(dialogConf).show();
       }
@@ -1069,9 +1110,9 @@
       new qx.util.DeferredCall(function () {
         application.resetRoot();
       }).schedule();
-      document.body.removeChild(this.__P_24_3);
-      this.__P_24_3 = null;
-      this.__P_24_0 = null;
+      document.body.removeChild(this.__P_23_3);
+      this.__P_23_3 = null;
+      this.__P_23_0 = null;
       qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this); // destroy the singleton instance
 
       delete cv.ui.manager.Main.$$instance;
@@ -1080,4 +1121,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1625667766447
+//# sourceMappingURL=Main.js.map?dt=1641882199312

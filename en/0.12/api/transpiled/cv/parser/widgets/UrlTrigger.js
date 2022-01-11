@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.UrlTrigger', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -62,10 +62,10 @@
         return {
           'value': {
             target: 'sendValue',
-            "default": "0"
+            'default': '0'
           },
           'params': {
-            "default": ''
+            'default': ''
           },
           'url': {}
         };
@@ -77,10 +77,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("urltrigger", statics);
+      cv.parser.WidgetParser.addHandler('urltrigger', statics);
     }
   });
   cv.parser.widgets.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1625667764841
+//# sourceMappingURL=UrlTrigger.js.map?dt=1641882197792

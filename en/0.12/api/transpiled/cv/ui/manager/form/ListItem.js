@@ -30,13 +30,13 @@
         var control;
 
         switch (id) {
-          case "icon":
+          case 'icon':
             control = new cv.ui.manager.basic.Image(this.getIcon());
             control.setAnonymous(true);
 
             this._addAt(control, 0);
 
-            if (this.getIcon() == null || this.getShow() === "label") {
+            if (this.getIcon() === null || this.getShow() === 'label') {
               control.exclude();
             }
 
@@ -50,4 +50,4 @@
   cv.ui.manager.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1625667768677
+//# sourceMappingURL=ListItem.js.map?dt=1641882201405

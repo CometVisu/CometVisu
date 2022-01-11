@@ -90,15 +90,17 @@
         if (address !== undefined && data !== undefined) {
           return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
         }
+
+        return null;
       }
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("diagram_info", statics);
-      cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
+      cv.parser.WidgetParser.addHandler('diagram_info', statics);
+      cv.ui.structure.WidgetFactory.registerClass('diagram_info', statics);
     }
   });
   cv.plugins.diagram.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1625667765837
+//# sourceMappingURL=Info.js.map?dt=1641882198723

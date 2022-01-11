@@ -4,7 +4,8 @@
       "qx.Class": {
         "usage": "dynamic",
         "require": true
-      }
+      },
+      "qx.log.Logger": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -28,7 +29,7 @@
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
   qx.Class.define('cv.util.String', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -36,7 +37,7 @@
     ******************************************************
     */
     statics: {
-      __P_504_0: null,
+      __P_505_0: null,
 
       /**
        * Decode HTML entities like &amp; to &
@@ -44,25 +45,25 @@
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__P_504_0) {
-          this.__P_504_0 = document.createElement("span");
+        if (!this.__P_505_0) {
+          this.__P_505_0 = document.createElement('span');
         }
 
-        this.__P_504_0.innerHTML = str;
-        return this.__P_504_0.innerText;
+        this.__P_505_0.innerHTML = str;
+        return this.__P_505_0.innerText;
       },
 
       /**
        * Clean the string that contains HTML code and convert it to a DOM element
        * @param str {String} string to decode
-       * @return {String}
+       * @return {Element}
        */
       htmlStringToDomElement: function htmlStringToDomElement(str) {
         //var widget = qx.bom.Html.clean([res[1]])[0];
         //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
         var div = document.createElement('div');
         div.innerHTML = str;
-        return div.childNodes[0];
+        return div.children[0];
       },
 
       /**
@@ -89,7 +90,7 @@
         try {
           string = sprintf.apply(this, args);
         } catch (err) {
-          console.warn(err, args);
+          qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));
         }
 
         return string;
@@ -99,4 +100,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1625667806226
+//# sourceMappingURL=String.js.map?dt=1641882236509

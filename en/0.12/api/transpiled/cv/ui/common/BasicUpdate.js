@@ -39,7 +39,7 @@
    * This role provides the basic update methods
    *
    */
-  qx.Mixin.define("cv.ui.common.BasicUpdate", {
+  qx.Mixin.define('cv.ui.common.BasicUpdate', {
     include: cv.ui.common.HasAddress,
 
     /*
@@ -54,7 +54,7 @@
       value: {
         nullable: true,
         init: null,
-        event: "changeValue"
+        event: 'changeValue'
       },
 
       /**
@@ -69,8 +69,8 @@
        * Format to apply to incoming values
        */
       format: {
-        check: "String",
-        init: "",
+        check: 'String',
+        init: '',
         nullable: true
       }
     },
@@ -118,9 +118,9 @@
 
                 return range[min][1];
               }
-            } else if (mapping["*"]) {
+            } else if (mapping['*']) {
               // catchall mapping
-              return mapping["*"];
+              return mapping['*'];
             }
 
             return v; // pass through when nothing was found
@@ -192,7 +192,7 @@
       getNextMappedValue: function getNextMappedValue(value, this_map) {
         if (this_map && cv.Config.hasMapping(this_map)) {
           var keys = Object.keys(cv.Config.getMapping(this_map));
-          return keys[(keys.indexOf("" + value) + 1) % keys.length];
+          return keys[(keys.indexOf('' + value) + 1) % keys.length];
         }
 
         return value;
@@ -282,9 +282,9 @@
       defaultValue2DOM: function defaultValue2DOM(value, modifyFn) {
         var element;
 
-        if ('string' === typeof value || 'number' === typeof value || value instanceof Uint8Array || value instanceof Map) {
+        if (typeof value === 'string' || typeof value === 'number' || value instanceof Uint8Array || value instanceof Map) {
           modifyFn(value);
-        } else if ('function' === typeof value) {
+        } else if (typeof value === 'function') {
           // thisValue(valueElement);
           this.error('typeof value === function - special case not handled anymore!');
         } else if (!Array.isArray(value)) {
@@ -303,9 +303,9 @@
               continue;
             }
 
-            if ('string' === typeof thisValue || 'number' === typeof thisValue) {
+            if (typeof thisValue === 'string' || typeof thisValue === 'number') {
               modifyFn(thisValue);
-            } else if ('function' === typeof thisValue) {
+            } else if (typeof thisValue === 'function') {
               // thisValue(valueElement);
               this.error('typeof value === function - special case not handled anymore!');
             } else {
@@ -370,4 +370,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1625667805974
+//# sourceMappingURL=BasicUpdate.js.map?dt=1641882236042

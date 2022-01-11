@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 148,
+        "line": 151,
         "column": 3
       }
     },
@@ -167,14 +167,56 @@
       "type": "variable",
       "access": "private"
     },
-    "setParentWidget": {
+    "_domElement": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 77,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "setDomElement": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Override DomElement</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setParentWidget": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
           "column": 5
         }
       },
@@ -184,11 +226,11 @@
     "getParentWidget": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 100,
           "column": 5
         }
       },
@@ -198,11 +240,11 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 111,
           "column": 5
         }
       },
@@ -228,11 +270,11 @@
     "getDomString": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 116,
+          "line": 119,
           "column": 5
         }
       },
@@ -258,11 +300,11 @@
     "getParentPage": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 134,
           "column": 5
         }
       },
@@ -288,11 +330,11 @@
     "getVisibilityParent": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 149,
           "column": 5
         }
       },

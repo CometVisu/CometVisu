@@ -190,37 +190,39 @@
             break;
 
           case 'toolbar':
-            control = new qx.ui.toolbar.ToolBar();
-            var part = new qx.ui.toolbar.Part();
-            var listButton = this._listButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('listViewMode', 22));
-            listButton.setUserData('mode', 'list');
-            listButton.set({
-              show: 'icon',
-              toolTipText: this.tr('List mode')
-            });
-            var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('previewMode', 22));
-            previewButton.setUserData('mode', 'preview');
-            previewButton.set({
-              show: 'icon',
-              toolTipText: this.tr('Preview mode')
-            });
-            part.add(listButton);
-            part.add(previewButton);
-            control.add(part);
-            this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
+            {
+              control = new qx.ui.toolbar.ToolBar();
+              var part = new qx.ui.toolbar.Part();
+              var listButton = this._listButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('listViewMode', 22));
+              listButton.setUserData('mode', 'list');
+              listButton.set({
+                show: 'icon',
+                toolTipText: this.tr('List mode')
+              });
+              var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('previewMode', 22));
+              previewButton.setUserData('mode', 'preview');
+              previewButton.set({
+                show: 'icon',
+                toolTipText: this.tr('Preview mode')
+              });
+              part.add(listButton);
+              part.add(previewButton);
+              control.add(part);
+              this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
 
-            this._onChangeViewMode();
+              this._onChangeViewMode();
 
-            this._radioGroup.addListener('changeSelection', function (ev) {
-              var selection = ev.getData()[0];
-              cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData('mode'));
-            }, this);
+              this._radioGroup.addListener('changeSelection', function (ev) {
+                var selection = ev.getData()[0];
+                cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData('mode'));
+              }, this);
 
-            cv.ui.manager.model.Preferences.getInstance().addListener('changeStartViewMode', this._onChangeViewMode, this);
+              cv.ui.manager.model.Preferences.getInstance().addListener('changeStartViewMode', this._onChangeViewMode, this);
 
-            this._add(control);
+              this._add(control);
 
-            break;
+              break;
+            }
 
           case 'configs-title':
             control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
@@ -340,7 +342,7 @@
               disableScrolling: true
             });
 
-            this.__P_26_0(control);
+            this.__P_25_0(control);
 
             this.getChildControl('content').add(control, {
               flex: 1
@@ -350,10 +352,10 @@
 
         return control || cv.ui.manager.Start.prototype._createChildControlImpl.base.call(this, id);
       },
-      __P_26_0: function __P_26_0(folderWidget) {
+      __P_25_0: function __P_25_0(folderWidget) {
         if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
           cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', function () {
-            this.__P_26_0(folderWidget);
+            this.__P_25_0(folderWidget);
           }, this);
           return;
         } // find the real 'hidden.php' in the root folder
@@ -372,6 +374,8 @@
             specialFiles.unshift(file);
             return true;
           }
+
+          return false;
         });
         var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
           fake: true,
@@ -398,4 +402,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1625667766590
+//# sourceMappingURL=Start.js.map?dt=1641882199433

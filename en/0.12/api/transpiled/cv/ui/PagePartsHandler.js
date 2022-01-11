@@ -79,31 +79,47 @@
       updateTopNavigation: function updateTopNavigation(path) {
         path = path.split('_');
         path.pop();
-        var id = "id_"; //path[0];
+        var id = 'id_'; //path[0];
 
-        var pageTitle = document.querySelector("#" + id + " h1").textContent;
-        var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_' + id + '">' + pageTitle + '</a>';
+        var pathNode = document.querySelector('.nav_path');
+        pathNode.innerHTML = '';
+        var pageTitle = document.querySelector('#' + id + ' h1').textContent;
+        var nav = document.createElement('a'); // eslint-disable-next-line no-script-url
+
+        nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+        nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+        nav.appendChild(document.createTextNode(pageTitle));
+        pathNode.appendChild(nav);
 
         for (var i = 1; i < path.length; i++) {
           // element 0 is id_ (JNK)
           id += path[i] + '_';
-          var pageElem = document.querySelector("#" + id);
+          var pageElem = document.querySelector('#' + id);
 
-          if (pageElem && pageElem.classList.contains("page")) {
+          if (pageElem && pageElem.classList.contains('page')) {
             // FIXME is this still needed?!?
-            pageTitle = document.querySelector("#" + id + " h1").textContent;
-            nav += "<span> &#x25ba; </span><a href=\"javascript:cv.TemplateEngine.getInstance().scrollToPage('" + id + '\')" id="breadcrump_pagejump_' + id + '">' + pageTitle + '</a>';
-          }
-        }
+            pageTitle = document.querySelector('#' + id + ' h1').textContent;
+            var span = document.createElement('span');
+            span.innerHTML = ' &#x25ba; ';
+            pathNode.appendChild(span);
+            nav = document.createElement('a'); // eslint-disable-next-line no-script-url
 
-        document.querySelector(".nav_path").innerHTML = nav; // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
+            nav.setAttribute('href', 'javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')');
+            nav.setAttribute('id', 'breadcrump_pagejump_' + id);
+            nav.appendChild(document.createTextNode(pageTitle));
+            pathNode.appendChild(nav);
+          }
+        } // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
         //                             any effect on the page size => commented out
+
       },
 
       /**
        * Change the size of the selected navbar
        *
        * currently only "left" and "right" are implemented
+       * @param position
+       * @param size
        */
       navbarSetSize: function navbarSetSize(position, size) {
         var cssSize = size + (isFinite(size) ? 'px' : '');
@@ -122,7 +138,7 @@
             break;
 
           case 'right':
-            document.querySelector('#centerContainer').style["padding-right"] = cssSize;
+            document.querySelector('#centerContainer').style['padding-right'] = cssSize;
             navbar = document.querySelector('#navbarRight');
             navbar.style.width = cssSize;
             navbar.style['margin-right'] = '-' + cssSize;
@@ -149,7 +165,7 @@
           };
         }
 
-        if (typeof page === "string") {
+        if (typeof page === 'string') {
           page = cv.ui.structure.WidgetFactory.getInstanceById(page);
         } else if (page.attributes) {
           page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute('id'));
@@ -162,14 +178,14 @@
             left: true,
             right: true
           };
-        } else {
-          return {
-            top: page.getShowNavbarTop(),
-            bottom: page.getShowNavbarBottom(),
-            left: page.getShowNavbarLeft(),
-            right: page.getShowNavbarRight()
-          };
         }
+
+        return {
+          top: page.getShowNavbarTop(),
+          bottom: page.getShowNavbarBottom(),
+          left: page.getShowNavbarLeft(),
+          right: page.getShowNavbarRight()
+        };
       },
 
       /**
@@ -182,13 +198,12 @@
         // default values
         var showtopnavigation = true;
         var showfooter = true;
-        var shownavbar = this.getNavbarsVisibility(page);
 
         if (page) {
           if (!page.isInitialized()) {
             // page is not ready, defer this update
             var self = this;
-            page.addListenerOnce("changeInitialized", function () {
+            page.addListenerOnce('changeInitialized', function () {
               self.updatePageParts(page, speed);
             }, this);
             return;
@@ -198,33 +213,29 @@
           showfooter = page.getShowFooter();
         }
 
-        var topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
-        var bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
+        var topDisplay = window.getComputedStyle(document.querySelector('#top'))['display'];
+        var bottomDisplay = window.getComputedStyle(document.querySelector('#bottom'))['display'];
 
         if (showtopnavigation) {
-          if (topDisplay === "none") {
+          if (topDisplay === 'none') {
             document.querySelectorAll('#top, #top > *').forEach(function (elem) {
-              elem.style.display = "block";
+              elem.style.display = 'block';
             }, this);
             this.removeInactiveNavbars(page.getPath());
           }
-        } else {
-          if (topDisplay !== "none") {
-            document.querySelector("#top").style.display = "none";
-            this.removeInactiveNavbars(page.getPath());
-          }
+        } else if (topDisplay !== 'none') {
+          document.querySelector('#top').style.display = 'none';
+          this.removeInactiveNavbars(page.getPath());
         }
 
         if (showfooter) {
-          if (bottomDisplay === "none") {
-            document.querySelector("#bottom").style.display = "block";
+          if (bottomDisplay === 'none') {
+            document.querySelector('#bottom').style.display = 'block';
             this.removeInactiveNavbars(page.getPath());
           }
-        } else {
-          if (bottomDisplay !== "none") {
-            document.querySelector("#bottom").style.display = "none";
-            this.removeInactiveNavbars(page.getPath());
-          }
+        } else if (bottomDisplay !== 'none') {
+          document.querySelector('#bottom').style.display = 'none';
+          this.removeInactiveNavbars(page.getPath());
         }
 
         cv.ui.layout.ResizeHandler.invalidateNavbar();
@@ -251,7 +262,7 @@
         };
 
         switch (direction) {
-          case "in":
+          case 'in':
             if (window.getComputedStyle(navbar).display === 'none') {
               initCss.display = 'block';
             }
@@ -259,30 +270,30 @@
             targetCss[key] = 0;
 
             switch (position) {
-              case "Top":
-              case "Bottom":
+              case 'Top':
+              case 'Bottom':
                 initCss[key] = -navbar.getBoundingClientRect().height + 'px';
                 break;
 
-              case "Left":
-              case "Right":
+              case 'Left':
+              case 'Right':
                 initCss[key] = -navbar.getBoundingClientRect().width + 'px';
                 break;
             }
 
             break;
 
-          case "out":
+          case 'out':
             initCss[key] = 0;
 
             switch (position) {
-              case "Top":
-              case "Bottom":
+              case 'Top':
+              case 'Bottom':
                 targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
                 break;
 
-              case "Left":
-              case "Right":
+              case 'Left':
+              case 'Right':
                 targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
                 break;
             }
@@ -310,7 +321,7 @@
             }
           };
           var anim = qx.bom.element.Animation.animate(navbar, spec);
-          anim.addListenerOnce("end", onAnimationEnd, this);
+          anim.addListenerOnce('end', onAnimationEnd, this);
         }
       },
 
@@ -325,8 +336,8 @@
         this.removeInactiveNavbars(page_id);
         var tree = Array.from(document.querySelectorAll('#id_'));
 
-        if (page_id !== "id_") {
-          var parts = page_id.split("_");
+        if (page_id !== 'id_') {
+          var parts = page_id.split('_');
           parts.pop();
           parts[0] = '';
 
@@ -334,7 +345,7 @@
             var subPath = parts.slice(0, i + 1).join('_');
 
             if (subPath) {
-              var item = document.querySelectorAll('#id' + subPath + "_.page");
+              var item = document.querySelectorAll('#id' + subPath + '_.page');
 
               if (item.length === 1) {
                 tree.push(item[0]);
@@ -379,11 +390,9 @@
 
               if (data.width !== null) {
                 size[pos] = data.width;
-              } else {
-                if (size[pos] === 0) {
-                  // navbar with content but no size given so far => use default
-                  size[pos] = 300;
-                }
+              } else if (size[pos] === 0) {
+                // navbar with content but no size given so far => use default
+                size[pos] = 300;
               }
             }
           });
@@ -400,7 +409,7 @@
           var navBarPath = elem.getAttribute('id').split('_'); // skip last 2 elements e.g. '_top_navbar'
 
           navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
-          var expr = new RegExp("^" + navBarPath + ".*", "i");
+          var expr = new RegExp('^' + navBarPath + '.*', 'i');
 
           if (navBarPath !== page_id && !expr.test(page_id)) {
             elem.classList.remove('navbarActive');
@@ -412,4 +421,4 @@
   cv.ui.PagePartsHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PagePartsHandler.js.map?dt=1625667808344
+//# sourceMappingURL=PagePartsHandler.js.map?dt=1641882238719

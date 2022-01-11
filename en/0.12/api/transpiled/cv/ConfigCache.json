@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 228,
+        "line": 232,
         "column": 3
       }
     },
@@ -264,11 +264,11 @@
     "hashCode": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 230,
           "column": 5
         }
       },
@@ -277,6 +277,14 @@
           {
             "name": "@description",
             "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "string",
+            "paramName": "string",
+            "type": ""
           }
         ],
         "@see": [

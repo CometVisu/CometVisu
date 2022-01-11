@@ -99,15 +99,15 @@
     */
     properties: {
       noWidget: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       },
       name: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       target: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -142,7 +142,7 @@
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Group.prototype._onDomReady.base.call(this);
 
-        this.getDomElement().style["z-index"] = 1;
+        this.getDomElement().style['z-index'] = 1;
       },
       // overridden
       getDomString: function getDomString() {
@@ -165,10 +165,10 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("group", statics);
+      cv.ui.structure.WidgetFactory.registerClass('group', statics);
     }
   });
   cv.ui.structure.pure.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1625667770436
+//# sourceMappingURL=Group.js.map?dt=1641882203172

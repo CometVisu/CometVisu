@@ -47,19 +47,19 @@
     */
     properties: {
       width: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       height: {
-        check: "String",
+        check: 'String',
         nullable: true
       },
       src: {
-        check: "String",
-        init: ""
+        check: 'String',
+        init: ''
       },
       autoplay: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false
       }
     },
@@ -92,7 +92,7 @@
       },
       // overridden
       getValueElement: function getValueElement() {
-        return this.getDomElement().querySelector("video");
+        return this.getDomElement().querySelector('video');
       },
       // overridden
       _applyVisible: function _applyVisible(value) {
@@ -111,4 +111,4 @@
   cv.ui.structure.pure.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1625667771210
+//# sourceMappingURL=Video.js.map?dt=1641882203872

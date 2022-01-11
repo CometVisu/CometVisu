@@ -36,7 +36,7 @@
 
   /**
    * Transformations for the openHAB backend
-   * 
+   *
    * @author Tobias Bräutigam
    * @since 2012
    */
@@ -69,7 +69,7 @@
               return 0;
             }
 
-            return string === "ON" || parseInt(string) > 0 ? 1 : 0;
+            return string === 'ON' || parseInt(string) > 0 ? 1 : 0;
           }
         },
         'contact': {
@@ -83,54 +83,57 @@
               return 0;
             }
 
-            return string === "OPEN" ? 1 : 0;
+            return string === 'OPEN' ? 1 : 0;
           }
         },
         'rollershutter': {
-          name: "OH_RollerShutter",
+          name: 'OH_RollerShutter',
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
+            // noinspection EqualityComparisonWithCoercionJS
             if (phy == 1) {
-              return 'DOWN';
-            } // jshint ignore:line
-            else if (phy == 0) {
+              return 'DOWN'; // eslint-disable-next-line no-else-return
+            } else {
+              // noinspection EqualityComparisonWithCoercionJS
+              if (phy == 0) {
+                // eslint-disable-line no-lonely-if
                 return 'UP';
-              } // jshint ignore:line
-              else {
-                  return phy;
-                }
+              }
+            }
+
+            return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return 0;
-            } else if (str === "UP") {
+            } else if (str === 'UP') {
               return 0;
-            } else if (str === "DOWN") {
+            } else if (str === 'DOWN') {
               return 1;
-            } else {
-              return str;
             }
+
+            return str;
           }
         },
         'dimmer': {
-          name: "OH_Dimmer",
+          name: 'OH_Dimmer',
           encode: function encode(phy) {
             return parseInt(phy);
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return 0;
-            } else if (str === "ON") {
+            } else if (str === 'ON') {
               return 100;
-            } else if (str === "OFF") {
+            } else if (str === 'OFF') {
               return 0;
-            } else {
-              return parseInt(str);
             }
+
+            return parseInt(str);
           }
         },
         'number': {
-          name: "OH_Number",
+          name: 'OH_Number',
           encode: function encode(phy) {
             return parseFloat(phy);
           },
@@ -143,7 +146,7 @@
           }
         },
         'string': {
-          name: "OH_String",
+          name: 'OH_String',
           encode: function encode(phy) {
             return phy;
           },
@@ -156,13 +159,13 @@
           }
         },
         'datetime': {
-          name: "OH_DateTime",
+          name: 'OH_DateTime',
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleDateString();
-            } else {
-              return phy;
             }
+
+            return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
@@ -173,13 +176,13 @@
           }
         },
         'time': {
-          name: "OH_Time",
+          name: 'OH_Time',
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleTimeString();
-            } else {
-              return phy;
             }
+
+            return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
@@ -187,7 +190,7 @@
             }
 
             var date = new Date();
-            var parts = str.split(":");
+            var parts = str.split(':');
             date.setHours(parseInt(parts[0]));
             date.setMinutes(parseInt(parts[1]));
             date.setSeconds(parseInt(parts[2]));
@@ -195,7 +198,7 @@
           }
         },
         'color': {
-          name: "OH_Color",
+          name: 'OH_Color',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               return '0, 0, 0';
@@ -210,7 +213,7 @@
             } // decode HSV/HSB to RGB
 
 
-            var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
+            var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
             return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
           }
         }
@@ -220,4 +223,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1625667766243
+//# sourceMappingURL=OpenHab.js.map?dt=1641882199118

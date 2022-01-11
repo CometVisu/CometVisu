@@ -39,7 +39,7 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
-  qx.Class.define("cv.ui.util.ProgressBar", {
+  qx.Class.define('cv.ui.util.ProgressBar', {
     extend: qx.core.Object,
 
     /*
@@ -60,9 +60,9 @@
     */
     properties: {
       value: {
-        check: "Integer",
+        check: 'Integer',
         init: 0,
-        apply: "_applyValue"
+        apply: '_applyValue'
       }
     },
 
@@ -72,25 +72,24 @@
     ******************************************************
     */
     members: {
-      __P_537_0: null,
-      __P_537_1: null,
+      __P_538_0: null,
+      __P_538_1: null,
       _applyValue: function _applyValue(value) {
-        var rect = this.__P_537_0.getBoundingClientRect(),
-            totalWidth = Math.round(rect.right - rect.left),
-            progressWidth = Math.round(totalWidth * value / 100) + "px";
+        var rect = this.__P_538_0.getBoundingClientRect();
 
-        this.__P_537_1.style.width = progressWidth;
+        var totalWidth = Math.round(rect.right - rect.left);
+        this.__P_538_1.style.width = Math.round(totalWidth * value / 100) + 'px';
       },
       getDomElement: function getDomElement() {
-        return this.__P_537_0;
+        return this.__P_538_0;
       },
       _createDomElement: function _createDomElement() {
-        var container = this.__P_537_0 = qx.dom.Element.create("div", {
-          "class": "progressbar"
+        var container = this.__P_538_0 = qx.dom.Element.create('div', {
+          'class': 'progressbar'
         });
-        this.__P_537_0.$$widget = this;
-        var progress = this.__P_537_1 = qx.dom.Element.create("div", {
-          "class": "completed"
+        this.__P_538_0.$$widget = this;
+        var progress = this.__P_538_1 = qx.dom.Element.create('div', {
+          'class': 'completed'
         });
         container.appendChild(progress);
         return container;
@@ -100,4 +99,4 @@
   cv.ui.util.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1625667809799
+//# sourceMappingURL=ProgressBar.js.map?dt=1641882239971

@@ -268,8 +268,8 @@
           }
         } // If config has a 'extend' key but it's null or undefined
         else if (config.hasOwnProperty('extend') && false) {
-            throw new Error('"extend" parameter is null or undefined');
-          } // Process environment
+          throw new Error('"extend" parameter is null or undefined');
+        } // Process environment
 
 
         if (config.environment) {
@@ -1187,4 +1187,4 @@
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1625667771565
+//# sourceMappingURL=Class.js.map?dt=1641882204185

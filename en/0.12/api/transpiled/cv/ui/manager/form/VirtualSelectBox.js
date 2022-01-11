@@ -30,8 +30,8 @@
         var control;
 
         switch (id) {
-          case "atom":
-            control = new cv.ui.manager.form.ListItem("");
+          case 'atom':
+            control = new cv.ui.manager.form.ListItem('');
             control.setCenter(false);
             control.setAnonymous(true);
 
@@ -49,4 +49,4 @@
   cv.ui.manager.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1625667768836
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1641882201542

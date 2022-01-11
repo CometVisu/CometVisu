@@ -70,7 +70,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       error: function error(message) {
         var msg = new cv.ui.manager.model.Message();
 
-        if (_typeof(message) === 'object' && message.hasOwnProperty('statusText')) {
+        if (_typeof(message) === 'object' && Object.prototype.hasOwnProperty.call(message, 'statusText')) {
           message = message.statusText;
         }
 
@@ -168,4 +168,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.manager.snackbar.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1625667769876
+//# sourceMappingURL=Controller.js.map?dt=1641882202492

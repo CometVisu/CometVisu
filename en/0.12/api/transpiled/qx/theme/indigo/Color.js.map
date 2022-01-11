@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Color.js"
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Color.js"
   ],
   "names": [
     "qx",

@@ -58,7 +58,7 @@
     */
     properties: {
       sendValue: {
-        check: "String",
+        check: 'String',
         nullable: true
       }
     },
@@ -87,4 +87,4 @@
   cv.ui.structure.pure.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1625667770836
+//# sourceMappingURL=Refresh.js.map?dt=1641882203546

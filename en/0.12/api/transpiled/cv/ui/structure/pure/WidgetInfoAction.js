@@ -58,7 +58,7 @@
         init: true
       },
       childObjects: {
-        check: "Array",
+        check: 'Array',
         init: []
       }
     },
@@ -75,11 +75,11 @@
       }
     },
     defer: function defer(statics) {
-      cv.ui.structure.WidgetFactory.registerClass("widgetinfo", statics);
-      cv.ui.structure.WidgetFactory.registerClass("widgetaction", statics);
+      cv.ui.structure.WidgetFactory.registerClass('widgetinfo', statics);
+      cv.ui.structure.WidgetFactory.registerClass('widgetaction', statics);
     }
   });
   cv.ui.structure.pure.WidgetInfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetInfoAction.js.map?dt=1625667771273
+//# sourceMappingURL=WidgetInfoAction.js.map?dt=1641882203930

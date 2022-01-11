@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 584,
+        "line": 613,
         "column": 3
       }
     },
@@ -47,15 +47,28 @@
     }
   },
   "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 47,
+        "column": 13
+      },
+      "end": {
+        "line": 50,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
   "statics": {
     "coord": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 60,
           "column": 5
         }
       },
@@ -65,11 +78,11 @@
     "createBarPath": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 168,
           "column": 5
         }
       },
@@ -120,11 +133,11 @@
     "createPointerPath": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 193,
           "column": 5
         }
       },
@@ -157,11 +170,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 202,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 202,
           "column": 28
         }
       },
@@ -172,11 +185,11 @@
     "indicators": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 203,
           "column": 34
         }
       },
@@ -187,11 +200,11 @@
     "min": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 205,
           "column": 28
         }
       },
@@ -202,11 +215,11 @@
     "max": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 206,
           "column": 28
         }
       },
@@ -217,11 +230,11 @@
     "axisradius": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 207,
           "column": 35
         }
       },
@@ -232,11 +245,11 @@
     "axiswidth": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 208,
           "column": 34
         }
       },
@@ -247,11 +260,11 @@
     "axiscolor": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 209,
           "column": 34
         }
       },
@@ -262,11 +275,11 @@
     "ranges": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 191,
+          "line": 210,
           "column": 30
         }
       },
@@ -277,11 +290,11 @@
     "minorradius": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 211,
           "column": 36
         }
       },
@@ -292,11 +305,11 @@
     "minorwidth": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 212,
           "column": 35
         }
       },
@@ -307,11 +320,11 @@
     "minorspacing": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 213,
           "column": 37
         }
       },
@@ -322,11 +335,11 @@
     "minorcolor": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 214,
           "column": 35
         }
       },
@@ -337,11 +350,11 @@
     "majorradius": {
       "location": {
         "start": {
-          "line": 196,
+          "line": 215,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 215,
           "column": 36
         }
       },
@@ -352,11 +365,11 @@
     "majorwidth": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 216,
           "column": 35
         }
       },
@@ -367,11 +380,11 @@
     "majorposition": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 217,
           "column": 38
         }
       },
@@ -382,11 +395,11 @@
     "majorcolor": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 218,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 218,
           "column": 35
         }
       },
@@ -397,11 +410,11 @@
     "labels": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 219,
           "column": 30
         }
       },
@@ -412,11 +425,11 @@
     "labelstyle": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 220,
           "column": 4
         },
         "end": {
-          "line": 201,
+          "line": 220,
           "column": 35
         }
       },
@@ -427,11 +440,11 @@
     "start": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 202,
+          "line": 221,
           "column": 30
         }
       },
@@ -442,11 +455,11 @@
     "end": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 203,
+          "line": 222,
           "column": 28
         }
       },
@@ -457,11 +470,11 @@
     "arrowtype": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 223,
           "column": 34
         }
       },
@@ -472,11 +485,11 @@
     "spacing": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 224,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 224,
           "column": 32
         }
       },
@@ -487,11 +500,11 @@
     "overflowarrow": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 225,
           "column": 39
         }
       },
@@ -502,11 +515,11 @@
     "fontsize": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 226,
           "column": 33
         }
       },
@@ -517,11 +530,11 @@
     "textx": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 227,
           "column": 30
         }
       },
@@ -532,11 +545,11 @@
     "texty": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 209,
+          "line": 228,
           "column": 30
         }
       },
@@ -547,11 +560,11 @@
     "textlength": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 229,
           "column": 35
         }
       },
@@ -562,11 +575,11 @@
     "textanchor": {
       "location": {
         "start": {
-          "line": 211,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 211,
+          "line": 230,
           "column": 35
         }
       },
@@ -577,11 +590,11 @@
     "linespace": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 231,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 231,
           "column": 34
         }
       },
@@ -592,11 +605,11 @@
     "bboxgrow": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 232,
           "column": 33
         }
       },
@@ -607,11 +620,11 @@
     "debug": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 233,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 233,
           "column": 31
         }
       },
@@ -622,11 +635,11 @@
     "currentRatioValue": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 215,
+          "line": 234,
           "column": 51
         }
       },
@@ -639,11 +652,11 @@
     "targetRatioValue": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 235,
           "column": 50
         }
       },
@@ -775,11 +788,11 @@
     "__animator": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 244,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 244,
           "column": 25
         }
       },
@@ -789,12 +802,12 @@
     "__indicatorDOMElement": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 245,
           "column": 4
         },
         "end": {
-          "line": 226,
-          "column": 29
+          "line": 245,
+          "column": 31
         }
       },
       "type": "variable",
@@ -803,11 +816,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 505,
+          "line": 532,
           "column": 5
         }
       },
@@ -822,11 +835,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 513,
+          "line": 540,
           "column": 4
         },
         "end": {
-          "line": 537,
+          "line": 565,
           "column": 5
         }
       },
@@ -860,11 +873,11 @@
     "__updateIndicatorPosition": {
       "location": {
         "start": {
-          "line": 547,
+          "line": 577,
           "column": 4
         },
         "end": {
-          "line": 582,
+          "line": 611,
           "column": 5
         }
       },
@@ -873,6 +886,20 @@
           {
             "name": "@description",
             "body": "<p>Callback to update the display of the indicators.\n Note: It is a design decision not to pool multiple updates in one requestAnimationFrame which might be beneficial\n performance wise. But as it's assumed that a typical visu config is only containing one roundbar per address\n a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.\n Even with a few roundbars using the same address the performance impact is negligible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ratio",
+            "paramName": "ratio",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "indicatorNumber",
+            "paramName": "indicatorNumber",
+            "type": ""
           }
         ]
       },
@@ -2596,7 +2623,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
+            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
           }
         ],
         "@param": [

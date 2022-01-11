@@ -69,9 +69,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *
    * @require(qx.ui.root.Inline)
    */
-  qx.Class.define("cv.plugins.openhab.Openhab", {
+  qx.Class.define('cv.plugins.openhab.Openhab', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     *****************************************************************************
@@ -81,14 +81,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct() {
       qx.core.Object.constructor.call(this);
 
-      if (!cv.Config.request.queryKey.hasOwnProperty('preview')) {
-        this.__P_21_0 = cv.core.notifications.Router.getInstance(); // listen to notifications
+      if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, 'preview')) {
+        this.__P_20_0 = cv.core.notifications.Router.getInstance(); // listen to notifications
 
         var client = cv.TemplateEngine.getInstance().visu;
         var sse = client.getCurrentTransport && client.getCurrentTransport();
 
         if (sse) {
-          sse.subscribe("notifications", this._onNotification, this);
+          sse.subscribe('notifications', this._onNotification, this);
         }
 
         cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
@@ -101,48 +101,48 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __P_21_0: null,
-      __P_21_1: null,
+      __P_20_0: null,
+      __P_20_1: null,
       _openSettings: null,
       _createSettings: function _createSettings() {
         // add element structure to notification-center
-        var settingsRoot = qx.dom.Element.create("section", {
-          "id": "qxsettings",
-          "html": "<div></div>"
+        var settingsRoot = qx.dom.Element.create('section', {
+          'id': 'qxsettings',
+          'html': '<div></div>'
         });
-        qx.dom.Element.insertAfter(settingsRoot, document.querySelector("#" + cv.ui.NotificationCenter.getInstance().getRootElementId() + " section.messages")); // add a settings button to trigger opening the settings
+        qx.dom.Element.insertAfter(settingsRoot, document.querySelector('#' + cv.ui.NotificationCenter.getInstance().getRootElementId() + ' section.messages')); // add a settings button to trigger opening the settings
 
-        var button = qx.dom.Element.create("div", {
-          html: cv.util.IconTools.svgKUF("edit_settings")(null, 'width: 22px; height: 22px;'),
-          style: "float: left;"
+        var button = qx.dom.Element.create('div', {
+          html: cv.util.IconTools.svgKUF('edit_settings')(null, 'width: 22px; height: 22px;'),
+          style: 'float: left;'
         });
-        this._openSettings = new qx.ui.command.Command("Ctrl+S");
+        this._openSettings = new qx.ui.command.Command('Ctrl+S');
 
-        this._openSettings.addListener("execute", function () {
+        this._openSettings.addListener('execute', function () {
           cv.ui.NotificationCenter.getInstance().show();
 
-          this.__P_21_1.show();
+          this.__P_20_1.show();
         }, this);
 
-        cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
-        qx.dom.Element.insertBegin(button, document.querySelector("#notification-center footer"));
-        qx.event.Registration.addListener(button, "tap", function () {
-          this.__P_21_1.show();
+        cv.TemplateEngine.getInstance().getCommands().add('open-settings', this._openSettings);
+        qx.dom.Element.insertBegin(button, document.querySelector('#notification-center footer'));
+        qx.event.Registration.addListener(button, 'tap', function () {
+          this.__P_20_1.show();
         }, this); //add to DOM
 
         qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark); // Initialize tooltip manager (currently disable as it requires a root with basic layout
         // and that breaks the inline container sizes)
         // qx.ui.tooltip.Manager.getInstance();
 
-        this._inline = new qx.ui.root.Inline(document.querySelector("#qxsettings > div"), true, false);
+        this._inline = new qx.ui.root.Inline(document.querySelector('#qxsettings > div'), true, false);
 
         this._inline.setLayout(new qx.ui.layout.VBox());
 
-        this.__P_21_1 = new cv.plugins.openhab.Settings();
+        this.__P_20_1 = new cv.plugins.openhab.Settings();
 
-        this.__P_21_1.exclude();
+        this.__P_20_1.exclude();
 
-        this._inline.add(this.__P_21_1, {
+        this._inline.add(this.__P_20_1, {
           flex: 1
         });
       },
@@ -154,12 +154,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _onNotification: function _onNotification(e) {
         if (!e.data) {
-          this.error("invalid content received from SSE: ", e);
+          this.error('invalid content received from SSE: ', e);
         }
 
         var json = _typeof(e.data) === 'object' ? e.data : JSON.parse(e.data);
 
-        this.__P_21_0.dispatchMessage(json.topic || "cv.backend", json);
+        this.__P_20_0.dispatchMessage(json.topic || 'cv.backend', json);
       }
     },
 
@@ -169,9 +169,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_21_1", "_openSettings");
+      this._disposeObjects("__P_20_1", '_openSettings');
 
-      this.__P_21_0 = null;
+      this.__P_20_0 = null;
     },
     defer: function defer(statics) {
       // initialize on load
@@ -181,4 +181,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.plugins.openhab.Openhab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Openhab.js.map?dt=1625667765877
+//# sourceMappingURL=Openhab.js.map?dt=1641882198764

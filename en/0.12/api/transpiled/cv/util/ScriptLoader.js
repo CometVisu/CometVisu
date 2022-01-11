@@ -42,7 +42,7 @@
    */
   qx.Class.define('cv.util.ScriptLoader', {
     extend: qx.core.Object,
-    type: "singleton",
+    type: 'singleton',
 
     /*
     ******************************************************
@@ -78,10 +78,10 @@
     */
     properties: {
       allQueued: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        apply: "_checkQueue",
-        event: "changeAllQueued"
+        apply: '_checkQueue',
+        event: 'changeAllQueued'
       }
     },
 
@@ -91,8 +91,8 @@
     ******************************************************
     */
     events: {
-      "finished": "qx.event.type.Event",
-      "designError": "qx.event.type.Data"
+      'finished': 'qx.event.type.Event',
+      'designError': 'qx.event.type.Data'
     },
 
     /*
@@ -127,8 +127,10 @@
 
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
         var realQueue = [];
+        var i = 0;
+        var l = queue.length;
 
-        for (var i = 0, l = queue.length; i < l; i++) {
+        for (; i < l; i++) {
           if (!this.__P_496_3.includes(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
@@ -138,7 +140,7 @@
           return;
         }
 
-        this.debug("queueing " + realQueue.length + " scripts");
+        this.debug('queueing ' + realQueue.length + ' scripts');
 
         this.__P_496_0.append(realQueue);
 
@@ -150,7 +152,7 @@
 
               var loader = this.__P_496_5(script);
 
-              loader.addListener("ready", processQueue, this);
+              loader.addListener('ready', processQueue, this);
             } else {
               realQueue.forEach(this.__P_496_5, this);
             }
@@ -175,13 +177,13 @@
 
         this.__P_496_1.push(loader);
 
-        loader.addListener("loaded", this._onLoaded, this);
-        loader.addListener("failed", this._onFailed, this);
-        loader.addListenerOnce("ready", function () {
+        loader.addListener('loaded', this._onLoaded, this);
+        loader.addListener('failed', this._onFailed, this);
+        loader.addListenerOnce('ready', function () {
           this.__P_496_1.remove(loader);
 
-          loader.removeListener("loaded", this._onLoaded, this);
-          loader.removeListener("failed", this._onFailed, this);
+          loader.removeListener('loaded', this._onLoaded, this);
+          loader.removeListener('failed', this._onFailed, this);
         }, this);
         loader.start();
         return loader;
@@ -191,7 +193,7 @@
 
         this.__P_496_0.remove(data.script);
 
-        this.debug(data.script + " loaded");
+        this.debug(data.script + ' loaded');
 
         this._checkQueue();
       },
@@ -200,17 +202,17 @@
 
         this.__P_496_0.remove(data.script);
 
-        if (data.script.startsWith("design")) {
-          var failedDesign = data.script.split("/")[1];
-          this.fireDataEvent("designError", failedDesign);
-        } else if (data.script.includes("/plugins/")) {
+        if (data.script.startsWith('design')) {
+          var failedDesign = data.script.split('/')[1];
+          this.fireDataEvent('designError', failedDesign);
+        } else if (data.script.includes('/plugins/')) {
           var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
 
           if (match) {
             cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
               title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
               message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
-              severity: "high",
+              severity: 'high',
               deletable: true
             });
           }
@@ -218,7 +220,7 @@
           cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
             title: qx.locale.Manager.tr('File loading error'),
             message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
-            severity: "high",
+            severity: 'high',
             deletable: true
           });
         }
@@ -229,15 +231,15 @@
       _checkQueue: function _checkQueue() {
         if (this.__P_496_0.length === 0) {
           if (this.isAllQueued()) {
-            this.debug("script loader finished");
-            this.fireEvent("finished");
+            this.debug('script loader finished');
+            this.fireEvent('finished');
           } else if (!this.__P_496_4) {
-            this.debug("script loader waiting for all scripts beeing queued");
-            this.__P_496_4 = this.addListener("changeAllQueued", function (ev) {
+            this.debug('script loader waiting for all scripts beeing queued');
+            this.__P_496_4 = this.addListener('changeAllQueued', function (ev) {
               if (ev.getData() === true) {
                 if (this.__P_496_0.length === 0) {
-                  this.debug("script loader finished");
-                  this.fireEvent("finished");
+                  this.debug('script loader finished');
+                  this.fireEvent('finished');
                 }
 
                 this.removeListenerById(this.__P_496_4);
@@ -246,7 +248,7 @@
             }, this);
           }
         } else {
-          this.debug(this.__P_496_0.length + " scripts remaining");
+          this.debug(this.__P_496_0.length + ' scripts remaining');
         }
       }
     }
@@ -254,4 +256,4 @@
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1625667805801
+//# sourceMappingURL=ScriptLoader.js.map?dt=1641882235864

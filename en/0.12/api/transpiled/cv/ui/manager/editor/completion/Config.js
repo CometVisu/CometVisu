@@ -39,7 +39,7 @@
      */
     construct: function construct(schema) {
       qx.core.Object.constructor.call(this);
-      this.__P_35_0 = {};
+      this.__P_34_0 = {};
       this._schema = schema;
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
     },
@@ -50,15 +50,15 @@
     ***********************************************
     */
     members: {
-      __P_35_0: null,
-      __P_35_1: null,
+      __P_34_0: null,
+      __P_34_1: null,
       _dataProvider: null,
       getLastOpenedTag: function getLastOpenedTag(text) {
         // get all tags inside of the content
         var tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
 
         if (!tags) {
-          return undefined;
+          return null;
         } // we need to know which tags are closed
 
 
@@ -108,9 +108,11 @@
             text = text.substring(0, tagPosition);
           }
         }
+
+        return null;
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_35_1 : this.__P_35_0;
+        var cache = inMeta === true ? this.__P_34_1 : this.__P_34_0;
 
         if (elementName in cache) {
           return cache[elementName];
@@ -132,25 +134,27 @@
 
         if (elementName in allowedElements) {
           // console.log("found "+elementName+" in tree level "+currentDepth);
-          this.__P_35_0[elementName] = allowedElements[elementName];
+          this.__P_34_0[elementName] = allowedElements[elementName];
           return allowedElements[elementName];
-        } else {
-          for (var element in allowedElements) {
-            if (inMeta !== true && element === 'meta') {
-              continue;
-            }
+        }
 
-            if (maxDepth > currentDepth) {
-              var result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
+        for (var element in allowedElements) {
+          if (inMeta !== true && element === 'meta') {
+            continue;
+          }
 
-              if (result) {
-                cache[elementName] = result; // console.log("found " + elementName + " in tree level " + currentDepth);
+          if (maxDepth > currentDepth) {
+            var result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
 
-                return result;
-              }
+            if (result) {
+              cache[elementName] = result; // console.log("found " + elementName + " in tree level " + currentDepth);
+
+              return result;
             }
           }
         }
+
+        return null;
       },
       isItemAvailable: function isItemAvailable(itemName, maxOccurs, items) {
         // the default for 'maxOccurs' is 1
@@ -174,14 +178,14 @@
         return count === 0 || parseInt(maxOccurs) > count;
       },
       getElementString: function getElementString(element, indent, prefix) {
-        var insertText = indent + prefix + element.getName() + " "; // add all required attributes with default values
+        var insertText = indent + prefix + element.getName() + ' '; // add all required attributes with default values
 
         var allowedAttributes = element.getAllowedAttributes();
         Object.getOwnPropertyNames(allowedAttributes).forEach(function (attr) {
           var attribute = allowedAttributes[attr];
 
           if (!attribute.isOptional) {
-            insertText += attr + '="' + (attribute.getDefaultValue() ? attribute.getDefaultValue() : "") + '" ';
+            insertText += attr + '="' + (attribute.getDefaultValue() ? attribute.getDefaultValue() : '') + '" ';
           }
         }); // add mandatory children
 
@@ -191,26 +195,26 @@
 
         if (!isContentAllowed) {
           // close tag
-          insertText = insertText.trim() + "/";
+          insertText = insertText.trim() + '/';
         } else {
           // close open tag
-          insertText = insertText.trim() + ">"; // insert required elements
+          insertText = insertText.trim() + '>'; // insert required elements
 
           var children = 0;
           requiredElements.forEach(function (elemName) {
             var elem = this.findElements(element, elemName, 1, 0);
 
             if (elem) {
-              insertText += "\n    " + this.getElementString(elem, indent + "    ", "<") + ">";
+              insertText += '\n    ' + this.getElementString(elem, indent + '    ', '<') + '>';
               children++;
             }
           }, this); // add closing tag
 
           if (children > 0) {
-            insertText += "\n" + indent;
+            insertText += '\n' + indent;
           }
 
-          insertText += "</" + element.getName();
+          insertText += '</' + element.getName();
         }
 
         return insertText;
@@ -233,10 +237,10 @@
             // mark it as a 'field', and get the documentation
             availableItems.push({
               label: childElem.getName(),
-              insertText: this.getElementString(childElem, "", ""),
+              insertText: this.getElementString(childElem, '', ''),
               kind: window.monaco.languages.CompletionItemKind.Field,
               detail: childElem.getType(),
-              documentation: childElem.getDocumentation().join("\n")
+              documentation: childElem.getDocumentation().join('\n')
             });
           }
         }, this); // return the suggestions we found
@@ -258,7 +262,7 @@
               insertText: attr.getName() + '=""',
               kind: window.monaco.languages.CompletionItemKind.Property,
               detail: attr.getTypeString(),
-              documentation: attr.getDocumentation().join("\n")
+              documentation: attr.getDocumentation().join('\n')
             });
           }
         }, this); // return the elements we found
@@ -283,7 +287,8 @@
             var mappingNames = [];
             var stylingNames = [];
             var templates = {};
-            var map, vmap;
+            var map;
+            var vmap;
             var regex = /<mapping name="([^"]+)"/gm;
 
             while ((map = regex.exec(textMeta)) !== null) {
@@ -331,12 +336,12 @@
 
             if (lastOpenedTag) {
               // try to create a valid XML document
-              parts = lastOpenedTag.text.split(" ");
+              parts = lastOpenedTag.text.split(' ');
               parts.shift();
               var cleanedText = textUntilPosition;
 
               if (parts.length) {
-                cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(" ").length) + ">";
+                cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
               } // parse the content (not cleared text) into an xml document
 
 
@@ -382,11 +387,11 @@
               if (!lastFound) {
                 // fallback -> parse string
                 if (isAttributeSearch || isContentSearch) {
-                  parts = lastOpenedTag.text.split(" "); // skip tag name
+                  parts = lastOpenedTag.text.split(' '); // skip tag name
 
                   parts.shift();
                   parts.forEach(function (entry) {
-                    usedItems.push(entry.split("=").shift());
+                    usedItems.push(entry.split('=').shift());
                   });
                 }
               }
@@ -532,7 +537,7 @@
               });
             } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
               match = /type="([^"]+)"/.exec(lastOpenedTag.text);
-              var typeFilter = !!match ? match[1] : null;
+              var typeFilter = match ? match[1] : null;
               return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
                 return {
                   suggestions: suggestions
@@ -540,7 +545,7 @@
               });
             }
 
-            var currentItem = this.findElements(this._schema.getElementNode("pages"), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+            var currentItem = this.findElements(this._schema.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
             // array if it doesn't
 
             if (isContentSearch) {
@@ -554,7 +559,7 @@
                     label: entry,
                     kind: window.monaco.languages.CompletionItemKind.Value,
                     detail: type,
-                    documentation: attribute.getDocumentation().join("\n")
+                    documentation: attribute.getDocumentation().join('\n')
                   });
                 });
               }
@@ -563,7 +568,8 @@
               res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
             } else {
               // get elements completions
-              if (lastOpenedTag && lastOpenedTag.text.endsWith("</")) {
+              // eslint-disable-next-line no-lonely-if
+              if (lastOpenedTag && lastOpenedTag.text.endsWith('</')) {
                 res.push({
                   label: lastOpenedTag.tagName,
                   kind: window.monaco.languages.CompletionItemKind.Field
@@ -587,7 +593,7 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_35_0 = null;
+      this.__P_34_0 = null;
       this._schema = null;
       this._dataProvider = null;
     }
@@ -595,4 +601,4 @@
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1625667768170
+//# sourceMappingURL=Config.js.map?dt=1641882200880

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 165,
+        "line": 166,
         "column": 3
       }
     },
@@ -544,11 +544,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 138,
           "column": 30
         }
       },
@@ -558,6 +558,14 @@
             "name": "@description",
             "body": "<p>Restart the connection</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -566,11 +574,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 143,
           "column": 29
         }
       },
@@ -588,11 +596,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 149,
           "column": 29
         }
       },
@@ -618,11 +626,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 156,
           "column": 35
         }
       },
@@ -656,11 +664,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 164,
           "column": 47
         }
       },

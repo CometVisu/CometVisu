@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.PushButton', {
-    type: "static",
+    type: 'static',
 
     /*
     ******************************************************
@@ -62,10 +62,10 @@
         return {
           'downValue': {
             target: 'downValue',
-            "default": "1"
+            'default': '1'
           },
           'upValue': {
-            "default": "0"
+            'default': '0'
           }
         };
       },
@@ -75,10 +75,10 @@
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("pushbutton", statics);
+      cv.parser.WidgetParser.addHandler('pushbutton', statics);
     }
   });
   cv.parser.widgets.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1625667764559
+//# sourceMappingURL=PushButton.js.map?dt=1641882197542

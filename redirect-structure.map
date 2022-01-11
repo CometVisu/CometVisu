@@ -1,9 +1,9 @@
 Abkuerzungen|
 Anpassung_der_Konfigurationsdateien|
 Benutzerhandbuch|de/0.12/manual/index.html
-Colorchooser_(Deutsch)|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
+Colorchooser_(Deutsch)|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu|
-CometVisu/0.8.0/ColorChooser/de|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
+CometVisu/0.8.0/ColorChooser/de|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu/0.8.0/Tutorial/Plugins/de|
 CometVisu/0.8.0/Tutorial/Stylings/de|
 CometVisu/0.8.0/Tutorial/de|
@@ -54,7 +54,7 @@ CometVisu/0.8.x/mapping/de|de/0.12/manual/config/mapping.html
 CometVisu/0.8.x/styling/de|de/0.12/manual/config/styling.html
 CometVisu/0.8.x/widgets/audio/de|de/0.12/manual/config/widgets/audio/index.html
 CometVisu/0.8.x/widgets/break/de/|de/0.12/manual/config/widgets/break/index.html
-CometVisu/0.8.x/widgets/colorchooser/de/|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
+CometVisu/0.8.x/widgets/colorchooser/de/|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu/0.8.x/widgets/de|de/0.12/manual/config/widgets/index.html
 CometVisu/0.8.x/widgets/designtoggle/de/|de/0.12/manual/config/widgets/designtoggle/index.html
 CometVisu/0.8.x/widgets/diagramm_info/de/|de/0.12/manual/config/widgets/plugins/diagram_info/index.html
@@ -86,8 +86,8 @@ CometVisu/Backend/en|
 CometVisu/Benutzerhandbuch|de/0.12/manual/index.html
 CometVisu/Beta|
 CometVisu/CodingStyle|
-CometVisu/ColorChooser|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
-CometVisu/ColorChooser_(Deutsch)|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
+CometVisu/ColorChooser|de/0.12/manual/config/widgets/colorchooser/index.html
+CometVisu/ColorChooser_(Deutsch)|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu/Config|
 CometVisu/Den_eingebauten_Editor_benutzen|
 CometVisu/DesignDecisions|
@@ -122,7 +122,7 @@ CometVisu/Protokoll_(Deutsch)|
 CometVisu/The_internal_Editor|
 CometVisu/URL_parameter/de|de/0.12/manual/config/url-params.html
 CometVisu/Update|
-CometVisu/Widget/ColorChooser/de|de/0.12/manual/config/widgets/plugins/colorchooser/index.html
+CometVisu/Widget/ColorChooser/de|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu/Widget/ColorChooser/en|
 CometVisu/Widget/Iframe/de|de/0.12/manual/config/widgets/web/index.html
 CometVisu/Widget/Iframe/en|
@@ -150,6 +150,7 @@ CometVisu/Widget/video/de|de/0.12/manual/config/widgets/video/index.html
 CometVisu/Widget/video/en|
 CometVisu/XML-Elemente|de/0.12/manual/config/xml-format.html
 CometVisu/XML-Elements|
+CometVisu/de/0.11/manual/config/widgets/plugins/colorchooser/|de/0.12/manual/config/widgets/colorchooser/index.html
 CometVisu/de/latest/manual/install/linux.html|de/0.12/manual/install/allgemein.html
 CometVisu/de/latest/manual/install/nas.html|de/0.12/manual/install/allgemein.html
 CometVisu/demo_config/de|

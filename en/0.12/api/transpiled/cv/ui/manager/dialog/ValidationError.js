@@ -48,12 +48,12 @@
       var _this = this;
 
       this._file = file;
-      this._content = content.split("\n");
+      this._content = content.split('\n');
       this._errors = errors;
       qxl.dialog.Dialog.constructor.call(this, Object.assign(properties || {}, {
         useBlocker: true
       }));
-      this.addListener("appear", function () {
+      this.addListener('appear', function () {
         if (!window.monaco) {
           cv.ui.manager.editor.Source.load(_this.highlight, _this);
         } else {
@@ -68,7 +68,7 @@
     ***********************************************
     */
     events: {
-      action: "qx.event.type.Data"
+      action: 'qx.event.type.Data'
     },
 
     /*
@@ -165,12 +165,12 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
             }
 
             codeSnippet = codeSnippet.map(function (line) {
-              return line[0] + ": " + qx.xml.String.escape(line[1].substr(minIndent));
+              return line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent));
             });
 
-            var headline = _this2.tr("Line %1", error.line);
+            var headline = _this2.tr('Line %1', error.line);
 
-            label = new qx.ui.basic.Label("<h4>".concat(headline, "</h4><pre class=\"highlight\" style=\"background-color: black; padding: 8px;\" data-lang=\"text/xml\">").concat(codeSnippet.join("\n"), "</pre>"));
+            label = new qx.ui.basic.Label("<h4>".concat(headline, "</h4><pre class=\"highlight\" style=\"background-color: black; padding: 8px;\" data-lang=\"text/xml\">").concat(codeSnippet.join('\n'), "</pre>"));
             label.set(labelOptions);
             errorLabels.set(errorId, label);
             errorBox.add(label);
@@ -178,7 +178,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
             label = errorLabels.get(errorId);
           }
 
-          if (!error.message.startsWith("[facet")) {
+          if (!error.message.startsWith('[facet')) {
             label.setValue(label.getValue() + "<p>".concat(error.message, "</p>"));
           }
         }, this);
@@ -190,16 +190,16 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         var buttonPane = this._createButtonPane(); // close button
 
 
-        var closeButton = new qx.ui.form.Button(this.tr("Cancel"));
-        closeButton.addListener("execute", function () {
+        var closeButton = new qx.ui.form.Button(this.tr('Cancel'));
+        closeButton.addListener('execute', function () {
           return _this2.fireDataEvent('action', 'cancel');
         }, this);
-        var proceedButton = new qx.ui.form.Button(this.tr("Proceed"));
-        proceedButton.addListener("execute", function () {
+        var proceedButton = new qx.ui.form.Button(this.tr('Proceed'));
+        proceedButton.addListener('execute', function () {
           return _this2.fireDataEvent('action', 'proceed');
         }, this);
-        var openSourceButton = new qx.ui.form.Button(this.tr("Open in text editor"));
-        openSourceButton.addListener("execute", function () {
+        var openSourceButton = new qx.ui.form.Button(this.tr('Open in text editor'));
+        openSourceButton.addListener('execute', function () {
           return _this2.fireDataEvent('action', 'open-source');
         }, this);
         buttonPane.add(closeButton);
@@ -229,4 +229,4 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
   cv.ui.manager.dialog.ValidationError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ValidationError.js.map?dt=1625667767255
+//# sourceMappingURL=ValidationError.js.map?dt=1641882200070

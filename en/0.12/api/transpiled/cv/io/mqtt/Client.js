@@ -65,12 +65,12 @@
     */
     properties: {
       connected: {
-        check: "Boolean",
+        check: 'Boolean',
         init: false,
-        event: "changeConnected"
+        event: 'changeConnected'
       },
       server: {
-        check: "String",
+        check: 'String',
         nullable: true,
         event: 'changedServer'
       }
@@ -158,6 +158,9 @@
        */
       login: function login(loginOnly, credentials, callback, context) {
         var self = this;
+        /**
+         * @param param
+         */
 
         function onConnect(param) {
           self.setConnected(true);
@@ -166,13 +169,17 @@
             callback.call(context);
           }
         }
+        /**
+         * @param param
+         */
+
 
         function onFailure(param) {
           self.setConnected(false);
           var n = cv.core.notifications.Router.getInstance();
           n.dispatchMessage('cv.client.connection', {
             title: 'MQTT: ' + qx.locale.Manager.tr('Connection error'),
-            message: param.errorMessage + "<br/>\nCode: " + param.errorCode,
+            message: param.errorMessage + '<br/>\nCode: ' + param.errorCode,
             severity: 'urgent',
             unique: true,
             deletable: false
@@ -185,24 +192,24 @@
           onFailure: onFailure
         };
 
-        if (null !== credentials && 'username' in credentials && null !== credentials.username) {
+        if (credentials !== null && 'username' in credentials && credentials.username !== null) {
           options.userName = credentials.username;
         }
 
-        if (null !== credentials && 'password' in credentials && null !== credentials.password) {
+        if (credentials !== null && 'password' in credentials && credentials.password !== null) {
           options.password = credentials.password;
         }
 
         try {
           this._client = new Paho.MQTT.Client(this._backendUrl, 'CometVisu_' + Math.random().toString(16).substr(2, 8));
         } catch (e) {
-          console.error('MQTT Client error:', e);
+          self.error('MQTT Client error:', e);
           self.setConnected(false);
           return;
         }
 
         this._client.onConnectionLost = function (responseObject) {
-          console.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
+          self.log('Connection Lost: ' + responseObject.errorMessage, responseObject);
           self.setConnected(false);
         };
 
@@ -269,6 +276,7 @@
 
       /**
        * Restart the connection
+       * @param full
        */
       restart: function restart(full) {},
 
@@ -315,4 +323,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1625667805176
+//# sourceMappingURL=Client.js.map?dt=1641882235253

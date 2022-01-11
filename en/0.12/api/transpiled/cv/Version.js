@@ -8,18 +8,18 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-  qx.Class.define("cv.Version", {
-    type: "static",
+  qx.Class.define('cv.Version', {
+    type: 'static',
     statics: {
-      REV: "1d51dc8306db44f5842f03bf001c30cfbcc37019",
-      BRANCH: "develop",
-      VERSION: "0.12.0-dev",
+      REV: '8211365ba351ff7240fb182e74185c9afb053089',
+      BRANCH: 'develop',
+      VERSION: '0.12.0-dev',
       LIBRARY_VERSION: 9,
-      DATE: "2021-07-07T14:20:19.477Z",
+      DATE: '2022-01-11T06:21:10.180Z',
       TAGS: {}
     }
   });
   cv.Version.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Version.js.map?dt=1625667805336
+//# sourceMappingURL=Version.js.map?dt=1641882235410

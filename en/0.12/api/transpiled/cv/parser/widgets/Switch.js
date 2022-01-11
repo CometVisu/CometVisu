@@ -35,7 +35,7 @@
    *
    */
   qx.Class.define('cv.parser.widgets.Switch', {
-    type: "static",
+    type: 'static',
 
     /*
      ******************************************************
@@ -62,21 +62,21 @@
         return {
           'on_value': {
             target: 'onValue',
-            'default': "1"
+            'default': '1'
           },
           'off_value': {
             target: 'offValue',
-            'default': "0"
+            'default': '0'
           }
         };
       }
     },
     defer: function defer(statics) {
       // register the parser
-      cv.parser.WidgetParser.addHandler("switch", statics);
+      cv.parser.WidgetParser.addHandler('switch', statics);
     }
   });
   cv.parser.widgets.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1625667764744
+//# sourceMappingURL=Switch.js.map?dt=1641882197697
