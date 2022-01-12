@@ -653,7 +653,7 @@ qx.Class.define('cv.transforms.Knx', {
         lname: {
           'de': '14 Byte Text ISO-8859-1',
           'en': '14 byte text ISO-8859-1'
-        },
+        }
       },
 
       '17': {
