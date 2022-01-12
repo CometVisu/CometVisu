@@ -63,9 +63,12 @@ var testcases = [
   { transform: 'DPT:1.008', type: 'decode', source: '01', target: 1 },
   { transform: 'DPT:1.009', type: 'decode', source: '01', target: 1 },
 
-  // dummy tests for dummy implementation
   { transform: 'DPT:2', type: 'encode', source: 0, target: '80' },
   { transform: 'DPT:2', type: 'decode', source: '00', target: 0 },
+  { transform: 'DPT:2', type: 'encode', source: 1, target: '81' },
+  { transform: 'DPT:2', type: 'decode', source: '01', target: 1 },
+  { transform: 'DPT:2', type: 'encode', source: 3, target: '83' },
+  { transform: 'DPT:2', type: 'decode', source: '03', target: 3 },
 
   { transform: 'DPT:3.007', type: 'encode', source: -101, target: '80' },
   { transform: 'DPT:3.007', type: 'encode', source: -100, target: '81' },

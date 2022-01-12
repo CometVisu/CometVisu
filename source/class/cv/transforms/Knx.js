@@ -101,6 +101,21 @@ qx.Class.define('cv.transforms.Knx', {
         lname: {
           'de': '2 Bit',
           'en': '2 bit'
+        },
+        range: {
+          min: 0,
+          max: 3
+        },
+        unit: '-',
+        encode: function (phy) {
+          const val = cv.Transform.clipInt(0, phy, 3).toString(16);
+          return {
+            bus: '8' + val,
+            raw: '0' + val.toUpperCase()
+          };
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16);
         }
       },
 
