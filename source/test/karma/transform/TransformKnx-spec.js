@@ -231,12 +231,12 @@ var testcases = [
   { transform: 'DPT:16', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
   { transform: 'DPT:16.000', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
 
-  { transform: 'DPT:17.001', type: 'encode', source: 0, target: '8000' },
-  { transform: 'DPT:17.001', type: 'encode', source: 10, target: '800a' },
-  { transform: 'DPT:17.001', type: 'encode', source: 63, target: '803f' },
-  { transform: 'DPT:17.001', type: 'decode', source: '00', target: 0 },
-  { transform: 'DPT:17.001', type: 'decode', source: '3f', target: 63 },
-  { transform: 'DPT:17', type: 'encode', source: 10, target: '800a' },
+  { transform: 'DPT:17.001', type: 'encode', source: 1, target: '8000' },
+  { transform: 'DPT:17.001', type: 'encode', source: 11, target: '800a' },
+  { transform: 'DPT:17.001', type: 'encode', source: 64, target: '803f' },
+  { transform: 'DPT:17.001', type: 'decode', source: '00', target: 1 },
+  { transform: 'DPT:17.001', type: 'decode', source: '3f', target: 64 },
+  { transform: 'DPT:17', type: 'encode', source: 11, target: '800a' },
 
   { transform: 'DPT:18.001', type: 'encode', source: 1, target: '8000' },
   { transform: 'DPT:18.001', type: 'encode', source: 11, target: '800a' },

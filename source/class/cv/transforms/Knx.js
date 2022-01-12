@@ -670,7 +670,7 @@ qx.Class.define('cv.transforms.Knx', {
         unit: '-'
       },
       '17.001': {
-        link: '17'
+        link: '18'
       },
 
       '18': {
@@ -680,8 +680,8 @@ qx.Class.define('cv.transforms.Knx', {
           'de': 'Szenen Nummer'
         },
         range: {
-          min: 1.0,
-          max: 64.0+128
+          min: 1,
+          max: 64+128
         },
         unit: '-',
         encode: function (phy) {
