@@ -81,7 +81,7 @@ class BackendTransformDirective(BaseDirective):
         rst = ViewList()
         rst.append(".. csv-table::", "fakefile4transform.rst", self.lineno)
         rst.append("   :header: \"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" % (
-            "``transform``", _("name"), _("unit"), _("min"), _("max"), _("description")
+            "``transform``", _("name"), _("description"), _("unit"), _("min"), _("max")
         ), "fakefile4transform.rst", self.lineno)
         rst.append("", "fakefile4transform.rst", self.lineno)
         for transform, t_content in sorted(self.transforms[element_name][self.locale].items(), key=leadingzeros):
@@ -90,7 +90,7 @@ class BackendTransformDirective(BaseDirective):
                 unit = "\\-"
             range = t_content.get("range", {})
             rst.append("   \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"" % (
-                transform, t_content.get("name", ""), unit, range.get("min", ""), range.get("max", ""), t_content.get("lname", "")
+                transform, t_content.get("name", ""), t_content.get("lname", ""), unit, range.get("min", ""), range.get("max", "")
             ), "fakefile4transform.rst", self.lineno)
 
         paragraph_node = nodes.paragraph()

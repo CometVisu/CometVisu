@@ -33,6 +33,16 @@ qx.Class.define('cv.transforms.Knx', {
        *   decode: transform bus to JavaScript value
        */
       '1': {
+        name: '1 bit',
+        lname: {
+          'de': '1 Bit',
+          'en': '1 bit'
+        },
+        range: {
+          min: 0,
+          max: 1
+        },
+        unit: '-',
         encode: function (phy) {
           phy = +phy; // cast to number
           return {
@@ -45,27 +55,66 @@ qx.Class.define('cv.transforms.Knx', {
         }
       },
       '1.001': {
+        link: '1',
         name: 'DPT_Switch',
-        link: '1'
+        lname: {
+          'de': 'Aus-An-Schalter',
+          'en': 'off on switch'
+        }
       },
       '1.002': {
-        link: '1'
+        link: '1',
+        name: 'DPT_Bool',
+        lname: {
+          'de': 'Boolscher-Wert',
+          'en': 'boolead value'
+        }
       },
       '1.003': {
-        link: '1'
+        link: '1',
+        name: 'DPT_Enable',
+        lname: {
+          'de': 'Disable / Enable',
+          'en': 'disable / enable'
+        }
       },
       '1.008': {
-        link: '1'
+        link: '1',
+        name: 'DPT_UpDown',
+        lname: {
+          'de': 'Hoch-Runter-Schalter',
+          'en': 'up down switch'
+        }
       },
       '1.009': {
-        link: '1'
+        link: '1',
+        name: 'DPT_OpenClose',
+        lname: {
+          'de': 'Auf-Zu-Schalter',
+          'en': 'open close switch'
+        }
       },
 
       '2': {
-        link: '1'
+        link: '1',
+        name: '2 bit',
+        lname: {
+          'de': '2 Bit',
+          'en': '2 bit'
+        }
       },
 
       '3': {
+        name: '4 bit',
+        lname: {
+          'de': '4 Bit',
+          'en': '4 bit'
+        },
+        range: {
+          min: -100,
+          max: 100
+        },
+        unit: '-',
         encode: function (phy) {
           phy = +phy; // enforce number
           if (phy < -100 || (phy > -1 && phy <= 0)) {
@@ -76,32 +125,44 @@ qx.Class.define('cv.transforms.Knx', {
             return { bus: '88', raw: '08' }; // up: stop
           }
 
-          let
-            up = phy > 0;
-            let stepCode = 7-Math.floor(Math.log2(Math.abs(phy)));
-            let val = (stepCode | (up * 0b1000)).toString(16);
+          const up = phy > 0;
+          const stepCode = 7-Math.floor(Math.log2(Math.abs(phy)));
+          const val = (stepCode | (up * 0b1000)).toString(16);
           return {
             bus: '8' + val,
             raw: '0' + val.toUpperCase()
           };
         },
         decode: function (hex) {
-          let
-            val = parseInt(hex, 16);
-            let up = (val & 0b1000) > 0;
+          const val = parseInt(hex, 16);
+          const up = (val & 0b1000) > 0;
           return (up*2-1) * 100/(2**((val& 0b111)-1));
         }
       },
       '3.007': {
+        link: '3',
         name: 'DPT_Control_Dimming',
-        link: '3'
+        lname: {
+          'de': 'Dimmen',
+          'en': 'dimming'
+        }
       },
       '3.008': {
+        link: '3',
         name: 'DPT_Control_Blinds',
-        link: '3'
+        lname: {
+          'de': 'Beschattungssteuerung',
+          'en': 'blind control'
+        }
       },
 
       '4': {
+        name: 'char',
+        lname: {
+          'de': 'Zeichen',
+          'en': 'char'
+        },
+        unit: '-',
         encode: function (phy) {
           const val = (''+phy).charCodeAt(0).toString(16).padStart(2, '0');
           return {
@@ -119,11 +180,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '5': {
-        name: '8-Bit Unsigned Value',
-        range: {
-          min: 0.0,
-          max: 255.0
+        name: '8 bit unsigned',
+        lname: {
+          'de': '8 Bit vorzeichenloser Integer',
+          'en': '8 bit unsigned integer'
         },
+        range: {
+          min: 0,
+          max: 255
+        },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
           return {
@@ -137,11 +203,15 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '5.001': {
         name: 'DPT_Scaling',
-        unit: '%',
+        lname: {
+          'de': 'Prozentwert',
+          'en': 'percentage'
+        },
         range: {
           min: 0.0,
           max: 100.0
         },
+        unit: '%',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 100, 255 / 100).toString(16).padStart(2, '0');
           return {
@@ -155,11 +225,15 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '5.003': {
         name: 'DPT_Angle',
-        unit: '°',
+        lname: {
+          'de': 'Winkel',
+          'en': 'angle'
+        },
         range: {
           min: 0.0,
           max: 360.0
         },
+        unit: '°',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 360, 255 / 360).toString(16).padStart(2, '0');
           return {
@@ -174,15 +248,33 @@ qx.Class.define('cv.transforms.Knx', {
       '5.004': {
         link: '5',
         name: 'DPT_Percent_U8',
+        lname: {
+          'de': 'Prozentwert',
+          'en': 'percentage'
+        },
         unit: '%'
       },
       '5.010': {
         link: '5',
         name: 'DPT_Value_1_Ucount',
+        lname: {
+          'de': 'Zähler',
+          'en': 'counter'
+        },
         unit: '-'
       },
 
       '6': {
+        name: '8 bit signed',
+        lname: {
+          'de': '8 Bit vorzeichenbehafteter Integer',
+          'en': '8 bit signed integer'
+        },
+        range: {
+          min: -128,
+          max: 127
+        },
+        unit: '-',
         encode: function (phy) {
           phy = cv.Transform.clipInt(-128, phy, 127);
           let val = phy < 0 ? phy + 256 : phy;
@@ -199,14 +291,33 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '6.001': {
         link: '6',
-        name: 'DPT_Percent_V8'
+        name: 'DPT_Percent_V8',
+        lname: {
+          'de': 'Prozentwert mit Vorzeichen',
+          'en': 'percentage with sign'
+        },
+        unit: '%'
+      },
+      '6.010': {
+        link: '6',
+        name: 'DPT_Value_1_Count',
+        lname: {
+          'de': 'Zähler mit Vorzeichen',
+          'en': 'counter with sign'
+        }
       },
 
       '7': {
+        name: '2 byte unsigned',
+        lname: {
+          'de': '2 Byte vorzeichenloser Integer',
+          'en': '2 byte unsigned integer'
+        },
         range: {
           min: 0,
           max: 0xffff
         },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 0xffff).toString(16).padStart(4, '0');
           return {
@@ -223,17 +334,23 @@ qx.Class.define('cv.transforms.Knx', {
         link: '7',
         name: 'DPT_Value_2_Ucount'
       },
-        '7.600': {
+      '7.600': {
+        link: '7',
         name: 'DPT_Absolute_Colour_Temperature',
-        unit: 'K',
-        link: '7'
+        unit: 'K'
       },
 
       '8': {
+        name: '2 byte signed',
+        lname: {
+          'de': '2 Byte vorzeichenbehafteter Integer',
+          'en': '2 byte signed integer'
+        },
         range: {
           min: -0x8000,
           max: 0x7fff
         },
+        unit: '-',
         encode: function (phy) {
           let val = cv.Transform.clipInt(-0x8000, phy, 0x7fff);
           val = val < 0 ? val + 65536 : val;
@@ -254,6 +371,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '9': {
+        name: '2 byte float',
+        lname: {
+          'de': '2 Byte Gleitkommazahl',
+          'en': '2 byte float value'
+        },
+        range: {
+          min: -671088.64,
+          max: 670433.28
+        },
+        unit: '-',
         encode: function (phy) {
           if (undefined === phy || isNaN(phy)) {
             return '7fff';
@@ -289,25 +416,65 @@ qx.Class.define('cv.transforms.Knx', {
       '9.001': {
         link: '9',
         name: 'DPT_Value_Temp',
+        lname: {
+          'de': 'Temperatur',
+          'en': 'temperature'
+        },
+        unit: '°C'
       },
       '9.004': {
-        link: '9'
+        link: '9',
+        name: 'DPT_Value_Lux',
+        lname: {
+          'de': 'Beleuchtungsstärke',
+          'en': 'illuminance'
+        },
+        unit: 'Lux'
       },
       '9.007': {
-        link: '9'
+        link: '9',
+        name: 'DPT_Value_Humidity',
+        lname: {
+          'de': 'Luftfeuchtigkeit',
+          'en': 'humidity'
+        },
+        unit: '%'
       },
       '9.008': {
-        link: '9'
+        link: '9',
+        name: 'DPT_Value_AirQuality',
+        lname: {
+          'de': 'Luftqualität',
+          'en': 'air quality'
+        },
+        unit: 'ppm'
       },
       '9.020': {
-        link: '9'
+        link: '9',
+        name: 'DPT_Value_Volt',
+        lname: {
+          'de': 'Spannung',
+          'en': 'voltage'
+        },
+        unit: 'mV'
       },
       '9.021': {
-        link: '9'
+        link: '9',
+        name: 'DPT_Value_Curr',
+        lname: {
+          'de': 'Strom',
+          'en': 'current'
+        },
+        unit: 'mA'
       },
 
       '10.001': {
         name: 'DPT_TimeOfDay',
+        lname: {
+          'de': 'Zeit',
+          'en': 'time'
+        },
+        unit: '-',
         encode: function (phy) {
           let val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, '0');
           val += phy.getMinutes().toString(16).padStart(2, '0');
@@ -335,6 +502,11 @@ qx.Class.define('cv.transforms.Knx', {
 
       '11.001': {
         name: 'DPT_Date',
+        lname: {
+          'de': 'Datum',
+          'en': 'date'
+        },
+        unit: '-',
         encode: function () {
           // FIXME
         },
@@ -347,10 +519,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '12': {
+        name: '4 byte unsigned',
+        lname: {
+          'de': '4 Byte vorzeichenloser Integer',
+          'en': '4 byte unsigned integer'
+        },
         range: {
           min: 0,
           max: 0xffffffff
         },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 0xffffffff).toString(16).padStart(8, '0');
           return {
@@ -368,10 +546,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '13': {
+        name: '4 byte signed',
+        lname: {
+          'de': '4 Byte vorzeichenbehafteter Integer',
+          'en': '4 byte signed integer'
+        },
         range: {
           min: -0x80000000,
           max: 0x7fffffff
         },
+        unit: '-',
         encode: function (phy) {
           let val = cv.Transform.clipInt(-0x80000000, phy, 0x7fffffff);
           val = val < 0 ? val + 4294967296 : val;
@@ -394,10 +578,10 @@ qx.Class.define('cv.transforms.Knx', {
       '14': {
         name: '4 byte float',
         lname: {
-          'de': '4 Byte Gleitkommazahl (nur Dekodieren)',
-          'en': '4 byte float (only decode)'
+          'de': '4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)',
+          'en': '4 byte float IEEE 754 (only decode)'
         },
-        unit: '-'
+        unit: '-',
         encode: function () {
           //FIXME: unimplemented (jspack?)
         },
@@ -418,7 +602,7 @@ qx.Class.define('cv.transforms.Knx', {
         name: 'DPT_String_ASCII',
         lname: {
           'de': '14 Byte Text ASCII',
-          'en': '14 byte text ASCII',
+          'en': '14 byte text ASCII'
         },
         unit: '-',
         encode: function (phy) {
@@ -458,11 +642,15 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '17': {
-        link: '5.004',
+        link: '18',
         name: 'DPT_SceneNumber',
         lname: {
           'en': 'Scene Number',
           'de': 'Szenen Nummer'
+        },
+        range: {
+          min: 1,
+          max: 64
         },
         unit: '-'
       },
@@ -476,11 +664,11 @@ qx.Class.define('cv.transforms.Knx', {
           'en': 'Scene Number',
           'de': 'Szenen Nummer'
         },
-        unit: '-',
         range: {
           min: 1.0,
           max: 64.0+128
         },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy - 1, 63 + 128).toString(16).padStart(2, '0');
           return {
@@ -499,12 +687,13 @@ qx.Class.define('cv.transforms.Knx', {
       '20.102': {
         name: 'DPT_HVACMode',
         lname: {
-          'de': 'KONNEX Betriebsart'
+          'de': 'KONNEX Betriebsart',
+          'en': 'HVAC mode'
         },
-        unit: '-',
         range: {
           'enum': ['auto', 'comfort', 'standby', 'economy', 'building_protection']
         },
+        unit: '-',
         encode: function (phy) {
           let val;
           switch (phy) {
@@ -562,6 +751,7 @@ qx.Class.define('cv.transforms.Knx', {
           'de': 'Variabler String ISO-8859-1',
           'en': 'variable String ISO-8859-1'
         },
+        unit: '-',
         encode: function (phy) {
           let val = '';
           for (let i = 0; i < phy.length; i++) {
@@ -594,11 +784,11 @@ qx.Class.define('cv.transforms.Knx', {
           'en': 'Scene Number',
           'de': 'Szenen Nummer'
         },
-        unit: '-',
         range: {
           min: 1.0,
           max: 64.0+64
         },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy - 1, 63 + 64).toString(16).padStart(2, '0');
           return {
@@ -615,12 +805,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '225' : {
-        name: 'DPT_U24',
-        unit: '-',
+        name: '3 byte unsigned',
+        lname: {
+          'de': '3 Byte vorzeichenloser Integer',
+          'en': '3 byte unsigned integer'
+        },
         range: {
           min: 0x0,
           max: 0xffffff
         },
+        unit: '-',
         encode: function (phy) {
           const val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
           return {
@@ -634,6 +828,11 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '225.001' : {
         name  : 'DPT_ScalingSpeed',
+        lname: {
+          'de': 'Skalierungsgeschwindigkeit',
+          'en': 'scaling speed'
+        },
+        unit: '-',
         encode: function(phy) {
           const period = phy.get('period') || 0;
           const percent = phy.get('percent') || 0;
@@ -655,7 +854,16 @@ qx.Class.define('cv.transforms.Knx', {
       },
 
       '232' : {
-        name  : 'DPT_3U8',
+        name: '3xDPT_Scaling',
+        lname: {
+          'de': 'Drei Prozentwerte',
+          'en': 'three percentages'
+        },
+        range: {
+          min: 0.0,
+          max: 100.0
+        },
+        unit: '%',
         encode: function(phy) {
           let val = [
             cv.Transform.clipInt(0, phy[0], 100, 255 / 100).toString(16).padStart(2, '0'),
@@ -677,6 +885,15 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '232.600' : {
         name  : 'DPT_Colour_RGB',
+        lname: {
+          'de': 'RGB-Farbe',
+          'en': 'rgb color'
+        },
+        range: {
+          min: 0.0,
+          max: 100.0
+        },
+        unit: '%',
         encode: function(phy) {
           if (!(phy instanceof Map)) {
             return { bus: '80000000', raw: '000000' };
@@ -705,6 +922,11 @@ qx.Class.define('cv.transforms.Knx', {
       },
       '232.600HSV' : {
         name  : 'DPT_Colour_HSV_inofficial',
+        lname: {
+          'de': 'HSV-Farbe (inoffiziell)',
+          'en': 'hsv color (inofficial)'
+        },
+        unit: '-',
         encode: function(phy) {
           if (!(phy instanceof Map)) {
             return { bus: '80000000', raw: '000000' };
@@ -734,6 +956,11 @@ qx.Class.define('cv.transforms.Knx', {
 
       '242.600' : {
         name  : 'DPT_Colour_xyY',
+        lname: {
+          'de': 'xyY-Farbe',
+          'en': 'xyY color'
+        },
+        unit: '-',
         encode: function(phy) {
           if (!(phy instanceof Map)) {
             if (!isFinite(phy)) {
@@ -773,6 +1000,15 @@ qx.Class.define('cv.transforms.Knx', {
 
       '251.600' : {
         name  : 'DPT_Colour_RGBW',
+        lname: {
+          'de': 'RGBW-Farbe',
+          'en': 'rgbw color'
+        },
+        range: {
+          min: 0.0,
+          max: 100.0
+        },
+        unit: '%',
         encode: function(phy) {
           if (!(phy instanceof Map)) {
             return { bus: '80000000000000', raw: '000000000000' };
