@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 296,
+        "line": 300,
         "column": 3
       }
     },
@@ -577,7 +577,7 @@
           "column": 4
         },
         "end": {
-          "line": 242,
+          "line": 246,
           "column": 5
         }
       },
@@ -622,11 +622,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 253,
           "column": 31
         }
       },
@@ -656,11 +656,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 259,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 259,
           "column": 30
         }
       },
@@ -690,11 +690,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 262,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 262,
+          "line": 266,
           "column": 29
         }
       },
@@ -724,11 +724,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 269,
+          "line": 273,
           "column": 4
         },
         "end": {
-          "line": 269,
+          "line": 273,
           "column": 35
         }
       },
@@ -766,11 +766,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 277,
+          "line": 281,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 281,
           "column": 47
         }
       },
@@ -814,11 +814,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 279,
+          "line": 283,
           "column": 4
         },
         "end": {
-          "line": 283,
+          "line": 287,
           "column": 5
         }
       },
@@ -832,11 +832,11 @@
     "destruct": {
       "location": {
         "start": {
-          "line": 288,
+          "line": 292,
           "column": 4
         },
         "end": {
-          "line": 293,
+          "line": 297,
           "column": 5
         }
       },

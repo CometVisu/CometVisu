@@ -63,9 +63,12 @@ var testcases = [
   { transform: 'DPT:1.008', type: 'decode', source: '01', target: 1 },
   { transform: 'DPT:1.009', type: 'decode', source: '01', target: 1 },
 
-  // dummy tests for dummy implementation
   { transform: 'DPT:2', type: 'encode', source: 0, target: '80' },
   { transform: 'DPT:2', type: 'decode', source: '00', target: 0 },
+  { transform: 'DPT:2', type: 'encode', source: 1, target: '81' },
+  { transform: 'DPT:2', type: 'decode', source: '01', target: 1 },
+  { transform: 'DPT:2', type: 'encode', source: 3, target: '83' },
+  { transform: 'DPT:2', type: 'decode', source: '03', target: 3 },
 
   { transform: 'DPT:3.007', type: 'encode', source: -101, target: '80' },
   { transform: 'DPT:3.007', type: 'encode', source: -100, target: '81' },
@@ -228,12 +231,12 @@ var testcases = [
   { transform: 'DPT:16', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
   { transform: 'DPT:16.000', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
 
-  { transform: 'DPT:17.001', type: 'encode', source: 0, target: '8000' },
-  { transform: 'DPT:17.001', type: 'encode', source: 10, target: '800a' },
-  { transform: 'DPT:17.001', type: 'encode', source: 63, target: '803f' },
-  { transform: 'DPT:17.001', type: 'decode', source: '00', target: 0 },
-  { transform: 'DPT:17.001', type: 'decode', source: '3f', target: 63 },
-  { transform: 'DPT:17', type: 'encode', source: 10, target: '800a' },
+  { transform: 'DPT:17.001', type: 'encode', source: 1, target: '8000' },
+  { transform: 'DPT:17.001', type: 'encode', source: 11, target: '800a' },
+  { transform: 'DPT:17.001', type: 'encode', source: 64, target: '803f' },
+  { transform: 'DPT:17.001', type: 'decode', source: '00', target: 1 },
+  { transform: 'DPT:17.001', type: 'decode', source: '3f', target: 64 },
+  { transform: 'DPT:17', type: 'encode', source: 11, target: '800a' },
 
   { transform: 'DPT:18.001', type: 'encode', source: 1, target: '8000' },
   { transform: 'DPT:18.001', type: 'encode', source: 11, target: '800a' },

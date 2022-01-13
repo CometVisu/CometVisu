@@ -44,8 +44,17 @@
          *   encode: transform JavaScript to bus value
          *   decode: transform bus to JavaScript value
          */
-        '1.001': {
-          name: 'DPT_Switch',
+        '1': {
+          name: '1 bit',
+          lname: {
+            'de': '1 Bit',
+            'en': '1 bit'
+          },
+          range: {
+            min: 0,
+            max: 1
+          },
+          unit: '-',
           encode: function encode(phy) {
             phy = +phy; // cast to number
 
@@ -58,26 +67,80 @@
             return parseInt(hex, 16);
           }
         },
-        '1': {
-          link: '1.001'
+        '1.001': {
+          link: '1',
+          name: 'DPT_Switch',
+          lname: {
+            'de': 'Aus-An-Schalter',
+            'en': 'off on switch'
+          }
         },
         '1.002': {
-          link: '1.001'
+          link: '1',
+          name: 'DPT_Bool',
+          lname: {
+            'de': 'Boolscher-Wert',
+            'en': 'boolead value'
+          }
         },
         '1.003': {
-          link: '1.001'
+          link: '1',
+          name: 'DPT_Enable',
+          lname: {
+            'de': 'Disable / Enable',
+            'en': 'disable / enable'
+          }
         },
         '1.008': {
-          link: '1.001'
+          link: '1',
+          name: 'DPT_UpDown',
+          lname: {
+            'de': 'Hoch-Runter-Schalter',
+            'en': 'up down switch'
+          }
         },
         '1.009': {
-          link: '1.001'
+          link: '1',
+          name: 'DPT_OpenClose',
+          lname: {
+            'de': 'Auf-Zu-Schalter',
+            'en': 'open close switch'
+          }
         },
         '2': {
-          link: '1.001'
+          link: '1',
+          name: '2 bit',
+          lname: {
+            'de': '2 Bit',
+            'en': '2 bit'
+          },
+          range: {
+            min: 0,
+            max: 3
+          },
+          unit: '-',
+          encode: function encode(phy) {
+            var val = cv.Transform.clipInt(0, phy, 3).toString(16);
+            return {
+              bus: '8' + val,
+              raw: '0' + val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return parseInt(hex, 16);
+          }
         },
-        '3.007': {
-          name: 'DPT_Control_Dimming',
+        '3': {
+          name: '4 bit',
+          lname: {
+            'de': '4 Bit',
+            'en': '4 bit'
+          },
+          range: {
+            min: -100,
+            max: 100
+          },
+          unit: '-',
           encode: function encode(phy) {
             phy = +phy; // enforce number
 
@@ -109,15 +172,29 @@
             return (up * 2 - 1) * 100 / Math.pow(2, (val & 7) - 1);
           }
         },
+        '3.007': {
+          link: '3',
+          name: 'DPT_Control_Dimming',
+          lname: {
+            'de': 'Dimmen',
+            'en': 'dimming'
+          }
+        },
         '3.008': {
+          link: '3',
           name: 'DPT_Control_Blinds',
-          link: '3.007'
+          lname: {
+            'de': 'Beschattungssteuerung',
+            'en': 'blind control'
+          }
         },
-        '3': {
-          link: '3.007'
-        },
-        '4.001': {
-          name: 'DPT_Char_ASCII',
+        '4': {
+          name: 'char',
+          lname: {
+            'de': 'Zeichen',
+            'en': 'char'
+          },
+          unit: '-',
           encode: function encode(phy) {
             var val = ('' + phy).charCodeAt(0).toString(16).padStart(2, '0');
             return {
@@ -129,16 +206,43 @@
             return String.fromCharCode(parseInt(hex, 16));
           }
         },
-        '4': {
-          link: '4.001'
+        '4.001': {
+          name: 'DPT_Char_ASCII',
+          link: '4'
+        },
+        '5': {
+          name: '8 bit unsigned',
+          lname: {
+            'de': '8 Bit vorzeichenloser Integer',
+            'en': '8 bit unsigned integer'
+          },
+          range: {
+            min: 0,
+            max: 255
+          },
+          unit: '-',
+          encode: function encode(phy) {
+            var val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return parseInt(hex, 16);
+          }
         },
         '5.001': {
           name: 'DPT_Scaling',
-          unit: '%',
+          lname: {
+            'de': 'Prozentwert',
+            'en': 'percentage'
+          },
           range: {
             min: 0.0,
             max: 100.0
           },
+          unit: '%',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(0, phy, 100, 2.55).toString(16).padStart(2, '0');
             return {
@@ -152,11 +256,15 @@
         },
         '5.003': {
           name: 'DPT_Angle',
-          unit: '°',
+          lname: {
+            'de': 'Winkel',
+            'en': 'angle'
+          },
           range: {
             min: 0.0,
             max: 360.0
           },
+          unit: '°',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(0, phy, 360, 0.7083333333333334).toString(16).padStart(2, '0');
             return {
@@ -169,34 +277,34 @@
           }
         },
         '5.004': {
+          link: '5',
           name: 'DPT_Percent_U8',
-          unit: '%',
-          range: {
-            min: 0.0,
-            max: 255.0
+          lname: {
+            'de': 'Prozentwert',
+            'en': 'percentage'
           },
-          encode: function encode(phy) {
-            var val = cv.Transform.clipInt(0, phy, 255).toString(16).padStart(2, '0');
-            return {
-              bus: '80' + val,
-              raw: val.toUpperCase()
-            };
-          },
-          decode: function decode(hex) {
-            return parseInt(hex, 16);
-          }
+          unit: '%'
         },
         '5.010': {
-          link: '5.004',
+          link: '5',
           name: 'DPT_Value_1_Ucount',
+          lname: {
+            'de': 'Zähler',
+            'en': 'counter'
+          },
           unit: '-'
         },
-        '5': {
-          link: '5.004',
-          name: '8-Bit Unsigned Value'
-        },
-        '6.001': {
-          name: 'DPT_Percent_V8',
+        '6': {
+          name: '8 bit signed',
+          lname: {
+            'de': '8 Bit vorzeichenbehafteter Integer',
+            'en': '8 bit signed integer'
+          },
+          range: {
+            min: -128,
+            max: 127
+          },
+          unit: '-',
           encode: function encode(phy) {
             phy = cv.Transform.clipInt(-128, phy, 127);
             var val = phy < 0 ? phy + 256 : phy;
@@ -211,15 +319,34 @@
             return val > 127 ? val - 256 : val;
           }
         },
-        '6': {
-          link: '6.001'
+        '6.001': {
+          link: '6',
+          name: 'DPT_Percent_V8',
+          lname: {
+            'de': 'Prozentwert mit Vorzeichen',
+            'en': 'percentage with sign'
+          },
+          unit: '%'
         },
-        '7.001': {
-          name: 'DPT_Value_2_Ucount',
+        '6.010': {
+          link: '6',
+          name: 'DPT_Value_1_Count',
+          lname: {
+            'de': 'Zähler mit Vorzeichen',
+            'en': 'counter with sign'
+          }
+        },
+        '7': {
+          name: '2 byte unsigned',
+          lname: {
+            'de': '2 Byte vorzeichenloser Integer',
+            'en': '2 byte unsigned integer'
+          },
           range: {
             min: 0,
             max: 0xffff
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(0, phy, 0xffff).toString(16).padStart(4, '0');
             return {
@@ -231,20 +358,26 @@
             return parseInt(hex, 16);
           }
         },
+        '7.001': {
+          link: '7',
+          name: 'DPT_Value_2_Ucount'
+        },
         '7.600': {
+          link: '7',
           name: 'DPT_Absolute_Colour_Temperature',
-          unit: 'K',
-          link: '7.001'
+          unit: 'K'
         },
-        '7': {
-          link: '7.001'
-        },
-        '8.001': {
-          name: 'DPT_Value_2_Count',
+        '8': {
+          name: '2 byte signed',
+          lname: {
+            'de': '2 Byte vorzeichenbehafteter Integer',
+            'en': '2 byte signed integer'
+          },
           range: {
             min: -0x8000,
             max: 0x7fff
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(-0x8000, phy, 0x7fff);
             val = val < 0 ? val + 65536 : val;
@@ -259,11 +392,21 @@
             return val > 32767 ? val - 65536 : val;
           }
         },
-        '8': {
-          link: '8.001'
+        '8.001': {
+          link: '8',
+          name: 'DPT_Value_2_Count'
         },
-        '9.001': {
-          name: 'DPT_Value_Temp',
+        '9': {
+          name: '2 byte float',
+          lname: {
+            'de': '2 Byte Gleitkommazahl',
+            'en': '2 byte float value'
+          },
+          range: {
+            min: -671088.64,
+            max: 670433.28
+          },
+          unit: '-',
           encode: function encode(phy) {
             if (undefined === phy || isNaN(phy)) {
               return '7fff';
@@ -302,26 +445,67 @@
             return (1 << exp) * 0.01 * mant;
           }
         },
+        '9.001': {
+          link: '9',
+          name: 'DPT_Value_Temp',
+          lname: {
+            'de': 'Temperatur',
+            'en': 'temperature'
+          },
+          unit: '°C'
+        },
         '9.004': {
-          link: '9.001'
+          link: '9',
+          name: 'DPT_Value_Lux',
+          lname: {
+            'de': 'Beleuchtungsstärke',
+            'en': 'illuminance'
+          },
+          unit: 'Lux'
         },
         '9.007': {
-          link: '9.001'
+          link: '9',
+          name: 'DPT_Value_Humidity',
+          lname: {
+            'de': 'Luftfeuchtigkeit',
+            'en': 'humidity'
+          },
+          unit: '%'
         },
         '9.008': {
-          link: '9.001'
+          link: '9',
+          name: 'DPT_Value_AirQuality',
+          lname: {
+            'de': 'Luftqualität',
+            'en': 'air quality'
+          },
+          unit: 'ppm'
         },
         '9.020': {
-          link: '9.001'
+          link: '9',
+          name: 'DPT_Value_Volt',
+          lname: {
+            'de': 'Spannung',
+            'en': 'voltage'
+          },
+          unit: 'mV'
         },
         '9.021': {
-          link: '9.001'
-        },
-        '9': {
-          link: '9.001'
+          link: '9',
+          name: 'DPT_Value_Curr',
+          lname: {
+            'de': 'Strom',
+            'en': 'current'
+          },
+          unit: 'mA'
         },
         '10.001': {
           name: 'DPT_TimeOfDay',
+          lname: {
+            'de': 'Zeit',
+            'en': 'time'
+          },
+          unit: '-',
           encode: function encode(phy) {
             var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, '0');
             val += phy.getMinutes().toString(16).padStart(2, '0');
@@ -351,6 +535,11 @@
         },
         '11.001': {
           name: 'DPT_Date',
+          lname: {
+            'de': 'Datum',
+            'en': 'date'
+          },
+          unit: '-',
           encode: function encode() {// FIXME
           },
           decode: function decode(hex) {
@@ -359,12 +548,17 @@
             (parseInt(hex.substr(2, 2), 16) & 0x0F) - 1, parseInt(hex.substr(0, 2), 16) & 0x1F);
           }
         },
-        '12.001': {
-          name: 'DPT_Value_4_Ucount',
+        '12': {
+          name: '4 byte unsigned',
+          lname: {
+            'de': '4 Byte vorzeichenloser Integer',
+            'en': '4 byte unsigned integer'
+          },
           range: {
             min: 0,
             max: 0xffffffff
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(0, phy, 0xffffffff).toString(16).padStart(8, '0');
             return {
@@ -376,15 +570,21 @@
             return parseInt(hex, 16);
           }
         },
-        '12': {
-          link: '12.001'
+        '12.001': {
+          link: '12',
+          name: 'DPT_Value_4_Ucount'
         },
-        '13.001': {
-          name: 'DPT_Value_4_Count',
+        '13': {
+          name: '4 byte signed',
+          lname: {
+            'de': '4 Byte vorzeichenbehafteter Integer',
+            'en': '4 byte signed integer'
+          },
           range: {
             min: -0x80000000,
             max: 0x7fffffff
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(-0x80000000, phy, 0x7fffffff);
             val = val < 0 ? val + 4294967296 : val;
@@ -399,11 +599,17 @@
             return val > 2147483647 ? val - 4294967296 : val;
           }
         },
-        '13': {
-          link: '13.001'
+        '13.001': {
+          link: '13',
+          name: 'DPT_Value_4_Count'
         },
-        '14.001': {
-          name: 'DPT_Value_Acceleration_Angular',
+        '14': {
+          name: '4 byte float',
+          lname: {
+            'de': '4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)',
+            'en': '4 byte float IEEE 754 (only decode)'
+          },
+          unit: '-',
           encode: function encode() {//FIXME: unimplemented (jspack?)
           },
           decode: function decode(hex) {
@@ -414,19 +620,17 @@
             return sign * Math.pow(2, exp) * (mant / (1 << 23));
           }
         },
-        '14': {
-          link: '14.001',
-          name: '4 byte float',
-          lname: {
-            'de': '4 Byte Gleitkommazahl'
-          },
-          unit: '-'
+        '14.001': {
+          link: '14',
+          name: 'DPT_Value_Acceleration_Angular'
         },
-        '16.001': {
-          name: 'DPT_String_8859_1',
+        '16': {
+          name: 'DPT_String_ASCII',
           lname: {
-            'de': '14 Byte Text ISO-8859-1'
+            'de': '14 Byte Text ASCII',
+            'en': '14 byte text ASCII'
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = '';
             phy += ''; // force datatype String
@@ -457,50 +661,43 @@
           }
         },
         '16.000': {
-          link: '16.001',
-          name: 'DPT_String_ASCII',
-          lname: {
-            'de': '14 Byte Text ASCII'
-          },
-          unit: '-'
+          link: '16'
         },
-        '16': {
-          link: '16.001',
-          name: 'DPT_String_ASCII',
+        '16.001': {
+          link: '16',
+          name: 'DPT_String_8859_1',
           lname: {
-            'de': '14 Byte Text ASCII'
+            'de': '14 Byte Text ISO-8859-1',
+            'en': '14 byte text ISO-8859-1'
+          }
+        },
+        '17': {
+          link: '18',
+          name: 'DPT_SceneNumber',
+          lname: {
+            'en': 'Scene Number',
+            'de': 'Szenen Nummer'
+          },
+          range: {
+            min: 1,
+            max: 64
           },
           unit: '-'
         },
         '17.001': {
-          link: '5.004',
-          name: 'DPT_SceneNumber',
-          lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
-          },
-          unit: '-'
+          link: '18'
         },
-        '17': {
-          link: '5.004',
-          name: 'DPT_SceneNumber',
-          lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
-          },
-          unit: '-'
-        },
-        '18.001': {
+        '18': {
           name: 'DPT_SceneControl',
           lname: {
             'en': 'Scene Number',
             'de': 'Szenen Nummer'
           },
-          unit: '-',
           range: {
-            min: 1.0,
+            min: 1,
             max: 192
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = cv.Transform.clipInt(0, phy - 1, 191).toString(16).padStart(2, '0');
             return {
@@ -512,55 +709,19 @@
             return parseInt(hex, 16) + 1;
           }
         },
-        '18': {
-          link: '18.001',
-          name: 'DPT_SceneControl',
-          lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
-          },
-          unit: '-'
-        },
-        '26.001': {
-          name: 'DPT_SceneInfo',
-          lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
-          },
-          unit: '-',
-          range: {
-            min: 1.0,
-            max: 128
-          },
-          encode: function encode(phy) {
-            var val = cv.Transform.clipInt(0, phy - 1, 127).toString(16).padStart(2, '0');
-            return {
-              bus: '80' + val,
-              raw: val.toUpperCase()
-            };
-          },
-          decode: function decode(hex) {
-            return parseInt(hex, 16) + 1;
-          }
-        },
-        '26': {
-          link: '26.001',
-          name: 'DPT_SceneInfo',
-          lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
-          },
-          unit: '-'
+        '18.001': {
+          link: '18'
         },
         '20.102': {
           name: 'DPT_HVACMode',
           lname: {
-            'de': 'KONNEX Betriebsart'
+            'de': 'KONNEX Betriebsart',
+            'en': 'HVAC mode'
           },
-          unit: '-',
           range: {
             'enum': ['auto', 'comfort', 'standby', 'economy', 'building_protection']
           },
+          unit: '-',
           encode: function encode(phy) {
             var val;
 
@@ -627,8 +788,10 @@
         '24.001': {
           name: 'DPT_VarString_8859_1',
           lname: {
-            'de': 'variable String ISO-8859-1'
+            'de': 'Variabler String ISO-8859-1',
+            'en': 'variable String ISO-8859-1'
           },
+          unit: '-',
           encode: function encode(phy) {
             var val = '';
 
@@ -660,8 +823,60 @@
             return val;
           }
         },
+        '26': {
+          name: 'DPT_SceneInfo',
+          lname: {
+            'en': 'Scene Number',
+            'de': 'Szenen Nummer'
+          },
+          range: {
+            min: 1.0,
+            max: 128
+          },
+          unit: '-',
+          encode: function encode(phy) {
+            var val = cv.Transform.clipInt(0, phy - 1, 127).toString(16).padStart(2, '0');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return parseInt(hex, 16) + 1;
+          }
+        },
+        '26.001': {
+          link: '26'
+        },
+        '225': {
+          name: '3 byte unsigned',
+          lname: {
+            'de': '3 Byte vorzeichenloser Integer',
+            'en': '3 byte unsigned integer'
+          },
+          range: {
+            min: 0x0,
+            max: 0xffffff
+          },
+          unit: '-',
+          encode: function encode(phy) {
+            var val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
+          },
+          decode: function decode(hex) {
+            return parseInt(hex, 16);
+          }
+        },
         '225.001': {
           name: 'DPT_ScalingSpeed',
+          lname: {
+            'de': 'Skalierungsgeschwindigkeit',
+            'en': 'scaling speed'
+          },
+          unit: '-',
           encode: function encode(phy) {
             var period = phy.get('period') || 0;
             var percent = phy.get('percent') || 0;
@@ -675,26 +890,39 @@
             return new Map([['period', parseInt(hex.substr(0, 4), 16)], ['percent', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]]);
           }
         },
-        '225': {
-          name: 'DPT_U24',
-          unit: '-',
-          range: {
-            min: 0x0,
-            max: 0xffffff
+        '232': {
+          name: '3xDPT_Scaling',
+          lname: {
+            'de': 'Drei Prozentwerte',
+            'en': 'three percentages'
           },
+          range: {
+            min: 0.0,
+            max: 100.0
+          },
+          unit: '%',
           encode: function encode(phy) {
-            var val = cv.Transform.clipInt(0, phy, 0xffffff).toString(16).padStart(6, '0');
+            var val = [cv.Transform.clipInt(0, phy[0], 100, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy[1], 100, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy[2], 100, 2.55).toString(16).padStart(2, '0')].join('');
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
             };
           },
           decode: function decode(hex) {
-            return parseInt(hex, 16);
+            return [parseInt(hex.substr(0, 2), 16) * 100 / 255.0, parseInt(hex.substr(2, 2), 16) * 100 / 255.0, parseInt(hex.substr(4, 2), 16) * 100 / 255.0];
           }
         },
         '232.600': {
           name: 'DPT_Colour_RGB',
+          lname: {
+            'de': 'RGB-Farbe',
+            'en': 'rgb color'
+          },
+          range: {
+            min: 0.0,
+            max: 100.0
+          },
+          unit: '%',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               return {
@@ -718,6 +946,11 @@
         },
         '232.600HSV': {
           name: 'DPT_Colour_HSV_inofficial',
+          lname: {
+            'de': 'HSV-Farbe (inoffiziell)',
+            'en': 'hsv color (inofficial)'
+          },
+          unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               return {
@@ -739,21 +972,13 @@
             return new Map([['h', parseInt(hex.substr(0, 2), 16) * 360 / 255.0], ['s', parseInt(hex.substr(2, 2), 16) * 100 / 255.0], ['v', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]]);
           }
         },
-        '232': {
-          name: 'DPT_3U8',
-          encode: function encode(phy) {
-            var val = [cv.Transform.clipInt(0, phy[0], 100, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy[1], 100, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy[2], 100, 2.55).toString(16).padStart(2, '0')].join('');
-            return {
-              bus: '80' + val,
-              raw: val.toUpperCase()
-            };
-          },
-          decode: function decode(hex) {
-            return [parseInt(hex.substr(0, 2), 16) * 100 / 255.0, parseInt(hex.substr(2, 2), 16) * 100 / 255.0, parseInt(hex.substr(4, 2), 16) * 100 / 255.0];
-          }
-        },
         '242.600': {
           name: 'DPT_Colour_xyY',
+          lname: {
+            'de': 'xyY-Farbe',
+            'en': 'xyY color'
+          },
+          unit: '-',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               if (!isFinite(phy)) {
@@ -784,6 +1009,15 @@
         },
         '251.600': {
           name: 'DPT_Colour_RGBW',
+          lname: {
+            'de': 'RGBW-Farbe',
+            'en': 'rgbw color'
+          },
+          range: {
+            min: 0.0,
+            max: 100.0
+          },
+          unit: '%',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               return {
@@ -810,30 +1044,6 @@
             var valid = parseInt(hex[11], 16);
             return new Map([['r', parseInt(hex.substr(0, 2), 16) * 100 / 255.0], ['g', parseInt(hex.substr(2, 2), 16) * 100 / 255.0], ['b', parseInt(hex.substr(4, 2), 16) * 100 / 255.0], ['w', parseInt(hex.substr(6, 2), 16) * 100 / 255.0], ['rValid', (valid & 8) > 0], ['gValid', (valid & 4) > 0], ['bValid', (valid & 2) > 0], ['wValid', (valid & 1) > 0]]);
           }
-        },
-
-        /* 9 Zeilen:
-        },
-        '.001' : {
-        name  : '',
-        encode: function( phy ){
-        return phy;
-        },
-        decode: function( hex ){
-        return hex;
-        }
-        }
-        /*/
-        /////////////////////////////////////////////////
-
-        /* 3 Zeilen:
-        }
-        '': {
-        link  : '.001'
-        },
-        */
-        'temp dummy': {
-          link: '1.001'
         }
       });
     }
@@ -841,4 +1051,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1641882199059
+//# sourceMappingURL=Knx.js.map?dt=1642098028281

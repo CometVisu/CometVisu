@@ -1,0 +1,958 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adressen - die Kommunikation mit dem Backend &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/address.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Stichwortverzeichnis"
+              href="../genindex.html"/>
+        <link rel="search" title="Suche" href="../search.html"/>
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Konfiguration der CometVisu" href="index.html"/>
+        <link rel="next" title="CometVisu von haegar80 (Metal)" href="examples/haegar80.html"/>
+        <link rel="prev" title="Das tr064 Plugin" href="widgets/plugins/tr064/index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.12.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Adressen - die Kommunikation mit dem Backend</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transform">Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mode">Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+        
+      <li>Adressen - die Kommunikation mit dem Backend</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="adressen-die-kommunikation-mit-dem-backend">
+<span id="address"></span><h1>Adressen - die Kommunikation mit dem Backend<a class="headerlink" href="#adressen-die-kommunikation-mit-dem-backend" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die meisten Widgets verwenden ein oder mehrere <code class="docutils literal notranslate"><span class="pre">address</span></code> Elemente für die
+Kommunikation mit dem Backend, welches darüber die ensprechenden Informationen
+vom KNX-Bus, OpenHAB oder MQTT bereitstellt. Der Inhalt ist die Adresse selbst,
+über die Attribute lässt sich das Verhalten des Widgets im Bezug auf die
+Adresse einstellen:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">transform</span></code></td>
+<td>Legt den Datentyp im Backend fest, z.B. <code class="docutils literal notranslate"><span class="pre">DPT:1.001</span></code> für den KNX
+Datenpunkttyp 1.001</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">mode</span></code></td>
+<td>Legt fest, ob auf dieser Adresse nur gelesen (<code class="docutils literal notranslate"><span class="pre">read</span></code>),
+geschrieben (<code class="docutils literal notranslate"><span class="pre">write</span></code>) oder beides (<code class="docutils literal notranslate"><span class="pre">readwrite</span></code>) werden soll</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">variant</span></code></td>
+<td>Optional und Widget spezifisch: manche Widgets können mehrere
+Adressen gleichzeitig benötigen, z.B. um für eine Farbe den roten,
+grünen und blauen Kanal unterscheiden zu können</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bei den für das jeweilige Backend spezifischen gültigen Werte für <code class="docutils literal notranslate"><span class="pre">transform</span></code>
+wird der entsprechende „Namensraum“ per Doppelpunkt getrennt vor den jeweiligen
+Datentyp geschrieben. Die für das jeweilige Backend gültigen Werte sind:</p>
+<div class="section" id="knx">
+<h3>KNX<a class="headerlink" href="#knx" title="Link zu dieser Überschrift">¶</a></h3>
+<p><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
+<th class="head">Name</th>
+<th class="head">Beschreibung</th>
+<th class="head">Einheit</th>
+<th class="head">Min</th>
+<th class="head">Max</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>DPT:1</td>
+<td>1 bit</td>
+<td>1 Bit</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>DPT:1.001</td>
+<td>DPT_Switch</td>
+<td>Aus-An-Schalter</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>DPT:1.002</td>
+<td>DPT_Bool</td>
+<td>Boolscher-Wert</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>DPT:1.003</td>
+<td>DPT_Enable</td>
+<td>Disable / Enable</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>DPT:1.008</td>
+<td>DPT_UpDown</td>
+<td>Hoch-Runter-Schalter</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>DPT:1.009</td>
+<td>DPT_OpenClose</td>
+<td>Auf-Zu-Schalter</td>
+<td>-</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>DPT:2</td>
+<td>2 bit</td>
+<td>2 Bit</td>
+<td>-</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>DPT:3</td>
+<td>4 bit</td>
+<td>4 Bit</td>
+<td>-</td>
+<td>-100</td>
+<td>100</td>
+</tr>
+<tr class="row-even"><td>DPT:3.007</td>
+<td>DPT_Control_Dimming</td>
+<td>Dimmen</td>
+<td>-</td>
+<td>-100</td>
+<td>100</td>
+</tr>
+<tr class="row-odd"><td>DPT:3.008</td>
+<td>DPT_Control_Blinds</td>
+<td>Beschattungssteuerung</td>
+<td>-</td>
+<td>-100</td>
+<td>100</td>
+</tr>
+<tr class="row-even"><td>DPT:4</td>
+<td>char</td>
+<td>Zeichen</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:4.001</td>
+<td>DPT_Char_ASCII</td>
+<td>Zeichen</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:5</td>
+<td>8 bit unsigned</td>
+<td>8 Bit vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr class="row-odd"><td>DPT:5.001</td>
+<td>DPT_Scaling</td>
+<td>Prozentwert</td>
+<td>%</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr class="row-even"><td>DPT:5.003</td>
+<td>DPT_Angle</td>
+<td>Winkel</td>
+<td>°</td>
+<td>0</td>
+<td>360</td>
+</tr>
+<tr class="row-odd"><td>DPT:5.004</td>
+<td>DPT_Percent_U8</td>
+<td>Prozentwert</td>
+<td>%</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr class="row-even"><td>DPT:5.010</td>
+<td>DPT_Value_1_Ucount</td>
+<td>Zähler</td>
+<td>-</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr class="row-odd"><td>DPT:6</td>
+<td>8 bit signed</td>
+<td>8 Bit vorzeichenbehafteter Integer</td>
+<td>-</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr class="row-even"><td>DPT:6.001</td>
+<td>DPT_Percent_V8</td>
+<td>Prozentwert mit Vorzeichen</td>
+<td>%</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr class="row-odd"><td>DPT:6.010</td>
+<td>DPT_Value_1_Count</td>
+<td>Zähler mit Vorzeichen</td>
+<td>-</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr class="row-even"><td>DPT:7</td>
+<td>2 byte unsigned</td>
+<td>2 Byte vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>65535</td>
+</tr>
+<tr class="row-odd"><td>DPT:7.001</td>
+<td>DPT_Value_2_Ucount</td>
+<td>2 Byte vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>65535</td>
+</tr>
+<tr class="row-even"><td>DPT:7.600</td>
+<td>DPT_Absolute_Colour_Temperature</td>
+<td>2 Byte vorzeichenloser Integer</td>
+<td>K</td>
+<td>0</td>
+<td>65535</td>
+</tr>
+<tr class="row-odd"><td>DPT:8</td>
+<td>2 byte signed</td>
+<td>2 Byte vorzeichenbehafteter Integer</td>
+<td>-</td>
+<td>-32768</td>
+<td>32767</td>
+</tr>
+<tr class="row-even"><td>DPT:8.001</td>
+<td>DPT_Value_2_Count</td>
+<td>2 Byte vorzeichenbehafteter Integer</td>
+<td>-</td>
+<td>-32768</td>
+<td>32767</td>
+</tr>
+<tr class="row-odd"><td>DPT:9</td>
+<td>2 byte float</td>
+<td>2 Byte Gleitkommazahl</td>
+<td>-</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-even"><td>DPT:9.001</td>
+<td>DPT_Value_Temp</td>
+<td>Temperatur</td>
+<td>°C</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-odd"><td>DPT:9.004</td>
+<td>DPT_Value_Lux</td>
+<td>Beleuchtungsstärke</td>
+<td>Lux</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-even"><td>DPT:9.007</td>
+<td>DPT_Value_Humidity</td>
+<td>Luftfeuchtigkeit</td>
+<td>%</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-odd"><td>DPT:9.008</td>
+<td>DPT_Value_AirQuality</td>
+<td>Luftqualität</td>
+<td>ppm</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-even"><td>DPT:9.020</td>
+<td>DPT_Value_Volt</td>
+<td>Spannung</td>
+<td>mV</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-odd"><td>DPT:9.021</td>
+<td>DPT_Value_Curr</td>
+<td>Strom</td>
+<td>mA</td>
+<td>-671088.64</td>
+<td>670433.28</td>
+</tr>
+<tr class="row-even"><td>DPT:10.001</td>
+<td>DPT_TimeOfDay</td>
+<td>Zeit</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:11.001</td>
+<td>DPT_Date</td>
+<td>Datum</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:12</td>
+<td>4 byte unsigned</td>
+<td>4 Byte vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>4294967295</td>
+</tr>
+<tr class="row-odd"><td>DPT:12.001</td>
+<td>DPT_Value_4_Ucount</td>
+<td>4 Byte vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>4294967295</td>
+</tr>
+<tr class="row-even"><td>DPT:13</td>
+<td>4 byte signed</td>
+<td>4 Byte vorzeichenbehafteter Integer</td>
+<td>-</td>
+<td>-2147483648</td>
+<td>2147483647</td>
+</tr>
+<tr class="row-odd"><td>DPT:13.001</td>
+<td>DPT_Value_4_Count</td>
+<td>4 Byte vorzeichenbehafteter Integer</td>
+<td>-</td>
+<td>-2147483648</td>
+<td>2147483647</td>
+</tr>
+<tr class="row-even"><td>DPT:14</td>
+<td>4 byte float</td>
+<td>4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:14.001</td>
+<td>DPT_Value_Acceleration_Angular</td>
+<td>4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:16</td>
+<td>DPT_String_ASCII</td>
+<td>14 Byte Text ASCII</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:16.000</td>
+<td>DPT_String_ASCII</td>
+<td>14 Byte Text ASCII</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:16.001</td>
+<td>DPT_String_8859_1</td>
+<td>14 Byte Text ISO-8859-1</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:17</td>
+<td>DPT_SceneNumber</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>64</td>
+</tr>
+<tr class="row-even"><td>DPT:17.001</td>
+<td>DPT_SceneControl</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>192</td>
+</tr>
+<tr class="row-odd"><td>DPT:18</td>
+<td>DPT_SceneControl</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>192</td>
+</tr>
+<tr class="row-even"><td>DPT:18.001</td>
+<td>DPT_SceneControl</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>192</td>
+</tr>
+<tr class="row-odd"><td>DPT:20.102</td>
+<td>DPT_HVACMode</td>
+<td>KONNEX Betriebsart</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:24.001</td>
+<td>DPT_VarString_8859_1</td>
+<td>Variabler String ISO-8859-1</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:26</td>
+<td>DPT_SceneInfo</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>128</td>
+</tr>
+<tr class="row-even"><td>DPT:26.001</td>
+<td>DPT_SceneInfo</td>
+<td>Szenen Nummer</td>
+<td>-</td>
+<td>1</td>
+<td>128</td>
+</tr>
+<tr class="row-odd"><td>DPT:225</td>
+<td>3 byte unsigned</td>
+<td>3 Byte vorzeichenloser Integer</td>
+<td>-</td>
+<td>0</td>
+<td>16777215</td>
+</tr>
+<tr class="row-even"><td>DPT:225.001</td>
+<td>DPT_ScalingSpeed</td>
+<td>Skalierungsgeschwindigkeit</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:232</td>
+<td>3xDPT_Scaling</td>
+<td>Drei Prozentwerte</td>
+<td>%</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr class="row-even"><td>DPT:232.600</td>
+<td>DPT_Colour_RGB</td>
+<td>RGB-Farbe</td>
+<td>%</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr class="row-odd"><td>DPT:232.600HSV</td>
+<td>DPT_Colour_HSV_inofficial</td>
+<td>HSV-Farbe (inoffiziell)</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>DPT:242.600</td>
+<td>DPT_Colour_xyY</td>
+<td>xyY-Farbe</td>
+<td>-</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>DPT:251.600</td>
+<td>DPT_Colour_RGBW</td>
+<td>RGBW-Farbe</td>
+<td>%</td>
+<td>0</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="openhab">
+<h3>OpenHab<a class="headerlink" href="#openhab" title="Link zu dieser Überschrift">¶</a></h3>
+<p><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
+<th class="head">Name</th>
+<th class="head">Beschreibung</th>
+<th class="head">Einheit</th>
+<th class="head">Min</th>
+<th class="head">Max</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OH:color</td>
+<td>OH_Color</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>OH:contact</td>
+<td>OH_Contact</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>OH:datetime</td>
+<td>OH_DateTime</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>OH:dimmer</td>
+<td>OH_Dimmer</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>OH:number</td>
+<td>OH_Number</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>OH:rollershutter</td>
+<td>OH_RollerShutter</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>OH:string</td>
+<td>OH_String</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>OH:switch</td>
+<td>OH_Switch</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>OH:time</td>
+<td>OH_Time</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="mqtt">
+<h3>MQTT<a class="headerlink" href="#mqtt" title="Link zu dieser Überschrift">¶</a></h3>
+<p><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
+<th class="head">Name</th>
+<th class="head">Beschreibung</th>
+<th class="head">Einheit</th>
+<th class="head">Min</th>
+<th class="head">Max</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MQTT:json</td>
+<td>MQTT_JSON</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>MQTT:number</td>
+<td>MQTT_Number</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>MQTT:string</td>
+<td>MQTT_String</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<div class="section" id="roh-werte-test">
+<h3>Roh-Werte / Test:<a class="headerlink" href="#roh-werte-test" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die <code class="docutils literal notranslate"><span class="pre">transform</span></code>-Werte ohne Namensraum dienen im Wesentlichen nur der
+Entwicklung der CometVisu, können aber in Spezialfällen auch im Produktivbetrieb
+relevant sein:</p>
+<p><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">transform</span></code></th>
+<th class="head">Name</th>
+<th class="head">Beschreibung</th>
+<th class="head">Einheit</th>
+<th class="head">Min</th>
+<th class="head">Max</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>float</td>
+<td>Cast to Float</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>int</td>
+<td>Cast to Int</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>raw</td>
+<td>Only the RAW value</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+<div class="section" id="mode">
+<h2>Mode<a class="headerlink" href="#mode" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p>Im KNX Umfeld ist es üblich, dass nur eine Adresse mit <code class="docutils literal notranslate"><span class="pre">write</span></code> definiert
+wird und eine oder mehrere Adressen, die in der Regel nicht mit der
+<code class="docutils literal notranslate"><span class="pre">write</span></code> Adresse übereinstimmen, als <code class="docutils literal notranslate"><span class="pre">read</span></code>.</p>
+<p class="last">Dieses Prinzip ist damit genau das gleiche wie bei allen anderen KNX
+Komponenten bei denen über eine Addresse der Wert gesetzt wird und über eine
+andere die Rückmeldung erfolgt.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples/haegar80.html" class="btn btn-neutral float-right" title="CometVisu von haegar80 (Metal)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="widgets/plugins/tr064/index.html" class="btn btn-neutral" title="Das tr064 Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.12.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../0.10/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../0.11/manual/index.html">0.11.2</a></dd>
+        
+          <dd><a href="../../../0.12/manual/index.html">0.12.0-dev</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -258,6 +258,14 @@ The description of the widgets can be read here:
 
     widgets/index
 
+To configure the communication of the widget with the backend ``address``
+elements are used. They are described in the :ref:`chapter address <address>`.
+
+.. toctree::
+    :hidden:
+
+    address
+
 CometVisu - Examples
 --------------------
 

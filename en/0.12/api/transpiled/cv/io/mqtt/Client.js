@@ -260,8 +260,14 @@
         if (this.isConnected()) {
           var message = new Paho.MQTT.Message(value);
           message.destinationName = address;
-          message.qos = options.qos;
-          message.retained = options.retain;
+
+          if (options.qos !== undefined) {
+            message.qos = options.qos;
+          }
+
+          if (options.retain !== undefined) {
+            message.retained = options.retain;
+          }
 
           this._client.send(message);
         }
@@ -323,4 +329,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1641882235253
+//# sourceMappingURL=Client.js.map?dt=1642098063912
