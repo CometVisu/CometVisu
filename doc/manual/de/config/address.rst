@@ -12,7 +12,7 @@ Adresse einstellen:
 ============= ==================================================================
 ``transform`` Legt den Datentyp im Backend fest, z.B. ``DPT:1.001`` für den KNX
               Datenpunkttyp 1.001
-``mode``      Legt fest, ob auf dieser Adresse nur gehocht (``read``),
+``mode``      Legt fest, ob auf dieser Adresse nur gelesen (``read``),
               geschrieben (``write``) oder beides (``readwrite``) werden soll
 ``variant``   Optional und Widget spezifisch: manche Widgets können mehrere
               Adressen gleichzeitig benötigen, z.B. um für eine Farbe den roten,
@@ -60,5 +60,5 @@ Mode
     ``write`` Adresse übereinstimmen, als ``read``.
 
     Dieses Prinzip ist damit genau das gleiche wie bei allen anderen KNX
-    Komponenten bei denen übe eine Addresse der Wert gesetzt wird und über eine
+    Komponenten bei denen über eine Addresse der Wert gesetzt wird und über eine
     andere die Rückmeldung erfolgt.
