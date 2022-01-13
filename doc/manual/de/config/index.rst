@@ -239,6 +239,15 @@ Die Beschreibung der Widgets kann man hier nachlesen:
 
     widgets/index
 
+Für die Konfiguration der Kommunikation des Widgets mit dem Backend werden
+``address`` Elemente genutzt die im :ref:`Kapitel Adressen <address>` genauer
+beschrieben werden.
+
+.. toctree::
+    :hidden:
+
+    address
+
 CometVisu - Beispiele
 ---------------------
 

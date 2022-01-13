@@ -25,6 +25,7 @@ from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
 from api_doc import ApiDocDirective
+from backend_transform import BackendTransformDirective
 from settings import config, root_dir
 from __init__ import Version
 
@@ -138,6 +139,7 @@ def setup(app):
     app.add_directive("parameter-information", ParameterInformationDirective)
     app.add_directive("replaces", ReplacesDirective)
     app.add_directive("api-doc", ApiDocDirective)
+    app.add_directive("backend-transform", BackendTransformDirective)
 
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', on_finish)
