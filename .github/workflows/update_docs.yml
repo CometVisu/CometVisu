@@ -42,7 +42,6 @@ jobs:
       - name: Install python dependencies
         run: |
           python -m pip install -r utils/requirements.txt
-          sudo apt-get install python3-lxml
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
