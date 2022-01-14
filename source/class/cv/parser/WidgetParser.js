@@ -204,7 +204,9 @@ qx.Class.define('cv.parser.WidgetParser', {
         classes += ' flavour_' + flavour;
       }
       if (element.getAttribute('class')) {
-        classes += ' custom_' + element.getAttribute('class');
+        element.getAttribute('class').split(' ').forEach(className => {
+          classes += ' custom_' + className;  
+        });
       }
       const label = (widgetType === 'text') ? this.parseLabel(element.querySelector('label'), flavour, '') : this.parseLabel(element.querySelector('label'), flavour);
 
