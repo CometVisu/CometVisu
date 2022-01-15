@@ -136,12 +136,11 @@ Class | Method | HTTP request | Description
 *AbstractFsApi* | **move** | **PUT** /fs/move | Move folder or file to a new place
 *AbstractFsApi* | **read** | **GET** /fs | Return directory listing or file content
 *AbstractFsApi* | **update** | **PUT** /fs | Update an existing file
+*AbstractRequestproxyApi* | **getProxied** | **GET** /proxy | Can be used as a proxy to avoid CORS errors e.g. when loading images that need authorization requests
 
 
 ## Models
 
-* OpenAPIServer\Model\ConfigOption
-* OpenAPIServer\Model\ConfigSection
 * OpenAPIServer\Model\DataProviderEntry
 * OpenAPIServer\Model\EnvironmentState
 * OpenAPIServer\Model\FsEntry

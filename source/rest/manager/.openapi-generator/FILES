@@ -1,0 +1,16 @@
+.gitignore
+.htaccess
+README.md
+composer.json
+lib/Api/AbstractConfigApi.php
+lib/Api/AbstractDataproviderApi.php
+lib/Api/AbstractFsApi.php
+lib/Api/AbstractRequestproxyApi.php
+lib/Model/DataProviderEntry.php
+lib/Model/EnvironmentState.php
+lib/Model/FsEntry.php
+lib/Model/InlineObject.php
+lib/Model/ReadResponse.php
+lib/SlimRouter.php
+phpcs.xml.dist
+phpunit.xml.dist
