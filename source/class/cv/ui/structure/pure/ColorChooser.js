@@ -40,7 +40,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.ColorChooser', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
   /*
@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
     this.__color = new cv.util.Color(base.r, base.g, base.b, base.w);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__animator.setAnimationSpeed(100, 0.5);
-    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
       this.__invalidateScreensize();
     });
     this.__components = new Set(Object.entries(this.getAddress()).map(v => v[1].variantInfo));
@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.structure.pure.ColorChooser', {
   ***********************************************
   */
   destruct: function () {
-    cv.ui.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
+    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
     this.__pageSizeListener = null;
     this.__button = null;
   },

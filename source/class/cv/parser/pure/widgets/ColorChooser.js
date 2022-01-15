@@ -21,7 +21,7 @@
 /**
  * Widget to be able to select a color.
  */
-qx.Class.define('cv.parser.widgets.ColorChooser', {
+qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
   type: 'static',
 
   /*
@@ -40,9 +40,9 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      let data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      let data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.pure.WidgetParser.parseFormat(xml, path);
+      cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       data.baseColors = { // default to sRGB color space with D65 white point
         r: {x: 0.64, y: 0.33, Y: 0.2126},
@@ -223,6 +223,6 @@ qx.Class.define('cv.parser.widgets.ColorChooser', {
 
   defer: function (statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler('colorchooser', statics);
+    cv.parser.pure.WidgetParser.addHandler('colorchooser', statics);
   }
 });
