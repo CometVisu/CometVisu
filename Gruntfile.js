@@ -503,6 +503,22 @@ module.exports = function(grunt) {
           cwd: 'source/rest/manager'
         }
       }
+    },
+
+    webfont: {
+      icons: {
+        src: 'cache/icons/*.svg',
+        dest: 'source/resource/icons',
+        options: {
+          syntax: 'bootstrap',
+          types: ['eot','woff','ttf'],
+          font: 'KnxUFIcons',
+          templateOptions: {
+            baseClass: 'knxuf-icon',
+            classPrefix: 'knxuf_'
+          }
+        }
+      }
     }
   };
   grunt.initConfig(config);
@@ -556,7 +572,21 @@ module.exports = function(grunt) {
     );
   });
 
-  // Load the plugin tasks
+  grunt.registerTask('prepare-knxuf-webfont', function() {
+    const sourceFolder = 'cache/icons/';
+    fs.readdirSync(sourceFolder).forEach(function (iconFile) {
+      if (iconFile.endsWith('.svg')) {
+        const filePath = path.join(sourceFolder, iconFile);
+        let iconSrc = grunt.file.read(filePath, { encoding: "utf8" }).toString();
+        grunt.file.write(filePath, iconSrc
+          .replace( /#FFFFFF|#fff/g, 'currentColor' )
+          .replace( /viewBox="0 0 361 361"/g, 'viewBox="60 60 241 241"' )
+        );
+      }
+    });
+  });
+
+    // Load the plugin tasks
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-prompt');
@@ -573,6 +603,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-composer');
+  grunt.loadNpmTasks('grunt-webfonts');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
@@ -588,6 +619,8 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
+
+  grunt.registerTask('knxuf-webfont', ['clean:iconcache', 'svgmin', 'prepare-knxuf-webfont', 'webfont']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);

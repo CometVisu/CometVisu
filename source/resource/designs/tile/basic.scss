@@ -36,6 +36,7 @@ $tileColumns: 3;
 }
 
 @import url("fonts/remixicon.css");
+@import url("../../icons/KnxUFIcons.css");
 
 body {
     background-color: $appBackground;
@@ -70,10 +71,11 @@ body {
 
     cv-page {
         position: absolute;
-        left: var(--spacing);
-        right: var(--spacing);
+        left: 0;
+        right: 0;
         top: 0;
         bottom: 0;
+        padding: var(--spacing);
         display: flex;
         flex-flow: row wrap;
         align-items: center;
@@ -217,17 +219,20 @@ body {
             }
         }
     }
-    cv-tile[size="0.5x1"] {
+    cv-tile[size="1x0.5"] {
         height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
     }
-    cv-tile[size="1x2"] {
+    cv-tile[size="2x1"] {
         width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
     }
-
-    cv-tile[size="2x1"] {
+    cv-tile[size="2x2"] {
+        width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
         height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
     }
-    cv-tile[size="4x2"] {
+    cv-tile[size="1x2"] {
+        height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+    }
+    cv-tile[size="2x4"] {
         width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
         height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
     }
