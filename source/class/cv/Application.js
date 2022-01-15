@@ -218,7 +218,9 @@ qx.Class.define('cv.Application',
         this.showManager();
       }
 
-      if (qx.core.Environment.get('qx.aspects')) {
+      this.registerServiceWorker();
+
+      if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
       }
@@ -796,6 +798,43 @@ qx.Class.define('cv.Application',
 
     close: function () {
       cv.TemplateEngine.getClient().terminate();
+    },
+
+    /**
+     * Install the service-worker if possible
+     */
+    registerServiceWorker: function() {
+      if (cv.Config.useServiceWorker === true) {
+        navigator.serviceWorker.register('ServiceWorker.js').then(function(reg) {
+          this.debug("ServiceWorker successfully registered for scope "+reg.scope);
+
+          // configure service worker
+          var configMessage = {
+            "command": "configure",
+            "message": {
+              forceReload: cv.Config.forceReload,
+              debug: qx.core.Environment.get('qx.debug')
+            }
+          };
+
+          if (reg.active) {
+            reg.active.postMessage(configMessage);
+          } else {
+            navigator.serviceWorker.ready.then(function(ev) {
+              ev.active.postMessage(configMessage);
+            });
+          }
+        }.bind(this)).catch(function(err) {
+          this.error("Error registering service-worker: ", err);
+        }.bind(this));
+      } else {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          this.debug('unregistering existing service workers');
+          registrations.forEach(function (registration) {
+            registration.unregister();
+          });
+        }.bind(this));
+      }
     }
   }
 });

@@ -21,10 +21,10 @@ class AbstractCompileHandler {
    * @param target
    */
   async beforeBuild(target) {
-    await this.updateVersionFile();
+    await this.updateVersionFile(true);
   }
 
-  async updateVersionFile() {
+  async updateVersionFile(serviceWorkerCache) {
     // 1. collect information
     const revision = await this.execute('git rev-parse HEAD');
     const branch = await this.execute('git rev-parse --abbrev-ref HEAD');
@@ -65,9 +65,18 @@ qx.Class.define('cv.Version', {
   }
 });    
 `, data);
-    fs.writeFileSync(path.join('source', 'class', 'cv', 'Version.js'), code);
-    fs.writeFileSync(path.join('source', 'REV'), revision);
+  fs.writeFileSync(path.join('source', 'class', 'cv', 'Version.js'), code);
+  fs.writeFileSync(path.join('source', 'REV'), revision);
+
+
+  if (serviceWorkerCache === true) {
+    regex = /var CACHE = \"(.+)\";/i;
+    const workerFile = path.join('source', 'ServiceWorker.js');
+    let content = js.readFileSync(workerFile);
+    content = content.replace(regexm, `var CACHE = \"${data.revision}\";`);
+    fs.writeFileSync(workerFile, content);
   }
+}
 
   // eslint-disable-next-line class-methods-use-this
   async execute(command) {
