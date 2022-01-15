@@ -15,7 +15,8 @@ const additionalResources = [
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
-  'config/hidden.php'];
+  'config/hidden.php'
+];
 
 // files that must be copied in the compiled folder
 const filesToCopy = [
@@ -33,7 +34,8 @@ const filesToCopy = [
   'replay.html',
   'resource/config/.htaccess',
   'resource/config/.templates',
-  'REV'
+  'REV',
+  'ServiceWorker.js'
 ];
 
 // directories to exclude from copying
@@ -81,6 +83,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       await this.copyFiles();
       this.updateTestData();
     }
+    this.updateCacheVersion();
     if (this._config.targetType === 'build') {
       return this.afterBuild();
     }

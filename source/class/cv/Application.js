@@ -805,7 +805,8 @@ qx.Class.define('cv.Application',
      */
     registerServiceWorker: function() {
       if (cv.Config.useServiceWorker === true) {
-        navigator.serviceWorker.register('ServiceWorker.js').then(function(reg) {
+        const workerFile = 'ServiceWorker.js';
+        navigator.serviceWorker.register(workerFile).then(function(reg) {
           this.debug('ServiceWorker successfully registered for scope '+reg.scope);
 
           // configure service worker
