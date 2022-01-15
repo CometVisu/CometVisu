@@ -371,12 +371,12 @@ qx.Class.define('cv.Config', {
       cv.Config.use_maturity = statics.Maturity.release; // default to release
     }
 
-    cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === "https" || req.host === "localhost");
+    cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === 'https' || req.host === 'localhost');
 
     if (cv.Config.useServiceWorker) {
-      if (qx.core.Environment.get("qx.debug")) {
+      if (qx.core.Environment.get('qx.debug')) {
         // disable service worker in dev environment unless the user wants it
-        cv.Config.useServiceWorker = req.queryKey.worker === "true";
+        cv.Config.useServiceWorker = req.queryKey.worker === 'true';
       }
     }
   }

@@ -220,7 +220,7 @@ qx.Class.define('cv.Application',
 
       this.registerServiceWorker();
 
-      if (qx.core.Environment.get("qx.aspects")) {
+      if (qx.core.Environment.get('qx.aspects')) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
       }
@@ -806,12 +806,12 @@ qx.Class.define('cv.Application',
     registerServiceWorker: function() {
       if (cv.Config.useServiceWorker === true) {
         navigator.serviceWorker.register('ServiceWorker.js').then(function(reg) {
-          this.debug("ServiceWorker successfully registered for scope "+reg.scope);
+          this.debug('ServiceWorker successfully registered for scope '+reg.scope);
 
           // configure service worker
           var configMessage = {
-            "command": "configure",
-            "message": {
+            'command': 'configure',
+            'message': {
               forceReload: cv.Config.forceReload,
               debug: qx.core.Environment.get('qx.debug')
             }
@@ -825,7 +825,7 @@ qx.Class.define('cv.Application',
             });
           }
         }.bind(this)).catch(function(err) {
-          this.error("Error registering service-worker: ", err);
+          this.error('Error registering service-worker: ', err);
         }.bind(this));
       } else {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
