@@ -293,20 +293,6 @@ module.exports = function(grunt) {
       }
     },
 
-    prompt: {
-      githubChanges: {
-        options: {
-          questions: [
-            {
-              config: 'githubChanges.dist.options.token', // get personal GitHub tokel to bypass API rate limiting
-              type: 'input',
-              message: 'GitHub personal token:'
-            }
-          ]
-        }
-      }
-    },
-
     clean: {
       archives : ['*.zip', '*.gz'],
       iconcache: ['cache/icons'],
@@ -350,26 +336,6 @@ module.exports = function(grunt) {
       configFiles: {
         // Target-specific file/dir lists and/or options go here.
         src: ['build/resource/config', 'build/resource/config/**']
-      }
-    },
-
-    githubChanges: {
-      dist : {
-        options: {
-          // Owner and Repository options are mandatory
-          owner : 'CometVisu',
-          repository : 'CometVisu',
-          tagName: 'v' + pkg.version,
-          auth: true,
-          token: '', // this will be replaces by the prompt task with the user input
-          branch: branch || 'develop',
-          betweenTags: 'master...' + (branch || 'develop'),
-          onlyPulls: true,
-          useCommitBody: true,
-          // auth: true, // auth creates a stall for me :(
-          file: 'ChangeLog.tmp',
-          verbose: true
-        }
       }
     },
 
@@ -541,29 +507,6 @@ module.exports = function(grunt) {
   };
   grunt.initConfig(config);
 
-  grunt.registerTask('get-branch', function () {
-    var done = this.async();
-    if (!branch) {
-      var args = ['symbolic-ref', 'HEAD', '--short'];
-      grunt.util.spawn({
-        cmd: 'git',
-        args: args
-      }, function (error, result) {
-        if (error) {
-          grunt.log.error([error]);
-          return false;
-        }
-        branch = result.stdout;
-        console.log(branch);
-        grunt.config.set('githubChanges.dist.options.branch', branch);
-        grunt.config.set('githubChanges.dist.options.betweenTags', 'master...' + branch);
-        done();
-      });
-    } else {
-      done();
-    }
-  });
-
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
     const baseDir = grunt.option('base-dir') || 'compiled/build';
@@ -646,7 +589,6 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
-  grunt.registerTask('changelog', ['get-branch', 'prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
