@@ -266,16 +266,14 @@ class GithubClient {
     return text
   }
 
-  async increaseBuildTag(start, nightly, dryRun) {
+  async increaseBuildTag(start, type, dryRun) {
     if (typeof start === 'string') {
       start = start === 'true';
     } else if (typeof start !== 'boolean') {
       start = false;
     }
-    if (typeof nightly === 'string') {
-      nightly = nightly === 'true';
-    } else if (typeof nightly !== 'boolean') {
-      nightly = false;
+    if (!type) {
+      type = "nightly";
     }
     if (typeof dryRun === 'string') {
       dryRun = dryRun === 'true';
@@ -283,49 +281,98 @@ class GithubClient {
       dryRun = false;
     }
     let baseVersion = this.getVersion();
+    let latestTag = null;
+    let latestRelease = null;
+    if (type === 'rc' && baseVersion.endsWith('-dev')) {
+      baseVersion = baseVersion.substr(0, baseVersion.indexOf('-dev'));
+    }
     if (/.\d+$/.test(baseVersion)) {
       //end with number -> avoid v0.12.01 tags, we want v0.12.0-1
-      baseVersion += "-";
+      if (type ==='nightly') {
+        baseVersion += "-";
+      }
     }
-    let latestTag = await this.getLatestTag(baseVersion);
     let useLastRelease = false;
+    let currentRelease
+
+    switch (type) {
+      case "nightly":
+        latestTag = await this.getLatestTag(baseVersion);
+        break;
+      case "rc":
+        baseVersion += "-RC";
+        latestTag = await this.getLatestTag(baseVersion);
+        currentRelease = await this.client.repos.getLatestRelease({
+          owner: this.owner,
+          repo: this.repo,
+        });
+        latestRelease = `refs/tags/${currentRelease.data.tag_name}`;
+        break;
+      case "release":
+        currentRelease = await this.client.repos.getLatestRelease({
+          owner: this.owner,
+          repo: this.repo,
+        });
+        latestTag = `refs/tags/${currentRelease.data.tag_name}`;
+        useLastRelease = true;
+        break;
+    }
+
 
     if (!latestTag) {
       if (!start) {
         core.setFailed(`Need a manual starting tag for ${baseVersion} - aborting`);
         return;
-      } else {
-        const latestRelease = await this.client.repos.getLatestRelease({
+      } else if (!latestRelease) {
+        const currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
           repo: this.repo,
         });
-        latestTag = `refs/tags/${latestRelease.tag_name}`;
+        latestTag = `refs/tags/${currentRelease.tag_name}`;
         useLastRelease = true;
       }
     }
     const git = simpleGit();
-    const lastTagHash = await git.raw(['rev-list', '-n', '1', latestTag]);
+    let lastTagHash = null;
+    if (type === 'rc' && !latestTag) {
+      lastTagHash = await git.raw(['rev-list', '-n', '1', latestRelease]);
+    } else {
+      lastTagHash = await git.raw(['rev-list', '-n', '1', latestTag]);
+    }
     const currentHash = await git.revparse(['HEAD']);
 
-    const re = new RegExp(`^${baseVersion}(\\d+)$`)
-    const m = re.exec(latestTag.split('/')[2]);
     let buildNo = 0
-    if (!m) {
-      if (!start) {
-        core.setFailed(`Unable to parse previous tag '${info.split('/')[2]}'`);
-        return;
+    let newRev = ''
+    if (type === 'release') {
+      const parts = baseVersion.split('.');
+      buildNo = parseInt(parts.pop());
+      baseVersion = parts.join('.') + '.';
+      newRev = `${baseVersion}${buildNo}`;
+      let tagExists = await git.raw(['tag', '-l', newRev]);
+      while (tagExists) {
+        buildNo++;
+        newRev = `${baseVersion}${buildNo}`;
+        tagExists = await git.raw(['tag', '-l', newRev]);
       }
     } else {
-      buildNo = parseInt(m[1]);
+      const re = new RegExp(`^${baseVersion}(\\d+)$`)
+      const m = type === 'rc' && !latestTag ? re.exec(latestRelease.split('/')[2]) : re.exec(latestTag.split('/')[2]);
+      if (!m) {
+        if (!start) {
+          core.setFailed(`Unable to parse previous tag '${type === 'rc' && !latestTag ? latestRelease.split('/')[2] : latestTag.split('/')[2]}'`);
+          return;
+        }
+      } else {
+        buildNo = parseInt(m[1]);
+      }
+      newRev = `${baseVersion}${buildNo + 1}`;
     }
-
-    const newRev = `${baseVersion}${buildNo + 1}`;
 
     if (currentHash === lastTagHash) {
       console.log('No new commits - skipping');
       return;
     } else {
-      const hasChanges = await this.checkForChanges(latestTag);
+      const hasChanges = !latestTag || await this.checkForChanges(latestTag);
       if (!hasChanges) {
         console.log('No changes in source folder - skipping');
         return;
@@ -344,7 +391,21 @@ Commit       : ${currentHash}
 `;
 
     let tagDescription = ""
-    const info = !useLastRelease ? await this.getMergeInfo(latestTag) : ''
+    let info = ''
+    if (type === 'rc') {
+      if (latestTag) {
+        const lastRcChanged = await this.getMergeInfo(latestTag);
+        if (lastRcChanged) {
+          info += 'Changes since last release candidate (' + latestTag.split('/')[2] + '):\n\n';
+          info += lastRcChanged;
+          info += '\n\n';
+          info += 'Changes since last release (' + latestRelease.split('/')[2] + '):\n\n';
+        }
+      }
+      info += await this.getMergeInfo(latestRelease);
+    } else if (!useLastRelease) {
+      info += await this.getMergeInfo(latestTag);
+    }
     if (info) {
       tagDescription += 'This release comes with these annotated changes:\n\n'
       tagDescription += info
@@ -358,22 +419,23 @@ Commit       : ${currentHash}
       await git.addAnnotatedTag(newRev, tagDescription + buildInfo);
     }
 
-    console.log("Pushing tags...");
     if (!dryRun) {
+      console.log("Pushing tags...");
       await git.pushTags('origin')
+      console.log("Creating release...");
     }
-    console.log("Creating release...");
     let releaseName = newRev;
     let prerelease = false;
     const draft = false;
-    let changes = `The latest changes can be seen in the [change log](https://raw.githubusercontent.com/${this.owner}/${this.repo}/${newRev}/ChangeLog).`;
+    let changes = tagDescription;
+      //`The latest changes can be seen in the [change log](https://raw.githubusercontent.com/${this.owner}/${this.repo}/${newRev}/ChangeLog).`;
     let releaseMessage = `
 The CometVisu project is happy to publish the version ${newRev} that can be downloaded at
 [https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}](https://github.com/${this.owner}/${this.repo}/releases/tag/${newRev}).
 
 ${changes}
 `;
-    if (baseVersion.endsWith("dev") || nightly) {
+    if (baseVersion.endsWith("dev") || type === 'nightly') {
       releaseName = `Nightly build ${newRev}`;
       prerelease = true;
       changes = tagDescription;
@@ -386,12 +448,15 @@ The build can be downloaded at:
 
 ${changes}
 `;
-    } else if (baseVersion.endsWith("RC")) {
+    } else if (baseVersion.endsWith("RC") || type === 'rc') {
       releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - 3)} - release candidate ${newRev.substr(baseVersion.length)}`
       prerelease = true;
+    } else if (type === 'release') {
+      releaseName = `CometVisu release ${newRev}`
+      prerelease = false;
     }
 
-    if (nightly) {
+    if (type === 'nightly') {
       const latestNightly = await this.getLatestNightlyBuild();
       if (!latestNightly) {
         core.setFailed("No nightly release found");

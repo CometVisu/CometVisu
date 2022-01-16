@@ -1,9 +1,6 @@
-name: Tag nightly
+name: Tag new release candidate
 on:
   workflow_dispatch:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron: '0 0 * * *'
 jobs:
   tagger:
     runs-on: ubuntu-latest
@@ -20,7 +17,7 @@ jobs:
         uses: ./.github/actions/github
         with:
           action: increase-build-tag
-          options: false nightly
+          options: true rc
         env:
           COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
