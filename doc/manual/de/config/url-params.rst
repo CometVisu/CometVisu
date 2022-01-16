@@ -244,3 +244,17 @@ In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Relea
 
     Default: false im Release, true in Entwicklerversion
     Options: true  (log=true), false (log=false)
+
+
+.. _worker:
+
+*worker* - ServiceWorker Cache in der Entwicklerversion einschalten
+
+In der Entwicklerversion ist der ServiceWorker zum Caching der Dateien abgeschaltet, damit man Änderungen
+während des Entwickelns beim neu Laden direkt testen kann. Mit diesem URL-Parameter kann der ServiceWorker
+trotzdem eingeschaltet werden
+
+.. code::
+
+    Default: false (worker=false)
+    Options: true  (worker=true) [nur in Entwicklungsversion, in einem Release hat dieser Parameter eine Funktion]

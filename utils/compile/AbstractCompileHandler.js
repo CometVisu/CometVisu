@@ -65,8 +65,17 @@ qx.Class.define('cv.Version', {
   }
 });    
 `, data);
-    fs.writeFileSync(path.join('source', 'class', 'cv', 'Version.js'), code);
-    fs.writeFileSync(path.join('source', 'REV'), revision);
+  fs.writeFileSync(path.join('source', 'class', 'cv', 'Version.js'), code);
+  fs.writeFileSync(path.join('source', 'REV'), revision);
+}
+
+  async updateCacheVersion() {
+    const revision = await this.execute('git rev-parse HEAD');
+    const regex = /var CACHE = \"(.+)\";/i;
+    const workerFile = path.join(this._getTargetDir(), 'ServiceWorker.js');
+    let content = fs.readFileSync(workerFile).toString('utf-8');
+    content = content.replace(regex, `var CACHE = \"${revision}\";`);
+    fs.writeFileSync(workerFile, content);
   }
 
   // eslint-disable-next-line class-methods-use-this
