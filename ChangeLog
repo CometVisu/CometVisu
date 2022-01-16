@@ -3,8 +3,10 @@
 0.12.0
 ======
 
-### v0.12.0-RC1 (2022/01/16 11:21 +00:00)
+### v0.12.0-RC1 (2022/01/16)
 
+- [#1103](https://github.com/CometVisu/CometVisu/pull/1103) enable caching via service worker (@peuter)
+- [#1104](https://github.com/CometVisu/CometVisu/pull/1104) Update change log (@ChristianMayer)
 - [#1101](https://github.com/CometVisu/CometVisu/pull/1101) pages need no clearfix (@peuter)
 - [#1102](https://github.com/CometVisu/CometVisu/pull/1102) allow multiple custom classes (@peuter)
 - [#1099](https://github.com/CometVisu/CometVisu/pull/1099) Bump follow-redirects from 1.13.2 to 1.14.7 in /.github/actions/github (@dependabot[bot])
