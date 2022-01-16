@@ -234,7 +234,9 @@
         }
 
         if (element.getAttribute('class')) {
-          classes += ' custom_' + element.getAttribute('class');
+          element.getAttribute('class').split(' ').forEach(function (className) {
+            classes += ' custom_' + className;
+          });
         }
 
         var label = widgetType === 'text' ? this.parseLabel(element.querySelector('label'), flavour, '') : this.parseLabel(element.querySelector('label'), flavour);
@@ -583,4 +585,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1642098026297
+//# sourceMappingURL=WidgetParser.js.map?dt=1642362585554

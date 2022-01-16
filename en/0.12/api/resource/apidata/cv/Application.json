@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 801,
+        "line": 841,
         "column": 3
       }
     },
@@ -77,7 +77,7 @@
         },
         "end": {
           "line": 72,
-          "column": 570
+          "column": 553
         }
       },
       "type": "variable",
@@ -369,7 +369,7 @@
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 254,
           "column": 5
         }
       },
@@ -392,11 +392,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 258,
+          "line": 260,
           "column": 4
         },
         "end": {
-          "line": 284,
+          "line": 286,
           "column": 5
         }
       },
@@ -433,11 +433,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 288,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 308,
           "column": 5
         }
       },
@@ -447,11 +447,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 308,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 371,
+          "line": 373,
           "column": 5
         }
       },
@@ -461,11 +461,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 375,
           "column": 4
         },
         "end": {
-          "line": 516,
+          "line": 518,
           "column": 5
         }
       },
@@ -475,11 +475,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 518,
+          "line": 520,
           "column": 4
         },
         "end": {
-          "line": 523,
+          "line": 525,
           "column": 6
         }
       },
@@ -489,11 +489,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 528,
+          "line": 530,
           "column": 4
         },
         "end": {
-          "line": 558,
+          "line": 560,
           "column": 5
         }
       },
@@ -511,11 +511,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 564,
+          "line": 566,
           "column": 4
         },
         "end": {
-          "line": 662,
+          "line": 664,
           "column": 5
         }
       },
@@ -542,11 +542,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 667,
+          "line": 669,
           "column": 4
         },
         "end": {
-          "line": 671,
+          "line": 673,
           "column": 5
         }
       },
@@ -564,11 +564,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 677,
+          "line": 679,
           "column": 4
         },
         "end": {
-          "line": 684,
+          "line": 686,
           "column": 5
         }
       },
@@ -592,11 +592,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 690,
+          "line": 692,
           "column": 4
         },
         "end": {
-          "line": 697,
+          "line": 699,
           "column": 5
         }
       },
@@ -620,11 +620,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 702,
+          "line": 704,
           "column": 4
         },
         "end": {
-          "line": 762,
+          "line": 764,
           "column": 5
         }
       },
@@ -642,11 +642,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 764,
+          "line": 766,
           "column": 4
         },
         "end": {
-          "line": 795,
+          "line": 797,
           "column": 5
         }
       },
@@ -656,11 +656,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 797,
+          "line": 799,
           "column": 4
         },
         "end": {
-          "line": 799,
+          "line": 801,
           "column": 5
         }
       },
@@ -671,6 +671,28 @@
         "qx.application.Native",
         "qx.application.IApplication"
       ]
+    },
+    "registerServiceWorker": {
+      "location": {
+        "start": {
+          "line": 806,
+          "column": 4
+        },
+        "end": {
+          "line": 839,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Install the service-worker if possible</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     },
     "bind": {
       "type": "function",

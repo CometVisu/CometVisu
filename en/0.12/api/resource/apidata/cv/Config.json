@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 372,
+        "line": 383,
         "column": 3
       }
     },
@@ -655,7 +655,7 @@
       "type": "variable",
       "access": "public"
     },
-    "initialDemoData": {
+    "useServiceWorker": {
       "location": {
         "start": {
           "line": 187,
@@ -663,16 +663,30 @@
         },
         "end": {
           "line": 187,
-          "column": 25
+          "column": 27
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>In testMode the visu can be filled with some demo data</p>"
+            "body": "<p>If the CometVisu can use service workers</p>"
           }
         ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "enableServiceWorkerCache": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 35
+        }
       },
       "type": "variable",
       "access": "public"
@@ -680,11 +694,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 196,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 209,
           "column": 5
         }
       },
@@ -720,11 +734,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 221,
           "column": 5
         }
       },
@@ -742,11 +756,11 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 221,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 223,
+          "line": 225,
           "column": 5
         }
       },
@@ -756,11 +770,11 @@
     "getMapping": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 227,
+          "line": 229,
           "column": 5
         }
       },
@@ -770,11 +784,11 @@
     "hasMapping": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 231,
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 233,
           "column": 5
         }
       },
@@ -784,11 +798,11 @@
     "clearMappings": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 237,
           "column": 5
         }
       },
@@ -798,11 +812,11 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 239,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 241,
           "column": 5
         }
       },
@@ -812,11 +826,11 @@
     "getStyling": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 243,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 245,
           "column": 5
         }
       },
@@ -826,11 +840,11 @@
     "hasStyling": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 249,
           "column": 5
         }
       },
@@ -840,11 +854,11 @@
     "getDesign": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 251,
+          "line": 253,
           "column": 5
         }
       },
@@ -855,11 +869,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 254,
+        "line": 256,
         "column": 9
       },
       "end": {
-        "line": 371,
+        "line": 382,
         "column": 3
       }
     },

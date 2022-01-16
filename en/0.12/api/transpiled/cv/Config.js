@@ -239,9 +239,10 @@
       configServer: null,
 
       /**
-       * In testMode the visu can be filled with some demo data
+       * If the CometVisu can use service workers
        */
-      initialDemoData: null,
+      useServiceWorker: false,
+      enableServiceWorkerCache: true,
 
       /**
        * Get the structure that is related to this design
@@ -420,9 +421,13 @@
       if (isNaN(cv.Config.use_maturity)) {
         cv.Config.use_maturity = statics.Maturity.release; // default to release
       }
+
+      cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === 'https' || req.host === 'localhost');
+
+      if (cv.Config.useServiceWorker) {}
     }
   });
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1642098063747
+//# sourceMappingURL=Config.js.map?dt=1642362622787

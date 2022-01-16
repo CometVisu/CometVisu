@@ -152,7 +152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      ******************************************************
      */
     statics: {
-      HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
+      HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
       __P_2_0: null,
 
@@ -292,6 +292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this.showManager();
         }
 
+        this.registerServiceWorker();
         // Call super class
         cv.Application.prototype.main.base.call(this);
         this.block(true); // run svg4everybody to support SVG sprites in older browsers
@@ -952,10 +953,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       close: function close() {
         cv.TemplateEngine.getClient().terminate();
+      },
+
+      /**
+       * Install the service-worker if possible
+       */
+      registerServiceWorker: function registerServiceWorker() {
+        if (cv.Config.useServiceWorker === true) {
+          var workerFile = 'ServiceWorker.js';
+          navigator.serviceWorker.register(workerFile).then(function (reg) {
+            this.debug('ServiceWorker successfully registered for scope ' + reg.scope); // configure service worker
+
+            var configMessage = {
+              'command': 'configure',
+              'message': {
+                forceReload: cv.Config.forceReload,
+                debug: false
+              }
+            };
+
+            if (reg.active) {
+              reg.active.postMessage(configMessage);
+            } else {
+              navigator.serviceWorker.ready.then(function (ev) {
+                ev.active.postMessage(configMessage);
+              });
+            }
+          }.bind(this))["catch"](function (err) {
+            this.error('Error registering service-worker: ', err);
+          }.bind(this));
+        } else {
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            this.debug('unregistering existing service workers');
+            registrations.forEach(function (registration) {
+              registration.unregister();
+            });
+          }.bind(this));
+        }
       }
     }
   });
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1642098025424
+//# sourceMappingURL=Application.js.map?dt=1642362584675
