@@ -2,7 +2,7 @@
  * ServiceWorker for the CometVisu
  *
  * @author Tobias Bräutigam
- * @since (0.11.0) 2017
+ * @since (0.12.0) 2022
  */
 
 var CACHE = "cv-cache-v2";
@@ -77,8 +77,8 @@ function update(request) {
       if (response.status < 400) {
         cache.put(request, response);
       }
-    });
-  });
+    }).catch(err => logger.log('error fetching request:', err));
+  }).catch((err => logger.log('error opening cache:', err)));
 }
 
 function processQueue() {
@@ -97,7 +97,7 @@ function fromCache(request) {
   return caches.open(CACHE).then(function (cache) {
     return cache.match(request).then(function (matching) {
       return matching || Promise.reject('no-match');
-    });
+    }).catch(err => Promise.reject('no-match'));
   });
 }
 
@@ -113,7 +113,7 @@ function fetchAndUpdate(request) {
         cache.put(request, response.clone());
       }
       return response;
-    });
+    }).catch(err => logger.log('error fetching request:', err));
   });
 }
 
