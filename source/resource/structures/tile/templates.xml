@@ -54,4 +54,16 @@
             </cv-row>
         </cv-tile>
     </template>
+    <template id="status">
+        <cv-tile size="1x0.5">
+            <cv-row rowspan="3"><slot name="icon">NEEDS ICON</slot></cv-row>
+            <cv-row colspan="2" column="2" rowspan="3">
+                <cv-value slot-format="">
+                    <slot name="address">NEEDS ADDRESS</slot>
+                    <label class="value"/>
+                </cv-value>
+                <label class="secondary"><slot name="label">LABEL</slot></label>
+            </cv-row>
+        </cv-tile>
+    </template>
 </templates>

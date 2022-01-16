@@ -152,6 +152,22 @@
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="size">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Size of the tile in {columns}x{rows}, 1x1 is the default size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1x0.5" />
+          <xsd:enumeration value="2x1" />
+          <xsd:enumeration value="1x2" />
+          <xsd:enumeration value="2x2" />
+          <xsd:enumeration value="2x4" />
+          <xsd:enumeration value="simulated" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-row">

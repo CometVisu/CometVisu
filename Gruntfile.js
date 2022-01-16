@@ -219,6 +219,12 @@ module.exports = function(grunt) {
             removeViewBox: false
           }, {
             removeDimensions: true
+          }, {
+            removeUselessStrokeAndFill: false
+          }, {
+            mergePaths: {
+              force: true
+            }
           }
         ]
       },
@@ -513,6 +519,8 @@ module.exports = function(grunt) {
           syntax: 'bootstrap',
           types: ['eot','woff','ttf'],
           font: 'KnxUFIcons',
+          normalize: true,
+          autoHint: false,
           templateOptions: {
             baseClass: 'knxuf-icon',
             classPrefix: 'knxuf_'
@@ -573,12 +581,13 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('prepare-knxuf-webfont', function() {
-    const sourceFolder = 'cache/icons/';
+    const targetFolder = 'cache/icons/';
+    const sourceFolder = targetFolder;
     fs.readdirSync(sourceFolder).forEach(function (iconFile) {
       if (iconFile.endsWith('.svg')) {
         const filePath = path.join(sourceFolder, iconFile);
         let iconSrc = grunt.file.read(filePath, { encoding: "utf8" }).toString();
-        grunt.file.write(filePath, iconSrc
+        grunt.file.write(path.join(targetFolder, iconFile), iconSrc
           .replace( /#FFFFFF|#fff/g, 'currentColor' )
           .replace( /viewBox="0 0 361 361"/g, 'viewBox="60 60 241 241"' )
         );

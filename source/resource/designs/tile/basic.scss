@@ -186,6 +186,9 @@ body {
             justify-content: center;
             align-items: center;
         }
+        > [align='center'] {
+            align-self: center;
+        }
 
         > [row='first'] {
             grid-row: 1;
@@ -217,6 +220,9 @@ body {
                 width: 100%;
                 height: 100%;
             }
+        }
+        cv-icon[size='large'] {
+            font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight))) / 2);
         }
     }
     cv-tile[size="1x0.5"] {
