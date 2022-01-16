@@ -82,8 +82,8 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (!(this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy)) {
       await this.copyFiles();
       this.updateTestData();
+      this.updateCacheVersion();
     }
-    this.updateCacheVersion();
     if (this._config.targetType === 'build') {
       return this.afterBuild();
     }
@@ -94,6 +94,7 @@ class CvCompileHandler extends AbstractCompileHandler {
     const data = ev.getData();
     await this.copyFiles(data.deployDir);
     this.updateTestData();
+    this.updateCacheVersion();
   }
 
   // eslint-disable-next-line class-methods-use-this

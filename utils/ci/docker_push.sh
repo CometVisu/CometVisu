@@ -29,6 +29,8 @@ if [[ $IS_TAG == 1 ]]; then
     elif [[ $IN_RELEASE == 1 ]]; then
       # use TAG as MASTER_TAG
       TAG=""
+      # only use github ref tag as version
+      VERSION_TAG=MASTER_TAG
     else
       echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
       git branch -r --contains "$TAG"
