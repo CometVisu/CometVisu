@@ -30,7 +30,7 @@ if [[ $IS_TAG == 1 ]]; then
       # use TAG as MASTER_TAG
       TAG=""
       # only use github ref tag as version
-      VERSION_TAG=MASTER_TAG
+      VERSION_TAG=$MASTER_TAG
     else
       echo "tag '$TAG' needs to be in branch 'master', 'develop' or one of the 'release-*' branches"
       git branch -r --contains "$TAG"
@@ -42,7 +42,7 @@ elif [[ "$BRANCH" = "develop" ]] || [[ "$BRANCH" = "ci-test" ]]; then
     MASTER_TAG=testing
     TESTING=1
 elif [[ "$BRANCH" =~ ^release-.+ ]]; then
-    MASTER_TAG=VERSION_TAG
+    MASTER_TAG=$VERSION_TAG
 else
   echo "unknown branch '$BRANCH' aborting docker build"
   exit 1
