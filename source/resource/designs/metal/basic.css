@@ -99,6 +99,7 @@ body br
 }
 .page.type_2d .widget_container .widget {
 	padding: 0;
+    background-color: #222;
 }
 
 .page.type_2d .widget_container .group:not(.widget) { border-width:0; }
