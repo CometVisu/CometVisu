@@ -509,7 +509,7 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    const baseDir = grunt.option('base-dir') || 'compiled/build';
+    const baseDir = grunt.option('base-dir') || 'release';
     [
       baseDir + '/resource/demo/visu_config_demo.xml',
       baseDir + '/resource/demo/visu_config_2d3d.xml',
