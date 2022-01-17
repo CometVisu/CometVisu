@@ -41,7 +41,8 @@ qx.Class.define('cv.parser.widgets.NavBar', {
      */
     parse: function (xml, path, flavour, pageType) {
       const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
+      // navbars are no 2d/3d pages
+      cv.parser.WidgetParser.parseChildren(xml, path, flavour, 'text');
       return data;
     },
 
