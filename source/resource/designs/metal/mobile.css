@@ -24,6 +24,10 @@
 	display: inline-block;
 	float: none;
 }
+
+#navbarTop > .navbar > .widget_container:last-child > .clearfix:after {
+	display: none;
+}
 #navbarTop > .navbar , #navbarBottom > .navbar {
 	overflow-y: hidden;
 	overflow-x: auto;
