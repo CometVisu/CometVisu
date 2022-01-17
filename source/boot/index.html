@@ -20,15 +20,36 @@
   <meta name="msapplication-TileImage" content="${resourcePath}icons/comet_webapp_icon_144.png">
   <meta name="msapplication-TileColor" content="#222222">
   <script type="application/javascript">
-    var loadJS = function(url, callback) {
+    const loadJS = function() {
+      const args = Array.from(arguments);
+      const callback = args.pop();
+      const waiting = {};
 
-      var scriptTag = document.createElement('script');
-      scriptTag.src = url;
+      const check = function () {
+        if (Object.keys(waiting).length === 0) {
+          callback();
+        }
+      }
 
-      scriptTag.onload = callback;
-      scriptTag.onreadystatechange = callback;
+      args.forEach(url => {
+        const scriptTag = document.createElement('script');
+        scriptTag.src = url;
+        waiting[url] = true;
 
-      document.head.appendChild(scriptTag);
+        scriptTag.onload = () => {
+          if (Object.prototype.hasOwnProperty.call(waiting, url)) {
+            delete waiting[url];
+          }
+          check();
+        };
+        scriptTag.onreadystatechange =() => {
+          if (Object.prototype.hasOwnProperty.call(waiting, url)) {
+            delete waiting[url];
+          }
+          check();
+        };
+        document.head.appendChild(scriptTag);
+      });
     };
 
     var enableSentry = window.location.search.substring(1).split('&').some(function (qs) {
@@ -38,11 +59,14 @@
 
     if (enableSentry) {
       // load sentry and wait for it
-      loadJS('${resourcePath}sentry/bundle.min.js', function () {
+      loadJS('${resourcePath}sentry/bundle.min.js', '${resourcePath}sentry/bundle.tracing.min.js', function () {
         Sentry.init({
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
           attachStacktrace: true,
+          integrations: [new Sentry.Integrations.BrowserTracing()],
+          // To set a uniform sample rate
+          tracesSampleRate: 0.2,
           beforeSend(data) {
             var stacktrace = data.exception && data.exception.values[0].stacktrace;
             var basePath = window.location.pathname;
