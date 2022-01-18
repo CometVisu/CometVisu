@@ -369,8 +369,14 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _upgradeConfig: function (content) {
-      const upgrader = new cv.util.ConfigUpgrader();
-      return upgrader.upgrade(content);
+      if (this.getFile()) {
+        if (this.getFile().isWriteable()) {
+          const upgrader = new cv.util.ConfigUpgrader();
+          return upgrader.upgrade(content);
+        } else {
+          cv.ui.manager.snackbar.Controller.error(this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath()));
+        }
+      }
     },
 
     getCurrentContent: function () {

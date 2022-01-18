@@ -121,6 +121,10 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
 
          case 'content':
            control = new qx.ui.basic.Label();
+           control.set({
+             rich: true,
+             wrap: true
+           });
            this._addAt(control, 1, {flex: 1});
            break;
 

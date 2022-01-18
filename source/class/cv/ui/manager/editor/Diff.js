@@ -128,6 +128,11 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       if (this._editor) {
         const handlerOptions = this.getHandlerOptions();
         if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
+          if (!file.isWriteable()) {
+            cv.ui.manager.snackbar.Controller.error(this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath()));
+            cv.ui.manager.Main.getInstance().closeFile(file);
+            return;
+          }
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
           this.setEditable(file.isWriteable());
           this._client.readSync({path: file.getFullPath()}, function (err, res) {
