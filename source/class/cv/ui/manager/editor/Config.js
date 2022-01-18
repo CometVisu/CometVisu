@@ -56,7 +56,6 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     _loadFile: function (file) {
       if (file) {
-        console.log(file);
         this._client.get({section: '*', key: '*'});
       }
     },
@@ -210,7 +209,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
              converter: function (value) {
                return value ? 'visible' : 'excluded';
              }
-           })
+           });
            this.getChildControl('buttons').add(control);
            break;
        }

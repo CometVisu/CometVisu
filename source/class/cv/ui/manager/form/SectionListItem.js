@@ -198,7 +198,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
              configureItem: function (item) {
                item.addListener('delete', this._onDeleteOption, this);
                item.addListener('add', this._onAddOption, this);
-               this.bind('readOnly', item, 'readOnly')
+               this.bind('readOnly', item, 'readOnly');
              }.bind(this),
              bindItem: function (controller, item, index) {
                controller.bindProperty('', 'model', null, item, index);
