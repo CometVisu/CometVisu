@@ -56,6 +56,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     _loadFile: function (file) {
       if (file) {
+        console.log(file);
         this._client.get({section: '*', key: '*'});
       }
     },
@@ -90,10 +91,12 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     _onDeleteSection: function (ev) {
-      const section = ev.getData();
-      const model = this._listController.getModel();
-      model.remove(section);
-      this.__checkForModification();
+      if (this.getFile() && this.getFile().isWriteable()) {
+        const section = ev.getData();
+        const model = this._listController.getModel();
+        model.remove(section);
+        this.__checkForModification();
+      }
     },
 
     // compare current controller model with the loaded config content
@@ -110,6 +113,10 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     save: function () {
+      if (!this.getFile() || !this.getFile().isWriteable()) {
+        cv.ui.manager.snackbar.Controller.info(this.tr('Hidden configuration file (hidden.php) not writeable'));
+        return;
+      }
       // check for duplicate section names of keys
       const model = this._listController.getModel();
       const keys = [];
@@ -178,7 +185,12 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
              bindItem: function (controller, item, index) {
                controller.bindProperty('', 'model', null, item, index);
-             }
+               this.bind('file.writeable', item, 'readOnly', {
+                 converter: function (value) {
+                   return !value;
+                 }
+               });
+             }.bind(this)
            });
            this._add(control, {flex: 1});
            break;
@@ -194,6 +206,11 @@ qx.Class.define('cv.ui.manager.editor.Config', {
              this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
              this.__checkForModification();
            }, this);
+           this.bind('file.writeable', control, 'visibility', {
+             converter: function (value) {
+               return value ? 'visible' : 'excluded';
+             }
+           })
            this.getChildControl('buttons').add(control);
            break;
        }
