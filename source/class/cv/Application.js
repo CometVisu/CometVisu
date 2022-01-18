@@ -829,7 +829,7 @@ qx.Class.define('cv.Application',
         }.bind(this)).catch(function(err) {
           this.error('Error registering service-worker: ', err);
         }.bind(this));
-      } else {
+      } else if (navigator.serviceWorker) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
           this.debug('unregistering existing service workers');
           registrations.forEach(function (registration) {
