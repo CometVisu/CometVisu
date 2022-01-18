@@ -152,51 +152,53 @@ qx.Class.define('cv.plugins.openhab.Settings', {
     },
 
     _createForm: function(config) {
-      this._createChildControl('title');
-      const form = this.getChildControl('form');
-      config.parameters.forEach(function(param) {
-        let field;
-        switch (param.type) {
-          case 'TEXT':
-            field = new qx.ui.form.TextField();
-            if (param.defaultValue) {
-              field.setPlaceholder(param.defaultValue);
-            }
-            break;
-          case 'BOOLEAN':
-            field = new qx.ui.form.CheckBox();
-            field.setValue(param.defaultValue === 'true');
-            break;
-        }
-        if (param.readOnly) {
-          field.setReadOnly(true);
-        }
-        if (param.required) {
-          field.setRequired(true);
-        }
-        field.setToolTipText(param.description);
-        field.addListener('changeValue', this._onFormFieldChange, this);
-        form.add(field, param.label, null, param.name, null, param);
-      }, this);
+      if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
+        this._createChildControl('title');
+        const form = this.getChildControl('form');
+        config.parameters.forEach(function (param) {
+          let field;
+          switch (param.type) {
+            case 'TEXT':
+              field = new qx.ui.form.TextField();
+              if (param.defaultValue) {
+                field.setPlaceholder(param.defaultValue);
+              }
+              break;
+            case 'BOOLEAN':
+              field = new qx.ui.form.CheckBox();
+              field.setValue(param.defaultValue === 'true');
+              break;
+          }
+          if (param.readOnly) {
+            field.setReadOnly(true);
+          }
+          if (param.required) {
+            field.setRequired(true);
+          }
+          field.setToolTipText(param.description);
+          field.addListener('changeValue', this._onFormFieldChange, this);
+          form.add(field, param.label, null, param.name, null, param);
+        }, this);
 
-      const renderer = new cv.plugins.openhab.renderer.Single(form);
-      if (cv.Config.guessIfProxied()) {
-        renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
-        renderer.getChildControl('bottom-text').set({
-          padding: 10,
-          textAlign: 'center',
-          font: 'bold'
-        });
+        const renderer = new cv.plugins.openhab.renderer.Single(form);
+        if (cv.Config.guessIfProxied()) {
+          renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
+          renderer.getChildControl('bottom-text').set({
+            padding: 10,
+            textAlign: 'center',
+            font: 'bold'
+          });
+        }
+        renderer.addButton(this.getChildControl('cancel-button'));
+        renderer.addButton(this.getChildControl('save-button'));
+
+        this._addAt(renderer, 1);
+        const controller = new qx.data.controller.Form(null, form);
+
+        this._store.bind('model', controller, 'model');
+
+        this.setModified(false);
       }
-      renderer.addButton(this.getChildControl('cancel-button'));
-      renderer.addButton(this.getChildControl('save-button'));
-
-      this._addAt(renderer, 1);
-      const controller = new qx.data.controller.Form(null, form);
-
-      this._store.bind('model', controller, 'model');
-
-      this.setModified(false);
     },
 
     _onFormFieldChange: function() {
