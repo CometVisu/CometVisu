@@ -2,7 +2,7 @@
 msgid ""
 msgstr "Project-Id-Version: 1.0\nReport-Msgid-Bugs-To: you@your.org\nPOT-Creation-Date: 2017-04-26 18:57+0100\nPO-Revision-Date: 2019-04-15 18:49+0200\nLast-Translator: you <you@your.org>\nLanguage-Team: Team <yourteam@your.org>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nLanguage: de\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 2.2.1\n"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Please describe what you have done until the error occured?"
 msgstr "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
@@ -18,7 +18,7 @@ msgstr "Aktivieren beim neu Laden:"
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket zu hängen."
 
@@ -126,7 +126,7 @@ msgstr "backup Ordner ist nicht beschreibbar"
 msgid "media folder is not writeable"
 msgstr "media Ordner ist nicht beschreibbar"
 
-#: cv/ui/manager/Main.js
+#: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration file (hidden.php) not writeable"
 msgstr "Die versteckte Konfiguration (hidden.php) ist nicht beschreibbar."
 
@@ -995,3 +995,7 @@ msgstr "Textinhalt ist ungültig"
 #: cv/ui/manager/model/XmlElement.js
 msgid "Child element '%1' not allowed."
 msgstr "Kind-Element '%1' ist nicht erlaubt."
+
+#: cv/ui/manager/editor/Source.js
+msgid "\"%1\" is not writable. Upgrading not possible."
+msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
