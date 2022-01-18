@@ -162,7 +162,8 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       const value = this.getLabel();
       if (value) {
         let labelValue = this.getLabel();
-        if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
+        // special treatment for hidden.php which is marked as fake, but has a special editor, so it has to be marked as not writeable
+        if (!this.isWriteable() && (!this.getModel().getFile().isFake() || this.getModel().getFile().getName() === 'hidden.php')) {
           labelValue += ' !';
           this.setToolTipText(this.tr('This file is not writeable'));
         } else {

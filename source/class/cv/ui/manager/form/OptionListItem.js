@@ -35,6 +35,12 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
       check: 'cv.ui.manager.model.config.Option',
       nullable: true,
       apply: '_applyModel'
+    },
+
+    readOnly: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeReadOnly'
     }
   },
 
@@ -114,6 +120,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
              liveUpdate: true,
              required: true
            });
+           this.bind('readOnly', control, 'readOnly');
            this._add(control, {width: '40%'});
            break;
 
@@ -122,6 +129,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
            control.set({
              liveUpdate: true
            });
+           this.bind('readOnly', control, 'readOnly');
            this._add(control, {width: '40%'});
            break;
 
@@ -131,6 +139,11 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
            control.addListener('execute', function() {
              this.fireDataEvent('delete', this.getModel());
            }, this);
+           this.bind('readOnly', control, 'visibility', {
+             converter: function (value) {
+               return value ? 'hidden' : 'visible';
+             }
+           });
            this._add(control);
            break;
 
@@ -140,6 +153,11 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
            control.addListener('execute', function() {
              this.fireEvent('add');
            }, this);
+           this.bind('readOnly', control, 'visibility', {
+             converter: function (value) {
+               return value ? 'hidden' : 'visible';
+             }
+           });
            this._add(control);
            break;
 
