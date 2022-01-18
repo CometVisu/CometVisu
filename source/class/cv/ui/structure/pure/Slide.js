@@ -222,7 +222,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       let min = this.getMin();
       let max = this.getMax();
       this.__actorWidth = undefined; // invalidate cached values
-      this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min));
+      this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min), true);
     },
 
     handleEvent: function (event) {
