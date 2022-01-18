@@ -345,7 +345,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       let now = Date.now();
 
-      if (forceNowDatapoint) {
+      if (forceNowDatapoint && tsdata.length > 0) {
         let last = Array.from(tsdata[tsdata.length - 1]); // force copy
         last[0] = now;
         tsdata.push(last);
