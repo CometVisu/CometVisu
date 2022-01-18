@@ -3,6 +3,19 @@
 0.12.0
 ======
 
+### v0.12.0-RC2 (2022/01/18)
+
+- [#1125](https://github.com/CometVisu/CometVisu/pull/1125) Fix manager errors found in rc1 (@peuter)
+- [#1126](https://github.com/CometVisu/CometVisu/pull/1126) do not access serviceworker when its not available (@peuter)
+- [#1124](https://github.com/CometVisu/CometVisu/pull/1124) Make slider handle stay on right position when not in view. (@ChristianMayer)
+- [#1123](https://github.com/CometVisu/CometVisu/pull/1123) Reduce PHP warnings, fixes #1119 (@ChristianMayer)
+- [#1122](https://github.com/CometVisu/CometVisu/pull/1122) remove backend code (@peuter)
+- [#1121](https://github.com/CometVisu/CometVisu/pull/1121) Fix error messages and plugin robustness (@peuter)
+- [#1115](https://github.com/CometVisu/CometVisu/pull/1115) update sentry library, change sourcemap upload call (@peuter)
+- [#1110](https://github.com/CometVisu/CometVisu/pull/1110) do not use page type in navbars because the content (@peuter)
+- [#1112](https://github.com/CometVisu/CometVisu/pull/1112) Metal design fixes (@peuter)
+- [#1111](https://github.com/CometVisu/CometVisu/pull/1111) Fix version update (@peuter)
+
 ### v0.12.0-RC1 (2022/01/16)
 
 - [#1103](https://github.com/CometVisu/CometVisu/pull/1103) enable caching via service worker (@peuter)
