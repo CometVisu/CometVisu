@@ -440,7 +440,7 @@ qx.Class.define('cv.Application',
         topic: 'cv.error',
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr('An error occured'),
-        message: '<pre>' + (ex.stack || exString) + '</pre>',
+        message: '<pre>' + (exString || ex.stack) + '</pre>',
         severity: 'urgent',
         deletable: false,
         actions: {
