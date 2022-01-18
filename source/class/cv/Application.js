@@ -798,7 +798,10 @@ qx.Class.define('cv.Application',
     },
 
     close: function () {
-      cv.TemplateEngine.getClient().terminate();
+      const client = cv.TemplateEngine.getClient();
+      if (client) {
+        client.terminate();
+      }
     },
 
     /**
