@@ -3,6 +3,10 @@
 0.12.0
 ======
 
+### v0.12.0-RC3 (2022/01/19)
+
+- [#1132](https://github.com/CometVisu/CometVisu/pull/1132) Fix ServiceWorker by using whitelist for caching (@peuter)
+
 ### v0.12.0-RC2 (2022/01/18)
 
 - [#1125](https://github.com/CometVisu/CometVisu/pull/1125) Fix manager errors found in rc1 (@peuter)
