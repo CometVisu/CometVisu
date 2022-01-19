@@ -294,6 +294,8 @@ class GithubClient {
     }
     let useLastRelease = false;
     let currentRelease
+    let noMergeInfo = false;
+    let force = false;
 
     switch (type) {
       case "nightly":
@@ -323,11 +325,15 @@ class GithubClient {
       if (!start) {
         core.setFailed(`Need a manual starting tag for ${baseVersion} - aborting`);
         return;
+      } else if (type === 'nightly') {
+        noMergeInfo = true;
+        force = true;
       } else if (!latestRelease) {
         const currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
           repo: this.repo,
         });
+        console.log(currentRelease)
         latestTag = `refs/tags/${currentRelease.tag_name}`;
         useLastRelease = true;
       }
@@ -336,7 +342,7 @@ class GithubClient {
     let lastTagHash = null;
     if (type === 'rc' && !latestTag) {
       lastTagHash = await git.raw(['rev-list', '-n', '1', latestRelease]);
-    } else {
+    } else if (latestTag) {
       lastTagHash = await git.raw(['rev-list', '-n', '1', latestTag]);
     }
     const currentHash = await git.revparse(['HEAD']);
@@ -354,6 +360,8 @@ class GithubClient {
         newRev = `${baseVersion}${buildNo}`;
         tagExists = await git.raw(['tag', '-l', newRev]);
       }
+    } else if (!latestTag && type === 'nightly') {
+      newRev = baseVersion + "0";
     } else {
       const re = new RegExp(`^${baseVersion}(\\d+)$`)
       const m = type === 'rc' && !latestTag ? re.exec(latestRelease.split('/')[2]) : re.exec(latestTag.split('/')[2]);
@@ -368,18 +376,20 @@ class GithubClient {
       newRev = `${baseVersion}${buildNo + 1}`;
     }
 
-    if (currentHash === lastTagHash) {
-      console.log('No new commits - skipping');
-      return;
-    } else {
-      const hasChanges = !latestTag || await this.checkForChanges(latestTag);
-      if (!hasChanges) {
-        console.log('No changes in source folder - skipping');
+    if (!force) {
+      if (currentHash === lastTagHash) {
+        console.log('No new commits - skipping');
         return;
+      } else {
+        const hasChanges = !latestTag || await this.checkForChanges(latestTag);
+        if (!hasChanges) {
+          console.log('No changes in source folder - skipping');
+          return;
+        }
       }
-    }
 
-    console.log('New commits detected - tagging new dev release:', newRev);
+      console.log('New commits detected - tagging new dev release:', newRev);
+    }
 
     const branch = await git.revparse(['--abbrev-ref', 'HEAD']);
 
@@ -392,19 +402,21 @@ Commit       : ${currentHash}
 
     let tagDescription = ""
     let info = ''
-    if (type === 'rc') {
-      if (latestTag) {
-        const lastRcChanged = await this.getMergeInfo(latestTag);
-        if (lastRcChanged) {
-          info += 'Changes since last release candidate (' + latestTag.split('/')[2] + '):\n\n';
-          info += lastRcChanged;
-          info += '\n\n';
-          info += 'Changes since last release (' + latestRelease.split('/')[2] + '):\n\n';
+    if (!noMergeInfo) {
+      if (type === 'rc') {
+        if (latestTag) {
+          const lastRcChanged = await this.getMergeInfo(latestTag);
+          if (lastRcChanged) {
+            info += 'Changes since last release candidate (' + latestTag.split('/')[2] + '):\n\n';
+            info += lastRcChanged;
+            info += '\n\n';
+            info += 'Changes since last release (' + latestRelease.split('/')[2] + '):\n\n';
+          }
         }
+        info += await this.getMergeInfo(latestRelease);
+      } else if (!useLastRelease) {
+        info += await this.getMergeInfo(latestTag);
       }
-      info += await this.getMergeInfo(latestRelease);
-    } else if (!useLastRelease) {
-      info += await this.getMergeInfo(latestTag);
     }
     if (info) {
       tagDescription += 'This release comes with these annotated changes:\n\n'
@@ -457,23 +469,44 @@ ${changes}
     }
 
     if (type === 'nightly') {
-      const latestNightly = await this.getLatestNightlyBuild();
-      if (!latestNightly) {
-        core.setFailed("No nightly release found");
-        return
+      let latestNightly = null;
+      try {
+        latestNightly = await this.getLatestNightlyBuild();
+        if (!latestNightly) {
+          core.setFailed("No nightly release found");
+          return
+        }
+      } catch (e) {
+        console.log(e.message);
       }
       if (!dryRun) {
-        await this.client.repos.updateRelease({
-          owner: this.owner,
-          repo: this.repo,
-          tag_name: newRev,
-          name: releaseName,
-          body: releaseMessage,
-          release_id: latestNightly.id
-        });
+        if (latestNightly) {
+          await this.client.repos.updateRelease({
+            owner: this.owner,
+            repo: this.repo,
+            tag_name: newRev,
+            name: releaseName,
+            body: releaseMessage,
+            release_id: latestNightly.id
+          });
+        } else {
+          await this.client.repos.createRelease({
+            owner: this.owner,
+            repo: this.repo,
+            tag_name: newRev,
+            name: releaseName,
+            body: releaseMessage,
+            draft: draft,
+            prerelease: prerelease
+          });
+        }
         return "refs/tags/"+ newRev;
       } else {
-        console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
+        if (latestNightly) {
+          console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
+        } else {
+          console.log(`would have created release '${releaseName}' to '${newRev}'\n\n${releaseMessage}`);
+        }
       }
     } else {
       if (!dryRun) {
