@@ -366,7 +366,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         severity: 'urgent',
         message: 'URL: ' + JSON.stringify(key) + '<br/><br/>Response:</br>' + ev._target._transport.responseText
       });
-      console.error('Diagram _onStatusError', ts, key, ev);
+      window.console.error('Diagram _onStatusError', ts, key, ev);
       const tsdata = [];
 
       this.cache[key].data = tsdata;
