@@ -189,6 +189,10 @@ manually and add a line like::
     ``https``) it is usual that ``selfsigned`` must be set to ``true`` as a
     router in the home network will work usually with a self signed certificate.
 
+    The error message
+    ``{"faultstring":"Could not connect to host","faultcode":"HTTP"}`` can be a
+    hint that ``selfsigned`` should be set to ``true``.
+
 .. rubric:: Footnotes
 
 .. [#f1] In the simple view some things might be not visible. The expert view
