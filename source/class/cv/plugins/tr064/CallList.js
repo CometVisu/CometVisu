@@ -270,7 +270,11 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             return response.json(); 
           }
           // else:
-          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: 'TR-064 communication error',
+            severity: 'urgent',
+            message: 'Reading URL "' + response.url + '" failed with status "' + response.status + '": "' + response.statusText + '"'
+          });
           self.__calllistUri = '<fail>';
           return null;
         })
@@ -279,7 +283,11 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             self.__calllistUri = data;
             self.refreshCalllist('getCallListURI');
           } else {
-            self.error('Error: reading URL "' + url + ' failed with content:', data);
+            cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+              title: 'TR-064 communication response error',
+              severity: 'urgent',
+              message: 'Reading URL "' + url + '" failed with content: "' + JSON.stringify(data) + '"'
+            });
             self.__calllistUri = '<fail>';
           }
         });
@@ -306,7 +314,11 @@ qx.Class.define('cv.plugins.tr064.CallList', {
             return response.text(); 
           }
           // else:
-          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: 'TR-064 communication error',
+            severity: 'urgent',
+            message: 'Reading URL "' + response.url + '" failed with status "' + response.status + '": "' + response.statusText + '"'
+          });
           return '<xml/>';
         })
         .then(function(str) {
@@ -327,7 +339,12 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           self.__refreshingCalllist = false;
           self.fireEvent('tr064ListRefreshed');
         })
-        .catch(function(error) { 
+        .catch(function(error) {
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: 'TR-064 communication error',
+            severity: 'urgent',
+            message: 'refreshCalllist() error: "' + JSON.stringify(error) + '"'
+          });
           self.error('TR-064 refreshCalllist() error:', error);
         });
     },

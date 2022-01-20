@@ -30,7 +30,7 @@ if( !class_exists('SoapClient') )
   echo 'PHP class "SoapClient" does not exists - please check server setup.';
   die();
 }
-$TR064device = $hidden[$_GET['device']];
+$TR064device = $hidden[($_GET['device'] ?? '')] ?? false;
 if( !$TR064device )
 {
   header("HTTP/1.0 404 Not Found");
@@ -59,7 +59,7 @@ if( !$TR064_pass )
   die();
 }
 
-$debug = $_GET['debug']=='true';
+$debug = ($_GET['debug'] ?? '') == 'true';
 
 if( !$debug )
   header('Content-type: application/json');
@@ -67,11 +67,11 @@ if( !$debug )
 $options = array(
   'exceptions'    => 0,
   'trace'         => ($debug?1:0),
-  'location'      => $TR064_uri . $_GET['location'],
+  'location'      => $TR064_uri . ($_GET['location'] ?? ''),
   'login'         => $TR064_user,
   'password'      => $TR064_pass,
   'authentication'=> SOAP_AUTHENTICATION_DIGEST,
-  'uri'           => $_GET['uri']
+  'uri'           => ($_GET['uri'] ?? '')
 );
 
 if( $TR064device['selfsigned'] == 'true' )
@@ -88,17 +88,21 @@ if( $TR064device['selfsigned'] == 'true' )
 $client = new SoapClient( null, $options );
 
 $arguments = array();
-$pArray = $_GET['p'];
-$vArray = $_GET['v'];
+$pArray = ($_GET['p'] ?? []);
+$vArray = ($_GET['v'] ?? []);
 if( is_array($pArray) )
 {
+  $vArraySize = count($vArray);
   foreach( $pArray as $i => $p )
   {
-    array_push( $arguments, new SoapParam($vArray[$i], $p) );
+    if( $vArraySize > $i )
+    {
+      array_push( $arguments, new SoapParam($vArray[$i], $p) );
+    }
   }
 }
 
-$result = $client->__soapCall($_GET['fn'], $arguments);
+$result = $client->__soapCall(($_GET['fn'] ?? ''), $arguments);
 
 echo json_encode($result);
 
@@ -106,6 +110,12 @@ if( $debug )
 {
   echo "\n<pre>\n";
   var_dump( $result );
+  echo "URI: '" . $options['uri'] . "'\n";
+  echo "Login: '" . $options['login'] . "'\n";
+  echo "Password: " . str_repeat("*", strlen($options['password'])) . "\n";
+  echo "Location: '" . $options['location'] . "'\n";
+  echo "Self signed: '" . $TR064device['selfsigned'] . "'\n";
+  echo "\n";
   echo "Request header:\n*****\n"  . $client->__getLastRequestHeaders()  . "\n*****\n\n";
   echo "Request:\n*****\n"         . $client->__getLastRequest()         . "\n*****\n\n";
   echo "Response header:\n*****\n" . $client->__getLastResponseHeaders() . "\n*****\n\n";

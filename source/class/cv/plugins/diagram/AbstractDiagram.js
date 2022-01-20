@@ -361,7 +361,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     _onStatusError: function(ts, key, ev) {
-      qx.log.Logger.error(this, '_onStatusError', ts, key, ev);
+      cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
+        title: 'Diagram communication error',
+        severity: 'urgent',
+        message: 'URL: ' + JSON.stringify(key) + '<br/><br/>Response:</br>' + ev._target._transport.responseText
+      });
+      console.error('Diagram _onStatusError', ts, key, ev);
       const tsdata = [];
 
       this.cache[key].data = tsdata;
