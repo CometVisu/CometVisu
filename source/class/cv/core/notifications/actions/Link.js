@@ -109,7 +109,7 @@ qx.Class.define('cv.core.notifications.actions.Link', {
 
     getDomElement: function() {
       const actionButton = qx.dom.Element.create('button', {
-        'class': 'action',
+        'class': 'action ' + this.getAction(),
         'text': this.getTitle(),
         'style': this.getStyle()
       });
