@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr ""
 
@@ -1046,4 +1046,32 @@ msgstr ""
 
 #: cv/ui/manager/editor/Source.js
 msgid "\"%1\" is not writable. Upgrading not possible."
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Diagram communication error"
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "URL: %1<br/><br/>Response:</br>%2"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication error"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication response error"
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with status \"%2\": \"%2\""
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "refreshCalllist() error: \"%1\""
+msgstr ""
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with content: \"%2\""
 msgstr ""

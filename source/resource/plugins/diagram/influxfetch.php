@@ -232,12 +232,16 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
     $tz = 'Europe/Berlin';  // best guess for a not good set up system
   $q .= " tz('$tz')";
 
-  if( '' != $_GET['debug'] )
+  if( '' != ($_GET['debug'] ?? '') )
     var_dump($q);
 
   $arrData = array();
 
-  $seriesArr = json_decode( query( $q, $ts[0], $_GET['auth'] ), true );
+  $seriesArr = json_decode( query( $q, $ts[0], ($_GET['auth'] ?? '') ), true );
+
+  if( '' != ($_GET['debug'] ?? '') )
+    var_dump(error_get_last());
+
   $series = $seriesArr['results'][0]['series'][0]['values'];
   foreach( $series as $thisSeries )
   {
@@ -260,7 +264,7 @@ function printRow( $row )
   print ']]';
 }
 
-$arrData = getTs( $_GET['ts'], $_GET['field'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'], $_GET['filter'] );
+$arrData = getTs( $_GET['ts'] ?? '', $_GET['field'] ?? '', $_GET['start'] ?? '', $_GET['end'] ?? '', $_GET['ds'] ?? '', $_GET['res'] ?? '', $_GET['fill'] ?? '', $_GET['filter'] ?? '');
 
 Header("Content-type: application/json");
 
