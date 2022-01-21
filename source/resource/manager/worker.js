@@ -71,6 +71,9 @@ class SourceFile {
    * @param data {Map}
    */
   open(data) {
+    if (!data || !data.code) {
+      return;
+    }
     this.initialCode = data.code.split("\n");
     if (this.features.hash) {
       this.initialHash = SourceFile.hashCode(data.code);
