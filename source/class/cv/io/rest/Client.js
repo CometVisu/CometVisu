@@ -183,7 +183,7 @@ qx.Class.define('cv.io.rest.Client', {
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
           const data = ev.getData();
           let error;
-          if (data) {
+          if (data && data.message) {
             error = data.message;
           } else {
             error = {
