@@ -514,7 +514,7 @@ qx.Class.define('cv.ui.manager.Main', {
           return;
         }
       }
-      if (!openFile.isCloseable()) {
+      if (!openFile || !openFile.isCloseable()) {
         return;
       }
       const file = openFile.getFile();
