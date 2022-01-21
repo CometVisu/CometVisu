@@ -16,7 +16,7 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
-          - <a href="#" onclick="showManager()">Config-Manager</a>
+          - <a href="?manager=1" onclick="showManager(); return false;">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>

@@ -222,7 +222,7 @@ qx.Class.define('cv.parser.MetaParser', {
         matches.forEach(match => {
           switch (match[1]) {
             case 'manager.php':
-              text = text.replace(match[0], 'href="#" onclick="showManager()"');
+              text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
               handled = true;
               break;
 
@@ -234,7 +234,7 @@ qx.Class.define('cv.parser.MetaParser', {
             case 'editor/':
             case 'editor': {
               const suffix = search ? '_' + search : '';
-              text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+              text = text.replace(match[0], 'href="'+window.location.pathname+'?config='+search+'&manager=1&open=visu_config' + suffix + '.xml" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
               handled = true;
               break;
             }
@@ -278,7 +278,7 @@ qx.Class.define('cv.parser.MetaParser', {
 
                 case 'edit': {
                   const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                  replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                  replacement = 'href="'+window.location.pathname+'?config='+search+'&manager=1&open='+configFile+'" onclick="showManager(\'open\', \'' + configFile + '\'); return false;"';
                   break;
                 }
               }

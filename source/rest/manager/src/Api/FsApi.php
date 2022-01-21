@@ -113,10 +113,10 @@ class FsApi extends AbstractFsApi
     if (!file_exists($fsPath)) {
       return $response->withJson(array('message' => 'Source not found'), 404);
     }
-    if (file_exists(targetPath)) {
+    if (file_exists($targetPath)) {
       return $response->withJson(array('message' => 'Target exists'), 406);
     }
-    if (!$this->checkAccess(targetPath) || ($mount && $mount['writeable'] === false) || ($targetMount && $targetMount['writeable'] === false)) {
+    if (!$this->checkAccess($targetPath) || ($mount && $mount['writeable'] === false) || ($targetMount && $targetMount['writeable'] === false)) {
       return $response->withJson(array('message' => 'Forbidden'), 403);
     } else {
       try {

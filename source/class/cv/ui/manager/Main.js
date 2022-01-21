@@ -282,6 +282,7 @@ qx.Class.define('cv.ui.manager.Main', {
       } else {
         this.warn('unhandled file event', data.action);
       }
+      this._tree.refresh();
     },
 
     __findConfigFile: function (name) {
@@ -297,6 +298,9 @@ qx.Class.define('cv.ui.manager.Main', {
         return false;
       });
       if (!file && demoFolder) {
+        if (name.startsWith('demo/')) {
+          name = name.substr(5);
+        }
         // check demo configs
         demoFolder.getChildren().some(child => {
           if (child.getName() === name) {
@@ -514,7 +518,7 @@ qx.Class.define('cv.ui.manager.Main', {
           return;
         }
       }
-      if (!openFile.isCloseable()) {
+      if (!openFile || !openFile.isCloseable()) {
         return;
       }
       const file = openFile.getFile();
