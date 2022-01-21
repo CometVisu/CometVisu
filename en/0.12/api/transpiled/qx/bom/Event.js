@@ -268,9 +268,9 @@
           return !target.dispatchEvent(evt);
         } // dispatch for IE
         else {
-          var evt = document.createEventObject();
-          return target.fireEvent("on" + type, evt);
-        }
+            var evt = document.createEventObject();
+            return target.fireEvent("on" + type, evt);
+          }
       },
 
       /**
@@ -365,4 +365,4 @@
   qx.bom.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1642362593939
+//# sourceMappingURL=Event.js.map?dt=1642804667032

@@ -145,9 +145,9 @@
           this.el.$$animation.__P_109_3 = true;
         } // in case the animation is based on JS
         else if (this.jsAnimation) {
-          this.stopped = true;
-          qx.bom.element.AnimationJs.stop(this);
-        }
+            this.stopped = true;
+            qx.bom.element.AnimationJs.stop(this);
+          }
       },
 
       /**
@@ -162,4 +162,4 @@
   qx.bom.element.AnimationHandle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationHandle.js.map?dt=1642362596200
+//# sourceMappingURL=AnimationHandle.js.map?dt=1642804669252

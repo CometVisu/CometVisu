@@ -256,11 +256,11 @@
           qx.event.Timer.once(qx.ui.menu.Manager.getInstance().hideAll, qx.ui.menu.Manager.getInstance(), 0);
         } // right click
         else {
-          // only prevent contextmenu event if button has no further context menu.
-          if (!this.getContextMenu()) {
-            qx.ui.menu.Manager.getInstance().preventContextMenuOnce();
+            // only prevent contextmenu event if button has no further context menu.
+            if (!this.getContextMenu()) {
+              qx.ui.menu.Manager.getInstance().preventContextMenuOnce();
+            }
           }
-        }
       },
 
       /**
@@ -379,4 +379,4 @@
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1642362613206
+//# sourceMappingURL=AbstractButton.js.map?dt=1642804685324

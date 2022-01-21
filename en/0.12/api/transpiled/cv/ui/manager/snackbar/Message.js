@@ -143,6 +143,10 @@
 
           case 'content':
             control = new qx.ui.basic.Label();
+            control.set({
+              rich: true,
+              wrap: true
+            });
 
             this._addAt(control, 1, {
               flex: 1
@@ -175,4 +179,4 @@
   cv.ui.manager.snackbar.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1642362590886
+//# sourceMappingURL=Message.js.map?dt=1642804663990

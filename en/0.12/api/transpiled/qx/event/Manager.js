@@ -521,14 +521,14 @@
         // Identical operator does not work in IE (as of version 7) because
         // document.parentWindow is not identical to window. Crazy stuff.
         else if (target == this.__P_176_0) {
-          isWindow = true;
-          key = "WIN_" + type;
-        } else if (target.classname) {
-          isObject = true;
-          key = "QX_" + target.classname + "_" + type;
-        } else {
-          key = "UNKNOWN_" + target + "_" + type;
-        }
+            isWindow = true;
+            key = "WIN_" + type;
+          } else if (target.classname) {
+            isObject = true;
+            key = "QX_" + target.classname + "_" + type;
+          } else {
+            key = "UNKNOWN_" + target + "_" + type;
+          }
 
         var cache = this.__P_176_6;
 
@@ -897,4 +897,4 @@
   qx.event.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1642362600632
+//# sourceMappingURL=Manager.js.map?dt=1642804673639

@@ -1197,24 +1197,24 @@
           // the themed value, so the themed value has no chance to ever get used,
           // when there is an user value, too.
           else if (variant === "setThemed") {
-            code.push('computed=this.', this.$$store.theme[name], '=value;');
-          } else if (variant === "resetThemed") {
-            // Delete entry
-            code.push('delete this.', this.$$store.theme[name], ';'); // Fallback to init value
+              code.push('computed=this.', this.$$store.theme[name], '=value;');
+            } else if (variant === "resetThemed") {
+              // Delete entry
+              code.push('delete this.', this.$$store.theme[name], ';'); // Fallback to init value
 
-            code.push('if(this.', this.$$store.init[name], '!==undefined){');
-            code.push('computed=this.', this.$$store.init[name], ';');
-            code.push('this.', this.$$store.useinit[name], '=true;');
-            code.push('}');
-          } else if (variant === "init") {
-            if (incomingValue) {
-              code.push('this.', this.$$store.init[name], '=value;');
+              code.push('if(this.', this.$$store.init[name], '!==undefined){');
+              code.push('computed=this.', this.$$store.init[name], ';');
+              code.push('this.', this.$$store.useinit[name], '=true;');
+              code.push('}');
+            } else if (variant === "init") {
+              if (incomingValue) {
+                code.push('this.', this.$$store.init[name], '=value;');
+              }
+
+              code.push('computed=this.', this.$$store.theme[name], ';');
+            } else if (variant === "refresh") {
+              code.push('computed=this.', this.$$store.theme[name], ';');
             }
-
-            code.push('computed=this.', this.$$store.theme[name], ';');
-          } else if (variant === "refresh") {
-            code.push('computed=this.', this.$$store.theme[name], ';');
-          }
 
           code.push('}');
         } // OLD = INIT VALUE
@@ -1233,18 +1233,18 @@
         // higher priority than the init value, so the init value has no chance to ever get used,
         // when there is an user or themed value, too.
         else if (variant === "setImpl" || variant === "setRuntime" || variant === "setThemed" || variant === "refresh") {
-          code.push('delete this.', this.$$store.useinit[name], ';');
+            code.push('delete this.', this.$$store.useinit[name], ';');
 
-          if (variant === "setRuntime") {
-            code.push('computed=this.', this.$$store.runtime[name], '=value;');
-          } else if (variant === "setImpl") {
-            code.push('computed=this.', this.$$store.user[name], '=value;');
-          } else if (variant === "setThemed") {
-            code.push('computed=this.', this.$$store.theme[name], '=value;');
-          } else if (variant === "refresh") {
-            code.push('computed=this.', this.$$store.init[name], ';');
+            if (variant === "setRuntime") {
+              code.push('computed=this.', this.$$store.runtime[name], '=value;');
+            } else if (variant === "setImpl") {
+              code.push('computed=this.', this.$$store.user[name], '=value;');
+            } else if (variant === "setThemed") {
+              code.push('computed=this.', this.$$store.theme[name], '=value;');
+            } else if (variant === "refresh") {
+              code.push('computed=this.', this.$$store.init[name], ';');
+            }
           }
-        }
 
         code.push('}'); // OLD = NONE
         // reset(), resetRuntime() and resetStyle() are impossible because otherwise there
@@ -1447,4 +1447,4 @@
   qx.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1642362598163
+//# sourceMappingURL=Property.js.map?dt=1642804671206

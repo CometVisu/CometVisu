@@ -54,8 +54,9 @@
        * @param pageType {String} Page type (2d, 3d, ...)
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-        cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
+        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings()); // navbars are no 2d/3d pages
+
+        cv.parser.WidgetParser.parseChildren(xml, path, flavour, 'text');
         return data;
       },
       createDefaultWidget: function createDefaultWidget(widgetType, n, path) {
@@ -127,4 +128,4 @@
   cv.parser.widgets.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1642362585896
+//# sourceMappingURL=NavBar.js.map?dt=1642804658282

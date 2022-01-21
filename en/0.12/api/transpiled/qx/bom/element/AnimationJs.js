@@ -403,10 +403,10 @@
                   handle.initValues[name] = handle.el[name];
                 } // animate CSS property
                 else if (qx.bom.element.Style) {
-                  handle.initValues[name] = qx.bom.element.Style.get(handle.el, qx.lang.String.camelCase(name));
-                } else {
-                  handle.initValues[name] = handle.el.style[qx.lang.String.camelCase(name)];
-                }
+                    handle.initValues[name] = qx.bom.element.Style.get(handle.el, qx.lang.String.camelCase(name));
+                  } else {
+                    handle.initValues[name] = handle.el.style[qx.lang.String.camelCase(name)];
+                  }
               }
             }
           }
@@ -590,4 +590,4 @@
   qx.bom.element.AnimationJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationJs.js.map?dt=1642362596272
+//# sourceMappingURL=AnimationJs.js.map?dt=1642804669323

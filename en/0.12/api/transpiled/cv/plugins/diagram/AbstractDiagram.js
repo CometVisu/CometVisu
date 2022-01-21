@@ -22,7 +22,8 @@
       "cv.data.Model": {},
       "cv.TemplateEngine": {},
       "qx.io.request.Xhr": {},
-      "qx.log.Logger": {},
+      "cv.core.notifications.Router": {},
+      "qx.locale.Manager": {},
       "qx.event.Timer": {},
       "qx.dom.Element": {},
       "cv.ui.PopupHandler": {},
@@ -407,7 +408,7 @@
 
         var now = Date.now();
 
-        if (forceNowDatapoint) {
+        if (forceNowDatapoint && tsdata.length > 0) {
           var last = Array.from(tsdata[tsdata.length - 1]); // force copy
 
           last[0] = now;
@@ -422,7 +423,12 @@
         this.cache[key].waitingCallbacks.length = 0; // empty array)
       },
       _onStatusError: function _onStatusError(ts, key, ev) {
-        qx.log.Logger.error(this, '_onStatusError', ts, key, ev);
+        cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
+          title: qx.locale.Manager.tr('Diagram communication error'),
+          severity: 'urgent',
+          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), ev._target._transport.responseText)
+        });
+        window.console.error('Diagram _onStatusError', ts, key, ev);
         var tsdata = [];
         this.cache[key].data = tsdata;
         this.cache[key].timestamp = Date.now();
@@ -956,4 +962,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1642362587121
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1642804660179

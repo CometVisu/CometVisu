@@ -954,15 +954,15 @@
                 this._selectItemRange(anchor, item, isCtrlPressed);
               } // Toggle in selection
               else if (isCtrlPressed) {
-                this._setAnchorItem(item);
+                  this._setAnchorItem(item);
 
-                this._toggleInSelection(item);
-              } // Replace current selection
-              else {
-                this._setAnchorItem(item);
+                  this._toggleInSelection(item);
+                } // Replace current selection
+                else {
+                    this._setAnchorItem(item);
 
-                this._setSelectedItem(item);
-              }
+                    this._setSelectedItem(item);
+                  }
 
               break;
           }
@@ -1765,4 +1765,4 @@
   qx.ui.core.selection.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1642362610071
+//# sourceMappingURL=Abstract.js.map?dt=1642804682342

@@ -45,7 +45,7 @@
         },
         "end": {
           "line": 7,
-          "column": 21
+          "column": 26
         }
       },
       "type": "variable",
@@ -59,7 +59,7 @@
         },
         "end": {
           "line": 8,
-          "column": 25
+          "column": 21
         }
       },
       "type": "variable",

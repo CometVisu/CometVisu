@@ -564,29 +564,29 @@
             }
           } // if the given node is the body/document node -> collapse the selection
           else if (qx.dom.Node.isDocument(node) || nodeName == "body") {
-            sel.collapse(node.body ? node.body : node, 0);
-          } // if an element/text node is given the current selection has to
-          // encompass the node. Only then the selection is cleared.
-          else {
-            var rng = qx.bom.Range.get(node);
+              sel.collapse(node.body ? node.body : node, 0);
+            } // if an element/text node is given the current selection has to
+            // encompass the node. Only then the selection is cleared.
+            else {
+                var rng = qx.bom.Range.get(node);
 
-            if (!rng.collapsed) {
-              var compareNode;
-              var commonAncestor = rng.commonAncestorContainer; // compare the parentNode of the textNode with the given node
-              // (if this node is an element) to decide whether the selection
-              // is cleared or not.
+                if (!rng.collapsed) {
+                  var compareNode;
+                  var commonAncestor = rng.commonAncestorContainer; // compare the parentNode of the textNode with the given node
+                  // (if this node is an element) to decide whether the selection
+                  // is cleared or not.
 
-              if (qx.dom.Node.isElement(node) && qx.dom.Node.isText(commonAncestor)) {
-                compareNode = commonAncestor.parentNode;
-              } else {
-                compareNode = commonAncestor;
+                  if (qx.dom.Node.isElement(node) && qx.dom.Node.isText(commonAncestor)) {
+                    compareNode = commonAncestor.parentNode;
+                  } else {
+                    compareNode = commonAncestor;
+                  }
+
+                  if (compareNode == node) {
+                    sel.collapse(node, 0);
+                  }
+                }
               }
-
-              if (compareNode == node) {
-                sel.collapse(node, 0);
-              }
-            }
-          }
         }
       })
     }
@@ -594,4 +594,4 @@
   qx.bom.Selection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Selection.js.map?dt=1642362594627
+//# sourceMappingURL=Selection.js.map?dt=1642804667706

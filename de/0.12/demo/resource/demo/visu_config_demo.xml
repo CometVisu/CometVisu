@@ -124,7 +124,7 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
-          - <a href="#" onclick="showManager()">Config-Manager</a>
+          - <a href="?manager=1" onclick="showManager(); return false;">Config-Manager</a>
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>
         ]]></status>
@@ -133,7 +133,7 @@
         ]]></status>
       <status type="html" hrefextend="action"><![CDATA[
           - <a cv-action="validate">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: 0.12.0-dev</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.12.0</div>
         ]]></status>
     </statusbar>
   </meta>

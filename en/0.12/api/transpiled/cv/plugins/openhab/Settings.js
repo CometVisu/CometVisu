@@ -195,61 +195,63 @@
         this._initStore(this.__P_21_0);
       },
       _createForm: function _createForm(config) {
-        this._createChildControl('title');
+        if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
+          this._createChildControl('title');
 
-        var form = this.getChildControl('form');
-        config.parameters.forEach(function (param) {
-          var field;
+          var form = this.getChildControl('form');
+          config.parameters.forEach(function (param) {
+            var field;
 
-          switch (param.type) {
-            case 'TEXT':
-              field = new qx.ui.form.TextField();
+            switch (param.type) {
+              case 'TEXT':
+                field = new qx.ui.form.TextField();
 
-              if (param.defaultValue) {
-                field.setPlaceholder(param.defaultValue);
-              }
+                if (param.defaultValue) {
+                  field.setPlaceholder(param.defaultValue);
+                }
 
-              break;
+                break;
 
-            case 'BOOLEAN':
-              field = new qx.ui.form.CheckBox();
-              field.setValue(param.defaultValue === 'true');
-              break;
+              case 'BOOLEAN':
+                field = new qx.ui.form.CheckBox();
+                field.setValue(param.defaultValue === 'true');
+                break;
+            }
+
+            if (param.readOnly) {
+              field.setReadOnly(true);
+            }
+
+            if (param.required) {
+              field.setRequired(true);
+            }
+
+            field.setToolTipText(param.description);
+            field.addListener('changeValue', this._onFormFieldChange, this);
+            form.add(field, param.label, null, param.name, null, param);
+          }, this);
+          var renderer = new cv.plugins.openhab.renderer.Single(form);
+
+          if (cv.Config.guessIfProxied()) {
+            renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
+            renderer.getChildControl('bottom-text').set({
+              padding: 10,
+              textAlign: 'center',
+              font: 'bold'
+            });
           }
 
-          if (param.readOnly) {
-            field.setReadOnly(true);
-          }
+          renderer.addButton(this.getChildControl('cancel-button'));
+          renderer.addButton(this.getChildControl('save-button'));
 
-          if (param.required) {
-            field.setRequired(true);
-          }
+          this._addAt(renderer, 1);
 
-          field.setToolTipText(param.description);
-          field.addListener('changeValue', this._onFormFieldChange, this);
-          form.add(field, param.label, null, param.name, null, param);
-        }, this);
-        var renderer = new cv.plugins.openhab.renderer.Single(form);
+          var controller = new qx.data.controller.Form(null, form);
 
-        if (cv.Config.guessIfProxied()) {
-          renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
-          renderer.getChildControl('bottom-text').set({
-            padding: 10,
-            textAlign: 'center',
-            font: 'bold'
-          });
+          this._store.bind('model', controller, 'model');
+
+          this.setModified(false);
         }
-
-        renderer.addButton(this.getChildControl('cancel-button'));
-        renderer.addButton(this.getChildControl('save-button'));
-
-        this._addAt(renderer, 1);
-
-        var controller = new qx.data.controller.Form(null, form);
-
-        this._store.bind('model', controller, 'model');
-
-        this.setModified(false);
       },
       _onFormFieldChange: function _onFormFieldChange() {
         var modified = false;
@@ -320,4 +322,4 @@
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1642362587258
+//# sourceMappingURL=Settings.js.map?dt=1642804660314

@@ -122,13 +122,15 @@
         return this.getContent();
       },
       _onDeleteSection: function _onDeleteSection(ev) {
-        var section = ev.getData();
+        if (this.getFile() && this.getFile().isWriteable()) {
+          var section = ev.getData();
 
-        var model = this._listController.getModel();
+          var model = this._listController.getModel();
 
-        model.remove(section);
+          model.remove(section);
 
-        this.__P_31_1();
+          this.__P_31_1();
+        }
       },
       // compare current controller model with the loaded config content
       __P_31_1: function __P_31_1() {
@@ -145,7 +147,12 @@
         file.setModified(modified);
       },
       save: function save() {
-        // check for duplicate section names of keys
+        if (!this.getFile() || !this.getFile().isWriteable()) {
+          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden configuration file (hidden.php) not writeable'));
+          return;
+        } // check for duplicate section names of keys
+
+
         var model = this._listController.getModel();
 
         var keys = [];
@@ -216,9 +223,14 @@
                 item.addListener('delete', this._onDeleteSection, this);
                 item.addListener('changeModified', this.__P_31_1, this);
               }.bind(this),
-              bindItem: function bindItem(controller, item, index) {
+              bindItem: function (controller, item, index) {
                 controller.bindProperty('', 'model', null, item, index);
-              }
+                this.bind('file.writeable', item, 'readOnly', {
+                  converter: function converter(value) {
+                    return !value;
+                  }
+                });
+              }.bind(this)
             });
 
             this._add(control, {
@@ -241,6 +253,11 @@
 
               this.__P_31_1();
             }, this);
+            this.bind('file.writeable', control, 'visibility', {
+              converter: function converter(value) {
+                return value ? 'visible' : 'excluded';
+              }
+            });
             this.getChildControl('buttons').add(control);
             break;
         }
@@ -261,4 +278,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1642362588566
+//# sourceMappingURL=Config.js.map?dt=1642804661650

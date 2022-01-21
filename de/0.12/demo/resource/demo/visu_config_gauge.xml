@@ -49,13 +49,23 @@
       </styling>
     </stylings>
     <statusbar>
-      <status type="html">&lt;img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
-          - &lt;a href="manager.php"&gt;Config-Manager&lt;/a&gt;
-          - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
-      <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
-      <status type="html" condition="edit" hrefextend="config">- &lt;a href="."&gt;normal Mode&lt;/a&gt;</status>
-      <status type="html">- &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
-      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
+      <status type="html"><![CDATA[
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="?manager=1" onclick="showManager(); return false;">Config-Manager</a>
+          - <a href=".?forceReload=true">Reload</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="action"><![CDATA[
+          - <a cv-action="edit">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="config"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html" hrefextend="action"><![CDATA[
+          - <a cv-action="validate">Check Config</a>
+        ]]></status>
     </statusbar>
   </meta>
   <page name="Start">

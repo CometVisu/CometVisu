@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 489,
+        "line": 495,
         "column": 3
       }
     },
@@ -468,7 +468,7 @@
           "column": 4
         },
         "end": {
-          "line": 374,
+          "line": 380,
           "column": 5
         }
       },
@@ -478,11 +478,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 382,
           "column": 4
         },
         "end": {
-          "line": 378,
+          "line": 384,
           "column": 5
         }
       },
@@ -497,11 +497,11 @@
     "_onContentChanged": {
       "location": {
         "start": {
-          "line": 380,
+          "line": 386,
           "column": 4
         },
         "end": {
-          "line": 384,
+          "line": 390,
           "column": 5
         }
       },
@@ -511,11 +511,11 @@
     "isSupported": {
       "location": {
         "start": {
-          "line": 386,
+          "line": 392,
           "column": 4
         },
         "end": {
-          "line": 393,
+          "line": 399,
           "column": 5
         }
       },
@@ -525,11 +525,11 @@
     "showErrors": {
       "location": {
         "start": {
-          "line": 395,
+          "line": 401,
           "column": 4
         },
         "end": {
-          "line": 435,
+          "line": 441,
           "column": 5
         }
       },
@@ -543,11 +543,11 @@
     "showDecorations": {
       "location": {
         "start": {
-          "line": 437,
+          "line": 443,
           "column": 4
         },
         "end": {
-          "line": 442,
+          "line": 448,
           "column": 5
         }
       },
@@ -561,11 +561,11 @@
     "_getLanguage": {
       "location": {
         "start": {
-          "line": 444,
+          "line": 450,
           "column": 4
         },
         "end": {
-          "line": 472,
+          "line": 478,
           "column": 5
         }
       },
@@ -4763,11 +4763,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 480,
+        "line": 486,
         "column": 12
       },
       "end": {
-        "line": 488,
+        "line": 494,
         "column": 3
       }
     },

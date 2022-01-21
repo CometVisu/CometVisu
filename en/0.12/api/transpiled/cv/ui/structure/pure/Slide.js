@@ -257,7 +257,7 @@
         var max = this.getMax();
         this.__P_61_7 = undefined; // invalidate cached values
 
-        this.__P_61_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min));
+        this.__P_61_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
       },
       handleEvent: function handleEvent(event) {
         var newRatio = 0;
@@ -312,4 +312,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1642362592078
+//# sourceMappingURL=Slide.js.map?dt=1642804665149

@@ -187,7 +187,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         } else {
                           this._parseCacheData = dataRequest.result; // parse stringified data
 
-                          // parse stringified data
                           this._parseCacheData.data = JSON.parse(this._parseCacheData.data);
                           this._parseCacheData.configSettings = JSON.parse(this._parseCacheData.configSettings);
 
@@ -358,4 +357,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1642362623012
+//# sourceMappingURL=ConfigCache.js.map?dt=1642804694742

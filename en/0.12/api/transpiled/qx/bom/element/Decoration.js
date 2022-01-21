@@ -394,18 +394,18 @@
           };
         } // No clipped image available
         else {
-          if (repeat == "scale-x") {
-            style.height = dimension.height == null ? null : dimension.height + "px"; // note: width is given by the user
-          } else if (repeat == "scale-y") {
-            style.width = dimension.width == null ? null : dimension.width + "px"; // note: height is given by the user
-          }
+            if (repeat == "scale-x") {
+              style.height = dimension.height == null ? null : dimension.height + "px"; // note: width is given by the user
+            } else if (repeat == "scale-y") {
+              style.width = dimension.width == null ? null : dimension.width + "px"; // note: height is given by the user
+            }
 
-          uri = ResourceManager.toUri(sourceid);
-          return {
-            src: uri,
-            style: style
-          };
-        }
+            uri = ResourceManager.toUri(sourceid);
+            return {
+              src: uri,
+              style: style
+            };
+          }
       },
 
       /**
@@ -604,4 +604,4 @@
   qx.bom.element.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1642362596618
+//# sourceMappingURL=Decoration.js.map?dt=1642804669575

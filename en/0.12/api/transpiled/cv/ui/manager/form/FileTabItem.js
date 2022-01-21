@@ -179,9 +179,9 @@
         var value = this.getLabel();
 
         if (value) {
-          var labelValue = this.getLabel();
+          var labelValue = this.getLabel(); // special treatment for hidden.php which is marked as fake, but has a special editor, so it has to be marked as not writeable
 
-          if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
+          if (!this.isWriteable() && (!this.getModel().getFile().isFake() || this.getModel().getFile().getName() === 'hidden.php')) {
             labelValue += ' !';
             this.setToolTipText(this.tr('This file is not writeable'));
           } else {
@@ -260,4 +260,4 @@
   cv.ui.manager.form.FileTabItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileTabItem.js.map?dt=1642362589788
+//# sourceMappingURL=FileTabItem.js.map?dt=1642804662807

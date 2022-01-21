@@ -2404,9 +2404,9 @@
         // what all addState/removeState do, but the queue itself may not have been registered
         // to be flushed
         else if (this.$$stateChanges) {
-          qx.ui.core.queue.Appearance.add(this);
-          delete this.$$stateChanges;
-        }
+            qx.ui.core.queue.Appearance.add(this);
+            delete this.$$stateChanges;
+          }
       },
 
       /**
@@ -3447,4 +3447,4 @@
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1642362609508
+//# sourceMappingURL=Widget.js.map?dt=1642804681807

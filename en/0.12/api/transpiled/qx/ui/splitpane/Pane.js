@@ -521,15 +521,15 @@
           });
         } // Update both sizes
         else {
-          // Set widths to static widgets
-          if (this.__P_397_6) {
-            firstWidget.setWidth(beginSize);
-            secondWidget.setWidth(endSize);
-          } else {
-            firstWidget.setHeight(beginSize);
-            secondWidget.setHeight(endSize);
+            // Set widths to static widgets
+            if (this.__P_397_6) {
+              firstWidget.setWidth(beginSize);
+              secondWidget.setWidth(endSize);
+            } else {
+              firstWidget.setHeight(beginSize);
+              secondWidget.setHeight(endSize);
+            }
           }
-        }
       },
 
       /**
@@ -607,4 +607,4 @@
   qx.ui.splitpane.Pane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pane.js.map?dt=1642362616382
+//# sourceMappingURL=Pane.js.map?dt=1642804688505

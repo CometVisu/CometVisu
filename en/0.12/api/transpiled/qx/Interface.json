@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 654,
+        "line": 660,
         "column": 3
       }
     },
@@ -694,7 +694,7 @@
           "column": 4
         },
         "end": {
-          "line": 545,
+          "line": 551,
           "column": 6
         }
       },
@@ -756,11 +756,11 @@
     "__allowedKeys": {
       "location": {
         "start": {
-          "line": 549,
+          "line": 555,
           "column": 4
         },
         "end": {
-          "line": 561,
+          "line": 567,
           "column": 6
         }
       },
@@ -784,11 +784,11 @@
     "__validateConfig": {
       "location": {
         "start": {
-          "line": 571,
+          "line": 577,
           "column": 4
         },
         "end": {
-          "line": 652,
+          "line": 658,
           "column": 6
         }
       },

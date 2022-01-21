@@ -108,6 +108,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    * @asset(designs/*)
    * @asset(icons/*)
    * @asset(sentry/bundle.min.js)
+   * @asset(sentry/bundle.tracing.min.js)
    * @asset(test/*)
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -289,7 +290,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, this);
 
         if (cv.Config.request.queryKey.manager) {
-          this.showManager();
+          var action = cv.Config.request.queryKey.open ? 'open' : '';
+          var data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+          this.showManager(action, data);
         }
 
         this.registerServiceWorker();
@@ -523,7 +526,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           topic: 'cv.error',
           target: cv.ui.PopupHandler,
           title: qx.locale.Manager.tr('An error occured'),
-          message: '<pre>' + (ex.stack || exString) + '</pre>',
+          message: '<pre>' + (exString || ex.stack) + '</pre>',
           severity: 'urgent',
           deletable: false,
           actions: {
@@ -952,7 +955,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       close: function close() {
-        cv.TemplateEngine.getClient().terminate();
+        var client = cv.TemplateEngine.getClient();
+
+        if (client) {
+          client.terminate();
+        }
       },
 
       /**
@@ -982,7 +989,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }.bind(this))["catch"](function (err) {
             this.error('Error registering service-worker: ', err);
           }.bind(this));
-        } else {
+        } else if (navigator.serviceWorker) {
           navigator.serviceWorker.getRegistrations().then(function (registrations) {
             this.debug('unregistering existing service workers');
             registrations.forEach(function (registration) {
@@ -996,4 +1003,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1642362584675
+//# sourceMappingURL=Application.js.map?dt=1642804656455

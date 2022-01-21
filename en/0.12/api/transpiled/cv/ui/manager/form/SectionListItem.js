@@ -69,6 +69,11 @@
         check: 'Boolean',
         init: false,
         event: 'changeModified'
+      },
+      readOnly: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeReadOnly'
       }
     },
 
@@ -196,6 +201,7 @@
               liveUpdate: true,
               required: true
             });
+            this.bind('readOnly', control, 'readOnly');
 
             this._add(control, {
               row: 0,
@@ -210,6 +216,11 @@
             control.addListener('execute', function () {
               this.fireDataEvent('delete', this.getModel());
             }, this);
+            this.bind('readOnly', control, 'visibility', {
+              converter: function converter(value) {
+                return value ? 'hidden' : 'visible';
+              }
+            });
 
             this._add(control, {
               row: 0,
@@ -234,6 +245,7 @@
               configureItem: function (item) {
                 item.addListener('delete', this._onDeleteOption, this);
                 item.addListener('add', this._onAddOption, this);
+                this.bind('readOnly', item, 'readOnly');
               }.bind(this),
               bindItem: function bindItem(controller, item, index) {
                 controller.bindProperty('', 'model', null, item, index);
@@ -264,4 +276,4 @@
   cv.ui.manager.form.SectionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SectionListItem.js.map?dt=1642362589898
+//# sourceMappingURL=SectionListItem.js.map?dt=1642804662919

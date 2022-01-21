@@ -180,8 +180,8 @@
               element.ownerDocument.setProperty("SelectionNamespaces", namespaceString);
             } // element is a document
             else {
-              element.setProperty("SelectionNamespaces", namespaceString);
-            }
+                element.setProperty("SelectionNamespaces", namespaceString);
+              }
           }
 
           return element.selectSingleNode(query);
@@ -244,8 +244,8 @@
               element.ownerDocument.setProperty("SelectionNamespaces", namespaceString);
             } // element is a document
             else {
-              element.setProperty("SelectionNamespaces", namespaceString);
-            }
+                element.setProperty("SelectionNamespaces", namespaceString);
+              }
           }
 
           return element.selectNodes(query);
@@ -394,4 +394,4 @@
   qx.xml.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1642362622625
+//# sourceMappingURL=Element.js.map?dt=1642804694367

@@ -63,6 +63,11 @@
         check: 'cv.ui.manager.model.config.Option',
         nullable: true,
         apply: '_applyModel'
+      },
+      readOnly: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeReadOnly'
       }
     },
 
@@ -139,6 +144,7 @@
               liveUpdate: true,
               required: true
             });
+            this.bind('readOnly', control, 'readOnly');
 
             this._add(control, {
               width: '40%'
@@ -151,6 +157,7 @@
             control.set({
               liveUpdate: true
             });
+            this.bind('readOnly', control, 'readOnly');
 
             this._add(control, {
               width: '40%'
@@ -164,6 +171,11 @@
             control.addListener('execute', function () {
               this.fireDataEvent('delete', this.getModel());
             }, this);
+            this.bind('readOnly', control, 'visibility', {
+              converter: function converter(value) {
+                return value ? 'hidden' : 'visible';
+              }
+            });
 
             this._add(control);
 
@@ -175,6 +187,11 @@
             control.addListener('execute', function () {
               this.fireEvent('add');
             }, this);
+            this.bind('readOnly', control, 'visibility', {
+              converter: function converter(value) {
+                return value ? 'hidden' : 'visible';
+              }
+            });
 
             this._add(control);
 
@@ -217,4 +234,4 @@
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1642362589856
+//# sourceMappingURL=OptionListItem.js.map?dt=1642804662881

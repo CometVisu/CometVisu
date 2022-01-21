@@ -198,17 +198,17 @@
             this.$$instance = new qx.bom.HashHistory();
           } // in iframe + IE<9
           else if (runsInIframe && qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-            this.$$instance = new qx.bom.IframeHistory();
-          } // browser with hashChange event
-          else if (this.SUPPORTS_HASH_CHANGE_EVENT) {
-            this.$$instance = new qx.bom.NativeHistory();
-          } // IE without hashChange event
-          else if (qx.core.Environment.get("engine.name") == "mshtml") {
-            this.$$instance = new qx.bom.IframeHistory();
-          } // fallback
-          else {
-            this.$$instance = new qx.bom.NativeHistory();
-          }
+              this.$$instance = new qx.bom.IframeHistory();
+            } // browser with hashChange event
+            else if (this.SUPPORTS_HASH_CHANGE_EVENT) {
+                this.$$instance = new qx.bom.NativeHistory();
+              } // IE without hashChange event
+              else if (qx.core.Environment.get("engine.name") == "mshtml") {
+                  this.$$instance = new qx.bom.IframeHistory();
+                } // fallback
+                else {
+                    this.$$instance = new qx.bom.NativeHistory();
+                  }
         }
 
         return this.$$instance;
@@ -400,4 +400,4 @@
   qx.bom.History.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=History.js.map?dt=1642362594180
+//# sourceMappingURL=History.js.map?dt=1642804667271

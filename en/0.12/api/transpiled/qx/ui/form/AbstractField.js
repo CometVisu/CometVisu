@@ -604,12 +604,12 @@
             this.__P_307_9(value);
           } // check for the liveUpdateOnRxMatch change event
           else {
-            var fireRx = this.getLiveUpdateOnRxMatch();
+              var fireRx = this.getLiveUpdateOnRxMatch();
 
-            if (fireRx && value.match(fireRx)) {
-              this.__P_307_9(value);
+              if (fireRx && value.match(fireRx)) {
+                this.__P_307_9(value);
+              }
             }
-          }
         }
       },
 
@@ -1052,4 +1052,4 @@
   qx.ui.form.AbstractField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractField.js.map?dt=1642362610758
+//# sourceMappingURL=AbstractField.js.map?dt=1642804683004

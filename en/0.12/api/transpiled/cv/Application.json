@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 32,
+        "line": 33,
         "column": 0
       },
       "end": {
-        "line": 841,
+        "line": 847,
         "column": 3
       }
     },
@@ -43,6 +43,10 @@
         },
         {
           "name": "@asset",
+          "body": "sentry/bundle.tracing.min.js"
+        },
+        {
+          "name": "@asset",
           "body": "test/*"
         }
       ],
@@ -58,11 +62,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 41,
+        "line": 42,
         "column": 13
       },
       "end": {
-        "line": 64,
+        "line": 65,
         "column": 3
       }
     },
@@ -72,11 +76,11 @@
     "HTML_STRUCT": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 73,
           "column": 553
         }
       },
@@ -86,11 +90,11 @@
     "consoleCommands": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 74,
           "column": 23
         }
       },
@@ -100,11 +104,11 @@
     "__commandManager": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 75,
           "column": 26
         }
       },
@@ -114,11 +118,11 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 98,
           "column": 5
         }
       },
@@ -150,11 +154,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 112,
           "column": 5
         }
       },
@@ -197,11 +201,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 122,
+          "line": 123,
           "column": 5
         }
       },
@@ -213,11 +217,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 132,
           "column": 5
         }
       },
@@ -239,11 +243,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 134,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 137,
           "column": 5
         }
       },
@@ -254,11 +258,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 143,
           "column": 5
         }
       },
@@ -272,11 +276,11 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 148,
           "column": 5
         }
       },
@@ -323,11 +327,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 160,
           "column": 18
         }
       },
@@ -337,11 +341,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 177,
           "column": 5
         }
       },
@@ -365,11 +369,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 254,
+          "line": 257,
           "column": 5
         }
       },
@@ -392,11 +396,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 286,
+          "line": 289,
           "column": 5
         }
       },
@@ -433,11 +437,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 288,
+          "line": 291,
           "column": 4
         },
         "end": {
-          "line": 308,
+          "line": 311,
           "column": 5
         }
       },
@@ -447,11 +451,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 313,
           "column": 4
         },
         "end": {
-          "line": 373,
+          "line": 376,
           "column": 5
         }
       },
@@ -461,11 +465,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 375,
+          "line": 378,
           "column": 4
         },
         "end": {
-          "line": 518,
+          "line": 521,
           "column": 5
         }
       },
@@ -475,11 +479,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 520,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 525,
+          "line": 528,
           "column": 6
         }
       },
@@ -489,11 +493,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 530,
+          "line": 533,
           "column": 4
         },
         "end": {
-          "line": 560,
+          "line": 563,
           "column": 5
         }
       },
@@ -511,11 +515,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 566,
+          "line": 569,
           "column": 4
         },
         "end": {
-          "line": 664,
+          "line": 667,
           "column": 5
         }
       },
@@ -542,11 +546,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 669,
+          "line": 672,
           "column": 4
         },
         "end": {
-          "line": 673,
+          "line": 676,
           "column": 5
         }
       },
@@ -564,11 +568,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 679,
+          "line": 682,
           "column": 4
         },
         "end": {
-          "line": 686,
+          "line": 689,
           "column": 5
         }
       },
@@ -592,11 +596,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 692,
+          "line": 695,
           "column": 4
         },
         "end": {
-          "line": 699,
+          "line": 702,
           "column": 5
         }
       },
@@ -620,11 +624,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 704,
+          "line": 707,
           "column": 4
         },
         "end": {
-          "line": 764,
+          "line": 767,
           "column": 5
         }
       },
@@ -642,11 +646,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 766,
+          "line": 769,
           "column": 4
         },
         "end": {
-          "line": 797,
+          "line": 800,
           "column": 5
         }
       },
@@ -656,11 +660,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 799,
+          "line": 802,
           "column": 4
         },
         "end": {
-          "line": 801,
+          "line": 807,
           "column": 5
         }
       },
@@ -675,11 +679,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 806,
+          "line": 812,
           "column": 4
         },
         "end": {
-          "line": 839,
+          "line": 845,
           "column": 5
         }
       },

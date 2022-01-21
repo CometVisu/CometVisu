@@ -5,9 +5,8 @@
  * @since (0.12.0) 2022
  */
 
-var CACHE = "cv-cache-v2";
-var NO_CACHE_TEST = /.+\.php$/i;
-var CONFIG_TEST = /.+visu_config.*\.xml.*/i;
+var CACHE = "a2125df7440351eb71045f622ababc610b65465d";
+var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg|ttf|woff|eot|css|png|html|json)$/i;
 var config = {};
 var updateQueue = [];
 var queueTid = null;
@@ -151,39 +150,31 @@ self.addEventListener('activate', function (event) {
 
 self.addEventListener('fetch', function(ev) {
   if (config.disableCache === true ||
+      ev.request.method.toLowerCase() !== "get" ||
       !ev.request.url.startsWith(this.registration.scope) ||
-      CONFIG_TEST.test(ev.request.url)
+      !CACHE_TEST.test(ev.request.url)
   ) {
     // fallback to "normal" behaviour without serviceWorker -> sends HTTP request
-    logger.debug("ignore cache for " + ev.request.url);
+    logger.debug("ignore cache for " +ev.request.method + " " + ev.request.url);
     return;
   }
 
-  if (!NO_CACHE_TEST.test(ev.request.url) &&
-      (!ev.request.headers.pragma || ev.request.headers.pragma !== "no-cache") &&
-      (!ev.request.headers['Cache-Control'] || ev.request.headers['Cache-Control'] !== "no-cache")
-  ) {
-
-    ev.respondWith(fromCache(ev.request).then(function(response){
-      logger.debug('load from cache ' + ev.request.url);
-      if (config.forceReload === true) {
-        update(ev.request);
-      } else {
-        updateQueue.push(ev.request);
-        if (queueTid) {
-          clearTimeout(queueTid);
-        }
-        queueTid = setTimeout(processQueue, 1000);
+  ev.respondWith(fromCache(ev.request).then(function(response){
+    logger.debug('load from cache ' + ev.request.url);
+    if (config.forceReload === true) {
+      update(ev.request);
+    } else {
+      updateQueue.push(ev.request);
+      if (queueTid) {
+        clearTimeout(queueTid);
       }
+      queueTid = setTimeout(processQueue, 1000);
+    }
 
-      return response;
-    }).catch(function () {
-      // not cached -> do now
-      logger.debug("caching " + ev.request.url);
-      return fetchAndUpdate(ev.request);
-    }));
-  } else {
-    logger.debug('load from network ' + ev.request.url);
-    ev.respondWith(fromNetwork(ev.request));
-  }
+    return response;
+  }).catch(function () {
+    // not cached -> do now
+    logger.debug("caching " + ev.request.url);
+    return fetchAndUpdate(ev.request);
+  }));
 });

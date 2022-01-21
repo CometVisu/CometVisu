@@ -197,21 +197,21 @@
             }
           } // layout == null
           else {
-            this.__P_344_1 = new qx.ui.mobile.layout.VBox();
-          }
+              this.__P_344_1 = new qx.ui.mobile.layout.VBox();
+            }
         } // horizontal layout and has label
         else {
-          if (this.__P_344_1) {
-            if (this.__P_344_1.classname !== "qx.ui.mobile.layout.HBox") {
-              this.__P_344_1.dispose();
+            if (this.__P_344_1) {
+              if (this.__P_344_1.classname !== "qx.ui.mobile.layout.HBox") {
+                this.__P_344_1.dispose();
 
-              this.__P_344_1 = new qx.ui.mobile.layout.HBox();
-            }
-          } // layout == null
-          else {
-            this.__P_344_1 = new qx.ui.mobile.layout.HBox();
+                this.__P_344_1 = new qx.ui.mobile.layout.HBox();
+              }
+            } // layout == null
+            else {
+                this.__P_344_1 = new qx.ui.mobile.layout.HBox();
+              }
           }
-        }
       },
 
       /**
@@ -333,4 +333,4 @@
   qx.ui.mobile.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1642362613547
+//# sourceMappingURL=Atom.js.map?dt=1642804685649

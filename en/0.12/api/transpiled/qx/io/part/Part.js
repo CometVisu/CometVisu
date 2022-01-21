@@ -238,14 +238,14 @@
           return true;
         } // add a listener if it is currently loading
         else if (readyState == "loading" && callback) {
-          this._appendPartListener(callback, self, this);
+            this._appendPartListener(callback, self, this);
 
-          return true;
-        }
+            return true;
+          }
       }
     }
   });
   qx.io.part.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1642362603040
+//# sourceMappingURL=Part.js.map?dt=1642804675975

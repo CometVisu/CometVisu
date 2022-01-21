@@ -136,7 +136,7 @@
       },
       getDomElement: function getDomElement() {
         var actionButton = qx.dom.Element.create('button', {
-          'class': 'action',
+          'class': 'action ' + this.getAction(),
           'text': this.getTitle(),
           'style': this.getStyle()
         });
@@ -152,4 +152,4 @@
   cv.core.notifications.actions.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1642362585252
+//# sourceMappingURL=Link.js.map?dt=1642804657094

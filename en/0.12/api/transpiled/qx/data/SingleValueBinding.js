@@ -1116,8 +1116,8 @@
               // caused by some hidden error situation.
               // At least an error message should be displayed
               else {
-                sourceObject.error("Could not remove deep bindings. Binding id for " + id.sources[i].classname + " could not be found!");
-              }
+                  sourceObject.error("Could not remove deep bindings. Binding id for " + id.sources[i].classname + " could not be found!");
+                }
             }
           } // go through all added listeners (target)
 
@@ -1131,8 +1131,8 @@
               // caused by some hidden error situation.
               // At least an error message should be displayed
               else {
-                sourceObject.error("Could not remove target listener. Listener id for target " + id.targets[i].classname + " could not be found!");
-              }
+                  sourceObject.error("Could not remove target listener. Listener id for target " + id.targets[i].classname + " could not be found!");
+                }
             }
           }
         } else {
@@ -1341,4 +1341,4 @@
   qx.data.SingleValueBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleValueBinding.js.map?dt=1642362598482
+//# sourceMappingURL=SingleValueBinding.js.map?dt=1642804671531
