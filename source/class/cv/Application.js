@@ -216,7 +216,9 @@ qx.Class.define('cv.Application',
       cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
       manCommand.addListener('execute', () => this.showManager(), this);
       if (cv.Config.request.queryKey.manager) {
-        this.showManager();
+        const action = cv.Config.request.queryKey.open ? 'open' : '';
+        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+        this.showManager(action, data);
       }
 
       this.registerServiceWorker();
