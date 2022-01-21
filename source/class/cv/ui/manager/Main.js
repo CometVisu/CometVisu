@@ -282,6 +282,7 @@ qx.Class.define('cv.ui.manager.Main', {
       } else {
         this.warn('unhandled file event', data.action);
       }
+      this._tree.refresh();
     },
 
     __findConfigFile: function (name) {
