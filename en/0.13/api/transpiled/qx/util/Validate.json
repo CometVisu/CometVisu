@@ -1,0 +1,664 @@
+{
+  "className": "qx.util.Validate",
+  "packageName": "qx.util",
+  "name": "Validate",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 0
+      },
+      "end": {
+        "line": 322,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This static class contains a set of default validators.\n These validators are listed twice\n </p>\n<ul>\n   <li>number</li>\n   <li>email</li>\n   <li>string</li>\n   <li>url</li>\n   <li>color</li>\n </ul>\n<p>All these validators don't need an input so the listed function just return a\n method fitting for the use in the property system.\n The methods with the check prefix are the returned methods and can be used in\n other contexts without the property system.\n There are three more validators\n </p>\n<ul>\n   <li>range</li>\n   <li>inArray</li>\n   <li>regExp</li>\n </ul>\n<p>These methods do need some addition parameters to specify the validator. So\n there is no check function which you can use in other contexts because the\n check function for the validation is created based on the given parameter.\n<em>Example usage for a property</em>\n <code>validate: qx.util.Validate.number()</code>\n <br>\n <code>validate: qx.util.Validate.range(0, 100)</code>\n Because the methods without the check prefix return a validation method,\n the function must be called at the property definition. So don't forget the\n ending brackets for those methods without parameters!\n For the correct usage, take an additional look at the documentation of the\n {@link qx.core.Property} class.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "number": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the function that checks for a number.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The {@link #checkNumber} Function.",
+            "type": "qx.util.Function",
+            "description": " The {@link #checkNumber} Function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkNumber": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function checks the incoming value to see if it is a number.\n If not, an ValidationError will be thrown.\n If you want to use the number check in a property definition,\n use the {@link #number} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to check.",
+            "paramName": "value",
+            "description": " The value to check.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "formItem {qx.ui.form.IForm} The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "paramName": "formItem",
+            "description": " The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "type": "qx.ui.form.IForm"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?undefined} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "undefined",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.ValidationError} If the value parameter is not a\n    finite number",
+            "type": "qx.core.ValidationError",
+            "description": " If the value parameter is not a\n    finite number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "email": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the function that checks for an email address.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The {@link #checkEmail} Function.",
+            "type": "qx.util.Function",
+            "description": " The {@link #checkEmail} Function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkEmail": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function checks the incoming value to see if it is an email address.\n If not, an ValidationError will be thrown.\n If you want to use the email check in a property definition,\n use the {@link #email} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to check.",
+            "paramName": "value",
+            "description": " The value to check.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "formItem {qx.ui.form.IForm} The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "paramName": "formItem",
+            "description": " The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "type": "qx.ui.form.IForm"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.ValidationError} If the value parameter is not\n    a valid email address.",
+            "type": "qx.core.ValidationError",
+            "description": " If the value parameter is not\n    a valid email address."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "string": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the function that checks for a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The {@link #checkString} Function.",
+            "type": "qx.util.Function",
+            "description": " The {@link #checkString} Function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkString": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function checks the incoming value to see if it is a string.\n If not, an ValidationError will be thrown.\n If you want to use the string check in a property definition,\n use the {@link #string} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to check.",
+            "paramName": "value",
+            "description": " The value to check.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "formItem {qx.ui.form.IForm} The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "paramName": "formItem",
+            "description": " The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "type": "qx.ui.form.IForm"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.ValidationError} If the value parameter is not a string.",
+            "type": "qx.core.ValidationError",
+            "description": " If the value parameter is not a string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "url": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the function that checks for an url.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The {@link #checkUrl} Function.",
+            "type": "qx.util.Function",
+            "description": " The {@link #checkUrl} Function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkUrl": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function checks the incoming value to see if it is an url.\n If not, an ValidationError will be thrown.\n If you want to use the url check in a property definition,\n use the {@link #url} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to check.",
+            "paramName": "value",
+            "description": " The value to check.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "formItem {qx.ui.form.IForm} The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "paramName": "formItem",
+            "description": " The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "type": "qx.ui.form.IForm"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.ValidationError} If the value parameter is not an url.",
+            "type": "qx.core.ValidationError",
+            "description": " If the value parameter is not an url."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "color": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the function that checks for a color.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The {@link #checkColor} Function.",
+            "type": "qx.util.Function",
+            "description": " The {@link #checkColor} Function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkColor": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function checks the incoming value to see if it is a color.\n If not, an ValidationError will be thrown. The check itself will be\n delegated to the {@link qx.util.ColorUtil#stringToRgb} method.\n If you want to use the color check in a property definition,\n use the {@link #color} method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to check.",
+            "paramName": "value",
+            "description": " The value to check.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "formItem {qx.ui.form.IForm} The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "paramName": "formItem",
+            "description": " The form item to check if used in a\n   {@link qx.ui.form.Form}.",
+            "type": "qx.ui.form.IForm"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.ValidationError} If the value parameter is not a color.",
+            "type": "qx.core.ValidationError",
+            "description": " If the value parameter is not a color."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "range": {
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4
+        },
+        "end": {
+          "line": 273,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a function that checks if the number is in the given range.\n The range includes the border values.\n A range from 1 to 2 accepts the values 1 equally as everything up to 2\n including the 2.\n If the value given to the returned function is out of the range, a\n ValidationError will be thrown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "from {Number} The lower border of the range.",
+            "paramName": "from",
+            "description": " The lower border of the range.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "to {Number} The upper border of the range.",
+            "paramName": "to",
+            "description": " The upper border of the range.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A function taking one parameter (value).",
+            "type": "qx.util.Function",
+            "description": " A function taking one parameter (value)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "inArray": {
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a function that checks if the given value is in the array.\n If the value given to the returned function is not in the array, a\n ValidationError will be thrown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "array {Array} The array holding the possibilities.",
+            "paramName": "array",
+            "description": " The array holding the possibilities.",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A function taking one parameter (value).",
+            "type": "qx.util.Function",
+            "description": " A function taking one parameter (value)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "regExp": {
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4
+        },
+        "end": {
+          "line": 320,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a function that checks if the given value fits the RegExp.\n For testing, the function uses the RegExp.test function.\n If the value given to the returned function does not fit the RegExp, a\n ValidationError will be thrown.\n incoming</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "reg {RegExp} The RegExp for the check.",
+            "paramName": "reg",
+            "description": " The RegExp for the check.",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "errorMessage {String?null} Custom error message.",
+            "paramName": "errorMessage",
+            "description": " Custom error message.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A function taking one parameter (value).",
+            "type": "qx.util.Function",
+            "description": " A function taking one parameter (value)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

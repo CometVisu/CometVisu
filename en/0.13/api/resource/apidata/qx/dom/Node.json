@@ -1,0 +1,790 @@
+{
+  "className": "qx.dom.Node",
+  "packageName": "qx.dom",
+  "name": "Node",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 313,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Basic node creation and type detection</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "ELEMENT": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Node type:\n* ELEMENT\n* ATTRIBUTE\n* TEXT\n* CDATA_SECTION\n* ENTITY_REFERENCE\n* ENTITY\n* PROCESSING_INSTRUCTION\n* COMMENT\n* DOCUMENT\n* DOCUMENT_TYPE\n* DOCUMENT_FRAGMENT\n* NOTATION"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ATTRIBUTE": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TEXT": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "CDATA_SECTION": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ENTITY_REFERENCE": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ENTITY": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "PROCESSING_INSTRUCTION": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "COMMENT": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DOCUMENT": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DOCUMENT_TYPE": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DOCUMENT_FRAGMENT": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "NOTATION": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getDocument": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the owner document of the given node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node|Document|Window} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": [
+              "Node",
+              "Document",
+              "Window"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Document|null} The document of the given DOM node",
+            "type": "Document|null",
+            "description": " The document of the given DOM node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindow": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the DOM2 <code>defaultView</code> (window).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node|Document|Window} node to inspect",
+            "paramName": "node",
+            "description": " node to inspect",
+            "type": [
+              "Node",
+              "Document",
+              "Window"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} the <code>defaultView</code> of the given node",
+            "type": "Window",
+            "description": " the <code>defaultView</code> of the given node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDocumentElement": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the document element. (Logical root node)\n This is a convenience attribute that allows direct access to the child\n node that is the root element of the document. For HTML documents,\n this is the element with the tagName \"HTML\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node|Document|Window} node to inspect",
+            "paramName": "node",
+            "description": " node to inspect",
+            "type": [
+              "Node",
+              "Document",
+              "Window"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} document element of the given node",
+            "type": "qx.dom.Element",
+            "description": " document element of the given node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getBodyElement": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the body element. (Visual root node)\n This normally only makes sense for HTML documents. It returns\n the content area of the HTML document.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node|Document|Window} node to inspect",
+            "paramName": "node",
+            "description": " node to inspect",
+            "type": [
+              "Node",
+              "Document",
+              "Window"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} document body of the given node",
+            "type": "qx.dom.Element",
+            "description": " document body of the given node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isNode": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given object is a DOM node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the node is a DOM node",
+            "type": "Boolean",
+            "description": " true if the node is a DOM node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isElement": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given object is a DOM element node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the node is a DOM element",
+            "type": "Boolean",
+            "description": " true if the node is a DOM element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isDocument": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given object is a DOM document node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when the node is a DOM document",
+            "type": "Boolean",
+            "description": " true when the node is a DOM document"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isDocumentFragment": {
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4
+        },
+        "end": {
+          "line": 195,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given object is a DOM document fragment node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when the node is a DOM document fragment",
+            "type": "Boolean",
+            "description": " true when the node is a DOM document fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isText": {
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4
+        },
+        "end": {
+          "line": 206,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given object is a DOM text node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node which should be tested",
+            "paramName": "node",
+            "description": " the node which should be tested",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the node is a DOM text node",
+            "type": "Boolean",
+            "description": " true if the node is a DOM text node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isWindow": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 217,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the given object is a browser window object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} the object which should be tested",
+            "paramName": "obj",
+            "description": " the object which should be tested",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the object is a window object",
+            "type": "Boolean",
+            "description": " true if the object is a window object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isNodeName": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 234,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the node has the given node name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node",
+            "paramName": "node",
+            "description": " the node",
+            "type": "qx.dom.Node"
+          },
+          {
+            "name": "@param",
+            "body": "nodeName {String} the node name to check for",
+            "paramName": "nodeName",
+            "description": " the node name to check for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the node has the given node name",
+            "type": "Boolean",
+            "description": " Whether the node has the given node name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getName": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4
+        },
+        "end": {
+          "line": 258,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the node name as lower case string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node",
+            "paramName": "node",
+            "description": " the node",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the node name",
+            "type": "String",
+            "description": " the node name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getText": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 293,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the text content of an node where the node may be of node type\n NODE<em>ELEMENT, NODE</em>ATTRIBUTE, NODE<em>TEXT or NODE</em>CDATA</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} the node from where the search should start.\n     If the node has subnodes the text contents are recursively retreived and joined.",
+            "paramName": "node",
+            "description": " the node from where the search should start.\n     If the node has subnodes the text contents are recursively retreived and joined.",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the joined text content of the given node or null if not appropriate.",
+            "type": "String",
+            "description": " the joined text content of the given node or null if not appropriate."
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isBlockNode": {
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4
+        },
+        "end": {
+          "line": 311,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given node is a block node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} Node",
+            "paramName": "node",
+            "description": " Node",
+            "type": "qx.dom.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether it is a block node",
+            "type": "Boolean",
+            "description": " whether it is a block node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

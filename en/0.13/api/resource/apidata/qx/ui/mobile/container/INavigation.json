@@ -1,0 +1,123 @@
+{
+  "className": "qx.ui.mobile.container.INavigation",
+  "packageName": "qx.ui.mobile.container",
+  "name": "INavigation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>All widgets that are added to the navigation container should implement this interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "getTitleWidget": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 34
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the title widget that is merged into the navigation bar.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.Title} The title of the navigation bar",
+            "type": "qx.ui.mobile.navigationbar.Title",
+            "description": " The title of the navigation bar"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLeftContainer": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the left container that is merged into the navigation bar.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The left container of the navigation bar",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": " The left container of the navigation bar"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRightContainer": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the right container that is merged into the navigation bar.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The right container of the navigation bar",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": " The right container of the navigation bar"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

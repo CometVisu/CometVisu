@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Images.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "ICONS",
+    "getIcon",
+    "name",
+    "size",
+    "Object",
+    "prototype",
+    "hasOwnProperty",
+    "call",
+    "cv",
+    "theme",
+    "dark",
+    "Images"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EAAwC;AACtCC,IAAAA,IAAI,EAAE,QADgC;;AAGtC;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAAE;AACL,eAAO,oBADF;AAEL,oBAAY,yBAFP;AAGL,sBAAc,kCAHT;AAIL,gBAAQ,qBAJH;AAKL,kBAAU,uBALL;AAML,iBAAS,sBANJ;AAOL,gBAAQ,4BAPH;AAQL,gBAAQ,qBARH;AASL,gBAAQ,qBATH;AAUL,yBAAiB,yBAVZ;AAWL,kBAAU,qBAXL;AAYL,uBAAe,6BAZV;AAaL,eAAO,oBAbF;AAcL,0BAAkB,+BAdb;AAeL,kBAAU,uBAfL;AAgBL,uBAAe,4BAhBV;AAiBL,gBAAQ,kCAjBH;AAkBL,oBAAY,+BAlBP;AAmBL,kBAAU,6BAnBL;AAoBL,kBAAU,mCApBL;AAqBL,mBAAW,+BArBN;AAsBL,mBAAW,+BAtBN;AAuBL,iBAAS,uBAvBJ;AAwBL,gBAAQ,gCAxBH;AAyBL,qBAAa,0BAzBR;AA0BL,oBAAY,2BA1BP;AA2BL,iBAAS,6BA3BJ;AA4BL,iBAAS,sBA5BJ;AA6BL,iBAAS,sBA7BJ;AA8BL,gBAAQ,kCA9BH;AA+BL,eAAO,uBA/BF;AAgCL,iBAAS,6BAhCJ;AAiCL,gBAAQ,qBAjCH;AAkCL,gBAAQ,qBAlCH;AAmCL,gBAAQ,qBAnCH;AAoCL,qBAAa,gCApCR;AAqCL,mBAAW,8BArCN;AAsCL,sBAAc,0BAtCT;AAuCL,wBAAgB,8BAvCX;AAwCL,uBAAe,4BAxCV;AAyCL,uBAAe,+BAzCV;AA0CL,kBAAU,yBA1CL;AA2CL,uBAAe,4BA3CV;AA4CL,0BAAkB,kCA5Cb;AA6CL,gBAAQ,2BA7CH;AA8CL,eAAO,4BA9CF;AA+CL,gBAAQ,6BA/CH;AAgDL,iBAAS,8BAhDJ;AAiDL,gBAAQ,qBAjDH;AAkDL,gBAAQ;AAlDH,OADA;AAsDPC,MAAAA,OAAO,EAAE,iBAAUC,IAAV,EAAgBC,IAAhB,EAAsB;AAC7B,eAAOC,MAAM,CAACC,SAAP,CAAiBC,cAAjB,CAAgCC,IAAhC,CAAqC,KAAKP,KAA1C,EAAiDE,IAAjD,IAAyD,KAAKF,KAAL,CAAWE,IAAX,IAAmB,GAAnB,GAAyBC,IAAlF,GAAyF,oBAAoBD,IAApB,GAA2B,GAA3B,GAAiCC,IAAjI;AACD;AAxDM;AAR6B,GAAxC;AAHAK,EAAAA,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcC,MAAd,CAAqBhB,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/**\n * Some icon definitions.\n */\nqx.Class.define('cv.theme.dark.Images', {\n  type: 'static',\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    ICONS: {\n      'new': '@MaterialIcons/add',\n      'new-file': '@MaterialIcons/note_add',\n      'new-folder': '@MaterialIcons/create_new_folder',\n      'save': '@MaterialIcons/save',\n      'delete': '@MaterialIcons/delete',\n      'close': '@MaterialIcons/close',\n      'quit': '@MaterialIcons/exit_to_app',\n      'undo': '@MaterialIcons/undo',\n      'redo': '@MaterialIcons/redo',\n      'hidden-config': '@MaterialIcons/settings',\n      'reload': '@MaterialIcons/sync',\n      'out-of-sync': '@MaterialIcons/sync_problem',\n      'add': '@MaterialIcons/add',\n      'mounted-folder': '@MaterialIcons/folder_special',\n      'folder': '@MaterialIcons/folder',\n      'folder-open': '@MaterialIcons/folder_open',\n      'file': '@MaterialIcons/insert_drive_file',\n      'download': '@MaterialIcons/cloud_download',\n      'upload': '@MaterialIcons/cloud_upload',\n      'rename': '@MaterialIcons/text_rotation_none',\n      'compare': '@MaterialIcons/compare_arrows',\n      'preview': '@MaterialIcons/remove_red_eye',\n      'trash': '@MaterialIcons/delete',\n      'open': '@MaterialIcons/open_in_browser',\n      'open-with': '@MaterialIcons/open_with',\n      'validate': '@MaterialIcons/spellcheck',\n      'valid': '@MaterialIcons/check_circle',\n      'error': '@MaterialIcons/error',\n      'image': '@MaterialIcons/image',\n      'text': '@MaterialIcons/format_align_left',\n      'xml': '@MaterialIcons/ballot',\n      'icons': '@MaterialIcons/image_search',\n      'home': '@MaterialIcons/home',\n      'edit': '@MaterialIcons/edit',\n      'menu': '@MaterialIcons/menu',\n      'drop-down': '@MaterialIcons/arrow_drop_down',\n      'drop-up': '@MaterialIcons/arrow_drop_up',\n      'clone-file': '@MaterialIcons/file_copy',\n      'listViewMode': '@MaterialIcons/view_headline',\n      'previewMode': '@MaterialIcons/view_module',\n      'drag-handle': '@MaterialIcons/drag_indicator',\n      'expert': '@MaterialIcons/explicit',\n      'text-fields': '@MaterialIcons/text_fields',\n      'comment-fields': '@MaterialIcons/settings_ethernet',\n      'view': '@MaterialIcons/visibility',\n      'cut': '@MaterialIcons/content_cut',\n      'copy': '@MaterialIcons/content_copy',\n      'paste': '@MaterialIcons/content_paste',\n      'help': '@MaterialIcons/help',\n      'code': '@MaterialIcons/code'\n    },\n\n    getIcon: function (name, size) {\n      return Object.prototype.hasOwnProperty.call(this.ICONS, name) ? this.ICONS[name] + '/' + size : '@MaterialIcons/' + name + '/' + size;\n    }\n  }\n});\n"
+  ]
+}

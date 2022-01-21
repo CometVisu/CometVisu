@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/type/Focus.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Event",
+    "members",
+    "init",
+    "target",
+    "relatedTarget",
+    "canBubble",
+    "_target",
+    "_relatedTarget",
+    "Focus"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,KADzB;AAGEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,IAAI,EAAG,cAASC,MAAT,EAAiBC,aAAjB,EAAgCC,SAAhC,EACP;AACE,2DAAqBA,SAArB,EAAgC,KAAhC;AAEA,aAAKC,OAAL,GAAeH,MAAf;AACA,aAAKI,cAAL,GAAsBH,aAAtB;AAEA,eAAO,IAAP;AACD;AApBH;AAJF,GADA;AArBAb,EAAAA,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcS,KAAd,CAAoBd,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Common base class for all focus events.\n */\nqx.Class.define(\"qx.event.type.Focus\",\n{\n  extend : qx.event.type.Event,\n\n  members :\n  {\n    /**\n     * Initialize the fields of the event. The event must be initialized before\n     * it can be dispatched.\n     *\n     * @param target {Object} Any possible event target\n     * @param relatedTarget {Object} Any possible event target\n     * @param canBubble {Boolean?false} Whether or not the event is a bubbling event.\n     *     If the event is bubbling, the bubbling can be stopped using\n     *     {@link qx.event.type.Event#stopPropagation}\n     * @return {qx.event.type.Event} The initialized event instance\n     */\n    init : function(target, relatedTarget, canBubble)\n    {\n      this.base(arguments, canBubble, false);\n\n      this._target = target;\n      this._relatedTarget = relatedTarget;\n\n      return this;\n    }\n  }\n});\n"
+  ]
+}

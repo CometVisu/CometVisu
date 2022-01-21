@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/util/Request.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "isCrossDomain",
+    "url",
+    "result",
+    "util",
+    "Uri",
+    "parseUri",
+    "location",
+    "window",
+    "protocol",
+    "indexOf",
+    "substr",
+    "length",
+    "host",
+    "authority",
+    "port",
+    "isSuccessful",
+    "status",
+    "isMethod",
+    "method",
+    "knownMethods",
+    "methodAllowsRequestBody",
+    "test",
+    "Request"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,iBAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,aAAa,EAAE,uBAASC,GAAT,EAAc;AAC3B,YAAIC,MAAM,GAAGR,EAAE,CAACS,IAAH,CAAQC,GAAR,CAAYC,QAAZ,CAAqBJ,GAArB,CAAb;AAAA,YACIK,QAAQ,GAAGC,MAAM,CAACD,QADtB;;AAGA,YAAI,CAACA,QAAL,EAAe;AACb,iBAAO,KAAP;AACD;;AAED,YAAIE,QAAQ,GAAGF,QAAQ,CAACE,QAAxB,CAR2B,CAU3B;;AACA,YAAI,EAAEP,GAAG,CAACQ,OAAJ,CAAY,IAAZ,MAAsB,CAAC,CAAzB,CAAJ,EAAiC;AAC/B,iBAAO,KAAP;AACD;;AAED,YAAID,QAAQ,CAACE,MAAT,CAAgB,CAAhB,EAAmBF,QAAQ,CAACG,MAAT,GAAgB,CAAnC,KAAyCT,MAAM,CAACM,QAAhD,IACAF,QAAQ,CAACM,IAAT,KAAkBV,MAAM,CAACW,SADzB,IAEAP,QAAQ,CAACQ,IAAT,KAAkBZ,MAAM,CAACY,IAF7B,EAEmC;AACjC,iBAAO,KAAP;AACD;;AAED,eAAO,IAAP;AACD,OA9BH;;AAgCE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,YAAY,EAAE,sBAASC,MAAT,EAAiB;AAC7B,eAAQA,MAAM,IAAI,GAAV,IAAiBA,MAAM,GAAG,GAA1B,IAAiCA,MAAM,KAAK,GAApD;AACD,OAxCH;;AA0CE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAE,kBAASC,MAAT,EAAiB;AACzB,YAAIC,YAAY,GAAG,CAAC,KAAD,EAAQ,MAAR,EAAgB,KAAhB,EAAuB,QAAvB,EAAiC,MAAjC,EAAyC,SAAzC,EAAoD,OAApD,EAA6D,SAA7D,EAAwE,OAAxE,CAAnB;AACA,eAAQA,YAAY,CAACV,OAAb,CAAqBS,MAArB,MAAiC,CAAC,CAAnC,GAAwC,IAAxC,GAA+C,KAAtD;AACD,OAnDH;;AAqDE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIE,MAAAA,uBAAuB,EAAE,iCAASF,MAAT,EAAiB;AACxC,eAAO,CAAG,cAAD,CAAiBG,IAAjB,CAAsBH,MAAtB,CAAT;AACD;AA/DH;AAFF,GADA;AAtBAxB,EAAAA,EAAE,CAACS,IAAH,CAAQmB,OAAR,CAAgBzB,aAAhB,GAAgCA,aAAhC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tristan Koch (tristankoch)\n     * Richard Sternagel (rsternagel)\n\n************************************************************************ */\n\n/**\n * Static helpers for handling HTTP requests.\n */\nqx.Bootstrap.define(\"qx.util.Request\",\n{\n  statics:\n  {\n    /**\n     * Whether URL given points to resource that is cross-domain,\n     * i.e. not of same origin.\n     *\n     * @param url {String} URL.\n     * @return {Boolean} Whether URL is cross domain.\n     */\n    isCrossDomain: function(url) {\n      var result = qx.util.Uri.parseUri(url),\n          location = window.location;\n\n      if (!location) {\n        return false;\n      }\n\n      var protocol = location.protocol;\n\n      // URL is relative in the sense that it points to origin host\n      if (!(url.indexOf(\"//\") !== -1)) {\n        return false;\n      }\n\n      if (protocol.substr(0, protocol.length-1) == result.protocol &&\n          location.host === result.authority &&\n          location.port === result.port) {\n        return false;\n      }\n\n      return true;\n    },\n\n    /**\n     * Determine if given HTTP status is considered successful.\n     *\n     * @param status {Number} HTTP status.\n     * @return {Boolean} Whether status is considered successful.\n     */\n    isSuccessful: function(status) {\n      return (status >= 200 && status < 300 || status === 304);\n    },\n\n    /**\n     * Determine if given HTTP method is valid.\n     *\n     * @param method {String} HTTP method.\n     * @return {Boolean} Whether method is a valid HTTP method.\n     */\n    isMethod: function(method) {\n      var knownMethods = [\"GET\", \"POST\", \"PUT\", \"DELETE\", \"HEAD\", \"OPTIONS\", \"TRACE\", \"CONNECT\", \"PATCH\"];\n      return (knownMethods.indexOf(method) !== -1) ? true : false;\n    },\n\n    /**\n     * Request body is ignored for HTTP method GET and HEAD.\n     *\n     * See http://www.w3.org/TR/XMLHttpRequest2/#the-send-method.\n     *\n     * @param method {String} The HTTP method.\n     * @return {Boolean} Whether request may contain body.\n     */\n    methodAllowsRequestBody: function(method) {\n      return !((/^(GET|HEAD)$/).test(method));\n    }\n  }\n});\n"
+  ]
+}

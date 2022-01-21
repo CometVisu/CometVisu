@@ -1,0 +1,908 @@
+{
+  "className": "qx.ui.layout.HBox",
+  "packageName": "qx.ui.layout",
+  "name": "HBox",
+  "superClass": "qx.ui.layout.Abstract",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 92,
+        "column": 0
+      },
+      "end": {
+        "line": 573,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A horizontal box layout.\n The horizontal box layout lays out widgets in a horizontal row, from left\n to right.\n<em>Features</em></p>\n<ul>\n<li>Minimum and maximum dimensions</li>\n<li>Prioritized growing/shrinking (flex)</li>\n<li>Margins (with horizontal collapsing)</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li>Percent widths (not relevant for size hint)</li>\n<li>Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)</li>\n<li>Horizontal spacing (collapsed with margins)</li>\n<li>Reversed children layout (from last to first)</li>\n<li><p>Vertical children stretching (respecting size hints)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container\n   distributes remaining empty space among its children. If items are made\n   flexible, they can grow or shrink accordingly. Their relative flex values\n   determine how the items are being resized, i.e. the larger the flex ratio\n   of two items, the larger the resizing of the first item compared to the\n   second.\n   If there is only one flex item in a layout container, its actual flex\n   value is not relevant. To disallow items to become flexible, set the\n   flex value to zero.\n </li>\n <li><strong>flexShrink</strong> <em>(Boolean)</em>: Only valid if <code>flex</code> is\n    set to a non-zero value, <code>flexShrink</code> tells the layout to force the child\n    widget to shink if there is not enough space available for all of the children.\n    This is used in scenarios such as when the child insists that it has a <code>minWidth</code>\n    but there simply is not enough space to support that minimum width, so the\n    overflow has to be cut off.  This setting allows the container to pick\n    which children are able to have their <code>minWidth</code> sacrificed.  Without this\n    setting, one oversized child can force later children out of view, regardless\n    of <code>flex</code> settings\n </li>\n <li><strong>width</strong> <em>(String)</em>: Allows to define a percent\n   width for the item. The width in percent, if specified, is used instead\n   of the width defined by the size hint. The minimum and maximum width still\n   takes care of the element's limits. It has no influence on the layout's\n   size hint. Percent values are mostly useful for widgets which are sized by\n   the outer hierarchy.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the HBox layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.HBox();\n layout.setSpacing(4);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n </pre>\n<p><em>External Documentation</em>\n See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>\n and links to demos for this layout.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 111,
+        "column": 14
+      },
+      "end": {
+        "line": 126,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "spacing {Integer?0} The spacing between child widgets {@link #spacing}.",
+          "paramName": "spacing",
+          "description": " The spacing between child widgets {@link #spacing}.",
+          "optional": true,
+          "defaultValue": "0",
+          "type": "Integer"
+        },
+        {
+          "name": "@param",
+          "body": "alignX {String?\"left\"} Horizontal alignment of the whole children\n     block {@link #alignX}.",
+          "paramName": "alignX",
+          "description": " Horizontal alignment of the whole children\n     block {@link #alignX}.",
+          "optional": true,
+          "defaultValue": "\"left\"",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "separator {String|qx.ui.decoration.IDecorator?} A separator to render between the items",
+          "paramName": "separator",
+          "description": " A separator to render between the items",
+          "optional": true,
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ]
+    }
+  },
+  "properties": {
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of the whole children block. The horizontal\n alignment of the child is completely ignored in HBoxes (\n {@link qx.ui.core.LayoutItem#alignX}).</p>"
+          }
+        ]
+      },
+      "name": "alignX",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": "left",
+      "possibleValues": [
+        "left",
+        "center",
+        "right"
+      ],
+      "defaultValue": "left"
+    },
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of each child. Can be overridden through\n {@link qx.ui.core.LayoutItem#alignY}.</p>"
+          }
+        ]
+      },
+      "name": "alignY",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": "top",
+      "possibleValues": [
+        "top",
+        "middle",
+        "bottom"
+      ],
+      "defaultValue": "top"
+    },
+    "spacing": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal spacing between two children</p>"
+          }
+        ]
+      },
+      "name": "spacing",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
+    },
+    "separator": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 180,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Separator lines to use between the objects</p>"
+          }
+        ]
+      },
+      "name": "separator",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Decorator"
+    },
+    "reversed": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the actual children list should be laid out in reversed order.</p>"
+          }
+        ]
+      },
+      "name": "reversed",
+      "propertyType": "new",
+      "apply": "_applyReversed",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__widths": {
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4
+        },
+        "end": {
+          "line": 204,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__flexs": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 205,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__enableFlex": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 206,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__children": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_applyReversed": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4
+        },
+        "end": {
+          "line": 223,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "reversed"
+      ]
+    },
+    "__rebuildCache": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4
+        },
+        "end": {
+          "line": 277,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rebuilds caches for flex and percent layout properties</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "verifyLayoutProperty": {
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4
+        },
+        "end": {
+          "line": 310,
+          "column": 6
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "renderLayout": {
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4
+        },
+        "end": {
+          "line": 487,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "_computeSizeHint": {
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 4
+        },
+        "end": {
+          "line": 559,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getAlignX": {
+      "type": "function",
+      "name": "getAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignX"
+          }
+        ]
+      }
+    },
+    "setAlignX": {
+      "type": "function",
+      "name": "setAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignX"
+          }
+        ]
+      }
+    },
+    "resetAlignX": {
+      "type": "function",
+      "name": "resetAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
+    },
+    "getAlignY": {
+      "type": "function",
+      "name": "getAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignY"
+          }
+        ]
+      }
+    },
+    "setAlignY": {
+      "type": "function",
+      "name": "setAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignY"
+          }
+        ]
+      }
+    },
+    "resetAlignY": {
+      "type": "function",
+      "name": "resetAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
+    },
+    "getSpacing": {
+      "type": "function",
+      "name": "getSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>spacing</code>.\n\nFor further details take a look at the property definition: {@link #spacing}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for spacing"
+          }
+        ]
+      }
+    },
+    "setSpacing": {
+      "type": "function",
+      "name": "setSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>spacing</code>.\n\nFor further details take a look at the property definition: {@link #spacing}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for spacing"
+          }
+        ]
+      }
+    },
+    "resetSpacing": {
+      "type": "function",
+      "name": "resetSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>spacing</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacing}."
+          }
+        ]
+      }
+    },
+    "getSeparator": {
+      "type": "function",
+      "name": "getSeparator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>separator</code>.\n\nFor further details take a look at the property definition: {@link #separator}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Decorator",
+            "desc": "Returns the value for separator"
+          }
+        ]
+      }
+    },
+    "setSeparator": {
+      "type": "function",
+      "name": "setSeparator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>separator</code>.\n\nFor further details take a look at the property definition: {@link #separator}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Decorator",
+            "paramName": "value",
+            "desc": "Value for separator"
+          }
+        ]
+      }
+    },
+    "resetSeparator": {
+      "type": "function",
+      "name": "resetSeparator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>separator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #separator}."
+          }
+        ]
+      }
+    },
+    "getReversed": {
+      "type": "function",
+      "name": "getReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for reversed"
+          }
+        ]
+      }
+    },
+    "isReversed": {
+      "type": "function",
+      "name": "isReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for reversed"
+          }
+        ]
+      }
+    },
+    "setReversed": {
+      "type": "function",
+      "name": "setReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for reversed"
+          }
+        ]
+      }
+    },
+    "resetReversed": {
+      "type": "function",
+      "name": "resetReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>reversed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 570,
+        "column": 13
+      },
+      "end": {
+        "line": 572,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

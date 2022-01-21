@@ -1,0 +1,134 @@
+{
+  "className": "qx.ui.form.IModel",
+  "packageName": "qx.ui.form",
+  "name": "IModel",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Each object which wants to store data representative for the real item\n should implement this interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "events": {
+    "changeModel": {
+      "type": "event",
+      "name": "changeModel",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the model data changes</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "setModel": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the representative data for the item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The data.",
+            "paramName": "value",
+            "description": " The data.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getModel": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the representative data for the item</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The data.",
+            "type": "var",
+            "description": " The data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetModel": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the representative data to null.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

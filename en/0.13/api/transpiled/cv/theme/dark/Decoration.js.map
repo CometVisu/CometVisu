@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Decoration.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "osparc",
+    "theme",
+    "common",
+    "Decoration",
+    "decorations",
+    "style",
+    "width",
+    "color",
+    "backgroundColor",
+    "shadowSpreadRadius",
+    "shadowBlurRadius",
+    "shadowHorizontalLength",
+    "shadowVerticalLength",
+    "shadowColor",
+    "radius",
+    "include",
+    "cv",
+    "dark"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EAA4C;AAC1CC,IAAAA,MAAM,EAAGC,MAAM,CAACC,KAAP,CAAaC,MAAb,CAAoBC,UADa;AAG1CC,IAAAA,WAAW,EAAG;AACZ,+BAAyB,EADb;AAIZ,kCAA4B;AAC1BC,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CADF;AAELC,UAAAA,KAAK,EAAE;AAFF;AADmB,OAJhB;AAWZ,yBAAmB;AACjBF,QAAAA,KAAK,EAAE;AACLG,UAAAA,eAAe,EAAE;AADZ;AADU,OAXP;AAiBZ,+BAAyB;AACvBH,QAAAA,KAAK,EAAE;AACLG,UAAAA,eAAe,EAAE;AADZ;AADgB,OAjBb;AAuBZ,oBAAc;AACZH,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADF;AAELC,UAAAA,KAAK,EAAE;AAFF;AADK,OAvBF;AA8BZ,4BAAsB;AACpBF,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CADF;AAELC,UAAAA,KAAK,EAAE;AAFF;AADa,OA9BV;AAqCZ,gCAA0B;AACxBF,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADF;AAELC,UAAAA,KAAK,EAAE;AAFF;AADiB,OArCd;AA2CZ,wBAAkB;AAChBF,QAAAA,KAAK,EAAE;AACLI,UAAAA,kBAAkB,EAAE,CADf;AAELC,UAAAA,gBAAgB,EAAE,CAFb;AAGLC,UAAAA,sBAAsB,EAAE,CAHnB;AAILC,UAAAA,oBAAoB,EAAE,CAJjB;AAKLC,UAAAA,WAAW,EAAE;AALR;AADS,OA3CN;AAqDZ,+BAAyB;AACvBR,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CADF;AAELC,UAAAA,KAAK,EAAE,MAFF;AAGLF,UAAAA,KAAK,EAAE;AAHF;AADgB,OArDb;AA6DZ,sBAAgB;AACdA,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CADF;AAELQ,UAAAA,MAAM,EAAE,EAFH;AAGLP,UAAAA,KAAK,EAAE,eAHF;AAILC,UAAAA,eAAe,EAAE,QAJZ;AAKLC,UAAAA,kBAAkB,EAAE,CALf;AAMLC,UAAAA,gBAAgB,EAAE,CANb;AAOLC,UAAAA,sBAAsB,EAAE,CAPnB;AAQLC,UAAAA,oBAAoB,EAAE,CARjB;AASLC,UAAAA,WAAW,EAAE;AATR;AADO,OA7DJ;AA0EZ,8BAAwB;AACtBE,QAAAA,OAAO,EAAE,cADa;AAEtBV,QAAAA,KAAK,EAAE;AACLC,UAAAA,KAAK,EAAE,CADF;AAELC,UAAAA,KAAK,EAAE;AAFF;AAFe;AA1EZ;AAH4B,GAA5C;AArBAS,EAAAA,EAAE,CAACf,KAAH,CAASgB,IAAT,CAAcd,UAAd,CAAyBP,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* Decoration.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n\nqx.Theme.define('cv.theme.dark.Decoration', {\n  extend : osparc.theme.common.Decoration,\n\n  decorations : {\n    'window-caption-active': {\n    },\n\n    'cv-editor-config-section': {\n      style: {\n        width: 1,\n        color: 'material-textfield'\n      }\n    },\n\n    'cv-snackbar-msg': {\n      style: {\n        backgroundColor: 'button'\n      }\n    },\n\n    'cv-snackbar-msg-error': {\n      style: {\n        backgroundColor: 'material-textfield-invalid'\n      }\n    },\n\n    'cv-toolbar': {\n      style: {\n        width: [1, 0, 1, 0],\n        color: 'background-main'\n      }\n    },\n\n    'file-action-button': {\n      style: {\n        width: 1,\n        color: 'text'\n      }\n    },\n\n    'cv-start-section-title': {\n      style: {\n        width: [1, 0, 0, 0],\n        color: 'text-placeholder'\n      }\n    },\n    'open-file-tabs': {\n      style: {\n        shadowSpreadRadius: 0,\n        shadowBlurRadius: 4,\n        shadowHorizontalLength: 1,\n        shadowVerticalLength: 1,\n        shadowColor: 'rgba(255, 255, 255, 0.1)'\n      }\n    },\n\n    'cv-file-item-add-file': {\n      style: {\n        width: 1,\n        color: 'text',\n        style: 'dashed'\n      }\n    },\n\n    'round-button': {\n      style: {\n        width: 2,\n        radius: 32,\n        color: 'button-border',\n        backgroundColor: 'button',\n        shadowSpreadRadius: 0,\n        shadowBlurRadius: 4,\n        shadowHorizontalLength: 1,\n        shadowVerticalLength: 1,\n        shadowColor: 'rgba(255, 255, 255, 0.1)'\n      }\n    },\n    'round-button-hovered': {\n      include: 'round-button',\n      style: {\n        width: 4,\n        color: 'button-border-hovered'\n      }\n    }\n  }\n});\n"
+  ]
+}

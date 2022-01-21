@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation auf einem Debian System mit openHAB &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/openhab.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Installation mittels Docker-Container" href="docker.html" />
+    <link rel="prev" title="Entwicklerversion auf dem Wiregate" href="install-dev.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf einem Debian System mit openHAB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kurzubersicht">Kurzübersicht</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#webserver-installieren">2. Webserver installieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-der-cometvisu-auf-dem-server">3. Installation der CometVisu auf dem Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-token-in-openhab-erstellen">4. API-Token in openHAB erstellen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
+      <li>Installation auf einem Debian System mit openHAB</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="installation-auf-einem-debian-system-mit-openhab">
+<h1>Installation auf einem Debian System mit openHAB<a class="headerlink" href="#installation-auf-einem-debian-system-mit-openhab" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="kurzubersicht">
+<h2>Kurzübersicht<a class="headerlink" href="#kurzubersicht" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für den Betrieb der CometVisu mit openHAB werden folgende Dinge benötigt:</p>
+<ol class="arabic simple">
+<li>Server mit funktionierender openHAB Installation (alle Beispiele beziehen sich auf eine openHAB Installation
+auf einem Debian basierten System über den mitgelieferten Paketmanager <code class="docutils literal notranslate"><span class="pre">apt</span></code>, bei anderen Distributionen
+müssen ggf. die in dieser Anleitung benutzten Pfade angepasst werden.</li>
+<li>Webserver mit PHP-Unterstützung installieren</li>
+<li>Ein entpacktes Release der CometVisu auf dem Server</li>
+<li>API-Token in openHAB erstellen</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Seit Version 0.12.0 werden keinerlei openHAB-Erweiterungen mehr benötigt, um die CometVisu nutzen zu können.
+Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zu Kommunikation.</p>
+</div>
+<p>Es wird davon ausgegangen, dass Punkt 1 bereits erfüllt ist und im folgenden nur auf die weiteren Punkte eingegangen.</p>
+</div>
+<div class="section" id="webserver-installieren">
+<h2>2. Webserver installieren<a class="headerlink" href="#webserver-installieren" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Webserver mit PHP installieren
+<span class="go">sudo apt install apache2 php libapache2-mod-php php-soap</span>
+</pre></div>
+</div>
+<p>Den Inhalt der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-enabled/000-default.conf</span></code> durch folgenden ersetzen (<code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> bitte mit
+der IP-Adresse oder dem Hostnamen des openHAB Servers ersetzen, wenn alles auf einem Server läuft, kann <code class="docutils literal notranslate"><span class="pre">localhost</span></code>
+eingetragen werden).</p>
+<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost<span class="w"></span>
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span><span class="w"></span>
+
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
+
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-LoginUrl<span class="w"> </span><span class="s2">&quot;/rest/cv/l&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>
+<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
+<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-der-cometvisu-auf-dem-server">
+<h2>3. Installation der CometVisu auf dem Server<a class="headerlink" href="#installation-der-cometvisu-auf-dem-server" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die CometVisu kann hier herunter geladen werden: <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.
+Das entpackte Paket enthält den Ordner <em>cometvisu/release</em>, welcher auf den Server in folgenden Pfad
+<em>/var/www/html</em> kopiert werden muss.
+Darüber hinaus müssen noch entsprechenden Rechte für den Webserver Benutzer gesetzt werden und einige
+Konfigurationsverzeichnisse angelegt werden.
+Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Kopieren des release Verzeichnisses an die richtige Stelle
+<span class="go">cp -r cometvisu/release /var/www/html</span>
+
+<span class="gp"># </span>Benutzerrechte anpassen für den Webserver
+<span class="go">chown -R www-data:www-data /var/www/html</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-token-in-openhab-erstellen">
+<h2>4. API-Token in openHAB erstellen<a class="headerlink" href="#api-token-in-openhab-erstellen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für einige Anfragen an openHAB benötigt die CometVisu Zugangsdaten. Man kann in der Profilansicht der openHAB UI
+(erreichbar durch einen Klick auf den Usernamen unten links) ein API-Token generieren. Dazu klickt man auf
+„Erstelle neuen API Token“ und gibt seine Zugangsdaten (Benutzername + Passwort) und einen Namen für das Token ein
+(das Feld „Token (optional)“ bitte leer lassen). Dadurch wird ein neuen Token generiert und angezeigt. Dieses Token muss
+jetzt kopiert werden (es wird nur in diesem Moment einmalig angezeigt und kann später nicht mehr angesehen werden) und als
+<code class="docutils literal notranslate"><span class="pre">username</span></code> in das <code class="docutils literal notranslate"><span class="pre">pages</span></code> Element der CometVisu-Config-Datei eingetragen werden.</p>
+<p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/?config=&lt;name&gt;</span></code> im Browser erreichbar,
+wobei sich <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> vom Namen der <code class="docutils literal notranslate"><span class="pre">visu_config_&lt;name&gt;.xml</span></code> ableitet.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install-dev.html" class="btn btn-neutral float-left" title="Entwicklerversion auf dem Wiregate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker.html" class="btn btn-neutral float-right" title="Installation mittels Docker-Container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

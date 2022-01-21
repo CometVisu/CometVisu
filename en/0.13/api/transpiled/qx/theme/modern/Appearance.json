@@ -1,0 +1,297 @@
+{
+  "className": "qx.theme.modern.Appearance",
+  "packageName": "qx.theme.modern",
+  "name": "Appearance",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 116,
+        "column": 0
+      },
+      "end": {
+        "line": 3064,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The modern appearance theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/mimetypes/office-document.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/22/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/22/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/22/mimetypes/office-document.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/32/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/32/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/32/mimetypes/office-document.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/apps/utilities-color-chooser.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/cursors/*"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/scrollbar/scrollbar-left.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/scrollbar/scrollbar-right.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/scrollbar/scrollbar-up.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/scrollbar/scrollbar-down.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/toolbar/toolbar-handle-knob.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/tree/open-selected.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/tree/closed-selected.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/tree/open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/tree/closed.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/form/checked.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/form/undetermined.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/form/tooltip-error-arrow-right.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/form/tooltip-error-arrow.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/minimize-active-hovered.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/minimize-active.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/minimize-inactive.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/restore-active-hovered.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/restore-active.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/restore-inactive.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/maximize-active-hovered.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/maximize-active.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/maximize-inactive.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/close-active-hovered.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/close-active.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/window/close-inactive.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/splitpane/knob-horizontal.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/splitpane/knob-vertical.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/down.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/up.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/right.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/left.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/rewind.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/forward.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/up-invert.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/down-invert.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/right-invert.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/up-small.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/arrows/down-small.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/menu/checkbox-invert.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/menu/checkbox.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/menu/radiobutton-invert.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/menu/radiobutton.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/table/select-column-order.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/table/ascending.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/table/descending.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/table/boolean-true.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/table/boolean-false.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/static/blank.gif"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/static/blank.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/colorselector/*"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

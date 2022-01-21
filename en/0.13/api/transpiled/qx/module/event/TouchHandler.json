@@ -1,0 +1,142 @@
+{
+  "className": "qx.module.event.TouchHandler",
+  "packageName": "qx.module.event",
+  "name": "TouchHandler",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Creates a touch event handler that fires high-level events such as \"swipe\"\n based on low-level event sequences on the given element</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 66
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of events that require a touch handler</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "register": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a touch handler for the given element when a touch event listener\n is attached to it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element",
+            "paramName": "element",
+            "description": " DOM element",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregister": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the touch event handler from the element if there are no more\n touch event listeners attached to it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element",
+            "paramName": "element",
+            "description": " DOM element",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 80,
+        "column": 10
+      },
+      "end": {
+        "line": 83,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Trigger.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "cv",
+    "ui",
+    "structure",
+    "AbstractWidget",
+    "include",
+    "common",
+    "Operate",
+    "HasAnimatedButton",
+    "BasicUpdate",
+    "HandleLongpress",
+    "properties",
+    "sendValue",
+    "check",
+    "init",
+    "shortValue",
+    "members",
+    "_onDomReady",
+    "defaultUpdate",
+    "undefined",
+    "getSendValue",
+    "getDomElement",
+    "_getInnerDomString",
+    "_action",
+    "value",
+    "getShortThreshold",
+    "isShortDefault",
+    "getShortValue",
+    "sendToBackend",
+    "address",
+    "variantInfo",
+    "_onLongTap",
+    "pure",
+    "Trigger"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EAAgD;AAC9CC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,cADsB;AAE9CC,IAAAA,OAAO,EAAE,CACPJ,EAAE,CAACC,EAAH,CAAMI,MAAN,CAAaC,OADN,EAEPN,EAAE,CAACC,EAAH,CAAMI,MAAN,CAAaE,iBAFN,EAGPP,EAAE,CAACC,EAAH,CAAMI,MAAN,CAAaG,WAHN,EAIPR,EAAE,CAACC,EAAH,CAAMI,MAAN,CAAaI,eAJN,CAFqC;;AAS9C;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,SAAS,EAAE;AAAEC,QAAAA,KAAK,EAAE,QAAT;AAAmBC,QAAAA,IAAI,EAAE;AAAzB,OADD;AAEVC,MAAAA,UAAU,EAAE;AAAEF,QAAAA,KAAK,EAAE,QAAT;AAAmBC,QAAAA,IAAI,EAAE;AAAzB;AAFF,KAdkC;;AAmB9C;AACF;AACA;AACA;AACA;AACEE,IAAAA,OAAO,EAAE;AACP;AACAC,MAAAA,WAAW,EAAE,uBAAW;AACtB;;AACA,aAAKC,aAAL,CAAmBC,SAAnB,EAA8B,KAAKC,YAAL,EAA9B,EAAmD,KAAKC,aAAL,EAAnD;AACD,OALM;AAOP;AACAC,MAAAA,kBAAkB,EAAE,8BAAY;AAC9B,eAAO,qEAAP;AACD,OAVM;;AAYP;AACJ;AACA;AACA;AACIC,MAAAA,OAAO,EAAE,mBAAW;AAClB,YAAMC,KAAK,GAAI,KAAKC,iBAAL,KAA2B,CAA3B,IAAgC,KAAKC,cAAL,EAAjC,GAA0D,KAAKC,aAAL,EAA1D,GAAiF,KAAKP,YAAL,EAA/F;AACA,aAAKQ,aAAL,CAAmBJ,KAAnB,EAA0B,UAASK,OAAT,EAAkB;AAC1C,iBAAO,CAAC,EAAEA,OAAO,CAACC,WAAR,GAAsB,CAAxB,CAAR;AACD,SAFD;AAGD,OArBM;;AAuBP;AACJ;AACA;AACIC,MAAAA,UAAU,EAAE,sBAAW;AACrB,aAAKH,aAAL,CAAmB,KAAKR,YAAL,EAAnB,EAAwC,UAASS,OAAT,EAAkB;AACxD,iBAAO,CAAC,EAAEA,OAAO,CAACC,WAAR,GAAsB,CAAxB,CAAR;AACD,SAFD;AAGD;AA9BM;AAxBqC,GAAhD;AA7BA7B,EAAAA,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgB6B,IAAhB,CAAqBC,OAArB,CAA6BpC,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/* Trigger.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Adds a button to the visu with which exactly a defined value for a short,\n * as well as a defined value for a long key pressure, can be sent to the BUS,\n * e.g. for recalling and storing scenes or driving roller blinds. (Short = stop, long = drive).\n * The address for short and long term may vary.\n *\n * @author Christian Mayer\n * @since 2012\n */\nqx.Class.define('cv.ui.structure.pure.Trigger', {\n  extend: cv.ui.structure.AbstractWidget,\n  include: [\n    cv.ui.common.Operate,\n    cv.ui.common.HasAnimatedButton,\n    cv.ui.common.BasicUpdate,\n    cv.ui.common.HandleLongpress\n  ],\n\n  /*\n  ******************************************************\n    PROPERTIES\n  ******************************************************\n  */\n  properties: {\n    sendValue: { check: 'String', init: '0' },\n    shortValue: { check: 'String', init: '0' }\n  },\n\n  /*\n  ******************************************************\n    MEMBERS\n  ******************************************************\n  */\n  members: {\n    // overridden\n    _onDomReady: function() {\n      this.base(arguments);\n      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());\n    },\n\n    // overridden\n    _getInnerDomString: function () {\n      return '<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>';\n    },\n\n    /**\n     * Handle a short tap event and send the value for short pressing the trigger to the backend.\n     * If there is no short threshold set, this send the value for long presses to the backend.\n     */\n    _action: function() {\n      const value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();\n      this.sendToBackend(value, function(address) {\n        return !!(address.variantInfo & 1);\n      });\n    },\n\n    /**\n     * Handle a long tap event and send the value for long pressing the trigger to the backend.\n     */\n    _onLongTap: function() {\n      this.sendToBackend(this.getSendValue(), function(address) {\n        return !!(address.variantInfo & 2);\n      });\n    }\n  }\n});\n"
+  ]
+}

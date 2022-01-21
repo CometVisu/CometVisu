@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/menu/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "menu",
+    "AbstractButton",
+    "implement",
+    "form",
+    "IBooleanForm",
+    "construct",
+    "label",
+    "translate",
+    "setLabel",
+    "setMenu",
+    "addListener",
+    "_onExecute",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "value",
+    "check",
+    "apply",
+    "event",
+    "nullable",
+    "members",
+    "_bindableProperties",
+    "_applyValue",
+    "old",
+    "addState",
+    "removeState",
+    "e",
+    "toggleValue",
+    "CheckBox"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,cADtB;AAEEC,IAAAA,SAAS,EAAG,CAACV,EAAE,CAACO,EAAH,CAAMI,IAAN,CAAWC,YAAZ,CAFd;;AAME;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBN,IAAhB,EACZ;AACE,uDADF,CAGE;;AACA,UAAIM,KAAK,IAAI,IAAb,EAAmB;AACjB;AACA,YAAIA,KAAK,CAACC,SAAV,EAAqB;AACnB,eAAKC,QAAL,CAAcF,KAAK,CAACC,SAAN,EAAd;AACD,SAFD,MAEO;AACL,eAAKC,QAAL,CAAcF,KAAd;AACD;AACF;;AAED,UAAIN,IAAI,IAAI,IAAZ,EAAkB;AAChB,aAAKS,OAAL,CAAaT,IAAb;AACD;;AAED,WAAKU,WAAL,CAAiB,SAAjB,EAA4B,KAAKC,UAAjC,EAA6C,IAA7C;AACD,KAnCH;;AAuCE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;;AAQE;AACAC,MAAAA,KAAK,EACL;AACEC,QAAAA,KAAK,EAAG,SADV;AAEEF,QAAAA,IAAI,EAAG,KAFT;AAGEG,QAAAA,KAAK,EAAG,aAHV;AAIEC,QAAAA,KAAK,EAAG,aAJV;AAKEC,QAAAA,QAAQ,EAAG;AALb;AAVF,KA9CF;;AAqEE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;;AACA;AACJ;AACA;AACIC,MAAAA,mBAAmB,EACnB,CACE,SADF,EAEE,OAFF,EAGE,aAHF,EAIE,OAJF,EAKE,MALF,CANF;AAcE;AACAC,MAAAA,WAAW,EAAG,qBAASP,KAAT,EAAgBQ,GAAhB,EACd;AACER,QAAAA,KAAK,GACH,KAAKS,QAAL,CAAc,SAAd,CADG,GAEH,KAAKC,WAAL,CAAiB,SAAjB,CAFF;AAGD,OApBH;;AAuBE;AACJ;AACA;AACA;AACA;AACIf,MAAAA,UAAU,EAAG,oBAASgB,CAAT,EAAY;AACvB,aAAKC,WAAL;AACD;AA9BH;AA5EF,GADA;AAzBApC,EAAAA,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAW6B,QAAX,CAAoBlC,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Renders a special checkbox button inside a menu. The button behaves like\n * a normal {@link qx.ui.form.CheckBox} and shows a check icon when\n * checked; normally shows no icon when not checked (depends on the theme).\n */\nqx.Class.define(\"qx.ui.menu.CheckBox\",\n{\n  extend : qx.ui.menu.AbstractButton,\n  implement : [qx.ui.form.IBooleanForm],\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param label {String} Initial label\n   * @param menu {qx.ui.menu.Menu} Initial sub menu\n   */\n  construct : function(label, menu)\n  {\n    this.base(arguments);\n\n    // Initialize with incoming arguments\n    if (label != null) {\n      // try to translate every time you create a checkbox [BUG #2699]\n      if (label.translate) {\n        this.setLabel(label.translate());\n      } else {\n        this.setLabel(label);\n      }\n    }\n\n    if (menu != null) {\n      this.setMenu(menu);\n    }\n\n    this.addListener(\"execute\", this._onExecute, this);\n  },\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"menu-checkbox\"\n    },\n\n    /** Whether the button is checked */\n    value :\n    {\n      check : \"Boolean\",\n      init : false,\n      apply : \"_applyValue\",\n      event : \"changeValue\",\n      nullable : true\n    }\n  },\n\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden (from MExecutable to keep the icon out of the binding)\n    /**\n     * @lint ignoreReferenceField(_bindableProperties)\n     */\n    _bindableProperties :\n    [\n      \"enabled\",\n      \"label\",\n      \"toolTipText\",\n      \"value\",\n      \"menu\"\n    ],\n\n    // property apply\n    _applyValue : function(value, old)\n    {\n      value ?\n        this.addState(\"checked\") :\n        this.removeState(\"checked\");\n    },\n\n\n    /**\n     * Handler for the execute event.\n     *\n     * @param e {qx.event.type.Event} The execute event.\n     */\n    _onExecute : function(e) {\n      this.toggleValue();\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "className": "qx.log.appender.PhoneGap",
+  "packageName": "qx.log.appender",
+  "name": "PhoneGap",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 0
+      },
+      "end": {
+        "line": 94,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Processes the incoming log entry and displays it using the PhoneGap\n logging capabilities.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.log.appender.Formatter"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "debug.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "process": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes a single log entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 79,
+        "column": 10
+      },
+      "end": {
+        "line": 93,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

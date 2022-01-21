@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/util/StringEscape.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "escape",
+    "str",
+    "charCodeToEntities",
+    "entity",
+    "result",
+    "i",
+    "l",
+    "length",
+    "chr",
+    "charAt",
+    "code",
+    "codePointAt",
+    "String",
+    "fromCodePoint",
+    "unescape",
+    "entitiesToCharCode",
+    "replace",
+    "substring",
+    "fromCharCode",
+    "toUpperCase",
+    "match",
+    "parseInt",
+    "util",
+    "StringEscape"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Generic escaping and unescaping of DOM strings.\n *\n * {@link qx.bom.String} for (un)escaping of HTML strings.\n * {@link qx.xml.String} for (un)escaping of XML strings.\n */\nqx.Bootstrap.define(\"qx.util.StringEscape\",\n{\n  statics :\n  {\n    /**\n     * generic escaping method\n     *\n     * @param str {String} string to escape\n     * @param charCodeToEntities {Map} entity to charcode map\n     * @return {String} escaped string\n     */\n    escape : function(str, charCodeToEntities)\n    {\n      var entity, result = \"\";\n\n      for (var i=0, l=str.length; i<l; i++)\n      {\n        var chr = str.charAt(i);\n        var code = str.codePointAt(i);\n\n        i += String.fromCodePoint(code).length-1;\n\n        if (charCodeToEntities[code]) {\n          entity = \"&\" + charCodeToEntities[code] + \";\";\n        }\n        else\n        {\n          if (code > 0x7F) {\n            entity = \"&#\" + code + \";\";\n          } else {\n            entity = chr;\n          }\n        }\n\n        result += entity;\n      }\n\n      return result;\n    },\n\n\n    /**\n     * generic unescaping method\n     *\n     * @param str {String} string to unescape\n     * @param entitiesToCharCode {Map} charcode to entity map\n     * @return {String} unescaped string\n     */\n    unescape : function(str, entitiesToCharCode)\n    {\n      return str.replace(/&[#\\w]+;/gi, function(entity)\n      {\n        var chr = entity;\n        var entity = entity.substring(1, entity.length - 1);\n        var code = entitiesToCharCode[entity];\n\n        if (code) {\n          chr = String.fromCharCode(code);\n        }\n        else\n        {\n          if (entity.charAt(0) == '#')\n          {\n            if (entity.charAt(1).toUpperCase() == 'X')\n            {\n              code = entity.substring(2);\n\n              // match hex number\n              if (code.match(/^[0-9A-Fa-f]+$/gi)) {\n                chr = String.fromCodePoint(parseInt(code, 16));\n              }\n            }\n            else\n            {\n              code = entity.substring(1);\n\n              // match integer\n              if (code.match(/^\\d+$/gi)) {\n                chr = String.fromCodePoint(parseInt(code, 10));\n              }\n            }\n          }\n        }\n\n        return chr;\n      });\n    }\n  }\n});\n"
+  ]
+}

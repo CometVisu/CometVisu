@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MBorderRadius.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "radiusTopLeft",
+    "nullable",
+    "check",
+    "apply",
+    "radiusTopRight",
+    "radiusBottomLeft",
+    "radiusBottomRight",
+    "radius",
+    "group",
+    "mode",
+    "members",
+    "_styleBorderRadius",
+    "styles",
+    "hasRadius",
+    "getRadiusTopLeft",
+    "getRadiusTopRight",
+    "getRadiusBottomLeft",
+    "getRadiusBottomRight",
+    "core",
+    "Environment",
+    "get",
+    "_applyBorderRadius",
+    "ui",
+    "decoration",
+    "MBorderRadius"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n/**\n * Mixin for the border radius CSS property.\n * This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n *\n * Keep in mind that this is not supported by all browsers:\n *\n * * Firefox 3,5+\n * * IE9+\n * * Safari 3.0+\n * * Opera 10.5+\n * * Chrome 4.0+\n */\nqx.Mixin.define(\"qx.ui.decoration.MBorderRadius\",\n{\n  properties : {\n    /** top left corner radius */\n    radiusTopLeft :\n    {\n      nullable : true,\n      check : \"Integer\",\n      apply : \"_applyBorderRadius\"\n    },\n\n    /** top right corner radius */\n    radiusTopRight :\n    {\n      nullable : true,\n      check : \"Integer\",\n      apply : \"_applyBorderRadius\"\n    },\n\n    /** bottom left corner radius */\n    radiusBottomLeft :\n    {\n      nullable : true,\n      check : \"Integer\",\n      apply : \"_applyBorderRadius\"\n    },\n\n    /** bottom right corner radius */\n    radiusBottomRight :\n    {\n      nullable : true,\n      check : \"Integer\",\n      apply : \"_applyBorderRadius\"\n    },\n\n    /** Property group to set the corner radius of all sides */\n    radius :\n    {\n      group : [ \"radiusTopLeft\", \"radiusTopRight\", \"radiusBottomRight\", \"radiusBottomLeft\" ],\n      mode : \"shorthand\"\n    }\n  },\n\n\n  members :\n  {\n    /**\n     * Takes a styles map and adds the border radius styles in place to the\n     * given map. This is the needed behavior for\n     * {@link qx.ui.decoration.Decorator}.\n     *\n     * @param styles {Map} A map to add the styles.\n     */\n    _styleBorderRadius : function(styles)\n    {\n      // Fixing the background bleed in Webkits\n      // http://tumble.sneak.co.nz/post/928998513/fixing-the-background-bleed\n      styles[\"-webkit-background-clip\"] = \"padding-box\";\n      styles[\"background-clip\"] = \"padding-box\";\n\n      // radius handling\n      var hasRadius = false;\n      var radius = this.getRadiusTopLeft();\n      if (radius > 0) {\n        hasRadius = true;\n        styles[\"-moz-border-radius-topleft\"] = radius + \"px\";\n        styles[\"-webkit-border-top-left-radius\"] = radius + \"px\";\n        styles[\"border-top-left-radius\"] = radius + \"px\";\n      }\n\n      radius = this.getRadiusTopRight();\n      if (radius > 0) {\n        hasRadius = true;\n        styles[\"-moz-border-radius-topright\"] = radius + \"px\";\n        styles[\"-webkit-border-top-right-radius\"] = radius + \"px\";\n        styles[\"border-top-right-radius\"] = radius + \"px\";\n      }\n\n      radius = this.getRadiusBottomLeft();\n      if (radius > 0) {\n        hasRadius = true;\n        styles[\"-moz-border-radius-bottomleft\"] = radius + \"px\";\n        styles[\"-webkit-border-bottom-left-radius\"] = radius + \"px\";\n        styles[\"border-bottom-left-radius\"] = radius + \"px\";\n      }\n\n      radius = this.getRadiusBottomRight();\n      if (radius > 0) {\n        hasRadius = true;\n        styles[\"-moz-border-radius-bottomright\"] = radius + \"px\";\n        styles[\"-webkit-border-bottom-right-radius\"] = radius + \"px\";\n        styles[\"border-bottom-right-radius\"] = radius + \"px\";\n      }\n\n      // Fixing the background bleed in Webkits\n      // http://tumble.sneak.co.nz/post/928998513/fixing-the-background-bleed\n      if (hasRadius && qx.core.Environment.get(\"engine.name\") == \"webkit\") {\n        styles[\"-webkit-background-clip\"] = \"padding-box\";\n      } else {\n    styles[\"background-clip\"] = \"padding-box\";\n      }\n    },\n\n    // property apply\n    _applyBorderRadius : function()\n    {\n      if (qx.core.Environment.get(\"qx.debug\"))\n      {\n        if (this._isInitialized()) {\n          throw new Error(\"This decorator is already in-use. Modification is not possible anymore!\");\n        }\n      }\n    }\n  }\n});\n"
+  ]
+}

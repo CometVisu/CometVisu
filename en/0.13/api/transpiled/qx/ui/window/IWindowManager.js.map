@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/window/IWindowManager.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "setDesktop",
+    "desktop",
+    "assertInterface",
+    "ui",
+    "window",
+    "IDesktop",
+    "changeActiveWindow",
+    "active",
+    "oldActive",
+    "updateStack",
+    "bringToFront",
+    "win",
+    "assertInstance",
+    "Window",
+    "sendToBack",
+    "IWindowManager"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,6BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,UAAU,EAAG,oBAASC,OAAT,EAAkB;AAC7B,YAAIA,OAAO,KAAK,IAAhB,EAAsB;AACpB,eAAKC,eAAL,CAAqBD,OAArB,EAA8BR,EAAE,CAACU,EAAH,CAAMC,MAAN,CAAaC,QAA3C;AACD;AACF,OAVH;;AAYE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,kBAAkB,EAAG,4BAASC,MAAT,EAAiBC,SAAjB,EAA4B,CAAE,CAlBrD;;AAoBE;AACJ;AACA;AACIC,MAAAA,WAAW,EAAG,uBAAW,CAAE,CAvB7B;;AAyBE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,YAAY,EAAG,sBAASC,GAAT,EAAc;AAC3B,aAAKC,cAAL,CAAoBD,GAApB,EAAyBlB,EAAE,CAACU,EAAH,CAAMC,MAAN,CAAaS,MAAtC;AACD,OAhCH;;AAkCE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,UAAU,EAAG,oBAASH,GAAT,EAAc;AACzB,aAAKC,cAAL,CAAoBD,GAApB,EAAyBlB,EAAE,CAACU,EAAH,CAAMC,MAAN,CAAaS,MAAtC;AACD;AAzCH;AAFF,GADA;AAxBApB,EAAAA,EAAE,CAACU,EAAH,CAAMC,MAAN,CAAaW,cAAb,CAA4BnB,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Required interface for all window manager.\n *\n * Window manager handle the z-order and modality blocking of windows managed\n * by the connected desktop {@link qx.ui.window.IDesktop}.\n */\nqx.Interface.define(\"qx.ui.window.IWindowManager\",\n{\n  members :\n  {\n    /**\n     * Connect the window manager to the window desktop\n     *\n     * @param desktop {qx.ui.window.IDesktop|null} The connected desktop or null\n     */\n    setDesktop : function(desktop) {\n      if (desktop !== null) {\n        this.assertInterface(desktop, qx.ui.window.IDesktop);\n      }\n    },\n\n    /**\n     * Inform the window manager about a new active window\n     *\n     * @param active {qx.ui.window.Window} new active window\n     * @param oldActive {qx.ui.window.Window} old active window\n     */\n    changeActiveWindow : function(active, oldActive) {},\n\n    /**\n     * Update the window order and modality blocker\n     */\n    updateStack : function() {},\n\n    /**\n     * Ask the manager to bring a window to the front.\n     *\n     * @param win {qx.ui.window.Window} window to bring to front\n     */\n    bringToFront : function(win) {\n      this.assertInstance(win, qx.ui.window.Window);\n    },\n\n    /**\n     * Ask the manager to send a window to the back.\n     *\n     * @param win {qx.ui.window.Window} window to sent to back\n     */\n    sendToBack : function(win) {\n      this.assertInstance(win, qx.ui.window.Window);\n    }\n  }\n});\n"
+  ]
+}

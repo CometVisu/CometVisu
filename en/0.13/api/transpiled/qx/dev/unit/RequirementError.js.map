@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/dev/unit/RequirementError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "Error",
+    "construct",
+    "requirement",
+    "message",
+    "__message",
+    "__requirement",
+    "inst",
+    "call",
+    "stack",
+    "stacktrace",
+    "members",
+    "getRequirement",
+    "toString",
+    "msg",
+    "dev",
+    "unit",
+    "RequirementError"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EAAgD;AAE9CC,IAAAA,MAAM,EAAGC,KAFqC;;AAK9C;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,WAAT,EAAsBC,OAAtB,EAA+B;AAEzC,WAAKC,SAAL,GAAiBD,OAAO,IAAI,qBAA5B;AACA,WAAKE,SAAL,GAAqBH,WAArB;AAEA,UAAII,IAAI,GAAGN,KAAK,CAACO,IAAN,CAAW,IAAX,EAAiB,KAAKH,SAAtB,CAAX,CALyC,CAMzC;;AACA,UAAIE,IAAI,CAACE,KAAT,EAAgB;AACd,aAAKA,KAAL,GAAaF,IAAI,CAACE,KAAlB;AACD;;AACD,UAAIF,IAAI,CAACG,UAAT,EAAqB;AACnB,aAAKA,UAAL,GAAkBH,IAAI,CAACG,UAAvB;AACD;AACF,KA5B6C;;AA+B9C;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EACP;AACEN,MAAAA,SAAS,EAAG,IADd;AAEEC,MAAAA,SAAa,EAAG,IAFlB;;AAKE;AACJ;AACA;AACA;AACA;AACIM,MAAAA,cAAc,EAAG,0BACjB;AACE,eAAO,KAAKN,SAAZ;AACD,OAbH;;AAgBE;AACJ;AACA;AACA;AACA;AACIO,MAAAA,QAAQ,EAAG,oBACX;AACE,YAAIC,GAAG,GAAG,KAAKT,SAAf;;AACA,YAAI,KAAKC,SAAT,EAAwB;AACtBQ,UAAAA,GAAG,IAAI,OAAO,KAAKR,SAAnB;AACD;;AACD,eAAOQ,GAAP;AACD;AA5BH;AArC8C,GAAhD;AAvBApB,EAAAA,EAAE,CAACqB,GAAH,CAAOC,IAAP,CAAYC,gBAAZ,CAA6BpB,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\n/**\n * This error is thrown by the unit test class if an infrastructure requirement\n * is not met. The unit testing framework should skip the test and visually mark\n * the test as not having been executed.\n */\nqx.Class.define(\"qx.dev.unit.RequirementError\", {\n\n  extend : Error,\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param requirement {String?} The requirement ID, e.g. \"SSL\"\n   * @param message {String?} Optional error message\n   */\n  construct : function(requirement, message) {\n\n    this.__message = message || \"Requirement not met\";\n    this.__requirement = requirement;\n\n    var inst = Error.call(this, this.__message);\n    // map stack trace properties since they're not added by Error's constructor\n    if (inst.stack) {\n      this.stack = inst.stack;\n    }\n    if (inst.stacktrace) {\n      this.stacktrace = inst.stacktrace;\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n  members :\n  {\n    __message : null,\n    __requirement : null,\n\n\n    /**\n     * Returns the ID of the requirement that was not satisfied.\n     *\n     * @return {String} The requirement ID\n     */\n    getRequirement : function()\n    {\n      return this.__requirement;\n    },\n\n\n    /**\n     * Returns a string representation of the error.\n     *\n     * @return {String} Error message\n     */\n    toString : function()\n    {\n      var msg = this.__message;\n      if (this.__requirement) {\n        msg += \": \" + this.__requirement;\n      }\n      return msg;\n    }\n  }\n});"
+  ]
+}

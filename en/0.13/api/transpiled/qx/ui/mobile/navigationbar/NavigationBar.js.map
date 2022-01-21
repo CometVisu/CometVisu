@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/navigationbar/NavigationBar.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "container",
+    "Composite",
+    "construct",
+    "layout",
+    "setLayout",
+    "HBox",
+    "set",
+    "alignY",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "navigationbar",
+    "NavigationBar"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,SAAb,CAAuBC,SADlC;;AAIC;AACD;AACA;AACA;AACA;AAEEC,IAAAA,SAAS,EAAG,mBAASC,MAAT,EACZ;AACE,8DAAqBA,MAArB;;AACA,UAAI,CAACA,MAAL,EAAa;AACX,aAAKC,SAAL,CAAe,IAAIb,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaI,MAAb,CAAoBE,IAAxB,GAA+BC,GAA/B,CAAmC;AAChDC,UAAAA,MAAM,EAAG;AADuC,SAAnC,CAAf;AAGD;AACF,KAlBH;;AAuBC;AACD;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF;AA9BF,GADA;AArCApB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaa,aAAb,CAA2BC,aAA3B,CAAyCnB,aAAzC,GAAyDA,aAAzD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n/**\n * A navigation bar widget.\n *\n * *Example*\n *\n * Here is a little example of how to use the widget.\n *\n * <pre class='javascript'>\n *   var bar = new qx.ui.mobile.navigationbar.NavigationBar();\n *   var backButton = new qx.ui.mobile.navigationbar.BackButton();\n *   bar.add(backButton);\n *   var title = new qx.ui.mobile.navigationbar.Title();\n *   var.add(title, {flex:1});\n *\n *   this.getRoot.add(bar);\n * </pre>\n *\n * This example creates a navigation bar and adds a back button and a title to it.\n */\nqx.Class.define(\"qx.ui.mobile.navigationbar.NavigationBar\",\n{\n  extend : qx.ui.mobile.container.Composite,\n\n\n /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function(layout)\n  {\n    this.base(arguments, layout);\n    if (!layout) {\n      this.setLayout(new qx.ui.mobile.layout.HBox().set({\n        alignY : \"middle\"\n      }));\n    }\n  },\n\n\n\n\n /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"navigationbar\"\n    }\n  }\n});\n"
+  ]
+}

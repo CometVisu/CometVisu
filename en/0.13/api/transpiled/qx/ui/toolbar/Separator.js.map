@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/Separator.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "Widget",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "anonymous",
+    "width",
+    "height",
+    "toolbar",
+    "Separator"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;;AAOE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;AAQE;AACAC,MAAAA,SAAS,EACT;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAVF;AAeE;AACAE,MAAAA,KAAK,EACL;AACEH,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAjBF;AAsBE;AACAG,MAAAA,MAAM,EACN;AACEJ,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAxBF;AAdF,GADA;AAvBAb,EAAAA,EAAE,CAACO,EAAH,CAAMU,OAAN,CAAcC,SAAd,CAAwBf,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A widget used for decoration proposes to structure a toolbar. Each\n * Separator renders a line between the buttons around.\n */\nqx.Class.define(\"qx.ui.toolbar.Separator\",\n{\n  extend : qx.ui.core.Widget,\n\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"toolbar-separator\"\n    },\n\n    // overridden\n    anonymous :\n    {\n      refine : true,\n      init : true\n    },\n\n    // overridden\n    width :\n    {\n      refine : true,\n      init : 0\n    },\n\n    // overridden\n    height :\n    {\n      refine : true,\n      init : 0\n    }\n  }\n});\n"
+  ]
+}

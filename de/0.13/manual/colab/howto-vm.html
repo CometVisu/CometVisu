@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Einrichten einer VM mit Visual Studio Code &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/colab/howto-vm.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Automatisierte Tests" href="dev/test.html" />
+    <link rel="prev" title="TODO’s" href="todos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hilf dem CometVisu Projekt</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#repositories-synchron-halten">Repositories synchron halten</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todos.html">TODO’s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#lokales-erzeugen-der-html-doku">Lokales Erzeugen der HTML-Doku</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#dokumentation-schreiben-mit-visualstudio-code">Dokumentation schreiben mit VisualStudio Code</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Einrichten einer VM mit Visual Studio Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#mithilfe-bei-der-entwicklung">Mithilfe bei der Entwicklung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#fehlerbericht-erstellen">Fehlerbericht erstellen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Hilf dem CometVisu Projekt</a> &raquo;</li>
+      <li>Einrichten einer VM mit Visual Studio Code</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="einrichten-einer-vm-mit-visual-studio-code">
+<h1>Einrichten einer VM mit Visual Studio Code<a class="headerlink" href="#einrichten-einer-vm-mit-visual-studio-code" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Einige der verwendeten Tools zur Generierung der Dokumentation stehen nur unter Linux zur Verfügung.
+Die Live Preview funktioniert daher in Visual Studio Code unter Windows derzeit nicht.</p>
+<p>Nachstehend wird für Windows Anwender Schritt für Schritt erklärt, wie man eine Virtual Machine mit Ubuntu erstellt und
+darin Visual Studio Code inkl. lauffähigem Live-Preview für rst-files einrichtet. Schwerpunkt ist die Konfiguration
+der Linux Umgebung und nicht die Einrichtung der VM, dafür gibt es zahlreiche gute Beschreibungen im Internet.</p>
+<div class="section" id="vorbereitung-der-virtual-machine">
+<h2>Vorbereitung der Virtual Machine<a class="headerlink" href="#vorbereitung-der-virtual-machine" title="Link zu dieser Überschrift">¶</a></h2>
+<ol class="arabic simple">
+<li>Den kostenlosen VMware Player von vmware.com herunterladen und installieren. Natürlich sind auch
+alle anderen Player für Virtual Machines möglich, die nachfolgende Beschreibung bezieht sich aber teilweise auf den
+verwendeten VMware-Player.</li>
+<li>iso-Image von Linux downloaden. Dieses kann zB. im Download-Bereich von <a class="reference external" href="https://www.ubunutu.com">https://www.ubunutu.com</a>
+heruntergeladen werden. Die aktuellste Desktop Version verwenden (nicht die LTS-Version).</li>
+<li>Ubuntu in VMware installieren: =&gt; Create New Virtual Machine. Danach das Ubuntu image auswählen und den
+weiteren Schritten folgen.</li>
+<li>VM konfigurieren. Dazu die Virtual Machine im linken Auswahlbereich selektieren und dann den Menüpunkt
+„Edit Virtual Machine Settings“ auswählen. Im Reiter Hardware dann ca. 2GB Speicher (bei 4GB physischen Speicher)
+zuweisen. Je nach Anzahl von CPUs zumindest die Hälfte der physischen CPU Kerne zuweisen (nicht mit der Anzahl an
+virtuellen CPUs verwechseln).</li>
+<li>Ubuntu in der VM starten: =&gt; Play Virtual Machine.</li>
+<li>Hinweise auf die VMware-tools ignorieren bzw. manuell installieren auswählen.
+Die vm-tools werden später als Paket installiert.</li>
+</ol>
+<p>Für eine detailliertere Beschreibung zur Installation der VMware siehe zB.
+<a class="reference external" href="https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html">https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html</a></p>
+</div>
+<div class="section" id="grundkonfiguration-von-ubuntu">
+<h2>Grundkonfiguration von Ubuntu<a class="headerlink" href="#grundkonfiguration-von-ubuntu" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die nächsten Schritte werden im Terminal-Fenster ausgeführt. Dieses kann mit Ctrl-Alt-T geöffnet werden.
+Mittels Rechtsklick kann das Terminal mit „Lock to Launcher“ am linken Toolbar fix angeheftet werden.</p>
+<ol class="arabic">
+<li><p class="first">Mit <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">keyboard-configuration</span></code> das Tastaturlayout auf Deutsch umstellen.
+Im Untermenü Generic 105-key keyboard auswählen, dann mit den Cursor-Tasten auf OK navigieren/bestätigen und
+dann auf der nächsten Seite die Sprache Deutsch auswählen.</p>
+</li>
+<li><p class="first">VMware tools mit <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">open-vm-tools</span></code> installieren. Die VMware tools sind notwendig um
+zB. Anpassung der Bildschirmgröße an die Fenstergröße, Copy-Paste zwischen Host und VM etc. zu aktivieren.
+Nachdem das Paket installiert ist, die VM herunterfahren und neu starten.</p>
+</li>
+<li><p class="first">Visual Studio Code installieren. Dazu Firefox vom linken Toolbar aus öffnen und auf
+<a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> wechseln. Mit der Schaltfläche .deb das Paket auswählen und im
+Dialogfester die Option „Open with Software install (default)“ wählen. Nach dem Download erscheint das Ubuntu Software
+Center, wo noch die Schaltfläche „Install“ gedrückt weden muss.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Sollte wie in meinem Fall die Installation auf diesem Weg nicht funktionieren, das Paket mit der Option „Speichern“
+herunterladen und mit folgendem Befehl <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">code_1.17.1-1507645403_amd64.deb</span></code> installieren.</p>
+</div>
+</li>
+<li><p class="first">Als nächstes git mit <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git-all</span></code> installieren und User/E-Mail richtig konfigurieren. Die
+Befehle dazu sind <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name=&quot;Max</span> <span class="pre">Mustermann&quot;</span></code> bzw.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email=&quot;Max.Mustermann&#64;abc.com&quot;</span></code>.</p>
+</li>
+<li><p class="first">Visual Studio Code öffnen. Dazu am einfachsten VSCode in der Suche eingeben, „Visual Studio Code“ auswählen und für
+die Zukunft am Launcher hinzufügen.</p>
+</li>
+<li><p class="first">Am „Welcome“ Bildschirm von VS Code „Clone Git Repository“ auswählen. Danach muss der Link auf den eigenen Fork auf Github
+eingefügt werden. Das default Verzeichnis bestätigen und nach dem Herunterladen „Open Repository“ bestätigen.
+Zum Thema github (user anlegen, Fork erstellen, etc. ) bitte den Abschnitt <a class="reference internal" href="index.html"><span class="doc">Allgemeine Vorbereitungen</span></a> in
+der Dokumentation beachten.</p>
+</li>
+<li><p class="first">Im VS Code Editor die Extension <code class="docutils literal notranslate"><span class="pre">restructuredtext</span></code> installieren. Dazu über den Menüpunkt Anzeigen -&gt; Extensions
+suchen -&gt; „restructuredtext“ eingeben und dann „install“ wählen.
+Zusätzlich wird noch eine Spell checking Extension empfohlen.</p>
+<div class="figure align-default" id="id1">
+<img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
+<p class="caption"><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
+<blockquote>
+<div><div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
+Linux Distributionen) bereits vorinstalliert ist.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Python pip installieren, da damit weitere Python Tools für die Entwicklungsumgebung installiert werden müssen.
+Dazu im Terminal-Fenster zuerst <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">-y</span> <span class="pre">upgrade</span></code> ausführen, um alle installierten
+Pakete auf Letztstand zu bringen. Dies kann bis zu 30min dauern. Danach <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code> ausführen.</p>
+</li>
+<li><p class="first">Im Cometvisu Ordner (in das git das repository gespeichert hat) <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> ausführen.
+Damit werden alle erforderlichen Pakete installiert.</p>
+</li>
+<li><p class="first">Visual Studio Code wieder öffnen. Falls das CometVisu-Projekt nicht mehr geöffnet ist, mit „File -&gt; Open Recent“ wieder
+öffnen.</p>
+</li>
+</ol>
+<p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal notranslate"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview
+Fenster öffnen. Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.</p>
+<p>Je nach verfügbarer Rechnerperformance kann es notwendig sein, das Aktualisieren des Previews einzuschränken.
+Unter Einstellungen (Symbol in VS Code links unten) -&gt; Settings wählen. Es öffnet sich eine Datei „User Settings“. Im Suchfeld
+„restructured“ eingeben. Es erscheinen dann die vorhandenen Einstellungen der Extension RestructuredText.</p>
+<p>Die folgenden Parameter stehen per default auf „onType“ bzw. „true“. Mit folgenden Einstellungen wird das Preview nur mehr beim
+Speichern der aktuellen Datei und erneutem Aufrufen des Previews aktualisiert:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Whether the linter is run on save or on <span class="nb">type</span> or disabled.
+<span class="s2">&quot;restructuredtext.linter.run&quot;</span>: <span class="s2">&quot;onSave&quot;</span>,
+
+// Flag to control whether text changed event triggers preview update.
+<span class="s2">&quot;restructuredtext.updateOnTextChanged&quot;</span>: <span class="s2">&quot;false&quot;</span>,
+</pre></div>
+</div>
+<p>Dazu die beiden Parameter in der Datei settings.json im Cometvisu Projekt (Verzeichnis .vscode) einfügen.
+Danach die Datei speichern und Visual Studio Code neu starten.</p>
+<p>So sollte am Ende Visual Studio Code mit dem Live Preview eines rst-Files aussehen:</p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
+<p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="todos.html" class="btn btn-neutral float-left" title="TODO’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dev/test.html" class="btn btn-neutral float-right" title="Automatisierte Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

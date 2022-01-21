@@ -1,0 +1,285 @@
+{
+  "className": "qx.bom.FullScreen",
+  "packageName": "qx.bom",
+  "name": "FullScreen",
+  "superClass": "qx.event.Emitter",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 51,
+        "column": 0
+      },
+      "end": {
+        "line": 184,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class offers a constant API over the Fullscreen Spec:\n http://www.w3.org/TR/fullscreen/\n It forwards all the browsers support if supported.\n<em>Example</em>\n </p>\n<pre class=\"javascript\">\n var fs = qx.bom.FullScreen.getInstance();\n var button = new qx.ui.form.Button(\"Toggle fullscreen\");\n button.addListener(\"execute\", function() {\n   if (fs.isFullScreen()) {\n     fs.cancel();\n   } else {\n     fs.request();\n   }\n });\n\n button.setEnabled(qx.core.Environment.get(\"html.fullscreen\"));\n </pre>\n<p><em>Note</em>\n A fullscreen request will only be handled from within an interactive\n event handler. So there is most likely a mouse or key event involved\n to trigger it properly.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getInstance": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an instance of the FullScreen object using the default document.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.FullScreen} An instance of this class.",
+            "type": "qx.bom.FullScreen",
+            "description": " An instance of this class."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 74,
+        "column": 14
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "element {Element?} Optional element to show fullscreen.",
+          "paramName": "element",
+          "description": " Optional element to show fullscreen.",
+          "optional": true,
+          "type": "Element"
+        }
+      ]
+    }
+  },
+  "events": {
+    "change": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The change event for the fullscreen mode.</p>"
+          }
+        ]
+      },
+      "name": "change",
+      "type": "Event"
+    }
+  },
+  "members": {
+    "__doc": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__fullscreenElementAttr": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 49
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__requestMethodName": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 45
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__cancelMethodName": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 43
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__eventName": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 36
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__checkAttributeNames": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper to feature check the attribute names and the event name.\n As the event can not be detected using the on<name> attribute, we need\n to guess the event name by checking for the hidden attribute.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "isFullScreen": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the page is shown in fullscreen mode or not. If we\n can not detect it, <code>false</code> will always be returned.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the page is shown fullscreen",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the page is shown fullscreen"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "request": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Request the page to be shown in fullscreen mode. Note that this\n is only possible when called from within an interactive event\n handler.\n It's also worth a note that the user may deny fullscreen mode,\n so there is no guarantee that it really worked.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "cancel": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>End the fullscreen mode.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

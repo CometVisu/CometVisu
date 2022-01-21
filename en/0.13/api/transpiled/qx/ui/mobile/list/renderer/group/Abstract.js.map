@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/list/renderer/group/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "container",
+    "Composite",
+    "type",
+    "construct",
+    "layout",
+    "initSelectable",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "selectable",
+    "check",
+    "apply",
+    "activatable",
+    "members",
+    "reset",
+    "_getTagName",
+    "list",
+    "renderer",
+    "group",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2CAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,SAAb,CAAuBC,SADlC;AAEEC,IAAAA,IAAI,EAAG,UAFT;AAKEC,IAAAA,SAAS,EAAG,mBAASC,MAAT,EACZ;AACE,8DAAqBA,MAArB;AACA,WAAKC,cAAL;AACD,KATH;AAYEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;;AAQE;AACJ;AACA;AACIC,MAAAA,UAAU,EACV;AACEC,QAAAA,KAAK,EAAG,SADV;AAEEF,QAAAA,IAAI,EAAG,KAFT;AAGEG,QAAAA,KAAK,EAAG;AAHV,OAZF;AAmBE;AACAC,MAAAA,WAAW,EACX;AACEL,QAAAA,MAAM,EAAE,IADV;AAEEC,QAAAA,IAAI,EAAG;AAFT;AArBF,KAbF;AAyCEK,IAAAA,OAAO,EACP;AACE;;AACA;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,KAAK,EAAG,iBAAW,CAIlB,CAdH;AAiBE;AACAC,MAAAA,WAAW,EAAG,uBACd;AACE,eAAO,IAAP;AACD;AArBH;AA1CF,GADA;AArBAzB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAakB,IAAb,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,QAAjC,CAA0C1B,aAA1C,GAA0DA,aAA1D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * Base class for all group item renderer.\n */\nqx.Class.define(\"qx.ui.mobile.list.renderer.group.Abstract\",\n{\n  extend : qx.ui.mobile.container.Composite,\n  type : \"abstract\",\n\n\n  construct : function(layout)\n  {\n    this.base(arguments, layout);\n    this.initSelectable();\n  },\n\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"group-item\"\n    },\n\n    /**\n     * Whether the row is selectable.\n     */\n    selectable :\n    {\n      check : \"Boolean\",\n      init : false,\n      apply : \"_applyAttribute\"\n    },\n\n\n    //overridden\n    activatable :\n    {\n      refine :true,\n      init : true\n    }\n  },\n\n\n  members :\n  {\n    // abstract method\n    /**\n     * Resets all defined child widgets. Override this method in your custom\n     * list item renderer and reset all widgets displaying data. Needed as the\n     * renderer is used for every row and otherwise data of a different row\n     * might be displayed, when not all data displaying widgets are used for the row.\n     * Gets called automatically by the {@link qx.ui.mobile.list.provider.Provider}.\n     *\n     */\n    reset : function() {\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        throw new Error(\"Abstract method call\");\n      }\n    },\n\n\n    // overridden\n    _getTagName : function()\n    {\n      return \"li\";\n    }\n  }\n});"
+  ]
+}

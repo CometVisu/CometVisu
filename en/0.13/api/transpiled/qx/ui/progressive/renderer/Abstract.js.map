@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "members",
+    "render",
+    "state",
+    "element",
+    "Error",
+    "join",
+    "progressive",
+    "name",
+    "ui",
+    "renderer",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EACA;AACEC,IAAAA,IAAI,EAAS,UADf;AAEEC,IAAAA,MAAM,EAAOP,EAAE,CAACQ,IAAH,CAAQC,MAFvB;AAKEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,MAAM,EAAG,gBAASC,KAAT,EAAgBC,OAAhB,EACT;AACE,cAAM,IAAIC,KAAJ,CAAU,sBAAV,CAAN;AACD,OAhCH;;AAkCE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,IAAI,EAAG,cAASC,WAAT,EAAsBC,IAAtB,EACP,CACE;AACD;AAnDH;AANF,GADA;AArBAjB,EAAAA,EAAE,CAACkB,EAAH,CAAMF,WAAN,CAAkBG,QAAlB,CAA2BC,QAA3B,CAAoCjB,aAApC,GAAoDA,aAApD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Abstract renderer for Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.Abstract\",\n{\n  type       : \"abstract\",\n  extend     : qx.core.Object,\n\n\n  members :\n  {\n    /**\n     * Render the provided element in the renderer's unique way.\n     *\n     * @param state {qx.ui.progressive.State}\n     *   Data relevant to the current rendering session.\n     *\n     * @param element {Object}\n     *   An object containing at least the following members:\n     *   <dl>\n     *     <dt>\n     *       renderer</dt>\n     *     <dd>\n     *       The name of a renderer.  That name is used by {@link\n     *       qx.ui.progressive.Progressive} to select the renderer to be used\n     *       to render this element.  The name should match one provided to\n     *       {@link qx.ui.progressive.Progressive#addRenderer}.\n     *     </dd>\n     *\n     *     <dt>\n     *       data\n     *     </dt>\n     *     <dd>\n     *       The data to be passed to the renderer.  The data may be of any\n     *       type that the renderer knows how to render.\n     *     </dd>\n     *   </dl>\n     *\n     */\n    render : function(state, element)\n    {\n      throw new Error(\"render() is abstract\");\n    },\n\n    /**\n     * Join this renderer to its {@link qx.ui.progressive.Progressive}.\n     *\n     * @param progressive {qx.ui.progressive.Progressive}\n     *   The Progressive object to which we are being joined.\n     *\n     * @param name {String}\n     *   The name by which the data model will reference this renderer.  This\n     *   is important to know in order to access the appropriate member of the\n     *   {@link qx.ui.progressive.State}'s renderer array.  That array is\n     *   accessed from the renderer by\n     *   state.getRendererData()[element.renderer] where element.renderer will\n     *   be the name provided here.\n     */\n    join : function(progressive, name)\n    {\n      // nothing to do in the default case\n    }\n  }\n});\n"
+  ]
+}

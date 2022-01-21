@@ -1,0 +1,535 @@
+{
+  "className": "qx.ui.core.scroll.IScrollBar",
+  "packageName": "qx.ui.core.scroll",
+  "name": "IScrollBar",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 110,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>All widget used as scrollbars must implement this interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "events": {
+    "scroll": {
+      "type": "event",
+      "name": "scroll",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if the user scroll</p>"
+          }
+        ]
+      }
+    },
+    "scrollAnimationEnd": {
+      "type": "event",
+      "name": "scrollAnimationEnd",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired as soon as the scroll animation ended.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "properties": {
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The scroll bar orientation</p>"
+          }
+        ]
+      },
+      "name": "orientation",
+      "propertyType": "new"
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum value (difference between available size and\n content size).</p>"
+          }
+        ]
+      },
+      "name": "maximum",
+      "propertyType": "new"
+    },
+    "position": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the scrollbar (which means the scroll left/top of the\n attached area's pane)\n Strictly validates according to {@link #maximum}.\n Does not apply any correction to the incoming value. If you depend\n on this, please use {@link #scrollTo} instead.</p>"
+          }
+        ]
+      },
+      "name": "position",
+      "propertyType": "new"
+    },
+    "knobFactor": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factor to apply to the width/height of the knob in relation\n to the dimension of the underlying area.</p>"
+          }
+        ]
+      },
+      "name": "knobFactor",
+      "propertyType": "new"
+    }
+  },
+  "members": {
+    "scrollTo": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls to the given position.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} Scroll to this position. Must be greater zero.",
+            "paramName": "position",
+            "description": " Scroll to this position. Must be greater zero.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "scrollBy": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls by the given offset.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Integer} Scroll by this offset",
+            "paramName": "offset",
+            "description": " Scroll by this offset",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "scrollBySteps": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls by the given number of steps.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "steps {Integer} Number of steps",
+            "paramName": "steps",
+            "description": " Number of steps",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOrientation": {
+      "type": "function",
+      "name": "getOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for orientation"
+          }
+        ]
+      }
+    },
+    "setOrientation": {
+      "type": "function",
+      "name": "setOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for orientation"
+          }
+        ]
+      }
+    },
+    "resetOrientation": {
+      "type": "function",
+      "name": "resetOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>orientation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ]
+      }
+    },
+    "getMaximum": {
+      "type": "function",
+      "name": "getMaximum",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for maximum"
+          }
+        ]
+      }
+    },
+    "setMaximum": {
+      "type": "function",
+      "name": "setMaximum",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for maximum"
+          }
+        ]
+      }
+    },
+    "resetMaximum": {
+      "type": "function",
+      "name": "resetMaximum",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maximum</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maximum}."
+          }
+        ]
+      }
+    },
+    "getPosition": {
+      "type": "function",
+      "name": "getPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for position"
+          }
+        ]
+      }
+    },
+    "setPosition": {
+      "type": "function",
+      "name": "setPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for position"
+          }
+        ]
+      }
+    },
+    "resetPosition": {
+      "type": "function",
+      "name": "resetPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>position</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #position}."
+          }
+        ]
+      }
+    },
+    "getKnobFactor": {
+      "type": "function",
+      "name": "getKnobFactor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for knobFactor"
+          }
+        ]
+      }
+    },
+    "setKnobFactor": {
+      "type": "function",
+      "name": "setKnobFactor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for knobFactor"
+          }
+        ]
+      }
+    },
+    "resetKnobFactor": {
+      "type": "function",
+      "name": "resetKnobFactor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>knobFactor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

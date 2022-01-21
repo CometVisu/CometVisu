@@ -1,0 +1,39 @@
+/*
+ * CSS to be used by CometVisu management pages.
+ */
+
+body {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  line-height: 150%;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  color: #03a;
+}
+h1 {
+  font-size: 250%;
+}
+h2 {
+  font-size: 200%;
+}
+h3 {
+  font-size: 150%;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+a, a:visited {
+  color: #ff8000;
+}
+a:hover {
+  text-decoration: underline;
+}

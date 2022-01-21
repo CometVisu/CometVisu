@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/module/Template.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "get",
+    "id",
+    "view",
+    "partials",
+    "el",
+    "bom",
+    "Template",
+    "module",
+    "__wrap",
+    "qxWeb",
+    "$init",
+    "render",
+    "template",
+    "renderToNode",
+    "isTextNode",
+    "wrapper",
+    "document",
+    "createElement",
+    "appendChild",
+    "defer",
+    "$attachAll"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,oBAApB,EAA0C;AACxCC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAG,aAASC,EAAT,EAAaC,IAAb,EAAmBC,QAAnB,EAA6B;AACjC,YAAIC,EAAE,GAAGV,EAAE,CAACW,GAAH,CAAOC,QAAP,CAAgBN,GAAhB,CAAoBC,EAApB,EAAwBC,IAAxB,EAA8BC,QAA9B,CAAT;AACAC,QAAAA,EAAE,GAAGV,EAAE,CAACa,MAAH,CAAUD,QAAV,CAAmBE,SAAnB,CAA0BJ,EAA1B,CAAL;AACA,eAAOK,KAAK,CAACC,KAAN,CAAY,CAACN,EAAD,CAAZ,EAAkBK,KAAlB,CAAP;AACD,OAtBH;;AAwBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIE,MAAAA,MAAM,EAAG,gBAASC,QAAT,EAAmBV,IAAnB,EAAyBC,QAAzB,EAAmC;AAC1C,eAAOT,EAAE,CAACW,GAAH,CAAOC,QAAP,CAAgBK,MAAhB,CAAuBC,QAAvB,EAAiCV,IAAjC,EAAuCC,QAAvC,CAAP;AACD,OApCH;;AAsCE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIU,MAAAA,YAAY,EAAG,sBAASD,QAAT,EAAmBV,IAAnB,EAAyBC,QAAzB,EAAmC;AAChD,YAAIC,EAAE,GAAGV,EAAE,CAACW,GAAH,CAAOC,QAAP,CAAgBO,YAAhB,CAA6BD,QAA7B,EAAuCV,IAAvC,EAA6CC,QAA7C,CAAT;AACAC,QAAAA,EAAE,GAAGV,EAAE,CAACa,MAAH,CAAUD,QAAV,CAAmBE,SAAnB,CAA0BJ,EAA1B,CAAL;AACA,eAAOK,KAAK,CAACC,KAAN,CAAY,CAACN,EAAD,CAAZ,EAAkBK,KAAlB,CAAP;AACD,OAxDH;;AA2DE;AACJ;AACA;AACA;AACA;AACA;AACID,MAAAA,SAAM,EAAG,mBAASJ,EAAT,EAAa;AACpB,YAAIK,KAAK,CAACK,UAAN,CAAiBV,EAAjB,CAAJ,EAA0B;AACxB,cAAIW,OAAO,GAAGC,QAAQ,CAACC,aAAT,CAAuB,MAAvB,CAAd;AACAF,UAAAA,OAAO,CAACG,WAAR,CAAoBd,EAApB;AACAA,UAAAA,EAAE,GAAGW,OAAL;AACD;;AACD,eAAOX,EAAP;AACD;AAxEH,KAFwC;AA8ExCe,IAAAA,KAAK,EAAG,eAASpB,OAAT,EAAkB;AACxBU,MAAAA,KAAK,CAACW,UAAN,CAAiB,IAAjB,EAAuB,UAAvB;AACD;AAhFuC,GAA1C;AAzBA1B,EAAAA,EAAE,CAACa,MAAH,CAAUD,QAAV,CAAmBT,aAAnB,GAAmCA,aAAnC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * HTML templating module. This is a wrapper for mustache.js which is a\n * \"framework-agnostic way to render logic-free views\".\n *\n * For further details, please visit the mustache.js documentation here:\n *   https://github.com/janl/mustache.js/blob/master/README.md\n */\nqx.Bootstrap.define(\"qx.module.Template\", {\n  statics :\n  {\n    /**\n     * Helper method which provides direct access to templates stored as HTML in\n     * the DOM. The DOM node with the given ID will be treated as a template,\n     * parsed and a new DOM element will be returned containing the parsed data.\n     * Keep in mind that templates can only have one root element.\n     * Additionally, you should not put the template into a regular, hidden\n     * DOM element because the template may not be valid HTML due to the containing\n     * mustache tags. We suggest to put it into a script tag with the type\n     * <code>text/template</code>.\n     *\n     * @attachStatic{qxWeb, template.get}\n     * @param id {String} The id of the HTML template in the DOM.\n     * @param view {Object} The object holding the data to render.\n     * @param partials {Object} Object holding parts of a template.\n     * @return {qxWeb} Collection containing a single DOM element with the parsed\n     * template data.\n     */\n    get : function(id, view, partials) {\n      var el = qx.bom.Template.get(id, view, partials);\n      el = qx.module.Template.__wrap(el);\n      return qxWeb.$init([el], qxWeb);\n    },\n\n    /**\n     * Original and only template method of mustache.js. For further\n     * documentation, please visit <a href=\"https://github.com/janl/mustache.js\">mustache.js</a>.\n     *\n     * @attachStatic{qxWeb, template.render}\n     * @param template {String} The String containing the template.\n     * @param view {Object} The object holding the data to render.\n     * @param partials {Object} Object holding parts of a template.\n     * @return {String} The parsed template.\n     */\n    render : function(template, view, partials) {\n      return qx.bom.Template.render(template, view, partials);\n    },\n\n    /**\n     * Combines {@link #render} and {@link #get}. Input is equal to {@link #render}\n     * and output is equal to {@link #get}. The advantage over {@link #get}\n     * is that you don't need a HTML template but can use a template\n     * string and still get a collection. Keep in mind that templates\n     * can only have one root element.\n     *\n     * @attachStatic{qxWeb, template.renderToNode}\n     * @param template {String} The String containing the template.\n     * @param view {Object} The object holding the data to render.\n     * @param partials {Object} Object holding parts of a template.\n     * @return {qxWeb} Collection containing a single DOM element with the parsed\n     * template data.\n     */\n    renderToNode : function(template, view, partials) {\n      var el = qx.bom.Template.renderToNode(template, view, partials);\n      el = qx.module.Template.__wrap(el);\n      return qxWeb.$init([el], qxWeb);\n    },\n\n\n    /**\n     * If the given node is a DOM text node, wrap it in a span element and return\n     * the wrapper.\n     * @param el {Node} a DOM node\n     * @return {Element} Original element or wrapper\n     */\n    __wrap : function(el) {\n      if (qxWeb.isTextNode(el)) {\n        var wrapper = document.createElement(\"span\");\n        wrapper.appendChild(el);\n        el = wrapper;\n      }\n      return el;\n    }\n  },\n\n\n  defer : function(statics) {\n    qxWeb.$attachAll(this, \"template\");\n  }\n});\n"
+  ]
+}

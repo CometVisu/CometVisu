@@ -1,0 +1,1322 @@
+{
+  "className": "qx.ui.core.MResizable",
+  "packageName": "qx.ui.core",
+  "name": "MResizable",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 633,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Provides resizing behavior to any widget.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 14
+      },
+      "end": {
+        "line": 51,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "properties": {
+    "resizableTop": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the top edge is resizable</p>"
+          }
+        ]
+      },
+      "name": "resizableTop",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "resizableRight": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the right edge is resizable</p>"
+          }
+        ]
+      },
+      "name": "resizableRight",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "resizableBottom": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the bottom edge is resizable</p>"
+          }
+        ]
+      },
+      "name": "resizableBottom",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "resizableLeft": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the left edge is resizable</p>"
+          }
+        ]
+      },
+      "name": "resizableLeft",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "resizable": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the resize behaviour for all edges at once</p>"
+          }
+        ]
+      },
+      "name": "resizable",
+      "propertyType": "new",
+      "group": [
+        "resizableTop",
+        "resizableRight",
+        "resizableBottom",
+        "resizableLeft"
+      ]
+    },
+    "resizeSensitivity": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The tolerance to activate resizing</p>"
+          }
+        ]
+      },
+      "name": "resizeSensitivity",
+      "propertyType": "new",
+      "init": 5,
+      "check": "Integer",
+      "defaultValue": 5
+    },
+    "useResizeFrame": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a frame replacement should be used during the resize sequence</p>"
+          }
+        ]
+      },
+      "name": "useResizeFrame",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    }
+  },
+  "members": {
+    "__dragDropHandler": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeFrame": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeActive": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeLeft": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeTop": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeStart": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeRange": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "RESIZE_TOP": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "RESIZE_BOTTOM": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "RESIZE_LEFT": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "RESIZE_RIGHT": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "_getResizeFrame": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4
+        },
+        "end": {
+          "line": 169,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget, which draws the resize/move frame. The resize frame is\n shared by all widgets and is added to the root widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The resize frame",
+            "type": "qx.ui.core.Widget",
+            "description": " The resize frame"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__showResizeFrame": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates, shows and syncs the frame with the widget.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__computeResizeResult": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the new boundaries at each interval\n of the resize sequence.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Last pointer event",
+            "paramName": "e",
+            "description": " Last pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the computed boundaries",
+            "type": "Map",
+            "description": " A map with the computed boundaries"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__resizeCursors": {
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4
+        },
+        "end": {
+          "line": 301,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps internal states to cursor symbols to use"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__resizeCursors)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__computeResizeMode": {
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4
+        },
+        "end": {
+          "line": 330,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the internally stored resize mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Last pointer event",
+            "paramName": "e",
+            "description": " Last pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__computeResizeActive": {
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4
+        },
+        "end": {
+          "line": 384,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for computing the proper resize action based on the\n given parameters.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "location {Map} The current location of the widget.",
+            "paramName": "location",
+            "description": " The current location of the widget.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "pointerLeft {Integer} The left position of the pointer.",
+            "paramName": "pointerLeft",
+            "description": " The left position of the pointer.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "pointerTop {Integer} The top position of the pointer.",
+            "paramName": "pointerTop",
+            "description": " The top position of the pointer.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "pointerTolerance {Integer} The desired distance to the edge.",
+            "paramName": "pointerTolerance",
+            "description": " The desired distance to the edge.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The resize active number.",
+            "type": "Integer",
+            "description": " The resize active number."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onResizePointerDown": {
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4
+        },
+        "end": {
+          "line": 446,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer down event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance",
+            "paramName": "e",
+            "description": " The pointer event instance",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onResizePointerUp": {
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4
+        },
+        "end": {
+          "line": 496,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer up event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance",
+            "paramName": "e",
+            "description": " The pointer event instance",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onResizeLoseCapture": {
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4
+        },
+        "end": {
+          "line": 522,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>losecapture</code> event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Lose capture event",
+            "paramName": "e",
+            "description": " Lose capture event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onResizePointerMove": {
+      "location": {
+        "start": {
+          "line": 530,
+          "column": 4
+        },
+        "end": {
+          "line": 585,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer move event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance",
+            "paramName": "e",
+            "description": " The pointer event instance",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onResizePointerOut": {
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 4
+        },
+        "end": {
+          "line": 606,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer out event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance",
+            "paramName": "e",
+            "description": " The pointer event instance",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getResizableTop": {
+      "type": "function",
+      "name": "getResizableTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableTop</code>.\n\nFor further details take a look at the property definition: {@link #resizableTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableTop"
+          }
+        ]
+      }
+    },
+    "isResizableTop": {
+      "type": "function",
+      "name": "isResizableTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableTop</code>.\n\nFor further details take a look at the property definition: {@link #resizableTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableTop"
+          }
+        ]
+      }
+    },
+    "setResizableTop": {
+      "type": "function",
+      "name": "setResizableTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizableTop</code>.\n\nFor further details take a look at the property definition: {@link #resizableTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for resizableTop"
+          }
+        ]
+      }
+    },
+    "resetResizableTop": {
+      "type": "function",
+      "name": "resetResizableTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizableTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizableTop}."
+          }
+        ]
+      }
+    },
+    "getResizableRight": {
+      "type": "function",
+      "name": "getResizableRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableRight</code>.\n\nFor further details take a look at the property definition: {@link #resizableRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableRight"
+          }
+        ]
+      }
+    },
+    "isResizableRight": {
+      "type": "function",
+      "name": "isResizableRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableRight</code>.\n\nFor further details take a look at the property definition: {@link #resizableRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableRight"
+          }
+        ]
+      }
+    },
+    "setResizableRight": {
+      "type": "function",
+      "name": "setResizableRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizableRight</code>.\n\nFor further details take a look at the property definition: {@link #resizableRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for resizableRight"
+          }
+        ]
+      }
+    },
+    "resetResizableRight": {
+      "type": "function",
+      "name": "resetResizableRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizableRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizableRight}."
+          }
+        ]
+      }
+    },
+    "getResizableBottom": {
+      "type": "function",
+      "name": "getResizableBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableBottom</code>.\n\nFor further details take a look at the property definition: {@link #resizableBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableBottom"
+          }
+        ]
+      }
+    },
+    "isResizableBottom": {
+      "type": "function",
+      "name": "isResizableBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableBottom</code>.\n\nFor further details take a look at the property definition: {@link #resizableBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableBottom"
+          }
+        ]
+      }
+    },
+    "setResizableBottom": {
+      "type": "function",
+      "name": "setResizableBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizableBottom</code>.\n\nFor further details take a look at the property definition: {@link #resizableBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for resizableBottom"
+          }
+        ]
+      }
+    },
+    "resetResizableBottom": {
+      "type": "function",
+      "name": "resetResizableBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizableBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizableBottom}."
+          }
+        ]
+      }
+    },
+    "getResizableLeft": {
+      "type": "function",
+      "name": "getResizableLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableLeft</code>.\n\nFor further details take a look at the property definition: {@link #resizableLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableLeft"
+          }
+        ]
+      }
+    },
+    "isResizableLeft": {
+      "type": "function",
+      "name": "isResizableLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizableLeft</code>.\n\nFor further details take a look at the property definition: {@link #resizableLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resizableLeft"
+          }
+        ]
+      }
+    },
+    "setResizableLeft": {
+      "type": "function",
+      "name": "setResizableLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizableLeft</code>.\n\nFor further details take a look at the property definition: {@link #resizableLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for resizableLeft"
+          }
+        ]
+      }
+    },
+    "resetResizableLeft": {
+      "type": "function",
+      "name": "resetResizableLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizableLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizableLeft}."
+          }
+        ]
+      }
+    },
+    "setResizable": {
+      "type": "function",
+      "name": "setResizable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizable</code>.\n\nFor further details take a look at the property definition: {@link #resizable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for resizable"
+          }
+        ]
+      }
+    },
+    "resetResizable": {
+      "type": "function",
+      "name": "resetResizable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizable}."
+          }
+        ]
+      }
+    },
+    "getResizeSensitivity": {
+      "type": "function",
+      "name": "getResizeSensitivity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizeSensitivity</code>.\n\nFor further details take a look at the property definition: {@link #resizeSensitivity}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for resizeSensitivity"
+          }
+        ]
+      }
+    },
+    "setResizeSensitivity": {
+      "type": "function",
+      "name": "setResizeSensitivity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizeSensitivity</code>.\n\nFor further details take a look at the property definition: {@link #resizeSensitivity}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for resizeSensitivity"
+          }
+        ]
+      }
+    },
+    "resetResizeSensitivity": {
+      "type": "function",
+      "name": "resetResizeSensitivity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizeSensitivity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizeSensitivity}."
+          }
+        ]
+      }
+    },
+    "getUseResizeFrame": {
+      "type": "function",
+      "name": "getUseResizeFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useResizeFrame</code>.\n\nFor further details take a look at the property definition: {@link #useResizeFrame}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useResizeFrame"
+          }
+        ]
+      }
+    },
+    "isUseResizeFrame": {
+      "type": "function",
+      "name": "isUseResizeFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useResizeFrame</code>.\n\nFor further details take a look at the property definition: {@link #useResizeFrame}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useResizeFrame"
+          }
+        ]
+      }
+    },
+    "setUseResizeFrame": {
+      "type": "function",
+      "name": "setUseResizeFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>useResizeFrame</code>.\n\nFor further details take a look at the property definition: {@link #useResizeFrame}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for useResizeFrame"
+          }
+        ]
+      }
+    },
+    "resetUseResizeFrame": {
+      "type": "function",
+      "name": "resetUseResizeFrame",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>useResizeFrame</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useResizeFrame}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 619,
+        "column": 13
+      },
+      "end": {
+        "line": 632,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

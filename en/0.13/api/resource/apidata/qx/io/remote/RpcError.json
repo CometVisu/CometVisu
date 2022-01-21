@@ -1,0 +1,77 @@
+{
+  "className": "qx.io.remote.RpcError",
+  "packageName": "qx.io.remote",
+  "name": "RpcError",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 198,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The well-defined error codes for JSON-RPC.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "qx1": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Information pertaining to qooxdoo's modified JSON-RPC Version 1</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "v2": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 196,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Information pertaining to a conformant JSON-RPC Version 2</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

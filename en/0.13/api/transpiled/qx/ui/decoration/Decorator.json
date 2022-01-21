@@ -1,0 +1,5746 @@
+{
+  "className": "qx.ui.decoration.Decorator",
+  "packageName": "qx.ui.decoration",
+  "name": "Decorator",
+  "superClass": "qx.ui.decoration.Abstract",
+  "interfaces": [
+    "qx.ui.decoration.IDecorator"
+  ],
+  "mixins": [
+    "qx.ui.decoration.MBackgroundColor",
+    "qx.ui.decoration.MBorderRadius",
+    "qx.ui.decoration.MBoxShadow",
+    "qx.ui.decoration.MDoubleBorder",
+    "qx.ui.decoration.MLinearBackgroundGradient",
+    "qx.ui.decoration.MBorderImage",
+    "qx.ui.decoration.MTransition"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 204,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Decorator including all decoration possibilities from mixins:\n </p>\n<ul>\n <li>Background color</li>\n <li>Background image</li>\n <li>Background gradient</li>\n <li>Single and double borders</li>\n <li>Border radius</li>\n <li>Box shadow</li>\n </ul>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "members": {
+    "__initialized": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getPadding": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the configured padding minus the border width.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of top, right, bottom and left padding values",
+            "type": "Map",
+            "description": " Map of top, right, bottom and left padding values"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator",
+        "qx.ui.decoration.Abstract"
+      ]
+    },
+    "getStyles": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the styles of the decorator as a map with property names written\n in javascript style (e.g. <code>fontWeight</code> instead of <code>font-weight</code>).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "css {Boolean?} <code>true</code> if hyphenated CSS names should be returned.",
+            "paramName": "css",
+            "description": " <code>true</code> if hyphenated CSS names should be returned.",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} style information",
+            "type": "Map",
+            "description": " style information"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator",
+        "qx.ui.decoration.Abstract"
+      ]
+    },
+    "_getStyles": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Collects all the style information from the decorators.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} style information",
+            "type": "Map",
+            "description": " style information"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getDefaultInsets": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "appearsIn": [
+        "qx.ui.decoration.Abstract"
+      ]
+    },
+    "_isInitialized": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "appearsIn": [
+        "qx.ui.decoration.Abstract"
+      ]
+    },
+    "_getExtendedPropertyValueArrays": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Ensures that every propertyValue specified in propertyNames is an array.\n The value arrays are extended and repeated to match in length.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyNames {Array} Array containing the propertyNames.",
+            "paramName": "propertyNames",
+            "description": " Array containing the propertyNames.",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array containing the extended value arrays.",
+            "type": "Array",
+            "description": " Array containing the extended value arrays."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__extendArray": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4
+        },
+        "end": {
+          "line": 202,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extends an array up to the given length by repeating the elements already present.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "array {Array} Incoming array. Has to contain at least one element.",
+            "paramName": "array",
+            "description": " Incoming array. Has to contain at least one element.",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "to {Integer} Desired length. Must be greater than or equal to the the length of arr.",
+            "paramName": "to",
+            "description": " Desired length. Must be greater than or equal to the the length of arr.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_styleBackgroundColor": {
+      "type": "function",
+      "name": "_styleBackgroundColor",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBackgroundColor",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the background-color styles to the given map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} CSS style map",
+            "paramName": "styles",
+            "description": " CSS style map",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_applyBackgroundColor": {
+      "type": "function",
+      "name": "_applyBackgroundColor",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBackgroundColor",
+      "jsdoc": {}
+    },
+    "getBackgroundColor": {
+      "type": "function",
+      "name": "getBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "setBackgroundColor": {
+      "type": "function",
+      "name": "setBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "resetBackgroundColor": {
+      "type": "function",
+      "name": "resetBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
+    },
+    "_styleBorderRadius": {
+      "type": "function",
+      "name": "_styleBorderRadius",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBorderRadius",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the border radius styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_applyBorderRadius": {
+      "type": "function",
+      "name": "_applyBorderRadius",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBorderRadius",
+      "jsdoc": {}
+    },
+    "getRadiusTopLeft": {
+      "type": "function",
+      "name": "getRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusTopLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusTopLeft"
+          }
+        ]
+      }
+    },
+    "setRadiusTopLeft": {
+      "type": "function",
+      "name": "setRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusTopLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusTopLeft"
+          }
+        ]
+      }
+    },
+    "resetRadiusTopLeft": {
+      "type": "function",
+      "name": "resetRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusTopLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ]
+      }
+    },
+    "getRadiusTopRight": {
+      "type": "function",
+      "name": "getRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusTopRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusTopRight"
+          }
+        ]
+      }
+    },
+    "setRadiusTopRight": {
+      "type": "function",
+      "name": "setRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusTopRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusTopRight"
+          }
+        ]
+      }
+    },
+    "resetRadiusTopRight": {
+      "type": "function",
+      "name": "resetRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusTopRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ]
+      }
+    },
+    "getRadiusBottomLeft": {
+      "type": "function",
+      "name": "getRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusBottomLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusBottomLeft"
+          }
+        ]
+      }
+    },
+    "setRadiusBottomLeft": {
+      "type": "function",
+      "name": "setRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusBottomLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusBottomLeft"
+          }
+        ]
+      }
+    },
+    "resetRadiusBottomLeft": {
+      "type": "function",
+      "name": "resetRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusBottomLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ]
+      }
+    },
+    "getRadiusBottomRight": {
+      "type": "function",
+      "name": "getRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusBottomRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusBottomRight"
+          }
+        ]
+      }
+    },
+    "setRadiusBottomRight": {
+      "type": "function",
+      "name": "setRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusBottomRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusBottomRight"
+          }
+        ]
+      }
+    },
+    "resetRadiusBottomRight": {
+      "type": "function",
+      "name": "resetRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusBottomRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ]
+      }
+    },
+    "setRadius": {
+      "type": "function",
+      "name": "setRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radius</code>.\n\nFor further details take a look at the property definition: {@link #radius}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for radius"
+          }
+        ]
+      }
+    },
+    "resetRadius": {
+      "type": "function",
+      "name": "resetRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radius}."
+          }
+        ]
+      }
+    },
+    "_styleBoxShadow": {
+      "type": "function",
+      "name": "_styleBoxShadow",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBoxShadow",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the box shadow styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_applyBoxShadow": {
+      "type": "function",
+      "name": "_applyBoxShadow",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBoxShadow",
+      "jsdoc": {}
+    },
+    "getShadowHorizontalLength": {
+      "type": "function",
+      "name": "getShadowHorizontalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shadowHorizontalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for shadowHorizontalLength"
+          }
+        ]
+      }
+    },
+    "setShadowHorizontalLength": {
+      "type": "function",
+      "name": "setShadowHorizontalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowHorizontalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowHorizontalLength"
+          }
+        ]
+      }
+    },
+    "resetShadowHorizontalLength": {
+      "type": "function",
+      "name": "resetShadowHorizontalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowHorizontalLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
+          }
+        ]
+      }
+    },
+    "getShadowVerticalLength": {
+      "type": "function",
+      "name": "getShadowVerticalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shadowVerticalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for shadowVerticalLength"
+          }
+        ]
+      }
+    },
+    "setShadowVerticalLength": {
+      "type": "function",
+      "name": "setShadowVerticalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowVerticalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowVerticalLength"
+          }
+        ]
+      }
+    },
+    "resetShadowVerticalLength": {
+      "type": "function",
+      "name": "resetShadowVerticalLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowVerticalLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
+          }
+        ]
+      }
+    },
+    "getShadowBlurRadius": {
+      "type": "function",
+      "name": "getShadowBlurRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shadowBlurRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for shadowBlurRadius"
+          }
+        ]
+      }
+    },
+    "setShadowBlurRadius": {
+      "type": "function",
+      "name": "setShadowBlurRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowBlurRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowBlurRadius"
+          }
+        ]
+      }
+    },
+    "resetShadowBlurRadius": {
+      "type": "function",
+      "name": "resetShadowBlurRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowBlurRadius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
+          }
+        ]
+      }
+    },
+    "getShadowSpreadRadius": {
+      "type": "function",
+      "name": "getShadowSpreadRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shadowSpreadRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for shadowSpreadRadius"
+          }
+        ]
+      }
+    },
+    "setShadowSpreadRadius": {
+      "type": "function",
+      "name": "setShadowSpreadRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowSpreadRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowSpreadRadius"
+          }
+        ]
+      }
+    },
+    "resetShadowSpreadRadius": {
+      "type": "function",
+      "name": "resetShadowSpreadRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowSpreadRadius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
+          }
+        ]
+      }
+    },
+    "getShadowColor": {
+      "type": "function",
+      "name": "getShadowColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shadowColor</code>.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for shadowColor"
+          }
+        ]
+      }
+    },
+    "setShadowColor": {
+      "type": "function",
+      "name": "setShadowColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowColor</code>.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowColor"
+          }
+        ]
+      }
+    },
+    "resetShadowColor": {
+      "type": "function",
+      "name": "resetShadowColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
+          }
+        ]
+      }
+    },
+    "getInset": {
+      "type": "function",
+      "name": "getInset",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inset</code>.\n\nFor further details take a look at the property definition: {@link #inset}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for inset"
+          }
+        ]
+      }
+    },
+    "setInset": {
+      "type": "function",
+      "name": "setInset",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>inset</code>.\n\nFor further details take a look at the property definition: {@link #inset}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for inset"
+          }
+        ]
+      }
+    },
+    "resetInset": {
+      "type": "function",
+      "name": "resetInset",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>inset</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inset}."
+          }
+        ]
+      }
+    },
+    "setShadowLength": {
+      "type": "function",
+      "name": "setShadowLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shadowLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowLength}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for shadowLength"
+          }
+        ]
+      }
+    },
+    "resetShadowLength": {
+      "type": "function",
+      "name": "resetShadowLength",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shadowLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowLength}."
+          }
+        ]
+      }
+    },
+    "__styleDoubleBorder": {
+      "type": "function",
+      "name": "__styleDoubleBorder",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MDoubleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the outer border styles in place\n to the given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "__processInnerOpacity": {
+      "type": "function",
+      "name": "__processInnerOpacity",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MDoubleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the inner border's colors to rgba.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "innerColor {Map} map of top, right, bottom and left colors",
+            "paramName": "innerColor",
+            "description": " map of top, right, bottom and left colors",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "innerOpacity {Number} alpha value",
+            "paramName": "innerOpacity",
+            "description": " alpha value",
+            "type": "Number"
+          }
+        ]
+      }
+    },
+    "_applyDoubleBorder": {
+      "type": "function",
+      "name": "_applyDoubleBorder",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MDoubleBorder"
+    },
+    "__getDefaultInsetsForDoubleBorder": {
+      "type": "function",
+      "name": "__getDefaultInsetsForDoubleBorder",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MDoubleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of the interface for the double border.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "top, right, bottom, left"
+          }
+        ]
+      }
+    },
+    "_styleBorder": {
+      "type": "function",
+      "name": "_styleBorder",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the border styles styles in place\n to the given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_getDefaultInsetsForBorder": {
+      "type": "function",
+      "name": "_getDefaultInsetsForBorder",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of the interface for the single border.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "top, right, bottom, left"
+          }
+        ]
+      }
+    },
+    "_applyWidth": {
+      "type": "function",
+      "name": "_applyWidth",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {}
+    },
+    "_applyStyle": {
+      "type": "function",
+      "name": "_applyStyle",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {}
+    },
+    "getWidthTop": {
+      "type": "function",
+      "name": "getWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widthTop</code>.\n\nFor further details take a look at the property definition: {@link #widthTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for widthTop"
+          }
+        ]
+      }
+    },
+    "setWidthTop": {
+      "type": "function",
+      "name": "setWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widthTop</code>.\n\nFor further details take a look at the property definition: {@link #widthTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for widthTop"
+          }
+        ]
+      }
+    },
+    "resetWidthTop": {
+      "type": "function",
+      "name": "resetWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widthTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthTop}."
+          }
+        ]
+      }
+    },
+    "getWidthRight": {
+      "type": "function",
+      "name": "getWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widthRight</code>.\n\nFor further details take a look at the property definition: {@link #widthRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for widthRight"
+          }
+        ]
+      }
+    },
+    "setWidthRight": {
+      "type": "function",
+      "name": "setWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widthRight</code>.\n\nFor further details take a look at the property definition: {@link #widthRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for widthRight"
+          }
+        ]
+      }
+    },
+    "resetWidthRight": {
+      "type": "function",
+      "name": "resetWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widthRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthRight}."
+          }
+        ]
+      }
+    },
+    "getWidthBottom": {
+      "type": "function",
+      "name": "getWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widthBottom</code>.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for widthBottom"
+          }
+        ]
+      }
+    },
+    "setWidthBottom": {
+      "type": "function",
+      "name": "setWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widthBottom</code>.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for widthBottom"
+          }
+        ]
+      }
+    },
+    "resetWidthBottom": {
+      "type": "function",
+      "name": "resetWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widthBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
+          }
+        ]
+      }
+    },
+    "getWidthLeft": {
+      "type": "function",
+      "name": "getWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widthLeft</code>.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for widthLeft"
+          }
+        ]
+      }
+    },
+    "setWidthLeft": {
+      "type": "function",
+      "name": "setWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widthLeft</code>.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for widthLeft"
+          }
+        ]
+      }
+    },
+    "resetWidthLeft": {
+      "type": "function",
+      "name": "resetWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widthLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
+          }
+        ]
+      }
+    },
+    "getStyleTop": {
+      "type": "function",
+      "name": "getStyleTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styleTop</code>.\n\nFor further details take a look at the property definition: {@link #styleTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for styleTop"
+          }
+        ]
+      }
+    },
+    "setStyleTop": {
+      "type": "function",
+      "name": "setStyleTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styleTop</code>.\n\nFor further details take a look at the property definition: {@link #styleTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for styleTop"
+          }
+        ]
+      }
+    },
+    "resetStyleTop": {
+      "type": "function",
+      "name": "resetStyleTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styleTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleTop}."
+          }
+        ]
+      }
+    },
+    "getStyleRight": {
+      "type": "function",
+      "name": "getStyleRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styleRight</code>.\n\nFor further details take a look at the property definition: {@link #styleRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for styleRight"
+          }
+        ]
+      }
+    },
+    "setStyleRight": {
+      "type": "function",
+      "name": "setStyleRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styleRight</code>.\n\nFor further details take a look at the property definition: {@link #styleRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for styleRight"
+          }
+        ]
+      }
+    },
+    "resetStyleRight": {
+      "type": "function",
+      "name": "resetStyleRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styleRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleRight}."
+          }
+        ]
+      }
+    },
+    "getStyleBottom": {
+      "type": "function",
+      "name": "getStyleBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styleBottom</code>.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for styleBottom"
+          }
+        ]
+      }
+    },
+    "setStyleBottom": {
+      "type": "function",
+      "name": "setStyleBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styleBottom</code>.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for styleBottom"
+          }
+        ]
+      }
+    },
+    "resetStyleBottom": {
+      "type": "function",
+      "name": "resetStyleBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styleBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
+          }
+        ]
+      }
+    },
+    "getStyleLeft": {
+      "type": "function",
+      "name": "getStyleLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>styleLeft</code>.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for styleLeft"
+          }
+        ]
+      }
+    },
+    "setStyleLeft": {
+      "type": "function",
+      "name": "setStyleLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>styleLeft</code>.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for styleLeft"
+          }
+        ]
+      }
+    },
+    "resetStyleLeft": {
+      "type": "function",
+      "name": "resetStyleLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styleLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
+          }
+        ]
+      }
+    },
+    "getColorTop": {
+      "type": "function",
+      "name": "getColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colorTop</code>.\n\nFor further details take a look at the property definition: {@link #colorTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for colorTop"
+          }
+        ]
+      }
+    },
+    "setColorTop": {
+      "type": "function",
+      "name": "setColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colorTop</code>.\n\nFor further details take a look at the property definition: {@link #colorTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for colorTop"
+          }
+        ]
+      }
+    },
+    "resetColorTop": {
+      "type": "function",
+      "name": "resetColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colorTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorTop}."
+          }
+        ]
+      }
+    },
+    "getColorRight": {
+      "type": "function",
+      "name": "getColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colorRight</code>.\n\nFor further details take a look at the property definition: {@link #colorRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for colorRight"
+          }
+        ]
+      }
+    },
+    "setColorRight": {
+      "type": "function",
+      "name": "setColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colorRight</code>.\n\nFor further details take a look at the property definition: {@link #colorRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for colorRight"
+          }
+        ]
+      }
+    },
+    "resetColorRight": {
+      "type": "function",
+      "name": "resetColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colorRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorRight}."
+          }
+        ]
+      }
+    },
+    "getColorBottom": {
+      "type": "function",
+      "name": "getColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colorBottom</code>.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for colorBottom"
+          }
+        ]
+      }
+    },
+    "setColorBottom": {
+      "type": "function",
+      "name": "setColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colorBottom</code>.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for colorBottom"
+          }
+        ]
+      }
+    },
+    "resetColorBottom": {
+      "type": "function",
+      "name": "resetColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colorBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
+          }
+        ]
+      }
+    },
+    "getColorLeft": {
+      "type": "function",
+      "name": "getColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colorLeft</code>.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for colorLeft"
+          }
+        ]
+      }
+    },
+    "setColorLeft": {
+      "type": "function",
+      "name": "setColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colorLeft</code>.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for colorLeft"
+          }
+        ]
+      }
+    },
+    "resetColorLeft": {
+      "type": "function",
+      "name": "resetColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colorLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
+          }
+        ]
+      }
+    },
+    "setLeft": {
+      "type": "function",
+      "name": "setLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>left</code>.\n\nFor further details take a look at the property definition: {@link #left}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for left"
+          }
+        ]
+      }
+    },
+    "resetLeft": {
+      "type": "function",
+      "name": "resetLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>left</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #left}."
+          }
+        ]
+      }
+    },
+    "setRight": {
+      "type": "function",
+      "name": "setRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>right</code>.\n\nFor further details take a look at the property definition: {@link #right}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for right"
+          }
+        ]
+      }
+    },
+    "resetRight": {
+      "type": "function",
+      "name": "resetRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>right</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #right}."
+          }
+        ]
+      }
+    },
+    "setTop": {
+      "type": "function",
+      "name": "setTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>top</code>.\n\nFor further details take a look at the property definition: {@link #top}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for top"
+          }
+        ]
+      }
+    },
+    "resetTop": {
+      "type": "function",
+      "name": "resetTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>top</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #top}."
+          }
+        ]
+      }
+    },
+    "setBottom": {
+      "type": "function",
+      "name": "setBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>bottom</code>.\n\nFor further details take a look at the property definition: {@link #bottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for bottom"
+          }
+        ]
+      }
+    },
+    "resetBottom": {
+      "type": "function",
+      "name": "resetBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>bottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #bottom}."
+          }
+        ]
+      }
+    },
+    "setWidth": {
+      "type": "function",
+      "name": "setWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for width"
+          }
+        ]
+      }
+    },
+    "resetWidth": {
+      "type": "function",
+      "name": "resetWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
+    },
+    "setStyle": {
+      "type": "function",
+      "name": "setStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>style</code>.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for style"
+          }
+        ]
+      }
+    },
+    "resetStyle": {
+      "type": "function",
+      "name": "resetStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>style</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ]
+      }
+    },
+    "setColor": {
+      "type": "function",
+      "name": "setColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>color</code>.\n\nFor further details take a look at the property definition: {@link #color}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for color"
+          }
+        ]
+      }
+    },
+    "resetColor": {
+      "type": "function",
+      "name": "resetColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>color</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #color}."
+          }
+        ]
+      }
+    },
+    "_styleBackgroundImage": {
+      "type": "function",
+      "name": "_styleBackgroundImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the background-image styles to the given map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} CSS style map",
+            "paramName": "styles",
+            "description": " CSS style map",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_applyBackgroundImage": {
+      "type": "function",
+      "name": "_applyBackgroundImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {}
+    },
+    "_applyBackgroundPosition": {
+      "type": "function",
+      "name": "_applyBackgroundPosition",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {}
+    },
+    "getBackgroundImage": {
+      "type": "function",
+      "name": "getBackgroundImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for backgroundImage"
+          }
+        ]
+      }
+    },
+    "setBackgroundImage": {
+      "type": "function",
+      "name": "setBackgroundImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundImage"
+          }
+        ]
+      }
+    },
+    "resetBackgroundImage": {
+      "type": "function",
+      "name": "resetBackgroundImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundImage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
+          }
+        ]
+      }
+    },
+    "getBackgroundRepeat": {
+      "type": "function",
+      "name": "getBackgroundRepeat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for backgroundRepeat"
+          }
+        ]
+      }
+    },
+    "setBackgroundRepeat": {
+      "type": "function",
+      "name": "setBackgroundRepeat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundRepeat"
+          }
+        ]
+      }
+    },
+    "resetBackgroundRepeat": {
+      "type": "function",
+      "name": "resetBackgroundRepeat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundRepeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
+          }
+        ]
+      }
+    },
+    "getBackgroundPositionX": {
+      "type": "function",
+      "name": "getBackgroundPositionX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for backgroundPositionX"
+          }
+        ]
+      }
+    },
+    "setBackgroundPositionX": {
+      "type": "function",
+      "name": "setBackgroundPositionX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundPositionX"
+          }
+        ]
+      }
+    },
+    "resetBackgroundPositionX": {
+      "type": "function",
+      "name": "resetBackgroundPositionX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPositionX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
+          }
+        ]
+      }
+    },
+    "getBackgroundPositionY": {
+      "type": "function",
+      "name": "getBackgroundPositionY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for backgroundPositionY"
+          }
+        ]
+      }
+    },
+    "setBackgroundPositionY": {
+      "type": "function",
+      "name": "setBackgroundPositionY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundPositionY"
+          }
+        ]
+      }
+    },
+    "resetBackgroundPositionY": {
+      "type": "function",
+      "name": "resetBackgroundPositionY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPositionY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
+          }
+        ]
+      }
+    },
+    "getBackgroundOrigin": {
+      "type": "function",
+      "name": "getBackgroundOrigin",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for backgroundOrigin"
+          }
+        ]
+      }
+    },
+    "setBackgroundOrigin": {
+      "type": "function",
+      "name": "setBackgroundOrigin",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundOrigin"
+          }
+        ]
+      }
+    },
+    "resetBackgroundOrigin": {
+      "type": "function",
+      "name": "resetBackgroundOrigin",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundOrigin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
+          }
+        ]
+      }
+    },
+    "setBackgroundPosition": {
+      "type": "function",
+      "name": "setBackgroundPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundPosition</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for backgroundPosition"
+          }
+        ]
+      }
+    },
+    "resetBackgroundPosition": {
+      "type": "function",
+      "name": "resetBackgroundPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
+          }
+        ]
+      }
+    },
+    "getOrderGradientsFront": {
+      "type": "function",
+      "name": "getOrderGradientsFront",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for orderGradientsFront"
+          }
+        ]
+      }
+    },
+    "isOrderGradientsFront": {
+      "type": "function",
+      "name": "isOrderGradientsFront",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for orderGradientsFront"
+          }
+        ]
+      }
+    },
+    "setOrderGradientsFront": {
+      "type": "function",
+      "name": "setOrderGradientsFront",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for orderGradientsFront"
+          }
+        ]
+      }
+    },
+    "resetOrderGradientsFront": {
+      "type": "function",
+      "name": "resetOrderGradientsFront",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>orderGradientsFront</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
+          }
+        ]
+      }
+    },
+    "getInnerWidthTop": {
+      "type": "function",
+      "name": "getInnerWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerWidthTop</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for innerWidthTop"
+          }
+        ]
+      }
+    },
+    "setInnerWidthTop": {
+      "type": "function",
+      "name": "setInnerWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerWidthTop</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for innerWidthTop"
+          }
+        ]
+      }
+    },
+    "resetInnerWidthTop": {
+      "type": "function",
+      "name": "resetInnerWidthTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerWidthTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
+          }
+        ]
+      }
+    },
+    "getInnerWidthRight": {
+      "type": "function",
+      "name": "getInnerWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerWidthRight</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for innerWidthRight"
+          }
+        ]
+      }
+    },
+    "setInnerWidthRight": {
+      "type": "function",
+      "name": "setInnerWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerWidthRight</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for innerWidthRight"
+          }
+        ]
+      }
+    },
+    "resetInnerWidthRight": {
+      "type": "function",
+      "name": "resetInnerWidthRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerWidthRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
+          }
+        ]
+      }
+    },
+    "getInnerWidthBottom": {
+      "type": "function",
+      "name": "getInnerWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerWidthBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for innerWidthBottom"
+          }
+        ]
+      }
+    },
+    "setInnerWidthBottom": {
+      "type": "function",
+      "name": "setInnerWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerWidthBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for innerWidthBottom"
+          }
+        ]
+      }
+    },
+    "resetInnerWidthBottom": {
+      "type": "function",
+      "name": "resetInnerWidthBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerWidthBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
+          }
+        ]
+      }
+    },
+    "getInnerWidthLeft": {
+      "type": "function",
+      "name": "getInnerWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerWidthLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for innerWidthLeft"
+          }
+        ]
+      }
+    },
+    "setInnerWidthLeft": {
+      "type": "function",
+      "name": "setInnerWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerWidthLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for innerWidthLeft"
+          }
+        ]
+      }
+    },
+    "resetInnerWidthLeft": {
+      "type": "function",
+      "name": "resetInnerWidthLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerWidthLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
+          }
+        ]
+      }
+    },
+    "setInnerWidth": {
+      "type": "function",
+      "name": "setInnerWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerWidth</code>.\n\nFor further details take a look at the property definition: {@link #innerWidth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for innerWidth"
+          }
+        ]
+      }
+    },
+    "resetInnerWidth": {
+      "type": "function",
+      "name": "resetInnerWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidth}."
+          }
+        ]
+      }
+    },
+    "getInnerColorTop": {
+      "type": "function",
+      "name": "getInnerColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerColorTop</code>.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for innerColorTop"
+          }
+        ]
+      }
+    },
+    "setInnerColorTop": {
+      "type": "function",
+      "name": "setInnerColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerColorTop</code>.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for innerColorTop"
+          }
+        ]
+      }
+    },
+    "resetInnerColorTop": {
+      "type": "function",
+      "name": "resetInnerColorTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerColorTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
+          }
+        ]
+      }
+    },
+    "getInnerColorRight": {
+      "type": "function",
+      "name": "getInnerColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerColorRight</code>.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for innerColorRight"
+          }
+        ]
+      }
+    },
+    "setInnerColorRight": {
+      "type": "function",
+      "name": "setInnerColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerColorRight</code>.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for innerColorRight"
+          }
+        ]
+      }
+    },
+    "resetInnerColorRight": {
+      "type": "function",
+      "name": "resetInnerColorRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerColorRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
+          }
+        ]
+      }
+    },
+    "getInnerColorBottom": {
+      "type": "function",
+      "name": "getInnerColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerColorBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for innerColorBottom"
+          }
+        ]
+      }
+    },
+    "setInnerColorBottom": {
+      "type": "function",
+      "name": "setInnerColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerColorBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for innerColorBottom"
+          }
+        ]
+      }
+    },
+    "resetInnerColorBottom": {
+      "type": "function",
+      "name": "resetInnerColorBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerColorBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
+          }
+        ]
+      }
+    },
+    "getInnerColorLeft": {
+      "type": "function",
+      "name": "getInnerColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerColorLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for innerColorLeft"
+          }
+        ]
+      }
+    },
+    "setInnerColorLeft": {
+      "type": "function",
+      "name": "setInnerColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerColorLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for innerColorLeft"
+          }
+        ]
+      }
+    },
+    "resetInnerColorLeft": {
+      "type": "function",
+      "name": "resetInnerColorLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerColorLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
+          }
+        ]
+      }
+    },
+    "setInnerColor": {
+      "type": "function",
+      "name": "setInnerColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerColor</code>.\n\nFor further details take a look at the property definition: {@link #innerColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for innerColor"
+          }
+        ]
+      }
+    },
+    "resetInnerColor": {
+      "type": "function",
+      "name": "resetInnerColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColor}."
+          }
+        ]
+      }
+    },
+    "getInnerOpacity": {
+      "type": "function",
+      "name": "getInnerOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>innerOpacity</code>.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for innerOpacity"
+          }
+        ]
+      }
+    },
+    "setInnerOpacity": {
+      "type": "function",
+      "name": "setInnerOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>innerOpacity</code>.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for innerOpacity"
+          }
+        ]
+      }
+    },
+    "resetInnerOpacity": {
+      "type": "function",
+      "name": "resetInnerOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>innerOpacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
+          }
+        ]
+      }
+    },
+    "_styleLinearBackgroundGradient": {
+      "type": "function",
+      "name": "_styleLinearBackgroundGradient",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the linear background styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "__styleLinearBackgroundGradientForLegacyWebkit": {
+      "type": "function",
+      "name": "__styleLinearBackgroundGradientForLegacyWebkit",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Legacy implementation for old WebKit browsers (Chrome &lt; 10).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "Boolean",
+            "description": " Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      }
+    },
+    "__styleLinearBackgroundGradientWithCanvas": {
+      "type": "function",
+      "name": "__styleLinearBackgroundGradientWithCanvas",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n IE9 canvas solution.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "Boolean",
+            "description": " Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      }
+    },
+    "__styleLinearBackgroundGradientWithMSFilter": {
+      "type": "function",
+      "name": "__styleLinearBackgroundGradientWithMSFilter",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Old IE filter fallback.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (false).",
+            "type": "Boolean",
+            "description": " Whether this implementation supports multiple gradients atop each other (false)."
+          }
+        ]
+      }
+    },
+    "__styleLinearBackgroundGradientAccordingToSpec": {
+      "type": "function",
+      "name": "__styleLinearBackgroundGradientAccordingToSpec",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Default implementation (uses spec-compliant syntax).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "Boolean",
+            "description": " Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      }
+    },
+    "__getColor": {
+      "type": "function",
+      "name": "__getColor",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to get a resolved color from a name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String} The color name",
+            "paramName": "color",
+            "description": " The color name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The resolved color",
+            "type": "Map",
+            "description": " The resolved color"
+          }
+        ]
+      }
+    },
+    "_applyLinearBackgroundGradient": {
+      "type": "function",
+      "name": "_applyLinearBackgroundGradient",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {}
+    },
+    "getStartColor": {
+      "type": "function",
+      "name": "getStartColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>startColor</code>.\n\nFor further details take a look at the property definition: {@link #startColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for startColor"
+          }
+        ]
+      }
+    },
+    "setStartColor": {
+      "type": "function",
+      "name": "setStartColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>startColor</code>.\n\nFor further details take a look at the property definition: {@link #startColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for startColor"
+          }
+        ]
+      }
+    },
+    "resetStartColor": {
+      "type": "function",
+      "name": "resetStartColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>startColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #startColor}."
+          }
+        ]
+      }
+    },
+    "getEndColor": {
+      "type": "function",
+      "name": "getEndColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>endColor</code>.\n\nFor further details take a look at the property definition: {@link #endColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for endColor"
+          }
+        ]
+      }
+    },
+    "setEndColor": {
+      "type": "function",
+      "name": "setEndColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>endColor</code>.\n\nFor further details take a look at the property definition: {@link #endColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for endColor"
+          }
+        ]
+      }
+    },
+    "resetEndColor": {
+      "type": "function",
+      "name": "resetEndColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>endColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #endColor}."
+          }
+        ]
+      }
+    },
+    "getOrientation": {
+      "type": "function",
+      "name": "getOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for orientation"
+          }
+        ]
+      }
+    },
+    "setOrientation": {
+      "type": "function",
+      "name": "setOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for orientation"
+          }
+        ]
+      }
+    },
+    "resetOrientation": {
+      "type": "function",
+      "name": "resetOrientation",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>orientation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orientation}."
+          }
+        ]
+      }
+    },
+    "getStartColorPosition": {
+      "type": "function",
+      "name": "getStartColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>startColorPosition</code>.\n\nFor further details take a look at the property definition: {@link #startColorPosition}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for startColorPosition"
+          }
+        ]
+      }
+    },
+    "setStartColorPosition": {
+      "type": "function",
+      "name": "setStartColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>startColorPosition</code>.\n\nFor further details take a look at the property definition: {@link #startColorPosition}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for startColorPosition"
+          }
+        ]
+      }
+    },
+    "resetStartColorPosition": {
+      "type": "function",
+      "name": "resetStartColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>startColorPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #startColorPosition}."
+          }
+        ]
+      }
+    },
+    "getEndColorPosition": {
+      "type": "function",
+      "name": "getEndColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>endColorPosition</code>.\n\nFor further details take a look at the property definition: {@link #endColorPosition}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for endColorPosition"
+          }
+        ]
+      }
+    },
+    "setEndColorPosition": {
+      "type": "function",
+      "name": "setEndColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>endColorPosition</code>.\n\nFor further details take a look at the property definition: {@link #endColorPosition}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for endColorPosition"
+          }
+        ]
+      }
+    },
+    "resetEndColorPosition": {
+      "type": "function",
+      "name": "resetEndColorPosition",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>endColorPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #endColorPosition}."
+          }
+        ]
+      }
+    },
+    "getColorPositionUnit": {
+      "type": "function",
+      "name": "getColorPositionUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>colorPositionUnit</code>.\n\nFor further details take a look at the property definition: {@link #colorPositionUnit}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for colorPositionUnit"
+          }
+        ]
+      }
+    },
+    "setColorPositionUnit": {
+      "type": "function",
+      "name": "setColorPositionUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>colorPositionUnit</code>.\n\nFor further details take a look at the property definition: {@link #colorPositionUnit}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for colorPositionUnit"
+          }
+        ]
+      }
+    },
+    "resetColorPositionUnit": {
+      "type": "function",
+      "name": "resetColorPositionUnit",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colorPositionUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorPositionUnit}."
+          }
+        ]
+      }
+    },
+    "setGradientStart": {
+      "type": "function",
+      "name": "setGradientStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>gradientStart</code>.\n\nFor further details take a look at the property definition: {@link #gradientStart}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for gradientStart"
+          }
+        ]
+      }
+    },
+    "resetGradientStart": {
+      "type": "function",
+      "name": "resetGradientStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>gradientStart</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #gradientStart}."
+          }
+        ]
+      }
+    },
+    "setGradientEnd": {
+      "type": "function",
+      "name": "setGradientEnd",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>gradientEnd</code>.\n\nFor further details take a look at the property definition: {@link #gradientEnd}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for gradientEnd"
+          }
+        ]
+      }
+    },
+    "resetGradientEnd": {
+      "type": "function",
+      "name": "resetGradientEnd",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>gradientEnd</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #gradientEnd}."
+          }
+        ]
+      }
+    },
+    "_styleBorderImage": {
+      "type": "function",
+      "name": "_styleBorderImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBorderImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the border-image styles to the given map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} CSS style map",
+            "paramName": "styles",
+            "description": " CSS style map",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_getDefaultInsetsForBorderImage": {
+      "type": "function",
+      "name": "_getDefaultInsetsForBorderImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBorderImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the inset values based on the border image slices (defined in the\n decoration theme or computed from the fallback image sizes).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map with the top, right, bottom and left insets",
+            "type": "Map",
+            "description": " Map with the top, right, bottom and left insets"
+          }
+        ]
+      }
+    },
+    "_applyBorderImage": {
+      "type": "function",
+      "name": "_applyBorderImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MBorderImage"
+    },
+    "__getSlices": {
+      "type": "function",
+      "name": "__getSlices",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.decoration.MBorderImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the slice sizes from the fallback border images.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "baseImage {String} Resource Id of the base border image",
+            "paramName": "baseImage",
+            "description": " Resource Id of the base border image",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer[]} Array with the top, right, bottom and left slice widths",
+            "type": "Integer[]",
+            "description": " Array with the top, right, bottom and left slice widths"
+          }
+        ]
+      }
+    },
+    "getBorderImage": {
+      "type": "function",
+      "name": "getBorderImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>borderImage</code>.\n\nFor further details take a look at the property definition: {@link #borderImage}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for borderImage"
+          }
+        ]
+      }
+    },
+    "setBorderImage": {
+      "type": "function",
+      "name": "setBorderImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>borderImage</code>.\n\nFor further details take a look at the property definition: {@link #borderImage}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for borderImage"
+          }
+        ]
+      }
+    },
+    "resetBorderImage": {
+      "type": "function",
+      "name": "resetBorderImage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>borderImage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #borderImage}."
+          }
+        ]
+      }
+    },
+    "getSliceTop": {
+      "type": "function",
+      "name": "getSliceTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sliceTop</code>.\n\nFor further details take a look at the property definition: {@link #sliceTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for sliceTop"
+          }
+        ]
+      }
+    },
+    "setSliceTop": {
+      "type": "function",
+      "name": "setSliceTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>sliceTop</code>.\n\nFor further details take a look at the property definition: {@link #sliceTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for sliceTop"
+          }
+        ]
+      }
+    },
+    "resetSliceTop": {
+      "type": "function",
+      "name": "resetSliceTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>sliceTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sliceTop}."
+          }
+        ]
+      }
+    },
+    "getSliceRight": {
+      "type": "function",
+      "name": "getSliceRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sliceRight</code>.\n\nFor further details take a look at the property definition: {@link #sliceRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for sliceRight"
+          }
+        ]
+      }
+    },
+    "setSliceRight": {
+      "type": "function",
+      "name": "setSliceRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>sliceRight</code>.\n\nFor further details take a look at the property definition: {@link #sliceRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for sliceRight"
+          }
+        ]
+      }
+    },
+    "resetSliceRight": {
+      "type": "function",
+      "name": "resetSliceRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>sliceRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sliceRight}."
+          }
+        ]
+      }
+    },
+    "getSliceBottom": {
+      "type": "function",
+      "name": "getSliceBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sliceBottom</code>.\n\nFor further details take a look at the property definition: {@link #sliceBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for sliceBottom"
+          }
+        ]
+      }
+    },
+    "setSliceBottom": {
+      "type": "function",
+      "name": "setSliceBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>sliceBottom</code>.\n\nFor further details take a look at the property definition: {@link #sliceBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for sliceBottom"
+          }
+        ]
+      }
+    },
+    "resetSliceBottom": {
+      "type": "function",
+      "name": "resetSliceBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>sliceBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sliceBottom}."
+          }
+        ]
+      }
+    },
+    "getSliceLeft": {
+      "type": "function",
+      "name": "getSliceLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sliceLeft</code>.\n\nFor further details take a look at the property definition: {@link #sliceLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for sliceLeft"
+          }
+        ]
+      }
+    },
+    "setSliceLeft": {
+      "type": "function",
+      "name": "setSliceLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>sliceLeft</code>.\n\nFor further details take a look at the property definition: {@link #sliceLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for sliceLeft"
+          }
+        ]
+      }
+    },
+    "resetSliceLeft": {
+      "type": "function",
+      "name": "resetSliceLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>sliceLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sliceLeft}."
+          }
+        ]
+      }
+    },
+    "setSlice": {
+      "type": "function",
+      "name": "setSlice",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>slice</code>.\n\nFor further details take a look at the property definition: {@link #slice}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for slice"
+          }
+        ]
+      }
+    },
+    "resetSlice": {
+      "type": "function",
+      "name": "resetSlice",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>slice</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #slice}."
+          }
+        ]
+      }
+    },
+    "getRepeatX": {
+      "type": "function",
+      "name": "getRepeatX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>repeatX</code>.\n\nFor further details take a look at the property definition: {@link #repeatX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for repeatX"
+          }
+        ]
+      }
+    },
+    "setRepeatX": {
+      "type": "function",
+      "name": "setRepeatX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>repeatX</code>.\n\nFor further details take a look at the property definition: {@link #repeatX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for repeatX"
+          }
+        ]
+      }
+    },
+    "resetRepeatX": {
+      "type": "function",
+      "name": "resetRepeatX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>repeatX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #repeatX}."
+          }
+        ]
+      }
+    },
+    "getRepeatY": {
+      "type": "function",
+      "name": "getRepeatY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>repeatY</code>.\n\nFor further details take a look at the property definition: {@link #repeatY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for repeatY"
+          }
+        ]
+      }
+    },
+    "setRepeatY": {
+      "type": "function",
+      "name": "setRepeatY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>repeatY</code>.\n\nFor further details take a look at the property definition: {@link #repeatY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for repeatY"
+          }
+        ]
+      }
+    },
+    "resetRepeatY": {
+      "type": "function",
+      "name": "resetRepeatY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>repeatY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #repeatY}."
+          }
+        ]
+      }
+    },
+    "setRepeat": {
+      "type": "function",
+      "name": "setRepeat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>repeat</code>.\n\nFor further details take a look at the property definition: {@link #repeat}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for repeat"
+          }
+        ]
+      }
+    },
+    "resetRepeat": {
+      "type": "function",
+      "name": "resetRepeat",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>repeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #repeat}."
+          }
+        ]
+      }
+    },
+    "getFill": {
+      "type": "function",
+      "name": "getFill",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fill</code>.\n\nFor further details take a look at the property definition: {@link #fill}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fill"
+          }
+        ]
+      }
+    },
+    "isFill": {
+      "type": "function",
+      "name": "isFill",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fill</code>.\n\nFor further details take a look at the property definition: {@link #fill}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fill"
+          }
+        ]
+      }
+    },
+    "setFill": {
+      "type": "function",
+      "name": "setFill",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fill</code>.\n\nFor further details take a look at the property definition: {@link #fill}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for fill"
+          }
+        ]
+      }
+    },
+    "resetFill": {
+      "type": "function",
+      "name": "resetFill",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fill</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fill}."
+          }
+        ]
+      }
+    },
+    "getBorderImageMode": {
+      "type": "function",
+      "name": "getBorderImageMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>borderImageMode</code>.\n\nFor further details take a look at the property definition: {@link #borderImageMode}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for borderImageMode"
+          }
+        ]
+      }
+    },
+    "setBorderImageMode": {
+      "type": "function",
+      "name": "setBorderImageMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>borderImageMode</code>.\n\nFor further details take a look at the property definition: {@link #borderImageMode}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for borderImageMode"
+          }
+        ]
+      }
+    },
+    "resetBorderImageMode": {
+      "type": "function",
+      "name": "resetBorderImageMode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>borderImageMode</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #borderImageMode}."
+          }
+        ]
+      }
+    },
+    "_styleTransition": {
+      "type": "function",
+      "name": "_styleTransition",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MTransition",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the box shadow styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      }
+    },
+    "_applyTransition": {
+      "type": "function",
+      "name": "_applyTransition",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.decoration.MTransition",
+      "jsdoc": {}
+    },
+    "getTransitionProperty": {
+      "type": "function",
+      "name": "getTransitionProperty",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transitionProperty</code>.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for transitionProperty"
+          }
+        ]
+      }
+    },
+    "setTransitionProperty": {
+      "type": "function",
+      "name": "setTransitionProperty",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transitionProperty</code>.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for transitionProperty"
+          }
+        ]
+      }
+    },
+    "resetTransitionProperty": {
+      "type": "function",
+      "name": "resetTransitionProperty",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transitionProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
+          }
+        ]
+      }
+    },
+    "getTransitionDuration": {
+      "type": "function",
+      "name": "getTransitionDuration",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transitionDuration</code>.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for transitionDuration"
+          }
+        ]
+      }
+    },
+    "setTransitionDuration": {
+      "type": "function",
+      "name": "setTransitionDuration",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transitionDuration</code>.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for transitionDuration"
+          }
+        ]
+      }
+    },
+    "resetTransitionDuration": {
+      "type": "function",
+      "name": "resetTransitionDuration",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transitionDuration</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
+          }
+        ]
+      }
+    },
+    "getTransitionTimingFunction": {
+      "type": "function",
+      "name": "getTransitionTimingFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transitionTimingFunction</code>.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for transitionTimingFunction"
+          }
+        ]
+      }
+    },
+    "setTransitionTimingFunction": {
+      "type": "function",
+      "name": "setTransitionTimingFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transitionTimingFunction</code>.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for transitionTimingFunction"
+          }
+        ]
+      }
+    },
+    "resetTransitionTimingFunction": {
+      "type": "function",
+      "name": "resetTransitionTimingFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transitionTimingFunction</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
+          }
+        ]
+      }
+    },
+    "getTransitionDelay": {
+      "type": "function",
+      "name": "getTransitionDelay",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>transitionDelay</code>.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for transitionDelay"
+          }
+        ]
+      }
+    },
+    "setTransitionDelay": {
+      "type": "function",
+      "name": "setTransitionDelay",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>transitionDelay</code>.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for transitionDelay"
+          }
+        ]
+      }
+    },
+    "resetTransitionDelay": {
+      "type": "function",
+      "name": "resetTransitionDelay",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transitionDelay</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
+          }
+        ]
+      }
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.decoration.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

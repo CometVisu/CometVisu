@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIconsTwoTone.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "theme",
+    "iconfont",
+    "LoadMaterialIconsTwoTone"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4CAAhB,EAA8D,EAA9D;AA3BAL,EAAAA,EAAE,CAACM,KAAH,CAASC,QAAT,CAAkBC,wBAAlB,CAA2CL,aAA3C,GAA2DA,aAA3D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 OETIKER+PARTNER AG\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tobias Oetiker (oetiker)\n\n************************************************************************ */\n\n/**\n * A dummy class to trigger the compiler to copy the MaterialIconsTwoTone font files\n */\n/**\n * @asset(qx/iconfont/MaterialIcons/materialiconstwotone-v36.otf)\n * @asset(qx/iconfont/MaterialIcons/materialiconstwotone-v36.woff2)\n * @asset(qx/iconfont/MaterialIcons/materialiconstwotone-v36.woff)\n * @asset(qx/iconfont/MaterialIcons/materialiconstwotone-v36.eot)\n */\nqx.Class.define(\"qx.theme.iconfont.LoadMaterialIconsTwoTone\", {});\n"
+  ]
+}

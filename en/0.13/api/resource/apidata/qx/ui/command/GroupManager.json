@@ -1,0 +1,492 @@
+{
+  "className": "qx.ui.command.GroupManager",
+  "packageName": "qx.ui.command",
+  "name": "GroupManager",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 15,
+        "column": 0
+      },
+      "end": {
+        "line": 205,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Registrar for command groups to be able to active or deactive them.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 20,
+        "column": 14
+      },
+      "end": {
+        "line": 24,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__groups": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__activeGroup": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add command group.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.command.Group} Command group",
+            "paramName": "group",
+            "description": " Command group",
+            "type": "qx.ui.command.Group"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if group was already added before",
+            "type": "Boolean",
+            "description": " <code>false</code> if group was already added before"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "has": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a command manager was added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.command.Group} Command group",
+            "paramName": "group",
+            "description": " Command group",
+            "type": "qx.ui.command.Group"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if group already added",
+            "type": "Boolean",
+            "description": " <code>true</code> if group already added"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a command group from group manager. If removed group was the\n active group, active group will be set to <code>null</code> Returns the\n group.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.command.Group} Command group",
+            "paramName": "group",
+            "description": " Command group",
+            "type": "qx.ui.command.Group"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Group | null} Command group or null if group was not added before",
+            "type": "qx.ui.command.Group | null",
+            "description": " Command group or null if group was not added before"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setActive": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 146,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activates a command group and deactivates all other added groups.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.command.Group} Command group",
+            "paramName": "group",
+            "description": " Command group",
+            "type": "qx.ui.command.Group"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if group was not added before",
+            "type": "Boolean",
+            "description": " <code>false</code> if group was not added before"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getActive": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns active command group.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Group | null} Active command group",
+            "type": "qx.ui.command.Group | null",
+            "description": " Active command group"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "block": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Blocks the active command group.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unblock": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 179,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unblocks the active command group.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getGroup": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 197,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper function returns added command group.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.command.Group} Command group",
+            "paramName": "group",
+            "description": " Command group",
+            "type": "qx.ui.command.Group"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Group | null} Command group or null",
+            "type": "qx.ui.command.Group | null",
+            "description": " Command group or null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 201,
+        "column": 13
+      },
+      "end": {
+        "line": 204,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

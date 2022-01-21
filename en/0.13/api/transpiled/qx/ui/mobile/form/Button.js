@@ -1,0 +1,96 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.mobile.basic.Atom": {
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2011 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Tino Butz (tbtz)
+  
+  ************************************************************************ */
+
+  /**
+   * A Button widget.
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the widget.
+   *
+   * <pre class='javascript'>
+   *   var button = new qx.ui.mobile.form.Button("Hello World");
+   *
+   *   button.addListener("tap", function(e) {
+   *     alert("Button was clicked");
+   *   }, this);
+   *
+   *   this.getRoot.add(button);
+   * </pre>
+   *
+   * This example creates a button with the label "Hello World" and attaches an
+   * event listener to the {@link qx.ui.mobile.core.Widget#tap} event.
+   */
+  qx.Class.define("qx.ui.mobile.form.Button", {
+    extend: qx.ui.mobile.basic.Atom,
+
+    /*
+    *****************************************************************************
+       PROPERTIES
+    *****************************************************************************
+    */
+    properties: {
+      // overridden
+      defaultCssClass: {
+        refine: true,
+        init: "button"
+      },
+      // overridden
+      activatable: {
+        refine: true,
+        init: true
+      }
+    },
+    members: {
+      /**
+       * Sets the value.
+       *
+       * @param value {String} The value to set
+       */
+      setValue: function setValue(value) {
+        this.setLabel(value);
+      },
+
+      /**
+       * Returns the set value.
+       *
+       * @return {String} The set value
+       */
+      getValue: function getValue() {
+        return this.getLabel();
+      }
+    }
+  });
+  qx.ui.mobile.form.Button.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=Button.js.map?dt=1642787817956

@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Video.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "cv",
+    "ui",
+    "structure",
+    "AbstractWidget",
+    "properties",
+    "width",
+    "check",
+    "nullable",
+    "height",
+    "src",
+    "init",
+    "autoplay",
+    "members",
+    "_getInnerDomString",
+    "style",
+    "getWidth",
+    "getHeight",
+    "isAutoplay",
+    "getSrc",
+    "getValueElement",
+    "getDomElement",
+    "querySelector",
+    "_applyVisible",
+    "value",
+    "video",
+    "play",
+    "pause",
+    "pure",
+    "Video"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EAA8C;AAC5CC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,cADoB;;AAG5C;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,KAAK,EAAK;AAAEC,QAAAA,KAAK,EAAE,QAAT;AAAmBC,QAAAA,QAAQ,EAAE;AAA7B,OADA;AAEVC,MAAAA,MAAM,EAAI;AAAEF,QAAAA,KAAK,EAAE,QAAT;AAAmBC,QAAAA,QAAQ,EAAE;AAA7B,OAFA;AAGVE,MAAAA,GAAG,EAAO;AAAEH,QAAAA,KAAK,EAAE,QAAT;AAAmBI,QAAAA,IAAI,EAAE;AAAzB,OAHA;AAIVC,MAAAA,QAAQ,EAAE;AAAEL,QAAAA,KAAK,EAAE,SAAT;AAAoBI,QAAAA,IAAI,EAAE;AAA1B;AAJA,KARgC;;AAe5C;AACF;AACA;AACA;AACA;AACEE,IAAAA,OAAO,EAAE;AACP;AACAC,MAAAA,kBAAkB,EAAE,8BAAY;AAC9B;AACA,YAAIC,KAAK,GAAG,EAAZ;;AACA,YAAI,KAAKC,QAAL,EAAJ,EAAqB;AACnBD,UAAAA,KAAK,IAAI,WAAW,KAAKC,QAAL,EAAX,GAA6B,GAAtC;AACD;;AACD,YAAI,KAAKC,SAAL,EAAJ,EAAsB;AACpBF,UAAAA,KAAK,IAAI,YAAY,KAAKE,SAAL,EAAZ,GAA+B,GAAxC;AACD;;AACD,YAAIF,KAAK,KAAK,EAAd,EAAkB;AACvBA,UAAAA,KAAK,GAAG,YAAYA,KAAZ,GAAoB,GAA5B;AACA;;AACK,YAAMH,QAAQ,GAAG,KAAKM,UAAL,KAAoB,sBAApB,GAA6C,EAA9D;AACA,eAAO,oCAAoC,KAAKC,MAAL,EAApC,GAAoD,IAApD,GAA2DJ,KAA3D,GAAmEH,QAAnE,GAA8E,gCAArF;AACD,OAhBM;AAkBP;AACAQ,MAAAA,eAAe,EAAE,2BAAW;AAC1B,eAAO,KAAKC,aAAL,GAAqBC,aAArB,CAAmC,OAAnC,CAAP;AACD,OArBM;AAuBP;AACAC,MAAAA,aAAa,EAAE,uBAASC,KAAT,EAAgB;AAC7B,YAAMC,KAAK,GAAG,KAAKL,eAAL,EAAd;;AACA,YAAIK,KAAJ,EAAW;AACT,cAAID,KAAK,KAAK,IAAV,IAAkB,KAAKN,UAAL,EAAtB,EAAyC;AACvCO,YAAAA,KAAK,CAACC,IAAN;AACD,WAFD,MAEO;AACLD,YAAAA,KAAK,CAACE,KAAN;AACD;AACF;AACF;AAjCM;AApBmC,GAA9C;AA1BA1B,EAAAA,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgByB,IAAhB,CAAqBC,KAArB,CAA2BhC,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* Video.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Adds a video or live stream to the visu. Currently, most sources do not support this yet.\n *\n * @author Christian Mayer\n * @since 2012\n */\nqx.Class.define('cv.ui.structure.pure.Video', {\n  extend: cv.ui.structure.AbstractWidget,\n\n  /*\n  ******************************************************\n    PROPERTIES\n  ******************************************************\n  */\n  properties: {\n    width   : { check: 'String', nullable: true },\n    height  : { check: 'String', nullable: true },\n    src     : { check: 'String', init: '' },\n    autoplay: { check: 'Boolean', init: false }\n  },\n\n  /*\n  ******************************************************\n    MEMBERS\n  ******************************************************\n  */\n  members: {\n    // overridden\n    _getInnerDomString: function () {\n      // create the actor\n      let style = '';\n      if (this.getWidth()) {\n        style += 'width:' + this.getWidth() + ';';\n      }\n      if (this.getHeight()) {\n        style += 'height:' + this.getHeight() + ';';\n      }\n      if (style !== '') {\n style = 'style=\"' + style + '\"'; \n}\n      const autoplay = this.isAutoplay() ? ' autoplay=\"autoplay\"' : '';\n      return '<div class=\"actor\"><video src=\"' + this.getSrc() + '\" ' + style + autoplay + '  controls=\"controls\" /></div>';\n    },\n\n    // overridden\n    getValueElement: function() {\n      return this.getDomElement().querySelector('video');\n    },\n\n    // overridden\n    _applyVisible: function(value) {\n      const video = this.getValueElement();\n      if (video) {\n        if (value === true && this.isAutoplay()) {\n          video.play();\n        } else {\n          video.pause();\n        }\n      }\n    }\n  }\n});\n"
+  ]
+}

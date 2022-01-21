@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das tr064 Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/tr064/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/versions.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../../search.html" />
+    <link rel="next" title="Adressen - die Kommunikation mit dem Backend" href="../../../address.html" />
+    <link rel="prev" title="Das Timeout Plugin" href="../timeout/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../clock/index.html">Das Clock Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram/index.html">Das Diagram Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram_info/index.html">Das Diagramm_Info Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gauge/index.html">Das Gauge Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link/index.html">Das Link Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openhab/index.html">Das openHAB2 Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openweathermap/index.html">Das OpenweatherMap Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../powerspectrum/index.html">Das PowerSpectrum Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../speech/index.html">Das Speech Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../strftime/index.html">Das Strftime Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../timeout/index.html">Das Timeout Plugin</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Das tr064 Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
+      <li>Das tr064 Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="das-tr064-plugin">
+<span id="tr064"></span><h1>Das tr064 Plugin<a class="headerlink" href="#das-tr064-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Christian Mayer</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 0.11.0</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das Plugin ist ein Interface zu Routern die das TR-064 Protokoll implementieren, wie der weit verbreiteten Fritz!Box.
+Mit dem <code class="docutils literal notranslate"><span class="pre">calllist</span></code> Widget aus diesem Plugin lässt sich eine Anrufliste darstellen. Diese Liste enthält sowohl die
+Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des Anrufbeantworters.</p>
+<div class="figure align-default">
+<img alt="../../../../_images/calllist.png" src="../../../../_images/calllist.png" />
+</div>
+</div>
+<div class="section" id="einstellungen">
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
+<p>Das Verhalten und Aussehen des calllist-Widgets aus dem tr064-Plugin kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
+beides über den <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.</p>
+<div class="section" id="erlaubte-attribute-im-calllist-element">
+<h3>Erlaubte Attribute im calllist-Element<a class="headerlink" href="#erlaubte-attribute-im-calllist-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="26">calllist</td>
+<td><abbr title="Pflichtangabe">device</abbr></td>
+<td>Text</td>
+<td>ID/Name für das Gerät aus der versteckten Konfiguration.</td>
+</tr>
+<tr class="row-even"><td>max</td>
+<td>Zahl</td>
+<td>Maximale Anzahl der vom Router zu ladenden Einträge.</td>
+</tr>
+<tr class="row-odd"><td>columns</td>
+<td>Text</td>
+<td>Durch Strichpunkt getrennte Liste mit Spaltentypen (mögliche Spalten: caller, date, name, nameOrCaller, tam, type)</td>
+</tr>
+<tr class="row-even"><td>TAM</td>
+<td>Text</td>
+<td>Icon für Anrufbeantworter.</td>
+</tr>
+<tr class="row-odd"><td>TAMColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>TAMwait</td>
+<td>Text</td>
+<td>Icon für Warten auf Anrufbeantworter.</td>
+</tr>
+<tr class="row-odd"><td>TAMwaitColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>TAMplay</td>
+<td>Text</td>
+<td>Icon für Anrufbeantworter abspielen.</td>
+</tr>
+<tr class="row-odd"><td>TAMplayColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>TAMstop</td>
+<td>Text</td>
+<td>Icon für Anrufbeantworter Stopp.</td>
+</tr>
+<tr class="row-odd"><td>TAMstopColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeIncoming</td>
+<td>Text</td>
+<td>Icon für eingehenden Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeIncomingColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeMissed</td>
+<td>Text</td>
+<td>Icon für verpassten Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeMissedColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeOutgoing</td>
+<td>Text</td>
+<td>Icon für abgehenden Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeOutgoingColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeActiveIncoming</td>
+<td>Text</td>
+<td>Icon für aktiven, eingehenden Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeActiveIncomingColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeRejectedIncoming</td>
+<td>Text</td>
+<td>Icon für abgelehnten, eingehenden Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeRejectedIncomingColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeActiveOutgoing</td>
+<td>Text</td>
+<td>Icon für aktiven, abgehenden Anruf.</td>
+</tr>
+<tr class="row-odd"><td>typeActiveOutgoingColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>typeUnknown</td>
+<td>Text</td>
+<td>Icon für unbekannten Anruftyp.</td>
+</tr>
+<tr class="row-odd"><td>typeUnknownColor</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>refresh</td>
+<td>Zahl</td>
+<td>Definiert die Aktualisierungsrate der Anrufliste in Sekunden</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id2">
+<img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>calllist</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>calllist</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">name</abbr></td>
+<td>Text</td>
+<td>Name unter dem das Icon registriert ist.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>Text</td>
+<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>Text</td>
+<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>calllist</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>calllist</dt><dd><ul class="simple">
+<li>address</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">transform</abbr></td>
+<td>Text</td>
+<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
+<td>„disable“ daktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Addresse zum Lesen und zum Schreiben verwendet.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>Zahl</td>
+<td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>Zahl</td>
+<td>Nur MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: retain Flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>calllist</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="xml-syntax">
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternativ kann man für das tr064-Plugin auch von Hand einen Eintrag in
+der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<p>Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:</p>
+<div class="figure align-default" id="id4">
+<img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
+<p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/calllist&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voraussetzungen-einrichtung-auf-dem-server">
+<h2>Voraussetzungen / Einrichtung auf dem Server<a class="headerlink" href="#voraussetzungen-einrichtung-auf-dem-server" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um dieses Plugin nutzen zu können muss auf dem Server PHP eingerichtet sein und
+die Unterstützung für SoapClient installiert sein.</p>
+<p>Unter Debian basierten Systemen muss daher das Paket <code class="docutils literal notranslate"><span class="pre">php-soap</span></code> installiert
+sein.</p>
+</div>
+<div class="section" id="einrichtung-der-fritz-box">
+<h2>Einrichtung der Fritz!Box<a class="headerlink" href="#einrichtung-der-fritz-box" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um Zugriff auf die Anrufliste der Fritz!Box zu bekommen, muss dort ein Benutzer angelegt werden (oder ein bereits
+angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:</p>
+<div class="figure align-default">
+<img alt="../../../../_images/fritzbox_overview.png" src="../../../../_images/fritzbox_overview.png" />
+</div>
+<p>Der Benutzer selbst benötigt noch die Rechte um auf die Anrufliste zugreifen zu dürfen:</p>
+<div class="figure align-default">
+<img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
+</div>
+<p>Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht über die
+<a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">„Versteckten Konfigurationen“</span></a>.</p>
+<p>Der dort verwendete Name muss im calllist Widget im Attribut <code class="docutils literal notranslate"><span class="pre">device</span></code> angegeben werden.</p>
+<p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="56%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Schlüssel</th>
+<th class="head">Wert</th>
+<th class="head">Beispiel</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uri</td>
+<td>Die URI für den Zugriff auf die TR-064 Schnittstelle</td>
+<td><code class="docutils literal notranslate"><span class="pre">https://192.168.0.1:49443/</span></code></td>
+</tr>
+<tr class="row-odd"><td>user</td>
+<td>Der Benutzername für den TR-064 Zugang</td>
+<td><code class="docutils literal notranslate"><span class="pre">CometVisuTestUser</span></code></td>
+</tr>
+<tr class="row-even"><td>pass</td>
+<td>Das Passwort für den TR-64 Zugang</td>
+<td><code class="docutils literal notranslate"><span class="pre">pa3bvNM4j9z4</span></code></td>
+</tr>
+<tr class="row-odd"><td>selfsigned</td>
+<td>Erlaube selbstsignierte Zertifikate wenn <code class="docutils literal notranslate"><span class="pre">true</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">false</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
+<code class="docutils literal notranslate"><span class="pre">https</span></code> beginnt), so ist meist <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> auf <code class="docutils literal notranslate"><span class="pre">true</span></code> zu setzen, da ein Router
+im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.</p>
+</div>
+<p class="rubric">Fußnoten</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../timeout/index.html" class="btn btn-neutral float-left" title="Das Timeout Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../address.html" class="btn btn-neutral float-right" title="Adressen - die Kommunikation mit dem Backend" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

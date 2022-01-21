@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_18/source/class/qxl/apiviewer/ClassLoader.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "statics",
+    "__baseUri",
+    "RESOURCEPATH",
+    "setBaseUri",
+    "baseUri",
+    "getBaseUri",
+    "loadClassList",
+    "classes",
+    "callback",
+    "self",
+    "length",
+    "call",
+    "Promise",
+    "resolve",
+    "all",
+    "map",
+    "clazz",
+    "load",
+    "then",
+    "getClassOrPackage",
+    "name",
+    "cls",
+    "qxl",
+    "apiviewer",
+    "dao",
+    "getClassByName",
+    "isNativeObject",
+    "pkg",
+    "Package",
+    "getPackage",
+    "defer",
+    "ClassLoader"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EAA6C;AAC3CC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MAD2B;AAG3CC,IAAAA,OAAO,EAAE;AACPC,MAAAA,SAAS,EAAE,IADJ;AAGPC,MAAAA,YAAY,EAAE,IAHP;AAKPC,MAAAA,UAAU,EAAE,oBAASC,OAAT,EAAkB;AAC5B,aAAKH,SAAL,GAAiBG,OAAjB;AACD,OAPM;AASPC,MAAAA,UAAU,EAAE,sBAAW;AACrB,eAAO,KAAKJ,SAAZ;AACD,OAXM;AAaPK,MAAAA,aAAa,EAAE,uBAASC,OAAT,EAAkBC,QAAlB,EAA4BC,IAA5B,EAAkC;AAAA;;AAC/C,YAAI,CAACF,OAAO,CAACG,MAAb,EAAqB;AACnBF,UAAAA,QAAQ,IAAIA,QAAQ,CAACG,IAAT,CAAcF,IAAI,IAAE,IAApB,EAA0B,EAA1B,CAAZ;AACA,iBAAOlB,EAAE,CAACqB,OAAH,CAAWC,OAAX,CAAmB,EAAnB,CAAP;AACD;;AAED,YAAIC,GAAG,GAAGP,OAAO,CAACQ,GAAR,CAAY,UAAAC,KAAK;AAAA,iBAAIA,KAAK,CAACC,IAAN,EAAJ;AAAA,SAAjB,CAAV;AACA,eAAO1B,EAAE,CAACqB,OAAH,CAAWE,GAAX,CAAeA,GAAf,EACJI,IADI,CACC;AAAA,iBAAMV,QAAQ,IAAIA,QAAQ,CAACG,IAAT,CAAcF,IAAI,IAAE,KAApB,EAA0BF,OAA1B,CAAlB;AAAA,SADD,EAEJW,IAFI,CAEC;AAAA,iBAAMX,OAAN;AAAA,SAFD,CAAP;AAGD,OAvBM;AAyBPY,MAAAA,iBAAiB,EAAE,2BAASC,IAAT,EAAe;AAChC,YAAIA,IAAJ,EAAU;AACR,cAAIC,GAAG,GAAGC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkB7B,KAAlB,CAAwB8B,cAAxB,CAAuCL,IAAvC,CAAV;;AACA,cAAIC,GAAJ,EAAS;AACP,mBAAOC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkB7B,KAAlB,CAAwB+B,cAAxB,CAAuCL,GAAvC,IAA8C,IAA9C,GAAqDA,GAA5D;AACD;AACF;;AACD,YAAIM,GAAG,GAAGL,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBI,OAAlB,CAA0BC,UAA1B,CAAqCT,IAArC,CAAV;AACA,eAAOO,GAAP;AACD;AAlCM,KAHkC;AAuC3CG,IAAAA,KAAK,EAAE,eAAS9B,OAAT,EAAkB;AACvBA,MAAAA,OAAO,CAACE,YAAR,GAAuB,SAAvB;AACD;AAzC0C,GAA7C;AAvBAoB,EAAAA,GAAG,CAACC,SAAJ,CAAcQ,WAAd,CAA0BrC,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Module for on demand class data loading.\n */\nqx.Class.define(\"qxl.apiviewer.ClassLoader\", {\n  extend: qx.core.Object,\n\n  statics: {\n    __baseUri: null,\n    \n    RESOURCEPATH: null,\n\n    setBaseUri: function(baseUri) {\n      this.__baseUri = baseUri;\n    },\n\n    getBaseUri: function() {\n      return this.__baseUri;\n    },\n\n    loadClassList: function(classes, callback, self) {\n      if (!classes.length) {\n        callback && callback.call(self||this, []);\n        return qx.Promise.resolve([]);\n      }\n\n      var all = classes.map(clazz => clazz.load());\n      return qx.Promise.all(all)\n        .then(() => callback && callback.call(self||this, classes))\n        .then(() => classes);\n    },\n\n    getClassOrPackage: function(name) {\n      if (name) {\n        var cls = qxl.apiviewer.dao.Class.getClassByName(name);\n        if (cls) {\n          return qxl.apiviewer.dao.Class.isNativeObject(cls) ? null : cls;\n        }\n      }\n      var pkg = qxl.apiviewer.dao.Package.getPackage(name);\n      return pkg;\n    }\n  },\n  defer: function(statics) {\n    statics.RESOURCEPATH = \"apidata\";\n  }\n\n\n});\n"
+  ]
+}

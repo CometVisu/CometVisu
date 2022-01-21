@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_18/source/class/qxl/apiviewer/DetailFrameTabView.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "tabview",
+    "TabView",
+    "members",
+    "add",
+    "page",
+    "getChildren",
+    "length",
+    "setShowCloseButton",
+    "i",
+    "l",
+    "remove",
+    "qxl",
+    "apiviewer",
+    "DetailFrameTabView"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACE;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,OADzB;;AAGE;AACJ;AACA;AACA;AACA;AAEIC,IAAAA,OAAO,EACP;AACEC,MAAAA,GAAG,EAAG,aAASC,IAAT,EAAe;AACnB,uEAAqBA,IAArB;;AACA,YAAI,KAAKC,WAAL,GAAmBC,MAAnB,IAA2B,CAA/B,EAAkC;AAChC,eAAKD,WAAL,GAAmB,CAAnB,EAAsBE,kBAAtB,CAAyC,KAAzC;AACD,SAFD,MAEO;AACL,eAAK,IAAIC,CAAC,GAAC,CAAN,EAASC,CAAC,GAAC,KAAKJ,WAAL,GAAmBC,MAAnC,EAA2CE,CAAC,GAACC,CAA7C,EAAgDD,CAAC,EAAjD,EAAqD;AACnD,iBAAKH,WAAL,GAAmBG,CAAnB,EAAsBD,kBAAtB,CAAyC,IAAzC;AACD;AACF;AACF,OAVH;AAWEG,MAAAA,MAAM,EAAG,gBAASN,IAAT,EAAe;AACtB,YAAI,KAAKC,WAAL,GAAmBC,MAAnB,GAA0B,CAA9B,EAAiC;AAC/B,4EAAqBF,IAArB;;AACA,cAAI,KAAKC,WAAL,GAAmBC,MAAnB,IAA2B,CAA/B,EAAkC;AAChC,iBAAKD,WAAL,GAAmB,CAAnB,EAAsBE,kBAAtB,CAAyC,KAAzC;AACD;AACF;AACF;AAlBH;AAVF,GADF;AAnBAI,EAAAA,GAAG,CAACC,SAAJ,CAAcC,kBAAd,CAAiClB,aAAjC,GAAiDA,aAAjD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.DetailFrameTabView\",\n  {\n    extend : qx.ui.tabview.TabView,\n\n    /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n    members :\n    {\n      add : function(page) {\n        this.base(arguments, page);\n        if (this.getChildren().length==1) {\n          this.getChildren()[0].setShowCloseButton(false);\n        } else {\n          for (var i=0, l=this.getChildren().length; i<l; i++) {\n            this.getChildren()[i].setShowCloseButton(true);\n          }\n        }\n      },\n      remove : function(page) {\n        if (this.getChildren().length>1) {\n          this.base(arguments, page);\n          if (this.getChildren().length==1) {\n            this.getChildren()[0].setShowCloseButton(false);\n          }\n        }\n      }\n    }\n  });\n"
+  ]
+}

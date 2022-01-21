@@ -1,0 +1,461 @@
+{
+  "className": "qx.event.handler.Pointer",
+  "packageName": "qx.event.handler",
+  "name": "Pointer",
+  "superClass": "qx.event.handler.PointerCore",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 209,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Unified pointer event handler.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.event.dispatch.DomBubbling"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.type.Pointer"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.type.dom.Pointer"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "PRIORITY": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 52
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "SUPPORTED_TYPES": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TARGET_CHECK": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 97
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "IGNORE_CAN_HANDLE": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 14
+      },
+      "end": {
+        "line": 71,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Create a new instance</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "manager {qx.event.Manager} Event manager for the window to use",
+          "paramName": "manager",
+          "description": " Event manager for the window to use",
+          "type": "qx.event.Manager"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__manager": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__window": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__root": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "canHandleEvent": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 46
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.event.IEventHandler",
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.event.IEventHandler",
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.event.IEventHandler",
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_initPointerObserver": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.event.handler.PointerCore",
+      "appearsIn": [
+        "qx.event.handler.PointerCore"
+      ]
+    },
+    "_fireEvent": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire a pointer event with the given parameters</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String ? null} type of the event",
+            "paramName": "type",
+            "description": " type of the event",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element ? null} event target",
+            "paramName": "target",
+            "description": " event target",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.event.handler.PointerCore",
+      "appearsIn": [
+        "qx.event.handler.PointerCore"
+      ]
+    },
+    "_onPointerEvent": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 181,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.event.handler.PointerCore",
+      "appearsIn": [
+        "qx.event.handler.PointerCore"
+      ]
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose this object</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable",
+      "appearsIn": [
+        "qx.core.IDisposable",
+        "qx.event.handler.PointerCore"
+      ]
+    },
+    "__callBase": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4
+        },
+        "end": {
+          "line": 202,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call overridden method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} Name of the overridden method.",
+            "paramName": "method",
+            "description": " Name of the overridden method.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array} Arguments.",
+            "paramName": "args",
+            "description": " Arguments.",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 205,
+        "column": 10
+      },
+      "end": {
+        "line": 208,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

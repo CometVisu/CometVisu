@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/client/Device.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "__ids",
+    "getName",
+    "str",
+    "key",
+    "bom",
+    "client",
+    "Device",
+    "push",
+    "reg",
+    "RegExp",
+    "join",
+    "replace",
+    "match",
+    "exec",
+    "navigator",
+    "userAgent",
+    "getType",
+    "detectDeviceType",
+    "userAgentString",
+    "detectTabletDevice",
+    "detectMobileDevice",
+    "test",
+    "isIE10Tablet",
+    "isCommonTablet",
+    "getDevicePixelRatio",
+    "window",
+    "devicePixelRatio",
+    "getTouch",
+    "maxTouchPoints",
+    "msMaxTouchPoints",
+    "defer",
+    "core",
+    "Environment",
+    "add"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * The class is responsible for device detection. This is specially useful\n * if you are on a mobile device.\n *\n * This class is used by {@link qx.core.Environment} and should not be used\n * directly. Please check its class comment for details how to use it.\n *\n * @internal\n */\nqx.Bootstrap.define(\"qx.bom.client.Device\",\n{\n  statics :\n  {\n    /** Maps user agent names to device IDs */\n    __ids : {\n      \"Windows Phone\": \"iemobile\",\n      \"iPod\" : \"ipod\",\n      \"iPad\" : \"ipad\",\n      \"iPhone\" : \"iphone\",\n      \"PSP\" : \"psp\",\n      \"PLAYSTATION 3\" : \"ps3\",\n      \"Nintendo Wii\" : \"wii\",\n      \"Nintendo DS\" : \"ds\",\n      \"XBOX\" : \"xbox\",\n      \"Xbox\" : \"xbox\"\n    },\n\n\n    /**\n     * Returns the name of the current device if detectable. It falls back to\n     * <code>pc</code> if the detection for other devices fails.\n     *\n     * @internal\n     * @return {String} The string of the device found.\n     */\n    getName : function() {\n      var str = [];\n      for (var key in qx.bom.client.Device.__ids) {\n        str.push(key);\n      }\n      var reg = new RegExp(\"(\" + str.join(\"|\").replace(/\\./g, \"\\.\") + \")\", \"g\");\n      var match = reg.exec(navigator.userAgent);\n\n      if (match && match[1]) {\n        return qx.bom.client.Device.__ids[match[1]];\n      }\n\n      return \"pc\";\n    },\n\n\n    /**\n     * Determines on what type of device the application is running.\n     * Valid values are: \"mobile\", \"tablet\" or \"desktop\".\n     * @return {String} The device type name of determined device.\n     */\n    getType : function() {\n      return qx.bom.client.Device.detectDeviceType(navigator.userAgent);\n    },\n\n\n    /**\n     * Detects the device type, based on given userAgentString.\n     *\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {String} The device type name of determined device: \"mobile\",\"desktop\",\"tablet\"\n     */\n    detectDeviceType : function(userAgentString) {\n      if(qx.bom.client.Device.detectTabletDevice(userAgentString)){\n        return \"tablet\";\n      } else if (qx.bom.client.Device.detectMobileDevice(userAgentString)){\n        return \"mobile\";\n      }\n\n      return \"desktop\";\n    },\n\n\n    /**\n     * Detects if a device is a mobile phone. (Tablets excluded.)\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {Boolean} Flag which indicates whether it is a mobile device.\n     */\n    detectMobileDevice : function(userAgentString){\n      return /android.+mobile|ip(hone|od)|bada\\/|blackberry|BB10|maemo|opera m(ob|in)i|fennec|NetFront|phone|psp|symbian|IEMobile|windows (ce|phone)|xda/i.test(userAgentString);\n    },\n\n\n    /**\n     * Detects if a device is a tablet device.\n     * @param userAgentString {String} userAgent parameter, needed for decision.\n     * @return {Boolean} Flag which indicates whether it is a tablet device.\n     */\n    detectTabletDevice : function(userAgentString){\n      var isIE10Tablet = (/MSIE 10/i.test(userAgentString)) && (/ARM/i.test(userAgentString)) && !(/windows phone/i.test(userAgentString));\n      var isCommonTablet = (!(/android.+mobile|Tablet PC/i.test(userAgentString)) && (/Android|ipad|tablet|playbook|silk|kindle|psp/i.test(userAgentString)));\n\n      return  isIE10Tablet || isCommonTablet;\n    },\n\n\n    /**\n     * Detects the device's pixel ratio. Returns 1 if detection is not possible.\n     *\n     * @return {Number} The device's pixel ratio\n     */\n    getDevicePixelRatio : function() {\n      if (typeof window.devicePixelRatio !== \"undefined\") {\n        return window.devicePixelRatio;\n      }\n\n      return 1;\n    },\n\n\n    /**\n     * Detects if either touch events or pointer events are supported.\n     * Additionally it checks if touch is enabled for pointer events.\n     *\n     * @return {Boolean} <code>true</code>, if the device supports touch\n     */\n    getTouch : function() {\n      return ((\"ontouchstart\" in window) ||\n        window.navigator.maxTouchPoints > 0 ||\n        window.navigator.msMaxTouchPoints > 0);\n    }\n  },\n\n\n  defer : function(statics) {\n      qx.core.Environment.add(\"device.name\", statics.getName);\n      qx.core.Environment.add(\"device.touch\", statics.getTouch);\n      qx.core.Environment.add(\"device.type\", statics.getType);\n      qx.core.Environment.add(\"device.pixelRatio\", statics.getDevicePixelRatio);\n  }\n});\n"
+  ]
+}

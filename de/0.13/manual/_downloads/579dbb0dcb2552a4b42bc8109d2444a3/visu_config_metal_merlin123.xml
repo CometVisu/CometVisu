@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" min_column_width="70">
+	<meta>
+		<plugins>
+			<plugin name="diagram"/>						
+		</plugins>
+		<mappings>
+			<mapping name="AufZu">
+				<entry value="0">Zu</entry>
+				<entry value="1">Auf</entry>
+			</mapping>
+			<mapping name="GesamtAufZu">
+				<entry value="0">Alle Zu</entry>
+				<entry value="1">Auf</entry>
+			</mapping>
+			<mapping name="AnAus">
+				<entry value="0">Aus</entry>
+				<entry value="1">An</entry>
+			</mapping>
+			<mapping name="AnAusSymbol">
+				<entry value="0">
+					<icon name="control_home" flavour="white"/>
+				</entry>
+				<entry value="1">
+					<icon name="control_on_off"  flavour="green"/>
+				</entry>
+			</mapping>
+			<mapping name="AnStandbySymbol">
+				<entry value="0">
+					<icon name="control_standby" flavour="white"/>
+				</entry>
+				<entry value="1">
+					<icon name="control_on_off" flavour="green"/>
+				</entry>
+			</mapping>
+			<mapping name="AnAusLichtSymbol">
+				<entry value="0">
+					<icon name="light_light" flavour="white"/>
+				</entry>
+				<entry value="1">
+					<icon name="light_light_dimm_90" flavour="orange"/>
+				</entry>
+			</mapping>
+			<mapping name="AufAbSymbol">
+				<entry value="0">
+					<icon name="control_arrow_up"/>
+				</entry>
+				<entry value="1">
+					<icon name="control_arrow_down"/>
+				</entry>
+			</mapping>
+			<mapping name="HaltSymbol">
+				<entry value="0">&#160;</entry>
+				<entry value="1">
+					<icon name="control_x"/>
+				</entry>
+			</mapping>
+			<mapping name="GesamtAnAus">
+				<entry value="0">Alle Aus</entry>
+				<entry value="1">An</entry>
+			</mapping>
+			<mapping name="AktivNichtAktiv">
+				<entry value="0">Nicht Aktiv</entry>
+				<entry value="1">Aktiv</entry>
+			</mapping>
+			<mapping name="Aktiv">
+				<entry value="0">&#160;</entry>
+				<entry value="1">Aktiv</entry>
+			</mapping>
+			<mapping name="AchtungSymbol">
+				<entry value="0">&#160;</entry>				
+				<entry value="1">
+					<icon name="meld_achtung" flavour="red"/>
+				</entry>
+			</mapping>
+
+
+			<mapping name="PositivNegativ">
+				<entry range_min="-1e99" range_max="0">Negativ</entry>
+				<entry value="0">Null</entry>
+				<entry range_min="0" range_max="1e99">Positiv</entry>
+			</mapping>
+		</mappings>
+		<stylings>
+			<styling name="RotGrün">
+				<entry value="0">red</entry>
+				<entry value="1">green</entry>
+			</styling>	
+			<styling name="RotGrünBG">
+				<entry value="0">red_bg</entry>
+				<entry value="1">green_bg</entry>
+			</styling>	
+			<styling name="NeutralGrün">
+				<entry value="0"/>
+				<entry value="1">green</entry>
+			</styling>
+			<styling name="NeutralGrünBG">
+				<entry value="0"/>
+				<entry value="1">green_bg</entry>
+			</styling>
+			<styling name="GrünNeutral">
+				<entry value="1"/>
+				<entry value="0">green</entry>
+			</styling>
+			<styling name="GrünNeutralBG">
+				<entry value="1"/>
+				<entry value="0">green_bg</entry>
+			</styling>
+			<styling name="GrünRot">
+				<entry value="0">green</entry>
+				<entry value="1">red</entry>
+			</styling>
+			<styling name="GrünRotBG">
+				<entry value="0">green_bg</entry>
+				<entry value="1">red_bg</entry>
+			</styling>
+			<styling name="NeutralRot">
+				<entry value="0"/>
+				<entry value="1">red</entry>
+			</styling>
+			<styling name="NeutralRotBG">
+				<entry value="0"/>
+				<entry value="1">red_bg</entry>
+			</styling>
+			<styling name="RotNeutral">
+				<entry value="1"/>
+				<entry value="0">red</entry>
+			</styling>
+			<styling name="RotNeutralBG">
+				<entry value="1"/>
+				<entry value="0">red_bg</entry>
+			</styling>
+			<styling name="Blau=negativ - Violett=0 - Rot=Positiv">
+				<entry range_min="-100" range_max="0">blue</entry>
+				<entry value="0">purple</entry>
+				<entry range_min="0" range_max="100">red</entry>
+			</styling>
+			<styling name="AussenTemperatur">
+				<entry range_min="-100" range_max="0">blue</entry>
+				<entry range_min="0" range_max="4">purple</entry>
+				<entry range_min="4" range_max="100">red</entry>
+			</styling>
+			<styling name="KonnexHVAC">
+				<entry value="0">green</entry>
+				<entry value="1">red</entry>
+				<entry value="3">blue</entry>
+				<entry value="4">purple</entry>
+			</styling>
+		</stylings>
+		<statusbar>
+			<status type="html">
+				<![CDATA[<img src="icons/comet_64_ffffff.png" alt="CometVisu"></a>
+			<a href=".?forceReload=true">Aktualisieren</a>
+			- <a href="?config=demo">Demo</a>
+			]]></status>
+			<status type="html" condition="!edit" hrefextend="config">
+				<![CDATA[- <a href="edit_config.html">Bearbeiten</a>]]></status>
+			<status type="html" condition="edit" hrefextend="all">
+				<![CDATA[- <a href=".">Ansicht</a>]]></status>
+			<status type="html">
+				<![CDATA[- <a href="check_config.php">Konfiguration prüfen</a>]]></status>
+		</statusbar>
+	</meta>
+	<page name="Übersicht" showtopnavigation="true" showfooter="false">
+		<navbar position="top" dynamic="true">
+			<pagejump target="Übersicht" align="center">
+				<layout colspan="1"/>
+				<label>
+					<icon name="control_building_empty" />Home</label>
+			</pagejump>
+			<pagejump target="OG_Wohnen" align="center">
+				<layout colspan="1.1"/>
+				<label>
+					<icon name="control_building_modern_s_okg_og" />OG Wohnen</label>
+			</pagejump>
+			<pagejump target="OG_Sonstiges" align="center">
+				<layout colspan="1.1"/>
+				<label>
+					<icon name="control_building_modern_s_okg_og" />OG Rest</label>
+			</pagejump>
+			<pagejump target="Dachgeschoss" align="center">
+				<layout colspan="1.1"/>
+				<label>
+					<icon name="control_building_modern_s_okg_dg" />Dachgeschoss</label>
+			</pagejump>
+			<pagejump target="Wetter" align="center">
+				<layout colspan="0.8" />
+				<label>
+					<icon name="scene_day" />Wetter</label>
+			</pagejump>
+		</navbar>
+				<group name="Zentralsteuerung" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" /> 
+						<group nowidget="true">
+						<layout colspan="6" />						
+						<text align="left"> 
+							<layout colspan="2" />
+							<label><icon name="light_light" />Alle an</label>
+						</text>
+						<trigger value="1" mapping="AnAusSymbol" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.008" variant="">0/4/0</address>
+						</trigger>
+						</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+   						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Alle aus</label>
+						</text>
+						<trigger value="0" mapping="AnAusSymbol" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.008" variant="">0/5/0</address>
+						</trigger>  
+						</group>
+						<group nowidget="true">
+						<layout colspan="6" />							
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Alle Rolläden</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="2" />
+							<address transform="DPT:1.008" variant="">0/2/0</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="2" />
+							<address transform="DPT:1.008" variant="">0/2/0</address>
+						</trigger>  
+						</group>	
+						</group>			
+			
+				</group>	
+				<group name="Szenen" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left"> 
+							<layout colspan="2" />
+							<label><icon name="scene_night" />Nachtmodus</label>
+						</text>
+						<trigger value="0" mapping="AnAusSymbol" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.008" variant="">0/5/0</address>
+							<address transform="DPT:1.008" variant="">0/2/0</address>
+						</trigger>
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left"> 
+							<layout colspan="2" />
+							<label><icon name="scene_livingroom" />Abend</label>
+						</text>
+						<trigger value="1" mapping="AnAusSymbol" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.008" variant="">2/0/1</address>
+						</trigger>
+					</group>
+				</group>		
+				<break/>
+						<group name="Wetterlage" align="center">
+							<layout colspan="2.5"/>
+							<image src="https://www.dwd.de/wundk/wetter/de/Suedwest.jpg" refresh="60">
+								<layout colspan="2.5"/>
+							</image>
+						</group>
+						<group name="Radarbild" align="center">
+							<layout colspan="2.5"/>
+							<image src="https://www.dwd.de/wundk/radar/Webradar_Suedwest.jpg" refresh="60">
+								<layout colspan="2.5"/>
+							</image>
+						</group>
+						<group name="Vorhersage" align="center">
+							<layout colspan="2.5"/>
+							<web src="http://192.168.0.127/wetter.html" width="400px" height="330px"/>
+						</group>						
+		<page name="OG_Wohnen" visible="false">
+				<layout colspan="12" />
+				<group name="Wohnzimmer" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Couch</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/12</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Fernseher</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/6</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>
+					<group  nowidget="true">
+						<layout colspan="6" />
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Links</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/4</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/17</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/4</address>
+						</trigger>   
+					</group>
+					<group  nowidget="true">
+						<layout colspan="6" />
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Mitte</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/7</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/19</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/7</address>
+						</trigger>   
+					</group>
+					<group  nowidget="true">
+						<layout colspan="6" />
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Rechts</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/6</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/18</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/6</address>
+						</trigger>  
+					</group>
+				</group>
+				<group name="Küche" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Esstisch</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/5</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch> 
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />		
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Rolladen</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/5</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/11</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/5</address>
+						</trigger>        
+					</group>
+				</group>
+				<group name="Flur" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_stairs" />Flur</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/17</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>  
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />	
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Rolladen</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/2</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/15</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/2</address>
+						</trigger>        
+					</group>
+				</group>
+				<break/>
+				
+		</page>
+		<page name="OG_Sonstiges" visible="false">	
+			<layout colspan="12" />
+				<group name="Bad" align="center">
+					<layout colspan="6" />			
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Decke</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/14</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />WC</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/18</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Badewanne</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/15</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>	
+					<group nowidget="true">
+						<layout colspan="6" />					
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Spiegel</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/3</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>	
+					<group nowidget="true">
+						<layout colspan="6" />
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="vent_ventilation" />Lüftung</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/3/1</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>
+					</group>	
+					<group nowidget="true">
+						<layout colspan="6" />
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Rolladen</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/8</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/20</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/8</address>
+						</trigger>    
+					</group>					
+				</group>
+				<group name="Spielzimmer" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Decke</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/8</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>  
+					</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="fts_shutter" />Rolladen</label>
+						</text>
+						<trigger value="1" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/0</address>
+						</trigger>
+						<trigger value="1" mapping="HaltSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.001" variant="">0/1/13</address>
+						</trigger>
+						<trigger value="0" mapping="AufAbSymbol" align="center">
+							<layout colspan="1.33" />
+							<address transform="DPT:1.008" variant="">0/1/0</address>
+						</trigger>        
+					</group>
+				</group>
+		</page>
+		<page name="Dachgeschoss" visible="false">	
+			<layout colspan="12" />
+				<group name="Schlafzimmer" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Links</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/1</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>          
+					</group>
+					<group nowidget="true">
+						<layout colspan="6" />	
+  						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Rechts</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/2</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>    
+					</group>
+				</group>	
+				<group name="Bad" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Decke</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/11</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>   
+					</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+  						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="vent_ventilation" />Lüftung</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/3/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>    
+					</group>
+				</group>
+				<break/>
+				<group name="Kinderzimmer" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Links</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/20</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>    
+					</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+  						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_light" />Rechts</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/10</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>    
+					</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+  						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="message_socket" />Strom links</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/13</address>
+						</switch>  
+					</group>
+						<group nowidget="true">
+						<layout colspan="6" />	
+  						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="message_socket" />Strom rechts</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/19</address>
+						</switch>   
+					</group>
+				</group>				
+				<group name="Flur" align="center">
+					<layout colspan="6" />
+					<group nowidget="true">
+						<layout colspan="6" />    
+						<text align="left">
+							<layout colspan="2" />
+							<label><icon name="light_stairs" />Flur</label>
+						</text>
+						<switch on_value="1" off_value="0" mapping="AnAusSymbol" styling="NeutralGrünBG" align="center">
+							<layout colspan="4" />
+							<address transform="DPT:1.001" variant="">0/0/16</address>
+							<address transform="DPT:1.001" mode="read">0/4/0</address>
+							<address transform="DPT:1.001" mode="read">0/5/0</address>
+						</switch>   
+					</group>
+				</group>
+		</page>
+		<page name="Wetter" visible="false">
+			<image src="https://www.yr.no/place/Germany/Rhineland-Palatinate/He%C3%9Fheim~6555243/meteogram.png" refresh="60">
+				<layout colspan="12"/>
+			</image>
+		</page>	
+	</page>
+</pages>

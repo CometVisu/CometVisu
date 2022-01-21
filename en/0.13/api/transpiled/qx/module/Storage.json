@@ -1,0 +1,604 @@
+{
+  "className": "qx.module.Storage",
+  "packageName": "qx.module",
+  "name": "Storage",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 208,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This module offers a cross browser storage implementation. The API is aligned\n with the API of the HTML web storage (http://www.w3.org/TR/webstorage/) which is\n also the preferred implementation used. As fallback for IE &lt; 8, we use user data.\n If both techniques are unsupported, we supply a in memory storage, which is\n of course, not persistent.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "setLocalItem": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Store an item in the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.setItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier key.",
+            "paramName": "key",
+            "description": " The identifier key.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The data, which will be stored as JSON.",
+            "paramName": "value",
+            "description": " The data, which will be stored as JSON.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLocalItem": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stored item.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.getItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier to get the data.",
+            "paramName": "key",
+            "description": " The identifier to get the data.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The stored data.",
+            "type": "var",
+            "description": " The stored data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeLocalItem": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an item form the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.removeItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier.",
+            "paramName": "key",
+            "description": " The identifier.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLocalLength": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the amount of key-value pairs stored.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.getLength}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The length of the storage.",
+            "type": "Number",
+            "description": " The length of the storage."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLocalKey": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the named key at the given index.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.getKey}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number} The index in the storage.",
+            "paramName": "index",
+            "description": " The index in the storage.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The key stored at the given index.",
+            "type": "String",
+            "description": " The key stored at the given index."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearLocal": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes every stored item in the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.clear}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "forEachLocal": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to access every stored item.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, localStorage.forEach}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "paramName": "callback",
+            "description": " A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var} The scope of the function.",
+            "paramName": "scope",
+            "description": " The scope of the function.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setSessionItem": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Store an item in the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.setItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier key.",
+            "paramName": "key",
+            "description": " The identifier key.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The data, which will be stored as JSON.",
+            "paramName": "value",
+            "description": " The data, which will be stored as JSON.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSessionItem": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stored item.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.getItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier to get the data.",
+            "paramName": "key",
+            "description": " The identifier to get the data.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The stored data.",
+            "type": "var",
+            "description": " The stored data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeSessionItem": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an item form the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.removeItem}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The identifier.",
+            "paramName": "key",
+            "description": " The identifier.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSessionLength": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the amount of key-value pairs stored.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.getLength}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The length of the storage.",
+            "type": "Number",
+            "description": " The length of the storage."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSessionKey": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the named key at the given index.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.getKey}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number} The index in the storage.",
+            "paramName": "index",
+            "description": " The index in the storage.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The key stored at the given index.",
+            "type": "String",
+            "description": " The key stored at the given index."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearSession": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes every stored item in the storage.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.clear}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "forEachSession": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to access every stored item.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, sessionStorage.forEach}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "paramName": "callback",
+            "description": " A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var} The scope of the function.",
+            "paramName": "scope",
+            "description": " The scope of the function.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 186,
+        "column": 10
+      },
+      "end": {
+        "line": 207,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/core/MChildrenHandling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "getChildren",
+    "_getChildren",
+    "hasChildren",
+    "_hasChildren",
+    "indexOf",
+    "child",
+    "_indexOf",
+    "add",
+    "layoutProperties",
+    "_add",
+    "addAt",
+    "index",
+    "options",
+    "_addAt",
+    "addBefore",
+    "before",
+    "_addBefore",
+    "addAfter",
+    "after",
+    "_addAfter",
+    "remove",
+    "_remove",
+    "removeAt",
+    "_removeAt",
+    "removeAll",
+    "_removeAll",
+    "statics",
+    "remap",
+    "ui",
+    "mobile",
+    "core",
+    "MChildrenHandling"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n/**\n * This mixin exposes all basic methods to manage widget children as public methods.\n * It can only be included into instances of {@link Widget}.\n *\n * To optimize the method calls the including widget should call the method\n * {@link #remap} in its defer function. This will map the protected\n * methods to the public ones and save one method call for each function.\n */\nqx.Mixin.define(\"qx.ui.mobile.core.MChildrenHandling\",\n{\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Returns the children list\n     *\n     * @return {qx.ui.core.Widget[]} The children array (Arrays are\n     *   reference types, please do not modify them in-place)\n     */\n    getChildren : function() {\n      return this._getChildren();\n    },\n\n\n    /**\n     * Whether the widget contains children.\n     *\n     * @return {Boolean} Returns <code>true</code> when the widget has children.\n     */\n    hasChildren : function() {\n      return this._hasChildren();\n    },\n\n\n    /**\n     * Returns the index position of the given widget if it is\n     * a child widget. Otherwise it returns <code>-1</code>.\n     *\n     * @param child {qx.ui.core.Widget} the widget to query for\n     * @return {Integer} The index position or <code>-1</code> when\n     *   the given widget is no child of this layout.\n     */\n    indexOf : function(child) {\n      return this._indexOf(child);\n    },\n\n\n    /**\n     * Adds a new child widget.\n     *\n     * @param child {qx.ui.core.Widget} the widget to add.\n     * @param layoutProperties {Map?null} Optional layout data for widget.\n     */\n    add : function(child, layoutProperties) {\n      this._add(child, layoutProperties);\n    },\n\n\n    /**\n     * Add a child widget at the specified index\n     *\n     * @param child {qx.ui.core.Widget} widget to add\n     * @param index {Integer} Index, at which the widget will be inserted\n     * @param options {Map?null} Optional layout data for widget.\n     */\n    addAt : function(child, index, options)\n    {\n      this._addAt(child, index, options);\n    },\n\n\n    /**\n     * Add a widget before another already inserted widget\n     *\n     * @param child {qx.ui.core.Widget} Widget to add\n     * @param before {qx.ui.core.Widget} Widget before the new widget will be inserted.\n     * @param layoutProperties {Map?null} Optional layout data for widget.\n     */\n    addBefore : function(child, before, layoutProperties) {\n      this._addBefore(child, before, layoutProperties);\n    },\n\n\n    /**\n     * Add a widget after another already inserted widget\n     *\n     * @param child {qx.ui.core.Widget} Widget to add\n     * @param after {qx.ui.core.Widget} Widget, after which the new widget will be inserted\n     * @param layoutProperties {Map?null} Optional layout data for widget.\n     */\n    addAfter : function(child, after, layoutProperties) {\n      this._addAfter(child, after, layoutProperties);\n    },\n\n\n    /**\n     * Remove the given child widget.\n     *\n     * @param child {qx.ui.core.Widget} the widget to remove\n     */\n    remove : function(child) {\n      this._remove(child);\n    },\n\n\n    /**\n     * Remove the widget at the specified index.\n     *\n     * @param index {Integer} Index of the widget to remove.\n     */\n    removeAt : function(index) {\n      this._removeAt(index);\n    },\n\n\n    /**\n     * Remove all children.\n     */\n    removeAll : function() {\n      this._removeAll();\n    }\n  },\n\n\n\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /**\n     * Mapping of protected methods to public.\n     * This omits an additional function call when using these methods. Call\n     * this methods in the defer block of the including class.\n     *\n     * @param members {Map} The including classes members map\n     */\n    remap : function(members)\n    {\n      members.getChildren = members._getChildren;\n      members.hasChildren = members._hasChildren;\n      members.indexOf = members._indexOf;\n\n      members.add = members._add;\n      members.addAt = members._addAt;\n      members.addBefore = members._addBefore;\n      members.addAfter = members._addAfter;\n\n      members.remove = members._remove;\n      members.removeAt = members._removeAt;\n      members.removeAll = members._removeAll;\n    }\n  }\n});\n"
+  ]
+}

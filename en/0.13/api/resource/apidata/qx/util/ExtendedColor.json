@@ -1,0 +1,172 @@
+{
+  "className": "qx.util.ExtendedColor",
+  "packageName": "qx.util",
+  "name": "ExtendedColor",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 224,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Support for extended CSS color names</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "EXTENDED": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 181,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>CSS 3 colors (http://www.w3.org/TR/css3-color/#svg-color)\n This includes all classic HTML Color names (http://www.w3.org/TR/css3-color/#html4) and the <code>transparent</code> keyword.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "isExtendedColor": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the incoming value is an extended named color.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} the color value to test",
+            "paramName": "value",
+            "description": " the color value to test",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the color is an extended named color",
+            "type": "Boolean",
+            "description": " true if the color is an extended named color"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toRgb": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4
+        },
+        "end": {
+          "line": 210,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts an extended color to the RGB value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The incoming string",
+            "paramName": "value",
+            "description": " The incoming string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} the resulting RGB array",
+            "type": "Array",
+            "description": " the resulting RGB array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toRgbString": {
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts an extended color to a CSS RGB string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The incoming string",
+            "paramName": "value",
+            "description": " The incoming string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the resulting RGB string",
+            "type": "String",
+            "description": " the resulting RGB string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

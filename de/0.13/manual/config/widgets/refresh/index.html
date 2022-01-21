@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das Refresh Widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/refresh/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../search.html" />
+    <link rel="next" title="Das Reload Widget" href="../reload/index.html" />
+    <link rel="prev" title="Das PushButton Widget" href="../pushbutton/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Bedienbare Widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../audio/index.html">Das Audio Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../colorchooser/index.html">Der ColorChooser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../designtoggle/index.html">Das DesignToggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../imagetrigger/index.html">Das ImageTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infoaction/index.html">Das InfoAction Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infotrigger/index.html">Das InfoTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multitrigger/index.html">Das MultiTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pagejump/index.html">Das PageJump Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pushbutton/index.html">Das PushButton Widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Das Refresh Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reload/index.html">Das Reload Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../slide/index.html">Das Slide Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../switch/index.html">Das Switch Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../toggle/index.html">Das Toggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trigger/index.html">Das Trigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../urltrigger/index.html">Das UrlTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notificationcenterbadge/index.html">Das NotificationCenterBadge Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Bedienbare Widgets</a> &raquo;</li>
+      <li>Das Refresh Widget</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="das-refresh-widget">
+<span id="refresh"></span><h1>Das Refresh Widget<a class="headerlink" href="#das-refresh-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Christian Mayer</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 2014</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Fügt der Visu einen Button hinzu über den die anzuzeigenden Werte neu geladen werden können.
+Anwendungsfall: der Visu-PC war schlafen und hat nicht mitbekommen, dass es neue Daten gibt.</p>
+</div>
+<div class="section" id="einstellungen">
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
+<p>Das Verhalten und Aussehen des Refresh-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
+beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.</p>
+<div class="section" id="erlaubte-attribute-im-refresh-element">
+<h3>Erlaubte Attribute im Refresh-Element<a class="headerlink" href="#erlaubte-attribute-im-refresh-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="7">refresh</td>
+<td><abbr title="Pflichtangabe">value</abbr></td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>mapping</td>
+<td>Text</td>
+<td>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>Text</td>
+<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>bind_click_to_widget</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</td>
+</tr>
+<tr class="row-odd"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id2">
+<img alt="../../../_images/de_config_widgets_refresh_index_editor_attributes.png" src="../../../_images/de_config_widgets_refresh_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>refresh</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>refresh</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">name</abbr></td>
+<td>Text</td>
+<td>Name unter dem das Icon registriert ist.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>Text</td>
+<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>Text</td>
+<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>refresh</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../_images/de_config_widgets_refresh_index_editor_elements.png" src="../../../_images/de_config_widgets_refresh_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="xml-syntax">
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternativ kann man für das Refresh Widget auch von Hand einen Eintrag in
+der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<p>Hier der minimale Beispielcode der das Refresh Widget aus dem folgenden Screenshot erzeugt:</p>
+<div class="figure align-default" id="id4">
+<img alt="Refresh, einfaches Beispiel" src="../../../_images/refresh_simple.png" />
+<p class="caption"><span class="caption-text">Refresh, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;refresh</span> <span class="na">value=</span><span class="s">&quot;Refresh&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/refresh&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Fußnoten</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../pushbutton/index.html" class="btn btn-neutral float-left" title="Das PushButton Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reload/index.html" class="btn btn-neutral float-right" title="Das Reload Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

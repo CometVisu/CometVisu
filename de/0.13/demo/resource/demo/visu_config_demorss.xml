@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="rss"/>
+      <plugin name="rsslog"/>
+    </plugins>
+    <mappings>
+      <mapping name="StateConfirm">
+        <entry value="0"><icon name="info_warning" color="#A00000"/> </entry>
+        <entry value="1"><icon name="info_ack" color="#00A000"/> </entry>
+      </mapping>
+    </mappings>
+    <stylings>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="#" onclick="showManager()">Config-Manager</a>
+          - <a href=".?forceReload=true">Reload</a>
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="action"><![CDATA[
+          - <a cv-action="edit">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="all"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html" hrefextend="action"><![CDATA[
+          - <a cv-action="validate">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="RSSLog demo">
+    <text align="center">
+      <layout colspan="12"/>
+      <label>Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</label>
+    </text>
+    <text align="left">
+      <layout colspan="12"/>
+      <label>
+        The RSSlog shows you the last entries in the RSS database. By clicking
+        on the buttons on the top of this page you can add new entries. These
+        will show up after reload of the page or on some of the log displays
+        after an internal refresh that is configured for 5 minutes. The
+        log displays will open a pop up when you click on one. In this pop up
+        you can "acknowledge" the entry by clicking on it. To discard the pop
+        up click on the space between an entry and the border.
+      </label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <urltrigger value="Fish tank 1" url="plugins/rsslog/rsslog.php" params="t[]=fish&amp;c=Tank 1 water change&amp;mapping=StateConfirm">
+      <label>Change water</label>
+    </urltrigger>
+    <urltrigger value="Fish tank 2" url="plugins/rsslog/rsslog.php" params="t[]=fish&amp;c=Tank 1 water change&amp;mapping=StateConfirm">
+      <label>Change water</label>
+    </urltrigger>
+    <urltrigger value="Log" url="plugins/rsslog/rsslog.php" params="t[]=ventilation&amp;c=change filter&amp;mapping=StateConfirm">
+      <label>Change venitlation filter</label>
+    </urltrigger>
+    <urltrigger value="Call me" url="/something/else.php">
+      <label>Any other local(!) URL/script</label>
+    </urltrigger>
+    <trigger value="0">
+      <label>Trigger RSSLog Reload</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </trigger>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text align="center">
+      <label>rsslog no filter - limit to 6 lines</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="6" mode="last">
+      <layout rowspan="6" colspan="6"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text align="center">
+      <label>rsslog filter: fish - only last (click log!)</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php" filter="fish" mode="last">
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text align="center">
+      <label>rsslog filter: ventilation - mode: rollover</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php" filter="ventilation" mode="rollover">
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=1 Filter=fish</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=0 Filter=fish</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="modify">
+      <layout rowspan="3" colspan="4"/>
+      <label>itemack: Modify</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="display">
+      <layout rowspan="3" colspan="4"/>
+      <label>itemack: Display</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="disable">
+      <layout rowspan="3" colspan="4"/>
+      <label>itemack: Disable</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <page name="Externeal feeds">
+      <rss src="https://www.tagesschau.de/xml/rss2" refresh="3600" header="true"/>
+    </page>
+  </page>
+</pages>

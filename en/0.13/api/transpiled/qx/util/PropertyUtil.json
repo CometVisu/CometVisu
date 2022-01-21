@@ -1,0 +1,581 @@
+{
+  "className": "qx.util.PropertyUtil",
+  "packageName": "qx.util",
+  "name": "PropertyUtil",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 217,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A helper class for accessing the property system directly.\n This class is rather to be used internally. For all regular usage of the\n property system the default API should be sufficient.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getProperties": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the property map of the given class</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} a qooxdoo class",
+            "paramName": "clazz",
+            "description": " a qooxdoo class",
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins and not including refined\n   properties.",
+            "type": "Map",
+            "description": " A properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins and not including refined\n   properties."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllProperties": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the property map of the given class including the properties of all\n superclasses!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} a qooxdoo class",
+            "paramName": "clazz",
+            "description": " a qooxdoo class",
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins of the current class and\n   all superclasses.",
+            "type": "Map",
+            "description": " The properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins of the current class and\n   all superclasses."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getUserValue": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the user value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The user value",
+            "type": "var",
+            "description": " The user value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setUserValue": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the user value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteUserValue": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the user value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getInitValue": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 123,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the init value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The init value",
+            "type": "var",
+            "description": " The init value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setInitValue": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the init value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteInitValue": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 144,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the init value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getThemeValue": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the theme value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The theme value",
+            "type": "var",
+            "description": " The theme value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setThemeValue": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the theme value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteThemeValue": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the theme value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setThemed": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a themed property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetThemed": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets a themed property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to access",
+            "paramName": "object",
+            "description": " The object to access",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property",
+            "paramName": "propertyName",
+            "description": " The name of the property",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

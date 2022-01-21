@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/FormTag.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "container",
+    "Composite",
+    "construct",
+    "layout",
+    "VBox",
+    "members",
+    "_createContentElement",
+    "html",
+    "Element",
+    "qxl",
+    "dialog",
+    "FormTag"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBC,SAD3B;AAGEC,IAAAA,SAAS,EAAG,mBAASC,MAAT,EAAiB;AAC3B,uDAAqBA,MAAM,IAAI,IAAIX,EAAE,CAACO,EAAH,CAAMI,MAAN,CAAaC,IAAjB,EAA/B;AACD,KALH;AAOEC,IAAAA,OAAO,EACP;AACE;AACA;AACAC,MAAAA,qBAAqB,EAAG,iCAAW;AACjC,eAAO,IAAId,EAAE,CAACe,IAAH,CAAQC,OAAZ,CAAoB,MAApB,CAAP;AACD;AALH;AARF,GADA;AAjBAC,EAAAA,GAAG,CAACC,MAAJ,CAAWC,OAAX,CAAmBhB,aAAnB,GAAmCA,aAAnC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n\n   http://qooxdoo.org/contrib/catalog/#Dialog\n\n   Copyright:\n     2018 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n\n   Authors:\n   *  Derrell Lipman\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.FormTag\",\n{\n  extend : qx.ui.container.Composite,\n\n  construct : function(layout) {\n    this.base(arguments, layout || new qx.ui.layout.VBox());\n  },\n\n  members :\n  {\n    // overridden\n    // Instead of creating a <div> for the content element, use <form>\n    _createContentElement : function() {\n      return new qx.html.Element(\"form\");\n    }\n  }\n});\n"
+  ]
+}

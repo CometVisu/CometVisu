@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/embed/Html.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "core",
+    "Widget",
+    "construct",
+    "html",
+    "setHtml",
+    "properties",
+    "check",
+    "init",
+    "nullable",
+    "event",
+    "apply",
+    "members",
+    "_applyHtml",
+    "value",
+    "old",
+    "_setHtml",
+    "embed",
+    "Html"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,MAD7B;;AAIE;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EACZ;AACE;;AACA,UAAIA,IAAJ,EAAU;AACR,aAAKC,OAAL,CAAaD,IAAb;AACD;AACF,KAnBH;;AAwBE;AACF;AACA;AACA;AACA;AAEEE,IAAAA,UAAU,EACV;AACE;AACAF,MAAAA,IAAI,EACJ;AACEG,QAAAA,KAAK,EAAG,QADV;AAEEC,QAAAA,IAAI,EAAG,IAFT;AAGEC,QAAAA,QAAQ,EAAG,IAHb;AAIEC,QAAAA,KAAK,EAAG,YAJV;AAKEC,QAAAA,KAAK,EAAG;AALV;AAHF,KA/BF;;AA8CE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,UAAU,EAAG,oBAASC,KAAT,EAAgBC,GAAhB,EACb;AACE,aAAKC,QAAL,CAAcF,KAAd;AACD;AALH;AArDF,GADA;AAhCAtB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaiB,KAAb,CAAmBC,IAAnB,CAAwBvB,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n\n/**\n * The Html widget embeds plain HTML code into the application\n *\n * *Example*\n *\n * Here is a little example of how to use the html widget.\n *\n * <pre class='javascript'>\n * var html = new qx.ui.mobile.embed.Html();\n * html.setHtml(\"<h1>Hello World</h1>\");\n * </pre>\n *\n */\nqx.Class.define(\"qx.ui.mobile.embed.Html\",\n{\n  extend : qx.ui.mobile.core.Widget,\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param html {String?null} Initial HTML content\n   */\n  construct : function(html)\n  {\n    this.base(arguments);\n    if (html) {\n      this.setHtml(html);\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** Any text string which can contain HTML, too */\n    html :\n    {\n      check : \"String\",\n      init : null,\n      nullable : true,\n      event : \"changeHtml\",\n      apply : \"_applyHtml\"\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // property apply\n    _applyHtml : function(value, old)\n    {\n      this._setHtml(value);\n    }\n  }\n});\n"
+  ]
+}

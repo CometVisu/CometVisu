@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/storage/Memory.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "__local",
+    "__session",
+    "getLocal",
+    "bom",
+    "storage",
+    "Memory",
+    "getSession",
+    "construct",
+    "__storage",
+    "members",
+    "getStorage",
+    "getLength",
+    "Object",
+    "keys",
+    "length",
+    "setItem",
+    "key",
+    "value",
+    "lang",
+    "Json",
+    "stringify",
+    "getItem",
+    "item",
+    "Type",
+    "isString",
+    "parse",
+    "removeItem",
+    "clear",
+    "getKey",
+    "index",
+    "forEach",
+    "callback",
+    "scope",
+    "i",
+    "call"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * Fallback storage implementation which offers the same API as every other storage\n * but is not persistent. Basically, its just a storage API on a JavaScript map.\n *\n * @require(qx.bom.storage.Memory#getLength)\n * @require(qx.bom.storage.Memory#setItem)\n * @require(qx.bom.storage.Memory#getItem)\n * @require(qx.bom.storage.Memory#removeItem)\n * @require(qx.bom.storage.Memory#clear)\n * @require(qx.bom.storage.Memory#getKey)\n * @require(qx.bom.storage.Memory#forEach)\n */\nqx.Bootstrap.define(\"qx.bom.storage.Memory\", {\n  statics : {\n    __local : null,\n    __session : null,\n\n    /**\n     * Returns an instance of {@link qx.bom.storage.Memory} which is of course\n     * not persisted on reload.\n     * @return {qx.bom.storage.Memory} A memory storage.\n     */\n    getLocal : function() {\n      if (this.__local) {\n        return this.__local;\n      }\n      return this.__local = new qx.bom.storage.Memory();\n    },\n\n\n    /**\n     * Returns an instance of {@link qx.bom.storage.Memory} which is of course\n     * not persisted on reload.\n     * @return {qx.bom.storage.Memory} A memory storage.\n     */\n    getSession : function() {\n      if (this.__session) {\n        return this.__session;\n      }\n      return this.__session = new qx.bom.storage.Memory();\n    }\n  },\n\n\n  construct : function() {\n    this.__storage = {};\n  },\n\n\n  members : {\n    __storage : null,\n\n\n    /**\n     * Returns the internal used map.\n     * @return {Map} The storage.\n     * @internal\n     */\n    getStorage : function() {\n      return this.__storage;\n    },\n\n\n    /**\n     * Returns the amount of key-value pairs stored.\n     * @return {Integer} The length of the storage.\n     */\n    getLength : function() {\n      return Object.keys(this.__storage).length;\n    },\n\n\n    /**\n     * Store an item in the storage.\n     *\n     * @param key {String} The identifier key.\n     * @param value {var} The data, which will be stored as JSON.\n     */\n    setItem : function(key, value) {\n      value = qx.lang.Json.stringify(value);\n      this.__storage[key] = value;\n    },\n\n\n    /**\n     * Returns the stored item.\n     *\n     * @param key {String} The identifier to get the data.\n     * @return {var} The stored data.\n     */\n    getItem : function(key) {\n      var item = this.__storage[key];\n\n      if (qx.lang.Type.isString(item)) {\n        item = qx.lang.Json.parse(item);\n      }\n      return item;\n    },\n\n\n    /**\n     * Removes an item form the storage.\n     * @param key {String} The identifier.\n     */\n    removeItem : function(key) {\n      delete this.__storage[key];\n    },\n\n\n    /**\n     * Deletes every stored item in the storage.\n     */\n    clear : function() {\n      this.__storage = {};\n    },\n\n\n    /**\n     * Returns the named key at the given index.\n     * @param index {Integer} The index in the storage.\n     * @return {String} The key stored at the given index.\n     */\n    getKey : function(index) {\n      var keys = Object.keys(this.__storage);\n      return keys[index];\n    },\n\n\n    /**\n     * Helper to access every stored item.\n     *\n     * @param callback {Function} A function which will be called for every item.\n     *   The function will have two arguments, first the key and second the value\n     *    of the stored data.\n     * @param scope {var} The scope of the function.\n     */\n    forEach : function(callback, scope) {\n      var length = this.getLength();\n      for (var i = 0; i < length; i++) {\n        var key = this.getKey(i);\n        callback.call(scope, key, this.getItem(key));\n      }\n    }\n  }\n});\n"
+  ]
+}

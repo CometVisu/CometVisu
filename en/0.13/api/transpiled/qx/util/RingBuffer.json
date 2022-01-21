@@ -1,0 +1,468 @@
+{
+  "className": "qx.util.RingBuffer",
+  "packageName": "qx.util",
+  "name": "RingBuffer",
+  "superClass": "Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 235,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>An memory container which stores arbitrary data up to a maximum number of\n entries. When new entries come in an the maximum is reached, the oldest\n entries are deleted.\n A mark feature also exists which can be used to remember a point in time.\n When retrieving entries, it is possible to get only those entries\n after the marked time. This is useful if data from the buffer is extracted\n and processed. Whenever this happens, a mark() call can be used so that the\n next extraction will only get new data.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 14
+      },
+      "end": {
+        "line": 44,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Constructor.</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "maxEntries {Integer ? 50} Maximum number of entries in the buffer",
+          "paramName": "maxEntries",
+          "description": " Maximum number of entries in the buffer",
+          "optional": true,
+          "defaultValue": "50",
+          "type": "Integer"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__nextIndexToStoreTo": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 28
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__entriesStored": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 23
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__isMarkActive": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 25
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__entriesStoredSinceMark": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 32
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__entries": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 20
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "__maxEntries": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 23
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "setMaxEntries": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the maximum number of messages to hold. If null the number of\n messages is not limited.\n Warning: Changing this property will clear the events logged so far.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "maxEntries {Integer} the maximum number of messages to hold",
+            "paramName": "maxEntries",
+            "description": " the maximum number of messages to hold",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMaxEntries": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the maximum number of entries to hold</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}",
+            "type": "Integer",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addEntry": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a single entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {var} The data to store",
+            "paramName": "entry",
+            "description": " The data to store",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNumEntriesStored": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 123,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the number of entries stored</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}",
+            "type": "Integer",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "mark": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remembers the current position in the ring buffer</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearMark": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the current mark position</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllEntries": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all stored entries. Mark is ignored.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array of stored entries",
+            "type": "Array",
+            "description": " array of stored entries"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getEntries": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns entries which have been added previously.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "count {Integer} The number of entries to retrieve. If there are\n    more entries than the given count, the oldest ones will not be returned.",
+            "paramName": "count",
+            "description": " The number of entries to retrieve. If there are\n    more entries than the given count, the oldest ones will not be returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "startingFromMark {Boolean ? false} If true, only entries since\n   the last call to mark() will be returned",
+            "paramName": "startingFromMark",
+            "description": " If true, only entries since\n   the last call to mark() will be returned",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array of stored entries",
+            "type": "Array",
+            "description": " array of stored entries"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears all entries</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__addToIndex": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a number to an ringbuffer index. Does a modulus calculation,\n i. e. if the index leaves the ringbuffer space it will wrap around to\n the other end of the ringbuffer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "idx {Number} The current index.",
+            "paramName": "idx",
+            "description": " The current index.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "addMe {Number} The number to add.",
+            "paramName": "addMe",
+            "description": " The number to add.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The new index",
+            "type": "Number",
+            "description": " The new index"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": [
+    "qx.log.appender.RingBuffer"
+  ]
+}

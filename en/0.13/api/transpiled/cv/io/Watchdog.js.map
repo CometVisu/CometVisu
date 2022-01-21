@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/Watchdog.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "last",
+    "Date",
+    "now",
+    "properties",
+    "client",
+    "check",
+    "nullable",
+    "init",
+    "members",
+    "hardLast",
+    "__id",
+    "aliveCheckFunction",
+    "getClient",
+    "getBackend",
+    "maxConnectionAge",
+    "getCurrentTransport",
+    "isConnectionRunning",
+    "restart",
+    "maxDataAge",
+    "start",
+    "watchdogTimer",
+    "stop",
+    "setInterval",
+    "bind",
+    "clearInterval",
+    "isActive",
+    "ping",
+    "fullReload",
+    "cv",
+    "io",
+    "Watchdog"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gBAAhB,EAAkC;AAChCC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADgB;;AAGhC;AACF;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAE,qBAAW;AACpB,WAAKC,IAAL,GAAYC,IAAI,CAACC,GAAL,EAAZ;AACD,KAV+B;;AAYhC;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,MAAM,EAAE;AACNC,QAAAA,KAAK,EAAE,cADD;AAENC,QAAAA,QAAQ,EAAE,IAFJ;AAGNC,QAAAA,IAAI,EAAE;AAHA;AADE,KAjBoB;;AA0BhC;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPR,MAAAA,IAAI,EAAE,IADC;AAEPS,MAAAA,QAAQ,EAAE,IAFH;AAGPC,MAAAA,SAAI,EAAE,IAHC;AAKPC,MAAAA,kBAAkB,EAAE,8BAAY;AAC9B,YAAIT,GAAG,GAAG,IAAID,IAAJ,EAAV;;AACA,YAAIC,GAAG,GAAG,KAAKF,IAAX,GAAkB,KAAKY,SAAL,GAAiBC,UAAjB,GAA8BC,gBAAhD,IAAoE,KAAKF,SAAL,GAAiBG,mBAAjB,GAAuCC,mBAAvC,EAAxE,EAAsI;AACpI;AACD;;AACD,aAAKJ,SAAL,GAAiBG,mBAAjB,GAAuCE,OAAvC,CAA+Cf,GAAG,GAAG,KAAKO,QAAX,GAAsB,KAAKG,SAAL,GAAiBC,UAAjB,GAA8BK,UAAnG;AACA,aAAKlB,IAAL,GAAYE,GAAZ;AACD,OAZM;AAcPiB,MAAAA,KAAK,EAAE,eAAUC,aAAV,EAAyB;AAC9B,YAAI,KAAKV,SAAT,EAAe;AACb,eAAKW,IAAL;AACD;;AACD,aAAKX,SAAL,GAAYY,WAAW,CAAC,KAAKX,kBAAL,CAAwBY,IAAxB,CAA6B,IAA7B,CAAD,EAAqCH,aAAa,GAAG,IAArD,CAAvB;AACD,OAnBM;AAqBPC,MAAAA,IAAI,EAAE,gBAAW;AACf,YAAI,KAAKX,SAAT,EAAe;AACbc,UAAAA,aAAa,CAAC,KAAKd,SAAN,CAAb;AACA,eAAKA,SAAL,GAAY,IAAZ;AACD;AACF,OA1BM;AA4BPe,MAAAA,QAAQ,EAAE,oBAAW;AACnB,eAAO,CAAC,CAAC,KAAKf,SAAd;AACD,OA9BM;AAgCPgB,MAAAA,IAAI,EAAE,cAAUC,UAAV,EAAsB;AAC1B,aAAK3B,IAAL,GAAY,IAAIC,IAAJ,EAAZ;;AACA,YAAI0B,UAAJ,EAAgB;AACd,eAAKlB,QAAL,GAAgB,KAAKT,IAArB;AACD;AACF;AArCM;AA/BuB,GAAlC;AAvBA4B,EAAAA,EAAE,CAACC,EAAH,CAAMC,QAAN,CAAerC,aAAf,GAA+BA,aAA/B",
+  "sourcesContent": [
+    "/* Watchdog.js \n * \n * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * The Watchdog observes the backend communication and restarts the connection, if\n * the client received to data from the backend within a defined timeout.\n */\nqx.Class.define('cv.io.Watchdog', {\n  extend: qx.core.Object,\n\n  /*\n  ******************************************************\n    CONSTRUCTOR\n  ******************************************************\n  */\n  construct: function() {\n    this.last = Date.now();\n  },\n\n  /*\n  ******************************************************\n    PROPERTIES\n  ******************************************************\n  */\n  properties: {\n    client: {\n      check: 'cv.io.Client',\n      nullable: true,\n      init: null\n    }\n  },\n\n\n  /*\n  ******************************************************\n    MEMBERS\n  ******************************************************\n  */\n  members: {\n    last: null,\n    hardLast: null,\n    __id: null,\n\n    aliveCheckFunction: function () {\n      var now = new Date();\n      if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning()) {\n        return;\n      }\n      this.getClient().getCurrentTransport().restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);\n      this.last = now;\n    },\n\n    start: function (watchdogTimer) {\n      if (this.__id) {\n        this.stop();\n      }\n      this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);\n    },\n\n    stop: function() {\n      if (this.__id) {\n        clearInterval(this.__id);\n        this.__id = null;\n      }\n    },\n\n    isActive: function() {\n      return !!this.__id;\n    },\n\n    ping: function (fullReload) {\n      this.last = new Date();\n      if (fullReload) {\n        this.hardLast = this.last;\n      }\n    }\n  }\n});\n"
+  ]
+}

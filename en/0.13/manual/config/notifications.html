@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/notifications.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RRD introduction &amp; examples" href="rrd_examples.html" />
+    <link rel="prev" title="CometVisu von swiss (Metal)" href="examples/swiss.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#miscellaneous">Miscellaneous</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Notifications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-examples">Further examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rrd_examples.html">RRD introduction &amp; examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hydraulik.html">Instructions for creating an animated hydraulic plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing.html">Customize CometVisu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
+      <li>Notifications</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="notifications">
+<span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Tobias Bräutigam</div>
+<div class="line"><strong>Available since version</strong>: 0.11.0</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">state-notification</span></code> element in the meta-area of the
+configuration allows to create notifications when a new value
+for a widget is uploaded from the backend. These notifications
+can be displayed as a pop-up or as an entry in the
+notification center.</p>
+<p>As soon as there are messages in the notification center, the
+number of messages is displayed at the top right of the browser
+window and in the favicon (in the browser tab). If messages of
+higher priority are underneath, this is indicated by a colored
+background.</p>
+<div class="literal-block-wrapper container" id="id2">
+<div class="code-block-caption"><span class="caption-text">A simple example shows a message in the message center when the living room lamp is on</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;notifications&gt;</span>
+        <span class="nt">&lt;state-notification</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;title-template&gt;</span>Light Livingroom<span class="nt">&lt;/title-template&gt;</span>
+            <span class="nt">&lt;message-template&gt;</span>switched on at {{ time }} o&#39;Clock<span class="nt">&lt;/message-template&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;addresses&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
+            <span class="nt">&lt;/addresses&gt;</span>
+        <span class="nt">&lt;/state-notification&gt;</span>
+    <span class="nt">&lt;/notifications&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> elements used here are exactly the same, as they are used in the widgets.
+In the examples on this page addresses for the openHAB backend are used. An equivalent example for the default
+backend would be: <code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
+</div>
+<p><strong>Explanation:</strong></p>
+<p>Via the <code class="docutils literal notranslate"><span class="pre">address</span></code> element (several are possible) it is specified
+that a message is generated for incoming status updates for this
+address. A message consists of a title and the message content. The two
+elements <code class="docutils literal notranslate"><span class="pre">title-template</span></code> and <code class="docutils literal notranslate"><span class="pre">message-template</span></code> determine the
+content of the two message parts. The templates are
+<a class="reference external" href="'https://github.com/janl/mustache.js">mustache</a> templates, where
+specific placeholders can be placed anywhere in the text. The following
+placeholders are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Content</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">address</span></code></td>
+<td>Address from which the status update came</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
+<td>Value of the status update</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">date</span></code></td>
+<td>Date of receipt</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">time</span></code></td>
+<td>Time of receipt</td>
+</tr>
+</tbody>
+</table>
+<p>The example would generate the following message:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Light Livingroom
+switched on at 12.45 o&#39;Clock
+</pre></div>
+</div>
+<p>Via <code class="docutils literal notranslate"><span class="pre">target=&quot;notificationCenter&quot;</span></code> it is determined that this
+notification will be displayed in the message center at the left
+edge of the visu. Another possible value would be <code class="docutils literal notranslate"><span class="pre">popup</span></code> to
+display the message as a popup.</p>
+<p><code class="docutils literal notranslate"><span class="pre">unique=&quot;true&quot;</span></code> specifies that the message will be displayed only
+once, and only if the value of the status update equals <code class="docutils literal notranslate"><span class="pre">&lt;condition&gt;</span></code>
+set <code class="docutils literal notranslate"><span class="pre">ON</span></code>, it means the message is displayed when the lamp is
+turned on, when it is turned off, the message is automatically deleted.</p>
+<div class="section" id="explanation-of-the-attributes-in-the-state-notification-element">
+<h3>Explanation of the attributes in the state-notification element<a class="headerlink" href="#explanation-of-the-attributes-in-the-state-notification-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="8">state-notification</td>
+<td>name</td>
+<td>string</td>
+<td>Name is required when unique=true</td>
+</tr>
+<tr class="row-even"><td>target</td>
+<td><em>popup</em>, <em>notificationCenter</em> or <em>speech</em></td>
+<td><ul class="first last simple">
+<li><em>popup</em>: Show message as popup</li>
+<li><em>notificationCenter</em>: Show message in notification center</li>
+<li><em>speech</em>: Say message with text-to-speech</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>unique</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Show only one message for this update (name is required)</td>
+</tr>
+<tr class="row-even"><td>deletable</td>
+<td><em>true</em> or <em>false</em></td>
+<td>User can delete this message</td>
+</tr>
+<tr class="row-odd"><td>skip-initial</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Ignore inital state update</td>
+</tr>
+<tr class="row-even"><td>severity</td>
+<td><em>urgent</em>, <em>high</em>, <em>normal</em> or <em>low</em></td>
+<td>Messages with higher priority are marked with different colors</td>
+</tr>
+<tr class="row-odd"><td>icon</td>
+<td>string</td>
+<td>Show this icon with the message.</td>
+</tr>
+<tr class="row-even"><td>icon-classes</td>
+<td>string</td>
+<td>Additional CSS-classes to customize the icon.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="further-examples">
+<h2>Further examples<a class="headerlink" href="#further-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complex-example-with-mapping">
+<h3>Complex example with mapping<a class="headerlink" href="#complex-example-with-mapping" title="Permalink to this headline">¶</a></h3>
+<div class="literal-block-wrapper container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Complex example with notifications for movements incl. Mapping</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Floor OG<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Kitchen<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Dining room<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+        ...
+    <span class="nt">&lt;/mappings&gt;</span>
+    ...
+    <span class="nt">&lt;notifications&gt;</span>
+        <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span> <span class="na">severity=</span><span class="s">&quot;high&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;title-template&gt;</span>motion alarm<span class="nt">&lt;/title-template&gt;</span>
+            <span class="nt">&lt;message-template&gt;</span>motion detected: {{ address }}, {{ time }}<span class="nt">&lt;/message-template&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
+            <span class="nt">&lt;/addresses&gt;</span>
+        <span class="nt">&lt;/state-notification&gt;</span>
+    <span class="nt">&lt;/notifications&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This example shows a notification when one of the motion detectors
+provides a movement with high priority (<code class="docutils literal notranslate"><span class="pre">severity=&quot;high&quot;</span></code>,
+turns orange).</p>
+<p>To bring the somewhat cryptic address name into a readable
+format, a <a class="reference internal" href="mapping.html#mapping"><span class="std std-ref">Mapping</span></a> is used. If the motion
+detector named <em>Motion_FF_Corridor</em> now signals a movement,
+the message would have the following content:</p>
+<div class="figure align-center" id="id4">
+<img alt="../_images/nachrichten_zentrale.png" src="../_images/nachrichten_zentrale.png" />
+<p class="caption"><span class="caption-text">Example of a message in the message center</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="speech">
+<h3>Speech<a class="headerlink" href="#speech" title="Permalink to this headline">¶</a></h3>
+<div class="literal-block-wrapper container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Output of the message via the text-to-speech engine of the browser</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;mappings&gt;</span>
+            <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Floor OG<span class="nt">&lt;/entry&gt;</span>
+                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Kitchen<span class="nt">&lt;/entry&gt;</span>
+                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Dining room<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;/mapping&gt;</span>
+            ...
+        <span class="nt">&lt;/mappings&gt;</span>
+        ...
+        <span class="nt">&lt;notifications&gt;</span>
+            <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;speech&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;message-template&gt;</span>Motion at {{ address }}<span class="nt">&lt;/message-template&gt;</span>
+                <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+                <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
+                <span class="nt">&lt;/addresses&gt;</span>
+            <span class="nt">&lt;/state-notification&gt;</span>
+        <span class="nt">&lt;/notifications&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>This example generates speech output via the text-to-speech engine
+built into modern browsers. In this case, if one of the motion
+detectors identified by the three <code class="docutils literal notranslate"><span class="pre">address</span></code> entries returns <code class="docutils literal notranslate"><span class="pre">ON</span></code>,
+the following message is output.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Motion at Floor OG
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples/swiss.html" class="btn btn-neutral float-left" title="CometVisu von swiss (Metal)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rrd_examples.html" class="btn btn-neutral float-right" title="RRD introduction &amp; examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

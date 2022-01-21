@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/structure/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "pane",
+    "__container",
+    "ui",
+    "Widget",
+    "__pane",
+    "getContentElement",
+    "setStyle",
+    "members",
+    "applyStructure",
+    "progressive",
+    "Error",
+    "getPane",
+    "destruct",
+    "dispose",
+    "structure",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sCAAhB,EACA;AACEC,IAAAA,IAAI,EAAS,UADf;AAEEC,IAAAA,MAAM,EAAOP,EAAE,CAACQ,IAAH,CAAQC,MAFvB;;AAIE;AACF;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EACZ;AACE,4CADF,CAGE;;AACA,UAAI,CAAEA,IAAN,EACA;AACE,aAAKC,SAAL,GAAmB,IAAIZ,EAAE,CAACa,EAAH,CAAML,IAAN,CAAWM,MAAf,EAAnB;AACA,aAAKC,SAAL,GAAc,KAAKH,SAAnB;AACD,OAJD,MAMA;AACE,aAAKA,SAAL,GAAmB,IAAnB;AACA,aAAKG,SAAL,GAAcJ,IAAd;AACD;;AAED,WAAKI,SAAL,CAAYC,iBAAZ,GAAgCC,QAAhC,CAAyC,WAAzC,EAAsD,MAAtD;AACD,KA9BH;AAgCEC,IAAAA,OAAO,EACP;AAEEN,MAAAA,SAAW,EAAG,IAFhB;AAGEG,MAAAA,SAAM,EAAG,IAHX;;AAKE;AACJ;AACA;AACA;AACA;AACA;AACA;AACII,MAAAA,cAAc,EAAG,wBAASC,WAAT,EACjB;AACE,cAAM,IAAIC,KAAJ,CAAU,8BAAV,CAAN;AACD,OAfH;;AAkBE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,OAAO,EAAG,mBACV;AACE,eAAO,KAAKP,SAAZ;AACD;AA1BH,KAjCF;AA8DEQ,IAAAA,QAAQ,EAAG,oBACX;AACE,UAAI,KAAKX,SAAT,EACA;AACE,aAAKA,SAAL,CAAiBY,OAAjB;AACD;;AAED,WAAKZ,SAAL,GAAmB,KAAKG,SAAL,GAAc,IAAjC;AACD;AAtEH,GADA;AArBAf,EAAAA,EAAE,CAACa,EAAH,CAAMO,WAAN,CAAkBK,SAAlB,CAA4BC,QAA5B,CAAqCvB,aAArC,GAAqDA,aAArD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Abstract structure definition for Progressive\n */\nqx.Class.define(\"qx.ui.progressive.structure.Abstract\",\n{\n  type       : \"abstract\",\n  extend     : qx.core.Object,\n\n  /**\n   * The abstract structure for use by Progressive.  It defines the pane\n   * container in which items are progressively rendered.\n   *\n   * @param pane {qx.ui.core.Widget|null}\n   *   The container to use as the pane, applied to the Progressive\n   *   structure.  If null, a qx.ui.core.Widget will be instantiated for\n   *   use as the pane.\n   */\n  construct : function(pane)\n  {\n    this.base(arguments);\n\n    // If no pane was specified. Create one.\n    if (! pane)\n    {\n      this.__container = new qx.ui.core.Widget();\n      this.__pane = this.__container;\n    }\n    else\n    {\n      this.__container = null;\n      this.__pane = pane;\n    }\n\n    this.__pane.getContentElement().setStyle(\"overflowY\", \"auto\");\n  },\n\n  members :\n  {\n\n    __container : null,\n    __pane : null,\n\n    /**\n     * Apply the structure typically defined in the constructor to the\n     * Progressive.\n     *\n     * @param progressive {qx.ui.progressive.Progressive}\n     *   The Progressive to which the structure is to be applied.\n     */\n    applyStructure : function(progressive)\n    {\n      throw new Error(\"applyStructure() is abstract\");\n    },\n\n\n    /**\n     * Get the pane in which this Progressive renders.\n     *\n     * @return {qx.ui.core.Widget}\n     */\n    getPane : function()\n    {\n      return this.__pane;\n    }\n  },\n\n  destruct : function()\n  {\n    if (this.__container)\n    {\n      this.__container.dispose();\n    }\n\n    this.__container = this.__pane = null;\n  }\n});\n"
+  ]
+}

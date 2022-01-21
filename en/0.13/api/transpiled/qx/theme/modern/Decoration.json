@@ -1,0 +1,52 @@
+{
+  "className": "qx.theme.modern.Decoration",
+  "packageName": "qx.theme.modern",
+  "name": "Decoration",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 0
+      },
+      "end": {
+        "line": 1107,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The modern decoration theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/decoration/Modern/toolbar/toolbar-part.gif"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "aliases": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2
+      },
+      "end": {
+        "line": 38,
+        "column": 3
+      }
+    },
+    "aliasMap": {
+      "decoration": "qx/decoration/Modern"
+    }
+  },
+  "descendants": []
+}

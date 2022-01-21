@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation mittels Docker-Container &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/docker.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Installation auf einem Ubuntu System mit openHAB und Docker" href="docker_openhab.html" />
+    <link rel="prev" title="Installation auf einem Debian System mit openHAB" href="openhab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation mittels Docker-Container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#versionen">Versionen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#einrichtung">Einrichtung</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#umgebungsvariablen-environment">Umgebungsvariablen (environment)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#volumes">Volumes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
+      <li>Installation mittels Docker-Container</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="installation-mittels-docker-container">
+<span id="docker"></span><h1>Installation mittels Docker-Container<a class="headerlink" href="#installation-mittels-docker-container" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Vom CometVisu Projekt werden offizielle Docker-Container bereit gestellt, die
+über DockerHub unter <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu/">cometvisu/cometvisu</a>
+bezogen werden können.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Die Installation des Docker-Containers wird - am Beispiel eines Raspberry
+Pi - auch im Tutorial
+<a class="reference internal" href="../tutorial/rpi_cometvisu.html#rpi-tutorial-cometvisu-in-docker"><span class="std std-ref">Raspberry Pi: CometVisu in Docker installieren</span></a>
+beschrieben.</p>
+</div>
+<div class="section" id="versionen">
+<h2>Versionen<a class="headerlink" href="#versionen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Als <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu/tags/">Tags</a> stehen die
+neuesten Releases unter ihrem Release-Namen zur Verfügung, so wie unter dem
+Tag <code class="docutils literal notranslate"><span class="pre">latest</span></code> das jeweils aktuellste Release.</p>
+<p>Die aktuellen Entwicklungsversionen können unter <code class="docutils literal notranslate"><span class="pre">testing-&lt;Datum&gt;</span></code> bezogen
+werden, so wie <code class="docutils literal notranslate"><span class="pre">testing</span></code> alleine, dass auf die jeweils aktuellste
+Entwicklungsversion zeigt. Wenn im Entwicklungsprozess ein neuer Pull-Request
+gemergt wird, so wird im Anschluss automatisch ein neuer Docker-Container
+gebaut und unter dem aktuellen Datum abgelegt. Wenn ein Tag für dieses Datum
+noch nicht existiert, wird dieses angelegt, und wenn das Tag bereits existiert,
+so wird dieses mit dem neu erstellten Container überschrieben.</p>
+</div>
+<div class="section" id="einrichtung">
+<h2>Einrichtung<a class="headerlink" href="#einrichtung" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="umgebungsvariablen-environment">
+<span id="dockerenvironment"></span><h3>Umgebungsvariablen (environment)<a class="headerlink" href="#umgebungsvariablen-environment" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Der Container wird über Umgebungsvariablen grundsätzlich konfiguriert.
+Zur Verfügung stehen:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="26%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Default</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>KNX_INTERFACE</td>
+<td><code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.1:3700</span></code></td>
+<td>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der
+<code class="docutils literal notranslate"><span class="pre">knxd</span></code> nicht geladen.</td>
+</tr>
+<tr class="row-odd"><td>KNX_PA</td>
+<td><code class="docutils literal notranslate"><span class="pre">1.1.238</span></code></td>
+<td>Physikalische Schnittstelle (PA) für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</td>
+</tr>
+<tr class="row-even"><td>KNXD_PARAMETERS</td>
+<td><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">-d/var/log/eibd.log</span> <span class="pre">-c</span></code></td>
+<td>Weitere Aufruf-Parameter für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</td>
+</tr>
+<tr class="row-odd"><td>CGI_URL_PATH</td>
+<td><code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code></td>
+<td>URL-Prefix um die <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> Ressourcen zu lokalisieren.</td>
+</tr>
+<tr class="row-even"><td>BACKEND_PROXY_SOURCE</td>
+<td>&#160;</td>
+<td>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> für das
+openHAB Backend.</td>
+</tr>
+<tr class="row-odd"><td>BACKEND_PROXY_TARGET</td>
+<td>&#160;</td>
+<td>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
+z.B. <code class="docutils literal notranslate"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das
+openHAB Backend.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="klassisch-knxd-mit-eibread-cgi-eibwrite-cgi">
+<h4>Klassisch (<code class="docutils literal notranslate"><span class="pre">knxd</span></code> mit <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code>/<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>)<a class="headerlink" href="#klassisch-knxd-mit-eibread-cgi-eibwrite-cgi" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Für das klassische Backend läuft ein <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, der über die <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> und
+<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code> Befehle das Interface der CometVisu zu dem KNX-Bus bereit
+stellt.</p>
+<p>Am wichtigsten ist die Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code>, die an die eigenen
+Bedingungen angepasst werden muss um auf das KNX Interface zugreifen zu können.
+Die Dokumentation für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code> in der zur Zeit verwendeten Version 0.0.5.1
+kann dem
+<a class="reference external" href="https://github.com/knxd/knxd/wiki/Command-line-parameters/e49c9d1a2a81cb692cc88683920108f032d2b9bc">knxd-Wiki</a>
+entnommen werden.</p>
+</div>
+<div class="section" id="openhab">
+<h4>OpenHAB<a class="headerlink" href="#openhab" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Beispiel-Konfiguration für das OpenHAB Backend (wenn es auf einem Server mit
+der Addresse <code class="docutils literal notranslate"><span class="pre">192.168.0.10</span></code> läuft):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>
+<span class="nv">CGI_URL_PATH</span><span class="o">=</span>/rest/
+<span class="nv">BACKEND_PROXY_SOURCE</span><span class="o">=</span>/rest
+<span class="nv">BACKEND_PROXY_TARGET</span><span class="o">=</span>http://192.168.0.10:8080/rest
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="volumes">
+<h3>Volumes<a class="headerlink" href="#volumes" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="section" id="konfigurations-dateien">
+<h4>Konfigurations-Dateien<a class="headerlink" href="#konfigurations-dateien" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Um über den Restart oder die Neuerstellung von Containern hinweg Daten persistent
+abzulegen zu können müssen diese in einem Volume liegen. Für die Config-Dateien
+wird hierzu das Verzeichnis <code class="docutils literal notranslate"><span class="pre">/var/www/html/config</span></code> (bis einschließlich
+Release 0.10.2) bzw. <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> (ab Release 0.11) als
+Volume exportiert.</p>
+</div>
+<div class="section" id="rrd-diagram-plugin">
+<h4>RRD (Diagram-Plugin)<a class="headerlink" href="#rrd-diagram-plugin" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Für das <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram-Plugin</span></a> können die Zeitserien als RRD-Dateien
+bereit gestellt werden. Diese müssen unter dem Pfad <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> als
+Mount eingebunden werden. Die RRD-Dateien selbst müssen außerhalb befüllt
+und aktualisiert werden, z.B. von einem anderen Container der dieses Volume
+gleichzeitig mit einbindet.</p>
+</div>
+</div>
+<div class="section" id="ports">
+<h3>Ports<a class="headerlink" href="#ports" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Der Container exportiert den Port 80 für den Web-Server.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="openhab.html" class="btn btn-neutral float-left" title="Installation auf einem Debian System mit openHAB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker_openhab.html" class="btn btn-neutral float-right" title="Installation auf einem Ubuntu System mit openHAB und Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

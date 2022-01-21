@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/dispatch/DomBubbling.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "dispatch",
+    "AbstractBubbling",
+    "statics",
+    "PRIORITY",
+    "Registration",
+    "PRIORITY_NORMAL",
+    "members",
+    "_getParent",
+    "target",
+    "parentNode",
+    "canDispatchEvent",
+    "type",
+    "nodeType",
+    "undefined",
+    "getBubbles",
+    "defer",
+    "addDispatcher",
+    "DomBubbling"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,QAAT,CAAkBC,gBAD7B;AAIEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,QAAQ,EAAGX,EAAE,CAACO,KAAH,CAASK,YAAT,CAAsBC;AAFnC,KALF;AAWEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,UAAU,EAAG,oBAASC,MAAT,EAAiB;AAC5B,eAAOA,MAAM,CAACC,UAAd;AACD,OAJH;AAOE;AACAC,MAAAA,gBAAgB,EAAG,0BAASF,MAAT,EAAiBT,KAAjB,EAAwBY,IAAxB,EAA8B;AAC/C,eAAOH,MAAM,CAACI,QAAP,KAAoBC,SAApB,IAAiCd,KAAK,CAACe,UAAN,EAAxC;AACD;AAVH,KAZF;AA0BEC,IAAAA,KAAK,EAAG,eAASb,OAAT,EAAkB;AACxBV,MAAAA,EAAE,CAACO,KAAH,CAASK,YAAT,CAAsBY,aAAtB,CAAoCd,OAApC;AACD;AA5BH,GADA;AAtBAV,EAAAA,EAAE,CAACO,KAAH,CAASC,QAAT,CAAkBiB,WAAlB,CAA8BtB,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Event dispatcher for all bubbling events on DOM elements.\n */\nqx.Class.define(\"qx.event.dispatch.DomBubbling\",\n{\n  extend : qx.event.dispatch.AbstractBubbling,\n\n\n  statics :\n  {\n    /** @type {Integer} Priority of this dispatcher */\n    PRIORITY : qx.event.Registration.PRIORITY_NORMAL\n  },\n\n\n  members :\n  {\n    // overridden\n    _getParent : function(target) {\n      return target.parentNode;\n    },\n\n\n    // interface implementation\n    canDispatchEvent : function(target, event, type) {\n      return target.nodeType !== undefined && event.getBubbles();\n    }\n  },\n\n\n  defer : function(statics) {\n    qx.event.Registration.addDispatcher(statics);\n  }\n});\n"
+  ]
+}

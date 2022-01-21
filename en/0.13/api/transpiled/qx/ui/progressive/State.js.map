@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/State.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "initialState",
+    "setProgressive",
+    "progressive",
+    "setModel",
+    "model",
+    "setPane",
+    "pane",
+    "setBatchSize",
+    "batchSize",
+    "setRendererData",
+    "rendererData",
+    "setUserData",
+    "userData",
+    "properties",
+    "nullable",
+    "destruct",
+    "ui",
+    "State"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAON,EAAE,CAACO,IAAH,CAAQC,MADvB;;AAIE;AACF;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,YAAT,EACZ;AACE;AAEA,WAAKC,cAAL,CAAoBD,YAAY,CAACE,WAAjC;AACA,WAAKC,QAAL,CAAcH,YAAY,CAACI,KAA3B;AACA,WAAKC,OAAL,CAAaL,YAAY,CAACM,IAA1B;AACA,WAAKC,YAAL,CAAkBP,YAAY,CAACQ,SAA/B;AACA,WAAKC,eAAL,CAAqBT,YAAY,CAACU,YAAlC;AACA,WAAKC,WAAL,CAAiBX,YAAY,CAACY,QAA9B;AACD,KAhCH;AAmCEC,IAAAA,UAAU,EACV;AACE;AACJ;AACA;AACA;AACIX,MAAAA,WAAW,EAAM;AAAEY,QAAAA,QAAQ,EAAG;AAAb,OALnB;;AAOE;AACJ;AACA;AACA;AACIV,MAAAA,KAAK,EAAY;AAAEU,QAAAA,QAAQ,EAAG;AAAb,OAXnB;;AAaE;AACJ;AACA;AACA;AACIR,MAAAA,IAAI,EAAa;AAAEQ,QAAAA,QAAQ,EAAG;AAAb,OAjBnB;;AAmBE;AACJ;AACA;AACA;AACIN,MAAAA,SAAS,EAAQ,EAvBnB;;AAyBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIE,MAAAA,YAAY,EAAK,EAtCnB;;AAwCE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIE,MAAAA,QAAQ,EAAS;AAjDnB,KApCF;AAyFEG,IAAAA,QAAQ,EAAG,oBACX;AACE;AACA,WAAKd,cAAL,CAAoB,IAApB;AACA,WAAKE,QAAL,CAAc,IAAd;AACA,WAAKE,OAAL,CAAa,IAAb;AACD;AA/FH,GADA;AArBAf,EAAAA,EAAE,CAAC0B,EAAH,CAAMd,WAAN,CAAkBe,KAAlB,CAAwBxB,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * State of rendering by Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.State\",\n{\n  extend     : qx.core.Object,\n\n\n  /**\n   * @param initialState {Map}\n   *   Map containing these members:\n   *   <dl>\n   *     <dt>progressive</dt>\n   *       <dd>see {@link #progressive}</dd>\n   *     <dt>model</dt>\n   *       <dd>see {@link #model}</dd>\n   *     <dt>pane</dt>\n   *       <dd>see {@link #pane}</dd>\n   *     <dt>batchSize</dt>\n   *       <dd>see {@link #batchSize}</dd>\n   *     <dt>rendererData</dt>\n   *       <dd>see {@link #rendererData}</dd>\n   *     <dt>userData</dt>\n   *       <dd>see {@link #userData}</dd>\n   *   </dl>\n   */\n  construct : function(initialState)\n  {\n    this.base(arguments);\n\n    this.setProgressive(initialState.progressive);\n    this.setModel(initialState.model);\n    this.setPane(initialState.pane);\n    this.setBatchSize(initialState.batchSize);\n    this.setRendererData(initialState.rendererData);\n    this.setUserData(initialState.userData);\n  },\n\n\n  properties :\n  {\n    /**\n     * The {@link qx.ui.progressive.Progressive} with which this {@link\n     * State} is associated. This property should be treated as read-only.\n     */\n    progressive    : { nullable : true },\n\n    /**\n     * The data model being used. This property should be treated as\n     * read-only.\n     */\n    model          : { nullable : true },\n\n    /**\n     * The widget in which the element data should be rendered.  This property\n     * should be treated as read-only.\n     */\n    pane           : { nullable : true },\n\n    /**\n     * How many elements are rendered at a time, before yielding to the\n     * browser.  This property should be treated as read-only.\n     */\n    batchSize      : { },\n\n    /**\n     * Add a place for renderers' private data.  If multiple renderers are\n     * being used, each renderer should place its own private data in the the\n     * state object area reserved for that renderer's use:\n     * state.getRendererData()[element.renderer].  This property should be\n     * accessed only by renderers, and all elements of the array other than a\n     * renderer's own element should be treated as read-only.\n     *\n     * IMPORTANT NOTE:  It is the renderer's responsibility to clean up its\n     *                  own mess.  If the renderer places data here, it should\n     *                  also add an event listener for \"renderEnd\" so that it\n     *                  can clean up.\n     */\n    rendererData   : { },\n\n    /**\n     * User data.  This is useful, for example, by communication between\n     * the renderStart event listener and the renderers.\n     *\n     * IMPORTANT NOTE:  It is the user's responsibility to clean up his\n     *                  own mess.  If you place data here, you should\n     *                  also add an event listener for \"renderEnd\" to\n     *                  dispose any objects you placed here.\n     */\n    userData       : { }\n  },\n\n\n  destruct : function()\n  {\n    // Remove references to other objects\n    this.setProgressive(null);\n    this.setModel(null);\n    this.setPane(null);\n  }\n});\n"
+  ]
+}

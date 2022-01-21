@@ -1,0 +1,277 @@
+{
+  "className": "qx.ui.form.IRange",
+  "packageName": "qx.ui.form",
+  "name": "IRange",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 129,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Form interface for all widgets which deal with ranges. The spinner is a good\n example for a range using widget.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "setMinimum": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the minimum value of the range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "min {Number} The minimum.",
+            "paramName": "min",
+            "description": " The minimum.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMinimum": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the current set minimum of the range.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current set minimum.",
+            "type": "Number",
+            "description": " The current set minimum."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setMaximum": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the maximum value of the range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "max {Number} The maximum.",
+            "paramName": "max",
+            "description": " The maximum.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMaximum": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the current set maximum of the range.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current set maximum.",
+            "type": "Number",
+            "description": " The current set maximum."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setSingleStep": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value for single steps in the range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "step {Number} The value of the step.",
+            "paramName": "step",
+            "description": " The value of the step.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSingleStep": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value which will be stepped in a single step in the range.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current value for single steps.",
+            "type": "Number",
+            "description": " The current value for single steps."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setPageStep": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value for page steps in the range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "step {Number} The value of the step.",
+            "paramName": "step",
+            "description": " The value of the step.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPageStep": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value which will be stepped in a page step in the range.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current value for page steps.",
+            "type": "Number",
+            "description": " The current value for page steps."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

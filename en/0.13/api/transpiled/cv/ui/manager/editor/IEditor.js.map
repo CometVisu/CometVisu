@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/IEditor.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "file",
+    "check",
+    "nullable",
+    "apply",
+    "external",
+    "init",
+    "ready",
+    "event",
+    "statics",
+    "TITLE",
+    "members",
+    "save",
+    "getCurrentContent",
+    "cv",
+    "ui",
+    "manager",
+    "editor",
+    "IEditor"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,8BAApB,EAAoD;AAClD;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,IAAI,EAAE;AACJC,QAAAA,KAAK,EAAE,8BADH;AAEJC,QAAAA,QAAQ,EAAE,IAFN;AAGJC,QAAAA,KAAK,EAAE;AAHH,OADI;;AAOV;AACJ;AACA;AACIC,MAAAA,QAAQ,EAAE;AACRH,QAAAA,KAAK,EAAE,SADC;AAERI,QAAAA,IAAI,EAAE;AAFE,OAVA;;AAeV;AACJ;AACA;AACIC,MAAAA,KAAK,EAAE;AACLL,QAAAA,KAAK,EAAE,SADF;AAELI,QAAAA,IAAI,EAAE,IAFD;AAGLE,QAAAA,KAAK,EAAE;AAHF;AAlBG,KANsC;;AA+BlD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAAE;AADA,KApCyC;;AAwClD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,IAAI,EAAE,gBAAY,CAAE,CADb;AAGPC,MAAAA,iBAAiB,EAAE,6BAAY,CAAE;AAH1B;AA7CyC,GAApD;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,MAAd,CAAqBC,OAArB,CAA6BrB,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/**\n * Interface all file editors must implement.\n */\nqx.Interface.define('cv.ui.manager.editor.IEditor', {\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    file: {\n      check: 'cv.ui.manager.model.FileItem',\n      nullable: true,\n      apply: '_loadFile'\n    },\n\n    /**\n     * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file\n     */\n    external: {\n      check: 'Boolean',\n      init: false\n    },\n\n    /**\n     * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready\n     */\n    ready: {\n      check: 'Boolean',\n      init: true,\n      event: 'changeReady'\n    }\n  },\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    TITLE: ''\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    save: function () {},\n\n    getCurrentContent: function () {}\n  }\n});\n"
+  ]
+}

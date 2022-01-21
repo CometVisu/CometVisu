@@ -1,0 +1,947 @@
+{
+  "className": "qx.ui.website.Carousel",
+  "packageName": "qx.ui.website",
+  "name": "Carousel",
+  "superClass": "qx.ui.website.Widget",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 683,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A carousel is a widget which can switch between several sub pages {@link qx.ui.website.Widget}.\n A page switch is triggered by a swipe to left, for next page, or a swipe to right for\n previous page. Pages can also be switched by dragging.\n A carousel shows by default a pagination indicator at the bottom of the carousel.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Transform"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.event.Swipe"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.event.GestureHandler"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.event.Track"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_config": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "carousel": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method which converts the current collection into a collection of\n Carousel widgets.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Carousel} A new carousel collection.",
+            "type": "qx.ui.website.Carousel",
+            "description": " A new carousel collection."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 59,
+        "column": 14
+      },
+      "end": {
+        "line": 61,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__active": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pageContainer": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__scrollContainer": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__paginationLabels": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__startPosLeft": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pagination": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_ie9": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__blocked": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ]
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
+            "type": "qx.ui.website.Widget",
+            "description": " The widget collection for chaining."
+          }
+        ]
+      }
+    },
+    "setActive": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 149,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets one of the Carousel's pages as active, meaning it will be\n visible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qxWeb} The page to be activated",
+            "paramName": "page",
+            "description": " The page to be activated",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getActive": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently active (i.e. visible) page</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The active page",
+            "type": "qxWeb",
+            "description": " The active page"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "nextPage": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 185,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the carousel to the next page.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Carousel} Self instance for chaining",
+            "type": "qx.ui.website.Carousel",
+            "description": " Self instance for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "previousPage": {
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4
+        },
+        "end": {
+          "line": 212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the carousel to the previous page.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Carousel} Self instance for chaining",
+            "type": "qx.ui.website.Carousel",
+            "description": " Self instance for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addPage": {
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4
+        },
+        "end": {
+          "line": 251,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a page to the Carousel. Updates the pagination,\n scroll position, active property and the sizing.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qxWeb} The added child.",
+            "paramName": "child",
+            "description": " The added child.",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removePage": {
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4
+        },
+        "end": {
+          "line": 286,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a page from the Carousel. Updates the pagination,\n scroll position, active property and the sizing.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qxWeb} The removed child.",
+            "paramName": "child",
+            "description": " The removed child.",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_update": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4
+        },
+        "end": {
+          "line": 340,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the order, scroll position and pagination.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updateOrder": {
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4
+        },
+        "end": {
+          "line": 391,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the CSS order property of the flexbox layout.\n The active page should be the second in order with a order property of '0'.\n The page left to the active has the order property set to '-1' and is the\n only one on the left side. All other pages get increasing order numbers and\n are aligned on the right side.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The scroll direction, either 'left' or 'right'.",
+            "type": "String",
+            "description": " The scroll direction, either 'left' or 'right'."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updateWidth": {
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4
+        },
+        "end": {
+          "line": 420,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the width of the container and the pages.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onTrackStart": {
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 4
+        },
+        "end": {
+          "line": 439,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for trackstart. It saves the initial scroll position and\n cancels any running animation.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onTrack": {
+      "location": {
+        "start": {
+          "line": 446,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Track handler which updates the scroll position.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The track event.",
+            "paramName": "e",
+            "description": " The track event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onTrackEnd": {
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4
+        },
+        "end": {
+          "line": 498,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>TrackEnd handler for enabling the scroll events.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onSwipe": {
+      "location": {
+        "start": {
+          "line": 506,
+          "column": 4
+        },
+        "end": {
+          "line": 518,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Swipe handler which triggers page changes based on the\n velocity and the direction.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The swipe event.",
+            "paramName": "e",
+            "description": " The swipe event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createPaginationLabel": {
+      "location": {
+        "start": {
+          "line": 525,
+          "column": 4
+        },
+        "end": {
+          "line": 531,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for a paginationLabel.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} the created pagination label.",
+            "type": "qxWeb",
+            "description": " the created pagination label."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onPaginationLabelTap": {
+      "location": {
+        "start": {
+          "line": 538,
+          "column": 4
+        },
+        "end": {
+          "line": 569,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the tap on pagination labels and changes to the desired page.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The tap event.",
+            "paramName": "e",
+            "description": " The tap event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updatePagination": {
+      "location": {
+        "start": {
+          "line": 577,
+          "column": 4
+        },
+        "end": {
+          "line": 586,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the pagination indicator of this carousel.\n Adds the 'active' CSS class to the currently visible page's\n pagination button.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onResize": {
+      "location": {
+        "start": {
+          "line": 592,
+          "column": 4
+        },
+        "end": {
+          "line": 598,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resize handler. It updates the sizes, snap points and scroll position.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_translateTo": {
+      "location": {
+        "start": {
+          "line": 605,
+          "column": 4
+        },
+        "end": {
+          "line": 617,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Animates using CSS translations to the given left position.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "left {Number} The new left position",
+            "paramName": "left",
+            "description": " The new left position",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_setOrder": {
+      "location": {
+        "start": {
+          "line": 625,
+          "column": 4
+        },
+        "end": {
+          "line": 630,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the given order on the given collection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {qxWeb} The collection to set the css property.",
+            "paramName": "col",
+            "description": " The collection to set the css property.",
+            "type": "qxWeb"
+          },
+          {
+            "name": "@param",
+            "body": "value {Number|String} The value for the order property",
+            "paramName": "value",
+            "description": " The value for the order property",
+            "type": [
+              "Number",
+              "String"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getOrder": {
+      "location": {
+        "start": {
+          "line": 638,
+          "column": 4
+        },
+        "end": {
+          "line": 644,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the order css property of the given collection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {qxWeb} The collection to check.",
+            "paramName": "col",
+            "description": " The collection to check.",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The order as number.",
+            "type": "Number",
+            "description": " The order as number."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getPages": {
+      "location": {
+        "start": {
+          "line": 651,
+          "column": 4
+        },
+        "end": {
+          "line": 653,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a collection of all pages.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} All pages.",
+            "type": "qxWeb",
+            "description": " All pages."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getPositionLeft": {
+      "location": {
+        "start": {
+          "line": 660,
+          "column": 4
+        },
+        "end": {
+          "line": 664,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current left position.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The position in px.",
+            "type": "Number",
+            "description": " The position in px."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 668,
+          "column": 4
+        },
+        "end": {
+          "line": 677,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget",
+        "qx.core.IDisposable"
+      ]
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 680,
+        "column": 9
+      },
+      "end": {
+        "line": 682,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

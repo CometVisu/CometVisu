@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/layout/Grow.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "layout",
+    "Abstract",
+    "members",
+    "verifyLayoutProperty",
+    "renderLayout",
+    "availWidth",
+    "availHeight",
+    "padding",
+    "children",
+    "_getLayoutChildren",
+    "child",
+    "size",
+    "width",
+    "height",
+    "i",
+    "l",
+    "length",
+    "getSizeHint",
+    "minWidth",
+    "maxWidth",
+    "minHeight",
+    "maxHeight",
+    "left",
+    "top",
+    "_computeSizeHint",
+    "neededWidth",
+    "neededHeight",
+    "Infinity",
+    "Math",
+    "max",
+    "min",
+    "Grow"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * The grow layout stretches all children to the full available size\n * but still respects limits configured by min/max values.\n *\n * It will place all children over each other with the top and left coordinates\n * set to <code>0</code>. The {@link qx.ui.container.Stack} and the\n * {@link qx.ui.core.scroll.ScrollPane} are using this layout.\n *\n * *Features*\n *\n * * Auto-sizing\n * * Respects minimum and maximum child dimensions\n *\n * *Item Properties*\n *\n * None\n *\n * *Example*\n *\n * <pre class=\"javascript\">\n * var layout = new qx.ui.layout.Grow();\n *\n * var w1 = new qx.ui.core.Widget();\n * var w2 = new qx.ui.core.Widget();\n * var w3 = new qx.ui.core.Widget();\n *\n * var container = new qx.ui.container.Composite(layout);\n * container.add(w1);\n * container.add(w2);\n * container.add(w3);\n * </pre>\n *\n * *External Documentation*\n *\n * <a href='https://qooxdoo.org/documentation/#/desktop/layout/grow.md'>\n * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.\n */\nqx.Class.define(\"qx.ui.layout.Grow\",\n{\n  extend : qx.ui.layout.Abstract,\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      LAYOUT INTERFACE\n    ---------------------------------------------------------------------------\n    */\n\n    // overridden\n    verifyLayoutProperty : qx.core.Environment.select(\"qx.debug\",\n    {\n      \"true\" : function(item, name, value) {\n        this.assert(false, \"The property '\"+name+\"' is not supported by the Grow layout!\");\n      },\n\n      \"false\" : null\n    }),\n\n\n    // overridden\n    renderLayout : function(availWidth, availHeight, padding)\n    {\n      var children = this._getLayoutChildren();\n      var child, size, width, height;\n\n      // Render children\n      for (var i=0, l=children.length; i<l; i++)\n      {\n        child = children[i];\n        size = child.getSizeHint();\n\n        width = availWidth;\n        if (width < size.minWidth) {\n          width = size.minWidth;\n        } else if (width > size.maxWidth) {\n          width = size.maxWidth;\n        }\n\n        height = availHeight;\n        if (height < size.minHeight) {\n          height = size.minHeight;\n        } else if (height > size.maxHeight) {\n          height = size.maxHeight;\n        }\n\n        child.renderLayout(padding.left, padding.top, width, height);\n      }\n    },\n\n\n    // overridden\n    _computeSizeHint : function()\n    {\n      var children = this._getLayoutChildren();\n      var child, size;\n      var neededWidth=0, neededHeight=0;\n      var minWidth=0, minHeight=0;\n      var maxWidth=Infinity, maxHeight=Infinity;\n\n      // Iterate over children\n      for (var i=0, l=children.length; i<l; i++)\n      {\n        child = children[i];\n        size = child.getSizeHint();\n\n        neededWidth = Math.max(neededWidth, size.width);\n        neededHeight = Math.max(neededHeight, size.height);\n\n        minWidth = Math.max(minWidth, size.minWidth);\n        minHeight = Math.max(minHeight, size.minHeight);\n\n        maxWidth = Math.min(maxWidth, size.maxWidth);\n        maxHeight = Math.min(maxHeight, size.maxHeight);\n      }\n\n\n      // Return hint\n      return {\n        width : neededWidth,\n        height : neededHeight,\n\n        minWidth : minWidth,\n        minHeight : minHeight,\n\n        maxWidth : maxWidth,\n        maxHeight : maxHeight\n      };\n    }\n  }\n});\n"
+  ]
+}

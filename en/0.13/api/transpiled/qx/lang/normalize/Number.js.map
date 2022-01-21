@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Number.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "EPSILON",
+    "defer",
+    "core",
+    "Environment",
+    "get",
+    "Number",
+    "prototype",
+    "lang",
+    "normalize"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,0BAApB,EAAgD;AAE9CC,IAAAA,OAAO,EAAG;AACRC,MAAAA,OAAO,EAAG;AADF,KAFoC;AAM9CC,IAAAA,KAAK,EAAG,eAASF,OAAT,EACR;AACE,UAAI,CAACL,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,2BAAxB,CAAL,EAA2D;AACzDC,QAAAA,MAAM,CAACC,SAAP,CAAiBN,OAAjB,GAA2BD,OAAO,CAACC,OAAnC;AACD;AACF;AAX6C,GAAhD;AAzBAN,EAAAA,EAAE,CAACa,IAAH,CAAQC,SAAR,CAAkBH,MAAlB,CAAyBR,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2017 The Qooxdoo Project\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Cajus Pollmeier (cajus)\n\n************************************************************************ */\n/**\n * This class is responsible for the normalization of the native 'String' object.\n * It checks if these methods are available and, if not, appends them to\n * ensure compatibility in all browsers.\n * For usage samples, check out the attached links.\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.lang.normalize.Number\", {\n\n  statics : {\n    EPSILON : 2e-52\n  },\n\n  defer : function(statics)\n  {\n    if (!qx.core.Environment.get(\"ecmascript.number.EPSILON\")) {\n      Number.prototype.EPSILON = statics.EPSILON;\n    }\n  }\n});\n"
+  ]
+}

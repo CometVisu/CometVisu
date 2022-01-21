@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/container/Scroll.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "scroll",
+    "AbstractScrollArea",
+    "include",
+    "MContentPadding",
+    "construct",
+    "content",
+    "add",
+    "members",
+    "widget",
+    "getChildControl",
+    "remove",
+    "getChildren",
+    "_getContentPaddingTarget",
+    "container",
+    "Scroll"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MAAX,CAAkBC,kBAD7B;AAEEC,IAAAA,OAAO,EAAG,CAACX,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWI,eAAZ,CAFZ;;AAME;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,OAAT,EACZ;AACE;;AAEA,UAAIA,OAAJ,EAAa;AACX,aAAKC,GAAL,CAASD,OAAT;AACD;AACF,KAvBH;;AA4BE;AACF;AACA;AACA;AACA;AAEEE,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACID,MAAAA,GAAG,EAAG,aAASE,MAAT,EAAiB;AACrB,aAAKC,eAAL,CAAqB,MAArB,EAA6BH,GAA7B,CAAiCE,MAAjC;AACD,OAVH;;AAaE;AACJ;AACA;AACA;AACA;AACIE,MAAAA,MAAM,EAAG,gBAASF,MAAT,EAAiB;AACxB,aAAKC,eAAL,CAAqB,MAArB,EAA6BC,MAA7B,CAAoCF,MAApC;AACD,OApBH;;AAuBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIG,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKF,eAAL,CAAqB,MAArB,EAA6BE,WAA7B,EAAP;AACD,OAjCH;;AAoCE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,wBAAwB,EAAG,oCAAW;AACpC,eAAO,KAAKH,eAAL,CAAqB,MAArB,CAAP;AACD;AA3CH;AAnCF,GADA;AAzDAlB,EAAAA,EAAE,CAACO,EAAH,CAAMe,SAAN,CAAgBC,MAAhB,CAAuBpB,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Container, which allows vertical and horizontal scrolling if the contents is\n * larger than the container.\n *\n * Note that this class can only have one child widget. This container has a\n * fixed layout, which cannot be changed.\n *\n * *Example*\n *\n * Here is a little example of how to use the widget.\n *\n * <pre class='javascript'>\n *   // create scroll container\n *   var scroll = new qx.ui.container.Scroll().set({\n *     width: 300,\n *     height: 200\n *   });\n *\n *   // add a widget which is larger than the container\n *   scroll.add(new qx.ui.core.Widget().set({\n *     width: 600,\n *     minWidth: 600,\n *     height: 400,\n *     minHeight: 400\n *   }));\n *\n *   this.getRoot().add(scroll);\n * </pre>\n *\n * This example creates a scroll container and adds a widget, which is larger\n * than the container. This will cause the container to display vertical\n * and horizontal toolbars.\n *\n * *External Documentation*\n *\n * <a href='http://qooxdoo.org/docs/#desktop/widget/scroll.md' target='_blank'>\n * Documentation of this widget in the qooxdoo manual.</a>\n */\nqx.Class.define(\"qx.ui.container.Scroll\",\n{\n  extend : qx.ui.core.scroll.AbstractScrollArea,\n  include : [qx.ui.core.MContentPadding],\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param content {qx.ui.core.LayoutItem?null} The content widget of the scroll\n   *    container.\n   */\n  construct : function(content)\n  {\n    this.base(arguments);\n\n    if (content) {\n      this.add(content);\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Sets the content of the scroll container. Scroll containers\n     * may only have one child, so it always replaces the current\n     * child with the given one.\n     *\n     * @param widget {qx.ui.core.Widget} Widget to insert\n     */\n    add : function(widget) {\n      this.getChildControl(\"pane\").add(widget);\n    },\n\n\n    /**\n     * Returns the content of the scroll area.\n     *\n     * @param widget {qx.ui.core.Widget} Widget to remove\n     */\n    remove : function(widget) {\n      this.getChildControl(\"pane\").remove(widget);\n    },\n\n\n    /**\n     * Returns the content of the scroll container.\n     *\n     * Scroll containers may only have one child. This\n     * method returns an array containing the child or an empty array.\n     *\n     * @return {Object[]} The child array\n     */\n    getChildren : function() {\n      return this.getChildControl(\"pane\").getChildren();\n    },\n\n\n    /**\n     * Returns the element, to which the content padding should be applied.\n     *\n     * @return {qx.ui.core.Widget} The content padding target.\n     */\n    _getContentPaddingTarget : function() {\n      return this.getChildControl(\"pane\");\n    }\n  }\n});\n"
+  ]
+}

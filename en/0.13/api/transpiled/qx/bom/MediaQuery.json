@@ -1,0 +1,293 @@
+{
+  "className": "qx.bom.MediaQuery",
+  "packageName": "qx.bom",
+  "name": "MediaQuery",
+  "superClass": "qx.event.Emitter",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 0
+      },
+      "end": {
+        "line": 480,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class is to test css media queries. It implements a polyfill for\n window.matchMedia if not supported natively.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 62,
+        "column": 13
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "query {String} the media query to evaluate",
+          "paramName": "query",
+          "description": " the media query to evaluate",
+          "type": "qx.bom.String"
+        }
+      ]
+    }
+  },
+  "events": {
+    "change": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires each time the media query state changes. The event data is a map\n with two keys:\n    <em>query</em>* The media query string\n    <em>matches</em>* A boolean that indicates whether the document\n matches the query</p>"
+          }
+        ]
+      },
+      "name": "change",
+      "type": "Map"
+    }
+  },
+  "statics": {
+    "version": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The media.match.js version</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__mql": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The mediaquery Listener</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "matches": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates if the document currently matches the media query list</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "query": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The mediaquery list to be evaluated</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getQuery": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the query string used to initialize the listener.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The given query string.",
+            "type": "qx.bom.String",
+            "description": " The given query string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isMatching": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Access the matching state of the media query.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the query matches.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the query matches."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__init": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the mediaquery listener</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__changed": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback for mediaqueries changes</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 144,
+        "column": 10
+      },
+      "end": {
+        "line": 479,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

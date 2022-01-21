@@ -1,0 +1,31 @@
+{
+  "className": "qx.theme.simple.Font",
+  "packageName": "qx.theme.simple",
+  "name": "Font",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 57,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo font theme.</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

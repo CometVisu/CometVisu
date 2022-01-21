@@ -1,0 +1,2347 @@
+{
+  "className": "qxl.apiviewer.ui.panels.InfoPanel",
+  "packageName": "qxl.apiviewer.ui.panels",
+  "name": "InfoPanel",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 1241,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.event.GestureHandler"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Attribute"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.event.Native"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "location.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": true,
+  "isStatic": false,
+  "isSingleton": false,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 13
+      },
+      "end": {
+        "line": 50,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Creates an info panel. An info panel shows the information about one item\n type (e.g. for public methods).</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "labelText\n {String} the label text describing the node type.",
+          "paramName": "labelText",
+          "description": " the label text describing the node type.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "icon",
+          "paramName": "icon",
+          "type": ""
+        }
+      ]
+    }
+  },
+  "properties": {
+    "element": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>top level DOM node of the panel</p>"
+          }
+        ]
+      },
+      "name": "element",
+      "propertyType": "new",
+      "apply": "_applyElement",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Element"
+    },
+    "isOpen": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether the info panel is open</p>"
+          }
+        ]
+      },
+      "name": "isOpen",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "docNode": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "name": "docNode",
+      "propertyType": "new",
+      "async": true,
+      "nullable": true,
+      "allowNull": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "_labelText": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_icon": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "getPanelTitle": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the title of the panel</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPanelIcon": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the icon for the panel</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "canDisplayItem": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the panel can display the given item node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dao",
+            "paramName": "dao",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the panel can display the given item node",
+            "type": "Boolean",
+            "description": " Whether the panel can display the given item node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemTypeHtml": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the type HTML string of an item.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the doc node of the currently displayed\n          class",
+            "paramName": "currentClassDocNode",
+            "description": " the doc node of the currently displayed\n          class",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the information about the method.",
+            "type": "String",
+            "description": " the HTML showing the information about the method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemTitleHtml": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the title HTML string of an item.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the doc node of the currently displayed\n          class",
+            "paramName": "currentClassDocNode",
+            "description": " the doc node of the currently displayed\n          class",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the information about the method.",
+            "type": "String",
+            "description": " the HTML showing the information about the method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemTextHtml": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the description text HTML string of an item.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the doc node of the currently displayed\n          class",
+            "paramName": "currentClassDocNode",
+            "description": " the doc node of the currently displayed\n          class",
+            "type": "qxl.apiviewer.dao.Class"
+          },
+          {
+            "name": "@param",
+            "body": "showDetails\n          {Boolean} whether to show the details.",
+            "paramName": "showDetails",
+            "description": " whether to show the details.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the information about the method.",
+            "type": "String",
+            "description": " the HTML showing the information about the method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemTooltip": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemHtml": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the information about a class item. The root\n HTML element must be a table row (&lt;tr&gt;).</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentDocNode",
+            "paramName": "currentDocNode",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "showDetails\n {Boolean} whether to show the details.",
+            "paramName": "showDetails",
+            "description": " whether to show the details.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the information about the method.",
+            "type": "String",
+            "description": " the HTML showing the information about the method."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "itemHasDetails": {
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether a class item has details. This method is abstract. Sub\n classes must override it.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the doc node of the currently displayed\n          class",
+            "paramName": "currentClassDocNode",
+            "description": " the doc node of the currently displayed\n          class",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the class item has details.",
+            "type": "Boolean",
+            "description": " whether the class item has details."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__encodeObject": {
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4
+        },
+        "end": {
+          "line": 246,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getPanelHtml": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4
+        },
+        "end": {
+          "line": 265,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the HTML fragment of the info panel</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "viewer",
+            "paramName": "viewer",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment of the info panel",
+            "type": "String",
+            "description": " HTML fragment of the info panel"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getPanelItems": {
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4
+        },
+        "end": {
+          "line": 307,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all items to display in the panel</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "showInherited {Boolean} whether to show inherited items",
+            "paramName": "showInherited",
+            "description": " whether to show inherited items",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "showIncluded",
+            "paramName": "showIncluded",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "daoClass",
+            "paramName": "daoClass",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxl.apiviewer.dao.ClassItem[]} list of all items to display in the\n panel",
+            "type": "qxl.apiviewer.dao.ClassItem[]",
+            "description": " list of all items to display in the\n panel"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_canShowInherited": {
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4
+        },
+        "end": {
+          "line": 311,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getPanelItemObjects": {
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4
+        },
+        "end": {
+          "line": 315,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__filterItems": {
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4
+        },
+        "end": {
+          "line": 346,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Filter the item list to display only the desired items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeArr\n {qxl.apiviewer.dao.ClassItem[]} array of class items",
+            "paramName": "nodeArr",
+            "description": " array of class items",
+            "type": "qxl.apiviewer.dao.ClassItem[]"
+          },
+          {
+            "name": "@param",
+            "body": "expandProperties",
+            "paramName": "expandProperties",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "showProtected\n {Boolean} whether to show protected items",
+            "paramName": "showProtected",
+            "description": " whether to show protected items",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "showPrivate\n {Boolean} whether to show private items",
+            "paramName": "showPrivate",
+            "description": " whether to show private items",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "showInternal\n {Boolean} whether to show internal items",
+            "paramName": "showInternal",
+            "description": " whether to show internal items",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxl.apiviewer.dao.ClassItem[]} filtered list of items",
+            "type": "qxl.apiviewer.dao.ClassItem[]",
+            "description": " filtered list of items"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_displayNodes": {
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4
+        },
+        "end": {
+          "line": 368,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4
+        },
+        "end": {
+          "line": 402,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates an info panel.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "classViewer\n          {qxl.apiviewer.ui.ClassViewer} parent class viewer widget.",
+            "paramName": "classViewer",
+            "description": " parent class viewer widget.",
+            "type": "qxl.apiviewer.ui.ClassViewer"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the currently displayed class",
+            "paramName": "currentClassDocNode",
+            "description": " the currently displayed class",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise}",
+            "type": "qx.Promise",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyElement": {
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4
+        },
+        "end": {
+          "line": 407,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "element"
+      ]
+    },
+    "getTitleElement": {
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 4
+        },
+        "end": {
+          "line": 412,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>DOM node of the title of the panel</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getBodyElement": {
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 4
+        },
+        "end": {
+          "line": 417,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>DOM node of the body of the panel</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemElement": {
+      "location": {
+        "start": {
+          "line": 430,
+          "column": 4
+        },
+        "end": {
+          "line": 447,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the HTML element showing the details of an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "panel\n          {InfoPanel} the info panel of the item.",
+            "paramName": "panel",
+            "description": " the info panel of the item.",
+            "type": "qxl.apiviewer.ui.panels.InfoPanel"
+          },
+          {
+            "name": "@param",
+            "body": "name\n          {String} the item's name.",
+            "paramName": "name",
+            "description": " the item's name.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the HTML element showing the details of the item.",
+            "type": "Element",
+            "description": " the HTML element showing the details of the item."
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "getElementsByTagName"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toggleShowItemDetails": {
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4
+        },
+        "end": {
+          "line": 493,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the user clicked a button for showing/hiding\n the details of an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "itemName",
+            "paramName": "itemName",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "fromClassName\n {String} the name of the class the item the item was defined in.",
+            "paramName": "fromClassName",
+            "description": " the name of the class the item the item was defined in.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_postProcessLinks": {
+      "location": {
+        "start": {
+          "line": 501,
+          "column": 4
+        },
+        "end": {
+          "line": 538,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert mouseup and click listener attached to tap / pointerup listener.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el\n          {Element} The element containing the links.",
+            "paramName": "el",
+            "description": " The element containing the links.",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getElement": {
+      "type": "function",
+      "name": "getElement",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>element</code>.\n\nFor further details take a look at the property definition: {@link #element}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Element",
+            "desc": "Returns the value for element"
+          }
+        ]
+      }
+    },
+    "setElement": {
+      "type": "function",
+      "name": "setElement",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>element</code>.\n\nFor further details take a look at the property definition: {@link #element}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Element",
+            "paramName": "value",
+            "desc": "Value for element"
+          }
+        ]
+      }
+    },
+    "resetElement": {
+      "type": "function",
+      "name": "resetElement",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>element</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #element}."
+          }
+        ]
+      }
+    },
+    "getIsOpen": {
+      "type": "function",
+      "name": "getIsOpen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>isOpen</code>.\n\nFor further details take a look at the property definition: {@link #isOpen}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for isOpen"
+          }
+        ]
+      }
+    },
+    "isIsOpen": {
+      "type": "function",
+      "name": "isIsOpen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>isOpen</code>.\n\nFor further details take a look at the property definition: {@link #isOpen}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for isOpen"
+          }
+        ]
+      }
+    },
+    "setIsOpen": {
+      "type": "function",
+      "name": "setIsOpen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>isOpen</code>.\n\nFor further details take a look at the property definition: {@link #isOpen}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for isOpen"
+          }
+        ]
+      }
+    },
+    "resetIsOpen": {
+      "type": "function",
+      "name": "resetIsOpen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>isOpen</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #isOpen}."
+          }
+        ]
+      }
+    },
+    "getDocNode": {
+      "type": "function",
+      "name": "getDocNode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>docNode</code>.\n\nFor further details take a look at the property definition: {@link #docNode}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for docNode"
+          }
+        ]
+      }
+    },
+    "setDocNode": {
+      "type": "function",
+      "name": "setDocNode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>docNode</code>.\n\nFor further details take a look at the property definition: {@link #docNode}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for docNode"
+          }
+        ]
+      }
+    },
+    "resetDocNode": {
+      "type": "function",
+      "name": "resetDocNode",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>docNode</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #docNode}."
+          }
+        ]
+      }
+    },
+    "getDocNodeAsync": {
+      "type": "function",
+      "name": "getDocNodeAsync",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "getAsync",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Returns a {@link qx.Promise} which resolves to the (computed) value of the property <code>docNode</code>.\nFor further details take a look at the property definition: {@link #docNode}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Promise",
+            "desc": "Returns the value for docNode"
+          }
+        ]
+      }
+    },
+    "setDocNodeAsync": {
+      "type": "function",
+      "name": "setDocNodeAsync",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "setAsync",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>docNode</code>, returns a {@link qx.Promise} which resolves when the value change has fully completed (in the case where there are asynchronous apply methods or events).\n\nFor further details take a look at the property definition: {@link #docNode}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Promise",
+            "desc": "Returns the value for docNode"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for docNode"
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 547,
+        "column": 12
+      },
+      "end": {
+        "line": 549,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n</code></pre>\n<p>DESTRUCTOR\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong></p>"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "ITEM_SPEC_REGEX": {
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 4
+        },
+        "end": {
+          "line": 557,
+          "column": 67
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{regexp} The regexp for parsing a item name (e.g.\n \"mypackage.MyClass#MY_CONSTANT alternative text\").</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "SENTENCE_END_REGEX": {
+      "location": {
+        "start": {
+          "line": 560,
+          "column": 4
+        },
+        "end": {
+          "line": 560,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{regexp} The regexp that finds the end of a sentence.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "resolveLinkAttributes": {
+      "location": {
+        "start": {
+          "line": 572,
+          "column": 4
+        },
+        "end": {
+          "line": 590,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates HTML that replaces all &#64;link-attributes with links.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "description\n          {String} the description.",
+            "paramName": "description",
+            "description": " the description.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "packageBaseClass\n          {qxl.apiviewer.dao.Class?null} the doc node of the class to use for\n          auto-adding packages.",
+            "paramName": "packageBaseClass",
+            "description": " the doc node of the class to use for\n          auto-adding packages.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment",
+            "type": "String",
+            "description": " HTML fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createItemLinkHtml": {
+      "location": {
+        "start": {
+          "line": 608,
+          "column": 4
+        },
+        "end": {
+          "line": 772,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML for a link to an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "linkText\n          {String} the link text (e.g. \"mypackage.MyClass#myMethod alt\n          text\")",
+            "paramName": "linkText",
+            "description": " the link text (e.g. \"mypackage.MyClass#myMethod alt\n          text\")",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "packageBaseClass\n          {qxl.apiviewer.dao.Class?null} the doc node of the class to use when\n          auto-adding the package to a class name having no package\n          specified. If null, no automatic package addition is done.",
+            "paramName": "packageBaseClass",
+            "description": " the doc node of the class to use when\n          auto-adding the package to a class name having no package\n          specified. If null, no automatic package addition is done.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "qxl.apiviewer.dao.Class"
+          },
+          {
+            "name": "@param",
+            "body": "useIcon\n          {Boolean?true} whether to add an icon to the link.",
+            "paramName": "useIcon",
+            "description": " whether to add an icon to the link.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "useShortName\n          {Boolean?false} whether to use the short name.",
+            "paramName": "useShortName",
+            "description": " whether to use the short name.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment of the link",
+            "type": "String",
+            "description": " HTML fragment of the link"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createSeeAlsoHtml": {
+      "location": {
+        "start": {
+          "line": 781,
+          "column": 4
+        },
+        "end": {
+          "line": 808,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the &#64;see attributes of an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the &#64;see attributes.",
+            "type": "String",
+            "description": " the HTML showing the &#64;see attributes."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createInheritedFromHtml": {
+      "location": {
+        "start": {
+          "line": 820,
+          "column": 4
+        },
+        "end": {
+          "line": 834,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing information about inheritance</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} item to get the information from",
+            "paramName": "node",
+            "description": " item to get the information from",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the current class shown in the class\n          viewer",
+            "paramName": "currentClassDocNode",
+            "description": " the current class shown in the class\n          viewer",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment",
+            "type": "String",
+            "description": " HTML fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createOverwriddenFromHtml": {
+      "location": {
+        "start": {
+          "line": 843,
+          "column": 4
+        },
+        "end": {
+          "line": 852,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing whether the item is overridden</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} item to get the the information from",
+            "paramName": "node",
+            "description": " item to get the the information from",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment",
+            "type": "String",
+            "description": " HTML fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createIncludedFromHtml": {
+      "location": {
+        "start": {
+          "line": 864,
+          "column": 4
+        },
+        "end": {
+          "line": 874,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing whether the item is included from a mixin</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} item to get the the information from",
+            "paramName": "node",
+            "description": " item to get the the information from",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the current class shown in the class\n          viewer",
+            "paramName": "currentClassDocNode",
+            "description": " the current class shown in the class\n          viewer",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment",
+            "type": "String",
+            "description": " HTML fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getItemFromClassHierarchy": {
+      "location": {
+        "start": {
+          "line": 887,
+          "column": 4
+        },
+        "end": {
+          "line": 901,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a class item from baseClassNode. if it is not found there, the\n class' hierarchy is searched until the item is found.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "itemName\n          {String} the name of the item.",
+            "paramName": "itemName",
+            "description": " the name of the item.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "baseClassNode\n          {qxl.apiviewer.dao.Class} class doc node",
+            "paramName": "baseClassNode",
+            "description": " class doc node",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxl.apiviewer.dao.ClassItem} the classItem",
+            "type": "qxl.apiviewer.dao.ClassItem",
+            "description": " the classItem"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "createDescriptionHtml": {
+      "location": {
+        "start": {
+          "line": 916,
+          "column": 4
+        },
+        "end": {
+          "line": 926,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the description of an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.Node} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.Node"
+          },
+          {
+            "name": "@param",
+            "body": "packageBaseClass\n          {qxl.apiviewer.dao.Class|qxl.apiviewer.dao.Package?null} the doc node of\n          the class to use for auto-adding packages.",
+            "paramName": "packageBaseClass",
+            "description": " the doc node of\n          the class to use for auto-adding packages.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "qxl.apiviewer.dao.Class",
+              "qxl.apiviewer.dao.Package"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "showDetails\n          {Boolean} whether to show details. If <code>false</code> only\n          the first sentence of the description will be shown.",
+            "paramName": "showDetails",
+            "description": " whether to show details. If <code>false</code> only\n          the first sentence of the description will be shown.",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the description.",
+            "type": "String",
+            "description": " the HTML showing the description."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__extractFirstSentence": {
+      "location": {
+        "start": {
+          "line": 935,
+          "column": 4
+        },
+        "end": {
+          "line": 951,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extracts the first sentence from a text.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text\n          {String} the text.",
+            "paramName": "text",
+            "description": " the text.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the first sentence from the text.",
+            "type": "String",
+            "description": " the first sentence from the text."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "descriptionHasDetails": {
+      "location": {
+        "start": {
+          "line": 961,
+          "column": 4
+        },
+        "end": {
+          "line": 967,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the description of an item has details (has more than one\n sentence).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.Node} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the description of an item has details.",
+            "type": "Boolean",
+            "description": " whether the description of an item has details."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createTypeHtml": {
+      "location": {
+        "start": {
+          "line": 982,
+          "column": 4
+        },
+        "end": {
+          "line": 1045,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the type of a doc node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "typeNode\n          {qxl.apiviewer.dao.ClassItem} the doc node to show the type for.",
+            "paramName": "typeNode",
+            "description": " the doc node to show the type for.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "defaultType\n          {String} the type name to use if <code>typeNode</code> is\n          <code>null</code> or defines no type.",
+            "paramName": "defaultType",
+            "description": " the type name to use if <code>typeNode</code> is\n          <code>null</code> or defines no type.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "useShortName\n          {Boolean?true} whether to use short class names (without\n          package).",
+            "paramName": "useShortName",
+            "description": " whether to use short class names (without\n          package).",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the type.",
+            "type": "String",
+            "description": " the HTML showing the type."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createErrorHtml": {
+      "location": {
+        "start": {
+          "line": 1056,
+          "column": 4
+        },
+        "end": {
+          "line": 1086,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the documentation errors of an item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.Node} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.Node"
+          },
+          {
+            "name": "@param",
+            "body": "currentClassDocNode\n          {Map} the doc node of the currently displayed class",
+            "paramName": "currentClassDocNode",
+            "description": " the doc node of the currently displayed class",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML showing the documentation errors.",
+            "type": "String",
+            "description": " the HTML showing the documentation errors."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createDeprecationHtml": {
+      "location": {
+        "start": {
+          "line": 1098,
+          "column": 4
+        },
+        "end": {
+          "line": 1115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing whether the item is deprecated</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          },
+          {
+            "name": "@param",
+            "body": "itemName\n          {String} type of the item, e.g. \"method\", \"property\",\n          \"constant\", ...",
+            "paramName": "itemName",
+            "description": " type of the item, e.g. \"method\", \"property\",\n          \"constant\", ...",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML fragment.",
+            "type": "String",
+            "description": " the HTML fragment."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createAccessHtml": {
+      "location": {
+        "start": {
+          "line": 1124,
+          "column": 4
+        },
+        "end": {
+          "line": 1145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing the access protection for a class item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML fragment.",
+            "type": "String",
+            "description": " the HTML fragment."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createInfoRequiredByHtml": {
+      "location": {
+        "start": {
+          "line": 1154,
+          "column": 4
+        },
+        "end": {
+          "line": 1165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML showing interfaces requiring this node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML.",
+            "type": "String",
+            "description": " the HTML."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createSourceLinkHtml": {
+      "location": {
+        "start": {
+          "line": 1174,
+          "column": 4
+        },
+        "end": {
+          "line": 1196,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the link to the source file that definen an item</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "paramName": "node",
+            "description": " the doc node of the item.",
+            "type": "qxl.apiviewer.dao.ClassItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the HTML.",
+            "type": "String",
+            "description": " the HTML."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTitleClass": {
+      "location": {
+        "start": {
+          "line": 1208,
+          "column": 4
+        },
+        "end": {
+          "line": 1212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wraps a HTML fragment with a \"span\" element with CSS classes for the\n item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.Class} class doc node",
+            "paramName": "node",
+            "description": " class doc node",
+            "type": "qxl.apiviewer.dao.Class"
+          },
+          {
+            "name": "@param",
+            "body": "title\n          {String} original title",
+            "paramName": "title",
+            "description": " original title",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HMTL fragment",
+            "type": "String",
+            "description": " HMTL fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemCssClasses": {
+      "location": {
+        "start": {
+          "line": 1221,
+          "column": 4
+        },
+        "end": {
+          "line": 1238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets CSS classes for a class item</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node\n          {qxl.apiviewer.dao.Class} class doc node",
+            "paramName": "node",
+            "description": " class doc node",
+            "type": "qxl.apiviewer.dao.Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS classes separated by \" \"",
+            "type": "String",
+            "description": " CSS classes separated by \" \""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": [
+    "qxl.apiviewer.ui.panels.ClassPanel",
+    "qxl.apiviewer.ui.panels.PackagePanel",
+    "qxl.apiviewer.ui.panels.EventPanel",
+    "qxl.apiviewer.ui.panels.ConstantPanel",
+    "qxl.apiviewer.ui.panels.PropertyPanel",
+    "qxl.apiviewer.ui.panels.ChildControlsPanel",
+    "qxl.apiviewer.ui.panels.AbstractMethodPanel"
+  ]
+}

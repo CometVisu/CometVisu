@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/util/StringBuilder.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "type",
+    "BaseArray",
+    "construct",
+    "length_or_items",
+    "apply",
+    "arguments",
+    "members",
+    "clear",
+    "length",
+    "get",
+    "join",
+    "add",
+    "isEmpty",
+    "size",
+    "defer",
+    "statics",
+    "push",
+    "toString",
+    "valueOf",
+    "util",
+    "StringBuilder"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,SADnB;;AAIE;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,eAAT,EAA0B;AACpCV,MAAAA,EAAE,CAACO,IAAH,CAAQC,SAAR,CAAkBG,KAAlB,CAAwB,IAAxB,EAA8BC,SAA9B;AACD,KA5BH;;AA8BE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACIC,MAAAA,KAAK,EAAG,iBAAW;AACjB,aAAKC,MAAL,GAAc,CAAd;AACD,OAPH;;AAUE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAG,eAAW;AACf,eAAO,KAAKC,IAAL,CAAU,EAAV,CAAP;AACD,OAjBH;;AAoBE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAG,IA1BR;;AA6BE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,OAAO,EAAG,mBAAW;AACnB,eAAO,KAAKJ,MAAL,KAAgB,CAAvB;AACD,OApCH;;AAuCE;AACJ;AACA;AACA;AACA;AACIK,MAAAA,IAAI,EAAG,gBAAU;AACf,eAAO,KAAKH,IAAL,CAAU,EAAV,EAAcF,MAArB;AACD;AA9CH,KArCF;;AAyFE;AACF;AACA;AACA;AACA;AAEEM,IAAAA,KAAK,EAAG,eAASC,OAAT,EAAkBT,OAAlB,EACR;AACEA,MAAAA,OAAO,CAACK,GAAR,GAAcL,OAAO,CAACU,IAAtB;AACAV,MAAAA,OAAO,CAACW,QAAR,GAAmBX,OAAO,CAACG,GAA3B;AACAH,MAAAA,OAAO,CAACY,OAAR,GAAkBZ,OAAO,CAACG,GAA1B;AACD;AApGH,GADA;AAjCAhB,EAAAA,EAAE,CAAC0B,IAAH,CAAQC,aAAR,CAAsBxB,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * A string builder class\n *\n * += operator is faster in Firefox and Opera.\n * Array push/join is faster in Internet Explorer\n *\n * Even with this wrapper, which costs some time, this is\n * faster in Firefox than the alternative Array concat in\n * all browsers (which is in relation to IE's performance issues\n * only marginal). The IE performance loss caused by this\n * wrapper is not relevant.\n *\n * So this class seems to be the best compromise to handle\n * string concatenation.\n */\nqx.Class.define(\"qx.util.StringBuilder\",\n{\n  extend : qx.type.BaseArray,\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * Creates a new StringBuilder with the given length or as a concatenation of the given arguments substrings.\n   *\n   * <pre class=\"javascript\">\n   * var sb1 = new qx.util.StringBuilder(length);\n   * var sb2 = new qx.util.StringBuilder(item0, item1, ..., itemN);\n   * </pre>\n   *\n   *\n   * * <code>length</code>: The initial length of the StringBuilder.\n   * * <code>itemN</code>:  A substring that will make up the newly created StringBuilder.\n   * The StringBuilder's length property is set to the number of arguments.\n   *\n   * @param length_or_items {Integer|var?null} The initial length of the StringBuilder\n   *        OR an argument list of values.\n   */\n  construct : function(length_or_items) {\n    qx.type.BaseArray.apply(this, arguments);\n  },\n\n  /*\n  *****************************************************************************\n    MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Removes all content\n     *\n     */\n    clear : function() {\n      this.length = 0;\n    },\n\n\n    /**\n     * Returns the concatted strings.\n     *\n     * @return {String} Concatted strings\n     */\n    get : function() {\n      return this.join(\"\");\n    },\n\n\n    /**\n     * Adds new strings. Supports multiple arguments.\n     *\n     * @signature function(varargs)\n     * @param varargs {String} The separate strings to add\n     */\n    add : null,\n\n\n    /**\n     * Whether the string builder is empty\n     *\n     * @return {Boolean} <code>true</code> when the builder is empty\n     */\n    isEmpty : function() {\n      return this.length === 0;\n    },\n\n\n    /**\n     * Returns the size of the strings\n     *\n     * @return {Integer} The string length\n     */\n    size : function(){\n      return this.join(\"\").length;\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     DEFER\n  *****************************************************************************\n  */\n\n  defer : function(statics, members)\n  {\n    members.add = members.push;\n    members.toString = members.get;\n    members.valueOf = members.get;\n  }\n});"
+  ]
+}

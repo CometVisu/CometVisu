@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/layout/States.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "properties",
+    "pageSizeInvalid",
+    "check",
+    "init",
+    "event",
+    "backdropInvalid",
+    "navbarInvalid",
+    "rowspanInvalid",
+    "members",
+    "resetAll",
+    "forEach",
+    "reset",
+    "cv",
+    "ui",
+    "layout",
+    "States"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EAAuC;AACrCC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADqB;;AAGrC;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,eAAe,EAAE;AACfC,QAAAA,KAAK,EAAE,SADQ;AAEfC,QAAAA,IAAI,EAAE,IAFS;AAGfC,QAAAA,KAAK,EAAE;AAHQ,OADP;AAOVC,MAAAA,eAAe,EAAE;AACfH,QAAAA,KAAK,EAAE,SADQ;AAEfC,QAAAA,IAAI,EAAE,IAFS;AAGfC,QAAAA,KAAK,EAAE;AAHQ,OAPP;AAaVE,MAAAA,aAAa,EAAE;AACbJ,QAAAA,KAAK,EAAE,SADM;AAEbC,QAAAA,IAAI,EAAE,IAFO;AAGbC,QAAAA,KAAK,EAAE;AAHM,OAbL;AAmBVG,MAAAA,cAAc,EAAE;AACdL,QAAAA,KAAK,EAAE,SADO;AAEdC,QAAAA,IAAI,EAAE,IAFQ;AAGdC,QAAAA,KAAK,EAAE;AAHO;AAnBN,KARyB;;AAkCrC;AACF;AACA;AACA;AACA;AACEI,IAAAA,OAAO,EAAE;AACPC,MAAAA,QAAQ,EAAE,oBAAY;AACpB,SAAC,iBAAD,EAAoB,iBAApB,EAAuC,eAAvC,EAAwD,gBAAxD,EAA0EC,OAA1E,CAAkF,KAAKC,KAAvF,EAA8F,IAA9F;AACD;AAHM;AAvC4B,GAAvC;AALAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,MAAN,CAAaC,MAAb,CAAoBrB,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/**\n * This class holds all states that are maintained by the {@link cv.ui.layout.ResizeHandler}.\n * Other classes can use the instance of this class {@link cv.ui.layout.ResizeHandler.states} to listen to changes\n * to the states.\n */\nqx.Class.define('cv.ui.layout.States', {\n  extend: qx.core.Object,\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    pageSizeInvalid: {\n      check: 'Boolean',\n      init: true,\n      event: 'changePageSizeInvalid'\n    },\n\n    backdropInvalid: {\n      check: 'Boolean',\n      init: true,\n      event: 'changeBackdropInvalid'\n    },\n\n    navbarInvalid: {\n      check: 'Boolean',\n      init: true,\n      event: 'changeNavbarInvalid'\n    },\n\n    rowspanInvalid: {\n      check: 'Boolean',\n      init: true,\n      event: 'changeRowspanInvalid'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    resetAll: function () {\n      ['pageSizeInvalid', 'backdropInvalid', 'navbarInvalid', 'rowspanInvalid'].forEach(this.reset, this);\n    }\n  }\n});\n"
+  ]
+}

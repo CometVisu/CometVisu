@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/Simple.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "title",
+    "meta",
+    "color",
+    "theme",
+    "simple",
+    "Color",
+    "decoration",
+    "Decoration",
+    "font",
+    "Font",
+    "appearance",
+    "Appearance",
+    "icon",
+    "Tango",
+    "Simple"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iBAAhB,EACA;AACEC,IAAAA,KAAK,EAAG,QADV;AAGEC,IAAAA,IAAI,EACJ;AACEC,MAAAA,KAAK,EAAGR,EAAE,CAACS,KAAH,CAASC,MAAT,CAAgBC,KAD1B;AAEEC,MAAAA,UAAU,EAAGZ,EAAE,CAACS,KAAH,CAASC,MAAT,CAAgBG,UAF/B;AAGEC,MAAAA,IAAI,EAAGd,EAAE,CAACS,KAAH,CAASC,MAAT,CAAgBK,IAHzB;AAIEC,MAAAA,UAAU,EAAGhB,EAAE,CAACS,KAAH,CAASC,MAAT,CAAgBO,UAJ/B;AAKEC,MAAAA,IAAI,EAAGlB,EAAE,CAACS,KAAH,CAASS,IAAT,CAAcC;AALvB;AAJF,GADA;AApBAnB,EAAAA,EAAE,CAACS,KAAH,CAASW,MAAT,CAAgBjB,aAAhB,GAAgCA,aAAhC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n/**\n * Simple Theme\n */\nqx.Theme.define(\"qx.theme.Simple\",\n{\n  title : \"Simple\",\n\n  meta :\n  {\n    color : qx.theme.simple.Color,\n    decoration : qx.theme.simple.Decoration,\n    font : qx.theme.simple.Font,\n    appearance : qx.theme.simple.Appearance,\n    icon : qx.theme.icon.Tango\n  }\n});"
+  ]
+}

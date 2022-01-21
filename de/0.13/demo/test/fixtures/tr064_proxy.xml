@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<root>
+<!-- days:-1 -->
+<!-- max:10 -->
+<!-- id:nil -->
+<!-- timestamp:nil -->
+<!-- calls:400 -->
+<timestamp>1373209200</timestamp>
+<Call><Id>2147</Id><Type>1</Type><Caller>0891234567</Caller><Called>SIP: 12345</Called><CalledNumber>12345</CalledNumber><Name></Name><Numbertype>sip</Numbertype><Device>Gigaset</Device><Port>0</Port><Date>29.08.18 20:16</Date><Duration>0:01</Duration><Count></Count><Path /></Call>
+<Call><Id>2146</Id><Type>3</Type><Caller>0892234567</Caller><Called>SIP: 12345</Called><CalledNumber>12345</CalledNumber><Name>Ellen Bogen</Name><Numbertype>sip</Numbertype><Device>Gigaset</Device><Port>0</Port><Date>27.08.18 19:45</Date><Duration>0:12</Duration><Count></Count><Path /></Call>
+<Call><Id>2145</Id><Type>1</Type><Caller>0893234567</Caller><Called>SIP: 22345</Called><CalledNumber>22345</CalledNumber><Name>Rainer Unfug</Name><Numbertype>sip</Numbertype><Device>Anrufbeantworter</Device><Port>40</Port><Date>08.08.18 23:08</Date><Duration>0:01</Duration><Count></Count><Path>/download.lua?path=/data/tam/rec/rec.0.000</Path></Call>
+<!-- calls:0 -->
+</root>

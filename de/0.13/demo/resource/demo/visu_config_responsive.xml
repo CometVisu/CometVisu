@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" min_column_width="70">
+  <meta>
+    <plugins>
+    </plugins>
+    <mappings>
+    </mappings>
+    <stylings>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="#" onclick="showManager()">Config-Manager</a>
+          - <a href=".?forceReload=true">Reload</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="action"><![CDATA[
+          - <a cv-action="edit">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="config"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html" hrefextend="action"><![CDATA[
+          - <a cv-action="validate">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Start">
+    <text>
+      <layout colspan="12" colspan-m="12" colspan-s="12" rowspan="1"/>
+      <label>With additional colspans for small screens</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <layout colspan="12" colspan-m="12" colspan-s="12" rowspan="1"/>
+      <label>Colspan 12/12/12, Rowspan 1</label>
+    </text>
+    <break/>
+    <text>
+      <layout colspan="6" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 6/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="6" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 6/6/12, Rowspan 1</label>
+    </text>
+    <break/>
+    <text>
+      <layout colspan="4" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 4/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="4" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 4/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="4" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 4/6/12, Rowspan 1</label>
+    </text>
+    <break/>
+    <text>
+      <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 3/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 3/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 3/6/12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+      <label>Colspan 3/6/12, Rowspan 1</label>
+    </text>
+    <break/>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+      <label>Colspan 2/4/6, Rowspan 1</label>
+    </text>
+    <break/>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3" rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+      <label>Colspan 1/2/3, Rowspan 1</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <layout colspan="12" rowspan="1"/>
+      <label>Without additional colspans for small screens</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <layout colspan="12" rowspan="1"/>
+      <label>Colspan 12, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="6" rowspan="1"/>
+      <label>Colspan 6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="6" rowspan="1"/>
+      <label>Colspan 6, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="4" rowspan="1"/>
+      <label>Colspan 4, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="4" rowspan="1"/>
+      <label>Colspan 4, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="4" rowspan="1"/>
+      <label>Colspan 4, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" rowspan="1"/>
+      <label>Colspan 3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" rowspan="1"/>
+      <label>Colspan 3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" rowspan="1"/>
+      <label>Colspan 3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="3" rowspan="1"/>
+      <label>Colspan 3, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="2" rowspan="1"/>
+      <label>Colspan 2, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <text>
+      <layout colspan="1" rowspan="1"/>
+      <label>Colspan 1, Rowspan 1</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <layout colspan="12" colspan-m="12" colspan-s="12" rowspan="1"/>
+      <label>Groups</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <text>
+      <layout colspan="1" colspan-m="1" colspan-s="1" rowspan="1"/>
+      <label>Reference</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <group name="Colspan 12/12/12">
+      <layout colspan="12" colspan-m="12" colspan-s="12"/>
+      <text>
+        <layout colspan="12" colspan-m="12" colspan-s="12" rowspan="1"/>
+        <label>Colspan 12/12/12, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="6" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 6/6/12, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="6" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 6/6/12, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="4" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/4/6, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3" rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+    </group>
+    <group name="Colspan 6/6/12">
+      <layout colspan="6" colspan-m="6" colspan-s="12"/>
+      <text>
+        <layout colspan="6" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 6/6/12, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" colspan-m="6" colspan-s="12" rowspan="1"/>
+        <label>Colspan 3/6/12, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="2" colspan-m="3" colspan-s="6"  rowspan="1"/>
+        <label>Colspan 2/3/6, Rowspan 1</label>
+      </text>
+      <break/>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3" rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" colspan-m="2" colspan-s="3"  rowspan="1"/>
+        <label>Colspan 1/2/3, Rowspan 1</label>
+      </text>
+    </group>
+
+
+  </page>
+</pages>

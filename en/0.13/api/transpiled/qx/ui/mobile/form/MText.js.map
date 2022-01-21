@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/MText.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "construct",
+    "value",
+    "initMaxLength",
+    "initPlaceholder",
+    "initReadOnly",
+    "properties",
+    "maxLength",
+    "check",
+    "nullable",
+    "init",
+    "apply",
+    "placeholder",
+    "readOnly",
+    "members",
+    "_applyMaxLength",
+    "old",
+    "_setAttribute",
+    "_applyPlaceholder",
+    "core",
+    "Environment",
+    "get",
+    "focus",
+    "isReadOnly",
+    "getEnabled",
+    "targetElement",
+    "getContainerElement",
+    "bom",
+    "Element",
+    "blur",
+    "ui",
+    "mobile",
+    "form",
+    "MText"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AAEE;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EACZ;AACE,WAAKC,aAAL;AACA,WAAKC,eAAL;AACA,WAAKC,YAAL;AACD,KAhBH;;AAmBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACC;AACH;AACA;AACIC,MAAAA,SAAS,EACT;AACEC,QAAAA,KAAK,EAAG,iBADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG,IAHT;AAIEC,QAAAA,KAAK,EAAG;AAJV,OALF;;AAaE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,WAAW,EACX;AACEJ,QAAAA,KAAK,EAAG,QADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG,IAHT;AAIEC,QAAAA,KAAK,EAAG;AAJV,OAnBF;;AA2BE;AACAE,MAAAA,QAAQ,EACR;AACEL,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG,IAHT;AAIEC,QAAAA,KAAK,EAAG;AAJV;AA7BF,KA1BF;;AAkEE;AACF;AACA;AACA;AACA;AAGEG,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,eAAe,EAAG,yBAASb,KAAT,EAAgBc,GAAhB,EAClB;AACE,aAAKC,aAAL,CAAmB,WAAnB,EAAgCf,KAAhC;AACD,OALH;AAQE;AACAgB,MAAAA,iBAAiB,EAAG,2BAAShB,KAAT,EAAgBc,GAAhB,EACpB;AACE;AACA;AACA,YAAIrB,EAAE,CAACwB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,SAAxB,KAAsC,SAAtC,IAAmDnB,KAAK,KAAK,IAAjE,EAAuE;AACrEA,UAAAA,KAAK,GAAG,MAAMA,KAAd;AACD;;AACD,aAAKe,aAAL,CAAmB,aAAnB,EAAkCf,KAAlC;AACD,OAjBH;;AAoBE;AACJ;AACA;AACIoB,MAAAA,KAAK,EAAG,iBAAW;AACjB,YAAG,KAAKC,UAAL,MAAqB,KAAKC,UAAL,MAAqB,KAA7C,EAAoD;AAClD;AACD;;AAED,YAAIC,aAAa,GAAG,KAAKC,mBAAL,EAApB;;AACA,YAAGD,aAAH,EAAkB;AAChB9B,UAAAA,EAAE,CAACgC,GAAH,CAAOC,OAAP,CAAeN,KAAf,CAAqBG,aAArB;AACD;AACF,OAhCH;;AAmCE;AACJ;AACA;AACII,MAAAA,IAAI,EAAG,gBAAW;AAChB,YAAIJ,aAAa,GAAG,KAAKC,mBAAL,EAApB;;AACA,YAAGD,aAAH,EAAkB;AAChB9B,UAAAA,EAAE,CAACgC,GAAH,CAAOC,OAAP,CAAeC,IAAf,CAAoBJ,aAApB;AACD;AACF;AA3CH;AA1EF,GADA;AAxBA9B,EAAAA,EAAE,CAACmC,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,KAAlB,CAAwBnC,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n/**\n * The mixin contains all functionality to provide common properties for\n * text fields.\n *\n * @require(qx.event.handler.Input)\n */\nqx.Mixin.define(\"qx.ui.mobile.form.MText\",\n{\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param value {var?null} The value of the widget.\n   */\n  construct : function(value)\n  {\n    this.initMaxLength();\n    this.initPlaceholder();\n    this.initReadOnly();\n  },\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n   /**\n     * Maximal number of characters that can be entered in the input field.\n     */\n    maxLength :\n    {\n      check : \"PositiveInteger\",\n      nullable : true,\n      init : null,\n      apply : \"_applyMaxLength\"\n    },\n\n\n    /**\n     * String value which will be shown as a hint if the field is all of:\n     * unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder\n     * text.\n     */\n    placeholder :\n    {\n      check : \"String\",\n      nullable : true,\n      init : null,\n      apply : \"_applyPlaceholder\"\n    },\n\n\n    /** Whether the field is read only */\n    readOnly :\n    {\n      check : \"Boolean\",\n      nullable : true,\n      init : null,\n      apply : \"_applyAttribute\"\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n\n  members :\n  {\n    // property apply\n    _applyMaxLength : function(value, old)\n    {\n      this._setAttribute(\"maxlength\", value);\n    },\n\n\n    // property apply\n    _applyPlaceholder : function(value, old)\n    {\n      // Android is not able to indent placeholder.\n      // Adding a space before the placeholder text, as a fix.\n      if (qx.core.Environment.get(\"os.name\") == \"android\" && value !== null) {\n        value = \" \" + value;\n      }\n      this._setAttribute(\"placeholder\", value);\n    },\n\n\n    /**\n     * Points the focus of the form to this widget.\n     */\n    focus : function() {\n      if(this.isReadOnly() || this.getEnabled() == false) {\n        return;\n      }\n\n      var targetElement = this.getContainerElement();\n      if(targetElement) {\n        qx.bom.Element.focus(targetElement);\n      }\n    },\n\n\n    /**\n     * Removes the focus from this widget.\n     */\n    blur : function() {\n      var targetElement = this.getContainerElement();\n      if(targetElement) {\n        qx.bom.Element.blur(targetElement);\n      }\n    }\n  }\n});\n"
+  ]
+}

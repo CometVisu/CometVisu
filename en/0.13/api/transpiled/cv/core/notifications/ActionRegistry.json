@@ -1,0 +1,221 @@
+{
+  "className": "cv.core.notifications.ActionRegistry",
+  "packageName": "cv.core.notifications",
+  "name": "ActionRegistry",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 96,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Global notification handler that routes messages topic-dependent to different {@link cv.core.notifications.IHandler}\n (e.g. NotificationCenter, Dialog, Toast, console.log, native notification, internal message bus …)</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Tobias Bräutigam"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "0.11.0"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "__handlers": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "registerActionHandler": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register an action handler for an action type.\n Note: There can only be one action handler per type. If there is currently\n       another handler registered for this type it will be replaced.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} action type",
+            "paramName": "type",
+            "description": " action type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "handler {cv.core.notifications.IActionHandler}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregisterActionHandler": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unregister an action handler for an action type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} action type",
+            "paramName": "type",
+            "description": " action type",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getActionHandler": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an instance of the registered action handler for the requested action type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} action type",
+            "paramName": "type",
+            "description": " action type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map?} additional parameters that should be passed to the action handlers constructor",
+            "paramName": "config",
+            "description": " additional parameters that should be passed to the action handlers constructor",
+            "optional": true,
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.core.notifications.IActionHandler|null}",
+            "type": "cv.core.notifications.IActionHandler|null",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createActionElement": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an action element for the given action type. Unsually this is a button or a similar DOMElement\n with a listener attached.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} action type",
+            "paramName": "type",
+            "description": " action type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map} additional parameters that should be passed to the action handlers constructor",
+            "paramName": "config",
+            "description": " additional parameters that should be passed to the action handlers constructor",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null}",
+            "type": "Element|null",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

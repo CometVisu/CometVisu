@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The CometVisu Manager &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/manager.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Graphical editor" href="editor.html" />
+    <link rel="prev" title="Configuration of the CometVisu" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The CometVisu Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#available-cometvisu-configurations">Available CometVisu Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-media-files">Available media files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hidden-configuration">Hidden configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cometvisu-icons">CometVisu-Icons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
+      <li>The CometVisu Manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-cometvisu-manager">
+<span id="manager"></span><h1>The CometVisu Manager<a class="headerlink" href="#the-cometvisu-manager" title="Permalink to this headline">¶</a></h1>
+<p>The manager uses a simple graphical interface to manage (create,
+edit, replace, delete) various configuration files.
+In addition you can manage the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden configurations</span></a>
+as well as media files (for example backdrops).</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The manager can be opened by pressing the keys “Ctrl+M” together in a running CometVisu
+or by adding the url parameter <cite>manager=1</cite> to the CometVisu URL.</p>
+</div>
+<div class="figure align-default">
+<img alt="../_images/manager.png" src="../_images/manager.png" />
+</div>
+<p>The available functions are accessible via menus, toolbars or buttons. The main page of the manager
+is composed of the following components (from top to bottom):</p>
+<ul class="simple">
+<li>Menubar for general functions.</li>
+<li>Tab-bar to show the currently opened files.</li>
+<li>Tab-bar to change the view between a table-based and an preview-based display of the available files.</li>
+<li>A list of configuration files with an own tab-bar for special functions.</li>
+<li>A list of demo configuration files (has to be expanded by clicking on the title).</li>
+<li>A list of media files (if available)</li>
+<li>Special functions, like the hidden-configuration of an overview of all icons.</li>
+</ul>
+<div class="section" id="available-cometvisu-configurations">
+<h2>Available CometVisu Configurations<a class="headerlink" href="#available-cometvisu-configurations" title="Permalink to this headline">¶</a></h2>
+<p>Shows all available configurations files, split into the editable “normal” configurations files and
+the non-editable demo configurations. Below every configuration there is a list of buttons that provide
+a quick access to the most commonly used functions. You can download, view or edit the file with these buttons.
+Additional functions are accessible by a contextmenu that can be opened with a click on the right mouse button
+or a click on the 2nd button below each file.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_context.png" src="../_images/manager_context.png" />
+</div>
+<dl class="docutils">
+<dt>Clone file</dt><dd>Creates a copy of that file with a different name.</dd>
+<dt>Open</dt><dd>Opens the file in the pre-configured editor (this can be configured in the “Preferences”-menu on the very top)</dd>
+<dt>Open with</dt><dd>Config files can be opened or edited in 2 different editors.</dd>
+<dt>Compare with</dt><dd>If available when a configuration file has already been edited. You can compare the current version
+with al older to see what has been changed.</dd>
+<dt>Rename</dt><dd>Change the filename.</dd>
+<dt>Delete</dt><dd>Delete the file.</dd>
+<dt>Download</dt><dd>Download of the configuration so that it can be modified or to get a backup on the
+local machine.</dd>
+<dt>Replace</dt><dd>Upload of a configuration to replace an existing one.</dd>
+<dt>Check</dt><dd>Checks the validity of the configuration, i.e. whether the syntax of the
+:ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>XML file &lt;xml-format&gt;`is valid.</dd>
+</dl>
+</div>
+<div class="section" id="available-media-files">
+<h2>Available media files<a class="headerlink" href="#available-media-files" title="Permalink to this headline">¶</a></h2>
+<p>Your own configuration can be extended by additional files. Typical examples
+are backdrop images or custom CSS rules to modify an existing design. Text-based files like
+CSS- or Javascript files can be edited diretly with the build-in text editor, other files, like images, can be
+uploaded, replaced or deleted.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_media.png" src="../_images/manager_media.png" />
+</div>
+<p>Depending on the type of file there are different options available. Images a shown as thumbnail and can be opened
+in a large viewer or downloaded. Special text-based image formats like SVG can be edited in the text editor.</p>
+</div>
+<div class="section" id="hidden-configuration">
+<h2>Hidden configuration<a class="headerlink" href="#hidden-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Some plugins require addition configuration settings that shouldn’t be
+transmitted to the browser. This is described in more detail at the
+<a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden configuration</span></a> section of the manual.</p>
+</div>
+<div class="section" id="cometvisu-icons">
+<h2>CometVisu-Icons<a class="headerlink" href="#cometvisu-icons" title="Permalink to this headline">¶</a></h2>
+<p>Shows a list of all available icons that can be filtered by the icon name.</p>
+<div class="figure align-default">
+<img alt="../_images/manager_icons.png" src="../_images/manager_icons.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Configuration of the CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="editor.html" class="btn btn-neutral float-right" title="Graphical editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "className": "qx.theme.tangible.ColorEngine",
+  "packageName": "qx.theme.tangible",
+  "name": "ColorEngine",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 140,
+        "column": 0
+      },
+      "end": {
+        "line": 207,
+        "column": 3
+      }
+    }
+  },
+  "type": "theme",
+  "descendants": [
+    "qx.theme.tangible.ColorDark",
+    "qx.theme.tangible.ColorLight"
+  ]
+}

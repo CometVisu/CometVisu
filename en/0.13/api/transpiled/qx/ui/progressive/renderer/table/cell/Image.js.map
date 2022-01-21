@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Image.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "progressive",
+    "renderer",
+    "table",
+    "cell",
+    "Icon",
+    "construct",
+    "width",
+    "height",
+    "undefined",
+    "__imageWidth",
+    "__imageHeight",
+    "members",
+    "_identifyImage",
+    "cellInfo",
+    "imageData",
+    "imageWidth",
+    "imageHeight",
+    "cellData",
+    "url",
+    "tooltip",
+    "_imageBlank",
+    "aliasManager",
+    "util",
+    "AliasManager",
+    "getInstance",
+    "resourceManager",
+    "ResourceManager",
+    "resolved",
+    "resolve",
+    "toUri",
+    "Image"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6CAAhB,EACA;AACEC,IAAAA,MAAM,EAAON,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCC,IADrD;;AAIE;AACF;AACA;AACA;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,MAAhB,EACZ;AACE;;AAEA,UAAID,KAAK,KAAKE,SAAd,EACA;AACE,aAAKC,SAAL,GAAoBH,KAApB;AACD,OAHD,MAKA;AACE,aAAKG,SAAL,GAAoB,EAApB;AACD;;AAED,UAAIF,MAAM,KAAKC,SAAf,EACA;AACE,aAAKE,SAAL,GAAqBH,MAArB;AACD,OAHD,MAKA;AACE,aAAKG,SAAL,GAAqB,EAArB;AACD;AACF,KAhCH;AAmCEC,IAAAA,OAAO,EACP;AAEEF,MAAAA,SAAY,EAAG,IAFjB;AAGEC,MAAAA,SAAa,EAAG,IAHlB;AAKE;AACAE,MAAAA,cAAc,EAAG,wBAASC,QAAT,EACjB;AACE,YAAIC,SAAS,GACb;AACEC,UAAAA,UAAU,EAAI,KAAKN,SADrB;AAEEO,UAAAA,WAAW,EAAG,KAAKN;AAFrB,SADA;AAMA,YAAIH,MAAJ,CAPF,CASE;AACA;;AACA,YAAI,OAAOM,QAAQ,CAACI,QAAhB,IAA6B,QAAjC,EACA;AACEH,UAAAA,SAAS,CAACI,GAAV,GAAgBL,QAAQ,CAACI,QAAzB;AACD,SAHD,MAKA;AACEH,UAAAA,SAAS,CAACI,GAAV,GAAgBL,QAAQ,CAACI,QAAT,CAAkBC,GAAlC;AACAJ,UAAAA,SAAS,CAACK,OAAV,GAAoBN,QAAQ,CAACI,QAAT,CAAkBE,OAAtC;AACAZ,UAAAA,MAAM,GAAGM,QAAQ,CAACI,QAAT,CAAkBV,MAA3B;AACD;;AAED,YAAIO,SAAS,CAACI,GAAV,IAAiB,EAArB,EACA;AACEJ,UAAAA,SAAS,CAACI,GAAV,GAAgB,KAAKE,WAArB;AACD,SAHD,MAKA;AAEE,cAAIC,YAAY,GAAG7B,EAAE,CAAC8B,IAAH,CAAQC,YAAR,CAAqBC,WAArB,EAAnB;AACA,cAAIC,eAAe,GAAGjC,EAAE,CAAC8B,IAAH,CAAQI,eAAR,CAAwBF,WAAxB,EAAtB;AACA,cAAIG,QAAQ,GAAGN,YAAY,CAACO,OAAb,CAAqBd,SAAS,CAACI,GAA/B,CAAf;AACAJ,UAAAA,SAAS,CAACI,GAAV,GAAgBO,eAAe,CAACI,KAAhB,CAAsBF,QAAtB,CAAhB;AACD,SAjCH,CAmCE;;;AACA,YAAIpB,MAAJ,EACA;AACEM,UAAAA,QAAQ,CAACN,MAAT,GAAkBA,MAAlB;AACD;;AAED,eAAOO,SAAP;AACD;AAjDH;AApCF,GADA;AAvBAtB,EAAAA,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsC2B,KAAtC,CAA4CnC,aAA5C,GAA4DA,aAA5D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 by Tartan Solutions, Inc, http://www.tartansolutions.com\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Dan Hummon\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Boolean Renderer.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.Image\",\n{\n  extend     : qx.ui.progressive.renderer.table.cell.Icon,\n\n\n  /**\n   * @param height {Integer ? 16}\n   *   The height of the image. The default is 16.\n   *\n   * @param width {Integer ? 16}\n   *   The width of the image. The default is 16.\n   */\n  construct : function(width, height)\n  {\n    this.base(arguments);\n\n    if (width === undefined)\n    {\n      this.__imageWidth = width;\n    }\n    else\n    {\n      this.__imageWidth = 16;\n    }\n\n    if (height === undefined)\n    {\n      this.__imageHeight = height;\n    }\n    else\n    {\n      this.__imageHeight = 16;\n    }\n  },\n\n\n  members :\n  {\n\n    __imageWidth : null,\n    __imageHeight : null,\n\n    // overridden\n    _identifyImage : function(cellInfo)\n    {\n      var imageData =\n      {\n        imageWidth  : this.__imageWidth,\n        imageHeight : this.__imageHeight\n      };\n\n      var height;\n\n      // String data is the unresolved url for the image.\n      // Object data is a map containing the url, tooltip, and a height\n      if (typeof(cellInfo.cellData) == \"string\")\n      {\n        imageData.url = cellInfo.cellData;\n      }\n      else\n      {\n        imageData.url = cellInfo.cellData.url;\n        imageData.tooltip = cellInfo.cellData.tooltip;\n        height = cellInfo.cellData.height;\n      }\n\n      if (imageData.url == \"\")\n      {\n        imageData.url = this._imageBlank;\n      }\n      else\n      {\n\n        var aliasManager = qx.util.AliasManager.getInstance();\n        var resourceManager = qx.util.ResourceManager.getInstance();\n        var resolved = aliasManager.resolve(imageData.url);\n        imageData.url = resourceManager.toUri(resolved);\n      }\n\n      // Adjust the row height, if necessary, to let this image fit\n      if (height)\n      {\n        cellInfo.height = height;\n      }\n\n      return imageData;\n    }\n  }\n});\n"
+  ]
+}

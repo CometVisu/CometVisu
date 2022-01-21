@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/application/Standalone.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "application",
+    "AbstractGui",
+    "members",
+    "_createRootWidget",
+    "ui",
+    "root",
+    "Application",
+    "document",
+    "Standalone"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,WAAH,CAAeC,WAD1B;;AAME;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACEC,MAAAA,iBAAiB,EAAG,6BAAW;AAC7B,eAAO,IAAIV,EAAE,CAACW,EAAH,CAAMC,IAAN,CAAWC,WAAf,CAA2BC,QAA3B,CAAP;AACD;AAHH;AAbF,GADA;AA7BAd,EAAAA,EAAE,CAACO,WAAH,CAAeQ,UAAf,CAA0BZ,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * For a GUI application that looks & feels like native desktop application\n * (often called \"RIA\" - Rich Internet Application).\n *\n * Such a stand-alone application typically creates and updates all content\n * dynamically. Often it is called a \"single-page application\", since the\n * document itself is never reloaded or changed. Communication with the server\n * is done with AJAX.\n *\n * @require(qx.core.Init)\n */\nqx.Class.define(\"qx.application.Standalone\",\n{\n  extend : qx.application.AbstractGui,\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    _createRootWidget : function() {\n      return new qx.ui.root.Application(document);\n    }\n  }\n});\n"
+  ]
+}

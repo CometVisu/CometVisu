@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/dev/unit/TestClass.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "AbstractTestSuite",
+    "construct",
+    "clazz",
+    "addFail",
+    "isSubClassOf",
+    "TestCase",
+    "classname",
+    "proto",
+    "prototype",
+    "testCase",
+    "test",
+    "lang",
+    "Type",
+    "isFunctionOrAsyncFunction",
+    "indexOf",
+    "addTestMethod",
+    "setName",
+    "properties",
+    "name",
+    "check",
+    "TestClass"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,GAAH,CAAOC,IAAP,CAAYC,iBADvB;;AAKE;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EACZ;AACE;;AAEA,UAAI,CAACA,KAAL,EACA;AACE,aAAKC,OAAL,CAAa,aAAb,EAA4B,qBAA5B;AACA;AACD;;AAED,UAAI,CAACZ,EAAE,CAACI,KAAH,CAASS,YAAT,CAAsBF,KAAtB,EAA6BX,EAAE,CAACO,GAAH,CAAOC,IAAP,CAAYM,QAAzC,CAAL,EACA;AACE,aAAKF,OAAL,CAAa,kBAAb,EAAiC,qBAAqBD,KAAK,CAACI,SAA3B,GAAuC,+CAAxE;AACA;AACD;;AAED,UAAIC,KAAK,GAAGL,KAAK,CAACM,SAAlB;AACA,UAAIC,QAAQ,GAAG,IAAIP,KAAJ,EAAf;;AAEA,WAAK,IAAIQ,IAAT,IAAiBH,KAAjB,EACA;AACE,YAAIhB,EAAE,CAACoB,IAAH,CAAQC,IAAR,CAAaC,yBAAb,CAAuCN,KAAK,CAACG,IAAD,CAA5C,KAAuDA,IAAI,CAACI,OAAL,CAAa,MAAb,KAAwB,CAAnF,EAAsF;AACpF,eAAKC,aAAL,CAAmBN,QAAnB,EAA6BC,IAA7B;AACD;AACF;;AAED,WAAKM,OAAL,CAAad,KAAK,CAACI,SAAnB;AACD,KAzCH;;AA6CE;AACF;AACA;AACA;AACA;AAEEW,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,IAAI,EAAG;AACLC,QAAAA,KAAK,EAAG;AADH;AAFT;AApDF,GADA;AA3CA5B,EAAAA,EAAE,CAACO,GAAH,CAAOC,IAAP,CAAYqB,SAAZ,CAAsB1B,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * This class represents a test suite for an unit test class.\n *\n * To create your own unit tests, create a class that derives from this one, and\n * add member methods that start with \"test*\". You can use assertion methods\n * inherited from *TestClass* to ease the implementation process.\n *\n * A simple example:\n * <pre class='javascript'>\n * qx. Class.define(\"myapp.test.MyUnitTest\"),\n * {\n *   extend  : qx.dev.unit.TestCase,\n *\n *   members :\n *   {\n *     testMe : function ()\n *     {\n *       // 'assertEquals' is from the parent\n *       this.assertEquals(4, 3+1, \"failure message\");\n *     }\n *   }\n * }\n * </pre>\n */\n\nqx.Class.define(\"qx.dev.unit.TestClass\",\n{\n  extend : qx.dev.unit.AbstractTestSuite,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param clazz {Class} Test class. Must be a sub class of {@link TestCase}.\n   */\n  construct : function(clazz)\n  {\n    this.base(arguments);\n\n    if (!clazz)\n    {\n      this.addFail(\"existsCheck\", \"Unknown test class!\");\n      return;\n    }\n\n    if (!qx.Class.isSubClassOf(clazz, qx.dev.unit.TestCase))\n    {\n      this.addFail(\"Sub class check.\", \"The test class '\" + clazz.classname + \"'is not a sub class of 'qx.dev.unit.TestCase'\");\n      return;\n    }\n\n    var proto = clazz.prototype;\n    var testCase = new clazz;\n\n    for (var test in proto)\n    {\n      if (qx.lang.Type.isFunctionOrAsyncFunction(proto[test]) && test.indexOf(\"test\") == 0) {\n        this.addTestMethod(testCase, test);\n      }\n    }\n\n    this.setName(clazz.classname);\n  },\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** Name of the test suite */\n    name : {\n      check : \"String\"\n    }\n  }\n});\n"
+  ]
+}

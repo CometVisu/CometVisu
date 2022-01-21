@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/ICellRenderer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "createDataCellHtml",
+    "cellInfo",
+    "htmlArr",
+    "ui",
+    "table",
+    "ICellRenderer"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,2BAApB,EACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,kBAAkB,EAAG,4BAASC,QAAT,EAAmBC,OAAnB,EAA4B;AAC/C,eAAO,IAAP;AACD;AAzCH;AAHF,GADA;AArBAT,EAAAA,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAYC,aAAZ,CAA0BT,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n\n************************************************************************ */\n\n/**\n * A cell renderer for data cells.\n */\nqx.Interface.define(\"qx.ui.table.ICellRenderer\",\n{\n\n  members :\n  {\n    /**\n     * Creates the HTML for a data cell.\n     *\n     * The cellInfo map contains the following properties:\n     * <ul>\n     * <li>value (var): the cell's value.</li>\n     * <li>rowData (var): contains the row data for the row, the cell belongs to.\n     *   The kind of this object depends on the table model, see\n     *   {@link qx.ui.table.ITableModel#getRowData}</li>\n     * <li>row (int): the model index of the row the cell belongs to.</li>\n     * <li>col (int): the model index of the column the cell belongs to.</li>\n     * <li>table (qx.ui.table.Table): the table the cell belongs to.</li>\n     * <li>xPos (int): the x position of the cell in the table pane.</li>\n     * <li>selected (boolean): whether the cell is selected.</li>\n     * <li>focusedRow (boolean): whether the cell is in the same row as the\n     *   focused cell.</li>\n     * <li>editable (boolean): whether the cell is editable.</li>\n     * <li>style (string): The CSS styles that should be applied to the outer HTML\n     *   element.</li>\n     * <li>styleLeft (string): The left position of the cell.</li>\n     * <li>styleWidth (string): The cell's width (pixel).</li>\n     * <li>styleHeight (string): The cell's height (pixel).</li>\n     * </ul>\n     *\n     * @param cellInfo {Map} A map containing the information about the cell to\n     *     create.\n     * @param htmlArr {String[]} Target string container. The HTML of the data\n     *     cell should be appended to this array.\n     *\n     * @return {Boolean|undefined}\n     *   A return value of <i>true</i> specifies that no additional cells in\n     *   the row shall be rendered. This may be used, for example, for\n     *   separator rows or for other special rendering purposes. Traditional\n     *   cell renderers had no defined return value, so returned nothing\n     *   (undefined). If this method returns either false or nothing, then\n     *   rendering continues with the next cell in the row, which the normal\n     *   mode of operation.\n     */\n    createDataCellHtml : function(cellInfo, htmlArr) {\n      return true;\n    }\n\n  }\n});\n"
+  ]
+}

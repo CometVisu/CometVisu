@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raspberry Pi: Docker installieren &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/tutorial/rpi_docker.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Raspberry Pi: CometVisu in Docker installieren" href="rpi_cometvisu.html" />
+    <link rel="prev" title="Raspberry Pi: Client einrichten (Kiosk Modus)" href="rpi_kiosk.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rpi_prequesites.html">Raspberry Pi: Vorbereitung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_kiosk.html">Raspberry Pi: Client einrichten (Kiosk Modus)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Raspberry Pi: Docker installieren</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hintergrund">Hintergrund</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#was-ist-docker">Was ist Docker?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wieso-docker-auf-dem-raspberry-pi">Wieso Docker auf dem Raspberry Pi?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#philosophie-hinter-docker">Philosophie hinter Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-von-docker">Installation von Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-von-portainer-optional">Installation von Portainer (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#die-nachsten-schritte">Die nächsten Schritte</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_cometvisu.html">Raspberry Pi: CometVisu in Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_nodered.html">Raspberry Pi: Node-RED in Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_steps.html">Tutorial: Erste Schritte - eine Visu in einer halben Minute</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Raspberry Pi: Docker installieren</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="raspberry-pi-docker-installieren">
+<h1>Raspberry Pi: Docker installieren<a class="headerlink" href="#raspberry-pi-docker-installieren" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="hintergrund">
+<h2>Hintergrund<a class="headerlink" href="#hintergrund" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="was-ist-docker">
+<h3>Was ist Docker?<a class="headerlink" href="#was-ist-docker" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Docker ist eine leichtgewichtige Umgebung um virtualisierte <cite>Server</cite>, die
+hier <cite>Container</cite> genannt werden, laufen lassen zu können. Der Bedarf ist im
+Bereich großer Rechenzentren entstanden um so schnell, einfach und sicher
+auch sehr große Installationen aufsetzen und warten zu können. So kann mit
+Docker leicht und schnell von wenigen auf viele Server skaliert werden,
+was beispielsweise für einen Online-Shop sehr wichtig sein kann, damit dieser
+problemlos mit steigenden Nutzerzahlen mit skalieren kann.</p>
+</div>
+<div class="section" id="wieso-docker-auf-dem-raspberry-pi">
+<h3>Wieso Docker auf dem Raspberry Pi?<a class="headerlink" href="#wieso-docker-auf-dem-raspberry-pi" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Docker ist nicht nur extrem stabil und leichtgewichtig, es hat auch einen
+großen Vorteil für eine sehr kleine Installation - wie einen einzelnen
+Raspberry Pi der sich um die Heimautomatisierung kümmert:</p>
+<p>Dadurch, dass die ganze Server-Software in einem <cite>Image</cite> für den <cite>Container</cite>
+zusammen gefasst ist lässt sich dieser mit nur einem Befehl
+installieren. Auch reicht nur ein weiterer einfacher Befehl um die Software
+zu aktualisieren. Somit sind die ganzen Abhängigkeiten und möglichen
+Inkompatibilität einer Server-Software gekapselt und können keine Probleme
+verursachen. Auch ist die Installation einer Server-Software als Docker
+Container einfacher als wenn diese direkt installiert wird.</p>
+</div>
+<div class="section" id="philosophie-hinter-docker">
+<h3>Philosophie hinter Docker<a class="headerlink" href="#philosophie-hinter-docker" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um optimal mit Docker umgehen zu können ist es wichtig die Philosophie hinter
+Docker zu verstehen und diese beizubehalten. Man ist manchmal gerne geneigt als
+„Abkürzung“ diese zu verlassen, jedoch erkauft man sich dadurch Probleme bei der
+zukünftigen Wartung.</p>
+<p>Bei Docker gilt als Grundsatz, dass immer nur ein „Server“ in einem Container
+existieren soll (genauer: nur ein Server-Prozess). Wenn mehrere Server
+gleichzeitig benötigt werden (wie z.B. ein Datenbank-Server und ein Web-Server),
+so werden hierfür zwei getrennte Container gleichzeitig ausgeführt.</p>
+<p>Ein Container wird auch immer als „Wegwerf-Produkt“ angesehen: wenn dieser
+nicht mehr wie gewollt funktioniert (z.B. weil die Version veraltet ist), dann
+wird dieser nicht gewartet, sondern gleich ein neuer Container genommen.</p>
+<p>Diese - in diesem Fall sehr positive Wegwerf-Mentalität - hat zur Folge, dass
+bei einem Docker-Setup auch alle <cite>persistenten Daten</cite>, d.h. alle individuellen
+Daten wie Konfigurations-Dateien, getrennt von einem Container aufbewahrt
+werden müssen. Hierzu gibt es <cite>Volumes</cite> die vom Host bereitgestellte Dateien und
+Verzeichnisse im Container einblenden.</p>
+<p>Ein <cite>Image</cite> ist ein bereits fertig gestellter Container. Neben der Möglichkeit
+selber eigene Images zu erstellen verwendet man normalerweise fertige Images
+die man von <a class="reference external" href="https://hub.docker.com/">Docker Hub</a> kostenlos beziehen kann.</p>
+</div>
+</div>
+<div class="section" id="installation-von-docker">
+<h2>Installation von Docker<a class="headerlink" href="#installation-von-docker" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Installation geht sehr einfach. Als erstes ist - wie bei jeder
+Software-Installation das System auf den aktuellsten Stand zu bringen (die
+ggf. kommende Rückfrage über die zu aktualisierende Software muss mit einem
+<code class="docutils literal notranslate"><span class="pre">J</span></code> bestätigt werden):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>Docker selbst wird installiert mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span> <span class="o">|</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>Damit der aktuelle User (normalerweise <code class="docutils literal notranslate"><span class="pre">pi</span></code>) auch als Nicht-Root User
+Container starten kann muss dieser noch der Gruppe <code class="docutils literal notranslate"><span class="pre">docker</span></code> hinzugefügt
+werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo usermod -aG docker ${USER}
+</pre></div>
+</div>
+<p>Anschließend muss der Raspberry Pi neu gestartet werden, damit diese Änderungen
+alle aktiv sind:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">shutdown</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Sollte Docker nach einem Boot nicht automatisch gestartet werden, so kann
+dies mit <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">docker</span></code> eingestellt werden.</p>
+</div>
+</div>
+<div class="section" id="installation-von-portainer-optional">
+<h2>Installation von Portainer (optional)<a class="headerlink" href="#installation-von-portainer-optional" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Docker wird über die Kommandozeile administriert. Jedoch gibt es auch sehr
+gute graphische Oberflächen, die gerade Administratoren mit wenig Erfahrung den Umgang
+deutlich erleichtern können. In diesem Tutorial verwenden wir dafür
+<a class="reference external" href="https://www.portainer.io/">Portainer</a>. Portainer ist selbst ein Docker Image,
+dass wir nun als Container laufen lassen.</p>
+<p>Die Portainer-Installation ist sehr einfach:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">linux</span><span class="o">-</span><span class="n">arm</span>
+</pre></div>
+</div>
+<p>Um Portainer zu starten - und auch nach einem Boot wieder starten zu lassen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">portainer</span> <span class="o">--</span><span class="n">restart</span> <span class="n">always</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="o">-</span><span class="n">v</span> <span class="n">portainer_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span> <span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">linux</span><span class="o">-</span><span class="n">arm</span>
+</pre></div>
+</div>
+<p>Nun kann Portainer aufgerufen werden, in dem der Port <code class="docutils literal notranslate"><span class="pre">9000</span></code> des Raspberry Pi
+im Browser geöffet wird, also z.B. mit der URL:
+<a class="reference external" href="http://192.168.0.52:9000/">http://192.168.0.52:9000/</a></p>
+<p>Im Portainer muss nun als erstes ein Benutzer angelegt werden:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_first_start.png" src="../_images/portainer_first_start.png" />
+</div>
+<p>Hierzu ist nur ein Passwort zu vergeben und mit <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">user</span></code> zu bestätigen.</p>
+<p>Als nächstes ist auszuwählen, dass ein <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">Docker</span> <span class="pre">environment</span></code> verwaltet
+werden soll:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_environment.png" src="../_images/portainer_environment.png" />
+</div>
+<p>Den Hinweis seitens Portainer haben wir bereits bei der Installation
+berücksichtig und können somit mit <code class="docutils literal notranslate"><span class="pre">Connect</span></code> die Installation abschließen.</p>
+</div>
+<div class="section" id="die-nachsten-schritte">
+<h2>Die nächsten Schritte<a class="headerlink" href="#die-nachsten-schritte" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Installation von Docker und die optionale Installation von Portainer ist
+nun abgeschlossen. Als nächstes können die gewünschten <cite>Container</cite>, wie
+beispielsweise für die <a class="reference internal" href="rpi_cometvisu.html"><span class="doc">CometVisu</span></a> oder
+<a class="reference internal" href="rpi_nodered.html"><span class="doc">Node-RED</span></a> installiert werden, was in den jeweiligen
+Tutorials beschrieben wird.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rpi_kiosk.html" class="btn btn-neutral float-left" title="Raspberry Pi: Client einrichten (Kiosk Modus)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rpi_cometvisu.html" class="btn btn-neutral float-right" title="Raspberry Pi: CometVisu in Docker installieren" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

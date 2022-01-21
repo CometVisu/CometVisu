@@ -1,0 +1,176 @@
+{
+  "className": "qx.ui.decoration.MBackgroundColor",
+  "packageName": "qx.ui.decoration",
+  "name": "MBackgroundColor",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Mixin responsible for setting the background color of a widget.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "properties": {
+    "backgroundColor": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Color of the background</p>"
+          }
+        ]
+      },
+      "name": "backgroundColor",
+      "propertyType": "new",
+      "apply": "_applyBackgroundColor",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
+    }
+  },
+  "members": {
+    "_styleBackgroundColor": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the background-color styles to the given map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} CSS style map",
+            "paramName": "styles",
+            "description": " CSS style map",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyBackgroundColor": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "backgroundColor"
+      ]
+    },
+    "getBackgroundColor": {
+      "type": "function",
+      "name": "getBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "setBackgroundColor": {
+      "type": "function",
+      "name": "setBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "resetBackgroundColor": {
+      "type": "function",
+      "name": "resetBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

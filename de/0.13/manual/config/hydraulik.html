@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anleitung zum Erstellen eines Animierten Hydraulikplans &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/hydraulik.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Anpassungen vornehmen" href="customizing.html" />
+    <link rel="prev" title="Anzahl der Prozess auf Linux System" href="rrd/processes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sonstiges">sonstiges</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="notifications.html">Benachrichtigungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rrd_examples.html">RRD Einführung &amp; Beispiele</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Anleitung zum Erstellen eines Animierten Hydraulikplans</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#voraussetzung">Voraussetzung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wir-erstellen-einen-puffer">Wir erstellen einen Puffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wir-erstellen-leitungen">Wir erstellen Leitungen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xml-file-anpassen-inkscape">XML-File anpassen (Inkscape)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xml-file-anpassen-editor">XML-File anpassen (Editor)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#das-fertige-ergebnis-im-webbrowser">Das Fertige Ergebnis im Webbrowser</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="customizing.html">Anpassungen vornehmen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Anleitung zum Erstellen eines Animierten Hydraulikplans</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="anleitung-zum-erstellen-eines-animierten-hydraulikplans">
+<h1>Anleitung zum Erstellen eines Animierten Hydraulikplans<a class="headerlink" href="#anleitung-zum-erstellen-eines-animierten-hydraulikplans" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="voraussetzung">
+<h2>Voraussetzung<a class="headerlink" href="#voraussetzung" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li>Inkscape</li>
+</ul>
+</div>
+<div class="section" id="wir-erstellen-einen-puffer">
+<h2>Wir erstellen einen Puffer<a class="headerlink" href="#wir-erstellen-einen-puffer" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li>Inkscape Starten</li>
+<li>Rechteck erstellen</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer1.png" src="../_images/Puffer1.png" />
+</div>
+<ul class="simple">
+<li>Füllen und Kontur auswählen</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer2.png" src="../_images/Puffer2.png" />
+</div>
+<ul class="simple">
+<li>Farbe der Kontur auf Grau stellen</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer3.png" src="../_images/Puffer3.png" />
+</div>
+<ul class="simple">
+<li>Breite der Kontur einstellen</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer4.png" src="../_images/Puffer4.png" />
+</div>
+<ul class="simple">
+<li>Ergebnis</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer5.png" src="../_images/Puffer5.png" />
+</div>
+<ul class="simple">
+<li>Füllung mit Farbverlauf erstellen</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer6.png" src="../_images/Puffer6.png" />
+</div>
+<ul class="simple">
+<li>Mit der Bearbeitungsfunktion zwei Farben für den Verlauf zuweisen<ul>
+<li>Farbe 1 (rot) Zuweisen mit 100% Deckung</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer7.png" src="../_images/Puffer7.png" />
+</div>
+<ul class="simple">
+<li><ul class="first">
+<li>Farbe zwei (blau) mit 50% Deckung</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer8.png" src="../_images/Puffer8.png" />
+</div>
+<ul class="simple">
+<li>Farbverlauf ändern<ul>
+<li>es gibt zwei Möglichkeiten<ul>
+<li>Objekt drehen</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer9.png" src="../_images/Puffer9.png" />
+</div>
+<ul class="simple">
+<li><ul class="first">
+<li><ul class="first">
+<li>Farbverlauflinie verschieben</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer10.png" src="../_images/Puffer10.png" />
+</div>
+<ul class="simple">
+<li>Ecken abrunden</li>
+</ul>
+<div class="figure align-default">
+<img alt="Puffer11.png" src="../_images/Puffer11.png" />
+</div>
+</div>
+<div class="section" id="wir-erstellen-leitungen">
+<h2>Wir erstellen Leitungen<a class="headerlink" href="#wir-erstellen-leitungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Rohre werden mit dem Freihandlinien Zeichner erstellt. Es ist damit
+möglich auch gerade Linien zu Zeichnen Am Startpunkt mit der Maus
+klicken. Am Zielpunk wider klicken, fertig ist die Gerade. Wenn man mit
+der neuen Linie am letzten Kästchen der alte Linie beginnt werden
+die Linien zusammenhängen. Die Zeichenrichtung bestimmt wie später die
+Animation läuft. Von rechts nach links gezeichnet, Flüssigkeit fließt
+von rechts nach links.</p>
+<p><img alt="Rohr1.png" src="../_images/Rohr1.png" /> <img alt="Rohr2.png" src="../_images/Rohr2.png" /></p>
+<ul class="simple">
+<li>Linie ein Volumen geben<ul>
+<li>Füllung der Kontur<ul>
+<li>Muster der Kontur</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Rohr3.png" src="../_images/Rohr3.png" />
+</div>
+<ul class="simple">
+<li><ul class="first">
+<li><ul class="first">
+<li>Farbe der Kontur</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Rohr4.png" src="../_images/Rohr4.png" />
+</div>
+<div class="figure align-default">
+<img alt="Rohr5.png" src="../_images/Rohr5.png" />
+</div>
+<ul class="simple">
+<li>Dem Objekt einen Namen zuweisen. Wird später für die Animation
+benötigt.<ul>
+<li>Linie mit der rechten Maustaste anklicken<ul>
+<li>Objekteigenschaften wählen</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-default">
+<img alt="Rohr6.png" src="../_images/Rohr6.png" />
+</div>
+<ul class="simple">
+<li>ID ändern</li>
+</ul>
+<div class="figure align-default">
+<img alt="Rohr7.png" src="../_images/Rohr7.png" />
+</div>
+</div>
+<div class="section" id="xml-file-anpassen-inkscape">
+<h2>XML-File anpassen (Inkscape)<a class="headerlink" href="#xml-file-anpassen-inkscape" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Nun kommt das Geheimnis der animierten Leitungen</p>
+<ul class="simple">
+<li>Gruppen Bilden</li>
+</ul>
+<p>Die benötigte Werte können nur eingetragen werden, wenn die Leitung als
+Gruppe definiert wurde.</p>
+<div class="figure align-default">
+<img alt="XML1.png" src="../_images/XML1.png" />
+</div>
+<ul class="simple">
+<li>Parameter der Gruppe zuordnen<ul>
+<li>id=“&lt;eindeutige id&gt;“</li>
+<li>class=“pipe_group show_flow flow_control“</li>
+<li>data-cometvisu-active=“1/0/3“</li>
+</ul>
+</li>
+</ul>
+<p>Die Parameter pipe_group, show_flow, data-cometvisu-active und
+flow_control bedeuten:</p>
+<ul class="simple">
+<li>pipe_group =&gt; aus dem Pfad wird eine Röhrenform erzeugt</li>
+<li>show_flow =&gt; wird eine fliesende (abstraktes) Fluid „simuliert“.</li>
+<li>data-cometvisu-active=“&lt;ga&gt;“ =&gt; animiert die Flüssigkeit bei aktiver GA</li>
+<li>flow_control =&gt; Animation</li>
+</ul>
+<div class="figure align-default">
+<img alt="XML2.png" src="../_images/XML2.png" />
+</div>
+</div>
+<div class="section" id="xml-file-anpassen-editor">
+<h2>XML-File anpassen (Editor)<a class="headerlink" href="#xml-file-anpassen-editor" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es ist auch möglich die SVG Datei direkt per Editor zu bearbeiten. Basis
+ist die Leitung als Gruppe eingefasst</p>
+<ul class="simple">
+<li>Mit einem Editor die svg Datei öffnen und nach dem Kenner (blaues
+Rohr) suchen</li>
+</ul>
+<div class="figure align-default">
+<img alt="XML3.png" src="../_images/XML3.png" />
+</div>
+<ul class="simple">
+<li>den Abschnitt mit dem folgendem Code anreichern.</li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;g</span>
+<span class="na">id=</span><span class="s">&quot;&lt;eindeutige id&gt;&quot;</span>
+<span class="na">class=</span><span class="s">&quot;pipe_group show_flow flow_control&quot;</span>
+<span class="na">data-cometvisu-active=</span><span class="s">&quot;1/0/3&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;path</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/g&gt;</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="XML4.png" src="../_images/XML4.png" />
+</div>
+</div>
+<div class="section" id="das-fertige-ergebnis-im-webbrowser">
+<h2>Das Fertige Ergebnis im Webbrowser<a class="headerlink" href="#das-fertige-ergebnis-im-webbrowser" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="figure align-default">
+<img alt="XML5.png" src="../_images/XML5.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rrd/processes.html" class="btn btn-neutral float-left" title="Anzahl der Prozess auf Linux System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="customizing.html" class="btn btn-neutral float-right" title="Anpassungen vornehmen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

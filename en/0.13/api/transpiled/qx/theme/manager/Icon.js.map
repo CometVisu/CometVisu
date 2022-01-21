@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/manager/Icon.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "properties",
+    "theme",
+    "check",
+    "nullable",
+    "apply",
+    "event",
+    "members",
+    "_applyTheme",
+    "value",
+    "old",
+    "aliasManager",
+    "util",
+    "AliasManager",
+    "getInstance",
+    "alias",
+    "aliases",
+    "remove",
+    "add",
+    "manager",
+    "Icon"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,IAAAA,IAAI,EAAG,WADT;AAEEC,IAAAA,MAAM,EAAGP,EAAE,CAACQ,IAAH,CAAQC,MAFnB;;AAQE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,KAAK,EACL;AACEC,QAAAA,KAAK,EAAG,OADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,KAAK,EAAG,aAHV;AAIEC,QAAAA,KAAK,EAAG;AAJV;AAHF,KAfF;;AA6BE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,WAAW,EAAG,qBAASC,KAAT,EAAgBC,GAAhB,EACd;AACE,YAAIC,YAAY,GAAGpB,EAAE,CAACqB,IAAH,CAAQC,YAAR,CAAqBC,WAArB,EAAnB;;AAEA,YAAIJ,GAAJ,EACA;AACE,eAAK,IAAIK,KAAT,IAAkBL,GAAG,CAACM,OAAtB,EAA+B;AAC7BL,YAAAA,YAAY,CAACM,MAAb,CAAoBF,KAApB;AACD;AACF;;AAED,YAAIN,KAAJ,EACA;AACE,eAAK,IAAIM,KAAT,IAAkBN,KAAK,CAACO,OAAxB,EAAiC;AAC/BL,YAAAA,YAAY,CAACO,GAAb,CAAiBH,KAAjB,EAAwBN,KAAK,CAACO,OAAN,CAAcD,KAAd,CAAxB;AACD;AACF;AACF;AAnBH;AApCF,GADA;AAtBAxB,EAAAA,EAAE,CAACW,KAAH,CAASiB,OAAT,CAAiBC,IAAjB,CAAsB1B,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * Manager for icon themes\n */\nqx.Class.define(\"qx.theme.manager.Icon\",\n{\n  type : \"singleton\",\n  extend : qx.core.Object,\n\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** currently used icon theme */\n    theme :\n    {\n      check : \"Theme\",\n      nullable : true,\n      apply : \"_applyTheme\",\n      event : \"changeTheme\"\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // property apply\n    _applyTheme : function(value, old)\n    {\n      var aliasManager = qx.util.AliasManager.getInstance();\n\n      if (old)\n      {\n        for (var alias in old.aliases) {\n          aliasManager.remove(alias);\n        }\n      }\n\n      if (value)\n      {\n        for (var alias in value.aliases) {\n          aliasManager.add(alias, value.aliases[alias]);\n        }\n      }\n    }\n  }\n});\n"
+  ]
+}

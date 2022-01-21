@@ -1,0 +1,44 @@
+{
+  "className": "qx.core.Wrapper",
+  "packageName": "qx.core",
+  "name": "Wrapper",
+  "superClass": "Array",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 0
+      },
+      "end": {
+        "line": 68,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Generic wrapper instance which wrapps a set of objects and forwards the API of\n the first object to all objects in the array.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 14
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

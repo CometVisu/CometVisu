@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/Boolean.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "AbstractImage",
+    "construct",
+    "__aliasManager",
+    "util",
+    "AliasManager",
+    "getInstance",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "iconTrue",
+    "check",
+    "themeable",
+    "apply",
+    "iconFalse",
+    "members",
+    "__imageTrue",
+    "__imageFalse",
+    "_applyIconTrue",
+    "value",
+    "resolve",
+    "_applyIconFalse",
+    "_identifyImage",
+    "Boolean"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,aAD9B;;AAGE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,SAAS,EAAG,qBACZ;AACE;AACA,WAAKC,SAAL,GAAsBZ,EAAE,CAACa,IAAH,CAAQC,YAAR,CAAqBC,WAArB,EAAtB;AACD,KAbH;;AAgBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAFF;;AAOE;AACJ;AACA;AACGC,MAAAA,QAAQ,EACR;AACEC,QAAAA,KAAK,EAAG,QADV;AAEEC,QAAAA,SAAS,EAAG,IAFd;AAGEC,QAAAA,KAAK,EAAG;AAHV,OAXD;;AAiBC;AACH;AACA;AACGC,MAAAA,SAAS,EACT;AACEH,QAAAA,KAAK,EAAG,QADV;AAEEC,QAAAA,SAAS,EAAG,IAFd;AAGEC,QAAAA,KAAK,EAAG;AAHV;AArBD,KAvBF;;AAqDE;AACF;AACA;AACA;AACA;AAEEE,IAAAA,OAAO,EACP;AACEC,MAAAA,SAAW,EAAG,IADhB;AAEEC,MAAAA,SAAY,EAAG,IAFjB;AAGEf,MAAAA,SAAc,EAAG,IAHnB;AAME;AACAgB,MAAAA,cAAc,EAAG,wBAASC,KAAT,EAAgB;AAC/B,aAAKH,SAAL,GAAmB,KAAKd,SAAL,CAAoBkB,OAApB,CAA4BD,KAA5B,CAAnB;AACD,OATH;AAYE;AACAE,MAAAA,eAAe,EAAG,yBAASF,KAAT,EAAgB;AAChC,aAAKF,SAAL,GAAoB,KAAKf,SAAL,CAAoBkB,OAApB,CAA4BD,KAA5B,CAApB;AACD,OAfH;AAkBE;AACAG,MAAAA,cAAc,EAAG,wBAASH,KAAT,EAAgB;AAC/B,eAAOA,KAAK,IAAI,IAAT,GAAgB,KAAKH,SAArB,GAAmC,KAAKC,SAA/C;AACD;AArBH;AA5DF,GADA;AAjBA3B,EAAAA,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBwB,OAAnB,CAA2B9B,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\nqx.Class.define(\"qx.ui.virtual.cell.Boolean\",\n{\n  extend : qx.ui.virtual.cell.AbstractImage,\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function()\n  {\n    this.base(arguments);\n    this.__aliasManager = qx.util.AliasManager.getInstance();\n  },\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance:\n    {\n      refine : true,\n      init : \"cell-boolean\"\n    },\n\n    /**\n    * The icon used to indicate the true state\n    */\n   iconTrue :\n   {\n     check : \"String\",\n     themeable : true,\n     apply : \"_applyIconTrue\"\n   },\n\n   /**\n   * The icon used to indicate the false state\n   */\n   iconFalse :\n   {\n     check : \"String\",\n     themeable : true,\n     apply : \"_applyIconFalse\"\n   }\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    __imageTrue : null,\n    __imageFalse : null,\n    __aliasManager : null,\n\n\n    // property apply\n    _applyIconTrue : function(value) {\n      this.__imageTrue = this.__aliasManager.resolve(value);\n    },\n\n\n    // property apply\n    _applyIconFalse : function(value) {\n      this.__imageFalse = this.__aliasManager.resolve(value);\n    },\n\n\n    // overridden\n    _identifyImage : function(value) {\n      return value == true ? this.__imageTrue : this.__imageFalse;\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/util/Delegate.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "getMethod",
+    "delegate",
+    "specificMethod",
+    "util",
+    "Delegate",
+    "containsMethod",
+    "lang",
+    "Function",
+    "bind",
+    "Type",
+    "isObject",
+    "isFunction"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kBAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,SAAS,EAAG,mBAASC,QAAT,EAAmBC,cAAnB,EACZ;AACE,YAAIT,EAAE,CAACU,IAAH,CAAQC,QAAR,CAAiBC,cAAjB,CAAgCJ,QAAhC,EAA0CC,cAA1C,CAAJ,EAA+D;AAC7D,iBAAOT,EAAE,CAACa,IAAH,CAAQC,QAAR,CAAiBC,IAAjB,CAAsBP,QAAQ,CAACC,cAAD,CAA9B,EAAgDD,QAAhD,CAAP;AACD;;AAED,eAAO,IAAP;AACD,OAfH;;AAmBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACII,MAAAA,cAAc,EAAG,wBAAUJ,QAAV,EAAoBC,cAApB,EACjB;AACE,YAAIO,IAAI,GAAGhB,EAAE,CAACa,IAAH,CAAQG,IAAnB;;AAEA,YAAIA,IAAI,CAACC,QAAL,CAAcT,QAAd,CAAJ,EAA6B;AAC3B,iBAAOQ,IAAI,CAACE,UAAL,CAAgBV,QAAQ,CAACC,cAAD,CAAxB,CAAP;AACD;;AAED,eAAO,KAAP;AACD;AAnCH;AAFF,GADA;AAtBAT,EAAAA,EAAE,CAACU,IAAH,CAAQC,QAAR,CAAiBR,aAAjB,GAAiCA,aAAjC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Methods to work with the delegate pattern.\n */\nqx.Class.define(\"qx.util.Delegate\",\n{\n  statics :\n  {\n    /**\n     * Returns the delegate method given my its name.\n     *\n     * @param delegate {Object} The delegate object to check the method.\n     * @param specificMethod {String} The name of the delegate method.\n     * @return {Function|null} The requested method or null, if no method is set.\n     */\n    getMethod : function(delegate, specificMethod)\n    {\n      if (qx.util.Delegate.containsMethod(delegate, specificMethod)) {\n        return qx.lang.Function.bind(delegate[specificMethod], delegate);\n      }\n\n      return null;\n    },\n\n\n\n    /**\n     * Checks, if the given delegate is valid or if a specific method is given.\n     *\n     * @param delegate {Object} The delegate object.\n     * @param specificMethod {String} The name of the method to search for.\n     * @return {Boolean} True, if everything was ok.\n     */\n    containsMethod : function (delegate, specificMethod)\n    {\n      var Type = qx.lang.Type;\n\n      if (Type.isObject(delegate)) {\n        return Type.isFunction(delegate[specificMethod]);\n      }\n\n      return false;\n    }\n  }\n});\n"
+  ]
+}

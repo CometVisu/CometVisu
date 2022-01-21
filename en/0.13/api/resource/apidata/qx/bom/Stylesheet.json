@@ -1,0 +1,370 @@
+{
+  "className": "qx.bom.Stylesheet",
+  "packageName": "qx.bom",
+  "name": "Stylesheet",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 266,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Cross-browser wrapper to work with CSS stylesheets.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.client.Stylesheet"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "includeFile": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Include a CSS file\n <em>Note:</em> Using a resource ID as the <code>href</code> parameter\n will no longer be supported. Call\n <code>qx.util.ResourceManager.getInstance().toUri(href)</code> to get\n valid URI to be used with this method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "href {String} Href value",
+            "paramName": "href",
+            "description": " Href value",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "doc {Document?} Document to modify",
+            "paramName": "doc",
+            "description": " Document to modify",
+            "optional": true,
+            "type": "Document"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createElement": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a new Stylesheet node and append it to the document</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text {String?} optional string of css rules",
+            "paramName": "text",
+            "description": " optional string of css rules",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{StyleSheet} the generates stylesheet element",
+            "type": "StyleSheet",
+            "description": " the generates stylesheet element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addRule": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Insert a new CSS rule into a given Stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the target Stylesheet object",
+            "paramName": "sheet",
+            "description": " the target Stylesheet object",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "selector {String} the selector",
+            "paramName": "selector",
+            "description": " the selector",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "entry {String} style rule",
+            "paramName": "entry",
+            "description": " style rule",
+            "type": "qx.bom.String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeRule": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a CSS rule from a stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the Stylesheet",
+            "paramName": "sheet",
+            "description": " the Stylesheet",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "selector {String} the Selector of the rule to remove",
+            "paramName": "selector",
+            "description": " the Selector of the rule to remove",
+            "type": "qx.bom.String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeSheet": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given sheet from its owner.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the stylesheet object",
+            "paramName": "sheet",
+            "description": " the stylesheet object",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllRules": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all CSS rules from a stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the stylesheet object",
+            "paramName": "sheet",
+            "description": " the stylesheet object",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addImport": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an import of an external CSS file to a stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the stylesheet object",
+            "paramName": "sheet",
+            "description": " the stylesheet object",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "url {String} URL of the external stylesheet file",
+            "paramName": "url",
+            "description": " URL of the external stylesheet file",
+            "type": "qx.bom.String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeImport": {
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4
+        },
+        "end": {
+          "line": 235,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an import from a stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the stylesheet object",
+            "paramName": "sheet",
+            "description": " the stylesheet object",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "url {String} URL of the imported CSS file",
+            "paramName": "url",
+            "description": " URL of the imported CSS file",
+            "type": "qx.bom.String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllImports": {
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4
+        },
+        "end": {
+          "line": 264,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all imports from a stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sheet {Object} the stylesheet object",
+            "paramName": "sheet",
+            "description": " the stylesheet object",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

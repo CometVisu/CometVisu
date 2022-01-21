@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/log/appender/PhoneGap.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "process",
+    "entry",
+    "formatter",
+    "log",
+    "appender",
+    "Formatter",
+    "getFormatter",
+    "args",
+    "toText",
+    "level",
+    "debug",
+    "warn",
+    "error",
+    "defer",
+    "register",
+    "window",
+    "Logger",
+    "setTimeout",
+    "core",
+    "Environment",
+    "get",
+    "PhoneGap"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACIC,MAAAA,OAAO,EAAG,iBAASC,KAAT,EACV;AACE,YAAIC,SAAS,GAAGT,EAAE,CAACU,GAAH,CAAOC,QAAP,CAAgBC,SAAhB,CAA0BC,YAA1B,EAAhB;AACA,YAAIC,IAAI,GAAGL,SAAS,CAACM,MAAV,CAAiBP,KAAjB,CAAX;AACA,YAAIQ,KAAK,GAAGR,KAAK,CAACQ,KAAlB;;AACA,YAAIA,KAAK,IAAI,MAAb,EAAqB;AACnBC,UAAAA,KAAK,CAACC,IAAN,CAAWJ,IAAX;AACD,SAFD,MAEO,IAAIE,KAAK,IAAI,OAAb,EAAsB;AAC3BC,UAAAA,KAAK,CAACE,KAAN,CAAYL,IAAZ;AACD,SAFM,MAEA;AACLG,UAAAA,KAAK,CAACP,GAAN,CAAUI,IAAV;AACD;AACF;AAjBH,KARF;;AA+BE;AACF;AACA;AACA;AACA;AAEEM,IAAAA,KAAK,EAAG,eAASd,OAAT,EACR;AACE,eAASe,QAAT,GACA;AACE,YAAIC,MAAM,CAACL,KAAX,EAAkB;AAChBjB,UAAAA,EAAE,CAACU,GAAH,CAAOa,MAAP,CAAcF,QAAd,CAAuBf,OAAvB;AACD,SAFD,MAEO;AACLgB,UAAAA,MAAM,CAACE,UAAP,CAAkBH,QAAlB,EAA4B,GAA5B;AACD;AACF;;AAED,UAAIrB,EAAE,CAACyB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,UAAxB,CAAJ,EAAyC;AACvCN,QAAAA,QAAQ;AACT;AACF;AAnDH,GADA;AAxCArB,EAAAA,EAAE,CAACU,GAAH,CAAOC,QAAP,CAAgBiB,QAAhB,CAAyBzB,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   ======================================================================\n\n   This class contains code based on the following work:\n\n   * Unify Project\n\n     Homepage:\n       http://unify-project.org\n\n     Copyright:\n       2009-2010 Deutsche Telekom AG, Germany, http://telekom.com\n\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n\n     Authors:\n       * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Processes the incoming log entry and displays it using the PhoneGap\n * logging capabilities.\n *\n * @require(qx.log.appender.Formatter)\n * @ignore(debug.*)\n */\nqx.Class.define(\"qx.log.appender.PhoneGap\",\n{\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /**\n     * Processes a single log entry\n     * @param entry {Map} The entry to process\n     */\n    process : function(entry)\n    {\n      var formatter = qx.log.appender.Formatter.getFormatter();\n      var args = formatter.toText(entry);\n      var level = entry.level;\n      if (level == \"warn\") {\n        debug.warn(args);\n      } else if (level == \"error\") {\n        debug.error(args);\n      } else {\n        debug.log(args);\n      }\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     DEFER\n  *****************************************************************************\n  */\n\n  defer : function(statics)\n  {\n    function register()\n    {\n      if (window.debug) {\n        qx.log.Logger.register(statics);\n      } else {\n        window.setTimeout(register, 200);\n      }\n    }\n\n    if (qx.core.Environment.get(\"phonegap\")) {\n      register();\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "className": "qx.bom.Html",
+  "packageName": "qx.bom",
+  "name": "Html",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 0
+      },
+      "end": {
+        "line": 293,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class is mainly a convenience wrapper for DOM elements to\n qooxdoo's event system.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qxWeb"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__fixNonDirectlyClosableHelper": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for XHTML replacement.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "all {String} Complete string",
+            "paramName": "all",
+            "description": " Complete string",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "front {String} Front of the match",
+            "paramName": "front",
+            "description": " Front of the match",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "tag {String} Tag name",
+            "paramName": "tag",
+            "description": " Tag name",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} XHTML corrected tag",
+            "type": "qx.bom.String",
+            "description": " XHTML corrected tag"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__convertMap": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 78,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Contains wrap fragments for specific HTML matches"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "fixEmptyTags": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 93,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fixes \"XHTML\"-style tags in all browsers.\n Replaces tags which are not allowed to be closed directly such as\n <code>div</code> or <code>p</code>. They are patched to use opening and\n closing tags instead, e.g. <code>&amp;lt;p&amp;gt;</code> =&gt; <code>&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "html {String} HTML to fix",
+            "paramName": "html",
+            "description": " HTML to fix",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Fixed HTML",
+            "type": "qx.bom.String",
+            "description": " Fixed HTML"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__convertHtmlString": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translates a HTML string into an array of elements.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "html {String} HTML string",
+            "paramName": "html",
+            "description": " HTML string",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "context {Document} Context document in which (helper) elements should be created",
+            "paramName": "context",
+            "description": " Context document in which (helper) elements should be created",
+            "type": "qx.bom.Document"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} List of resulting elements",
+            "type": "Array",
+            "description": " List of resulting elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "clean": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cleans-up the given HTML and append it to a fragment\n When no <code>context</code> is given the global document is used to\n create new DOM elements.\n When a <code>fragment</code> is given the nodes are appended to this\n fragment except the script tags. These are returned in a separate Array.\n Please note: HTML coming from user input must be validated prior\n to passing it to this method. HTML is temporarily inserted to the DOM\n using <code>innerHTML</code>. As a consequence, scripts included in\n attribute event handlers may be executed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "objs {Element[]|String[]} Array of DOM elements or HTML strings",
+            "paramName": "objs",
+            "description": " Array of DOM elements or HTML strings",
+            "type": [
+              {
+                "type": "Element",
+                "dimensions": 2
+              },
+              {
+                "type": "String",
+                "dimensions": 2
+              }
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "context {Document?document} Context in which the elements should be created",
+            "paramName": "context",
+            "description": " Context in which the elements should be created",
+            "optional": true,
+            "defaultValue": "document",
+            "type": "Document"
+          },
+          {
+            "name": "@param",
+            "body": "fragment {Element?null} Document fragment to appends elements to",
+            "paramName": "fragment",
+            "description": " Document fragment to appends elements to",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element[]} Array of elements (when a fragment is given it only contains script elements)",
+            "type": "Element[]",
+            "description": " Array of elements (when a fragment is given it only contains script elements)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "extractScripts": {
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extracts script elements from an element list. Optionally\n attaches them to a given document fragment</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elements {Element[]} list of elements",
+            "paramName": "elements",
+            "description": " list of elements",
+            "type": "Element[]"
+          },
+          {
+            "name": "@param",
+            "body": "fragment {Document?} document fragment",
+            "paramName": "fragment",
+            "description": " document fragment",
+            "optional": true,
+            "type": "Document"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element[]} Array containing the script elements",
+            "type": "Element[]",
+            "description": " Array containing the script elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

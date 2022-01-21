@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Rgb widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/rgb/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The Roundbar widget" href="../roundbar/index.html" />
+    <link rel="prev" title="The Line widget" href="../line/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Operatable widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#informative-widgets">Informative widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../image/index.html">The Image widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../info/index.html">The Info widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../line/index.html">The Line widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The Rgb widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../roundbar/index.html">The Roundbar widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../text/index.html">The Text widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../video/index.html">The Video widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/index.html">The Web widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../wgplugininfo/index.html">The WgPluginInfo widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../address.html">Addresses - the communication with the backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Configuration of the CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Operatable widgets</a> &raquo;</li>
+      <li>The Rgb widget</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-rgb-widget">
+<span id="rgb"></span><h1>The Rgb widget<a class="headerlink" href="#the-rgb-widget" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><strong>Available since version</strong>: 2012</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>With the RGB widget you can display a colour in the visu.</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
+<p>The behaviour and appearance of the Rgb widget can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
+<p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-rgb-element">
+<h3>Allowed attributes in the Rgb-element<a class="headerlink" href="#allowed-attributes-in-the-rgb-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>rgb</td>
+<td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id2">
+<img alt="../../../_images/en_config_widgets_rgb_index_editor_attributes.png" src="../../../_images/en_config_widgets_rgb_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>rgb</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>rgb</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>Name of the icon registration.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>rgb</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>rgb</dt><dd><ul class="simple">
+<li><abbr title="mandatory">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>Transformation of the bus system value to be shown.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>Position for format string when multiple addresses are used.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>decimal</td>
+<td>Only MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: retain flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>rgb</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../_images/en_config_widgets_rgb_index_editor_elements.png" src="../../../_images/en_config_widgets_rgb_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
+for the Rgb widget.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+XML-editor to UTF-8 mode!</p>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../line/index.html" class="btn btn-neutral float-left" title="The Line widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../roundbar/index.html" class="btn btn-neutral float-right" title="The Roundbar widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

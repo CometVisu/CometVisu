@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/menu/Separator.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "Widget",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "anonymous",
+    "menu",
+    "Separator"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;;AAME;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;AAQE;AACAC,MAAAA,SAAS,EACT;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAVF;AAbF,GADA;AA5BAb,EAAAA,EAAE,CAACO,EAAH,CAAMQ,IAAN,CAAWC,SAAX,CAAqBb,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * This widget draws a separator line between two instances of\n * {@link qx.ui.menu.AbstractButton} and is inserted into the\n * {@link qx.ui.menu.Menu}.\n *\n * For convenience reasons there is also\n * a method {@link qx.ui.menu.Menu#addSeparator} to append instances\n * of this class to the menu.\n */\nqx.Class.define(\"qx.ui.menu.Separator\",\n{\n  extend : qx.ui.core.Widget,\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"menu-separator\"\n    },\n\n    // overridden\n    anonymous :\n    {\n      refine : true,\n      init : true\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,794 @@
+{
+  "className": "qx.Part",
+  "packageName": "qx",
+  "name": "Part",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 436,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The part loader knows about all generated packages and parts.\n It contains functionality to load parts.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 14
+      },
+      "end": {
+        "line": 77,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "loader {Object} The data structure from the boot script about all\n   known parts and packages. Usually <code>qx.$$loader</code>.",
+          "paramName": "loader",
+          "description": " The data structure from the boot script about all\n   known parts and packages. Usually <code>qx.$$loader</code>.",
+          "type": "Object"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "TIMEOUT": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default timeout in ms for the error handling of the closure loading.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getInstance": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the default part loader instance</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Part} the default part loader",
+            "type": "qx.Part",
+            "description": " the default part loader"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "require": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads one or more parts asynchronously. The callback is called after all\n parts and their dependencies are fully loaded. If the parts are already\n loaded the callback is called immediately.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "partNames {String[]} List of parts names to load as defined in the\n    config file at compile time.",
+            "paramName": "partNames",
+            "description": " List of parts names to load as defined in the\n    config file at compile time.",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} Function to execute on completion",
+            "paramName": "callback",
+            "description": " Function to execute on completion",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?window} Context to execute the given function in",
+            "paramName": "self",
+            "description": " Context to execute the given function in",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "preload": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Preloads one or more closure parts but does not execute them. This means\n the closure (the whole code of the part) is already loaded but not\n executed so you can't use the classes in the the part after a preload.\n If you want to execute them, just use the regular {@link #require}\n function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "partNames {String[]} List of parts names to preload as defined\n   in the config file at compile time.",
+            "paramName": "partNames",
+            "description": " List of parts names to preload as defined\n   in the config file at compile time.",
+            "type": "String[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "$$notifyLoad": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loaded closure packages have to call this method to indicate\n successful loading and to get their closure stored.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the package.",
+            "paramName": "id",
+            "description": " The id of the package.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "closure {Function} The wrapped code of the package.",
+            "paramName": "closure",
+            "description": " The wrapped code of the package.",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__loader": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__packages": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__parts": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 149,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__packageClosureListeners": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 36
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addToPackage": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is only for testing purposes! Don't use it!</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pkg {qx.io.part.Package} The package to add to the internal\n   registry of packages.",
+            "paramName": "pkg",
+            "description": " The package to add to the internal\n   registry of packages.",
+            "type": "qx.io.part.Package"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "saveClosure": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 195,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to save the closure and notify that the load.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The hash of the package.",
+            "paramName": "id",
+            "description": " The hash of the package.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "closure {Function} The code of the package wrappen into a closure.",
+            "paramName": "closure",
+            "description": " The code of the package wrappen into a closure.",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getParts": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal method for testing purposes which returns the internal parts\n store.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array of parts.",
+            "type": "Array",
+            "description": " An array of parts."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "require": {
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads one or more parts asynchronously. The callback is called after all\n parts and their dependencies are fully loaded. If the parts are already\n loaded the callback is called immediately.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "partNames {String|String[]} List of parts names to load as defined\n   in the config file at compile time. The method also accepts a single\n   string as parameter to only load one part.",
+            "paramName": "partNames",
+            "description": " List of parts names to load as defined\n   in the config file at compile time. The method also accepts a single\n   string as parameter to only load one part.",
+            "type": [
+              "String",
+              {
+                "type": "String",
+                "dimensions": 2
+              }
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} Function to execute on completion.\n   The function has one parameter which is an array of ready states of\n   the parts specified in the partNames argument.",
+            "paramName": "callback",
+            "description": " Function to execute on completion.\n   The function has one parameter which is an array of ready states of\n   the parts specified in the partNames argument.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?window} Context to execute the given function in",
+            "paramName": "self",
+            "description": " Context to execute the given function in",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "preload": {
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4
+        },
+        "end": {
+          "line": 297,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Preloader for the given part.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "partNames {String} The hash of the part to preload.",
+            "paramName": "partNames",
+            "description": " The hash of the part to preload.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} Function to execute on completion.\n   The function has one parameter which is an array of ready states of\n   the parts specified in the partNames argument.",
+            "paramName": "callback",
+            "description": " Function to execute on completion.\n   The function has one parameter which is an array of ready states of\n   the parts specified in the partNames argument.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?window} Context to execute the given function in",
+            "paramName": "self",
+            "description": " Context to execute the given function in",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getUris": {
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4
+        },
+        "end": {
+          "line": 313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the URI lists of all packages</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[][]} Array of URI lists for each package",
+            "type": "String[][]",
+            "description": " Array of URI lists for each package"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__decodeUris": {
+      "location": {
+        "start": {
+          "line": 324,
+          "column": 4
+        },
+        "end": {
+          "line": 324,
+          "column": 41
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decodes a list of source URIs. The function is defined in the loader\n script.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(compressedUris)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "compressedUris {String[]} Array of compressed URIs",
+            "paramName": "compressedUris",
+            "description": " Array of compressed URIs",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} decompressed URIs",
+            "type": "String[]",
+            "description": " decompressed URIs"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__partListners": {
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4
+        },
+        "end": {
+          "line": 333,
+          "column": 25
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "addPartListener": {
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 4
+        },
+        "end": {
+          "line": 352,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register callback, which is called after the given part has been loaded\n or fails with an error. After the call the listener is removed.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "part {Object} Part to load",
+            "paramName": "part",
+            "description": " Part to load",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Object} the listener",
+            "paramName": "callback",
+            "description": " the listener",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onpart": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 358,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If defined this method is called after each part load.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "notifyPartResult": {
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4
+        },
+        "end": {
+          "line": 384,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called after a part has been loaded or failed to load.\n It calls all listeners for this part.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "part {Object} The loaded part",
+            "paramName": "part",
+            "description": " The loaded part",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__packageListeners": {
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 29
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "addPackageListener": {
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4
+        },
+        "end": {
+          "line": 412,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register callback, which is called after the given package has been loaded\n or fails with an error. After the call the listener is removed.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pkg {Object} Package to load",
+            "paramName": "pkg",
+            "description": " Package to load",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Object} the listener",
+            "paramName": "callback",
+            "description": " the listener",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "notifyPackageResult": {
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4
+        },
+        "end": {
+          "line": 434,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called after a packages has been loaded or failed to load.\n It calls all listeners for this package.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pkg {Object} The loaded package",
+            "paramName": "pkg",
+            "description": " The loaded package",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

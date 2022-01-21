@@ -1,0 +1,735 @@
+{
+  "className": "qx.util.ResourceManager",
+  "packageName": "qx.util",
+  "name": "ResourceManager",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 423,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Contains information about images (size, format, clipping, …) and\n other resources like CSS files, local data, …</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": false,
+  "isSingleton": true,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 14
+      },
+      "end": {
+        "line": 38,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "statics": {
+    "__registry": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} the shared image registry"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__urlPrefix": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} prefix per library used in HTTPS mode for IE"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    }
+  },
+  "members": {
+    "findHighResolutionSource": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 5
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether there is a high-resolution image available.\n A high-resolution image is assumed to have the same file name as\n the parameter source, but with a pixelRatio identifier before the file\n extension, like \"@2x\".\n Medium Resolution: \"example.png\", high-resolution: \"example@2x.png\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "lowResImgSrc {String} source of the low resolution image.",
+            "paramName": "lowResImgSrc",
+            "description": " source of the low resolution image.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "factor {Number} Factor to find the right image. If not set calculated by getDevicePixelRatio()",
+            "paramName": "factor",
+            "description": " Factor to find the right image. If not set calculated by getDevicePixelRatio()",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|Boolean} If a high-resolution image source.",
+            "type": "String|Boolean",
+            "description": " If a high-resolution image source."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHighResolutionSource": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the source name for the high-resolution image based on the passed\n parameters.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} the source of the medium resolution image.",
+            "paramName": "source",
+            "description": " the source of the medium resolution image.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pixelRatio {Number} the pixel ratio of the high-resolution image.",
+            "paramName": "pixelRatio",
+            "description": " the pixel ratio of the high-resolution image.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the high-resolution source name or null if no source could be found.",
+            "type": "String",
+            "description": " the high-resolution source name or null if no source could be found."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getIds": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 144,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get all known resource IDs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pathfragment{String|null|undefined} an optional path fragment to check against with id.indexOf(pathfragment)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array|null} an array containing the IDs or null if the registry is not initialized",
+            "type": "Array|null",
+            "description": " an array containing the IDs or null if the registry is not initialized"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "has": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the registry has information about the given resource.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The resource to get the information for",
+            "paramName": "id",
+            "description": " The resource to get the information for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the resource is known.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the resource is known."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getData": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get information about an resource.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The resource to get the information for",
+            "paramName": "id",
+            "description": " The resource to get the information for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Registered data or <code>null</code>",
+            "type": "Array",
+            "description": " Registered data or <code>null</code>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getImageWidth": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the width of the given resource ID,\n when it is not a known image <code>0</code> is\n returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The image width, maybe <code>null</code> when the width is unknown",
+            "type": "Integer",
+            "description": " The image width, maybe <code>null</code> when the width is unknown"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getImageHeight": {
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4
+        },
+        "end": {
+          "line": 214,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the height of the given resource ID,\n when it is not a known image <code>0</code> is\n returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The image height, maybe <code>null</code> when the height is unknown",
+            "type": "Integer",
+            "description": " The image height, maybe <code>null</code> when the height is unknown"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getImageFormat": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the format of the given resource ID,\n when it is not a known image <code>null</code>\n is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} File format of the image",
+            "type": "String",
+            "description": " File format of the image"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCombinedFormat": {
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4
+        },
+        "end": {
+          "line": 255,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the format of the combined image (png, gif, …), if the given\n resource identifier is an image contained in one, or the empty string\n otherwise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The type of the combined image containing id",
+            "type": "String",
+            "description": " The type of the combined image containing id"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toUri": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given resource ID to a full qualified URI</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource ID",
+            "paramName": "id",
+            "description": " Resource ID",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Resulting URI",
+            "type": "String",
+            "description": " Resulting URI"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toDataUri": {
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4
+        },
+        "end": {
+          "line": 323,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Construct a data: URI for an image resource.\n Constructs a data: URI for a given resource id, if this resource is\n contained in a base64 combined image. If this is not the case (e.g.\n because the combined image has not been loaded yet), returns the direct\n URI to the image file itself.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resid {String} resource id of the image",
+            "paramName": "resid",
+            "description": " resource id of the image",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} \"data:\" or \"http:\" URI",
+            "type": "String",
+            "description": " \"data:\" or \"http:\" URI"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isFontUri": {
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4
+        },
+        "end": {
+          "line": 334,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether a given resource id for an image is a font handle.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resid {String} resource id of the image",
+            "paramName": "resid",
+            "description": " resource id of the image",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True if it's a font URI",
+            "type": "Boolean",
+            "description": " True if it's a font URI"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 338,
+        "column": 10
+      },
+      "end": {
+        "line": 422,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,1619 @@
+{
+  "className": "qx.ui.mobile.page.Manager",
+  "packageName": "qx.ui.mobile.page",
+  "name": "Manager",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 0
+      },
+      "end": {
+        "line": 569,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The page manager decides automatically whether the added pages should be\n displayed in a master/detail view (for tablet) or as a plain card layout (for\n smartphones).\n<em>Example</em>\n Here is a little example of how to use the manager.\n </p>\n<pre class='javascript'>\n  var manager = new qx.ui.mobile.page.Manager();\n  var page1 = new qx.ui.mobile.page.NavigationPage();\n  var page2 = new qx.ui.mobile.page.NavigationPage();\n  var page3 = new qx.ui.mobile.page.NavigationPage();\n  manager.addMaster(page1);\n  manager.addDetail([page2,page3]);\n  page1.show();\n </pre>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 58,
+        "column": 14
+      },
+      "end": {
+        "line": 114,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "isTablet {Boolean?} flag which triggers the manager to layout for tablet (or big screens/displays) or mobile devices. If parameter is null,\n qx.core.Environment.get(\"device.type\") is called for decision.",
+          "paramName": "isTablet",
+          "description": " flag which triggers the manager to layout for tablet (or big screens/displays) or mobile devices. If parameter is null,\n qx.core.Environment.get(\"device.type\") is called for decision.",
+          "optional": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "@param",
+          "body": "root {qx.ui.mobile.core.Widget?} widget which should be used as root for this manager.",
+          "paramName": "root",
+          "description": " widget which should be used as root for this manager.",
+          "optional": true,
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "masterTitle": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The caption/label of the Master Button and Popup Title.</p>"
+          }
+        ]
+      },
+      "name": "masterTitle",
+      "propertyType": "new",
+      "apply": "_applyMasterTitle",
+      "init": "Master",
+      "check": "String",
+      "defaultValue": "Master"
+    },
+    "hideMasterButtonCaption": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The caption/label of the Hide Master Button.</p>"
+          }
+        ]
+      },
+      "name": "hideMasterButtonCaption",
+      "propertyType": "new",
+      "apply": "_applyHideMasterButtonCaption",
+      "init": "Hide",
+      "check": "String",
+      "defaultValue": "Hide"
+    },
+    "allowMasterHideOnLandscape": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This flag controls whether the MasterContainer can be hidden on Landscape.</p>"
+          }
+        ]
+      },
+      "name": "allowMasterHideOnLandscape",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "hideMasterOnDetailStart": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This flag controls whether the MasterContainer hides on portrait view,\n  when a Detail Page fires the lifecycle event \"start\".</p>"
+          }
+        ]
+      },
+      "name": "hideMasterOnDetailStart",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__isTablet": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__detailNavigation": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__masterNavigation": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 169,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__masterButton": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 170,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__hideMasterButton": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__masterPages": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__detailPages": {
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__masterContainer": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__detailContainer": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_createMasterContainer": {
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the master container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The created container",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": " The created container"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createDetailContainer": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the detail container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The created container",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": " The created container"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getMasterContainer": {
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4
+        },
+        "end": {
+          "line": 212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the Master Container</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Drawer} The Master Container.",
+            "type": "qx.ui.mobile.container.Drawer",
+            "description": " The Master Container."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDetailContainer": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the Detail Container</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The Detail Container.",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": " The Detail Container."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMasterButton": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 230,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the button for showing/hiding the masterContainer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.Button}",
+            "type": "qx.ui.mobile.navigationbar.Button",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMasterNavigation": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 239,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the masterNavigation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Navigation}",
+            "type": "qx.ui.mobile.container.Navigation",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDetailNavigation": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the detailNavigation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Navigation}",
+            "type": "qx.ui.mobile.container.Navigation",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_createMasterButton": {
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4
+        },
+        "end": {
+          "line": 257,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for the master button, which is responsible for showing/hiding masterContainer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.Button}",
+            "type": "qx.ui.mobile.navigationbar.Button",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createHideMasterButton": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 266,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for the hide master button, which is responsible for hiding masterContainer on Landscape view.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.Button}",
+            "type": "qx.ui.mobile.navigationbar.Button",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createMasterNavigation": {
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4
+        },
+        "end": {
+          "line": 275,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for masterNavigation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Navigation}",
+            "type": "qx.ui.mobile.container.Navigation",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createDetailNavigation": {
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4
+        },
+        "end": {
+          "line": 284,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for detailNavigation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Navigation}",
+            "type": "qx.ui.mobile.container.Navigation",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "addMaster": {
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4
+        },
+        "end": {
+          "line": 314,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an array of NavigationPages to masterContainer, if __isTablet is true. Otherwise it will be added to detailContainer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pages {qx.ui.mobile.page.NavigationPage[]|qx.ui.mobile.page.NavigationPage} Array of NavigationPages or single NavigationPage.",
+            "paramName": "pages",
+            "description": " Array of NavigationPages or single NavigationPage.",
+            "type": [
+              {
+                "type": "qx.ui.mobile.page.NavigationPage",
+                "dimensions": 2
+              },
+              "qx.ui.mobile.page.NavigationPage"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addDetail": {
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4
+        },
+        "end": {
+          "line": 340,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an array of NavigationPage to the detailContainer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pages {qx.ui.mobile.page.NavigationPage[]|qx.ui.mobile.page.NavigationPage} Array of NavigationPages or single NavigationPage.",
+            "paramName": "pages",
+            "description": " Array of NavigationPages or single NavigationPage.",
+            "type": [
+              {
+                "type": "qx.ui.mobile.page.NavigationPage",
+                "dimensions": 2
+              },
+              "qx.ui.mobile.page.NavigationPage"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onDetailPageStart": {
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4
+        },
+        "end": {
+          "line": 351,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a detailPage reaches lifecycle state \"start\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Event} source event.",
+            "paramName": "evt",
+            "description": " source event.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMasterPageStart": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 362,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a masterPage reaches lifecycle state \"start\". Then property masterTitle will be update with masterPage's title.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Event} source event.",
+            "paramName": "evt",
+            "description": " source event.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_add": {
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4
+        },
+        "end": {
+          "line": 390,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an array of NavigationPage to the target container.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pages {qx.ui.mobile.page.NavigationPage[]|qx.ui.mobile.page.NavigationPage} Array of NavigationPages, or NavigationPage.",
+            "paramName": "pages",
+            "description": " Array of NavigationPages, or NavigationPage.",
+            "type": [
+              {
+                "type": "qx.ui.mobile.page.NavigationPage",
+                "dimensions": 2
+              },
+              "qx.ui.mobile.page.NavigationPage"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "target {qx.ui.mobile.container.Navigation} target navigation container.",
+            "paramName": "target",
+            "description": " target navigation container.",
+            "type": "qx.ui.mobile.container.Navigation"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMasterContainerUpdate": {
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4
+        },
+        "end": {
+          "line": 401,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when masterContainer is updated.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} source event.",
+            "paramName": "evt",
+            "description": " source event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onDetailContainerUpdate": {
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4
+        },
+        "end": {
+          "line": 412,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when detailContainer is updated.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} source event.",
+            "paramName": "evt",
+            "description": " source event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMasterButtonTap": {
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4
+        },
+        "end": {
+          "line": 420,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when user taps on masterButton.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onHideMasterButtonTap": {
+      "location": {
+        "start": {
+          "line": 426,
+          "column": 4
+        },
+        "end": {
+          "line": 429,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when user taps on hideMasterButton.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onMasterChangeVisibility": {
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4
+        },
+        "end": {
+          "line": 458,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for <code>changeVisibility</code> event on master container.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} the change event.",
+            "paramName": "evt",
+            "description": " the change event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onLayoutChange": {
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4
+        },
+        "end": {
+          "line": 480,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when layout of masterDetailContainer changes.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getGapPropertyKey": {
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4
+        },
+        "end": {
+          "line": 489,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the corresponding CSS property key which fits to the drawer's orientation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the CSS property key.",
+            "type": "String",
+            "description": " the CSS property key."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createDetailContainerGap": {
+      "location": {
+        "start": {
+          "line": 496,
+          "column": 4
+        },
+        "end": {
+          "line": 499,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Moves detailContainer to the right edge of MasterContainer.\n Creates spaces for aligning master and detail container aside each other.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_removeDetailContainerGap": {
+      "location": {
+        "start": {
+          "line": 505,
+          "column": 4
+        },
+        "end": {
+          "line": 508,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Moves detailContainer to the left edge of viewport.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyHideMasterButtonCaption": {
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 4
+        },
+        "end": {
+          "line": 520,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called on property changes of hideMasterButtonCaption.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} new caption",
+            "paramName": "value",
+            "description": " new caption",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "old {String} previous caption",
+            "paramName": "old",
+            "description": " previous caption",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "hideMasterButtonCaption"
+      ]
+    },
+    "_applyMasterTitle": {
+      "location": {
+        "start": {
+          "line": 528,
+          "column": 4
+        },
+        "end": {
+          "line": 532,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called on property changes of masterTitle.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} new title",
+            "paramName": "value",
+            "description": " new title",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "old {String} previous title",
+            "paramName": "old",
+            "description": " previous title",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "masterTitle"
+      ]
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getMasterTitle": {
+      "type": "function",
+      "name": "getMasterTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>masterTitle</code>.\n\nFor further details take a look at the property definition: {@link #masterTitle}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for masterTitle"
+          }
+        ]
+      }
+    },
+    "setMasterTitle": {
+      "type": "function",
+      "name": "setMasterTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>masterTitle</code>.\n\nFor further details take a look at the property definition: {@link #masterTitle}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for masterTitle"
+          }
+        ]
+      }
+    },
+    "resetMasterTitle": {
+      "type": "function",
+      "name": "resetMasterTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>masterTitle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #masterTitle}."
+          }
+        ]
+      }
+    },
+    "getHideMasterButtonCaption": {
+      "type": "function",
+      "name": "getHideMasterButtonCaption",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideMasterButtonCaption</code>.\n\nFor further details take a look at the property definition: {@link #hideMasterButtonCaption}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for hideMasterButtonCaption"
+          }
+        ]
+      }
+    },
+    "setHideMasterButtonCaption": {
+      "type": "function",
+      "name": "setHideMasterButtonCaption",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideMasterButtonCaption</code>.\n\nFor further details take a look at the property definition: {@link #hideMasterButtonCaption}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for hideMasterButtonCaption"
+          }
+        ]
+      }
+    },
+    "resetHideMasterButtonCaption": {
+      "type": "function",
+      "name": "resetHideMasterButtonCaption",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideMasterButtonCaption</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideMasterButtonCaption}."
+          }
+        ]
+      }
+    },
+    "getAllowMasterHideOnLandscape": {
+      "type": "function",
+      "name": "getAllowMasterHideOnLandscape",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowMasterHideOnLandscape</code>.\n\nFor further details take a look at the property definition: {@link #allowMasterHideOnLandscape}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowMasterHideOnLandscape"
+          }
+        ]
+      }
+    },
+    "isAllowMasterHideOnLandscape": {
+      "type": "function",
+      "name": "isAllowMasterHideOnLandscape",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowMasterHideOnLandscape</code>.\n\nFor further details take a look at the property definition: {@link #allowMasterHideOnLandscape}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowMasterHideOnLandscape"
+          }
+        ]
+      }
+    },
+    "setAllowMasterHideOnLandscape": {
+      "type": "function",
+      "name": "setAllowMasterHideOnLandscape",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowMasterHideOnLandscape</code>.\n\nFor further details take a look at the property definition: {@link #allowMasterHideOnLandscape}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowMasterHideOnLandscape"
+          }
+        ]
+      }
+    },
+    "resetAllowMasterHideOnLandscape": {
+      "type": "function",
+      "name": "resetAllowMasterHideOnLandscape",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowMasterHideOnLandscape</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowMasterHideOnLandscape}."
+          }
+        ]
+      }
+    },
+    "getHideMasterOnDetailStart": {
+      "type": "function",
+      "name": "getHideMasterOnDetailStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideMasterOnDetailStart</code>.\n\nFor further details take a look at the property definition: {@link #hideMasterOnDetailStart}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideMasterOnDetailStart"
+          }
+        ]
+      }
+    },
+    "isHideMasterOnDetailStart": {
+      "type": "function",
+      "name": "isHideMasterOnDetailStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideMasterOnDetailStart</code>.\n\nFor further details take a look at the property definition: {@link #hideMasterOnDetailStart}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideMasterOnDetailStart"
+          }
+        ]
+      }
+    },
+    "setHideMasterOnDetailStart": {
+      "type": "function",
+      "name": "setHideMasterOnDetailStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideMasterOnDetailStart</code>.\n\nFor further details take a look at the property definition: {@link #hideMasterOnDetailStart}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideMasterOnDetailStart"
+          }
+        ]
+      }
+    },
+    "resetHideMasterOnDetailStart": {
+      "type": "function",
+      "name": "resetHideMasterOnDetailStart",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideMasterOnDetailStart</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideMasterOnDetailStart}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 542,
+        "column": 13
+      },
+      "end": {
+        "line": 568,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

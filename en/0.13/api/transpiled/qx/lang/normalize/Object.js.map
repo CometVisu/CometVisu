@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Object.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "keys",
+    "values",
+    "map",
+    "arr",
+    "Object",
+    "i",
+    "l",
+    "length",
+    "push",
+    "is",
+    "x",
+    "y",
+    "assign",
+    "target",
+    "sources",
+    "undefined",
+    "TypeError",
+    "to",
+    "index",
+    "arguments",
+    "nextSource",
+    "nextKey",
+    "prototype",
+    "hasOwnProperty",
+    "call",
+    "defer",
+    "core",
+    "Environment",
+    "get",
+    "lang",
+    "normalize"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * This class is responsible for the normalization of the native Object.\n * It checks if these methods are available and, if not, appends them to\n * ensure compatibility in all browsers.\n * For usage samples, check out the attached links.\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.lang.normalize.Object\", {\n\n  statics : {\n\n    /**\n     * Get the keys of a map as array as returned by a \"for ... in\" statement.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys\">MDN documentation</a> |\n     * <a href=\"http://es5.github.com/#x15.2.3.14\">Annotated ES5 Spec</a>\n     *\n     * @signature function(map)\n     * @param map {Object} the map\n     * @return {Array} array of the keys of the map\n     */\n    keys : qx.Bootstrap.keys,\n\n    /**\n     * Get the values of a map as array\n     *\n     * @param map {Object} the map\n     * @return {Array} array of the values of the map\n     */\n    values : function(map) {\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        qx.core.Assert && qx.core.Assert.assertMap(map, \"Invalid argument 'map'\");\n      }\n\n      var arr = [];\n      var keys = Object.keys(map);\n\n      for (var i=0, l=keys.length; i<l; i++) {\n        arr.push(map[keys[i]]);\n      }\n\n      return arr;\n    },\n\n\n    /**\n     * Determines whether two values are the same value.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\">MDN web docs: Object.is()</a>\n     *\n     * @signature function(x,y)\n     * @param x {Object} the first value to compare\n     * @param y {Object} the second value to compare\n     * @return {Boolean} indicating whether or not the two arguments are the same value.\n     */\n    is : function(x, y) {\n      // SameValue algorithm\n      if (x === y) { // Steps 1-5, 7-10\n        // Steps 6.b-6.e: +0 != -0\n        return x !== 0 || 1 / x === 1 / y;\n      } else {\n       // Step 6.a: NaN == NaN\n       return x !== x && y !== y;\n      }\n    },\n    \n    \n    /**\n     * Copies all enumerable own properties from one or more source objects to a target object..\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign\">MDN web docs: Object.assign()</a>\n     *\n     * @signature function(target,varArgs)\n     * @param target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified. \n     * @param sources {Object} The source object(s) - objects containing the properties you want to apply.\n     * @return {Object} The target object.\n     */\n    assign : function(target, sources) { // .length of function is 2\n      'use strict';\n      if (target === null || target === undefined) {\n        throw new TypeError('Cannot convert undefined or null to object');\n      }\n\n      var to = Object(target);\n\n      for (var index = 1; index < arguments.length; index++) {\n        var nextSource = arguments[index];\n\n        if (nextSource !== null && nextSource !== undefined) { \n          for (var nextKey in nextSource) {\n            // Avoid bugs when hasOwnProperty is shadowed\n            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {\n              to[nextKey] = nextSource[nextKey];\n            }\n          }\n        }\n      }\n      return to;\n    }\n  },\n\n  defer : function(statics) {\n    // keys\n    if (!qx.core.Environment.get(\"ecmascript.object.keys\")) {\n      Object.keys = statics.keys;\n    }\n\n    // values\n    if (!qx.core.Environment.get(\"ecmascript.object.values\")) {\n      Object.values = statics.values;\n    }\n\n    // is\n    if (!qx.core.Environment.get(\"ecmascript.object.is\")) {\n      Object.is = statics.is;\n    }\n\n    // assign\n    if (!qx.core.Environment.get(\"ecmascript.object.assign\")) {\n      Object.assign = statics.assign;\n    }\n  }\n});\n"
+  ]
+}

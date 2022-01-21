@@ -1,0 +1,152 @@
+{
+  "className": "qx.core.BaseInit",
+  "packageName": "qx.core",
+  "name": "BaseInit",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 123,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This is the base class for non-browser qooxdoo applications.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__application": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getApplication": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the instantiated qooxdoo application.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The application instance.",
+            "type": "qx.core.Object",
+            "description": " The application instance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Runs when the application is loaded. Automatically creates an instance\n of the class defined by the setting <code>qx.application</code>.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__close": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Runs before the document is unloaded. Calls the application's close\n method to check if the unload process should be stopped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Native} Incoming beforeunload event.",
+            "paramName": "e",
+            "description": " Incoming beforeunload event.",
+            "type": "qx.event.type.Native"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__shutdown": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Runs when the document is unloaded. Automatically terminates a previously\n created application instance.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

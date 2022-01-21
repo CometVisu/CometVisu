@@ -1,0 +1,378 @@
+{
+  "className": "qx.module.event.Native",
+  "packageName": "qx.module.event",
+  "name": "Native",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 150,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Common normalizations for native events</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.Event#getTarget"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.Event#getRelatedTarget"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "FORWARD_METHODS": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 55
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of qx.bom.Event methods to be attached to native event objects</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "BIND_METHODS": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 67
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of qx.module.event.Native methods to be attached to native event objects</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "preventDefault": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prevent the native default behavior of the event.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "stopPropagation": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the event's propagation to the element's parent</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getType": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the event's type</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} event type",
+            "type": "String",
+            "description": " event type"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTarget": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 92,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the target of the event.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function ()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Any valid native event target",
+            "type": "Object",
+            "description": " Any valid native event target"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRelatedTarget": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the related target from the native DOM event</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function ()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The related target",
+            "type": "Element",
+            "description": " The related target"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCurrentTarget": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the current target from the native DOM event. Emulates the current target\n for all browsers without native support (like older IEs).</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function ()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The current target",
+            "type": "Element",
+            "description": " The current target"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "normalize": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 144,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": " Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 147,
+        "column": 10
+      },
+      "end": {
+        "line": 149,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

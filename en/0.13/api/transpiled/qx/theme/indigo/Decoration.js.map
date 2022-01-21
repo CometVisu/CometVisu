@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Decoration.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Decoration",
+    "aliases",
+    "decoration",
+    "decorations",
+    "style",
+    "width",
+    "color",
+    "shadowLength",
+    "shadowBlurRadius",
+    "shadowColor",
+    "backgroundColor",
+    "radius",
+    "widthBottom",
+    "widthTop",
+    "colorTop",
+    "styleTop",
+    "innerWidthBottom",
+    "innerColorBottom",
+    "colorBottom",
+    "gradientStart",
+    "gradientEnd",
+    "indigo"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,MAAT,CAAgBC,UAD3B;AAGEC,IAAAA,OAAO,EAAG;AACRC,MAAAA,UAAU,EAAG;AADL,KAHZ;AAOEC,IAAAA,WAAW,EACX;AACE,gBACA;AACEC,QAAAA,KAAK,EACL;AACEC,UAAAA,KAAK,EAAG,CADV;AAEEC,UAAAA,KAAK,EAAG,eAFV;AAGEC,UAAAA,YAAY,EAAG,CAHjB;AAIEC,UAAAA,gBAAgB,EAAG,CAJrB;AAKEC,UAAAA,WAAW,EAAG,QALhB;AAMEC,UAAAA,eAAe,EAAG,YANpB;AAOEC,UAAAA,MAAM,EAAE;AAPV;AAFF,OAFF;AAgBE,wBAAmB;AACjBP,QAAAA,KAAK,EACL;AACEO,UAAAA,MAAM,EAAE,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADV;AAEEL,UAAAA,KAAK,EAAE,eAFT;AAGEM,UAAAA,WAAW,EAAE;AAHf;AAFiB,OAhBrB;AAyBE,+BAA0B;AACxBR,QAAAA,KAAK,EACL;AACEO,UAAAA,MAAM,EAAE,CAAC,CAAD,EAAI,CAAJ,EAAO,CAAP,EAAU,CAAV,CADV;AAEEL,UAAAA,KAAK,EAAE,WAFT;AAGEM,UAAAA,WAAW,EAAE;AAHf;AAFwB,OAzB5B;AAmCE,mBACA;AACER,QAAAA,KAAK,EACL;AACEC,UAAAA,KAAK,EAAE,CADT;AAEEC,UAAAA,KAAK,EAAE,kBAFT;AAGEI,UAAAA,eAAe,EAAG;AAHpB;AAFF,OApCF;AA6CE,mBACA;AACEN,QAAAA,KAAK,EACL;AACES,UAAAA,QAAQ,EAAG,CADb;AAEEC,UAAAA,QAAQ,EAAG,aAFb;AAGEC,UAAAA,QAAQ,EAAG;AAHb;AAFF,OA9CF;AAwDE,oBAAe;AACbX,QAAAA,KAAK,EACL;AACEY,UAAAA,gBAAgB,EAAG,CADrB;AAEEC,UAAAA,gBAAgB,EAAE,iBAFpB;AAGEL,UAAAA,WAAW,EAAE,CAHf;AAIEM,UAAAA,WAAW,EAAE,WAJf;AAMEC,UAAAA,aAAa,EAAG,CAAC,SAAD,EAAY,CAAZ,CANlB;AAOEC,UAAAA,WAAW,EAAG,CAAC,SAAD,EAAY,GAAZ,CAPhB;AASEV,UAAAA,eAAe,EAAG;AATpB;AAFa;AAxDjB;AARF,GADA;AArBAnB,EAAAA,EAAE,CAACO,KAAH,CAASuB,MAAT,CAAgBrB,UAAhB,CAA2BN,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Martin Wittemann (martinwittemann)\n\n************************************************************************* */\n\n/**\n * The indigo qooxdoo decoration theme.\n */\nqx.Theme.define(\"qx.theme.indigo.Decoration\",\n{\n  extend : qx.theme.simple.Decoration,\n\n  aliases : {\n    decoration : \"qx/decoration/Simple\"\n  },\n\n  decorations :\n  {\n    \"window\" :\n    {\n      style :\n      {\n        width : 1,\n        color : \"window-border\",\n        shadowLength : 1,\n        shadowBlurRadius : 3,\n        shadowColor : \"shadow\",\n        backgroundColor : \"background\",\n        radius: 3\n      }\n    },\n\n\n    \"window-caption\" : {\n      style :\n      {\n        radius: [3, 3, 0, 0],\n        color: \"window-border\",\n        widthBottom: 1\n      }\n    },\n\n    \"window-caption-active\" : {\n      style :\n      {\n        radius: [3, 3, 0, 0],\n        color: \"highlight\",\n        widthBottom: 3\n      }\n    },\n\n\n    \"white-box\" :\n    {\n      style :\n      {\n        width: 1,\n        color: \"white-box-border\",\n        backgroundColor : \"white\"\n      }\n    },\n\n    \"statusbar\" :\n    {\n      style :\n      {\n        widthTop : 1,\n        colorTop : \"border-main\",\n        styleTop : \"solid\"\n      }\n    },\n\n\n    \"app-header\" : {\n      style :\n      {\n        innerWidthBottom : 1,\n        innerColorBottom: \"highlight-shade\",\n        widthBottom: 9,\n        colorBottom: \"highlight\",\n\n        gradientStart : [\"#505154\", 0],\n        gradientEnd : [\"#323335\", 100],\n\n        backgroundColor : \"#323335\"\n      }\n    }\n  }\n});\n"
+  ]
+}

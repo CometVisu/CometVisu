@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation der CometVisu &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Voraussetzungen für die Installation" href="allgemein.html" />
+    <link rel="prev" title="Willkommen bei der CometVisu!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation der CometVisu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-der-cometvisu">Update der CometVisu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="update-wiregate.html">Update der CometVisu auf dem Wiregate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="update-other.html">Update der CometVisu auf anderen Geräten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app.html">Die CometVisu als App</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation der CometVisu</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="installation-der-cometvisu">
+<h1>Installation der CometVisu<a class="headerlink" href="#installation-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Einfache Installation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="allgemein.html"><span class="doc">Allgemein</span></a></li>
+<li><a class="reference internal" href="wiregate.html"><span class="doc">auf Wiregate</span></a></li>
+<li><a class="reference internal" href="raspberry.html"><span class="doc">auf Raspberry Pi</span></a></li>
+<li><a class="reference internal" href="openhab.html"><span class="doc">auf einem Debian System mit openHAB</span></a></li>
+<li><a class="reference internal" href="docker.html"><span class="doc">Über Docker</span></a></li>
+<li><a class="reference internal" href="docker_openhab.html"><span class="doc">Über Docker mit openHAB</span></a></li>
+<li><a class="reference internal" href="timberwolf.html"><span class="doc">Auf dem Timberwolf / mittels Portainer</span></a></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+<p>Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
+jedoch <strong>NIE</strong> produktiv eingesetzt werden.</p>
+<ul class="simple">
+<li><a class="reference internal" href="install-dev.html"><span class="doc">Infos zur Installation Development-Version</span></a> auf eigene Gefahr!!!</li>
+</ul>
+<div class="section" id="update-der-cometvisu">
+<h2>Update der CometVisu<a class="headerlink" href="#update-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Falls bereits eine Version 0.8 installiert war, kann die Installation direkt
+auf dem <a class="reference internal" href="update-wiregate.html"><span class="doc">WireGate</span></a> oder <a class="reference internal" href="update-other.html"><span class="doc">anderen Installationen</span></a> aktualisiert werden.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="installation-auf-mobilen-geraten">
+<h2>Installation auf mobilen Geräten<a class="headerlink" href="#installation-auf-mobilen-geraten" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um die CometVisu komfortabel mit mobilen Geräten nutzen zu können, kann diese
+vergleichbar mit Apps aus dem App-Store auf dem Gerät hinzugefügt werden.
+Dies wird unter <a class="reference internal" href="app.html"><span class="doc">Die CometVisu als App</span></a> beschrieben.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Willkommen bei der CometVisu!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="allgemein.html" class="btn btn-neutral float-right" title="Voraussetzungen für die Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

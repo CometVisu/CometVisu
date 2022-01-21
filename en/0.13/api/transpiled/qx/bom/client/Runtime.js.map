@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/client/Runtime.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "getName",
+    "name",
+    "Packages",
+    "Object",
+    "prototype",
+    "toString",
+    "call",
+    "process",
+    "Titanium",
+    "userAgent",
+    "bom",
+    "client",
+    "Browser",
+    "defer",
+    "core",
+    "Environment",
+    "add",
+    "Runtime"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,uBAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,OAAO,EAAG,mBAAW;AACnB,YAAIC,IAAI,GAAG,EAAX,CADmB,CAGlB;;AACD,YAAI,QAAOC,QAAP,yCAAOA,QAAP,OAAoB,QAApB,IAAgCC,MAAM,CAACC,SAAP,CAAiBC,QAAjB,CAA0BC,IAA1B,CAA+BJ,QAA/B,MAA6C,sBAAjF,EAAyG;AACvGD,UAAAA,IAAI,GAAG,OAAP,CADuG,CAEzG;AACC,SAHD,MAGO,IAAI,OAAOM,OAAP,KAAmB,WAAvB,EAAoC;AACzCN,UAAAA,IAAI,GAAG,SAAP;AACD,SAFM,MAEA,IAAI,OAAOO,QAAP,KAAoB,WAApB,IACT,OAAOA,QAAQ,CAACC,SAAhB,KAA8B,WADzB,EAEP;AACER,UAAAA,IAAI,GAAG,UAAP;AACD,SAJM,MAIA;AACL;AACAA,UAAAA,IAAI,GAAGP,EAAE,CAACgB,GAAH,CAAOC,MAAP,CAAcC,OAAd,CAAsBZ,OAAtB,EAAP;AACD;;AAED,eAAOC,IAAP;AACD;AA5BH,KAFF;AAiCEY,IAAAA,KAAK,EAAG,eAASd,OAAT,EAAkB;AACxBL,MAAAA,EAAE,CAACoB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,cAAxB,EAAwCjB,OAAO,CAACC,OAAhD;AACD;AAnCH,GADA;AA9BAN,EAAAA,EAAE,CAACgB,GAAH,CAAOC,MAAP,CAAcM,OAAd,CAAsBpB,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Basic runtime detection for qooxdoo.\n *\n * This class is used by {@link qx.core.Environment} and should not be used\n * directly. Please check its class comment for details how to use it.\n *\n * @internal\n *\n * @ignore(environment)\n * @ignore(process)\n * @ignore(Titanium.*)\n */\nqx.Bootstrap.define(\"qx.bom.client.Runtime\",\n{\n  statics :\n  {\n    /**\n     * Checks for the name of the runtime and returns it. In general, it checks\n     * for rhino and node.js and if that could not be detected, it falls back\n     * to the browser name defined by {@link qx.bom.client.Browser#getName}.\n     * @return {String} The name of the current runtime.\n     * @internal\n     * @ignore(environment, process, Titanium.*, Packages)\n     */\n    getName : function() {\n      var name = \"\";\n\n       // check for the Rhino runtime\n      if (typeof Packages === \"object\" && Object.prototype.toString.call(Packages) === \"[object JavaPackage]\") {\n        name = \"rhino\";\n      // check for the Node.js runtime\n      } else if (typeof process !== \"undefined\") {\n        name = \"node.js\";\n      } else if (typeof Titanium !== \"undefined\" &&\n        typeof Titanium.userAgent !== \"undefined\")\n      {\n        name = \"titanium\";\n      } else {\n        // otherwise, we think its a browser\n        name = qx.bom.client.Browser.getName();\n      }\n\n      return name;\n    }\n  },\n\n  defer : function(statics) {\n    qx.core.Environment.add(\"runtime.name\", statics.getName);\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/module/Core.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "module",
+    "Core"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,gBAApB,EAAsC,EAAtC;AAtCAJ,EAAAA,EAAE,CAACK,MAAH,CAAUC,IAAV,CAAeH,aAAf,GAA+BA,aAA/B",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * Placeholder class which simply defines and includes the core of qxWeb.\n * The core modules are:\n *\n * * {@link qx.module.Attribute}\n * * {@link qx.module.Css}\n * * {@link qx.module.Environment}\n * * {@link qx.module.Event}\n * * {@link qx.module.Manipulating}\n * * {@link qx.module.Polyfill}\n * * {@link qx.module.Traversing}\n *\n * @require(qx.module.Attribute)\n * @require(qx.module.Css)\n * @require(qx.module.Environment)\n * @require(qx.module.Event)\n * @require(qx.module.Manipulating)\n * @require(qx.module.Polyfill)\n * @require(qx.module.Traversing)\n */\nqx.Bootstrap.define(\"qx.module.Core\", {});\n"
+  ]
+}

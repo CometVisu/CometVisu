@@ -1,0 +1,50 @@
+{
+  "className": "qx.theme.Classic",
+  "packageName": "qx.theme",
+  "name": "Classic",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 35,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Classic Windows Theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "themeMeta": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "themeMetaMap": {
+      "color": "qx.theme.classic.Color",
+      "decoration": "qx.theme.classic.Decoration",
+      "font": "qx.theme.classic.Font",
+      "appearance": "qx.theme.classic.Appearance",
+      "icon": "qx.theme.icon.Oxygen"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/IHeaderRenderer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "createHeaderCell",
+    "cellInfo",
+    "updateHeaderCell",
+    "cellWidget",
+    "ui",
+    "table",
+    "IHeaderRenderer"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,6BAApB,EACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,gBAAgB,EAAG,0BAASC,QAAT,EAAmB;AACpC,eAAO,IAAP;AACD,OArBH;;AAwBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,gBAAgB,EAAG,0BAASD,QAAT,EAAmBE,UAAnB,EAA+B;AAChD,eAAO,IAAP;AACD;AAnCH;AAHF,GADA;AArBAV,EAAAA,EAAE,CAACW,EAAH,CAAMC,KAAN,CAAYC,eAAZ,CAA4BV,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n\n************************************************************************ */\n\n/**\n * A cell renderer for header cells.\n */\nqx.Interface.define(\"qx.ui.table.IHeaderRenderer\",\n{\n\n  members :\n  {\n    /**\n     * Creates a header cell.\n     *\n     * The cellInfo map contains the following properties:\n     * <ul>\n     * <li>col (int): the model index of the column.</li>\n     * <li>xPos (int): the x position of the column in the table pane.</li>\n     * <li>name (string): the name of the column.</li>\n     * <li>editable (boolean): whether the column is editable.</li>\n     * <li>sorted (boolean): whether the column is sorted.</li>\n     * <li>sortedAscending (boolean): whether sorting is ascending.</li>\n     * </ul>\n     *\n     * @abstract\n     * @param cellInfo {Map} A map containing the information about the cell to\n     *      create.\n     * @return {qx.ui.core.Widget} the widget that renders the header cell.\n     */\n    createHeaderCell : function(cellInfo) {\n      return true;\n    },\n\n\n    /**\n     * Updates a header cell.\n     *\n     * @abstract\n     * @param cellInfo {Map} A map containing the information about the cell to\n     *      create. This map has the same structure as in {@link #createHeaderCell}.\n     * @param cellWidget {qx.ui.core.Widget} the widget that renders the header cell. This is\n     *      the same widget formally created by {@link #createHeaderCell}.\n     */\n    updateHeaderCell : function(cellInfo, cellWidget) {\n      return true;\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedienbare Widgets &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/versions.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Das Audio Widget" href="audio/index.html" />
+    <link rel="prev" title="Styling" href="../styling.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bedienbare Widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="audio/index.html">Das Audio Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="colorchooser/index.html">Der ColorChooser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="designtoggle/index.html">Das DesignToggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imagetrigger/index.html">Das ImageTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="infoaction/index.html">Das InfoAction Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="infotrigger/index.html">Das InfoTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multitrigger/index.html">Das MultiTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pagejump/index.html">Das PageJump Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pushbutton/index.html">Das PushButton Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="refresh/index.html">Das Refresh Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reload/index.html">Das Reload Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slide/index.html">Das Slide Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/index.html">Das Switch Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toggle/index.html">Das Toggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="trigger/index.html">Das Trigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urltrigger/index.html">Das UrlTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notificationcenterbadge/index.html">Das NotificationCenterBadge Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#darstellende-widgets">Darstellende Widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="image/index.html">Das Image Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="info/index.html">Das Info Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="line/index.html">Das Line Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rgb/index.html">Das RGB Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="roundbar/index.html">Das Roundbar Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text/index.html">Das Text Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="video/index.html">Das Video Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="web/index.html">Das Web Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wgplugin_info/index.html">Das WG_Plugin_Info Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sonstige-widgets">Sonstige Widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="break/index.html">Das Break Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="group/index.html">Das Group Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="include/index.html">Das Include Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="navbar/index.html">Das Navbar Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="page/index.html">Das Page Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plugins/clock/index.html">Das Clock Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/diagram/index.html">Das Diagram Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/diagram_info/index.html">Das Diagramm_Info Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/gauge/index.html">Das Gauge Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/link/index.html">Das Link Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/openhab/index.html">Das openHAB2 Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/openweathermap/index.html">Das OpenweatherMap Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/powerspectrum/index.html">Das PowerSpectrum Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/speech/index.html">Das Speech Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/strftime/index.html">Das Strftime Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/timeout/index.html">Das Timeout Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plugins/tr064/index.html">Das tr064 Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Bedienbare Widgets</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<p class="rubric" id="widgets">Widgets in der CometVisu</p>
+<p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
+zusammengebaut wird. Diese können entweder fest in der CometVisu
+eingebaut sein oder per Plugin-Schnittstelle integriert werden. Die
+Widgets lassen sich durch den Editor hinzufügen. (Rechtklick auf das
+Element, welches ein Widget aufnehmen soll z.B. eine Page oder eine
+Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und
+anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und
+kann wie folgt konfiguriert werden;</p>
+<div class="section" id="bedienbare-widgets">
+<h1>Bedienbare Widgets<a class="headerlink" href="#bedienbare-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
+Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejump
+kann innerhalb der Visu navigiert werden.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="audio/index.html"><span class="doc">Audio</span></a></td>
+<td>Mit diesem Widget kann in die Visu eine Audio-Datei eingebunden werden, die sich über eine Adresse abspielen lässt.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="colorchooser/index.html"><span class="doc">ColorChooser</span></a></td>
+<td>Farb-Auswahl-Rad für RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="designtoggle/index.html"><span class="doc">Designtoggle</span></a></td>
+<td>Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="imagetrigger/index.html"><span class="doc">ImageTrigger</span></a></td>
+<td>Fügt der Visu ein klickbares Bild hinzu. Dies kann z.B. für Erinnerungen wie Geburtstage oder Müllabfuhr verwendet werden.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="infoaction/index.html"><span class="doc">InfoAction</span></a></td>
+<td>Ermöglich die Kombination eines darstellenden und bedienbaren Widgets.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="infotrigger/index.html"><span class="doc">InfoTrigger</span></a></td>
+<td>Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. Z.B. für Multimediasteuerungen.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="multitrigger/index.html"><span class="doc">Multitrigger</span></a></td>
+<td>Fügt der Visu ein Widget mit 4 Schaltflächen hinzu. Damit kann z.B. die Betriebsart der Heizung umgestellt (Komfort -&gt; Nacht -&gt; Abwesend -&gt; Frostschutz) oder ein Szenenabruf realisiert werden.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pagejump/index.html"><span class="doc">Pagejump</span></a></td>
+<td>Mit dem Widget pagejump lassen sich Seiten der Visu zusätzlich verknüpfen. Von der Funktion ist das vergleichbar mit Hyperlinks.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pushbutton/index.html"><span class="doc">PushButton</span></a></td>
+<td>Fügt der Visu eine Schaltfläche hinzu, mit der beim Drücken und Loslassen jeweils ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit ist es z.B. möglich einen Taster zu simulieren um ein Garagentor, Rolläden oder Raffstores zu öffnen und zu schliessen.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="refresh/index.html"><span class="doc">Refresh</span></a></td>
+<td>Mit dem Widget refresh lassen sich die angezeigten Daten der Visu neu abrufen.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="reload/index.html"><span class="doc">Reload</span></a></td>
+<td>Mit dem Widget reload wird die Visu Seite komplett neu geladen.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="slide/index.html"><span class="doc">Slide</span></a></td>
+<td>Fügt der Visu einen horizontalen Schieberegler hinzu. Mit diesem kann z.B. gedimmt oder eine Temperatur eingestellt werden.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="switch/index.html"><span class="doc">Switch</span></a></td>
+<td>Fügt der Visu eine Schaltfläche hinzu, mit der z.B. Schaltaktionen ausgelöst werden können. Der Switch wird typisch für EIN/AUS Aktionen benutzt, wie Licht, Steckdosen, etc.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="toggle/index.html"><span class="doc">Toggle</span></a></td>
+<td>Das toggle Widget ist ähnlich wie der Switch, kann aber mehr als zwei Zustände annehmen - dies kann z.B. für die Umschaltung von Betriebsarten der Heizung genutzt werden. Bei jedem Druck nimmt der Toggle den nächsten möglichen Zustand an.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="trigger/index.html"><span class="doc">Trigger</span></a></td>
+<td>Fügt der Visu eine Schaltfläche hinzu, mit der genau ein definierter Wert für einen kurzen, sowie optional ein definierter Wert für einen langen Tastendruck an den BUS gesendet werden kann, z.B. für das Abrufen und Abspeichern von Szenen oder dem Fahren von Rollos. (kurz = stopp, lang = fahren). Die Adresse für Kurz und Langzeit können unterschiedlich sein.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="urltrigger/index.html"><span class="doc">URL-trigger</span></a></td>
+<td>Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund eine URL aufruft um dadurch Aktionen auszuführen, z.B. um ein IFTTT Rezept aufzurufen.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="notificationcenterbadge/index.html"><span class="doc">Badge</span></a></td>
+<td>Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="darstellende-widgets">
+<h1>Darstellende Widgets<a class="headerlink" href="#darstellende-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht möglich.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="image/index.html"><span class="doc">Image</span></a></td>
+<td>Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="info/index.html"><span class="doc">Info</span></a></td>
+<td>Fügt der Visu ein dynamisches Feld hinzu, dass Werte vom BUS darstellen kann. Z.B. 14-Byte-Text oder Zählerstände.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="line/index.html"><span class="doc">Line</span></a></td>
+<td>Fügt der Visu eine horizontale Linie hinzu, um die Visuseite in einzelne Bereiche zu unterteilen.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="rgb/index.html"><span class="doc">RGB</span></a></td>
+<td>Mit dem RGB-Widget kann man eine Farbe in der Visu anzeigen.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="roundbar/index.html"><span class="doc">Roundbar</span></a></td>
+<td>Mit dem Widget roundbar wir ein oder mehrere Indikatoren für einen Wert angezeigt.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="text/index.html"><span class="doc">Text</span></a></td>
+<td>Fügt der Visu ein statisches Textfeld hinzu.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="video/index.html"><span class="doc">Video</span></a></td>
+<td>Fügt der Visu ein Video oder einen Livestream hinzu. Wird derzeit allerdings von den meisten Quellen noch nicht unterstützt.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="web/index.html"><span class="doc">Web</span></a></td>
+<td>Fügt der Visu ein Fläche hinzu, in der externe Webseiten dargestellt werden können.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="wgplugin_info/index.html"><span class="doc">WG_Plugin_Info</span></a></td>
+<td>Fügt der Visu ein dynamisches Feld hinzu mit dem Daten aus WireGate Plugins dargestellt werden können.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="sonstige-widgets">
+<h1>Sonstige Widgets<a class="headerlink" href="#sonstige-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="break/index.html"><span class="doc">Break</span></a></td>
+<td>Fügt der Visu einen Zeilenumbruch hinzu.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="group/index.html"><span class="doc">Group</span></a></td>
+<td>Mit group können Widgets in einem Rahmen als Gruppe zusammengefasst werden. Die Größe der Gruppe kann über „layout“ eingestellt werden.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="include/index.html"><span class="doc">Include</span></a></td>
+<td>Ermöglicht es, die visu_config.xml in mehrere Dateien aufzuteilen und die Teile über <em>include</em> wieder zusammenzuführen.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="navbar/index.html"><span class="doc">Navbar</span></a></td>
+<td>Mit dem Widget navbar kann der gesamten Visu ein Navigationsmenü hinzu gefügt werden. Das Menü lässt sich an einer Seite (oben, unten, link, rechts) darstellen. Die Navigation durch die Visu lässt sich damit strukturieren.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="page/index.html"><span class="doc">Page</span></a></td>
+<td>Erstellt eine neue Visuseite und fügt der aktuellen Seite einen entsprechenden Link hinzu.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="widgets-die-per-plugin-eingebunden-werden-konnen">
+<h1>Widgets die per Plugin eingebunden werden können<a class="headerlink" href="#widgets-die-per-plugin-eingebunden-werden-konnen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Diese müssen im „meta“ Bereich der <a class="reference internal" href="../xml-format.html"><span class="doc">visu_config.xml</span></a> eingebunden werden bevor sie genutzt werden können.</p>
+<p>also z.B.:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;plugins&gt;</span>
+  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;diagram&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="plugins/clock/index.html"><span class="doc">Clock</span></a></td>
+<td>Plugin zum Darstellen der Uhrzeit von einer Adresse.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/diagram/index.html"><span class="doc">Diagram</span></a></td>
+<td>RRD-basierte Diagramme</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="plugins/diagram_info/index.html"><span class="doc">Diagram_Info</span></a></td>
+<td>Informations-Anzeige, die beim Klick ein Diagramm öffnet</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/gauge/index.html"><span class="doc">Gauge</span></a></td>
+<td>Zeigerinstrument</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="plugins/link/index.html"><span class="doc">Link</span></a></td>
+<td>Fügt der Visu einen einfachen anklickbaren Link hinzu</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/openhab/index.html"><span class="doc">openHAB</span></a></td>
+<td>Verbesserte Integration mit dem openHAB2 Backend</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="plugins/openweathermap/index.html"><span class="doc">OpenweatherMap</span></a></td>
+<td>Wettervorhersage</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/powerspectrum/index.html"><span class="doc">PowerSpectrum</span></a></td>
+<td>Darstellung des Strom-Spektrums</td>
+</tr>
+<tr class="row-even"><td>RSS</td>
+<td>RSS</td>
+</tr>
+<tr class="row-odd"><td>RSSlog</td>
+<td>Interaktive Log-Meldungen basierend auf RSS-Technologie</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="plugins/speech/index.html"><span class="doc">Speech</span></a></td>
+<td>Sprachausgabe (Text-to-speech)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/strftime/index.html"><span class="doc">Strftime</span></a></td>
+<td>Darstellung der Uhrzeit in Textform</td>
+</tr>
+<tr class="row-even"><td>SVG</td>
+<td>Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/timeout/index.html"><span class="doc">Timeout</span></a></td>
+<td>Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="plugins/tr064/index.html"><span class="doc">tr064</span></a></td>
+<td>Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.</td>
+</tr>
+<tr class="row-odd"><td>UPNPController</td>
+<td>UPNP-Controller</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Das CalendarList-Plugin steht nicht mehr zur Verfügung, da es auf eine Schnittstelle des Google-Kalenders zugegriffen hat,
+die nicht mehr verfügbar ist.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<p>weitere Plugins befinden sich in der Entwicklung.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../styling.html" class="btn btn-neutral float-left" title="Styling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="audio/index.html" class="btn btn-neutral float-right" title="Das Audio Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

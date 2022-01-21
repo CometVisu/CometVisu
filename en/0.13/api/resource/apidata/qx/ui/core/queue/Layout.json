@@ -1,0 +1,305 @@
+{
+  "className": "qx.ui.core.queue.Layout",
+  "packageName": "qx.ui.core.queue",
+  "name": "Layout",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 282,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The layout queue manages all widgets, which need a recalculation of their\n layout. The {@link #flush} method computes the layout of all queued widgets\n and their dependent widgets.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__queue": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} This contains all the queued widgets for the next flush."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__nesting": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Nesting level cache *</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the widget from the internal queue. Normally only used\n during interims disposes of one or a few widgets.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} The widget to clear",
+            "paramName": "widget",
+            "description": " The widget to clear",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mark a widget's layout as invalid and add its layout root to\n the queue.\n Should only be used by {@link qx.ui.core.Widget}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to add.",
+            "paramName": "widget",
+            "description": " Widget to add.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isScheduled": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the queue has scheduled changes for a widget.\n Note that the layout parent can have changes scheduled that\n affect the children widgets.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to check.",
+            "paramName": "widget",
+            "description": " Widget to check.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the widget given has layout changes queued.",
+            "type": "Boolean",
+            "description": " Whether the widget given has layout changes queued."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "flush": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the layout of all widgets, which layout is marked as invalid.\n This is used exclusively by the {@link qx.ui.core.queue.Manager}.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNestingLevel": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget's nesting level. Top level widgets have a nesting level\n of <code>0</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} The widget to query.",
+            "paramName": "widget",
+            "description": " The widget to query.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The nesting level",
+            "type": "Integer",
+            "description": " The nesting level"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getLevelGroupedWidgets": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 199,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Group widget by their nesting level.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} A sparse array. Each entry of the array contains a widget\n     map with all widgets of the same level as the array index.",
+            "type": "Map[]",
+            "description": " A sparse array. Each entry of the array contains a widget\n     map with all widgets of the same level as the array index."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getSortedQueue": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4
+        },
+        "end": {
+          "line": 280,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute all layout roots of the given widgets. Layout roots are either\n root widgets or widgets, which preferred size has not changed by the\n layout changes of its children.\n This function returns the roots ordered by their nesting factors. The\n layout with the largest nesting level comes first.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} Ordered list or layout roots.",
+            "type": "qx.ui.core.Widget[]",
+            "description": " Ordered list or layout roots."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

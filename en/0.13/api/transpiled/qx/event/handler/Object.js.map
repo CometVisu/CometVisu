@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/handler/Object.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "event",
+    "IEventHandler",
+    "statics",
+    "PRIORITY",
+    "Registration",
+    "PRIORITY_LAST",
+    "SUPPORTED_TYPES",
+    "TARGET_CHECK",
+    "TARGET_OBJECT",
+    "IGNORE_CAN_HANDLE",
+    "members",
+    "canHandleEvent",
+    "target",
+    "type",
+    "supportsEvent",
+    "constructor",
+    "registerEvent",
+    "capture",
+    "unregisterEvent",
+    "defer",
+    "addHandler",
+    "handler"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,SAAS,EAAGT,EAAE,CAACU,KAAH,CAASC,aAFvB;;AAQE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,QAAQ,EAAGb,EAAE,CAACU,KAAH,CAASI,YAAT,CAAsBC,aAFnC;;AAIE;AACAC,MAAAA,eAAe,EAAG,IALpB;;AAOE;AACAC,MAAAA,YAAY,EAAGjB,EAAE,CAACU,KAAH,CAASC,aAAT,CAAuBO,aARxC;;AAUE;AACAC,MAAAA,iBAAiB,EAAG;AAXtB,KAfF;;AAiCE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AAEI;AACAC,MAAAA,cAAc,EAAG,wBAASC,MAAT,EAAiBC,IAAjB,EAAuB;AACtC,eAAOvB,EAAE,CAACI,KAAH,CAASoB,aAAT,CAAuBF,MAAM,CAACG,WAA9B,EAA2CF,IAA3C,CAAP;AACD,OAVH;AAaE;AACAG,MAAAA,aAAa,EAAG,uBAASJ,MAAT,EAAiBC,IAAjB,EAAuBI,OAAvB,EAAgC,CAC9C;AACD,OAhBH;AAmBE;AACAC,MAAAA,eAAe,EAAG,yBAASN,MAAT,EAAiBC,IAAjB,EAAuBI,OAAvB,EAAgC,CAChD;AACD;AAtBH,KAxCF;;AAsEE;AACF;AACA;AACA;AACA;AAEEE,IAAAA,KAAK,EAAG,eAASjB,OAAT,EAAkB;AACxBZ,MAAAA,EAAE,CAACU,KAAH,CAASI,YAAT,CAAsBgB,UAAtB,CAAiClB,OAAjC;AACD;AA9EH,GADA;AAtBAZ,EAAAA,EAAE,CAACU,KAAH,CAASqB,OAAT,CAAiBvB,MAAjB,CAAwBL,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * This class provides qooxdoo object event support.\n */\nqx.Class.define(\"qx.event.handler.Object\",\n{\n  extend : qx.core.Object,\n  implement : qx.event.IEventHandler,\n\n\n\n\n\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /** @type {Integer} Priority of this handler */\n    PRIORITY : qx.event.Registration.PRIORITY_LAST,\n\n    /** @type {Map} Supported event types */\n    SUPPORTED_TYPES : null,\n\n    /** @type {Integer} Which target check to use */\n    TARGET_CHECK : qx.event.IEventHandler.TARGET_OBJECT,\n\n    /** @type {Integer} Whether the method \"canHandleEvent\" must be called */\n    IGNORE_CAN_HANDLE : false\n  },\n\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      EVENT HANDLER INTERFACE\n    ---------------------------------------------------------------------------\n    */\n\n    // interface implementation\n    canHandleEvent : function(target, type) {\n      return qx.Class.supportsEvent(target.constructor, type);\n    },\n\n\n    // interface implementation\n    registerEvent : function(target, type, capture) {\n      // Nothing needs to be done here\n    },\n\n\n    // interface implementation\n    unregisterEvent : function(target, type, capture) {\n      // Nothing needs to be done here\n    }\n  },\n\n\n\n\n\n\n  /*\n  *****************************************************************************\n     DEFER\n  *****************************************************************************\n  */\n\n  defer : function(statics) {\n    qx.event.Registration.addHandler(statics);\n  }\n});\n"
+  ]
+}

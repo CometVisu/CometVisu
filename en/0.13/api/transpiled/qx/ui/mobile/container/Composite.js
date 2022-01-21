@@ -1,0 +1,104 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.mobile.core.Widget": {
+        "construct": true,
+        "require": true
+      },
+      "qx.ui.mobile.core.MChildrenHandling": {
+        "defer": "runtime",
+        "require": true
+      },
+      "qx.ui.mobile.core.MLayoutHandling": {
+        "defer": "runtime",
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2011 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Tino Butz (tbtz)
+  
+  ************************************************************************ */
+
+  /**
+   * The Composite is a generic container widget.
+   *
+   * It exposes all methods to set layouts and to manage child widgets
+   * as public methods. You must configure this widget with a layout manager to
+   * define the way the widget's children are positioned.
+   *
+   * *Example*
+   *
+   * Here is a little example of how to use the widget.
+   *
+   * <pre class='javascript'>
+   *   // create the composite
+   *   var composite = new qx.ui.mobile.container.Composite();
+   *
+   *   composite.setLayout(new qx.ui.mobile.layout.HBox());
+   *
+   *   // add some children
+   *   composite.add(new qx.ui.mobile.basic.Label("Name: "), {flex:1});
+   *   composite.add(new qx.ui.mobile.form.TextField());
+   *
+   *   this.getRoot().add(composite);
+   * </pre>
+   *
+   * This example horizontally groups a label and text field by using a
+   * Composite configured with a horizontal box layout as a container.
+   */
+  qx.Class.define("qx.ui.mobile.container.Composite", {
+    extend: qx.ui.mobile.core.Widget,
+    include: [qx.ui.mobile.core.MChildrenHandling, qx.ui.mobile.core.MLayoutHandling],
+
+    /*
+    *****************************************************************************
+       CONSTRUCTOR
+    *****************************************************************************
+    */
+
+    /**
+     * @param layout {qx.ui.mobile.layout.Abstract?null} The layout that should be used for this
+     *     container
+     */
+    construct: function construct(layout) {
+      qx.ui.mobile.core.Widget.constructor.call(this);
+
+      if (layout) {
+        this.setLayout(layout);
+      }
+    },
+
+    /*
+    *****************************************************************************
+       DEFER
+    *****************************************************************************
+    */
+    defer: function defer(statics, members) {
+      qx.ui.mobile.core.MChildrenHandling.remap(members);
+      qx.ui.mobile.core.MLayoutHandling.remap(members);
+    }
+  });
+  qx.ui.mobile.container.Composite.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=Composite.js.map?dt=1642787817129

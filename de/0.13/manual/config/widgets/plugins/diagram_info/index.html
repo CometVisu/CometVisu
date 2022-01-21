@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das Diagramm_Info Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/diagram_info/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/versions.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../../search.html" />
+    <link rel="next" title="Das Gauge Plugin" href="../gauge/index.html" />
+    <link rel="prev" title="Das Diagram Plugin" href="../diagram/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../clock/index.html">Das Clock Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram/index.html">Das Diagram Plugin</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Das Diagramm_Info Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gauge/index.html">Das Gauge Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link/index.html">Das Link Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openhab/index.html">Das openHAB2 Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openweathermap/index.html">Das OpenweatherMap Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../powerspectrum/index.html">Das PowerSpectrum Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../speech/index.html">Das Speech Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../strftime/index.html">Das Strftime Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../timeout/index.html">Das Timeout Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tr064/index.html">Das tr064 Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
+      <li>Das Diagramm_Info Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="das-diagramm-info-plugin">
+<span id="diagram-info"></span><h1>Das Diagramm_Info Plugin<a class="headerlink" href="#das-diagramm-info-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Michael Hausl [michael at hausl dot com]</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 0.6.0</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Inhalt übertragen + openHAB Ergänzungen</p>
+</div>
+<div class="section" id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das Diagram-Plugin bietet die Möglichkeit als Widget einen aktuellen Wert anzuzeigen, der beim Anklicken
+ein Popup-Diagramm öffnet, dass den zeitlichen Verlauf des Wertes visualisiert. Die Datenquelle
+muss im rrd-Format oder in einer Influx-Datenbank vorliegen. Genaueres dazu im
+Abschnitt <a class="reference internal" href="../../../rrd_examples.html#rrd-introduction"><span class="std std-ref">RRD-Einführung &amp; Beispiele</span></a>.</p>
+<p>Soll das Diagramm selbst als Widget angezeigt werdeb, muss das <code class="docutils literal notranslate"><span class="pre">diagram</span></code>-Plugin verwendet werden.
+Genauere Informationen dazu unter <a class="reference internal" href="../diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a>.</p>
+</div>
+<div class="section" id="detaillierte-einstellungen">
+<h2>Detaillierte Einstellungen<a class="headerlink" href="#detaillierte-einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das Diagram-Plugin ist eines der Widgets mit den umfangreichsten Konfigurationsmöglichkeiten. Viele der Attribute-
+bzw. Elemente sind aber optional für verschiedene Sonderanwendungen, so dass bereits mit wenigen Einstellungen
+sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
+<div class="section" id="erlaubte-attribute-im-diagramm-element">
+<h3>Erlaubte Attribute im Diagramm-Element<a class="headerlink" href="#erlaubte-attribute-im-diagramm-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="19">diagram_info</td>
+<td>format</td>
+<td>Text</td>
+<td>Formatierung des Wertes (printf-Syntax).</td>
+</tr>
+<tr class="row-even"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-odd"><td>mapping</td>
+<td>Text</td>
+<td>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>bind_click_to_widget</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</td>
+</tr>
+<tr class="row-even"><td>series</td>
+<td><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> oder <em>custom</em></td>
+<td>Legt die Einheit des period Attributs fest zB. day, hour</td>
+</tr>
+<tr class="row-odd"><td>refresh</td>
+<td>integer</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>period</td>
+<td>Text</td>
+<td>Zeitraum als Vielfaches von „series“ der im Diagram dargestellt wird</td>
+</tr>
+<tr class="row-odd"><td>gridcolor</td>
+<td>Text</td>
+<td>Farbe der Gitternetzlinien im Diagramm</td>
+</tr>
+<tr class="row-even"><td>legend</td>
+<td><em>both</em>, <em>inline</em>, <em>popup</em> oder <em>none</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>legendposition</td>
+<td><em>nw</em>, <em>ne</em>, <em>sw</em> oder <em>se</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>title</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>tooltip</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>timeformat</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>timeformatTooltip</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>zoomYAxis</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>seriesStart</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>seriesEnd</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>seriesResolution</td>
+<td>integer</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">name</abbr></td>
+<td>Text</td>
+<td>Name unter dem das Icon registriert ist.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>Text</td>
+<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>Text</td>
+<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>axis</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>label</td>
+<td>Text</td>
+<td>Legt die Achsenbeschriftung fest</td>
+</tr>
+<tr class="row-even"><td>min</td>
+<td>Zahl</td>
+<td>Definiert das Minimum der y-Achse.</td>
+</tr>
+<tr class="row-odd"><td>max</td>
+<td>Zahl</td>
+<td>Definiert das Maximum der y-Achse.</td>
+</tr>
+<tr class="row-even"><td>position</td>
+<td><em>left</em> oder <em>right</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>unit</td>
+<td>Text</td>
+<td>Legt die Einheit fest, die hinter den Zahlen der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</td>
+</tr>
+<tr class="row-even"><td>decimals</td>
+<td>integer</td>
+<td>Legt die Anzahl der Nachkommastellen fest, die in der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>axis<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="13"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>rrd</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>yaxis</td>
+<td>Text</td>
+<td>Weist die Daten einer y-Achse zu</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>Text</td>
+<td>Legt die Farbe der Diagrammlinie fest</td>
+</tr>
+<tr class="row-odd"><td>label</td>
+<td>Text</td>
+<td>Defininiert den Namen der Datenreihe in der Legende</td>
+</tr>
+<tr class="row-even"><td>scaling</td>
+<td>Zahl</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>steps</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>fill</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+</tr>
+<tr class="row-odd"><td>style</td>
+<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>barWidth</td>
+<td>integer</td>
+<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+</tr>
+<tr class="row-odd"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>datasourceIndex</td>
+<td>integer</td>
+<td>Im Falle mehrerer Datenquellen in einer RRD-Datei kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. Um den richtigen Index herauszufinden, kann „rrdtool info“ verwendet werden.</td>
+</tr>
+<tr class="row-odd"><td>consolidationFunction</td>
+<td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> oder <em>MAX</em></td>
+<td>Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
+</tr>
+<tr class="row-even"><td>resolution</td>
+<td>integer</td>
+<td>Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</td>
+</tr>
+<tr class="row-odd"><td>offset</td>
+<td>integer</td>
+<td>Offset in Sekunden, um die Zeitstempel der Daten aus der RRD-Datei zu modifizieren.</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>rrd<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>influx</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>measurement</td>
+<td>Text</td>
+<td>Auswahl der Datenbank und des Measurement (Beispiel: timeseries_db/KNX_LINE1)</td>
+</tr>
+<tr class="row-even"><td>yaxis</td>
+<td>Text</td>
+<td>Weist die InfluxDB-Daten einer y-Achse zu</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>Text</td>
+<td>Legt die Farbe der Diagrammlinie fest</td>
+</tr>
+<tr class="row-even"><td>label</td>
+<td>Text</td>
+<td>Defininiert den Namen der Datenreihe in der Legende</td>
+</tr>
+<tr class="row-odd"><td>scaling</td>
+<td>Zahl</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>steps</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>fill</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+</tr>
+<tr class="row-even"><td>style</td>
+<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>barWidth</td>
+<td>integer</td>
+<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>authentication</td>
+<td>Text</td>
+<td>Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>Text</td>
+<td>Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. Wenn nicht explizit angegeben, wird „*“ verwendet. Achtung: Es darf nur eine Spalte ausgewählt werden, sonst wird keiner angezeigt.</td>
+</tr>
+<tr class="row-odd"><td>resolution</td>
+<td>integer</td>
+<td>Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden. Der Wert „0“ schaltet die Gruppierung aus.</td>
+</tr>
+<tr class="row-even"><td>consolidationFunction</td>
+<td><em>COUNT</em>, <em>DERIVATIVE</em>, <em>DERIVATIVE_COUNT</em>, <em>DERIVATIVE_MEAN</em>, <em>DERIVATIVE_MEDIAN</em>, <em>DERIVATIVE_MODE</em>, <em>DERIVATIVE_SUM</em>, <em>DERIVATIVE_FIRST</em>, <em>DERIVATIVE_LAST</em>, <em>DERIVATIVE_MIN</em>, <em>DERIVATIVE_MAX</em>, <em>DERIVATIVE_PERCENTILE_1</em>, <em>DERIVATIVE_PERCENTILE_5</em>, <em>DERIVATIVE_PERCENTILE_10</em>, <em>DERIVATIVE_PERCENTILE_20</em>, <em>DERIVATIVE_PERCENTILE_25</em>, <em>DERIVATIVE_PERCENTILE_75</em>, <em>DERIVATIVE_PERCENTILE_80</em>, <em>DERIVATIVE_PERCENTILE_90</em>, <em>DERIVATIVE_PERCENTILE_95</em>, <em>DERIVATIVE_PERCENTILE_99</em>, <em>DIFFERENCE</em>, <em>DIFFERENCE_COUNT</em>, <em>DIFFERENCE_MEAN</em>, <em>DIFFERENCE_MEDIAN</em>, <em>DIFFERENCE_MODE</em>, <em>DIFFERENCE_SUM</em>, <em>DIFFERENCE_FIRST</em>, <em>DIFFERENCE_LAST</em>, <em>DIFFERENCE_MIN</em>, <em>DIFFERENCE_MAX</em>, <em>DIFFERENCE_PERCENTILE_1</em>, <em>DIFFERENCE_PERCENTILE_5</em>, <em>DIFFERENCE_PERCENTILE_10</em>, <em>DIFFERENCE_PERCENTILE_20</em>, <em>DIFFERENCE_PERCENTILE_25</em>, <em>DIFFERENCE_PERCENTILE_75</em>, <em>DIFFERENCE_PERCENTILE_80</em>, <em>DIFFERENCE_PERCENTILE_90</em>, <em>DIFFERENCE_PERCENTILE_95</em>, <em>DIFFERENCE_PERCENTILE_99</em>, <em>ELAPSED</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> oder <em>SUM</em></td>
+<td>Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut „resolution“ gesetzt ist.</td>
+</tr>
+<tr class="row-odd"><td>fillMissing</td>
+<td>Text</td>
+<td>Option wenn Attribut „resolution“ gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus „linear“, „none“, „null“ oder „previous“.</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>integer</td>
+<td>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>influx</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>influx</li>
+<li>and</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>value</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>influx</li>
+<li>or</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>address</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">transform</abbr></td>
+<td>Text</td>
+<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
+<td>„disable“ daktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Addresse zum Lesen und zum Schreiben verwendet.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>Zahl</td>
+<td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>Zahl</td>
+<td>Nur MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: retain Flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>diagram_info</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../diagram/index.html" class="btn btn-neutral float-left" title="Das Diagram Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gauge/index.html" class="btn btn-neutral float-right" title="Das Gauge Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

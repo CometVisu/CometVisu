@@ -1,0 +1,31 @@
+{
+  "className": "qx.theme.modern.Font",
+  "packageName": "qx.theme.modern",
+  "name": "Font",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 86,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The modern font theme.</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/style/Stylesheet.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "__sheet",
+    "bom",
+    "Stylesheet",
+    "createElement",
+    "__rules",
+    "members",
+    "addRule",
+    "selector",
+    "css",
+    "hasRule",
+    "push",
+    "indexOf",
+    "removeRule",
+    "ui",
+    "style"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,IAAI,EAAG,WADT;AAEEC,IAAAA,MAAM,EAAGP,EAAE,CAACQ,IAAH,CAAQC,MAFnB;AAKEC,IAAAA,SAAS,EAAG,qBAAW;AACrB;AACA,WAAKC,SAAL,GAAeX,EAAE,CAACY,GAAH,CAAOC,UAAP,CAAkBC,aAAlB,EAAf;AACA,WAAKC,SAAL,GAAe,EAAf;AACD,KATH;AAYEC,IAAAA,OAAO,EACP;AACED,MAAAA,SAAO,EAAG,IADZ;AAEEJ,MAAAA,SAAO,EAAG,IAFZ;;AAKE;AACJ;AACA;AACA;AACA;AACIM,MAAAA,OAAO,EAAG,iBAASC,QAAT,EAAmBC,GAAnB,EAAwB;AAChC,YAAI,KAAKC,OAAL,CAAaF,QAAb,CAAJ,EAA4B;AAC1B;AACD;;AACDlB,QAAAA,EAAE,CAACY,GAAH,CAAOC,UAAP,CAAkBI,OAAlB,CAA0B,KAAKN,SAA/B,EAAwCO,QAAxC,EAAkDC,GAAlD;;AACA,aAAKJ,SAAL,CAAaM,IAAb,CAAkBH,QAAlB;AACD,OAhBH;;AAmBE;AACJ;AACA;AACA;AACA;AACIE,MAAAA,OAAO,EAAG,iBAASF,QAAT,EAAmB;AAC3B,eAAO,KAAKH,SAAL,CAAaO,OAAb,CAAqBJ,QAArB,KAAkC,CAAC,CAA1C;AACD,OA1BH;;AA6BE;AACJ;AACA;AACA;AACIK,MAAAA,UAAU,EAAG,oBAASL,QAAT,EAAmB;AAC9B,eAAO,KAAKH,SAAL,CAAa,KAAKA,SAAL,CAAaO,OAAb,CAAqBJ,QAArB,CAAb,CAAP;AACAlB,QAAAA,EAAE,CAACY,GAAH,CAAOC,UAAP,CAAkBU,UAAlB,CAA6B,KAAKZ,SAAlC,EAA2CO,QAA3C;AACD;AApCH;AAbF,GADA;AArBAlB,EAAAA,EAAE,CAACwB,EAAH,CAAMC,KAAN,CAAYZ,UAAZ,CAAuBV,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n/**\n * Global class which handles the single stylesheet used for qx.desktop.\n */\nqx.Class.define(\"qx.ui.style.Stylesheet\",\n{\n  type : \"singleton\",\n  extend : qx.core.Object,\n\n\n  construct : function() {\n    this.base(arguments);\n    this.__sheet = qx.bom.Stylesheet.createElement();\n    this.__rules = [];\n  },\n\n\n  members :\n  {\n    __rules : null,\n    __sheet : null,\n\n\n    /**\n     * Adds a rule to the global stylesheet.\n     * @param selector {String} The CSS selector to add the rule for.\n     * @param css {String} The rule's content.\n     */\n    addRule : function(selector, css) {\n      if (this.hasRule(selector)) {\n        return;\n      }\n      qx.bom.Stylesheet.addRule(this.__sheet, selector, css);\n      this.__rules.push(selector);\n    },\n\n\n    /**\n     * Check if a rule exists.\n     * @param selector {String} The selector to check.\n     * @return {Boolean} <code>true</code> if the rule exists\n     */\n    hasRule : function(selector) {\n      return this.__rules.indexOf(selector) != -1;\n    },\n\n\n    /**\n     * Remove the rule for the given selector.\n     * @param selector {String} The selector to identify the rule.\n     */\n    removeRule : function(selector) {\n      delete this.__rules[this.__rules.indexOf(selector)];\n      qx.bom.Stylesheet.removeRule(this.__sheet, selector);\n    }\n  }\n});"
+  ]
+}

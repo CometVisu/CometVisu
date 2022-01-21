@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/core/MContentPadding.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "contentPaddingTop",
+    "check",
+    "init",
+    "apply",
+    "themeable",
+    "contentPaddingRight",
+    "contentPaddingBottom",
+    "contentPaddingLeft",
+    "contentPadding",
+    "group",
+    "mode",
+    "members",
+    "__contentPaddingSetter",
+    "__contentPaddingThemedSetter",
+    "__contentPaddingResetter",
+    "_applyContentPadding",
+    "value",
+    "old",
+    "name",
+    "variant",
+    "target",
+    "_getContentPaddingTarget",
+    "resetter",
+    "setter",
+    "ui",
+    "core",
+    "MContentPadding"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * This mixin defines the <code>contentPadding</code> property, which is used\n * by widgets like the window or group box, which must have a property, which\n * defines the padding of an inner pane.\n *\n * The including class must implement the method\n * <code>_getContentPaddingTarget</code>, which must return the widget on which\n * the padding should be applied.\n */\nqx.Mixin.define(\"qx.ui.core.MContentPadding\",\n{\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    /** Top padding of the content pane */\n    contentPaddingTop :\n    {\n      check : \"Integer\",\n      init : 0,\n      apply : \"_applyContentPadding\",\n      themeable : true\n    },\n\n    /** Right padding of the content pane */\n    contentPaddingRight :\n    {\n      check : \"Integer\",\n      init : 0,\n      apply : \"_applyContentPadding\",\n      themeable : true\n    },\n\n    /** Bottom padding of the content pane */\n    contentPaddingBottom :\n    {\n      check : \"Integer\",\n      init : 0,\n      apply : \"_applyContentPadding\",\n      themeable : true\n    },\n\n    /** Left padding of the content pane */\n    contentPaddingLeft :\n    {\n      check : \"Integer\",\n      init : 0,\n      apply : \"_applyContentPadding\",\n      themeable : true\n    },\n\n    /**\n     * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',\n     * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'\n     * at the same time.\n     *\n     * If four values are specified they apply to top, right, bottom and left respectively.\n     * If there is only one value, it applies to all sides, if there are two or three,\n     * the missing values are taken from the opposite side.\n     */\n    contentPadding :\n    {\n      group : [\n        \"contentPaddingTop\", \"contentPaddingRight\",\n        \"contentPaddingBottom\", \"contentPaddingLeft\"\n      ],\n      mode  : \"shorthand\",\n      themeable : true\n    }\n  },\n\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * @type {Map} Maps property names of content padding to the setter of the padding\n     *\n     * @lint ignoreReferenceField(__contentPaddingSetter)\n     */\n    __contentPaddingSetter :\n    {\n      contentPaddingTop : \"setPaddingTop\",\n      contentPaddingRight : \"setPaddingRight\",\n      contentPaddingBottom : \"setPaddingBottom\",\n      contentPaddingLeft : \"setPaddingLeft\"\n    },\n\n\n    /**\n     * @type {Map} Maps property names of content padding to the themed setter of the padding\n     *\n     * @lint ignoreReferenceField(__contentPaddingThemedSetter)\n     */\n    __contentPaddingThemedSetter :\n    {\n      contentPaddingTop : \"setThemedPaddingTop\",\n      contentPaddingRight : \"setThemedPaddingRight\",\n      contentPaddingBottom : \"setThemedPaddingBottom\",\n      contentPaddingLeft : \"setThemedPaddingLeft\"\n    },\n\n\n    /**\n     * @type {Map} Maps property names of content padding to the resetter of the padding\n     *\n     * @lint ignoreReferenceField(__contentPaddingResetter)\n     */\n    __contentPaddingResetter :\n    {\n      contentPaddingTop : \"resetPaddingTop\",\n      contentPaddingRight : \"resetPaddingRight\",\n      contentPaddingBottom : \"resetPaddingBottom\",\n      contentPaddingLeft : \"resetPaddingLeft\"\n    },\n\n\n    // property apply\n    _applyContentPadding : function(value, old, name, variant)\n    {\n      var target = this._getContentPaddingTarget();\n\n      if (value == null)\n      {\n        var resetter = this.__contentPaddingResetter[name];\n        target[resetter]();\n      }\n      else\n      {\n        // forward the themed sates if case the apply was invoked by a theme\n        if (variant == \"setThemed\" || variant == \"resetThemed\") {\n          var setter = this.__contentPaddingThemedSetter[name];\n          target[setter](value);\n        } else {\n          var setter = this.__contentPaddingSetter[name];\n          target[setter](value);\n        }\n      }\n    }\n  }\n});\n"
+  ]
+}

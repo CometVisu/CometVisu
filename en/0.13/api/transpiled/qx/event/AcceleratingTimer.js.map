@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/AcceleratingTimer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "IDisposable",
+    "construct",
+    "__timer",
+    "event",
+    "Timer",
+    "getInterval",
+    "addListener",
+    "_onInterval",
+    "events",
+    "properties",
+    "interval",
+    "check",
+    "init",
+    "firstInterval",
+    "minimum",
+    "decrease",
+    "members",
+    "__currentInterval",
+    "start",
+    "setInterval",
+    "getFirstInterval",
+    "stop",
+    "Math",
+    "max",
+    "getMinimum",
+    "getDecrease",
+    "fireEvent",
+    "destruct",
+    "_disposeObjects",
+    "AcceleratingTimer"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,SAAS,EAAG,CAAET,EAAE,CAACO,IAAH,CAAQG,WAAV,CAFd;AAIEC,IAAAA,SAAS,EAAG,qBACZ;AACE;AAEA,WAAKC,SAAL,GAAe,IAAIZ,EAAE,CAACa,KAAH,CAASC,KAAb,CAAmB,KAAKC,WAAL,EAAnB,CAAf;;AACA,WAAKH,SAAL,CAAaI,WAAb,CAAyB,UAAzB,EAAqC,KAAKC,WAA1C,EAAuD,IAAvD;AACD,KAVH;AAaEC,IAAAA,MAAM,EACN;AACE;AACA,kBAAa;AAFf,KAdF;AAoBEC,IAAAA,UAAU,EACV;AACE;AACJ;AACA;AACA;AACIC,MAAAA,QAAQ,EACR;AACEC,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,IAAI,EAAI;AAFV,OANF;;AAWE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,aAAa,EACb;AACEF,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,IAAI,EAAI;AAFV,OAjBF;;AAsBE;AACAE,MAAAA,OAAO,EACP;AACEH,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,IAAI,EAAI;AAFV,OAxBF;;AA6BE;AACAG,MAAAA,QAAQ,EACR;AACEJ,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,IAAI,EAAI;AAFV;AA/BF,KArBF;AA2DEI,IAAAA,OAAO,EACP;AACEd,MAAAA,SAAO,EAAG,IADZ;AAEEe,MAAAA,SAAiB,EAAG,IAFtB;;AAIE;AACJ;AACA;AACIC,MAAAA,KAAK,EAAG,iBACR;AACE,aAAKhB,SAAL,CAAaiB,WAAb,CAAyB,KAAKC,gBAAL,EAAzB;;AACA,aAAKlB,SAAL,CAAagB,KAAb;AACD,OAXH;;AAcE;AACJ;AACA;AACIG,MAAAA,IAAI,EAAG,gBACP;AACE,aAAKnB,SAAL,CAAamB,IAAb;;AACA,aAAKJ,SAAL,GAAyB,IAAzB;AACD,OArBH;;AAwBE;AACJ;AACA;AACIV,MAAAA,WAAW,EAAG,uBACd;AACE,aAAKL,SAAL,CAAamB,IAAb;;AAEA,YAAI,KAAKJ,SAAL,IAA0B,IAA9B,EAAoC;AAClC,eAAKA,SAAL,GAAyB,KAAKZ,WAAL,EAAzB;AACD;;AAED,aAAKY,SAAL,GAAyBK,IAAI,CAACC,GAAL,CACvB,KAAKC,UAAL,EADuB,EAEvB,KAAKP,SAAL,GAAyB,KAAKQ,WAAL,EAFF,CAAzB;;AAKA,aAAKvB,SAAL,CAAaiB,WAAb,CAAyB,KAAKF,SAA9B;;AACA,aAAKf,SAAL,CAAagB,KAAb;;AAEA,aAAKQ,SAAL,CAAe,UAAf;AACD;AA5CH,KA5DF;AA4GEC,IAAAA,QAAQ,EAAG,oBAAW;AACpB,WAAKC,eAAL,CAAqB,WAArB;AACD;AA9GH,GADA;AAhCAtC,EAAAA,EAAE,CAACa,KAAH,CAAS0B,iBAAT,CAA2BpC,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Timer, which accelerates after each interval. The initial delay and the\n * interval time can be set using the properties {@link #firstInterval}\n * and {@link #interval}. The {@link #interval} events will be fired with\n * decreasing interval times while the timer is running, until the {@link #minimum}\n * is reached. The {@link #decrease} property sets the amount of milliseconds\n * which will decreased after every firing.\n *\n * This class is e.g. used in the {@link qx.ui.form.RepeatButton} and\n * {@link qx.ui.form.HoverButton} widgets.\n * \n * NOTE: Instances of this class must be disposed of after use\n *\n */\nqx.Class.define(\"qx.event.AcceleratingTimer\",\n{\n  extend : qx.core.Object,\n  implement : [ qx.core.IDisposable ],\n\n  construct : function()\n  {\n    this.base(arguments);\n\n    this.__timer = new qx.event.Timer(this.getInterval());\n    this.__timer.addListener(\"interval\", this._onInterval, this);\n  },\n\n\n  events :\n  {\n    /** This event if fired each time the interval time has elapsed */\n    \"interval\" : \"qx.event.type.Event\"\n  },\n\n\n  properties :\n  {\n    /**\n     * Interval used after the first run of the timer. Usually a smaller value\n     * than the \"firstInterval\" property value to get a faster reaction.\n     */\n    interval :\n    {\n      check : \"Integer\",\n      init  : 100\n    },\n\n    /**\n     * Interval used for the first run of the timer. Usually a greater value\n     * than the \"interval\" property value to a little delayed reaction at the first\n     * time.\n     */\n    firstInterval :\n    {\n      check : \"Integer\",\n      init  : 500\n    },\n\n    /** This configures the minimum value for the timer interval. */\n    minimum :\n    {\n      check : \"Integer\",\n      init  : 20\n    },\n\n    /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */\n    decrease :\n    {\n      check : \"Integer\",\n      init  : 2\n    }\n  },\n\n\n  members :\n  {\n    __timer : null,\n    __currentInterval : null,\n\n    /**\n     * Reset and start the timer.\n     */\n    start : function()\n    {\n      this.__timer.setInterval(this.getFirstInterval());\n      this.__timer.start();\n    },\n\n\n    /**\n     * Stop the timer\n     */\n    stop : function()\n    {\n      this.__timer.stop();\n      this.__currentInterval = null;\n    },\n\n\n    /**\n     * Interval event handler\n     */\n    _onInterval : function()\n    {\n      this.__timer.stop();\n\n      if (this.__currentInterval == null) {\n        this.__currentInterval = this.getInterval();\n      }\n\n      this.__currentInterval = Math.max(\n        this.getMinimum(),\n        this.__currentInterval - this.getDecrease()\n      );\n\n      this.__timer.setInterval(this.__currentInterval);\n      this.__timer.start();\n\n      this.fireEvent(\"interval\");\n    }\n  },\n\n\n  destruct : function() {\n    this._disposeObjects(\"__timer\");\n  }\n});\n"
+  ]
+}

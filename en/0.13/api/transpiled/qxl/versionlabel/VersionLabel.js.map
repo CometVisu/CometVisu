@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_versionlabel_v1_0_5/source/class/qxl/versionlabel/VersionLabel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "basic",
+    "Label",
+    "construct",
+    "value",
+    "version",
+    "core",
+    "Environment",
+    "get",
+    "defer",
+    "add",
+    "qxl",
+    "versionlabel",
+    "VersionLabel"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,KADvB;AAGEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,OAAhB,EAAyB;AACnC,UAAI,CAACD,KAAL,EAAY;AACV;AACAA,QAAAA,KAAK,cAAL;AACD;;AAED,UAAI,CAACC,OAAL,EAAc;AACZ;AACAA,QAAAA,OAAO,eAAP;;AAEA,YAAI,CAACA,OAAL,EAAc;AACZ;AACAA,UAAAA,OAAO,GAAGZ,EAAE,CAACa,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,aAAxB,CAAV;;AACA,cAAIH,OAAO,IAAI,EAAf,EAAmB;AACjBA,YAAAA,OAAO,GAAGZ,EAAE,CAACa,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,YAAxB,CAAV;AACD;AACF;AACF;;AAED,+CAAqBJ,KAAK,GAAG,GAAR,GAAcC,OAAnC;AACD,KAvBH;AA0BEI,IAAAA,KAAK,EAAG,iBAAW;AACjB;AACJ;AACA;AACA;AACIhB,MAAAA,EAAE,CAACa,IAAH,CAAQC,WAAR,CAAoBG,GAApB,CAAwB,uBAAxB,EAAiD,SAAjD;AAEA;AACJ;AACA;AACA;;AACIjB,MAAAA,EAAE,CAACa,IAAH,CAAQC,WAAR,CAAoBG,GAApB,CAAwB,0BAAxB,EAAoD,IAApD;AACD;AAtCH,GADA;AAtBAC,EAAAA,GAAG,CAACC,YAAJ,CAAiBC,YAAjB,CAA8BjB,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Thomas Herchenroeder (thron7)\n\n************************************************************************ */\n\n/**\n * Slightly extended form of a @{qx.ui.basic.Label}, to include a version/\n * revision string of qooxdoo.\n */\nqx.Class.define(\"qxl.versionlabel.VersionLabel\",\n{\n  extend : qx.ui.basic.Label,\n\n  construct : function(value, version) {\n    if (!value) {\n      // if no parameter value given: use the environment variable\n      value = qx.core.Environment.get(\"qxl.versionlabel.name\");\n    }\n\n    if (!version) {\n      // if no parameter value given: use the environment variable\n      version = qx.core.Environment.get(\"qxl.versionlabel.version\");\n\n      if (!version) {\n        // revision or version number as fallback\n        version = qx.core.Environment.get(\"qx.revision\");\n        if (version == \"\") {\n          version = qx.core.Environment.get(\"qx.version\");\n        }\n      }\n    }\n\n    this.base(arguments, value + \" \" + version);\n  },\n\n\n  defer : function() {\n    /**\n     * The name of the version label which is shown in the upper right corner.\n     * Defaults to 'qooxdoo'.\n     */\n    qx.core.Environment.add(\"qxl.versionlabel.name\", \"qooxdoo\");\n\n    /**\n     * The version string of the version label which is shown in the upper right corner.\n     * Defaults to 'null' to be able to fallback to 'qx.revision' or 'qx.version' easily.\n     */\n    qx.core.Environment.add(\"qxl.versionlabel.version\", null);\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/Dark.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "meta",
+    "color",
+    "cv",
+    "theme",
+    "dark",
+    "Color",
+    "decoration",
+    "Decoration",
+    "font",
+    "Font",
+    "icon",
+    "Icon",
+    "appearance",
+    "Appearance",
+    "Dark"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAIA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,eAAhB,EAAiC;AAC/BC,IAAAA,IAAI,EAAE;AACJC,MAAAA,KAAK,EAAEC,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcC,KADjB;AAEJC,MAAAA,UAAU,EAAEJ,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcG,UAFtB;AAGJC,MAAAA,IAAI,EAAEN,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcK,IAHhB;AAIJC,MAAAA,IAAI,EAAER,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcO,IAJhB;AAKJC,MAAAA,UAAU,EAAEV,EAAE,CAACC,KAAH,CAASC,IAAT,CAAcS;AALtB;AADyB,GAAjC;AAzBAX,EAAAA,EAAE,CAACC,KAAH,CAASW,IAAT,CAAcjB,aAAd,GAA8BA,aAA9B",
+  "sourcesContent": [
+    "/* Dark.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n\n/**\n * Basic theme for QX-UI relevant parts (should be seen as equilavent to designglobals.css, not design specific\n * but something like the common sense of all designs)\n */\nqx.Theme.define('cv.theme.Dark', {\n  meta: {\n    color: cv.theme.dark.Color,\n    decoration: cv.theme.dark.Decoration,\n    font: cv.theme.dark.Font,\n    icon: cv.theme.dark.Icon,\n    appearance: cv.theme.dark.Appearance\n  }\n});\n"
+  ]
+}

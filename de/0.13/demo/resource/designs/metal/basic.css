@@ -1,0 +1,951 @@
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/Roboto-Regular.ttf");
+}
+body {
+    color: #dadada;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+    overflow: hidden;
+    margin: 0;
+}
+
+body {
+    background: #333;
+}
+#navbarTop, #navbarBottom, #navbarLeft, #navbarRight {
+	background: #1d1d1d;
+}
+
+h1
+{
+  font-size: 2em;
+  padding-left: 15px;
+}
+
+h2
+{
+  font-size: 1.25em;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+body hr
+{
+  clear:both;
+  color: #81664b;
+  background-color: #81664b;
+  height: 1px;
+  border:none;
+  padding: 0;
+  margin:0.1em;
+}
+
+#pages hr {
+ border: 0; height: 30px; margin: 0 .1em;
+ background: transparent url(images/hr_bg.png) 50% repeat-x;
+ clear: both;
+}
+
+
+body br
+{
+  clear:both;
+}
+.page h1 {
+	display: none;
+    margin-top: 0;
+    padding-top: 1em;
+    background: #121212 url(images/head_bg.png) scroll repeat-x bottom;
+}
+
+.nav_path 
+{
+  color: #81664b;
+  margin-left: 15px;
+}
+.nav_path a
+{
+  color: white;
+  text-decoration:none;
+}
+
+.footer {
+  font-size: 0.9em;
+}
+
+.footer, .footer * {
+    color: #555;
+}
+
+.footer img {
+    vertical-align: middle;
+}
+
+.colspandefault { /* in units of 1/12 screen width */
+  width: 6px;
+}
+
+.widget_container {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+.page.type_2d .widget_container, .page.type_2d .widget_container .group:not(.widget) {
+	position: static;
+}
+.page.type_2d .widget_container .widget {
+	padding: 0;
+    background-color: #222;
+}
+
+.page.type_2d .widget_container .group:not(.widget) { border-width:0; }
+.page.type_2d .widget_container .group:not(.widget) .widget {
+	background-image: none;
+	border-width:0;
+}
+.widget_container.break_container {
+    line-height: 0;
+}
+.navbar .widget_container {
+  display: block;
+}
+.widget {
+  margin: -1px 0 0 -1px;
+  padding: 0.3em;
+  border-color: #666;
+  border-style: solid;
+  border-width: 1px;
+  min-height: 2.1em;
+}
+
+.icon {
+    height: 1.9em;
+}
+
+.widget.web
+{
+  border: none;
+  background-image: none;
+}
+/* in nowidget groups disable the inner borders and enable a border around the group */
+.group:not(.widget) {
+    border: 1px solid #666; margin: -1px -1px 0 -1px;
+}
+.group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
+.group:not(.widget) > div > h2 { border-radius: 0;}
+
+.navbar .pagejump { position: relative; }
+.pagejump:hover,.pagelink:hover,.pagejump.active {
+  background-color: #444444;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 1px #111;
+}
+#navbarLeft .pagejump.active { border-right: 8px #ddd solid !important; }
+#navbarRight .pagejump.active { border-left: 8px #ddd solid !important; }
+
+.widget > .label
+{
+  float:left; 
+  width: calc(50% - 0.2em);
+  text-align:left;
+  padding-left: 0.2em;
+  line-height: 2em;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.text > div { line-height: 2em; }
+.widget > .label .icon, .text .icon { vertical-align: middle; margin-top: -0.3em; }
+.widget .pagejump .icon { margin-top: -0; }
+.widget .actor .icon { margin-bottom: -0.6em; }
+.widget .switchPressed .icon, .widget .switchUnpressed .icon { margin-top: -0.4em; margin-bottom: -0.6em;}
+.navbar .widget_container > .pagejump > .label, .navbar .widget_container > .refresh > .label {
+	width: auto;
+	display: inline;
+	padding-left: 0;
+	line-height: 1em;
+}
+.widget .actor
+{
+  float:left;
+  text-align:left;
+  line-height: 2em;
+}
+.widget .switchPressed, .widget .switchUnpressed, .widget .ui-slider {
+	 line-height: normal; 
+}
+.widget > .actor:first-child { margin-left: 0; }
+.widget .actor div
+{
+  float:left;
+  /*white-space: pre-wrap;*/
+}
+
+ iframe { border: none; }
+
+ 
+.navbar .widget > .label {
+	float: none;
+	width: auto;
+}
+.navbar .widget > .label > .icon {
+	left: 0.2em;
+}
+.navbar .switchPressed, .navbar .switchUnpressed {
+  width: 100% !important;
+}
+.navbar .switchPressed .value, .navbar .switchUnpressed .value {
+	padding-left: 2.2em;
+}
+#navbarTop .navbar .switchPressed .value, #navbarTop .navbar .switchUnpressed .value, #navbarBottom .navbar .switchPressed .value, #navbarBottom .navbar .switchUnpressed .value {
+	padding-left: 2.5em;
+}
+.green.switchPressed div, .green.switchUnpressed div {
+    background-image: radial-gradient(rgba(88, 181, 0, 0.45), transparent 80%);
+	color: white !important;
+	text-shadow: none;
+}
+.red.switchPressed div, .red.switchUnpressed div {
+    background-image: radial-gradient(rgb(123, 64, 62), transparent 80%);
+    color: grey !important;
+}
+.grey.switchPressed div, .grey.switchUnpressed div {
+    background-image: radial-gradient(rgba(123, 123, 123, 0.5), transparent 80%);
+    color: grey !important;
+}
+.green_bg.actor div {
+    background-image: radial-gradient(rgb(62, 123, 62), transparent 80%);
+	color: white !important;
+	text-shadow: none;
+}
+.red_bg.actor div {
+    background-image: radial-gradient(rgb(123, 64, 62), transparent 80%);
+    color: red !important;
+}
+.grey_bg.actor div {
+    background-image: radial-gradient(rgb(123, 123, 123), transparent 80%);
+    color: grey !important;
+}
+/* revert color + background setting for diagram_info widgets 
+   TODO: check if this needs to be done with other widgets, that use
+   switch(Un)pressed classes (e.g. triggers)
+*/
+.diagram_info .red.switchPressed div, .diagram_info .red.switchUnpressed div,
+.diagram_info .green.switchPressed div, .diagram_info .green.switchUnpressed div,
+.diagram_info .grey.switchPressed div, .diagram_info .grey.switchUnpressed div
+{
+	background: none;
+	color: inherit !important;
+}
+.widget.diagram {
+    white-space:nowrap;
+}
+.red
+{
+  color:#f44;
+  font-weight:bold;
+}
+.green
+{
+  color:#4f4;
+}
+
+.blue
+{
+  color:#44f;
+}
+
+.purple
+{
+  color:#f4f;
+}
+
+.link a
+{
+  line-height: 2em;
+  color: #81664b;
+  width: 49%;
+  padding-left: 0.2em;
+}
+
+#pages  > .page
+{
+  float:left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-left: 1px;
+}
+
+.switchPressed, .switchUnpressed {
+  border-style:  solid;
+  border-width: 1px;
+  border-radius: 12px;
+  padding: 1px;
+  background:none;
+}
+.switchUnpressed {
+    border-color: #191919;
+    background-color: #3A3A3A;
+}
+
+.switchPressed {
+    border-color: #696969;
+    background-color: #3A3A3A;
+}
+
+.switchUnpressed div, .switchPressed div
+{
+  padding: 5px;
+  min-width: 3em;
+  float: left;
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pagejump > .switchUnpressed, .pagejump > .switchPressed,
+.navbar .refresh > .switchUnpressed, .navbar .refresh > .switchPressed {
+	width: auto;
+    border: none;
+    background: transparent none;
+    margin-left:0;
+	margin-right: 0;
+	float: left;
+}
+.group .pagejump .switchUnpressed div, .group .pagejump  .switchPressed div {
+	width: auto;
+	text-align: left;
+	margin-left: 0.3em;
+    line-height: 2em;
+}
+
+.group.widget {
+	border-radius: 3px;
+	overflow: hidden;
+	margin: 0.2em 0.5em;
+	padding: 0;
+    z-index: 10;
+}
+.navbar .group { 
+	margin: 0.2em 0 0.1em 0;
+    border-radius: 0 3px 3px 0;
+	border-left: none;
+    z-index: 10;
+}
+.navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget {
+	border-width: 1px 0 0 0;
+	border-bottom-right-radius: 3px;
+}
+.navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
+	border-bottom-right-radius: 3px;
+}
+.navbar .pagejump > .actor, .navbar .refresh > .actor {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	vertical-align: middle;
+}
+.navbar .refresh > .actor .value { padding: 47px 0 0 0.6em !important; }
+.navbar .pagejump > .actor .value {
+	line-height: 2em;
+}
+.navbar .pagejump .info .actor {
+	line-height: normal !important;
+}
+.group > div > h2 {
+	font-size: 0.7em;
+	padding: 0.3em 1em;
+	margin: 0 -1px 0 0;
+	border: none;
+	border-radius: 0;
+
+	color: #c3c3c3;
+    background: #666;
+}
+.navbar .group > div > h2 {
+    border-radius: 0 3px 0 0;
+    text-shadow: none;
+	background-color: #eeeeee;
+	color: #3E3E3E;
+}
+
+/* add some space between the buttons and the info field of the infotrigger */
+.infotrigger .switchInvisible { margin: 0 0.5em; }
+
+.ui-slider { position: relative; text-align: left; padding: 0 1.125rem; }
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: default;
+    font-size: 0.7em;
+}
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; top: 0; height: 100%; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.7em; }
+
+.ui-widget-content { border: 1px solid #dddddd; background: #000 ; color: #000; }
+.ui-widget-content a { color: #333333; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #cccccc; background: #000 ; font-weight: bold; color: #1c94c4; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
+.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+
+.dim .actor
+{
+  width: 3em;
+}
+.widget .ui-slider {
+  width: calc(50% - 2.25rem);
+  float: left;
+  margin-top: 0.5em;
+    border-color: #191919;
+  background-color: #666;
+}
+
+.widget .ui-slider-handle {
+    border-radius: 12px;
+    padding: 1px;
+    border-color: #191919;
+    background-color: #444444;
+    text-decoration: none;
+    color: #FFF;
+    font-weight: 100;
+    text-align: center;
+    white-space:nowrap;
+}
+/* Clearfix */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+*:first-child+html .clearfix {
+    min-height: 0;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+* html>body .clearfix {
+    display: inline-block;
+    width: 100%;
+}
+
+* html .clearfix {
+    /* Hides from IE-mac \*/
+    height: 1%;
+    /* End hide from IE-mac */
+}
+
+.loading {
+    display: block !important;
+}
+
+div#loading {
+    display: none !important;
+}
+.popup,
+.popup_background {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+}
+.popup { font-family: Dosis, Helvetica, Arial, sans-serif; }
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.diagram_inline {
+    margin-left: 1em;
+    width: 320px;
+    height: 180px;
+}
+
+.diagram_preview {
+    width: 240px;
+    height: 2em;
+}
+
+#diagramTooltip, #flotTip {
+	z-index: 100002;
+	color: black;
+	border: 1px solid #fdd;
+	padding: 2px;
+	background-color: #fee;
+	opacity: 0.80;
+}
+
+/* styles for the preview */
+div#demo_1, div#demo_2 {
+    width: 100%;
+    height: 44px;
+}
+
+div#demo_1 {
+    background-color: black;
+}
+
+div#demo_2 {
+    height: 2px;
+    background-color: white;
+}
+
+div#demo_3 {
+    background-color: #1d1d1d;
+}
+.web .actor { width: 98%; }
+
+#navbarTop .navbar .widget_container, #navbarBottom .navbar .widget_container {
+	width: auto;
+}
+
+#navbarTop {
+    border-bottom: 2px solid #666;
+}
+#navbarBottom {
+    border-top: 2px solid #666;
+}
+#navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) { background: none; }
+#navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) {
+	margin: 0;
+	border-width:0;
+	padding: 0.3em 0.5em;
+	position: relative; 
+	min-width: 2em; 
+	min-height: 3em;
+}
+#navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor,#navbarTop .navbar .refresh:hover,
+#navbarBottom .navbar .pagejump:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor, #navbarBottom .navbar .refresh:hover {
+    background-color: #505050;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 0 1px 1px #111;
+}
+
+#navbarBottom .navbar {
+	padding: 0;
+	width: 100%;
+}
+
+.navbar .pagejump .label > .icon,
+.navbar .refresh .label > .icon { 
+	height: 44px !important;
+        width: 44px !important;
+	display: block;
+	margin: 0 auto;
+}
+.navbar .pagejump .label, .navbar .refresh .label, .navbar .refresh .value {
+	text-align: center;
+	font-size: 0.7em;
+	float: left;
+	margin: 0 auto;
+    padding: 0;
+}
+
+#navbarTop .navbar .pagejump .actor, 
+#navbarBottom.navbar .pagejump .actor,
+#navbarTop .navbar .refresh .actor, 
+#navbarBottom.navbar .refresh .actor {
+	width: 100%; 	
+}
+#navbarTop hr, #navbarBottom hr {
+	clear: none;
+	float: left;
+	width: 1px;
+	height: 3.6em;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+}
+.rowspan { overflow: hidden; }
+.strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
+
+/* START: alignment of widgets */
+.widget.center:not(div):not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div,
+.widget.right:not(div):not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { 
+	width: 50%;
+	box-sizing: border-box;
+}
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: center; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: right; }
+
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-right: 35px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon,
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-left: 10px; }
+
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info):not(.powerspectrum) > .actor:first-child, 
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info):not(.powerspectrum) > .actor:first-child > div { 
+	float: none; width: auto; 
+}
+.widget.center.toggle > .actor:first-child, 
+.widget.center.switch > .actor:first-child,
+.widget.center.trigger > .actor:first-child,
+.widget.center.diagram_info > .actor:first-child { 
+	position: absolute; left: 50%; margin-left: -2em; 
+}
+.widget.right.toggle > .actor:first-child, 
+.widget.right.switch > .actor:first-child,
+.widget.right.trigger > .actor:first-child,
+.widget.right.diagram_info > .actor:first-child { 
+	position: absolute; right: 0;
+}
+.widget.center > .actor > div, .widget.right > .actor > div { float: none; }
+
+#navbarTop .pagejump.center > div, #navbarBottom .pagejump.center > div { width: 100%; }
+#navbarTop .pagejump.right .label, #navbarBottom .pagejump.right .label { text-align: center !important; float: right; }
+
+.widget.right .green_bg.actor div,
+.widget.right .red_bg.actor div,
+.widget.right .grey_bg.actor div,
+.widget.right .grey.switchPressed div, 
+.widget.right .grey.switchUnpressed div,
+.widget.right .green.switchPressed div, 
+.widget.right .green.switchUnpressed div,
+.widget.right .red.switchPressed div, 
+.widget.right .red.switchUnpressed div {
+	background-position: right center;
+}
+
+.widget.center .green_bg.actor div,
+.widget.center .red_bg.actor div,
+.widget.center .grey_bg.actor div,
+.widget.center .grey.switchPressed div, 
+.widget.center .grey.switchUnpressed div,
+.widget.center .green.switchPressed div, 
+.widget.center .green.switchUnpressed div,
+.widget.center .red.switchPressed div, 
+.widget.center .red.switchUnpressed div {
+	background-position: center center;
+}
+.widget.left .green_bg.actor div,
+.widget.left .red_bg.actor div,
+.widget.left .grey_bg.actor div,
+.widget.left .grey.switchPressed div, 
+.widget.left .grey.switchUnpressed div,
+.widget.left .green.switchPressed div, 
+.widget.left .green.switchUnpressed div,
+.widget.left .red.switchPressed div, 
+.widget.left .red.switchUnpressed div,
+.widget .green_bg.actor div,
+.widget .red_bg.actor div,
+.widget .grey_bg.actor div,
+.widget .grey.switchPressed div, 
+.widget .grey.switchUnpressed div,
+.widget .green.switchPressed div, 
+.widget .green.switchUnpressed div,
+.widget .red.switchPressed div, 
+.widget .red.switchUnpressed div {
+	background-position: left center;
+}
+
+/* END: alignment of widgets */
+
+/* fixes for plugin line-heights */
+.widget .actor.rsslogBody, .widget .actor .diagram_inline {
+    line-height: normal;
+}
+
+.rsslog_popup ul li a { color: inherit; }
+
+ 
+ /*****************************************************************************/
+/* The definition of the flavours - overwrite the generic settings           */
+/*****************************************************************************/
+
+.flavour_black hr
+{
+  background-color: #000000;
+}
+.flavour_black .link a
+{
+  color: #000000;
+}
+.flavour_black.group.widget
+{
+  border: #000000 1px solid;
+}
+.flavour_black:not(.group) .ui-slider .ui-slider-range {
+	background-color: #000000;
+}
+.flavour_black.group > div > h2 {
+  background-image: linear-gradient(top , #000000 , #333 );
+}
+
+.flavour_white hr
+{
+  background-color: #ffffff;
+}
+.flavour_white .link a
+{
+  color: #ffffff;
+}
+.flavour_white.group.widget
+{
+  border: #ffffff 1px solid;
+}
+.flavour_white:not(.group) .ui-slider .ui-slider-range {
+	background-color: #ffffff;
+}
+.flavour_white.group > div > h2 {
+  background-image: linear-gradient(top , #ffffff , #333 );
+}
+
+.flavour_antimony hr
+{
+  background-color: #00ddff;
+}
+.flavour_antimony .link a
+{
+  color: #00ddff;
+}
+.flavour_antimony.group.widget
+{
+  border: #00ddff 1px solid;
+}
+.flavour_antimony:not(.group) .ui-slider .ui-slider-range {
+	background-color: #00ddff;
+}
+.flavour_antimony.group > div > h2 {
+ background-image: linear-gradient(top , #00ddff , #333 );
+}
+
+.flavour_boron hr
+{
+  background-color: #00ff11;
+}
+.flavour_boron .link a
+{
+  color: #00ff11;
+}
+.flavour_boron.group.widget
+{
+  border: #00ff11 1px solid;
+}
+.flavour_boron:not(.group) .ui-slider .ui-slider-range {
+	background-color: #00ff11;
+}
+.flavour_boron.group > div > h2 {
+    background-image: linear-gradient(top, #00ff11, #333);
+}
+
+.flavour_lithium hr
+{
+  background-color: #ff0000;
+}
+.flavour_lithium .link a
+{
+  color: #ff0000;
+}
+.flavour_lithium.group.widget
+{
+  border: #ff0000 1px solid;
+}
+ .flavour_lithium:not(.group) .ui-slider .ui-slider-range {
+	background-color: #ff0000;
+}
+.flavour_lithium.group > div > h2 {
+    background-image: linear-gradient(top, #ff0000, #333);
+}
+
+.flavour_potassium hr
+{
+  background-color: #d00055;
+}
+.flavour_potassium .link a
+{
+  color: #d00055;
+}
+.flavour_potassium.group.widget
+{
+  border: #d00055 1px solid;
+}
+.flavour_potassium:not(.group) .ui-slider .ui-slider-range {
+	background-color: #d00055;
+}
+.flavour_potassium.group > div > h2 {
+   background-image: linear-gradient(top, #d00055, #333);
+}
+
+.flavour_sodium hr
+{
+  background-color: #ff8000;
+}
+.flavour_sodium .link a
+{
+  color: #ff8000;
+}
+.flavour_sodium.group.widget
+{
+  border: #ff8000 1px solid;
+}
+.flavour_sodium.group > div > h2 {
+    background-image: linear-gradient(top, #ff8000, #333);
+}
+.flavour_sodium:not(.group) .ui-slider .ui-slider-range {
+	background-color: #ff8000;
+}
+/* infowidget in pagejumps */
+.navbar .infoaction.pagejump .widget_container.widgetinfo .widget.info {
+	font-size: 0.8em;
+	min-width: 20px;
+  	border-radius: 20px;
+  	background-color: #FFF;
+  	background-image: none;
+  	color: black;
+  	height: 20px;
+  	padding: 0 0.3em;
+  	min-height: 0;
+  	text-shadow: none;
+}
+.navbar .pagejump .info .actor {
+	line-height: 20px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.navbar .pagejump .widgetinfo {
+	position: absolute;
+	top: 2px;
+	right: 0;
+}
+#navbarLeft .navbar .pagejump .widgetinfo  { top: 0; border-width: 0; right: -1px; }
+#navbarRight .navbar .pagejump .widgetinfo  {  top: 0; border-width:0; left: -1px; }
+#navbarLeft .navbar .pagejump.active .widgetinfo  { right: -8px; }
+#navbarRight .navbar .pagejump.active .widgetinfo  { left: -8px; }
+
+#navbarLeft .navbar .pagejump .info  {
+	border-radius: 0 0 0 30px;
+	height: 30px;
+	width: 30px;
+	border-width:0;
+	background-color: #DDD;
+}
+#navbarRight .navbar .pagejump .info {
+	border-radius: 0 0 30px 0;
+	height: 30px;
+	width: 30px;
+	background-color: #DDD;
+}
+
+/* infoaction plugin */
+.infoaction { padding: 1px 0 0 0; }
+.navbar .infoaction { padding: 0.3em; }
+.infoaction > .label { padding: 0.3em; }
+.infoaction .widget_container.widgetaction .widget { padding:0.1em; border: none; }
+.infoaction .widget_container.widgetaction .widget .actor { margin:0.2em; }
+.infoaction .widget_container.widgetinfo .widget {
+	background-color: #666;
+	color: #999;
+}
+.infoaction .widget_container.widgetinfo .widget .actor {
+	line-height: normal;
+	text-shadow: none;
+    text-align: center;
+}
+
+.infoaction .widgetinfo .widget {
+    font-size: 0.8em;
+    min-width: 30px;
+    border-radius: 0 0 0 30px;
+    background-color: #FFFFFF;
+    background-image: none;
+    color: black;
+    height: 30px;
+    padding: 0;
+    min-height: 0;
+}
+
+/* powerspectrum plugin */
+.powerspectrum .diagram_inline {
+  margin-left: 0;
+  width: 50%;
+  height: 100%;
+  min-height: 40px;
+}
+.powerspectrum .diagram_inline:only-child {
+  width: 100%;
+}
+
+.powerspectrum > .actor {
+  width: 50%;
+  height: 100%;
+}
+.powerspectrum > .actor:only-child {
+  width: 100%;
+}
+
+.widget .actor.badge {
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(61, 61, 61, 0.9);
+    cursor: pointer;
+    width: 40px !important;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    border: 1px solid #111;
+}
+
+#navbarTop .widget .actor.badge, #navbarBottom .widget .actor.badge {
+    width: 54px !important;
+    height: 54px;
+    line-height: 54px;
+    border-radius: 54px;
+    border: none;
+}
+
+/*severities*/
+.actor.badge.urgent {
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+.actor.badge.high {
+    background-color: rgba(255, 121, 0, 0.9);
+}
+
+.widget.notificationcenterbadge.right {
+    float: right;
+    text-align: center;
+}
+
+.widget_container.float-right {
+    float: right;
+}
+
+/*
+   Design options: Configured via <pages ... class="" ..> attributes value
+*/
+
+body.backgradient .widget {
+    background-image: linear-gradient(#444444, #2d2d2d);
+}

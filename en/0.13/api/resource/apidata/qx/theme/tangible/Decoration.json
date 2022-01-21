@@ -1,0 +1,46 @@
+{
+  "className": "qx.theme.tangible.Decoration",
+  "packageName": "qx.theme.tangible",
+  "name": "Decoration",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 1312,
+        "column": 5
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo decoration theme.</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "aliases": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 4
+      },
+      "end": {
+        "line": 24,
+        "column": 49
+      }
+    },
+    "aliasMap": {
+      "decoration": "qx/decoration/Simple"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/tree/provider/IVirtualTreeProvider.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "createLayer",
+    "createRenderer",
+    "setChildProperty",
+    "value",
+    "assertArgumentsCount",
+    "arguments",
+    "assertString",
+    "setLabelPath",
+    "styleSelectabled",
+    "row",
+    "assertInteger",
+    "styleUnselectabled",
+    "isSelectable",
+    "ui",
+    "tree",
+    "provider",
+    "IVirtualTreeProvider"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,0CAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,WAAW,EAAG,uBAAW,CAAE,CAN7B;;AASE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,cAAc,EAAG,0BAAW,CAAE,CAdhC;;AAiBE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,gBAAgB,EAAG,0BAASC,KAAT,EACnB;AACE,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,YAAL,CAAkBH,KAAlB;AACD,OA1BH;;AA6BE;AACJ;AACA;AACA;AACA;AACA;AACII,MAAAA,YAAY,EAAG,sBAASJ,KAAT,EACf;AACE,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,YAAL,CAAkBH,KAAlB;AACD,OAvCH;;AA0CE;AACJ;AACA;AACA;AACA;AACIK,MAAAA,gBAAgB,EAAG,0BAASC,GAAT,EACnB;AACE,aAAKL,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKK,aAAL,CAAmBD,GAAnB;AACD,OAnDH;;AAsDE;AACJ;AACA;AACA;AACA;AACIE,MAAAA,kBAAkB,EAAG,4BAASF,GAAT,EACrB;AACE,aAAKL,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKK,aAAL,CAAmBD,GAAnB;AACD,OA/DH;;AAkEE;AACJ;AACA;AACA;AACA;AACA;AACA;AACIG,MAAAA,YAAY,EAAG,sBAASH,GAAT,EACf;AACE,aAAKL,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKK,aAAL,CAAmBD,GAAnB;AACD;AA7EH;AAFF,GADA;AAxBAhB,EAAAA,EAAE,CAACoB,EAAH,CAAMC,IAAN,CAAWC,QAAX,CAAoBC,oBAApB,CAAyCpB,aAAzC,GAAyDA,aAAzD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * This interface needs to implemented from all {@link qx.ui.tree.VirtualTree}\n * providers.\n *\n * @internal\n */\nqx.Interface.define(\"qx.ui.tree.provider.IVirtualTreeProvider\",\n{\n  members :\n  {\n    /**\n     * Creates a layer for node and leaf rendering.\n     *\n     * @return {qx.ui.virtual.layer.Abstract} new layer.\n     */\n    createLayer : function() {},\n\n\n    /**\n     * Creates a renderer for rendering.\n     *\n     * @return {var} new node renderer.\n     */\n    createRenderer : function() {},\n\n\n    /**\n     * Sets the name of the property, where the children are stored in the model.\n     *\n     * @param value {String} The child property name.\n     */\n    setChildProperty : function(value)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertString(value);\n    },\n\n\n    /**\n     * Sets the name of the property, where the value for the tree folders label\n     * is stored in the model classes.\n     *\n     * @param value {String} The label path.\n     */\n    setLabelPath : function(value)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertString(value);\n    },\n\n\n    /**\n     * Styles a selected item.\n     *\n     * @param row {Integer} row to style.\n     */\n    styleSelectabled : function(row)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInteger(row);\n    },\n\n\n    /**\n     * Styles a not selected item.\n     *\n     * @param row {Integer} row to style.\n     */\n    styleUnselectabled : function(row)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInteger(row);\n    },\n\n\n    /**\n     * Returns if the passed row can be selected or not.\n     *\n     * @param row {Integer} row to select.\n     * @return {Boolean} <code>true</code> when the row can be selected,\n     *    <code>false</code> otherwise.\n     */\n    isSelectable : function(row)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInteger(row);\n    }\n  }\n});"
+  ]
+}

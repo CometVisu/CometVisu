@@ -1,0 +1,1831 @@
+{
+  "className": "cv.TemplateEngine",
+  "packageName": "cv",
+  "name": "TemplateEngine",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 972,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": false,
+  "isSingleton": true,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 13
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "statics": {
+    "getClient": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shortcut access to client</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "properties": {
+    "partsLoaded": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the loading state of the parts</p>"
+          }
+        ]
+      },
+      "name": "partsLoaded",
+      "propertyType": "new",
+      "event": "changePartsLoaded",
+      "apply": "_applyLoaded",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "scriptsLoaded": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the loading state of the scripts</p>"
+          }
+        ]
+      },
+      "name": "scriptsLoaded",
+      "propertyType": "new",
+      "apply": "_applyLoaded",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the initialization state of the TemplateEngine. It gets until when all\n external stuff (pars, scripts, etc.) has been loaded.</p>"
+          }
+        ]
+      },
+      "name": "ready",
+      "propertyType": "new",
+      "event": "changeReady",
+      "apply": "_applyReady",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "currentPage": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 5
+        }
+      },
+      "name": "currentPage",
+      "propertyType": "new",
+      "event": "changeCurrentPage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "cv.ui.structure.IPage"
+    },
+    "domFinished": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "name": "domFinished",
+      "propertyType": "new",
+      "event": "changeDomFinished",
+      "apply": "_applyDomFinished",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "commands": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "name": "commands",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.ui.command.Group"
+    },
+    "loggedIn": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "loggedIn",
+      "propertyType": "new",
+      "event": "changeLoggedIn",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "highlightedWidget": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "highlightedWidget",
+      "propertyType": "new",
+      "apply": "_applyHighlightedWidget",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "pagePartsHandler": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "bindClickToWidget": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 139,
+          "column": 29
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "defaults": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Structure where a design can set a default value that a widget or plugin\n can use.\n This is especially important for design relevant information like colors\n that can not be set though CSS.\n Usage: this.defaults.plugin.foo = {bar: 'baz'};</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "main_scroll": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "old_scroll": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "visu": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 152,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "pluginsToLoadCount": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "xml": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 14
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__partQueue": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_domFinishedQueue": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "lazyPlugins": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 161,
+          "column": 21
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "__activeChangedTimer": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__hasBeenConnected": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 163,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "loadParts": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load parts (e.g. plugins, structure)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parts {String[]|String} parts to load",
+            "paramName": "parts",
+            "description": " parts to load",
+            "type": [
+              {
+                "type": "String",
+                "dimensions": 2
+              },
+              "String"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyReady": {
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4
+        },
+        "end": {
+          "line": 214,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "ready"
+      ]
+    },
+    "_applyLoaded": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4
+        },
+        "end": {
+          "line": 222,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "partsLoaded",
+        "scriptsLoaded"
+      ]
+    },
+    "_applyDomFinished": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4
+        },
+        "end": {
+          "line": 236,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "domFinished"
+      ]
+    },
+    "executeWhenDomFinished": {
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4
+        },
+        "end": {
+          "line": 250,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a callback to a queue which is executed after DOM has been rendered</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function}"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAddress": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Please use {cv.data.Model.getInstance().addAddress()} instead</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address",
+            "paramName": "address",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "id",
+            "paramName": "id",
+            "type": ""
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "since version 0.11.0 Please use {cv.data.Model.getInstance().addAddress()} instead"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAddresses": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4
+        },
+        "end": {
+          "line": 270,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Please use {cv.data.Model.getInstance().getAddresses()} instead</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "since version 0.11.0 Please use {cv.data.Model.getInstance().getAddresses()} instead"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "initBackendClient": {
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4
+        },
+        "end": {
+          "line": 317,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the {@link cv.io.Client} for backend communication</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onActiveChanged": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 340,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_checkBackendConnection": {
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4
+        },
+        "end": {
+          "line": 363,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updateClientScope": {
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4
+        },
+        "end": {
+          "line": 373,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_handleClientError": {
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 4
+        },
+        "end": {
+          "line": 417,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "resetPageValues": {
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4
+        },
+        "end": {
+          "line": 427,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reset some values related to the current page</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parseXML": {
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4
+        },
+        "end": {
+          "line": 541,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Read basic settings and meta-section from config document</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "loaded_xml {Document} XML-configuration document",
+            "paramName": "loaded_xml",
+            "description": " XML-configuration document",
+            "type": "Document"
+          },
+          {
+            "name": "@param",
+            "body": "done {Function} callback that is called when the parsing has finished",
+            "paramName": "done",
+            "description": " callback that is called when the parsing has finished",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setupPage": {
+      "location": {
+        "start": {
+          "line": 546,
+          "column": 4
+        },
+        "end": {
+          "line": 615,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Main setup to get everything running and show the initial page.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "startScreensaver": {
+      "location": {
+        "start": {
+          "line": 620,
+          "column": 4
+        },
+        "end": {
+          "line": 629,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the screensaver if a screensave time is set</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "startInitialRequest": {
+      "location": {
+        "start": {
+          "line": 634,
+          "column": 4
+        },
+        "end": {
+          "line": 656,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start retrieving data from backend</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createPages": {
+      "location": {
+        "start": {
+          "line": 665,
+          "column": 4
+        },
+        "end": {
+          "line": 682,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the parsing process</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {Element} XML-configuration element",
+            "paramName": "page",
+            "description": " XML-configuration element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal poth",
+            "paramName": "path",
+            "description": " internal poth",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} inherited flavour",
+            "paramName": "flavour",
+            "description": " inherited flavour",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} page type (text, 2d, 3d)",
+            "paramName": "type",
+            "description": " page type (text, 2d, 3d)",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPageIdByPath": {
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 4
+        },
+        "end": {
+          "line": 708,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the id of the page the given path is associated to</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page_name {String}"
+          },
+          {
+            "name": "@param",
+            "body": "path {String}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "String",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "traversePath": {
+      "location": {
+        "start": {
+          "line": 710,
+          "column": 4
+        },
+        "end": {
+          "line": 735,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPageIdByName": {
+      "location": {
+        "start": {
+          "line": 737,
+          "column": 4
+        },
+        "end": {
+          "line": 809,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "scrollToPage": {
+      "location": {
+        "start": {
+          "line": 811,
+          "column": 4
+        },
+        "end": {
+          "line": 859,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applyHighlightedWidget": {
+      "location": {
+        "start": {
+          "line": 861,
+          "column": 4
+        },
+        "end": {
+          "line": 874,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "highlightedWidget"
+      ]
+    },
+    "selectDesign": {
+      "location": {
+        "start": {
+          "line": 876,
+          "column": 4
+        },
+        "end": {
+          "line": 961,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getPartsLoaded": {
+      "type": "function",
+      "name": "getPartsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>partsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #partsLoaded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for partsLoaded"
+          }
+        ]
+      }
+    },
+    "isPartsLoaded": {
+      "type": "function",
+      "name": "isPartsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>partsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #partsLoaded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for partsLoaded"
+          }
+        ]
+      }
+    },
+    "setPartsLoaded": {
+      "type": "function",
+      "name": "setPartsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>partsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #partsLoaded}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for partsLoaded"
+          }
+        ]
+      }
+    },
+    "resetPartsLoaded": {
+      "type": "function",
+      "name": "resetPartsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>partsLoaded</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #partsLoaded}."
+          }
+        ]
+      }
+    },
+    "getScriptsLoaded": {
+      "type": "function",
+      "name": "getScriptsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scriptsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #scriptsLoaded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for scriptsLoaded"
+          }
+        ]
+      }
+    },
+    "isScriptsLoaded": {
+      "type": "function",
+      "name": "isScriptsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scriptsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #scriptsLoaded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for scriptsLoaded"
+          }
+        ]
+      }
+    },
+    "setScriptsLoaded": {
+      "type": "function",
+      "name": "setScriptsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>scriptsLoaded</code>.\n\nFor further details take a look at the property definition: {@link #scriptsLoaded}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for scriptsLoaded"
+          }
+        ]
+      }
+    },
+    "resetScriptsLoaded": {
+      "type": "function",
+      "name": "resetScriptsLoaded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scriptsLoaded</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scriptsLoaded}."
+          }
+        ]
+      }
+    },
+    "getReady": {
+      "type": "function",
+      "name": "getReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "isReady": {
+      "type": "function",
+      "name": "isReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for ready"
+          }
+        ]
+      }
+    },
+    "setReady": {
+      "type": "function",
+      "name": "setReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for ready"
+          }
+        ]
+      }
+    },
+    "resetReady": {
+      "type": "function",
+      "name": "resetReady",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>ready</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #ready}."
+          }
+        ]
+      }
+    },
+    "getCurrentPage": {
+      "type": "function",
+      "name": "getCurrentPage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>currentPage</code>.\n\nFor further details take a look at the property definition: {@link #currentPage}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "cv.ui.structure.IPage",
+            "desc": "Returns the value for currentPage"
+          }
+        ]
+      }
+    },
+    "setCurrentPage": {
+      "type": "function",
+      "name": "setCurrentPage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>currentPage</code>.\n\nFor further details take a look at the property definition: {@link #currentPage}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "cv.ui.structure.IPage",
+            "paramName": "value",
+            "desc": "Value for currentPage"
+          }
+        ]
+      }
+    },
+    "resetCurrentPage": {
+      "type": "function",
+      "name": "resetCurrentPage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>currentPage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentPage}."
+          }
+        ]
+      }
+    },
+    "getDomFinished": {
+      "type": "function",
+      "name": "getDomFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>domFinished</code>.\n\nFor further details take a look at the property definition: {@link #domFinished}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for domFinished"
+          }
+        ]
+      }
+    },
+    "isDomFinished": {
+      "type": "function",
+      "name": "isDomFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>domFinished</code>.\n\nFor further details take a look at the property definition: {@link #domFinished}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for domFinished"
+          }
+        ]
+      }
+    },
+    "setDomFinished": {
+      "type": "function",
+      "name": "setDomFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>domFinished</code>.\n\nFor further details take a look at the property definition: {@link #domFinished}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for domFinished"
+          }
+        ]
+      }
+    },
+    "resetDomFinished": {
+      "type": "function",
+      "name": "resetDomFinished",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>domFinished</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #domFinished}."
+          }
+        ]
+      }
+    },
+    "getCommands": {
+      "type": "function",
+      "name": "getCommands",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>commands</code>.\n\nFor further details take a look at the property definition: {@link #commands}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.ui.command.Group",
+            "desc": "Returns the value for commands"
+          }
+        ]
+      }
+    },
+    "setCommands": {
+      "type": "function",
+      "name": "setCommands",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>commands</code>.\n\nFor further details take a look at the property definition: {@link #commands}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.ui.command.Group",
+            "paramName": "value",
+            "desc": "Value for commands"
+          }
+        ]
+      }
+    },
+    "resetCommands": {
+      "type": "function",
+      "name": "resetCommands",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>commands</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #commands}."
+          }
+        ]
+      }
+    },
+    "getLoggedIn": {
+      "type": "function",
+      "name": "getLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for loggedIn"
+          }
+        ]
+      }
+    },
+    "isLoggedIn": {
+      "type": "function",
+      "name": "isLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for loggedIn"
+          }
+        ]
+      }
+    },
+    "setLoggedIn": {
+      "type": "function",
+      "name": "setLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for loggedIn"
+          }
+        ]
+      }
+    },
+    "resetLoggedIn": {
+      "type": "function",
+      "name": "resetLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>loggedIn</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ]
+      }
+    },
+    "getHighlightedWidget": {
+      "type": "function",
+      "name": "getHighlightedWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>highlightedWidget</code>.\n\nFor further details take a look at the property definition: {@link #highlightedWidget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for highlightedWidget"
+          }
+        ]
+      }
+    },
+    "setHighlightedWidget": {
+      "type": "function",
+      "name": "setHighlightedWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>highlightedWidget</code>.\n\nFor further details take a look at the property definition: {@link #highlightedWidget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for highlightedWidget"
+          }
+        ]
+      }
+    },
+    "resetHighlightedWidget": {
+      "type": "function",
+      "name": "resetHighlightedWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>highlightedWidget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #highlightedWidget}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 969,
+        "column": 12
+      },
+      "end": {
+        "line": 971,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anpassungen vornehmen &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/customizing.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Hilf dem CometVisu Projekt" href="../colab/index.html" />
+    <link rel="prev" title="Anleitung zum Erstellen eines Animierten Hydraulikplans" href="hydraulik.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sonstiges">sonstiges</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="notifications.html">Benachrichtigungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rrd_examples.html">RRD Einführung &amp; Beispiele</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hydraulik.html">Anleitung zum Erstellen eines Animierten Hydraulikplans</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Anpassungen vornehmen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#vorhandenes-design-verandern">Vorhandenes Design verändern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eigene-icons-einbinden">Eigene Icons einbinden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#einzelne-widgets-durch-css-klassen-verandern">Einzelne Widgets durch CSS-Klassen verändern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eigenes-design-schreiben">Eigenes Design schreiben</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eigene-widgets-schreiben-uber-plugins">Eigene Widgets schreiben über Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eigene-struktur-schreiben">Eigene Struktur schreiben</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Anpassungen vornehmen</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="anpassungen-vornehmen">
+<span id="customizing"></span><h1>Anpassungen vornehmen<a class="headerlink" href="#anpassungen-vornehmen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die CometVisu kann auf viele verschiedene Weisen an die eigenen Bedürfnisse angepasst werden. Im Folgenden
+werden die verschiedenen Möglichkeiten - sortiert nach Komplexitätsgrad - im Detail beschrieben.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="17%" />
+<col width="9%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head">Anpassung</th>
+<th class="head">Veränderung</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><ol class="first last arabic simple">
+<li></li>
+</ol>
+</td>
+<td>Eigene CSS-Regeln</td>
+<td>Optisch</td>
+<td>Überschreiben der vorhandenen CSS-Regeln eines Designs durch das Laden von zusätzlichen CSS-Dateien.</td>
+</tr>
+<tr class="row-odd"><td><ol class="first last arabic simple" start="2">
+<li></li>
+</ol>
+</td>
+<td>Eigene Icons einbinden</td>
+<td>Optisch</td>
+<td>Neben den mitgelieferten Icons können eigene Icons über die Konfigurationsdatei hinzugefügt werden.</td>
+</tr>
+<tr class="row-even"><td><ol class="first last arabic simple" start="3">
+<li></li>
+</ol>
+</td>
+<td>Widgets durch <code class="docutils literal notranslate"><span class="pre">class</span></code></td>
+<td>Optisch</td>
+<td>Viele Widgets können individualisiert werden durch Hinzufügen des <code class="docutils literal notranslate"><span class="pre">class</span></code> Attributs und dazu passenden CSS-Regeln.</td>
+</tr>
+<tr class="row-odd"><td><ol class="first last arabic simple" start="4">
+<li></li>
+</ol>
+</td>
+<td>Eigenes Design schreiben</td>
+<td>Optisch</td>
+<td>Sollten zusätzliche CSS-Regeln nicht ausreichen, kann ein neues Design erstellt werden.</td>
+</tr>
+<tr class="row-even"><td><ol class="first last arabic simple" start="5">
+<li></li>
+</ol>
+</td>
+<td>Eigene Widgets schreiben</td>
+<td>Inhaltlich</td>
+<td>Hinzufügen neuer Widgets durch Plugins.</td>
+</tr>
+<tr class="row-odd"><td><ol class="first last arabic simple" start="6">
+<li></li>
+</ol>
+</td>
+<td>Eigene Struktur schreiben</td>
+<td>Inhaltlich</td>
+<td>Die Umwandlung der Konfigurationsdateien in HTML-Code, kann durch erstellen einer neuen Struktur komplett verändert werden.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="vorhandenes-design-verandern">
+<span id="custom-cssrules"></span><h2>Vorhandenes Design verändern<a class="headerlink" href="#vorhandenes-design-verandern" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die vorhandenen Designs können durch eigene CSS-Regeln angepasst werden. Im Meta-Bereich der Konfigurationsdatei
+können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Dateien des CometVisu-Designs geladen werden.</p>
+<p>Die entsprechende CSS-Dateien können über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> hochgeladen werden,
+sofern man keinen Zugriff auf den Server hat auf dem die CometVisu liegt.</p>
+<div class="literal-block-wrapper container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Auszug einer Konfigurationsdatei, die 2 zusätzliche CSS-Dateien lädt:</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;files&gt;</span>
+            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
+            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-other-custom-style.css<span class="nt">&lt;/file&gt;</span>
+            ...
+        <span class="nt">&lt;/files&gt;</span>
+        ...
+    <span class="nt">&lt;/meta&gt;</span>
+    ...
+<span class="nt">&lt;/pages&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">In früheren CometVisu-Versionen (&lt;= 0.10.x) mussten die CSS-Regeln in die <code class="docutils literal notranslate"><span class="pre">custom.css</span></code> Datei des jeweiligen
+Designs eingetragen werden. Auch wenn dies weiterhin funktioniert, wird empfohlen diese Regeln in eine neue Datei zu kopieren
+und über den hier beschriebenen Weg einzubinden. Der alte Weg wird nur aus kompabilitätsgründen aufrecht erhalten und
+in zukünftigen Versionen entfernt werden.</p>
+</div>
+</div>
+<div class="section" id="eigene-icons-einbinden">
+<h2>Eigene Icons einbinden<a class="headerlink" href="#eigene-icons-einbinden" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in <code class="docutils literal notranslate"><span class="pre">uri</span></code> angegebenen Verzeichnis befindet.
+Auf die so definierten Icons kann dann im weiteren Verlauf über den einfacher zu merkenden Namen zugegriffen werden.
+Die Verzeichnisangabe ist im Beispiel relativ zur CV Installation.
+Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.</p>
+<div class="literal-block-wrapper container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Hinzufügen eines zusätzlichen Icons</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        ...
+        <span class="nt">&lt;icons&gt;</span>
+            <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./resource/config/media/icon1.png&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/icons&gt;</span>
+        ...
+    <span class="nt">&lt;/meta&gt;</span>
+    ...
+    <span class="nt">&lt;text&gt;</span>
+      <span class="nt">&lt;label&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span><span class="nt">&gt;&lt;/icon&gt;&lt;/label&gt;</span>
+    <span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="einzelne-widgets-durch-css-klassen-verandern">
+<span id="custom-css"></span><h2>Einzelne Widgets durch CSS-Klassen verändern<a class="headerlink" href="#einzelne-widgets-durch-css-klassen-verandern" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bei vielen Widgets ist es möglich in der Konfigurationsdatei ein <code class="docutils literal notranslate"><span class="pre">class</span></code> Attribut anzugeben, welches dann für eigene
+CSS-Regeln benutzt werden kann. Hierdurch hat man die Möglichkeit etwas gezielter einzelne Widgets optisch zu verändern.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Der Wert des in der Konfigurationsdatei angegebenen <code class="docutils literal notranslate"><span class="pre">class</span></code> Attribut wird mit einem <code class="docutils literal notranslate"><span class="pre">custom_</span></code> Präfix versehen.
+Also aus <code class="docutils literal notranslate"><span class="pre">&lt;switch</span> <span class="pre">class=&quot;fancy&quot;..</span></code> wird der HTML-Code <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;switch</span> <span class="pre">custom_fancy&quot;...</span></code></p>
+</div>
+<div class="literal-block-wrapper container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Ein individualisiertes Switch-Widget</span><a class="headerlink" href="#id3" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;files&gt;</span>
+            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
+        <span class="nt">&lt;/files&gt;</span>
+        ...
+    <span class="nt">&lt;/meta&gt;</span>
+    <span class="nt">&lt;page&gt;</span>
+        <span class="nt">&lt;switch</span> <span class="na">class=</span><span class="s">&quot;fancy&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/switch&gt;</span>
+    <span class="nt">&lt;/page&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper container" id="id4">
+<div class="code-block-caption"><span class="caption-text">CSS-Regeln für das Switch-Widget in der <cite>resource/config/media/my-custom-style.css</cite> Datei</span><a class="headerlink" href="#id4" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">pink</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="eigenes-design-schreiben">
+<h2>Eigenes Design schreiben<a class="headerlink" href="#eigenes-design-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Neben den bereits beschriebenen Möglichkeiten der optischen Anpassungen, besteht als weitergehende Möglichkeit ein
+komplett neues Design zu schreiben.</p>
+<p>Ein CometVisu Design besteht mindestens aus folgenden Dateien:</p>
+<ul class="simple">
+<li><em>basic.css</em>: Haupt CSS Datei mit allen Regeln, die für das Design benötigt werden</li>
+<li><em>mobile.css</em>: CSS-Regeln für Mobilgeräte mit kleinem Bildschirm (kann leer sein)</li>
+<li><em>design_setup.js</em>: Optionale Javascript Datei, die Anpassungen vornehmen kann die über CSS nicht möglich sind (kann leer sein)</li>
+</ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Um ein neues Design entwickeln und testen zu können, ist die Source-Version der CometVisu erfolderlich.
+Diese erhält man in dem man das Git-Repository klont, <cite>./generate source</cite> ausführt (einmalig nach klonen und jedesmal,
+wenn eine neue Datei für das Design hinzugefügt wird).</p>
+</div>
+</div>
+<div class="section" id="eigene-widgets-schreiben-uber-plugins">
+<span id="custom-plugins"></span><h2>Eigene Widgets schreiben über Plugins<a class="headerlink" href="#eigene-widgets-schreiben-uber-plugins" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Neue Widgets können über Plugins hinzugefügt werden. Dies ist ein guter Einstiegspunkt in die CometVisu Entwicklung,
+da man die Möglichkeiten des Systems kennen lernt. Als Dokumentation der Möglichkeiten eines eigenen Widgets kann der
+Source-Code der vorhandenen Plugins dienen. In diesem Kapitel soll es eher darum gehen, auf welche Wege man ein solches Plugin
+in die CometVisu einbinden kann.</p>
+<p>Hier wird zwischen zwei Wegen unterschieden, wie Plugins in die CometVisu eingebunden werden.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Eingebettete Plugins</strong>: Plugins, die mit der CometVisu ausgeliefert werden und deren Build-Prozess mit durchlaufen</p>
+<blockquote>
+<div><p><em>Vorteile:</em></p>
+<ul class="simple">
+<li>Sind Teil der CometVisu und stehen somit allen Benutzern zur Verfügung. Kompabilität mit zukünftigen CometVisu-Versionen ist in der Regel gewährleistet.</li>
+<li>Der Code wird beim Erstellen des CometVisu-Releases optimiert und minifiziert, was die Ladezeit verkürzt</li>
+<li>Die Benutzung weiterer Hilfsklassen aus dem Qooxdoo-Framework ist problemlos möglich.</li>
+<li>Teil der Versionsverwaltung Git: alle Änderungen am Code werden erfasst und können bei Fehler wieder rückgängig gemacht werden.</li>
+</ul>
+<p><em>Nachteile:</em></p>
+<ul class="simple">
+<li>Zusätzliche Konfiguration nötig, damit die Plugins mit der CometVisu ausgeliefert werden können</li>
+<li>Zur Entwicklung wird die Source-Version der CometVisu benötigt</li>
+<li>Git-Kenntnisse erforderlich</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Eigenständige Plugins</strong>: Hierbei handelt es sich um Javascript-Dateien, die von der CometVisu beim Initialisieren nachgeladen werden</p>
+<blockquote>
+<div><p><em>Vorteile:</em></p>
+<ul class="simple">
+<li>Einfache Einbindung</li>
+<li>Kann mit einem Release der CometVisu benutzt und entwickelt werden</li>
+</ul>
+<p><em>Nachteile:</em></p>
+<ul class="simple">
+<li>Sind nicht Teil der CometVisu, der Benutzer muss sich selbst um Kompabilität mit zukünftigen CometVisu-Versionen kümmern.</li>
+<li>Keine Code-Optimierungen möglich</li>
+<li>Zusätzliche Abhängigkeiten zu Qooxdoo-Klassen nicht möglich (was nicht Teil der CometVisu ist, kann nicht benutzt werden)</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<div class="section" id="aufbau-eines-widgets">
+<h3>Aufbau eines Widgets<a class="headerlink" href="#aufbau-eines-widgets" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um ein neues Widget hinzuzufügen werden drei Dinge benötigt:</p>
+<ol class="arabic simple">
+<li>Ein <em>Parser</em>, der die Widgetdefinition aus der XML-Konfigurationsdatei auslesen kann</li>
+<li>Eine <em>Widgetklasse</em>, die die Daten vom Parser erhält und daraus HTML-Code erzeugt, der in die GUI eingebunden wird.
+Außerdem wird in der Klasse alles behandelt, was das Widget benötigt. Dazu gehört z.B. das Erkennen von Benutzerinteraktionen
+und daraus resultierenden Statusupdates, die zum Backend gesendet werden, oder aber auch das Darstellen von Statusupdates, die
+vom Backend empfangen werden.</li>
+<li>Eine <em>XSD-Schema</em> Definition, die die Struktur des Widgets in der XML-Konfigurationsdatei beschreibt (bei Eigenständigen Plugins nicht erforderlich)</li>
+</ol>
+<p>Jedes Widget in der CometVisu besteht aus diesen drei Dingen. Bei den Standard-Widgets sind der <em>Parser</em> und die <em>Widgetklasse</em> in zwei verschiedenen
+Dateien aufgeteilt, bei Plugins ist beides in einer Datei. Die Schemadefinitionen finden sich alle in der <code class="docutils literal notranslate"><span class="pre">visu_config.xsd</span></code> Datei.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Die Aufteilung der <em>Parser</em> und <em>Widgetklassen</em> in zwei Dateien bietet den Vorteil, dass es so einfacher möglich ist, die Widgetklassen auszutauschen.
+Alle Standard-Widgetklassen sind zusammengefasst in einer Struktur namens <code class="docutils literal notranslate"><span class="pre">Pure</span></code>. Es besteht die Möglichkeit diese Struktur durch eine andere auszutauschen.
+Damit man in einem solchen Fall nicht auch alle Parser neu programmieren muss, wurde diese Trennung vorgenommen.</p>
+</div>
+</div>
+<div class="section" id="beispielplugin">
+<h3>Beispielplugin<a class="headerlink" href="#beispielplugin" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Ein einfaches Beispiel, für ein neuen Widget, welches per Plugin eingebunden werden kann ist in der <code class="docutils literal notranslate"><span class="pre">resource/config/structure_custom.js</span></code> zu finden.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">extend</span><span class="o">:</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span>
+
+  <span class="nx">statics</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// parse element from visu_config*.xml</span>
+    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">xml</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">flavour</span><span class="p">,</span> <span class="nx">pageType</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">parseElement</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">xml</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">flavour</span><span class="p">,</span> <span class="nx">pageType</span><span class="p">);</span>
+      <span class="nx">data</span><span class="p">.</span><span class="nx">content</span> <span class="o">=</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">check</span><span class="o">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">members</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// generate the DOM string to be added to the GUI</span>
+    <span class="nx">getDomString</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;&lt;h1 &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39;class=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getContent</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;&lt;/h1&gt;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="c1">// this function is executed when this file is loaded</span>
+  <span class="nx">defer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">statics</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// register the parser</span>
+    <span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">pure</span><span class="p">.</span><span class="nx">Headline</span><span class="p">);</span>
+    <span class="c1">// register the widget</span>
+    <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">WidgetFactory</span><span class="p">.</span><span class="nx">registerClass</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span> <span class="nx">statics</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Diese Datei stellt ein Widget zur Verfügung, welches der GUI ein Überschriftelement mit beliebigem Text hinzufügt.
+Es kann in der Konfigurationsdatei als <code class="docutils literal notranslate"><span class="pre">&lt;headline&gt;...&lt;/headline&gt;</span></code> benutzt werden. Wichtig ist hier, dass das
+Widget in der Konfigurationsdatei immer in ein <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;</span></code> Element eingebettet wird. Da für dieses eigenständige
+Plugin keine Schema-Definition existiert, ist dieser zusätzliche Schritt nötig, damit die Konfigurationsdatei von
+einem Schema-Validator nicht als ungültig markiert wird.
+Um dieses Plugin benutzen zu können, muss die Datei geladen werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;files&gt;</span>
+            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/structure_custom.js<span class="nt">&lt;/file&gt;</span>
+            ...
+        <span class="nt">&lt;/files&gt;</span>
+        ...
+    <span class="nt">&lt;/meta&gt;</span>
+    ...
+    <span class="nt">&lt;custom&gt;</span>
+        <span class="nt">&lt;headline&gt;</span>Mein neues Widget!<span class="nt">&lt;/headline&gt;</span>
+    <span class="nt">&lt;/custom&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
+</pre></div>
+</div>
+<p>Damit die CometVisu erkennt, dass die Datei ein Eigenständiges Plugin bereitstellt muss diese mit den Attributen
+<code class="docutils literal notranslate"><span class="pre">type=&quot;js&quot;</span> <span class="pre">content=&quot;plugin&quot;</span></code> angegeben werden. Geschieht dies nicht, kann es passieren, dass die Datei zu einem falschen
+Zeitpunkt geladen wird und dann aufgrund eines Fehlers nicht nutzbar ist.</p>
+</div>
+</div>
+<div class="section" id="eigene-struktur-schreiben">
+<h2>Eigene Struktur schreiben<a class="headerlink" href="#eigene-struktur-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn der von der CometVisu erzeugte HTML-Code geändert werden soll, muss man eine neue Struktur schreiben.
+Bisher existiert nur die <code class="docutils literal notranslate"><span class="pre">pure</span></code>-Struktur in der CometVisu unter dem Pfad <code class="docutils literal notranslate"><span class="pre">cv.ui.structure.pure</span></code>. Darin sind
+alle Widgetklassen zu finden, die die CometVisu zur Verfügung stellt. Diese sind dafür verantwortlich aus einer
+von den <em>Parsern</em> ausgelesenen Konfigurationsdatei HTML-Code zu generieren.</p>
+<p>Durch eine neue Struktur ändert sich der erzeugte HTML-Code, daher muss man zusätzlich auch immer ein neues Design für diese
+Struktur schreiben.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Das Schreiben einer neuen Struktur ist zwar vorgesehen, wurde aber bisher noch nie umgesetzt.
+Daher ist es durchaus möglich, dass hier weitere Vorarbeiten erforderlich sind, um die Strukturen einfach austauschen
+zu können.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hydraulik.html" class="btn btn-neutral float-left" title="Anleitung zum Erstellen eines Animierten Hydraulikplans" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../colab/index.html" class="btn btn-neutral float-right" title="Hilf dem CometVisu Projekt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

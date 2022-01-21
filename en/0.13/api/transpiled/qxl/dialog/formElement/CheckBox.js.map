@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/formElement/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "register",
+    "qxl",
+    "dialog",
+    "Dialog",
+    "registerFormElementHandlers",
+    "_registration",
+    "initElement",
+    "fieldType",
+    "fieldData",
+    "key",
+    "formElement",
+    "ui",
+    "form",
+    "CheckBox",
+    "label",
+    "addToFormController",
+    "_formController",
+    "addTarget"
+  ],
+  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,UADF,EACc,KAAKC,aADnB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,cAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWC,QAAf,CAAwBL,SAAS,CAACM,KAAlC,CAAlB;AACA,iBAAOJ,WAAP;AACD,SAJa;AAMdK,QAAAA,mBAAmB,EAAG,6BAASR,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AACrE,eAAKM,eAAL,CAAqBC,SAArB,CAA+BP,WAA/B,EAA4C,OAA5C,EAAqDD,GAArD,EAA0D,IAA1D,EAAgE,IAAhE;AACD;AARa;AANlB;AAFF,GADA;AAnBAR,EAAAA,GAAG,CAACC,MAAJ,CAAWQ,WAAX,CAAuBG,QAAvB,CAAgCjB,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.CheckBox\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"checkbox\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.CheckBox(fieldData.label);\n        return formElement;\n      },\n\n      addToFormController : function(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null);\n      }\n    }\n  }\n});\n"
+  ]
+}

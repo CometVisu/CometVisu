@@ -1,0 +1,159 @@
+{
+  "className": "qx.ui.virtual.core.ILayer",
+  "packageName": "qx.ui.virtual.core",
+  "name": "ILayer",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A layer is responsible to render one aspect of a virtual pane. The pane tells\n each layer to render/update a specific window of the virtual grid.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "fullUpdate": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Do a complete update of the layer. All cached data should be discarded.\n This method is called e.g. after changes to the grid geometry\n (row/column sizes, row/column count, …).\n Note: This method can only be called after the widgets initial appear\n event has been fired because it may work with the widget's DOM elements.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "firstRow {Integer} Index of the first row to display.",
+            "paramName": "firstRow",
+            "description": " Index of the first row to display.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "firstColumn {Integer} Index of the first column to display.",
+            "paramName": "firstColumn",
+            "description": " Index of the first column to display.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rowSizes {Integer[]} Array of heights for each row to display.",
+            "paramName": "rowSizes",
+            "description": " Array of heights for each row to display.",
+            "type": "Integer[]"
+          },
+          {
+            "name": "@param",
+            "body": "columnSizes {Integer[]} Array of widths for each column to display.",
+            "paramName": "columnSizes",
+            "description": " Array of widths for each column to display.",
+            "type": "Integer[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateLayerWindow": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the layer to display a different window of the virtual grid.\n This method is called if the pane is scrolled, resized or cells\n are prefetched. The implementation can assume that no other grid\n data has been changed since the last \"fullUpdate\" of \"updateLayerWindow\"\n call.\n Note: This method can only be called after the widgets initial appear\n event has been fired because it may work with the widget's DOM elements.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "firstRow {Integer} Index of the first row to display.",
+            "paramName": "firstRow",
+            "description": " Index of the first row to display.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "firstColumn {Integer} Index of the first column to display.",
+            "paramName": "firstColumn",
+            "description": " Index of the first column to display.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rowSizes {Integer[]} Array of heights for each row to display.",
+            "paramName": "rowSizes",
+            "description": " Array of heights for each row to display.",
+            "type": "Integer[]"
+          },
+          {
+            "name": "@param",
+            "body": "columnSizes {Integer[]} Array of widths for each column to display.",
+            "paramName": "columnSizes",
+            "description": " Array of widths for each column to display.",
+            "type": "Integer[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateLayerData": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 35
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the layer to reflect changes in the data the layer displays.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

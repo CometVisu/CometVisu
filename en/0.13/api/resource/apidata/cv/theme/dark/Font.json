@@ -1,0 +1,31 @@
+{
+  "className": "cv.theme.dark.Font",
+  "packageName": "cv.theme.dark",
+  "name": "Font",
+  "superClass": "osparc.theme.common.Font",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 112,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Font definitions</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

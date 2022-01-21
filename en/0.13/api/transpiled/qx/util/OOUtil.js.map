@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/util/OOUtil.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "classIsDefined",
+    "name",
+    "getByName",
+    "undefined",
+    "getPropertyDefinition",
+    "clazz",
+    "$$properties",
+    "superclass",
+    "hasProperty",
+    "util",
+    "OOUtil",
+    "getEventType",
+    "constructor",
+    "$$events",
+    "supportsEvent",
+    "getByInterface",
+    "iface",
+    "list",
+    "i",
+    "l",
+    "$$implements",
+    "$$flatImplements",
+    "length",
+    "hasInterface",
+    "getMixins",
+    "$$includes",
+    "push",
+    "apply",
+    "$$flatIncludes"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * This class is a base class for the OO system defined by Class, Mixin\n * and Interface. It contains helper which are basically needed to create the\n * Classes which define the OO system.\n */\nqx.Bootstrap.define(\"qx.util.OOUtil\",\n{\n  statics :\n  {\n    /**\n     * Whether the given class exists\n     *\n     * @param name {String} class name to check\n     * @return {Boolean} true if class exists\n     */\n    classIsDefined : function(name) {\n      return qx.Bootstrap.getByName(name) !== undefined;\n    },\n\n\n    /**\n     * Returns the definition of the given property, if not redefined.\n     * Returns null if the property does not exist.\n     *\n     * @param clazz {Class} class to check\n     * @param name {String} name of the class to check for\n     * @return {Map|null} whether the object support the given event.\n     */\n    getPropertyDefinition : function(clazz, name)\n    {\n      while (clazz)\n      {\n        if (clazz.$$properties && clazz.$$properties[name]) {\n          return clazz.$$properties[name];\n        }\n\n        clazz = clazz.superclass;\n      }\n\n      return null;\n    },\n\n\n    /**\n     * Whether a class has the given property\n     *\n     * @param clazz {Class} class to check\n     * @param name {String} name of the property to check for\n     * @return {Boolean} whether the class includes the given property.\n     */\n    hasProperty : function(clazz, name) {\n      return !!qx.util.OOUtil.getPropertyDefinition(clazz, name);\n    },\n\n\n    /**\n     * Returns the event type of the given event. Returns null if\n     * the event does not exist.\n     *\n     * @param clazz {Class} class to check\n     * @param name {String} name of the event\n     * @return {String|null} Event type of the given event.\n     */\n    getEventType : function(clazz, name)\n    {\n      var clazz = clazz.constructor;\n\n      while (clazz.superclass)\n      {\n        if (clazz.$$events && clazz.$$events[name] !== undefined) {\n          return clazz.$$events[name];\n        }\n\n        clazz = clazz.superclass;\n      }\n\n      return null;\n    },\n\n\n    /**\n     * Whether a class supports the given event type\n     *\n     * @param clazz {Class} class to check\n     * @param name {String} name of the event to check for\n     * @return {Boolean} whether the class supports the given event.\n     */\n    supportsEvent : function(clazz, name) {\n      return !!qx.util.OOUtil.getEventType(clazz, name);\n    },\n\n\n    /**\n     * Returns the class or one of its super classes which contains the\n     * declaration of the given interface. Returns null if the interface is not\n     * specified anywhere.\n     *\n     * @param clazz {Class} class to look for the interface\n     * @param iface {Interface} interface to look for\n     * @return {Class | null} the class which directly implements the given interface\n     */\n    getByInterface : function(clazz, iface)\n    {\n      var list, i, l;\n\n      while (clazz)\n      {\n        if (clazz.$$implements)\n        {\n          list = clazz.$$flatImplements;\n\n          for (i=0, l=list.length; i<l; i++)\n          {\n            if (list[i] === iface) {\n              return clazz;\n            }\n          }\n        }\n\n        clazz = clazz.superclass;\n      }\n\n      return null;\n    },\n\n\n    /**\n     * Whether a given class or any of its super classes includes a given interface.\n     *\n     * This function will return \"true\" if the interface was defined\n     * in the class declaration ({@link qx.Class#define}) of the class\n     * or any of its super classes using the \"implement\"\n     * key.\n     *\n     * @param clazz {Class} class to check\n     * @param iface {Interface} the interface to check for\n     * @return {Boolean} whether the class includes the interface.\n     */\n    hasInterface : function(clazz, iface) {\n      return !!qx.util.OOUtil.getByInterface(clazz, iface);\n    },\n\n\n    /**\n     * Returns a list of all mixins available in a given class.\n     *\n     * @param clazz {Class} class which should be inspected\n     * @return {Mixin[]} array of mixins this class uses\n     */\n    getMixins : function(clazz)\n    {\n      var list = [];\n\n      while (clazz)\n      {\n        if (clazz.$$includes) {\n          list.push.apply(list, clazz.$$flatIncludes);\n        }\n\n        clazz = clazz.superclass;\n      }\n\n      return list;\n    }\n  }\n});"
+  ]
+}

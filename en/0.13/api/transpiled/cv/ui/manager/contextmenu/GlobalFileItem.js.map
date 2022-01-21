@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/contextmenu/GlobalFileItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "cv",
+    "ui",
+    "manager",
+    "contextmenu",
+    "FileItem",
+    "type",
+    "GlobalFileItem"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;AAC1DC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BC,QADwB;AAE1DC,IAAAA,IAAI,EAAE;AAFoD,GAA5D;AAHAL,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BG,cAA1B,CAAyCV,aAAzC,GAAyDA,aAAzD",
+  "sourcesContent": [
+    "/**\n *\n */\nqx.Class.define('cv.ui.manager.contextmenu.GlobalFileItem', {\n  extend: cv.ui.manager.contextmenu.FileItem,\n  type: 'singleton'\n});\n"
+  ]
+}

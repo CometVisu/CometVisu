@@ -1,0 +1,257 @@
+{
+  "className": "qx.module.event.Orientation",
+  "packageName": "qx.module.event",
+  "name": "Orientation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 114,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Normalization for orientationchange events</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Event_Normalization"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "BIND_METHODS": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 66
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of qx.module.event.Orientation methods to be attached to native\n event objects</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getOrientation": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current orientation of the viewport in degrees.\n All possible values and their meaning:</p>\n<ul>\n<li><code>0</code>: \"Portrait\"</li>\n<li><code>-90</code>: \"Landscape (right, screen turned clockwise)\"</li>\n<li><code>90</code>: \"Landscape (left, screen turned counterclockwise)\"</li>\n<li><code>180</code>: \"Portrait (upside-down portrait)\"</li>\n</ul>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The current orientation in degrees",
+            "type": "Number",
+            "description": " The current orientation in degrees"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isLandscape": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the viewport orientation is currently in landscape mode.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the viewport orientation\n     is currently in landscape mode.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the viewport orientation\n     is currently in landscape mode."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isPortrait": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the viewport orientation is currently in portrait mode.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the viewport orientation\n     is currently in portrait mode.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the viewport orientation\n     is currently in portrait mode."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "normalize": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type",
+            "paramName": "type",
+            "description": " Event type",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": " Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 111,
+        "column": 10
+      },
+      "end": {
+        "line": 113,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,634 @@
+{
+  "className": "qx.module.Animation",
+  "packageName": "qx.module",
+  "name": "Animation",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 304,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Cross browser animation layer. It uses feature detection to check if CSS\n animations are available and ready to use. If not, a JavaScript-based\n fallback will be used.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Css"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Event"
+        },
+        {
+          "name": "@require",
+          "body": "qx.module.Environment"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "events": {
+    "animationStart": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 32
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an animation starts.</p>"
+          }
+        ]
+      },
+      "name": "animationStart",
+      "type": "undefined"
+    },
+    "animationIteration": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an animation has ended one iteration.</p>"
+          }
+        ]
+      },
+      "name": "animationIteration",
+      "type": "undefined"
+    },
+    "animationEnd": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an animation has ended.</p>"
+          }
+        ]
+      },
+      "name": "animationEnd",
+      "type": "undefined"
+    }
+  },
+  "statics": {
+    "_fadeOut": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Animation description used in {@link #fadeOut}.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_fadeIn": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Animation description used in {@link #fadeIn}.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_animate": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Animation execute either regular or reversed direction.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "desc {Map} The animation\"s description.",
+            "paramName": "desc",
+            "description": " The animation\"s description.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number?} The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "optional": true,
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "reverse {Boolean} <code>true</code>, if the animation should be reversed",
+            "paramName": "reverse",
+            "description": " <code>true</code>, if the animation should be reversed",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "members": {
+    "getAnimationHandles": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stored animation handles. The handles are only\n available while an animation is running.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array of animation handles.",
+            "type": "Array",
+            "description": " An array of animation handles."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "animate": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts the animation with the given description.\n<em>duration</em> is the time in milliseconds one animation cycle should take.\n<em>keep</em> is the key frame to apply at the end of the animation. (optional)\n<em>keyFrames</em> is a map of separate frames. Each frame is defined by a\n   number which is the percentage value of time in the animation. The value\n   is a map itself which holds css properties or transforms\n   (Transforms only for CSS Animations).\n<em>origin</em> maps to the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin\">transform origin</a>\n (Only for CSS animations).\n<em>repeat</em> is the amount of time the animation should be run in\n   sequence. You can also use \"infinite\".\n<em>timing</em> takes one of these predefined values:\n   <code>ease</code> | <code>linear</code> | <code>ease-in</code>\n   | <code>ease-out</code> | <code>ease-in-out</code> |\n   <code>cubic-bezier(&amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;, &amp;lt;number&amp;gt;)</code>\n   (cubic-bezier only available for CSS animations)\n<em>alternate</em> defines if every other animation should be run in reverse order.\n<em>delay</em> is the time in milliseconds the animation should wait before start.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "desc {Map} The animation\"s description.",
+            "paramName": "desc",
+            "description": " The animation\"s description.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number?} The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "animateReverse": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts an animation in reversed order. For further details, take a look at\n the {@link #animate} method.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "desc {Map} The animation\"s description.",
+            "paramName": "desc",
+            "description": " The animation\"s description.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number?} The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds of the animation,\n   which will override the duration given in the description.",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "play": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the play state of the animation.\n This can be used to continue an animation when paused.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "pause": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4
+        },
+        "end": {
+          "line": 210,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the play state of the animation.\n This can be used to pause an animation when running.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "stop": {
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops a running animation.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isPlaying": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 244,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether an animation is running or not.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if an animation is running.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if an animation is running."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isEnded": {
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4
+        },
+        "end": {
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether an animation has ended or not.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if an animation has ended.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if an animation has ended."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fadeIn": {
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4
+        },
+        "end": {
+          "line": 274,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fades in all elements in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "duration {Number?} The duration in milliseconds.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds.",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fadeOut": {
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4
+        },
+        "end": {
+          "line": 285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fades out all elements in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "duration {Number?} The duration in milliseconds.",
+            "paramName": "duration",
+            "description": " The duration in milliseconds.",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining.",
+            "type": "qxWeb",
+            "description": " The collection for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 289,
+        "column": 10
+      },
+      "end": {
+        "line": 303,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

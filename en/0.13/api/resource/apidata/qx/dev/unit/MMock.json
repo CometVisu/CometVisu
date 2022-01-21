@@ -1,0 +1,751 @@
+{
+  "className": "qx.dev.unit.MMock",
+  "packageName": "qx.dev.unit",
+  "name": "MMock",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 94,
+        "column": 0
+      },
+      "end": {
+        "line": 531,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Provides test spies, stubs and mocks as well as custom assertions.\n Here is a simple example:\n </p>\n<pre class=\"javascript\">\n\n qx&#046;Class.define(\"qx.test.Klass\",\n {\n   extend : qx.dev.unit.TestCase,\n   include : qx.dev.unit.MMock,\n   members :\n   {\n     \"test: doSpecial on condition xyz\": function() {\n\n       var obj = new qx.Klass();\n\n\n       this.spy(obj, \"doSpecial\");\n\n       obj.onCondition(\"xyz\");\n\n       this.assertCalled(obj.doSpecial);\n     },\n     tearDown: function() {\n\n\n\n\n       this.getSandbox().restore();\n     }\n   }\n });\n\n qx&#046;Class.define(\"qx.Klass\",\n {\n   extend : qx.core.Object,\n   members :\n   {\n     onCondition: function(condition) {\n\n\n       if (mustDoSpecial) {\n         this.doSpecial();\n       }\n     },\n     doSpecial: function() {\n     }\n   }\n });\n </pre>\n<p>This mixin provides assertions such as assertCalled() that work\n with spies and stubs. Besides offering a compact way to express expectations,\n those assertions have the advantage that meaningful error messages can be\n generated.\n For full list of assertions see http://sinonjs.org/docs/#assertions.\n Note that sinon.assert.xyz() translates as assertXyz().</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 96,
+        "column": 13
+      },
+      "end": {
+        "line": 102,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "__sandbox": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__fakeXhr": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__exposeAssertions": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Expose Sinon.JS assertions. Provides methods such\n as assertCalled(), assertCalledWith().\n (http://sinonjs.org/docs/#assert-expose)\n Does not override existing assertion methods.</p>"
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "sinon.assert.expose"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getSinon": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the Sinon.JS object.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "spy": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Test spies allow introspection on how a function is used\n throughout the system under test.</p>\n<ul>\n<li>spy()\nCreates an anonymous function that records arguments,\nthis value, exceptions and return values for all calls.</li>\n<li>spy(func)\nSpies on the provided function</li>\n<li>spy(object, \"method\")\nCreates a spy for object.method and replaces the original method\nwith the spy. The spy acts exactly like the original method in all cases.\nThe original method can be restored by calling object.method.restore().\nThe returned spy is the function object which replaced the original method.\nspy === object.method.</li>\n<li>spy.withArgs(arg1[, arg2, …])\nCreates a spy that only records calls when the received arguments matches those\npassed to <code>withArgs</code>.\nA spy has a rich interface to introspect how the wrapped function was used:</li>\n<li>spy.withArgs(arg1[, arg2, …]);</li>\n<li>spy.callCount</li>\n<li>spy.called</li>\n<li>spy.calledOnce</li>\n<li>spy.calledTwice</li>\n<li>spy.calledThrice</li>\n<li>spy.firstCall</li>\n<li>spy.secondCall</li>\n<li>spy.thirdCall</li>\n<li>spy.lastCall</li>\n<li>spy.calledBefore(anotherSpy)</li>\n<li>spy.calledAfter(anotherSpy)</li>\n<li>spy.calledOn(obj)</li>\n<li>spy.alwaysCalledOn(obj)</li>\n<li>spy.calledWith(arg1, arg2, …)</li>\n<li>spy.alwaysCalledWith(arg1, arg2, …)</li>\n<li>spy.calledWithExactly(arg1, arg2, …)</li>\n<li>spy.alwaysCalledWithExactly(arg1, arg2, …)</li>\n<li>spy.calledWithMatch(arg1, arg2, …);</li>\n<li>spy.alwaysCalledWithMatch(arg1, arg2, …);</li>\n<li>spy.calledWithNew();</li>\n<li>spy.neverCalledWith(arg1, arg2, …);</li>\n<li>spy.neverCalledWithMatch(arg1, arg2, …);</li>\n<li>spy.threw()</li>\n<li>spy.threw(\"TypeError\")</li>\n<li>spy.threw(obj)</li>\n<li>spy.alwaysThrew()</li>\n<li>spy.alwaysThrew(\"TypeError\")</li>\n<li>spy.alwaysThrew(obj)</li>\n<li>spy.returned(obj)</li>\n<li>spy.alwaysReturned(obj)</li>\n<li>spy.getCall(n)</li>\n<li>spy.thisValues</li>\n<li>spy.args</li>\n<li>spy.exceptions</li>\n<li>spy.returnValues</li>\n<li>spy.reset()</li>\n<li>spy.printf(\"format string\", [arg1, arg2, …])\nSee http://sinonjs.org/docs/#spies.\nNote: Spies are transparently added to a sandbox. To restore\nthe original function for all spies run <code>this.getSandbox().restore()</code>\nin your <code>tearDown()</code> method.</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "function_or_object {Function|Object} Spies on the\n   provided function or object.",
+            "paramName": "function_or_object",
+            "description": " Spies on the\n   provided function or object.",
+            "type": [
+              "Function",
+              "Object"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "method {String?null} The method to spy upon if an object was given.",
+            "paramName": "method",
+            "description": " The method to spy upon if an object was given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The wrapped function enhanced with properties and methods\n   that allow for introspection. See http://sinonjs.org/docs/#spies.",
+            "type": "Function",
+            "description": " The wrapped function enhanced with properties and methods\n   that allow for introspection. See http://sinonjs.org/docs/#spies."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "stub": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 263,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Test stubs are functions (spies) with pre-programmed behavior.</p>\n<ul>\n<li>stub()\nCreates an anonymous stub function</li>\n<li>stub(object, \"method\")\nReplaces object.method with a stub function. The original function\ncan be restored by calling object.method.restore() (or stub.restore()).\nAn exception is thrown if the property is not already a function,\nto help avoid typos when stubbing methods.</li>\n<li>stub(obj)\nStubs all the object's methods.</li>\n<li>stub.withArgs(arg1[, arg2, …])\nStubs the method only for the provided arguments. Can be used to create\na stub that acts differently in response to different arguments.\nA stub has the interface of a spy in addition to methods that allow to define behaviour:</li>\n<li>stub.returns(obj)</li>\n<li>stub.throws()</li>\n<li>stub.throws(\"TypeError\")</li>\n<li>stub.throws(obj)</li>\n<li>stub.callsArg(index)</li>\n<li>stub.callsArg(0)</li>\n<li>stub.callsArgWith(index, arg1, arg2, …)\nSee http://sinonjs.org/docs/#stubs.\nNote: Stubs are transparently added to a sandbox. To restore\nthe original function for all stubs run <code>this.getSandbox().restore()</code>\nin your <code>tearDown()</code> method.</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object?null} Object to stub. Creates an anonymous stub function\n   if not given.",
+            "paramName": "object",
+            "description": " Object to stub. Creates an anonymous stub function\n   if not given.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "method {String?null} Replaces object.method with a stub function.\n   An exception is thrown if the property is not already a function, to\n   help avoid typos when stubbing methods.",
+            "paramName": "method",
+            "description": " Replaces object.method with a stub function.\n   An exception is thrown if the property is not already a function, to\n   help avoid typos when stubbing methods.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A stub. Has the interface of a spy in addition to methods\n   that allow to define behaviour. See http://sinonjs.org/docs/#stubs.",
+            "type": "Function",
+            "description": " A stub. Has the interface of a spy in addition to methods\n   that allow to define behaviour. See http://sinonjs.org/docs/#stubs."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "mock": {
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4
+        },
+        "end": {
+          "line": 301,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mocks are slightly different from spies and stubs in that you mock an\n object, and then set an expectation on one or more of its objects.</p>\n<ul>\n<li>var mock = mock(obj)\nCreates a mock for the provided object. Does not change the object, but\nreturns a mock object to set expectations on the object's methods.</li>\n<li>var expectation = mock.expects(\"method\")\nOverrides obj.method with a mock function and returns an expectation\nobject. Expectations implement both the spy and stub interface plus\nthe methods described below.\nSet expectations with following methods. All methods return the expectation\nitself, meaning expectations can be chained.</li>\n<li>expectation.atLeast(number);</li>\n<li>expectation.atMost(number);</li>\n<li>expectation.never();</li>\n<li>expectation.once();</li>\n<li>expectation.twice();</li>\n<li>expectation.thrice();</li>\n<li>expectation.exactly(number);</li>\n<li>expectation.withArgs(arg1, arg2, …);</li>\n<li>expectation.withExactArgs(arg1, arg2, …);</li>\n<li>expectation.on(obj);</li>\n<li>expectation.verify();\nSee http://sinonjs.org/docs/#mocks.</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} The object to create a mock of.",
+            "paramName": "object",
+            "description": " The object to create a mock of.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} A mock to set expectations on. See http://sinonjs.org/docs/#mocks.",
+            "type": "Function",
+            "description": " A mock to set expectations on. See http://sinonjs.org/docs/#mocks."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "useFakeXMLHttpRequest": {
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4
+        },
+        "end": {
+          "line": 317,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replace the native XMLHttpRequest object in browsers that support it with\n a custom implementation which does not send actual requests.\n Note: The fake XHR is transparently added to a sandbox. To restore\n the original host method run <code>this.getSandbox().restore()</code>\n in your <code>tearDown()</code> method.\n See http://sinonjs.org/docs/#useFakeXMLHttpRequest.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRequests": {
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4
+        },
+        "end": {
+          "line": 331,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get requests made with faked XHR or server.\n Each request can be queried for url, method, requestHeaders,\n status and more.\n See http://sinonjs.org/docs/#FakeXMLHttpRequest.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array of faked requests.",
+            "type": "Array",
+            "description": " Array of faked requests."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "useFakeServer": {
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 4
+        },
+        "end": {
+          "line": 348,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>As {@link #useFakeXMLHttpRequest}, but additionally provides a high-level\n API to setup server responses. To setup responses, use the server\n returned by {@link #getServer}.\n See http://sinonjs.org/docs/#server.\n Note: The fake server is transparently added to a sandbox. To restore\n the original host method run <code>this.getSandbox().restore()</code>\n in your <code>tearDown()</code> method.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getServer": {
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4
+        },
+        "end": {
+          "line": 357,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get fake server created by {@link #useFakeServer}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Fake server.",
+            "type": "Object",
+            "description": " Fake server."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSandbox": {
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4
+        },
+        "end": {
+          "line": 370,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get sandbox.\n The sandbox holds all stubs and mocks. Run <code>this.getSandbox().restore()</code>\n to restore all mock objects.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}\n        Sandbox object.",
+            "type": "Object",
+            "description": "\n        Sandbox object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deepStub": {
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4
+        },
+        "end": {
+          "line": 389,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a deep copied, API-identical stubbed out clone of the given\n object.\n In contrast to the shallow {@link #stub}, also stubs out properties that\n belong to the prototype chain.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Object to stub deeply.",
+            "paramName": "object",
+            "description": " Object to stub deeply.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} A stub.",
+            "type": "Object",
+            "description": " A stub."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "shallowStub": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 411,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shallowly stub all methods (except excluded) that belong to classes found in inheritance\n chain up to (but including) the given class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Object to stub shallowly.",
+            "paramName": "object",
+            "description": " Object to stub shallowly.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetClazz {Object} Class which marks the end of the chain.",
+            "paramName": "targetClazz",
+            "description": " Class which marks the end of the chain.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "propsToExclude {Array} Array with properties which shouldn't be stubbed.",
+            "paramName": "propsToExclude",
+            "description": " Array with properties which shouldn't be stubbed.",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} A stub.",
+            "type": "Object",
+            "description": " A stub."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "injectStub": {
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 4
+        },
+        "end": {
+          "line": 433,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Changes the given factory (e.g. a constructor) to return a stub. The\n method itself returns this stub.\n By default, the stub returned by the changed factory is the object built\n by the original factory, but deeply stubbed (see {@link #deepStub}).\n Alternatively, a custom stub may be given explicitly that is used instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Namespace to hold factory, e.g. qx.html.",
+            "paramName": "object",
+            "description": " Namespace to hold factory, e.g. qx.html.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "property {String} Property as string that functions as\n  constructor, e.g. \"Element\".",
+            "paramName": "property",
+            "description": " Property as string that functions as\n  constructor, e.g. \"Element\".",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customStub {Object?} Stub to inject.",
+            "paramName": "customStub",
+            "description": " Stub to inject.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Injected stub.",
+            "type": "Object",
+            "description": " Injected stub."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "revealMock": {
+      "location": {
+        "start": {
+          "line": 450,
+          "column": 4
+        },
+        "end": {
+          "line": 456,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Changes the given factory (e.g. a constructor) to make a mock of the\n object returned. The method itself returns this mock.\n By default, the object returned by the changed factory (that a mock is\n made of) is a deep copied, API-identical clone of the object built by the\n original factory. Alternatively, the object returned can be given\n explicitly.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Namespace to hold factory, e.g. qx.html.",
+            "paramName": "object",
+            "description": " Namespace to hold factory, e.g. qx.html.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "property {String} Property as string that functions as\n  constructor, e.g. \"Element\".",
+            "paramName": "property",
+            "description": " Property as string that functions as\n  constructor, e.g. \"Element\".",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "customObject {Object?} Object to inject.",
+            "paramName": "customObject",
+            "description": " Object to inject.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Mock of the object built.",
+            "type": "Object",
+            "description": " Mock of the object built."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__deepClone": {
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4
+        },
+        "end": {
+          "line": 473,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deep clone object by copying properties from prototype.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} Object to prepare (that is, clone).",
+            "paramName": "obj",
+            "description": " Object to prepare (that is, clone).",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Prepared (deeply cloned) object.",
+            "type": "Object",
+            "description": " Prepared (deeply cloned) object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getOwnProperties": {
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4
+        },
+        "end": {
+          "line": 514,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the object’s own properties.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Object to analyze.",
+            "paramName": "object",
+            "description": " Object to analyze.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetClazz {Object} Class which marks the end of the chain.",
+            "paramName": "targetClazz",
+            "description": " Class which marks the end of the chain.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Array of the object’s own properties.",
+            "type": "Array",
+            "description": " Array of the object’s own properties."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__stubProperty": {
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4
+        },
+        "end": {
+          "line": 529,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Safely stub property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Object to stub.",
+            "paramName": "object",
+            "description": " Object to stub.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "prop {String} Property to stub.",
+            "paramName": "prop",
+            "description": " Property to stub.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

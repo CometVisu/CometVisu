@@ -1,0 +1,710 @@
+{
+  "className": "qx.ui.mobile.list.provider.Provider",
+  "packageName": "qx.ui.mobile.list.provider",
+  "name": "Provider",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 217,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Provides a list item element for a certain row and its data.\n Uses the {@link qx.ui.mobile.list.renderer.Default} list item renderer as a\n default renderer when no other renderer is given by the {@link qx.ui.mobile.list.List#delegate}.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "properties": {
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegation object which can have one or more functions defined by the\n {@link qx.ui.mobile.list.IListDelegate} interface. Set by the list.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "name": "delegate",
+      "propertyType": "new",
+      "event": "changeDelegate",
+      "apply": "_applyDelegate",
+      "nullable": true,
+      "allowNull": true
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__itemRenderer": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__groupRenderer": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_setItemRenderer": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the item renderer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "renderer {qx.ui.mobile.list.renderer.Abstract} The used item renderer",
+            "paramName": "renderer",
+            "description": " The used item renderer",
+            "type": "qx.ui.mobile.list.renderer.Abstract"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getItemRenderer": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the set item renderer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.list.renderer.Abstract} The used item renderer",
+            "type": "qx.ui.mobile.list.renderer.Abstract",
+            "description": " The used item renderer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_setGroupRenderer": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the group renderer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "renderer {qx.ui.mobile.list.renderer.group.Abstract} the group renderer.",
+            "paramName": "renderer",
+            "description": " the group renderer.",
+            "type": "qx.ui.mobile.list.renderer.group.Abstract"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getGroupRenderer": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the group renderer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.list.renderer.group.Abstract} the group renderer.",
+            "type": "qx.ui.mobile.list.renderer.group.Abstract",
+            "description": " the group renderer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getItemElement": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list item element for a given row.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data of the row.",
+            "paramName": "data",
+            "description": " The data of the row.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer} The row index.",
+            "paramName": "row",
+            "description": " The row index.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the list item element.",
+            "type": "Element",
+            "description": " the list item element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getGroupElement": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the group item element for a given row.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data of the group.",
+            "paramName": "data",
+            "description": " The data of the group.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "group {Integer} The group index.",
+            "paramName": "group",
+            "description": " The group index.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} the group item element.",
+            "type": "Element",
+            "description": " the group item element."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_configureItem": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configure the list item renderer with the passed data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data of the row.",
+            "paramName": "data",
+            "description": " The data of the row.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer} The row index.",
+            "paramName": "row",
+            "description": " The row index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_configureGroupItem": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the group renderer with the passed group data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data of the group.",
+            "paramName": "data",
+            "description": " The data of the group.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "group {Integer} The group index.",
+            "paramName": "group",
+            "description": " The group index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createGroupRenderer": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 179,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an instance of the group renderer to use. When no delegate method\n is given the function will return an instance of {@link qx.ui.mobile.list.renderer.group.Default}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.list.renderer.group.Abstract} An instance of the group renderer.",
+            "type": "qx.ui.mobile.list.renderer.group.Abstract",
+            "description": " An instance of the group renderer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createItemRenderer": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 201,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an instance of the item renderer to use. When no delegate method\n is given the function will return an instance of {@link qx.ui.mobile.list.renderer.Default}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
+            "type": "qx.ui.mobile.list.renderer.Abstract",
+            "description": " An instance of the item renderer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyDelegate": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 209,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "delegate"
+      ]
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getDelegate": {
+      "type": "function",
+      "name": "getDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for delegate"
+          }
+        ]
+      }
+    },
+    "setDelegate": {
+      "type": "function",
+      "name": "setDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for delegate"
+          }
+        ]
+      }
+    },
+    "resetDelegate": {
+      "type": "function",
+      "name": "resetDelegate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 213,
+        "column": 13
+      },
+      "end": {
+        "line": 216,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

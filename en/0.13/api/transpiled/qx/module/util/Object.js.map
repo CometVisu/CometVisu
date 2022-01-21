@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/module/util/Object.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "clone",
+    "lang",
+    "Object",
+    "getValues",
+    "invert",
+    "contains",
+    "merge",
+    "target",
+    "varargs",
+    "qxWeb",
+    "array",
+    "fromArguments",
+    "arguments",
+    "shift",
+    "forEach",
+    "sourceObject",
+    "objectMergeWith",
+    "defer",
+    "$attachAll",
+    "module",
+    "util"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,uBAApB,EAA6C;AAC3CC,IAAAA,OAAO,EAAG;AACR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,KAAK,EAAGN,EAAE,CAACO,IAAH,CAAQC,MAAR,CAAeF,KAXf;;AAaR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIG,MAAAA,SAAS,EAAGT,EAAE,CAACO,IAAH,CAAQC,MAAR,CAAeC,SAtBnB;;AAwBR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,MAAM,EAAGV,EAAE,CAACO,IAAH,CAAQC,MAAR,CAAeE,MApChB;;AAuCR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAGX,EAAE,CAACO,IAAH,CAAQC,MAAR,CAAeG,QAjDlB;;AAoDR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,KAAK,EAAG,eAASC,MAAT,EAAiBC,OAAjB,EAA0B;AAEhC,YAAIA,OAAO,GAAGC,KAAK,CAACC,KAAN,CAAYC,aAAZ,CAA0BC,SAA1B,CAAd;AACA,YAAIL,MAAM,GAAGC,OAAO,CAACK,KAAR,EAAb;AAEAL,QAAAA,OAAO,CAACM,OAAR,CAAgB,UAASC,YAAT,EAAuB;AACrCR,UAAAA,MAAM,GAAGb,EAAE,CAACC,SAAH,CAAaqB,eAAb,CAA6BT,MAA7B,EAAqCQ,YAArC,CAAT;AACD,SAFD;AAIA,eAAOR,MAAP;AACD;AAxEO,KADiC;AA4E3CU,IAAAA,KAAK,EAAG,eAASlB,OAAT,EAAkB;AACxBU,MAAAA,KAAK,CAACS,UAAN,CAAiB,IAAjB,EAAuB,QAAvB;AACD;AA9E0C,GAA7C;AAxBAxB,EAAAA,EAAE,CAACyB,MAAH,CAAUC,IAAV,CAAelB,MAAf,CAAsBL,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Alexander Steitz (aback)\n\n************************************************************************ */\n\n/**\n * Helper functions to handle an Object as a Hash map.\n *\n * @group (Utilities)\n * @require (qx.module.util.Array)\n */\nqx.Bootstrap.define(\"qx.module.util.Object\", {\n  statics : {\n    /**\n     * Return a copy of an Object\n     *\n     * @signature function(source, deep)\n     * @attachStatic {qxWeb, object.clone}\n     *\n     * @param source {Object} Object to copy\n     * @param deep {Boolean} If the clone should be a deep clone.\n     * @return {Object} A copy of the object\n     */\n    clone : qx.lang.Object.clone,\n\n    /**\n     * Get the values of a map as array\n     *\n     * @signature function(map)\n     * @attachStatic {qxWeb, object.getValues}\n     *\n     * @param map {Object} the map\n     * @return {Array} array of the values of the map\n     */\n    getValues : qx.lang.Object.getValues,\n\n    /**\n     * Inverts a map by exchanging the keys with the values.\n     *\n     * @signature function(map)\n     * @attachStatic {qxWeb, object.invert}\n     *\n     * If the map has the same values for different keys, information will get lost.\n     * The values will be converted to strings using the toString methods.\n     *\n     * @param map {Object} Map to invert\n     * @return {Object} inverted Map\n     */\n    invert : qx.lang.Object.invert,\n\n\n    /**\n     * Whether the map contains the given value.\n     *\n     * @signature function(map, value)\n     * @attachStatic {qxWeb, object.contains}\n     *\n     * @param map {Object} Map to search for the value\n     * @param value {var} Value to look for\n     * @return {Boolean} Whether the value was found in the map.\n     */\n    contains : qx.lang.Object.contains,\n\n\n    /**\n     * Merges one or more objects into the 'target' object.\n     * *The objects are merged by overwriting existing keys.*\n     *\n     * @attachStatic {qxWeb, object.merge}\n     *\n     * @param target {Object} target object to merge into\n     * @param varargs {var} As many items as you want to merge.\n     * @return {Object} the merged object\n     */\n    merge : function(target, varargs) {\n\n      var varargs = qxWeb.array.fromArguments(arguments);\n      var target = varargs.shift();\n\n      varargs.forEach(function(sourceObject) {\n        target = qx.Bootstrap.objectMergeWith(target, sourceObject);\n      });\n\n      return target;\n    }\n  },\n\n  defer : function(statics) {\n    qxWeb.$attachAll(this, \"object\");\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "className": "qx.ui.core.MLayoutHandling",
+  "packageName": "qx.ui.core",
+  "name": "MLayoutHandling",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 85,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin exposes all methods to manage the layout manager of a widget.\n It can only be included into instances of {@link qx.ui.core.Widget}.\n To optimize the method calls the including widget should call the method\n {@link #remap} in its defer function. This will map the protected\n methods to the public ones and save one method call for each function.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "setLayout": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set a layout manager for the widget. A a layout manager can only be connected\n with one widget. Reset the connection with a previous widget first, if you\n like to use it in another widget instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {qx.ui.layout.Abstract} The new layout or\n     <code>null</code> to reset the layout.",
+            "paramName": "layout",
+            "description": " The new layout or\n     <code>null</code> to reset the layout.",
+            "type": "qx.ui.layout.Abstract"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLayout": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget's layout manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.layout.Abstract} The widget's layout manager",
+            "type": "qx.ui.layout.Abstract",
+            "description": " The widget's layout manager"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "statics": {
+    "remap": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of protected methods to public.\n This omits an additional function call when using these methods. Call\n this methods in the defer block of the including class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "members {Map} The including classes members map",
+            "paramName": "members",
+            "description": " The including classes members map",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

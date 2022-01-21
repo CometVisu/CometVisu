@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/data/controller/IControllerDelegate.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "configureItem",
+    "item",
+    "filter",
+    "data",
+    "createItem",
+    "bindItem",
+    "controller",
+    "id",
+    "IControllerDelegate"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,wCAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,aAAa,EAAG,uBAASC,IAAT,EAAe,CAAE,CAPnC;;AAUE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,MAAM,EAAG,gBAASC,IAAT,EAAe,CAAE,CApB5B;;AAuBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,UAAU,EAAG,sBAAW,CAAE,CA9B5B;;AAiCE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,kBAASC,UAAT,EAAqBL,IAArB,EAA2BM,EAA3B,EAA+B,CAAE;AA9C9C;AAFF,GADA;AA7BAd,EAAAA,EAAE,CAACU,IAAH,CAAQG,UAAR,CAAmBE,mBAAnB,CAAuCZ,aAAvC,GAAuDA,aAAvD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Objects, which are used as delegates for a data binding controller may\n * implement any of the methods described in this interface. The delegate does\n * not need implement all of the methods of this interface. If a method is not\n * implemented the controller provides a default implementation.\n *\n * Note: This interface is meant to document the delegate but should not be\n * listed in the <code>implement</code> key of a class unless all methods are\n * really implemented.\n */\nqx.Interface.define(\"qx.data.controller.IControllerDelegate\",\n{\n  members :\n  {\n    /**\n     * Gives the user the opportunity to set individual styles and properties\n     * on the by the controller created widgets.\n     *\n     * @param item {var} Item to modify.\n     */\n    configureItem : function(item) {},\n\n\n    /**\n     * Filter checks the current data and returns a boolean if the data should\n     * appear in the filtered data set or not.\n     *\n     * The filter currently works only with the {@link qx.data.controller.List}\n     * controller!\n     *\n     * @param data {var} The data which will be checked.\n     * @return {Boolean} True, if the data passes the filter, false otherwise.\n     */\n    filter : function(data) {},\n\n\n    /**\n     * Creates an item which will be added to the target as child. Be sure to\n     * implement the {@link #bindItem} function as well to get the needed\n     * properties bound.\n     *\n     * @return {qx.ui.core.Widget} A new created widget.\n     */\n    createItem : function() {},\n\n\n    /**\n     * Sets up the binding for the given item and index.\n     *\n     * For every property you want to bind, use\n     * {@link qx.data.controller.List#bindProperty} like this:\n     * <code>\n     * controller.bindProperty(\"path.in.the.model\", \"label\", options, item, id);\n     * </code>\n     *\n     * @param controller {var} The currently used controller.\n     * @param item {qx.ui.core.Widget} The created and used item.\n     * @param id {var} The id for the binding.\n     */\n    bindItem : function(controller, item, id) {}\n  }\n});"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/module/Environment.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "get",
+    "key",
+    "core",
+    "Environment",
+    "add",
+    "value",
+    "defer",
+    "qxWeb",
+    "$attachAll",
+    "module"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,uBAApB,EAA6C;AAC3CC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAG,aAASC,GAAT,EAAc;AAClB,eAAOP,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwBC,GAAxB,CAAP;AACD,OAXH;;AAaE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIG,MAAAA,GAAG,EAAG,aAASH,GAAT,EAAcI,KAAd,EAAqB;AACzBX,QAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwBH,GAAxB,EAA6BI,KAA7B;AACA,eAAO,IAAP;AACD;AAxBH,KAF2C;AA8B3CC,IAAAA,KAAK,EAAG,eAASP,OAAT,EAAkB;AACxB;AACAL,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,cAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,iBAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,oBAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,sBAAxB;AAEAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,aAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,gBAAxB;AAEAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,aAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,aAAxB;AAEAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,aAAxB;AACAN,MAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBH,GAApB,CAAwB,iBAAxB;AAEAO,MAAAA,KAAK,CAACC,UAAN,CAAiB,IAAjB,EAAuB,KAAvB;AACD;AA/C0C,GAA7C;AAtCAd,EAAAA,EAAE,CAACe,MAAH,CAAUN,WAAV,CAAsBN,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * Module for querying information about the environment / runtime.\n * It adds a static key <code>env</code> to qxWeb and offers the given methods.\n *\n * The following values are predefined:\n *\n * * <code>browser.name</code> : The name of the browser\n * * <code>browser.version</code> : The version of the browser\n * * <code>browser.quirksmode</code>  : <code>true</code> if the browser is in quirksmode\n * * <code>browser.documentmode</code> : The document mode of the browser\n *\n * * <code>device.name</code> : The name of the device e.g. <code>iPad</code>.\n * * <code>device.type</code> : Either <code>desktop</code>, <code>tablet</code> or <code>mobile</code>.\n *\n * * <code>engine.name</code> : The name of the browser engine\n * * <code>engine.version</code> : The version of the browser engine\n *\n * * <code>event.touch</code> : Checks if touch events are supported\n * * <code>event.mspointer</code> : Checks if MSPointer events are available\n * @group (Core)\n */\nqx.Bootstrap.define(\"qx.module.Environment\", {\n  statics :\n  {\n    /**\n     * Get the value stored for the given key.\n     *\n     * @attachStatic {qxWeb, env.get}\n     * @param key {String} The key to check for.\n     * @return {var} The value stored for the given key.\n     * @lint environmentNonLiteralKey(key)\n     */\n    get : function(key) {\n      return qx.core.Environment.get(key);\n    },\n\n    /**\n     * Adds a new environment setting which can be queried via {@link #get}.\n     * @param key {String} The key to store the value for.\n     *\n     * @attachStatic {qxWeb, env.add}\n     * @param value {var} The value to store.\n     * @return {qxWeb} The collection for chaining.\n     */\n    add : function(key, value) {\n      qx.core.Environment.add(key, value);\n      return this;\n    }\n  },\n\n\n  defer : function(statics) {\n    // make sure the desired keys are available (browser.* and engine.*)\n    qx.core.Environment.get(\"browser.name\");\n    qx.core.Environment.get(\"browser.version\");\n    qx.core.Environment.get(\"browser.quirksmode\");\n    qx.core.Environment.get(\"browser.documentmode\");\n\n    qx.core.Environment.get(\"engine.name\");\n    qx.core.Environment.get(\"engine.version\");\n\n    qx.core.Environment.get(\"device.name\");\n    qx.core.Environment.get(\"device.type\");\n\n    qx.core.Environment.get(\"event.touch\");\n    qx.core.Environment.get(\"event.mspointer\");\n\n    qxWeb.$attachAll(this, \"env\");\n  }\n});\n"
+  ]
+}

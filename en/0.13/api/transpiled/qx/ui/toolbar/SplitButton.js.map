@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/SplitButton.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "form",
+    "SplitButton",
+    "construct",
+    "label",
+    "icon",
+    "menu",
+    "command",
+    "removeListener",
+    "_onKeyDown",
+    "_onKeyUp",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "focusable",
+    "members",
+    "_forwardStates",
+    "hovered",
+    "focused",
+    "left",
+    "middle",
+    "right",
+    "_createChildControlImpl",
+    "id",
+    "hash",
+    "control",
+    "toolbar",
+    "Button",
+    "addListener",
+    "_onButtonExecute",
+    "_addAt",
+    "MenuButton"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,WADtB;;AAKE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,IAAhB,EAAsBC,IAAtB,EAA4BC,OAA5B,EACZ;AACE,oDAAqBH,KAArB,EAA4BC,IAA5B,EAAkCC,IAAlC,EAAwCC,OAAxC,EADF,CAGE;;AACA,WAAKC,cAAL,CAAoB,SAApB,EAA+B,KAAKC,UAApC;AACA,WAAKD,cAAL,CAAoB,OAApB,EAA6B,KAAKE,QAAlC;AACD,KAlBH;;AAuBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;AASE;AACAC,MAAAA,SAAS,EACT;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAXF,KA9BF;;AAiDE;AACF;AACA;AACA;AACA;AAEEE,IAAAA,OAAO,EACP;AACE;;AACA;AACJ;AACA;AACIC,MAAAA,cAAc,EACd;AACEC,QAAAA,OAAO,EAAG,IADZ;AAEEC,QAAAA,OAAO,EAAG,IAFZ;AAGEC,QAAAA,IAAI,EAAG,IAHT;AAIEC,QAAAA,MAAM,EAAG,IAJX;AAKEC,QAAAA,KAAK,EAAG;AALV,OANF;;AAcE;AACJ;AACA;AACA;AACA;AAEI;AACAC,MAAAA,uBAAuB,EAAG,iCAASC,EAAT,EAAaC,IAAb,EAC1B;AACE,YAAIC,OAAJ;;AAEA,gBAAOF,EAAP;AAEE,eAAK,QAAL;AACEE,YAAAA,OAAO,GAAG,IAAIjC,EAAE,CAACO,EAAH,CAAM2B,OAAN,CAAcC,MAAlB,EAAV;AACAF,YAAAA,OAAO,CAACG,WAAR,CAAoB,SAApB,EAA+B,KAAKC,gBAApC,EAAsD,IAAtD;;AACA,iBAAKC,MAAL,CAAYL,OAAZ,EAAqB,CAArB;;AACA;;AAEF,eAAK,OAAL;AACEA,YAAAA,OAAO,GAAG,IAAIjC,EAAE,CAACO,EAAH,CAAM2B,OAAN,CAAcK,UAAlB,EAAV;;AACA,iBAAKD,MAAL,CAAYL,OAAZ,EAAqB,CAArB;;AACA;AAXJ;;AAcA,eAAOA,OAAO,gFAAyBF,EAAzB,CAAd;AACD;AAxCH;AAxDF,GADA;AA1BA/B,EAAAA,EAAE,CAACO,EAAH,CAAM2B,OAAN,CAAczB,WAAd,CAA0BN,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A button which acts as a normal button and shows a menu on one\n * of the sides to open something like a history list.\n *\n * @childControl button {qx.ui.toolbar.Button} button to interact with\n * @childControl arrow {qx.ui.toolbar.MenuButton} menu button to show the menu connected to the split button\n */\nqx.Class.define(\"qx.ui.toolbar.SplitButton\",\n{\n  extend : qx.ui.form.SplitButton,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function(label, icon, menu, command)\n  {\n    this.base(arguments, label, icon, menu, command);\n\n    // Toolbar buttons should not support the keyboard events\n    this.removeListener(\"keydown\", this._onKeyDown);\n    this.removeListener(\"keyup\", this._onKeyUp);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"toolbar-splitbutton\"\n    },\n\n\n    // overridden\n    focusable :\n    {\n      refine : true,\n      init : false\n    }\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    /**\n     * @lint ignoreReferenceField(_forwardStates)\n     */\n    _forwardStates :\n    {\n      hovered : true,\n      focused : true,\n      left : true,\n      middle : true,\n      right : true\n    },\n\n    /*\n    ---------------------------------------------------------------------------\n      WIDGET API\n    ---------------------------------------------------------------------------\n    */\n\n    // overridden\n    _createChildControlImpl : function(id, hash)\n    {\n      var control;\n\n      switch(id)\n      {\n        case \"button\":\n          control = new qx.ui.toolbar.Button;\n          control.addListener(\"execute\", this._onButtonExecute, this);\n          this._addAt(control, 0);\n          break;\n\n        case \"arrow\":\n          control = new qx.ui.toolbar.MenuButton;\n          this._addAt(control, 1);\n          break;\n      }\n\n      return control || this.base(arguments, id);\n    }\n  }\n});\n"
+  ]
+}

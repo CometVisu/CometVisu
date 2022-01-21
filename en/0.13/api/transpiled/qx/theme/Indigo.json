@@ -1,0 +1,50 @@
+{
+  "className": "qx.theme.Indigo",
+  "packageName": "qx.theme",
+  "name": "Indigo",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Simple Theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "themeMeta": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2
+      },
+      "end": {
+        "line": 33,
+        "column": 3
+      }
+    },
+    "themeMetaMap": {
+      "color": "qx.theme.indigo.Color",
+      "decoration": "qx.theme.indigo.Decoration",
+      "font": "qx.theme.indigo.Font",
+      "appearance": "qx.theme.indigo.Appearance",
+      "icon": "qx.theme.icon.Tango"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/columnmenu/MenuItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "menu",
+    "CheckBox",
+    "implement",
+    "table",
+    "IColumnMenuItem",
+    "construct",
+    "text",
+    "bind",
+    "properties",
+    "columnVisible",
+    "check",
+    "init",
+    "event",
+    "columnmenu",
+    "MenuItem"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,MAAM,EAAON,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,QAD1B;AAEEC,IAAAA,SAAS,EAAIV,EAAE,CAACO,EAAH,CAAMI,KAAN,CAAYC,eAF3B;;AAME;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACA;AACA;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EACZ;AACE,iDAAqBA,IAArB,EADF,CAGE;;AACA,WAAKC,IAAL,CAAU,OAAV,EAAmB,IAAnB,EAAyB,eAAzB;AACA,WAAKA,IAAL,CAAU,eAAV,EAA2B,IAA3B,EAAiC,OAAjC;AACD,KA3BH;;AA+BE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACEC,MAAAA,aAAa,EACb;AACEC,QAAAA,KAAK,EAAG,SADV;AAEEC,QAAAA,IAAI,EAAI,IAFV;AAGEC,QAAAA,KAAK,EAAG;AAHV;AAFF;AAtCF,GADA;AArBApB,EAAAA,EAAE,CAACO,EAAH,CAAMI,KAAN,CAAYU,UAAZ,CAAuBC,QAAvB,CAAgCnB,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A menu item.\n */\nqx.Class.define(\"qx.ui.table.columnmenu.MenuItem\",\n{\n  extend     : qx.ui.menu.CheckBox,\n  implement  : qx.ui.table.IColumnMenuItem,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * Create a new instance of an item for insertion into the table column\n   * visibility menu.\n   *\n   * @param text {String}\n   *   Text for the menu item, most typically the name of the column in the\n   *   table.\n   */\n  construct : function(text)\n  {\n    this.base(arguments, text);\n\n    // Two way binding this.columnVisible <--> this.value\n    this.bind(\"value\", this, \"columnVisible\");\n    this.bind(\"columnVisible\", this, \"value\");\n  },\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    columnVisible :\n    {\n      check : \"Boolean\",\n      init  : true,\n      event : \"changeColumnVisible\"\n    }\n  }\n});"
+  ]
+}

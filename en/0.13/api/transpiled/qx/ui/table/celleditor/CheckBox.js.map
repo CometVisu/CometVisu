@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "ui",
+    "table",
+    "ICellEditorFactory",
+    "members",
+    "createCellEditor",
+    "cellInfo",
+    "editor",
+    "container",
+    "Composite",
+    "layout",
+    "HBox",
+    "set",
+    "alignX",
+    "alignY",
+    "focusable",
+    "checkbox",
+    "form",
+    "CheckBox",
+    "value",
+    "add",
+    "addListener",
+    "focus",
+    "activate",
+    "getCellEditorValue",
+    "cellEditor",
+    "getChildren",
+    "getValue",
+    "celleditor"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,SAAS,EAAGT,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAYC,kBAF1B;;AAKE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,gBAAgB,EAAG,0BAASC,QAAT,EACnB;AACE,YAAIC,MAAM,GAAG,IAAIhB,EAAE,CAACU,EAAH,CAAMO,SAAN,CAAgBC,SAApB,CAA8B,IAAIlB,EAAE,CAACU,EAAH,CAAMS,MAAN,CAAaC,IAAjB,GAAwBC,GAAxB,CAA4B;AACrEC,UAAAA,MAAM,EAAE,QAD6D;AAErEC,UAAAA,MAAM,EAAE;AAF6D,SAA5B,CAA9B,EAGTF,GAHS,CAGL;AACNG,UAAAA,SAAS,EAAE;AADL,SAHK,CAAb;AAOA,YAAIC,QAAQ,GAAG,IAAIzB,EAAE,CAACU,EAAH,CAAMgB,IAAN,CAAWC,QAAf,GAA0BN,GAA1B,CAA8B;AAC3CO,UAAAA,KAAK,EAAEb,QAAQ,CAACa;AAD2B,SAA9B,CAAf;AAGAZ,QAAAA,MAAM,CAACa,GAAP,CAAWJ,QAAX,EAXF,CAaE;;AACAT,QAAAA,MAAM,CAACc,WAAP,CAAmB,OAAnB,EAA4B,YAAW;AACrCL,UAAAA,QAAQ,CAACM,KAAT;AACD,SAFD,EAdF,CAkBE;;AACAf,QAAAA,MAAM,CAACc,WAAP,CAAmB,UAAnB,EAA+B,YAAW;AACxCL,UAAAA,QAAQ,CAACO,QAAT;AACD,SAFD;AAIA,eAAOhB,MAAP;AACD,OA3BH;AA6BE;AACAiB,MAAAA,kBAAkB,EAAG,4BAASC,UAAT,EAAqB;AACxC,eAAOA,UAAU,CAACC,WAAX,GAAyB,CAAzB,EAA4BC,QAA5B,EAAP;AACD;AAhCH;AAZF,GADA;AAtBApC,EAAAA,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAY0B,UAAZ,CAAuBV,QAAvB,CAAgCxB,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 David Perez\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * David Perez (david-perez)\n\n************************************************************************ */\n\n/**\n * For editing boolean data in a checkbox. It is advisable to use this in\n * conjunction with {@link qx.ui.table.cellrenderer.Boolean}.\n */\nqx.Class.define(\"qx.ui.table.celleditor.CheckBox\",\n{\n  extend : qx.core.Object,\n  implement : qx.ui.table.ICellEditorFactory,\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // interface implementation\n    createCellEditor : function(cellInfo)\n    {\n      var editor = new qx.ui.container.Composite(new qx.ui.layout.HBox().set({\n        alignX: \"center\",\n        alignY: \"middle\"\n      })).set({\n        focusable: true\n      });\n\n      var checkbox = new qx.ui.form.CheckBox().set({\n        value: cellInfo.value\n      });\n      editor.add(checkbox);\n\n      // propagate focus\n      editor.addListener(\"focus\", function() {\n        checkbox.focus();\n      });\n\n      // propagate active state\n      editor.addListener(\"activate\", function() {\n        checkbox.activate();\n      });\n\n      return editor;\n    },\n\n    // interface implementation\n    getCellEditorValue : function(cellEditor) {\n      return cellEditor.getChildren()[0].getValue();\n    }\n  }\n});\n"
+  ]
+}

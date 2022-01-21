@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Html.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "cellrenderer",
+    "Conditional",
+    "members",
+    "_getContentHtml",
+    "cellInfo",
+    "value",
+    "_getCellClass",
+    "Html"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBC,WADpC;;AAGE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,eAAe,EAAG,yBAASC,QAAT,EAAmB;AACnC,eAAQA,QAAQ,CAACC,KAAT,IAAkB,EAA1B;AACD,OAJH;AAME;AACAC,MAAAA,aAAa,EAAG,uBAASF,QAAT,EAAmB;AACjC,eAAO,oBAAP;AACD;AATH;AAVF,GADA;AAtBAb,EAAAA,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBO,IAAzB,CAA8Bb,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 OpenHex SPRL, http://www.openhex.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Dirk Wellmann (dw(at)piponline.net)\n\n************************************************************************ */\n\n/**\n * This Cellrender is for transparent use, without escaping! Use this Cellrender\n * to output plain HTML content.\n */\nqx.Class.define(\"qx.ui.table.cellrenderer.Html\",\n{\n  extend : qx.ui.table.cellrenderer.Conditional,\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    _getContentHtml : function(cellInfo) {\n      return (cellInfo.value || \"\");\n    },\n\n    // overridden\n    _getCellClass : function(cellInfo) {\n      return \"qooxdoo-table-cell\";\n    }\n  }\n});\n"
+  ]
+}

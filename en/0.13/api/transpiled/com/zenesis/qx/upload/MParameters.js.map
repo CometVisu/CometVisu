@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/johnspackman_UploadMgr_v1_0_5/source/class/com/zenesis/qx/upload/MParameters.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "__params",
+    "setParam",
+    "name",
+    "value",
+    "getParam",
+    "getParamNames",
+    "result",
+    "push",
+    "com",
+    "zenesis",
+    "upload",
+    "MParameters"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mCAAhB,EAAqD;AACnDC,IAAAA,OAAO,EAAE;AACPC,MAAAA,SAAQ,EAAE,IADH;;AAGP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAE,kBAASC,IAAT,EAAeC,KAAf,EAAsB;AAC9B,YAAIA,KAAK,KAAK,IAAV,IAAkB,OAAOA,KAAP,IAAgB,QAAtC,EACEA,KAAK,GAAG,KAAKA,KAAb;AACF,YAAI,CAAC,KAAKH,SAAV,EACE,KAAKA,SAAL,GAAgB,EAAhB;AACF,aAAKA,SAAL,CAAcE,IAAd,IAAsBC,KAAtB;AACD,OAlBM;;AAoBP;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAE,kBAASF,IAAT,EAAe;AACvB,eAAO,KAAKF,SAAL,IAAiB,KAAKA,SAAL,CAAcE,IAAd,CAAxB;AACD,OA5BM;;AA8BP;AACJ;AACA;AACA;AACA;AACIG,MAAAA,aAAa,EAAE,yBAAW;AACxB,YAAIC,MAAM,GAAG,EAAb;AACA,YAAI,KAAKN,SAAT,EACE,KAAM,IAAIE,IAAV,IAAkB,KAAKF,SAAvB;AACEM,UAAAA,MAAM,CAACC,IAAP,CAAYL,IAAZ;AADF;AAEF,eAAOI,MAAP;AACD;AAzCM;AAD0C,GAArD;AA3BAE,EAAAA,GAAG,CAACC,OAAJ,CAAYhB,EAAZ,CAAeiB,MAAf,CAAsBC,WAAtB,CAAkCf,aAAlC,GAAkDA,aAAlD",
+  "sourcesContent": [
+    "/* ***********************************************************************\n\n   UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user \n   interface during uploads, supports cancelling uploads.\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     \n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory \n     for details.\n\n   Authors:\n * John Spackman (john.spackman@zenesis.com)\n\n ************************************************************************/\n\n/**\n * This mixin adds get/setParam methods used by UploadManager, AbstractHandler,\n * and UploadButton\n */\nqx.Mixin.define(\"com.zenesis.qx.upload.MParameters\", {\n  members: {\n    __params: null,\n\n    /**\n     * Sets a parameter value to be sent with the file\n     * \n     * @param name\n     *          {String} name of the parameter\n     * @param value\n     *          {String} the value of the parameter, or null to delete a\n     *          previous parameter\n     */\n    setParam: function(name, value) {\n      if (value !== null && typeof value != \"string\")\n        value = \"\" + value;\n      if (!this.__params)\n        this.__params = {};\n      this.__params[name] = value;\n    },\n\n    /**\n     * Returns a parameter value to be sent with the file\n     * \n     * @param name {String} Name of the parameter\n     * @returns {Boolean}\n     */\n    getParam: function(name) {\n      return this.__params && this.__params[name];\n    },\n\n    /**\n     * Returns a list of parameter names\n     * \n     * @returns {Array}\n     */\n    getParamNames: function() {\n      var result = [];\n      if (this.__params)\n        for ( var name in this.__params)\n          result.push(name);\n      return result;\n    }\n  }\n});\n"
+  ]
+}

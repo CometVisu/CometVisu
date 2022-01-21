@@ -1,0 +1,33 @@
+{
+  "className": "osparc.theme.osparcdark.Color",
+  "packageName": "osparc.theme.osparcdark",
+  "name": "Color",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 167,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Simple color theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": [
+    "cv.theme.dark.Color"
+  ]
+}

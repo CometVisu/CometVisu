@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/String.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "__elem",
+    "decodeHtmlEntities",
+    "str",
+    "document",
+    "createElement",
+    "innerHTML",
+    "innerText",
+    "htmlStringToDomElement",
+    "div",
+    "children",
+    "sprintf",
+    "args",
+    "Array",
+    "prototype",
+    "slice",
+    "call",
+    "arguments",
+    "string",
+    "apply",
+    "err",
+    "log",
+    "Logger",
+    "warn",
+    "JSON",
+    "stringify",
+    "cv",
+    "util",
+    "String"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gBAAhB,EAAkC;AAChCC,IAAAA,IAAI,EAAE,QAD0B;;AAGhC;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,SAAM,EAAE,IADD;;AAGP;AACJ;AACA;AACA;AACA;AACIC,MAAAA,kBAAkB,EAAE,4BAAUC,GAAV,EAAe;AACjC,YAAI,CAAC,KAAKF,SAAV,EAAkB;AAChB,eAAKA,SAAL,GAAcG,QAAQ,CAACC,aAAT,CAAuB,MAAvB,CAAd;AACD;;AACD,aAAKJ,SAAL,CAAYK,SAAZ,GAAwBH,GAAxB;AACA,eAAO,KAAKF,SAAL,CAAYM,SAAnB;AACD,OAdM;;AAgBP;AACJ;AACA;AACA;AACA;AACIC,MAAAA,sBAAsB,EAAE,gCAAUL,GAAV,EAAe;AACrC;AACA;AACA,YAAMM,GAAG,GAAGL,QAAQ,CAACC,aAAT,CAAuB,KAAvB,CAAZ;AACAI,QAAAA,GAAG,CAACH,SAAJ,GAAgBH,GAAhB;AACA,eAAOM,GAAG,CAACC,QAAJ,CAAa,CAAb,CAAP;AACD,OA3BM;;AA6BP;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,OAAO;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA,QAAE,YAAW;AAClB,YAAMC,IAAI,GAAGC,KAAK,CAACC,SAAN,CAAgBC,KAAhB,CAAsBC,IAAtB,CAA2BC,SAA3B,CAAb;AACA,YAAIC,MAAM,GAAG,GAAb;;AACA,YAAI;AACFA,UAAAA,MAAM,GAAGP,OAAO,CAACQ,KAAR,CAAc,IAAd,EAAoBP,IAApB,CAAT;AACD,SAFD,CAEE,OAAOQ,GAAP,EAAY;AACZ3B,UAAAA,EAAE,CAAC4B,GAAH,CAAOC,MAAP,CAAcC,IAAd,CAAmB,IAAnB,EAAyBH,GAAG,GAAG,IAAN,GAAaI,IAAI,CAACC,SAAL,CAAeb,IAAf,CAAtC;AACD;;AACD,eAAOM,MAAP;AACD,OATM;AApCA;AARuB,GAAlC;AApBAQ,EAAAA,EAAE,CAACC,IAAH,CAAQC,MAAR,CAAehC,aAAf,GAA+BA,aAA/B",
+  "sourcesContent": [
+    "/* String.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\nqx.Class.define('cv.util.String', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    __elem: null,\n\n    /**\n     * Decode HTML entities like &amp; to &\n     * @param str {String} string to decode\n     * @return {String}\n     */\n    decodeHtmlEntities: function (str) {\n      if (!this.__elem) {\n        this.__elem = document.createElement('span');\n      }\n      this.__elem.innerHTML = str;\n      return this.__elem.innerText;\n    },\n\n    /**\n     * Clean the string that contains HTML code and convert it to a DOM element\n     * @param str {String} string to decode\n     * @return {Element}\n     */\n    htmlStringToDomElement: function (str) {\n      //var widget = qx.bom.Html.clean([res[1]])[0];\n      //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();\n      const div = document.createElement('div');\n      div.innerHTML = str;\n      return div.children[0];\n    },\n\n    /**\n     * Insert in string values as the well known sprint() function of other\n     * programming languages does.\n     * When a malformation happens a generic string is returned and a warning\n     * is shown on the console.\n     * @return {String}\n     */\n    sprintf: function() {\n      const args = Array.prototype.slice.call(arguments);\n      let string = '-';\n      try {\n        string = sprintf.apply(this, args);\n      } catch (err) {\n        qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));\n      }\n      return string;\n    }\n  }\n\n});\n"
+  ]
+}

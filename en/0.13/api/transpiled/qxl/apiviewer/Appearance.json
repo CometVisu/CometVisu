@@ -1,0 +1,31 @@
+{
+  "className": "qxl.apiviewer.Appearance",
+  "packageName": "qxl.apiviewer",
+  "name": "Appearance",
+  "superClass": "qx.theme.indigo.Appearance",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 108,
+        "column": 5
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Extends the default qooxdoo appearance theme.</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

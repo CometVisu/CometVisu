@@ -1,0 +1,244 @@
+{
+  "className": "qx.module.Cookie",
+  "packageName": "qx.module",
+  "name": "Cookie",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 70,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Cookie handling module</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "get": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the string value of a cookie.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, cookie.get}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the saved string value.",
+            "paramName": "key",
+            "description": " The key for the saved string value.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Returns the saved string value if the cookie\n    contains a value for the key, otherwise <code>null</code>",
+            "type": "String|null",
+            "description": " Returns the saved string value if the cookie\n    contains a value for the key, otherwise <code>null</code>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(key)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the string value of a cookie.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, cookie.set}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the string value.",
+            "paramName": "key",
+            "description": " The key for the string value.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} The string value.",
+            "paramName": "value",
+            "description": " The string value.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "expires {Number?null} Expires directive value in days starting from now,\n    or <code>null</code> if the cookie should be deleted when the browser\n    is closed.",
+            "paramName": "expires",
+            "description": " Expires directive value in days starting from now,\n    or <code>null</code> if the cookie should be deleted when the browser\n    is closed.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "path {String?null} Path value.",
+            "paramName": "path",
+            "description": " Path value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "domain {String?null} Domain value.",
+            "paramName": "domain",
+            "description": " Domain value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "secure {Boolean?null} Secure flag.",
+            "paramName": "secure",
+            "description": " Secure flag.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Boolean"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(key, value, expires, path, domain, secure)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "del": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the string value of a cookie.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, cookie.del}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the string value.",
+            "paramName": "key",
+            "description": " The key for the string value.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String?null} Path value.",
+            "paramName": "path",
+            "description": " Path value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "domain {String?null} Domain value.",
+            "paramName": "domain",
+            "description": " Domain value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(key, path, domain)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 67,
+        "column": 10
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

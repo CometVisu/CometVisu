@@ -1,0 +1,108 @@
+{
+  "className": "qx.bom.client.Runtime",
+  "packageName": "qx.bom.client",
+  "name": "Runtime",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 0
+      },
+      "end": {
+        "line": 68,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Basic runtime detection for qooxdoo.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "environment"
+        },
+        {
+          "name": "@ignore",
+          "body": "process"
+        },
+        {
+          "name": "@ignore",
+          "body": "Titanium.*"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getName": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for the name of the runtime and returns it. In general, it checks\n for rhino and node.js and if that could not be detected, it falls back\n to the browser name defined by {@link qx.bom.client.Browser#getName}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the current runtime.",
+            "type": "String",
+            "description": " The name of the current runtime."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "environment, process, Titanium.*, Packages"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 65,
+        "column": 10
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

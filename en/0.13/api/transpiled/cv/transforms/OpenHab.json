@@ -1,0 +1,79 @@
+{
+  "className": "cv.transforms.OpenHab",
+  "packageName": "cv.transforms",
+  "name": "OpenHab",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 199,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Transformations for the openHAB backend</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2012</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Tobias Bräutigam"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2012"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "isUndefined": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 9
+      },
+      "end": {
+        "line": 198,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This class defines the default transforms: encode: transform JavaScript to\n bus value decode: transform bus to JavaScript value</p>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

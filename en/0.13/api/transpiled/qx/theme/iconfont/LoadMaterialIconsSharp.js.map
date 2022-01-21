@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIconsSharp.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "theme",
+    "iconfont",
+    "LoadMaterialIconsSharp"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D,EAA5D;AA3BAL,EAAAA,EAAE,CAACM,KAAH,CAASC,QAAT,CAAkBC,sBAAlB,CAAyCL,aAAzC,GAAyDA,aAAzD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 OETIKER+PARTNER AG\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tobias Oetiker (oetiker)\n\n************************************************************************ */\n\n/**\n * A dummy class to trigger the compiler to copy the MaterialIconsSharpe font files\n */\n/**\n * @asset(qx/iconfont/MaterialIcons/materialiconssharp-v38.otf)\n * @asset(qx/iconfont/MaterialIcons/materialiconssharp-v38.woff2)\n * @asset(qx/iconfont/MaterialIcons/materialiconssharp-v38.woff)\n * @asset(qx/iconfont/MaterialIcons/materialiconssharp-v38.eot)\n */\nqx.Class.define(\"qx.theme.iconfont.LoadMaterialIconsSharp\", {});\n"
+  ]
+}

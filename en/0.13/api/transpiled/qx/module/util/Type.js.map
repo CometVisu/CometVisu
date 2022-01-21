@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/module/util/Type.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "get",
+    "getClass",
+    "defer",
+    "qxWeb",
+    "$attachAll",
+    "module",
+    "util",
+    "Type"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,qBAApB,EAA2C;AACzCC,IAAAA,OAAO,EAAG;AACR;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAGN,EAAE,CAACC,SAAH,CAAaM;AAnBX,KAD+B;AAwBzCC,IAAAA,KAAK,EAAG,eAASH,OAAT,EAAkB;AACxBI,MAAAA,KAAK,CAACC,UAAN,CAAiB,IAAjB,EAAuB,MAAvB;AACD;AA1BwC,GAA3C;AAxBAV,EAAAA,EAAE,CAACW,MAAH,CAAUC,IAAV,CAAeC,IAAf,CAAoBV,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * Utility for checking the type of a variable.\n * It adds a <code>type</code> key static to q and offers the given method.\n *\n * @group (Utilities)\n */\nqx.Bootstrap.define(\"qx.module.util.Type\", {\n  statics : {\n    /**\n     * Get the internal class of the value. The following classes are possible:\n     * <pre>\n     * <code>\"String\"</code>,\n     * <code>\"Array\"</code>,\n     * <code>\"Object\"</code>,\n     * <code>\"RegExp\"</code>,\n     * <code>\"Number\"</code>,\n     * <code>\"Boolean\"</code>,\n     * <code>\"Date\"</code>,\n     * <code>\"Function\"</code>,\n     * <code>\"Error\"</code>\n     * </pre>\n     * @attachStatic {qxWeb, type.get}\n     * @signature function(value)\n     * @param value {var} Value to get the class for.\n     * @return {String} The internal class of the value.\n     */\n    get : qx.Bootstrap.getClass\n  },\n\n\n  defer : function(statics) {\n    qxWeb.$attachAll(this, \"type\");\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/actions/AbstractActionHandler.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "properties",
+    "needsConfirmation",
+    "check",
+    "init",
+    "deleteMessageAfterExecution",
+    "style",
+    "events",
+    "close",
+    "cv",
+    "notifications",
+    "actions",
+    "AbstractActionHandler"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qDAAhB,EAAuE;AACrEC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADqD;AAErEC,IAAAA,IAAI,EAAE,UAF+D;;AAIrE;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,iBAAiB,EAAE;AACjBC,QAAAA,KAAK,EAAE,SADU;AAEjBC,QAAAA,IAAI,EAAE;AAFW,OADT;AAMVC,MAAAA,2BAA2B,EAAE;AAC3BF,QAAAA,KAAK,EAAE,SADoB;AAE3BC,QAAAA,IAAI,EAAE;AAFqB,OANnB;AAUVE,MAAAA,KAAK,EAAE;AACLH,QAAAA,KAAK,EAAE,QADF;AAELC,QAAAA,IAAI,EAAE;AAFD;AAVG,KATyD;;AAyBrE;AACF;AACA;AACA;AACA;AACEG,IAAAA,MAAM,EAAE;AACNC,MAAAA,KAAK,EAAE;AADD;AA9B6D,GAAvE;AA1BAC,EAAAA,EAAE,CAACX,IAAH,CAAQY,aAAR,CAAsBC,OAAtB,CAA8BC,qBAA9B,CAAoDlB,aAApD,GAAoEA,aAApE",
+  "sourcesContent": [
+    "/* AbstractActionHandler.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Opens a link in a new window.\n *\n * @author Tobias Bräutigam\n * @since 0.11.0\n */\nqx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {\n  extend: qx.core.Object,\n  type: 'abstract',\n\n  /*\n  ******************************************************\n    PROPERTIES\n  ******************************************************\n  */\n  properties: {\n    needsConfirmation: {\n      check: 'Boolean',\n      init: false\n    },\n\n    deleteMessageAfterExecution: {\n      check: 'Boolean',\n      init: false\n    },\n    style: {\n      check: 'String',\n      init: ''\n    }\n  },\n\n  /*\n  ***********************************************\n    EVENTS\n  ***********************************************\n  */\n  events: {\n    close: 'qx.event.type.Event'\n  }\n});\n"
+  ]
+}

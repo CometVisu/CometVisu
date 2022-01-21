@@ -1,0 +1,50 @@
+{
+  "className": "qx.theme.Modern",
+  "packageName": "qx.theme",
+  "name": "Modern",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 35,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Contemporary Theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "themeMeta": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "themeMetaMap": {
+      "color": "qx.theme.modern.Color",
+      "decoration": "qx.theme.modern.Decoration",
+      "font": "qx.theme.modern.Font",
+      "appearance": "qx.theme.modern.Appearance",
+      "icon": "qx.theme.icon.Tango"
+    }
+  },
+  "descendants": []
+}

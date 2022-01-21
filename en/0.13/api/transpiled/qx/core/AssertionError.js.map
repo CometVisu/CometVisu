@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/core/AssertionError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "type",
+    "BaseError",
+    "construct",
+    "comment",
+    "failMessage",
+    "call",
+    "__trace",
+    "dev",
+    "StackTrace",
+    "getStackTrace",
+    "members",
+    "core",
+    "AssertionError"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,wBAApB,EACA;AACEC,IAAAA,MAAM,EAAGL,EAAE,CAACM,IAAH,CAAQC,SADnB;;AAME;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,OAAT,EAAkBC,WAAlB,EACZ;AACEV,MAAAA,EAAE,CAACM,IAAH,CAAQC,SAAR,CAAkBI,IAAlB,CAAuB,IAAvB,EAA6BF,OAA7B,EAAsCC,WAAtC;AACA,WAAKE,SAAL,GAAeZ,EAAE,CAACa,GAAH,CAAOC,UAAP,CAAkBC,aAAlB,EAAf;AACD,KApBH;;AAwBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACEJ,MAAAA,SAAO,EAAG,IADZ;;AAIE;AACJ;AACA;AACA;AACA;AACIG,MAAAA,aAAa,EAAG,yBAAW;AACzB,eAAO,KAAKH,SAAZ;AACD;AAXH;AA/BF,GADA;AAtBAZ,EAAAA,EAAE,CAACiB,IAAH,CAAQC,cAAR,CAAuBf,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Assertion errors are thrown if an assertion in {@link qx.core.Assert}\n * fails.\n */\nqx.Bootstrap.define(\"qx.core.AssertionError\",\n{\n  extend : qx.type.BaseError,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param comment {String} Comment passed to the assertion call\n   * @param failMessage {String} Fail message provided by the assertion\n   */\n  construct : function(comment, failMessage)\n  {\n    qx.type.BaseError.call(this, comment, failMessage);\n    this.__trace = qx.dev.StackTrace.getStackTrace();\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    __trace : null,\n\n\n    /**\n     * Stack trace of the error\n     *\n     * @return {String[]} The stack trace of the location the exception was thrown\n     */\n    getStackTrace : function() {\n      return this.__trace;\n    }\n  }\n});\n"
+  ]
+}

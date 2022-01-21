@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raspberry Pi: CometVisu in Docker installieren &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/tutorial/rpi_cometvisu.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Raspberry Pi: Node-RED in Docker installieren" href="rpi_nodered.html" />
+    <link rel="prev" title="Raspberry Pi: Docker installieren" href="rpi_docker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rpi_prequesites.html">Raspberry Pi: Vorbereitung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_kiosk.html">Raspberry Pi: Client einrichten (Kiosk Modus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_docker.html">Raspberry Pi: Docker installieren</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Raspberry Pi: CometVisu in Docker installieren</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-mit-portainer">Installation mit Portainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ein-volume-erzeugen">Ein <cite>Volume</cite> erzeugen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#einen-neuen-container-hinzufugen">Einen neuen Container hinzufügen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hinzufugen-des-cometvisu-containers">Hinzufügen des CometVisu Containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-uber-die-kommandozeile">Installation über die Kommandozeile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Ein <cite>Volume</cite> erzeugen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Hinzufügen des CometVisu Containers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_nodered.html">Raspberry Pi: Node-RED in Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_steps.html">Tutorial: Erste Schritte - eine Visu in einer halben Minute</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Raspberry Pi: CometVisu in Docker installieren</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="raspberry-pi-cometvisu-in-docker-installieren">
+<span id="rpi-tutorial-cometvisu-in-docker"></span><h1>Raspberry Pi: CometVisu in Docker installieren<a class="headerlink" href="#raspberry-pi-cometvisu-in-docker-installieren" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Auch wenn die CometVisu direkt auf einem Server installiert werden kann, so
+ist die Installation über das
+<a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu">offizielle CometVisu Docker Image</a>
+die empfohlene Methode, da hier alle Abhängigkeiten ohne weiteren Aufwand erfüllt
+sind und sich die Software leicht warten lässt (wie beispielsweise wenn ein
+Wechsel auf eine neue Version ansteht).</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p>Dieses Tutorial ist Teil einer Reihe von Tutorials das die Installation
+auf einem Raspberry Pi beschreibt. Jedoch ist der Inhalt so allgemeingültig,
+dass hier auch jede andere Plattform verwendet werden kann.</p>
+<p class="last">Im Handbuch gibt es einen eigenen Eintrag für die <a class="reference internal" href="../install/timberwolf.html#timberwolf-portainer"><span class="std std-ref">CometVisu
+Installation auf dem Timberwolf-Server</span></a>. Die dort
+beschrieben Schritte sind vergleichbar zu der Beschreibung in diesem
+Tutorial, gehen aber auf die Spezifika der Timberwolf-Umgebung ein.</p>
+</div>
+<p>Grundsätzlich kann die Installation über die Kommandozeile erfolgen, was auch
+im <a class="reference internal" href="#cv-installation-in-terminal"><span class="std std-ref">zweiten Teil</span></a> besprochen wird. Wer jedoch
+bereits dem <a class="reference internal" href="rpi_docker.html"><span class="doc">vorhergehenden Teil des Tutorials</span></a> gefolgt ist,
+kann die Installation komfortabel mit Portainer durchführen.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Wie für ein Tutorial üblich wird hier nur eine typische Installation
+beschrieben. Alle weiteren Information und Optionen sind in der
+<a class="reference internal" href="../install/docker.html#docker"><span class="std std-ref">Anleitung für die Docker-Installation</span></a> beschrieben.</p>
+</div>
+<div class="section" id="installation-mit-portainer">
+<h2>Installation mit Portainer<a class="headerlink" href="#installation-mit-portainer" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für die Installation sind zwei Schritte notwendig: zu erst muss ein <cite>Volume</cite>
+erzeugt werden, in dem alle <cite>persistenten</cite> Daten gespeichert werden, d.h. alle
+Daten die Informationen für die konkrete Installation enthalte wie beispielsweise
+die Konfig-Dateien. Im zweiten Schritt wird dann der <cite>Container</cite> aus dem
+offiziellen <cite>Image</cite> erstellt.</p>
+<div class="section" id="ein-volume-erzeugen">
+<h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#ein-volume-erzeugen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Frisch nach der Installation des Portainer erscheint im Browser diese Oberfläche,
+bei der der <cite>Endpoint</cite> <code class="docutils literal notranslate"><span class="pre">local</span></code> ausgewählt wird:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_start.png" src="../_images/portainer_start.png" />
+</div>
+<p>Im Endpoint <code class="docutils literal notranslate"><span class="pre">local</span></code> wird über die Auswahl <cite>Volumes</cite>…</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_select_volumes.png" src="../_images/portainer_select_volumes.png" />
+</div>
+<p>… das Menü <cite>Add volume</cite> aufgerufen:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_select_add_volume.png" src="../_images/portainer_select_add_volume.png" />
+</div>
+<p>Nun muss unter <cite>Name</cite> ein Name für das Volume angegeben werden, in unserem
+Fall <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code>. Die anderen Optionen können auf der normalen
+Einstellung verbleiben. Anschließend wird über <cite>Create the volume</cite> das
+Volume erzeugt:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_volume.png" src="../_images/portainer_add_volume.png" />
+</div>
+</div>
+<div class="section" id="einen-neuen-container-hinzufugen">
+<h3>Einen neuen Container hinzufügen<a class="headerlink" href="#einen-neuen-container-hinzufugen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Nach dem Erzeugen des Volumes wird über die Auswahl <cite>Containers</cite>…</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_select_container.png" src="../_images/portainer_select_container.png" />
+</div>
+<p>… das Menü <cite>Add container</cite> aufgerufen:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_select_add_container.png" src="../_images/portainer_select_add_container.png" />
+</div>
+<p>Unter <cite>Advanced container settings</cite> muss der Contianer nun noch konfiguriert
+werden.</p>
+</div>
+<div class="section" id="hinzufugen-des-cometvisu-containers">
+<h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#hinzufugen-des-cometvisu-containers" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im Formular ist ein passender <cite>Name</cite>, hier <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code>, für den neuen
+Container zu wählen und das Image auszuwählen. Das Image
+<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> wird hier direkt
+vom offiziellen <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu">Docker Hub</a>
+geladen.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Wenn die CometVisu auf einem Docker-System installiert werden soll, das
+auf normaler PC Technologie basiert (also mit der x86 bzw. x64 Architektur),
+dann wäre das Image <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> zu verwenden.</p>
+</div>
+<p>Außerdem ist über <cite>publish a new network port</cite> der Port <code class="docutils literal notranslate"><span class="pre">80</span></code> sowohl bei
+<cite>host</cite> als auch bei <cite>container</cite> einzutragen.</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_add_cometvisu.png" src="../_images/portainer_add_cometvisu.png" />
+</div>
+<p>Unten auf der Seite ist nun bei den <cite>Advanced container settings</cite> der
+Container noch zu konfigurieren.</p>
+<p>Als erstes ist das weiter oben angelegte Volume unter dem Pfad
+<code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> einzubinden:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_advanced_add_volume.png" src="../_images/portainer_cv_advanced_add_volume.png" />
+</div>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_advanced_add_volume_done.png" src="../_images/portainer_cv_advanced_add_volume_done.png" />
+</div>
+<p>Unter <cite>Env</cite> ist die konkrete Konfiguration des Containers vorzunehmen. So wird
+hier eingetragen wie auf die Bus-Schnittstelle zugegriffen werden muss. Die
+Parameter sind im Handbuch unter <a class="reference internal" href="../install/docker.html#dockerenvironment"><span class="std std-ref">Docker Containers</span></a>
+beschrieben.</p>
+<p>In diesem Tutorial wird eine KNX Verbindung zu einem IP-Tunnel unter der
+Adresse <code class="docutils literal notranslate"><span class="pre">192.168.0.35</span></code> und dem Port <code class="docutils literal notranslate"><span class="pre">3700</span></code> aufgebaut.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">An dieser Stelle müssen die für die eigene Installation gültigen
+Werte eingetragen werden!</p>
+</div>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_advanced_add_env.png" src="../_images/portainer_cv_advanced_add_env.png" />
+</div>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_advanced_add_env_KNX_INTERFACE.png" src="../_images/portainer_cv_advanced_add_env_KNX_INTERFACE.png" />
+</div>
+<p>Zum Schluss muss noch die <cite>Restart policy</cite> eingetragen werden, also wann der
+Container automatisch gestartet werden soll. Da der CometVisu-Server
+durchgängig laufen soll ist <code class="docutils literal notranslate"><span class="pre">Unless</span> <span class="pre">stopped</span></code> die richtige Regel:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_advanced_add_restart.png" src="../_images/portainer_cv_advanced_add_restart.png" />
+</div>
+<p>Über <cite>Deploy the container</cite> wird die Installation des Containers abgeschlossen:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv_deploy.png" src="../_images/portainer_cv_deploy.png" />
+</div>
+<p>Über die IP-Adresse des Raspberry Pi lässt sich nun die CometVisu normal
+im Browser öffnen:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv.png" src="../_images/portainer_cv.png" />
+</div>
+<p>Alle weiteren Schritte für die Erstellung der CometVisu Konfig-Datei, das
+Managen der Mediendateien, … sind unabhängig vom Raspberry Pi und werden
+daher nicht mehr in diesem Teil der Tutorial-Serie beschrieben.</p>
+</div>
+</div>
+<div class="section" id="installation-uber-die-kommandozeile">
+<span id="cv-installation-in-terminal"></span><h2>Installation über die Kommandozeile<a class="headerlink" href="#installation-uber-die-kommandozeile" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alle Schritte die mit Portainer durchgeführt wurden lassen sich auch leicht
+mit wenigen Befehlen im Terminal durchführen.</p>
+<p>Für die Installation sind zwei Schritte notwendig: zu erst muss ein <cite>Volume</cite>
+erzeugt werden, in dem alle <cite>persistenten</cite> Daten gespeichert werden, d.h. alle
+Daten die Informationen für die konkrete Installation enthalte wie beispielsweise
+die Konfig-Dateien. Im zweiten Schritt wird dann der <cite>Container</cite> aus dem
+offiziellen <cite>Image</cite> erstellt.</p>
+<div class="section" id="id1">
+<h3>Ein <cite>Volume</cite> erzeugen<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Das Volume wird einfach erzeugt mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">volume</span> <span class="n">create</span> <span class="n">CometVisuConfig</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Der <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu">offizielle CometVisu Container</a>
+für den Raspberry Pi ist, in der jeweils neuesten Version,
+<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Wenn die CometVisu auf einem Docker-System installiert werden soll, das
+auf normaler PC Technologie basiert (also mit der x86 bzw. x64 Architektur),
+dann wäre das Image <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> zu verwenden.</p>
+</div>
+<p>Installiert wird dieser mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">arm</span>
+</pre></div>
+</div>
+<p>Zum ersten mal wird der CometVisu-Server nun gestartet mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">CometVisu</span> <span class="o">-</span><span class="n">e</span> <span class="n">KNX_INTERFACE</span><span class="o">=</span><span class="s1">&#39;iptn:192.168.0.35:3700&#39;</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">v</span> <span class="n">CometVisuConfig</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">config</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">arm</span>
+</pre></div>
+</div>
+<p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>
+<dl class="glossary docutils">
+<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code></dt><dd>Der Name unter dem der Container gemanagt wird.</dd>
+<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code></dt><dd>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
+<code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE='iptn:192.168.0.35:3700'</span></code> wird der CometVisu-Server
+auf die KNX Bus-Schnittstelle mit einem IP-Tunnel an die Adresse
+<code class="docutils literal notranslate"><span class="pre">192.168.0.35</span></code> und den Port <code class="docutils literal notranslate"><span class="pre">3700</span></code> eingerichtet.</dd>
+<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
+automatisch gestartet - so lange er nicht per Befehl explizit beendet
+wurde.</dd>
+<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code></dt><dd>Hierdurch wird der Container im Hintergrund gestartet.</dd>
+<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code></dt><dd>Durch <code class="docutils literal notranslate"><span class="pre">80:80</span></code> wird der Port 80 im Container auf den Port 80 des
+Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
+Web-Server im Container von außen zugegriffen werden.</dd>
+<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd>Mit <code class="docutils literal notranslate"><span class="pre">CometVisuConfig:/var/www/html/resource/config</span></code> wird das vorhin
+angelegte Volume <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> auf den Pfad
+<code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> im Container gemappt.</dd>
+<dt id="term-cometvisu-cometvisu-latest-arm"><code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code></dt><dd>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</dd>
+</dl>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">An dieser Stelle müssen die für die eigene Installation gültigen
+Werte eingetragen werden! Dies gilt vor allem für die Environment-Parameter,
+die mit <code class="docutils literal notranslate"><span class="pre">-e</span></code> übergeben werden. Im Handbuch steht eine genaue Beschreibung
+der <a class="reference internal" href="../install/docker.html#dockerenvironment"><span class="std std-ref">verfügbaren Einstellungen des Docker Containers</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Es kann sein, dass nach dem Start des CometVisu-Servers die Meldung
+<cite>WARNING: The requested image’s platform (linux/amd64) does not match the
+detected host platform (linux/arm/v7) and no specific platform was requested</cite>
+erscheint. Diese Warnung kann ignoriert werden, da diese nur mit der
+Art der Erstellung des Image zusammenhängt.</p>
+</div>
+<p>Mit diesen drei Befehlen ist die Installation des CometVisu-Server bereits
+abgeschlossen. Über die IP-Adresse des Raspberry Pi lässt sich nun die
+CometVisu normal im Browser öffnen:</p>
+<div class="figure align-default">
+<img alt="../_images/portainer_cv.png" src="../_images/portainer_cv.png" />
+</div>
+<p>Alle weiteren Schritte für die Erstellung der CometVisu Konfig-Datei, das
+Managen der Mediendateien, … sind unabhängig vom Raspberry Pi und werden
+daher nicht mehr in diesem Teil der Tutorial-Serie beschrieben.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rpi_docker.html" class="btn btn-neutral float-left" title="Raspberry Pi: Docker installieren" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rpi_nodered.html" class="btn btn-neutral float-right" title="Raspberry Pi: Node-RED in Docker installieren" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

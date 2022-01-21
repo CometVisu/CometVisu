@@ -1,0 +1,53 @@
+{
+  "className": "qx.theme.iconfont.LoadMaterialIconsOutlined",
+  "packageName": "qx.theme.iconfont",
+  "name": "LoadMaterialIconsOutlined",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 28,
+        "column": 67
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A dummy class to trigger the compiler to copy the MaterialIconsOutlined font files</p>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.otf"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.eot"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

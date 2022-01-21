@@ -1,0 +1,57 @@
+{
+  "className": "qx.theme.tangible.Font",
+  "packageName": "qx.theme.tangible",
+  "name": "Font",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 122,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        },
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo font theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/font/Roboto/*.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/font/Roboto/*.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/font/Roboto/*.eot"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/font/Roboto/*.ttf"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/*"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/client/Scroll.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "scrollBarOverlayed",
+    "scrollBarWidth",
+    "bom",
+    "element",
+    "Scroll",
+    "getScrollbarWidth",
+    "osx",
+    "client",
+    "OperatingSystem",
+    "getName",
+    "nativeScrollBars",
+    "getNativeScroll",
+    "core",
+    "Environment",
+    "get",
+    "parseInt",
+    "osVersion",
+    "splitVersion",
+    "split",
+    "length",
+    "defer",
+    "add"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,sBAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,kBAAkB,EAAG,8BAAW;AAC9B,YAAIC,cAAc,GAAGP,EAAE,CAACQ,GAAH,CAAOC,OAAP,CAAeC,MAAf,CAAsBC,iBAAtB,EAArB;AACA,YAAIC,GAAG,GAAGZ,EAAE,CAACQ,GAAH,CAAOK,MAAP,CAAcC,eAAd,CAA8BC,OAA9B,OAA4C,KAAtD;AACA,YAAIC,gBAAgB,QAApB;AAEA,eAAOT,cAAc,KAAK,CAAnB,IAAwBK,GAAxB,IAA+BI,gBAAtC;AACD,OAhBH;;AAmBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,eAAe,EAAG,2BAClB;AACE;AACA,YAAIjB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,SAAxB,KAAsC,KAAtC,IACFC,QAAQ,CAACrB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,iBAAxB,CAAD,EAA6C,EAA7C,CAAR,GAA2D,CAD7D,EACgE;AAC9D,iBAAO,IAAP;AACD,SALH,CAOE;;;AACA,YAAIpB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,cAAxB,KAA2C,SAA/C,EAA0D;AACxD,iBAAO,IAAP;AACD,SAVH,CAYE;;;AACA,YAAIpB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,SAAxB,KAAsC,SAA1C,EACA;AACE,cAAIE,SAAS,GAAGtB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,YAAxB,CAAhB;AACA,cAAIG,YAAY,GAAGD,SAAS,CAACE,KAAV,CAAgB,GAAhB,CAAnB;;AACA,cAAID,YAAY,CAAC,CAAD,CAAZ,GAAkB,CAAlB,IACCA,YAAY,CAACE,MAAb,GAAsB,CAAtB,IAA2BF,YAAY,CAAC,CAAD,CAAZ,GAAkB,CAA7C,IAAkDA,YAAY,CAAC,CAAD,CAAZ,GAAkB,CADzE,EAC6E;AAC3E,mBAAO,IAAP;AACD;AACF,SArBH,CAuBE;;;AACA,YAAIvB,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,iBAAxB,CAAJ,EAAgD;AAC9C,iBAAO,IAAP;AACD;;AAED,eAAO,KAAP;AACD;AAzDH,KAFF;AA+DEM,IAAAA,KAAK,EAAG,eAASrB,OAAT,EAAkB;AACxBL,MAAAA,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBQ,GAApB,CAAwB,uBAAxB,EAAiDtB,OAAO,CAACC,kBAAzD;AACAN,MAAAA,EAAE,CAACkB,IAAH,CAAQC,WAAR,CAAoBQ,GAApB,CAAwB,wBAAxB,EAAkDtB,OAAO,CAACY,eAA1D;AACD;AAlEH,GADA;AAzBAjB,EAAAA,EAAE,CAACQ,GAAH,CAAOK,MAAP,CAAcH,MAAd,CAAqBP,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n/**\n * This class is responsible for checking the scrolling behavior of the client.\n *\n * This class is used by {@link qx.core.Environment} and should not be used\n * directly. Please check its class comment for details how to use it.\n *\n * @internal\n */\nqx.Bootstrap.define(\"qx.bom.client.Scroll\",\n{\n  statics :\n  {\n    /**\n     * Check if the scrollbars should be positioned on top of the content. This\n     * is true of OSX Lion when the scrollbars disappear automatically.\n     *\n     * @internal\n     *\n     * @return {Boolean} <code>true</code> if the scrollbars should be\n     *   positioned on top of the content.\n     */\n    scrollBarOverlayed : function() {\n      var scrollBarWidth = qx.bom.element.Scroll.getScrollbarWidth();\n      var osx = qx.bom.client.OperatingSystem.getName() === \"osx\";\n      var nativeScrollBars = qx.core.Environment.get(\"qx.nativeScrollBars\");\n\n      return scrollBarWidth === 0 && osx && nativeScrollBars;\n    },\n\n\n    /**\n     * Checks if native scroll can be used for the current mobile device.\n     *\n     * @internal\n     *\n     * @return {Boolean} <code>true</code> if the current device is capable to\n     * use native scroll.\n     */\n    getNativeScroll : function()\n    {\n      // iOS 8+\n      if (qx.core.Environment.get(\"os.name\") == \"ios\" &&\n        parseInt(qx.core.Environment.get(\"browser.version\"), 10) > 7) {\n        return true;\n      }\n\n      // Firefox\n      if (qx.core.Environment.get(\"browser.name\") == \"firefox\") {\n        return true;\n      }\n\n      // Android 4.4+\n      if (qx.core.Environment.get(\"os.name\") == \"android\")\n      {\n        var osVersion = qx.core.Environment.get(\"os.version\");\n        var splitVersion = osVersion.split(\".\");\n        if (splitVersion[0] > 4 ||\n            (splitVersion.length > 1 && splitVersion[0] > 3 && splitVersion[1] > 3)) {\n          return true;\n        }\n      }\n\n      // IE 10+\n      if (qx.core.Environment.get(\"event.mspointer\")) {\n        return true;\n      }\n\n      return false;\n    }\n  },\n\n\n  defer : function(statics) {\n    qx.core.Environment.add(\"os.scrollBarOverlayed\", statics.scrollBarOverlayed);\n    qx.core.Environment.add(\"qx.mobile.nativescroll\", statics.getNativeScroll);\n  }\n});\n"
+  ]
+}

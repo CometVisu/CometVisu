@@ -1,0 +1,194 @@
+{
+  "className": "qx.ui.mobile.form.MState",
+  "packageName": "qx.ui.mobile.form",
+  "name": "MState",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 6,
+        "column": 0
+      },
+      "end": {
+        "line": 80,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The mixin contains all functionality to provide methods\n for form elements to manipulate their state. [usually \"valid\" and \"invalid\"]</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "__states": {
+      "location": {
+        "start": {
+          "line": 20,
+          "column": 2
+        },
+        "end": {
+          "line": 20,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The states of the element</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addState": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a state to the element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be added",
+            "paramName": "state",
+            "description": " the state to be added",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasState": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the element has the state passed as argument</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be checked",
+            "paramName": "state",
+            "description": " the state to be checked",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the element has the state, false if it doesn't.",
+            "type": "Boolean",
+            "description": " true if the element has the state, false if it doesn't."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeState": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a state from the element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be removed",
+            "paramName": "state",
+            "description": " the state to be removed",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "replaceState": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces a state of the element with a new state.\n If the element doesn't have the state to be removed, then th new state will\n just be added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "oldState {String} the state to be replaced",
+            "paramName": "oldState",
+            "description": " the state to be replaced",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "newState {String} the state to get injected in the oldState's place",
+            "paramName": "newState",
+            "description": " the state to get injected in the oldState's place",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

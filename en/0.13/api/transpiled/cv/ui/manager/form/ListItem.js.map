@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/ListItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "form",
+    "ListItem",
+    "members",
+    "_createChildControlImpl",
+    "id",
+    "hash",
+    "control",
+    "cv",
+    "manager",
+    "basic",
+    "Image",
+    "getIcon",
+    "setAnonymous",
+    "_addAt",
+    "getShow",
+    "exclude"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EAA+C;AAC7CC,IAAAA,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,QAD0B;;AAE7C;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACP;AACAC,MAAAA,uBAAuB,EAAG,iCAASC,EAAT,EAAaC,IAAb,EAAmB;AAC3C,YAAIC,OAAJ;;AAEA,gBAAQF,EAAR;AACE,eAAK,MAAL;AACEE,YAAAA,OAAO,GAAG,IAAIC,EAAE,CAACR,EAAH,CAAMS,OAAN,CAAcC,KAAd,CAAoBC,KAAxB,CAA8B,KAAKC,OAAL,EAA9B,CAAV;AACAL,YAAAA,OAAO,CAACM,YAAR,CAAqB,IAArB;;AACA,iBAAKC,MAAL,CAAYP,OAAZ,EAAqB,CAArB;;AACA,gBAAI,KAAKK,OAAL,OAAmB,IAAnB,IAA2B,KAAKG,OAAL,OAAmB,OAAlD,EAA2D;AACzDR,cAAAA,OAAO,CAACS,OAAR;AACD;;AACD;AARJ;;AAWA,eAAOT,OAAO,kFAAyBF,EAAzB,CAAd;AACD;AAjBM;AAPoC,GAA/C;AAHAG,EAAAA,EAAE,CAACR,EAAH,CAAMS,OAAN,CAAcR,IAAd,CAAmBC,QAAnB,CAA4BN,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/**\n * ListItem that uses cv.ui.manager.basic.Image\n */\nqx.Class.define('cv.ui.manager.form.ListItem', {\n  extend: qx.ui.form.ListItem,\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    // overridden\n    _createChildControlImpl : function(id, hash) {\n      let control;\n\n      switch (id) {\n        case 'icon':\n          control = new cv.ui.manager.basic.Image(this.getIcon());\n          control.setAnonymous(true);\n          this._addAt(control, 0);\n          if (this.getIcon() === null || this.getShow() === 'label') {\n            control.exclude();\n          }\n          break;\n      }\n\n      return control || this.base(arguments, id);\n    }\n  }\n});\n"
+  ]
+}

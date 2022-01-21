@@ -1,0 +1,112 @@
+{
+  "className": "cv.report.utils.MXhrHook",
+  "packageName": "cv.report.utils",
+  "name": "MXhrHook",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0
+      },
+      "end": {
+        "line": 110,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 10,
+        "column": 13
+      },
+      "end": {
+        "line": 12,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "statics": {
+    "PENDING": {
+      "location": {
+        "start": {
+          "line": 20,
+          "column": 4
+        },
+        "end": {
+          "line": 20,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__sendTime": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getRequestHash": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculate Hash code for current request</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onPhaseChange": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

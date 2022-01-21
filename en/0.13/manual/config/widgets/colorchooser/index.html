@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The ColorChooser widget &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/widgets/colorchooser/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The DesignToggle widget" href="../designtoggle/index.html" />
+    <link rel="prev" title="The Audio widget" href="../audio/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Operatable widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../audio/index.html">The Audio widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The ColorChooser widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../designtoggle/index.html">The DesignToggle widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../imagetrigger/index.html">The ImageTrigger widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infoaction/index.html">The InfoAction widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infotrigger/index.html">The InfoTrigger widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multitrigger/index.html">The MultiTrigger widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pagejump/index.html">The PageJump widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pushbutton/index.html">The PushButton widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refresh/index.html">The Refresh widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reload/index.html">The Reload widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../slide/index.html">The Slide widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../switch/index.html">The Switch widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../toggle/index.html">The Toggle widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trigger/index.html">The Trigger widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../urltrigger/index.html">The UrlTrigger widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notificationcenterbadge/index.html">The NotificationCenterBadge widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../address.html">Addresses - the communication with the backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Configuration of the CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Operatable widgets</a> &raquo;</li>
+      <li>The ColorChooser widget</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-colorchooser-widget">
+<span id="colorchooser"></span><h1>The ColorChooser widget<a class="headerlink" href="#the-colorchooser-widget" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><strong>Available since version</strong>: 2012</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="descripton">
+<h2>Descripton<a class="headerlink" href="#descripton" title="Permalink to this headline">¶</a></h2>
+<p>The ColorChooser let you select and display a color, e.g. for lighting effects.
+It supports a RGB light source with red, green and blue light components as well
+as a RGBW light source that also has a white channel.</p>
+<div class="figure align-default" id="id2">
+<img alt="The ColorChooser" src="../../../_images/colorchooser_example.png" />
+<p class="caption"><span class="caption-text">The ColorChooser</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box;T:2500-15000;Y&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="simple-mode">
+<h3>Simple mode<a class="headerlink" href="#simple-mode" title="Permalink to this headline">¶</a></h3>
+<p>For most use cases the simple mode will be sufficient. It is optimized for
+a simple configuration by ignoring a perfect color consistency between lighting
+and display.</p>
+<div class="section" id="widget-components-slider">
+<h4>Widget components: slider<a class="headerlink" href="#widget-components-slider" title="Permalink to this headline">¶</a></h4>
+<p>The ColorChooser offers different possibilities and combinations for selecting
+and displaying of a color. There are sliders for a direct control of a
+color channel, but also some for a indirect modification of a channel by
+representing a part of a color in the way a human is experiencing it.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+<td>red channel - direct control of RGB-lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+<td>green channel - direct control of RGB-lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+<td>blue channel - direct control of RGB-lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
+<td>red channel - direct control of RGBW-lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
+<td>green channel - direct control of RGBW-lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
+<td>blue channel - direct control of RGBW-lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
+<td>white channel - direct control of RGBW-lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
+<td>hue of the HSV-color space, indirect control</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
+<td>saturation of the HSV-color space, indirect control</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
+<td>value, the brightness of the HSV-color space, indirect control</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">T</span></code></td>
+<td>color temperature of white, indirect control</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
+<td>brightness of the xyY-color space, indirect control</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-L</span></code></td>
+<td>lightness of the L*C*h° CIE color space, indirect control</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-C</span></code></td>
+<td>chroma of the L*C*h° CIE color space, indirect control</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-h</span></code></td>
+<td>hue of the L*C*h° CIE color space, indirect control</td>
+</tr>
+</tbody>
+</table>
+<p>The slider for the color temperature is special as it controls the hue als
+well as the saturation at the same time, so that a given color temperature of
+white will be set. When you also want to control the brightness it is recommended
+to use <code class="docutils literal notranslate"><span class="pre">Y</span></code> for that.</p>
+<p>It is possible to configure the color temperature range that is used for the
+<code class="docutils literal notranslate"><span class="pre">T</span></code> slider by stating it separated by a colon. E.g. <code class="docutils literal notranslate"><span class="pre">T:2000-10000</span></code> would
+create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
+<div class="section" id="example-rgb-slider">
+<h5>Example: RGB slider<a class="headerlink" href="#example-rgb-slider" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id3">
+<img alt="ColorChooser, RGB slider" src="../../../_images/colorchooser_slider_rgb.png" />
+<p class="caption"><span class="caption-text">ColorChooser, RGB slider</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGB-r;RGB-g;RGB-b&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser RGB slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-rgbw-slider">
+<h5>Example: RGBW slider<a class="headerlink" href="#example-rgbw-slider" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id4">
+<img alt="ColorChooser, RGBW slider" src="../../../_images/colorchooser_slider_rgbw.png" />
+<p class="caption"><span class="caption-text">ColorChooser, RGBW slider</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGBW-r;RGBW-g;RGBW-b;RGBW-w&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser RGBW slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-w&quot;</span><span class="nt">&gt;</span>1/2/62<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-hsv-slider">
+<h5>Example: HSV slider<a class="headerlink" href="#example-hsv-slider" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id5">
+<img alt="ColorChooser, HSV slider" src="../../../_images/colorchooser_slider_hsv.png" />
+<p class="caption"><span class="caption-text">ColorChooser, HSV slider</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;h;s;v&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser HSV slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;h&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;s&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;v&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-color-temperature-and-brightness-slider">
+<h5>Example: color temperature and brightness slider<a class="headerlink" href="#example-color-temperature-and-brightness-slider" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id6">
+<img alt="ColorChooser, color temperature and brightness slider" src="../../../_images/colorchooser_slider_TY.png" />
+<p class="caption"><span class="caption-text">ColorChooser, color temperature and brightness slider</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;T:2000-10000;Y&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser T and Y slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-lch-slider">
+<h5>Example: LCh slider<a class="headerlink" href="#example-lch-slider" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id7">
+<img alt="ColorChooser, LCh slider" src="../../../_images/colorchooser_slider_LCh.png" />
+<p class="caption"><span class="caption-text">ColorChooser, LCh slider</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-L;LCh-C;LCh-h&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="widget-components-color-selection-wheel">
+<h4>Widget components: color selection wheel<a class="headerlink" href="#widget-components-color-selection-wheel" title="Permalink to this headline">¶</a></h4>
+<p>There are also combined, more complex interactions possible:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">box</span></code></td>
+<td>Color selection wheel with quadratic brightness and saturation selector, HSV color space</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">triangle</span></code></td>
+<td>Color selection wheel with triangular brightness and saturation selector, HSV color space</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-box</span></code></td>
+<td>Color selection wheel with quadratic brightness and saturation selector, L*C*h° CIE color space</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code></td>
+<td>Color selection wheel with triangular brightness and saturation selector, L*C*h° CIE color space</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="example-combined-chooser-box">
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">box</span></code><a class="headerlink" href="#example-combined-chooser-box" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id8">
+<img alt="ColorChooser, combined chooser: box" src="../../../_images/colorchooser_complex_box.png" />
+<p class="caption"><span class="caption-text">ColorChooser, combined chooser: box</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser box<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-combined-chooser-triangle">
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">triangle</span></code><a class="headerlink" href="#example-combined-chooser-triangle" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id9">
+<img alt="ColorChooser, combined chooser: triangle" src="../../../_images/colorchooser_complex_triangle.png" />
+<p class="caption"><span class="caption-text">ColorChooser, combined chooser: triangle</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser triangle<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-combined-chooser-lch-box">
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-box</span></code><a class="headerlink" href="#example-combined-chooser-lch-box" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id10">
+<img alt="ColorChooser, combined chooser: LCh-box" src="../../../_images/colorchooser_complex_LCh_box.png" />
+<p class="caption"><span class="caption-text">ColorChooser, combined chooser: LCh-box</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh-box<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-combined-chooser-lch-triangle">
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code><a class="headerlink" href="#example-combined-chooser-lch-triangle" title="Permalink to this headline">¶</a></h5>
+<div class="figure align-default" id="id11">
+<img alt="ColorChooser, combined chooser: LCh-triangle" src="../../../_images/colorchooser_complex_LCh_triangle.png" />
+<p class="caption"><span class="caption-text">ColorChooser, combined chooser: LCh-triangle</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh-triangle<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the simple mode it is recommended to use the color selection wheel in the
+HSV color space. In the professional mode, when the chromaticity coordinates
+are configured, the L*C*h° color space should be used for best color
+alignment.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dim-curves">
+<h4>Dim curves<a class="headerlink" href="#dim-curves" title="Permalink to this headline">¶</a></h4>
+<p>The eye doesn’t measure brightness in a linear fashion but in a logarithmic
+way to be able to see at a dark night as well as during high noon. Different
+lighting systems, like DALI, take that into account and thus use a non linear
+dim curve, so that the brightness of the light has a better match to the selected
+dim value. Although this is a desirable mechanism it prevents the mixing of
+different light colors as this requires a linear dim curve.</p>
+<p>Using the attributes <code class="docutils literal notranslate"><span class="pre">r_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">g_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">b_curve</span></code> and <code class="docutils literal notranslate"><span class="pre">w_curve</span></code> it
+is possible to configure the dim curve used by the lighting system and
+compensate it for color mixing. Apart from defining a look up table (intended
+for the use at the professional mode) the keywords <code class="docutils literal notranslate"><span class="pre">linear</span></code>, <code class="docutils literal notranslate"><span class="pre">exponential</span></code>
+and <code class="docutils literal notranslate"><span class="pre">logarithmic</span></code> allow a simple use of the most common types of curve.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Configuring a dim curve is only required when the communication is
+done in raw color components (<code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> and perhaps <code class="docutils literal notranslate"><span class="pre">w</span></code>).
+Using a complete color in <code class="docutils literal notranslate"><span class="pre">HSV</span></code> or - in the best case - as <code class="docutils literal notranslate"><span class="pre">xyY</span></code> color
+a dim curve isn’t necessary.</p>
+</div>
+<p>The correct value is stated in the documentation of the lighting system, but
+it is important to consider the lights, the drivers and the bus gateways, as
+each component might use a non linear behavior.</p>
+<p>It is possible to do a quick check whether the selected curve is right or way
+off. For that the red channel has to be set to 100%, the green to 50% and the
+blue to 0% (when you are also using a white channel is must also be 0%).
+When the dim curves are set correctly the light color should now be a saturated
+orange.</p>
+<p>When the light color is different and no curve has been configured this table
+shows the correct curve to use for compensation:</p>
+<style>
+   .exporange    {background-color:#ffe500; color:#ffe500;}
+   .linearorange {background-color:#ff7f00; color:#ff7f00;}
+   .logorange    {background-color:#ff0800; color:#ff0800;}
+</style><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="26%" />
+<col width="48%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>target color</td>
+<td>real color</td>
+<td>dim curve to use for compensation</td>
+</tr>
+<tr class="row-even"><td><span class="linearorange">——</span></td>
+<td><span class="logorange">——</span></td>
+<td><cite>logarithmic</cite></td>
+</tr>
+<tr class="row-odd"><td><span class="linearorange">——</span></td>
+<td><span class="linearorange">——</span></td>
+<td><cite>linear</cite></td>
+</tr>
+<tr class="row-even"><td><span class="linearorange">——</span></td>
+<td><span class="exporange">——</span></td>
+<td><cite>exponential</cite></td>
+</tr>
+</tbody>
+</table>
+<p>In most cases it is sufficient to select the correct dim curve for a good
+consistent color. But when you select a brightness of 100% and a saturation
+of 0% and have a color tint and not a neutral white you can use  <code class="docutils literal notranslate"><span class="pre">r_strength</span></code>,
+<code class="docutils literal notranslate"><span class="pre">g_strength</span></code> and <code class="docutils literal notranslate"><span class="pre">b_strength</span></code> to correct the color.
+This is also possible with a RGBW light source but the judgement by eye will
+be quite demanding. In this case it’s better suited to use a measurement
+device as described in the professional mode.</p>
+</div>
+</div>
+<div class="section" id="professional-mode">
+<h3>Professional mode<a class="headerlink" href="#professional-mode" title="Permalink to this headline">¶</a></h3>
+<p>For professional applications like architecture, art galleries or yachting the
+simple mode can be easily upgraded to the professional mode where the color
+chooser can be used for true color selecting.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Best results require a calibrated display. As, on purpose, only the sRGB
+color space is used for showing the widget also uncalibrated devices
+(like a smart phone or a tablet computer) should still have acceptable
+performance in most cases. Although only the sRGB color space is used the
+ColorChooser does allow the selection of all colors that the lighting
+system does allow.</p>
+</div>
+<p>The difference between the professional and the simple mode is that the
+colorimetric locus and the dim behaviour of the channels of the light source are
+configured.</p>
+<p>Best results will be reached by measuring the colorimetric locus of the red,
+green, blue and (when available) white channel by using a spectral photometer
+and stating the measured <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates of the CIE xyY color space
+as well as the maximal brightness in the config file. This measurement can also provide
+a look up table for the dim curve.
+Due to aging of the light source those values should be regularly remeasured,
+just like any display calibration. The frequency of this measurement depends
+on the required color accuracy.</p>
+<p>It is still possible to get good results without a measurement device when the
+data sheet of the used light source is available. When no values for the <code class="docutils literal notranslate"><span class="pre">x</span></code>
+and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates are given but instead the wave length of the color it
+can be used alternatively. Although this would work only for a monochromatic
+light source like a laser, the widely used RGB-LEDs can still be assumed to be
+nearly monochromatic. For the white channel it is possible to use the
+color temperature instead of the <code class="docutils literal notranslate"><span class="pre">xy</span></code> coordinates. A deviation from the
+black body curve can’t be stated, in such a case the  <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>
+coordinates must be used.</p>
+<p>The configured brightness doesn’t need to follow a specific physical unit (like
+lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
+values.</p>
+<p>For a best match between the displayes color and that from the light the
+widget element should not be used in the HSV but in the L*C*h° mode. The
+bus communication should use the <code class="docutils literal notranslate"><span class="pre">xy</span></code>, <code class="docutils literal notranslate"><span class="pre">xyY</span></code> or L*a*B* color space as then
+the conversation to control the light source is happening close to it
+reducing any errors in between. A communication in the HSV color space might
+still work. A direct control by RGB or RGBW values would require an accurate
+configured dim curve.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The ColorChooser is using internally the CIE xyY color space. For the
+conversion in the L*a*b* and the L*C*h° color space it is using the D65
+light with a 10° standard observer.</p>
+</div>
+<p>Example of a ColorChooser for the OSRAM LINEARlight FLEX Colormix RGBW
+LED stripe “LF700RGBW-G1-830-06” with the datasheet data and a control via DALI:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span>
+    <span class="na">r_wavelength=</span><span class="s">&quot;622&quot;</span> <span class="na">r_strength=</span><span class="s">&quot;80&quot;</span> <span class="na">r_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">g_wavelength=</span><span class="s">&quot;534&quot;</span> <span class="na">g_strength=</span><span class="s">&quot;196&quot;</span> <span class="na">g_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">b_wavelength=</span><span class="s">&quot;468&quot;</span> <span class="na">b_strength=</span><span class="s">&quot;21&quot;</span> <span class="na">b_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">w_x=</span><span class="s">&quot;0.4290&quot;</span> <span class="na">w_y=</span><span class="s">&quot;0.4010&quot;</span> <span class="na">w_strength=</span><span class="s">&quot;400&quot;</span> <span class="na">w_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>LED Strip<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:242.600&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">variant=</span><span class="s">&quot;xyY&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:242.600&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">variant=</span><span class="s">&quot;xyY&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>It is technically possible to use multiple address elements with different
+color space types like <code class="docutils literal notranslate"><span class="pre">RGB</span></code> and <code class="docutils literal notranslate"><span class="pre">HSV</span></code>. It is also technically possible
+to use <code class="docutils literal notranslate"><span class="pre">RGB-R</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-G</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-B</span></code> and at the same time <code class="docutils literal notranslate"><span class="pre">RGB</span></code>.</p>
+<p class="last">Although it might seem to work it can have unwanted side effects leading
+to the display of a wrong color, so it should be prevented and be considered
+a misconfiguration.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is recommended to use a bus communication where all color components are
+stated in the same data type (e.g. <code class="docutils literal notranslate"><span class="pre">rgb</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code>
+and <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code>). Otherwise it is possible that for short time periods
+after an external change of the color artefacts in the displayed or
+animated color are shown.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When multiple ColorChooser are used for the same light (e.g. in one
+configuration or by opening the CometVisu in two browsers) it is possible
+that both will show a slightly different color. This happens when a color
+is selected that isn’t contained in the color space used on the bus
+communication. This happens most likely with a ColorChooser in LCh mode
+and RGB mode for communication.</p>
+<p class="last">Changing the communication to xyY mode will solve this issue.</p>
+</div>
+</div>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
+<p>The behaviour and appearance of the Info widget can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
+<p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-colorchooser-element">
+<h3>Allowed attributes in the colorchooser-element<a class="headerlink" href="#allowed-attributes-in-the-colorchooser-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="25">colorchooser</td>
+<td>controls</td>
+<td>string</td>
+<td>List of controls to show (separated by semicolons)</td>
+</tr>
+<tr class="row-even"><td>r_x</td>
+<td>decimal</td>
+<td>x coordinate of the red channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-odd"><td>r_y</td>
+<td>decimal</td>
+<td>y coordinate of the red channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-even"><td>r_wavelength</td>
+<td>decimal</td>
+<td>Wavelength in nanometers of the red channel</td>
+</tr>
+<tr class="row-odd"><td>r_strength</td>
+<td>decimal</td>
+<td>Maximal strength of the red channel</td>
+</tr>
+<tr class="row-even"><td>r_curve</td>
+<td>string</td>
+<td>Dim curve of the red channel</td>
+</tr>
+<tr class="row-odd"><td>r_scale</td>
+<td>decimal</td>
+<td>Scaling of the dim curve of the red channel</td>
+</tr>
+<tr class="row-even"><td>g_x</td>
+<td>decimal</td>
+<td>x coordinate of the green channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-odd"><td>g_y</td>
+<td>decimal</td>
+<td>y coordinate of the green channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-even"><td>g_wavelength</td>
+<td>decimal</td>
+<td>Wavelength in nanometers of the green channel</td>
+</tr>
+<tr class="row-odd"><td>g_strength</td>
+<td>decimal</td>
+<td>Maximal strength of the green channel</td>
+</tr>
+<tr class="row-even"><td>g_curve</td>
+<td>string</td>
+<td>Dim curve of the green channel</td>
+</tr>
+<tr class="row-odd"><td>g_scale</td>
+<td>decimal</td>
+<td>Scaling of the dim curve of the green channel</td>
+</tr>
+<tr class="row-even"><td>b_x</td>
+<td>decimal</td>
+<td>x coordinate of the blue channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-odd"><td>b_y</td>
+<td>decimal</td>
+<td>y coordinate of the blue channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-even"><td>b_wavelength</td>
+<td>decimal</td>
+<td>Wavelength in nanometers of the blue channel</td>
+</tr>
+<tr class="row-odd"><td>b_strength</td>
+<td>decimal</td>
+<td>Maximal strength of the blue channel</td>
+</tr>
+<tr class="row-even"><td>b_curve</td>
+<td>string</td>
+<td>Dim curve of the blue channel</td>
+</tr>
+<tr class="row-odd"><td>b_scale</td>
+<td>decimal</td>
+<td>Scaling of the dim curve of the blue channel</td>
+</tr>
+<tr class="row-even"><td>w_x</td>
+<td>decimal</td>
+<td>x coordinate of the white channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-odd"><td>w_y</td>
+<td>decimal</td>
+<td>y coordinate of the white channel in the CIE xyY color space</td>
+</tr>
+<tr class="row-even"><td>w_strength</td>
+<td>decimal</td>
+<td>Maximal strength of the white channel</td>
+</tr>
+<tr class="row-odd"><td>w_curve</td>
+<td>string</td>
+<td>Dim curve of the white channel</td>
+</tr>
+<tr class="row-even"><td>w_scale</td>
+<td>decimal</td>
+<td>Scaling of the dim curve of the white channel</td>
+</tr>
+<tr class="row-odd"><td>send_on_finish</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Send only when the slider is released.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id12">
+<img alt="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a href="#id15"><span class="problematic" id="id16"><span id="id1"></span>[#f1]_</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>Name of the icon registration.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li><abbr title="mandatory">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>Transformation of the bus system value to be shown.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>Position for format string when multiple addresses are used.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>decimal</td>
+<td>Only MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: retain flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id13">
+<img alt="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When you need to address each color (red, green and blue) individually you
+need to add a group address with corresponding <code class="docutils literal notranslate"><span class="pre">variant</span></code> each. For
+OpenHAB Color Items or one of the combined KNX data types this does not hold,
+here it is e.g. possible to use a <code class="docutils literal notranslate"><span class="pre">variant=&quot;rgb&quot;</span></code> instead.</p>
+</div>
+<p>Valid values for <code class="docutils literal notranslate"><span class="pre">variant</span></code> are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+<td>Red channel of RGB lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+<td>Green channel of RGB lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+<td>Blue channel of RGB lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">r</span></code></td>
+<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">g</span></code></td>
+<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">b</span></code></td>
+<td>Shortcut for <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">rgb</span></code></td>
+<td>Combined data type of RGB lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
+<td>Red channel of RGBW lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
+<td>Green channel of RGBW lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
+<td>Blue channel of RGBW lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
+<td>White channel of RGBW lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rgbw</span></code></td>
+<td>Combined data type of RGBW lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
+<td>Hue channel of HSV controlled lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
+<td>Saturation channel of HSV controlled lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
+<td>Value channel of HSV controlled lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hsv</span></code></td>
+<td>Combined data type of HSV controlled lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x channel of xyY controlled lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y channel of xyY controlled lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
+<td>Y channel of xyY controlled lighting</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xy</span></code></td>
+<td>Combined data type of xyY controlled lighting</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">xyY</span></code></td>
+<td>Combined data type of xyY controlled lighting</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">variant</span></code> used for communication doesn’t necessarily be similar to
+the used widget elements as defined by <code class="docutils literal notranslate"><span class="pre">controls</span></code>. It is valid to use
+a ColorChooser with a HSV control and RGB bus communication.</p>
+</div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
+for the Info widget.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+XML-editor to UTF-8 mode!</p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>RGB kitchen<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../audio/index.html" class="btn btn-neutral float-left" title="The Audio widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../designtoggle/index.html" class="btn btn-neutral float-right" title="The DesignToggle widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

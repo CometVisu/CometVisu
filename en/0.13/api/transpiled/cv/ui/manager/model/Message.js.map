@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/Message.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "properties",
+    "title",
+    "check",
+    "init",
+    "event",
+    "content",
+    "type",
+    "nullable",
+    "sticky",
+    "cv",
+    "ui",
+    "manager",
+    "model",
+    "Message"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EAA+C;AAC7CC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MAD6B;;AAG7C;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EAAE;AACVC,MAAAA,KAAK,EAAE;AACLC,QAAAA,KAAK,EAAE,QADF;AAELC,QAAAA,IAAI,EAAE,EAFD;AAGLC,QAAAA,KAAK,EAAE;AAHF,OADG;AAOVC,MAAAA,OAAO,EAAE;AACPH,QAAAA,KAAK,EAAE,QADA;AAEPC,QAAAA,IAAI,EAAE,EAFC;AAGPC,QAAAA,KAAK,EAAE;AAHA,OAPC;AAaVE,MAAAA,IAAI,EAAE;AACJJ,QAAAA,KAAK,EAAE,CAAC,OAAD,EAAU,MAAV,EAAkB,SAAlB,EAA6B,OAA7B,CADH;AAEJK,QAAAA,QAAQ,EAAE,IAFN;AAGJH,QAAAA,KAAK,EAAE;AAHH,OAbI;AAmBVI,MAAAA,MAAM,EAAE;AACNN,QAAAA,KAAK,EAAE,SADD;AAENC,QAAAA,IAAI,EAAE,KAFA;AAGNC,QAAAA,KAAK,EAAE;AAHD;AAnBE;AARiC,GAA/C;AAHAK,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,KAAd,CAAoBC,OAApB,CAA4BnB,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/**\n * Model for Messages shown in Snackbar/Dialog (usually error, warnings or info messages).\n */\nqx.Class.define('cv.ui.manager.model.Message', {\n  extend: qx.core.Object,\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    title: {\n      check: 'String',\n      init: '',\n      event: 'changeTitle'\n    },\n\n    content: {\n      check: 'String',\n      init: '',\n      event: 'changeContent'\n    },\n\n    type: {\n      check: ['alert', 'hint', 'warning', 'error'],\n      nullable: true,\n      event: 'changeType'\n    },\n\n    sticky: {\n      check: 'Boolean',\n      init: false,\n      event: 'changeSticky'\n    }\n  }\n});\n"
+  ]
+}

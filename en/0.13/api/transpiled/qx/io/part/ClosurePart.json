@@ -1,0 +1,211 @@
+{
+  "className": "qx.io.part.ClosurePart",
+  "packageName": "qx.io.part",
+  "name": "ClosurePart",
+  "superClass": "qx.io.part.Part",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 170,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 14
+      },
+      "end": {
+        "line": 39,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "name {String} Name of the part as defined in the config file at\n    compile time.",
+          "paramName": "name",
+          "description": " Name of the part as defined in the config file at\n    compile time.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "packages {qx.io.part.Package[]} List of dependent packages",
+          "paramName": "packages",
+          "description": " List of dependent packages",
+          "type": "qx.io.part.Package[]"
+        },
+        {
+          "name": "@param",
+          "body": "loader {qx.Part} The loader of this part.",
+          "paramName": "loader",
+          "description": " The loader of this part.",
+          "type": "qx.Part"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__packagesToLoad": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "preload": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.part.Part",
+      "appearsIn": [
+        "qx.io.part.Part"
+      ]
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the closure part including all its packages. The loading will\n be done parallel. After all packages are available, the closures are\n executed in the correct order.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The function to call after the loading.",
+            "paramName": "callback",
+            "description": " The function to call after the loading.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.part.Part",
+      "appearsIn": [
+        "qx.io.part.Part"
+      ]
+    },
+    "__executePackages": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes the packages in their correct order and marks the part as\n complete after execution.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_onPackageLoad": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for every package load. It checks for errors and decreases the\n packages to load. If all packages has been loaded, it invokes the\n execution.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pkg {qx.io.part.Package} The loaded package.",
+            "paramName": "pkg",
+            "description": " The loaded package.",
+            "type": "qx.io.part.Package"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

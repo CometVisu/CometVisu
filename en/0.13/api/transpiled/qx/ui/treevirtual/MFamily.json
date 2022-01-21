@@ -1,0 +1,201 @@
+{
+  "className": "qx.ui.treevirtual.MFamily",
+  "packageName": "qx.ui.treevirtual",
+  "name": "MFamily",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 207,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A set of methods which may be used to retrieve various siblings of nodes.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "familyGetFirstChild": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the first child of the specified node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the first child is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the first child is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n   The node id of the first child.",
+            "type": "Integer",
+            "description": "\n   The node id of the first child."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "familyGetLastChild": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the last child of the specified node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the last child is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the last child is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n   The node id of the last child.",
+            "type": "Integer",
+            "description": "\n   The node id of the last child."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "familyGetNextSibling": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the next sibling of the specified node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the next sibling is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the next sibling is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n   The node id of the next sibling.",
+            "type": "Integer",
+            "description": "\n   The node id of the next sibling."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "familyGetPrevSibling": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 205,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the previous sibling of the specified node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the previous sibling is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the previous sibling is desired.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n   The node id of the previous sibling.",
+            "type": "Integer",
+            "description": "\n   The node id of the previous sibling."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

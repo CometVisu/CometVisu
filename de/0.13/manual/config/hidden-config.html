@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Versteckte Konfigurationen &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/hidden-config.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="URL-Parameter" href="url-params.html" />
+    <link rel="prev" title="Grafischer Editor" href="editor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Versteckte Konfigurationen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hintergrund">Hintergrund</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aufbau">Aufbau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manager">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bekannte-name-eintrage">Bekannte <code class="docutils literal notranslate"><span class="pre">Name</span></code> Einträge</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Versteckte Konfigurationen</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="versteckte-konfigurationen">
+<span id="hidden-config"></span><h1>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="hintergrund">
+<h2>Hintergrund<a class="headerlink" href="#hintergrund" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die „Versteckten Konfigurationen“ sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
+Server bleiben. Daher werden diese vor dem Anwender „versteckt“, sind aber auf dem Server selbst im Klartext lesbar.
+Auch im Manager sind diese Informationen im Klartext lesbar.</p>
+<p>Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine sichere Umgebung aufbauen, in
+dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Wenn im Rahmen des Support ein <a class="reference internal" href="url-params.html#reporting"><span class="std std-ref">Fehler-Log</span></a> an die Entwickler übergeben wird, so ist der Inhalt
+der versteckten Konfiguration nicht enthalten und bleiben somit auch vor den Entwicklern versteckt.</p>
+</div>
+<p>Ob und in welcher Form Widgets und Plugins Informationen aus der versteckten
+Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.</p>
+</div>
+<div class="section" id="aufbau">
+<h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die versteckten Konfigurationen werden in der Datei <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code> abgelegt. Diese Datei kann sowohl
+über einen normalen Text-Editor als auch über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editiert werden.</p>
+<p>Der Inhalt besteht aus mehreren Einträgen die einen <em>Name</em> mit mehreren <em>Schlüssel</em> und <em>Wert</em> Paaren enthalten.
+In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;fritzbox&quot;: {</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://192.168.0.1:49443/&quot;,</span>
+<span class="s1">    &quot;user&quot;: &quot;CometVisuTestUser&quot;,</span>
+<span class="s1">    &quot;pass&quot;: &quot;secret&quot;</span>
+<span class="s1">  },</span>
+<span class="s1">  &quot;influx&quot;: {</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://172.17.0.1/proxy/ts/query&quot;,</span>
+<span class="s1">    &quot;user&quot;: &quot;docker&quot;,</span>
+<span class="s1">    &quot;pass&quot;: &quot;secret&quot;,</span>
+<span class="s1">    &quot;selfsigned&quot;: &quot;true&quot;</span>
+<span class="s1">  }</span>
+<span class="s1">}&#39;</span><span class="p">;</span>
+<span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manager">
+<h2>Manager<a class="headerlink" href="#manager" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Komfortabel lässt sich der Inhalt der versteckten Konfiguration über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editieren.</p>
+<div class="figure align-default">
+<img alt="../_images/hidden_config_de.png" src="../_images/hidden_config_de.png" />
+</div>
+</div>
+<div class="section" id="bekannte-name-eintrage">
+<h2>Bekannte <code class="docutils literal notranslate"><span class="pre">Name</span></code> Einträge<a class="headerlink" href="#bekannte-name-eintrage" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Auch wenn die Wahl für den <code class="docutils literal notranslate"><span class="pre">Name</span></code> grundsätzlich frei ist, so gibt es dafür übliche Einträge, bei denen es sich
+anbietet diesem Schema zu folgen. So können manche Widgets bzw. Plugins ohne eine explizite Konfiguration in dem
+für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurations-Aufwand reduzieren lässt.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="48%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Verwendung</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>fritzbox</td>
+<td><a class="reference internal" href="widgets/plugins/tr064/index.html#tr064"><span class="std std-ref">Das tr064 Plugin</span></a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>influx</td>
+<td><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="editor.html" class="btn btn-neutral float-left" title="Grafischer Editor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="url-params.html" class="btn btn-neutral float-right" title="URL-Parameter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

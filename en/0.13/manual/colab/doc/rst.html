@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The RST-Syntax &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/colab/doc/rst.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/versions.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="TODO’s" href="../todos.html" />
+    <link rel="prev" title="Help the CometVisu project" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Help the CometVisu project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-preparations">General preparations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-approach">General approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#keep-repositories-in-sync">Keep repositories in sync</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#help-with-the-documentation">Help with the documentation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The RST-Syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#heading">Heading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inline-markup">Inline Markup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directives">Directives</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#own-directives">Own directives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-widget-example-directive">The <em>widget-example</em> Directive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-parameter-information-directive">The <em>parameter-information</em> Directive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-elements-information-directive">The <em>elements-information</em> Directive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-api-doc-directive">The <em>api-doc</em> Directive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-replaces-directive">The <em>replaces</em> Directive</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../todos.html">TODO’s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#local-generation-of-the-html-documentation">Local generation of the HTML documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#write-documentation-with-visualstudio-code">Write documentation with VisualStudio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#help-with-the-development">Help with the development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#create-an-error-report">Create an error report</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Help the CometVisu project</a> &raquo;</li>
+      <li>The RST-Syntax</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-rst-syntax">
+<h1>The RST-Syntax<a class="headerlink" href="#the-rst-syntax" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="heading">
+<h2>Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h2>
+<p>Headings are defined in RST by “underlining” the text with certain
+special characters. It should be noted here that the special characters
+are at least as long as the text itself. Although the RST syntax is
+relatively tolerant when using the special characters, documentation
+for the CometVisu documentation set the following definition.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">######################</span>
+<span class="gh">Complete sections</span>
+<span class="gh">######################</span>
+
+<span class="gh">*******</span>
+<span class="gh">Chapter</span>
+<span class="gh">*******</span>
+
+<span class="gh">Sectionen</span>
+<span class="gh">=========</span>
+
+<span class="gh">Under-sections</span>
+<span class="gh">---------------</span>
+
+<span class="gh">Under-Under-sections</span>
+<span class="gh">^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">Paragraph</span>
+<span class="gh">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The complete sections are reserved for the parts Api, user manual and
+tutorials and may otherwise within the documentation do not occur, all
+others can be used with care.</p>
+</div>
+<div class="section" id="inline-markup">
+<h2>Inline Markup<a class="headerlink" href="#inline-markup" title="Permalink to this headline">¶</a></h2>
+<p>If the text in the documentation is to be specially formatted (for
+example, bold, italic, etc.) or references / links are inserted, a
+special syntax is required within the text.</p>
+<p>For formatting a text, the text is also framed by special characters,
+so you can use a word, for example. Formatting fat by including in with
+two asterisks (<cite>**bold text**</cite>), are more options.</p>
+<ul class="simple">
+<li><strong>Bold</strong>: <code class="docutils literal notranslate"><span class="pre">**bold</span> <span class="pre">Text**</span></code> =&gt; <strong>bold Text</strong></li>
+<li><strong>italic</strong>: <code class="docutils literal notranslate"><span class="pre">*italic</span> <span class="pre">Text*</span></code> =&gt; <em>italic Text</em></li>
+<li><strong>Code</strong>: <code class="docutils literal notranslate"><span class="pre">``Code</span> <span class="pre">inside</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">inside</span> <span class="pre">Text</span></code></li>
+</ul>
+<div class="section" id="listings">
+<h3>Listings<a class="headerlink" href="#listings" title="Permalink to this headline">¶</a></h3>
+<p>For non-numbered lists, each line is started with <code class="docutils literal notranslate"><span class="pre">*</span></code>, and in the case
+of numbered files with <code class="docutils literal notranslate"><span class="pre">#.</span></code>. With appropriate Indentation of the
+lines, even nested lists are possible.</p>
+</div>
+<div class="section" id="links-und-referenzen">
+<h3>Links und Referenzen<a class="headerlink" href="#links-und-referenzen" title="Permalink to this headline">¶</a></h3>
+<p>The basic syntax of links contains a title and the link itself
+in the following structure: <code class="docutils literal notranslate"><span class="pre">`Title</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">link</span> <span class="pre">&lt;URL</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">link&gt;`</span></code>.
+Of course you can also refer to other documents within the documentation:
+<code class="docutils literal notranslate"><span class="pre">:doc:</span> <span class="pre">`title</span> <span class="pre">&lt;relative/path/to/document&gt;`</span></code>. Please note that you have
+to omit the <code class="docutils literal notranslate"><span class="pre">.rst</span></code> file extension.</p>
+<p>If you want to link a document named <em>dok.rst</em> in the subdirectory <em>test</em>,
+it looks like this: <code class="docutils literal notranslate"><span class="pre">:doc:`test/dok`</span></code>. The title of the link is optional,
+it is omitted, the page title of the linked document used as the title
+(i.e. the top-level heading within the document).</p>
+</div>
+</div>
+<div class="section" id="directives">
+<h2>Directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<p>For things that go beyond plain text (such as images, cues, warnings, etc.),
+directives are used. In contrast to the already discussed <em>inline markup</em>,
+these may not appear in the same line as the “normal” text but need a blank
+line in front of and behind the directive. Directives consist of a name,
+parameters, options and content. They are always based on the
+following principle:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="cp">.. &lt;name&gt;:: &lt;parameter1&gt; &lt;parameter2&gt; ...</span>
+<span class="cp">     :&lt;option1&gt;: &lt;optionswert1&gt;</span>
+<span class="cp">     :&lt;option2&gt;: &lt;optionswert2&gt;</span>
+<span class="cp">     ....</span>
+
+<span class="cp">     &lt;content to write&gt;</span>
+</pre></div>
+</div>
+<p>A directive always starts with 2 points followed by a space. This is
+followed by the name and then directly, without Space 2 colons. It should
+also be noted that the options are enclosed by colons and by a blank line
+are separate from the content, and options and content are indented.</p>
+<p>The only thing that is mandatory is the name. Parameters, options and
+content are optional and different in quantity and in the presence of
+directive to directive. In the following the most important directives
+are presented.</p>
+<div class="section" id="text-block">
+<h3>Text-Block<a class="headerlink" href="#text-block" title="Permalink to this headline">¶</a></h3>
+<p>Simple directives that can be used to create a color-coded text block
+with a given title, to define notes, information, warnings, etc.
+These directives have no parameters and options just a content.</p>
+<p>Possible text blocks are: attention, caution, danger, error, hint,
+important, note, tip, warning.
+So if you want to give the reader e.g. on something important
+hints, you can write the following.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">IMPORTANT</span><span class="p">::</span>
+
+    This is an important note.
+</pre></div>
+</div>
+<p>What will be formatted like this:</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This is an important note.</p>
+</div>
+</div>
+<div class="section" id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<p>Images are included with the <em>figure</em> directive. There is also
+an <em>image</em> directive, but the <em>figure</em> directive allows complex captions.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> <span class="nt">&lt;path to image&gt;</span>
+
+    This is the caption
+</pre></div>
+</div>
+<p>The complete syntax of this directive can be found in the
+<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure">official Documentation</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="own-directives">
+<h1>Own directives<a class="headerlink" href="#own-directives" title="Permalink to this headline">¶</a></h1>
+<p>In addition to the existing Sphinx/Docutils directives, there are also
+some special directives in the CometVisu that help to keep the
+documentation more up-to-date.</p>
+<p>The following directives are currently supported:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>widget-example</td>
+<td>Provides sample code for widgets from which screenshots can be automatically created.</td>
+</tr>
+<tr class="row-odd"><td>parameter-information</td>
+<td>Displays all attributes of a widget with allowed values and short explanation as a table.</td>
+</tr>
+<tr class="row-even"><td>elements-information</td>
+<td>Shows all allowed sub-elements of a widget including their attributes as a table.</td>
+</tr>
+<tr class="row-odd"><td>api-doc</td>
+<td>Includes information from the source code documentation (&#64;author and &#64;since).</td>
+</tr>
+<tr class="row-even"><td>replaces</td>
+<td>This determines which pages of the old wiki replace this page</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="the-widget-example-directive">
+<h2>The <em>widget-example</em> Directive<a class="headerlink" href="#the-widget-example-directive" title="Permalink to this headline">¶</a></h2>
+<p>The <em>widget-example</em> directive allows example code of a CometVisu config
+from which one or more screenshots will be automatically generated later
+and integrated into the documentation together with the example code.</p>
+<p>The following example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+
+    &lt;settings&gt;
+        &lt;screenshot name=&quot;switch_complete&quot;&gt;
+            &lt;caption&gt;Switch with mapping + styling&lt;/caption&gt;
+            &lt;data address=&quot;1/4/0&quot;&gt;1&lt;/data&gt;
+        &lt;/screenshot&gt;
+    &lt;/settings&gt;
+    &lt;meta&gt;
+        &lt;mappings&gt;
+            &lt;mapping name=&quot;OnOff&quot;&gt;
+                &lt;entry value=&quot;0&quot;&gt;Aus&lt;/entry&gt;
+                &lt;entry value=&quot;1&quot;&gt;An&lt;/entry&gt;
+            &lt;/mapping&gt;
+        &lt;/mappings&gt;
+        &lt;stylings&gt;
+            &lt;styling name=&quot;RedGreen&quot;&gt;
+                &lt;entry value=&quot;1&quot;&gt;red&lt;/entry&gt;
+                &lt;entry value=&quot;0&quot;&gt;green&lt;/entry&gt;
+            &lt;/styling&gt;
+        &lt;/stylings&gt;
+    &lt;/meta&gt;
+    &lt;switch on_value=&quot;1&quot; off_value=&quot;0&quot; mapping=&quot;OnOff&quot; styling=&quot;RedGreen&quot; bind_click_to_widget=&quot;true&quot;&gt;
+      &lt;label&gt;Kanal 1&lt;icon name=&quot;control_on_off&quot;/&gt;&lt;/label&gt;
+      &lt;address transform=&quot;DPT:1.001&quot; mode=&quot;readwrite&quot;&gt;1/1/0&lt;/address&gt;
+      &lt;address transform=&quot;DPT:1.001&quot; mode=&quot;read&quot;&gt;1/4/0&lt;/address&gt;
+    &lt;/switch&gt;
+</pre></div>
+</div>
+<p>generates this entry in the documentation:</p>
+<div class="figure align-default" id="id1">
+<img alt="Switch with mapping + styling" src="../../_images/switch_complete.png" />
+<p class="caption"><span class="caption-text">Switch with mapping + styling</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OnOff&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Aus<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>An<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+    <span class="nt">&lt;/mappings&gt;</span>
+    <span class="nt">&lt;stylings&gt;</span>
+        <span class="nt">&lt;styling</span> <span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/styling&gt;</span>
+    <span class="nt">&lt;/stylings&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;switch</span> <span class="na">on_value=</span><span class="s">&quot;1&quot;</span> <span class="na">off_value=</span><span class="s">&quot;0&quot;</span> <span class="na">mapping=</span><span class="s">&quot;OnOff&quot;</span> <span class="na">styling=</span><span class="s">&quot;RedGreen&quot;</span> <span class="na">bind_click_to_widget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Kanal 1<span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;control_on_off&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/switch&gt;</span>
+</pre></div>
+</div>
+<p>The content of the directive is based on the structure of the normal
+CometVisu configuration file and is also an XML document. It
+basically consists of 3 areas:</p>
+<ol class="arabic simple">
+<li><strong>&lt;settings&gt;</strong> Here are the screenshots and subtitles defined.</li>
+<li><strong>&lt;meta&gt;</strong> Everything is allowed here, which is also allowed within
+the <em>&lt;meta&gt;</em> element of the configuration file (for example loading
+plugins, defining mappings, styling, etc.)</li>
+<li><strong>All other</strong> Anything that is not inside a <em>&lt;settings&gt;</em> or <em>&lt;meta&gt;</em>
+element is interpreted as a sample code. Everything that is allowed
+within a <em>&lt;page&gt;</em> element of the configuration file (such as widgets,
+groups, etc.) is allowed here.</li>
+</ol>
+<p>The areas 1 and 2 are optional and may be omitted, so if e.g. only
+1 screenshot of the example code without subtitles required, the
+<em>&lt;settings&gt;</em> - part can also be omitted.</p>
+<p>In addition, there are various options with which the appearance
+of the example code and the corresponding screenshot can be influenced.</p>
+<ol class="arabic simple">
+<li><cite>linenos</cite>: If specified, the example code is given with line numbers</li>
+<li><cite>lineno-start</cite>: Number at which the line numbers should start (default: 1)</li>
+<li><cite>scale</cite>: Percentage with which the screen host can be reduced (default: 100)</li>
+<li><cite>hide-source</cite>: <em>true</em> or <em>false</em>. (Default: <em>false</em>), does not display
+the sample code if <em>true</em></li>
+<li><cite>editor</cite>: <em>attributes</em> or <em>elements</em>. Take a screenshot of the example
+code in the editor, not the widget itself</li>
+<li><cite>align</cite>: <em>left</em>, <em>center</em> or <em>right</em>. Defines the position of the
+screenshot (Default: <em>left</em>)</li>
+</ol>
+<p>A complete example with all options:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+    <span class="nc">:linenos:</span>
+    <span class="nc">:linenos-start:</span> 1
+    <span class="nc">:scale:</span> 75
+    <span class="nc">:hide-source:</span> true
+    <span class="nc">:editor:</span> attributes
+    <span class="nc">:align:</span> center
+
+<span class="cp">    ....</span>
+</pre></div>
+</div>
+<div class="section" id="the-settings">
+<h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Permalink to this headline">¶</a></h3>
+<p>This area is defined by the <cite>&lt;settings&gt;</cite> element and this can be refined
+by attributes and subelements.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="3">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
+<td>design</td>
+<td colspan="2">Name of a design| In which design the screenshot should be taken (default: metal)</td>
+</tr>
+<tr class="row-even"><td>selector</td>
+<td>Css-Selector</td>
+<td>Defines the area of the screenshot</td>
+</tr>
+<tr class="row-odd"><td>sleep</td>
+<td>number</td>
+<td>Initial wait time in ms before the screenshot is taken</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>#text</td>
+<td>Subtitles of the example code</td>
+</tr>
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
+</dl>
+</td>
+<td>name</td>
+<td>text</td>
+<td>File name of the screenshot</td>
+</tr>
+<tr class="row-even"><td>clickpath</td>
+<td>CSS-Selector</td>
+<td>CSS path to an item to be clicked before the screenshot</td>
+</tr>
+<tr class="row-odd"><td>waitfor</td>
+<td>CSS-Selector</td>
+<td>CSS path to an item that should be visible before the screenshot</td>
+</tr>
+<tr class="row-even"><td>sleep</td>
+<td>number</td>
+<td>Waiting time between sending the data and screenshot</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
+<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
+</dl>
+</dd>
+</dl>
+</td>
+<td>address</td>
+<td>group address</td>
+<td>Send data to this address before taking the screenshot</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td><em>float</em> or <em>int</em></td>
+<td>If real numbers need to be sent</td>
+</tr>
+<tr class="row-odd"><td>#text</td>
+<td>text</td>
+<td>Content of the data to be sent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="the-parameter-information-directive">
+<h2>The <em>parameter-information</em> Directive<a class="headerlink" href="#the-parameter-information-directive" title="Permalink to this headline">¶</a></h2>
+<p>This directive automatically creates a table summary with the
+widget’s attributes. These data are read from the schema definition
+(visu_config.xsd). This directive has no options, no content, and only
+one parameter that contains the widget name.</p>
+<p>This example creates the attribute table for the switch widget.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="9">switch</td>
+<td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>mapping</td>
+<td>string</td>
+<td>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../../config/mapping.html#mapping"><span class="std std-ref">Mapping</span></a></td>
+</tr>
+<tr class="row-odd"><td>on_value</td>
+<td>string</td>
+<td>Value of the “on” state. Defaults to “1”.</td>
+</tr>
+<tr class="row-even"><td>off_value</td>
+<td>string</td>
+<td>Value of the “off” state. Defaults to “0”.</td>
+</tr>
+<tr class="row-odd"><td>align</td>
+<td><em>left</em>, <em>right</em> or <em>center</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-odd"><td>bind_click_to_widget</td>
+<td><em>true</em> or <em>false</em></td>
+<td>use the whole widget area to react on click events</td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td>format</td>
+<td>string</td>
+<td>Formataion of the value (printf syntax).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-elements-information-directive">
+<h2>The <em>elements-information</em> Directive<a class="headerlink" href="#the-elements-information-directive" title="Permalink to this headline">¶</a></h2>
+<p>This directive automatically creates a table summary with the allowed
+sub-elements of a widget. These data are read from the schema definition
+(visu_config.xsd). This directive has no options, no content, and only
+one parameter that contains the widget name.</p>
+<p>This example creates the element table for the switch widget.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
+</pre></div>
+</div>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>switch</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>switch</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>Name of the icon registration.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../config/flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>Color of the icon in CSS notation (e.g. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>switch</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>switch</dt><dd><ul class="simple">
+<li><abbr title="mandatory">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>Transformation of the bus system value to be shown.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>Position for format string when multiple addresses are used.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>decimal</td>
+<td>Only MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Only MQTT: retain flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>switch</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-api-doc-directive">
+<h2>The <em>api-doc</em> Directive<a class="headerlink" href="#the-api-doc-directive" title="Permalink to this headline">¶</a></h2>
+<p>This directive reads important information from the source code
+documentation of a widget or plugin. Currently these are the values
+of the <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> specifications.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">It is important that the name of the widget corresponds exactly
+to the name of the source code file without file extension, e.g.
+for <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">Switch</span></code>
+(case-sensitive). For plugins, the folder name of the plugin
+must be specified, e.g. for <code class="docutils literal notranslate"><span class="pre">plugins/clock/</span></code> you
+take <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">clock</span></code></p>
+</div>
+<p>Example for the Switch-Widget:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
+</pre></div>
+</div>
+<p>generates the following content:</p>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-replaces-directive">
+<h2>The <em>replaces</em> Directive<a class="headerlink" href="#the-replaces-directive" title="Permalink to this headline">¶</a></h2>
+<p>This directive defines which pages of the old wiki are replaced by
+this manual page. Several wiki pages can be specified. This
+directive does not add any content to the documentation, but is
+used to automatically create redirects.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
+    CometVisu/0.8.0/switch/de
+    CometVisu/Widget/switch/de
+    CometVisu/switch
+    CometVisu/switch_(Deutsch)
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Help the CometVisu project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../todos.html" class="btn btn-neutral float-right" title="TODO’s" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

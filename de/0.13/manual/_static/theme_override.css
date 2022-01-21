@@ -1,0 +1,43 @@
+.wy-table-responsive table tr td, .wy-table-responsive table tr th {
+    white-space: normal;
+}
+img + p.caption {
+    font-style: italic;
+}
+img.align-center + p.caption {
+    text-align: center;
+}
+img.align-right + p.caption {
+    text-align: right;
+}
+img.align-left + p.caption {
+    text-align: left;
+}
+table.schema-table td dl dt {
+    font-weight: normal;
+}
+table.schema-table td dl dd ul {
+    line-height: normal !important;
+}
+table.schema-table td dl dd > ul {
+    margin-left: -24px; /* override surrounding dd padding */
+    margin-bottom: 0px !important;
+}
+table.schema-table td dl dd blockquote {
+    line-height: normal;
+}
+table.schema-table td dl dd blockquote ul {
+    margin-left: -24px; /* override surrounding blockquote padding */
+    line-height: normal;
+}
+/* patch :kbd:, manually backported from a future version */
+kbd, .kbd {
+  color: inherit;
+  font-size: 80%;
+  background-color: #fff;
+  border: 1px solid #e1e4e5;
+  border-radius: 4px;
+  box-shadow: grey 0px 2px;
+  padding: 2.4px 6px;
+  margin: auto 0;
+}

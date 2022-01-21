@@ -1,0 +1,240 @@
+{
+  "className": "qx.bom.element.Dataset",
+  "packageName": "qx.bom.element",
+  "name": "Dataset",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 127,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Data-* attribute handling for DOM HTML elements.\n This feature set is supported cross-browser\n through one common interface and is independent of the differences between\n the multiple implementations.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "set": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a data attribute on the given DOM element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to modify",
+            "paramName": "element",
+            "description": " The DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute [CamelCase variant]",
+            "paramName": "name",
+            "description": " Name of the attribute [CamelCase variant]",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} New value of the attribute",
+            "paramName": "value",
+            "description": " New value of the attribute",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of the given HTML \"data-*\" attribute</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to query",
+            "paramName": "element",
+            "description": " The DOM element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute [CamelCase variant]",
+            "paramName": "name",
+            "description": " Name of the attribute [CamelCase variant]",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the attribute",
+            "type": "var",
+            "description": " The value of the attribute"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAll": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map containing all the HTML \"data-*\" attributes of the specified element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to query",
+            "paramName": "element",
+            "description": " The DOM element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The map containing all the \"data-*\" attributes",
+            "type": "Map",
+            "description": " The map containing all the \"data-*\" attributes"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasData": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if any element in the collection has a \"data-*\" attribute</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM Element to check the presence of data-* attributes on.",
+            "paramName": "element",
+            "description": " The DOM Element to check the presence of data-* attributes on.",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True if any element in the collection has a \"data-*\" attribute",
+            "type": "Boolean",
+            "description": " True if any element in the collection has a \"data-*\" attribute"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 125,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an HTML \"data-*\" attribute from the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to modify",
+            "paramName": "element",
+            "description": " The DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute",
+            "paramName": "name",
+            "description": " Name of the attribute",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

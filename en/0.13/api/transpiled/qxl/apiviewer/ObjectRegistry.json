@@ -1,0 +1,68 @@
+{
+  "className": "qxl.apiviewer.ObjectRegistry",
+  "packageName": "qxl.apiviewer",
+  "name": "ObjectRegistry",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 20,
+        "column": 0
+      },
+      "end": {
+        "line": 36,
+        "column": 5
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "class",
+  "statics": {
+    "__objectDb": {
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 4
+        },
+        "end": {
+          "line": 24,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "register": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getObjectFromHashCode": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

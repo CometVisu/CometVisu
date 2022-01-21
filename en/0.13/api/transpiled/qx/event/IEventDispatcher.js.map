@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/IEventDispatcher.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "canDispatchEvent",
+    "target",
+    "event",
+    "type",
+    "assertInstance",
+    "Event",
+    "assertString",
+    "dispatchEvent",
+    "IEventDispatcher"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,2BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,gBAAgB,EAAG,0BAASC,MAAT,EAAiBC,KAAjB,EAAwBC,IAAxB,EACnB;AACE,aAAKC,cAAL,CAAoBF,KAApB,EAA2BT,EAAE,CAACS,KAAH,CAASC,IAAT,CAAcE,KAAzC;AACA,aAAKC,YAAL,CAAkBH,IAAlB;AACD,OAbH;;AAgBE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACII,MAAAA,aAAa,EAAG,uBAASN,MAAT,EAAiBC,KAAjB,EAAwBC,IAAxB,EAChB;AACE,aAAKC,cAAL,CAAoBF,KAApB,EAA2BT,EAAE,CAACS,KAAH,CAASC,IAAT,CAAcE,KAAzC;AACA,aAAKC,YAAL,CAAkBH,IAAlB;AACD;AA5BH;AAFF,GADA;AAvBAV,EAAAA,EAAE,CAACS,KAAH,CAASM,gBAAT,CAA0BZ,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * All event dispatchers must implement this interface. Event dispatchers must\n * register themselves at the event Manager using\n * {@link qx.event.Registration#addDispatcher}.\n */\nqx.Interface.define(\"qx.event.IEventDispatcher\",\n{\n  members:\n  {\n    /**\n     * Whether the dispatcher is responsible for the this event.\n     *\n     * @param target {Element|Event} The event dispatch target\n     * @param event {qx.event.type.Event} The event object\n     * @param type {String} the event type\n     * @return {Boolean} Whether the event dispatcher is responsible for the this event\n     */\n    canDispatchEvent : function(target, event, type)\n    {\n      this.assertInstance(event, qx.event.type.Event);\n      this.assertString(type);\n    },\n\n\n    /**\n     * This function dispatches the event to the event listeners.\n     *\n     * @param target {Element|Event} The event dispatch target\n     * @param event {qx.event.type.Event} event object to dispatch\n     * @param type {String} the event type\n     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise\n     */\n    dispatchEvent : function(target, event, type)\n    {\n      this.assertInstance(event, qx.event.type.Event);\n      this.assertString(type);\n    }\n  }\n});\n"
+  ]
+}

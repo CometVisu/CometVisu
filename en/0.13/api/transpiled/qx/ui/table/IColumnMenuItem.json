@@ -1,0 +1,141 @@
+{
+  "className": "qx.ui.table.IColumnMenuItem",
+  "packageName": "qx.ui.table",
+  "name": "IColumnMenuItem",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 42,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Interface for a column menu item corresponding to a table column.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "properties": {
+    "columnVisible": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the table column associated with this menu item is visible\n Should be of type {Boolean}!</p>"
+          }
+        ]
+      },
+      "name": "columnVisible",
+      "propertyType": "new"
+    }
+  },
+  "events": {
+    "changeColumnVisible": {
+      "type": "event",
+      "name": "changeColumnVisible",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when a column changes visibility state. The event data is a\n boolean indicating whether the table column associated with this menu\n item is now visible.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "getColumnVisible": {
+      "type": "function",
+      "name": "getColumnVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>columnVisible</code>.\n\nFor further details take a look at the property definition: {@link #columnVisible}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for columnVisible"
+          }
+        ]
+      }
+    },
+    "setColumnVisible": {
+      "type": "function",
+      "name": "setColumnVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>columnVisible</code>.\n\nFor further details take a look at the property definition: {@link #columnVisible}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for columnVisible"
+          }
+        ]
+      }
+    },
+    "resetColumnVisible": {
+      "type": "function",
+      "name": "resetColumnVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>columnVisible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #columnVisible}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

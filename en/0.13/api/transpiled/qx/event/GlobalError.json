@@ -1,0 +1,298 @@
+{
+  "className": "qx.event.GlobalError",
+  "packageName": "qx.event",
+  "name": "GlobalError",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 0
+      },
+      "end": {
+        "line": 175,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The GlobalError class stores a reference to a global error handler function.\n  This function is called for each uncatched JavaScript exception. To enable\n  global error handling the setting <code>qx.globalErrorHandling</code> must\n  be enabled and an error handler must be registered.\n  Further each JavaScript \"entry point\" must be wrapped with a call to\n  {@link qx.event.GlobalError#observeMethod}.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.core, qx.core.Environment"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__callback": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__originalOnError": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__context": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__isGlobalErrorHandlingEnabled": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Little helper to check if the global error handling is enabled.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if it is enabled.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if it is enabled."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "setErrorHandler": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the global fallback error handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function?null} The error handler. The first argument is the\n    exception, which caused the error",
+            "paramName": "callback",
+            "description": " The error handler. The first argument is the\n    exception, which caused the error",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?window} The \"this\" context of the callback function",
+            "paramName": "context",
+            "description": " The \"this\" context of the callback function",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__onErrorWindow": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Catches all errors of the <code>window.onerror</code> handler\n and passes an {@link qx.core.WindowError} object to the error\n handling.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {String} browser error message",
+            "paramName": "msg",
+            "description": " browser error message",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "uri {String} uri to erroneous script",
+            "paramName": "uri",
+            "description": " uri to erroneous script",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "lineNumber {Integer} line number of error",
+            "paramName": "lineNumber",
+            "description": " line number of error",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "columnNumber {Integer} column number of error",
+            "paramName": "columnNumber",
+            "description": " column number of error",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "exception {Error} orginal error",
+            "paramName": "exception",
+            "description": " orginal error",
+            "type": "Error"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "observeMethod": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wraps a method with error handling code. Only methods, which are called\n directly by the browser (e.g. event handler) should be wrapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {Function} method to wrap",
+            "paramName": "method",
+            "description": " method to wrap",
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The function wrapped with error handling code",
+            "type": "Function",
+            "description": " The function wrapped with error handling code"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "handleError": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegates every given exception to the registered error handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ex {qx.core.WindowError|Error} Exception to delegate",
+            "paramName": "ex",
+            "description": " Exception to delegate",
+            "type": [
+              "qx.core.WindowError",
+              "Error"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 164,
+        "column": 10
+      },
+      "end": {
+        "line": 174,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

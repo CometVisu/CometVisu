@@ -1,0 +1,647 @@
+{
+  "className": "qx.dev.unit.MRequirements",
+  "packageName": "qx.dev.unit",
+  "name": "MRequirements",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [
+    "qx.dev.unit.MRequirementsBasic"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 0
+      },
+      "end": {
+        "line": 293,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Common requirement checks for unit tests. Example:\n </p>\n<pre class=\"javascript\">\n testBackend : function()\n {\n   this.require([\"http\", \"php\"]);\n\n }\n </pre>"
+        }
+      ],
+      "@use": [
+        {
+          "name": "@use",
+          "body": "feature-checks"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.application.Standalone"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.application.Inline"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.application.Native"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/test/xmlhttp/php_version.php"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "statics": {
+    "__hasPhp": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Result of {@link #hasPhp}. Stored as class member to avoid\n repeating the check."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    }
+  },
+  "members": {
+    "hasHttp": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application has been loaded over HTTP.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if HTTP is currently used",
+            "type": "Boolean",
+            "description": " <code>true</code> if HTTP is currently used"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasPhp": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the server supports PHP.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if PHP is supported by the backend",
+            "type": "Boolean",
+            "description": " <code>true</code> if PHP is supported by the backend"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasGuiApp": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application extends qx.application.Standalone</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the application is a standalone (GUI)\n application",
+            "type": "Boolean",
+            "description": " <code>true</code> if the application is a standalone (GUI)\n application"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasInlineApp": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application extends qx.application.Inline</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the application is an inline application",
+            "type": "Boolean",
+            "description": " <code>true</code> if the application is an inline application"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasNativeApp": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application extends qx.application.Native</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the application is a native application",
+            "type": "Boolean",
+            "description": " <code>true</code> if the application is a native application"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasChrome": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in Google Chrome</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser is Google Chrome",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser is Google Chrome"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasFirefox": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in Firefox</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser is Firefox",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser is Firefox"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasGecko": {
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in a browser using the Gecko engine</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser engine is Mozilla Gecko",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser engine is Mozilla Gecko"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasIe": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in Internet Explorer</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser is Internet Explorer",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser is Internet Explorer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasMshtml": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 211,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in a browser using the MSHTML engine</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser engine is MSHTML",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser engine is MSHTML"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasOpera": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 222,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in a browser using the Opera engine</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser engine is Opera",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser engine is Opera"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasWebkit": {
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running in a browser using the Webkit engine</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser engine is Webkit",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser engine is Webkit"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasNoOsx": {
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4
+        },
+        "end": {
+          "line": 244,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is NOT running on OS X</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the operating system is NOT OX X",
+            "type": "Boolean",
+            "description": " <code>true</code> if the operating system is NOT OX X"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasNoWin7": {
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4
+        },
+        "end": {
+          "line": 256,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running on Windows 7</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if operating system is Windows 7",
+            "type": "Boolean",
+            "description": " <code>false</code> if operating system is Windows 7"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasNoWin10": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 268,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running on Windows 10</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if operating system is Windows 10",
+            "type": "Boolean",
+            "description": " <code>false</code> if operating system is Windows 10"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasNoChromeOnLinux": {
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4
+        },
+        "end": {
+          "line": 279,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is not running in a Google Chrome browser on Linux</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the browser is not Google Chrome on Linux",
+            "type": "Boolean",
+            "description": " <code>true</code> if the browser is not Google Chrome on Linux"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasAsyncFunctions": {
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4
+        },
+        "end": {
+          "line": 290,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is running on a client supporting async functions</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the client supports async functions",
+            "type": "Boolean",
+            "description": " <code>true</code> if the client supports async functions"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "require": {
+      "type": "function",
+      "name": "require",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.dev.unit.MRequirementsBasic",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Verifies a list of infrastructure requirements by checking for\n corresponding \"has\" methods. If no such method was found,\n {@link qx.core.Environment} will be checked for a key matching the given\n feature name. Note that asynchronous environment checks are not supported!</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.dev.unit.RequirementError} if any requirement check returned\n   <code>false</code>",
+            "type": "qx.dev.unit.RequirementError",
+            "description": " if any requirement check returned\n   <code>false</code>"
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} if no valid check was found for a feature.",
+            "type": "Error",
+            "description": " if no valid check was found for a feature."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "featureList {String[]} List of infrastructure requirements",
+            "paramName": "featureList",
+            "description": " List of infrastructure requirements",
+            "type": "String[]"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "environmentNonLiteralKey(feature)"
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

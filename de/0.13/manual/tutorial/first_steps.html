@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial: Erste Schritte - eine Visu in einer halben Minute &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/tutorial/first_steps.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="prev" title="Raspberry Pi: Node-RED in Docker installieren" href="rpi_nodered.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rpi_prequesites.html">Raspberry Pi: Vorbereitung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_kiosk.html">Raspberry Pi: Client einrichten (Kiosk Modus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_docker.html">Raspberry Pi: Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_cometvisu.html">Raspberry Pi: CometVisu in Docker installieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpi_nodered.html">Raspberry Pi: Node-RED in Docker installieren</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial: Erste Schritte - eine Visu in einer halben Minute</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#video">Video</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#einzelschritte">Einzelschritte</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#erste-visu-in-unter-einer-halben-minute">Erste Visu - in unter einer halben Minute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verfeinerung">Verfeinerung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+      <li>Tutorial: Erste Schritte - eine Visu in einer halben Minute</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="tutorial-erste-schritte-eine-visu-in-einer-halben-minute">
+<h1>Tutorial: Erste Schritte - eine Visu in einer halben Minute<a class="headerlink" href="#tutorial-erste-schritte-eine-visu-in-einer-halben-minute" title="Link zu dieser Überschrift">¶</a></h1>
+<p>In diesem Tutorial wird gezeigt wie innerhalb einer halben Minute bereits die
+erste (natürlich rudimentäre) Visu erstellt werden kann.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Dieses Tutorial wurde mit der Version 0.11 erstellt. Der Manager und Editor
+wurde für neuere Versionen grundlegend überarbeitet. Das hier gezeigte
+Vorgehen ist jedoch leicht übertragbar.</p>
+</div>
+<div class="section" id="video">
+<h2>Video<a class="headerlink" href="#video" title="Link zu dieser Überschrift">¶</a></h2>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 24px;">
+  <iframe src="https://www.youtube-nocookie.com/embed/ONFb_gxTaPk" style="position:absolute;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></div>
+<div class="section" id="einzelschritte">
+<h2>Einzelschritte<a class="headerlink" href="#einzelschritte" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die im Video gezeigten Schritte werden hier noch einmal Stück für Stück
+aufgeführt.
+Es soll eine Beispiel-Visu für einen Heizungsregler im Wohnzimmer erstellt
+werden, für den gilt:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="25%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Wert</th>
+<th class="head">GA</th>
+<th class="head">Datentyp</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ist</td>
+<td>4/0/30</td>
+<td>DPT:9.001</td>
+</tr>
+<tr class="row-odd"><td>Soll</td>
+<td>3/3/30</td>
+<td>DPT:9.001</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Es ist ziemlich unwahrscheinlich, dass die eigene Installation
+die gleichen Adressen für diese Werte verwendet. Daher bitte prüfen und die
+Werte beim Nachstellen dieses Tutorials entsprechend anpassen!</p>
+</div>
+<div class="section" id="erste-visu-in-unter-einer-halben-minute">
+<h3>Erste Visu - in unter einer halben Minute<a class="headerlink" href="#erste-visu-in-unter-einer-halben-minute" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> wird von der Default-Konfig „Editieren“ ausgewählt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps01.png"><img alt="../_images/first_steps01.png" src="../_images/first_steps01.png" style="width: 720.0px; height: 241.0px;" /></a>
+</div>
+<p>Über einen Links-Klick auf das „+“ vor <code class="docutils literal notranslate"><span class="pre">pages</span></code> werden die Kinder-Elemente
+eingeblendet:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps02.png"><img alt="../_images/first_steps02.png" src="../_images/first_steps02.png" style="width: 402.0px; height: 166.0px;" /></a>
+</div>
+<p>Über einen Rechts-Klick auf <code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">&quot;Start&quot;</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps03.png"><img alt="../_images/first_steps03.png" src="../_images/first_steps03.png" style="width: 316.0px; height: 274.0px;" /></a>
+</div>
+<p>… wird dort das Kontext-Menü angezeigt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps04.png"><img alt="../_images/first_steps04.png" src="../_images/first_steps04.png" style="width: 306.0px; height: 261.0px;" /></a>
+</div>
+<p>Dort wird über Links-Klick auf <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">child</span></code> das Menü zum Einfügen eines
+Kind-Elementes aufgerufen.</p>
+<p>In diesem Menü wird das <a class="reference internal" href="../config/widgets/info/index.html#info"><span class="std std-ref">info-Widget</span></a> ausgewählt…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps05.png"><img alt="../_images/first_steps05.png" src="../_images/first_steps05.png" style="width: 428.0px; height: 520.0px;" /></a>
+</div>
+<p>… und über „+“ wird das Info-Widget als Kind-Element der Seite
+(<a class="reference internal" href="../config/widgets/page/index.html#page"><span class="std std-ref">page</span></a>) „Start“ hinzugefügt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps06.png"><img alt="../_images/first_steps06.png" src="../_images/first_steps06.png" style="width: 441.0px; height: 280.0px;" /></a>
+</div>
+<p>Über Links-Klick auf das „+“ vor <code class="docutils literal notranslate"><span class="pre">info</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps07.png"><img alt="../_images/first_steps07.png" src="../_images/first_steps07.png" style="width: 443.0px; height: 353.0px;" /></a>
+</div>
+<p>… wird das Vor-Erzeugte <code class="docutils literal notranslate"><span class="pre">address</span></code>-Element angezeigt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps08.png"><img alt="../_images/first_steps08.png" src="../_images/first_steps08.png" style="width: 612.0px; height: 379.0px;" /></a>
+</div>
+<p>Dort wird die Adresse (GA) für die Ist-Temperatur (4/0/30) eingetragen…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps09.png"><img alt="../_images/first_steps09.png" src="../_images/first_steps09.png" style="width: 604.0px; height: 279.0px;" /></a>
+</div>
+<p>… und mit Return bestätigt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps10.png"><img alt="../_images/first_steps10.png" src="../_images/first_steps10.png" style="width: 605.0px; height: 276.0px;" /></a>
+</div>
+<p>Wird nun mit links auf <code class="docutils literal notranslate"><span class="pre">address</span></code> geklickt…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps11.png"><img alt="../_images/first_steps11.png" src="../_images/first_steps11.png" style="width: 604.0px; height: 275.0px;" /></a>
+</div>
+<p>… so erscheint rechts neben dem
+Elementen-Baum das Menü mit den Attributen für das <code class="docutils literal notranslate"><span class="pre">address</span></code>-Element:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps12.png"><img alt="../_images/first_steps12.png" src="../_images/first_steps12.png" style="width: 1264.0px; height: 280.0px;" /></a>
+</div>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">transform</span></code> wird nun der Datentyp <code class="docutils literal notranslate"><span class="pre">DPT:9.001</span></code> eingetragen:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps13.png"><img alt="../_images/first_steps13.png" src="../_images/first_steps13.png" style="width: 618.0px; height: 184.0px;" /></a>
+</div>
+<p>Über „preview“ wird eine Vorschau des aktuellen Zustands der Konfig angezeigt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps14.png"><img alt="../_images/first_steps14.png" src="../_images/first_steps14.png" style="width: 1266.0px; height: 334.0px;" /></a>
+</div>
+<p>Wie im Video gezeigt ist nun nach gerade einmal 23 Sekunden die erste
+(allerdings noch sehr rudimentäre) Visu entstanden.</p>
+<p>Wenn die eigene Installation
+zu den oben angegebenen Beispiel-Adressen passen sollte, so wir bei dem
+Nachstellen dieses Tutorials auch eine Temperatur erscheinen:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps15.png"><img alt="../_images/first_steps15.png" src="../_images/first_steps15.png" style="width: 590.0px; height: 286.0px;" /></a>
+</div>
+<p>Über einen weiteren Klick auf „preview“ kommt man wieder zurück zum Editor:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps16.png"><img alt="../_images/first_steps16.png" src="../_images/first_steps16.png" style="width: 316.0px; height: 238.0px;" /></a>
+</div>
+</div>
+<div class="section" id="verfeinerung">
+<h3>Verfeinerung<a class="headerlink" href="#verfeinerung" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um von einer blanken, nichtssagenden Zahl zu einer nutzbaren Visualisierung
+zu kommen, sollte diese noch etwas erweitert werden. Im ersten Schritt wird
+der Ausgabe-Wert so modifiziert, dass eine Nachkommastelle und die Einheit °C
+angezeigt wird.</p>
+<p>Über Links-Klick auf <code class="docutils literal notranslate"><span class="pre">info</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps17.png"><img alt="../_images/first_steps17.png" src="../_images/first_steps17.png" style="width: 1262.0px; height: 337.0px;" /></a>
+</div>
+<p>… wird in das Attribut <a class="reference internal" href="../config/format.html#format"><span class="std std-ref">format</span></a>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps18.png"><img alt="../_images/first_steps18.png" src="../_images/first_steps18.png" style="width: 1259.0px; height: 283.0px;" /></a>
+</div>
+<p>… der Wert <code class="docutils literal notranslate"><span class="pre">%.1f</span> <span class="pre">°C</span></code> eingetragen:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps19.png"><img alt="../_images/first_steps19.png" src="../_images/first_steps19.png" style="width: 617.0px; height: 213.0px;" /></a>
+</div>
+<p>Für eine Beschreibung wird nun noch ein <code class="docutils literal notranslate"><span class="pre">label</span></code> hinzugefügt.</p>
+<p>Rechts-Klick auf <code class="docutils literal notranslate"><span class="pre">info</span></code> und Links-Klick auf <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">child</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps20.png"><img alt="../_images/first_steps20.png" src="../_images/first_steps20.png" style="width: 602.0px; height: 328.0px;" /></a>
+</div>
+<p>… lässt ein <code class="docutils literal notranslate"><span class="pre">label</span></code>-Element hinzufügen:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps21.png"><img alt="../_images/first_steps21.png" src="../_images/first_steps21.png" style="width: 607.0px; height: 288.0px;" /></a>
+</div>
+<p>Im Elemente-Baum unter dem <code class="docutils literal notranslate"><span class="pre">label</span></code> wird noch ein <code class="docutils literal notranslate"><span class="pre">#text</span></code> Element benötigt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps22.png"><img alt="../_images/first_steps22.png" src="../_images/first_steps22.png" style="width: 606.0px; height: 313.0px;" /></a>
+</div>
+<p>Dieses wird mit dem Label für das Info-Widget befüllt, in diesem Tutorial
+folglich mit „Wohnzimmertemperatur“:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps23.png"><img alt="../_images/first_steps23.png" src="../_images/first_steps23.png" style="width: 602.0px; height: 358.0px;" /></a>
+</div>
+<p>Dem <code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">&quot;Start&quot;</span></code> wird nun für die Modifikation der Solltemperatur ein
+<a class="reference internal" href="../config/widgets/infotrigger/index.html#infotrigger"><span class="std std-ref">infotrigger-Widget</span></a> hinzugefügt:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps24.png"><img alt="../_images/first_steps24.png" src="../_images/first_steps24.png" style="width: 603.0px; height: 445.0px;" /></a>
+</div>
+<p>Dies bekommt die <code class="docutils literal notranslate"><span class="pre">address</span></code> mit dem Wert aus diesem Tutorial, der <code class="docutils literal notranslate"><span class="pre">3/3/30</span></code>:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps25.png"><img alt="../_images/first_steps25.png" src="../_images/first_steps25.png" style="width: 605.0px; height: 450.0px;" /></a>
+</div>
+<p>Dazu gehört das <code class="docutils literal notranslate"><span class="pre">transform</span></code>-Attribut <code class="docutils literal notranslate"><span class="pre">DPT:9.001</span></code>:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps26.png"><img alt="../_images/first_steps26.png" src="../_images/first_steps26.png" style="width: 1257.0px; height: 441.0px;" /></a>
+</div>
+<p>Die Attribute des <code class="docutils literal notranslate"><span class="pre">infotrigger</span></code> selbst werden befüllt mit:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="18%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribut</th>
+<th class="head">Wert</th>
+<th class="head">Bedeutung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">upvalue</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">0.5</span></code></td>
+<td>Temperaturänderung für Auf bzw. „wärmer“</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">downvalue</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">-0.5</span></code></td>
+<td>Temperaturänderung für Ab bzw. „kälter“</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">uplabel</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">wärmer</span></code></td>
+<td>Button-Beschriftung für Auf</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">downlabel</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">kälter</span></code></td>
+<td>Button-Beschriftung für Ab</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">change</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">absolute</span></code></td>
+<td>Direkte („absolute“) Änderung des Wertes</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">format</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">%.1f</span> <span class="pre">°C</span></code></td>
+<td>Eine Nachkommastelle mit angehängtem “ °C“</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps27.png"><img alt="../_images/first_steps27.png" src="../_images/first_steps27.png" style="width: 1261.0px; height: 754.0px;" /></a>
+</div>
+<p>Nun nur noch die Beschriftung bzw. das Label für das Widget:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps28.png"><img alt="../_images/first_steps28.png" src="../_images/first_steps28.png" style="width: 603.0px; height: 541.0px;" /></a>
+</div>
+<p>Über <code class="docutils literal notranslate"><span class="pre">save</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps29.png"><img alt="../_images/first_steps29.png" src="../_images/first_steps29.png" style="width: 305.0px; height: 71.0px;" /></a>
+</div>
+<p>… wird die Konfiguration gespeichert:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps30.png"><img alt="../_images/first_steps30.png" src="../_images/first_steps30.png" style="width: 456.0px; height: 171.0px;" /></a>
+</div>
+<p>Zurück zum <code class="docutils literal notranslate"><span class="pre">manager</span></code>…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps31.png"><img alt="../_images/first_steps31.png" src="../_images/first_steps31.png" style="width: 595.0px; height: 75.0px;" /></a>
+</div>
+<p>… mit der Warnung, dass dadurch die letzten Änderungen verloren gehen. Dies
+ist jedoch hier nicht relevant, da die Änderungen ja gerade eben noch von uns
+gespeichert wurden:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps32.png"><img alt="../_images/first_steps32.png" src="../_images/first_steps32.png" style="width: 459.0px; height: 199.0px;" /></a>
+</div>
+<p>Im Manager wird über „Öffnen“…</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps33.png"><img alt="../_images/first_steps33.png" src="../_images/first_steps33.png" style="width: 721.0px; height: 235.0px;" /></a>
+</div>
+<p>… nun die fertige Visualisierung im Browser geöffnet:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../_images/first_steps34.png"><img alt="../_images/first_steps34.png" src="../_images/first_steps34.png" style="width: 1550.0px; height: 223.0px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rpi_nodered.html" class="btn btn-neutral float-left" title="Raspberry Pi: Node-RED in Docker installieren" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

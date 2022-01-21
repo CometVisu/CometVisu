@@ -1,0 +1,78 @@
+{
+  "className": "qx.bom.Range",
+  "packageName": "qx.bom",
+  "name": "Range",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 112,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Low-level Range API which is used together with the low-level Selection API.\n This is especially useful whenever a developer want to work on text level,\n e.g. for an editor.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "get": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the range object of the given node.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(node)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} node to get the range of",
+            "paramName": "node",
+            "description": " node to get the range of",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Range} valid range of given selection",
+            "type": "qx.bom.Range",
+            "description": " valid range of given selection"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das Strftime Plugin &mdash; CometVisu</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/plugins/strftime/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/versions.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../../search.html" />
+    <link rel="next" title="Das Timeout Plugin" href="../timeout/index.html" />
+    <link rel="prev" title="Das Speech Plugin" href="../speech/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu<img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../clock/index.html">Das Clock Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram/index.html">Das Diagram Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../diagram_info/index.html">Das Diagramm_Info Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gauge/index.html">Das Gauge Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../link/index.html">Das Link Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openhab/index.html">Das openHAB2 Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openweathermap/index.html">Das OpenweatherMap Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../powerspectrum/index.html">Das PowerSpectrum Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../speech/index.html">Das Speech Plugin</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Das Strftime Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../timeout/index.html">Das Timeout Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tr064/index.html">Das tr064 Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
+      <li>Das Strftime Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="das-strftime-plugin">
+<span id="strftime"></span><h1>Das Strftime Plugin<a class="headerlink" href="#das-strftime-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Michael Hausl [michael at hausl dot com]</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 0.8.0</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das strftime-Plugin fügt der Visuseite eine formatierbare Datums- und Uhrzeitanzeige hinzu.</p>
+<div class="figure align-default">
+<img alt="../../../../_images/strftime_simple.png" src="../../../../_images/strftime_simple.png" />
+</div>
+</div>
+<div class="section" id="einstellungen">
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
+<p>Das Verhalten und Aussehen des strftime-Plugins kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
+beides über den <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.</p>
+<div class="section" id="erlaubte-attribute-im-strftime-element">
+<h3>Erlaubte Attribute im strftime-Element<a class="headerlink" href="#erlaubte-attribute-im-strftime-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3">strftime</td>
+<td>lang</td>
+<td><em>en</em>, <em>de</em> oder <em>fr</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id2">
+<img alt="../../../../_images/de_config_widgets_plugins_strftime_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_strftime_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Das Attribut <code class="docutils literal notranslate"><span class="pre">class</span></code> wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.</p>
+</div>
+<p>Mögliche Formatierungsoptionen findet man <a class="reference external" href="http://hacks.bluesmoon.info/strftime/format_specifiers.html">hier</a>.
+Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.</p>
+</div>
+<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>strftime</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/de_config_widgets_plugins_strftime_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_strftime_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="xml-syntax">
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternativ kann man für das strftime Plugin auch von Hand einen Eintrag in
+der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<p>Hier der minimale Beispielcode der das strftime Plugin aus dem folgenden Screenshot erzeugt:</p>
+<div class="figure align-default" id="id4">
+<img alt="strftime, einfaches Beispiel" src="../../../../_images/strftime_simple.png" />
+<p class="caption"><span class="caption-text">strftime, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y %H:%M:%S&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/strftime&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiele">
+<h2>Beispiele<a class="headerlink" href="#beispiele" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="zeitanzeige-in-der-linken-navbar">
+<h3>Zeitanzeige in der linken Navbar<a class="headerlink" href="#zeitanzeige-in-der-linken-navbar" title="Link zu dieser Überschrift">¶</a></h3>
+<p>In der linken Navbar reicht die Breite typischerweise nicht für die Anzeige von Datum- und Uhrzeit in
+einer Zeile. Aus diesem Grund wird im nachstehenden Beispiel eine Möglichkeit beschrieben, Datum und Uhrzeit
+übereinander anzuordnen und zusätzlich ansprechend mittels <code class="docutils literal notranslate"><span class="pre">class</span></code>-Element zu formatieren.</p>
+<div class="figure align-default">
+<img alt="../../../../_images/Example_Metal_swiss_021.jpg" src="../../../../_images/Example_Metal_swiss_021.jpg" />
+</div>
+<p>In der Navbar wurde an der obersten Stelle ein Group Widget eingefügt mit dem Namen „Aktuelle Zeit“.
+Innerhalb dieser Group befindet sich ein weiteres Group Widget mit dem Attribut <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>.
+Darin wurden dann von oben nach unten ein strftime, ein break gefolgt von einem weiteren strftime Widget eingefügt.
+Das obere strftime Widget, dass die Zeit anzeigt hat folgende Parameter:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>lang=&quot;de&quot;
+format=&quot;%H:%M&quot;
+class=&quot;timebig&quot;
+</pre></div>
+</div>
+<p>Das untere strftime, dass das Datum anzeigt hat folgende Parameter:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>lang=&quot;de&quot;
+format=&quot;%A, %d. %B %Y&quot;
+class=&quot;timedate&quot;
+</pre></div>
+</div>
+<p>In der config.xml sieht dieser Abschnitt wie folgt aus:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Aktuelle Zeit&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%H:%M&quot;</span> <span class="na">class=</span><span class="s">&quot;timebig&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/strftime&gt;</span>
+        <span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y&quot;</span> <span class="na">class=</span><span class="s">&quot;timedate&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/strftime&gt;</span>
+    <span class="nt">&lt;/group&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
+<p>Für die Formatierung (Farbe, Schriftgrösse und Schriftart) muss im Visu Verzeichniss unter
+<code class="docutils literal notranslate"><span class="pre">/designs/metal/custom.css</span></code> noch folgender Abschnitt eingefügt werden:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#75d5ff</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">12</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">3</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p class="rubric">Fußnoten</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../speech/index.html" class="btn btn-neutral float-left" title="Das Speech Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../timeout/index.html" class="btn btn-neutral float-right" title="Das Timeout Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

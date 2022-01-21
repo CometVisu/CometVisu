@@ -1,0 +1,1014 @@
+{
+  "className": "qx.ui.layout.Flow",
+  "packageName": "qx.ui.layout",
+  "name": "Flow",
+  "superClass": "qx.ui.layout.Abstract",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 99,
+        "column": 0
+      },
+      "end": {
+        "line": 395,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A basic layout, which supports positioning of child widgets in a 'flowing'\n manner, starting at the container's top/left position, placing children left to right\n (like a HBox) until the there's no remaining room for the next child. When\n out of room on the current line of elements, a new line is started, cleared\n below the tallest child of the preceding line -- a bit like using 'float'\n in CSS, except that a new line wraps all the way back to the left.\n<em>Features</em>\n </p>\n<ul>\n <li> Reversing children order </li>\n <li> Manual line breaks </li>\n <li> Horizontal alignment of lines </li>\n <li> Vertical alignment of individual widgets within a line </li>\n <li> Margins with horizontal margin collapsing </li>\n <li> Horizontal and vertical spacing </li>\n <li> Height for width calculations </li>\n <li> Auto-sizing </li>\n </ul>\n<p><em>Item Properties</em>\n </p>\n<ul>\n <li><strong>lineBreak</strong> <em>(Boolean)</em>: If set to <code>true</code>\n   a forced line break will happen after this child widget.\n </li>\n <li><strong>stretch</strong> <em>(Boolean)</em>: If set to <code>true</code>\n   the widget will be stretched to the remaining line width. This requires\n   lineBreak to be true.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the Flow layout.\n </p>\n<pre class=\"javascript\">\n  var flowlayout = new qx.ui.layout.Flow();\n  flowlayout.setAlignX( \"center\" );\n  var container = new qx.ui.container.Composite(flowlayout);\n  this.getRoot().add(container, {edge: 0});\n  var button1 = new qx.ui.form.Button(\"1. First Button\", \"flowlayout/test.png\");\n  container.add(button1);\n  var button2 = new qx.ui.form.Button(\"2. Second longer Button...\", \"flowlayout/test.png\");\n\n  container.add(button2, {lineBreak: true});\n  var button3 = new qx.ui.form.Button(\"3rd really, really, really long Button\", \"flowlayout/test.png\");\n  button3.setHeight(100);\n  container.add(button3);\n  var button4 = new qx.ui.form.Button(\"Number 4\", \"flowlayout/test.png\");\n  button4.setAlignY(\"bottom\");\n  container.add(button4);\n  var button5 = new qx.ui.form.Button(\"20px Margins around the great big 5th button!\");\n  button5.setHeight(100);\n  button5.setMargin(20);\n  container.add(button5, {lineBreak: true});\n  var button6 = new qx.ui.form.Button(\"Number 6\", \"flowlayout/test.png\");\n  button6.setAlignY(\"middle\");\n  container.add(button6);\n  var button7 = new qx.ui.form.Button(\"7th a wide, short button\", \"flowlayout/test.png\");\n  button7.setMaxHeight(20);\n  container.add(button7);\n </pre>\n<p><em>External Documentation</em>\n <a href='https://qooxdoo.org/documentation/#/desktop/layout/flow.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 116,
+        "column": 14
+      },
+      "end": {
+        "line": 131,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "spacingX {Integer?0} The spacing between child widgets {@link #spacingX}.",
+          "paramName": "spacingX",
+          "description": " The spacing between child widgets {@link #spacingX}.",
+          "optional": true,
+          "defaultValue": "0",
+          "type": "Integer"
+        },
+        {
+          "name": "@param",
+          "body": "spacingY {Integer?0} The spacing between the lines {@link #spacingY}.",
+          "paramName": "spacingY",
+          "description": " The spacing between the lines {@link #spacingY}.",
+          "optional": true,
+          "defaultValue": "0",
+          "type": "Integer"
+        },
+        {
+          "name": "@param",
+          "body": "alignX {String?\"left\"} Horizontal alignment of the whole children\n     block {@link #alignX}.",
+          "paramName": "alignX",
+          "description": " Horizontal alignment of the whole children\n     block {@link #alignX}.",
+          "optional": true,
+          "defaultValue": "\"left\"",
+          "type": "String"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of the whole children block. The horizontal\n alignment of the child is completely ignored in HBoxes (\n {@link qx.ui.core.LayoutItem#alignX}).</p>"
+          }
+        ]
+      },
+      "name": "alignX",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": "left",
+      "possibleValues": [
+        "left",
+        "center",
+        "right"
+      ],
+      "defaultValue": "left"
+    },
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4
+        },
+        "end": {
+          "line": 164,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of each child. Can be overridden through\n {@link qx.ui.core.LayoutItem#alignY}.</p>"
+          }
+        ]
+      },
+      "name": "alignY",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": "top",
+      "possibleValues": [
+        "top",
+        "middle",
+        "bottom"
+      ],
+      "defaultValue": "top"
+    },
+    "spacingX": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal spacing between two children</p>"
+          }
+        ]
+      },
+      "name": "spacingX",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
+    },
+    "spacingY": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The vertical spacing between the lines.</p>"
+          }
+        ]
+      },
+      "name": "spacingY",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
+    },
+    "reversed": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the actual children list should be laid out in reversed order.</p>"
+          }
+        ]
+      },
+      "name": "reversed",
+      "propertyType": "new",
+      "apply": "_applyLayoutChange",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "verifyLayoutProperty": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 6
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "connectToWidget": {
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4
+        },
+        "end": {
+          "line": 235,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "renderLayout": {
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4
+        },
+        "end": {
+          "line": 270,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The FlowLayout tries to add as many Children as possible to the current 'Line'\n and when it sees that the next Child won't fit, it starts on a new Line, continuing\n until all the Children have been added.\n To enable alignX \"left\", \"center\", \"right\" renderLayout has to calculate the positions\n of all a Line's children before it draws them.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "availWidth {Integer} Final width available for the content (in pixel)",
+            "paramName": "availWidth",
+            "description": " Final width available for the content (in pixel)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "availHeight {Integer} Final height available for the content (in pixel)",
+            "paramName": "availHeight",
+            "description": " Final height available for the content (in pixel)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "padding {Map} Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
+            "paramName": "padding",
+            "description": " Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "__renderLine": {
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4
+        },
+        "end": {
+          "line": 323,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Render a line in the flow layout</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "line {Map} A line configuration as returned by\n    {@link LineSizeIterator#computeNextLine}.",
+            "paramName": "line",
+            "description": " A line configuration as returned by\n    {@link LineSizeIterator#computeNextLine}.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "lineTop {Integer} The line's top position",
+            "paramName": "lineTop",
+            "description": " The line's top position",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "availWidth {Integer} The available line width",
+            "paramName": "availWidth",
+            "description": " The available line width",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "padding {Map} Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
+            "paramName": "padding",
+            "description": " Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_computeSizeHint": {
+      "location": {
+        "start": {
+          "line": 327,
+          "column": 4
+        },
+        "end": {
+          "line": 329,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "hasHeightForWidth": {
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4
+        },
+        "end": {
+          "line": 335,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "getHeightForWidth": {
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4
+        },
+        "end": {
+          "line": 341,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "getLastLineChildren": {
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4
+        },
+        "end": {
+          "line": 361,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list of children fitting in the last row of the given width.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Number} The width to use for the calculation.",
+            "paramName": "width",
+            "description": " The width to use for the calculation.",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} List of children in the first row.",
+            "type": "Array",
+            "description": " List of children in the first row."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__computeSize": {
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute the preferred size optionally constrained by the available width</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "availWidth {Integer} The available width",
+            "paramName": "availWidth",
+            "description": " The available width",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the preferred height and width of the layout",
+            "type": "Map",
+            "description": " Map containing the preferred height and width of the layout"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getAlignX": {
+      "type": "function",
+      "name": "getAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignX"
+          }
+        ]
+      }
+    },
+    "setAlignX": {
+      "type": "function",
+      "name": "setAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignX"
+          }
+        ]
+      }
+    },
+    "resetAlignX": {
+      "type": "function",
+      "name": "resetAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
+    },
+    "getAlignY": {
+      "type": "function",
+      "name": "getAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignY"
+          }
+        ]
+      }
+    },
+    "setAlignY": {
+      "type": "function",
+      "name": "setAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignY"
+          }
+        ]
+      }
+    },
+    "resetAlignY": {
+      "type": "function",
+      "name": "resetAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
+    },
+    "getSpacingX": {
+      "type": "function",
+      "name": "getSpacingX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>spacingX</code>.\n\nFor further details take a look at the property definition: {@link #spacingX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for spacingX"
+          }
+        ]
+      }
+    },
+    "setSpacingX": {
+      "type": "function",
+      "name": "setSpacingX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>spacingX</code>.\n\nFor further details take a look at the property definition: {@link #spacingX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for spacingX"
+          }
+        ]
+      }
+    },
+    "resetSpacingX": {
+      "type": "function",
+      "name": "resetSpacingX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>spacingX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacingX}."
+          }
+        ]
+      }
+    },
+    "getSpacingY": {
+      "type": "function",
+      "name": "getSpacingY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>spacingY</code>.\n\nFor further details take a look at the property definition: {@link #spacingY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for spacingY"
+          }
+        ]
+      }
+    },
+    "setSpacingY": {
+      "type": "function",
+      "name": "setSpacingY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>spacingY</code>.\n\nFor further details take a look at the property definition: {@link #spacingY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for spacingY"
+          }
+        ]
+      }
+    },
+    "resetSpacingY": {
+      "type": "function",
+      "name": "resetSpacingY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>spacingY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacingY}."
+          }
+        ]
+      }
+    },
+    "getReversed": {
+      "type": "function",
+      "name": "getReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for reversed"
+          }
+        ]
+      }
+    },
+    "isReversed": {
+      "type": "function",
+      "name": "isReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for reversed"
+          }
+        ]
+      }
+    },
+    "setReversed": {
+      "type": "function",
+      "name": "setReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for reversed"
+          }
+        ]
+      }
+    },
+    "resetReversed": {
+      "type": "function",
+      "name": "resetReversed",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>reversed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

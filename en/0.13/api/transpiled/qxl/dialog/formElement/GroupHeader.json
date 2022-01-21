@@ -1,0 +1,54 @@
+{
+  "className": "qxl.dialog.formElement.GroupHeader",
+  "packageName": "qxl.dialog.formElement",
+  "name": "GroupHeader",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 20,
+        "column": 0
+      },
+      "end": {
+        "line": 38,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "type": "class",
+  "statics": {
+    "register": {
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 4
+        },
+        "end": {
+          "line": 27,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_registration": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

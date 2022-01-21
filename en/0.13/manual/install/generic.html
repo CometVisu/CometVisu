@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prerequisites for the installation &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/install/generic.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Install eibd" href="backends/install-eibd.html" />
+    <link rel="prev" title="Installation of the CometVisu" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites for the installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#backend-knxd-eibd-or-openhab">Backend - knxd/eibd or OpenHAB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html">Install eibd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backends/install-eibd.html#install-knxd">Install knxd</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graphentool-rrdtool">Graphentool - RRDtool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="install-rrd.html">Installation of RRD support</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#web-server">Web server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lighttpd">lighttpd</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-cometvisu">Installing CometVisu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-installed-cometvisu">Testing the installed CometVisu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation on WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation on Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Developer version on the Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation on a Debian System with openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Installation of the Docker container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation on the Timberwolf server with the app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-on-the-timberwolf-with-portainer">Installation on the Timberwolf with Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Installation on a generic Linux system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nas.html">Installation on a NAS system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation-on-mobile-devices">Installation on mobile devices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Installation of the CometVisu</a> &raquo;</li>
+      <li>Prerequisites for the installation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="prerequisites-for-the-installation">
+<span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Permalink to this headline">¶</a></h1>
+<p>If WireGate 1.1 or later is used, CometVisu 0.8.5 is already
+preinstalled and can be easily used. To install the old
+CometVisu on a WireGate, there are :doc: <cite>further information &lt;wiregate&gt;</cite>.</p>
+<p>To be able to use the CometVisu the system needs to
+fulfill a few prerequisites.</p>
+<p>These are</p>
+<ul class="simple">
+<li>a backend to connect the KNX bus</li>
+<li>[optional] rrdtool for diagrams</li>
+<li>[optional] InfluxDB for diagrams</li>
+<li>a web server with (optional but recommended) PHP support</li>
+<li>the CometVisu software package</li>
+</ul>
+<div class="section" id="backend-knxd-eibd-or-openhab">
+<h2>Backend - knxd/eibd or OpenHAB<a class="headerlink" href="#backend-knxd-eibd-or-openhab" title="Permalink to this headline">¶</a></h2>
+<p>As a backend an instance of <em>eibd</em> or its successor
+<a class="reference external" href="https://github.com/knxd/knxd">knxd</a> can be used as well an
+<a class="reference external" href="https://www.openhab.org/">OpenHAB</a> installation.</p>
+<p>The installation of the backend is described under
+<a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a> .</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="graphentool-rrdtool">
+<h2>Graphentool - RRDtool<a class="headerlink" href="#graphentool-rrdtool" title="Permalink to this headline">¶</a></h2>
+<p>An optional but much-recommended component is rrdtool to
+provide the data for creating graphs. There are many ways
+to pass data to rrds and the use of rrdtool is documented
+in depth. The installation of rrdtool for CometVisu is
+described under <a class="reference internal" href="install-rrd.html"><span class="doc">RRDtool</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="web-server">
+<h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
+<p>The relevant files to connect via eibd/knxd are CGI programms, usually
+located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
+of the web server. This could be enforced by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x /usr/lib/cgi-bin/r
+chmod +x /usr/lib/cgi-bin/l
+chmod +x /usr/lib/cgi-bin/w
+chmod +x /usr/lib/cgi-bin/rrdfetch
+</pre></div>
+</div>
+<p>When these files are symbolic links also the link targets (located e.g. at
+<code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/share/knxd/examples/bin</span></code>) must be executable
+as well.</p>
+<p>To be able to use additional components like the editor the web server must
+support PHP.</p>
+<div class="section" id="lighttpd">
+<h3>lighttpd<a class="headerlink" href="#lighttpd" title="Permalink to this headline">¶</a></h3>
+<p>For the lighttpd web server an example configuration is given. (Other web
+servers are also possible, of course). Please make sure that you are
+changing the example parameters to fit your need.</p>
+<p>To install lighttpd on a Debian or Ubuntu system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install lighttpd
+</pre></div>
+</div>
+<p>/etc/lighttpd/lighttpd.conf</p>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_access&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;mod_redirect&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="c1">#       &quot;mod_rewrite&quot;,</span>
+<span class="p">)</span><span class="w"></span>
+
+<span class="k">server.document-root</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/www&quot;</span><span class="w"></span>
+<span class="k">server.upload-dirs</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;/var/cache/lighttpd/uploads&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">server.errorlog</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/log/lighttpd/error.log&quot;</span><span class="w"></span>
+<span class="k">server.pid-file</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/run/lighttpd.pid&quot;</span><span class="w"></span>
+<span class="k">server.username</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;www-data&quot;</span><span class="w"></span>
+<span class="k">server.groupname</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;www-data&quot;</span><span class="w"></span>
+
+<span class="k">index-file.names</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;index.php&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;index.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s2">&quot;index.htm&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;default.htm&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                               </span><span class="s2">&quot; index.lighttpd.html&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="k">url.access-deny</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;~&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.inc&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="k">static-file.exclude-extensions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;.php&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.pl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.fcgi&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="c1">## Use ipv6 if available</span>
+<span class="c1">#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;</span>
+
+<span class="k">dir-listing.encoding</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;utf-8&quot;</span><span class="w"></span>
+<span class="k">server.dir-listing</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;enable&quot;</span><span class="w"></span>
+
+<span class="k">compress.cache-dir</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/cache/lighttpd/compress/&quot;</span><span class="w"></span>
+<span class="k">compress.filetype</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;application/x-javascript&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/css&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/html&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text/plain&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="k">include_shell</span><span class="w"> </span><span class="s2">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span><span class="w"></span>
+<span class="k">include_shell</span><span class="w"> </span><span class="s2">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/etc/lighttpd/conf-enabled/10-cgi.conf</p>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
+
+<span class="k">server.modules</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;mod_cgi&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="nb">$HTTP</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s2">&quot;^/cgi-bin/&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">cgi.assign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">## Warning this represents a security risk, as it allow to execute any file</span>
+<span class="c1">## with a .pl/.py even outside of /usr/lib/cgi-bin.</span>
+<span class="c1">#</span>
+<span class="k">cgi.assign</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.pl&quot;</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/perl&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.php&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;.py&quot;</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/etc/lighttpd/conf-enabled/11-cgi-cometvisu.conf</p>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
+<span class="k">alias.url</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;/cgi-bin/&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">compress.filetype</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/xml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="installing-cometvisu">
+<h2>Installing CometVisu<a class="headerlink" href="#installing-cometvisu" title="Permalink to this headline">¶</a></h2>
+<p>The CometVisu can be downloaded at <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a> and
+unpacked at the web root, most likely in it’s own directory (e.g.
+<code class="docutils literal notranslate"><span class="pre">/var/www/visu/</span></code>).</p>
+<p>The released versions of the CometVisu are located at
+<a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.</p>
+<p>A documentation of an install procedure for the  <a class="reference external" href="http://de.wikipedia.org/wiki/Raspberry_Pi">Raspberry
+Pi</a> is
+avilable under <a class="reference internal" href="raspberry.html"><span class="doc">CometVisu auf Raspberry Pi</span></a>.</p>
+</div>
+<div class="section" id="testing-the-installed-cometvisu">
+<h2>Testing the installed CometVisu<a class="headerlink" href="#testing-the-installed-cometvisu" title="Permalink to this headline">¶</a></h2>
+<p>Just open <a class="reference external" href="http://MyServer/visu/">http://MyServer/visu/</a> in the browser.</p>
+<p>Have fun!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Installation of the CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="backends/install-eibd.html" class="btn btn-neutral float-right" title="Install eibd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

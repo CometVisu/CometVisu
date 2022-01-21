@@ -1,0 +1,50 @@
+{
+  "className": "qxl.apiviewer.Theme",
+  "packageName": "qxl.apiviewer",
+  "name": "Theme",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 35,
+        "column": 5
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Contemporary Theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "themeMeta": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 4
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "themeMetaMap": {
+      "color": "qx.theme.indigo.Color",
+      "decoration": "qx.theme.indigo.Decoration",
+      "font": "qx.theme.indigo.Font",
+      "appearance": "qxl.apiviewer.Appearance",
+      "icon": "qx.theme.icon.Tango"
+    }
+  },
+  "descendants": []
+}

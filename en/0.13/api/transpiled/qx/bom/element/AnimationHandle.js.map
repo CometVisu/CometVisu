@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/element/AnimationHandle.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "event",
+    "Emitter",
+    "construct",
+    "css",
+    "core",
+    "Environment",
+    "get",
+    "__playState",
+    "__playing",
+    "addListenerOnce",
+    "__setEnded",
+    "events",
+    "members",
+    "__ended",
+    "isPlaying",
+    "isEnded",
+    "isPaused",
+    "el",
+    "style",
+    "pause",
+    "$$animation",
+    "animationId",
+    "bom",
+    "element",
+    "AnimationJs",
+    "play",
+    "i",
+    "undefined",
+    "stop",
+    "jsAnimation",
+    "name",
+    "stopped",
+    "AnimationHandle"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * This is a simple handle, which will be returned when an animation is\n * started using the {@link qx.bom.element.Animation#animate} method. It\n * basically controls the animation.\n *\n * @ignore(qx.bom.element.AnimationJs)\n */\nqx.Bootstrap.define(\"qx.bom.element.AnimationHandle\",\n{\n  extend : qx.event.Emitter,\n\n\n  construct : function() {\n    var css = qx.core.Environment.get(\"css.animation\");\n    this.__playState = css && css[\"play-state\"];\n    this.__playing = true;\n    this.addListenerOnce(\"end\", this.__setEnded, this);\n  },\n\n\n  events: {\n    /** Fired when the animation started via {@link qx.bom.element.Animation}. */\n    \"start\" : \"Element\",\n\n    /**\n     * Fired when the animation started via {@link qx.bom.element.Animation} has\n     * ended.\n     */\n    \"end\" : \"Element\",\n\n    /** Fired on every iteration of the animation. */\n    \"iteration\" : \"Element\"\n  },\n\n\n  members :\n  {\n    __playState : null,\n    __playing : false,\n    __ended : false,\n\n\n    /**\n     * Accessor of the playing state.\n     * @return {Boolean} <code>true</code>, if the animations is playing.\n     */\n    isPlaying : function() {\n      return this.__playing;\n    },\n\n\n    /**\n     * Accessor of the ended state.\n     * @return {Boolean} <code>true</code>, if the animations has ended.\n     */\n    isEnded : function() {\n      return this.__ended;\n    },\n\n\n    /**\n     * Accessor of the paused state.\n     * @return {Boolean} <code>true</code>, if the animations is paused.\n     */\n    isPaused : function() {\n      return this.el.style[this.__playState] == \"paused\";\n    },\n\n\n    /**\n     * Pauses the animation, if running. If not running, it will be ignored.\n     */\n    pause : function() {\n      if (this.el) {\n        this.el.style[this.__playState] = \"paused\";\n        this.el.$$animation.__playing = false;\n        // in case the animation is based on JS\n        if (this.animationId && qx.bom.element.AnimationJs) {\n          qx.bom.element.AnimationJs.pause(this);\n        }\n      }\n    },\n\n\n    /**\n     * Resumes an animation. This does not start the animation once it has ended.\n     * In this case you need to start a new Animation.\n     */\n    play : function() {\n      if (this.el) {\n        this.el.style[this.__playState] = \"running\";\n        this.el.$$animation.__playing = true;\n        // in case the animation is based on JS\n        if (this.i != undefined && qx.bom.element.AnimationJs) {\n          qx.bom.element.AnimationJs.play(this);\n        }\n      }\n    },\n\n\n    /**\n     * Stops the animation if running.\n     */\n    stop : function() {\n      if (this.el && qx.core.Environment.get(\"css.animation\") && !this.jsAnimation) {\n        this.el.style[this.__playState] = \"\";\n        this.el.style[qx.core.Environment.get(\"css.animation\").name] = \"\";\n        this.el.$$animation.__playing = false;\n        this.el.$$animation.__ended = true;\n      }\n      // in case the animation is based on JS\n      else if (this.jsAnimation) {\n        this.stopped = true;\n        qx.bom.element.AnimationJs.stop(this);\n      }\n    },\n\n    /**\n     * Set the animation state to ended\n     */\n    __setEnded : function(){\n      this.__playing = false;\n      this.__ended = true;\n    }\n  }\n});\n"
+  ]
+}

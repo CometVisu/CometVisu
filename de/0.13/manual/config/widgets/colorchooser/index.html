@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Der ColorChooser &mdash; CometVisu</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/widgets/colorchooser/index.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../search.html" />
+    <link rel="next" title="Das DesignToggle Widget" href="../designtoggle/index.html" />
+    <link rel="prev" title="Das Audio Widget" href="../audio/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu<img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Bedienbare Widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../audio/index.html">Das Audio Widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Der ColorChooser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../designtoggle/index.html">Das DesignToggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../imagetrigger/index.html">Das ImageTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infoaction/index.html">Das InfoAction Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../infotrigger/index.html">Das InfoTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../multitrigger/index.html">Das MultiTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pagejump/index.html">Das PageJump Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pushbutton/index.html">Das PushButton Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refresh/index.html">Das Refresh Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reload/index.html">Das Reload Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../slide/index.html">Das Slide Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../switch/index.html">Das Switch Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../toggle/index.html">Das Toggle Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trigger/index.html">Das Trigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../urltrigger/index.html">Das UrlTrigger Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notificationcenterbadge/index.html">Das NotificationCenterBadge Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Bedienbare Widgets</a> &raquo;</li>
+      <li>Der ColorChooser</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="der-colorchooser">
+<span id="colorchooser"></span><h1>Der ColorChooser<a class="headerlink" href="#der-colorchooser" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Autor</strong>: Christian Mayer</div>
+<div class="line"><strong>Verfügbar seit Version</strong>: 2012</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dem ColorChooser lassen sich Farben auswählen und anzeigen, beispielsweise
+für eine Effektbeleuchtung. Sowohl eine RGB-Beleuchtung mit roten, grünen und
+blauen Lichtern, aber auch eine RGBW-Beleuchtung mit zusätzlichem weißen
+Kanal ist möglich.</p>
+<div class="figure align-default" id="id2">
+<img alt="Der ColorChooser" src="../../../_images/colorchooser_example.png" />
+<p class="caption"><span class="caption-text">Der ColorChooser</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box;T:2500-15000;Y&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="einfacher-modus">
+<h3>Einfacher Modus<a class="headerlink" href="#einfacher-modus" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für die meisten Anwendungsfälle wird der einfache Modus ausreichen, da hier
+zugunsten einer einfachen Konfiguration auf die Details einer farbverbindlichen
+Wiedergabe verzichtet wird.</p>
+<div class="section" id="widget-komponenten-slider">
+<h4>Widget-Komponenten: Slider<a class="headerlink" href="#widget-komponenten-slider" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Der ColorChooser bietet verschiedene Möglichkeiten und Kombinationen um eine
+Farbe auzuwählen und anzuzeigen. So gibt es Slider für eine direkte Auswahl, aber
+aber solche für eine der menschlischen Wahrnehmung besser entsprechenden
+Darstellung:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+<td>Roter Kanal - direkte Ansteuerung einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+<td>Grüner Kanal - direkte Ansteuerung einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+<td>Blauer Kanal - direkte Ansteuerung einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
+<td>Roter Kanal - direkte Ansteuerung einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
+<td>Grüner Kanal - direkte Ansteuerung einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
+<td>Blauer Kanal - direkte Ansteuerung einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
+<td>Weißer Kanal - direkte Ansteuerung einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
+<td>hue - Farbton des HSV-Farbraums, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
+<td>saturation - Sättigung des HSV-Farbraums, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
+<td>value - Helligkeit des HSV-Farbraums, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">T</span></code></td>
+<td>Farbtemperatur für Weiß, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
+<td>Helligkeit im xyY-Farbraum, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-L</span></code></td>
+<td>lightness - Helligkeit im L*C*h° CIE Farbraum, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-C</span></code></td>
+<td>chroma - Buntheit im L*C*h° CIE Farbraum, indirekte Ansteuerung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-h</span></code></td>
+<td>hue - Farbtonwinkel im L*C*h° CIE Farbraum, indirekte Ansteuerung</td>
+</tr>
+</tbody>
+</table>
+<p>Der Slider für die Farbtemperatur nimmt eine Sonderrolle ein, da dieser
+gleichzeitig den Farbton als auch die Sättigung so einstellt, dass diese
+Farbtemperatur mit der Beleuchtung erricht wird. Soll die Farbtemperatur noch
+um einen Slider für die Helligkeit ergänzt werden, so ist hierfür <code class="docutils literal notranslate"><span class="pre">Y</span></code> am
+besten geeignet.</p>
+<p>Bei dem Farbtemperatur-Slider kann durch einen Doppelpunkt getrennt der
+Bereich für die Farbtemperaturen festgelegt werden. So zeigt <code class="docutils literal notranslate"><span class="pre">T:2000-10000</span></code>
+einen Slider der von 2000 Kelvin bis 10000 Kelvin reicht.</p>
+<div class="section" id="beispiel-rgb-slider">
+<h5>Beispiel: RGB-Slider<a class="headerlink" href="#beispiel-rgb-slider" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id3">
+<img alt="ColorChooser, RGB-Slider" src="../../../_images/colorchooser_slider_rgb.png" />
+<p class="caption"><span class="caption-text">ColorChooser, RGB-Slider</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGB-r;RGB-g;RGB-b&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser RGB-Slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-rgbw-slider">
+<h5>Beispiel: RGBW-Slider<a class="headerlink" href="#beispiel-rgbw-slider" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id4">
+<img alt="ColorChooser, RGBW-Slider" src="../../../_images/colorchooser_slider_rgbw.png" />
+<p class="caption"><span class="caption-text">ColorChooser, RGBW-Slider</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;RGBW-r;RGBW-g;RGBW-b;RGBW-w&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser RGBW-Slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;RGBW-w&quot;</span><span class="nt">&gt;</span>1/2/62<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-hsv-slider">
+<h5>Beispiel: HSV-Slider<a class="headerlink" href="#beispiel-hsv-slider" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id5">
+<img alt="ColorChooser, HSV-Slider" src="../../../_images/colorchooser_slider_hsv.png" />
+<p class="caption"><span class="caption-text">ColorChooser, HSV-Slider</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;h;s;v&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser HSV-Slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;h&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;s&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;v&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-farbtemperatur-und-helligkeits-slider">
+<h5>Beispiel: Farbtemperatur- und Helligkeits-Slider<a class="headerlink" href="#beispiel-farbtemperatur-und-helligkeits-slider" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id6">
+<img alt="ColorChooser, Farbtemperatur- und Helligkeits-Slider" src="../../../_images/colorchooser_slider_TY.png" />
+<p class="caption"><span class="caption-text">ColorChooser, Farbtemperatur- und Helligkeits-Slider</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;T:2000-10000;Y&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser T- und Y-Slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-lch-slider">
+<h5>Beispiel: LCh-Slider<a class="headerlink" href="#beispiel-lch-slider" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id7">
+<img alt="ColorChooser, LCh-Slider" src="../../../_images/colorchooser_slider_LCh.png" />
+<p class="caption"><span class="caption-text">ColorChooser, LCh-Slider</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-L;LCh-C;LCh-h&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh-Slider<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="widget-komponenten-farbwahlrad">
+<h4>Widget-Komponenten: Farbwahlrad<a class="headerlink" href="#widget-komponenten-farbwahlrad" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Statt der einzelnen Slider gibt es auch kombinierende, komplexere Möglichkeiten:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">box</span></code></td>
+<td>Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, HSV-Farbraum</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">triangle</span></code></td>
+<td>Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, HSV-Farbraum</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">LCh-box</span></code></td>
+<td>Farbwahlrad mit Quadratischem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code></td>
+<td>Farbwahlrad mit dreieckigem Helligkeits- und Sättigungswähler, L*C*h° CIE Farbraum</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="beispiel-kombinierter-wahler-box">
+<h5>Beispiel: kombinierter Wähler <code class="docutils literal notranslate"><span class="pre">box</span></code><a class="headerlink" href="#beispiel-kombinierter-wahler-box" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id8">
+<img alt="ColorChooser, kombinierte Wähler: box" src="../../../_images/colorchooser_complex_box.png" />
+<p class="caption"><span class="caption-text">ColorChooser, kombinierte Wähler: box</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser box<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-kombinierter-wahler-triangle">
+<h5>Beispiel: kombinierter Wähler <code class="docutils literal notranslate"><span class="pre">triangle</span></code><a class="headerlink" href="#beispiel-kombinierter-wahler-triangle" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id9">
+<img alt="ColorChooser, kombinierte Wähler: triangle" src="../../../_images/colorchooser_complex_triangle.png" />
+<p class="caption"><span class="caption-text">ColorChooser, kombinierte Wähler: triangle</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser triangle<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-kombinierter-wahler-lch-box">
+<h5>Beispiel: kombinierter Wähler <code class="docutils literal notranslate"><span class="pre">LCh-box</span></code><a class="headerlink" href="#beispiel-kombinierter-wahler-lch-box" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id10">
+<img alt="ColorChooser, kombinierte Wähler: LCh-box" src="../../../_images/colorchooser_complex_LCh_box.png" />
+<p class="caption"><span class="caption-text">ColorChooser, kombinierte Wähler: LCh-box</span><a class="headerlink" href="#id10" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-box&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh-box<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiel-kombinierter-wahler-lch-triangle">
+<h5>Beispiel: kombinierter Wähler <code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code><a class="headerlink" href="#beispiel-kombinierter-wahler-lch-triangle" title="Link zu dieser Überschrift">¶</a></h5>
+<div class="figure align-default" id="id11">
+<img alt="ColorChooser, kombinierte Wähler: LCh-triangle" src="../../../_images/colorchooser_complex_LCh_triangle.png" />
+<p class="caption"><span class="caption-text">ColorChooser, kombinierte Wähler: LCh-triangle</span><a class="headerlink" href="#id11" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span> <span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>ColorChooser LCh-triangle<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Im einfachen Modus sollten das Farbwahlrad im HSV-Farbraum benutzt
+werden, im professionellen Modus, wenn die Farborte der einzelnen Farben
+konfiguriert wurden, im L*C*h°-Farbraum.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dim-kurven">
+<h4>Dim-Kurven<a class="headerlink" href="#dim-kurven" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Das menschliche Auge nimmt Helligkeit nicht linear sondern logarithmisch war,
+dadurch ist es möglich sowohl in dunkler Nacht als auch mittags bei gleißendem
+Sonnenschein sehen zu können. Verschiedene Beleuchtungssysteme, wie beispielsweise
+DALI, berücksichtigen diese Eigenschaft des Auges und verwenden eine nicht lineare
+Dim-Kurve um eine bessere Übereinstimmung zwischen der eingestellten und der
+wahrgenommenen Helligkeit zu erreichen. Dieses grundsätzlich sinnvolle Verhalten
+ist jedoch bei der Mischung von Farben nachteilig, da hier ein lineares Verhalten
+benötigt wird.</p>
+<p>Durch die Attribute <code class="docutils literal notranslate"><span class="pre">r_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">g_curve</span></code>, <code class="docutils literal notranslate"><span class="pre">b_curve</span></code> und <code class="docutils literal notranslate"><span class="pre">w_curve</span></code> lassen sich
+die Verwendeten Dim-Kurven einstellen um das Verhalten des Beleuchtungssystems
+zu kompensieren. Neben der für den professionen Modus gedachten Angabe einer
+Dim-Kurve aus Messwerten einer Profilierung lassen sich mit den Schlüsselwerten
+<code class="docutils literal notranslate"><span class="pre">linear</span></code>, <code class="docutils literal notranslate"><span class="pre">exponential</span></code> und <code class="docutils literal notranslate"><span class="pre">logarithmic</span></code> die wichtigsten Kurventypen einstellen.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Die Angabe ein Dim-Kurve wird nur benötigt, wenn die Kommunikation in
+Farbkomponenten (<code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> und ggf. <code class="docutils literal notranslate"><span class="pre">w</span></code>) erfolgt. Wird statt dessen eine
+komplette Farbe als <code class="docutils literal notranslate"><span class="pre">HSV</span></code>, oder im optimalen Fall, als <code class="docutils literal notranslate"><span class="pre">xyY</span></code>-Farbe übertragen,
+so ist die Angabe einer Dim-Kurve nicht notwendig.</p>
+</div>
+<p>Welcher Wert richtig ist lässt sich aus der Dokumentation der Beleuchtssystems
+entnehmen, wobei hier sowohl die Lampen, die Treiber als auch das Bus-Gateway
+zu berücksichtigen sind, da hier an jeder Stelle ein nicht lineares Verhalten
+möglich sein kann.</p>
+<p>Ob die verwendete Kurve korrekt ist lässt sich grob auch ohne Messgerät leicht
+abschätzen. Hierzu muss der rote Kanal auf 100%, der grüne auf 50% und der blaue
+auf 0% eingestellt werden (der ggf. vorhandene weiße Kanal muss auch auf 0% stehen).
+Die Beleuchtungsfarbe sollte nun, wenn die Dim-Kurven richtig eingestellt sind,
+einem satten Orange entsprechen.</p>
+<p>Sollte die Farbe nicht passen, so ist real eingestellte Farbe (ohne dass eine
+Dim-Kurve konfiguriert wurde) mit dieser Tabelle zu vergleichen und der
+Wert aus der letzen Spalte als Dim-Kurve zu verwenden:</p>
+<style>
+   .exporange    {background-color:#ffe500; color:#ffe500;}
+   .linearorange {background-color:#ff7f00; color:#ff7f00;}
+   .logorange    {background-color:#ff0800; color:#ff0800;}
+</style><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="26%" />
+<col width="48%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Soll-Farbe</td>
+<td>reale Farbe</td>
+<td>zur Kompensation zu verwendende Dim-Kurve</td>
+</tr>
+<tr class="row-even"><td><span class="linearorange">——</span></td>
+<td><span class="logorange">——</span></td>
+<td><cite>logarithmic</cite></td>
+</tr>
+<tr class="row-odd"><td><span class="linearorange">——</span></td>
+<td><span class="linearorange">——</span></td>
+<td><cite>linear</cite></td>
+</tr>
+<tr class="row-even"><td><span class="linearorange">——</span></td>
+<td><span class="exporange">——</span></td>
+<td><cite>exponential</cite></td>
+</tr>
+</tbody>
+</table>
+<p>Meist reicht die Einstellung der korrekten Dim-Kurve aus, um bereits eine gute
+Farbdarstellung zu bekommen. Sollte es jedoch auch nach einer Korrektur bei einer
+RGB-Beleuchtung, wenn die Helligkeit auf 100% und die Sättigung auf 0% steht,
+einen Farbstich geben und nicht neutral Weiß leuchten, so kann über die
+<code class="docutils literal notranslate"><span class="pre">r_strength</span></code>, <code class="docutils literal notranslate"><span class="pre">g_strength</span></code> und <code class="docutils literal notranslate"><span class="pre">b_strength</span></code> Werte eine Korrektur erfolgen.
+Dies ist auch bei einer RGBW-Beleuchtung möglich, jedoch wird das Abschätzen
+der Werte noch schwieriger als bei einer RGB-Beleuchtung, so dass hier am
+besten eine Messung der realen Werte durchgeführt werden sollte. Dies wird im
+Abschnitt für den professionellen Modus beschrieben.</p>
+</div>
+</div>
+<div class="section" id="professioneller-modus">
+<h3>Professioneller Modus<a class="headerlink" href="#professioneller-modus" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für professionelle Anwendungen wie in der Architektur, Kunstgallerien oder
+Yachten lässt sich der einfache Modus leicht auf eine farbverbindliche Nutzung
+erweitern.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Beste Ergebnisse benötigen einen kalibrierten Bildschirm. Da für die
+Darstellung bewusst nur der sRGB-Farbraum verwendet wird sollte aber auch auf
+unkalibrierten Geräten (wie z.B. Smartphones und Tablets) eine akzeptable
+Darstellung möglich sein. Trotz der Einschränkung der Bildschirmdarstellung auf
+sRGB lässt sich durch den ColorChooser der komplette Farbraum, der durch die
+Leuchtmittel möglich ist, nutzen.</p>
+</div>
+<p>Der professionelle Modus unterscheidet sich vom einfachen Modus dadurch, dass
+die Farborte des verwendeten Leuchtmittels mit angegeben werden, so wie deren
+Dim-Verhalten.</p>
+<p>Die besten Ergebnisse werden erreicht, wenn für den roten, grünen, blauen und, so
+vorhanden, weißen Kanal die Farborte und Helligkeiten mit einem Spektralfotometer
+gemessen werden und als <code class="docutils literal notranslate"><span class="pre">x</span></code> und <code class="docutils literal notranslate"><span class="pre">y</span></code> Koordinaten des CIE-Normfarbsystem übergeben
+werden. Aus der Messung kann dann auch die Dim-Kurve als Tabelle, so wie die maximale
+Helligkeit übernommen werden.
+Aufgrund der Alterung des Leuchtmittels sollten - genau so wie bei der
+Monitor-Kalibierung - die Dim-Kurven regelmäßig bestimmt werden und die
+Konfigurationsdatei entsprechend angepasst werden. Die Häufigkeit der Messung
+richtet sich dabei nach dem Anspruch an die zu erreichende Farbtreue.</p>
+<p>Ohne Messgerät, aber mit einem Datenblatt des verwendeten Leuchtmittels, lassen
+sich auch noch gute Ergebnisse erzielen. Wenn für die Farben keine <code class="docutils literal notranslate"><span class="pre">x</span></code> und <code class="docutils literal notranslate"><span class="pre">y</span></code>
+Koordinaten angegeben werden, aber zumindest die Wellenlängen, so können diese
+alternativ verwendet werden. Dies führt nur bei einer monochromatischen Lichtquelle
+wie einem Laser zu einem korrektem Ergebnis, jedoch besitzen auch RGB-LEDs ein
+annähernd monochromatische Verhalten. Bei dem weißen Kanal kann statt der
+xy-Koordinaten auch die Farbtemperatur verwendet werden. Sollte eine Abweichung
+von der Black-Body-Kurve berücksichtig werden müssen, so muss dies jedoch über eine
+Angabe in xy-Koordinaten erfolgen.</p>
+<p>Die Helligkeitsangabe muss keine spezifische physikalische Einheit (wie Lumen
+oder Lumen/Meter bei LED-Strips) haben, hier verwendet der ColorChooser nur die
+relative Größe der Werte untereinander.</p>
+<p>Um beste Ergebnisse zwischen Bildschirm-Darstellung und Beleuchtungsfarbe
+zu erhalten, sollte das Widget-Element nicht im HSV sondern im L*C*h°-Modus
+verwendet werden. Die Kommunikation über den Bus sollte im xy bzw. xyY oder
+L*a*b* Farbraum erfolgen, da hier die Umrechnung in die Ansteuerung des
+Leuchtmittels aktornah passiert und so eine akkuratere Farbwiedergabe zu erwarten
+ist. Eine Kommunikation im HSV-Farbraum würde auch noch eine gute Farbwiedergabe
+ermöglichen. Für eine direkte Ansteuerung über RGB bzw. RGBW Werte ist eine
+korrekt eingestellte Dim-Kurve unabdingbar.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Der ColorChooser verwendet intern den CIE xyY Farbraum. Für die Umrechung
+in den L*a*b* bzw. den L*C*h° Farbraum wird die Normlichtart D65 und ein
+Beobachterwinkel von 10° verwendet.</p>
+</div>
+<p>Beispiel für einen ColorChooser für den OSRAM LINEARlight FLEX Colormix RGBW
+LED-Strip „LF700RGBW-G1-830-06“ mit Farborten aus dem Datenblatt und einer
+Ansteuerung über DALI:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span>
+    <span class="na">r_wavelength=</span><span class="s">&quot;622&quot;</span> <span class="na">r_strength=</span><span class="s">&quot;80&quot;</span> <span class="na">r_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">g_wavelength=</span><span class="s">&quot;534&quot;</span> <span class="na">g_strength=</span><span class="s">&quot;196&quot;</span> <span class="na">g_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">b_wavelength=</span><span class="s">&quot;468&quot;</span> <span class="na">b_strength=</span><span class="s">&quot;21&quot;</span> <span class="na">b_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">w_x=</span><span class="s">&quot;0.4290&quot;</span> <span class="na">w_y=</span><span class="s">&quot;0.4010&quot;</span> <span class="na">w_strength=</span><span class="s">&quot;400&quot;</span> <span class="na">w_curve=</span><span class="s">&quot;logarithmic&quot;</span>
+    <span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>LED Strip<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:242.600&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">variant=</span><span class="s">&quot;xyY&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:242.600&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">variant=</span><span class="s">&quot;xyY&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warnung</p>
+<p class="last">Grundsätzlich ist es möglich mehrere Address-Elemente mit unterschiedlichen
+Farbraum-Arten gleichzeitig zu verwenden, z.B. <code class="docutils literal notranslate"><span class="pre">RGB</span></code> und <code class="docutils literal notranslate"><span class="pre">HSV</span></code>, aber auch
+<code class="docutils literal notranslate"><span class="pre">RGB-R</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-G</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-B</span></code> und gleichzeitig <code class="docutils literal notranslate"><span class="pre">RGB</span></code> selbst. Auch wenn dies
+vordergründig zu funktionieren scheint, so kann es unbeabsichtigte
+Seiteneffekte erzeugen die zur Anzeige einer falschen Farbe führen.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Es wird empfohlen nach Möglichkeit für die Übermittlung der Farbinformation
+einen Datentyp zu verwenden, der alle Farbkomponenten in sich vereint (also
+z.B. <code class="docutils literal notranslate"><span class="pre">rgb</span></code> statt <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code> und <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code>), da es bei der Verwendung von
+Einzelkomponenten durch den zeitlichen Versatz sonst zu kurzfristigen
+Artefakten in der Darstellung/Animation kommen kann.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p>Wenn mehrere ColorChooser für die gleiche Farbe verwendet werden (z.B. in
+einer Konfiguration, oder bei zwei offnen Instanzen der CometVisu), so ist es
+möglich, dass beide eine leicht unterschiedliche Anzeige haben. Dies passiert,
+wenn eine Farbe ausgewählt wurde, die in dieser Form nicht über den Bus
+übertragen werden kann, da sie mit den vorhandenen Farbkanälen nicht
+darstellbar ist. Dies kann insbesondere bei einem Farbwähler im LCh-Modus
+der Fall sein, wenn die Farbwerte selbst im RGB-Modus übertragen werden.</p>
+<p class="last">Dieses Verhalten kann durch eine Umstellung der Bus-Kommunikation auf den
+xyY-Farbraum lösen.</p>
+</div>
+</div>
+</div>
+<div class="section" id="einstellungen">
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
+<p>Das Verhalten und Aussehen des ColorChoosers kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
+beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.</p>
+<div class="section" id="erlaubte-attribute-im-colorchooser-element">
+<h3>Erlaubte Attribute im ColorChooser-Element<a class="headerlink" href="#erlaubte-attribute-im-colorchooser-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">&#160;</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="25">colorchooser</td>
+<td>controls</td>
+<td>Text</td>
+<td>Liste the darzugstellenden Kontrollelemente (durch Strichpunkte getrennt)</td>
+</tr>
+<tr class="row-even"><td>r_x</td>
+<td>Zahl</td>
+<td>x Koordniate des roten Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-odd"><td>r_y</td>
+<td>Zahl</td>
+<td>y Koordniate des roten Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-even"><td>r_wavelength</td>
+<td>Zahl</td>
+<td>Wellenlänge in Nanometern des roten Kanals</td>
+</tr>
+<tr class="row-odd"><td>r_strength</td>
+<td>Zahl</td>
+<td>Maximale Stärke des roten Kanals</td>
+</tr>
+<tr class="row-even"><td>r_curve</td>
+<td>Text</td>
+<td>Dim-Kurve des roten Kanals</td>
+</tr>
+<tr class="row-odd"><td>r_scale</td>
+<td>Zahl</td>
+<td>Skalierung der Dim-Kurve des roten Kanals</td>
+</tr>
+<tr class="row-even"><td>g_x</td>
+<td>Zahl</td>
+<td>x Koordniate des grünen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-odd"><td>g_y</td>
+<td>Zahl</td>
+<td>y Koordniate des grünen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-even"><td>g_wavelength</td>
+<td>Zahl</td>
+<td>Wellenlänge in Nanometern des grünen Kanals</td>
+</tr>
+<tr class="row-odd"><td>g_strength</td>
+<td>Zahl</td>
+<td>Maximale Stärke des grünen Kanals</td>
+</tr>
+<tr class="row-even"><td>g_curve</td>
+<td>Text</td>
+<td>Dim-Kurve des grünen Kanals</td>
+</tr>
+<tr class="row-odd"><td>g_scale</td>
+<td>Zahl</td>
+<td>Skalierung der Dim-Kurve des grünen Kanals</td>
+</tr>
+<tr class="row-even"><td>b_x</td>
+<td>Zahl</td>
+<td>x Koordniate des blauen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-odd"><td>b_y</td>
+<td>Zahl</td>
+<td>y Koordniate des blauen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-even"><td>b_wavelength</td>
+<td>Zahl</td>
+<td>Wellenlänge in Nanometern des blauen Kanals</td>
+</tr>
+<tr class="row-odd"><td>b_strength</td>
+<td>Zahl</td>
+<td>Maximale Stärke des blauen Kanals</td>
+</tr>
+<tr class="row-even"><td>b_curve</td>
+<td>Text</td>
+<td>Dim-Kurve des blauen Kanals</td>
+</tr>
+<tr class="row-odd"><td>b_scale</td>
+<td>Zahl</td>
+<td>Skalierung der Dim-Kurve des blauen Kanals</td>
+</tr>
+<tr class="row-even"><td>w_x</td>
+<td>Zahl</td>
+<td>x Koordniate des weißen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-odd"><td>w_y</td>
+<td>Zahl</td>
+<td>y Koordniate des weißen Kanals im CIE xyY Farbraum</td>
+</tr>
+<tr class="row-even"><td>w_strength</td>
+<td>Zahl</td>
+<td>Maximale Stärke des weißen Kanals</td>
+</tr>
+<tr class="row-odd"><td>w_curve</td>
+<td>Text</td>
+<td>Dim-Kurve des weißen Kanals</td>
+</tr>
+<tr class="row-even"><td>w_scale</td>
+<td>Zahl</td>
+<td>Skalierung der Dim-Kurve des weißen Kanals</td>
+</tr>
+<tr class="row-odd"><td>send_on_finish</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Sende nur beim Loslassen des Sliders.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id12">
+<img alt="../../../_images/de_config_widgets_colorchooser_index_editor_attributes.png" src="../../../_images/de_config_widgets_colorchooser_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id12" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">name</abbr></td>
+<td>Text</td>
+<td>Name unter dem das Icon registriert ist.</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>Text</td>
+<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>Text</td>
+<td>Farbe des Icon in CSS Notation (z.B. #1188FF).</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>Text</td>
+<td>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>Text</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li><abbr title="Pflichtangabe">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="Pflichtangabe">transform</abbr></td>
+<td>Text</td>
+<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
+<td>„disable“ daktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Addresse zum Lesen und zum Schreiben verwendet.</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>Text</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>Zahl</td>
+<td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
+</tr>
+<tr class="row-odd"><td>qos</td>
+<td>Zahl</td>
+<td>Nur MQTT: QoS</td>
+</tr>
+<tr class="row-even"><td>retain</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Nur MQTT: retain Flag</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>colorchooser</dt><dd><ul class="simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&#160;</td>
+<td>Text</td>
+<td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id13">
+<img alt="../../../_images/de_config_widgets_colorchooser_index_editor_elements.png" src="../../../_images/de_config_widgets_colorchooser_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id13" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Wird am Bus jede Farbe (Rot, Grün, Blau) individuell angesprochen, so muss
+jeweils eine Gruppenadresse mit entsprechendem <code class="docutils literal notranslate"><span class="pre">variant</span></code> angelegt werden.
+Für OpenHAB Color Items oder entsprechen kombinierte KNX Datentypen gilt
+diese Einschränkung nicht, sie können beispielsweise mit
+einer Adresse mit dem Zusatz <code class="docutils literal notranslate"><span class="pre">variant=&quot;rgb&quot;</span></code> angesprochen werden.</p>
+</div>
+<p>Als Werte für <code class="docutils literal notranslate"><span class="pre">variant</span></code> sind zulässig:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+<td>Roter Kanal einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+<td>Grüner Kanal einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+<td>Blauer Kanal einer RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">r</span></code></td>
+<td>Abkürzung für <code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">g</span></code></td>
+<td>Abkürzung für <code class="docutils literal notranslate"><span class="pre">RGB-g</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">b</span></code></td>
+<td>Abkürzung für <code class="docutils literal notranslate"><span class="pre">RGB-b</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">rgb</span></code></td>
+<td>Kombinierter Datentyp für RGB-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-r</span></code></td>
+<td>Roter Kanal einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-g</span></code></td>
+<td>Grüner Kanal einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RGBW-b</span></code></td>
+<td>Blauer Kanal einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RGBW-w</span></code></td>
+<td>Weißer Kanal einer RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rgbw</span></code></td>
+<td>Kombinierter Datentyp für RGBW-Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">h</span></code></td>
+<td>Hue-Kanal einer mit HSV angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
+<td>Saturation-Kanal einer mit HSV angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">v</span></code></td>
+<td>Value-Kanal einer mit HSV angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hsv</span></code></td>
+<td>Kombinierter Datentyp für mit HSV angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x-Kanal einer mit xyY angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y-Kanal einer mit xyY angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Y</span></code></td>
+<td>Y-Kanal einer mit xyY angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xy</span></code></td>
+<td>Kombinierter Datentyp für mit xyY angesteuerten Beleuchtung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">xyY</span></code></td>
+<td>Kombinierter Datentyp für mit xyY angesteuerten Beleuchtung</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Die für die Kommunikation verwendeten <code class="docutils literal notranslate"><span class="pre">variant</span></code> müssen nicht den für
+die Anzeige unter Interaktion verwendeten Widget-Elementen im <code class="docutils literal notranslate"><span class="pre">controls</span></code>
+Attribut entsprechen. So wäre ein ColorChooser mit HSV-Anzeige aber
+RGB-Buskommunikation zulässig.</p>
+</div>
+</div>
+</div>
+<div class="section" id="xml-syntax">
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternativ kann man für das ColorChooser Plugin auch von Hand einen Eintrag in
+der <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>RGB Flur<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/colorchooser&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Fußnoten</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../audio/index.html" class="btn btn-neutral float-left" title="Das Audio Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../designtoggle/index.html" class="btn btn-neutral float-right" title="Das DesignToggle Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

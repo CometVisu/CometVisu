@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated tests &mdash; CometVisu</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/colab/dev/test.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/versions.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Information for developers" href="../../devel/index.html" />
+    <link rel="prev" title="Set up a VM with Visual Studio code" href="../howto-vm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> CometVisu<img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Help the CometVisu project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-preparations">General preparations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general-approach">General approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#keep-repositories-in-sync">Keep repositories in sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#help-with-the-documentation">Help with the documentation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#help-with-the-development">Help with the development</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Automated tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unittests">Unittests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-own-tests">Write own tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#create-an-error-report">Create an error report</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Help the CometVisu project</a> &raquo;</li>
+      <li>Automated tests</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="automated-tests">
+<h1>Automated tests<a class="headerlink" href="#automated-tests" title="Permalink to this headline">¶</a></h1>
+<p>The CometVisu uses two types of automated software tests: unittests and
+end-to-end tests. Unittest is about testing individual functions within the
+source code. If you e.g. has an <cite>add</cite> function that adds two numbers, then a
+unit test calls this function, passes two numbers to it and checks if the
+result is correct.</p>
+<p>End-to-end tests tend to examine the “big picture” and simulate user
+retention. In this case, the CometVisu is opened fully automated in a
+browser and the tests operate the Visu as a user and check whether an action
+causes the desired changes. For example, one can Check if clicking on a
+switch returns the appropriate value to the backend and if the backend
+provides an update for the switch, it displays this accordingly.</p>
+<div class="section" id="unittests">
+<h2>Unittests<a class="headerlink" href="#unittests" title="Permalink to this headline">¶</a></h2>
+<p>The test runner for the tests is <a class="reference external" href="https://karma-runner.github.io">Karma</a>.
+The tests are executed via the command line tool Grunt. If you have not
+already done so, the following commands must be executed in the root
+directory of the CometVisu project for preparation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install
+sudo npm -g install grunt-cli
+</pre></div>
+</div>
+<p>The existing unit tests can then be executed with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grunt karma:ci
+</pre></div>
+</div>
+<p>This carries out the tests including a code coverage analysis. The code
+coverage shows as a result of how many percent of the source code was
+covered by tests, the output looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">===============================</span> Coverage <span class="nv">summary</span> <span class="o">===============================</span>
+Statements   : <span class="m">42</span>.14% <span class="o">(</span> <span class="m">1308</span>/3104 <span class="o">)</span>
+Branches     : <span class="m">32</span>.35% <span class="o">(</span> <span class="m">584</span>/1805 <span class="o">)</span>
+Functions    : <span class="m">46</span>.99% <span class="o">(</span> <span class="m">211</span>/449 <span class="o">)</span>
+Lines        : <span class="m">41</span>.8% <span class="o">(</span> <span class="m">1233</span>/2950 <span class="o">)</span>
+<span class="o">================================================================================</span>
+</pre></div>
+</div>
+<p>For a more detailed coverage report, see
+<code class="docutils literal notranslate"><span class="pre">./coverage/&lt;browser-name&gt;/index.html</span></code>.Where the browser name escapes that of
+the executing browser. Currently this is the headless testing (Chrome based)
+PhantomJS. Theoretically, all browsers installed on the local system are
+possible here. In the detailed coverage report, you can navigate down to
+individual source code files and see which lines have not yet been tested.
+This is very useful to see where the tests still need to be completed.</p>
+</div>
+<div class="section" id="write-own-tests">
+<h2>Write own tests<a class="headerlink" href="#write-own-tests" title="Permalink to this headline">¶</a></h2>
+<p>The unit tests are written using the Jasmine Framework
+<a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">http://jasmine.github.io/2.4/introduction.html</a>. This makes it
+possible to write the tests almost in natural language. The basic
+structure of a test looks like this:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;My testsuite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should add two numbers&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span> <span class="mf">5</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">9</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>This code tests an <code class="docutils literal notranslate"><span class="pre">add</span></code> function that simply adds two numbers.</p>
+<p>You can find the existing tests in the <code class="docutils literal notranslate"><span class="pre">source/test/karma</span></code>
+subdirectory. If you would like to write a new test for a (fictitious)
+source code file under <code class="docutils literal notranslate"><span class="pre">source/ui/structure/pure/NewWidget.js</span></code>,
+you will create the new file
+<code class="docutils literal notranslate"><span class="pre">source/test/karma/ui/structure/pure/NewWidget-spec.js</span></code>….</p>
+<p>It is important that the name of the test file ends with <code class="docutils literal notranslate"><span class="pre">-spec</span></code>,
+otherwise it will not be found by the testrunner.</p>
+<p>The test for this file should now look like this:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test the creation of a new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Auxiliary function that generates the HTML code of the widget (further help functions can be found in source / test / karma / helper-spec.js)</span>
+    <span class="c1">// the helper returns an array of 2 elements, the first is the widget object, the second the HTML code as a string</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createTestWidgetString</span><span class="p">(</span><span class="s2">&quot;new-widget&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="s2">&quot;&lt;label&gt;Test&lt;/label&gt;&quot;</span><span class="p">);</span>
+    <span class="c1">// turns the string into a DOM element</span>
+    <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">div</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span><span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">res</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span><span class="k">return</span> <span class="nx">div</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mf">0</span><span class="p">];})();</span>
+    <span class="c1">// Widget Object (instance of class cv.ui.structure.pure.NewWidget)</span>
+    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">res</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+
+    <span class="c1">// Check if the DOM element has the CSS class newwidget</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveClass</span><span class="p">(</span><span class="s1">&#39;newwidget&#39;</span><span class="p">);</span>
+    <span class="c1">// Check if the DOM element has a label with the text &#39;Test&#39;</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveLabel</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">);</span>
+    <span class="c1">// Check if the widget path is &#39;id_0&#39;</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">getPath</span><span class="p">()).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;id_0&quot;</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// other tests</span>
+  <span class="p">});</span>
+
+  <span class="p">...</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>As examples of how to write tests and what things to test like,
+the existing tests should serve.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../howto-vm.html" class="btn btn-neutral float-left" title="Set up a VM with Visual Studio code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../devel/index.html" class="btn btn-neutral float-right" title="Information for developers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+        
+          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,5529 @@
+{
+  "className": "qx.ui.control.DateChooser",
+  "packageName": "qx.ui.control",
+  "name": "DateChooser",
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.form.IExecutable",
+    "qx.ui.form.IForm",
+    "qx.ui.form.IDateForm"
+  ],
+  "mixins": [
+    "qx.ui.core.MExecutable",
+    "qx.ui.form.MForm"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 60,
+        "column": 0
+      },
+      "end": {
+        "line": 771,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A <em>date chooser</em> is a small calendar including a navigation bar to switch the shown\n month. It includes a column for the calendar week and shows one month. Selecting\n a date is as easy as tapping on it.\n To be conform with all form widgets, the {@link qx.ui.form.IForm} interface\n is implemented.\n The following example creates and adds a date chooser to the root element.\n A listener alerts the user if a new date is selected.\n </p>\n<pre class='javascript'>\n var chooser = new qx.ui.control.DateChooser();\n this.getRoot().add(chooser, { left : 20, top: 20});\n chooser.addListener(\"changeValue\", function(e) {\n   alert(e.getData());\n });\n </pre>\n<p>Additionally to a selection event an execute event is available which is\n fired by doubletap or tapping the space / enter key. With this event you\n can for example save the selection and close the date chooser.</p>"
+        }
+      ],
+      "@childControl": [
+        {
+          "name": "@childControl",
+          "body": "navigation-bar {qx.ui.container.Composite} container for the navigation bar controls",
+          "controlName": "navigation-bar",
+          "description": "container for the navigation bar controls",
+          "type": "qx.ui.container.Composite"
+        },
+        {
+          "name": "@childControl",
+          "body": "last-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last year button",
+          "controlName": "last-year-button-tooltip",
+          "description": "tooltip for the last year button",
+          "type": "qx.ui.tooltip.ToolTip"
+        },
+        {
+          "name": "@childControl",
+          "body": "last-year-button {qx.ui.form.Button} button to jump to the last year",
+          "controlName": "last-year-button",
+          "description": "button to jump to the last year",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "@childControl",
+          "body": "last-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last month button",
+          "controlName": "last-month-button-tooltip",
+          "description": "tooltip for the last month button",
+          "type": "qx.ui.tooltip.ToolTip"
+        },
+        {
+          "name": "@childControl",
+          "body": "last-month-button {qx.ui.form.Button} button to jump to the last month",
+          "controlName": "last-month-button",
+          "description": "button to jump to the last month",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "@childControl",
+          "body": "next-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next month button",
+          "controlName": "next-month-button-tooltip",
+          "description": "tooltip for the next month button",
+          "type": "qx.ui.tooltip.ToolTip"
+        },
+        {
+          "name": "@childControl",
+          "body": "next-month-button {qx.ui.form.Button} button to jump to the next month",
+          "controlName": "next-month-button",
+          "description": "button to jump to the next month",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "@childControl",
+          "body": "next-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next year button",
+          "controlName": "next-year-button-tooltip",
+          "description": "tooltip for the next year button",
+          "type": "qx.ui.tooltip.ToolTip"
+        },
+        {
+          "name": "@childControl",
+          "body": "next-year-button {qx.ui.form.Button} button to jump to the next year",
+          "controlName": "next-year-button",
+          "description": "button to jump to the next year",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "@childControl",
+          "body": "month-year-label {qx.ui.basic.Label} shows the current month and year",
+          "controlName": "month-year-label",
+          "description": "shows the current month and year",
+          "type": "qx.ui.basic.Label"
+        },
+        {
+          "name": "@childControl",
+          "body": "week {qx.ui.basic.Label} week label (used multiple times)",
+          "controlName": "week",
+          "description": "week label (used multiple times)",
+          "type": "qx.ui.basic.Label"
+        },
+        {
+          "name": "@childControl",
+          "body": "weekday {qx.ui.basic.Label} weekday label (used multiple times)",
+          "controlName": "weekday",
+          "description": "weekday label (used multiple times)",
+          "type": "qx.ui.basic.Label"
+        },
+        {
+          "name": "@childControl",
+          "body": "day {qx.ui.basic.Label} day label (used multiple times)",
+          "controlName": "day",
+          "description": "day label (used multiple times)",
+          "type": "qx.ui.basic.Label"
+        },
+        {
+          "name": "@childControl",
+          "body": "date-pane {qx.ui.container.Composite} the pane used to position the week, weekday and day labels",
+          "controlName": "date-pane",
+          "description": "the pane used to position the week, weekday and day labels",
+          "type": "qx.ui.container.Composite"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 84,
+        "column": 14
+      },
+      "end": {
+        "line": 117,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "date {Date ? null} The initial date to show. If <code>null</code>\n the current day (today) is shown.",
+          "paramName": "date",
+          "description": " The initial date to show. If <code>null</code>\n the current day (today) is shown.",
+          "optional": true,
+          "defaultValue": "null",
+          "type": "Date"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "MONTH_YEAR_FORMAT": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the date year label at the top center."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "WEEKDAY_FORMAT": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the weekday labels (the headers of the date table)."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "WEEK_FORMAT": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the week numbers (the labels of the left column)."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 159,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "appearance",
+      "propertyType": "new",
+      "refine": true,
+      "init": "datechooser",
+      "defaultValue": "datechooser",
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": {
+        "qx.ui.core.Widget": "class"
+      }
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "width",
+      "propertyType": "new",
+      "refine": true,
+      "init": 200,
+      "defaultValue": 200,
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": {
+        "qx.ui.core.LayoutItem": "class"
+      }
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "height",
+      "propertyType": "new",
+      "refine": true,
+      "init": 150,
+      "defaultValue": 150,
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": {
+        "qx.ui.core.LayoutItem": "class"
+      }
+    },
+    "shownMonth": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 182,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently shown month. 0 = january, 1 = february, and so on.</p>"
+          }
+        ]
+      },
+      "name": "shownMonth",
+      "propertyType": "new",
+      "event": "changeShownMonth",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
+    },
+    "shownYear": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently shown year.</p>"
+          }
+        ]
+      },
+      "name": "shownYear",
+      "propertyType": "new",
+      "event": "changeShownYear",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4
+        },
+        "end": {
+          "line": 201,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The date value of the widget.</p>"
+          }
+        ]
+      },
+      "name": "value",
+      "propertyType": "new",
+      "event": "changeValue",
+      "apply": "_applyValue",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Date"
+    },
+    "command": {
+      "type": "property",
+      "name": "command",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "event": "changeCommand",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A command called if the {@link #execute} method is called, e.g. on a\n button tap.</p>"
+          }
+        ]
+      }
+    },
+    "valid": {
+      "type": "property",
+      "name": "valid",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeValid",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      }
+    },
+    "required": {
+      "type": "property",
+      "name": "required",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeRequired",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      }
+    },
+    "invalidMessage": {
+      "type": "property",
+      "name": "invalidMessage",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeInvalidMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+          }
+        ]
+      }
+    },
+    "requiredInvalidMessage": {
+      "type": "property",
+      "name": "requiredInvalidMessage",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeInvalidMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      }
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "__weekdayLabelArr": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dayLabelArr": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__weekLabelArr": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4
+        },
+        "end": {
+          "line": 217,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_forwardStates": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 227,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_createChildControlImpl": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 389,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyValue": {
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4
+        },
+        "end": {
+          "line": 427,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "value"
+      ]
+    },
+    "_onPointerUpDown": {
+      "location": {
+        "start": {
+          "line": 443,
+          "column": 4
+        },
+        "end": {
+          "line": 451,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler which stops the propagation of the tap event if\n the navigation bar or calendar headers will be tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer up / down event",
+            "paramName": "e",
+            "description": " The pointer up / down event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onNavButtonTap": {
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 4
+        },
+        "end": {
+          "line": 498,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a navigation button has been tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The data event.",
+            "paramName": "evt",
+            "description": " The data event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onDayTap": {
+      "location": {
+        "start": {
+          "line": 506,
+          "column": 4
+        },
+        "end": {
+          "line": 510,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a day has been tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event.",
+            "paramName": "evt",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onDayDblTap": {
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 4
+        },
+        "end": {
+          "line": 518,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a day has been double-tapped.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onKeyPress": {
+      "location": {
+        "start": {
+          "line": 526,
+          "column": 4
+        },
+        "end": {
+          "line": 612,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a key was pressed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event.",
+            "paramName": "evt",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "showMonth": {
+      "location": {
+        "start": {
+          "line": 623,
+          "column": 4
+        },
+        "end": {
+          "line": 637,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows a certain month.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "month {Integer ? null} the month to show (0 = january). If not set\n      the month will remain the same.",
+            "paramName": "month",
+            "description": " the month to show (0 = january). If not set\n      the month will remain the same.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "year {Integer ? null} the year to show. If not set the year will\n      remain the same.",
+            "paramName": "year",
+            "description": " the year to show. If not set the year will\n      remain the same.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "handleKeyPress": {
+      "location": {
+        "start": {
+          "line": 645,
+          "column": 4
+        },
+        "end": {
+          "line": 647,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Used to handle the key events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The event.",
+            "paramName": "e",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_updateDatePane": {
+      "location": {
+        "start": {
+          "line": 653,
+          "column": 4
+        },
+        "end": {
+          "line": 751,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the date pane.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "setCommand": {
+      "type": "function",
+      "name": "setCommand",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>command</code>.\n\nFor further details take a look at the property definition: {@link #command}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.ui.command.Command",
+            "paramName": "value",
+            "desc": "Value for command"
+          }
+        ]
+      }
+    },
+    "getCommand": {
+      "type": "function",
+      "name": "getCommand",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>command</code>.\n\nFor further details take a look at the property definition: {@link #command}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.ui.command.Command",
+            "desc": "Returns the value for command"
+          }
+        ]
+      }
+    },
+    "execute": {
+      "type": "function",
+      "name": "execute",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire the \"execute\" event on the command.</p>"
+          }
+        ]
+      }
+    },
+    "setEnabled": {
+      "type": "function",
+      "name": "setEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for enabled"
+          }
+        ]
+      }
+    },
+    "getEnabled": {
+      "type": "function",
+      "name": "getEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for enabled"
+          }
+        ]
+      }
+    },
+    "setRequired": {
+      "type": "function",
+      "name": "setRequired",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for required"
+          }
+        ]
+      }
+    },
+    "getRequired": {
+      "type": "function",
+      "name": "getRequired",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for required"
+          }
+        ]
+      }
+    },
+    "setValid": {
+      "type": "function",
+      "name": "setValid",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for valid"
+          }
+        ]
+      }
+    },
+    "getValid": {
+      "type": "function",
+      "name": "getValid",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for valid"
+          }
+        ]
+      }
+    },
+    "setInvalidMessage": {
+      "type": "function",
+      "name": "setInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for invalidMessage"
+          }
+        ]
+      }
+    },
+    "getInvalidMessage": {
+      "type": "function",
+      "name": "getInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for invalidMessage"
+          }
+        ]
+      }
+    },
+    "setRequiredInvalidMessage": {
+      "type": "function",
+      "name": "setRequiredInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for requiredInvalidMessage"
+          }
+        ]
+      }
+    },
+    "getRequiredInvalidMessage": {
+      "type": "function",
+      "name": "getRequiredInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for requiredInvalidMessage"
+          }
+        ]
+      }
+    },
+    "setValue": {
+      "type": "function",
+      "name": "setValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Date",
+            "paramName": "value",
+            "desc": "Value for value"
+          }
+        ]
+      }
+    },
+    "resetValue": {
+      "type": "function",
+      "name": "resetValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>value</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ]
+      }
+    },
+    "getValue": {
+      "type": "function",
+      "name": "getValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Date",
+            "desc": "Returns the value for value"
+          }
+        ]
+      }
+    },
+    "__onCommandExecute": {
+      "type": "function",
+      "name": "__onCommandExecute",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the execute event of the command.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} The execute event of the command.",
+            "paramName": "e",
+            "description": " The execute event of the command.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      }
+    },
+    "_applyCommand": {
+      "type": "function",
+      "name": "_applyCommand",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.core.MExecutable",
+      "jsdoc": {}
+    },
+    "resetCommand": {
+      "type": "function",
+      "name": "resetCommand",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>command</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #command}."
+          }
+        ]
+      }
+    },
+    "_applyValid": {
+      "type": "function",
+      "name": "_applyValid",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "jsdoc": {}
+    },
+    "__onChangeLocale": {
+      "type": "function",
+      "name": "__onChangeLocale",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.ui.form.MForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      }
+    },
+    "isValid": {
+      "type": "function",
+      "name": "isValid",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for valid"
+          }
+        ]
+      }
+    },
+    "resetValid": {
+      "type": "function",
+      "name": "resetValid",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ]
+      }
+    },
+    "isRequired": {
+      "type": "function",
+      "name": "isRequired",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for required"
+          }
+        ]
+      }
+    },
+    "resetRequired": {
+      "type": "function",
+      "name": "resetRequired",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ]
+      }
+    },
+    "resetInvalidMessage": {
+      "type": "function",
+      "name": "resetInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+          }
+        ]
+      }
+    },
+    "resetRequiredInvalidMessage": {
+      "type": "function",
+      "name": "resetRequiredInvalidMessage",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+          }
+        ]
+      }
+    },
+    "tr": {
+      "type": "function",
+      "name": "tr",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message\n Mark the message for translation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trn": {
+      "type": "function",
+      "name": "trn",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trc": {
+      "type": "function",
+      "name": "trc",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message with translation hint\n Mark the messages for translation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "trnc": {
+      "type": "function",
+      "name": "trnc",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message with translation hint\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "qx.locale.String"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String | LocalizedString} The translated message or localized string",
+            "type": "String | LocalizedString",
+            "description": " The translated message or localized string"
+          }
+        ]
+      }
+    },
+    "marktr": {
+      "type": "function",
+      "name": "marktr",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.locale.MTranslation",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mark the message for translation but return the original message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} the message ID",
+            "paramName": "messageId",
+            "description": " the message ID",
+            "type": "qx.locale.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} messageId",
+            "type": "qx.locale.String",
+            "description": " messageId"
+          }
+        ]
+      }
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getMinWidth": {
+      "type": "function",
+      "name": "getMinWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for minWidth"
+          }
+        ]
+      }
+    },
+    "setMinWidth": {
+      "type": "function",
+      "name": "setMinWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for minWidth"
+          }
+        ]
+      }
+    },
+    "resetMinWidth": {
+      "type": "function",
+      "name": "resetMinWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ]
+      }
+    },
+    "getWidth": {
+      "type": "function",
+      "name": "getWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for width"
+          }
+        ]
+      }
+    },
+    "setWidth": {
+      "type": "function",
+      "name": "setWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for width"
+          }
+        ]
+      }
+    },
+    "resetWidth": {
+      "type": "function",
+      "name": "resetWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
+    },
+    "getMaxWidth": {
+      "type": "function",
+      "name": "getMaxWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for maxWidth"
+          }
+        ]
+      }
+    },
+    "setMaxWidth": {
+      "type": "function",
+      "name": "setMaxWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for maxWidth"
+          }
+        ]
+      }
+    },
+    "resetMaxWidth": {
+      "type": "function",
+      "name": "resetMaxWidth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ]
+      }
+    },
+    "getMinHeight": {
+      "type": "function",
+      "name": "getMinHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for minHeight"
+          }
+        ]
+      }
+    },
+    "setMinHeight": {
+      "type": "function",
+      "name": "setMinHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for minHeight"
+          }
+        ]
+      }
+    },
+    "resetMinHeight": {
+      "type": "function",
+      "name": "resetMinHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ]
+      }
+    },
+    "getHeight": {
+      "type": "function",
+      "name": "getHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for height"
+          }
+        ]
+      }
+    },
+    "setHeight": {
+      "type": "function",
+      "name": "setHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for height"
+          }
+        ]
+      }
+    },
+    "resetHeight": {
+      "type": "function",
+      "name": "resetHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ]
+      }
+    },
+    "getMaxHeight": {
+      "type": "function",
+      "name": "getMaxHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for maxHeight"
+          }
+        ]
+      }
+    },
+    "setMaxHeight": {
+      "type": "function",
+      "name": "setMaxHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for maxHeight"
+          }
+        ]
+      }
+    },
+    "resetMaxHeight": {
+      "type": "function",
+      "name": "resetMaxHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ]
+      }
+    },
+    "getAllowGrowX": {
+      "type": "function",
+      "name": "getAllowGrowX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowGrowX"
+          }
+        ]
+      }
+    },
+    "isAllowGrowX": {
+      "type": "function",
+      "name": "isAllowGrowX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowGrowX"
+          }
+        ]
+      }
+    },
+    "setAllowGrowX": {
+      "type": "function",
+      "name": "setAllowGrowX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowGrowX"
+          }
+        ]
+      }
+    },
+    "resetAllowGrowX": {
+      "type": "function",
+      "name": "resetAllowGrowX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ]
+      }
+    },
+    "getAllowShrinkX": {
+      "type": "function",
+      "name": "getAllowShrinkX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowShrinkX"
+          }
+        ]
+      }
+    },
+    "isAllowShrinkX": {
+      "type": "function",
+      "name": "isAllowShrinkX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowShrinkX"
+          }
+        ]
+      }
+    },
+    "setAllowShrinkX": {
+      "type": "function",
+      "name": "setAllowShrinkX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowShrinkX"
+          }
+        ]
+      }
+    },
+    "resetAllowShrinkX": {
+      "type": "function",
+      "name": "resetAllowShrinkX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ]
+      }
+    },
+    "getAllowGrowY": {
+      "type": "function",
+      "name": "getAllowGrowY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowGrowY"
+          }
+        ]
+      }
+    },
+    "isAllowGrowY": {
+      "type": "function",
+      "name": "isAllowGrowY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowGrowY"
+          }
+        ]
+      }
+    },
+    "setAllowGrowY": {
+      "type": "function",
+      "name": "setAllowGrowY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowGrowY"
+          }
+        ]
+      }
+    },
+    "resetAllowGrowY": {
+      "type": "function",
+      "name": "resetAllowGrowY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ]
+      }
+    },
+    "getAllowShrinkY": {
+      "type": "function",
+      "name": "getAllowShrinkY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowShrinkY"
+          }
+        ]
+      }
+    },
+    "isAllowShrinkY": {
+      "type": "function",
+      "name": "isAllowShrinkY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowShrinkY"
+          }
+        ]
+      }
+    },
+    "setAllowShrinkY": {
+      "type": "function",
+      "name": "setAllowShrinkY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowShrinkY"
+          }
+        ]
+      }
+    },
+    "resetAllowShrinkY": {
+      "type": "function",
+      "name": "resetAllowShrinkY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ]
+      }
+    },
+    "setAllowStretchX": {
+      "type": "function",
+      "name": "setAllowStretchX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for allowStretchX"
+          }
+        ]
+      }
+    },
+    "resetAllowStretchX": {
+      "type": "function",
+      "name": "resetAllowStretchX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
+          }
+        ]
+      }
+    },
+    "setAllowStretchY": {
+      "type": "function",
+      "name": "setAllowStretchY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for allowStretchY"
+          }
+        ]
+      }
+    },
+    "resetAllowStretchY": {
+      "type": "function",
+      "name": "resetAllowStretchY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
+          }
+        ]
+      }
+    },
+    "getMarginTop": {
+      "type": "function",
+      "name": "getMarginTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for marginTop"
+          }
+        ]
+      }
+    },
+    "setMarginTop": {
+      "type": "function",
+      "name": "setMarginTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for marginTop"
+          }
+        ]
+      }
+    },
+    "resetMarginTop": {
+      "type": "function",
+      "name": "resetMarginTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ]
+      }
+    },
+    "getMarginRight": {
+      "type": "function",
+      "name": "getMarginRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for marginRight"
+          }
+        ]
+      }
+    },
+    "setMarginRight": {
+      "type": "function",
+      "name": "setMarginRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for marginRight"
+          }
+        ]
+      }
+    },
+    "resetMarginRight": {
+      "type": "function",
+      "name": "resetMarginRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ]
+      }
+    },
+    "getMarginBottom": {
+      "type": "function",
+      "name": "getMarginBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for marginBottom"
+          }
+        ]
+      }
+    },
+    "setMarginBottom": {
+      "type": "function",
+      "name": "setMarginBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for marginBottom"
+          }
+        ]
+      }
+    },
+    "resetMarginBottom": {
+      "type": "function",
+      "name": "resetMarginBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ]
+      }
+    },
+    "getMarginLeft": {
+      "type": "function",
+      "name": "getMarginLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for marginLeft"
+          }
+        ]
+      }
+    },
+    "setMarginLeft": {
+      "type": "function",
+      "name": "setMarginLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for marginLeft"
+          }
+        ]
+      }
+    },
+    "resetMarginLeft": {
+      "type": "function",
+      "name": "resetMarginLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ]
+      }
+    },
+    "setMargin": {
+      "type": "function",
+      "name": "setMargin",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for margin"
+          }
+        ]
+      }
+    },
+    "resetMargin": {
+      "type": "function",
+      "name": "resetMargin",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
+          }
+        ]
+      }
+    },
+    "getAlignX": {
+      "type": "function",
+      "name": "getAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignX"
+          }
+        ]
+      }
+    },
+    "setAlignX": {
+      "type": "function",
+      "name": "setAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignX"
+          }
+        ]
+      }
+    },
+    "resetAlignX": {
+      "type": "function",
+      "name": "resetAlignX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
+    },
+    "getAlignY": {
+      "type": "function",
+      "name": "getAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for alignY"
+          }
+        ]
+      }
+    },
+    "setAlignY": {
+      "type": "function",
+      "name": "setAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for alignY"
+          }
+        ]
+      }
+    },
+    "resetAlignY": {
+      "type": "function",
+      "name": "resetAlignY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
+    },
+    "getPaddingTop": {
+      "type": "function",
+      "name": "getPaddingTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for paddingTop"
+          }
+        ]
+      }
+    },
+    "setPaddingTop": {
+      "type": "function",
+      "name": "setPaddingTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for paddingTop"
+          }
+        ]
+      }
+    },
+    "resetPaddingTop": {
+      "type": "function",
+      "name": "resetPaddingTop",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ]
+      }
+    },
+    "getPaddingRight": {
+      "type": "function",
+      "name": "getPaddingRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for paddingRight"
+          }
+        ]
+      }
+    },
+    "setPaddingRight": {
+      "type": "function",
+      "name": "setPaddingRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for paddingRight"
+          }
+        ]
+      }
+    },
+    "resetPaddingRight": {
+      "type": "function",
+      "name": "resetPaddingRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ]
+      }
+    },
+    "getPaddingBottom": {
+      "type": "function",
+      "name": "getPaddingBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for paddingBottom"
+          }
+        ]
+      }
+    },
+    "setPaddingBottom": {
+      "type": "function",
+      "name": "setPaddingBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for paddingBottom"
+          }
+        ]
+      }
+    },
+    "resetPaddingBottom": {
+      "type": "function",
+      "name": "resetPaddingBottom",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ]
+      }
+    },
+    "getPaddingLeft": {
+      "type": "function",
+      "name": "getPaddingLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for paddingLeft"
+          }
+        ]
+      }
+    },
+    "setPaddingLeft": {
+      "type": "function",
+      "name": "setPaddingLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for paddingLeft"
+          }
+        ]
+      }
+    },
+    "resetPaddingLeft": {
+      "type": "function",
+      "name": "resetPaddingLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ]
+      }
+    },
+    "setPadding": {
+      "type": "function",
+      "name": "setPadding",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for padding"
+          }
+        ]
+      }
+    },
+    "resetPadding": {
+      "type": "function",
+      "name": "resetPadding",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ]
+      }
+    },
+    "getZIndex": {
+      "type": "function",
+      "name": "getZIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for zIndex"
+          }
+        ]
+      }
+    },
+    "setZIndex": {
+      "type": "function",
+      "name": "setZIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for zIndex"
+          }
+        ]
+      }
+    },
+    "resetZIndex": {
+      "type": "function",
+      "name": "resetZIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ]
+      }
+    },
+    "getDecorator": {
+      "type": "function",
+      "name": "getDecorator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Decorator",
+            "desc": "Returns the value for decorator"
+          }
+        ]
+      }
+    },
+    "setDecorator": {
+      "type": "function",
+      "name": "setDecorator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Decorator",
+            "paramName": "value",
+            "desc": "Value for decorator"
+          }
+        ]
+      }
+    },
+    "resetDecorator": {
+      "type": "function",
+      "name": "resetDecorator",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ]
+      }
+    },
+    "getBackgroundColor": {
+      "type": "function",
+      "name": "getBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "setBackgroundColor": {
+      "type": "function",
+      "name": "setBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for backgroundColor"
+          }
+        ]
+      }
+    },
+    "resetBackgroundColor": {
+      "type": "function",
+      "name": "resetBackgroundColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
+    },
+    "getTextColor": {
+      "type": "function",
+      "name": "getTextColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Color",
+            "desc": "Returns the value for textColor"
+          }
+        ]
+      }
+    },
+    "setTextColor": {
+      "type": "function",
+      "name": "setTextColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Color",
+            "paramName": "value",
+            "desc": "Value for textColor"
+          }
+        ]
+      }
+    },
+    "resetTextColor": {
+      "type": "function",
+      "name": "resetTextColor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ]
+      }
+    },
+    "getFont": {
+      "type": "function",
+      "name": "getFont",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Font",
+            "desc": "Returns the value for font"
+          }
+        ]
+      }
+    },
+    "setFont": {
+      "type": "function",
+      "name": "setFont",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Font",
+            "paramName": "value",
+            "desc": "Value for font"
+          }
+        ]
+      }
+    },
+    "resetFont": {
+      "type": "function",
+      "name": "resetFont",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ]
+      }
+    },
+    "getOpacity": {
+      "type": "function",
+      "name": "getOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for opacity"
+          }
+        ]
+      }
+    },
+    "setOpacity": {
+      "type": "function",
+      "name": "setOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for opacity"
+          }
+        ]
+      }
+    },
+    "resetOpacity": {
+      "type": "function",
+      "name": "resetOpacity",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ]
+      }
+    },
+    "getCursor": {
+      "type": "function",
+      "name": "getCursor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for cursor"
+          }
+        ]
+      }
+    },
+    "setCursor": {
+      "type": "function",
+      "name": "setCursor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for cursor"
+          }
+        ]
+      }
+    },
+    "resetCursor": {
+      "type": "function",
+      "name": "resetCursor",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ]
+      }
+    },
+    "getToolTip": {
+      "type": "function",
+      "name": "getToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.ui.tooltip.ToolTip",
+            "desc": "Returns the value for toolTip"
+          }
+        ]
+      }
+    },
+    "setToolTip": {
+      "type": "function",
+      "name": "setToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.ui.tooltip.ToolTip",
+            "paramName": "value",
+            "desc": "Value for toolTip"
+          }
+        ]
+      }
+    },
+    "resetToolTip": {
+      "type": "function",
+      "name": "resetToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ]
+      }
+    },
+    "getToolTipText": {
+      "type": "function",
+      "name": "getToolTipText",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for toolTipText"
+          }
+        ]
+      }
+    },
+    "setToolTipText": {
+      "type": "function",
+      "name": "setToolTipText",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for toolTipText"
+          }
+        ]
+      }
+    },
+    "resetToolTipText": {
+      "type": "function",
+      "name": "resetToolTipText",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ]
+      }
+    },
+    "getToolTipIcon": {
+      "type": "function",
+      "name": "getToolTipIcon",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for toolTipIcon"
+          }
+        ]
+      }
+    },
+    "setToolTipIcon": {
+      "type": "function",
+      "name": "setToolTipIcon",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for toolTipIcon"
+          }
+        ]
+      }
+    },
+    "resetToolTipIcon": {
+      "type": "function",
+      "name": "resetToolTipIcon",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ]
+      }
+    },
+    "getBlockToolTip": {
+      "type": "function",
+      "name": "getBlockToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for blockToolTip"
+          }
+        ]
+      }
+    },
+    "isBlockToolTip": {
+      "type": "function",
+      "name": "isBlockToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for blockToolTip"
+          }
+        ]
+      }
+    },
+    "setBlockToolTip": {
+      "type": "function",
+      "name": "setBlockToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for blockToolTip"
+          }
+        ]
+      }
+    },
+    "resetBlockToolTip": {
+      "type": "function",
+      "name": "resetBlockToolTip",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ]
+      }
+    },
+    "getShowToolTipWhenDisabled": {
+      "type": "function",
+      "name": "getShowToolTipWhenDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showToolTipWhenDisabled"
+          }
+        ]
+      }
+    },
+    "isShowToolTipWhenDisabled": {
+      "type": "function",
+      "name": "isShowToolTipWhenDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showToolTipWhenDisabled"
+          }
+        ]
+      }
+    },
+    "setShowToolTipWhenDisabled": {
+      "type": "function",
+      "name": "setShowToolTipWhenDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showToolTipWhenDisabled"
+          }
+        ]
+      }
+    },
+    "resetShowToolTipWhenDisabled": {
+      "type": "function",
+      "name": "resetShowToolTipWhenDisabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ]
+      }
+    },
+    "getVisibility": {
+      "type": "function",
+      "name": "getVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for visibility"
+          }
+        ]
+      }
+    },
+    "setVisibility": {
+      "type": "function",
+      "name": "setVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for visibility"
+          }
+        ]
+      }
+    },
+    "resetVisibility": {
+      "type": "function",
+      "name": "resetVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
+    },
+    "isEnabled": {
+      "type": "function",
+      "name": "isEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for enabled"
+          }
+        ]
+      }
+    },
+    "resetEnabled": {
+      "type": "function",
+      "name": "resetEnabled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
+    },
+    "getAnonymous": {
+      "type": "function",
+      "name": "getAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "isAnonymous": {
+      "type": "function",
+      "name": "isAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for anonymous"
+          }
+        ]
+      }
+    },
+    "setAnonymous": {
+      "type": "function",
+      "name": "setAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for anonymous"
+          }
+        ]
+      }
+    },
+    "resetAnonymous": {
+      "type": "function",
+      "name": "resetAnonymous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
+    },
+    "getTabIndex": {
+      "type": "function",
+      "name": "getTabIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for tabIndex"
+          }
+        ]
+      }
+    },
+    "setTabIndex": {
+      "type": "function",
+      "name": "setTabIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for tabIndex"
+          }
+        ]
+      }
+    },
+    "resetTabIndex": {
+      "type": "function",
+      "name": "resetTabIndex",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ]
+      }
+    },
+    "getFocusable": {
+      "type": "function",
+      "name": "getFocusable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for focusable"
+          }
+        ]
+      }
+    },
+    "isFocusable": {
+      "type": "function",
+      "name": "isFocusable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for focusable"
+          }
+        ]
+      }
+    },
+    "setFocusable": {
+      "type": "function",
+      "name": "setFocusable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for focusable"
+          }
+        ]
+      }
+    },
+    "resetFocusable": {
+      "type": "function",
+      "name": "resetFocusable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ]
+      }
+    },
+    "getKeepFocus": {
+      "type": "function",
+      "name": "getKeepFocus",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for keepFocus"
+          }
+        ]
+      }
+    },
+    "isKeepFocus": {
+      "type": "function",
+      "name": "isKeepFocus",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for keepFocus"
+          }
+        ]
+      }
+    },
+    "setKeepFocus": {
+      "type": "function",
+      "name": "setKeepFocus",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for keepFocus"
+          }
+        ]
+      }
+    },
+    "resetKeepFocus": {
+      "type": "function",
+      "name": "resetKeepFocus",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ]
+      }
+    },
+    "getKeepActive": {
+      "type": "function",
+      "name": "getKeepActive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for keepActive"
+          }
+        ]
+      }
+    },
+    "isKeepActive": {
+      "type": "function",
+      "name": "isKeepActive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for keepActive"
+          }
+        ]
+      }
+    },
+    "setKeepActive": {
+      "type": "function",
+      "name": "setKeepActive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for keepActive"
+          }
+        ]
+      }
+    },
+    "resetKeepActive": {
+      "type": "function",
+      "name": "resetKeepActive",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ]
+      }
+    },
+    "getDraggable": {
+      "type": "function",
+      "name": "getDraggable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for draggable"
+          }
+        ]
+      }
+    },
+    "isDraggable": {
+      "type": "function",
+      "name": "isDraggable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for draggable"
+          }
+        ]
+      }
+    },
+    "setDraggable": {
+      "type": "function",
+      "name": "setDraggable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for draggable"
+          }
+        ]
+      }
+    },
+    "resetDraggable": {
+      "type": "function",
+      "name": "resetDraggable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ]
+      }
+    },
+    "getDroppable": {
+      "type": "function",
+      "name": "getDroppable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for droppable"
+          }
+        ]
+      }
+    },
+    "isDroppable": {
+      "type": "function",
+      "name": "isDroppable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for droppable"
+          }
+        ]
+      }
+    },
+    "setDroppable": {
+      "type": "function",
+      "name": "setDroppable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for droppable"
+          }
+        ]
+      }
+    },
+    "resetDroppable": {
+      "type": "function",
+      "name": "resetDroppable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ]
+      }
+    },
+    "getSelectable": {
+      "type": "function",
+      "name": "getSelectable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for selectable"
+          }
+        ]
+      }
+    },
+    "isSelectable": {
+      "type": "function",
+      "name": "isSelectable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for selectable"
+          }
+        ]
+      }
+    },
+    "setSelectable": {
+      "type": "function",
+      "name": "setSelectable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for selectable"
+          }
+        ]
+      }
+    },
+    "resetSelectable": {
+      "type": "function",
+      "name": "resetSelectable",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ]
+      }
+    },
+    "getContextMenu": {
+      "type": "function",
+      "name": "getContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.ui.menu.Menu",
+            "desc": "Returns the value for contextMenu"
+          }
+        ]
+      }
+    },
+    "setContextMenu": {
+      "type": "function",
+      "name": "setContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.ui.menu.Menu",
+            "paramName": "value",
+            "desc": "Value for contextMenu"
+          }
+        ]
+      }
+    },
+    "resetContextMenu": {
+      "type": "function",
+      "name": "resetContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ]
+      }
+    },
+    "getNativeContextMenu": {
+      "type": "function",
+      "name": "getNativeContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for nativeContextMenu"
+          }
+        ]
+      }
+    },
+    "isNativeContextMenu": {
+      "type": "function",
+      "name": "isNativeContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for nativeContextMenu"
+          }
+        ]
+      }
+    },
+    "setNativeContextMenu": {
+      "type": "function",
+      "name": "setNativeContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for nativeContextMenu"
+          }
+        ]
+      }
+    },
+    "resetNativeContextMenu": {
+      "type": "function",
+      "name": "resetNativeContextMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ]
+      }
+    },
+    "getAppearance": {
+      "type": "function",
+      "name": "getAppearance",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for appearance"
+          }
+        ]
+      }
+    },
+    "setAppearance": {
+      "type": "function",
+      "name": "setAppearance",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for appearance"
+          }
+        ]
+      }
+    },
+    "resetAppearance": {
+      "type": "function",
+      "name": "resetAppearance",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ]
+      }
+    },
+    "getShownMonth": {
+      "type": "function",
+      "name": "getShownMonth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shownMonth</code>.\n\nFor further details take a look at the property definition: {@link #shownMonth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for shownMonth"
+          }
+        ]
+      }
+    },
+    "setShownMonth": {
+      "type": "function",
+      "name": "setShownMonth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shownMonth</code>.\n\nFor further details take a look at the property definition: {@link #shownMonth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for shownMonth"
+          }
+        ]
+      }
+    },
+    "resetShownMonth": {
+      "type": "function",
+      "name": "resetShownMonth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shownMonth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shownMonth}."
+          }
+        ]
+      }
+    },
+    "getShownYear": {
+      "type": "function",
+      "name": "getShownYear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>shownYear</code>.\n\nFor further details take a look at the property definition: {@link #shownYear}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for shownYear"
+          }
+        ]
+      }
+    },
+    "setShownYear": {
+      "type": "function",
+      "name": "setShownYear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>shownYear</code>.\n\nFor further details take a look at the property definition: {@link #shownYear}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for shownYear"
+          }
+        ]
+      }
+    },
+    "resetShownYear": {
+      "type": "function",
+      "name": "resetShownYear",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>shownYear</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shownYear}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 763,
+        "column": 13
+      },
+      "end": {
+        "line": 770,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {
+    "execute": {
+      "type": "event",
+      "name": "execute",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IExecutable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the widget is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
+          }
+        ]
+      }
+    },
+    "changeEnabled": {
+      "type": "event",
+      "name": "changeEnabled",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the enabled state was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeValid": {
+      "type": "event",
+      "name": "changeValid",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the valid state was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeInvalidMessage": {
+      "type": "event",
+      "name": "changeInvalidMessage",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the invalidMessage was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeRequired": {
+      "type": "event",
+      "name": "changeRequired",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the required was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IDateForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the value was modified</p>"
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/AbstractField.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "ui",
+    "table",
+    "ICellEditorFactory",
+    "type",
+    "properties",
+    "validationFunction",
+    "check",
+    "nullable",
+    "init",
+    "members",
+    "_createEditor",
+    "Error",
+    "createCellEditor",
+    "cellInfo",
+    "cellEditor",
+    "originalValue",
+    "value",
+    "undefined",
+    "setValue",
+    "addListener",
+    "selectAllText",
+    "getCellEditorValue",
+    "getValue",
+    "validationFunc",
+    "getValidationFunction",
+    "parseFloat",
+    "celleditor",
+    "AbstractField"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,SAAS,EAAGT,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAYC,kBAF1B;AAGEC,IAAAA,IAAI,EAAG,UAHT;AAMEC,IAAAA,UAAU,EACV;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,kBAAkB,EAClB;AACEC,QAAAA,KAAK,EAAG,UADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG;AAHT;AAPF,KAPF;AAsBEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,aAAa,EAAG,yBAAW;AACzB,cAAM,IAAIC,KAAJ,CAAU,uBAAV,CAAN;AACD,OARH;AAWE;AACAC,MAAAA,gBAAgB,EAAG,0BAASC,QAAT,EACnB;AACE,YAAIC,UAAU,GAAG,KAAKJ,aAAL,EAAjB;;AAEAI,QAAAA,UAAU,CAACC,aAAX,GAA2BF,QAAQ,CAACG,KAApC;;AACA,YAAIH,QAAQ,CAACG,KAAT,KAAmB,IAAnB,IAA2BH,QAAQ,CAACG,KAAT,KAAmBC,SAAlD,EAA6D;AAC3DJ,UAAAA,QAAQ,CAACG,KAAT,GAAiB,EAAjB;AACD;;AACDF,QAAAA,UAAU,CAACI,QAAX,CAAoB,KAAKL,QAAQ,CAACG,KAAlC;AAEAF,QAAAA,UAAU,CAACK,WAAX,CAAuB,QAAvB,EAAiC,YAAW;AAC1CL,UAAAA,UAAU,CAACM,aAAX;AACD,SAFD;AAIA,eAAON,UAAP;AACD,OA3BH;AA8BE;AACAO,MAAAA,kBAAkB,EAAG,4BAASP,UAAT,EACrB;AACE,YAAIE,KAAK,GAAGF,UAAU,CAACQ,QAAX,EAAZ,CADF,CAGE;;AACA,YAAIC,cAAc,GAAG,KAAKC,qBAAL,EAArB;;AACA,YAAID,cAAJ,EAAqB;AACnBP,UAAAA,KAAK,GAAGO,cAAc,CAAEP,KAAF,EAASF,UAAU,CAACC,aAApB,CAAtB;AACD;;AAED,YAAI,OAAOD,UAAU,CAACC,aAAlB,IAAmC,QAAvC,EAAiD;AAC/CC,UAAAA,KAAK,GAAGS,UAAU,CAACT,KAAD,CAAlB;AACD;;AAED,eAAOA,KAAP;AACD;AA9CH;AAvBF,GADA;AAtBA1B,EAAAA,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAYyB,UAAZ,CAAuBC,aAAvB,CAAqClC,aAArC,GAAqDA,aAArD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * An abstract cell editor factory creating text/password/spinner/... fields.\n */\nqx.Class.define(\"qx.ui.table.celleditor.AbstractField\",\n{\n  extend : qx.core.Object,\n  implement : qx.ui.table.ICellEditorFactory,\n  type : \"abstract\",\n\n\n  properties :\n  {\n    /**\n     * function that validates the result\n     * the function will be called with the new value and the old value and is\n     * supposed to return the value that is set as the table value.\n     **/\n    validationFunction :\n    {\n      check : \"Function\",\n      nullable : true,\n      init : null\n    }\n  },\n\n\n  members :\n  {\n    /**\n     * Factory to create the editor widget\n     *\n     * @return {qx.ui.core.Widget} The editor widget\n     */\n    _createEditor : function() {\n      throw new Error(\"Abstract method call!\");\n    },\n\n\n    // interface implementation\n    createCellEditor : function(cellInfo)\n    {\n      var cellEditor = this._createEditor();\n\n      cellEditor.originalValue = cellInfo.value;\n      if (cellInfo.value === null || cellInfo.value === undefined) {\n        cellInfo.value = \"\";\n      }\n      cellEditor.setValue(\"\" + cellInfo.value);\n\n      cellEditor.addListener(\"appear\", function() {\n        cellEditor.selectAllText();\n      });\n\n      return cellEditor;\n    },\n\n\n    // interface implementation\n    getCellEditorValue : function(cellEditor)\n    {\n      var value = cellEditor.getValue();\n\n      // validation function will be called with new and old value\n      var validationFunc = this.getValidationFunction();\n      if (validationFunc ) {\n        value = validationFunc( value, cellEditor.originalValue );\n      }\n\n      if (typeof cellEditor.originalValue == \"number\") {\n        value = parseFloat(value);\n      }\n\n      return value;\n    }\n  }\n});\n"
+  ]
+}

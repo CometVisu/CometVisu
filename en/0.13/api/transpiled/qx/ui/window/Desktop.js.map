@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/window/Desktop.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "Widget",
+    "include",
+    "MChildrenHandling",
+    "window",
+    "MDesktop",
+    "MBlocker",
+    "implement",
+    "IDesktop",
+    "construct",
+    "windowManager",
+    "Window",
+    "DEFAULT_MANAGER_CLASS",
+    "getContentElement",
+    "disableScrolling",
+    "_setLayout",
+    "layout",
+    "Canvas",
+    "set",
+    "desktop",
+    "setWindowManager",
+    "Desktop"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;AAGEC,IAAAA,OAAO,EAAG,CACRV,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWG,iBADH,EAERX,EAAE,CAACO,EAAH,CAAMK,MAAN,CAAaC,QAFL,EAGRb,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWM,QAHH,CAHZ;AASEC,IAAAA,SAAS,EAAGf,EAAE,CAACO,EAAH,CAAMK,MAAN,CAAaI,QAT3B;;AAWE;AACF;AACA;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,aAAT,EACZ;AACE;AACAA,MAAAA,aAAa,GAAGA,aAAa,IAAI,IAAIlB,EAAE,CAACO,EAAH,CAAMK,MAAN,CAAaO,MAAb,CAAoBC,qBAAxB,EAAjC;AAEA,WAAKC,iBAAL,GAAyBC,gBAAzB;;AACA,WAAKC,UAAL,CAAgB,IAAIvB,EAAE,CAACO,EAAH,CAAMiB,MAAN,CAAaC,MAAjB,GAA0BC,GAA1B,CAA8B;AAC5CC,QAAAA,OAAO,EAAE;AADmC,OAA9B,CAAhB;;AAGA,WAAKC,gBAAL,CAAsBV,aAAtB;AACD;AAzBH,GADA;AAvBAlB,EAAAA,EAAE,CAACO,EAAH,CAAMK,MAAN,CAAaiB,OAAb,CAAqB1B,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The desktop is a widget, which can act as container for windows. It can be\n * used to define a clipping region for internal windows e.g. to create\n * an MDI like application.\n */\nqx.Class.define(\"qx.ui.window.Desktop\",\n{\n  extend : qx.ui.core.Widget,\n\n  include : [\n    qx.ui.core.MChildrenHandling,\n    qx.ui.window.MDesktop,\n    qx.ui.core.MBlocker\n  ],\n\n  implement : qx.ui.window.IDesktop,\n\n  /**\n   * @param windowManager {qx.ui.window.IWindowManager} The window manager to use for the desktop.\n   *    If not provided, an instance of {@link qx.ui.window.Window#DEFAULT_MANAGER_CLASS} is used.\n   */\n  construct : function(windowManager)\n  {\n    this.base(arguments);\n    windowManager = windowManager || new qx.ui.window.Window.DEFAULT_MANAGER_CLASS();\n\n    this.getContentElement().disableScrolling();\n    this._setLayout(new qx.ui.layout.Canvas().set({\n      desktop: true\n    }));\n    this.setWindowManager(windowManager);\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,777 @@
+/* 
+ * global CSS declarations for all designs 
+ */
+
+html
+{
+  height: 100%;
+  overflow: hidden;
+}
+
+body 
+{
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+a, img {
+  -webkit-user-drag: none;
+  /* not a standard yet, but probably in the future. Also no way known to help firefox at the moment. */
+  user-drag: none;
+}
+/*
+ * Default height for all icons
+ */
+.icon {
+  height: 2em;
+  width: 2em;
+}
+.tree-icon {
+  height: 20px;
+  width: 20px;
+}
+
+/*
+ * create a three column layout in the middle of the page to allow navbars
+ * inspired by http://www.alistapart.com/articles/holygrail
+ */
+#centerContainer {
+  padding-left: 0;   /* left bar width */
+  padding-right: 0;  /* right bar width */
+}
+#centerContainer > div {
+  position: relative;
+  float: left;
+  display: block;
+}
+.blurred {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+#navbarLeft {
+  width: 0;          /* left bar width */
+}
+#navbarRight {
+  width: 0;          /* right bar width */
+  margin-right: 0;   /* right bar width */
+}
+.mobile #navbarLeft,
+.mobile #navbarRight {
+  position: absolute;
+  z-index: 1;
+}
+#navbarTop {
+}
+#navbarBottom {
+  clear: both;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* The message popup.
+ * It will hide itself when it's empty, otherwise will stick on the top of the
+ * window.
+ */
+#message {
+  display: none;
+}
+
+#message:not(:empty) {
+  display: block;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  right: 1em;
+  padding: 0.5em;
+  color: #000;
+  background-color: #bbb;
+  border: 1px solid #000;
+  box-shadow: 0 0 0.5em 0.35em blue;
+}
+
+/*
+ * Option for a close button:
+#message::before {
+  content: '[X]';
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+*/
+
+#message.warning {
+  box-shadow: 0 0 0.5em 0.35em #ffc107;
+}
+
+#message.error {
+  box-shadow: 0 0 0.5em 0.35em #f00;
+  background-color: #ffafaf;
+}
+
+#pages,
+.page > .clearfix, 
+#navbarTop, #navbarBottom {
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling:touch;
+}
+.page > .clearfix:not(.navbar) { position:relative; height: 100%; }
+input, textarea, select, button { font: inherit; }
+/* 
+ * colspans, each design needs to define a colspan0
+ * class, this class is the default widget size
+ */
+ 
+.innerrowspan {
+ position:absolute;
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+}
+
+/*
+ * Disable all pages except the active ones
+ * 
+ * Note: the .navbar class needs all of this decoration to overwrite the 
+ * .clearfix class without using an !important qualifier
+ */
+.page, html[xmlns] .navbar.clearfix {
+  display: none;
+}
+
+.pageActive, html[xmlns] .navbar.clearfix.navbarActive {
+  display: block;
+}
+
+.highlightedWidget, .navbar > .highlightedWidget > .widget {
+  box-shadow: inset 0px 0px 8px 2px #cb4606;
+  border-radius: 4px;
+}
+/*
+ * global color declarations for stylings in all designs
+ * may be overloaded by designs
+ */
+.rowspan { overflow:hidden; position:relative; }
+.red
+{
+  color:#FF0000;
+}
+.white
+{
+  color:#FFFFFF;
+}
+.cyan
+{
+  color:#00FFFF;
+}
+.silver
+{
+  color:#C0C0C0;
+}
+.blue
+{
+  color:#0000FF;
+}
+.grey
+{
+  color:#808080;
+}
+.darkblue
+{
+  color:#0000A0;
+}
+.black
+{
+  color:#000000;
+}
+.lightblue
+{
+  color:#ADD8E6;
+}
+.orange
+{
+  color:#FFA500;
+}
+.purple
+{
+  color:#800080;
+}
+.brown
+{
+  color:#A52A2A;
+}
+.yellow
+{
+  color:#FFFF00;
+}
+.maroon
+{
+  color:#800000;
+}
+.lime
+{
+  color:#00FF00;
+}
+.green
+{
+  color:#008000;
+}
+.fuchsia
+{
+  color:#FF00FF;
+}
+.olive
+{
+  color:#808000;
+}
+
+/* special case for the break widget as it wouldn't be possible otherwise */
+.widget_container.break_container
+{
+  clear: both;
+}
+
+.image > .actor { overflow: hidden; }
+
+/* infoaction widget basic styling, just positioning no fancy stuff */
+.infoaction { position: relative; }
+.infoaction .widget_container.widgetinfo {
+  width: auto !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.infoaction .widget_container.widgetaction {
+  z-index: 1;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor {
+  width: 100%;
+  margin: 0;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor div { float: none; }
+
+.navbar .infoaction .label {
+  float: left;
+  margin: 0 auto;
+}
+
+button.ui-slider-handle {
+  min-width: 2em;
+  min-height: 2em;
+}
+
+.roundbar > .actor {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.roundbar .axis,
+.roundbar .major,
+.roundbar .minor {
+  stroke: white;
+}
+.roundbar .sector {
+  fill: none;
+}
+.roundbar .indicator {
+  fill: #FF8000;
+  stroke: #FF8000;
+}
+.roundbar .axislabel,
+.roundbar .value {
+  fill: white;
+}
+
+.colorchooser .actors {
+  width: 30%;
+  float: left;
+}
+
+.colorchooser .actor {
+  touch-action: none;
+}
+
+.colorchooser .actor.ui-slider {
+  width: 100%;
+  margin-top: 1.5em;
+}
+.colorchooser .cc_box,
+.colorchooser .cc_wheel {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.colorchooser .hue {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: 50%;
+}
+
+.colorchooser .hsv_hue {
+  background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser .lch_hue {
+  background: conic-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
+}
+
+.colorchooser .cc_wheel .hue {
+  -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 10px),#fff calc(100% - 9.5px));
+}
+
+.colorchooser .cc_box .hue {
+  -webkit-mask: radial-gradient(circle farthest-side,transparent calc(100% - 20px),#fff calc(100% - 19.5px));
+}
+
+.colorchooser .sv_box {
+  position: absolute;
+  margin: calc(14.645% + 0.7071 * 22px);
+  top:0;right:0;bottom:0;left:0;
+}
+
+.colorchooser .sv_box .inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,#f00, #808080 100%);
+}
+
+.colorchooser .sv_triangle {
+  position: absolute;
+  margin:10px;
+  top:0;right:0;bottom:0;left:0;
+  transform:rotate(0deg);
+}
+
+.colorchooser .sv_triangle .inner {
+  width: 100%;
+  height: 75%;
+  -webkit-mask: conic-gradient(at 50% 0%, transparent 0deg 150deg, #fff 150deg 210deg, transparent 210deg);
+  background: linear-gradient(210deg, transparent 45%, black 90%), linear-gradient(150deg, transparent 45%, white 90%), linear-gradient(45deg, #f00, #f00);
+}
+
+.colorchooser .handle_hue {
+  position: absolute;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+  border-radius:50%;
+  box-sizing:border-box;
+}
+
+.colorchooser .cc_box .handle_hue {
+  top: 3px;
+  left: calc(50% - 0.375em);
+  transform-origin: 0.375em 100px;
+}
+
+.colorchooser .cc_wheel .handle_hue {
+  top:calc(-0.5 * 10px - 0.5 * 1em);
+  left:calc(50% - 0.5 * 1em);
+}
+
+.colorchooser .handle {
+  position: absolute;
+  top:50%;
+  left:50%;
+  border-radius:50%;
+  box-sizing:border-box;
+  transform:translate(-50%,-50%);
+}
+
+.colorchooser .cc_box .handle_hue,
+.colorchooser .cc_box .handle {
+  width: 0.75em;
+  height: 0.75em;
+  border: 1.5px solid white;
+  box-shadow:inset 0 0 0 1.5px black;
+}
+
+.colorchooser .cc_wheel .handle_hue,
+.colorchooser .cc_wheel .handle {
+  width: 1em;
+  height: 1em;
+  border: 2px solid white;
+  box-shadow:inset 0 0 0 2px black;
+}
+
+.colorchooser .ui-slider .ui-slider-range {
+  width: 100%;
+}
+
+.colorchooser .cc_RGB-r.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-r.ui-slider .ui-slider-range {
+  background-color: #f00;
+}
+
+.colorchooser .cc_RGB-g.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-g.ui-slider .ui-slider-range {
+  background-color: #0f0;
+}
+
+.colorchooser .cc_RGB-b.ui-slider .ui-slider-range,
+.colorchooser .cc_RGBW-b.ui-slider .ui-slider-range {
+  background-color: #00f;
+}
+
+.colorchooser .cc_RGBW-w.ui-slider .ui-slider-range {
+  background-color: #fff;
+}
+
+.colorchooser .cc_h.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, red, yellow, lime, aqua, blue, magenta, red);
+}
+
+.colorchooser .cc_s.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-C.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(red, yellow, lime, blue);
+  background: linear-gradient(90deg, #888, transparent), linear-gradient(rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245));
+}
+
+.colorchooser .cc_v.ui-slider .ui-slider-range,
+.colorchooser .cc_LCh-L.ui-slider .ui-slider-range,
+.colorchooser .cc_Y.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, #000, #fff);
+}
+
+.colorchooser .cc_LCh-h.ui-slider .ui-slider-range {
+  background: linear-gradient(90deg, rgb(246, 27, 136), rgb(255, 224, 32), rgb(46, 255, 224), rgb(0, 136, 245), rgb(246, 27, 136));
+}
+
+#notification-center {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  background-color: rgba(61, 61, 61, 0.9);
+  border-left: 3px solid #111;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  z-index: 1000000;
+  color: #FFF;
+}
+
+#notification-center > .badge {
+  position: absolute;
+  top: 5px;
+  left: -53px; /*width + border*/
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(61, 61, 61, 0.9);
+  font-weight: bold;
+  font-size: 1.4em;
+  border-left: 3px solid #111;
+  border-top: 3px solid #111;
+  border-bottom: 3px solid #111;
+  cursor: pointer;
+}
+#notification-center > .badge:hover {
+  border-color: #CCC;
+}
+
+#notification-center section.messages {
+  overflow-y: auto;
+}
+
+/*severities*/
+#notification-center > .badge.urgent, #toast-list .toast.urgent {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+#notification-center > .badge.high, #toast-list .toast.high {
+  background-color: rgba(255, 121, 0, 0.9);
+}
+
+#notification-center > .badge.normal, #toast-list .toast.normal {
+  background-color: rgba(255, 244, 230, 0.9);
+  color: #000000;
+}
+
+#notification-center > .badge.low, #toast-list .toast.low {
+  background-color: rgba(61, 61, 61, 0.9);
+}
+
+#notification-center .message.urgent {
+  border-left: 8px solid rgba(255, 0, 0, 0.9);
+}
+
+#notification-center .message.high {
+  border-left: 8px solid rgba(255, 121, 0, 0.9);
+}
+
+#notification-center .message.normal {
+  border-left: 8px solid rgba(255, 244, 230, 0.9);
+}
+
+#notification-center .message.low {
+  border-left: 8px solid rgba(61, 61, 61, 0.9);
+}
+#notification-center > .badge.hidden {
+  display: none;
+}
+#notification-center > .badge:not(:empty):not(.hidden) {
+  display: block;
+}
+
+#notification-center > header {
+  padding: 10px 18px;
+  border-bottom: 2px solid #CCC;
+}
+
+#notification-center footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 18px;
+  border-top: 2px solid #CCC;
+  font-size: 1.1em;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#notification-center footer .clear:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#notification-center footer .clear::before {
+  content: "X ";
+}
+
+#notification-center > header > h3 {
+  overflow: auto;
+}
+
+#notification-center > header .hide {
+  float: right;
+}
+
+#notification-center .message header h4 {
+  font-size: 1.2em;
+  margin: 0 0 3px 0;
+}
+
+#notification-center .message {
+  border-bottom: 1px solid #CECECE;
+  padding: 10px 18px;
+  overflow: auto;
+  vertical-align: middle;
+  min-height: 25px;
+}
+
+#notification-center .message .icon {
+  float: left;
+  height: 3em;
+  width: 3em;
+  margin-right: 0.5em;
+}
+
+#notification-center .message.selectable, #notification-center .message .delete {
+  cursor: pointer;
+}
+
+#notification-center .message:last-child {
+  border-bottom: none;
+}
+
+#notification-center .message .delete {
+  float: right;
+  font-weight: bold;
+  height: 100%;
+  margin-left: 1em;
+  text-transform: uppercase;
+}
+
+#notification-center a {
+  color: #fff;
+}
+
+.popup.notification,
+.popup_background.notification {
+  position: absolute;
+  padding: 30px;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 60px);
+}
+
+.popup {
+  z-index: 100001;
+  background: transparent;
+  font-family: Arial, sans-serif;
+}
+
+.popup_close {
+  position: absolute;
+  z-index: 100002;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.popup_background {
+  z-index: 100000;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+}
+
+.popup div {
+  margin: 4px;
+  max-height: 80vh;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup .main {
+  overflow-y: auto;
+}
+
+.popup .main > div > .icon:not(.spinner) {
+  float: left;
+  margin: 0 1em 0 0;
+  vertical-align: top;
+  width: 64px;
+  height: 64px;
+}
+
+.popup .main .icon.spinner {
+  vertical-align: middle;
+  align: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.popup.notification .main .message {
+  margin: 1em 0;
+  user-select: text;
+}
+
+.popup .main pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 0.8em;
+}
+
+.popup .reload,
+.popup .actions { text-align: center; white-space: nowrap; clear: both; }
+.popup .actions button {
+  padding: 0.3em 1em;
+  font-size: 0.9em;
+  margin: 0 0.5em;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+  color: #FFF;
+}
+
+.popup_background.error a { color: #FFF; }
+
+pre.inline { display: inline-block; }
+
+/* progressbar */
+.popup div.progressbar {
+  height: 10px;
+  background-color: white;
+  padding: 1px;
+  margin: 10px 5px;
+  position: relative;
+}
+
+.popup div.progressbar div.completed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: grey;
+  margin: 1px;
+}
+#qxsettings {
+  position: absolute;
+  top: revert;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#toast-list {
+  position: absolute;
+  right: 100px;
+  bottom: 10px;
+}
+
+#toast-list .toast {
+  background-color: rgba(61, 61, 61, 0.9);
+  padding: 8px 18px;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 200px;
+  font-size: 14px;
+  text-align: center;
+}
+
+#manager div.touch-tree-open-icon {
+  line-height: 32px !important;
+  text-align: right !important;
+}
+
+#manager a {
+  color: #CCC;
+}
+
+.about-cv {
+  text-align: center;
+}
+
+.about-cv h2 {
+  margin-left: 0;
+}
+
+.about-cv .info {
+  text-align: left;
+}
+
+.about-cv label {
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+}

@@ -1,0 +1,1458 @@
+{
+  "className": "qx.event.Manager",
+  "packageName": "qx.event",
+  "name": "Manager",
+  "superClass": "Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 1040,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Wrapper for browser DOM event handling for each browser window/frame.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.Event"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 44,
+        "column": 14
+      },
+      "end": {
+        "line": 80,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Creates a new instance of the event handler.</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "win {Window} The DOM window this manager handles the events for",
+          "paramName": "win",
+          "description": " The DOM window this manager handles the events for",
+          "type": "Window"
+        },
+        {
+          "name": "@param",
+          "body": "registration {qx.event.Registration} The event registration to use",
+          "paramName": "registration",
+          "description": " The event registration to use",
+          "type": "qx.event.Registration"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "__lastUnique": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Last used ID for an event"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getNextUniqueId": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an unique ID which may be used in combination with a target and\n a type to identify an event entry.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The next free identifier (auto-incremented)",
+            "type": "String",
+            "description": " The next free identifier (auto-incremented)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__globalEventMonitors": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} private list of global event monitor functions"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 127,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a global event monitor function which is called for each event fired\n anywhere in the application. The function is called with the signature\n (target: {@link qx.core.Object}, event: {@link qx.event.type.Event}).\n Since for performance reasons, the original event object is passed,\n the monitor function must not change this event in any way.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function} Monitor function",
+            "paramName": "fn",
+            "description": " Monitor function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} Optional execution context of the function",
+            "paramName": "context",
+            "description": " Optional execution context of the function",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a global event monitor function that had\n previously been added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function} The global monitor function",
+            "paramName": "fn",
+            "description": " The global monitor function",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetGlobalEventMonitors": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all registered event monitors</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the global event monitor. Not compatible with the {@link\n qx.event.Manager.addGlobalEventMonitor} API. Will be removed in v7.0.0</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function?} the global monitor function",
+            "type": "Function?",
+            "description": " the global monitor function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the global event monitor. Not compatible with the {@link\n qx.event.Manager.addGlobalEventMonitor} API. Will be removed in\n v7.0.0. Use {@link qx.event.Manager.addGlobalEventMonitor} instead.</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function?} the global monitor function",
+            "paramName": "fn",
+            "description": " the global monitor function",
+            "optional": true,
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__registration": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 185,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__listeners": {
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4
+        },
+        "end": {
+          "line": 186,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__dispatchers": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__disposeWrapper": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 189,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__handlers": {
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__handlerCache": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__window": {
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4
+        },
+        "end": {
+          "line": 193,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__windowId": {
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__blacklist": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 196,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__clearBlackList": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4
+        },
+        "end": {
+          "line": 197,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getWindow": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4
+        },
+        "end": {
+          "line": 214,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the window instance the event manager is responsible for</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} DOM window instance",
+            "type": "Window",
+            "description": " DOM window instance"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindowId": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the hashcode of the manager's window</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The window's hashcode",
+            "type": "String",
+            "description": " The window's hashcode"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getHandler": {
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an instance of the given handler class for this manager(window).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} Any class which implements {@link qx.event.IEventHandler}",
+            "paramName": "clazz",
+            "description": " Any class which implements {@link qx.event.IEventHandler}",
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The instance used by this manager",
+            "type": "Object",
+            "description": " The instance used by this manager"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDispatcher": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4
+        },
+        "end": {
+          "line": 260,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an instance of the given dispatcher class for this manager(window).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} Any class which implements {@link qx.event.IEventHandler}",
+            "paramName": "clazz",
+            "description": " Any class which implements {@link qx.event.IEventHandler}",
+            "type": "Class"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The instance used by this manager",
+            "type": "Object",
+            "description": " The instance used by this manager"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getListeners": {
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 4
+        },
+        "end": {
+          "line": 297,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a copy of all event listeners for the given combination\n of target, event type and phase.\n This method is especially useful and for event handlers to\n to query the listeners registered in the manager.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type",
+            "paramName": "type",
+            "description": " Event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether the listener is for the\n       capturing phase of the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether the listener is for the\n       capturing phase of the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array | null} Array of registered event handlers. May return\n       null when no listener were found.",
+            "type": "Array | null",
+            "description": " Array of registered event handlers. May return\n       null when no listener were found."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllListeners": {
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4
+        },
+        "end": {
+          "line": 309,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all registered listeners.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} All registered listeners. The key is the hash code form an object.",
+            "type": "Map",
+            "description": " All registered listeners. The key is the hash code form an object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "serializeListeners": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 350,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a serialized array of all events attached on the given target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>.",
+            "type": "Map[]",
+            "description": " Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toggleAttachedEvents": {
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 4
+        },
+        "end": {
+          "line": 388,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method might be used to temporally remove all events\n directly attached to the given target. This do not work\n have any effect on bubbling events normally.\n This is mainly thought for detaching events in IE, before\n cloning them. It also removes all leak scenarios\n when unloading a document and may be used here as well.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "enable {Boolean} Whether to enable or disable the events",
+            "paramName": "enable",
+            "description": " Whether to enable or disable the events",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasListener": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 423,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether there are one or more listeners for an event type\n registered at the target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The event type",
+            "paramName": "type",
+            "description": " The event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the target has event listeners of the given type.",
+            "type": "Boolean",
+            "description": " Whether the target has event listeners of the given type."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "importListeners": {
+      "location": {
+        "start": {
+          "line": 441,
+          "column": 4
+        },
+        "end": {
+          "line": 481,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Imports a list of event listeners at once. This only\n works for newly created elements as it replaces\n all existing data structures.\n Works with a map of data. Each entry in this map should be a\n map again with the keys <code>type</code>, <code>listener</code>,\n <code>self</code>, <code>capture</code> and an optional <code>unique</code>.\n The values are identical to the parameters of {@link #addListener}.\n For details please have a look there.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "list {Map} A map where every listener has an unique key.",
+            "paramName": "list",
+            "description": " A map where every listener has an unique key.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addListener": {
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4
+        },
+        "end": {
+          "line": 553,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an event listener to any valid target. The event listener is passed an\n instance of {@link qx.event.type.Event} containing all relevant information\n about the event as parameter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event e.g. \"click\", \"keydown\", ...",
+            "paramName": "type",
+            "description": " Name of the event e.g. \"click\", \"keydown\", ...",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} Event listener function",
+            "paramName": "listener",
+            "description": " Event listener function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} An opaque ID, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
+            "type": "String",
+            "description": " An opaque ID, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the parameters are wrong",
+            "type": "Error",
+            "description": " if the parameters are wrong"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "findHandler": {
+      "location": {
+        "start": {
+          "line": 564,
+          "column": 4
+        },
+        "end": {
+          "line": 647,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the event handler class matching the given event target and type</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The event type",
+            "paramName": "type",
+            "description": " The event type",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.IEventHandler|null} The best matching event handler or\n     <code>null</code>.",
+            "type": "qx.event.IEventHandler|null",
+            "description": " The best matching event handler or\n     <code>null</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__registerAtHandler": {
+      "location": {
+        "start": {
+          "line": 660,
+          "column": 4
+        },
+        "end": {
+          "line": 678,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time an event listener for one of the\n supported events is added using {qx.event.Manager#addListener}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "Boolean"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if there is no handler for the event",
+            "type": "Error",
+            "description": " if there is no handler for the event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "removeListener": {
+      "location": {
+        "start": {
+          "line": 694,
+          "column": 4
+        },
+        "end": {
+          "line": 747,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an event listener from an event target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event",
+            "paramName": "type",
+            "description": " Name of the event",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The pointer to the event listener",
+            "paramName": "listener",
+            "description": " The pointer to the event listener",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\n         the event listener.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to remove the event listener of\n         the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to remove the event listener of\n         the bubbling or of the capturing phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed successfully (was existant)",
+            "type": "Boolean",
+            "description": " Whether the event was removed successfully (was existant)"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the parameters are wrong",
+            "type": "Error",
+            "description": " if the parameters are wrong"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeListenerById": {
+      "location": {
+        "start": {
+          "line": 758,
+          "column": 4
+        },
+        "end": {
+          "line": 807,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an event listener from an event target by an ID returned by\n {@link #addListener}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "id {String} The ID returned by {@link #addListener}",
+            "paramName": "id",
+            "description": " The ID returned by {@link #addListener}",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the handler was removed",
+            "type": "Boolean",
+            "description": " <code>true</code> if the handler was removed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllListeners": {
+      "location": {
+        "start": {
+          "line": 816,
+          "column": 4
+        },
+        "end": {
+          "line": 846,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all event listeners, which are attached to the given event target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target to remove all event listeners from.",
+            "paramName": "target",
+            "description": " The event target to remove all event listeners from.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the events were existant and were removed successfully.",
+            "type": "Boolean",
+            "description": " Whether the events were existant and were removed successfully."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteAllListeners": {
+      "location": {
+        "start": {
+          "line": 858,
+          "column": 4
+        },
+        "end": {
+          "line": 860,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for deleting the internal listener  data structure for\n the given targetKey.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetKey {String} Hash code for the object to delete its\n   listeners.",
+            "paramName": "targetKey",
+            "description": " Hash code for the object to delete its\n   listeners.",
+            "type": "String"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__unregisterAtHandler": {
+      "location": {
+        "start": {
+          "line": 874,
+          "column": 4
+        },
+        "end": {
+          "line": 892,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time the an event listener for one of the\n supported events is removed by using {qx.event.Manager#removeListener}\n and no other event listener is listening on this type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "Boolean"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if there is no handler for the event",
+            "type": "Error",
+            "description": " if there is no handler for the event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "dispatchEvent": {
+      "location": {
+        "start": {
+          "line": 917,
+          "column": 4
+        },
+        "end": {
+          "line": 998,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatches an event object using the qooxdoo event handler system. The\n event will only be visible in event listeners attached using\n {@link #addListener}. After dispatching the event object will be pooled\n for later reuse or disposed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event} The event object to dispatch. The event\n     object must be obtained using {@link qx.event.Registration#createEvent}\n     and initialized using {@link qx.event.type.Event#init}.",
+            "paramName": "event",
+            "description": " The event object to dispatch. The event\n     object must be obtained using {@link qx.event.Registration#createEvent}\n     and initialized using {@link qx.event.type.Event#init}.",
+            "type": "qx.event.type.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean|qx.Promise",
+            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if there is no dispatcher for the event",
+            "type": "Error",
+            "description": " if there is no dispatcher for the event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 1004,
+          "column": 4
+        },
+        "end": {
+          "line": 1015,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose the event manager</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable",
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
+    },
+    "__addToBlacklist": {
+      "location": {
+        "start": {
+          "line": 1022,
+          "column": 4
+        },
+        "end": {
+          "line": 1028,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add event to blacklist.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uid {number} unique event id",
+            "paramName": "uid",
+            "description": " unique event id",
+            "type": "number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "isBlacklisted": {
+      "location": {
+        "start": {
+          "line": 1036,
+          "column": 4
+        },
+        "end": {
+          "line": 1038,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if the event with the given id has been removed and is therefore blacklisted for event handling</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uid {number} unique event id",
+            "paramName": "uid",
+            "description": " unique event id",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

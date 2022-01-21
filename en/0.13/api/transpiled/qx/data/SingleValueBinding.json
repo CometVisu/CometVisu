@@ -1,0 +1,1344 @@
+{
+  "className": "qx.data.SingleValueBinding",
+  "packageName": "qx.data",
+  "name": "SingleValueBinding",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 1443,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Single-value binding is a core component of the data binding package.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__bindings": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4
+        },
+        "end": {
+          "line": 28,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>internal reference for all bindings indexed by source object</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__bindingsByTarget": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>internal reference for all bindings indexed by target object</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "bind": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 299,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function is responsible for binding a source objects property to\n a target objects property. Both properties have to have the usual qooxdoo\n getter and setter. The source property also needs to fire change-events\n on every change of its value.\n Please keep in mind, that this binding is unidirectional. If you need\n a binding in both directions, you have to use two of this bindings.\n It's also possible to bind some kind of a hierarchy as a source. This\n means that you can separate the source properties with a dot and bind\n by that the object referenced to this property chain.\n Example with an object 'a' which has object 'b' stored in its 'child'\n property. Object b has a string property named abc:</p>\n <pre><code>\n qx.data.SingleValueBinding.bind(a, \"child.abc\", textfield, \"value\");\n </code></pre>\n<p>In that case, if the property abc of b changes, the textfield will\n automatically contain the new value. Also if the child of a changes, the\n new value (abc of the new child) will be in the textfield.\n There is also a possibility of binding an array. Therefore the array\n {@link qx.data.IListData} is needed because this array has change events\n which the native does not. Imagine a qooxdoo object a which has a\n children property containing an array holding more of its own kind.\n Every object has a name property as a string.\n </p>\n<pre>\n var svb = qx.data.SingleValueBinding;\n\n svb.bind(a, \"children[0].name\", textfield, \"value\");\n\n svb.bind(a, \"children[last].name\", textfield2, \"value\");\n\n svb.bind(a, \"children[0].children[0].name\", textfield3, \"value\");\n </pre>\n<p>As you can see in this example, the abc property of a's b will be bound\n to the textfield. If now the value of b changed or even the a will get a\n new b, the binding still shows the right value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourcePropertyChain {String} The property chain which represents\n   the source property.",
+            "paramName": "sourcePropertyChain",
+            "description": " The property chain which represents\n   the source property.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
+            "paramName": "targetObject",
+            "description": " The object which the source should\n   be bind to.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The property chain to the target\n   object.",
+            "paramName": "targetPropertyChain",
+            "description": " The property chain to the target\n   object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} A map containing the options.\n   <li>converter: A converter function which takes four parameters\n       and should return the converted value.\n       <ol>\n         <li>The data to convert</li>\n         <li>The corresponding model object, which is only set in case of the use of an controller.</li>\n         <li>The source object for the binding</li>\n         <li>The target object.</li>\n       </ol>\n       If no conversion has been done, the given value should be returned.\n       e.g. a number to boolean converter\n       <code>function(data, model, source, target) {return data > 100;}</code>\n   </li>\n   <li>onUpdate: A callback function can be given here. This method will be\n       called if the binding was updated successful. There will be\n       three parameter you do get in that method call.\n       <ol>\n         <li>The source object</li>\n         <li>The target object</li>\n         <li>The data</li>\n       </ol>\n       Here is a sample: <code>onUpdate : function(source, target, data) {...}</code>\n   </li>\n   <li>onSetFail: A callback function can be given here. This method will\n       be called if the set of the value fails.\n   </li>\n   <li>ignoreConverter: A string which will be matched using the current\n       property chain. If it matches, the converter will not be called.\n   </li>",
+            "paramName": "options",
+            "description": " A map containing the options.\n   <li>converter: A converter function which takes four parameters\n       and should return the converted value.\n       <ol>\n         <li>The data to convert</li>\n         <li>The corresponding model object, which is only set in case of the use of an controller.</li>\n         <li>The source object for the binding</li>\n         <li>The target object.</li>\n       </ol>\n       If no conversion has been done, the given value should be returned.\n       e.g. a number to boolean converter\n       <code>function(data, model, source, target) {return data > 100;}</code>\n   </li>\n   <li>onUpdate: A callback function can be given here. This method will be\n       called if the binding was updated successful. There will be\n       three parameter you do get in that method call.\n       <ol>\n         <li>The source object</li>\n         <li>The target object</li>\n         <li>The data</li>\n       </ol>\n       Here is a sample: <code>onUpdate : function(source, target, data) {...}</code>\n   </li>\n   <li>onSetFail: A callback function can be given here. This method will\n       be called if the set of the value fails.\n   </li>\n   <li>ignoreConverter: A string which will be matched using the current\n       property chain. If it matches, the converter will not be called.\n   </li>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Returns the internal id for that binding. This can be used\n   for referencing the binding or e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index.",
+            "type": "var",
+            "description": " Returns the internal id for that binding. This can be used\n   for referencing the binding or e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the event is no data event or\n   there is no property definition for object and property (source and\n   target).",
+            "type": "qx.core.AssertionError",
+            "description": " If the event is no data event or\n   there is no property definition for object and property (source and\n   target)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__chainListener": {
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4
+        },
+        "end": {
+          "line": 428,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for the chaining of the properties.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "context {Map} The current context for the listener.",
+            "paramName": "context",
+            "description": " The current context for the listener.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__setUpTargetBinding": {
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4
+        },
+        "end": {
+          "line": 564,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for setting up the listening to the changes on the\n target side of the binding. Only works if the target property is a\n property chain</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourcePropertyChain {String} The property chain which represents\n   the source property.",
+            "paramName": "sourcePropertyChain",
+            "description": " The property chain which represents\n   the source property.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
+            "paramName": "targetObject",
+            "description": " The object which the source should\n   be bind to.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The property name of the target\n   object.",
+            "paramName": "targetPropertyChain",
+            "description": " The property name of the target\n   object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} The options map perhaps containing the user defined\n   converter.",
+            "paramName": "options",
+            "description": " The options map perhaps containing the user defined\n   converter.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} A map containing the listener ids and the targets.",
+            "type": "var",
+            "description": " A map containing the listener ids and the targets."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "updateTarget": {
+      "location": {
+        "start": {
+          "line": 583,
+          "column": 4
+        },
+        "end": {
+          "line": 595,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for updating the target. Gets the current set data from the source\n and set that on the target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourcePropertyChain {String} The property chain which represents\n   the source property.",
+            "paramName": "sourcePropertyChain",
+            "description": " The property chain which represents\n   the source property.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
+            "paramName": "targetObject",
+            "description": " The object which the source should\n   be bind to.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The property name of the target\n   object.",
+            "paramName": "targetPropertyChain",
+            "description": " The property name of the target\n   object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} The options map perhaps containing the user defined\n   converter.",
+            "paramName": "options",
+            "description": " The options map perhaps containing the user defined\n   converter.",
+            "type": "Map"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resolvePropertyChain": {
+      "location": {
+        "start": {
+          "line": 606,
+          "column": 4
+        },
+        "end": {
+          "line": 609,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for getting the current set value at the property chain.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "o {qx.core.Object} The source of the binding.",
+            "paramName": "o",
+            "description": " The source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyChain {String} The property chain which represents\n   the source property.",
+            "paramName": "propertyChain",
+            "description": " The property chain which represents\n   the source property.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var?undefined} Returns the set value if defined.",
+            "type": "var?undefined",
+            "description": " Returns the set value if defined."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getEventNameForProperty": {
+      "location": {
+        "start": {
+          "line": 625,
+          "column": 4
+        },
+        "end": {
+          "line": 644,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to return a fitting event name to the given source object and\n property name. First, it assumes that the property name is a real property\n and therefore it checks the property definition for the event. The second\n possibility is to check if there is an event with the given name. The\n third and last possibility checked is if there is an event which is named\n change + propertyName. If this three possibilities fail, an error will be\n thrown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {qx.core.Object} The source where the property is stored.",
+            "paramName": "source",
+            "description": " The source where the property is stored.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "propertyName {String} The name of the property.",
+            "paramName": "propertyName",
+            "description": " The name of the property.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} The name of the corresponding event or null.",
+            "type": "String|null",
+            "description": " The name of the corresponding event or null."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__resetTargetValue": {
+      "location": {
+        "start": {
+          "line": 656,
+          "column": 4
+        },
+        "end": {
+          "line": 682,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the value of the given target after resolving the target property\n chain.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object where the property chain\n   starts.",
+            "paramName": "targetObject",
+            "description": " The object where the property chain\n   starts.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The names of the properties,\n   separated with a dot.",
+            "paramName": "targetPropertyChain",
+            "description": " The names of the properties,\n   separated with a dot.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__setTargetValue": {
+      "location": {
+        "start": {
+          "line": 695,
+          "column": 4
+        },
+        "end": {
+          "line": 719,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the given value to the given target after resolving the\n target property chain.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object where the property chain\n   starts.",
+            "paramName": "targetObject",
+            "description": " The object where the property chain\n   starts.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The names of the properties,\n   separated with a dot.",
+            "paramName": "targetPropertyChain",
+            "description": " The names of the properties,\n   separated with a dot.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set.",
+            "paramName": "value",
+            "description": " The value to set.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getArrayIndex": {
+      "location": {
+        "start": {
+          "line": 730,
+          "column": 4
+        },
+        "end": {
+          "line": 737,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index from a property using bracket notation, e.g.\n \"[42]\" returns \"42\", \"[last]\" returns \"last\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyName {String} A property name",
+            "paramName": "propertyName",
+            "description": " A property name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Array index or null if the property name does\n not use bracket notation",
+            "type": "String|null",
+            "description": " Array index or null if the property name does\n not use bracket notation"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getPropertyChainArray": {
+      "location": {
+        "start": {
+          "line": 746,
+          "column": 4
+        },
+        "end": {
+          "line": 752,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a property chain string into a list of properties and/or\n array indexes</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} property chain",
+            "paramName": "targetPropertyChain",
+            "description": " property chain",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} Array of property names",
+            "type": "String[]",
+            "description": " Array of property names"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getTargetFromChain": {
+      "location": {
+        "start": {
+          "line": 767,
+          "column": 4
+        },
+        "end": {
+          "line": 793,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Function resolving the object on which the last property of the\n chain should be set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object where the property chain\n   starts.",
+            "paramName": "targetObject",
+            "description": " The object where the property chain\n   starts.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetProperties {String[]} Array containing the names of the properties",
+            "paramName": "targetProperties",
+            "description": " Array containing the names of the properties",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number?} The array index of the last property to be considered.\n Default: The last item's index",
+            "paramName": "index",
+            "description": " The array index of the last property to be considered.\n Default: The last item's index",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object | null} The object on which the last property\n   should be set.",
+            "type": "qx.core.Object | null",
+            "description": " The object on which the last property\n   should be set."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__setInitialValue": {
+      "location": {
+        "start": {
+          "line": 810,
+          "column": 4
+        },
+        "end": {
+          "line": 845,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the given value to the target property. This method is used for\n initially set the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to set.",
+            "paramName": "value",
+            "description": " The value to set.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which contains the target\n   property.",
+            "paramName": "targetObject",
+            "description": " The object which contains the target\n   property.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The name of the target property in the\n   target object.",
+            "paramName": "targetPropertyChain",
+            "description": " The name of the target property in the\n   target object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} The options map perhaps containing the user defined\n   converter.",
+            "paramName": "options",
+            "description": " The options map perhaps containing the user defined\n   converter.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source object of the binding (\n   used for the onUpdate callback).",
+            "paramName": "sourceObject",
+            "description": " The source object of the binding (\n   used for the onUpdate callback).",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__checkForArrayInPropertyChain": {
+      "location": {
+        "start": {
+          "line": 857,
+          "column": 4
+        },
+        "end": {
+          "line": 905,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for an array element in the given property names and adapts the\n arrays to fit the algorithm.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyNames {Array} The array containing the property names.\n   Attention, this method can change this parameter!!!",
+            "paramName": "propertyNames",
+            "description": " The array containing the property names.\n   Attention, this method can change this parameter!!!",
+            "type": "qx.data.Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the values of the array properties\n   corresponding to the property names.",
+            "type": "qx.data.Array",
+            "description": " An array containing the values of the array properties\n   corresponding to the property names."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__bindEventToProperty": {
+      "location": {
+        "start": {
+          "line": 937,
+          "column": 4
+        },
+        "end": {
+          "line": 1040,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method which is actually doing all bindings. That means\n that an event listener will be added to the source object which listens\n to the given event and invokes an set on the target property on the\n targetObject.\n This method does not store the binding in the internal reference store\n so it should NOT be used from outside this class. For an outside usage,\n use {@link #bind}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourceEvent {String} The event of the source object which could\n   be the change event in common but has to be an\n   {@link qx.event.type.Data} event.",
+            "paramName": "sourceEvent",
+            "description": " The event of the source object which could\n   be the change event in common but has to be an\n   {@link qx.event.type.Data} event.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
+            "paramName": "targetObject",
+            "description": " The object which the source should\n   be bind to.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetProperty {String} The property name of the target object.",
+            "paramName": "targetProperty",
+            "description": " The property name of the target object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} A map containing the options. See\n   {@link #bind} for more information.",
+            "paramName": "options",
+            "description": " A map containing the options. See\n   {@link #bind} for more information.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "arrayIndex {String} The index of the given array if its an array\n   to bind.",
+            "paramName": "arrayIndex",
+            "description": " The index of the given array if its an array\n   to bind.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Returns the internal id for that binding. This can be used\n   for referencing the binding or e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index. It's the id which will\n   be returned by the {@link qx.core.Object#addListener} method.",
+            "type": "var",
+            "description": " Returns the internal id for that binding. This can be used\n   for referencing the binding or e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index. It's the id which will\n   be returned by the {@link qx.core.Object#addListener} method."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the event is no data event or\n   there is no property definition for the target object and target\n   property.",
+            "type": "qx.core.AssertionError",
+            "description": " If the event is no data event or\n   there is no property definition for the target object and target\n   property."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__storeBinding": {
+      "location": {
+        "start": {
+          "line": 1054,
+          "column": 4
+        },
+        "end": {
+          "line": 1076,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method stores the given value as a binding in the internal structure\n of all bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {var} The listener id of the id for a deeper binding.",
+            "paramName": "id",
+            "description": " The listener id of the id for a deeper binding.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source Object of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source Object of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourceEvent {String} The name of the source event.",
+            "paramName": "sourceEvent",
+            "description": " The name of the source event.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The target object.",
+            "paramName": "targetObject",
+            "description": " The target object.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetProperty {String} The name of the property on the target\n   object.",
+            "paramName": "targetProperty",
+            "description": " The name of the property on the target\n   object.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__convertValue": {
+      "location": {
+        "start": {
+          "line": 1098,
+          "column": 4
+        },
+        "end": {
+          "line": 1126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method takes the given value, checks if the user has given a\n converter and converts the value to its target type. If no converter is\n given by the user, the {@link #__defaultConversion} will try to convert\n the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value which possibly should be converted.",
+            "paramName": "value",
+            "description": " The value which possibly should be converted.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The target object.",
+            "paramName": "targetObject",
+            "description": " The target object.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetPropertyChain {String} The property name of the target object.",
+            "paramName": "targetPropertyChain",
+            "description": " The property name of the target object.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map} The options map which can includes the converter.\n   For a detailed information on the map, take a look at\n   {@link #bind}.",
+            "paramName": "options",
+            "description": " The options map which can includes the converter.\n   For a detailed information on the map, take a look at\n   {@link #bind}.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source object for the binding.",
+            "paramName": "sourceObject",
+            "description": " The source object for the binding.",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The converted value. If no conversion has been done, the\n   value property will be returned.",
+            "type": "var",
+            "description": " The converted value. If no conversion has been done, the\n   value property will be returned."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If there is no property definition\n   of the given target object and target property.",
+            "type": "qx.core.AssertionError",
+            "description": " If there is no property definition\n   of the given target object and target property."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getEventForProperty": {
+      "location": {
+        "start": {
+          "line": 1140,
+          "column": 4
+        },
+        "end": {
+          "line": 1150,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method which tries to figure out if the given property on the\n given object does have a change event and if returns the name of it.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The object to check.",
+            "paramName": "sourceObject",
+            "description": " The object to check.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sourceProperty {String} The name of the property.",
+            "paramName": "sourceProperty",
+            "description": " The name of the property.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the change event.",
+            "type": "String",
+            "description": " The name of the change event."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If there is no property definition of\n   the given object property pair.",
+            "type": "qx.core.AssertionError",
+            "description": " If there is no property definition of\n   the given object property pair."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__defaultConversion": {
+      "location": {
+        "start": {
+          "line": 1161,
+          "column": 4
+        },
+        "end": {
+          "line": 1183,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to convert the data to the type given in the targetCheck argument.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data to convert.",
+            "paramName": "data",
+            "description": " The data to convert.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "targetCheck {String} The value of the check property. That usually\n   contains the target type.",
+            "paramName": "targetCheck",
+            "description": " The value of the check property. That usually\n   contains the target type.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer|String|Float} The converted data",
+            "type": "Integer|String|Float",
+            "description": " The converted data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "removeBindingFromObject": {
+      "location": {
+        "start": {
+          "line": 1194,
+          "column": 4
+        },
+        "end": {
+          "line": 1254,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the binding with the given id from the given sourceObject. The\n id has to be the id returned by any of the bind functions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source object of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source object of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "id {var} The id of the binding.",
+            "paramName": "id",
+            "description": " The id of the binding.",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the binding could not be found.",
+            "type": "Error",
+            "description": " If the binding could not be found."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllBindingsForObject": {
+      "location": {
+        "start": {
+          "line": 1267,
+          "column": 4
+        },
+        "end": {
+          "line": 1288,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings for the given object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} The object of which the bindings should be\n   removed.",
+            "paramName": "object",
+            "description": " The object of which the bindings should be\n   removed.",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeRelatedBindings": {
+      "location": {
+        "start": {
+          "line": 1303,
+          "column": 4
+        },
+        "end": {
+          "line": 1325,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings between given objects.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} The object of which the bindings should be\n   removed.",
+            "paramName": "object",
+            "description": " The object of which the bindings should be\n   removed.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "relatedObject {qx.core.Object} The object of which related\n   bindings should be removed.",
+            "paramName": "relatedObject",
+            "description": " The object of which related\n   bindings should be removed.",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllBindingsForObject": {
+      "location": {
+        "start": {
+          "line": 1338,
+          "column": 4
+        },
+        "end": {
+          "line": 1358,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array which lists all bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} The object of which the bindings should\n   be returned.",
+            "paramName": "object",
+            "description": " The object of which the bindings should\n   be returned.",
+            "type": "qx.core.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject,\n   sourceEvent, targetObject and targetProperty in that order.",
+            "type": "qx.data.Array",
+            "description": " An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject,\n   sourceEvent, targetObject and targetProperty in that order."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllBindings": {
+      "location": {
+        "start": {
+          "line": 1367,
+          "column": 4
+        },
+        "end": {
+          "line": 1380,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all binding in the whole application. After that not a single\n binding is left.</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0} dispose and destructors are deprecated because of automatic memory management; this\n will only work for objects explicitly registered with ObjectRegistry.register"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAllBindings": {
+      "location": {
+        "start": {
+          "line": 1391,
+          "column": 4
+        },
+        "end": {
+          "line": 1393,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map containing for every bound object an array of data binding\n information. The key of the map is the hash code of the bound objects.\n Every binding is represented by an array containing id, sourceObject,\n sourceEvent, targetObject and targetProperty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing all bindings.",
+            "type": "Map",
+            "description": " Map containing all bindings."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showBindingInLog": {
+      "location": {
+        "start": {
+          "line": 1403,
+          "column": 4
+        },
+        "end": {
+          "line": 1422,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Debug function which shows some valuable information about the given\n binding in console. For that it uses {@link qx.log.Logger}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} the source of the binding.",
+            "paramName": "object",
+            "description": " the source of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "id {var} The id of the binding.",
+            "paramName": "id",
+            "description": " The id of the binding.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showAllBindingsInLog": {
+      "location": {
+        "start": {
+          "line": 1430,
+          "column": 4
+        },
+        "end": {
+          "line": 1440,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Debug function which shows all bindings in the log console. To get only\n one binding in the console use {@link #showBindingInLog}</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0} qx.core.ObjectRegistry no longer stores most objects"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

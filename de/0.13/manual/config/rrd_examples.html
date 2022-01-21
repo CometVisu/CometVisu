@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RRD Einführung &amp; Beispiele &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/rrd_examples.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)" href="rrd/1wire_owfs.html" />
+    <link rel="prev" title="Benachrichtigungen" href="notifications.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sonstiges">sonstiges</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="notifications.html">Benachrichtigungen</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RRD Einführung &amp; Beispiele</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allgemeine-infos-uber-rrd">Allgemeine Infos über RRD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rrd-und-die-cometvisu">RRD und die CometVisu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anlegen-der-rrd-datenbank">Anlegen der RRD-Datenbank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#befullen-der-rrd-datenbank">„Befüllen“ der RRD-Datenbank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fehlersuche">Fehlersuche</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beispiele-fur-rrds">Beispiele für RRDs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hydraulik.html">Anleitung zum Erstellen eines Animierten Hydraulikplans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing.html">Anpassungen vornehmen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>RRD Einführung &amp; Beispiele</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="rrd-einfuhrung-beispiele">
+<span id="rrd-introduction"></span><h1>RRD Einführung &amp; Beispiele<a class="headerlink" href="#rrd-einfuhrung-beispiele" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Dieser Abschnitt kann ignoriert werden, wenn ein openHAB-Backend benutzt wird.
+Hilfe bei der Anzeige von Diagrammen mit dem openHAB-Backend sind in der Dokumentation
+des <a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram-Plugins</span></a> zu finden.</p>
+</div>
+<div class="section" id="allgemeine-infos-uber-rrd">
+<h2>Allgemeine Infos über RRD<a class="headerlink" href="#allgemeine-infos-uber-rrd" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die CometVisu-Diagramme werden über RRD generiert.</p>
+<p>Diese werden üblicherweise im Verzeichnis <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> abgelegt.</p>
+<p>Allgemeine Infos zu RRD findet man auf englisch
+<a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/index.en.html">hier</a> und natürlich
+bei
+<a class="reference external" href="http://de.wikipedia.org/w/index.php?title=RRDtool&amp;oldid=125588545">Wikipedia</a></p>
+<p>Infos zum Erzeugen von RRD Datenbanken findet man auf englisch
+<a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html">hier</a></p>
+<p>Infos zum Aktualisieren/Befüllen von RRD-Datenbanken findet man auf
+englisch <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdupdate.en.html">hier</a></p>
+</div>
+<div class="section" id="rrd-und-die-cometvisu">
+<h2>RRD und die CometVisu<a class="headerlink" href="#rrd-und-die-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zum Anzeigen eines Diagramms in der CometVisu ist nötig:</p>
+<ul class="simple">
+<li>CometVisu-Diagramm-Plugin</li>
+<li>RRD Datei</li>
+<li>auf CometVisu abgestimmtes rrdtool (entweder ein zusätzliches Script
+oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patches</a>)</li>
+</ul>
+<p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
+standardmässig verfügbar)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<span class="c1"># /etc/crontab: system-wide crontab</span>
+<span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
+<span class="c1"># command to install the new version when you edit this file</span>
+<span class="c1"># and files in /etc/cron.d. These files also have username fields,</span>
+<span class="c1"># that none of the other crontabs do.</span>
+
+<span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+<span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+<span class="c1"># m h dom mon dow user  command</span>
+
+<span class="c1"># etliche Zeilen entfernt, bitte NICHT diese Datei per copy&amp;paste nutzen sondern die RRD-Crons unten an die bestehende Datei anhängen!!!``</span>
+
+*/5 *   * * *   root    /var/www/rrd/cputemp
+*/5 *   * * *   root    /var/www/rrd/processes
+*/5 *   * * *   root    /var/www/rrd/cpuload
+*/5 *   * * *   root    /var/www/rrd/cpuload15
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> bedeutet hierbei das der Job jederzeit alle 5 Minuten
+ausgeführt wird. Der kleinste Zeitabstand der mit der crontab
+realisierbar ist ist <code class="docutils literal notranslate"><span class="pre">*/1</span></code>, also jede Minute.</p>
+<p>Der Aktualisierungsabstand sollte zur RRD Datenbank passen!</p>
+</div>
+<div class="section" id="anlegen-der-rrd-datenbank">
+<h2>Anlegen der RRD-Datenbank<a class="headerlink" href="#anlegen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die RRD Datei/Datenbank muss zunächst angelegt werden.</p>
+<p>Hierfür muss man sich beim Anlegen der Datenbank überlegen wie viele
+Datensätze gespeichert werden sollen. Die Datenbank wird dann erstellt
+und mit „NaN“ (Not A Number - kein Wert vorhanden) Werten gefüllt. Die
+Grösse der Datenbank ändert sich dann nicht mehr.</p>
+<p>Dies bedeutet das wenn die maximale Anzahl Datensätze in einer Tabelle
+erreicht sind wird mit dem Eintragen eines neues Wertes der älteste
+verworfen. Dies ist jedoch kein Problem da regelmässig Werte
+zusammengefasst werden.</p>
+<p>In der Praxis heisst das das die Auflösung der Werte mit zunehmendem
+Zeitabstand zu „jetzt“ geringer wird. (z.B. minütliche Werte für die
+letzten 7 Tage, stündliche Werte für die letzten 4 Wochen, tägliche
+Werte für die letzten 2 Jahre etc…)</p>
+</div>
+<div class="section" id="befullen-der-rrd-datenbank">
+<h2>„Befüllen“ der RRD-Datenbank<a class="headerlink" href="#befullen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die RRD Datei/Datenbank muss regelmässig mit Daten befüllt werden - wenn
+dies nicht geschieht erkennt RRD das und trägt automatische NaN ein -
+damit bleiben die Zusammenfassungen korrekt.</p>
+<p>Hierfür ruft man das das rrdtool auf mit dem Parameter „update“ und
+übergibt einen Zeitstempel (oder N für „Now“, also aktuelle Zeit) sowie
+die Werte die in die Datenbank aufgenommen werden sollen.</p>
+<p>Am, einfachsten lässt sich dieses über ein kurzes Shellscript erledigen,
+das man dann per cron regelmässig ausführen lässt.</p>
+</div>
+<div class="section" id="fehlersuche">
+<h2>Fehlersuche<a class="headerlink" href="#fehlersuche" title="Link zu dieser Überschrift">¶</a></h2>
+<p>wenn RRD basierte Daten nicht wie vorgesehen angezeigt werden kann man
+direkt in die Datenbank schauen ob überhaupt (sinnvolle) Werte vorhanden
+sind. Hierfür gibt es das</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump
+</pre></div>
+</div>
+<p>Kommando. Dieses stellt die Datenbank als Text dar. Man sollte dann
+Zeilen mit NaN (Not a Number = Kein Wert vorhanden) ausfiltern sowie nur
+Daten-Zeilen mit anschauen. Dies kann man z.B. mit dem grep-Kommando
+machen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEDERDATENBANK.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiele-fur-rrds">
+<h2>Beispiele für RRDs<a class="headerlink" href="#beispiele-fur-rrds" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Diese Beispiele funktionieren nicht mit openHAB</p>
+</div>
+<p>(die Beispiel-Scripte erzeugen beim ersten Aufruf die RRD Datenbank,
+danach aktualisieren sie die Datenbank)</p>
+<ul class="simple">
+<li><a class="reference internal" href="rrd/cpuload.html"><span class="doc">CPU load für Linux Systeme</span></a> - die CPU load (1 Min, 5 Min, 15 Min wird in eine RRD Datenbank geschrieben</li>
+<li><a class="reference internal" href="rrd/processes.html"><span class="doc">Anzahl der Prozess auf Linux System</span></a> - die Anzahl der laufenden Prozesse wird in eine RRD Datenbank geschrieben</li>
+<li><a class="reference internal" href="rrd/pi_cputemp.html"><span class="doc">CPU Temperatur für Raspberry Pi</span></a> - internen Temperatur-Sensor der Raspberry CPU abfragen und im RRD speichern</li>
+<li><a class="reference internal" href="rrd/knx_linknx.html"><span class="doc">Temperatur vom KNX mit linknx</span></a> - Schreiben eines mit Linknx persistent abgelegten KNX-Wertes (hier
+eine Temperatur eines RTR) in einer RRD Datenbank.</li>
+<li><a class="reference internal" href="rrd/1wire_owfs.html"><span class="doc">Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)</span></a> - direktes Lesen eines 1wire-Temperatur-Sensors in eine RRD Datenbank</li>
+</ul>
+<p>für fortgeschrittene Anwender (Anpassungen im Script sind wahrscheinlich erforderlich)</p>
+<ul class="simple">
+<li><a class="reference internal" href="rrd/ifHCoctets.html"><span class="doc">Internet-Bandbreite</span></a> - Internet-Überwachung per SNMP - es sind Anpassungen erforderlich!</li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notifications.html" class="btn btn-neutral float-left" title="Benachrichtigungen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rrd/1wire_owfs.html" class="btn btn-neutral float-right" title="Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

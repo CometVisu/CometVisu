@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/NumberField.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "form",
+    "Input",
+    "include",
+    "MValue",
+    "MText",
+    "implement",
+    "IStringForm",
+    "construct",
+    "value",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "minimum",
+    "check",
+    "apply",
+    "maximum",
+    "step",
+    "members",
+    "_getType",
+    "_onChangeStep",
+    "old",
+    "_setAttribute",
+    "_onChangeMaximum",
+    "_onChangeMinimum",
+    "NumberField"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,KAD7B;AAEEC,IAAAA,OAAO,EAAG,CAACX,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBG,MAAnB,EAA2BZ,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBI,KAA7C,CAFZ;AAGEC,IAAAA,SAAS,EAAG,CAACd,EAAE,CAACO,EAAH,CAAME,IAAN,CAAWM,WAAZ,CAHd;;AAME;AACF;AACA;AACA;AACA;;AAEE;AACF;AACA;AACEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EACZ;AACE;AACD,KAlBH;;AAoBE;AACF;AACA;AACA;AACA;AACEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;;AASE;AACJ;AACA;AACA;AACIC,MAAAA,OAAO,EACP;AACEC,QAAAA,KAAK,EAAG,QADV;AAEEF,QAAAA,IAAI,EAAG,EAFT;AAGEG,QAAAA,KAAK,EAAG;AAHV,OAdF;;AAqBE;AACJ;AACA;AACA;AACIC,MAAAA,OAAO,EACP;AACEF,QAAAA,KAAK,EAAG,QADV;AAEEF,QAAAA,IAAI,EAAG,EAFT;AAGEG,QAAAA,KAAK,EAAG;AAHV,OA1BF;;AAiCE;AACJ;AACA;AACIE,MAAAA,IAAI,EACJ;AACEH,QAAAA,KAAK,EAAG,QADV;AAEEF,QAAAA,IAAI,EAAG,EAFT;AAGEG,QAAAA,KAAK,EAAG;AAHV;AArCF,KA1BF;;AAuEE;AACF;AACA;AACA;AACA;AAEEG,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,QAAQ,EAAG,oBACX;AACE,eAAO,QAAP;AACD,OALH;;AAQE;AACJ;AACA;AACA;AACIC,MAAAA,aAAa,EAAG,uBAASZ,KAAT,EAAea,GAAf,EAAoB;AAClC,aAAKC,aAAL,CAAmB,MAAnB,EAA0Bd,KAA1B;AACD,OAdH;;AAiBE;AACJ;AACA;AACA;AACIe,MAAAA,gBAAgB,EAAG,0BAASf,KAAT,EAAea,GAAf,EAAoB;AACrC,aAAKC,aAAL,CAAmB,KAAnB,EAAyBd,KAAzB;AACD,OAvBH;;AA0BE;AACJ;AACA;AACA;AACIgB,MAAAA,gBAAgB,EAAG,0BAAShB,KAAT,EAAea,GAAf,EAAoB;AACrC,aAAKC,aAAL,CAAmB,KAAnB,EAAyBd,KAAzB;AACD;AAhCH;AA9EF,GADA;AAvBAjB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkByB,WAAlB,CAA8B/B,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * The NumberField is a single-line number input field. It uses HTML5 input field type\n * \"number\" and the attribute \"min\" ,\"max\" and \"step\". The attributes can be used\n * for form validation {@link qx.ui.form.validation.Manager}.\n */\nqx.Class.define(\"qx.ui.mobile.form.NumberField\",\n{\n  extend : qx.ui.mobile.form.Input,\n  include : [qx.ui.mobile.form.MValue, qx.ui.mobile.form.MText],\n  implement : [qx.ui.form.IStringForm],\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param value {var?null} The value of the widget.\n   */\n  construct : function(value)\n  {\n    this.base(arguments);\n  },\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"number-field\"\n    },\n\n\n    /**\n     * The minimum text field value (may be negative). This value must be smaller\n     * than {@link #minimum}.\n     */\n    minimum :\n    {\n      check : \"Number\",\n      init : '',\n      apply : \"_onChangeMinimum\"\n    },\n\n\n    /**\n     * The maximum text field value (may be negative). This value must be larger\n     * than {@link #maximum}.\n     */\n    maximum :\n    {\n      check : \"Number\",\n      init : '',\n      apply : \"_onChangeMaximum\"\n    },\n\n\n    /**\n     * The amount to increment on each event.\n     */\n    step :\n    {\n      check : \"Number\",\n      init : '',\n      apply : \"_onChangeStep\"\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    _getType : function()\n    {\n      return \"number\";\n    },\n\n\n    /**\n     * Called when changed the property step.\n     * Delegates value change on DOM element.\n     */\n    _onChangeStep : function(value,old) {\n      this._setAttribute(\"step\",value);\n    },\n\n\n    /**\n     * Called when changed the property maximum.\n     * Delegates value change on DOM element.\n     */\n    _onChangeMaximum : function(value,old) {\n      this._setAttribute(\"max\",value);\n    },\n\n\n    /**\n     * Called when changed the property minimum.\n     * Delegates value change on DOM element.\n     */\n    _onChangeMinimum : function(value,old) {\n      this._setAttribute(\"min\",value);\n    }\n  }\n});\n"
+  ]
+}

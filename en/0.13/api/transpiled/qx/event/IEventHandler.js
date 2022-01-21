@@ -1,0 +1,95 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Interface": {
+        "usage": "dynamic",
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * Event handler Interface.
+   *
+   * All custom event handler like mouse or keyboard event handler must implement
+   * this interface.
+   */
+  qx.Interface.define("qx.event.IEventHandler", {
+    statics: {
+      /** @type {Integer} The event target must be a dom node */
+      TARGET_DOMNODE: 1,
+
+      /** @type {Integer} The event target must be a window object */
+      TARGET_WINDOW: 2,
+
+      /** @type {Integer} The event target must be a qooxdoo object */
+      TARGET_OBJECT: 4,
+
+      /** @type {Integer} The event target must be a document node */
+      TARGET_DOCUMENT: 8
+    },
+    members: {
+      /**
+       * Whether the event handler can handle events of the given type. If the
+       * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>
+       * with the value <code>true</code> this function is not called. Whether the
+       * handler can handle the event is them only determined by the static variables
+       * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.
+       *
+       * @param target {var} The target to, which the event handler should
+       *     be attached
+       * @param type {String} event type
+       * @return {Boolean} Whether the event handler can handle events of the
+       *     given type.
+       */
+      canHandleEvent: function canHandleEvent(target, type) {},
+
+      /**
+       * This method is called each time an event listener, for one of the
+       * supported events, is added using {@link qx.event.Manager#addListener}.
+       *
+       * @param target {var} The target to, which the event handler should
+       *     be attached
+       * @param type {String} event type
+       * @param capture {Boolean} Whether to attach the event to the
+       *         capturing phase or the bubbling phase of the event.
+       */
+      registerEvent: function registerEvent(target, type, capture) {},
+
+      /**
+       * This method is called each time an event listener, for one of the
+       * supported events, is removed by using {@link qx.event.Manager#removeListener}
+       * and no other event listener is listening on this type.
+       *
+       * @param target {var} The target from, which the event handler should
+       *     be removed
+       * @param type {String} event type
+       * @param capture {Boolean} Whether to attach the event to the
+       *         capturing phase or the bubbling phase of the event.
+       */
+      unregisterEvent: function unregisterEvent(target, type, capture) {}
+    }
+  });
+  qx.event.IEventHandler.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=IEventHandler.js.map?dt=1642787804075

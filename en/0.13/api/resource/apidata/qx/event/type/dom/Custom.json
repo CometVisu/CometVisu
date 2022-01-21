@@ -1,0 +1,199 @@
+{
+  "className": "qx.event.type.dom.Custom",
+  "packageName": "qx.event.type.dom",
+  "name": "Custom",
+  "superClass": "Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 126,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Cross-browser custom UI event</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "PROPERTIES": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 14
+      },
+      "end": {
+        "line": 73,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "type {String} event type",
+          "paramName": "type",
+          "description": " event type",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "domEvent {Event} Native event that will be used as a template for the new event",
+          "paramName": "domEvent",
+          "description": " Native event that will be used as a template for the new event",
+          "type": "Event"
+        },
+        {
+          "name": "@param",
+          "body": "customProps {Map} Map of event properties (will override the domEvent's values)",
+          "paramName": "customProps",
+          "description": " Map of event properties (will override the domEvent's values)",
+          "type": "Map"
+        }
+      ],
+      "@return": [
+        {
+          "name": "@return",
+          "body": "{Event} event object",
+          "type": "Event",
+          "description": " event object"
+        }
+      ]
+    }
+  },
+  "members": {
+    "_type": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_event": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_createEvent": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a custom event object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} event object",
+            "type": "Event",
+            "description": " event object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_initEvent": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 124,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes a custom event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event that will be used as a template for the new event",
+            "paramName": "domEvent",
+            "description": " Native event that will be used as a template for the new event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "customProps {Map?} Map of event properties (will override the domEvent's values)",
+            "paramName": "customProps",
+            "description": " Map of event properties (will override the domEvent's values)",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": [
+    "qx.event.type.dom.Pointer"
+  ]
+}

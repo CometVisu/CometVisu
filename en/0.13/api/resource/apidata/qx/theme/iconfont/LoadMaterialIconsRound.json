@@ -1,0 +1,53 @@
+{
+  "className": "qx.theme.iconfont.LoadMaterialIconsRound",
+  "packageName": "qx.theme.iconfont",
+  "name": "LoadMaterialIconsRound",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 28,
+        "column": 64
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A dummy class to trigger the compiler to copy the MaterialIconsRound font files</p>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsround-v37.otf"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsround-v37.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsround-v37.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialiconsround-v37.eot"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

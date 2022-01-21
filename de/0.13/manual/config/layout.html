@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="de" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funktionen zur Steuerung des Layouts &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/layout.html"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/versions.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Ändern der Größe von Widget-Inhalten" href="size-attributes.html" />
+    <link rel="prev" title="XML-Struktur" href="xml-format.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CometVisu<img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Funktionen zur Steuerung des Layouts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#das-attribut-colspan">Das Attribut colspan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#das-attribut-rowspan">Das Attribut rowspan</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="size-attributes.html">Ändern der Größe von Widget-Inhalten</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+      <li>Funktionen zur Steuerung des Layouts</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="funktionen-zur-steuerung-des-layouts">
+<span id="layout"></span><h1>Funktionen zur Steuerung des Layouts<a class="headerlink" href="#funktionen-zur-steuerung-des-layouts" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="first admonition-title">Zu tun</p>
+<ul class="last simple">
+<li>Unterscheidung Standardaufbau vs. 2D Seiten</li>
+</ul>
+</div>
+<p>Jedes Page-Element (=Seite der Visualisierung) wird grundsätzlich in 12 Spalten aufgeteilt. Das gilt auch bei
+Verwendung eines Navbars auf der linken oder rechten Seite. Das Page-Element nimmt in diesem Fall zwar einen
+schmaleren Bereich am Bildschirm ein, hat aber dennoch 12 Spalten.</p>
+<p>Das wichtigste Element zur Beeinflussung des Gesamtlayouts ist das Kind-Element <code class="docutils literal notranslate"><span class="pre">layout</span></code>, das in allen
+sichtbaren Widgets zur Verfügung steht. Nachstehend sind am Beispiel des Line-Widgets alle Attribute aufgelistet,
+die in den nächsten Abschnitten genauer erklärt werden:</p>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>line</dt><dd><ul class="simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>Zahl</td>
+<td>Spaltenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>Zahl</td>
+<td>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>Zahl</td>
+<td>Zeilenanzahl für dieses Widget.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>Text</td>
+<td>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>Text</td>
+<td>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>Text</td>
+<td>Für zukünftige Anwendungen reserviert.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>Text</td>
+<td>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="das-attribut-colspan">
+<h2>Das Attribut colspan<a class="headerlink" href="#das-attribut-colspan" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit colspan wird festgelegt, wie viele Spalten das Widget auf einem großen Display einnehmen soll. Der Defaultwert
+ist <code class="docutils literal notranslate"><span class="pre">colspan=&quot;6&quot;</span></code>, wenn keine Angabe erfolgt. Dies legt die Widgetbreite auf die Hälfte der Page-Größe fest.
+Somit passen 2 Widgets nebeneinander, erst dann wird die nächste Reihe mit dem nächsten Widget begonnen.</p>
+<p>Das Colspan-Attribut kann auch nicht ganzzahlige Angaben enthalten es sollte aber (aus optischen Gründen) darauf
+geachtet werden, dass die Summe der colspan-Definitionen je Reihe wieder 12 ergibt.</p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/Layout_colspan1.png" src="../_images/Layout_colspan1.png" />
+<p class="caption"><span class="caption-text">Einfache Text-Widgets mit verschiedenen colspan-Werten</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Der Spezialfall <code class="docutils literal notranslate"><span class="pre">colpan</span> <span class="pre">=</span> <span class="pre">&quot;0&quot;</span></code> erzeugt ein Widget mit der Mindestbreite des Inhaltes.</p>
+<p>Für jedes Widget kann mit <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> auch eine Widgetbreite für kleinere Displays angegeben werden.
+Dies ist notwendig, da in der Praxis die Schriftgröße und die Größe der Bedienflächen (zB. Buttongröße) anders skalieren
+als die tatsächliche Displaygröße.
+Des weiteren kann mit <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> und <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> auch das Layout im Hochformat beeinflusst werden, wenn die gleiche config
+auf meherer Devices verwendet wird oder auf einem Gerät beim Drehen des Bildschirms die Anzeige anders angeordnet werden
+soll.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Ob ein Display als normal, medium oder small erkannt wird, hängt nicht von der physikalischen Auflösung des Displays
+ab,sondern von der Viewport Größe, die für jedes Gerät auf Basis der Displaygröße (Bildschirmdiagonale) definiert
+ist. Eine Übersicht liefert zB. <a class="reference external" href="viewportsizes.com">viewportsizes.com</a></p>
+</div>
+<p>Nachfolgend wird ein Beispiel gezeigt, bei dem die Widgets auf 3 Displaygrößen unterschiedlich angeordnet werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;text&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;text&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;text&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/text&gt;</span>
+</pre></div>
+</div>
+<div class="figure align-default" id="id3">
+<img alt="../_images/Layout_colspan_screensize_large.png" src="../_images/Layout_colspan_screensize_large.png" />
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 1100x640</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="figure align-default" id="id4">
+<img alt="../_images/Layout_colspan_screensize_medium_640x400.png" src="../_images/Layout_colspan_screensize_medium_640x400.png" />
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 640x400 (Smartphone im Querformat)</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<div class="figure align-default" id="id5">
+<img alt="../_images/Layout_colspan_screensize_small_400x640.png" src="../_images/Layout_colspan_screensize_small_400x640.png" />
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 400x640 (Smartphone im Hochformat)</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="das-attribut-rowspan">
+<h2>Das Attribut rowspan<a class="headerlink" href="#das-attribut-rowspan" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
+<code class="docutils literal notranslate"><span class="pre">rowspan</span></code> erlaubt. Für die meisten Widgets ist die Angabe von <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> nicht erforderlich, da der default-Wert
+<code class="docutils literal notranslate"><span class="pre">rowspan=&quot;1&quot;</span></code> ausreichend ist.</p>
+<p>Notwendig bzw. sinnvoll kann die Angabe bei folgenden Widgets sein:</p>
+<ul class="simple">
+<li>Image</li>
+<li>Web</li>
+<li>Rsslog- und Rss-plugin</li>
+<li>Diagram-plugin</li>
+<li>Group</li>
+</ul>
+<p>Im nachstehenden Beispiel erzwingt das <code class="docutils literal notranslate"><span class="pre">rowspan=&quot;5&quot;</span></code>, dass das Image-Widget gleich hoch ist, wie die fünf einzelnen
+Widgets auf der linken Seite.</p>
+<div class="figure align-default" id="id6">
+<img alt="../_images/Layout_rowspan_mitImage.png" src="../_images/Layout_rowspan_mitImage.png" />
+<p class="caption"><span class="caption-text">Image-Widget mit rowspan=“5“</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Da die Widget-Anordnung nacheinander in Reihen erfolgt, können bei Anwendung von unterschiedlichen Werten für
+<code class="docutils literal notranslate"><span class="pre">rowspan</span></code> leere Bereiche entstehen.</p>
+<div class="figure align-default" id="id7">
+<img alt="../_images/Layout_rowspan.png" src="../_images/Layout_rowspan.png" />
+<p class="caption"><span class="caption-text">Leere Bereiche im Zusammenspiel mit dem rowspan-Element</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Abhilfe schafft in solchen Fällen die Verwendung das Group-Widget in verbindung mit dem nowidget-Attribut.</p>
+<div class="figure align-default" id="id8">
+<img alt="../_images/Layout_rowspan_mitGroup.png" src="../_images/Layout_rowspan_mitGroup.png" />
+<p class="caption"><span class="caption-text">Steuerung der Anordnung mit einer unsichtbaren Gruppe (Attribut <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Nachstehend der xml-Code für den Screenshot mit korrekter Anordnung.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;text&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;label&gt;</span>Colspan 6, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;text&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;label&gt;</span>Colspan 6, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;text&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;label&gt;</span>Colspan 6, Rowspan 1<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+<span class="nt">&lt;text&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;label&gt;</span>Colspan 6, Rowspan 3<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/text&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xml-format.html" class="btn btn-neutral float-left" title="XML-Struktur" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="size-attributes.html" class="btn btn-neutral float-right" title="Ändern der Größe von Widget-Inhalten" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

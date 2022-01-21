@@ -1,0 +1,226 @@
+.page.type_2d.flavour_transparent-background > div.clearfix > img {
+    opacity: 0.4;
+}
+
+.page.type_2d .widget.custom_bubble {
+    border: 4px solid #CCC;
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #222;
+    margin: 0;
+}
+
+.page.type_2d .widget.custom_bubble.embedded {
+    border-width: 0;
+    box-shadow: 2px 4px 4px 0px rgba(135, 135, 135, 0.5);
+}
+
+.page.type_2d .widget.custom_bubble .switchPressed, .page.type_2d .widget.custom_bubble .switchUnpressed {
+    background: none;
+    border: none
+}
+
+.page.type_2d .widget.custom_bubble .switchPressed div, .page.type_2d .widget.custom_bubble .switchUnpressed div {
+    padding: 0;
+}
+
+.page.type_2d .widget.custom_bubble .actor, .page.type_2d .widget.custom_bubble .value {
+    text-align: center;
+    height: 100%;
+    line-height: 60px;
+}
+
+.page.type_2d .widget.custom_bubble .value .icon {
+    margin: 0 !important;
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+}
+
+.widget.custom_noborder {
+    border: none;
+}
+
+.page.type_2d .widget_container .widget.group > div {
+    margin: 0;
+}
+
+.page.type_2d .widget_container .widget {
+    margin: 0;
+}
+
+.page.type_2d .widget_container .widget.custom_bubble > div {
+    margin: 0;
+}
+
+.page.type_2d .widget.custom_text-2d {
+    border: none;
+    color: #888888;
+}
+
+.page.type_2d .widget.custom_embedded, .page.type_2d .widget.embedded {
+    transform: skew(-10deg, 4deg);
+}
+
+#navbarTop .navbar .widget.text.custom_vertical {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    min-width: unset;
+    min-height: unset;
+    line-height: normal;
+    font-size: 14px;
+    width: 20px;
+    height: 75px;
+    background-color: rgba(129, 102, 75, 0.8);
+    color: rgb(226, 212, 198);
+}
+
+@media only screen and (max-width: 480px) {
+    #navbarTop .navbar .widget.text.custom_vertical {
+        display: table;
+    }
+}
+
+#navbarTop .navbar .widget.text.custom_vertical div {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+}
+
+.custom_center-gauge .gauge .actor {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* stylings */
+.light-on.switchPressed div, .light-on.switchUnpressed div {
+    background-image: radial-gradient(rgba(247, 255, 134, 0.67), transparent 70%);
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-shadow: none;
+}
+
+.infotrigger.custom_small-label .label {
+    width: 30%;
+}
+
+html .page .widget.multitrigger .actor_container {
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: max-content;
+    grid-gap: 0.5em;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 100%;
+}
+
+html .page .widget.multitrigger.custom_one-line .actor_container {
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto;
+    width: 100%;
+}
+
+.widget.multitrigger .actor_container br {
+    display: none;
+}
+
+.widget.multitrigger .actor {
+    float: none;
+}
+.widget.multitrigger .actor .value {
+    text-align: center;
+    float: none;
+}
+
+/* override some metal rules */
+#pages .page.type_2d .widget_container > .widget.innerrowspan {
+    position: relative;
+    height: 100%;
+}
+
+.page.type_text .widget_container .widget {
+    height: 100%;
+}
+
+#pages .page.type_text .group.widget {
+    margin: 0.2em;
+}
+
+/* custom flavours */
+.flavour_red:not(.group) .ui-slider .ui-slider-range {
+    background-color: #FF0000;
+}
+.flavour_green:not(.group) .ui-slider .ui-slider-range {
+    background-color: #00FF00;
+}
+.flavour_blue:not(.group) .ui-slider .ui-slider-range {
+    background-color: #0000FF;
+}
+
+/* grid layout test */
+.page.type_text .clearfix:not(.widget):not(.group) {
+    display: grid;
+    grid-template-columns: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
+    grid-auto-rows: max-content;
+    align-items: flex-start;
+    margin-right: -1px;
+    margin-bottom: -1px;
+}
+
+.page.type_text .clearfix.weather-forecast .clearfix {
+    display: block !important;
+}
+
+.page.type_text .clearfix.weather-forecast .clearfix .widget_container.jowm .weather-forecast {
+    margin: 0 .5rem;
+}
+.page.type_text .widget_container.jowm {
+    padding: 0;
+    margin-bottom: 16px;
+}
+.page.type_text .widget_container.jowm .separationLine {
+    margin: 16px 0;
+}
+
+.page.type_text > .clearfix > .widget_container[data-type="navbar"] {
+    display: none;
+}
+
+.page.type_text > .clearfix .widget_container:not(.jowm) {
+    float: none;
+    width: auto !important;
+}
+
+.page.type_text > .clearfix .widget_container.width-100 {
+    grid-column-end: span 12;
+}
+
+.page.type_text > .clearfix .widget_container.width-75 {
+    grid-column-end: span 9;
+}
+
+.page.type_text > .clearfix .widget_container.width-50 {
+    grid-column-end: span 6;
+}
+
+.page.type_text > .clearfix .widget_container.width-25 {
+    grid-column-end: span 3;
+}
+
+.page.type_text > .clearfix .widget_container.width-16 {
+    grid-column-end: span 2;
+}
+
+/* groups */
+.page.type_text > .clearfix .widget_container .group > .clearfix > h2 {
+    grid-column-start: 1;
+    grid-column-end: span 12;
+}

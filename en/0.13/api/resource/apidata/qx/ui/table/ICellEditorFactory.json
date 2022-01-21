@@ -1,0 +1,123 @@
+{
+  "className": "qx.ui.table.ICellEditorFactory",
+  "packageName": "qx.ui.table",
+  "name": "ICellEditorFactory",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 61,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A factory creating widgets to use for editing table cells.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "createCellEditor": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a cell editor.\n The cellInfo map contains the following properties:\n </p>\n<ul>\n <li>value (var): the cell's value.</li>\n <li>row (int): the model index of the row the cell belongs to.</li>\n <li>col (int): the model index of the column the cell belongs to.</li>\n <li>xPos (int): the x position of the cell in the table pane.</li>\n <li>table (qx.ui.table.Table) reference to the table, the cell belongs to. </li>\n </ul>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
+            "paramName": "cellInfo",
+            "description": " A map containing the information about the cell to\n      create.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} the widget that should be used as cell editor.",
+            "type": "qx.ui.core.Widget",
+            "description": " the widget that should be used as cell editor."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCellEditorValue": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current value of a cell editor.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellEditor {qx.ui.core.Widget} The cell editor formally created by\n      {@link #createCellEditor}.",
+            "paramName": "cellEditor",
+            "description": " The cell editor formally created by\n      {@link #createCellEditor}.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the current value from the editor.",
+            "type": "var",
+            "description": " the current value from the editor."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}
