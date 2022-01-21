@@ -298,6 +298,9 @@ qx.Class.define('cv.ui.manager.Main', {
         return false;
       });
       if (!file && demoFolder) {
+        if (name.startsWith('demo/')) {
+          name = name.substr(5);
+        }
         // check demo configs
         demoFolder.getChildren().some(child => {
           if (child.getName() === name) {
