@@ -591,9 +591,12 @@ angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:<
 </table>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
+<p>Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
 <code class="docutils literal notranslate"><span class="pre">https</span></code> beginnt), so ist meist <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> auf <code class="docutils literal notranslate"><span class="pre">true</span></code> zu setzen, da ein Router
 im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.</p>
+<p class="last">Eine Fehlermeldung mit dem Inhalt
+<code class="docutils literal notranslate"><span class="pre">{&quot;faultstring&quot;:&quot;Could</span> <span class="pre">not</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">host&quot;,&quot;faultcode&quot;:&quot;HTTP&quot;}</span></code> kann darauf hinweisen,
+dass <code class="docutils literal notranslate"><span class="pre">selfsigned</span></code> auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt werden muss.</p>
 </div>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">

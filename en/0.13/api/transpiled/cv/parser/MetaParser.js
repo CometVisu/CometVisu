@@ -255,7 +255,7 @@
           matches.forEach(function (match) {
             switch (match[1]) {
               case 'manager.php':
-                text = text.replace(match[0], 'href="#" onclick="showManager()"');
+                text = text.replace(match[0], 'href="?manager=1" onclick="showManager(); return false;"');
                 handled = true;
                 break;
 
@@ -268,7 +268,7 @@
               case 'editor':
                 {
                   var suffix = search ? '_' + search : '';
-                  text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+                  text = text.replace(match[0], 'href="' + window.location.pathname + '?config=' + search + '&manager=1&open=visu_config' + suffix + '.xml" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
                   handled = true;
                   break;
                 }
@@ -321,7 +321,7 @@
                     case 'edit':
                       {
                         var configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
-                        replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                        replacement = 'href="' + window.location.pathname + '?config=' + search + '&manager=1&open=' + configFile + '" onclick="showManager(\'open\', \'' + configFile + '\'); return false;"';
                         break;
                       }
                   }
@@ -501,4 +501,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1642787787806
+//# sourceMappingURL=MetaParser.js.map?dt=1642802377144

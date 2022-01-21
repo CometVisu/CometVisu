@@ -913,4 +913,4 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1642787794307
+//# sourceMappingURL=ColorChooser.js.map?dt=1642802383381

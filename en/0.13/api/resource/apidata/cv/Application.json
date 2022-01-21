@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 845,
+        "line": 847,
         "column": 3
       }
     },
@@ -373,7 +373,7 @@
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 257,
           "column": 5
         }
       },
@@ -396,11 +396,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 261,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 289,
           "column": 5
         }
       },
@@ -437,11 +437,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 289,
+          "line": 291,
           "column": 4
         },
         "end": {
-          "line": 309,
+          "line": 311,
           "column": 5
         }
       },
@@ -451,11 +451,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 313,
           "column": 4
         },
         "end": {
-          "line": 374,
+          "line": 376,
           "column": 5
         }
       },
@@ -465,11 +465,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 378,
           "column": 4
         },
         "end": {
-          "line": 519,
+          "line": 521,
           "column": 5
         }
       },
@@ -479,11 +479,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 521,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 526,
+          "line": 528,
           "column": 6
         }
       },
@@ -493,11 +493,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 531,
+          "line": 533,
           "column": 4
         },
         "end": {
-          "line": 561,
+          "line": 563,
           "column": 5
         }
       },
@@ -515,11 +515,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 567,
+          "line": 569,
           "column": 4
         },
         "end": {
-          "line": 665,
+          "line": 667,
           "column": 5
         }
       },
@@ -546,11 +546,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 670,
+          "line": 672,
           "column": 4
         },
         "end": {
-          "line": 674,
+          "line": 676,
           "column": 5
         }
       },
@@ -568,11 +568,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 680,
+          "line": 682,
           "column": 4
         },
         "end": {
-          "line": 687,
+          "line": 689,
           "column": 5
         }
       },
@@ -596,11 +596,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 693,
+          "line": 695,
           "column": 4
         },
         "end": {
-          "line": 700,
+          "line": 702,
           "column": 5
         }
       },
@@ -624,11 +624,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 705,
+          "line": 707,
           "column": 4
         },
         "end": {
-          "line": 765,
+          "line": 767,
           "column": 5
         }
       },
@@ -646,11 +646,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 767,
+          "line": 769,
           "column": 4
         },
         "end": {
-          "line": 798,
+          "line": 800,
           "column": 5
         }
       },
@@ -660,11 +660,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 800,
+          "line": 802,
           "column": 4
         },
         "end": {
-          "line": 805,
+          "line": 807,
           "column": 5
         }
       },
@@ -679,11 +679,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 810,
+          "line": 812,
           "column": 4
         },
         "end": {
-          "line": 843,
+          "line": 845,
           "column": 5
         }
       },

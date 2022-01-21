@@ -169,6 +169,10 @@ Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
     ``https`` beginnt), so ist meist ``selfsigned`` auf ``true`` zu setzen, da ein Router
     im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.
 
+    Eine Fehlermeldung mit dem Inhalt
+    ``{"faultstring":"Could not connect to host","faultcode":"HTTP"}`` kann darauf hinweisen,
+    dass ``selfsigned`` auf ``true`` gesetzt werden muss.
+
 .. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

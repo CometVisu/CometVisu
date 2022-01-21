@@ -77,6 +77,13 @@ Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 |selfsigned |Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert ``true`` ist |``false``                   |
 +-----------+-----------------------------------------------------------------------------+----------------------------+
 
+.. hint::
+
+    Wenn die Verbindung zur Datenbank mit der Fehlermeldung
+    ``failed to open stream: operation failed``
+    nicht aufgebaut werden kann, so kann dies ein Hinweis darauf sein, dass
+    ``selfsigned`` auf ``true`` gesetzt werden muss.
+
 ``consolidationFunction`` Attribut
 """"""""""""""""""""""""""""""""""
 

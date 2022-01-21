@@ -4381,6 +4381,51 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/index.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/replay.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/editor/editor.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/editor/text/index.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/test/fixtures/web.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/cv/index.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/resource/icons/iconlist.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/resource/designs/design_preview.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.13/demo/resource/qx/static/blank.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.cometvisu.org/CometVisu/de/0.13/manual/index.html</loc>
     <lastmod>2022-01-21</lastmod>
     <priority>0.5</priority>

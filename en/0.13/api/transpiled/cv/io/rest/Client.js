@@ -238,7 +238,7 @@
             var data = ev.getData();
             var error;
 
-            if (data) {
+            if (data && data.message) {
               error = data.message;
             } else {
               error = {
@@ -281,4 +281,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1642787828611
+//# sourceMappingURL=Client.js.map?dt=1642802416087

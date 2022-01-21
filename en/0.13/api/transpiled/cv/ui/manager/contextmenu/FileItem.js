@@ -272,19 +272,21 @@
         }
       },
       _onRename: function _onRename() {
-        if (this._selectedNode && !this._renameDialog && this.isActive()) {
-          this._renameDialog = new cv.ui.manager.dialog.Prompt({
-            message: this.tr('New name'),
-            callback: function callback(name) {
-              if (name && name !== this._selectedNode.getName()) {
-                cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
-              }
-            },
-            context: this,
-            value: this._selectedNode.getName(),
-            caption: this.tr('Rename file'),
-            filter: /[\w\d_\-\.\s]/
-          });
+        if (this._selectedNode && this.isActive()) {
+          if (!this._renameDialog) {
+            this._renameDialog = new cv.ui.manager.dialog.Prompt({
+              message: this.tr('New name'),
+              callback: function callback(name) {
+                if (name && name !== this._selectedNode.getName()) {
+                  cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
+                }
+              },
+              context: this,
+              value: this._selectedNode.getName(),
+              caption: this.tr('Rename file'),
+              filter: /[\w\d_\-\.\s]/
+            });
+          }
 
           this._renameDialog.show();
         }
@@ -423,4 +425,4 @@
   cv.ui.manager.contextmenu.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1642787790711
+//# sourceMappingURL=FileItem.js.map?dt=1642802379950

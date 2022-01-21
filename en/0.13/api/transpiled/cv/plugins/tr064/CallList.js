@@ -20,6 +20,8 @@
       },
       "qx.event.Timer": {},
       "cv.IconHandler": {},
+      "cv.core.notifications.Router": {},
+      "qx.locale.Manager": {},
       "cv.util.ScriptLoader": {
         "defer": "runtime"
       },
@@ -412,7 +414,11 @@
           } // else:
 
 
-          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: qx.locale.Manager.tr('TR-064 communication error'),
+            severity: 'urgent',
+            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+          });
           self.__P_22_1 = '<fail>';
           return null;
         }).then(function (data) {
@@ -420,7 +426,11 @@
             self.__P_22_1 = data;
             self.refreshCalllist('getCallListURI');
           } else {
-            self.error('Error: reading URL "' + url + ' failed with content:', data);
+            cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+              title: qx.locale.Manager.tr('TR-064 communication response error'),
+              severity: 'urgent',
+              message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(data))
+            });
             self.__P_22_1 = '<fail>';
           }
         });
@@ -446,7 +456,11 @@
           } // else:
 
 
-          self.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText);
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: qx.locale.Manager.tr('TR-064 communication error'),
+            severity: 'urgent',
+            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+          });
           return '<xml/>';
         }).then(function (str) {
           return new window.DOMParser().parseFromString(str, 'text/xml');
@@ -470,6 +484,11 @@
           self.__P_22_3 = false;
           self.fireEvent('tr064ListRefreshed');
         })["catch"](function (error) {
+          cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+            title: qx.locale.Manager.tr('TR-064 communication error'),
+            severity: 'urgent',
+            message: qx.locale.Manager.tr('refreshCalllist() error: "%1"', JSON.stringify(error))
+          });
           self.error('TR-064 refreshCalllist() error:', error);
         });
       },
@@ -531,4 +550,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1642787789803
+//# sourceMappingURL=CallList.js.map?dt=1642802379075

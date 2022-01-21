@@ -71,6 +71,9 @@ class SourceFile {
    * @param data {Map}
    */
   open(data) {
+    if (!data || !data.code) {
+      return;
+    }
     this.initialCode = data.code.split("\n");
     if (this.features.hash) {
       this.initialHash = SourceFile.hashCode(data.code);
@@ -355,7 +358,7 @@ function parseErrors(content, errors, includePaths) {
             original: error
           };
           if (attribute && source.indexOf(attribute) >= 0) {
-            err.startColumn = source.indexOf(attribute);
+            err.startColumn = source.indexOf(attribute + "=");
             const attrMatch = /^(="[^"]*").*/.exec(source.substr(err.startColumn + attribute.length));
             err.endColumn = err.startColumn + attribute.length + attrMatch[1].length;
           }

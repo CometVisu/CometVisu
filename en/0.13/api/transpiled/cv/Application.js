@@ -290,7 +290,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, this);
 
         if (cv.Config.request.queryKey.manager) {
-          this.showManager();
+          var action = cv.Config.request.queryKey.open ? 'open' : '';
+          var data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+          this.showManager(action, data);
         }
 
         this.registerServiceWorker();
@@ -1001,4 +1003,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1642787787025
+//# sourceMappingURL=Application.js.map?dt=1642802376398

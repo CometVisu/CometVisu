@@ -379,6 +379,8 @@
         } else {
           this.warn('unhandled file event', data.action);
         }
+
+        this._tree.refresh();
       },
       __P_23_5: function __P_23_5(name) {
         var file = null;
@@ -395,7 +397,11 @@
         });
 
         if (!file && demoFolder) {
-          // check demo configs
+          if (name.startsWith('demo/')) {
+            name = name.substr(5);
+          } // check demo configs
+
+
           demoFolder.getChildren().some(function (child) {
             if (child.getName() === name) {
               file = child;
@@ -640,7 +646,7 @@
           }
         }
 
-        if (!openFile.isCloseable()) {
+        if (!openFile || !openFile.isCloseable()) {
           return;
         }
 
@@ -1121,4 +1127,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1642787790229
+//# sourceMappingURL=Main.js.map?dt=1642802379484
