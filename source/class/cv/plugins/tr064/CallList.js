@@ -273,7 +273,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
             title: qx.locale.Manager.tr('TR-064 communication error'),
             severity: 'urgent',
-            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"',response.url, response.status, response.statusText)
+            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
           });
           self.__calllistUri = '<fail>';
           return null;
@@ -317,7 +317,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
             title: qx.locale.Manager.tr('TR-064 communication error'),
             severity: 'urgent',
-            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"',response.url, response.status, response.statusText)
+            message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
           });
           return '<xml/>';
         })
