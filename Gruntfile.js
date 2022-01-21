@@ -144,7 +144,7 @@ module.exports = function(grunt) {
       cwd: '.',
       src: [
         'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
-        'release/**'
+        'release/**', 'release/resource/config/.templates/*'
       ],
       dest: 'cometvisu/',
       mode: function( filename ){
@@ -564,7 +564,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
-  grunt.loadNpmTasks('grunt-github-changes');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
