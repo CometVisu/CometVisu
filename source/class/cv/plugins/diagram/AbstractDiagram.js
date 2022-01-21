@@ -362,9 +362,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
     _onStatusError: function(ts, key, ev) {
       cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
-        title: 'Diagram communication error',
+        title: qx.locale.Manager.tr('Diagram communication error'),
         severity: 'urgent',
-        message: 'URL: ' + JSON.stringify(key) + '<br/><br/>Response:</br>' + ev._target._transport.responseText
+        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), ev._target._transport.responseText)
       });
       window.console.error('Diagram _onStatusError', ts, key, ev);
       const tsdata = [];

@@ -999,3 +999,31 @@ msgstr "Kind-Element '%1' ist nicht erlaubt."
 #: cv/ui/manager/editor/Source.js
 msgid "\"%1\" is not writable. Upgrading not possible."
 msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Diagram communication error"
+msgstr "Diagram Kommunikations-Fehler"
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "URL: %1<br/><br/>Response:</br>%2"
+msgstr "URL: %1<br/><br/>Antwort:</br>%2"
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication error"
+msgstr "TR-064 Kommunikations-Fehler"
+
+#: cv/plugins/tr064/CallList.js
+msgid "TR-064 communication response error"
+msgstr "TR-064 Kommunikation-Antwort-Fehler"
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with status \"%2\": \"%2\""
+msgstr "Lesen der URL \"%1\" mit Status \"%2\" fehlgeschlagen: \"%2\""
+
+#: cv/plugins/tr064/CallList.js
+msgid "refreshCalllist() error: \"%1\""
+msgstr "refreshCalllist() Fehler: \"%1\""
+
+#: cv/plugins/tr064/CallList.js
+msgid "Reading URL \"%1\" failed with content: \"%2\""
+msgstr "Lesen der URL  \"%1\" nicht möglich. Inhalt: \"%2\""
