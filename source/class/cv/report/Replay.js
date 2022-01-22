@@ -109,7 +109,7 @@ qx.Class.define('cv.report.Replay', {
       if (log.data.storage) {
         Object.keys(log.data.storage).forEach(name => {
           window.localStorage[name] = log.data.storage[name];
-        })
+        });
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
