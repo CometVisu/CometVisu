@@ -85,7 +85,9 @@ qx.Class.define('cv.Application',
         Client = cv.io.Mockup;
       } else if (args[0] === 'openhab') {
         Client = cv.io.openhab.Rest;
-        cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
+        if (!cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+          cv.Config.pluginsToLoad.push('plugin-openhab');
+        }
         if (args[1] && args[1].endsWith('/cv/l/')) {
           // we only need the rest path not the login resource
           args[1] = args[1].substring(0, args[1].indexOf('cv/'));
@@ -705,7 +707,12 @@ qx.Class.define('cv.Application',
      * Load plugins
      */
     loadPlugins: function() {
-      const plugins = cv.Config.configSettings.pluginsToLoad;
+      const plugins = cv.Config.configSettings.pluginsToLoad.slice();
+      cv.Config.pluginsToLoad.forEach(name => {
+        if (!plugins.includes(name)) {
+          plugins.push(name);
+        }
+      });
       if (plugins.length > 0) {
         const standalonePlugins = [];
         let partsLoaded = false;
