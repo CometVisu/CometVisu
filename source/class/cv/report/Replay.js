@@ -106,6 +106,11 @@ qx.Class.define('cv.report.Replay', {
         cv.ConfigCache._parseCacheData.data = JSON.parse(log.data.cache.data);
         cv.ConfigCache._parseCacheData.configSettings = JSON.parse(log.data.cache.configSettings);
       }
+      if (log.data.storage) {
+        Object.keys(log.data.storage).forEach(name => {
+          window.localStorage[name] = log.data.storage[name];
+        })
+      }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
 
@@ -114,7 +119,7 @@ qx.Class.define('cv.report.Replay', {
      */
     start: function() {
       const runtime = Math.round((this.__end - this.__start) / 1000);
-      this.log('Replay time: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
+      this.info('Replay time: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
       this.__startTime = Date.now();
 
       const delay = this.__log[0].t - this.__start;
@@ -156,7 +161,7 @@ qx.Class.define('cv.report.Replay', {
           qx.bom.Notification.getInstance().show('Replay', 'Replay finished');
           cv.io.Client.stopAll();
           const runtime = Math.round((Date.now() - this.__startTime) / 1000);
-          this.log('Log replayed in: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
+          this.info('Log replayed in: '+Math.floor(runtime/60)+':'+ (''+(runtime % 60)).padStart(2, '0'));
         }, this, this.__end - this.__log[index].t);
         return;
       }
@@ -183,7 +188,7 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          this.log('resize event received '+JSON.stringify(record.d));
+          this.info('resize event received '+JSON.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 
