@@ -19,6 +19,11 @@ body {
 	background: #1d1d1d;
 }
 
+#navbarLeft, #navbarRight {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 h1
 {
   font-size: 2em;
