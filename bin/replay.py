@@ -131,6 +131,7 @@ if __name__ == '__main__':
 
     parser.add_argument('file', type=str, help='log file', nargs='?')
     parser.add_argument('--devtools', '-d', action='store_true', dest='devtools', help='Open browser with dev tools')
+    parser.add_argument('--globalErrorHandling', '-e', action='store_true', dest='global_error_handling', help='Enable globalErrorHandling')
     options, unknown = parser.parse_known_args()
 
     if options.file is None:
@@ -139,12 +140,17 @@ if __name__ == '__main__':
         sys.exit(0)
 
     # compile cv
-    npm.run('compile')
+    args = ['compile']
+    if options.global_error_handling is True:
+        args.extend(['--', '--set-env', 'qx.globalErrorHandling=true'])
+
+    npm.run(*args, _out=sys.stdout, _err=sys.stderr)
 
     settings = prepare_replay(options.file)
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
     anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None else ""
+    query = "?%s" % "&".join([key + "=" + value for key, value in settings["query"].items()]) if "query" in settings and settings["query"] is not None and len(settings["query"]) > 0 else ""
 
     print("Replaying log recorded with CometVisu:")
     print("  Branch:   %s" % settings["cv"]["BRANCH"])
@@ -167,7 +173,7 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/compiled/source/replay.html%s" % (port, anchor),
+        start_browser("http://localhost:%s/compiled/source/replay.html%s%s" % (port, query, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
 
         while thread.is_alive():

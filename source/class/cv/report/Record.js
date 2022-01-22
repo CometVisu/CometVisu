@@ -145,8 +145,14 @@ qx.Class.define('cv.report.Record', {
      */
     logCache: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, cv.ConfigCache.getData());
+        cv.ConfigCache.getData().then(data => {
+          cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, data);
+        });
       }
+    },
+
+    logLocalStorage: function () {
+      cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', window.localStorage.preferences);
     },
 
     normalizeUrl: function(url) {
@@ -174,6 +180,17 @@ qx.Class.define('cv.report.Record', {
         return cv.report.Record.getInstance().download();
       }
       return null;
+    },
+
+    getData: function() {
+      if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
+        return cv.report.Record.getInstance().getData();
+      }
+      return null;
+    },
+
+    getFileName: function() {
+      return cv.report.Record.getInstance().getFileName();
     }
   },
 
@@ -197,6 +214,9 @@ qx.Class.define('cv.report.Record', {
     record: function(category, path, data, options) {
       switch (category) {
         case cv.report.Record.XHR:
+          if (path === 'response') {
+            this.__scrubSensitiveContent(category, data);
+          }
           data.t = Date.now();
           this.__xhr[path].push(data);
           break;
@@ -204,6 +224,13 @@ qx.Class.define('cv.report.Record', {
         case cv.report.Record.CACHE:
         case cv.report.Record.RUNTIME:
           this.__data[category] = data;
+          break;
+
+        case cv.report.Record.STORAGE:
+          if (!Object.prototype.hasOwnProperty.call(this.__data, category)) {
+            this.__data[category] = {};
+          }
+          this.__data[category][path] = data;
           break;
 
         default:
@@ -217,6 +244,45 @@ qx.Class.define('cv.report.Record', {
           });
       }
       this.__ID++;
+    },
+
+    /**
+     * Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config
+     * @param category {String} recording category
+     * @param data {Object} recorded content
+     * @private
+     */
+    __scrubSensitiveContent: function(category, data) {
+      if (category === cv.report.Record.XHR) {
+        if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
+          try {
+            const content = JSON.parse(data.body);
+            Object.keys(content).forEach(sectionName => {
+              Object.keys(content[sectionName]).forEach(optionName => {
+                switch (optionName) {
+                  case 'uri':
+                    content[sectionName][optionName] = 'http://127.0.0.1';
+                    break;
+                  case 'username':
+                  case 'user':
+                    content[sectionName][optionName] = 'xxxxx';
+                    break;
+                  case 'pass':
+                  case 'passwd':
+                  case 'password':
+                    content[sectionName][optionName] = 'xxx';
+                    break;
+                }
+              });
+            });
+            data.body = JSON.stringify(content);
+          } catch (e) {
+            this.error(e);
+            data.body = '{}';
+            data.error = 'Invalid JSON content: ' + e.toString();
+          }
+        }
+      }
     },
 
     /**
@@ -373,11 +439,11 @@ qx.Class.define('cv.report.Record', {
       return stack.slice(1).join('>'); // removes the html element
     },
 
-    /**
-     * Download Log as file
-     */
-    download: function() {
-      const data = {
+    getData: function (dontStop) {
+      if (!dontStop) {
+        cv.Config.reporting = false;
+      }
+      return {
         data: this.__data,
         start: this.__start,
         xhr: this.__xhr,
@@ -385,10 +451,9 @@ qx.Class.define('cv.report.Record', {
         configSuffix: cv.Config.configSuffix,
         end: Date.now()
       };
-      // show the user what he gets
-      // eslint-disable-next-line no-console
-      console.log(data);
+    },
 
+    getFileName: function () {
       const d = new Date();
       const ts = d.getFullYear() +
         ('' + (d.getMonth() + 1)).padStart(2, '0') +
@@ -396,10 +461,21 @@ qx.Class.define('cv.report.Record', {
         ('' + d.getHours()).padStart(2, '0') +
         ('' + d.getMinutes()).padStart(2, '0') +
         ('' + d.getSeconds()).padStart(2, '0');
+      return 'CometVisu-replay-'+ts+'.json';
+    },
+
+    /**
+     * Download Log as file
+     */
+    download: function() {
+      const data = this.getData();
+      // show the user what he gets
+      // eslint-disable-next-line no-console
+      console.log(data);
 
       const a = window.document.createElement('a');
       a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: 'application/json'}));
-      a.download = 'CometVisu-replay-'+ts+'.json';
+      a.download = this.getFileName();
 
       // Append anchor to body.
       document.body.appendChild(a);
