@@ -534,7 +534,7 @@ qx.Class.define('cv.TemplateEngine', {
       const metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
+      settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml);
       // and then the rest
       metaParser.parse(loaded_xml, done);
       this.debug('parsed');
