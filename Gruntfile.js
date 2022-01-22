@@ -204,7 +204,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: sourceFiles
+          src: sourceFiles.concat(['source/test/**/*.js'])
         }
       }
     },
