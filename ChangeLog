@@ -3,6 +3,17 @@
 0.12.0
 ======
 
+### v0.12.0-RC4 (2022/01/22)
+
+- [#1154](https://github.com/CometVisu/CometVisu/pull/1154) change link color improve visibility (@peuter)
+- [#1153](https://github.com/CometVisu/CometVisu/pull/1153) let side navbars scroll when there is not enough height (@peuter)
+- [#1152](https://github.com/CometVisu/CometVisu/pull/1152) fix plugin caching problems: (@peuter)
+- [#1150](https://github.com/CometVisu/CometVisu/pull/1150) Improve error reporting (@peuter)
+- [#1137](https://github.com/CometVisu/CometVisu/pull/1137) Make PHP more robust (@ChristianMayer)
+- [#1146](https://github.com/CometVisu/CometVisu/pull/1146) make sure that there is no reload duplicate (@peuter)
+- [#1145](https://github.com/CometVisu/CometVisu/pull/1145) Fix collection for manager (@peuter)
+- [#1139](https://github.com/CometVisu/CometVisu/pull/1139) update doc template and fix versions (@peuter)
+
 ### v0.12.0-RC3 (2022/01/19)
 
 - [#1132](https://github.com/CometVisu/CometVisu/pull/1132) Fix ServiceWorker by using whitelist for caching (@peuter)
