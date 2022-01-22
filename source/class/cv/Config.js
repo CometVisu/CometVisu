@@ -115,6 +115,11 @@ qx.Class.define('cv.Config', {
     use_maturity : false,
 
     /**
+     * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
+     */
+    pluginsToLoad: [],
+
+    /**
      * All configuration and settings from the current configuration
      * (Note: all settings that need to be cached must be put in here)
      */
