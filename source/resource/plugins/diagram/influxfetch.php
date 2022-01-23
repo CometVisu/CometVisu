@@ -242,13 +242,20 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   if( '' != ($_GET['debug'] ?? '') )
     var_dump(error_get_last());
 
-  $series = $seriesArr['results'][0]['series'][0]['values'];
-  foreach( $series as $thisSeries )
-  {
-    $arrData[] = array(
-      strtotime( array_shift($thisSeries) ),// * 1000,
-      array_map('strval', $thisSeries )
-    );
+  if(
+      array_key_exists('results', $seriesArr) &&
+      array_key_exists(0,         $seriesArr['results']) &&
+      array_key_exists('series',  $seriesArr['results'][0]) &&
+      array_key_exists(0,         $seriesArr['results'][0]['series']) &&
+      array_key_exists('values',  $seriesArr['results'][0]['series'][0])
+  ) {
+    $series = $seriesArr['results'][0]['series'][0]['values'];
+    foreach ($series as $thisSeries) {
+      $arrData[] = array(
+          strtotime(array_shift($thisSeries)),// * 1000,
+          array_map('strval', $thisSeries)
+      );
+    }
   }
 
   return $arrData;
@@ -270,14 +277,19 @@ Header("Content-type: application/json");
 
 if( is_array( $arrData ) )
 {
+  $firstLine = true;
   print '[';
-  printRow( array_shift( $arrData ) );
   if( $arrData )
   {
     foreach( $arrData as $row )
     {
-      print ',';
-      printRow( $row );
+      if( !$firstLine )
+        print ',';
+
+      if( isset($row[0]) ) {
+        printRow( $row );
+        $firstLine = false;
+      }
     }
   }
   print ']';

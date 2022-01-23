@@ -65,7 +65,7 @@ qx.Class.define('cv.ui.PageHandler', {
   members: {
 
     seekTo : function(target, speed) {
-      if (isNaN(speed)) {
+      if (!Number.isFinite(speed)) {
         speed = 0;
       }
       const currentPath = this.getCurrentPath();
