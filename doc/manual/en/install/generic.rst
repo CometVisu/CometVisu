@@ -1,11 +1,10 @@
+.. replaces:: CometVisu/Installation/WireGate/en
+    CometVisu/en/0.12/manual/install/wiregate.html
+
 .. _generic:
 
 Prerequisites for the installation
 ==================================
-
-If WireGate 1.1 or later is used, CometVisu 0.8.5 is already
-preinstalled and can be easily used. To install the old
-CometVisu on a WireGate, there are :doc: `further information <wiregate>`.
 
 To be able to use the CometVisu the system needs to
 fulfill a few prerequisites.
@@ -17,6 +16,12 @@ These are
 -  [optional] InfluxDB for diagrams
 -  a web server with (optional but recommended) PHP support
 -  the CometVisu software package
+
+.. note::
+
+    To be able to use the :ref:`Manager <manager>` or the :ref:`Editor <editor>`
+    the prequisite is PHP 7. The core of the CometVisu itself can be used
+    without PHP though.
 
 Backend - knxd/eibd or OpenHAB
 --------------------------------
@@ -46,6 +51,9 @@ described under :doc:`RRDtool <install-rrd>`.
     :hidden:
 
     install-rrd
+
+Time series from an InfluxDB database are supported without any additional
+external software, only PHP is required.
 
 Web server
 ----------
