@@ -32,7 +32,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   construct: function () {
     this.base(arguments);
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
-    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/';
     this.getContentElement().setAttribute('contentEditable', 'true');
     this.set({
       droppable: false,
@@ -139,7 +138,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   members: {
     __schema: null,
     _editor: null,
-    _basePath: null,
     _workerWrapper: null,
     _currentDecorations: null,
     _configClient: null,

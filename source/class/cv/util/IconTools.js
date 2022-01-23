@@ -251,7 +251,9 @@ qx.Class.define('cv.util.IconTools', {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        const iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
+        // use relative path here, otherwise it won't work in replay mode
+        const iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
+
         let style = styling || '';
         if (color) {
           style += 'color:' + color + ';';
