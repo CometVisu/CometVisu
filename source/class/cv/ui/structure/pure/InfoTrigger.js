@@ -178,7 +178,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
 
       if (this.getIsAbsolute()) {
         let bvalue = parseFloat(this.getBasicValue());
-        if (isNaN(bvalue)) {
+        if (!Number.isFinite(bvalue)) {
           bvalue = 0; // anything is better than NaN...
         }
         value = bvalue + value;
