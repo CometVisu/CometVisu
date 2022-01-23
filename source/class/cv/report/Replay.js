@@ -104,7 +104,7 @@ qx.Class.define('cv.report.Replay', {
         cv.ConfigCache._parseCacheData = log.data.cache;
         // parse stringified data
         cv.ConfigCache._parseCacheData.data = typeof log.data.cache.data === 'string' ? JSON.parse(log.data.cache.data) : log.data.cache.data;
-        cv.ConfigCache._parseCacheData.configSettings = typeof log.data.cache.configSettings === 'string' ? JSON.parse(log.data.cache.configSettings) : log.data.cache.configSettings
+        cv.ConfigCache._parseCacheData.configSettings = typeof log.data.cache.configSettings === 'string' ? JSON.parse(log.data.cache.configSettings) : log.data.cache.configSettings;
       }
       if (log.data.storage) {
         const store = qx.bom.Storage.getLocal();

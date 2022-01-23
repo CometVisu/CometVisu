@@ -32,15 +32,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
     _index : 0,
 
     init: function (log, build) {
-      //let prependResourcePath = null;
       qx.log.Logger.info(this, build+' log replaying in '+qx.core.Environment.get('cv.build'));
-      /*if (build !== qx.core.Environment.get('cv.build')) {
-        // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
-        if (build === 'build') {
-          // map from build to source
-          prependResourcePath = '../source/';
-        }
-      }*/
 
       const urlMapping = {
         '/resource/': cv.Application.getRelativeResourcePath(true),
@@ -54,19 +46,10 @@ qx.Class.define('cv.report.utils.FakeServer', {
           const index = url.indexOf(pattern);
           if (index >= 0) {
             url = urlMapping[pattern] + url.substr(index + pattern.length);
-            console.log(url);
             return true;
           }
           return false;
         });
-        /*let index = url.indexOf('/resource/');
-        if (prependResourcePath && index >= 0) {
-          url = prependResourcePath+url.substr(index+1);
-          console.log(url);
-        } else if (url.includes('/rest/manager/index.php')) {
-          url = cv.io.rest.Client.getBaseUrl() + url.substr(url.indexOf('/rest/manager/index.php') + '/rest/manager/index.php'.length);
-          console.log(url);
-        }*/
         if (!this._xhr[url]) {
           this._xhr[url] = [];
         }
