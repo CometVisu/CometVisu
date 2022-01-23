@@ -32,22 +32,41 @@ qx.Class.define('cv.report.utils.FakeServer', {
     _index : 0,
 
     init: function (log, build) {
-      let prependResourcePath = null;
+      //let prependResourcePath = null;
       qx.log.Logger.info(this, build+' log replaying in '+qx.core.Environment.get('cv.build'));
-      if (build !== qx.core.Environment.get('cv.build')) {
+      /*if (build !== qx.core.Environment.get('cv.build')) {
         // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
         if (build === 'build') {
           // map from build to source
           prependResourcePath = '../source/';
         }
-      }
+      }*/
+
+      const urlMapping = {
+        '/resource/': cv.Application.getRelativeResourcePath(true),
+        '/rest/manager/index.php': cv.io.rest.Client.getBaseUrl()
+      };
 
       // split by URI
       log.response.forEach(function (entry) {
         let url = entry.url;
-        if (prependResourcePath && url.startsWith('resource/')) {
-          url = prependResourcePath+url;
-        }
+        Object.keys(urlMapping).some(pattern => {
+          const index = url.indexOf(pattern);
+          if (index >= 0) {
+            url = urlMapping[pattern] + url.substr(index + pattern.length);
+            console.log(url);
+            return true;
+          }
+          return false;
+        });
+        /*let index = url.indexOf('/resource/');
+        if (prependResourcePath && index >= 0) {
+          url = prependResourcePath+url.substr(index+1);
+          console.log(url);
+        } else if (url.includes('/rest/manager/index.php')) {
+          url = cv.io.rest.Client.getBaseUrl() + url.substr(url.indexOf('/rest/manager/index.php') + '/rest/manager/index.php'.length);
+          console.log(url);
+        }*/
         if (!this._xhr[url]) {
           this._xhr[url] = [];
         }
@@ -67,8 +86,10 @@ qx.Class.define('cv.report.utils.FakeServer', {
       if (url.indexOf('nocache=') >= 0) {
         url = url.replace(/[\?|&]nocache=[0-9]+/, '');
       }
-      if (!xhrData[url] && !url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
-        url = '../source/' + url;
+      if (!xhrData[url]) {
+        if (!url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
+          url = '../source/' + url;
+        }
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
         qx.log.Logger.error(this, '404: no logged responses for URI '+url+' found');

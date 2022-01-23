@@ -60,18 +60,22 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
     _onPhaseChange: function(ev) {
       const hash = this.getRequestHash();
       let delay;
+      const url = cv.report.Record.normalizeUrl(this._getConfiguredUrl());
 
       if (ev.getData() === 'opened') {
         this.__sendTime = Date.now();
         // calculate Hash value for request
         cv.report.Record.record(cv.report.Record.XHR, 'request', {
-          url: cv.report.Record.normalizeUrl(this._getConfiguredUrl()),
+          url: url,
+          method: this.getMethod(),
+          headers: this._getAllRequestHeaders(),
+          requestData: this.getRequestData(),
           hash: hash
         });
         if (!cv.report.utils.MXhrHook.PENDING[hash]) {
           cv.report.utils.MXhrHook.PENDING[hash] = [];
         }
-        cv.report.utils.MXhrHook.PENDING[hash].push(cv.report.Record.normalizeUrl(this._getConfiguredUrl()));
+        cv.report.utils.MXhrHook.PENDING[hash].push(url);
       } else if (ev.getData() === 'load') {
         if (!this.__sendTime) {
           this.error('response received without sendTime set. Not possible to calculate correct delay');
@@ -90,11 +94,10 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
         // end the logged ones break the replay for some reason
         if (this.getStatus() !== 404) {
           cv.report.Record.record(cv.report.Record.XHR, 'response', {
-            url: cv.report.Record.normalizeUrl(this._getConfiguredUrl()),
+            url: url,
             method: this.getMethod(),
             status: this.getStatus(),
             delay: delay,
-            requestData: this.getRequestData(),
             headers: headers,
             body: this.getTransport().responseText,
             hash: hash,
@@ -113,7 +116,7 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
 
         // request aborted, maybe by watchdog
         cv.report.Record.record(cv.report.Record.XHR, 'response', {
-          url: cv.report.Record.normalizeUrl(this._getConfiguredUrl()),
+          url: url,
           delay: delay,
           hash: hash,
           phase: 'abort'

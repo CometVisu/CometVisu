@@ -103,12 +103,13 @@ qx.Class.define('cv.report.Replay', {
       if (log.data.cache) {
         cv.ConfigCache._parseCacheData = log.data.cache;
         // parse stringified data
-        cv.ConfigCache._parseCacheData.data = JSON.parse(log.data.cache.data);
-        cv.ConfigCache._parseCacheData.configSettings = JSON.parse(log.data.cache.configSettings);
+        cv.ConfigCache._parseCacheData.data = typeof log.data.cache.data === 'string' ? JSON.parse(log.data.cache.data) : log.data.cache.data;
+        cv.ConfigCache._parseCacheData.configSettings = typeof log.data.cache.configSettings === 'string' ? JSON.parse(log.data.cache.configSettings) : log.data.cache.configSettings
       }
       if (log.data.storage) {
+        const store = qx.bom.Storage.getLocal();
         Object.keys(log.data.storage).forEach(name => {
-          window.localStorage[name] = log.data.storage[name];
+          store.setItem(name, log.data.storage[name]);
         });
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);

@@ -73,6 +73,22 @@ qx.Class.define('cv.Application',
     HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
     __commandManager: null,
+    _relResourcePath: null,
+    _fullResourcePath: null,
+
+    getRelativeResourcePath(fullPath) {
+      if (!this._relResourcePath) {
+        const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+        this._relResourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(baseUrl.length+1) + '/';
+      }
+      if (fullPath === true) {
+        if (!this._fullResourcePath) {
+          this._fullResourcePath = window.location.pathname.split('/').slice(0, -1).join('/') + '/' + this._relResourcePath;
+        }
+        return this._fullResourcePath;
+      }
+      return this._relResourcePath;
+    },
 
     /**
      * Client factory method -> create a client
@@ -732,7 +748,7 @@ qx.Class.define('cv.Application',
         }, this);
         const parts = qx.Part.getInstance().getParts();
         const partPlugins = [];
-        const path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
+        const path = cv.Application.getRelativeResourcePath();
         plugins.forEach(function(plugin) {
           if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
             partPlugins.push(plugin);
