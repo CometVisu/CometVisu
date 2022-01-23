@@ -54,6 +54,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this._draw();
     this._initWorker();
     this._currentDecorations = [];
+    this.bind('file.writeable', this, 'selectable');
   },
 
   /*
