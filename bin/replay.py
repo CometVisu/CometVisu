@@ -92,7 +92,7 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             flags.append("--user-agent=%s" % user_agent)
 
         flags.append("--app=%s" % url)
-        sh.google_chrome(*flags)
+        return sh.google_chrome(*flags, _bg=True)
 
     elif browser == "firefox":
         os.makedirs(user_dir)
@@ -110,7 +110,9 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             "--no-remote", "--new-window", "--new-instance", "-width", "%s" % dimension[0],
             "-height", dimension[1], "--profile", user_dir, "-url", url
         ]
-        sh.firefox(*flags)
+        if open_devtools is True:
+            flags.append("--devtools")
+        return sh.firefox(*flags, _bg=True)
 
 
 def get_server(host="", port=9000, next_attempts=0):
@@ -149,7 +151,7 @@ if __name__ == '__main__':
     settings = prepare_replay(options.file)
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
-    anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None else ""
+    anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None and settings["anchor"] != "#" else ""
     query = "?%s" % "&".join([key + "=" + value for key, value in settings["query"].items()]) if "query" in settings and settings["query"] is not None and len(settings["query"]) > 0 else ""
 
     print("Replaying log recorded with CometVisu:")
@@ -173,13 +175,11 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/compiled/source/replay.html%s%s" % (port, query, anchor),
+        cmd = start_browser("http://localhost:%s/compiled/source/replay.html%s%s" % (port, query, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
-
-        while thread.is_alive():
-            thread.join(1)
+        cmd.wait()
+        sys.exit()
 
     except (KeyboardInterrupt, SystemExit):
-        print("aborted")
         server.shutdown()
         sys.exit()
