@@ -142,11 +142,11 @@ msgstr ""
 msgid "Cannot open file: \"%1\""
 msgstr ""
 
-#: cv/ui/manager/Main.js
+#. NO LONGER USED
 msgid "This file has unsaved changes that will be lost when you close it. Do you really want to close the file?"
 msgstr ""
 
-#: cv/ui/manager/Main.js
+#. NO LONGER USED
 msgid "This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/Main.js
+#: cv/ui/manager/MenuBar.js
 msgid "About"
 msgstr ""
 
@@ -1074,4 +1074,56 @@ msgstr ""
 
 #: cv/plugins/tr064/CallList.js
 msgid "Reading URL \"%1\" failed with content: \"%2\""
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "This file has unsaved changes that will be lost when you close it without saving."
+msgstr ""
+
+#. NO LONGER USED
+msgid "This file has not been saved on the backend yet. It will be lost when you close it without saving.?"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Discard changes"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "This file has not been saved on the backend yet. It will be lost when you close it without saving."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "You have files opened with unsaved changes, you should save them now."
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes and quit"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Quit without saving"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Save changes and close"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Discard changes and close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Save & close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Discard & close"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Save & quit"
 msgstr ""

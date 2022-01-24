@@ -144,7 +144,7 @@ module.exports = function(grunt) {
       cwd: '.',
       src: [
         'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
-        'release/**', 'release/resource/config/.templates/*'
+        'release/**'
       ],
       dest: 'cometvisu/',
       mode: function( filename ){

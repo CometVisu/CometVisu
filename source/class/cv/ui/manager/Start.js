@@ -101,19 +101,21 @@ qx.Class.define('cv.ui.manager.Start', {
       this.getChildControl('configs').setFile(value);
       let found = 0;
 
-      value.load(function () {
-        value.getChildren().some(function (file) {
-          if (file.getName() === 'media') {
-            this.getChildControl('media').setFile(file);
-            this.getChildControl('media-toolbar').setFolder(file);
-            found++;
-          } else if (file.getName() === 'demo') {
-            this.getChildControl('demo-configs').setFile(file);
-            found++;
-          }
-          return found === 2;
+      if (value) {
+        value.load(function () {
+          value.getChildren().some(function (file) {
+            if (file.getName() === 'media') {
+              this.getChildControl('media').setFile(file);
+              this.getChildControl('media-toolbar').setFolder(file);
+              found++;
+            } else if (file.getName() === 'demo') {
+              this.getChildControl('demo-configs').setFile(file);
+              found++;
+            }
+            return found === 2;
+          }, this);
         }, this);
-      }, this);
+      }
     },
 
     _onChangeSelection: function (ev) {
