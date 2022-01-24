@@ -33,5 +33,9 @@ $retval['PHP_VERSION_ID'] = PHP_VERSION_ID;
 $retval['SERVER_SIGNATURE'] = $_SERVER['SERVER_SIGNATURE'];
 $retval['SERVER_SOFTWARE'] = $_SERVER['SERVER_SOFTWARE'];
 
+$composer_file = file_get_contents("composer.json");
+$composer = json_decode($composer_file, true);
+$retval['reqired_php_version'] = $composer['require']['php'];
+
 echo json_encode($retval);
 ?>
