@@ -179,7 +179,8 @@ class FileHandler
   }
 
   public static function getMimeTypeFromSuffix($fsPath) {
-    $suffix = array_pop(explode('.', $fsPath));
+    $parts = explode('.', $fsPath);
+    $suffix = array_pop($parts);
     switch ($suffix) {
       case 'xml':
         return 'text/xml';

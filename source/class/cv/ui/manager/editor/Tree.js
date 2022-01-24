@@ -198,6 +198,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         if (file.isWriteable()) {
           if (!preview.getFile()) {
             const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+            previewConfig.setTemporary(!cv.ui.manager.model.FileItem.ROOT.getChildren().some(file => file.getName() === 'visu_config_previewtemp.xml'));
             preview.setFile(previewConfig);
           }
         } else {
@@ -2066,19 +2067,36 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           return;
         }
         this.getChildControl('preview').show();
-        this._client.updateSync({
-          path: previewFile.getFullPath(),
-          hash: 'ignore'
-        }, content, () => {
-          qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-            type: 'contentChanged',
-            file: previewFile,
-            data: content,
-            source: this
-          });
-          this.__modifiedPreviewElements.removeAll();
-          this.resetPreviewState();
-        }, this);
+        if (previewFile.isTemporary()) {
+          this._client.createSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+            previewFile.resetTemporary();
+          }, this);
+        } else {
+          this._client.updateSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+          }, this);
+        }
       }
     },
 

@@ -4,7 +4,7 @@ namespace OpenAPIServer;
 
 use Exception;
 
-function query( $q, $db = '', $auth )
+function query( $q, $db = '', $auth = NULL )
 {
   $apiConfig = include(getcwd() . '/src/config.php');
   require(realpath($apiConfig->configDir . '/hidden.php'));
