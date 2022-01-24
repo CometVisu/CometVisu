@@ -7,8 +7,6 @@ Hier wird die produktiv im Einsatz befindliche Visu von swiss vorgestellt.
 
 | **Design**: Metal
 | **Plugins**: rsslog, strftime, diagram
-| **Config**: :download:`visu_config_metal_swiss.xml <_static/visu_config_metal_swiss.xml>`
-| **Live-Demo**: `Live-Demo <http://demo.wiregate.de/visu-svn_neu/?config=metal_swiss>`__
 |
 
 .. hint ::

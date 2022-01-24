@@ -19,20 +19,19 @@ für den Anwender nur die Nutzung mit einem der vielen, kostenlosen
 Browsern wie zum Beispiel Firefox, Google Chrome oder Safari. Eine Liste
 der kompatiblen Browsern findet sich hier: :ref:`system-voraussetzungen`
 
-Kann die CometVisu auch auf anderen Servern oder Hardware betrieben werden?
----------------------------------------------------------------------------
+Kann die CometVisu auf beliebigen Servern oder Hardware betrieben werden?
+-------------------------------------------------------------------------
 
 JA. Dazu ist aber einiges an Linux-Kenntnissen erforderlich.
 Grundsätzlich läuft die CometVisu auf jeder Linux basierten Hardware für
-die es einen *eibd* und einen Webserver gibt. Ein fertiges
-Installationspaket dass sehr komfortabel von jedem Anwender ohne
-Linux-Kentnisse installiert werden kann gibt es momentan nur für das
-WireGate Multifunktionsgateway. Die Installation auf dem WireGate wird
-hier beschrieben: :doc:`install/wiregate`.
+die es einen *eibd* und einen Webserver gibt.
 Grundsätzlich lässt sich das CometVisu-Protokoll auch auf Systemen
 implementieren, auf denen kein eibd läuft, oder die gar nicht mit KNX in
 Verbindung stehen. Fertige Lösungen sind uns dafür aber zur Zeit nicht
 bekannt.
+
+.. note:: Die einfachste Möglichkeit die CometVisu zu installieren und später
+    mit Updates aktuell zu halten ist als :ref:`Docker Container <docker>`.
 
 Gibt es für den eingebauten Editor oder die Visualisierung einen Passwortschutz?
 --------------------------------------------------------------------------------
