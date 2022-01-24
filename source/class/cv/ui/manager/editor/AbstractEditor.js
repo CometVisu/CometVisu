@@ -171,16 +171,18 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
-        const file = this.getFile();
         const message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
         cv.ui.manager.snackbar.Controller.info(message);
         this._onSaved();
-        qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
-          type: type,
-          file: file,
-          data: this.getCurrentContent(),
-          source: this
-        });
+        const file = this.getFile();
+        if (file) {
+          qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
+            type: type,
+            file: file,
+            data: this.getCurrentContent(),
+            source: this
+          });
+        }
       }
     },
 
@@ -204,8 +206,10 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _onSaved: function () {
       const file = this.getFile();
-      file.resetModified();
-      file.resetTemporary();
+      if (file) {
+        file.resetModified();
+        file.resetTemporary();
+      }
     },
 
     showErrors: function (path, errorList) {},
