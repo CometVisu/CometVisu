@@ -67,7 +67,7 @@
 
   /* TemplateEngine.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -615,7 +615,7 @@
 
         var metaParser = new cv.parser.MetaParser(); // start with the plugins
 
-        settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml)); // and then the rest
+        settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml); // and then the rest
 
         metaParser.parse(loaded_xml, done);
         this.debug('parsed');
@@ -1060,4 +1060,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1642802415001
+//# sourceMappingURL=TemplateEngine.js.map?dt=1643061814311

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
+        "line": 26,
         "column": 0
       },
       "end": {
-        "line": 146,
+        "line": 147,
         "column": 3
       }
     },
@@ -43,11 +43,11 @@
     "__indentation": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 35,
           "column": 20
         }
       },
@@ -57,11 +57,11 @@
     "__log": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 36,
           "column": 4
         },
         "end": {
-          "line": 35,
+          "line": 36,
           "column": 15
         }
       },
@@ -71,11 +71,11 @@
     "upgrade": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 65,
           "column": 5
         }
       },
@@ -105,11 +105,11 @@
     "from7to8": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 83,
           "column": 5
         }
       },
@@ -119,11 +119,11 @@
     "from8to9": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 131,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "__getLevel": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 141,
           "column": 5
         }
       },
@@ -147,11 +147,11 @@
     "__setVersion": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 145,
           "column": 5
         }
       },

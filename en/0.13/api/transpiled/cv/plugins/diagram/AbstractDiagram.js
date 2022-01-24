@@ -37,7 +37,7 @@
 
   /* AbstractDiagram.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -250,9 +250,9 @@
           };
 
           if (elem.tagName === 'influx') {
-            retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter(elem, 'AND');
-            retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
-            retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
+            retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, 'AND');
+            retVal.ts[retVal.tsnum].field = elem.getAttribute('field');
+            retVal.ts[retVal.tsnum].authentication = elem.getAttribute('authentication');
           } else {
             var dsIndex = elem.getAttribute('datasourceIndex') || 0;
 
@@ -282,7 +282,7 @@
         for (; i < length; i++) {
           var child = children[i];
 
-          if (retval != '') {
+          if (retval !== '') {
             retval += ' ' + type + ' ';
           }
 
@@ -389,7 +389,7 @@
             tsdata = client.processChartsData(tsdata);
           } else {
             // calculate timestamp offset and scaling
-            var millisOffset = ts.offset ? ts.offset * 1000 : 0;
+            var millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
             var newRrd = new Array(tsdata.length);
             var j = 0;
             var l = tsdata.length;
@@ -800,32 +800,32 @@
       getSeriesSettings: function getSeriesSettings(xAxis, isInteractive) {
         var series = {
           hour: {
-            res: '60',
+            res: 60,
             start: 'hour',
             end: 'now'
           },
           day: {
-            res: '300',
+            res: 300,
             start: 'day',
             end: 'now'
           },
           fullday: {
-            res: '300',
+            res: 300,
             start: 'day',
             end: 'midnight+24hour'
           },
           week: {
-            res: '1800',
+            res: 1800,
             start: 'week',
             end: 'now'
           },
           month: {
-            res: '21600',
+            res: 21600,
             start: 'month',
             end: 'now'
           },
           year: {
-            res: '432000',
+            res: 432000,
             start: 'year',
             end: 'now'
           }
@@ -877,7 +877,7 @@
         var tsSuccessful = 0; // get all time series data
 
         this.getContent().ts.forEach(function (ts, index) {
-          var res = isNaN(ts.resol) ? series.res : ts.resol;
+          var res = Number.isFinite(ts.resol) ? ts.resol : series.res;
           var forceNowDatapoint = this.getForceNowDatapoint();
           var refresh = this.getRefresh() ? this.getRefresh() : res;
           cv.plugins.diagram.AbstractDiagram.lookupTsCache(ts, series.start, series.end, res, forceNowDatapoint, refresh, forceReload, function (tsdata) {
@@ -962,4 +962,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1642802378824
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1643061778059

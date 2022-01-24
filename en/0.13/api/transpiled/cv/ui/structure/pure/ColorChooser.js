@@ -37,9 +37,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* ColorChooser.js
+  /* ColorChooser.js 
    * 
-   * copyright (c) 2010-2021, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -913,4 +913,4 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1642802383381
+//# sourceMappingURL=ColorChooser.js.map?dt=1643061782619

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 36,
+        "line": 56,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "_onExecute": {
       "location": {
         "start": {
-          "line": 12,
+          "line": 32,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 45,
           "column": 5
         }
       },
@@ -60,11 +60,11 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 5
         }
       },

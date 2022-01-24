@@ -19,6 +19,11 @@ body {
 	background: #1d1d1d;
 }
 
+#navbarLeft, #navbarRight {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 h1
 {
   font-size: 2em;
@@ -122,6 +127,10 @@ body br
   min-height: 2.1em;
 }
 
+.page > div > .widget_container > .widget:not(.group) {
+    margin: 0;
+}
+
 .icon {
     height: 1.9em;
 }
@@ -133,7 +142,7 @@ body br
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
 .group:not(.widget) {
-    border: 1px solid #666; margin: -1px -1px 0 -1px;
+    border: 1px solid #666; margin: -1px 0 0 -1px;
 }
 .group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
 .group:not(.widget) > div > h2 { border-radius: 0;}
@@ -330,6 +339,9 @@ body br
 	margin: 0.2em 0.5em;
 	padding: 0;
     z-index: 10;
+}
+.group.widget > div {
+    width: calc(100% + 1px);
 }
 .navbar .group { 
 	margin: 0.2em 0 0.1em 0;

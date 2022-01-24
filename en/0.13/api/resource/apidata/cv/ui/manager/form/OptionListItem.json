@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 189,
+        "line": 209,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 21,
+        "line": 41,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 5
         }
       },
@@ -65,11 +65,11 @@
     "model": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 5
         }
       },
@@ -83,11 +83,11 @@
     "readOnly": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 5
         }
       },
@@ -135,11 +135,11 @@
     "delete": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 73,
           "column": 34
         }
       },
@@ -149,11 +149,11 @@
     "add": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 74,
           "column": 32
         }
       },
@@ -165,11 +165,11 @@
     "setLabel": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 86,
           "column": 5
         }
       },
@@ -180,11 +180,11 @@
     "setIcon": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 89,
           "column": 27
         }
       },
@@ -195,11 +195,11 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 117,
           "column": 5
         }
       },
@@ -212,11 +212,11 @@
     "__unbindModel": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 130,
           "column": 5
         }
       },
@@ -226,11 +226,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 198,
           "column": 5
         }
       },
@@ -7353,11 +7353,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 186,
+        "line": 206,
         "column": 12
       },
       "end": {
-        "line": 188,
+        "line": 208,
         "column": 3
       }
     },

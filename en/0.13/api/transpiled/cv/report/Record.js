@@ -19,14 +19,15 @@
       "qx.core.Environment": {},
       "qx.bom.client.Locale": {},
       "cv.Version": {},
-      "cv.ConfigCache": {}
+      "cv.ConfigCache": {},
+      "cv.io.rest.Client": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* Transform.js 
+  /* Record.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -162,12 +163,17 @@
        */
       logCache: function logCache() {
         if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-          cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, cv.ConfigCache.getData());
+          cv.ConfigCache.getData().then(function (data) {
+            cv.report.Record.record(cv.report.Record.CACHE, cv.Config.configSuffix, data);
+          });
         }
+      },
+      logLocalStorage: function logLocalStorage() {
+        cv.report.Record.record(cv.report.Record.STORAGE, 'preferences', window.localStorage.preferences);
       },
       normalizeUrl: function normalizeUrl(url) {
         try {
-          var parsed = qx.util.Uri.parseUri(url);
+          var parsed = qx.util.Uri.parseUri(qx.util.Uri.getAbsolute(url));
           url = parsed.path;
           var filteredParams = Object.keys(parsed.queryKey).filter(function (name) {
             return name !== 'nocache' && name !== 'ts';
@@ -175,9 +181,9 @@
 
           if (filteredParams.length > 0) {
             url += '?';
-            filteredParams.forEach(function (param) {
-              return url += "".concat(param, "=").concat(parsed.queryKey[param]);
-            });
+            url += filteredParams.map(function (param) {
+              return "".concat(param, "=").concat(parsed.queryKey[param]);
+            }).join('&');
           }
         } catch (e) {
           if (url.indexOf('nocache=') >= 0) {
@@ -197,6 +203,16 @@
         }
 
         return null;
+      },
+      getData: function getData() {
+        if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
+          return cv.report.Record.getInstance().getData();
+        }
+
+        return null;
+      },
+      getFileName: function getFileName() {
+        return cv.report.Record.getInstance().getFileName();
       }
     },
 
@@ -219,6 +235,10 @@
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
+            if (path === 'response') {
+              this.__P_490_10(category, data);
+            }
+
             data.t = Date.now();
 
             this.__P_490_3[path].push(data);
@@ -228,6 +248,14 @@
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
             this.__P_490_4[category] = data;
+            break;
+
+          case cv.report.Record.STORAGE:
+            if (!Object.prototype.hasOwnProperty.call(this.__P_490_4, category)) {
+              this.__P_490_4[category] = {};
+            }
+
+            this.__P_490_4[category][path] = data;
             break;
 
           default:
@@ -246,10 +274,51 @@
       },
 
       /**
+       * Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config
+       * @param category {String} recording category
+       * @param data {Object} recorded content
+       * @private
+       */
+      __P_490_10: function __P_490_10(category, data) {
+        if (category === cv.report.Record.XHR) {
+          if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
+            try {
+              var content = JSON.parse(data.body);
+              Object.keys(content).forEach(function (sectionName) {
+                Object.keys(content[sectionName]).forEach(function (optionName) {
+                  switch (optionName) {
+                    case 'uri':
+                      content[sectionName][optionName] = 'http://127.0.0.1';
+                      break;
+
+                    case 'username':
+                    case 'user':
+                      content[sectionName][optionName] = 'xxxxx';
+                      break;
+
+                    case 'pass':
+                    case 'passwd':
+                    case 'password':
+                      content[sectionName][optionName] = 'xxx';
+                      break;
+                  }
+                });
+              });
+              data.body = JSON.stringify(content);
+            } catch (e) {
+              this.error(e);
+              data.body = '{}';
+              data.error = 'Invalid JSON content: ' + e.toString();
+            }
+          }
+        }
+      },
+
+      /**
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __P_490_10: function __P_490_10(nativeEvent) {
+      __P_490_11: function __P_490_11(nativeEvent) {
         var data = {
           eventClass: nativeEvent.constructor.name,
           'native': {
@@ -257,8 +326,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: nativeEvent.currentTarget ? this.__P_490_11(nativeEvent.currentTarget) : undefined,
-            relatedTarget: nativeEvent.relatedTarget ? this.__P_490_11(nativeEvent.relatedTarget) : undefined,
+            currentTarget: nativeEvent.currentTarget ? this.__P_490_12(nativeEvent.currentTarget) : undefined,
+            relatedTarget: nativeEvent.relatedTarget ? this.__P_490_12(nativeEvent.relatedTarget) : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -356,7 +425,7 @@
         } // get path
 
 
-        var path = this.__P_490_11(ev.target);
+        var path = this.__P_490_12(ev.target);
 
         if (!path) {
           return;
@@ -364,7 +433,7 @@
 
         this.debug('recording ' + ev.type + ' on ' + path);
 
-        var data = this.__P_490_10(ev);
+        var data = this.__P_490_11(ev);
 
         this.record(cv.report.Record.USER, path, data);
       },
@@ -379,7 +448,7 @@
         };
         this.record(cv.report.Record.USER, 'scroll', data);
       },
-      __P_490_11: function __P_490_11(el) {
+      __P_490_12: function __P_490_12(el) {
         if (el === window) {
           return 'Window';
         } else if (el === document) {
@@ -418,29 +487,39 @@
 
         return stack.slice(1).join('>'); // removes the html element
       },
+      getData: function getData(dontStop) {
+        if (!dontStop) {
+          cv.Config.reporting = false;
+        }
 
-      /**
-       * Download Log as file
-       */
-      download: function download() {
-        var data = {
+        return {
           data: this.__P_490_4,
           start: this.__P_490_2,
           xhr: this.__P_490_3,
           log: this.__P_490_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
-        }; // show the user what he gets
+        };
+      },
+      getFileName: function getFileName() {
+        var d = new Date();
+        var ts = d.getFullYear() + ('' + (d.getMonth() + 1)).padStart(2, '0') + ('' + d.getDate()).padStart(2, '0') + '-' + ('' + d.getHours()).padStart(2, '0') + ('' + d.getMinutes()).padStart(2, '0') + ('' + d.getSeconds()).padStart(2, '0');
+        return 'CometVisu-replay-' + ts + '.json';
+      },
+
+      /**
+       * Download Log as file
+       */
+      download: function download() {
+        var data = this.getData(); // show the user what he gets
         // eslint-disable-next-line no-console
 
         console.log(data);
-        var d = new Date();
-        var ts = d.getFullYear() + ('' + (d.getMonth() + 1)).padStart(2, '0') + ('' + d.getDate()).padStart(2, '0') + '-' + ('' + d.getHours()).padStart(2, '0') + ('' + d.getMinutes()).padStart(2, '0') + ('' + d.getSeconds()).padStart(2, '0');
         var a = window.document.createElement('a');
         a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {
           type: 'application/json'
         }));
-        a.download = 'CometVisu-replay-' + ts + '.json'; // Append anchor to body.
+        a.download = this.getFileName(); // Append anchor to body.
 
         document.body.appendChild(a);
         a.click(); // Remove anchor from body
@@ -453,4 +532,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1642802414858
+//# sourceMappingURL=Record.js.map?dt=1643061814183

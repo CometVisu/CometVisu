@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 183,
+        "line": 203,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 19,
+        "line": 39,
         "column": 13
       },
       "end": {
-        "line": 34,
+        "line": 54,
         "column": 3
       }
     },
@@ -69,11 +69,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 62,
           "column": 3
         },
         "end": {
-          "line": 42,
+          "line": 62,
           "column": 31
         }
       },
@@ -129,11 +129,11 @@
     "_content": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 71,
           "column": 18
         }
       },
@@ -143,11 +143,11 @@
     "_errors": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 17
         }
       },
@@ -157,11 +157,11 @@
     "_rootListenerId": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 73,
           "column": 25
         }
       },
@@ -171,11 +171,11 @@
     "_file": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 15
         }
       },
@@ -199,11 +199,11 @@
     "highlight": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 86,
           "column": 5
         }
       },
@@ -213,11 +213,11 @@
     "_createWidgetContent": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 187,
           "column": 5
         }
       },
@@ -11646,11 +11646,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 174,
+        "line": 194,
         "column": 12
       },
       "end": {
-        "line": 182,
+        "line": 202,
         "column": 3
       }
     },

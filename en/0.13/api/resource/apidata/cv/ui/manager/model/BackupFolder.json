@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 79,
+        "line": 99,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 17,
+        "line": 37,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "_onFilesSystemMessage": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 5
         }
       },
@@ -61,11 +61,11 @@
     "getBackupFiles": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 88,
           "column": 5
         }
       },
@@ -5578,11 +5578,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 76,
+        "line": 96,
         "column": 12
       },
       "end": {
-        "line": 78,
+        "line": 98,
         "column": 3
       }
     },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 55,
+        "line": 75,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
     "MAP": {
       "location": {
         "start": {
-          "line": 13,
+          "line": 33,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 73,
           "column": 5
         }
       },

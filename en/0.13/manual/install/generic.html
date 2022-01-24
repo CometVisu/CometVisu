@@ -60,7 +60,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#testing-the-installed-cometvisu">Testing the installed CometVisu</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation on WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation on Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Developer version on the Wiregate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation on a Debian System with openHAB2</a></li>
@@ -69,7 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-on-the-timberwolf-with-portainer">Installation on the Timberwolf with Portainer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux.html">Installation on a generic Linux system</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nas.html">Installation on a NAS system</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-of-the-cometvisu">Update of the CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#installation-on-mobile-devices">Installation on mobile devices</a></li>
 </ul>
 </li>
@@ -113,9 +112,6 @@ by an online translation service.</p>
 </div>
 <div class="section" id="prerequisites-for-the-installation">
 <span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Permalink to this headline">¶</a></h1>
-<p>If WireGate 1.1 or later is used, CometVisu 0.8.5 is already
-preinstalled and can be easily used. To install the old
-CometVisu on a WireGate, there are :doc: <cite>further information &lt;wiregate&gt;</cite>.</p>
 <p>To be able to use the CometVisu the system needs to
 fulfill a few prerequisites.</p>
 <p>These are</p>
@@ -126,6 +122,12 @@ fulfill a few prerequisites.</p>
 <li>a web server with (optional but recommended) PHP support</li>
 <li>the CometVisu software package</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To be able to use the <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> or the <a class="reference internal" href="../config/editor.html#editor"><span class="std std-ref">Editor</span></a>
+the prequisite is PHP 7. The core of the CometVisu itself can be used
+without PHP though.</p>
+</div>
 <div class="section" id="backend-knxd-eibd-or-openhab">
 <h2>Backend - knxd/eibd or OpenHAB<a class="headerlink" href="#backend-knxd-eibd-or-openhab" title="Permalink to this headline">¶</a></h2>
 <p>As a backend an instance of <em>eibd</em> or its successor
@@ -145,6 +147,8 @@ in depth. The installation of rrdtool for CometVisu is
 described under <a class="reference internal" href="install-rrd.html"><span class="doc">RRDtool</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
+<p>Time series from an InfluxDB database are supported without any additional
+external software, only PHP is required.</p>
 </div>
 <div class="section" id="web-server">
 <h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
@@ -290,7 +294,7 @@ avilable under <a class="reference internal" href="raspberry.html"><span class="
         
           <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.0-dev|0.12/manual">0.12.0-dev|0.12</a></dd>
+          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
         
           <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         

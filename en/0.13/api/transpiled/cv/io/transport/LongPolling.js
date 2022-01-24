@@ -150,9 +150,9 @@
 
             if (this.doRestart) {
               // planned restart, only inform user
-              this.info('restarting XHR read requests in ' + delay + ' ms');
+              this.info('restarting XHR read requests in ' + delay + ' ms as planned');
             } else {
-              this.error('restarting XHR read requests in ' + delay + ' ms');
+              this.info('restarting XHR read requests in ' + delay + ' ms as forced to');
             }
 
             if (!this.watchdog.isActive()) {
@@ -348,4 +348,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1642802417886
+//# sourceMappingURL=LongPolling.js.map?dt=1643061817270

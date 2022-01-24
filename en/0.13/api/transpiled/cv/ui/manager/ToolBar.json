@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 227,
+        "line": 247,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 24,
+        "line": 44,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "reload": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 35
         }
       },
@@ -60,11 +60,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 5
         }
       },
@@ -82,11 +82,11 @@
     "folder": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 71,
           "column": 5
         }
       },
@@ -101,11 +101,11 @@
     "file": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5
         }
       },
@@ -154,11 +154,11 @@
     "_menuButtonConfig": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 87,
           "column": 27
         }
       },
@@ -168,11 +168,11 @@
     "_uploadManager": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 88,
           "column": 24
         }
       },
@@ -182,11 +182,11 @@
     "_menuBar": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 89,
           "column": 18
         }
       },
@@ -196,11 +196,11 @@
     "__showOnly": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 90,
           "column": 20
         }
       },
@@ -210,11 +210,11 @@
     "__show": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 94,
           "column": 5
         }
       },
@@ -224,11 +224,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 212,
           "column": 5
         }
       },
@@ -238,11 +238,11 @@
     "_createButton": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 220,
           "column": 5
         }
       },
@@ -252,11 +252,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 224,
           "column": 5
         }
       },
@@ -269,11 +269,11 @@
     "_applyFolder": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 234,
           "column": 5
         }
       },
@@ -8054,11 +8054,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 222,
+        "line": 242,
         "column": 12
       },
       "end": {
-        "line": 226,
+        "line": 246,
         "column": 3
       }
     },

@@ -23,9 +23,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "construct": true,
         "require": true
       },
-      "qx.util.LibraryManager": {
-        "construct": true
-      },
       "qx.ui.core.FocusHandler": {
         "construct": true
       },
@@ -37,6 +34,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "require": true
       },
       "qx.util.Uri": {},
+      "qx.util.LibraryManager": {},
       "qx.util.DynamicScriptLoader": {},
       "cv.ui.manager.editor.completion.Config": {},
       "cv.ui.manager.model.Schema": {},
@@ -55,6 +53,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
+  /* Source.js 
+   * 
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * 
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * Monaco Texteditor integration
    */
@@ -69,7 +86,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct() {
       cv.ui.manager.editor.AbstractEditor.constructor.call(this);
       this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
-      this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/';
       this.getContentElement().setAttribute('contentEditable', 'true');
       this.set({
         droppable: false,
@@ -95,6 +111,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       this._initWorker();
 
       this._currentDecorations = [];
+      this.bind('file.writeable', this, 'selectable');
     },
 
     /*
@@ -179,7 +196,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     members: {
       __P_32_0: null,
       _editor: null,
-      _basePath: null,
       _workerWrapper: null,
       _currentDecorations: null,
       _configClient: null,
@@ -601,4 +617,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1642802380564
+//# sourceMappingURL=Source.js.map?dt=1643061779776

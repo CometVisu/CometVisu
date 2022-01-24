@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 6,
+        "line": 26,
         "column": 0
       },
       "end": {
-        "line": 283,
+        "line": 303,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 14,
+        "line": 34,
         "column": 13
       },
       "end": {
-        "line": 21,
+        "line": 41,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 5
         }
       },
@@ -65,11 +65,11 @@
     "optional": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 56,
           "column": 5
         }
       },
@@ -82,11 +82,11 @@
     "baseType": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 62,
           "column": 4
         },
         "end": {
-          "line": 45,
+          "line": 65,
           "column": 5
         }
       },
@@ -115,11 +115,11 @@
     "__pattern": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 74,
           "column": 19
         }
       },
@@ -129,11 +129,11 @@
     "__enumerations": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 75,
           "column": 24
         }
       },
@@ -143,11 +143,11 @@
     "__bases": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 76,
           "column": 17
         }
       },
@@ -157,11 +157,11 @@
     "__regexCache": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 77,
           "column": 22
         }
       },
@@ -171,11 +171,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 83,
           "column": 5
         }
       },
@@ -189,11 +189,11 @@
     "__fillNodeData": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 145,
           "column": 5
         }
       },
@@ -217,11 +217,11 @@
     "isValueValid": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 258,
+          "line": 278,
           "column": 5
         }
       },
@@ -251,11 +251,11 @@
     "getEnumeration": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 292,
           "column": 5
         }
       },
@@ -942,11 +942,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 280,
+        "line": 300,
         "column": 12
       },
       "end": {
-        "line": 282,
+        "line": 302,
         "column": 3
       }
     },

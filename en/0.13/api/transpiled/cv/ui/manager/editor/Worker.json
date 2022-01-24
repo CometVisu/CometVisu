@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 125,
+        "line": 145,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 19,
+        "line": 39,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "editor": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 5
         }
       },
@@ -98,11 +98,11 @@
     "_worker": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 59,
           "column": 17
         }
       },
@@ -112,11 +112,11 @@
     "_files": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 40,
+          "line": 60,
           "column": 16
         }
       },
@@ -126,11 +126,11 @@
     "open": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 62,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 69,
           "column": 5
         }
       },
@@ -140,11 +140,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 76,
           "column": 5
         }
       },
@@ -154,11 +154,11 @@
     "contentChanged": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 83,
           "column": 5
         }
       },
@@ -168,11 +168,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 91,
           "column": 5
         }
       },
@@ -182,11 +182,11 @@
     "validateXmlConfig": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 95,
           "column": 5
         }
       },
@@ -196,11 +196,11 @@
     "_onMessage": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 133,
           "column": 5
         }
       },
@@ -3486,11 +3486,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 121,
+        "line": 141,
         "column": 12
       },
       "end": {
-        "line": 124,
+        "line": 144,
         "column": 3
       }
     },

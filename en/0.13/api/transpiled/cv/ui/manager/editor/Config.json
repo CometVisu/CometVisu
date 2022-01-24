@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 229,
+        "line": 249,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 18,
+        "line": 38,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 26,
+          "line": 46,
           "column": 55
         }
       },
@@ -60,11 +60,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 5
         }
       },
@@ -83,11 +83,11 @@
     "_model": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 67,
           "column": 16
         }
       },
@@ -97,11 +97,11 @@
     "_listController": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 25
         }
       },
@@ -111,11 +111,11 @@
     "__initialSectionCount": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 69,
           "column": 28
         }
       },
@@ -125,11 +125,11 @@
     "_initClient": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 75,
           "column": 5
         }
       },
@@ -143,11 +143,11 @@
     "_loadFile": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 81,
           "column": 5
         }
       },
@@ -161,11 +161,11 @@
     "_onModelValueChange": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 87,
           "column": 5
         }
       },
@@ -175,11 +175,11 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 105,
           "column": 5
         }
       },
@@ -194,11 +194,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 110,
           "column": 5
         }
       },
@@ -214,11 +214,11 @@
     "_onDeleteSection": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 119,
           "column": 5
         }
       },
@@ -228,11 +228,11 @@
     "__checkForModification": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 132,
           "column": 5
         }
       },
@@ -243,11 +243,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 134,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 184,
           "column": 5
         }
       },
@@ -262,11 +262,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 218,
+          "line": 238,
           "column": 5
         }
       },
@@ -4469,11 +4469,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 226,
+        "line": 246,
         "column": 12
       },
       "end": {
-        "line": 228,
+        "line": 248,
         "column": 3
       }
     },

@@ -42,13 +42,14 @@
       "cv.ui.manager.snackbar.Controller": {},
       "qx.locale.Manager": {},
       "cv.ui.manager.model.FileItem": {},
+      "qxl.dialog.Confirm": {},
       "cv.ui.manager.model.Preferences": {},
       "cv.ui.manager.control.FileHandlerRegistry": {},
       "cv.ui.manager.editor.AbstractEditor": {},
       "cv.ui.manager.core.GlobalState": {},
       "cv.ui.manager.model.OpenFile": {},
-      "qxl.dialog.Dialog": {},
       "cv.ui.manager.editor.IEditor": {},
+      "cv.ui.manager.Start": {},
       "cv.ui.manager.model.CompareFiles": {},
       "qx.dom.Element": {},
       "qx.theme.manager.Meta": {},
@@ -80,6 +81,25 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
+  /* Main.js 
+   * 
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * 
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * Main class of the CometVisu file manager.
    * @author Tobias Bräutigam
@@ -99,6 +119,8 @@
     ***********************************************
     */
     construct: function construct() {
+      var _this = this;
+
       qx.core.Object.constructor.call(this);
       iconfont.material.Load;
       cv.ui.manager.model.BackupFolder.getInstance();
@@ -116,7 +138,11 @@
 
       qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this); // Initialize tooltip manager
 
-      qx.ui.tooltip.Manager.getInstance();
+      qx.ui.tooltip.Manager.getInstance(); //qx.event.Registration.addListener(window, 'beforeunload', this._onBeforeUnload, this);
+
+      window.addEventListener('beforeunload', function (event) {
+        _this._onBeforeUnload(event);
+      });
     },
 
     /*
@@ -287,6 +313,8 @@
         return actions.includes(actionName);
       },
       handleAction: function handleAction(actionName, data) {
+        var unsavedFiles;
+
         switch (actionName) {
           case 'close':
             if (!data) {
@@ -298,7 +326,34 @@
             break;
 
           case 'quit':
-            this.setVisible(false);
+            unsavedFiles = this.getOpenFiles().filter(function (openFile) {
+              return openFile.getFile().isModified();
+            });
+
+            if (unsavedFiles.length > 0) {
+              var dialog = new qxl.dialog.Confirm({
+                message: qx.locale.Manager.tr('You have files opened with unsaved changes, you should save them now.'),
+                callback: function callback(confirmed) {
+                  if (confirmed) {
+                    unsavedFiles.forEach(function (openFile) {
+                      openFile.save();
+                    });
+                  }
+
+                  dialog.dispose();
+                  this.setVisible(false);
+                },
+                context: this,
+                caption: qx.locale.Manager.tr('Unsaved changes'),
+                yesButtonLabel: qx.locale.Manager.tr('Save & quit'),
+                noButtonLabel: qx.locale.Manager.tr('Quit without saving'),
+                useBlocker: true
+              });
+              dialog.show();
+            } else {
+              this.setVisible(false);
+            }
+
             break;
 
           case 'new-file':
@@ -308,7 +363,7 @@
 
           case 'new-config-file':
             cv.io.rest.Client.getFsClient().readSync({
-              path: '.templates/visu_config.xml'
+              path: 'demo/templates/visu_config.xml'
             }, function (err, res) {
               if (err) {
                 cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
@@ -355,6 +410,18 @@
           default:
             this.warn(actionName + ' handling is not implemented yet!');
             break;
+        }
+      },
+      _onBeforeUnload: function _onBeforeUnload(ev) {
+        var unsavedFiles = this.getOpenFiles().filter(function (openFile) {
+          return openFile.getFile().isModified();
+        });
+
+        if (unsavedFiles.length > 0) {
+          ev.preventDefault();
+          ev.returnValue = '';
+        } else {
+          delete ev['returnValue'];
         }
       },
       configureButton: function configureButton(button) {},
@@ -629,6 +696,78 @@
 
         this._openFilesController.getTarget().setModelSelection([openFile]);
       },
+
+      /**
+       * Opens a confirm dialog on how to treat the unsaved changes in the file if it has been modified and not saved.
+       * @param openFile {cv.ui.manager.model.OpenFile|cv.ui.manager.model.FileItem} file to check
+       * @return {boolean} true if the confirm dialog has been shown
+       */
+      checkUnsavedChanged: function checkUnsavedChanged(openFile) {
+        var _this2 = this;
+
+        if (openFile instanceof cv.ui.manager.model.FileItem) {
+          // find the opened file
+          var found = this.getOpenFiles().some(function (f) {
+            if (f.getFile().getFullPath() === openFile.getFullPath()) {
+              openFile = f;
+              return true;
+            }
+
+            return false;
+          });
+
+          if (!found) {
+            return false;
+          }
+        }
+
+        var file = openFile.getFile();
+
+        if (file.isModified()) {
+          // check if temporary
+          var message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it without saving.');
+
+          if (file.isTemporary()) {
+            message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it without saving.');
+          }
+
+          var dialog = new qxl.dialog.Confirm({
+            message: message,
+            callback: function callback(confirmed) {
+              if (confirmed === true) {
+                openFile.save();
+
+                _this2.closeFile(openFile, true);
+              } else if (confirmed === false) {
+                file.resetModified();
+
+                if (file.isTemporary()) {
+                  qx.event.message.Bus.dispatchByName('cv.manager.file', {
+                    action: 'deleted',
+                    path: file.getFullPath()
+                  });
+                }
+
+                _this2.closeFile(openFile, true);
+              } else {// cancel closing, do nothing
+              }
+
+              dialog.dispose();
+            },
+            context: this,
+            caption: qx.locale.Manager.tr('Unsaved changes'),
+            yesButtonLabel: qx.locale.Manager.tr('Save & close'),
+            noButtonLabel: qx.locale.Manager.tr('Discard & close'),
+            noButtonIcon: 'qxl.dialog.icon.delete',
+            useBlocker: true,
+            allowCancel: true
+          });
+          dialog.show();
+          return true;
+        }
+
+        return false;
+      },
       closeFile: function closeFile(openFile, force) {
         if (openFile instanceof cv.ui.manager.model.FileItem) {
           // find the opened file
@@ -652,27 +791,7 @@
 
         var file = openFile.getFile(); // check if this file is modified
 
-        if (file.isModified() && !force) {
-          // check if temporary
-          var message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it. Do you really want to close the file?');
-
-          if (file.isTemporary()) {
-            message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
-          }
-
-          qxl.dialog.Dialog.confirm(message, function (confirmed) {
-            if (confirmed) {
-              file.resetModified();
-              this.closeFile(openFile, true);
-
-              if (file.isTemporary()) {
-                qx.event.message.Bus.dispatchByName('cv.manager.file', {
-                  action: 'deleted',
-                  path: file.getFullPath()
-                });
-              }
-            }
-          }, this, qx.locale.Manager.tr('Unsaved changes'));
+        if (!force && this.checkUnsavedChanged(openFile)) {
           return;
         }
 
@@ -694,7 +813,7 @@
 
         var currentHandler = this._stack.getSelection()[0];
 
-        if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor)) {
+        if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor) && !(currentHandler instanceof cv.ui.manager.Start)) {
           // reset the handlers file
           currentHandler.resetFile();
         }
@@ -1127,4 +1246,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1642802379484
+//# sourceMappingURL=Main.js.map?dt=1643061778726

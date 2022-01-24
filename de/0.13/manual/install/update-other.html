@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Update der CometVisu auf anderen Geräten &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Update der direkt installierten CometVisu &mdash; CometVisu</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/update-other.html"/>
@@ -20,7 +20,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Die CometVisu als App" href="app.html" />
-    <link rel="prev" title="Update der CometVisu auf dem Wiregate" href="update-wiregate.html" /> 
+    <link rel="prev" title="Installation auf dem Timberwolf über die App" href="timberwolf.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +44,6 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
@@ -53,8 +52,7 @@
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="update-wiregate.html">Update der CometVisu auf dem Wiregate</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Update der CometVisu auf anderen Geräten</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Update der direkt installierten CometVisu</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a></li>
@@ -82,7 +80,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
-      <li>Update der CometVisu auf anderen Geräten</li>
+      <li>Update der direkt installierten CometVisu</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -97,31 +95,31 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="update-der-cometvisu-auf-anderen-geraten">
-<h1>Update der CometVisu auf anderen Geräten<a class="headerlink" href="#update-der-cometvisu-auf-anderen-geraten" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="update-der-direkt-installierten-cometvisu">
+<h1>Update der direkt installierten CometVisu<a class="headerlink" href="#update-der-direkt-installierten-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p><strong>Download der Installationsdatei</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-wget -O CometVisu0.9.2.zip  https://github.com/CometVisu/CometVisu/releases/download/v0.9.2/CometVisu-0.9.2.zip
+wget -O CometVisu0.12.0.zip  https://github.com/CometVisu/CometVisu/releases/download/v0.12.0/CometVisu-0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Entpacken der Dateien</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip CometVisu0.9.2.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip CometVisu0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Anpassend des Order-Namens</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv cometvisu/ release_0.9.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv cometvisu/ release_0.12.0
 </pre></div>
 </div>
 <p><strong>OPTIONAL: Entfernen des Downloads</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.9.2.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Kopieren der Konfigurationsdatei in die neue Installation</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp visu/config/visu_config*.xml release_0.9.2/release/config/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp visu/config/visu_config*.xml release_0.12.0/release/config/
 </pre></div>
 </div>
 <p><strong>Sicherstellen der richtigen Berechtigungen</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod -f a+w release_0.9.2/release/config release_0.9.2/release/config/*.xml release_0.9.2/release/config/backup release_0.9.2/release/config/backup/*.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod -f a+w release_0.12.0/release/config release_0.12.0/release/config/*.xml release_0.12.0/release/config/backup release_0.12.0/release/config/backup/*.xml
 </pre></div>
 </div>
 <p><strong>ENTWEDER entfernen eines alten Backups und Erzeugen eines neuen Backup
@@ -131,13 +129,13 @@ mv ./visu cometvisu.bak
 </pre></div>
 </div>
 <p><strong>ODER alternatives Vorgehen OHNE Löschen alter Versionen (irgendeiname
-durch z.B. CV-0.9.x oder so was ersetzen)</strong></p>
+durch z.B. CV-0.12.x oder so was ersetzen)</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv ./visu irgendeinname
 </pre></div>
 </div>
 <p>‚‘‚Erzeugen eines Links um die Visu mit dem bekannten URL aufrufen zu
 können - hier wieder ‚‘‚</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.9.2/release/ visu
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.12.2/release/ visu
 </pre></div>
 </div>
 <p>Aufruf der Visu dann wie bekannt unter
@@ -149,7 +147,7 @@ erforderlich angeboten die Konfiguration automatisch zu konvertieren.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="update-wiregate.html" class="btn btn-neutral float-left" title="Update der CometVisu auf dem Wiregate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="timberwolf.html" class="btn btn-neutral float-left" title="Installation auf dem Timberwolf über die App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="app.html" class="btn btn-neutral float-right" title="Die CometVisu als App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -182,7 +180,7 @@ erforderlich angeboten die Konfiguration automatisch zu konvertieren.</p>
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0-dev</a></dd>
+          <dd><a href="../../0.12/manual">0.12.0</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

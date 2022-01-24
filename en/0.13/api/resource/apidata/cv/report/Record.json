@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 413,
+        "line": 489,
         "column": 3
       }
     },
@@ -260,7 +260,7 @@
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 152,
           "column": 5
         }
       },
@@ -275,14 +275,28 @@
       "type": "function",
       "access": "public"
     },
-    "normalizeUrl": {
+    "logLocalStorage": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 156,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "normalizeUrl": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
           "column": 5
         }
       },
@@ -292,11 +306,39 @@
     "download": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 183,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getData": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFileName": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
           "column": 5
         }
       },
@@ -308,11 +350,11 @@
     "__start": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 203,
           "column": 17
         }
       },
@@ -322,11 +364,11 @@
     "__log": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 204,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 204,
           "column": 15
         }
       },
@@ -336,11 +378,11 @@
     "__xhr": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 205,
           "column": 15
         }
       },
@@ -350,11 +392,11 @@
     "__listeners": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 206,
           "column": 21
         }
       },
@@ -364,11 +406,11 @@
     "__data": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 207,
           "column": 16
         }
       },
@@ -378,11 +420,11 @@
     "__delta": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 191,
+          "line": 208,
           "column": 15
         }
       },
@@ -392,11 +434,11 @@
     "__minDelta": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 209,
           "column": 17
         }
       },
@@ -406,11 +448,11 @@
     "__maxDelta": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 210,
           "column": 18
         }
       },
@@ -420,11 +462,11 @@
     "__deltas": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 211,
           "column": 18
         }
       },
@@ -434,11 +476,11 @@
     "__ID": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 212,
           "column": 11
         }
       },
@@ -448,25 +490,69 @@
     "record": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 247,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
     },
-    "__extractDataFromEvent": {
+    "__scrubSensitiveContent": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 286,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "category {String} recording category",
+            "paramName": "category",
+            "description": " recording category",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object} recorded content",
+            "paramName": "data",
+            "description": " recorded content",
+            "type": "Object"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__extractDataFromEvent": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4
+        },
+        "end": {
+          "line": 363,
           "column": 5
         }
       },
@@ -490,11 +576,11 @@
     "recordNativeEvent": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 365,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 395,
           "column": 5
         }
       },
@@ -504,11 +590,11 @@
     "recordScroll": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 407,
           "column": 5
         }
       },
@@ -518,25 +604,53 @@
     "__getDomPath": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 409,
           "column": 4
         },
         "end": {
-          "line": 374,
+          "line": 440,
           "column": 5
         }
       },
       "type": "function",
       "access": "private"
     },
-    "download": {
+    "getData": {
       "location": {
         "start": {
-          "line": 379,
+          "line": 442,
           "column": 4
         },
         "end": {
-          "line": 411,
+          "line": 454,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFileName": {
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4
+        },
+        "end": {
+          "line": 465,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "download": {
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4
+        },
+        "end": {
+          "line": 487,
           "column": 5
         }
       },

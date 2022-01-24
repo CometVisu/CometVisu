@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 79,
+        "line": 99,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 15,
+        "line": 35,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "SUPPORTED_FILES": {
       "location": {
         "start": {
-          "line": 23,
+          "line": 43,
           "column": 4
         },
         "end": {
-          "line": 23,
+          "line": 43,
           "column": 41
         }
       },
@@ -58,11 +58,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 24,
+          "line": 44,
           "column": 45
         }
       },
@@ -72,11 +72,11 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 45,
           "column": 51
         }
       },
@@ -88,11 +88,11 @@
     "_getDelegate": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 5
         }
       },
@@ -106,11 +106,11 @@
     "_onFilter": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 5
         }
       },
@@ -124,11 +124,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 97,
           "column": 5
         }
       },

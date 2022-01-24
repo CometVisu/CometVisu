@@ -17,11 +17,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 417,
+        "line": 437,
         "column": 3
       }
     },
@@ -38,11 +38,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 22,
+        "line": 42,
         "column": 13
       },
       "end": {
-        "line": 43,
+        "line": 63,
         "column": 3
       }
     },
@@ -52,11 +52,11 @@
     "SUPPORTED_FILES": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 74,
           "column": 5
         }
       },
@@ -66,11 +66,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 75,
           "column": 46
         }
       },
@@ -80,11 +80,11 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 76,
           "column": 52
         }
       },
@@ -96,11 +96,11 @@
     "addItem": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 90,
           "column": 34
         }
       },
@@ -118,11 +118,11 @@
     "removeItem": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 97,
           "column": 37
         }
       },
@@ -190,11 +190,11 @@
     "model": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 109,
           "column": 5
         }
       },
@@ -205,11 +205,11 @@
     "permanentFilter": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 111,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 115,
           "column": 5
         }
       },
@@ -223,11 +223,11 @@
     "showTextFilter": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 121,
           "column": 5
         }
       },
@@ -241,11 +241,11 @@
     "labelConverter": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 126,
           "column": 5
         }
       },
@@ -258,11 +258,11 @@
     "disableScrolling": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 132,
           "column": 5
         }
       },
@@ -276,11 +276,11 @@
     "viewMode": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 134,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 138,
           "column": 5
         }
       },
@@ -347,11 +347,11 @@
     "_controller": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 147,
           "column": 21
         }
       },
@@ -361,11 +361,11 @@
     "_isImageRegex": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 148,
           "column": 23
         }
       },
@@ -375,11 +375,11 @@
     "_newItem": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 149,
           "column": 18
         }
       },
@@ -389,11 +389,11 @@
     "SELECTION_MANAGER": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 152,
           "column": 55
         }
       },
@@ -417,11 +417,11 @@
     "_defaultLabelConverter": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 164,
           "column": 5
         }
       },
@@ -431,11 +431,11 @@
     "_getDelegate": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 206,
           "column": 5
         }
       },
@@ -445,11 +445,11 @@
     "_onFsItemRightClick": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 227,
           "column": 5
         }
       },
@@ -459,11 +459,11 @@
     "_onDblTap": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 237,
           "column": 5
         }
       },
@@ -473,11 +473,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 239,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 268,
           "column": 5
         }
       },
@@ -491,11 +491,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 270,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 317,
           "column": 5
         }
       },
@@ -505,11 +505,11 @@
     "_applyShowTextFilter": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 301,
+          "line": 321,
           "column": 5
         }
       },
@@ -522,11 +522,11 @@
     "_onFilter": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 312,
+          "line": 332,
           "column": 5
         }
       },
@@ -539,11 +539,11 @@
     "getChildrenContainer": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 334,
           "column": 4
         },
         "end": {
-          "line": 316,
+          "line": 336,
           "column": 5
         }
       },
@@ -567,11 +567,11 @@
     "_onAddChild": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 343,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 345,
           "column": 5
         }
       },
@@ -598,11 +598,11 @@
     "_onRemoveChild": {
       "location": {
         "start": {
-          "line": 332,
+          "line": 352,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 354,
           "column": 5
         }
       },
@@ -629,11 +629,11 @@
     "_onFileEvent": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 356,
           "column": 4
         },
         "end": {
-          "line": 342,
+          "line": 362,
           "column": 5
         }
       },
@@ -643,11 +643,11 @@
     "_applyDisableScrolling": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 364,
           "column": 4
         },
         "end": {
-          "line": 354,
+          "line": 374,
           "column": 5
         }
       },
@@ -660,11 +660,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 377,
           "column": 4
         },
         "end": {
-          "line": 404,
+          "line": 424,
           "column": 5
         }
       },
@@ -6459,11 +6459,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 412,
+        "line": 432,
         "column": 12
       },
       "end": {
-        "line": 416,
+        "line": 436,
         "column": 3
       }
     },

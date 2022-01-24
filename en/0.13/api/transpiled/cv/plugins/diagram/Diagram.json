@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 20,
+        "line": 21,
         "column": 0
       },
       "end": {
-        "line": 152,
+        "line": 153,
         "column": 3
       }
     },
@@ -23,11 +23,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 28,
+        "line": 29,
         "column": 13
       },
       "end": {
-        "line": 31,
+        "line": 32,
         "column": 3
       }
     },
@@ -37,11 +37,11 @@
     "width": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 42,
+          "line": 43,
           "column": 5
         }
       },
@@ -54,11 +54,11 @@
     "height": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 47,
           "column": 5
         }
       },
@@ -73,11 +73,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 67,
           "column": 5
         }
       },
@@ -125,11 +125,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 5
         }
       },
@@ -141,11 +141,11 @@
     "__vlid1": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 87,
           "column": 17
         }
       },
@@ -155,11 +155,11 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5
         }
       },
@@ -173,11 +173,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 145,
           "column": 5
         }
       },
@@ -3599,11 +3599,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 147,
+        "line": 148,
         "column": 9
       },
       "end": {
-        "line": 151,
+        "line": 152,
         "column": 3
       }
     },

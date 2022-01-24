@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 56,
+        "line": 76,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 13,
+          "line": 33,
           "column": 4
         },
         "end": {
-          "line": 16,
+          "line": 36,
           "column": 5
         }
       },
@@ -87,11 +87,11 @@
     "_applyLabel": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 5
         }
       },
@@ -105,11 +105,11 @@
     "_handleIcon": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 59,
           "column": 5
         }
       },
@@ -131,11 +131,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 62,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 74,
           "column": 5
         }
       },

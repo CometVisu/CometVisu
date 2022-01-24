@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 300,
+        "line": 301,
         "column": 3
       }
     },
@@ -32,11 +32,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 32,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 39,
+        "line": 40,
         "column": 3
       }
     },
@@ -46,11 +46,11 @@
     "connected": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 5
         }
       },
@@ -64,11 +64,11 @@
     "server": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 58,
           "column": 5
         }
       },
@@ -116,11 +116,11 @@
     "_client": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 70,
           "column": 17
         }
       },
@@ -144,11 +144,11 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 1
         }
       },
@@ -178,11 +178,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 87,
           "column": 1
         }
       },
@@ -218,11 +218,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 96,
           "column": 1
         }
       },
@@ -260,11 +260,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 104,
           "column": 1
         }
       },
@@ -292,11 +292,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 113,
           "column": 5
         }
       },
@@ -324,11 +324,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 125,
           "column": 5
         }
       },
@@ -368,11 +368,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 199,
           "column": 5
         }
       },
@@ -424,11 +424,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 205,
           "column": 32
         }
       },
@@ -456,11 +456,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 214,
           "column": 48
         }
       },
@@ -507,11 +507,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 220,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 220,
           "column": 49
         }
       },
@@ -541,11 +541,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 226,
           "column": 42
         }
       },
@@ -573,11 +573,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 246,
+          "line": 247,
           "column": 5
         }
       },
@@ -622,11 +622,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 253,
+          "line": 254,
           "column": 4
         },
         "end": {
-          "line": 253,
+          "line": 254,
           "column": 31
         }
       },
@@ -656,11 +656,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 260,
           "column": 4
         },
         "end": {
-          "line": 259,
+          "line": 260,
           "column": 30
         }
       },
@@ -690,11 +690,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 267,
           "column": 4
         },
         "end": {
-          "line": 266,
+          "line": 267,
           "column": 29
         }
       },
@@ -724,11 +724,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 274,
           "column": 4
         },
         "end": {
-          "line": 273,
+          "line": 274,
           "column": 35
         }
       },
@@ -766,11 +766,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 281,
+          "line": 282,
           "column": 4
         },
         "end": {
-          "line": 281,
+          "line": 282,
           "column": 47
         }
       },
@@ -814,11 +814,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 283,
+          "line": 284,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 288,
           "column": 5
         }
       },
@@ -832,11 +832,11 @@
     "destruct": {
       "location": {
         "start": {
-          "line": 292,
+          "line": 293,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 298,
           "column": 5
         }
       },

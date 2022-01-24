@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 132,
+        "line": 152,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 14,
+        "line": 34,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "TEMPLATES": {
       "location": {
         "start": {
-          "line": 22,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 22,
+          "line": 42,
           "column": 19
         }
       },
@@ -58,11 +58,11 @@
     "getTemplates": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 138,
           "column": 5
         }
       },
@@ -72,11 +72,11 @@
     "getProvider": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 150,
           "column": 5
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 158,
+        "line": 178,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 11,
+        "line": 31,
         "column": 13
       },
       "end": {
-        "line": 14,
+        "line": 34,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "__appInfoCache": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 26,
+          "line": 46,
           "column": 24
         }
       },
@@ -72,11 +72,11 @@
     "__linkRegex": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 21
         }
       },
@@ -86,11 +86,11 @@
     "__language": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 20
         }
       },
@@ -100,11 +100,11 @@
     "__documentationCache": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 30
         }
       },
@@ -128,11 +128,11 @@
     "__getTextNodesByXPath": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 5
         }
       },
@@ -142,11 +142,11 @@
     "getAppinfo": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 106,
           "column": 5
         }
       },
@@ -170,11 +170,11 @@
     "getDocumentation": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 146,
           "column": 5
         }
       },
@@ -198,11 +198,11 @@
     "createDocumentationWebLinks": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 165,
           "column": 5
         }
       },
@@ -235,11 +235,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 153,
+        "line": 173,
         "column": 12
       },
       "end": {
-        "line": 157,
+        "line": 177,
         "column": 3
       }
     },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 97,
+        "line": 117,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 19,
+        "line": 39,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "message": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 33
         }
       },
@@ -63,11 +63,11 @@
     "_worker": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 56,
           "column": 17
         }
       },
@@ -77,11 +77,11 @@
     "_validationCallbacks": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 57,
           "column": 30
         }
       },
@@ -91,11 +91,11 @@
     "_counter": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 15
         }
       },
@@ -105,11 +105,11 @@
     "postMessage": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 42,
+          "line": 62,
           "column": 5
         }
       },
@@ -119,11 +119,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 76,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "validateXmlConfig": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 84,
           "column": 5
         }
       },
@@ -147,11 +147,11 @@
     "_onMessage": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 106,
           "column": 5
         }
       },
@@ -298,11 +298,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 94,
+        "line": 114,
         "column": 12
       },
       "end": {
-        "line": 96,
+        "line": 116,
         "column": 3
       }
     },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 6,
+        "line": 26,
         "column": 0
       },
       "end": {
-        "line": 50,
+        "line": 70,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "pageSizeInvalid": {
       "location": {
         "start": {
-          "line": 15,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 19,
+          "line": 39,
           "column": 5
         }
       },
@@ -49,11 +49,11 @@
     "backdropInvalid": {
       "location": {
         "start": {
-          "line": 21,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 45,
           "column": 5
         }
       },
@@ -67,11 +67,11 @@
     "navbarInvalid": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 31,
+          "line": 51,
           "column": 5
         }
       },
@@ -85,11 +85,11 @@
     "rowspanInvalid": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 57,
           "column": 5
         }
       },
@@ -137,11 +137,11 @@
     "resetAll": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 5
         }
       },

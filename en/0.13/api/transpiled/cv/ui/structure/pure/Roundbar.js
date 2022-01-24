@@ -18,9 +18,9 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* Roundbar.js
+  /* Roundbar.js 
    * 
-   * copyright (c) 2010-2020, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -707,4 +707,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1642802383952
+//# sourceMappingURL=Roundbar.js.map?dt=1643061783204

@@ -6,14 +6,14 @@
         "require": true
       },
       "qx.log.Logger": {},
-      "qx.util.ResourceManager": {}
+      "cv.Application": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
   /* IconTools.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -286,9 +286,10 @@
         return function (color, styling, classes) {
           if (color in cv.util.IconTools.colorMapping) {
             color = cv.util.IconTools.colorMapping[color];
-          }
+          } // use relative path here, otherwise it won't work in replay mode
 
-          var iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
+
+          var iconPath = cv.Application.getRelativeResourcePath() + 'icons/knx-uf-iconset.svg';
           var style = styling || '';
 
           if (color) {
@@ -312,4 +313,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1642802416033
+//# sourceMappingURL=IconTools.js.map?dt=1643061815314

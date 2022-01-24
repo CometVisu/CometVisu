@@ -703,7 +703,7 @@ button.ui-slider-handle {
   color: #FFF;
 }
 
-.popup_background.error a { color: #FFF; }
+.popup_background.error a { color: #d7be5f; }
 
 pre.inline { display: inline-block; }
 

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 289,
+        "line": 309,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "__fsClient": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 24,
+          "line": 44,
           "column": 20
         }
       },
@@ -61,11 +61,11 @@
     "rename": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 84,
           "column": 5
         }
       },
@@ -75,11 +75,11 @@
     "move": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 106,
           "column": 5
         }
       },
@@ -113,11 +113,11 @@
     "restore": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 171,
           "column": 5
         }
       },
@@ -144,11 +144,11 @@
     "__moveFile": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 173,
           "column": 4
         },
         "end": {
-          "line": 168,
+          "line": 188,
           "column": 5
         }
       },
@@ -158,11 +158,11 @@
     "delete": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 217,
           "column": 5
         }
       },
@@ -172,11 +172,11 @@
     "__doDelete": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 249,
           "column": 5
         }
       },
@@ -186,11 +186,11 @@
     "download": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 260,
           "column": 5
         }
       },
@@ -200,11 +200,11 @@
     "validate": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 262,
           "column": 4
         },
         "end": {
-          "line": 251,
+          "line": 271,
           "column": 5
         }
       },
@@ -214,11 +214,11 @@
     "__validateConfig": {
       "location": {
         "start": {
-          "line": 253,
+          "line": 273,
           "column": 4
         },
         "end": {
-          "line": 278,
+          "line": 298,
           "column": 5
         }
       },
@@ -3438,11 +3438,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 286,
+        "line": 306,
         "column": 12
       },
       "end": {
-        "line": 288,
+        "line": 308,
         "column": 3
       }
     },

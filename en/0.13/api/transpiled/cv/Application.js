@@ -29,6 +29,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.bom.PageVisibility": {
         "construct": true
       },
+      "qx.util.Uri": {},
+      "qx.util.LibraryManager": {},
       "cv.io.Client": {},
       "cv.Config": {},
       "cv.io.Mockup": {},
@@ -53,7 +55,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.core.WindowError": {},
       "qx.dev.StackTrace": {},
       "cv.ui.PopupHandler": {},
-      "qx.util.Uri": {},
       "cv.util.Location": {},
       "qx.event.Registration": {},
       "cv.ui.layout.ResizeHandler": {},
@@ -66,7 +67,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.ui.structure.WidgetFactory": {},
       "cv.IconHandler": {},
       "qx.Part": {},
-      "qx.util.LibraryManager": {},
       "qx.bom.client.Html": {
         "require": true
       }
@@ -84,7 +84,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   /* Application.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -156,6 +156,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
       __P_2_0: null,
+      _relResourcePath: null,
+      _fullResourcePath: null,
+      getRelativeResourcePath: function getRelativeResourcePath(fullPath) {
+        if (!this._relResourcePath) {
+          var baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+          this._relResourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(baseUrl.length + 1) + '/';
+        }
+
+        if (fullPath === true) {
+          if (!this._fullResourcePath) {
+            this._fullResourcePath = window.location.pathname.split('/').slice(0, -1).join('/') + '/' + this._relResourcePath;
+          }
+
+          return this._fullResourcePath;
+        }
+
+        return this._relResourcePath;
+      },
 
       /**
        * Client factory method -> create a client
@@ -173,7 +191,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           Client = cv.io.Mockup;
         } else if (args[0] === 'openhab') {
           Client = cv.io.openhab.Rest;
-          cv.Config.configSettings.pluginsToLoad.push('plugin-openhab');
+
+          if (!cv.Config.pluginsToLoad.includes('plugin-openhab')) {
+            cv.Config.pluginsToLoad.push('plugin-openhab');
+          }
 
           if (args[1] && args[1].endsWith('/cv/l/')) {
             // we only need the rest path not the login resource
@@ -853,7 +874,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * Load plugins
        */
       loadPlugins: function loadPlugins() {
-        var plugins = cv.Config.configSettings.pluginsToLoad;
+        var plugins = cv.Config.configSettings.pluginsToLoad.slice();
+        cv.Config.pluginsToLoad.forEach(function (name) {
+          if (!plugins.includes(name)) {
+            plugins.push(name);
+          }
+        });
 
         if (plugins.length > 0) {
           var standalonePlugins = [];
@@ -875,7 +901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }, this);
           var parts = qx.Part.getInstance().getParts();
           var partPlugins = [];
-          var path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
+          var path = cv.Application.getRelativeResourcePath();
           plugins.forEach(function (plugin) {
             if (Object.prototype.hasOwnProperty.call(parts, plugin)) {
               partPlugins.push(plugin);
@@ -1003,4 +1029,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1642802376398
+//# sourceMappingURL=Application.js.map?dt=1643061775642

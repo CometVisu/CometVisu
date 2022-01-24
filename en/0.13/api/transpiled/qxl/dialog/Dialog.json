@@ -8483,10 +8483,10 @@
   },
   "descendants": [
     "cv.ui.manager.dialog.ValidationError",
+    "qxl.dialog.Confirm",
     "qxl.dialog.Alert",
     "qxl.dialog.Prompt",
     "qxl.dialog.Form",
-    "qxl.dialog.Confirm",
     "qxl.dialog.Select"
   ]
 }
