@@ -117,7 +117,7 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
 
         // load plugin template from backend
         return new Promise(function (resolve, reject) {
-          cv.io.rest.Client.getFsClient().readSync({path: '.templates/Plugin.js'}, function (err, res) {
+          cv.io.rest.Client.getFsClient().readSync({path: 'demo/templates/Plugin.js'}, function (err, res) {
             if (err) {
               reject(err);
             } else {

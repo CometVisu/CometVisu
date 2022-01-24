@@ -261,7 +261,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'new-config-file':
-          cv.io.rest.Client.getFsClient().readSync({path: '.templates/visu_config.xml'}, function (err, res) {
+          cv.io.rest.Client.getFsClient().readSync({path: 'demo/templates/visu_config.xml'}, function (err, res) {
             if (err) {
               cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
             } else {
@@ -642,7 +642,7 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       openFiles.remove(openFile);
       const currentHandler = this._stack.getSelection()[0];
-      if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor)) {
+      if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor) && !(currentHandler instanceof cv.ui.manager.Start)) {
         // reset the handlers file
         currentHandler.resetFile();
       }
