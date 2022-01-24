@@ -142,11 +142,11 @@ msgstr "Dateiinhalt kann nicht geladen werden"
 msgid "Cannot open file: \"%1\""
 msgstr "Datei \"%1\" kann nicht geöffnet werden"
 
-#: cv/ui/manager/Main.js
+#. NO LONGER USED
 msgid "This file has unsaved changes that will be lost when you close it. Do you really want to close the file?"
 msgstr "Diese Datei enthält ungesicherte Änderungen, die verloren gehen, wenn Sie die Datei schließen. Möchten Sie die Datei wirklich schließen?"
 
-#: cv/ui/manager/Main.js
+#. NO LONGER USED
 msgid "This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?"
 msgstr "Diese Datei wurde noch nicht gespeichert. Sie wird verloren gehen, wenn Sie sie schließen. Möchten Sie die Datei wirklich schließen?"
 
@@ -972,7 +972,7 @@ msgstr "Elementinhalt bearbeiten"
 msgid "Edit text content"
 msgstr "Textinhalt bearbeiten"
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr "Über"
 
@@ -1027,3 +1027,31 @@ msgstr "refreshCalllist() Fehler: \"%1\""
 #: cv/plugins/tr064/CallList.js
 msgid "Reading URL \"%1\" failed with content: \"%2\""
 msgstr "Lesen der URL  \"%1\" nicht möglich. Inhalt: \"%2\""
+
+#: cv/ui/manager/Main.js
+msgid "This file has unsaved changes that will be lost when you close it without saving."
+msgstr "Diese Datei enthält ungespeicherte Änderungen, die verloren gehen, wenn Sie sie ohne zu speichern schließen."
+
+#: cv/ui/manager/Main.js
+msgid "This file has not been saved on the backend yet. It will be lost when you close it without saving."
+msgstr "Diese Datei wurde noch nicht gespeichert. Sie wird verloren gehen, wenn Sie sie ohne zu speichern schließen."
+
+#: cv/ui/manager/Main.js
+msgid "You have files opened with unsaved changes, you should save them now."
+msgstr "Sie haben Dateien mit ungespeicherten Änderungen geöffnet, Sie sollten diese jetzt speichern."
+
+#: cv/ui/manager/Main.js
+msgid "Quit without saving"
+msgstr "Beenden ohne zu speichern"
+
+#: cv/ui/manager/Main.js
+msgid "Save & close"
+msgstr "Speichern & schließen"
+
+#: cv/ui/manager/Main.js
+msgid "Discard & close"
+msgstr "Verwerfen & schließen"
+
+#: cv/ui/manager/Main.js
+msgid "Save & quit"
+msgstr "Speichern & beenden"
