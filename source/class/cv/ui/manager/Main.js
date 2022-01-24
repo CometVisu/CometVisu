@@ -54,6 +54,11 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // Initialize tooltip manager
     qx.ui.tooltip.Manager.getInstance();
+
+    //qx.event.Registration.addListener(window, 'beforeunload', this._onBeforeUnload, this);
+    window.addEventListener('beforeunload', event => {
+      this._onBeforeUnload(event);
+    });
   },
 
   /*
@@ -302,6 +307,16 @@ qx.Class.define('cv.ui.manager.Main', {
         default:
           this.warn(actionName + ' handling is not implemented yet!');
           break;
+      }
+    },
+
+    _onBeforeUnload: function (ev) {
+      const unsavedFiles = this.getOpenFiles().filter(openFile => openFile.getFile().isModified());
+      if (unsavedFiles.length > 0) {
+        ev.preventDefault();
+        ev.returnValue = '';
+      } else {
+        delete ev['returnValue'];
       }
     },
 
