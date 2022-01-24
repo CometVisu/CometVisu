@@ -197,9 +197,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const preview = this.getChildControl('preview');
         if (file.isWriteable()) {
           if (!preview.getFile()) {
-            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-            previewConfig.setTemporary(!cv.ui.manager.model.FileItem.ROOT.getChildren().some(file => file.getName() === 'visu_config_previewtemp.xml'));
-            preview.setFile(previewConfig);
+            preview.setFile(this.__getPreviewFile());
           }
         } else {
           // this file is not writable, we can use the real one for preview
@@ -1975,6 +1973,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
+    __getPreviewFile: function () {
+      let file;
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(f => {
+        if (f.getName() === 'visu_config_previewtemp.xml') {
+          file = f;
+          return true;
+        }
+        return false;
+      });
+      if (!file) {
+        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+        file.setTemporary(true);
+      }
+      return file;
+    },
+
     __loadContent: function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
@@ -1994,8 +2008,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           const preview = this.getChildControl('preview');
           if (file.isWriteable()) {
             if (!preview.getFile()) {
-              const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-              preview.setFile(previewConfig);
+              preview.setFile(this.__getPreviewFile());
             }
           } else {
             preview.setFile(file);
