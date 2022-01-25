@@ -1131,13 +1131,14 @@ qx.Class.define('cv.ui.manager.model.XmlElement', {
         } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join('')) {
           this.setModified(true);
         } else {
+          let modified = false;
           for (const [key, value] of initial) {
             if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
-              this.setModified(true);
-              return;
+              modified = true;
+              break;
             }
           }
-          this.setModified(false);
+          this.setModified(modified);
         }
       } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
         this.setModified(this._initialTextContent !== this.getTextContent());
