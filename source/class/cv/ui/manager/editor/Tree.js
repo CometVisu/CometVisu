@@ -504,10 +504,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'toggle-expert':
-           control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'),
-             cv.theme.dark.Images.getIcon('expert', 16));
-           control.addListener('execute', function () {
-             this.toggleExpert();
+           control = new qx.ui.form.CheckBox(this.tr('Expertview'));
+           control.addListener('changeValue', function (ev) {
+             this.setExpert(ev.getData());
            }, this);
            this.getChildControl('toolbar').add(control);
            break;
@@ -1848,7 +1847,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
-      toolbar.addSeparator();
       this._createChildControl('toggle-expert');
       toolbar.addSpacer();
       this._createChildControl('refresh-preview');
