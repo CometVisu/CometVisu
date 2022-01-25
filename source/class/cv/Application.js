@@ -863,7 +863,7 @@ qx.Class.define('cv.Application',
       xhr.addListenerOnce('success', function (e) {
         const req = e.getTarget();
         const env = req.getResponse();
-        const [major, minor, patch] = env.phpversion.split('.').map(ver => parseInt(ver));
+        const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
         const parts = env.required_php_version.split(' ');
         const disable = parts.some(constraint => {
           const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)$/.exec(constraint);
@@ -871,7 +871,7 @@ qx.Class.define('cv.Application',
             const operator = match[1];
             const majorConstraint = parseInt(match[2]);
             const minorConstraint = parseInt(match[3]);
-            switch(operator) {
+            switch (operator) {
               case '>=':
                 if (major < majorConstraint || (major === majorConstraint && minor < minorConstraint)) {
                   return true;
@@ -910,7 +910,7 @@ qx.Class.define('cv.Application',
         }
         this.setManagerChecked(true);
       }, this);
-      xhr.addListener('statusError', (e) => {
+      xhr.addListener('statusError', e => {
         this.setManagerChecked(true);
       });
       xhr.send();
