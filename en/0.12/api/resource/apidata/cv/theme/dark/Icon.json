@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 29,
+        "line": 30,
         "column": 3
       }
     },
@@ -27,7 +27,7 @@
         "column": 2
       },
       "end": {
-        "line": 28,
+        "line": 29,
         "column": 3
       }
     },
@@ -36,7 +36,8 @@
       "qxl.dialog.icon.ok": "@MaterialIcons/check/18",
       "qxl.dialog.icon.info": "@MaterialIcons/info/18",
       "qxl.dialog.icon.error": "@MaterialIcons/error/18",
-      "qxl.dialog.icon.warning": "@MaterialIcons/warning/18"
+      "qxl.dialog.icon.warning": "@MaterialIcons/warning/18",
+      "qxl.dialog.icon.delete": "@MaterialIcons/delete_forever/18"
     }
   },
   "descendants": []

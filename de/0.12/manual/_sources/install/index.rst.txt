@@ -1,3 +1,6 @@
+.. replaces:: CometVisu/0.8.x/manual/updatewiregate/de
+    CometVisu/de/0.12/manual/install/update-wiregate.html
+
 **************************
 Installation der CometVisu
 **************************
@@ -5,7 +8,6 @@ Installation der CometVisu
 Einfache Installation:
 
 -  :doc:`Allgemein <allgemein>`
--  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
 -  :doc:`auf einem Debian System mit openHAB <openhab>`
 -  :doc:`Über Docker <docker>`
@@ -16,7 +18,6 @@ Einfache Installation:
     :hidden:
 
     allgemein
-    wiregate
     raspberry
     install-dev
     openhab
@@ -32,13 +33,13 @@ jedoch **NIE** produktiv eingesetzt werden.
 Update der CometVisu
 --------------------
 
-Falls bereits eine Version 0.8 installiert war, kann die Installation direkt
-auf dem :doc:`WireGate <update-wiregate>` oder :doc:`anderen Installationen <update-other>` aktualisiert werden.
+Das Update einer bestehenden, direkten Installation (also nicht eines Docker
+Containers) wird im Abschnitt :doc:`Update einer anderen Installation <update-other>`
+beschrieben.
 
 .. toctree::
     :hidden:
 
-    update-wiregate
     update-other
 
 Installation auf mobilen Geräten

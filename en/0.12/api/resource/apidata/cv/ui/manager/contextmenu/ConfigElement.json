@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 183,
+        "line": 203,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 19,
+        "line": 39,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 34
         }
       },
@@ -60,11 +60,11 @@
     "element": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 40,
+          "line": 60,
           "column": 5
         }
       },
@@ -78,11 +78,11 @@
     "editor": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 62,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 66,
           "column": 5
         }
       },
@@ -290,11 +290,11 @@
     "_commandGroup": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 79,
           "column": 23
         }
       },
@@ -318,11 +318,11 @@
     "_applyEditor": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 88,
           "column": 5
         }
       },
@@ -335,11 +335,11 @@
     "_applyElement": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 119,
           "column": 5
         }
       },
@@ -352,11 +352,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 127,
           "column": 5
         }
       },
@@ -366,11 +366,11 @@
     "_maintainClipboardButtons": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 139,
           "column": 5
         }
       },
@@ -380,11 +380,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 181,
           "column": 5
         }
       },
@@ -400,11 +400,11 @@
     "__createButton": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 192,
           "column": 5
         }
       },
@@ -9665,11 +9665,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 180,
+        "line": 200,
         "column": 12
       },
       "end": {
-        "line": 182,
+        "line": 202,
         "column": 3
       }
     },

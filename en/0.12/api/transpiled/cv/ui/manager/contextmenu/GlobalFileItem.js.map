@@ -19,8 +19,8 @@
     "type",
     "GlobalFileItem"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;AAC1DC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BC,QADwB;AAE1DC,IAAAA,IAAI,EAAE;AAFoD,GAA5D;AAHAL,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BG,cAA1B,CAAyCV,aAAzC,GAAyDA,aAAzD",
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;AAC1DC,IAAAA,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BC,QADwB;AAE1DC,IAAAA,IAAI,EAAE;AAFoD,GAA5D;AAvBAL,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,WAAd,CAA0BG,cAA1B,CAAyCV,aAAzC,GAAyDA,aAAzD",
   "sourcesContent": [
-    "/**\n *\n */\nqx.Class.define('cv.ui.manager.contextmenu.GlobalFileItem', {\n  extend: cv.ui.manager.contextmenu.FileItem,\n  type: 'singleton'\n});\n"
+    "/* GlobalFileItem.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n *\n */\nqx.Class.define('cv.ui.manager.contextmenu.GlobalFileItem', {\n  extend: cv.ui.manager.contextmenu.FileItem,\n  type: 'singleton'\n});\n"
   ]
 }

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 54,
+        "line": 74,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "file": {
       "location": {
         "start": {
-          "line": 11,
+          "line": 31,
           "column": 4
         },
         "end": {
-          "line": 15,
+          "line": 35,
           "column": 5
         }
       },
@@ -49,11 +49,11 @@
     "external": {
       "location": {
         "start": {
-          "line": 20,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 23,
+          "line": 43,
           "column": 5
         }
       },
@@ -74,11 +74,11 @@
     "ready": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 5
         }
       },
@@ -102,11 +102,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 61,
           "column": 13
         }
       },
@@ -118,11 +118,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 70,
           "column": 24
         }
       },
@@ -132,11 +132,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 37
         }
       },

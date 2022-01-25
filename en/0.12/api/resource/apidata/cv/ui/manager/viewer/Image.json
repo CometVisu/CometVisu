@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 5,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 107,
+        "line": 127,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 14,
+          "line": 34,
           "column": 4
         },
         "end": {
-          "line": 17,
+          "line": 37,
           "column": 5
         }
       },
@@ -54,11 +54,11 @@
     "SUPPORTED_FILES": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 26,
+          "line": 46,
           "column": 57
         }
       },
@@ -68,11 +68,11 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 45
         }
       },
@@ -82,11 +82,11 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 51
         }
       },
@@ -96,11 +96,11 @@
     "getImageData": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 5
         }
       },
@@ -137,11 +137,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 97,
           "column": 5
         }
       },
@@ -155,11 +155,11 @@
     "_scaleImage": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 125,
           "column": 5
         }
       },

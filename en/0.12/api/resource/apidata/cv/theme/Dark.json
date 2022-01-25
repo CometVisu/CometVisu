@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 26,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 34,
+        "line": 33,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "themeMeta": {
     "location": {
       "start": {
-        "line": 27,
+        "line": 26,
         "column": 2
       },
       "end": {
-        "line": 33,
+        "line": 32,
         "column": 3
       }
     },

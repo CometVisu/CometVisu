@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 70,
+        "line": 90,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
     "ICONS": {
       "location": {
         "start": {
-          "line": 13,
+          "line": 33,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 84,
           "column": 5
         }
       },
@@ -48,11 +48,11 @@
     "getIcon": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 88,
           "column": 5
         }
       },

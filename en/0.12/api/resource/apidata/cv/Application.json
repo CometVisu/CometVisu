@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 847,
+        "line": 870,
         "column": 3
       }
     },
@@ -115,14 +115,56 @@
       "type": "variable",
       "access": "private"
     },
-    "createClient": {
+    "_relResourcePath": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 76,
           "column": 4
         },
         "end": {
+          "line": 76,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_fullResourcePath": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "getRelativeResourcePath": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createClient": {
+      "location": {
+        "start": {
           "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
           "column": 5
         }
       },
@@ -154,11 +196,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 130,
           "column": 5
         }
       },
@@ -201,11 +243,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 141,
           "column": 5
         }
       },
@@ -217,11 +259,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 150,
           "column": 5
         }
       },
@@ -243,11 +285,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 155,
           "column": 5
         }
       },
@@ -258,11 +300,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 157,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 161,
           "column": 5
         }
       },
@@ -276,11 +318,11 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 166,
           "column": 5
         }
       },
@@ -327,11 +369,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 178,
           "column": 18
         }
       },
@@ -341,11 +383,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 195,
           "column": 5
         }
       },
@@ -369,11 +411,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 275,
           "column": 5
         }
       },
@@ -396,11 +438,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 281,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 307,
           "column": 5
         }
       },
@@ -437,11 +479,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 291,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 311,
+          "line": 329,
           "column": 5
         }
       },
@@ -451,11 +493,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 376,
+          "line": 394,
           "column": 5
         }
       },
@@ -465,11 +507,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 378,
+          "line": 396,
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 539,
           "column": 5
         }
       },
@@ -479,11 +521,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 523,
+          "line": 541,
           "column": 4
         },
         "end": {
-          "line": 528,
+          "line": 546,
           "column": 6
         }
       },
@@ -493,11 +535,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 533,
+          "line": 551,
           "column": 4
         },
         "end": {
-          "line": 563,
+          "line": 581,
           "column": 5
         }
       },
@@ -515,11 +557,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 569,
+          "line": 587,
           "column": 4
         },
         "end": {
-          "line": 667,
+          "line": 685,
           "column": 5
         }
       },
@@ -546,11 +588,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 672,
+          "line": 690,
           "column": 4
         },
         "end": {
-          "line": 676,
+          "line": 694,
           "column": 5
         }
       },
@@ -568,11 +610,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 682,
+          "line": 700,
           "column": 4
         },
         "end": {
-          "line": 689,
+          "line": 707,
           "column": 5
         }
       },
@@ -596,11 +638,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 695,
+          "line": 713,
           "column": 4
         },
         "end": {
-          "line": 702,
+          "line": 720,
           "column": 5
         }
       },
@@ -624,11 +666,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 707,
+          "line": 725,
           "column": 4
         },
         "end": {
-          "line": 767,
+          "line": 790,
           "column": 5
         }
       },
@@ -646,11 +688,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 769,
+          "line": 792,
           "column": 4
         },
         "end": {
-          "line": 800,
+          "line": 823,
           "column": 5
         }
       },
@@ -660,11 +702,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 802,
+          "line": 825,
           "column": 4
         },
         "end": {
-          "line": 807,
+          "line": 830,
           "column": 5
         }
       },
@@ -679,11 +721,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 812,
+          "line": 835,
           "column": 4
         },
         "end": {
-          "line": 845,
+          "line": 868,
           "column": 5
         }
       },

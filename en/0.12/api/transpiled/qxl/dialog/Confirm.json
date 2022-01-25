@@ -196,10 +196,89 @@
       "refine": true,
       "init": false,
       "defaultValue": false,
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qxl.dialog.MDialog",
       "appearsIn": {
-        "qxl.dialog.Dialog": "class",
         "qxl.dialog.MDialog": "mixin"
+      }
+    },
+    "callback": {
+      "type": "property",
+      "name": "callback",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback function that will be called when the user\n has interacted with the widget. See sample callback\n method supplied in the source code of each dialog\n widget.</p>"
+          }
+        ]
+      }
+    },
+    "context": {
+      "type": "property",
+      "name": "context",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The context for the callback function</p>"
+          }
+        ]
+      }
+    },
+    "image": {
+      "type": "property",
+      "name": "image",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A banner image/logo that is displayed on the widget,\n if applicable</p>"
+          }
+        ]
+      }
+    },
+    "message": {
+      "type": "property",
+      "name": "message",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The message that is displayed</p>"
+          }
+        ]
+      }
+    },
+    "cancelOnEscape": {
+      "type": "property",
+      "name": "cancelOnEscape",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to triger the cancel button on pressing the \"escape\" key\n (default: true). Depends on the 'allowCancel' property.</p>"
+          }
+        ]
       }
     }
   },
@@ -253,9 +332,8 @@
       },
       "type": "function",
       "access": "protected",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qxl.dialog.MDialog",
       "appearsIn": [
-        "qxl.dialog.Dialog",
         "qxl.dialog.MDialog"
       ]
     },
@@ -303,6 +381,309 @@
       "type": "function",
       "access": "protected"
     },
+    "_createDialogContainer": {
+      "type": "function",
+      "name": "_createDialogContainer",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the default container (VBox)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite}",
+            "type": "qx.ui.container.Composite",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "_createButtonPane": {
+      "type": "function",
+      "name": "_createButtonPane",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the button pane (HBox)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite}",
+            "type": "qx.ui.container.Composite",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "_createOkButton": {
+      "type": "function",
+      "name": "_createOkButton",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an OK button</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "noFocus",
+            "paramName": "noFocus",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Button}",
+            "type": "qx.ui.form.Button",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "_createCancelButton": {
+      "type": "function",
+      "name": "_createCancelButton",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a cancel button, which is hidden by default and will be shown\n if allowCancel property is set to true.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Button}",
+            "type": "qx.ui.form.Button",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "_applyImage": {
+      "type": "function",
+      "name": "_applyImage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the 'image' property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The current value",
+            "paramName": "value",
+            "description": " The current value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} old The previous value",
+            "paramName": "old",
+            "description": " old The previous value",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "_applyMessage": {
+      "type": "function",
+      "name": "_applyMessage",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the 'message' property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The current value",
+            "paramName": "value",
+            "description": " The current value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} old The previous value",
+            "paramName": "old",
+            "description": " old The previous value",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "getDialogContainer": {
+      "type": "function",
+      "name": "getDialogContainer",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the widgets that is the container of the dialog</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem}",
+            "type": "qx.ui.core.LayoutItem",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "promise": {
+      "type": "function",
+      "name": "promise",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Promise interface method, avoids callbacks</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} A promise that resolves with the result of the dialog\n action",
+            "type": "Promise",
+            "description": " A promise that resolves with the result of the dialog\n action"
+          }
+        ]
+      }
+    },
+    "_handleOk": {
+      "type": "function",
+      "name": "_handleOk",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on ok button. Calls callback with a \"true\" argument</p>"
+          }
+        ]
+      }
+    },
+    "_handleCancel": {
+      "type": "function",
+      "name": "_handleCancel",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on cancel button. Calls callback with\n an \"undefined\" argument</p>"
+          }
+        ]
+      }
+    },
+    "_handleEscape": {
+      "type": "function",
+      "name": "_handleEscape",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the press on the 'Escape' key</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeyInput}"
+          }
+        ]
+      }
+    },
     "getCallback": {
       "type": "function",
       "name": "getCallback",
@@ -310,7 +691,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -335,7 +715,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -361,7 +740,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -379,7 +757,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -404,7 +781,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -430,7 +806,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -448,7 +823,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -473,7 +847,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -499,7 +872,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -517,7 +889,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -542,7 +913,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -568,7 +938,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -586,7 +955,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -611,7 +979,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -636,7 +1003,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -662,7 +1028,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -680,7 +1045,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -705,7 +1069,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -730,7 +1093,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -756,7 +1118,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -774,7 +1135,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -799,7 +1160,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -824,7 +1185,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -850,7 +1211,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -868,7 +1229,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -893,7 +1254,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -918,7 +1279,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -944,7 +1305,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -962,7 +1323,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -987,7 +1348,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1012,7 +1373,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1038,7 +1399,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1056,7 +1417,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1081,7 +1442,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1106,7 +1467,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1132,7 +1493,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1150,7 +1511,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1176,7 +1537,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1194,7 +1555,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1219,7 +1580,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1245,7 +1606,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1263,7 +1624,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1288,7 +1649,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1313,7 +1674,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1339,7 +1700,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1357,7 +1718,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1382,7 +1743,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1407,7 +1768,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1433,7 +1794,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1451,7 +1812,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1476,7 +1837,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -1501,7 +1862,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1527,7 +1888,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1545,7 +1906,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1570,7 +1931,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1596,7 +1957,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1614,7 +1975,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1639,7 +2000,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1665,7 +2026,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1683,7 +2044,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1708,7 +2069,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1734,7 +2095,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1752,7 +2113,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1777,7 +2138,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1803,7 +2164,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1821,7 +2182,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1847,7 +2208,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1865,7 +2226,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1890,7 +2251,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1916,7 +2277,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1934,7 +2295,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1958,7 +2319,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1983,7 +2344,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2001,7 +2362,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2026,7 +2387,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2052,7 +2413,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2070,7 +2431,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2095,7 +2456,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2121,7 +2482,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2139,7 +2500,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2164,7 +2525,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2190,7 +2551,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2208,7 +2569,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2233,7 +2594,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2259,7 +2620,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2277,7 +2638,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2302,7 +2663,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2328,7 +2689,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2346,7 +2707,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2371,7 +2732,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2397,7 +2758,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2415,7 +2776,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2440,7 +2801,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2465,7 +2826,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2491,7 +2852,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2509,7 +2870,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2534,7 +2895,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2559,7 +2920,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2585,7 +2946,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2603,7 +2964,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2628,7 +2989,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2653,7 +3014,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2679,7 +3040,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2697,7 +3058,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2722,7 +3083,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -2747,7 +3108,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2773,7 +3134,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2791,7 +3152,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2817,7 +3178,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2835,7 +3196,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2861,7 +3222,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2879,7 +3240,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2904,7 +3265,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2930,7 +3291,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -2948,7 +3309,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -2973,7 +3334,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -2999,7 +3360,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3017,7 +3378,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3042,7 +3403,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3068,7 +3429,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3086,7 +3447,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3111,7 +3472,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3137,7 +3498,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3155,7 +3516,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3181,7 +3542,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3199,7 +3560,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3224,7 +3585,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3250,7 +3611,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3268,7 +3629,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3293,7 +3654,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3319,7 +3680,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3337,7 +3698,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3362,7 +3723,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3388,7 +3749,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3406,7 +3767,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3431,7 +3792,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3457,7 +3818,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3475,7 +3836,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3500,7 +3861,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3526,7 +3887,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3544,7 +3905,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3569,7 +3930,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3595,7 +3956,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3613,7 +3974,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3639,7 +4000,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3657,7 +4018,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3682,7 +4043,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3708,7 +4069,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3726,7 +4087,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3751,7 +4112,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3777,7 +4138,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3795,7 +4156,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3820,7 +4181,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3846,7 +4207,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3864,7 +4225,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3889,7 +4250,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3915,7 +4276,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -3933,7 +4294,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -3958,7 +4319,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -3984,7 +4345,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4002,7 +4363,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4027,7 +4388,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4053,7 +4414,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4071,7 +4432,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4096,7 +4457,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4122,7 +4483,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4140,7 +4501,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4165,7 +4526,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4191,7 +4552,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4209,7 +4570,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4234,7 +4595,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4260,7 +4621,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4278,7 +4639,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4303,7 +4664,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4329,7 +4690,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4347,7 +4708,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4372,7 +4733,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4397,7 +4758,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4423,7 +4784,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4441,7 +4802,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4466,7 +4827,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4491,7 +4852,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4517,7 +4878,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4535,7 +4896,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4560,7 +4921,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4586,7 +4947,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4604,7 +4965,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4629,7 +4990,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4654,7 +5015,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4680,7 +5041,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4698,7 +5059,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4723,7 +5084,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4748,7 +5109,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4774,7 +5135,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4792,7 +5153,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4817,7 +5178,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4843,7 +5204,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4861,7 +5222,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4886,7 +5247,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -4911,7 +5272,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -4937,7 +5298,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -4955,7 +5316,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -4980,7 +5341,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5005,7 +5366,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5031,7 +5392,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5049,7 +5410,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5074,7 +5435,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5099,7 +5460,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5125,7 +5486,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5143,7 +5504,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5168,7 +5529,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5193,7 +5554,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5219,7 +5580,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5237,7 +5598,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5262,7 +5623,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5287,7 +5648,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5313,7 +5674,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5331,7 +5692,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5356,7 +5717,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5381,7 +5742,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5407,7 +5768,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5425,7 +5786,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5450,7 +5811,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5476,7 +5837,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5494,7 +5855,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5519,7 +5880,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5544,7 +5905,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5570,7 +5931,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5588,7 +5949,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5613,7 +5974,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5639,7 +6000,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5657,7 +6018,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5682,7 +6043,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5707,7 +6068,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5733,7 +6094,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5751,7 +6112,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5776,7 +6137,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5801,7 +6162,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5827,7 +6188,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5845,7 +6206,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5870,7 +6231,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -5895,7 +6256,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5921,7 +6282,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -5939,7 +6300,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -5964,7 +6325,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -5990,7 +6351,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6008,7 +6369,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6033,7 +6394,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6059,7 +6420,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6077,7 +6438,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6102,7 +6463,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6128,7 +6489,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6146,7 +6507,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6171,7 +6532,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6196,7 +6557,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6222,7 +6583,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6240,7 +6601,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6265,7 +6626,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6290,7 +6651,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6316,7 +6677,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6334,7 +6695,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6359,7 +6720,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6384,7 +6745,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6410,7 +6771,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6428,7 +6789,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6453,7 +6814,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6478,7 +6839,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6504,7 +6865,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6522,7 +6883,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6547,7 +6908,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6572,7 +6933,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6598,7 +6959,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6616,7 +6977,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6641,7 +7002,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6666,7 +7027,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6692,7 +7053,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6710,7 +7071,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6735,7 +7096,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6760,7 +7121,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6786,7 +7147,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6804,7 +7165,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6829,7 +7190,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6854,7 +7215,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6880,7 +7241,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6898,7 +7259,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -6923,7 +7284,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -6948,7 +7309,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -6974,7 +7335,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -6992,7 +7353,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7017,7 +7378,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -7042,7 +7403,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -7068,7 +7429,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
+      "overriddenFrom": "qx.ui.window.Window",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -7083,10 +7444,9 @@
       "type": "function",
       "name": "getResizable",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7108,10 +7468,9 @@
       "type": "function",
       "name": "getContentPadding",
       "abstract": false,
-      "mixin": false,
+      "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7136,7 +7495,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7161,7 +7519,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -7186,7 +7543,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -7212,7 +7568,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -7230,7 +7585,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7255,7 +7609,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "is",
       "jsdoc": {
         "@description": [
@@ -7280,7 +7633,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -7306,7 +7658,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -7324,7 +7675,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7349,7 +7699,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -7375,7 +7724,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -7393,7 +7741,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -7418,7 +7765,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -7444,7 +7790,6 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qxl.dialog.Dialog",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -7720,6 +8065,51 @@
       }
     }
   },
-  "events": {},
+  "events": {
+    "ok": {
+      "type": "event",
+      "name": "ok",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when user clicks on the \"OK\" Button</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      }
+    },
+    "cancel": {
+      "type": "event",
+      "name": "cancel",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qxl.dialog.MDialog",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when user clicks on the \"Cancel\" Button</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      }
+    }
+  },
   "descendants": []
 }

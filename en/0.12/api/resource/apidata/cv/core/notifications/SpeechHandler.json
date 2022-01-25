@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 29,
+        "line": 30,
         "column": 0
       },
       "end": {
-        "line": 136,
+        "line": 137,
         "column": 3
       }
     },
@@ -53,11 +53,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
+        "line": 40,
         "column": 13
       },
       "end": {
-        "line": 42,
+        "line": 43,
         "column": 3
       }
     },
@@ -67,11 +67,11 @@
     "__lastSpeech": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 22
         }
       },
@@ -81,11 +81,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 91,
           "column": 5
         }
       },
@@ -115,11 +115,11 @@
     "say": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 134,
           "column": 5
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 30,
+        "line": 50,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 14,
+          "line": 34,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 5
         }
       },

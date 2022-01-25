@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 59,
+        "line": 79,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "change": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 25,
+          "line": 45,
           "column": 35
         }
       },
@@ -61,11 +61,11 @@
     "key": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 59,
           "column": 5
         }
       },
@@ -80,11 +80,11 @@
     "value": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 66,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "_applyChange": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 77,
           "column": 5
         }
       },

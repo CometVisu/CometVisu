@@ -15,10 +15,10 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* ConfigUpgrader.js
-   *
-   * copyright (c) 2010-2020, Christian Mayer and the CometVisu contributers.
-   *
+  /* ConfigUpgrader.js 
+   * 
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -188,4 +188,4 @@
   cv.util.ConfigUpgrader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigUpgrader.js.map?dt=1642804696249
+//# sourceMappingURL=ConfigUpgrader.js.map?dt=1643139886298

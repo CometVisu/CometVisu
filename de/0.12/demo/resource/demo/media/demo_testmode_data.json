@@ -4057,6 +4057,17 @@
             "trash": false,
             "inTrash": false,
             "mounted": true
+          },
+          {
+            "type": "dir",
+            "name": "templates",
+            "hasChildren": true,
+            "parentFolder": "demo",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
           }
         ]
       }
@@ -4238,6 +4249,38 @@
             "name": "testmode.js",
             "hasChildren": false,
             "parentFolder": "demo/media",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          }
+        ]
+      }
+    ],
+    "/rest/manager/index.php/fs?path=demo/templates": [
+      {
+        "status": 200,
+        "headers": {
+          "Content-type": "application/json"
+        },
+        "body": [
+          {
+            "type": "file",
+            "name": "Plugin.js",
+            "hasChildren": false,
+            "parentFolder": "demo/templates",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          },
+          {
+            "type": "file",
+            "name": "visu_config.xml",
+            "hasChildren": false,
+            "parentFolder": "demo/templates",
             "readable": true,
             "writeable": false,
             "trash": false,

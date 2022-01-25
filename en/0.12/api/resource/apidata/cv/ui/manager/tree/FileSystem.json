@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 278,
+        "line": 298,
         "column": 3
       }
     },
@@ -32,11 +32,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 15,
+        "line": 35,
         "column": 13
       },
       "end": {
-        "line": 21,
+        "line": 41,
         "column": 3
       }
     },
@@ -46,11 +46,11 @@
     "MIMETYPES": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 5
         }
       },
@@ -60,11 +60,11 @@
     "getMimetypeFromSuffix": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 5
         }
       },
@@ -74,11 +74,11 @@
     "isAccepted": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 5
         }
       },
@@ -90,11 +90,11 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 77,
           "column": 43
         }
       },
@@ -106,11 +106,11 @@
     "rootFolder": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 94,
           "column": 5
         }
       },
@@ -123,11 +123,11 @@
     "selectedNode": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 100,
           "column": 5
         }
       },
@@ -191,11 +191,11 @@
     "__selectionTimer": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 109,
           "column": 26
         }
       },
@@ -205,11 +205,11 @@
     "__doubleTapWaitingTime": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 110,
           "column": 31
         }
       },
@@ -219,11 +219,11 @@
     "__ignoreSelectionChange": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 111,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 111,
           "column": 34
         }
       },
@@ -233,11 +233,11 @@
     "_replacementManager": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 112,
           "column": 29
         }
       },
@@ -247,11 +247,11 @@
     "reload": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 125,
           "column": 5
         }
       },
@@ -261,11 +261,11 @@
     "openPath": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 135,
           "column": 5
         }
       },
@@ -275,11 +275,11 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 139,
           "column": 5
         }
       },
@@ -289,11 +289,11 @@
     "_applyRootFolder": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 149,
           "column": 5
         }
       },
@@ -306,11 +306,11 @@
     "_applySelectedNode": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 138,
+          "line": 158,
           "column": 5
         }
       },
@@ -323,11 +323,11 @@
     "setSelection": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 162,
           "column": 5
         }
       },
@@ -337,11 +337,11 @@
     "_onDblTapTreeSelection": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 178,
           "column": 5
         }
       },
@@ -351,11 +351,11 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 191,
+          "line": 211,
           "column": 5
         }
       },
@@ -365,11 +365,11 @@
     "_onFsItemRightClick": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 209,
+          "line": 229,
           "column": 5
         }
       },
@@ -379,11 +379,11 @@
     "_onEnableTree": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 236,
           "column": 4
         },
         "end": {
-          "line": 218,
+          "line": 238,
           "column": 5
         }
       },
@@ -413,11 +413,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 221,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 285,
           "column": 5
         }
       },
@@ -7744,11 +7744,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 273,
+        "line": 293,
         "column": 12
       },
       "end": {
-        "line": 277,
+        "line": 297,
         "column": 3
       }
     },

@@ -12,9 +12,9 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* Mqtt.js
+  /* Mqtt.js 
    * 
-   * copyright (c) 2010-2021, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -108,4 +108,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1642804660598
+//# sourceMappingURL=Mqtt.js.map?dt=1643139850507

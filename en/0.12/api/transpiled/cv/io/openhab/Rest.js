@@ -18,10 +18,10 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* Rest.js
-   *
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
-   *
+  /* Rest.js 
+   * 
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -454,4 +454,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1642804694642
+//# sourceMappingURL=Rest.js.map?dt=1643139884656

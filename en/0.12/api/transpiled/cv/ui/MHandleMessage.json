@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 28,
+        "line": 29,
         "column": 0
       },
       "end": {
-        "line": 364,
+        "line": 365,
         "column": 3
       }
     },
@@ -42,11 +42,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 34,
+        "line": 35,
         "column": 13
       },
       "end": {
-        "line": 40,
+        "line": 41,
         "column": 3
       }
     },
@@ -56,11 +56,11 @@
     "maxEntries": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 5
         }
       },
@@ -82,11 +82,11 @@
     "counter": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 65,
           "column": 5
         }
       },
@@ -108,11 +108,11 @@
     "globalSeverity": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 74,
           "column": 5
         }
       },
@@ -139,11 +139,11 @@
     "rootElementId": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 82,
           "column": 5
         }
       },
@@ -164,11 +164,11 @@
     "messageElementId": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 91,
           "column": 5
         }
       },
@@ -189,11 +189,11 @@
     "delegate": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 96,
           "column": 5
         }
       },
@@ -208,11 +208,11 @@
     "_messages": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 104,
+          "line": 105,
           "column": 19
         }
       },
@@ -222,11 +222,11 @@
     "_severities": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 106,
           "column": 21
         }
       },
@@ -236,11 +236,11 @@
     "_idCounter": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 107,
           "column": 17
         }
       },
@@ -250,11 +250,11 @@
     "getIdCounter": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 111,
           "column": 5
         }
       },
@@ -264,11 +264,11 @@
     "getSeverities": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 115,
           "column": 5
         }
       },
@@ -278,11 +278,11 @@
     "_updateHighestSeverity": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 130,
           "column": 5
         }
       },
@@ -292,11 +292,11 @@
     "getSeverityColor": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 141,
           "column": 5
         }
       },
@@ -306,11 +306,11 @@
     "_applyMaxEntries": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 149,
           "column": 5
         }
       },
@@ -321,11 +321,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 220,
           "column": 5
         }
       },
@@ -357,11 +357,11 @@
     "getMessageIdFromEvent": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 253,
           "column": 5
         }
       },
@@ -393,11 +393,11 @@
     "_onListTap": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 264,
           "column": 5
         }
       },
@@ -407,11 +407,11 @@
     "_getTooltip": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 276,
           "column": 5
         }
       },
@@ -421,11 +421,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 282,
+          "line": 283,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 295,
           "column": 5
         }
       },
@@ -452,11 +452,11 @@
     "getMessage": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 299,
           "column": 5
         }
       },
@@ -466,11 +466,11 @@
     "getMessages": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 301,
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 303,
           "column": 5
         }
       },
@@ -480,11 +480,11 @@
     "deleteMessage": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 326,
           "column": 5
         }
       },
@@ -512,11 +512,11 @@
     "performAction": {
       "location": {
         "start": {
-          "line": 327,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 354,
           "column": 5
         }
       },
@@ -923,11 +923,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 361,
+        "line": 362,
         "column": 12
       },
       "end": {
-        "line": 363,
+        "line": 364,
         "column": 3
       }
     },

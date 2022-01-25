@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 20,
+        "line": 21,
         "column": 0
       },
       "end": {
-        "line": 80,
+        "line": 81,
         "column": 3
       }
     },
@@ -25,11 +25,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 29,
+        "line": 30,
         "column": 13
       },
       "end": {
-        "line": 32,
+        "line": 33,
         "column": 3
       }
     },
@@ -39,11 +39,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 55,
           "column": 5
         }
       },
@@ -93,11 +93,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 67,
           "column": 5
         }
       },
@@ -121,11 +121,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 73,
           "column": 5
         }
       },
@@ -4058,11 +4058,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 75,
+        "line": 76,
         "column": 9
       },
       "end": {
-        "line": 79,
+        "line": 80,
         "column": 3
       }
     },

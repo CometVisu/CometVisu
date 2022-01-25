@@ -21,7 +21,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   /* PageLink.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -100,4 +100,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.ui.structure.pure.PageLink.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageLink.js.map?dt=1642804664918
+//# sourceMappingURL=PageLink.js.map?dt=1643139854870

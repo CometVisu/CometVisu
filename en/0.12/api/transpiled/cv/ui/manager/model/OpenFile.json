@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 119,
+        "line": 155,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 15
       },
       "end": {
-        "line": 21,
+        "line": 41,
         "column": 5
       }
     },
@@ -44,11 +44,11 @@
     "file": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 53,
           "column": 5
         }
       },
@@ -63,11 +63,11 @@
     "handlerId": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 59,
           "column": 5
         }
       },
@@ -81,11 +81,11 @@
     "handlerOptions": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 5
         }
       },
@@ -98,11 +98,11 @@
     "permanent": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 75,
           "column": 5
         }
       },
@@ -124,11 +124,11 @@
     "icon": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 84,
           "column": 5
         }
       },
@@ -150,11 +150,11 @@
     "closeable": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 90,
           "column": 5
         }
       },
@@ -202,11 +202,11 @@
     "__ibid": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 99,
           "column": 16
         }
       },
@@ -216,11 +216,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 101,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 111,
           "column": 5
         }
       },
@@ -233,11 +233,11 @@
     "_maintainIcon": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 130,
           "column": 5
         }
       },
@@ -250,16 +250,30 @@
     "_maintainPermanent": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 137,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected"
+    },
+    "save": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
     },
     "bind": {
       "type": "function",

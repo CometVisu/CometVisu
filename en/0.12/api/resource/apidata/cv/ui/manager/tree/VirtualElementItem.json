@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 225,
+        "line": 245,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 17,
+        "line": 37,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 5
         }
       },
@@ -66,11 +66,11 @@
     "name": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 35,
+          "line": 55,
           "column": 5
         }
       },
@@ -85,11 +85,11 @@
     "temporary": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 61,
           "column": 5
         }
       },
@@ -103,11 +103,11 @@
     "status": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 67,
           "column": 5
         }
       },
@@ -125,11 +125,11 @@
     "editable": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 5
         }
       },
@@ -142,11 +142,11 @@
     "sortable": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5
         }
       },
@@ -160,11 +160,11 @@
     "droppable": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 83,
           "column": 5
         }
       },
@@ -181,11 +181,11 @@
     "dragging": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 89,
           "column": 5
         }
       },
@@ -250,11 +250,11 @@
     "edit": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 98,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 98,
           "column": 30
         }
       },
@@ -264,11 +264,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 99,
           "column": 32
         }
       },
@@ -296,11 +296,11 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 115,
           "column": 5
         }
       },
@@ -324,11 +324,11 @@
     "__labelAdded": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 116,
           "column": 23
         }
       },
@@ -338,11 +338,11 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 120,
           "column": 5
         }
       },
@@ -355,11 +355,11 @@
     "_applyDragging": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 129,
           "column": 5
         }
       },
@@ -373,11 +373,11 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 145,
           "column": 5
         }
       },
@@ -392,11 +392,11 @@
     "_applyTemporary": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 153,
           "column": 5
         }
       },
@@ -409,11 +409,11 @@
     "_applySortable": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 161,
           "column": 5
         }
       },
@@ -426,11 +426,11 @@
     "_applyStatus": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 174,
           "column": 5
         }
       },
@@ -443,11 +443,11 @@
     "_addWidgets": {
       "location": {
         "start": {
-          "line": 156,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 182,
           "column": 5
         }
       },
@@ -462,11 +462,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 202,
+          "line": 222,
           "column": 5
         }
       },
@@ -482,11 +482,11 @@
     "addLabel": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 223,
+          "line": 243,
           "column": 5
         }
       },

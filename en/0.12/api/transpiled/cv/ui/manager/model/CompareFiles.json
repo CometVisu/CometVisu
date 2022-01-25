@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 116,
+        "line": 136,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "originalFile": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 5
         }
       },
@@ -60,11 +60,11 @@
     "modifiedFile": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 5
         }
       },
@@ -77,11 +77,11 @@
     "permanent": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 57,
           "column": 5
         }
       },
@@ -94,11 +94,11 @@
     "name": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 63,
           "column": 5
         }
       },
@@ -112,11 +112,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 5
         }
       },
@@ -129,11 +129,11 @@
     "modified": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 74,
           "column": 5
         }
       },
@@ -181,79 +181,6 @@
     "isRelated": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
-        },
-        "end": {
-          "line": 65,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "isConfigFile": {
-      "location": {
-        "start": {
-          "line": 67,
-          "column": 4
-        },
-        "end": {
-          "line": 69,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getFullPath": {
-      "location": {
-        "start": {
-          "line": 71,
-          "column": 4
-        },
-        "end": {
-          "line": 73,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "_applyModifiedFile": {
-      "location": {
-        "start": {
-          "line": 75,
-          "column": 4
-        },
-        "end": {
-          "line": 77,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "modifiedFile"
-      ]
-    },
-    "getParent": {
-      "location": {
-        "start": {
-          "line": 79,
-          "column": 4
-        },
-        "end": {
-          "line": 81,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "isWriteable": {
-      "location": {
-        "start": {
           "line": 83,
           "column": 4
         },
@@ -265,7 +192,7 @@
       "type": "function",
       "access": "public"
     },
-    "isTrash": {
+    "isConfigFile": {
       "location": {
         "start": {
           "line": 87,
@@ -279,7 +206,7 @@
       "type": "function",
       "access": "public"
     },
-    "isInTrash": {
+    "getFullPath": {
       "location": {
         "start": {
           "line": 91,
@@ -293,7 +220,7 @@
       "type": "function",
       "access": "public"
     },
-    "isFake": {
+    "_applyModifiedFile": {
       "location": {
         "start": {
           "line": 95,
@@ -305,9 +232,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "access": "protected",
+      "applyFor": [
+        "modifiedFile"
+      ]
     },
-    "isTemporary": {
+    "getParent": {
       "location": {
         "start": {
           "line": 99,
@@ -321,7 +251,7 @@
       "type": "function",
       "access": "public"
     },
-    "isMounted": {
+    "isWriteable": {
       "location": {
         "start": {
           "line": 103,
@@ -335,14 +265,84 @@
       "type": "function",
       "access": "public"
     },
-    "getUri": {
+    "isTrash": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 109,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isInTrash": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isFake": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isTemporary": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isMounted": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 125,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getUri": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 134,
           "column": 5
         }
       },

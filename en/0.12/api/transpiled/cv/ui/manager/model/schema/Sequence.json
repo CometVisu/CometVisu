@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 5,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 223,
+        "line": 243,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 5
         }
       },
@@ -65,11 +65,11 @@
     "elementsHaveOrder": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 31,
+          "line": 51,
           "column": 5
         }
       },
@@ -88,11 +88,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 110,
           "column": 5
         }
       },
@@ -114,11 +114,11 @@
     "getRegex": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 159,
           "column": 5
         }
       },
@@ -156,11 +156,11 @@
     "getBoundsForElementName": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 213,
           "column": 5
         }
       },
@@ -188,11 +188,11 @@
     "getAllowedElementsSorting": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 241,
           "column": 5
         }
       },

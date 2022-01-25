@@ -34,7 +34,7 @@
 
   /* CallList.js 
    * 
-   * copyright (c) 2018, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -550,4 +550,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1642804660420
+//# sourceMappingURL=CallList.js.map?dt=1643139850330

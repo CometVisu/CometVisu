@@ -61,7 +61,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#cometvisu-testen">CometVisu testen</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
@@ -106,10 +105,6 @@
              
   <div class="section" id="voraussetzungen-fur-die-installation">
 <h1>Voraussetzungen für die Installation<a class="headerlink" href="#voraussetzungen-fur-die-installation" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Wenn WireGate 1.1 oder später eingesetzt wird, ist CometVisu 0.8.5
-bereits vorinstalliert und kann ohne Weiteres genutzt werden. Um die
-alte CometVisu auf einem WireGate zu installieren, gibt es hier
-<a class="reference internal" href="wiregate.html"><span class="doc">weitere Informationen</span></a>.</p>
 <p>Um die CometVisu nutzen zu können, muss das System gewisse
 Voraussetzungen erfüllen.</p>
 <p>Diese sind</p>
@@ -120,6 +115,12 @@ Voraussetzungen erfüllen.</p>
 <li>ein Webserver, mit (optional aber empfohlen) PHP Unterstützung</li>
 <li>das CometVisu-Softwarepaket</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Für den <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> und <a class="reference internal" href="../config/editor.html#editor"><span class="std std-ref">Editor</span></a> wird PHP
+ab Version 7 benötigt. Der Kern der CometVisu selbst kann jedoch auch
+ohne PHP genutzt werden.</p>
+</div>
 <div class="section" id="backend-knxd-eibd-oder-openhab">
 <h2>Backend - knxd/eibd oder OpenHAB<a class="headerlink" href="#backend-knxd-eibd-oder-openhab" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Installation des Backends wird unter
@@ -136,6 +137,8 @@ ist in der Breite dokumentiert. Die Installation von rrdtool für
 CometVisu wird unter <a class="reference internal" href="install-rrd.html"><span class="doc">RRDtool</span></a> beschrieben.</p>
 <div class="toctree-wrapper compound">
 </div>
+<p>Die Darstellung von Zeitreihen aus einer InfluxDB Datenbank wird direkt
+unterstützt und benötigt (außer PHP Unterstützung) keine weitere Software.</p>
 </div>
 <div class="section" id="webserver">
 <h2>Webserver<a class="headerlink" href="#webserver" title="Link zu dieser Überschrift">¶</a></h2>

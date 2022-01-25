@@ -31,7 +31,7 @@
 
   /* Mockup.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -488,4 +488,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1642804694588
+//# sourceMappingURL=Mockup.js.map?dt=1643139884598

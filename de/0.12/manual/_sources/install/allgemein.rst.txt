@@ -1,14 +1,11 @@
 .. replaces:: CometVisu/Installation/de
     CometVisu/de/latest/manual/install/linux.html
     CometVisu/de/latest/manual/install/nas.html
+    CometVisu/Installation/WireGate/de
+    CometVisu/de/0.12/manual/install/wiregate.html
 
 Voraussetzungen für die Installation
 ====================================
-
-Wenn WireGate 1.1 oder später eingesetzt wird, ist CometVisu 0.8.5
-bereits vorinstalliert und kann ohne Weiteres genutzt werden. Um die
-alte CometVisu auf einem WireGate zu installieren, gibt es hier
-:doc:`weitere Informationen <wiregate>`.
 
 Um die CometVisu nutzen zu können, muss das System gewisse
 Voraussetzungen erfüllen.
@@ -20,6 +17,12 @@ Diese sind
 -  [optional] InfluxDB für die Graphenerstellung
 -  ein Webserver, mit (optional aber empfohlen) PHP Unterstützung
 -  das CometVisu-Softwarepaket
+
+.. note::
+
+    Für den :ref:`Manager <manager>` und :ref:`Editor <editor>` wird PHP
+    ab Version 7 benötigt. Der Kern der CometVisu selbst kann jedoch auch
+    ohne PHP genutzt werden.
 
 Backend - knxd/eibd oder OpenHAB
 --------------------------------
@@ -45,6 +48,9 @@ CometVisu wird unter :doc:`RRDtool <install-rrd>` beschrieben.
     :hidden:
 
     install-rrd
+
+Die Darstellung von Zeitreihen aus einer InfluxDB Datenbank wird direkt
+unterstützt und benötigt (außer PHP Unterstützung) keine weitere Software.
 
 Webserver
 ---------

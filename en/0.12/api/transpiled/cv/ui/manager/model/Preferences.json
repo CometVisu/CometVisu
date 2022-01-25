@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 89,
+        "line": 109,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "defaultConfigEditor": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 49,
           "column": 5
         }
       },
@@ -69,11 +69,11 @@
     "quickPreview": {
       "location": {
         "start": {
-          "line": 31,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 56,
           "column": 5
         }
       },
@@ -88,11 +88,11 @@
     "expertMode": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 66,
           "column": 5
         }
       },
@@ -115,11 +115,11 @@
     "startViewMode": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 76,
           "column": 5
         }
       },
@@ -179,11 +179,11 @@
     "_skipSaving": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 85,
           "column": 22
         }
       },
@@ -193,11 +193,11 @@
     "_savePreferences": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 94,
           "column": 5
         }
       },
@@ -213,11 +213,11 @@
     "_restorePreferences": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 99,
           "column": 5
         }
       },
@@ -227,11 +227,11 @@
     "setPreferences": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 101,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 107,
           "column": 5
         }
       },

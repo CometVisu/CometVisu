@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 381,
+        "line": 401,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 31,
+        "line": 51,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 42,
+          "line": 62,
           "column": 5
         }
       },
@@ -66,11 +66,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 5
         }
       },
@@ -278,11 +278,11 @@
     "_commandGroup": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 77,
           "column": 23
         }
       },
@@ -292,11 +292,11 @@
     "_selectedNode": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 23
         }
       },
@@ -306,11 +306,11 @@
     "_dateFormat": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 79,
           "column": 21
         }
       },
@@ -320,11 +320,11 @@
     "_timeFormat": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 80,
           "column": 21
         }
       },
@@ -334,11 +334,11 @@
     "_renameDialog": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 81,
           "column": 23
         }
       },
@@ -348,11 +348,11 @@
     "_noCompare": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 82,
           "column": 21
         }
       },
@@ -362,11 +362,11 @@
     "configure": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 198,
           "column": 5
         }
       },
@@ -376,11 +376,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 200,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 230,
           "column": 5
         }
       },
@@ -390,11 +390,11 @@
     "_onCompareWith": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 239,
           "column": 5
         }
       },
@@ -404,21 +404,7 @@
     "_onOpenWith": {
       "location": {
         "start": {
-          "line": 221,
-          "column": 4
-        },
-        "end": {
-          "line": 229,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onRename": {
-      "location": {
-        "start": {
-          "line": 231,
+          "line": 241,
           "column": 4
         },
         "end": {
@@ -429,52 +415,24 @@
       "type": "function",
       "access": "protected"
     },
-    "_onDownload": {
+    "_onRename": {
       "location": {
         "start": {
           "line": 251,
           "column": 4
         },
         "end": {
-          "line": 255,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onRestore": {
-      "location": {
-        "start": {
-          "line": 257,
-          "column": 4
-        },
-        "end": {
-          "line": 261,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onValidate": {
-      "location": {
-        "start": {
-          "line": 263,
-          "column": 4
-        },
-        "end": {
-          "line": 267,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onClone": {
-      "location": {
-        "start": {
           "line": 269,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onDownload": {
+      "location": {
+        "start": {
+          "line": 271,
           "column": 4
         },
         "end": {
@@ -485,14 +443,56 @@
       "type": "function",
       "access": "protected"
     },
-    "_createChildControlImpl": {
+    "_onRestore": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 368,
+          "line": 281,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onValidate": {
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onClone": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 295,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createChildControlImpl": {
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4
+        },
+        "end": {
+          "line": 388,
           "column": 5
         }
       },
@@ -9717,11 +9717,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 376,
+        "line": 396,
         "column": 12
       },
       "end": {
-        "line": 380,
+        "line": 400,
         "column": 3
       }
     },

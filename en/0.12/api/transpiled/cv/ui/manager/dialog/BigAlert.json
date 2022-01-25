@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 5,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 69,
+        "line": 89,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "_hbox": {
       "location": {
         "start": {
-          "line": 8,
+          "line": 28,
           "column": 4
         },
         "end": {
-          "line": 8,
+          "line": 28,
           "column": 15
         }
       },
@@ -45,11 +45,11 @@
     "_applyImage": {
       "location": {
         "start": {
-          "line": 10,
+          "line": 30,
           "column": 4
         },
         "end": {
-          "line": 21,
+          "line": 41,
           "column": 5
         }
       },
@@ -92,11 +92,11 @@
     "_createWidgetContent": {
       "location": {
         "start": {
-          "line": 26,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5
         }
       },
@@ -11459,11 +11459,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 66,
+        "line": 86,
         "column": 12
       },
       "end": {
-        "line": 68,
+        "line": 88,
         "column": 3
       }
     },

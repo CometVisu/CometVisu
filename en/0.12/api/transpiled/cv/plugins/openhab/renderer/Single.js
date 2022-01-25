@@ -22,7 +22,7 @@
 
   /* Single.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -251,4 +251,4 @@
   cv.plugins.openhab.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1642804660352
+//# sourceMappingURL=Single.js.map?dt=1643139850261

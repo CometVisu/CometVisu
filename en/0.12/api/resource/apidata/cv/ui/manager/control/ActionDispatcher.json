@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 5,
+        "line": 25,
         "column": 0
       },
       "end": {
-        "line": 114,
+        "line": 134,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 14,
+        "line": 34,
         "column": 13
       },
       "end": {
-        "line": 17,
+        "line": 37,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "focusedWidget": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 49,
           "column": 5
         }
       },
@@ -65,11 +65,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 31,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 5
         }
       },
@@ -116,11 +116,11 @@
     "updateBarButtons": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 77,
           "column": 5
         }
       },
@@ -130,11 +130,11 @@
     "_applyFocusedWidget": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 92,
           "column": 5
         }
       },
@@ -147,11 +147,11 @@
     "hasHandler": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 101,
           "column": 5
         }
       },
@@ -185,11 +185,11 @@
     "_getHandler": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 112,
           "column": 5
         }
       },
@@ -199,11 +199,11 @@
     "_onAction": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 123,
           "column": 5
         }
       },
@@ -3555,11 +3555,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 111,
+        "line": 131,
         "column": 12
       },
       "end": {
-        "line": 113,
+        "line": 133,
         "column": 3
       }
     },

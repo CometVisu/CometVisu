@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 110,
+        "line": 133,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 10,
+        "line": 30,
         "column": 13
       },
       "end": {
-        "line": 12,
+        "line": 32,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "PENDING": {
       "location": {
         "start": {
-          "line": 20,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 20,
+          "line": 40,
           "column": 15
         }
       },
@@ -60,11 +60,11 @@
     "__sendTime": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 20
         }
       },
@@ -74,11 +74,11 @@
     "getRequestHash": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 5
         }
       },
@@ -96,11 +96,11 @@
     "_onPhaseChange": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 60,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 131,
           "column": 5
         }
       },

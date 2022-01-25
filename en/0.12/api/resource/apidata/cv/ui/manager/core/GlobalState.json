@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 32,
+        "line": 52,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
     "openedFocusedFile": {
       "location": {
         "start": {
-          "line": 14,
+          "line": 34,
           "column": 4
         },
         "end": {
-          "line": 19,
+          "line": 39,
           "column": 5
         }
       },
@@ -87,11 +87,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 5
         }
       },

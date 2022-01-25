@@ -12,11 +12,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 89,
+        "line": 109,
         "column": 3
       }
     },
@@ -36,11 +36,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 17,
+        "line": 37,
         "column": 13
       },
       "end": {
-        "line": 20,
+        "line": 40,
         "column": 3
       }
     },
@@ -50,11 +50,11 @@
     "file": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 53,
           "column": 5
         }
       },
@@ -69,11 +69,11 @@
     "external": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 61,
           "column": 5
         }
       },
@@ -94,11 +94,11 @@
     "ready": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 67,
           "column": 5
         }
       },
@@ -146,11 +146,11 @@
     "canHandleAction": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5
         }
       },
@@ -175,11 +175,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 79,
           "column": 32
         }
       },
@@ -211,11 +211,11 @@
     "configureButton": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 80,
           "column": 41
         }
       },
@@ -247,11 +247,11 @@
     "unConfigureButton": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 81,
           "column": 43
         }
       },
@@ -280,11 +280,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 82,
           "column": 24
         }
       },
@@ -298,11 +298,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 83,
           "column": 37
         }
       },
@@ -316,11 +316,11 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 87,
           "column": 5
         }
       },
@@ -333,11 +333,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 107,
           "column": 5
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 22,
+        "line": 21,
         "column": 0
       },
       "end": {
-        "line": 30,
+        "line": 29,
         "column": 3
       }
     },

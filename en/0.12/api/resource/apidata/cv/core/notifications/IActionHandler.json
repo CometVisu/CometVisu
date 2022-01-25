@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 26,
+        "line": 27,
         "column": 0
       },
       "end": {
-        "line": 45,
+        "line": 46,
         "column": 3
       }
     },
@@ -43,11 +43,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 39,
           "column": 33
         }
       },
@@ -71,11 +71,11 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 44,
           "column": 32
         }
       },

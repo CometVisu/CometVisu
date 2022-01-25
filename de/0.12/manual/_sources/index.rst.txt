@@ -53,14 +53,6 @@ aus verschiedenen Links:
     Bedürfnissen anpassen
 
 
-Update der CometVisu
---------------------
-
-falls eine Version 0.8 schon installiert war kann die Installation
-direkt aktualisiert werden auf dem
-:doc:`WireGate <install/update-wiregate>` oder :doc:`anderen
-Installationen <install/update-other>`
-
 CometVisu-Designs
 -----------------
 

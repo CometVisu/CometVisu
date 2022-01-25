@@ -13,11 +13,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 481,
+        "line": 501,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 14,
+        "line": 34,
         "column": 13
       },
       "end": {
-        "line": 29,
+        "line": 49,
         "column": 3
       }
     },
@@ -48,11 +48,11 @@
     "action": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 58,
           "column": 36
         }
       },
@@ -88,11 +88,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 70,
           "column": 5
         }
       },
@@ -109,11 +109,11 @@
     "model": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5
         }
       },
@@ -128,11 +128,11 @@
     "showFileActions": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 87,
           "column": 5
         }
       },
@@ -154,11 +154,11 @@
     "label": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 94,
           "column": 5
         }
       },
@@ -180,11 +180,11 @@
     "icon": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 102,
           "column": 5
         }
       },
@@ -207,11 +207,11 @@
     "gap": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 113,
           "column": 5
         }
       },
@@ -236,11 +236,11 @@
     "show": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 126,
           "column": 5
         }
       },
@@ -268,11 +268,11 @@
     "iconPosition": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 138,
           "column": 5
         }
       },
@@ -304,11 +304,11 @@
     "center": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 155,
           "column": 5
         }
       },
@@ -331,11 +331,11 @@
     "acceptUpload": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 164,
           "column": 5
         }
       },
@@ -356,11 +356,11 @@
     "viewMode": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 170,
           "column": 5
         }
       },
@@ -427,11 +427,11 @@
     "_uploadManager": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 179,
           "column": 24
         }
       },
@@ -442,11 +442,11 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 190,
           "column": 5
         }
       },
@@ -470,11 +470,11 @@
     "_applyViewMode": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 206,
           "column": 5
         }
       },
@@ -487,11 +487,11 @@
     "_onPointerOver": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 213,
           "column": 5
         }
       },
@@ -509,11 +509,11 @@
     "_onPointerOut": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 201,
+          "line": 221,
           "column": 5
         }
       },
@@ -531,11 +531,11 @@
     "_isDroppable": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 232,
           "column": 5
         }
       },
@@ -545,11 +545,11 @@
     "_onDrop": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 227,
+          "line": 247,
           "column": 5
         }
       },
@@ -559,11 +559,11 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 297,
           "column": 5
         }
       },
@@ -576,11 +576,11 @@
     "_onOpenWith": {
       "location": {
         "start": {
-          "line": 279,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 285,
+          "line": 305,
           "column": 5
         }
       },
@@ -590,11 +590,11 @@
     "_applyIcon": {
       "location": {
         "start": {
-          "line": 287,
+          "line": 307,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 318,
           "column": 5
         }
       },
@@ -604,11 +604,11 @@
     "_maintainFileActions": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 320,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 356,
           "column": 5
         }
       },
@@ -621,11 +621,11 @@
     "__scaleWithAspect": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 355,
+          "line": 375,
           "column": 5
         }
       },
@@ -635,11 +635,11 @@
     "_maintainFileTypePosition": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 377,
           "column": 4
         },
         "end": {
-          "line": 366,
+          "line": 386,
           "column": 5
         }
       },
@@ -649,11 +649,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 369,
+          "line": 389,
           "column": 4
         },
         "end": {
-          "line": 450,
+          "line": 470,
           "column": 5
         }
       },
@@ -668,11 +668,11 @@
     "capture": {
       "location": {
         "start": {
-          "line": 453,
+          "line": 473,
           "column": 4
         },
         "end": {
-          "line": 458,
+          "line": 478,
           "column": 5
         }
       },
@@ -687,11 +687,11 @@
     "releaseCapture": {
       "location": {
         "start": {
-          "line": 461,
+          "line": 481,
           "column": 4
         },
         "end": {
-          "line": 466,
+          "line": 486,
           "column": 5
         }
       },
@@ -8594,11 +8594,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 474,
+        "line": 494,
         "column": 12
       },
       "end": {
-        "line": 480,
+        "line": 500,
         "column": 3
       }
     },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 331,
+        "line": 351,
         "column": 3
       }
     },
@@ -33,11 +33,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 13
       },
       "end": {
-        "line": 19,
+        "line": 39,
         "column": 3
       }
     },
@@ -47,11 +47,11 @@
     "_commandGroup": {
       "location": {
         "start": {
-          "line": 27,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 23
         }
       },
@@ -61,11 +61,11 @@
     "__buttons": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 28,
+          "line": 48,
           "column": 19
         }
       },
@@ -75,11 +75,11 @@
     "__defaultButtonConfiguration": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 49,
           "column": 38
         }
       },
@@ -89,11 +89,11 @@
     "__buttonConfiguration": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 31
         }
       },
@@ -103,11 +103,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 201,
           "column": 5
         }
       },
@@ -117,11 +117,11 @@
     "__bindToPreference": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 208,
           "column": 5
         }
       },
@@ -131,11 +131,11 @@
     "maintainButtons": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 268,
           "column": 5
         }
       },
@@ -145,11 +145,11 @@
     "getButton": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 270,
           "column": 4
         },
         "end": {
-          "line": 252,
+          "line": 272,
           "column": 5
         }
       },
@@ -159,11 +159,11 @@
     "getButtonConfiguration": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 274,
           "column": 4
         },
         "end": {
-          "line": 256,
+          "line": 276,
           "column": 5
         }
       },
@@ -173,11 +173,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 320,
+          "line": 340,
           "column": 5
         }
       },
@@ -7828,11 +7828,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 328,
+        "line": 348,
         "column": 12
       },
       "end": {
-        "line": 330,
+        "line": 350,
         "column": 3
       }
     },

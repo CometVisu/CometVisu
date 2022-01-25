@@ -15,7 +15,7 @@
   "compilerVersion": "1.0.4",
   "classInfo": {
     "cv.Application": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.775Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -42,6 +42,8 @@
         "qx.bom.PageVisibility": {
           "construct": true
         },
+        "qx.util.Uri": {},
+        "qx.util.LibraryManager": {},
         "cv.io.Client": {},
         "cv.Config": {},
         "cv.io.Mockup": {},
@@ -66,7 +68,6 @@
         "qx.core.WindowError": {},
         "qx.dev.StackTrace": {},
         "cv.ui.PopupHandler": {},
-        "qx.util.Uri": {},
         "cv.util.Location": {},
         "qx.event.Registration": {},
         "cv.ui.layout.ResizeHandler": {},
@@ -79,7 +80,6 @@
         "cv.ui.structure.WidgetFactory": {},
         "cv.IconHandler": {},
         "qx.Part": {},
-        "qx.util.LibraryManager": {},
         "qx.bom.client.Html": {
           "load": true
         }
@@ -107,48 +107,48 @@
       "translations": [
         {
           "msgid": "Validating configuration file...",
-          "lineNo": 330
+          "lineNo": 348
         },
         {
           "msgid": "The %1 configuration has no errors!",
-          "lineNo": 351
+          "lineNo": 369
         },
         {
           "msgid": "The %1 configuration has %2 errors!",
-          "lineNo": 359
+          "lineNo": 377
         },
         {
           "msgid": "Show errors",
-          "lineNo": 363
+          "lineNo": 381
         },
         {
           "msgid": "An error occured",
-          "lineNo": 444
+          "lineNo": 462
         },
         {
           "msgid": "Enable on reload:",
-          "lineNo": 450
+          "lineNo": 468
         },
         {
           "msgid": "Reload",
-          "lineNo": 455
+          "lineNo": 473
         },
         {
           "msgid": "Action recording",
-          "lineNo": 489
+          "lineNo": 507
         },
         {
           "msgid": "Send error to sentry.io",
-          "lineNo": 499
+          "lineNo": 517
         },
         {
           "msgid": "Error reporting (on sentry.io)",
-          "lineNo": 513
+          "lineNo": 531
         }
       ]
     },
     "cv.core.notifications.ActionRegistry": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -163,7 +163,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IActionHandler": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -177,7 +177,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IHandler": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -191,7 +191,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.Router": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -225,7 +225,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.SpeechHandler": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -250,7 +250,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.AbstractActionHandler": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -267,7 +267,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.Link": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -297,7 +297,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.Option": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -324,7 +324,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.OptionGroup": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -351,7 +351,7 @@
       "hasDefer": true
     },
     "cv.parser.MetaParser": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -388,7 +388,7 @@
       ]
     },
     "cv.parser.WidgetParser": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -413,7 +413,7 @@
       "hasDefer": null
     },
     "cv.parser.widgets.Audio": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -430,7 +430,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Break": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -447,7 +447,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.ColorChooser": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -465,7 +465,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.DesignToggle": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -482,7 +482,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Group": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -499,7 +499,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Image": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -516,7 +516,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.ImageTrigger": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -533,7 +533,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Info": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -550,7 +550,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoAction": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -567,7 +567,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoTrigger": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -584,7 +584,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Line": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -601,7 +601,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.MultiTrigger": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -618,7 +618,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NavBar": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -636,7 +636,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NotificationCenterBadge": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -653,7 +653,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Page": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -672,7 +672,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PageJump": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -689,7 +689,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PushButton": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -706,7 +706,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Refresh": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -723,7 +723,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Reload": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -740,7 +740,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Rgb": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -757,7 +757,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Roundbar": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -774,7 +774,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Slide": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -792,7 +792,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Switch": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -809,7 +809,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Text": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -826,7 +826,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Toggle": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -843,7 +843,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Trigger": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -860,7 +860,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Unknown": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -878,7 +878,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.UrlTrigger": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -895,7 +895,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Video": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -912,7 +912,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Web": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -931,7 +931,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WgPluginInfo": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -948,7 +948,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WidgetInfoAction": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -965,7 +965,7 @@
       "hasDefer": true
     },
     "cv.plugins.Clock": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1020,7 +1020,7 @@
       ]
     },
     "cv.plugins.Gauge": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1080,7 +1080,7 @@
       ]
     },
     "cv.plugins.Link": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1122,7 +1122,7 @@
       "hasDefer": true
     },
     "cv.plugins.MobileMenu": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1181,7 +1181,7 @@
       ]
     },
     "cv.plugins.OpenweatherMap": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1243,7 +1243,7 @@
       ]
     },
     "cv.plugins.PowerSpectrum": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1302,7 +1302,7 @@
       ]
     },
     "cv.plugins.Rss": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1357,7 +1357,7 @@
       ]
     },
     "cv.plugins.RssLog": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1428,7 +1428,7 @@
       ]
     },
     "cv.plugins.Speech": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1461,7 +1461,7 @@
       "hasDefer": true
     },
     "cv.plugins.Strftime": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1510,7 +1510,7 @@
       ]
     },
     "cv.plugins.Svg": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1562,7 +1562,7 @@
       ]
     },
     "cv.plugins.Timeout": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1593,7 +1593,7 @@
       "hasDefer": true
     },
     "cv.plugins.UpnpController": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1651,7 +1651,7 @@
       ]
     },
     "cv.plugins.diagram.AbstractDiagram": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1735,7 +1735,7 @@
       ]
     },
     "cv.plugins.diagram.Diagram": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1767,7 +1767,7 @@
       "hasDefer": true
     },
     "cv.plugins.diagram.Info": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1802,7 +1802,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Openhab": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.ui.root.Inline": {
@@ -1842,7 +1842,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Settings": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1898,7 +1898,7 @@
       ]
     },
     "cv.plugins.openhab.renderer.Single": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1929,7 +1929,7 @@
       "hasDefer": null
     },
     "cv.plugins.tr064.CallList": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1992,40 +1992,40 @@
       "translations": [
         {
           "msgid": "TR-064 communication error",
-          "lineNo": 274
+          "lineNo": 275
         },
         {
           "msgid": "Reading URL \"%1\" failed with status \"%2\": \"%2\"",
-          "lineNo": 276
+          "lineNo": 277
         },
         {
           "msgid": "TR-064 communication response error",
-          "lineNo": 287
+          "lineNo": 288
         },
         {
           "msgid": "Reading URL \"%1\" failed with content: \"%2\"",
-          "lineNo": 289
+          "lineNo": 290
         },
         {
           "msgid": "TR-064 communication error",
-          "lineNo": 318
+          "lineNo": 319
         },
         {
           "msgid": "Reading URL \"%1\" failed with status \"%2\": \"%2\"",
-          "lineNo": 320
+          "lineNo": 321
         },
         {
           "msgid": "TR-064 communication error",
-          "lineNo": 344
+          "lineNo": 345
         },
         {
           "msgid": "refreshCalllist() error: \"%1\"",
-          "lineNo": 346
+          "lineNo": 347
         }
       ]
     },
     "cv.transforms.Knx": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2042,7 +2042,7 @@
       "hasDefer": true
     },
     "cv.transforms.Mqtt": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2059,7 +2059,7 @@
       "hasDefer": true
     },
     "cv.transforms.OpenHab": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2079,7 +2079,7 @@
       "hasDefer": true
     },
     "cv.ui.manager.IActionHandler": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -2093,7 +2093,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.Main": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2138,13 +2138,14 @@
         "cv.ui.manager.snackbar.Controller": {},
         "qx.locale.Manager": {},
         "cv.ui.manager.model.FileItem": {},
+        "qxl.dialog.Confirm": {},
         "cv.ui.manager.model.Preferences": {},
         "cv.ui.manager.control.FileHandlerRegistry": {},
         "cv.ui.manager.editor.AbstractEditor": {},
         "cv.ui.manager.core.GlobalState": {},
         "cv.ui.manager.model.OpenFile": {},
-        "qxl.dialog.Dialog": {},
         "cv.ui.manager.editor.IEditor": {},
+        "cv.ui.manager.Start": {},
         "cv.ui.manager.model.CompareFiles": {},
         "qx.dom.Element": {},
         "qx.theme.manager.Meta": {},
@@ -2188,100 +2189,124 @@
       "translations": [
         {
           "msgid": "config folder does not exists",
-          "lineNo": 142
-        },
-        {
-          "msgid": "config folder is not readable",
-          "lineNo": 146
-        },
-        {
-          "msgid": "config folder is not writeable",
-          "lineNo": 150
-        },
-        {
-          "msgid": "backup folder is not writeable",
-          "lineNo": 161
-        },
-        {
-          "msgid": "media folder is not writeable",
           "lineNo": 167
         },
         {
+          "msgid": "config folder is not readable",
+          "lineNo": 171
+        },
+        {
+          "msgid": "config folder is not writeable",
+          "lineNo": 175
+        },
+        {
+          "msgid": "backup folder is not writeable",
+          "lineNo": 186
+        },
+        {
+          "msgid": "media folder is not writeable",
+          "lineNo": 192
+        },
+        {
           "msgid": "Hidden configuration file (hidden.php) not writeable",
-          "lineNo": 173
+          "lineNo": 198
         },
         {
-          "msgid": "Cannot load config template",
-          "lineNo": 223
-        },
-        {
-          "msgid": "Cannot load file content",
-          "lineNo": 233
-        },
-        {
-          "msgid": "Cannot open file: \"%1\"",
-          "lineNo": 456
-        },
-        {
-          "msgid": "This file has unsaved changes that will be lost when you close it. Do you really want to close the file?",
-          "lineNo": 529
-        },
-        {
-          "msgid": "This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?",
-          "lineNo": 531
+          "msgid": "You have files opened with unsaved changes, you should save them now.",
+          "lineNo": 242
         },
         {
           "msgid": "Unsaved changes",
-          "lineNo": 544
+          "lineNo": 253
+        },
+        {
+          "msgid": "Save & quit",
+          "lineNo": 254
+        },
+        {
+          "msgid": "Quit without saving",
+          "lineNo": 255
+        },
+        {
+          "msgid": "Cannot load config template",
+          "lineNo": 271
+        },
+        {
+          "msgid": "Cannot load file content",
+          "lineNo": 281
+        },
+        {
+          "msgid": "Cannot open file: \"%1\"",
+          "lineNo": 514
+        },
+        {
+          "msgid": "This file has unsaved changes that will be lost when you close it without saving.",
+          "lineNo": 587
+        },
+        {
+          "msgid": "This file has not been saved on the backend yet. It will be lost when you close it without saving.",
+          "lineNo": 589
+        },
+        {
+          "msgid": "Unsaved changes",
+          "lineNo": 612
+        },
+        {
+          "msgid": "Save & close",
+          "lineNo": 613
+        },
+        {
+          "msgid": "Discard & close",
+          "lineNo": 614
         },
         {
           "msgid": "Please enter the name of the new configuration (without \"visu_config_\" at the beginning and \".xml\" at the end)",
-          "lineNo": 691
+          "lineNo": 792
         },
         {
           "msgid": "A configuration with this name already exists.",
-          "lineNo": 692
+          "lineNo": 793
         },
         {
           "msgid": "Please enter the file name.",
-          "lineNo": 694
+          "lineNo": 795
         },
         {
           "msgid": "A file with this name already exists.",
-          "lineNo": 695
+          "lineNo": 796
         },
         {
           "msgid": "Please enter the folder name.",
-          "lineNo": 697
+          "lineNo": 798
         },
         {
           "msgid": "A folder with this name already exists.",
-          "lineNo": 698
+          "lineNo": 799
         },
         {
           "msgid": "Folder has been created",
-          "lineNo": 743
+          "lineNo": 844
         },
         {
           "msgid": "About",
-          "lineNo": 933
+          "lineNo": 1034
         },
         {
           "msgid": "Build date",
-          "lineNo": 942
+          "lineNo": 1043
         },
         {
           "msgid": "Build revision",
-          "lineNo": 943
+          "lineNo": 1044
         },
         {
           "msgid": "Library version",
-          "lineNo": 944
+          "lineNo": 1045
         }
       ]
     },
     "cv.ui.manager.MenuBar": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2317,112 +2342,112 @@
       "translations": [
         {
           "msgid": "New file",
-          "lineNo": 47
+          "lineNo": 67
         },
         {
           "msgid": "New folder",
-          "lineNo": 52
+          "lineNo": 72
         },
         {
           "msgid": "New config file",
-          "lineNo": 58
+          "lineNo": 78
         },
         {
           "msgid": "Upload file",
-          "lineNo": 64
+          "lineNo": 84
         },
         {
           "msgid": "Save",
-          "lineNo": 70
+          "lineNo": 90
         },
         {
           "msgid": "Save as...",
-          "lineNo": 76
+          "lineNo": 96
         },
         {
           "msgid": "Delete",
-          "lineNo": 80
+          "lineNo": 100
         },
         {
           "msgid": "Quit",
-          "lineNo": 86
+          "lineNo": 106
         },
         {
           "msgid": "Undo",
-          "lineNo": 93
+          "lineNo": 113
         },
         {
           "msgid": "Redo",
-          "lineNo": 98
+          "lineNo": 118
         },
         {
           "msgid": "Cut",
-          "lineNo": 103
+          "lineNo": 123
         },
         {
           "msgid": "Copy",
-          "lineNo": 109
+          "lineNo": 129
         },
         {
           "msgid": "Paste",
-          "lineNo": 114
+          "lineNo": 134
         },
         {
           "msgid": "Use text editor",
-          "lineNo": 121
+          "lineNo": 141
         },
         {
           "msgid": "Use xml editor",
-          "lineNo": 132
+          "lineNo": 152
         },
         {
           "msgid": "Enable quick preview",
-          "lineNo": 143
+          "lineNo": 163
         },
         {
           "msgid": "Expert mode",
-          "lineNo": 151
+          "lineNo": 171
         },
         {
           "msgid": "Help",
-          "lineNo": 157
+          "lineNo": 177
         },
         {
           "msgid": "About",
-          "lineNo": 162
+          "lineNo": 182
         },
         {
           "msgid": "CometVisu Manager",
-          "lineNo": 264
-        },
-        {
-          "msgid": "File",
-          "lineNo": 269
-        },
-        {
-          "msgid": "Edit",
-          "lineNo": 274
-        },
-        {
-          "msgid": "Help",
-          "lineNo": 279
-        },
-        {
-          "msgid": "About",
           "lineNo": 284
         },
         {
-          "msgid": "New",
+          "msgid": "File",
           "lineNo": 289
         },
         {
+          "msgid": "Edit",
+          "lineNo": 294
+        },
+        {
+          "msgid": "Help",
+          "lineNo": 299
+        },
+        {
+          "msgid": "About",
+          "lineNo": 304
+        },
+        {
+          "msgid": "New",
+          "lineNo": 309
+        },
+        {
           "msgid": "Preferences",
-          "lineNo": 293
+          "lineNo": 313
         }
       ]
     },
     "cv.ui.manager.Start": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2470,36 +2495,36 @@
       "translations": [
         {
           "msgid": "List mode",
-          "lineNo": 167
+          "lineNo": 189
         },
         {
           "msgid": "Preview mode",
-          "lineNo": 173
+          "lineNo": 195
         },
         {
           "msgid": "Configurations",
-          "lineNo": 191
+          "lineNo": 213
         },
         {
           "msgid": "Demo configurations",
-          "lineNo": 235
+          "lineNo": 257
         },
         {
           "msgid": "Media files",
-          "lineNo": 261
+          "lineNo": 283
         },
         {
           "msgid": "Miscellaneous",
-          "lineNo": 292
+          "lineNo": 314
         },
         {
           "msgid": "Hidden configuration",
-          "lineNo": 328
+          "lineNo": 350
         }
       ]
     },
     "cv.ui.manager.ToolBar": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2537,20 +2562,20 @@
       "translations": [
         {
           "msgid": "Download",
-          "lineNo": 151
+          "lineNo": 171
         },
         {
           "msgid": "Validate",
-          "lineNo": 168
+          "lineNo": 188
         },
         {
           "msgid": "Reload",
-          "lineNo": 185
+          "lineNo": 205
         }
       ]
     },
     "cv.ui.manager.basic.Icon": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2570,7 +2595,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.basic.Image": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -2638,7 +2663,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.contextmenu.ConfigElement": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2672,36 +2697,36 @@
       "translations": [
         {
           "msgid": "View",
-          "lineNo": 127
+          "lineNo": 147
         },
         {
           "msgid": "Edit",
-          "lineNo": 132
+          "lineNo": 152
         },
         {
           "msgid": "Delete",
-          "lineNo": 136
+          "lineNo": 156
         },
         {
           "msgid": "Cut",
-          "lineNo": 140
+          "lineNo": 160
         },
         {
           "msgid": "Copy",
-          "lineNo": 144
+          "lineNo": 164
         },
         {
           "msgid": "Paste",
-          "lineNo": 148
+          "lineNo": 168
         },
         {
           "msgid": "Add child",
-          "lineNo": 156
+          "lineNo": 176
         }
       ]
     },
     "cv.ui.manager.contextmenu.FileItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2749,80 +2774,80 @@
       "translations": [
         {
           "msgid": "Clear",
-          "lineNo": 88
+          "lineNo": 108
         },
         {
           "msgid": "Delete",
-          "lineNo": 89
+          "lineNo": 109
         },
         {
           "msgid": "Backup from %1",
-          "lineNo": 114
+          "lineNo": 134
         },
         {
           "msgid": "Delete",
-          "lineNo": 171
+          "lineNo": 191
         },
         {
           "msgid": "New name",
-          "lineNo": 235
+          "lineNo": 255
         },
         {
           "msgid": "Rename file",
-          "lineNo": 243
+          "lineNo": 263
         },
         {
           "msgid": "New file",
-          "lineNo": 283
+          "lineNo": 303
         },
         {
           "msgid": "Clone file",
-          "lineNo": 294
+          "lineNo": 314
         },
         {
           "msgid": "New folder",
-          "lineNo": 300
+          "lineNo": 320
         },
         {
           "msgid": "Rename",
-          "lineNo": 307
+          "lineNo": 327
         },
         {
           "msgid": "Delete",
-          "lineNo": 312
+          "lineNo": 332
         },
         {
           "msgid": "Download",
-          "lineNo": 319
+          "lineNo": 339
         },
         {
           "msgid": "Open",
-          "lineNo": 324
+          "lineNo": 344
         },
         {
           "msgid": "Restore",
-          "lineNo": 331
+          "lineNo": 351
         },
         {
           "msgid": "Validate",
-          "lineNo": 337
+          "lineNo": 357
         },
         {
           "msgid": "Replace",
-          "lineNo": 343
+          "lineNo": 363
         },
         {
           "msgid": "Compare with...",
-          "lineNo": 355
+          "lineNo": 375
         },
         {
           "msgid": "Open with...",
-          "lineNo": 359
+          "lineNo": 379
         }
       ]
     },
     "cv.ui.manager.contextmenu.GlobalFileItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2851,7 +2876,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.ActionDispatcher": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2873,7 +2898,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.FileController": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2900,105 +2925,105 @@
       "translations": [
         {
           "msgid": "File \"%1\" has been created",
-          "lineNo": 39
+          "lineNo": 59
         },
         {
           "msgid": "Folder \"%1\" has been created",
-          "lineNo": 40
+          "lineNo": 60
         },
         {
           "msgid": "File \"%1\" has been renamed",
-          "lineNo": 54
+          "lineNo": 74
         },
         {
           "msgid": "Folder \"%1\" has been renamed",
-          "lineNo": 55
+          "lineNo": 75
         },
         {
           "msgid": "File \"%1\" has been moved",
-          "lineNo": 77
+          "lineNo": 97
         },
         {
           "msgid": "Folder \"%1\" has been moved",
-          "lineNo": 78
+          "lineNo": 98
         },
         {
           "msgid": "%1 has been restored",
-          "lineNo": 125
+          "lineNo": 145
         },
         {
           "msgid": "%1 has been restored",
-          "lineNo": 144
+          "lineNo": 164
         },
         {
           "msgid": "File \"%1\" has been restored",
-          "lineNo": 159
-        },
-        {
-          "msgid": "Folder \"%1\" has been restored",
-          "lineNo": 160
-        },
-        {
-          "msgid": "Do you really want to clear the trash?",
           "lineNo": 179
         },
         {
+          "msgid": "Folder \"%1\" has been restored",
+          "lineNo": 180
+        },
+        {
+          "msgid": "Do you really want to clear the trash?",
+          "lineNo": 199
+        },
+        {
           "msgid": "Do you really want to delete file \"%1\" from the trash?",
-          "lineNo": 182
+          "lineNo": 202
         },
         {
           "msgid": "Do you really want to delete folder \"%1\" from the trash?",
-          "lineNo": 183
+          "lineNo": 203
         },
         {
           "msgid": "Do you really want to delete file \"%1\"?",
-          "lineNo": 186
+          "lineNo": 206
         },
         {
           "msgid": "Do you really want to delete folder \"%1\"?",
-          "lineNo": 187
+          "lineNo": 207
         },
         {
           "msgid": "Confirm deletion",
-          "lineNo": 195
+          "lineNo": 215
         },
         {
           "msgid": "Trash has been cleared",
-          "lineNo": 209
+          "lineNo": 229
         },
         {
           "msgid": "File \"%1\" has been removed from trash",
-          "lineNo": 212
+          "lineNo": 232
         },
         {
           "msgid": "Folder \"%1\" has been removed from trash",
-          "lineNo": 213
+          "lineNo": 233
         },
         {
           "msgid": "File \"%1\" has been deleted",
-          "lineNo": 216
+          "lineNo": 236
         },
         {
           "msgid": "Folder \"%1\" has been deleted",
-          "lineNo": 217
+          "lineNo": 237
         },
         {
           "msgid": "Validating %1",
-          "lineNo": 254
+          "lineNo": 274
         },
         {
           "msgid": "%1 has no errors!",
-          "lineNo": 259
+          "lineNo": 279
         },
         {
           "msgid": "%1 error found in %2!",
           "msgid_plural": "%1 errors found in %2!",
-          "lineNo": 269
+          "lineNo": 289
         }
       ]
     },
     "cv.ui.manager.control.FileHandlerRegistry": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3050,7 +3075,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.IFileEventHandler": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -3064,7 +3089,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.MFileEventHandler": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -3081,7 +3106,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.GlobalState": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3099,7 +3124,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.IconAtom": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3123,7 +3148,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.BigAlert": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3147,7 +3172,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.Prompt": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3164,7 +3189,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.ValidationError": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3209,32 +3234,32 @@
       "translations": [
         {
           "msgid": "<h3>Config Errors</h3><p>The validation of \"%1\" showed some errors. It is NOT recommended to edit this file in the XML-Tree editor, because it can break the file completely. Please open this file in the text editor and fix the errors there. Only proceed to edit the file in the XML-Tree editor if you know what you are doing.</p>",
-          "lineNo": 76
+          "lineNo": 96
         },
         {
           "msgid": "<p>You can choose between the following options:<ul>    <li><b>Cancel</b> - Close this editor</li>    <li><b>Proceed</b> - Open the defective file in this editor</li>    <li><b>Open in text editor</b> - Close this editor and open the defective file in the text editor</li></ul></p>",
-          "lineNo": 81
+          "lineNo": 101
         },
         {
           "msgid": "Line %1",
-          "lineNo": 131
+          "lineNo": 151
         },
         {
           "msgid": "Cancel",
-          "lineNo": 152
+          "lineNo": 172
         },
         {
           "msgid": "Proceed",
-          "lineNo": 155
+          "lineNo": 175
         },
         {
           "msgid": "Open in text editor",
-          "lineNo": 158
+          "lineNo": 178
         }
       ]
     },
     "cv.ui.manager.editor.AbstractEditor": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3269,16 +3294,16 @@
       "translations": [
         {
           "msgid": "File has been created",
-          "lineNo": 155
+          "lineNo": 174
         },
         {
           "msgid": "File has been saved",
-          "lineNo": 155
+          "lineNo": 174
         }
       ]
     },
     "cv.ui.manager.editor.Config": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3319,40 +3344,40 @@
       "translations": [
         {
           "msgid": "Hidden configuration",
-          "lineNo": 26
+          "lineNo": 46
         },
         {
           "msgid": "Hidden configuration file (hidden.php) not writeable",
-          "lineNo": 116
+          "lineNo": 136
         },
         {
           "msgid": "Section name duplicate: \"%1\".",
-          "lineNo": 129
+          "lineNo": 149
         },
         {
           "msgid": "Option key duplicate: \"%1\" in section \"%2\".",
-          "lineNo": 139
+          "lineNo": 159
         },
         {
           "msgid": "Saving hidden config failed with error %1 (%2)",
-          "lineNo": 155
+          "lineNo": 175
         },
         {
           "msgid": "Hidden config has been saved",
-          "lineNo": 157
+          "lineNo": 177
         },
         {
           "msgid": "Section is invalid and has not been saved.",
-          "lineNo": 162
+          "lineNo": 182
         },
         {
           "msgid": "Add section",
-          "lineNo": 203
+          "lineNo": 223
         }
       ]
     },
     "cv.ui.manager.editor.Diff": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3380,9 +3405,6 @@
         "cv.ui.manager.editor.AbstractEditor": {
           "load": true
         },
-        "qx.util.LibraryManager": {
-          "load": true
-        },
         "qx.ui.core.FocusHandler": {
           "load": true
         },
@@ -3397,52 +3419,52 @@
       "translations": [
         {
           "msgid": "File compare",
-          "lineNo": 24
+          "lineNo": 44
         },
         {
           "msgid": "\"%1\" is not writable. Upgrading not possible.",
-          "lineNo": 132
-        },
-        {
-          "msgid": "The following changes have been made",
-          "lineNo": 150
-        },
-        {
-          "msgid": "You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.",
           "lineNo": 152
         },
         {
+          "msgid": "The following changes have been made",
+          "lineNo": 170
+        },
+        {
+          "msgid": "You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.",
+          "lineNo": 172
+        },
+        {
           "msgid": "No changes have been made",
-          "lineNo": 153
+          "lineNo": 173
         },
         {
           "msgid": "Config file has been upgraded to the current library version.",
-          "lineNo": 155
+          "lineNo": 175
         },
         {
           "msgid": "Click \"Apply\" if you want to save the changes and reload the browser.",
-          "lineNo": 156
+          "lineNo": 176
         },
         {
           "msgid": "Click \"Check\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.",
-          "lineNo": 157
+          "lineNo": 177
         },
         {
           "msgid": "Upgrade successful",
-          "lineNo": 164
+          "lineNo": 184
         },
         {
           "msgid": "Apply",
-          "lineNo": 167
+          "lineNo": 187
         },
         {
           "msgid": "Check",
-          "lineNo": 168
+          "lineNo": 188
         }
       ]
     },
     "cv.ui.manager.editor.IEditor": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -3456,7 +3478,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.Source": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3465,9 +3487,6 @@
         },
         "cv.ui.manager.editor.AbstractEditor": {
           "load": true,
-          "construct": true
-        },
-        "qx.util.LibraryManager": {
           "construct": true
         },
         "qx.ui.core.FocusHandler": {
@@ -3481,6 +3500,7 @@
           "usage": "dynamic"
         },
         "qx.util.Uri": {},
+        "qx.util.LibraryManager": {},
         "qx.util.DynamicScriptLoader": {},
         "cv.ui.manager.editor.completion.Config": {},
         "cv.ui.manager.model.Schema": {},
@@ -3509,36 +3529,36 @@
       "translations": [
         {
           "msgid": "Texteditor",
-          "lineNo": 46
+          "lineNo": 66
         },
         {
           "msgid": "Hidden config is invalid, please correct the errors",
-          "lineNo": 280
-        },
-        {
-          "msgid": "Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?",
-          "lineNo": 283
-        },
-        {
-          "msgid": "Confirm saving with warnings",
-          "lineNo": 287
-        },
-        {
-          "msgid": "Saving hidden config failed with error %1 (%2)",
           "lineNo": 299
         },
         {
+          "msgid": "Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?",
+          "lineNo": 302
+        },
+        {
+          "msgid": "Confirm saving with warnings",
+          "lineNo": 306
+        },
+        {
+          "msgid": "Saving hidden config failed with error %1 (%2)",
+          "lineNo": 318
+        },
+        {
           "msgid": "Hidden config has been saved",
-          "lineNo": 301
+          "lineNo": 320
         },
         {
           "msgid": "\"%1\" is not writable. Upgrading not possible.",
-          "lineNo": 377
+          "lineNo": 396
         }
       ]
     },
     "cv.ui.manager.editor.Tree": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -3633,176 +3653,176 @@
       "translations": [
         {
           "msgid": "Xml-editor",
-          "lineNo": 48
+          "lineNo": 68
         },
         {
           "msgid": "Undo: %1",
-          "lineNo": 238
+          "lineNo": 258
         },
         {
           "msgid": "Undo: %1",
-          "lineNo": 252
+          "lineNo": 272
         },
         {
           "msgid": "Preview shows the current state of the edited configuration.",
-          "lineNo": 423
+          "lineNo": 443
         },
         {
           "msgid": "Preview is out of sync. Click here to refresh.",
-          "lineNo": 424
+          "lineNo": 444
         },
         {
           "msgid": "Preview is out of sync. Highlighting of the currently selected tree element is deactivated until you refresh the preview. Click here to refresh.",
-          "lineNo": 425
+          "lineNo": 445
         },
         {
           "msgid": "Expertview",
-          "lineNo": 488
+          "lineNo": 508
         },
         {
           "msgid": "Reload preview",
-          "lineNo": 498
+          "lineNo": 518
         },
         {
           "msgid": "Search...",
-          "lineNo": 535
+          "lineNo": 555
         },
         {
           "msgid": "Please create a new Element either by dragging this button to the place where the new element should be inserted or by selecting an element and pressing this button to insert a new child to this element.",
-          "lineNo": 619
+          "lineNo": 639
         },
         {
           "msgid": "\"%1\" has been moved after \"%2\"",
-          "lineNo": 1166
+          "lineNo": 1186
         },
         {
           "msgid": "\"%1\" has been copied after \"%2\"",
-          "lineNo": 1172
+          "lineNo": 1192
         },
         {
           "msgid": "\"%1\" has been moved before \"%2\"",
-          "lineNo": 1190
+          "lineNo": 1210
         },
         {
           "msgid": "\"%1\" has been copied before \"%2\"",
-          "lineNo": 1196
+          "lineNo": 1216
         },
         {
           "msgid": "\"%1\" has been moved into \"%2\" as first child",
-          "lineNo": 1215
+          "lineNo": 1235
         },
         {
           "msgid": "\"%1\" has been copied into \"%2\" as first child",
-          "lineNo": 1221
+          "lineNo": 1241
         },
         {
           "msgid": "\"%1\" has been moved into \"%2\"",
-          "lineNo": 1240
+          "lineNo": 1260
         },
         {
           "msgid": "\"%1\" has been copied into \"%2\"",
-          "lineNo": 1246
+          "lineNo": 1266
         },
         {
           "msgid": "<p style='font-weight:bold'>Choose element</p><p>Several possible element can be created at this position, please select one to proceed.</p>",
-          "lineNo": 1369
+          "lineNo": 1389
         },
         {
           "msgid": "Choose element",
-          "lineNo": 1373
+          "lineNo": 1393
         },
         {
           "msgid": "Please choose the element you want to add here.",
-          "lineNo": 1374
+          "lineNo": 1394
         },
         {
           "msgid": "not set",
-          "lineNo": 1539
+          "lineNo": 1559
         },
         {
           "msgid": "not set",
-          "lineNo": 1543
+          "lineNo": 1563
         },
         {
           "msgid": "not set",
-          "lineNo": 1554
+          "lineNo": 1574
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1565
+          "lineNo": 1585
         },
         {
           "msgid": "not set",
-          "lineNo": 1588
+          "lineNo": 1608
         },
         {
           "msgid": "Create new %1 element",
-          "lineNo": 1620
+          "lineNo": 1640
         },
         {
           "msgid": "Please edit the attributes of the new %1 element, that will be added to the chosen position.",
-          "lineNo": 1621
+          "lineNo": 1641
         },
         {
           "msgid": "Edit element attributes",
-          "lineNo": 1623
-        },
-        {
-          "msgid": "Edit %1",
-          "lineNo": 1624
-        },
-        {
-          "msgid": "Show %1",
-          "lineNo": 1624
-        },
-        {
-          "msgid": "Create new %1 element",
           "lineNo": 1643
         },
         {
-          "msgid": "Please edit the content of the new %1 element, that will be added to the chosen position.",
+          "msgid": "Edit %1",
           "lineNo": 1644
         },
         {
+          "msgid": "Show %1",
+          "lineNo": 1644
+        },
+        {
+          "msgid": "Create new %1 element",
+          "lineNo": 1663
+        },
+        {
+          "msgid": "Please edit the content of the new %1 element, that will be added to the chosen position.",
+          "lineNo": 1664
+        },
+        {
           "msgid": "Edit element and content",
-          "lineNo": 1646
+          "lineNo": 1666
         },
         {
           "msgid": "Edit element content",
-          "lineNo": 1646
+          "lineNo": 1666
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1661
+          "lineNo": 1681
         },
         {
           "msgid": "Edit text content",
-          "lineNo": 1669
+          "lineNo": 1689
         },
         {
           "msgid": "not set",
-          "lineNo": 1680
+          "lineNo": 1700
         },
         {
           "msgid": "This is not a valid value.",
-          "lineNo": 1690
+          "lineNo": 1710
         },
         {
           "msgid": "Help",
-          "lineNo": 2128
+          "lineNo": 2148
         },
         {
           "msgid": "<h3>Search for elements</h3><p>You can search for element names (tag names or content of name attribute) by typing a search value here. All elements whose tag name or name-attribute start with the search term will be found</p><p>Search will start automatically when the search term is at least 2 characters long.</p><p>The first found element will be opened and selected in the element tree. You can jump to the next found element with 'Enter' or the 'Down' key. Accordingly you can jump the the previous found element with the 'Up' key.</p>",
-          "lineNo": 2136
+          "lineNo": 2156
         },
         {
           "msgid": "<h3>CometVisu XML-Editor - a brief introduction</h3><p>The CometVisu XMl-Editor shows the content of a CometVisu config file in a tree-like structure. You can traverse through the tree by opening/closing elements with a click on the expand icon.</p><p>The Xml-Editor will make sure that you do not create an invalid configuration file. If you experience a change that has not been accepted / or is not allowed that is most likely due to avoid an invalid configuration.</p><h4>Editing attributes</h4><p>The elements attributes can be edited by double clicking on it or selecting an element and clicking on the 'edit'-button in the toolbar above the tree of by right-clicking on the element and the 'edit'-button in the context menu</p><h4>Editing elements</h4><p>The elements in the tree support re-ordering via drag & drop. You can also cut/copy or paste them. You can add new elements by starting a drag in the round + button on the bottom of the tree, or by right clicking on an element and choosing the 'add child'-button.</p><p>You can delete elements by the delete buttons in the toolbar</p><h4>Expert view</h4><p>Some attributes are hidden in the editing dialog, because they provide access to settings that usually are not needed that often. You can access these attributes by toggling to the 'Expertview'-button in the toolbar directly above the tree.</p><h4>Config preview</h4><p>An preview of the edited config file is shown on the right part of the screen. The preview will not automatically refresh after you have changed something. You can refresh is manually by clicking the most right button in the toolbar.</p>",
-          "lineNo": 2145
+          "lineNo": 2165
         }
       ]
     },
     "cv.ui.manager.editor.Worker": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3825,7 +3845,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.CometVisu": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3845,7 +3865,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.Config": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3869,12 +3889,12 @@
       "translations": [
         {
           "msgid": "Variable from template %1",
-          "lineNo": 410
+          "lineNo": 430
         }
       ]
     },
     "cv.ui.manager.editor.data.Provider": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3905,7 +3925,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.CheckBox": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3926,12 +3946,12 @@
       "translations": [
         {
           "msgid": "not set",
-          "lineNo": 30
+          "lineNo": 50
         }
       ]
     },
     "cv.ui.manager.form.ElementForm": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -3992,44 +4012,44 @@
       "translations": [
         {
           "msgid": "Loading...",
-          "lineNo": 171
+          "lineNo": 191
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 177
+          "lineNo": 197
         },
         {
           "msgid": "Loading...",
-          "lineNo": 220
+          "lineNo": 240
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 226
+          "lineNo": 246
         },
         {
           "msgid": "Loading...",
-          "lineNo": 268
+          "lineNo": 288
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 280
+          "lineNo": 300
         },
         {
           "msgid": "Loading...",
-          "lineNo": 298
+          "lineNo": 318
         },
         {
           "msgid": "Possible values could no be retrieved, please check browser console for error details",
-          "lineNo": 310
+          "lineNo": 330
         },
         {
           "msgid": "Value is invalid",
-          "lineNo": 540
+          "lineNo": 560
         }
       ]
     },
     "cv.ui.manager.form.ElementFormRenderer": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4049,7 +4069,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.FileListItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4105,28 +4125,28 @@
       "translations": [
         {
           "msgid": "Drop the file here to replace the content.",
-          "lineNo": 28
+          "lineNo": 48
         },
         {
           "msgid": "Do you really want to replace the '%1' with the uploaded files content?",
-          "lineNo": 219
+          "lineNo": 239
         },
         {
           "msgid": "Double click to open \"%1\"",
-          "lineNo": 234
+          "lineNo": 254
         },
         {
           "msgid": "Download file",
-          "lineNo": 407
+          "lineNo": 427
         },
         {
           "msgid": "Other file actions",
-          "lineNo": 416
+          "lineNo": 436
         }
       ]
     },
     "cv.ui.manager.form.FileTabItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4158,12 +4178,12 @@
       "translations": [
         {
           "msgid": "This file is not writeable",
-          "lineNo": 168
+          "lineNo": 188
         }
       ]
     },
     "cv.ui.manager.form.ListItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4184,7 +4204,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.Option": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4202,7 +4222,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.OptionListItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4231,24 +4251,24 @@
       "translations": [
         {
           "msgid": "Delete option",
-          "lineNo": 138
+          "lineNo": 158
         },
         {
           "msgid": "Add option",
-          "lineNo": 152
+          "lineNo": 172
         },
         {
           "msgid": "Key",
-          "lineNo": 165
+          "lineNo": 185
         },
         {
           "msgid": "Value",
-          "lineNo": 171
+          "lineNo": 191
         }
       ]
     },
     "cv.ui.manager.form.SectionListItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4281,16 +4301,16 @@
       "translations": [
         {
           "msgid": "Section",
-          "lineNo": 160
+          "lineNo": 180
         },
         {
           "msgid": "Delete section",
-          "lineNo": 176
+          "lineNo": 196
         }
       ]
     },
     "cv.ui.manager.form.SourceCodeField": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4331,7 +4351,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.VirtualSelectBox": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4355,7 +4375,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.BackupFolder": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4385,7 +4405,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.CompareFiles": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4405,12 +4425,12 @@
       "translations": [
         {
           "msgid": "Diff: %1",
-          "lineNo": 76
+          "lineNo": 96
         }
       ]
     },
     "cv.ui.manager.model.ElementChange": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4428,7 +4448,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.FileItem": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4475,12 +4495,12 @@
       "translations": [
         {
           "msgid": "Hidden configuration",
-          "lineNo": 93
+          "lineNo": 113
         }
       ]
     },
     "cv.ui.manager.model.Message": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4497,7 +4517,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.OpenFile": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4507,7 +4527,10 @@
         "qx.core.Object": {
           "load": true,
           "construct": true
-        }
+        },
+        "cv.ui.manager.control.FileHandlerRegistry": {},
+        "qx.Interface": {},
+        "cv.ui.manager.editor.IEditor": {}
       },
       "extends": "qx.core.Object",
       "include": [],
@@ -4515,7 +4538,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Preferences": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4536,7 +4559,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Schema": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4558,7 +4581,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.XmlElement": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4591,64 +4614,64 @@
       "translations": [
         {
           "msgid": "Remove %1",
-          "lineNo": 324
+          "lineNo": 344
         },
         {
           "msgid": "Move %1",
-          "lineNo": 385
+          "lineNo": 405
         },
         {
           "msgid": "Move %1",
-          "lineNo": 422
+          "lineNo": 442
         },
         {
           "msgid": "Add %1",
-          "lineNo": 679
+          "lineNo": 699
         },
         {
           "msgid": "Invalid text content: '%1'",
-          "lineNo": 692
+          "lineNo": 712
         },
         {
           "msgid": "Text content not allowed here",
-          "lineNo": 695
+          "lineNo": 715
         },
         {
           "msgid": "Invalid value",
-          "lineNo": 719
+          "lineNo": 739
         },
         {
           "msgid": "Attribute '%1' not allowed",
-          "lineNo": 725
+          "lineNo": 745
         },
         {
           "msgid": "Attribute '%1' is required but missing",
-          "lineNo": 734
-        },
-        {
-          "msgid": "Text content is missing",
-          "lineNo": 744
-        },
-        {
-          "msgid": "Text content is invalid",
           "lineNo": 754
         },
         {
-          "msgid": "Change %1",
-          "lineNo": 941
+          "msgid": "Text content is missing",
+          "lineNo": 764
+        },
+        {
+          "msgid": "Text content is invalid",
+          "lineNo": 774
         },
         {
           "msgid": "Change %1",
-          "lineNo": 945
+          "lineNo": 961
+        },
+        {
+          "msgid": "Change %1",
+          "lineNo": 965
         },
         {
           "msgid": "Child element '%1' not allowed.",
-          "lineNo": 1067
+          "lineNo": 1087
         }
       ]
     },
     "cv.ui.manager.model.config.Option": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4666,7 +4689,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.config.Section": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4688,7 +4711,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Any": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4711,7 +4734,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Attribute": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4742,12 +4765,12 @@
       "translations": [
         {
           "msgid": "complex type, please see documentation",
-          "lineNo": 130
+          "lineNo": 150
         }
       ]
     },
     "cv.ui.manager.model.schema.Base": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4765,7 +4788,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Choice": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4789,7 +4812,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.DocumentationMapping": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4803,7 +4826,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Element": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4838,7 +4861,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Group": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4861,7 +4884,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.MAnnotation": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -4879,7 +4902,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Sequence": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4904,7 +4927,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.SimpleType": {
-      "mtime": "2022-01-21T22:33:53.565Z",
+      "mtime": "2022-01-25T19:40:23.787Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4925,7 +4948,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Controller": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4961,7 +4984,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Message": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4989,7 +5012,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.FileSystem": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5030,7 +5053,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.VirtualElementItem": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -5075,12 +5098,12 @@
       "translations": [
         {
           "msgid": "Drag to move",
-          "lineNo": 186
+          "lineNo": 206
         }
       ]
     },
     "cv.ui.manager.tree.VirtualFsItem": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5101,12 +5124,12 @@
       "translations": [
         {
           "msgid": "Trash",
-          "lineNo": 83
+          "lineNo": 103
         }
       ]
     },
     "cv.ui.manager.upload.MDragUpload": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -5132,7 +5155,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.upload.UploadMgr": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5162,32 +5185,32 @@
       "translations": [
         {
           "msgid": "Replacing the file failed.",
-          "lineNo": 95
+          "lineNo": 115
         },
         {
           "msgid": "This file already exists, do you want to replace it?",
-          "lineNo": 97
+          "lineNo": 117
         },
         {
           "msgid": "File already exists",
-          "lineNo": 101
+          "lineNo": 121
         },
         {
           "msgid": "Uploading this file is not allowed here.",
-          "lineNo": 106
+          "lineNo": 126
         },
         {
           "msgid": "File upload stopped with an error: %1",
-          "lineNo": 116
+          "lineNo": 136
         },
         {
           "msgid": "File has been uploaded",
-          "lineNo": 121
+          "lineNo": 141
         }
       ]
     },
     "cv.ui.manager.viewer.AbstractViewer": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5222,7 +5245,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.viewer.Config": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5266,24 +5289,24 @@
       "translations": [
         {
           "msgid": "Config viewer",
-          "lineNo": 52
+          "lineNo": 72
         },
         {
           "msgid": "%1 is no configuration file",
-          "lineNo": 109
+          "lineNo": 129
         },
         {
           "msgid": "This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window.",
-          "lineNo": 195
+          "lineNo": 215
         },
         {
           "msgid": "Loading...",
-          "lineNo": 209
+          "lineNo": 229
         }
       ]
     },
     "cv.ui.manager.viewer.Folder": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5378,20 +5401,20 @@
       "translations": [
         {
           "msgid": "Upload file",
-          "lineNo": 34
+          "lineNo": 54
         },
         {
           "msgid": "Show folder",
-          "lineNo": 55
+          "lineNo": 75
         },
         {
           "msgid": "Filter by name...",
-          "lineNo": 373
+          "lineNo": 393
         }
       ]
     },
     "cv.ui.manager.viewer.Icons": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5445,12 +5468,12 @@
       "translations": [
         {
           "msgid": "Show icons",
-          "lineNo": 24
+          "lineNo": 44
         }
       ]
     },
     "cv.ui.manager.viewer.Image": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5486,12 +5509,12 @@
       "translations": [
         {
           "msgid": "Show image",
-          "lineNo": 27
+          "lineNo": 47
         }
       ]
     },
     "cv.ui.manager.viewer.SvgIcon": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5514,7 +5537,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Audio": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5558,7 +5581,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Break": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5581,7 +5604,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.ColorChooser": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5642,7 +5665,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.DesignToggle": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5699,7 +5722,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Group": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5746,7 +5769,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Image": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5799,7 +5822,7 @@
       ]
     },
     "cv.ui.structure.pure.ImageTrigger": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5858,7 +5881,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Info": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5901,7 +5924,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.InfoAction": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5948,7 +5971,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.InfoTrigger": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6005,7 +6028,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Line": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6043,7 +6066,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.MultiTrigger": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6096,7 +6119,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NavBar": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6144,7 +6167,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NotificationCenterBadge": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6185,7 +6208,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Page": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6247,7 +6270,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageJump": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6300,7 +6323,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageLink": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6340,7 +6363,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PushButton": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6388,7 +6411,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Refresh": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6439,7 +6462,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Reload": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6483,7 +6506,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Rgb": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6528,7 +6551,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Roundbar": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6574,7 +6597,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Slide": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6631,7 +6654,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Switch": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6678,7 +6701,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Text": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6716,7 +6739,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Toggle": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6767,7 +6790,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Trigger": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6822,7 +6845,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Unknown": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6849,7 +6872,7 @@
       ]
     },
     "cv.ui.structure.pure.UrlTrigger": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6903,7 +6926,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Video": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6941,7 +6964,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Web": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -6989,7 +7012,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.WgPluginInfo": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -7034,7 +7057,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.WidgetInfoAction": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -7081,7 +7104,7 @@
       "hasDefer": true
     },
     "cv.theme.Dark": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31975,7 +31998,7 @@
       }
     },
     "cv.io.Client": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -32004,7 +32027,7 @@
       "hasDefer": null
     },
     "cv.Config": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.775Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -32055,7 +32078,7 @@
       "hasDefer": true
     },
     "cv.io.Mockup": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32091,7 +32114,7 @@
       "hasDefer": null
     },
     "cv.io.openhab.Rest": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32116,7 +32139,7 @@
       "hasDefer": null
     },
     "cv.io.mqtt.Client": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32142,12 +32165,12 @@
       "translations": [
         {
           "msgid": "Connection error",
-          "lineNo": 157
+          "lineNo": 158
         }
       ]
     },
     "cv.ConfigCache": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.775Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32167,7 +32190,7 @@
       "hasDefer": null
     },
     "cv.report.Record": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32188,7 +32211,8 @@
         "qx.core.Environment": {},
         "qx.bom.client.Locale": {},
         "cv.Version": {},
-        "cv.ConfigCache": {}
+        "cv.ConfigCache": {},
+        "cv.io.rest.Client": {}
       },
       "extends": "qx.core.Object",
       "include": [],
@@ -32196,7 +32220,7 @@
       "hasDefer": null
     },
     "cv.Version": {
-      "mtime": "2022-01-21T22:35:21.642Z",
+      "mtime": "2022-01-25T19:41:52.904Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32210,7 +32234,7 @@
       "hasDefer": null
     },
     "cv.TemplateEngine": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -32326,7 +32350,7 @@
       ]
     },
     "cv.log.appender.Native": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.log.appender.Util": {
@@ -32352,7 +32376,7 @@
       "hasDefer": true
     },
     "cv.data.FileWorker": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32373,7 +32397,7 @@
       "hasDefer": null
     },
     "cv.ui.PopupHandler": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32391,7 +32415,7 @@
       "hasDefer": true
     },
     "cv.util.Location": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32405,7 +32429,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.ResizeHandler": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32431,7 +32455,7 @@
       "hasDefer": null
     },
     "cv.ui.NotificationCenter": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32497,7 +32521,7 @@
       ]
     },
     "cv.ui.ToastManager": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32540,7 +32564,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigLoader": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32572,44 +32596,44 @@
       "translations": [
         {
           "msgid": "Config-File Error!",
-          "lineNo": 179
+          "lineNo": 199
         },
         {
           "msgid": "Invalid config file!",
-          "lineNo": 183
+          "lineNo": 203
         },
         {
           "msgid": "Please check!",
-          "lineNo": 183
+          "lineNo": 203
         },
         {
           "msgid": "Config file has wrong library version!",
-          "lineNo": 191
+          "lineNo": 211
         },
         {
           "msgid": "This can cause problems with your configuration",
-          "lineNo": 192
+          "lineNo": 212
         },
         {
           "msgid": "You can run the %1Configuration Upgrader%2.",
-          "lineNo": 193
+          "lineNo": 213
         },
         {
           "msgid": "Or you can start without upgrading %1with possible configuration problems%2",
-          "lineNo": 194
+          "lineNo": 214
         },
         {
           "msgid": "404: Config file not found. Neither as normal config (%1) nor as demo config (%2).",
-          "lineNo": 198
+          "lineNo": 218
         },
         {
           "msgid": "Unhandled error of type \"%1\"",
-          "lineNo": 201
+          "lineNo": 221
         }
       ]
     },
     "cv.util.ScriptLoader": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32654,7 +32678,7 @@
       ]
     },
     "cv.data.Model": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32671,7 +32695,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.WidgetFactory": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32688,7 +32712,7 @@
       "hasDefer": null
     },
     "cv.IconHandler": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32710,7 +32734,7 @@
       "hasDefer": null
     },
     "cv.Transform": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32725,7 +32749,7 @@
       "hasDefer": null
     },
     "cv.ui.common.BasicUpdate": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32748,7 +32772,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.Manager": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32766,7 +32790,7 @@
       "hasDefer": null
     },
     "cv.util.Color": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32783,7 +32807,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractWidget": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32831,7 +32855,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Update": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32854,7 +32878,7 @@
       "hasDefer": null
     },
     "cv.util.Function": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32868,7 +32892,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Operate": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32885,7 +32909,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasChildren": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32908,7 +32932,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Refresh": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32930,7 +32954,7 @@
       "hasDefer": null
     },
     "cv.util.String": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32945,7 +32969,7 @@
       "hasDefer": null
     },
     "cv.util.Tree": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32960,7 +32984,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractBasicWidget": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32983,7 +33007,7 @@
       "hasDefer": null
     },
     "cv.util.IconTools": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -32991,7 +33015,7 @@
           "usage": "dynamic"
         },
         "qx.log.Logger": {},
-        "qx.util.ResourceManager": {}
+        "cv.Application": {}
       },
       "extends": null,
       "include": [],
@@ -33019,7 +33043,7 @@
       ]
     },
     "cv.io.rest.Client": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33044,17 +33068,113 @@
       "translations": [
         {
           "msgid": "Backend does not respond!",
-          "lineNo": 200
+          "lineNo": 220
         },
         {
           "msgid": "File has been saved",
-          "lineNo": 210
+          "lineNo": 230
         },
         {
           "msgid": "Error saving file",
-          "lineNo": 219
+          "lineNo": 239
         }
       ]
+    },
+    "qxl.dialog.Confirm": {
+      "mtime": "2021-07-08T01:24:38.000Z",
+      "libraryName": "qxl.dialog",
+      "dependsOn": {
+        "qx.core.Environment": {
+          "load": true,
+          "defer": "load"
+        },
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qxl.dialog.Dialog": {
+          "load": true
+        },
+        "qx.ui.container.Composite": {},
+        "qx.ui.layout.HBox": {},
+        "qx.ui.basic.Image": {},
+        "qx.ui.basic.Label": {},
+        "qx.ui.form.Button": {},
+        "qx.ui.window.Window": {
+          "load": true
+        },
+        "qx.core.Init": {
+          "load": true
+        },
+        "qx.ui.layout.Grow": {
+          "load": true
+        },
+        "qx.ui.core.Blocker": {
+          "load": true
+        },
+        "qx.ui.core.FocusHandler": {
+          "load": true
+        }
+      },
+      "extends": "qxl.dialog.Dialog",
+      "include": [],
+      "implement": [],
+      "environment": {
+        "provided": [],
+        "required": {
+          "module.objectid": {}
+        }
+      },
+      "hasDefer": null,
+      "translations": [
+        {
+          "msgid": "yes",
+          "lineNo": 116
+        },
+        {
+          "msgid": "no",
+          "lineNo": 129
+        }
+      ]
+    },
+    "cv.theme.dark.Images": {
+      "mtime": "2022-01-25T19:40:23.783Z",
+      "libraryName": "cv",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        }
+      },
+      "extends": null,
+      "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "com.zenesis.qx.upload.UploadMenuButton": {
+      "mtime": "2020-11-17T01:18:18.000Z",
+      "libraryName": "com.zenesis.qx.upload",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.ui.menu.Button": {
+          "load": true
+        },
+        "com.zenesis.qx.upload.MUploadButton": {
+          "load": true
+        },
+        "qx.ui.menu.AbstractButton": {
+          "load": true
+        }
+      },
+      "extends": "qx.ui.menu.Button",
+      "include": [
+        "com.zenesis.qx.upload.MUploadButton"
+      ],
+      "implement": [],
+      "hasDefer": null
     },
     "qxl.dialog.Dialog": {
       "mtime": "2021-07-08T01:24:38.000Z",
@@ -33104,45 +33224,6 @@
       "extends": "qx.ui.window.Window",
       "include": [
         "qxl.dialog.MDialog"
-      ],
-      "implement": [],
-      "hasDefer": null
-    },
-    "cv.theme.dark.Images": {
-      "mtime": "2022-01-21T22:33:53.561Z",
-      "libraryName": "cv",
-      "dependsOn": {
-        "qx.Class": {
-          "load": true,
-          "usage": "dynamic"
-        }
-      },
-      "extends": null,
-      "include": [],
-      "implement": [],
-      "hasDefer": null
-    },
-    "com.zenesis.qx.upload.UploadMenuButton": {
-      "mtime": "2020-11-17T01:18:18.000Z",
-      "libraryName": "com.zenesis.qx.upload",
-      "dependsOn": {
-        "qx.Class": {
-          "load": true,
-          "usage": "dynamic"
-        },
-        "qx.ui.menu.Button": {
-          "load": true
-        },
-        "com.zenesis.qx.upload.MUploadButton": {
-          "load": true
-        },
-        "qx.ui.menu.AbstractButton": {
-          "load": true
-        }
-      },
-      "extends": "qx.ui.menu.Button",
-      "include": [
-        "com.zenesis.qx.upload.MUploadButton"
       ],
       "implement": [],
       "hasDefer": null
@@ -33232,7 +33313,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigUpgrader": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33253,12 +33334,12 @@
       "translations": [
         {
           "msgid": "Upgrader from version %1 not implemented",
-          "lineNo": 59
+          "lineNo": 60
         }
       ]
     },
     "cv.IconConfig": {
-      "mtime": "2022-01-21T22:33:53.557Z",
+      "mtime": "2022-01-25T19:40:23.779Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33440,7 +33521,7 @@
       "hasDefer": null
     },
     "cv.svg.Element": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33461,7 +33542,7 @@
       "hasDefer": null
     },
     "cv.util.LimitedRateUpdateAnimator": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33479,7 +33560,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAnimatedButton": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -33494,7 +33575,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HandleLongpress": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -33508,7 +33589,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.IPage": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -33522,7 +33603,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Color": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33539,7 +33620,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Decoration": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33556,7 +33637,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Font": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33573,7 +33654,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Icon": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33590,11 +33671,12 @@
         "qxl.dialog.icon.ok": "@MaterialIcons/check/18",
         "qxl.dialog.icon.info": "@MaterialIcons/info/18",
         "qxl.dialog.icon.error": "@MaterialIcons/error/18",
-        "qxl.dialog.icon.warning": "@MaterialIcons/warning/18"
+        "qxl.dialog.icon.warning": "@MaterialIcons/warning/18",
+        "qxl.dialog.icon.delete": "@MaterialIcons/delete_forever/18"
       }
     },
     "cv.theme.dark.Appearance": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -33869,7 +33951,7 @@
       "hasDefer": null
     },
     "cv.io.IClient": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Interface": {
@@ -33883,7 +33965,7 @@
       "hasDefer": null
     },
     "cv.io.transport.LongPolling": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -33905,7 +33987,7 @@
       "hasDefer": null
     },
     "cv.io.transport.Sse": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -33923,7 +34005,7 @@
       "hasDefer": null
     },
     "cv.io.parser.Json": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -33938,7 +34020,7 @@
       "hasDefer": null
     },
     "cv.report.utils.MXhrHook": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -33954,7 +34036,7 @@
       "hasDefer": null
     },
     "cv.ui.PagePartsHandler": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33976,7 +34058,7 @@
       "hasDefer": null
     },
     "cv.ui.PageHandler": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -34017,7 +34099,7 @@
       "hasDefer": null
     },
     "cv.ui.TrickOMatic": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34033,7 +34115,7 @@
       "hasDefer": null
     },
     "cv.ui.Popup": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34065,7 +34147,7 @@
       ]
     },
     "cv.ui.layout.States": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34082,7 +34164,7 @@
       "hasDefer": null
     },
     "cv.ui.MHandleMessage": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34101,7 +34183,7 @@
       "hasDefer": null
     },
     "cv.ui.BodyBlocker": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -34122,7 +34204,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAddress": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34136,7 +34218,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasStyling": {
-      "mtime": "2022-01-21T22:33:53.561Z",
+      "mtime": "2022-01-25T19:40:23.783Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -34147,6 +34229,25 @@
       },
       "extends": null,
       "include": [],
+      "implement": [],
+      "hasDefer": null
+    },
+    "com.zenesis.qx.upload.MUploadButton": {
+      "mtime": "2020-11-17T01:18:18.000Z",
+      "libraryName": "com.zenesis.qx.upload",
+      "dependsOn": {
+        "qx.Mixin": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "com.zenesis.qx.upload.MParameters": {
+          "load": true
+        }
+      },
+      "extends": null,
+      "include": [
+        "com.zenesis.qx.upload.MParameters"
+      ],
       "implement": [],
       "hasDefer": null
     },
@@ -34186,63 +34287,6 @@
         {
           "msgid": "Cancel",
           "lineNo": 222
-        }
-      ]
-    },
-    "qxl.dialog.Confirm": {
-      "mtime": "2021-07-08T01:24:38.000Z",
-      "libraryName": "qxl.dialog",
-      "dependsOn": {
-        "qx.core.Environment": {
-          "load": true,
-          "defer": "load"
-        },
-        "qx.Class": {
-          "load": true,
-          "usage": "dynamic"
-        },
-        "qxl.dialog.Dialog": {
-          "load": true
-        },
-        "qx.ui.container.Composite": {},
-        "qx.ui.layout.HBox": {},
-        "qx.ui.basic.Image": {},
-        "qx.ui.basic.Label": {},
-        "qx.ui.form.Button": {},
-        "qx.ui.window.Window": {
-          "load": true
-        },
-        "qx.core.Init": {
-          "load": true
-        },
-        "qx.ui.layout.Grow": {
-          "load": true
-        },
-        "qx.ui.core.Blocker": {
-          "load": true
-        },
-        "qx.ui.core.FocusHandler": {
-          "load": true
-        }
-      },
-      "extends": "qxl.dialog.Dialog",
-      "include": [],
-      "implement": [],
-      "environment": {
-        "provided": [],
-        "required": {
-          "module.objectid": {}
-        }
-      },
-      "hasDefer": null,
-      "translations": [
-        {
-          "msgid": "yes",
-          "lineNo": 116
-        },
-        {
-          "msgid": "no",
-          "lineNo": 129
         }
       ]
     },
@@ -34377,25 +34421,6 @@
           "lineNo": 573
         }
       ]
-    },
-    "com.zenesis.qx.upload.MUploadButton": {
-      "mtime": "2020-11-17T01:18:18.000Z",
-      "libraryName": "com.zenesis.qx.upload",
-      "dependsOn": {
-        "qx.Mixin": {
-          "load": true,
-          "usage": "dynamic"
-        },
-        "com.zenesis.qx.upload.MParameters": {
-          "load": true
-        }
-      },
-      "extends": null,
-      "include": [
-        "com.zenesis.qx.upload.MParameters"
-      ],
-      "implement": [],
-      "hasDefer": null
     },
     "com.zenesis.qx.upload.MParameters": {
       "mtime": "2020-11-17T01:18:18.000Z",
@@ -34939,7 +34964,7 @@
       "hasDefer": null
     },
     "cv.io.Watchdog": {
-      "mtime": "2022-01-21T22:33:53.373Z",
+      "mtime": "2022-01-25T19:40:23.595Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -34956,7 +34981,7 @@
       "hasDefer": null
     },
     "cv.ui.util.ProgressBar": {
-      "mtime": "2022-01-21T22:33:53.569Z",
+      "mtime": "2022-01-25T19:40:23.791Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {

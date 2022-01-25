@@ -38,7 +38,7 @@
 
   /* PageHandler.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -98,7 +98,7 @@
      */
     members: {
       seekTo: function seekTo(target, speed) {
-        if (isNaN(speed)) {
+        if (!Number.isFinite(speed)) {
           speed = 0;
         }
 
@@ -274,4 +274,4 @@
   cv.ui.PageHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageHandler.js.map?dt=1642804697787
+//# sourceMappingURL=PageHandler.js.map?dt=1643139887848

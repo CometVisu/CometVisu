@@ -48,7 +48,7 @@
 
   /* Config.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -168,6 +168,11 @@
        * @type {var}
        */
       use_maturity: false,
+
+      /**
+       * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
+       */
+      pluginsToLoad: [],
 
       /**
        * All configuration and settings from the current configuration
@@ -430,4 +435,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1642804694518
+//# sourceMappingURL=Config.js.map?dt=1643139884529

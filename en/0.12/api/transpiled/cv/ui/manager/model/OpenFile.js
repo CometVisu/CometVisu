@@ -8,10 +8,32 @@
       "qx.core.Object": {
         "construct": true,
         "require": true
-      }
+      },
+      "cv.ui.manager.control.FileHandlerRegistry": {},
+      "qx.Interface": {},
+      "cv.ui.manager.editor.IEditor": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* OpenFile.js 
+   * 
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * 
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
 
   /**
    * Data model for currently opened files, a combination of cv.ui.manager.model.FileItem and a certain FileHandler.
@@ -130,10 +152,27 @@
           // change to permanent once we have a modification
           this.setPermanent(true);
         }
+      },
+      save: function save(callback, overrideHash) {
+        var file = this.getFile();
+        var handlerId = this.getHandlerId();
+        var fileHandler;
+
+        if (handlerId) {
+          fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+        } else {
+          fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+        }
+
+        if (file.isModified()) {
+          if (fileHandler && fileHandler.instance && qx.Interface.objectImplements(fileHandler.instance, cv.ui.manager.editor.IEditor)) {
+            fileHandler.instance.save(callback, overrideHash);
+          }
+        }
       }
     }
   });
   cv.ui.manager.model.OpenFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenFile.js.map?dt=1642804663157
+//# sourceMappingURL=OpenFile.js.map?dt=1643139853188

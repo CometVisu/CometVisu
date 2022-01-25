@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 7,
+        "line": 27,
         "column": 0
       },
       "end": {
-        "line": 506,
+        "line": 526,
         "column": 3
       }
     },
@@ -42,11 +42,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 19,
+        "line": 39,
         "column": 13
       },
       "end": {
-        "line": 24,
+        "line": 44,
         "column": 3
       }
     },
@@ -69,11 +69,11 @@
     "__elementCache": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 24
         }
       },
@@ -83,11 +83,11 @@
     "__metaElementCache": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 53,
           "column": 28
         }
       },
@@ -97,11 +97,11 @@
     "_dataProvider": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 23
         }
       },
@@ -111,11 +111,11 @@
     "getLastOpenedTag": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 106,
           "column": 5
         }
       },
@@ -125,11 +125,11 @@
     "findElements": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 143,
           "column": 5
         }
       },
@@ -139,11 +139,11 @@
     "isItemAvailable": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 162,
           "column": 5
         }
       },
@@ -153,11 +153,11 @@
     "getElementString": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 201,
           "column": 5
         }
       },
@@ -167,11 +167,11 @@
     "getAvailableElements": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 228,
           "column": 5
         }
       },
@@ -181,11 +181,11 @@
     "getAvailableAttributes": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 251,
           "column": 5
         }
       },
@@ -195,11 +195,11 @@
     "getProvider": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 493,
+          "line": 513,
           "column": 5
         }
       },
@@ -3419,11 +3419,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 501,
+        "line": 521,
         "column": 12
       },
       "end": {
-        "line": 505,
+        "line": 525,
         "column": 3
       }
     },

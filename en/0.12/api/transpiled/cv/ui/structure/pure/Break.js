@@ -17,7 +17,7 @@
 
   /* Break.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -66,4 +66,4 @@
   cv.ui.structure.pure.Break.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Break.js.map?dt=1642804664417
+//# sourceMappingURL=Break.js.map?dt=1643139854365

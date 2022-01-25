@@ -84,7 +84,7 @@ var EVENT_RECORDER = null;
         wrapper = this.$$wrappers[type][listener.$$WRID];
         delete this.$$wrappers[type][listener.$$WRID];
       }
-      if (this.removeNativeListener) {
+      if (this.removeNativeEventListener) {
         this.removeNativeEventListener(type, wrapper, options);
       }
       else if (this.detachEvent)

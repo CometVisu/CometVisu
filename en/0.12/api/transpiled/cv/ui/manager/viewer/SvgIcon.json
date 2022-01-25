@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 82,
+        "line": 102,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 17,
+        "line": 37,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "name": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 29,
+          "line": 49,
           "column": 5
         }
       },
@@ -62,11 +62,11 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 31,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 5
         }
       },
@@ -117,11 +117,11 @@
     "__spriteUrl": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 63,
           "column": 21
         }
       },
@@ -131,11 +131,11 @@
     "__useElement": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 64,
           "column": 22
         }
       },
@@ -145,11 +145,11 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 66,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 82,
           "column": 5
         }
       },
@@ -162,11 +162,11 @@
     "_createContentElement": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 91,
           "column": 5
         }
       },
@@ -7199,11 +7199,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 79,
+        "line": 99,
         "column": 12
       },
       "end": {
-        "line": 81,
+        "line": 101,
         "column": 3
       }
     },

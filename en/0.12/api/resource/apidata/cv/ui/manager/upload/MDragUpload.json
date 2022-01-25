@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 11,
+        "line": 31,
         "column": 0
       },
       "end": {
-        "line": 295,
+        "line": 315,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 18,
+        "line": 38,
         "column": 14
       },
       "end": {
-        "line": 31,
+        "line": 51,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "uploadMode": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 63,
           "column": 5
         }
       },
@@ -62,11 +62,11 @@
     "uploadHint": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 68,
           "column": 5
         }
       },
@@ -81,11 +81,11 @@
     "onHtml5Drop": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 84,
           "column": 5
         }
       },
@@ -109,11 +109,11 @@
     "uploadFile": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 116,
           "column": 5
         }
       },
@@ -145,11 +145,11 @@
     "hasDroppableFile": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 118,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 120,
           "column": 5
         }
       },
@@ -159,11 +159,11 @@
     "getFiles": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 152,
           "column": 5
         }
       },
@@ -195,11 +195,11 @@
     "__hasEmptyInfo": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 161,
           "column": 24
         }
       },
@@ -209,11 +209,11 @@
     "_boundOnStop": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 162,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 162,
           "column": 22
         }
       },
@@ -223,11 +223,11 @@
     "__syncBounds": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 168,
           "column": 5
         }
       },
@@ -237,11 +237,11 @@
     "_createMDragUploadChildControlImpl": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 171,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 215,
           "column": 5
         }
       },
@@ -252,11 +252,11 @@
     "_onStopDragging": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 201,
+          "line": 221,
           "column": 5
         }
       },
@@ -266,11 +266,11 @@
     "_applyStartDragListeners": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 227,
+          "line": 247,
           "column": 5
         }
       },
@@ -288,11 +288,11 @@
     "_applyDragListeners": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 252,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 295,
           "column": 5
         }
       },
@@ -310,11 +310,11 @@
     "__applyUploadMode": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 293,
+          "line": 313,
           "column": 5
         }
       },

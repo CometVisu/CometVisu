@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 39,
+        "line": 59,
         "column": 3
       }
     },
@@ -31,11 +31,11 @@
     "canHandleAction": {
       "location": {
         "start": {
-          "line": 15,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 15,
+          "line": 35,
           "column": 44
         }
       },
@@ -62,11 +62,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 22,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 22,
+          "line": 42,
           "column": 48
         }
       },
@@ -100,11 +100,11 @@
     "configureButton": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 51
         }
       },
@@ -138,11 +138,11 @@
     "unConfigureButton": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 57,
           "column": 53
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 223,
+        "line": 243,
         "column": 3
       }
     },
@@ -34,11 +34,11 @@
     "BASE_URL": {
       "location": {
         "start": {
-          "line": 13,
+          "line": 33,
           "column": 4
         },
         "end": {
-          "line": 13,
+          "line": 33,
           "column": 18
         }
       },
@@ -48,11 +48,11 @@
     "__configFile": {
       "location": {
         "start": {
-          "line": 14,
+          "line": 34,
           "column": 4
         },
         "end": {
-          "line": 14,
+          "line": 34,
           "column": 22
         }
       },
@@ -62,11 +62,11 @@
     "__dirClient": {
       "location": {
         "start": {
-          "line": 15,
+          "line": 35,
           "column": 4
         },
         "end": {
-          "line": 15,
+          "line": 35,
           "column": 21
         }
       },
@@ -76,11 +76,11 @@
     "__dpClient": {
       "location": {
         "start": {
-          "line": 16,
+          "line": 36,
           "column": 4
         },
         "end": {
-          "line": 16,
+          "line": 36,
           "column": 20
         }
       },
@@ -90,11 +90,11 @@
     "__callbacks": {
       "location": {
         "start": {
-          "line": 17,
+          "line": 37,
           "column": 4
         },
         "end": {
-          "line": 17,
+          "line": 37,
           "column": 19
         }
       },
@@ -104,11 +104,11 @@
     "getBaseUrl": {
       "location": {
         "start": {
-          "line": 19,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 32,
+          "line": 52,
           "column": 5
         }
       },
@@ -118,11 +118,11 @@
     "getConfigClient": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 85,
           "column": 5
         }
       },
@@ -132,11 +132,11 @@
     "getFsClient": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 141,
           "column": 5
         }
       },
@@ -146,11 +146,11 @@
     "getDataProviderClient": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 171,
           "column": 5
         }
       },
@@ -160,11 +160,11 @@
     "_enableSync": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 173,
           "column": 4
         },
         "end": {
-          "line": 203,
+          "line": 223,
           "column": 5
         }
       },
@@ -174,11 +174,11 @@
     "_onSaveSuccess": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 232,
           "column": 5
         }
       },
@@ -188,11 +188,11 @@
     "_onSaveError": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 241,
           "column": 5
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 137,
+        "line": 157,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 18,
+        "line": 38,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "element": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 27,
+          "line": 47,
           "column": 5
         }
       },
@@ -59,11 +59,11 @@
     "title": {
       "location": {
         "start": {
-          "line": 28,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 30,
+          "line": 50,
           "column": 5
         }
       },
@@ -74,11 +74,11 @@
     "changes": {
       "location": {
         "start": {
-          "line": 31,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 53,
           "column": 5
         }
       },
@@ -89,11 +89,11 @@
     "changeType": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4
         },
         "end": {
-          "line": 37,
+          "line": 57,
           "column": 5
         }
       },
@@ -149,11 +149,11 @@
     "undo": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 90,
+          "line": 110,
           "column": 5
         }
       },
@@ -179,11 +179,11 @@
     "redo": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 155,
           "column": 5
         }
       },

@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 4,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 210,
+        "line": 230,
         "column": 3
       }
     },
@@ -30,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 12,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 15,
+        "line": 35,
         "column": 3
       }
     },
@@ -44,11 +44,11 @@
     "LAST_ID": {
       "location": {
         "start": {
-          "line": 23,
+          "line": 43,
           "column": 4
         },
         "end": {
-          "line": 23,
+          "line": 43,
           "column": 14
         }
       },
@@ -60,11 +60,11 @@
     "multiple": {
       "location": {
         "start": {
-          "line": 32,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 35,
+          "line": 55,
           "column": 5
         }
       },
@@ -81,11 +81,11 @@
     "folder": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 61,
           "column": 5
         }
       },
@@ -99,11 +99,11 @@
     "filename": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 66,
           "column": 5
         }
       },
@@ -116,11 +116,11 @@
     "force": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 71,
           "column": 5
         }
       },
@@ -167,11 +167,11 @@
     "_updateUploadUrl": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 81,
           "column": 5
         }
       },
@@ -184,11 +184,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 157,
           "column": 5
         }
       },
@@ -198,11 +198,11 @@
     "_getUniqueFileId": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 166,
           "column": 5
         }
       },
@@ -228,11 +228,11 @@
     "forceUpload": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 184,
           "column": 5
         }
       },
@@ -256,11 +256,11 @@
     "uploadFile": {
       "location": {
         "start": {
-          "line": 171,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 206,
           "column": 5
         }
       },
@@ -284,11 +284,11 @@
     "replaceFile": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 228,
           "column": 5
         }
       },

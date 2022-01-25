@@ -9,24 +9,25 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 1,
+        "line": 21,
         "column": 0
       },
       "end": {
-        "line": 31,
+        "line": 51,
         "column": 3
       }
-    }
+    },
+    "jsdoc": {}
   },
   "type": "class",
   "construct": {
     "location": {
       "start": {
-        "line": 8,
+        "line": 28,
         "column": 13
       },
       "end": {
-        "line": 11,
+        "line": 31,
         "column": 3
       }
     },
@@ -36,11 +37,11 @@
     "_createDomElement": {
       "location": {
         "start": {
-          "line": 19,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 21,
+          "line": 41,
           "column": 5
         }
       },
@@ -64,11 +65,11 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 22,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 24,
+          "line": 44,
           "column": 5
         }
       },
@@ -229,11 +230,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 27,
+        "line": 47,
         "column": 13
       },
       "end": {
-        "line": 30,
+        "line": 50,
         "column": 3
       }
     },
