@@ -197,8 +197,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         const preview = this.getChildControl('preview');
         if (file.isWriteable()) {
           if (!preview.getFile()) {
-            const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-            preview.setFile(previewConfig);
+            preview.setFile(this.__getPreviewFile());
           }
         } else {
           // this file is not writable, we can use the real one for preview
@@ -505,10 +504,9 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
            break;
 
          case 'toggle-expert':
-           control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'),
-             cv.theme.dark.Images.getIcon('expert', 16));
-           control.addListener('execute', function () {
-             this.toggleExpert();
+           control = new qx.ui.form.CheckBox(this.tr('Expertview'));
+           control.addListener('changeValue', function (ev) {
+             this.setExpert(ev.getData());
            }, this);
            this.getChildControl('toolbar').add(control);
            break;
@@ -1849,7 +1847,6 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       toolbar.addSeparator();
       this._createChildControl('edit-button');
       this._createChildControl('delete-button');
-      toolbar.addSeparator();
       this._createChildControl('toggle-expert');
       toolbar.addSpacer();
       this._createChildControl('refresh-preview');
@@ -1974,6 +1971,22 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       }
     },
 
+    __getPreviewFile: function () {
+      let file;
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(f => {
+        if (f.getName() === 'visu_config_previewtemp.xml') {
+          file = f;
+          return true;
+        }
+        return false;
+      });
+      if (!file) {
+        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+        file.setTemporary(true);
+      }
+      return file;
+    },
+
     __loadContent: function (value, errors) {
       const tree = this.getChildControl('tree');
       const file = this.getFile();
@@ -1993,8 +2006,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           const preview = this.getChildControl('preview');
           if (file.isWriteable()) {
             if (!preview.getFile()) {
-              const previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-              preview.setFile(previewConfig);
+              preview.setFile(this.__getPreviewFile());
             }
           } else {
             preview.setFile(file);
@@ -2066,19 +2078,36 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           return;
         }
         this.getChildControl('preview').show();
-        this._client.updateSync({
-          path: previewFile.getFullPath(),
-          hash: 'ignore'
-        }, content, () => {
-          qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-            type: 'contentChanged',
-            file: previewFile,
-            data: content,
-            source: this
-          });
-          this.__modifiedPreviewElements.removeAll();
-          this.resetPreviewState();
-        }, this);
+        if (previewFile.isTemporary()) {
+          this._client.createSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+            previewFile.resetTemporary();
+          }, this);
+        } else {
+          this._client.updateSync({
+            path: previewFile.getFullPath(),
+            hash: 'ignore'
+          }, content, () => {
+            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+              type: 'contentChanged',
+              file: previewFile,
+              data: content,
+              source: this
+            });
+            this.__modifiedPreviewElements.removeAll();
+            this.resetPreviewState();
+          }, this);
+        }
       }
     },
 
