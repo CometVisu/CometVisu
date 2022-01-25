@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr ""
 
@@ -1126,4 +1126,12 @@ msgstr ""
 
 #: cv/ui/manager/Main.js
 msgid "Save & quit"
+msgstr ""
+
+#: cv/Application.js
+msgid "Manager is not available"
+msgstr ""
+
+#: cv/Application.js
+msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
 msgstr ""
