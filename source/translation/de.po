@@ -1062,4 +1062,4 @@ msgstr "Der Manager steht nicht zu Verfügung"
 
 #: cv/Application.js
 msgid "Your system does not provide the required PHP version for the manager. Installed: %1, required: %2"
-msgstr "Die auf Ihrem System installierte PHP version wird vom Manager nicht unterstützt. Installiert: %1, erforderlich: %2"
+msgstr "Die auf Ihrem System installierte PHP Version wird vom Manager nicht unterstützt. Installiert: %1, erforderlich: %2"
