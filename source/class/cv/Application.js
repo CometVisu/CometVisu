@@ -163,6 +163,22 @@ qx.Class.define('cv.Application',
     inManager: {
       check: 'Boolean',
       init: false
+    },
+
+    managerDisabled: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeManagerDisabled'
+    },
+
+    managerDisabledReason: {
+      check: 'String',
+      nullable: true
+    },
+    managerChecked: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyManagerChecked'
     }
   },
 
@@ -194,12 +210,21 @@ qx.Class.define('cv.Application',
       }
     },
 
+    _applyManagerChecked: function(value) {
+      if (value && cv.Config.request.queryKey.manager) {
+        const action = cv.Config.request.queryKey.open ? 'open' : '';
+        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
+        this.showManager(action, data);
+      }
+    },
+
     /**
      * This method contains the initial application code and gets called
      * during startup of the application
      */
     main : function() {
       cv.ConfigCache.init();
+      this._checkBackend();
       qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get('qx.debug')) {
         if (typeof replayLog !== 'undefined' && replayLog) {
@@ -233,12 +258,6 @@ qx.Class.define('cv.Application',
       const manCommand = new qx.ui.command.Command('Ctrl+M');
       cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
       manCommand.addListener('execute', () => this.showManager(), this);
-      if (cv.Config.request.queryKey.manager) {
-        const action = cv.Config.request.queryKey.open ? 'open' : '';
-        const data = cv.Config.request.queryKey.open ? cv.Config.request.queryKey.open : undefined;
-        this.showManager(action, data);
-      }
-
       this.registerServiceWorker();
 
       if (qx.core.Environment.get('qx.aspects')) {
@@ -279,31 +298,43 @@ qx.Class.define('cv.Application',
      * @param data {String|Map} path of file that action should executed on or a Map of options
      */
     showManager: function (action, data) {
-      qx.io.PartLoader.require(['manager'], function (states) {
-        // break dependency
-        const engine = cv.TemplateEngine.getInstance();
-        if (!engine.isLoggedIn() && !action) {
-          // never start the manager before we are logged in, as the login response might contain information about the REST API URL
-          engine.addListenerOnce('changeLoggedIn', () => this.showManager());
-          return;
-        }
-        const ManagerMain = cv.ui['manager']['Main'];
-        const firstCall = !ManagerMain.constructor.$$instance;
-        const manager = ManagerMain.getInstance();
-        if (!action && !firstCall) {
-          manager.setVisible(!manager.getVisible());
-        } else if (firstCall) {
-          // initially bind manager visibility
-          manager.bind('visible', this, 'inManager');
-        }
+      if (this.isManagerDisabled()) {
+        const notification = {
+          topic: 'cv.manager.error',
+          target: 'popup',
+          title: qx.locale.Manager.tr('Manager is not available'),
+          message: this.getManagerDisabledReason(),
+          severity: 'high',
+          deletable: true
+        };
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      } else {
+        qx.io.PartLoader.require(['manager'], function (states) {
+          // break dependency
+          const engine = cv.TemplateEngine.getInstance();
+          if (!engine.isLoggedIn() && !action) {
+            // never start the manager before we are logged in, as the login response might contain information about the REST API URL
+            engine.addListenerOnce('changeLoggedIn', () => this.showManager());
+            return;
+          }
+          const ManagerMain = cv.ui['manager']['Main'];
+          const firstCall = !ManagerMain.constructor.$$instance;
+          const manager = ManagerMain.getInstance();
+          if (!action && !firstCall) {
+            manager.setVisible(!manager.getVisible());
+          } else if (firstCall) {
+            // initially bind manager visibility
+            manager.bind('visible', this, 'inManager');
+          }
 
-        if (manager.getVisible() && action && data) {
-          // delay this a little bit, give the manager some time to settle
-          qx.event.Timer.once(() => {
-            qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
-          }, this, 1000);
-        }
-      }, this);
+          if (manager.getVisible() && action && data) {
+            // delay this a little bit, give the manager some time to settle
+            qx.event.Timer.once(() => {
+              qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
+            }, this, 1000);
+          }
+        }, this);
+      }
     },
 
     showConfigErrors: function(configName, options) {
@@ -820,6 +851,81 @@ qx.Class.define('cv.Application',
           cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || 'id_';
         });
       }
+    },
+
+    _checkBackend: function () {
+      const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+      const xhr = new qx.io.request.Xhr(url);
+      xhr.set({
+        method: 'GET',
+        accept: 'application/json'
+      });
+      xhr.addListenerOnce('success', function (e) {
+        const req = e.getTarget();
+        const env = req.getResponse();
+        const serverVersionId = env.PHP_VERSION_ID;
+        //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+        const parts = env.required_php_version.split(' ');
+        const disable = parts.some(constraint => {
+          const match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+          if (match) {
+            const operator = match[1];
+            const majorConstraint = parseInt(match[2]);
+            const hasMinorVersion = match[3] !== undefined;
+            const minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+            const hasPatchVersion = match[4] !== undefined;
+            const patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+            const constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+            const maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99);
+            // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+            switch (operator) {
+              case '>=':
+                if (serverVersionId < constraintId) {
+                  return true;
+                }
+                break;
+              case '>':
+                if (serverVersionId <= constraintId) {
+                  return true;
+                }
+                break;
+              case '<=':
+                if (serverVersionId > maxId) {
+                  return true;
+                }
+                break;
+              case '<':
+                if (serverVersionId >= maxId) {
+                  return true;
+                }
+                break;
+              case '^':
+                if (serverVersionId < constraintId || serverVersionId > 10000 *(majorConstraint+1)) {
+                  return true;
+                }
+                break;
+              case '~':
+                if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint+1) : serverVersionId > (10000 *(majorConstraint) + 100 * (patchConstraint+1))) {
+                  return true;
+                }
+                break;
+            }
+          }
+          return false;
+        });
+        if (disable) {
+          this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+          this.setManagerDisabled(true);
+          this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+        } else {
+          this.info('Manager available for PHP version', env.phpversion);
+        }
+        this.setManagerChecked(true);
+      }, this);
+      xhr.addListener('statusError', e => {
+        this.setManagerChecked(true);
+      });
+      xhr.send();
     },
 
     close: function () {
