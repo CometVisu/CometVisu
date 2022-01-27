@@ -20,7 +20,7 @@
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
     "generate-api": "openapi-generator-cli generate",
-    "postgenerate-api": "rm -r source/rest/manager/lib/Model && rm -r source/rest/manager/tests"
+    "postgenerate-api": "rm -r source/rest/manager/lib/Model && rm -r source/rest/manager/lib/BaseModel.php && rm -r source/rest/manager/tests"
   },
   "license": "GPL-3.0",
   "authors": [

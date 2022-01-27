@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "5.3.1",
+    "generators": {
+      "backend-api": {
+        "generatorName": "php-slim4",
+        "output": "#{cwd}/source/rest/manager",
+        "glob": "source/rest/openapi.yaml"
+      }
+    }
+  }
+}

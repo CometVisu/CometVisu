@@ -13,8 +13,7 @@
     "dyorg/slim-token-authentication": "dev-slim4",
     "ybelenko/openapi-data-mocker": "^1.0",
     "ybelenko/openapi-data-mocker-server-middleware": "^1.0",
-    "slim/psr7": "^1.1.0",
-    "slim/http": "^1.2"
+    "slim/psr7": "^1.1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.0 || ^9.0",
