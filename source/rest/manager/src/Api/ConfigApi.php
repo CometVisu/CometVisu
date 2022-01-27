@@ -19,8 +19,8 @@ class ConfigApi extends AbstractConfigApi
     public function __construct(ContainerInterface $container)
     {
       parent::__construct($container);
-      $this->apiConfig = include(getcwd() . '/src/config.php');
-      $this->configFile = realpath($this->apiConfig->configDir . '/hidden.php');
+      $this->apiConfig = include(getcwd() . '/../src/config.php');
+      $this->configFile = realpath($this->apiConfig->configDir . '/../hidden.php');
       $this->load();
   }
 
@@ -66,13 +66,15 @@ $hidden = json_decode($data, true);
     if (!array_key_exists($section, $this->hidden)) {
       $this->hidden[$section] = array();
     } elseif (array_key_exists($key, $this->config[$section])) {
-      return $response->withJson(['message' => 'Config option already exists'], 406);
+      $response->getBody()->write(json_encode(['message' => 'Config option already exists']));
+      return $response->withStatus(406);
     }
     $this->hidden[$section][$key] = $value;
     try {
       $this->dump();
     } catch (Exception $e) {
-      return $response->withJson(['message' => $e->getMessage()], $e->getCode());
+      $response->getBody()->write(json_encode(['message' => $e->getMessage()]));
+      return $response->withStatus($e->getCode());
     }
     return $response->withStatus(200);
   }
@@ -89,7 +91,8 @@ $hidden = json_decode($data, true);
         if (array_key_exists($key, $this->hidden[$section])) {
           unset($this->hidden[$section][$key]);
         } else {
-          return $response->withJson(['message' => 'Config option not found'], 403);
+          $response->getBody()->write(json_encode(['message' => 'Config option not found']));
+          return $response->withStatus( 403);
         }
       } else {
         // delete complete section
@@ -98,11 +101,13 @@ $hidden = json_decode($data, true);
       try {
         $this->dump();
       } catch (Exception $e) {
-        return $response->withJson(['message' => $e->getMessage()], $e->getCode());
+        $response->getBody()->write(json_encode(['message' => $e->getMessage()]));
+        return $response->withStatus($e->getCode());
       }
       return $response->withStatus(200);
     } else {
-      return $response->withJson(['message' => 'Config option not found'], 403);
+      $response->getBody()->write(json_encode(['message' => 'Config option not found']));
+      return $response->withStatus(403);
     }
   }
 
@@ -117,12 +122,15 @@ $hidden = json_decode($data, true);
     $section = $this->getSection($sectionName);
     if ($section && (!$key || array_key_exists($key, $section))) {
       if (!$key) {
-        return $response->withJson($section);
+        $response->getBody()->write(json_encode($section));
+        return $response->withStatus(200);
       } else {
-        return $response->withJson($section[$key]);
+        $response->getBody()->write(json_encode($section[$key]));
+        return $response->withStatus(200);
       }
     } else {
-      return $response->withJson(['message' => 'Config option not found'], 404);
+      $response->getBody()->write(json_encode(['message' => 'Config option not found']));
+      return $response->withStatus(404);
     }
   }
 
@@ -132,7 +140,8 @@ $hidden = json_decode($data, true);
     try {
       $this->dump();
     } catch (Exception $e) {
-      return $response->withJson(['message' => $e->getMessage()], $e->getCode());
+      $response->getBody()->write(json_encode(['message' => $e->getMessage()]));
+      return $response->withStatus($e->getCode());
     }
     return $response->withStatus(200);
   }
@@ -149,10 +158,12 @@ $hidden = json_decode($data, true);
       try {
         $this->dump();
       } catch (Exception $e) {
-        return $response->withJson(['message' => $e->getMessage()], $e->getCode());
+        $response->getBody()->write(json_encode(['message' => $e->getMessage()]));
+        return $response->withStatus($e->getCode());
       }
     } else {
-      return $response->withJson(['message' => 'Config option nit found'], 403);
+      $response->getBody()->write(json_encode(['message' => 'Config option nit found']));
+      return $response->withStatus(403);
     }
   }
 }
