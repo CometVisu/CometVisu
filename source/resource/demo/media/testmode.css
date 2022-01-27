@@ -12,7 +12,7 @@
     margin: 0;
 }
 
-.page.type_2d .widget.custom_bubble.embedded {
+.page.type_2d .widget.custom_bubble.custom_embedded {
     border-width: 0;
     box-shadow: 2px 4px 4px 0px rgba(135, 135, 135, 0.5);
 }
@@ -61,7 +61,7 @@
     color: #888888;
 }
 
-.page.type_2d .widget.custom_embedded, .page.type_2d .widget.embedded {
+.page.type_2d .widget.custom_embedded {
     transform: skew(-10deg, 4deg);
 }
 
