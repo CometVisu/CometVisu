@@ -19,8 +19,8 @@ class ConfigApi extends AbstractConfigApi
     public function __construct(ContainerInterface $container)
     {
       parent::__construct($container);
-      $this->apiConfig = include(getcwd() . '/../src/config.php');
-      $this->configFile = realpath($this->apiConfig->configDir . '/../hidden.php');
+      $this->apiConfig = include(getcwd() . '/src/config.php');
+      $this->configFile = realpath($this->apiConfig->configDir . '/hidden.php');
       $this->load();
   }
 

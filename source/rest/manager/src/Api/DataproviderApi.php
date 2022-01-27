@@ -8,8 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 use Exception;
 use OpenAPIServer;
 
-require_once(getcwd() . "/../src/parse_ini.inc.php");
-require_once(getcwd() . "/../src/influx.inc.php");
+require_once(getcwd() . "/src/parse_ini.inc.php");
+require_once(getcwd() . "/src/influx.inc.php");
 
 class DataproviderApi extends AbstractDataproviderApi
 {

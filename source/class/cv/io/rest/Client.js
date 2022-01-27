@@ -44,7 +44,7 @@ qx.Class.define('cv.io.rest.Client', {
         if (clientBackend.resources && clientBackend.resources.rest) {
           path = clientBackend.resources.rest;
         } else {
-          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager';
+          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
         }
         this.BASE_URL = path;
       }

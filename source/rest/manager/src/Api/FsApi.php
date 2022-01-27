@@ -17,10 +17,10 @@ class FsApi extends AbstractFsApi
 
   public function __construct(ContainerInterface $container = null) {
     parent::__construct($container);
-    $this->config = include(getcwd() . '/../src/config.php');
+    $this->config = include(getcwd() . '/src/config.php');
     $this->baseDir = $this->config->configDir;
     if (!$this->baseDir) {
-      throw new Exception("resources/config path not found " . getcwd() . '/../src/config.php');
+      throw new Exception("resources/config path not found " . getcwd() . '/src/config.php');
     }
     $map = function ($val) { return $val['mountPoint']; };
     $this->mounts = array_map($map, $this->config->mounts);

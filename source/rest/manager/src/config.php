@@ -1,7 +1,7 @@
 <?php
 namespace OpenAPIServer;
 
-$resourcesDir = realpath(getcwd() . '/../../../resource/');
+$resourcesDir = realpath(getcwd() . '/../../resource/');
 $configDir = realpath($resourcesDir .  '/config');
 $trashFolderName = '.trash';
 $backupFolderName = 'backup';

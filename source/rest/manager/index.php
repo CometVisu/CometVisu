@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CometVisu Manager backend
  * PHP version 7.4
@@ -20,7 +19,7 @@
  * https://github.com/openapitools/openapi-generator
  */
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use OpenAPIServer\SlimRouter;
 use Psr\Http\Message\ServerRequestInterface;
@@ -29,9 +28,9 @@ use OpenAPIServer\Mock\OpenApiDataMocker;
 
 // load config file
 $config = [];
-if (is_array($prodConfig = @include(__DIR__ . '/../config/prod/config.inc.php'))) {
+if (is_array($prodConfig = @include(__DIR__ . '/config/prod/config.inc.php'))) {
     $config = $prodConfig;
-} elseif (is_array($devConfig = @include(__DIR__ . '/../config/dev/config.inc.php'))) {
+} elseif (is_array($devConfig = @include(__DIR__ . '/config/dev/config.inc.php'))) {
     $config = $devConfig;
 } else {
     throw new InvalidArgumentException('Config file missed or broken.');
@@ -39,9 +38,9 @@ if (is_array($prodConfig = @include(__DIR__ . '/../config/prod/config.inc.php'))
 
 $router = new SlimRouter($config);
 $app = $router->getSlimApp();
-$dir = dirname($_SERVER['PHP_SELF']);
-$start = '/manager';
-$basePath = substr($dir, 0, strpos($dir, $start) + strlen($start));
+$dir = $_SERVER['PHP_SELF'];
+$start = '/manager/index.php';
+$basePath = substr($dir, 0, mb_strpos($dir, $start) + mb_strlen($start));
 $app->setBasePath($basePath);
 
 // Parse json, form data and xml
