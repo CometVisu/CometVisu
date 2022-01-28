@@ -353,5 +353,13 @@ portainer
 Env
 customizations
 Frontend
-mit
 visualisation
+isn
+rudimentarily
+deletable
+swiss
+inofficial
+colorimetric
+shouldn
+boolean
+Wien

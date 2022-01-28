@@ -329,7 +329,6 @@ Toolbars
 voreingestellen
 Visualisierungselemente
 Engine
-linkknx
 expire
 Binding
 Advanced

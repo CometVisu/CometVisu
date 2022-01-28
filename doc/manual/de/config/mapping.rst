@@ -224,7 +224,7 @@ um andere Einheiten zu benutzen.
 Wert "y" zuweisen muss.
 
 Komplexere Funktionen und Berechnungen mit mehreren Werten können hier
-nicht durchgeführt werden, dafür muss eine externe Logik Engine (linkknx
+nicht durchgeführt werden, dafür muss eine externe Logik Engine (linknx
 o.ä.) eingesetzt werden. Allerdings ist es durchaus möglich, die
 gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.
 

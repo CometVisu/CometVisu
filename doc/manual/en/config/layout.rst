@@ -135,7 +135,7 @@ the nowidget attribute can be remedied.
 
 .. figure:: _static/Layout_rowspan_mitGroup.png
 
-   Control of the arrangement with an invisible group(Attribut ``nowidget="true"``)
+   Control of the arrangement with an invisible group(attribute ``nowidget="true"``)
 
 Below the xml code for the screenshot with the correct arrangement.
 

@@ -34,19 +34,19 @@
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Amount of coloumns this widget sould be wide.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Amount of columns this widget should be wide.</xsd:documentation>
         <xsd:documentation xml:lang="de">Spaltenanzahl für dieses Widget.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Overrules the amount of columns on a medium screen.</xsd:documentation>
         <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Overrules the amount of columns on a small screen.</xsd:documentation>
         <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -214,7 +214,7 @@
   </xsd:attribute>
   <xsd:attribute name="format" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="en">Formatting of the value (printf syntax).</xsd:documentation>
       <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
@@ -261,7 +261,7 @@
 
   <xsd:attribute name="styling" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Change the color of the dispayed value depending on its value. See also :ref:`styling`</xsd:documentation>
+      <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling`</xsd:documentation>
       <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
     </xsd:annotation> 
   </xsd:attribute>
@@ -299,7 +299,7 @@
 
   <xsd:attribute name="class" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formated by a user provided style sheet.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
       <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
       <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
@@ -796,7 +796,7 @@
     </xsd:attribute>
     <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Ignore inital state update</xsd:documentation>
+        <xsd:documentation xml:lang="en">Ignore initial state update</xsd:documentation>
         <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2385,7 +2385,7 @@
     </xsd:attribute>
     <xsd:attribute ref="legend" use="optional" >
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines whether legend is shown in combination with popup attribute. "none" => no legend, "both" => legend is shown in small inline diagram and popup, "inline" => legend in inline diagram only, "popup" => legend is only dispayed in popup diagram</xsd:documentation>
+        <xsd:documentation xml:lang="en">Defines whether legend is shown in combination with popup attribute. "none" => no legend, "both" => legend is shown in small inline diagram and popup, "inline" => legend in inline diagram only, "popup" => legend is only displayed in popup diagram</xsd:documentation>
         <xsd:documentation xml:lang="de">Definiert ob eine Legende angezeigt werden soll (in Verbindung mit popup Parameter). "None" => keine Legende, "both" => Legende im kleinen Inline Diagramm und Popup, "inline" => Legende nur im Inline Diagramm, "popup" => Legende nur im Popup Diagramm</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2681,7 +2681,7 @@
     </xsd:attribute>
     <xsd:attribute name="max" type="xsd:decimal" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Maximum numer of entries to fetch from the router.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Maximum number of entries to fetch from the router.</xsd:documentation>
         <xsd:documentation xml:lang="de">Maximale Anzahl der vom Router zu ladenden Einträge.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
