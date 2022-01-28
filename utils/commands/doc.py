@@ -193,10 +193,11 @@ class DocGenerator(Command):
             def capture(line):
                 if "Spell check:" in line:
                     fails.append(line)
-                print(line.rstrip())
+                    print(line.rstrip())
 
             sphinx_build(*args, _out=capture)
             if len(fails) > 0:
+                print("\nfound %s spelling errors in %s" % (len(fails), source_dir))
                 sys.exit(1)
             sys.exit(0)
 
