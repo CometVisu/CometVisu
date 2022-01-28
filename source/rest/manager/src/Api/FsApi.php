@@ -7,6 +7,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use OpenAPIServer\FileHandler;
+use OpenAPIServer\Helper;
 
 
 class FsApi extends AbstractFsApi
@@ -35,8 +36,7 @@ class FsApi extends AbstractFsApi
         "state" => $this->getState(realpath($this->baseDir . '/' . $folder))
       ]);
     };
-    $response->getBody()->write(json_encode($res));
-    return $response->withHeader('Content-Type', 'application/json');
+    return Helper::withJson($response, $res);
   }
 
   public function create(ServerRequestInterface $request, ResponseInterface $response, array $args) {
@@ -67,13 +67,14 @@ class FsApi extends AbstractFsApi
   {
     return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
       $recursive = $request->getQueryParam('recursive');
-      return $response->withJson($this->listFolder($fsPath, $recursive, $mount));
+      return Helper::withJson($response, $this->listFolder($fsPath, $recursive, $mount));
     }, function ($request, $response, $fsPath, $mount) {
       $download = $request->getQueryParam('download');
       if ($download) {
         $response = $response->withHeader('Content-Disposition', 'attachment; filename=' . basename($fsPath));
       }
-      return $response->write(file_get_contents($fsPath))->withHeader('Content-Type', FileHandler::getMimeTypeFromSuffix($fsPath));
+      $response->getBody()->write(file_get_contents($fsPath));
+      return $response->withHeader('Content-Type', FileHandler::getMimeTypeFromSuffix($fsPath));
     }, 'read');
   }
 
@@ -88,13 +89,13 @@ class FsApi extends AbstractFsApi
       try {
         FileHandler::deleteFolder($fsPath, $request->getQueryParam('force'));
       } catch (Exception $e) {
-        return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
+        return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
       }
     }, function ($request, $response, $fsPath) {
       try {
         FileHandler::deleteFile($fsPath, $request->getQueryParam('force'));
       } catch (Exception $e) {
-        return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
+        return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
       }
     }, 'delete');
   }
@@ -112,27 +113,22 @@ class FsApi extends AbstractFsApi
       $targetPath = $this->getAbsolutePath($target, $targetMount);
     }
     if (!file_exists($fsPath)) {
-      $response->getBody()->write(json_encode(array('message' => 'Source not found')));
-      return $response->withStatus(404);
+      return Helper::withJson($response, array('message' => 'Source not found'), 404);
     }
     if (file_exists($targetPath)) {
-      $response->getBody()->write(json_encode(array('message' => 'Target exists')));
-      return $response->withStatus(406);
+      return Helper::withJson($response, array('message' => 'Target exists'), 406);
     }
     if (!$this->checkAccess($targetPath) || ($mount && $mount['writeable'] === false) || ($targetMount && $targetMount['writeable'] === false)) {
-      $response->getBody()->write(json_encode(array('message' => 'Forbidden')));
-      return $response->withStatus(403);
+      return Helper::withJson($response, array('message' => 'Forbidden'), 403);
     } else {
       try {
         if (FileHandler::rename($fsPath, $targetPath)) {
           return $response->withStatus(200);
         } else {
-          $response->getBody()->write(json_encode(array('message' => 'rename failed')));
-          return $response->withStatus(500);
+          return Helper::withJson($response, array('message' => 'rename failed'), 500);
         }
       } catch (Exception $e) {
-        $response->getBody()->write(json_encode(array('message' => $e->getMessage())));
-        return $response->withStatus($e->getCode());
+        return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
       }
     }
   }
@@ -148,7 +144,7 @@ class FsApi extends AbstractFsApi
         if (($type !== 'create' && is_dir($fsPath)) || ($type === 'create' && $request->getQueryParam('type') === 'dir')) {
           if ($folderCallback) {
             return $folderCallback($request, $response, $fsPath, $mount);
-                  }
+          }
         } else {
           if ($fileCallback) {
             return $fileCallback($request, $response, $fsPath, $mount);
@@ -265,8 +261,7 @@ class FsApi extends AbstractFsApi
         FileHandler::saveFile($file, $content, $hash);
         return $response->withStatus(200);
       } catch (Exception $e) {
-        $response->getBody()->write(json_encode(array('message' => $e->getMessage())));
-        return $response->withStatus($e->getCode());
+        return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
       }
     }
   }
@@ -305,8 +300,7 @@ class FsApi extends AbstractFsApi
         return $response->withStatus(200);
       }
     } catch (Exception $e) {
-      $response->getBody()->write(json_encode(array('message' => $e->getMessage())));
-      return $response->withStatus($e->getCode());
+      return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
     }
   }
 
@@ -315,13 +309,8 @@ class FsApi extends AbstractFsApi
       FileHandler::createFolder($file);
       return $response->withStatus(200);
     } catch (Exception $e) {
-      $response->getBody()->write(json_encode(array('message' => $e->getMessage())));
-      return $response->withStatus($e->getCode());
+      return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
     }
-  }
-
-  private function __saveFile(ResponseInterface $response, $file, $content) {
-
   }
 
   private function getState($folder) {
@@ -370,6 +359,7 @@ class FsApi extends AbstractFsApi
     if ($mountKey !== false) {
       return $this->config->mounts[$mountKey];
     }
+    return null;
   }
 
   private function getAbsolutePath($fsPath, $mount) {

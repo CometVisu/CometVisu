@@ -2,6 +2,7 @@
 
 namespace OpenAPIServer\Api;
 
+use OpenAPIServer\Helper;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -15,14 +16,13 @@ class DataproviderApi extends AbstractDataproviderApi
 {
   private $apiConfig;
 
-  public function __construct(ContainerInterface $container) {
+  public function __construct(ContainerInterface $container = null) {
     parent::__construct($container);
     $this->apiConfig = include(getcwd() . '/src/config.php');
   }
 
   private function respondError(ResponseInterface $response, Exception $e) {
-    $response->getBody()->write(json_encode(array('message' => $e->getMessage())));
-    return $response->withStatus($e->getCode());
+    return Helper::withJson($response, array('message' => $e->getMessage()), $e->getCode());
   }
 
   /**
@@ -89,8 +89,7 @@ class DataproviderApi extends AbstractDataproviderApi
         ),
       );
     }
-    $response->getBody()->write(json_encode($arrAdresses));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $arrAdresses);
   }
 
   /**
@@ -116,8 +115,7 @@ class DataproviderApi extends AbstractDataproviderApi
         }
       }
     }
-    $response->getBody()->write(json_encode($designs));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $designs);
   }
 
   /**
@@ -141,9 +139,7 @@ class DataproviderApi extends AbstractDataproviderApi
     } catch (Exception $e) {
       return $this->respondError($response, $e);
     }
-
-    $response->getBody()->write(json_encode($data));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $data);
   }
 
   /**
@@ -167,9 +163,7 @@ class DataproviderApi extends AbstractDataproviderApi
     } catch (Exception $e) {
       return $this->respondError($response, $e);
     }
-
-    $response->getBody()->write(json_encode($data));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $data);
   }
 
   /**
@@ -215,8 +209,7 @@ class DataproviderApi extends AbstractDataproviderApi
       return $this->respondError($response, $e);
     }
 
-    $response->getBody()->write(json_encode($arrData));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $arrData);
   }
 
   /**
@@ -251,8 +244,7 @@ class DataproviderApi extends AbstractDataproviderApi
         'label' => utf8_encode($sensors[$arrRRDParts[0]]['name']),
       );
     }
-    $response->getBody()->write(json_encode($arrData));
-    return $response->withStatus(200);
+    return Helper::withJson($response, $arrData);
   }
 
   /**
