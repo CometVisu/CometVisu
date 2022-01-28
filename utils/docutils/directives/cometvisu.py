@@ -29,7 +29,7 @@ from backend_transform import BackendTransformDirective
 from settings import config, root_dir
 from __init__ import Version
 
-references = {"_base": "http://www.cometvisu.org/CometVisu/"}
+references = {"_base": "https://www.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_target_path())
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
@@ -65,9 +65,7 @@ def process_references(app, doctree, fromdocname):
 
 
 def store_references(app):
-    # only update references when we build from develop branch and for the correct language
-    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping") and \
-       app.config.language == config.get("references", "language"):
+    if app.config.language == config.get("references", "language"):
         if references_file[-5:] == ".json":
             with open(references_file, "w") as f:
                 f.write(dumps(references, indent=2, sort_keys=True))
@@ -88,7 +86,7 @@ def store_references(app):
                         content_after.append(l)
             content = "%s    %s\n%s" % (
                      "".join(content_before),
-                     "\n    ".join(dumps(references, indent=2, sort_keys=True).split("\n")[1:-1]),
+                     "\n    ".join(dumps(references, indent=2, sort_keys=True).replace("\"", "'").split("\n")[1:-1]),
                      "".join(content_after)
                  )
             with open(references_file, "w") as f:
