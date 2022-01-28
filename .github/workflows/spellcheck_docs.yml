@@ -1,4 +1,4 @@
-name: [doc] Spellcheck
+name: "[doc] Spellcheck"
 on:
   workflow_dispatch:
   push:
