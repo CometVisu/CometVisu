@@ -29,7 +29,7 @@ from backend_transform import BackendTransformDirective
 from settings import config, root_dir
 from __init__ import Version
 
-references = {"_base": "http://www.cometvisu.org/CometVisu/"}
+references = {"_base": "https://www.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_target_path())
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
@@ -88,7 +88,7 @@ def store_references(app):
                         content_after.append(l)
             content = "%s    %s\n%s" % (
                      "".join(content_before),
-                     "\n    ".join(dumps(references, indent=2, sort_keys=True).split("\n")[1:-1]),
+                     "\n    ".join(dumps(references, indent=2, sort_keys=True).replace("\"", "'").split("\n")[1:-1]),
                      "".join(content_after)
                  )
             with open(references_file, "w") as f:
