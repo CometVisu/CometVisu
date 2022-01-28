@@ -3,6 +3,20 @@
 0.12.0
 ======
 
+### v0.12.0-RC5 (2022/01/28)
+
+- [#1171](https://github.com/CometVisu/CometVisu/pull/1171) fix styling and fake data in testmode demo (@peuter)
+- [#1170](https://github.com/CometVisu/CometVisu/pull/1170) read environment.php from backend and disable manager when PHP version… (@peuter)
+- [#1169](https://github.com/CometVisu/CometVisu/pull/1169) Manager fixes (@peuter)
+- [#1167](https://github.com/CometVisu/CometVisu/pull/1167) Infoposition doesn't need to be expert level. (@ChristianMayer)
+- [#1165](https://github.com/CometVisu/CometVisu/pull/1165) Remove wiregate from the documentation as it's too old (@ChristianMayer)
+- [#1166](https://github.com/CometVisu/CometVisu/pull/1166) fix metal design & confirm dialogs in manager (@peuter)
+- [#1162](https://github.com/CometVisu/CometVisu/pull/1162) Make external cause of CGI-BIN restart less dramatic (@ChristianMayer)
+- [#1161](https://github.com/CometVisu/CometVisu/pull/1161) Fix diagram plugin in correlation with cache (@ChristianMayer)
+- [#1160](https://github.com/CometVisu/CometVisu/pull/1160) set widget to selectable when the file is writeable to fix source code (@peuter)
+- [#1159](https://github.com/CometVisu/CometVisu/pull/1159) fix several errors in the reporting: (@peuter)
+- [#1155](https://github.com/CometVisu/CometVisu/pull/1155) Update the copyright for 2022 (@ChristianMayer)
+
 ### v0.12.0-RC4 (2022/01/22)
 
 - [#1154](https://github.com/CometVisu/CometVisu/pull/1154) change link color improve visibility (@peuter)
