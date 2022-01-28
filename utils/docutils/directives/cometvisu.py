@@ -65,9 +65,7 @@ def process_references(app, doctree, fromdocname):
 
 
 def store_references(app):
-    # only update references when we build from develop branch and for the correct language
-    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping") and \
-       app.config.language == config.get("references", "language"):
+    if app.config.language == config.get("references", "language"):
         if references_file[-5:] == ".json":
             with open(references_file, "w") as f:
                 f.write(dumps(references, indent=2, sort_keys=True))
