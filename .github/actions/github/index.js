@@ -169,7 +169,14 @@ class GithubClient {
    * @returns {Promise<null>}
    */
   async cleanupAssets(limit) {
-    const release = await this.getLatestNightlyBuild();
+    let release
+    try {
+      release = await this.getLatestNightlyBuild();
+    } catch (e) {
+      console.log(e.message);
+      // no nightly found, nothing to delete
+      return;
+    }
     const zipBuildAssets =release.assets
       .filter(asset => /^CometVisu-.+\.zip$/.test(asset.name))
       .sort((a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at));
