@@ -30,4 +30,5 @@ jobs:
       - name: check german docs
         run: ./cv doc -l de --spelling
       - name: check english docs
+        if: always()
         run: ./cv doc -l en --spelling
