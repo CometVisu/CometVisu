@@ -28,6 +28,6 @@ jobs:
       - name: install german dictionary
         run: sudo apt-get install -y myspell-de-de
       - name: check german docs
-        run: ./cv doc -l de --spelling | grep --color=never "Spell check"
+        run: ./cv doc -l de --spelling
       - name: check english docs
-        run: ./cv doc -l en --spelling | grep --color=never "Spell check"
+        run: ./cv doc -l en --spelling

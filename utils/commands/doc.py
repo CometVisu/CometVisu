@@ -191,8 +191,9 @@ class DocGenerator(Command):
             fails = []
 
             def capture(line):
-                fails.append(line)
-                print(line.rstrip())
+                if "Spell check:" in line:
+                    fails.append(line)
+                    print(line.rstrip())
 
             sphinx_build(*args, _out=capture)
             if len(fails) > 0:
