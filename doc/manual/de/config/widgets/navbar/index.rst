@@ -34,7 +34,7 @@ Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben 
 daher weg gelassen werden.
 
 Über das ``scope``-Attribut kann die Vererbung der Navbars auf die nächsten Unterseiten gesteuert werden. Mit ``scope="0"``
-erfolgt keine Vererbung, d.h. die Navbar mussfür jede Seite individuell definiert werden. 
+erfolgt keine Vererbung, d.h. die Navbar muss für jede Seite individuell definiert werden.
 
 Mit ``scope="1"`` wird die Navbar auf das nächste Page-Element vererbt, d.h. eine weitere Navbar-Definition auf 
 der Unterseite wird zusätzlich zur Navbar der übergeordneten Page angezeigt, mit ``scope="2"`` wird um 2 Ebenen 

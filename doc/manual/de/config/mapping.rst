@@ -453,7 +453,7 @@ Windrichtung
             <entry range_min="348.75" range_max="360">Nord</entry>
         </mapping>
 
-Rolläden, Raffstores und Jalousien
+Rollläden, Raffstores und Jalousien
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml

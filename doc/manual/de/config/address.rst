@@ -4,7 +4,7 @@ Adressen - die Kommunikation mit dem Backend
 ============================================
 
 Die meisten Widgets verwenden ein oder mehrere ``address`` Elemente für die
-Kommunikation mit dem Backend, welches darüber die ensprechenden Informationen
+Kommunikation mit dem Backend, welches darüber die entsprechenden Informationen
 vom KNX-Bus, OpenHAB oder MQTT bereitstellt. Der Inhalt ist die Adresse selbst,
 über die Attribute lässt sich das Verhalten des Widgets im Bezug auf die
 Adresse einstellen:
@@ -60,5 +60,5 @@ Mode
     ``write`` Adresse übereinstimmen, als ``read``.
 
     Dieses Prinzip ist damit genau das gleiche wie bei allen anderen KNX
-    Komponenten bei denen über eine Addresse der Wert gesetzt wird und über eine
+    Komponenten bei denen über eine Adresse der Wert gesetzt wird und über eine
     andere die Rückmeldung erfolgt.

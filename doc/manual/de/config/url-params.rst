@@ -73,7 +73,7 @@ der Startseite anzugeben. Wenn man also eine Unterseite mit dem Namen *Bad*
 als Startseite nutzen möchte so lautet die URL ``http://<server>/cometvisu/?config=home&startpage=Bad``
 
 Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
-Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
+Sinn machen bei einer gesamten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.
 
 *forceDevice* - Ausgabegerät übersteuern
@@ -103,7 +103,7 @@ Dies sollte nur von Entwicklern benutzt werden!
 ~~~~~~~~~~~~~~~~~~~
 
 Durch den Parameter ``backend`` wird das verwendete Backend zur Laufzeit
-konfiguriert. Es exisitiert auch ein ``backend`` Parameter in der Config
+konfiguriert. Es existiert auch ein ``backend`` Parameter in der Config
 um dies fest einzustellen.
 
 .. code::
