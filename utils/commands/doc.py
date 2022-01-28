@@ -160,7 +160,14 @@ class DocGenerator(Command):
         else:
             return ver
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None, spelling=False):
+    def _run(self, language, target_dir, browser,
+             skip_screenshots=True,
+             force=False,
+             screenshot_build="source",
+             target_version=None,
+             spelling=False,
+             no_colors=False
+             ):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -177,8 +184,20 @@ class DocGenerator(Command):
 
         if spelling:
             print("check spelling in %s" % source_dir)
-            sphinx_build("-N", "-b", "spelling", source_dir, target_dir, _out=self.process_output)
-            return
+            args = []
+            if no_colors:
+                args.append("-N")
+            args.extend(["-b", "spelling", source_dir, target_dir])
+            fails = []
+
+            def capture(line):
+                fails.append(line)
+                print(line.rstrip())
+
+            sphinx_build(*args, _out=capture)
+            if len(fails) > 0:
+                sys.exit(1)
+            sys.exit(0)
 
         print("generating doc to %s" % target_dir)
 
@@ -586,6 +605,7 @@ class DocGenerator(Command):
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
         parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
+        parser.add_argument("-N", dest="no_colors", action="store_true", help="no colors in output")
 
         options = parser.parse_args(args)
 
@@ -639,7 +659,9 @@ class DocGenerator(Command):
             self._run(options.language, options.target, options.browser, force=options.force,
                       skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
                       target_version=options.target_version,
-                      spelling=options.spelling)
+                      spelling=options.spelling,
+                      no_colors=options.no_colors
+                      )
             sys.exit(0)
 
         elif options.doc == "source":
