@@ -22,7 +22,7 @@ import io
 import logging
 import configparser
 import codecs
-
+import enchant
 import subprocess
 from json import dumps
 from semver import compare
@@ -183,6 +183,11 @@ class DocGenerator(Command):
         target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
 
         if spelling:
+            # check if german dictionary is available
+            if "de_DE" not in enchant.list_languages():
+                print("spellcheck for german is not possible, german dictionary not installed!")
+                print(enchant.list_languages())
+                sys.exit(1)
             print("check spelling in %s" % source_dir)
             args = []
             if no_colors:
@@ -195,7 +200,7 @@ class DocGenerator(Command):
                     fails.append(line)
                     print(line.rstrip())
 
-            sphinx_build(*args, _out=capture)
+            sphinx_build(*args, _out=capture, _err=self.process_output)
             if len(fails) > 0:
                 print("\nfound %s spelling errors in %s" % (len(fails), source_dir))
                 sys.exit(1)
