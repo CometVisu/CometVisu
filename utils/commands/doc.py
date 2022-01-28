@@ -188,6 +188,7 @@ class DocGenerator(Command):
                 print("spellcheck for german is not possible, german dictionary not installed!")
                 print(enchant.list_languages())
                 sys.exit(1)
+            print(enchant.list_languages())
             print("check spelling in %s" % source_dir)
             args = []
             if no_colors:
