@@ -160,7 +160,7 @@ class DocGenerator(Command):
         else:
             return ver
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
+    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None, spelling=False):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -174,6 +174,12 @@ class DocGenerator(Command):
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
         target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
+
+        if spelling:
+            print("check spelling in %s" % source_dir)
+            sphinx_build("-N", "-b", "spelling", source_dir, target_dir, _out=self.process_output)
+            return
+
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -579,6 +585,7 @@ class DocGenerator(Command):
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
+        parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
 
         options = parser.parse_args(args)
 
@@ -631,7 +638,8 @@ class DocGenerator(Command):
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,
                       skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
-                      target_version=options.target_version)
+                      target_version=options.target_version,
+                      spelling=options.spelling)
             sys.exit(0)
 
         elif options.doc == "source":
