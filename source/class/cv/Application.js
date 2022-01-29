@@ -854,7 +854,7 @@ qx.Class.define('cv.Application',
     },
 
     _checkBackend: function () {
-      if (qx.core.Environment.get('cv.testMode')) {
+      if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
       } else {
         const url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
