@@ -916,9 +916,7 @@ qx.Class.define('cv.Application',
         const passed = orParts.map(orConstraint => {
           const andParts = orConstraint.split(/(\s+|&{2})/).map(e => e.trim());
           // pass when no failed andPart has been found
-          return !andParts.some(constraint => {
-            return this.__constraintFails(serverVersionId, constraint);
-          });
+          return !andParts.some(constraint => this.__constraintFails(serverVersionId, constraint));
         });
         // one of the OR constraints need to pass
         const enable = passed.some(res => res === true);
