@@ -226,17 +226,21 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           canvas.width = elem.width;
           canvas.height = elem.height;
           canvas.style = 'position:fixed';
-          canvas.getContext('2d').drawImage(elem, 0, 0);
+          try {
+            canvas.getContext('2d').drawImage(elem, 0, 0);
+          } catch(e) {
+            console.log('Refresh image: failed to show old image on temporary canvas', e);
+          }
           canvases.push(canvas);
           elem.parentNode.insertBefore(canvas, elem);
           elem.removeAttribute('src');
+          elem.width = canvas.width;
+          elem.height = canvas.height;
         });
       };
       const imgReloadRestore = function () {
         elements.forEach(function (elem) {
           elem.setAttribute('src', src);
-          elem.removeAttribute('width');
-          elem.removeAttribute('height');
         });
         canvases.forEach(function (elem) {
           elem.parentNode.removeChild(elem);
