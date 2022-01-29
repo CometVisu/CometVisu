@@ -19,7 +19,7 @@ return (object) array(
     [
       'mountPoint' => 'demo',
       'path' => realpath($resourcesDir . '/demo'),
-      'showSubDirs' => false,
+      'showSubDirs' => true,
       'writeable' => false
     ]
   ],

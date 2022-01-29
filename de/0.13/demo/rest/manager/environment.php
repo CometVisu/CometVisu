@@ -37,5 +37,6 @@ $composer_file = file_get_contents("composer.json");
 $composer = json_decode($composer_file, true);
 $retval['required_php_version'] = $composer['require']['php'];
 
+header('Content-Type: application/json; charset=utf-8');
 echo json_encode($retval);
 ?>

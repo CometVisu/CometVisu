@@ -1460,9 +1460,6 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute name="infoposition" use="optional">
-      <xsd:annotation>
-        <xsd:appinfo>level:expert</xsd:appinfo>
-      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="left" />
