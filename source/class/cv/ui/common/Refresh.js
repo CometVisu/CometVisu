@@ -266,9 +266,7 @@ qx.Mixin.define('cv.ui.common.Refresh', {
       iframe.addEventListener('load', loadCallback, false);
       iframe.addEventListener('error', loadCallback, false);
       doc = iframe.contentWindow.document;
-      doc.open();
-      doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
-      doc.close();
+      doc.body.innerHTML='<img src="' + src + '"></body></html>';
       if (twostage) {
         return function(proceed) {
           if (!twostage) {
