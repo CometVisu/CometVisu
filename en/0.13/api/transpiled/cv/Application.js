@@ -1014,93 +1014,97 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _checkBackend: function _checkBackend() {
         var _this4 = this;
 
-        var url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
-        var xhr = new qx.io.request.Xhr(url);
-        xhr.set({
-          method: 'GET',
-          accept: 'application/json'
-        });
-        xhr.addListenerOnce('success', function (e) {
-          var req = e.getTarget();
-          var env = req.getResponse();
-          var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
+        if (cv.Config.testMode === true) {
+          this.setManagerChecked(true);
+        } else {
+          var url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+          var xhr = new qx.io.request.Xhr(url);
+          xhr.set({
+            method: 'GET',
+            accept: 'application/json'
+          });
+          xhr.addListenerOnce('success', function (e) {
+            var req = e.getTarget();
+            var env = req.getResponse();
+            var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
 
-          var parts = env.required_php_version.split(' ');
-          var disable = parts.some(function (constraint) {
-            var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+            var parts = env.required_php_version.split(' ');
+            var disable = parts.some(function (constraint) {
+              var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
 
-            if (match) {
-              var operator = match[1];
-              var majorConstraint = parseInt(match[2]);
-              var hasMinorVersion = match[3] !== undefined;
-              var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-              var hasPatchVersion = match[4] !== undefined;
-              var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-              var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-              var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+              if (match) {
+                var operator = match[1];
+                var majorConstraint = parseInt(match[2]);
+                var hasMinorVersion = match[3] !== undefined;
+                var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                var hasPatchVersion = match[4] !== undefined;
+                var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
 
-              switch (operator) {
-                case '>=':
-                  if (serverVersionId < constraintId) {
-                    return true;
-                  }
+                switch (operator) {
+                  case '>=':
+                    if (serverVersionId < constraintId) {
+                      return true;
+                    }
 
-                  break;
+                    break;
 
-                case '>':
-                  if (serverVersionId <= constraintId) {
-                    return true;
-                  }
+                  case '>':
+                    if (serverVersionId <= constraintId) {
+                      return true;
+                    }
 
-                  break;
+                    break;
 
-                case '<=':
-                  if (serverVersionId > maxId) {
-                    return true;
-                  }
+                  case '<=':
+                    if (serverVersionId > maxId) {
+                      return true;
+                    }
 
-                  break;
+                    break;
 
-                case '<':
-                  if (serverVersionId >= maxId) {
-                    return true;
-                  }
+                  case '<':
+                    if (serverVersionId >= maxId) {
+                      return true;
+                    }
 
-                  break;
+                    break;
 
-                case '^':
-                  if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                    return true;
-                  }
+                  case '^':
+                    if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                      return true;
+                    }
 
-                  break;
+                    break;
 
-                case '~':
-                  if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
-                    return true;
-                  }
+                  case '~':
+                    if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                      return true;
+                    }
 
-                  break;
+                    break;
+                }
               }
+
+              return false;
+            });
+
+            if (disable) {
+              this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+            } else {
+              this.info('Manager available for PHP version', env.phpversion);
             }
 
-            return false;
+            this.setManagerChecked(true);
+          }, this);
+          xhr.addListener('statusError', function (e) {
+            _this4.setManagerChecked(true);
           });
-
-          if (disable) {
-            this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-            this.setManagerDisabled(true);
-            this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-          } else {
-            this.info('Manager available for PHP version', env.phpversion);
-          }
-
-          this.setManagerChecked(true);
-        }, this);
-        xhr.addListener('statusError', function (e) {
-          _this4.setManagerChecked(true);
-        });
-        xhr.send();
+          xhr.send();
+        }
       },
       close: function close() {
         var client = cv.TemplateEngine.getClient();
@@ -1151,4 +1155,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1643469597123
+//# sourceMappingURL=Application.js.map?dt=1643473450654

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 976,
+        "line": 980,
         "column": 3
       }
     },
@@ -776,7 +776,7 @@
           "column": 4
         },
         "end": {
-          "line": 929,
+          "line": 933,
           "column": 5
         }
       },
@@ -786,11 +786,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 931,
+          "line": 935,
           "column": 4
         },
         "end": {
-          "line": 936,
+          "line": 940,
           "column": 5
         }
       },
@@ -805,11 +805,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 941,
+          "line": 945,
           "column": 4
         },
         "end": {
-          "line": 974,
+          "line": 978,
           "column": 5
         }
       },
