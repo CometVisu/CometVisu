@@ -26,6 +26,8 @@
  * @asset(icons/*)
  * @asset(sentry/bundle.min.js)
  * @asset(sentry/bundle.tracing.min.js)
+ * @asset(sentry/bundle.min.js.map)
+ * @asset(sentry/bundle.tracing.min.js.map)
  * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)

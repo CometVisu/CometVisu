@@ -149,8 +149,8 @@ class DataproviderApi extends AbstractDataproviderApi
         ResponseInterface $response,
         array $args
     ) {
-        $auth = $request->getQueryParam("auth");
-        $measurement = $request->getQueryParam("measurement");
+        $auth = Helper::getQueryParam($request, "auth");
+        $measurement = Helper::getQueryParam($request, "measurement");
         try {
             $data = OpenAPIServer\getFields($measurement, $auth);
         } catch (Exception $e) {
@@ -176,8 +176,8 @@ class DataproviderApi extends AbstractDataproviderApi
         ResponseInterface $response,
         array $args
     ) {
-        $auth = $request->getQueryParam("auth");
-        $measurement = $request->getQueryParam("measurement");
+        $auth = Helper::getQueryParam($request, "auth");
+        $measurement = Helper::getQueryParam($request, "measurement");
         try {
             $data = OpenAPIServer\getTags($measurement, $auth);
         } catch (Exception $e) {
@@ -203,7 +203,7 @@ class DataproviderApi extends AbstractDataproviderApi
         ResponseInterface $response,
         array $args
     ) {
-        $auth = $request->getQueryParam("auth");
+        $auth = Helper::getQueryParam($request, "auth");
 
         $arrData = [];
         try {

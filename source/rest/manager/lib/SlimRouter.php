@@ -560,20 +560,9 @@ class SlimRouter
 
         // middlewares requires Psr\Container\ContainerInterface
         $container = $this->slimApp->getContainer();
-
-        $userOptions = $this->getSetting(
-            $settings,
-            "tokenAuthenticationOptions",
-            null
-        );
-
-        // mocker options
-        $mockerOptions = $this->getSetting($settings, "mockerOptions", null);
-        $dataMocker = $mockerOptions["dataMocker"] ?? new OpenApiDataMocker();
-        $responseFactory = new ResponseFactory();
-        $getMockStatusCodeCallback =
-            $mockerOptions["getMockStatusCodeCallback"] ?? null;
-        $mockAfterCallback = $mockerOptions["afterCallback"] ?? null;
+        if (array_key_exists('HTTP_X_TRANSACTION_ID', $_SERVER)) {
+          \Sentry\init($settings->get('sentry'));
+        }
 
         foreach ($this->operations as $operation) {
             $callback = function ($request, $response, $arguments) use (
@@ -590,19 +579,6 @@ class SlimRouter
                 )
             ) {
                 $callback = "\\{$operation["apiPackage"]}\\{$operation["userClassname"]}:{$operation["operationId"]}";
-            }
-
-            if (is_callable($getMockStatusCodeCallback)) {
-                $mockSchemaResponses = array_map(function ($item) {
-                    return json_decode($item["jsonSchema"], true);
-                }, $operation["responses"]);
-                $middlewares[] = new OpenApiDataMockerRouteMiddleware(
-                    $dataMocker,
-                    $mockSchemaResponses,
-                    $responseFactory,
-                    $getMockStatusCodeCallback,
-                    $mockAfterCallback
-                );
             }
 
             $this->addRoute(

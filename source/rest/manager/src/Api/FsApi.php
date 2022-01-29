@@ -78,7 +78,7 @@ class FsApi extends AbstractFsApi
                         $response,
                         $fsPath,
                         $uploadedFiles,
-                        $request->getQueryParam("hash"),
+                      Helper::getQueryParam($request, "hash"),
                         $options
                     );
                 } else {
@@ -89,7 +89,7 @@ class FsApi extends AbstractFsApi
                         $response,
                         $fsPath,
                         $request->getBody(),
-                        $request->getQueryParam("hash"),
+                        Helper::getQueryParam($request, "hash"),
                         $options
                     );
                 }
@@ -107,14 +107,14 @@ class FsApi extends AbstractFsApi
             $request,
             $response,
             function ($request, $response, $fsPath, $mount) {
-                $recursive = $request->getQueryParam("recursive");
+                $recursive = Helper::getQueryParam($request, "recursive");
                 return Helper::withJson(
                     $response,
                     $this->listFolder($fsPath, $recursive, $mount)
                 );
             },
             function ($request, $response, $fsPath, $mount) {
-                $download = $request->getQueryParam("download");
+                $download = Helper::getQueryParam($request, "download");
                 if ($download) {
                     $response = $response->withHeader(
                         "Content-Disposition",
@@ -145,7 +145,7 @@ class FsApi extends AbstractFsApi
                     $response,
                     $fsPath,
                     $request->getBody(),
-                    $request->getQueryParam("hash")
+                    Helper::getQueryParam($request, "hash")
                 );
             },
             "update"
@@ -164,7 +164,7 @@ class FsApi extends AbstractFsApi
                 try {
                     FileHandler::deleteFolder(
                         $fsPath,
-                        $request->getQueryParam("force")
+                        Helper::getQueryParam($request, "force")
                     );
                 } catch (Exception $e) {
                     return Helper::withJson(
@@ -178,7 +178,7 @@ class FsApi extends AbstractFsApi
                 try {
                     FileHandler::deleteFile(
                         $fsPath,
-                        $request->getQueryParam("force")
+                        Helper::getQueryParam($request, "force")
                     );
                 } catch (Exception $e) {
                     return Helper::withJson(
@@ -197,8 +197,8 @@ class FsApi extends AbstractFsApi
         ResponseInterface $response,
         array $args
     ) {
-        $src = $request->getQueryParam("src");
-        $target = $request->getQueryParam("target");
+        $src = Helper::getQueryParam($request, "src");
+        $target = Helper::getQueryParam($request, "target");
         $renaming = dirname($src) == dirname($target);
         $mount = $this->getMount($src);
         $fsPath = $this->getAbsolutePath($src, $mount);
@@ -256,7 +256,7 @@ class FsApi extends AbstractFsApi
         $fileCallback,
         $type
     ) {
-        $requestPath = $request->getQueryParam("path");
+        $requestPath = Helper::getQueryParam($request, "path");
         $mount = $this->getMount($requestPath);
         $fsPath = $this->getAbsolutePath($requestPath, $mount);
         if (file_exists($fsPath) || $type === "create") {
@@ -269,7 +269,7 @@ class FsApi extends AbstractFsApi
                 if (
                     ($type !== "create" && is_dir($fsPath)) ||
                     ($type === "create" &&
-                        $request->getQueryParam("type") === "dir")
+                      Helper::getQueryParam($request, "type") === "dir")
                 ) {
                     if ($folderCallback) {
                         return $folderCallback(

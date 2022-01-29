@@ -89,8 +89,8 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@sentry/browser": "^6.16.1",
-    "@sentry/tracing": "^6.16.1",
+    "@sentry/browser": "^6.17.3",
+    "@sentry/tracing": "^6.17.3",
     "crc-32": "^1.2.0",
     "monaco-editor": "^0.31.1",
     "to": "^0.2.9",

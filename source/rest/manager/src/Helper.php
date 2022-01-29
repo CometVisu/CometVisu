@@ -2,6 +2,7 @@
 namespace OpenAPIServer;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Helper
 {
@@ -11,5 +12,10 @@ class Helper
         return $response
             ->withHeader("Content-Type", "application/json")
             ->withStatus($status);
+    }
+
+    static function getQueryParam(ServerRequestInterface $request, $id) {
+      $params = $request->getQueryParams();
+      return array_key_exists($id, $params) ? $params[$id] : null;
     }
 }

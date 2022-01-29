@@ -21,10 +21,9 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use OpenAPIServer\Container;
 use OpenAPIServer\SlimRouter;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use OpenAPIServer\Mock\OpenApiDataMocker;
+use OpenAPIServer\Middleware\SentryMiddleware;
 
 // load config file
 $config = [];
@@ -37,8 +36,9 @@ if (is_array($prodConfig = @include __DIR__ . "/config/prod/config.inc.php")) {
 } else {
     throw new InvalidArgumentException("Config file missed or broken.");
 }
-
-$router = new SlimRouter($config);
+// Create Container using PHP-DI
+$container = new Container($config);
+$router = new SlimRouter($container);
 $app = $router->getSlimApp();
 $dir = $_SERVER["PHP_SELF"];
 $start = "/manager/index.php";
@@ -53,6 +53,8 @@ $app->addBodyParsingMiddleware();
  * Otherwise exceptions thrown from it will not be handled
  */
 $app->addRoutingMiddleware();
+
+$app->add(new SentryMiddleware);
 
 /**
  * Add Error Handling Middleware
