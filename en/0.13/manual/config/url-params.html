@@ -42,7 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation of the CometVisu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Usage of the CometVisu</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Configuration of the CometVisu</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="manager.html">The CometVisu Manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="editor.html">Graphical editor</a></li>
@@ -50,12 +50,12 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">URL-Parameter</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#use">Use</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameter">Parameter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#config-config-datei"><em>config</em> - Config-Datei</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#config-config-file"><em>config</em> - Config file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#design-design"><em>design</em> - Design</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#forcereload-cache-ubersteuern"><em>forceReload</em> - Cache übersteuern</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#startpage-start-page"><em>startpage</em> - start page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forcereload-cache-settings"><em>forceReload</em> - Cache settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#startpage-start-page"><em>startpage</em> - Start page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#forcedevice-override-output-device"><em>forceDevice</em> - Override output device</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#maturity-maturity"><em>maturity</em> - maturity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maturity-maturity"><em>maturity</em> - Maturity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#backend-backend"><em>backend</em> - Backend</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablequeue-queue"><em>enableQueue</em> - Queue</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#testmode-test-mode-without-real-backend"><em>testMode</em> - Test mode without real backend</a></li>
@@ -152,8 +152,8 @@ the corresponding variants can be accessed as effectively and quickly.</p>
 </div>
 <div class="section" id="parameter">
 <h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="config-config-datei">
-<h3><em>config</em> - Config-Datei<a class="headerlink" href="#config-config-datei" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="config-config-file">
+<h3><em>config</em> - Config file<a class="headerlink" href="#config-config-file" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">config</span></code> selects another config file.</p>
 <p>So, for example <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">=</span> <span class="pre">NAME</span></code> - This config file must be
 under the name <code class="docutils literal notranslate"><span class="pre">visu_config_NAME.xml</span></code> either in the config directory
@@ -163,14 +163,14 @@ of the Visu or in the <code class="docutils literal notranslate"><span class="pr
 <h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">design</span></code> overrides the design in the config file.</p>
 </div>
-<div class="section" id="forcereload-cache-ubersteuern">
-<h3><em>forceReload</em> - Cache übersteuern<a class="headerlink" href="#forcereload-cache-ubersteuern" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="forcereload-cache-settings">
+<h3><em>forceReload</em> - Cache settings<a class="headerlink" href="#forcereload-cache-settings" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">forceReload</span></code> with the value <em>true</em>
 (<code class="docutils literal notranslate"><span class="pre">forceReload=true</span></code>) safely reloads all files.</p>
 <p>This may be important after customizing the config file.</p>
 </div>
 <div class="section" id="startpage-start-page">
-<h3><em>startpage</em> - start page<a class="headerlink" href="#startpage-start-page" title="Permalink to this headline">¶</a></h3>
+<h3><em>startpage</em> - Start page<a class="headerlink" href="#startpage-start-page" title="Permalink to this headline">¶</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">startpage</span></code> can be used to specify the sub-page which
 will be displayed first after loading the visu.</p>
 <p>The easiest way to directly load a specific start page is to navigate
@@ -196,7 +196,7 @@ device (such as a smartphone). Any other value will display the page
 <p>This is actually only needed for developers.</p>
 </div>
 <div class="section" id="maturity-maturity">
-<h3><em>maturity</em> - maturity<a class="headerlink" href="#maturity-maturity" title="Permalink to this headline">¶</a></h3>
+<h3><em>maturity</em> - Maturity<a class="headerlink" href="#maturity-maturity" title="Permalink to this headline">¶</a></h3>
 <p>By the parameter <code class="docutils literal notranslate"><span class="pre">maturity</span></code> you can unlock features that are still
 in development and thus have unintended cross-effects.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">)</span>

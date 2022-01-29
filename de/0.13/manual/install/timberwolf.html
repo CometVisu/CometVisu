@@ -208,7 +208,7 @@ dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-referenc
 notwendig, die im Abschnitt des
 <a class="reference internal" href="docker.html#dockerenvironment"><span class="std std-ref">Docker Containers</span></a> angegeben wurden.</p>
 <p>So kann es notwendig sein für <code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code> einen anderen Wert als das
-Default <code class="docutils literal notranslate"><span class="pre">1.1.238</span></code> zu setzen, wenn diese physikalische Addresse bereits
+Default <code class="docutils literal notranslate"><span class="pre">1.1.238</span></code> zu setzen, wenn diese physikalische Adresse bereits
 belegt ist oder eine andere Linie als <code class="docutils literal notranslate"><span class="pre">1.1</span></code> verwendet werden soll.</p>
 <p>Es ist auch wichtig, dass der Port der KNX Schnittstelle korrekt ist. Im
 Timberwolf ist unter <em>Einstellungen</em> → <em>KNX</em> → <em>Schnittstellen</em> der
@@ -262,8 +262,8 @@ Wert <code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.
 <h3>InfluxDB Zugriff<a class="headerlink" href="#influxdb-zugriff" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">The InfluxDB access as well as the hidden config was introduced with
-version 0.11.0 and isn’t available in earlier versions.</p>
+<p class="last">Der Zugriff auf die InfluxDB und die versteckte Konfiguration wurden
+erst mit Version 0.11.0 eingeführt und stehen in früheren Versionen nicht zur Verfügung.</p>
 </div>
 <p>Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
 <a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfiguration</span></a> über den
@@ -283,7 +283,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:</p>
 <li>Schlüssel und Wert:<ul>
 <li><code class="docutils literal notranslate"><span class="pre">uri</span></code>: <code class="docutils literal notranslate"><span class="pre">https://172.17.0.1/proxy/ts/query</span></code> (Sollte entgegen dieser
 Anleitung das Netzwerk des Containers angepasst worden sein, so muss
-gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)</li>
+gegebenenfalls hier die IP-Adresse entsprechend angepasst werden)</li>
 <li><code class="docutils literal notranslate"><span class="pre">user</span></code>: Benutzername aus den Credentials</li>
 <li><code class="docutils literal notranslate"><span class="pre">pass</span></code>: Passwort aus den Credentials</li>
 <li><code class="docutils literal notranslate"><span class="pre">selfsigned</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
@@ -338,12 +338,12 @@ dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p
 <h2>Entwicklungsversion<a class="headerlink" href="#entwicklungsversion" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
 Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
-Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
+Konfigurations-Volume wie für die Produktiv-Version verwendet werden kann, so
 sollte ein getrenntes Volume (z.B. <code class="docutils literal notranslate"><span class="pre">CometVisuTestConfig</span></code>) angelegt werden, da
 sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
 kann.</p>
 <p>Wie unter <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> beschrieben hat die neueste
-Entwicklunglungsversion den Tag <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
+Entwicklungsversion den Tag <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
 Containers</em> als <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw.
 <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die

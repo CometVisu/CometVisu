@@ -85,7 +85,7 @@
   "screenshot": {}
 - "description":
     "de": "Router Informationen, wie Anruflisten der Fritz!Box, über TR-064."
-    "en": "Router informationen, like Fritz!Box call lists, via TR-064."
+    "en": "Router information, like Fritz!Box call lists, via TR-064."
   "manual":
     "de": "/de/develop/manual/config/widgets/plugins/tr064/index.html"
     "en": "/en/develop/manual/config/widgets/plugins/tr064/index.html"
@@ -100,7 +100,7 @@
   "name": "Audio"
   "screenshot": "/de/develop/manual/_images/audio_simple.png"
 - "description":
-    "de": "Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird."
+    "de": "Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtigungszentrale an und öffnet diese, wenn es angeklickt wird."
     "en": "The NotificationCenterBadge Widget shows the current number of messages in the notification center and opens the center when you click on it."
   "manual":
     "de": "/de/develop/manual/config/widgets/notificationcenterbadge/index.html"
@@ -170,7 +170,7 @@
   "name": "Info"
   "screenshot": "/de/develop/manual/_images/info_simple.png"
 - "description":
-    "de": "Ermöglich die Kombination eines darstellenden und bedienbaren Widgets."
+    "de": "Ermöglicht die Kombination eines darstellenden und bedienbaren Widgets."
     "en": "Enables the combination of an illustrative and usable widgets."
   "manual":
     "de": "/de/develop/manual/config/widgets/infoaction/index.html"
@@ -225,7 +225,7 @@
   "name": "Pagejump"
   "screenshot": "/de/develop/manual/_images/pagejump_komplex.png"
 - "description":
-    "de": "Fügt der Visu eine Schaltfläche hinzu, mit der beim Drücken und Loslassen jeweils ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit ist es z.B. möglich einen Taster zu simulieren um ein Garagentor, Rolläden oder Raffstores zu öffnen und zu schliessen."
+    "de": "Fügt der Visu eine Schaltfläche hinzu, mit der beim Drücken und Loslassen jeweils ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit ist es z.B. möglich einen Taster zu simulieren um ein Garagentor, Rollläden oder Raffstores zu öffnen und zu schließen."
     "en": "Adds a button to the visu that sends a defined value to the BUS when you press and release. E.g. pushing a 1 and releasing a 0. This makes it possible, for example, to simulate a push button to open and close a garage door, blinds or blinds."
   "manual":
     "de": "/de/develop/manual/config/widgets/pushbutton/index.html"

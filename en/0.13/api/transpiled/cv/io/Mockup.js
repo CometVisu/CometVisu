@@ -127,7 +127,32 @@
         r.send();
       },
       __P_486_5: function __P_486_5() {
-        this.__P_486_1 = cv.Config.initialDemoData.xhr;
+        this.__P_486_1 = cv.Config.initialDemoData.xhr; // we need to adjust the timestamps of the chart data
+
+        var now = Date.now();
+
+        for (var url in this.__P_486_1) {
+          if (url.startsWith('rrd')) {
+            this.__P_486_1[url].forEach(function (d) {
+              var data = d.body;
+              var offset = now - data[data.length - 1][0];
+              data.forEach(function (entry) {
+                return entry[0] += offset;
+              });
+            });
+          } else if (url.startsWith('resource/plugin/rsslog.php')) {
+            this.__P_486_1[url].forEach(function (d) {
+              var data = d.body.responseData.feed.entries;
+              var date = new Date();
+              date.setDate(date.getDate() - 1);
+              data.forEach(function (entry) {
+                entry.publishedDate = date.toUTCString();
+                date.setTime(date.getTime() + 3600000);
+              });
+            });
+          }
+        }
+
         var that = this; // override sinons filter handling to be able to manipulate the target URL from the filter
         // eslint-disable-next-line consistent-return
 
@@ -453,6 +478,10 @@
       restart: function restart() {},
       stop: function stop() {},
       getResourcePath: function getResourcePath(name) {
+        if (name === 'charts') {
+          return null;
+        }
+
         return name;
       },
       getLastError: function getLastError() {
@@ -488,4 +517,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1643061813954
+//# sourceMappingURL=Mockup.js.map?dt=1643469632977

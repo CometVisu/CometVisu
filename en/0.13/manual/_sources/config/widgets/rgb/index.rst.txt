@@ -46,7 +46,7 @@ Allowed attributes in the Rgb-element
     </rgb>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: rgb

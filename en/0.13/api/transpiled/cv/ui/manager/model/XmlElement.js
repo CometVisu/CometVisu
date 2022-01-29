@@ -1301,6 +1301,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else if (currentChildNames.length !== this._initialChildNames.length || currentChildNames.join('') !== this._initialChildNames.join('')) {
             this.setModified(true);
           } else {
+            var modified = false;
+
             var _iterator = _createForOfIteratorHelper(initial),
                 _step;
 
@@ -1311,8 +1313,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     value = _step$value[1];
 
                 if (!this._node.hasAttribute(key) || this._node.getAttribute(key) !== value) {
-                  this.setModified(true);
-                  return;
+                  modified = true;
+                  break;
                 }
               }
             } catch (err) {
@@ -1321,7 +1323,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               _iterator.f();
             }
 
-            this.setModified(false);
+            this.setModified(modified);
           }
         } else if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
           this.setModified(this._initialTextContent !== this.getTextContent());
@@ -1471,4 +1473,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1643061781521
+//# sourceMappingURL=XmlElement.js.map?dt=1643469602803

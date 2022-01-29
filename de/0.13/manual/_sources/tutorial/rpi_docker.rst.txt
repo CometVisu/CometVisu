@@ -107,7 +107,7 @@ Um Portainer zu starten - und auch nach einem Boot wieder starten zu lassen: ::
     docker run --name portainer --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
 
 Nun kann Portainer aufgerufen werden, in dem der Port ``9000`` des Raspberry Pi
-im Browser geöffet wird, also z.B. mit der URL:
+im Browser geöffnet wird, also z.B. mit der URL:
 `http://192.168.0.52:9000/ <http://192.168.0.52:9000/>`_
 
 Im Portainer muss nun als erstes ein Benutzer angelegt werden:
@@ -122,7 +122,7 @@ werden soll:
 .. figure:: _static/portainer_environment.png
 
 Den Hinweis seitens Portainer haben wir bereits bei der Installation
-berücksichtig und können somit mit ``Connect`` die Installation abschließen.
+berücksichtigt und können somit mit ``Connect`` die Installation abschließen.
 
 Die nächsten Schritte
 =====================

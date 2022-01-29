@@ -174,7 +174,7 @@
             // the object-fit property yet.
             // Currently (26.05.16) only Safari is known to not support
             // object-position although object-fit itself does work
-            // Note 2: The embed element allways needs it
+            // Note 2: The embed element always needs it
 
 
             if (page.getBackdropType() === 'embed' || uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1) {
@@ -376,4 +376,4 @@
   cv.ui.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1643061814449
+//# sourceMappingURL=ResizeHandler.js.map?dt=1643469633500

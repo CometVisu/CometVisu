@@ -308,75 +308,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var Gxy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
       var Bxy = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
       var Wxy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
-      this.__P_501_0 = Rxy === undefined ? {
+      this.__P_502_0 = Rxy === undefined ? {
         x: 0.64,
         y: 0.33,
         Y: 0.2126
       } : Rxy; // default: sRGB
 
-      this.__P_501_1 = Gxy === undefined ? {
+      this.__P_502_1 = Gxy === undefined ? {
         x: 0.30,
         y: 0.60,
         Y: 0.7152
       } : Gxy;
-      this.__P_501_2 = Bxy === undefined ? {
+      this.__P_502_2 = Bxy === undefined ? {
         x: 0.15,
         y: 0.06,
         Y: 0.0722
       } : Bxy;
 
-      if (this.__P_501_0.Y === undefined) {
-        this.__P_501_0.Y = 1;
+      if (this.__P_502_0.Y === undefined) {
+        this.__P_502_0.Y = 1;
       }
 
-      if (this.__P_501_1.Y === undefined) {
-        this.__P_501_1.Y = 1;
+      if (this.__P_502_1.Y === undefined) {
+        this.__P_502_1.Y = 1;
       }
 
-      if (this.__P_501_2.Y === undefined) {
-        this.__P_501_2.Y = 1;
+      if (this.__P_502_2.Y === undefined) {
+        this.__P_502_2.Y = 1;
       } // normalize luminances
 
 
-      var normFac = 1 / (this.__P_501_0.Y + this.__P_501_1.Y + this.__P_501_2.Y);
-      this.__P_501_0.Y *= normFac;
-      this.__P_501_1.Y *= normFac;
-      this.__P_501_2.Y *= normFac; // precalculate X and Z
+      var normFac = 1 / (this.__P_502_0.Y + this.__P_502_1.Y + this.__P_502_2.Y);
+      this.__P_502_0.Y *= normFac;
+      this.__P_502_1.Y *= normFac;
+      this.__P_502_2.Y *= normFac; // precalculate X and Z
 
-      this.__P_501_0.X = this.__P_501_0.x * this.__P_501_0.Y / this.__P_501_0.y;
-      this.__P_501_0.Z = (1 - this.__P_501_0.x - this.__P_501_0.y) * this.__P_501_0.Y / this.__P_501_0.y;
-      this.__P_501_1.X = this.__P_501_1.x * this.__P_501_1.Y / this.__P_501_1.y;
-      this.__P_501_1.Z = (1 - this.__P_501_1.x - this.__P_501_1.y) * this.__P_501_1.Y / this.__P_501_1.y;
-      this.__P_501_2.X = this.__P_501_2.x * this.__P_501_2.Y / this.__P_501_2.y;
-      this.__P_501_2.Z = (1 - this.__P_501_2.x - this.__P_501_2.y) * this.__P_501_2.Y / this.__P_501_2.y;
+      this.__P_502_0.X = this.__P_502_0.x * this.__P_502_0.Y / this.__P_502_0.y;
+      this.__P_502_0.Z = (1 - this.__P_502_0.x - this.__P_502_0.y) * this.__P_502_0.Y / this.__P_502_0.y;
+      this.__P_502_1.X = this.__P_502_1.x * this.__P_502_1.Y / this.__P_502_1.y;
+      this.__P_502_1.Z = (1 - this.__P_502_1.x - this.__P_502_1.y) * this.__P_502_1.Y / this.__P_502_1.y;
+      this.__P_502_2.X = this.__P_502_2.x * this.__P_502_2.Y / this.__P_502_2.y;
+      this.__P_502_2.Z = (1 - this.__P_502_2.x - this.__P_502_2.y) * this.__P_502_2.Y / this.__P_502_2.y;
 
       if (undefined !== Wxy) {
-        this.__P_501_3 = Wxy;
+        this.__P_502_3 = Wxy;
 
-        if (this.__P_501_3.Y === undefined) {
-          this.__P_501_3.Y = 1;
+        if (this.__P_502_3.Y === undefined) {
+          this.__P_502_3.Y = 1;
         }
 
-        this.__P_501_3.X = this.__P_501_3.x * this.__P_501_3.Y / this.__P_501_3.y;
-        this.__P_501_3.Z = (1 - this.__P_501_3.x - this.__P_501_3.y) * this.__P_501_3.Y / this.__P_501_3.y;
+        this.__P_502_3.X = this.__P_502_3.x * this.__P_502_3.Y / this.__P_502_3.y;
+        this.__P_502_3.Z = (1 - this.__P_502_3.x - this.__P_502_3.y) * this.__P_502_3.Y / this.__P_502_3.y;
       } else {
-        this.__P_501_3 = {
-          X: this.__P_501_0.X + this.__P_501_1.X + this.__P_501_2.X,
-          Y: this.__P_501_0.Y + this.__P_501_1.Y + this.__P_501_2.Y,
-          Z: this.__P_501_0.Z + this.__P_501_1.Z + this.__P_501_2.Z
+        this.__P_502_3 = {
+          X: this.__P_502_0.X + this.__P_502_1.X + this.__P_502_2.X,
+          Y: this.__P_502_0.Y + this.__P_502_1.Y + this.__P_502_2.Y,
+          Z: this.__P_502_0.Z + this.__P_502_1.Z + this.__P_502_2.Z
         };
-        this.__P_501_3.x = this.__P_501_3.X / (this.__P_501_3.X + this.__P_501_3.Y + this.__P_501_3.Z);
-        this.__P_501_3.y = this.__P_501_3.Y / (this.__P_501_3.X + this.__P_501_3.Y + this.__P_501_3.Z);
+        this.__P_502_3.x = this.__P_502_3.X / (this.__P_502_3.X + this.__P_502_3.Y + this.__P_502_3.Z);
+        this.__P_502_3.y = this.__P_502_3.Y / (this.__P_502_3.X + this.__P_502_3.Y + this.__P_502_3.Z);
       } // start color is a complete unsaturated red hue that is black:
 
 
-      this.__P_501_4 = {
+      this.__P_502_4 = {
         h: 0,
         s: 0,
         v: 0
       };
 
-      this.__P_501_5();
+      this.__P_502_5();
     },
 
     /*
@@ -386,89 +386,89 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     */
     members: {
       // the base colors defining the color space of this color
-      __P_501_0: undefined,
-      __P_501_1: undefined,
-      __P_501_2: undefined,
-      __P_501_3: undefined,
+      __P_502_0: undefined,
+      __P_502_1: undefined,
+      __P_502_2: undefined,
+      __P_502_3: undefined,
       // the color itself
 
       /**
        * CIE 1931 XYZ color space: x of xyY
        * @type {number}
        */
-      __P_501_6: 0.3333333333333333,
+      __P_502_6: 0.3333333333333333,
 
       /**
        * CIE 1931 XYZ color space: y of xyY
        * @type {number}
        */
-      __P_501_7: 0.3333333333333333,
+      __P_502_7: 0.3333333333333333,
 
       /**
        * CIE 1931 XYZ color space: Y of xyY or XYZ - normalized to be between 0...1
        * @type {number}
        */
-      __P_501_8: 0,
+      __P_502_8: 0,
       // derived color representations, cached to allow partial change
 
       /**
        * HSV color space - h, s and v are normalized to the range 0...1
        * @type {{h: number, s: number, v: number}}
        */
-      __P_501_4: undefined,
+      __P_502_4: undefined,
 
       /**
        * HSV color space - last known value of h
        * @type {number}
        */
-      __P_501_9: 0,
+      __P_502_9: 0,
 
       /**
        * LCh color space - last known value of h
        * @type {number}
        */
-      __P_501_10: 0,
+      __P_502_10: 0,
 
       /**
        * RGB color space - r, g and b are normalized to the range 0...1
        * @type {{r: number, g: number, b: number}}
        */
-      __P_501_11: undefined,
+      __P_502_11: undefined,
 
       /**
        * RGBW color space - r, g, b and w are normalized to the range 0...1
        * @type {{r: number, g: number, b: number, w: number}}
        */
-      __P_501_12: undefined,
+      __P_502_12: undefined,
 
       /**
        * Color temperature in Kelvin
        * @type {number}
        */
-      __P_501_13: undefined,
+      __P_502_13: undefined,
 
       /**
        * L*a*b* color space - with L in 0...100, a* and b* in roughly -150...150
        * @type {{L: number, a: number, b: number}}
        */
-      __P_501_14: undefined,
+      __P_502_14: undefined,
 
       /**
        * L*C*h° color space - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
        * @type {{L: number, C: number, h: number}}
        */
-      __P_501_15: undefined,
+      __P_502_15: undefined,
 
       /**
        * Get X, Y, Z from this color
        * @private
        * @returns {{X: number, Y: number, Z: number}}
        */
-      __P_501_16: function __P_501_16() {
+      __P_502_16: function __P_502_16() {
         return {
-          X: this.__P_501_6 * (this.__P_501_8 / Math.max(0.001, this.__P_501_7)),
-          Y: this.__P_501_8,
-          Z: (1 - this.__P_501_6 - this.__P_501_7) * (this.__P_501_8 / Math.max(0.001, this.__P_501_7))
+          X: this.__P_502_6 * (this.__P_502_8 / Math.max(0.001, this.__P_502_7)),
+          Y: this.__P_502_8,
+          Z: (1 - this.__P_502_6 - this.__P_502_7) * (this.__P_502_8 / Math.max(0.001, this.__P_502_7))
         };
       },
 
@@ -479,12 +479,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {number} Y
        * @param {number} Z
        */
-      __P_501_17: function __P_501_17(X, Y, Z) {
+      __P_502_17: function __P_502_17(X, Y, Z) {
         var XYZ = X + Y + Z; // best guess for a total black: completely unsaturated, i.e. the white point
 
-        this.__P_501_6 = XYZ > 0 ? X / XYZ : this.__P_501_3.x;
-        this.__P_501_7 = XYZ > 0 ? Y / XYZ : this.__P_501_3.y;
-        this.__P_501_8 = Y;
+        this.__P_502_6 = XYZ > 0 ? X / XYZ : this.__P_502_3.x;
+        this.__P_502_7 = XYZ > 0 ? Y / XYZ : this.__P_502_3.y;
+        this.__P_502_8 = Y;
       },
 
       /**
@@ -494,11 +494,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {number} y
        * @returns {{x: number, y: number}}
        */
-      __P_501_18: function __P_501_18() {
-        var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.__P_501_6;
-        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.__P_501_7;
+      __P_502_18: function __P_502_18() {
+        var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.__P_502_6;
+        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.__P_502_7;
         // is x-y on the same side of the R-G axis as the white point?
-        var iRG = cv.util.Color.intersect(this.__P_501_0, this.__P_501_1, this.__P_501_3, {
+        var iRG = cv.util.Color.intersect(this.__P_502_0, this.__P_502_1, this.__P_502_3, {
           x: x,
           y: y
         });
@@ -510,7 +510,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         } // is x-y on the same side of the G-B axis as the white point?
 
 
-        var iGB = cv.util.Color.intersect(this.__P_501_1, this.__P_501_2, this.__P_501_3, {
+        var iGB = cv.util.Color.intersect(this.__P_502_1, this.__P_502_2, this.__P_502_3, {
           x: x,
           y: y
         });
@@ -522,7 +522,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         } // is x-y on the same side of the B-R axis as the white point?
 
 
-        var iBR = cv.util.Color.intersect(this.__P_501_2, this.__P_501_0, this.__P_501_3, {
+        var iBR = cv.util.Color.intersect(this.__P_502_2, this.__P_502_0, this.__P_502_3, {
           x: x,
           y: y
         });
@@ -539,7 +539,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         };
       },
       // make derived color valid
-      __P_501_19: function __P_501_19(force) {
+      __P_502_19: function __P_502_19(force) {
         /**
          * solve a special set of equations:
          * <pre>
@@ -570,12 +570,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           ];
         }
 
-        if (this.__P_501_4 === undefined || force) {
-          if (this.__P_501_8 < 1e-4) {
-            this.__P_501_4 = {
-              h: this.__P_501_9,
+        if (this.__P_502_4 === undefined || force) {
+          if (this.__P_502_8 < 1e-4) {
+            this.__P_502_4 = {
+              h: this.__P_502_9,
               s: 0,
-              v: this.__P_501_8
+              v: this.__P_502_8
             };
             return;
           }
@@ -593,151 +593,151 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             };
           };
 
-          var hues = [this.__P_501_0, this.__P_501_1, this.__P_501_2, this.__P_501_0];
+          var hues = [this.__P_502_0, this.__P_502_1, this.__P_502_2, this.__P_502_0];
           var thisXYZ = {
-            X: this.__P_501_6 * this.__P_501_8 / this.__P_501_7,
-            Y: this.__P_501_8,
-            Z: (1 - this.__P_501_6 - this.__P_501_7) * this.__P_501_8 / this.__P_501_7
+            X: this.__P_502_6 * this.__P_502_8 / this.__P_502_7,
+            Y: this.__P_502_8,
+            Z: (1 - this.__P_502_6 - this.__P_502_7) * this.__P_502_8 / this.__P_502_7
           };
 
-          if (Math.pow(this.__P_501_6 - this.__P_501_3.x, 2) + Math.pow(this.__P_501_7 - this.__P_501_3.y, 2) < 1e-6) {
+          if (Math.pow(this.__P_502_6 - this.__P_502_3.x, 2) + Math.pow(this.__P_502_7 - this.__P_502_3.y, 2) < 1e-6) {
             // color is white
-            this.__P_501_4 = {
-              h: this.__P_501_9,
+            this.__P_502_4 = {
+              h: this.__P_502_9,
               s: 0,
-              v: this.__P_501_8
+              v: this.__P_502_8
             };
             return;
           }
 
           for (var i = 0; i < 3; i++) {
-            var inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i + 1]), this.__P_501_3, {
-              x: this.__P_501_6,
-              y: this.__P_501_7
+            var inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i + 1]), this.__P_502_3, {
+              x: this.__P_502_6,
+              y: this.__P_502_7
             });
-            var inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i + 1]), hues[i + 1], this.__P_501_3, {
-              x: this.__P_501_6,
-              y: this.__P_501_7
+            var inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i + 1]), hues[i + 1], this.__P_502_3, {
+              x: this.__P_502_6,
+              y: this.__P_502_7
             }); // hues[i] -> (hues[i]+hues[i+1])
 
-            var fac = solve(hues[i + 1].X, hues[i + 1].Y, hues[i + 1].Z, hues[i].X - this.__P_501_3.X, hues[i].Y - this.__P_501_3.Y, hues[i].Z - this.__P_501_3.Z, this.__P_501_3.X, this.__P_501_3.Y, this.__P_501_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
+            var fac = solve(hues[i + 1].X, hues[i + 1].Y, hues[i + 1].Z, hues[i].X - this.__P_502_3.X, hues[i].Y - this.__P_502_3.Y, hues[i].Z - this.__P_502_3.Z, this.__P_502_3.X, this.__P_502_3.Y, this.__P_502_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
 
             if (inter1.factors[0] >= 0 && inter1.factors[1] >= 0 && inter1.factors[1] <= 1) {
-              this.__P_501_4 = {
+              this.__P_502_4 = {
                 h: 2 * i / 6 + fac[0] / 6,
                 s: fac[1],
                 v: fac[2]
               };
-              this.__P_501_9 = this.__P_501_4.h;
+              this.__P_502_9 = this.__P_502_4.h;
               break;
             } // (hues[i]+hues[i+1]) -> hues[i+1]
 
 
-            var fac2 = solve(-hues[i].X, -hues[i].Y, -hues[i].Z, hues[i].X + hues[i + 1].X - this.__P_501_3.X, hues[i].Y + hues[i + 1].Y - this.__P_501_3.Y, hues[i].Z + hues[i + 1].Z - this.__P_501_3.Z, this.__P_501_3.X, this.__P_501_3.Y, this.__P_501_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
+            var fac2 = solve(-hues[i].X, -hues[i].Y, -hues[i].Z, hues[i].X + hues[i + 1].X - this.__P_502_3.X, hues[i].Y + hues[i + 1].Y - this.__P_502_3.Y, hues[i].Z + hues[i + 1].Z - this.__P_502_3.Z, this.__P_502_3.X, this.__P_502_3.Y, this.__P_502_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
 
             if (inter2.factors[0] >= 0 && inter2.factors[1] >= 0 && inter2.factors[1] <= 1) {
-              this.__P_501_4 = {
+              this.__P_502_4 = {
                 h: (2 * i + 1) / 6 + fac2[0] / 6,
                 s: fac2[1],
                 v: fac2[2]
               };
-              this.__P_501_9 = this.__P_501_4.h;
+              this.__P_502_9 = this.__P_502_4.h;
               break;
             }
 
-            this.__P_501_4 = {
+            this.__P_502_4 = {
               h: 0,
               s: 0,
-              v: this.__P_501_8
+              v: this.__P_502_8
             };
-            this.__P_501_9 = this.__P_501_4.h;
+            this.__P_502_9 = this.__P_502_4.h;
           }
         }
       },
-      __P_501_20: function __P_501_20(force) {
-        if (this.__P_501_21 === undefined || force) {
-          this.__P_501_21 = {};
+      __P_502_20: function __P_502_20(force) {
+        if (this.__P_502_21 === undefined || force) {
+          this.__P_502_21 = {};
 
-          var _this$__P_501_ = this.__P_501_16(),
-              X = _this$__P_501_.X,
-              Y = _this$__P_501_.Y,
-              Z = _this$__P_501_.Z;
+          var _this$__P_502_ = this.__P_502_16(),
+              X = _this$__P_502_.X,
+              Y = _this$__P_502_.Y,
+              Z = _this$__P_502_.Z;
 
-          var _cv$util$Color$solve = cv.util.Color.solve3d(this.__P_501_0.X, this.__P_501_0.Y, this.__P_501_0.Z, this.__P_501_1.X, this.__P_501_1.Y, this.__P_501_1.Z, this.__P_501_2.X, this.__P_501_2.Y, this.__P_501_2.Z, X, Y, Z);
+          var _cv$util$Color$solve = cv.util.Color.solve3d(this.__P_502_0.X, this.__P_502_0.Y, this.__P_502_0.Z, this.__P_502_1.X, this.__P_502_1.Y, this.__P_502_1.Z, this.__P_502_2.X, this.__P_502_2.Y, this.__P_502_2.Z, X, Y, Z);
 
           var _cv$util$Color$solve2 = _slicedToArray(_cv$util$Color$solve, 3);
 
-          this.__P_501_21.r = _cv$util$Color$solve2[0];
-          this.__P_501_21.g = _cv$util$Color$solve2[1];
-          this.__P_501_21.b = _cv$util$Color$solve2[2];
+          this.__P_502_21.r = _cv$util$Color$solve2[0];
+          this.__P_502_21.g = _cv$util$Color$solve2[1];
+          this.__P_502_21.b = _cv$util$Color$solve2[2];
           // scale and clamp:
-          var max = Math.max(this.__P_501_21.r, this.__P_501_21.g, this.__P_501_21.b);
+          var max = Math.max(this.__P_502_21.r, this.__P_502_21.g, this.__P_502_21.b);
 
           if (max < 1) {
             max = 1;
           }
 
-          this.__P_501_21.r = Math.max(0, this.__P_501_21.r / max);
-          this.__P_501_21.g = Math.max(0, this.__P_501_21.g / max);
-          this.__P_501_21.b = Math.max(0, this.__P_501_21.b / max);
+          this.__P_502_21.r = Math.max(0, this.__P_502_21.r / max);
+          this.__P_502_21.g = Math.max(0, this.__P_502_21.g / max);
+          this.__P_502_21.b = Math.max(0, this.__P_502_21.b / max);
         }
       },
-      __P_501_22: function __P_501_22(force) {
-        if (this.__P_501_23 === undefined || force) {
-          var _this$__P_501_2 = this.__P_501_16(),
-              X = _this$__P_501_2.X,
-              Y = _this$__P_501_2.Y,
-              Z = _this$__P_501_2.Z;
+      __P_502_22: function __P_502_22(force) {
+        if (this.__P_502_23 === undefined || force) {
+          var _this$__P_502_2 = this.__P_502_16(),
+              X = _this$__P_502_2.X,
+              Y = _this$__P_502_2.Y,
+              Z = _this$__P_502_2.Z;
 
-          var w2rgb = cv.util.Color.solve3d(this.__P_501_0.X, this.__P_501_0.Y, this.__P_501_0.Z, this.__P_501_1.X, this.__P_501_1.Y, this.__P_501_1.Z, this.__P_501_2.X, this.__P_501_2.Y, this.__P_501_2.Z, this.__P_501_3.X, this.__P_501_3.Y, this.__P_501_3.Z);
-          this.__P_501_23 = {};
+          var w2rgb = cv.util.Color.solve3d(this.__P_502_0.X, this.__P_502_0.Y, this.__P_502_0.Z, this.__P_502_1.X, this.__P_502_1.Y, this.__P_502_1.Z, this.__P_502_2.X, this.__P_502_2.Y, this.__P_502_2.Z, this.__P_502_3.X, this.__P_502_3.Y, this.__P_502_3.Z);
+          this.__P_502_23 = {};
 
-          var _cv$util$Color$solve3 = cv.util.Color.solve3d(this.__P_501_0.X, this.__P_501_0.Y, this.__P_501_0.Z, this.__P_501_1.X, this.__P_501_1.Y, this.__P_501_1.Z, this.__P_501_2.X, this.__P_501_2.Y, this.__P_501_2.Z, X, Y, Z);
+          var _cv$util$Color$solve3 = cv.util.Color.solve3d(this.__P_502_0.X, this.__P_502_0.Y, this.__P_502_0.Z, this.__P_502_1.X, this.__P_502_1.Y, this.__P_502_1.Z, this.__P_502_2.X, this.__P_502_2.Y, this.__P_502_2.Z, X, Y, Z);
 
           var _cv$util$Color$solve4 = _slicedToArray(_cv$util$Color$solve3, 3);
 
-          this.__P_501_23.r = _cv$util$Color$solve4[0];
-          this.__P_501_23.g = _cv$util$Color$solve4[1];
-          this.__P_501_23.b = _cv$util$Color$solve4[2];
-          this.__P_501_23.w = Math.min(this.__P_501_23.r / w2rgb[0], this.__P_501_23.g / w2rgb[1], this.__P_501_23.b / w2rgb[2]);
-          this.__P_501_23.r -= this.__P_501_23.w * w2rgb[0];
-          this.__P_501_23.g -= this.__P_501_23.w * w2rgb[1];
-          this.__P_501_23.b -= this.__P_501_23.w * w2rgb[2]; // scale and clamp:
+          this.__P_502_23.r = _cv$util$Color$solve4[0];
+          this.__P_502_23.g = _cv$util$Color$solve4[1];
+          this.__P_502_23.b = _cv$util$Color$solve4[2];
+          this.__P_502_23.w = Math.min(this.__P_502_23.r / w2rgb[0], this.__P_502_23.g / w2rgb[1], this.__P_502_23.b / w2rgb[2]);
+          this.__P_502_23.r -= this.__P_502_23.w * w2rgb[0];
+          this.__P_502_23.g -= this.__P_502_23.w * w2rgb[1];
+          this.__P_502_23.b -= this.__P_502_23.w * w2rgb[2]; // scale and clamp:
 
-          var max = Math.max(this.__P_501_23.r, this.__P_501_23.g, this.__P_501_23.b, this.__P_501_23.w);
+          var max = Math.max(this.__P_502_23.r, this.__P_502_23.g, this.__P_502_23.b, this.__P_502_23.w);
 
           if (max < 1) {
             max = 1;
           }
 
-          this.__P_501_23.r = Math.max(0, this.__P_501_23.r / max);
-          this.__P_501_23.g = Math.max(0, this.__P_501_23.g / max);
-          this.__P_501_23.b = Math.max(0, this.__P_501_23.b / max);
-          this.__P_501_23.w = Math.max(0, this.__P_501_23.w / max);
+          this.__P_502_23.r = Math.max(0, this.__P_502_23.r / max);
+          this.__P_502_23.g = Math.max(0, this.__P_502_23.g / max);
+          this.__P_502_23.b = Math.max(0, this.__P_502_23.b / max);
+          this.__P_502_23.w = Math.max(0, this.__P_502_23.w / max);
         }
       },
-      __P_501_24: function __P_501_24(force) {
+      __P_502_24: function __P_502_24(force) {
         // getting the color temperature from xy is only giving the correlated
         // color temperature, the temperature of the Planckian radiator whose
         // perceived color most closely resembles that of a given stimulus at the
         // same brightness and under specified viewing conditions
         // This formula works for CCT between 2000 K and 12500 K.
-        if (this.__P_501_13 === undefined || force) {
-          var n = (this.__P_501_6 - 0.3320) / (this.__P_501_7 - 0.1858);
+        if (this.__P_502_13 === undefined || force) {
+          var n = (this.__P_502_6 - 0.3320) / (this.__P_502_7 - 0.1858);
           var T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
-          this.__P_501_13 = Math.max(2000, Math.min(T, 12500));
+          this.__P_502_13 = Math.max(2000, Math.min(T, 12500));
         }
       },
-      __P_501_25: function __P_501_25(force) {
-        if (this.__P_501_14 === undefined || force) {
-          var Xn = this.__P_501_3.X;
-          var Yn = this.__P_501_3.Y;
-          var Zn = this.__P_501_3.Z;
+      __P_502_25: function __P_502_25(force) {
+        if (this.__P_502_14 === undefined || force) {
+          var Xn = this.__P_502_3.X;
+          var Yn = this.__P_502_3.Y;
+          var Zn = this.__P_502_3.Z;
 
-          var _this$__P_501_3 = this.__P_501_16(),
-              X = _this$__P_501_3.X,
-              Y = _this$__P_501_3.Y,
-              Z = _this$__P_501_3.Z;
+          var _this$__P_502_3 = this.__P_502_16(),
+              X = _this$__P_502_3.X,
+              Y = _this$__P_502_3.Y,
+              Z = _this$__P_502_3.Z;
 
           var f = function f(t) {
             if (t < 0.008856451679035631) {
@@ -747,30 +747,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             return Math.pow(t, 0.3333333333333333);
           };
 
-          this.__P_501_14 = {
+          this.__P_502_14 = {
             L: 116 * f(Y / Yn) - 16,
             a: 500 * (f(X / Xn) - f(Y / Yn)),
             b: 200 * (f(Y / Yn) - f(Z / Zn))
           };
         }
       },
-      __P_501_26: function __P_501_26(force) {
-        this.__P_501_25();
+      __P_502_26: function __P_502_26(force) {
+        this.__P_502_25();
 
-        if (this.__P_501_15 === undefined || force) {
-          this.__P_501_15 = {
-            L: this.__P_501_14.L / 100,
+        if (this.__P_502_15 === undefined || force) {
+          this.__P_502_15 = {
+            L: this.__P_502_14.L / 100,
             // map to 0...1
-            C: Math.sqrt(Math.pow(this.__P_501_14.a, 2) + Math.pow(this.__P_501_14.b, 2)) / 150,
+            C: Math.sqrt(Math.pow(this.__P_502_14.a, 2) + Math.pow(this.__P_502_14.b, 2)) / 150,
             // map to 0...1
-            h: (Math.atan2(this.__P_501_14.b, this.__P_501_14.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
+            h: (Math.atan2(this.__P_502_14.b, this.__P_502_14.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
 
           };
 
-          if (this.__P_501_15.C < 1e-5) {
-            this.__P_501_15.h = this.__P_501_10;
+          if (this.__P_502_15.C < 1e-5) {
+            this.__P_502_15.h = this.__P_502_10;
           } else {
-            this.__P_501_10 = this.__P_501_15.h;
+            this.__P_502_10 = this.__P_502_15.h;
           }
         }
       },
@@ -781,18 +781,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {string} keep
        * @param {string} [keep2]
        */
-      __P_501_27: function __P_501_27(keep) {
+      __P_502_27: function __P_502_27(keep) {
         var _this = this;
 
         var keep2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-        ["__P_501_21", "__P_501_23", "__P_501_4", "__P_501_14", "__P_501_15", "__P_501_13"].forEach(function (cache) {
+        ["__P_502_21", "__P_502_23", "__P_502_4", "__P_502_14", "__P_502_15", "__P_502_13"].forEach(function (cache) {
           if (cache !== keep && cache !== keep2) {
             _this[cache] = undefined;
           }
         });
       },
       // synchronise xyY
-      __P_501_5: function __P_501_5() {
+      __P_502_5: function __P_502_5() {
         // first step: get maximum saturated RGB values
         var r;
         var g;
@@ -800,39 +800,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var u;
         var d; // eslint-disable-line max-statements-per-line
 
-        if (this.__P_501_4.h < 0.16666666666666666) {
-          var _u = (this.__P_501_4.h - 0) * 6;
+        if (this.__P_502_4.h < 0.16666666666666666) {
+          var _u = (this.__P_502_4.h - 0) * 6;
 
           r = 1;
           g = _u;
           b = 0; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_501_4.h < 0.3333333333333333) {
-          u = (this.__P_501_4.h - 0.16666666666666666) * 6;
+        } else if (this.__P_502_4.h < 0.3333333333333333) {
+          u = (this.__P_502_4.h - 0.16666666666666666) * 6;
           d = 1 - u; // eslint-disable-line max-statements-per-line
 
           r = d;
           g = 1;
           b = 0; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_501_4.h < 0.5) {
-          var _u2 = (this.__P_501_4.h - 0.3333333333333333) * 6;
+        } else if (this.__P_502_4.h < 0.5) {
+          var _u2 = (this.__P_502_4.h - 0.3333333333333333) * 6;
 
           r = 0;
           g = 1;
           b = _u2; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_501_4.h < 0.6666666666666666) {
-          u = (this.__P_501_4.h - 0.5) * 6;
+        } else if (this.__P_502_4.h < 0.6666666666666666) {
+          u = (this.__P_502_4.h - 0.5) * 6;
           d = 1 - u; // eslint-disable-line max-statements-per-line
 
           r = 0;
           g = d;
           b = 1; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_501_4.h < 0.8333333333333334) {
-          u = (this.__P_501_4.h - 0.6666666666666666) * 6;
+        } else if (this.__P_502_4.h < 0.8333333333333334) {
+          u = (this.__P_502_4.h - 0.6666666666666666) * 6;
           r = u;
           g = 0;
           b = 1; // eslint-disable-line max-statements-per-line
         } else {
-          u = (this.__P_501_4.h - 0.8333333333333334) * 6;
+          u = (this.__P_502_4.h - 0.8333333333333334) * 6;
           d = 1 - u; // eslint-disable-line max-statements-per-line
 
           r = 1;
@@ -841,57 +841,57 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         } // second step: blend with white to take saturation into account and scale with brightness
 
 
-        var X = ((this.__P_501_0.X * r + this.__P_501_1.X * g + this.__P_501_2.X * b) * this.__P_501_4.s + (1 - this.__P_501_4.s) * this.__P_501_3.X) * this.__P_501_4.v;
-        var Y = ((this.__P_501_0.Y * r + this.__P_501_1.Y * g + this.__P_501_2.Y * b) * this.__P_501_4.s + (1 - this.__P_501_4.s) * this.__P_501_3.Y) * this.__P_501_4.v;
-        var Z = ((this.__P_501_0.Z * r + this.__P_501_1.Z * g + this.__P_501_2.Z * b) * this.__P_501_4.s + (1 - this.__P_501_4.s) * this.__P_501_3.Z) * this.__P_501_4.v;
+        var X = ((this.__P_502_0.X * r + this.__P_502_1.X * g + this.__P_502_2.X * b) * this.__P_502_4.s + (1 - this.__P_502_4.s) * this.__P_502_3.X) * this.__P_502_4.v;
+        var Y = ((this.__P_502_0.Y * r + this.__P_502_1.Y * g + this.__P_502_2.Y * b) * this.__P_502_4.s + (1 - this.__P_502_4.s) * this.__P_502_3.Y) * this.__P_502_4.v;
+        var Z = ((this.__P_502_0.Z * r + this.__P_502_1.Z * g + this.__P_502_2.Z * b) * this.__P_502_4.s + (1 - this.__P_502_4.s) * this.__P_502_3.Z) * this.__P_502_4.v;
 
-        this.__P_501_17(X, Y, Z);
+        this.__P_502_17(X, Y, Z);
 
-        this.__P_501_27("__P_501_4");
+        this.__P_502_27("__P_502_4");
       },
-      __P_501_28: function __P_501_28() {
-        this.__P_501_8 = Math.max(this.__P_501_21.r, this.__P_501_21.g, this.__P_501_21.b);
+      __P_502_28: function __P_502_28() {
+        this.__P_502_8 = Math.max(this.__P_502_21.r, this.__P_502_21.g, this.__P_502_21.b);
 
-        if (this.__P_501_8 > 0) {
-          var X = this.__P_501_0.X * this.__P_501_21.r + this.__P_501_1.X * this.__P_501_21.g + this.__P_501_2.X * this.__P_501_21.b;
-          var Y = this.__P_501_0.Y * this.__P_501_21.r + this.__P_501_1.Y * this.__P_501_21.g + this.__P_501_2.Y * this.__P_501_21.b;
-          var Z = this.__P_501_0.Z * this.__P_501_21.r + this.__P_501_1.Z * this.__P_501_21.g + this.__P_501_2.Z * this.__P_501_21.b;
+        if (this.__P_502_8 > 0) {
+          var X = this.__P_502_0.X * this.__P_502_21.r + this.__P_502_1.X * this.__P_502_21.g + this.__P_502_2.X * this.__P_502_21.b;
+          var Y = this.__P_502_0.Y * this.__P_502_21.r + this.__P_502_1.Y * this.__P_502_21.g + this.__P_502_2.Y * this.__P_502_21.b;
+          var Z = this.__P_502_0.Z * this.__P_502_21.r + this.__P_502_1.Z * this.__P_502_21.g + this.__P_502_2.Z * this.__P_502_21.b;
 
-          this.__P_501_17(X, Y, Z);
+          this.__P_502_17(X, Y, Z);
         } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
 
 
-        this.__P_501_27("__P_501_21");
+        this.__P_502_27("__P_502_21");
       },
-      __P_501_29: function __P_501_29() {
-        this.__P_501_8 = Math.max(this.__P_501_23.r, this.__P_501_23.g, this.__P_501_23.b, this.__P_501_23.w);
+      __P_502_29: function __P_502_29() {
+        this.__P_502_8 = Math.max(this.__P_502_23.r, this.__P_502_23.g, this.__P_502_23.b, this.__P_502_23.w);
 
-        if (this.__P_501_8 > 0) {
-          var X = this.__P_501_0.X * this.__P_501_23.r + this.__P_501_1.X * this.__P_501_23.g + this.__P_501_2.X * this.__P_501_23.b + this.__P_501_3.X * this.__P_501_23.w;
-          var Y = this.__P_501_0.Y * this.__P_501_23.r + this.__P_501_1.Y * this.__P_501_23.g + this.__P_501_2.Y * this.__P_501_23.b + this.__P_501_3.Y * this.__P_501_23.w;
-          var Z = this.__P_501_0.Z * this.__P_501_23.r + this.__P_501_1.Z * this.__P_501_23.g + this.__P_501_2.Z * this.__P_501_23.b + this.__P_501_3.Z * this.__P_501_23.w;
+        if (this.__P_502_8 > 0) {
+          var X = this.__P_502_0.X * this.__P_502_23.r + this.__P_502_1.X * this.__P_502_23.g + this.__P_502_2.X * this.__P_502_23.b + this.__P_502_3.X * this.__P_502_23.w;
+          var Y = this.__P_502_0.Y * this.__P_502_23.r + this.__P_502_1.Y * this.__P_502_23.g + this.__P_502_2.Y * this.__P_502_23.b + this.__P_502_3.Y * this.__P_502_23.w;
+          var Z = this.__P_502_0.Z * this.__P_502_23.r + this.__P_502_1.Z * this.__P_502_23.g + this.__P_502_2.Z * this.__P_502_23.b + this.__P_502_3.Z * this.__P_502_23.w;
 
-          this.__P_501_17(X, Y, Z);
+          this.__P_502_17(X, Y, Z);
         } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
 
 
-        this.__P_501_27("__P_501_23");
+        this.__P_502_27("__P_502_23");
       },
-      __P_501_30: function __P_501_30() {
-        var xy = cv.util.Color.temperature2xy(this.__P_501_13);
-        this.__P_501_6 = xy.x;
-        this.__P_501_7 = xy.y;
+      __P_502_30: function __P_502_30() {
+        var xy = cv.util.Color.temperature2xy(this.__P_502_13);
+        this.__P_502_6 = xy.x;
+        this.__P_502_7 = xy.y;
 
-        this.__P_501_27("__P_501_13");
+        this.__P_502_27("__P_502_13");
       },
-      __P_501_31: function __P_501_31() {
-        this.__P_501_27("__P_501_13");
+      __P_502_31: function __P_502_31() {
+        this.__P_502_27("__P_502_13");
       },
-      __P_501_32: function __P_501_32() {
+      __P_502_32: function __P_502_32() {
         var keepLCh = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-        var Xn = this.__P_501_3.X;
-        var Yn = this.__P_501_3.Y;
-        var Zn = this.__P_501_3.Z;
+        var Xn = this.__P_502_3.X;
+        var Yn = this.__P_502_3.Y;
+        var Zn = this.__P_502_3.Z;
 
         var fInv = function fInv(t) {
           if (t < 0.20689655172413793) {
@@ -901,24 +901,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return Math.pow(t, 3);
         };
 
-        var Lab = this.__P_501_14;
+        var Lab = this.__P_502_14;
         var L16 = (Lab.L + 16) / 116;
         var X = Xn * fInv(L16 + Lab.a / 500);
         var Y = Yn * fInv(L16);
         var Z = Zn * fInv(L16 - Lab.b / 200);
 
-        this.__P_501_17(X, Y, Z);
+        this.__P_502_17(X, Y, Z);
 
-        this.__P_501_27("__P_501_14", keepLCh ? "__P_501_15" : '');
+        this.__P_502_27("__P_502_14", keepLCh ? "__P_502_15" : '');
       },
-      __P_501_33: function __P_501_33() {
-        this.__P_501_14 = {
-          L: this.__P_501_15.L * 100,
-          a: this.__P_501_15.C * Math.cos(this.__P_501_15.h * 2 * Math.PI) * 150,
-          b: this.__P_501_15.C * Math.sin(this.__P_501_15.h * 2 * Math.PI) * 150
+      __P_502_33: function __P_502_33() {
+        this.__P_502_14 = {
+          L: this.__P_502_15.L * 100,
+          a: this.__P_502_15.C * Math.cos(this.__P_502_15.h * 2 * Math.PI) * 150,
+          b: this.__P_502_15.C * Math.sin(this.__P_502_15.h * 2 * Math.PI) * 150
         };
 
-        this.__P_501_32(true);
+        this.__P_502_32(true);
       },
 
       /**
@@ -952,54 +952,54 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           case 'h':
           case 's':
           case 'v':
-            this.__P_501_19();
+            this.__P_502_19();
 
-            this.__P_501_4[component] = clamp(value);
+            this.__P_502_4[component] = clamp(value);
 
-            this.__P_501_5();
+            this.__P_502_5();
 
             break;
 
           case 'sv':
-            this.__P_501_19();
+            this.__P_502_19();
 
-            this.__P_501_4.s = clamp(value[0]);
-            this.__P_501_4.v = clamp(value[1]);
+            this.__P_502_4.s = clamp(value[0]);
+            this.__P_502_4.v = clamp(value[1]);
 
-            this.__P_501_5();
+            this.__P_502_5();
 
             break;
 
           case 'hsv':
-            this.__P_501_4 = {
+            this.__P_502_4 = {
               h: clamp(value.h),
               s: clamp(value.s),
               v: clamp(value.v)
             };
 
-            this.__P_501_5();
+            this.__P_502_5();
 
             break;
 
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
-            this.__P_501_20();
+            this.__P_502_20();
 
-            this.__P_501_21[component.split('-')[1]] = clamp(value);
+            this.__P_502_21[component.split('-')[1]] = clamp(value);
 
-            this.__P_501_28();
+            this.__P_502_28();
 
             break;
 
           case 'rgb':
-            this.__P_501_21 = {
+            this.__P_502_21 = {
               r: clamp(value.r),
               g: clamp(value.g),
               b: clamp(value.b)
             };
 
-            this.__P_501_28();
+            this.__P_502_28();
 
             break;
 
@@ -1007,102 +1007,102 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           case 'RGBW-g':
           case 'RGBW-b':
           case 'RGBW-w':
-            this.__P_501_22();
+            this.__P_502_22();
 
-            this.__P_501_23[component.split('-')[1]] = clamp(value);
+            this.__P_502_23[component.split('-')[1]] = clamp(value);
 
-            this.__P_501_29();
+            this.__P_502_29();
 
             break;
 
           case 'rgbw':
-            this.__P_501_23 = {
+            this.__P_502_23 = {
               r: clamp(value.r),
               g: clamp(value.g),
               b: clamp(value.b),
               w: clamp(value.w)
             };
 
-            this.__P_501_29();
+            this.__P_502_29();
 
             break;
 
           case 'T':
-            this.__P_501_13 = Math.max(1667, Math.min(value, 25000));
+            this.__P_502_13 = Math.max(1667, Math.min(value, 25000));
 
-            this.__P_501_30();
+            this.__P_502_30();
 
             break;
 
           case 'x':
-            this.__P_501_6 = clamp(value);
+            this.__P_502_6 = clamp(value);
 
-            this.__P_501_27(''); // all precalculated colors are invalid now
+            this.__P_502_27(''); // all precalculated colors are invalid now
 
 
             break;
 
           case 'y':
-            this.__P_501_7 = clamp(value);
+            this.__P_502_7 = clamp(value);
 
-            this.__P_501_27(''); // all precalculated colors are invalid now
+            this.__P_502_27(''); // all precalculated colors are invalid now
 
 
             break;
 
           case 'xy':
-            this.__P_501_6 = clamp(value.x);
-            this.__P_501_7 = clamp(value.y);
+            this.__P_502_6 = clamp(value.x);
+            this.__P_502_7 = clamp(value.y);
 
-            this.__P_501_27(''); // all precalculated colors are invalid now
+            this.__P_502_27(''); // all precalculated colors are invalid now
 
 
             break;
 
           case 'Y':
-            this.__P_501_8 = clamp(value);
+            this.__P_502_8 = clamp(value);
 
-            this.__P_501_31();
+            this.__P_502_31();
 
             break;
 
           case 'xyY':
-            this.__P_501_6 = clamp(value.x);
-            this.__P_501_7 = clamp(value.y);
-            this.__P_501_8 = clamp(value.Y);
+            this.__P_502_6 = clamp(value.x);
+            this.__P_502_7 = clamp(value.y);
+            this.__P_502_8 = clamp(value.Y);
 
-            this.__P_501_27(''); // all precalculated colors are invalid now
+            this.__P_502_27(''); // all precalculated colors are invalid now
 
 
             break;
 
           case 'LCh-L':
           case 'LCh-C':
-            this.__P_501_26();
+            this.__P_502_26();
 
-            this.__P_501_15[component.split('-')[1]] = clamp(value);
+            this.__P_502_15[component.split('-')[1]] = clamp(value);
 
-            this.__P_501_33();
+            this.__P_502_33();
 
             break;
 
           case 'LCh-h':
-            this.__P_501_26();
+            this.__P_502_26();
 
-            this.__P_501_15[component.split('-')[1]] = clamp(value);
-            this.__P_501_10 = this.__P_501_15.h;
+            this.__P_502_15[component.split('-')[1]] = clamp(value);
+            this.__P_502_10 = this.__P_502_15.h;
 
-            this.__P_501_33();
+            this.__P_502_33();
 
             break;
 
           case 'LCh-CL':
-            this.__P_501_26();
+            this.__P_502_26();
 
-            this.__P_501_15.C = clamp(value[0]);
-            this.__P_501_15.L = clamp(value[1]);
+            this.__P_502_15.C = clamp(value[0]);
+            this.__P_502_15.L = clamp(value[1]);
 
-            this.__P_501_33();
+            this.__P_502_33();
 
             break;
         }
@@ -1115,14 +1115,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {{h: number, s: number, v: number}} hsv
        */
       _forceHSV: function _forceHSV(hsv) {
-        this.__P_501_4 = hsv;
+        this.__P_502_4 = hsv;
 
-        this.__P_501_5();
+        this.__P_502_5();
       },
       _forceLCh: function _forceLCh(LCh) {
-        this.__P_501_15 = LCh;
+        this.__P_502_15 = LCh;
 
-        this.__P_501_33();
+        this.__P_502_33();
       },
 
       /**
@@ -1152,56 +1152,56 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         switch (component) {
           case 'xy':
             return {
-              x: clamp(0, this.__P_501_6, 1),
-              y: clamp(0, this.__P_501_7, 1)
+              x: clamp(0, this.__P_502_6, 1),
+              y: clamp(0, this.__P_502_7, 1)
             };
 
           case 'Y':
-            return clamp(0, this.__P_501_8, 1);
+            return clamp(0, this.__P_502_8, 1);
 
           case 'xyY':
             return {
-              x: clamp(0, this.__P_501_6, 1),
-              y: clamp(0, this.__P_501_7, 1),
-              Y: clamp(0, this.__P_501_8, 1)
+              x: clamp(0, this.__P_502_6, 1),
+              y: clamp(0, this.__P_502_7, 1),
+              Y: clamp(0, this.__P_502_8, 1)
             };
 
           case 'h':
           case 's':
           case 'v':
-            this.__P_501_19(force);
+            this.__P_502_19(force);
 
-            return clamp(0, this.__P_501_4[component], 1);
+            return clamp(0, this.__P_502_4[component], 1);
 
           case 'hsv':
-            this.__P_501_19(force);
+            this.__P_502_19(force);
 
             return {
-              h: clamp(0, this.__P_501_4.h, 1),
-              s: clamp(0, this.__P_501_4.s, 1),
-              v: clamp(0, this.__P_501_4.v, 1)
+              h: clamp(0, this.__P_502_4.h, 1),
+              s: clamp(0, this.__P_502_4.s, 1),
+              v: clamp(0, this.__P_502_4.v, 1)
             };
 
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
             {
-              this.__P_501_20(force);
+              this.__P_502_20(force);
 
-              var map = gamutMap ? 1 / Math.max(this.__P_501_21.r, this.__P_501_21.g, this.__P_501_21.b, 1) : 1;
-              return map * this.__P_501_21[component.split('-')[1]];
+              var map = gamutMap ? 1 / Math.max(this.__P_502_21.r, this.__P_502_21.g, this.__P_502_21.b, 1) : 1;
+              return map * this.__P_502_21[component.split('-')[1]];
             }
 
           case 'rgb':
             {
-              this.__P_501_20(force);
+              this.__P_502_20(force);
 
-              var _map = gamutMap ? 1 / Math.max(this.__P_501_21.r, this.__P_501_21.g, this.__P_501_21.b, 1) : 1;
+              var _map = gamutMap ? 1 / Math.max(this.__P_502_21.r, this.__P_502_21.g, this.__P_502_21.b, 1) : 1;
 
               return {
-                r: _map * this.__P_501_21.r,
-                g: _map * this.__P_501_21.g,
-                b: _map * this.__P_501_21.b
+                r: _map * this.__P_502_21.r,
+                g: _map * this.__P_502_21.g,
+                b: _map * this.__P_502_21.b
               };
             }
 
@@ -1210,51 +1210,51 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           case 'RGBW-b':
           case 'RGBW-w':
             {
-              this.__P_501_22(force);
+              this.__P_502_22(force);
 
-              var _map2 = gamutMap ? 1 / Math.max(this.__P_501_23.r, this.__P_501_23.g, this.__P_501_23.b, this.__P_501_23.w, 1) : 1;
+              var _map2 = gamutMap ? 1 / Math.max(this.__P_502_23.r, this.__P_502_23.g, this.__P_502_23.b, this.__P_502_23.w, 1) : 1;
 
-              return _map2 * this.__P_501_23[component.split('-')[1]];
+              return _map2 * this.__P_502_23[component.split('-')[1]];
             }
 
           case 'rgbw':
             {
-              this.__P_501_22(force);
+              this.__P_502_22(force);
 
-              var _map3 = gamutMap ? 1 / Math.max(this.__P_501_23.r, this.__P_501_23.g, this.__P_501_23.b, this.__P_501_23.w, 1) : 1;
+              var _map3 = gamutMap ? 1 / Math.max(this.__P_502_23.r, this.__P_502_23.g, this.__P_502_23.b, this.__P_502_23.w, 1) : 1;
 
               return {
-                r: _map3 * this.__P_501_23.r,
-                g: _map3 * this.__P_501_23.g,
-                b: _map3 * this.__P_501_23.b,
-                w: _map3 * this.__P_501_23.w
+                r: _map3 * this.__P_502_23.r,
+                g: _map3 * this.__P_502_23.g,
+                b: _map3 * this.__P_502_23.b,
+                w: _map3 * this.__P_502_23.w
               };
             }
 
           case 'T':
-            this.__P_501_24(force);
+            this.__P_502_24(force);
 
-            return clamp(1667, this.__P_501_13, 25000);
+            return clamp(1667, this.__P_502_13, 25000);
 
           case 'Lab':
-            this.__P_501_25(force);
+            this.__P_502_25(force);
 
-            return this.__P_501_14;
+            return this.__P_502_14;
 
           case 'LCh-L':
           case 'LCh-C':
           case 'LCh-h':
-            this.__P_501_26(force);
+            this.__P_502_26(force);
 
-            return clamp(0, this.__P_501_15[component.split('-')[1]], 1);
+            return clamp(0, this.__P_502_15[component.split('-')[1]], 1);
 
           case 'LCh':
-            this.__P_501_26(force);
+            this.__P_502_26(force);
 
             return {
-              L: clamp(0, this.__P_501_15.L, 1),
-              C: clamp(0, this.__P_501_15.C, 1),
-              h: clamp(0, this.__P_501_15.h, 1)
+              L: clamp(0, this.__P_502_15.L, 1),
+              C: clamp(0, this.__P_502_15.C, 1),
+              h: clamp(0, this.__P_502_15.h, 1)
             };
         }
 
@@ -1276,14 +1276,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @returns {number}
        */
       delta: function delta(otherColor) {
-        this.__P_501_25();
+        this.__P_502_25();
 
-        otherColor.__P_501_25();
+        otherColor.__P_502_25();
 
-        var Lab = otherColor.__P_501_14;
-        var dL = this.__P_501_14.L - Lab.L;
-        var da = this.__P_501_14.a - Lab.a;
-        var db = this.__P_501_14.b - Lab.b;
+        var Lab = otherColor.__P_502_14;
+        var dL = this.__P_502_14.L - Lab.L;
+        var da = this.__P_502_14.a - Lab.a;
+        var db = this.__P_502_14.b - Lab.b;
         return Math.sqrt(dL * dL + da * da + db * db);
       },
 
@@ -1298,17 +1298,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @returns {cv.util.Color}
        */
       blend: function blend(otherColor, ratio) {
-        this.__P_501_26();
+        this.__P_502_26();
 
-        otherColor.__P_501_26();
+        otherColor.__P_502_26();
 
         var b = function b(x, y) {
           return (1 - ratio) * x + ratio * y;
         };
 
         var c = this.copy();
-        var c1 = this.__P_501_15;
-        var c2 = otherColor.__P_501_15;
+        var c1 = this.__P_502_15;
+        var c2 = otherColor.__P_502_15;
         var s = Math.abs(c2.h - c1.h + 1) > Math.abs(c2.h - c1.h);
         var e = Math.abs(c2.h - c1.h - 1) > Math.abs(c2.h - c1.h);
 
@@ -1326,4 +1326,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.util.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1643061815028
+//# sourceMappingURL=Color.js.map?dt=1643469634155

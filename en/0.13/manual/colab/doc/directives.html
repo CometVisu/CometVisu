@@ -40,7 +40,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation of the CometVisu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Usage of the CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Configuration of the CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Help the CometVisu project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Information for developers</a></li>
@@ -219,85 +219,6 @@ screenshot (Default: <em>left</em>)</li>
 <h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Permalink to this headline">¶</a></h3>
 <p>This area is defined by the <cite>&lt;settings&gt;</cite> element and this can be refined
 by attributes and subelements.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="57%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="3">Attribut</th>
-</tr>
-<tr class="row-even"><th class="head">&#160;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
-<td>design</td>
-<td colspan="2">Name of a design| In which design the screenshot should be taken (default: metal)</td>
-</tr>
-<tr class="row-even"><td>selector</td>
-<td>Css-Selector</td>
-<td>Defines the area of the screenshot</td>
-</tr>
-<tr class="row-odd"><td>sleep</td>
-<td>number</td>
-<td>Initial wait time in ms before the screenshot is taken</td>
-</tr>
-<tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
-</dl>
-</td>
-<td>&#160;</td>
-<td>#text</td>
-<td>Subtitles of the example code</td>
-</tr>
-<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
-</dl>
-</td>
-<td>name</td>
-<td>text</td>
-<td>File name of the screenshot</td>
-</tr>
-<tr class="row-even"><td>clickpath</td>
-<td>CSS-Selector</td>
-<td>CSS path to an item to be clicked before the screenshot</td>
-</tr>
-<tr class="row-odd"><td>waitfor</td>
-<td>CSS-Selector</td>
-<td>CSS path to an item that should be visible before the screenshot</td>
-</tr>
-<tr class="row-even"><td>sleep</td>
-<td>number</td>
-<td>Waiting time between sending the data and screenshot</td>
-</tr>
-<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
-<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
-</dl>
-</dd>
-</dl>
-</td>
-<td>address</td>
-<td>group address</td>
-<td>Send data to this address before taking the screenshot</td>
-</tr>
-<tr class="row-even"><td>type</td>
-<td><em>float</em> or <em>int</em></td>
-<td>If real numbers need to be sent</td>
-</tr>
-<tr class="row-odd"><td>#text</td>
-<td>text</td>
-<td>Content of the data to be sent</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="section" id="the-parameter-information-directive">
@@ -331,7 +252,7 @@ one parameter that contains the widget name.</p>
 <tr class="row-odd"><td rowspan="9">switch</td>
 <td>styling</td>
 <td>string</td>
-<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
 </tr>
 <tr class="row-even"><td>mapping</td>
 <td>string</td>
@@ -359,11 +280,11 @@ one parameter that contains the widget name.</p>
 </tr>
 <tr class="row-even"><td>class</td>
 <td>string</td>
-<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
 </tr>
 <tr class="row-odd"><td>format</td>
 <td>string</td>
-<td>Formataion of the value (printf syntax).</td>
+<td>Formatting of the value (printf syntax).</td>
 </tr>
 </tbody>
 </table>
@@ -405,15 +326,15 @@ one parameter that contains the widget name.</p>
 </td>
 <td>colspan</td>
 <td>decimal</td>
-<td>Amount of coloumns this widget sould be wide.</td>
+<td>Amount of columns this widget should be wide.</td>
 </tr>
 <tr class="row-even"><td>colspan-m</td>
 <td>decimal</td>
-<td>Overrules the amount of coloumns on a medium screen.</td>
+<td>Overrules the amount of columns on a medium screen.</td>
 </tr>
 <tr class="row-odd"><td>colspan-s</td>
 <td>decimal</td>
-<td>Overrules the amount of coloumns on a small screen.</td>
+<td>Overrules the amount of columns on a small screen.</td>
 </tr>
 <tr class="row-even"><td>rowspan</td>
 <td>decimal</td>
@@ -517,11 +438,11 @@ one parameter that contains the widget name.</p>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>string</td>
-<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+<td>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../../config/styling.html#styling"><span class="std std-ref">Styling</span></a></td>
 </tr>
 <tr class="row-even"><td>class</td>
 <td>string</td>
-<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+<td>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>switch</dt><dd><ul class="simple">

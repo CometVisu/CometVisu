@@ -82,7 +82,7 @@ Allowed attributes in the Roundbar-element
       <address transform="DPT:9.001" mode="read">3/6/0</address>
     </roundbar>
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: roundbar
@@ -189,7 +189,7 @@ Each value can have an individual radius as well as an individual text to displa
 
 Also the position (``outside``, ``center`` and ``inside``) as well as the orientation
 (``horizontal``, ``parallel``, ``perpendicular``, ``roundstart``, ``roundmiddle`` and ``roundend``) can be chosen
-and put infront of the text, separated by a colon:
+and put in front of the text, separated by a colon:
 
   ``position:value``
 
@@ -197,7 +197,7 @@ and put infront of the text, separated by a colon:
 
   ``position,orientation:value``
 
-It is sufficient to put the position, the orientation and also the radius just infront of the first value, all
+It is sufficient to put the position, the orientation and also the radius just in front of the first value, all
 following values are inheriting this property. For special effects it's possible to change these properties
 multiple times:
 

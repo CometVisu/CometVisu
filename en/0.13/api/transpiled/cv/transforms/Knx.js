@@ -80,7 +80,7 @@
           name: 'DPT_Bool',
           lname: {
             'de': 'Boolscher-Wert',
-            'en': 'boolead value'
+            'en': 'boolean value'
           }
         },
         '1.003': {
@@ -1051,4 +1051,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1643061778464
+//# sourceMappingURL=Knx.js.map?dt=1643469599850

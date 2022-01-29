@@ -50,7 +50,7 @@ Allowed attributes in the powerspectrum-element
     </powerspectrum>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: powerspectrum

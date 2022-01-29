@@ -18,7 +18,7 @@ Dieses Plugin bietet zur Zeit folgende Features:
 .. NOTE::
 
     Dieses Plugin wird automatisch geladen, sobald das openHAB2 Backend benutzt wird.
-    Es besteht also keine Notwendingkeit, dieses Plugin in der ``visu_config.xml`` zu aktivieren.
+    Es besteht also keine Notwendigkeit, dieses Plugin in der ``visu_config.xml`` zu aktivieren.
 
 
 

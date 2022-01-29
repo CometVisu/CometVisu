@@ -185,7 +185,7 @@
 
           switch (position_order[pos]) {
             case 0:
-              // page center - will allways work
+              // page center - will always work
               return {
                 x: (page.w - popup.w) / 2,
                 y: (page.h - popup.h) / 2
@@ -257,4 +257,4 @@
   cv.ui.PopupHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PopupHandler.js.map?dt=1643061814383
+//# sourceMappingURL=PopupHandler.js.map?dt=1643469633426

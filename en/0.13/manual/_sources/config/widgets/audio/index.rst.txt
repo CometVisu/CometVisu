@@ -44,7 +44,7 @@ Allowed attributes in the Audio-element
     </audio>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: audio

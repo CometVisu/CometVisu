@@ -42,7 +42,7 @@
    */
 
   /**
-   * This plugins integrates formated date and clock strings into based on strftime.
+   * This plugins integrates formatted date and clock strings into based on strftime.
    *
    * @author Michael Hausl [michael at hausl dot com]
    * @since 0.8.0
@@ -187,4 +187,4 @@
   cv.plugins.Strftime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Strftime.js.map?dt=1643061777790
+//# sourceMappingURL=Strftime.js.map?dt=1643469599193

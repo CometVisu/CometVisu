@@ -156,7 +156,7 @@ In der config.xml sieht dieser Abschnitt wie folgt aus:
         </group>
     </group>
 
-Für die Formatierung (Farbe, Schriftgrösse und Schriftart) muss im Visu Verzeichniss unter
+Für die Formatierung (Farbe, Schriftgröße und Schriftart) muss im Visu Verzeichnis unter
 ``/designs/metal/custom.css`` noch folgender Abschnitt eingefügt werden:
 
 .. code-block:: css

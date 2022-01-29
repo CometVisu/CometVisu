@@ -5,8 +5,8 @@ The ColorChooser widget
 
 .. api-doc:: ColorChooser
 
-Descripton
-----------
+Description
+-----------
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
@@ -382,7 +382,7 @@ The configured brightness doesn't need to follow a specific physical unit (like
 lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
 values.
 
-For a best match between the displayes color and that from the light the
+For a best match between the displayed color and that from the light the
 widget element should not be used in the HSV but in the L*C*h° mode. The
 bus communication should use the ``xy``, ``xyY`` or L*a*B* color space as then
 the conversation to control the light source is happening close to it
@@ -471,7 +471,7 @@ Allowed attributes in the colorchooser-element
     </colorchooser>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: colorchooser

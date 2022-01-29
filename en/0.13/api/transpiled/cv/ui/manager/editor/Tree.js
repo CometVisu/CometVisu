@@ -33,7 +33,6 @@
         "require": true
       },
       "qx.bom.Viewport": {},
-      "cv.ui.manager.model.FileItem": {},
       "cv.ui.manager.model.ElementChange": {},
       "cv.ui.manager.editor.Worker": {},
       "qx.ui.container.Composite": {},
@@ -43,7 +42,7 @@
       "cv.ui.manager.viewer.Config": {},
       "qx.ui.basic.Atom": {},
       "qx.ui.toolbar.Button": {},
-      "qx.ui.toolbar.CheckBox": {},
+      "qx.ui.form.CheckBox": {},
       "qx.ui.toolbar.ToolBar": {},
       "qx.ui.form.TextField": {},
       "qx.util.Function": {},
@@ -68,6 +67,7 @@
       "cv.ui.manager.dialog.ValidationError": {},
       "cv.ui.manager.Main": {},
       "qx.event.message.Bus": {},
+      "cv.ui.manager.model.FileItem": {},
       "qx.xml.Document": {},
       "qx.xml.String": {},
       "qx.ui.core.FocusHandler": {},
@@ -292,8 +292,7 @@
 
           if (file.isWriteable()) {
             if (!preview.getFile()) {
-              var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
-              preview.setFile(previewConfig);
+              preview.setFile(this.__P_33_6());
             }
           } else {
             // this file is not writable, we can use the real one for preview
@@ -621,9 +620,9 @@
             break;
 
           case 'toggle-expert':
-            control = new qx.ui.toolbar.CheckBox(this.tr('Expertview'), cv.theme.dark.Images.getIcon('expert', 16));
-            control.addListener('execute', function () {
-              this.toggleExpert();
+            control = new qx.ui.form.CheckBox(this.tr('Expertview'));
+            control.addListener('changeValue', function (ev) {
+              this.setExpert(ev.getData());
             }, this);
             this.getChildControl('toolbar').add(control);
             break;
@@ -870,7 +869,7 @@
             _this4.__P_33_4 = [result];
             _this4.__P_33_5 = 0;
 
-            _this4.__P_33_6();
+            _this4.__P_33_7();
 
             if (edit) {
               _this4._onEdit();
@@ -894,24 +893,24 @@
             return el.tagName.startsWith(value) || el.hasAttribute('name') && el.getAttribute('name').startsWith(value);
           });
 
-          this.__P_33_6();
+          this.__P_33_7();
         }
       },
       _showNextResult: function _showNextResult() {
         if (this.__P_33_4 && this.__P_33_4.length > this.__P_33_5 + 1) {
           this.__P_33_5++;
 
-          this.__P_33_6();
+          this.__P_33_7();
         }
       },
       _showPreviousResult: function _showPreviousResult() {
         if (this.__P_33_4 && this.__P_33_5 > 0) {
           this.__P_33_5--;
 
-          this.__P_33_6();
+          this.__P_33_7();
         }
       },
-      __P_33_6: function __P_33_6() {
+      __P_33_7: function __P_33_7() {
         if (this.__P_33_4.length > this.__P_33_5) {
           // find and open the first result and save the rest for traversal (with keyboard arrows
           var firstMatch = this.__P_33_4[this.__P_33_5];
@@ -1084,7 +1083,7 @@
                     var acc = Allowed.NONE;
                     var allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                     addable.some(function (elementName) {
-                      acc |= _this5.__P_33_7(allowedSorting, elementName, model.getName());
+                      acc |= _this5.__P_33_8(allowedSorting, elementName, model.getName());
 
                       if (acc & Allowed.BEFORE && acc & Allowed.AFTER) {
                         // we cannot find more
@@ -1112,7 +1111,7 @@
               accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
               // check position
-              accepted.mode = this.__P_33_7(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
+              accepted.mode = this.__P_33_8(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
             }
           } else {
             accepted.mode = Allowed.NONE;
@@ -1758,7 +1757,7 @@
           });
         }
       },
-      __P_33_7: function __P_33_7(allowedSorting, elementName, targetName, depth) {
+      __P_33_8: function __P_33_8(allowedSorting, elementName, targetName, depth) {
         if (allowedSorting) {
           var currentPosition = allowedSorting[elementName];
 
@@ -1796,7 +1795,7 @@
 
         return cv.ui.manager.editor.Tree.Allowed.NONE;
       },
-      __P_33_8: function __P_33_8(id, formData, element) {
+      __P_33_9: function __P_33_9(id, formData, element) {
         var _this7 = this;
 
         var provider = cv.ui.manager.editor.data.Provider.get(id);
@@ -1850,7 +1849,7 @@
           }
         }
       },
-      __P_33_9: function __P_33_9(element, attribute) {
+      __P_33_10: function __P_33_10(element, attribute) {
         var docs = attribute.getDocumentation();
         var def = {
           type: 'TextField',
@@ -1904,7 +1903,7 @@
                 }
               } else {
                 // check if we have a dataprovider for this
-                this.__P_33_8(element.getName() + '@' + attribute.getName(), def, element.getNode());
+                this.__P_33_9(element.getName() + '@' + attribute.getName(), def, element.getNode());
               }
 
               break;
@@ -1961,7 +1960,7 @@
               }
             }
 
-            formData[name] = _this8.__P_33_9(element, attribute);
+            formData[name] = _this8.__P_33_10(element, attribute);
           });
 
           if (typeElement.isChildElementAllowed('*')) {
@@ -2046,7 +2045,7 @@
 
           }
 
-          this.__P_33_8(element.getParent().getName() + '@' + element.getName(), formData[nodeName], element.getNode());
+          this.__P_33_9(element.getParent().getName() + '@' + element.getName(), formData[nodeName], element.getNode());
         }
 
         this.__P_33_3 = true;
@@ -2180,8 +2179,6 @@
 
         this._createChildControl('delete-button');
 
-        toolbar.addSeparator();
-
         this._createChildControl('toggle-expert');
 
         toolbar.addSpacer();
@@ -2280,13 +2277,13 @@
               if (res === true) {
                 _this9.info(file.getPath() + ' is a valid config file');
 
-                _this9.__P_33_10(value);
+                _this9.__P_33_11(value);
               } else {
                 var dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
                 dialog.addListener('action', function (ev) {
                   switch (ev.getData()) {
                     case 'proceed':
-                      _this9.__P_33_10(value, res);
+                      _this9.__P_33_11(value, res);
 
                       break;
 
@@ -2326,7 +2323,25 @@
           }
         }
       },
-      __P_33_10: function __P_33_10(value, errors) {
+      __P_33_6: function __P_33_6() {
+        var file;
+        cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (f) {
+          if (f.getName() === 'visu_config_previewtemp.xml') {
+            file = f;
+            return true;
+          }
+
+          return false;
+        });
+
+        if (!file) {
+          file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+          file.setTemporary(true);
+        }
+
+        return file;
+      },
+      __P_33_11: function __P_33_11(value, errors) {
         var _this10 = this;
 
         var tree = this.getChildControl('tree');
@@ -2353,8 +2368,7 @@
 
             if (file.isWriteable()) {
               if (!preview.getFile()) {
-                var previewConfig = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', file.getParent());
-                preview.setFile(previewConfig);
+                preview.setFile(this.__P_33_6());
               }
             } else {
               preview.setFile(file);
@@ -2441,21 +2455,41 @@
 
           this.getChildControl('preview').show();
 
-          this._client.updateSync({
-            path: previewFile.getFullPath(),
-            hash: 'ignore'
-          }, content, function () {
-            qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-              type: 'contentChanged',
-              file: previewFile,
-              data: content,
-              source: _this11
-            });
+          if (previewFile.isTemporary()) {
+            this._client.createSync({
+              path: previewFile.getFullPath(),
+              hash: 'ignore'
+            }, content, function () {
+              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                type: 'contentChanged',
+                file: previewFile,
+                data: content,
+                source: _this11
+              });
 
-            _this11.__P_33_1.removeAll();
+              _this11.__P_33_1.removeAll();
 
-            _this11.resetPreviewState();
-          }, this);
+              _this11.resetPreviewState();
+
+              previewFile.resetTemporary();
+            }, this);
+          } else {
+            this._client.updateSync({
+              path: previewFile.getFullPath(),
+              hash: 'ignore'
+            }, content, function () {
+              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                type: 'contentChanged',
+                file: previewFile,
+                data: content,
+                source: _this11
+              });
+
+              _this11.__P_33_1.removeAll();
+
+              _this11.resetPreviewState();
+            }, this);
+          }
         }
       },
       getCurrentContent: function getCurrentContent(fast) {
@@ -2596,4 +2630,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1643061780157
+//# sourceMappingURL=Tree.js.map?dt=1643469601539

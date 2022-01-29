@@ -374,7 +374,7 @@ Ein Aufwecken wäre dann über Wake on LAN (WOL) möglich.
 Start-Animation
 ---------------
 
-Damit bei einem Start des Rapsberry Pi die für Nicht-Techniker unschönen
+Damit bei einem Start des Raspberry Pi die für Nicht-Techniker unschönen
 Boot-Meldungen hinter einen schönen Animation versteckt werden kann der
 ``plymouth`` Service eingerichtet werden. Hier gibt es auch eine `Animation
 extra für die CometVisu <https://github.com/CometVisu/Misc/tree/master/plymouth>`__.

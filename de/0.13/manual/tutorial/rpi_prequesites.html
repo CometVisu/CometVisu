@@ -52,7 +52,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#warum-raspberry-pi">Warum Raspberry Pi?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#was-wird-benotigt">Was wird benötigt?</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#minimale-ausstattung">Minimale Ausstattung</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#empfohlende-ausstattung">Empfohlende Ausstattung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#empfohlene-ausstattung">Empfohlene Ausstattung</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ausstattungsbeispiel">Ausstattungsbeispiel</a></li>
 </ul>
 </li>
@@ -156,8 +156,8 @@ spezifisch für den Anwendungsfall und werden hier als vorhanden vorausgesetzt.<
 <a class="reference internal image-reference" href="../_images/rpi_minimum.jpg"><img alt="../_images/rpi_minimum.jpg" src="../_images/rpi_minimum.jpg" style="width: 1000.0px; height: 583.5px;" /></a>
 </div>
 </div>
-<div class="section" id="empfohlende-ausstattung">
-<h3>Empfohlende Ausstattung<a class="headerlink" href="#empfohlende-ausstattung" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="section" id="empfohlene-ausstattung">
+<h3>Empfohlene Ausstattung<a class="headerlink" href="#empfohlene-ausstattung" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Die größte Schwachstelle bei dauerhaften Betrieb eines Raspberry Pi ist die
 Lebensdauer der SD-Karte, da diese nicht auf die dabei auftretende hohe Anzahl
 an Schreibzyklen ausgelegt ist. Hier empfiehlt es sich statt der microSD Karte
@@ -276,7 +276,7 @@ geändert:</p>
 <p>Das installierte Raspberry OS kennt, wie jedes andere Linux auch, mehrere
 Benutzer. Als normaler Nutzer ist der Account <code class="docutils literal notranslate"><span class="pre">pi</span></code> angelegt worden, dieser
 hat aber - bewusst! - nur eingeschränkte Rechte. Werden für administrative
-Aufgaben erweiterte Rechte benötigt, so müssen diese mit dem Accout <code class="docutils literal notranslate"><span class="pre">root</span></code>
+Aufgaben erweiterte Rechte benötigt, so müssen diese mit dem Account <code class="docutils literal notranslate"><span class="pre">root</span></code>
 durchgeführt werden. Aus Sicherheitsgründen kann man sich normalerweise
 nicht direkt als <code class="docutils literal notranslate"><span class="pre">root</span></code> anmelden, sondern geht über einen normalen Account
 (wie <code class="docutils literal notranslate"><span class="pre">pi</span></code>) und wechselt dann von dort auf den <code class="docutils literal notranslate"><span class="pre">root</span></code>-Account.</p>
@@ -286,7 +286,7 @@ so kann über <code class="docutils literal notranslate"><span class="pre">sudo<
 werden. Durch ein <code class="docutils literal notranslate"><span class="pre">exit</span></code> wird wieder zurück gewechselt.</p>
 </div>
 <p>Der Raspberry Pi kann nun über <code class="docutils literal notranslate"><span class="pre">shutdown</span> <span class="pre">-h</span> <span class="pre">now</span></code> herunter gefahren werd, die
-Spannungsversorgnug getrennt, die SD-Karte entfernt und anschließend über das
+Spannungsversorgung getrennt, die SD-Karte entfernt und anschließend über das
 Wiedereinstecken der Spannungsversorgung wieder gestartet werden.</p>
 </div>
 <div class="section" id="basisadministration">
@@ -367,8 +367,8 @@ oder, wenn wider Erwarten notwendig, die HDMI Ausgänge konfigurieren.</p>
 </div>
 <div class="section" id="netzwerkzugriff-teil-2">
 <h3>Netzwerkzugriff - Teil 2<a class="headerlink" href="#netzwerkzugriff-teil-2" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="section" id="netzwerkaddresse-andern">
-<h4>Netzwerkaddresse ändern<a class="headerlink" href="#netzwerkaddresse-andern" title="Link zu dieser Überschrift">¶</a></h4>
+<div class="section" id="netzwerkadresse-andern">
+<h4>Netzwerkadresse ändern<a class="headerlink" href="#netzwerkadresse-andern" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Bis jetzt hat sich der Raspberry Pi selbst eine Netzwerkadresse besorgt. Damit
 dieser aber als Server immer unter der gleichen Adresse zu erreichen ist muss
 entweder im DCHP-Server (in der Regel im Internet-Router integriert) für den
@@ -430,7 +430,7 @@ Erzeugung des lokalen Schlüssels wird dann auch das Passwort für diesen Schlü
 <code class="docutils literal notranslate"><span class="pre">pi</span></code> oder <code class="docutils literal notranslate"><span class="pre">root</span></code>) das Unterverzeichnis <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> angelegt werden und der
 öffentliche Schlüssel dann in die Datei <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> kopiert werden.
 Für einen Key Exchange mit <code class="docutils literal notranslate"><span class="pre">root</span></code> wird erst über <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-s</span></code> der Benutzer
-gewechselt. Anschließdend dann:</p>
+gewechselt. Anschließend dann:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">ssh</span>
 <span class="n">nano</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">authorized_keys</span>
 </pre></div>
@@ -465,7 +465,7 @@ nutzbar wird.</p>
 Docker-Umgebung läuft: <a class="reference internal" href="rpi_docker.html"><span class="doc">Raspberry Pi: Docker installieren</span></a> und
 <a class="reference internal" href="rpi_cometvisu.html"><span class="doc">Raspberry Pi: CometVisu in Docker installieren</span></a>.</p>
 <p>Es kann aber auch sein, dass der Raspberry Pi als CometVisu Client laufen soll
-und den Browser mit der CometVisu auf einem Touch Sreen darstellen soll:
+und den Browser mit der CometVisu auf einem Touchscreen darstellen soll:
 <a class="reference internal" href="rpi_kiosk.html"><span class="doc">Client einrichten (Kiosk Modus)</span></a>.</p>
 <p>Genau so ist es möglich den Raspberry Pi als Automatisierungs-Server für
 OpenHAB oder Node-Red zu verwenden.</p>

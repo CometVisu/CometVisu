@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 1268,
+        "line": 1269,
         "column": 3
       }
     },
@@ -1330,7 +1330,7 @@
           "column": 4
         },
         "end": {
-          "line": 1149,
+          "line": 1150,
           "column": 5
         }
       },
@@ -1340,11 +1340,11 @@
     "hasChildrenModified": {
       "location": {
         "start": {
-          "line": 1156,
+          "line": 1157,
           "column": 4
         },
         "end": {
-          "line": 1162,
+          "line": 1163,
           "column": 5
         }
       },
@@ -1370,11 +1370,11 @@
     "onSaved": {
       "location": {
         "start": {
-          "line": 1164,
+          "line": 1165,
           "column": 4
         },
         "end": {
-          "line": 1180,
+          "line": 1181,
           "column": 5
         }
       },
@@ -1384,11 +1384,11 @@
     "isElement": {
       "location": {
         "start": {
-          "line": 1182,
+          "line": 1183,
           "column": 4
         },
         "end": {
-          "line": 1184,
+          "line": 1185,
           "column": 5
         }
       },
@@ -1398,11 +1398,11 @@
     "_currentChildNames": {
       "location": {
         "start": {
-          "line": 1186,
+          "line": 1187,
           "column": 4
         },
         "end": {
-          "line": 1197,
+          "line": 1198,
           "column": 5
         }
       },
@@ -1412,11 +1412,11 @@
     "_syncChildNodes": {
       "location": {
         "start": {
-          "line": 1199,
+          "line": 1200,
           "column": 4
         },
         "end": {
-          "line": 1204,
+          "line": 1205,
           "column": 5
         }
       },
@@ -1426,11 +1426,11 @@
     "_updateChildrenDeletableFlags": {
       "location": {
         "start": {
-          "line": 1206,
+          "line": 1207,
           "column": 4
         },
         "end": {
-          "line": 1214,
+          "line": 1215,
           "column": 5
         }
       },
@@ -1440,11 +1440,11 @@
     "getWidgetPath": {
       "location": {
         "start": {
-          "line": 1216,
+          "line": 1217,
           "column": 4
         },
         "end": {
-          "line": 1249,
+          "line": 1250,
           "column": 5
         }
       },
@@ -1454,11 +1454,11 @@
     "clone": {
       "location": {
         "start": {
-          "line": 1252,
+          "line": 1253,
           "column": 4
         },
         "end": {
-          "line": 1254,
+          "line": 1255,
           "column": 5
         }
       },
@@ -6356,11 +6356,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1261,
+        "line": 1262,
         "column": 12
       },
       "end": {
-        "line": 1267,
+        "line": 1268,
         "column": 3
       }
     },
