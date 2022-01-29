@@ -36,7 +36,6 @@ use Slim\Exception\HttpNotImplementedException;
  */
 abstract class AbstractFsApi
 {
-
     /**
      * @var ContainerInterface|null Slim app container instance
      */
@@ -52,7 +51,6 @@ abstract class AbstractFsApi
         $this->container = $container;
     }
 
-
     /**
      * GET checkEnvironment
      * Summary: Check filesystem environment (access rights, etc)
@@ -65,9 +63,13 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function checkEnvironment(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $message = "How about implementing checkEnvironment as a GET method in OpenAPIServer\Api\FsApi class?";
+    public function checkEnvironment(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
+        $message =
+            "How about implementing checkEnvironment as a GET method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -82,17 +84,23 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function create(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function create(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $path = (key_exists('path', $queryParams)) ? $queryParams['path'] : null;
-        $hash = (key_exists('hash', $queryParams)) ? $queryParams['hash'] : null;
-        $type = (key_exists('type', $queryParams)) ? $queryParams['type'] : null;
+        $path = key_exists("path", $queryParams) ? $queryParams["path"] : null;
+        $hash = key_exists("hash", $queryParams) ? $queryParams["hash"] : null;
+        $type = key_exists("type", $queryParams) ? $queryParams["type"] : null;
         $body = $request->getParsedBody();
-        $file = (key_exists('file', $request->getUploadedFiles())) ? $request->getUploadedFiles()['file'] : null;
-        $filename = (isset($body['filename'])) ? $body['filename'] : null;
-        $force = (isset($body['force'])) ? $body['force'] : null;
-        $message = "How about implementing create as a POST method in OpenAPIServer\Api\FsApi class?";
+        $file = key_exists("file", $request->getUploadedFiles())
+            ? $request->getUploadedFiles()["file"]
+            : null;
+        $filename = isset($body["filename"]) ? $body["filename"] : null;
+        $force = isset($body["force"]) ? $body["force"] : null;
+        $message =
+            "How about implementing create as a POST method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -107,13 +115,19 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function delete(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function delete(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $path = (key_exists('path', $queryParams)) ? $queryParams['path'] : null;
-        $hash = (key_exists('hash', $queryParams)) ? $queryParams['hash'] : null;
-        $force = (key_exists('force', $queryParams)) ? $queryParams['force'] : null;
-        $message = "How about implementing delete as a DELETE method in OpenAPIServer\Api\FsApi class?";
+        $path = key_exists("path", $queryParams) ? $queryParams["path"] : null;
+        $hash = key_exists("hash", $queryParams) ? $queryParams["hash"] : null;
+        $force = key_exists("force", $queryParams)
+            ? $queryParams["force"]
+            : null;
+        $message =
+            "How about implementing delete as a DELETE method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -128,12 +142,18 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function move(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function move(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $src = (key_exists('src', $queryParams)) ? $queryParams['src'] : null;
-        $target = (key_exists('target', $queryParams)) ? $queryParams['target'] : null;
-        $message = "How about implementing move as a PUT method in OpenAPIServer\Api\FsApi class?";
+        $src = key_exists("src", $queryParams) ? $queryParams["src"] : null;
+        $target = key_exists("target", $queryParams)
+            ? $queryParams["target"]
+            : null;
+        $message =
+            "How about implementing move as a PUT method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -150,14 +170,22 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function read(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function read(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $path = (key_exists('path', $queryParams)) ? $queryParams['path'] : null;
-        $hash = (key_exists('hash', $queryParams)) ? $queryParams['hash'] : null;
-        $download = (key_exists('download', $queryParams)) ? $queryParams['download'] : null;
-        $recursive = (key_exists('recursive', $queryParams)) ? $queryParams['recursive'] : null;
-        $message = "How about implementing read as a GET method in OpenAPIServer\Api\FsApi class?";
+        $path = key_exists("path", $queryParams) ? $queryParams["path"] : null;
+        $hash = key_exists("hash", $queryParams) ? $queryParams["hash"] : null;
+        $download = key_exists("download", $queryParams)
+            ? $queryParams["download"]
+            : null;
+        $recursive = key_exists("recursive", $queryParams)
+            ? $queryParams["recursive"]
+            : null;
+        $message =
+            "How about implementing read as a GET method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -172,13 +200,17 @@ abstract class AbstractFsApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function update(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function update(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $path = (key_exists('path', $queryParams)) ? $queryParams['path'] : null;
-        $hash = (key_exists('hash', $queryParams)) ? $queryParams['hash'] : null;
+        $path = key_exists("path", $queryParams) ? $queryParams["path"] : null;
+        $hash = key_exists("hash", $queryParams) ? $queryParams["hash"] : null;
         $body = $request->getParsedBody();
-        $message = "How about implementing update as a PUT method in OpenAPIServer\Api\FsApi class?";
+        $message =
+            "How about implementing update as a PUT method in OpenAPIServer\Api\FsApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }

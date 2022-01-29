@@ -7,7 +7,9 @@
       "backend-api": {
         "generatorName": "php-slim4",
         "output": "#{cwd}/source/rest/manager",
-        "glob": "source/rest/openapi.yaml"
+        "glob": "source/rest/openapi.yaml",
+        "globalProperty": "apis,apiTests=false",
+        "enablePostProcessFile": true
       }
     }
   }

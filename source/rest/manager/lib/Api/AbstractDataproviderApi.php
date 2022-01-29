@@ -36,7 +36,6 @@ use Slim\Exception\HttpNotImplementedException;
  */
 abstract class AbstractDataproviderApi
 {
-
     /**
      * @var ContainerInterface|null Slim app container instance
      */
@@ -52,7 +51,6 @@ abstract class AbstractDataproviderApi
         $this->container = $container;
     }
 
-
     /**
      * GET getAddresses
      * Summary: Returns the list of available addresses.
@@ -65,9 +63,13 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getAddresses(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $message = "How about implementing getAddresses as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+    public function getAddresses(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
+        $message =
+            "How about implementing getAddresses as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -83,9 +85,13 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getDesigns(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $message = "How about implementing getDesigns as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+    public function getDesigns(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
+        $message =
+            "How about implementing getDesigns as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -101,12 +107,18 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getInfluxDBFields(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function getInfluxDBFields(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $auth = (key_exists('auth', $queryParams)) ? $queryParams['auth'] : null;
-        $measurement = (key_exists('measurement', $queryParams)) ? $queryParams['measurement'] : null;
-        $message = "How about implementing getInfluxDBFields as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+        $auth = key_exists("auth", $queryParams) ? $queryParams["auth"] : null;
+        $measurement = key_exists("measurement", $queryParams)
+            ? $queryParams["measurement"]
+            : null;
+        $message =
+            "How about implementing getInfluxDBFields as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -122,12 +134,18 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getInfluxDBTags(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function getInfluxDBTags(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $auth = (key_exists('auth', $queryParams)) ? $queryParams['auth'] : null;
-        $measurement = (key_exists('measurement', $queryParams)) ? $queryParams['measurement'] : null;
-        $message = "How about implementing getInfluxDBTags as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+        $auth = key_exists("auth", $queryParams) ? $queryParams["auth"] : null;
+        $measurement = key_exists("measurement", $queryParams)
+            ? $queryParams["measurement"]
+            : null;
+        $message =
+            "How about implementing getInfluxDBTags as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -143,11 +161,15 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getInfluxDBs(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
+    public function getInfluxDBs(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
         $queryParams = $request->getQueryParams();
-        $auth = (key_exists('auth', $queryParams)) ? $queryParams['auth'] : null;
-        $message = "How about implementing getInfluxDBs as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+        $auth = key_exists("auth", $queryParams) ? $queryParams["auth"] : null;
+        $message =
+            "How about implementing getInfluxDBs as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -163,9 +185,13 @@ abstract class AbstractDataproviderApi
      * @return ResponseInterface
      * @throws HttpNotImplementedException to force implementation class to override this method
      */
-    public function getRRDs(ServerRequestInterface $request, ResponseInterface $response, array $args)
-    {
-        $message = "How about implementing getRRDs as a GET method in OpenAPIServer\Api\DataproviderApi class?";
+    public function getRRDs(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
+        $message =
+            "How about implementing getRRDs as a GET method in OpenAPIServer\Api\DataproviderApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }
