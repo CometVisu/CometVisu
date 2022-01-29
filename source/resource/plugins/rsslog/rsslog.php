@@ -320,7 +320,7 @@ function create( $dbh )
     
   switch( $logschema )
   {
-    case 0:  // inital setup of database
+    case 0:  // initial setup of database
       // no table found - create it
       $q = 'CREATE TABLE Logs' . $currentSchema;
       $ok = $dbh->exec( $q );

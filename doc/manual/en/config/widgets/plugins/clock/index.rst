@@ -50,7 +50,7 @@ Allowed attributes in the gauge-element
     </clock>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: clock
@@ -89,4 +89,3 @@ for the gauge plugin.
 .. rubric:: Footnotes
 
 .. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.
-    <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>

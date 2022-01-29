@@ -73,7 +73,7 @@ Available media files
 
 Your own configuration can be extended by additional files. Typical examples
 are backdrop images or custom CSS rules to modify an existing design. Text-based files like
-CSS- or Javascript files can be edited diretly with the build-in text editor, other files, like images, can be
+CSS- or Javascript files can be edited directly with the build-in text editor, other files, like images, can be
 uploaded, replaced or deleted.
 
 .. figure:: _static/manager_media.png

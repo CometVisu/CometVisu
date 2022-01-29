@@ -13,7 +13,7 @@ befinden. Durch Klick auf das Widget lässt sich die Benachrichtigungszentrale �
 Wenn man diese Widget nicht benutzt, liefert die Benachrichtigungszentrale ein eigenes Widget, welches nur sichtbar
 ist wenn Nachrichten vorhanden sind. Diese liegt allerdings am oberen rechten Rands des Browserfensters und
 könnte daher andere Widgets überdecken. Möchte man dies nicht kann man das NotificationCenterBadge Widget benutzen
-und frei in der Visu platzieren. Ratsam ist es jedoch dieses Widget in eine auf jeder Seite sichbaren Navigationsleiste
+und frei in der Visu platzieren. Ratsam ist es jedoch dieses Widget in eine auf jeder Seite sichtbaren Navigationsleiste
 einzufügen.
 
 **Beispiel:**

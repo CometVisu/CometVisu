@@ -45,7 +45,7 @@ Allowed attributes in the InfoTrigger-element
     </infotrigger>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: infotrigger

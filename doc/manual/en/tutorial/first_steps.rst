@@ -36,6 +36,15 @@ Target    3/3/30 DPT:9.001
 First visu - in less than half a minute
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. spelling::
+
+    Editieren
+    Wohnzimmertemperatur
+    wärmer
+    kälter
+    Öffnen
+
+
 At the :ref:`manager <manager>` "Editieren" of the default config has to be
 chosen:
 

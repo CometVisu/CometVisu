@@ -22,7 +22,7 @@ import io
 import logging
 import configparser
 import codecs
-
+import enchant
 import subprocess
 from json import dumps
 from semver import compare
@@ -133,6 +133,7 @@ class DocParser:
 class DocGenerator(Command):
     _source_version = None
     _doc_version = None
+    _check_line = re.compile(r'^(.+):([\d]+):\sSpell\scheck:\s([\w]+):\s(.*)$')
 
     def __init__(self):
         super(DocGenerator, self).__init__()
@@ -160,7 +161,24 @@ class DocGenerator(Command):
         else:
             return ver
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
+    def _handle_spellcheck(self, line, fails={}):
+        match = self._check_line.match(line.rstrip())
+        if match:
+            if match.group(1) not in fails:
+                fails[match.group(1)] = []
+            fails[match.group(1)].append({
+                "line": int(match.group(2)),
+                "word": match.group(3),
+                "context": match.group(4)
+            })
+
+    def _run(self, language, target_dir, browser,
+             skip_screenshots=True,
+             force=False,
+             screenshot_build="source",
+             target_version=None,
+             spelling=False
+             ):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -174,6 +192,35 @@ class DocGenerator(Command):
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
         target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
+
+        if spelling:
+            # check if german dictionary is available
+            if "de_DE" not in enchant.list_languages():
+                print("spellcheck for german is not possible, german dictionary not installed!")
+                print(enchant.list_languages())
+                sys.exit(1)
+
+            print("check spelling in %s" % source_dir)
+            args = ["-N", "-b", "spelling", source_dir, target_dir]
+            total_fails = {}
+            total_count = 0
+            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails))
+            for file, fails in total_fails.items():
+                rel_file = file[len(self.root_dir)+1:]
+                total_count += len(fails)
+                print("\n%s (%s failures):" % (rel_file, len(fails)))
+                longest_word = 0
+                for fail in fails:
+                    if len(fail["word"]) > longest_word:
+                        longest_word = len(fail["word"])
+                for fail in fails:
+                    print(" - {word:{longest_word}} [{context}]".format(**fail, longest_word=longest_word))
+
+            if len(total_fails) > 0:
+                print("\nfound %s spelling errors in %s" % (total_count, source_dir))
+                sys.exit(1)
+            sys.exit(0)
+
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -579,6 +626,7 @@ class DocGenerator(Command):
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
+        parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
 
         options = parser.parse_args(args)
 
@@ -631,7 +679,9 @@ class DocGenerator(Command):
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,
                       skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
-                      target_version=options.target_version)
+                      target_version=options.target_version,
+                      spelling=options.spelling
+                      )
             sys.exit(0)
 
         elif options.doc == "source":

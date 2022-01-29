@@ -19,7 +19,7 @@
 
 
 /**
- * This plugins integrates formated date and clock strings into based on strftime.
+ * This plugins integrates formatted date and clock strings into based on strftime.
  *
  * @author Michael Hausl [michael at hausl dot com]
  * @since 0.8.0

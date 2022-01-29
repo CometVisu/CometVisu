@@ -167,7 +167,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       for (let pos in position_order) {
         const xy = {};
         switch (position_order[pos]) {
-          case 0: // page center - will allways work
+          case 0: // page center - will always work
             return {x: (page.w - popup.w) / 2, y: (page.h - popup.h) / 2};
 
           case 1:

@@ -48,7 +48,7 @@ Allowed attributes in the WgPluginInfo-element
     </wgplugin_info>
 
 
-Allowed child-elements und their attributes
+Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: wgplugininfo
